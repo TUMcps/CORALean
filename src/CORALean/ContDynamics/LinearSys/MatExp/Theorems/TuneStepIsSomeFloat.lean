@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
 If one of the first `fuel` halvings of `r₀` passes the float test, the search of [1]'s step
 selector returns a step. Completeness is relative to the float test, as for the order selector.
 
+## Inputs
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the search returns a step when one of the halvings passes the float test
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -30,6 +30,25 @@ and `Ẑ_{W₀}(t₀)` to hold the exact one, which the caller proves of the flo
 rest is the origin on both sides.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `sys` – linear system
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `t₀` – float start time
+* `η` – Taylor order
+* `Ur` – exact input zonotope
+* `W₀r` – exact initial disturbance zonotope
+
+## Hypotheses
+* `ht₀` – start time nonnegative
+* `hU0` – input error box contains zero
+* `hU` – exact input zonotope inside the float one
+* `hWE` – disturbance error box is zero
+* `hW₀r` – exact disturbance zonotope inside the float one
+
+## Conclusion
+* every float initial state stands for the exact one at every admissible order
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

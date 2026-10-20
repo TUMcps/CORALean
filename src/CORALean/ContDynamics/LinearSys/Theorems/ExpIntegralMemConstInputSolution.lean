@@ -14,6 +14,22 @@ plus `(∫₀ᵗ e^{Aσ}dσ - (t/r) ∫₀ʳ e^{Aσ}dσ) ũ`: the first factor a
 point of the segment `[0, ũ]`, the second a member of `F̃` [1, Prop. 3.4]
 applied to `ũ` itself. `plus_outer` adds them.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `uc` – constant input
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* what the constant contributes by the time lies in the constant input solution
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

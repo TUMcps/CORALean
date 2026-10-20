@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
 carried from its step to `t_k`, `u(i)` by `e^{AΔt (k-1-i)} T`. Which direction
 each input has to maximize, for `x(k)` to be a support vector, is read off here.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `x₀` – initial state
+* `u` – input value per step
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the discrete-time state has the closed form
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

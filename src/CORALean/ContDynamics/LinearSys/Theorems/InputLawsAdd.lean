@@ -20,6 +20,21 @@ the image of `X` under `e^{Ab}` with `Y`. The means are `LinearSys.inputReach_se
 added by `map_multivariateGaussian` and `conv_multivariateGaussian`, for positive semidefinite
 covariances. The input set is bounded, which makes every admissible input integrable.
 
+## Inputs
+* `sys` – linear system
+* `C` – noise matrix
+* `U` – input set
+* `a` – first time
+* `b` – second time
+
+## Hypotheses
+* `ha` – first time nonnegative
+* `hb` – second time nonnegative
+* `hbdd` – input set bounded
+
+## Conclusion
+* the laws at the summed time are convolutions of the laws at each time
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

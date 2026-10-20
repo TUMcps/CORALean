@@ -17,6 +17,14 @@ Its `reach` is `LinParamSysDT.reach` at that family, which runs as it stands;
 
 `Δt` is a float and its own value is the step: nothing rounds the time here.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+
+## Output
+* sampled system whose matrix is the float interval enclosure
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

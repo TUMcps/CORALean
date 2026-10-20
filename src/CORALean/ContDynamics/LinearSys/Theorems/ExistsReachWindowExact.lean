@@ -14,6 +14,18 @@ public import Mathlib.Algebra.CharP.Defs
 `t = 0` in the first. Stated once for `LinearSys.reachWrappingFree` and
 `LinearSys.WithInput.reach` alike, the two counting their windows the same way;
 `LinearSys.reach` keeps `⌈tFinal / Δt⌉₊`, the same count once `0 < tFinal`.
+
+## Inputs
+* `tFinal` – final time
+* `Δt` – window width
+* `t` – time
+
+## Hypotheses
+* `hΔt` – window width positive
+* `ht` – time lies in the horizon
+
+## Conclusion
+* every time of the horizon falls in a window the reach keeps
 -/
 
 -- Authors:       Claude Opus 5.5

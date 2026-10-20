@@ -9,19 +9,39 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
 /-!
 # `Thm. 1`, the error half: a tuned run stays inside its error budget
 
-[1, Thm. 1] claims two things of `Alg. 1`; this is the second, that the overall
-error stays below `ε_max = ε_H,max + ε_P,max + ε_S,max`. Proved of the errors
-eq. (9) and eq. (12) accumulate and of the `ε_H` of the step last taken, which
-eq. (2) makes independent of the earlier ones. [1] proves only that each of the
-three bounds is *satisfiable*; that the accumulation stays inside is eq.
-(10)/(11)'s telescoping, which `aux_tunedStep_le` is.
+[1, Thm. 1] claims two things of `Alg. 1`; this is the second, that the overall error stays below
+`ε_max = ε_H,max + ε_P,max + ε_S,max`. Proved of the errors eq. (9) and eq. (12) accumulate and of
+the `ε_H` of the step last taken, which eq. (2) makes independent of the earlier ones. [1] proves
+only that each of the three bounds is *satisfiable*; that the accumulation stays inside is eq.
+(10)/(11)'s telescoping, which `aux_tunedStep_le` is. [1]'s "assuming the reduction of the set
+representation in each step is optional" is discharged rather than assumed: `param(PR)` reduces
+nothing, which is what starts `Alg. 3`'s loop admissible. Two side conditions, neither of them the
+claim: the run must reach the step it is read at, and must not step past `t_f`.
 
-[1]'s "assuming the reduction of the set representation in each step is
-optional" is discharged rather than assumed: `param(PR)` reduces nothing, which
-is what starts `Alg. 3`'s loop admissible.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εSmax` – maximal reduction error
+* `tf` – final time
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `k` – iteration count
 
-Two side conditions, neither of them the claim: the run must reach the step it
-is read at, and must not step past `t_f`. Termination is not proved here.
+## Hypotheses
+* `hle` – comparison oracle is sound
+* `hn` – dimension positive
+* `hμ` – shrink factor positive
+* `htf` – final time positive
+* `hεPmax` – maximal particular error nonnegative
+* `hεSmax` – maximal reduction error nonnegative
+
+## Conclusion
+* a run inside the horizon keeps its errors under their maxima
 
 ## References
 

@@ -15,6 +15,15 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 bracket, `H(t_k)` for the free motion plus the constant share, `P^u(t_k)` for the constant
 share, and the `Ũ`-input's share in the sum `P̂^U_0(t_k) + P̂^U_∞(t_k)` of the two halves of
 eq. (27), kept apart.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `s` – run state
+
+## Output
+* proposition that the state holds what it owes at the current time
 -/
 
 -- Authors:       Claude Sonnet 5.5

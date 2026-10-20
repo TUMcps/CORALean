@@ -12,6 +12,18 @@ public import CORALean.Global.Tensor
 `[1, Eq. 6]`'s propagation `R̂([kr, (k+1)r]) = e^{Akr} R̂([0, r])`, exactly, for the input-free
 system.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `k` – step index
+* `Z` – initial set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reach set of a later step is the exponential of the earlier time applied to the first step's
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

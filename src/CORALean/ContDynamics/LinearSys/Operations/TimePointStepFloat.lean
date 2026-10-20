@@ -12,6 +12,15 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 enclosure `expIntervalFloat` at the point range `[Δt, Δt]` applied by
 `Zonotope.mtimesIntervalMat`, which carries the error box through the interval
 matrix as a box. The step `reachFloat` iterates.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float state zonotope
+
+## Output
+* float zonotope at the end of the homogeneous step
 -/
 
 -- Authors:       Claude Opus 5.5

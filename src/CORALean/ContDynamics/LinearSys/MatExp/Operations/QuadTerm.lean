@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 `quadTerm`: the `γ` of [1, Prop. 4]: what a diagonal entry contributes through itself, and
 the one place a variable occurs twice.
 
+## Inputs
+* `t` – time
+* `a` – diagonal entry
+
+## Output
+* diagonal factor of the second-order Taylor term
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

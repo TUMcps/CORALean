@@ -20,6 +20,16 @@ The spectral norm has no closed form in floats, so it is bounded by the Frobeniu
 `expIntervalFloat`, each entry taken at the larger of its two bounds' magnitudes, times the
 magnitudes of `G`, all rounded up; `√γ` and the root are `sqrtUp`.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `p` – Newton steps per root
+* `B` – float target box zonotope
+
+## Output
+* float upper bound of the curvature radius
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

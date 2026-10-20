@@ -18,6 +18,15 @@ trajectory has to hand `LinearSysDT` as its discrete input. Enclosing it for
 `exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
 file reasoning about this definition must make the same one — the `l∞` operator
 norm — or the terms will not match.
+
+## Inputs
+* `sys` – linear system
+* `u` – input signal
+* `Δt` – step length
+* `k` – step index
+
+## Output
+* everything the input contributed over the step, propagated to its end
 -/
 
 -- Authors:       Claude Opus 5

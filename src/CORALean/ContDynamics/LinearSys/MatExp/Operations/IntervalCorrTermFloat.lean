@@ -14,6 +14,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 the `i`-th power lies in, the scalar replaced by the range `[κ·r^i/i!, 0]` it
 lies in: `corrCoeff i` is in `[corrCoeffLow i, 0]` and `r^i/i!` below
 `taylorCoeffBounds`'s upper end.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `i` – order index
+
+## Output
+* float interval matrix of the order's correction term over the box
 -/
 
 -- Authors:       Claude Opus 5.5

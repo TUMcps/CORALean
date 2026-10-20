@@ -13,6 +13,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 member of the interval matrix `adaptiveRemainder`: [1, Prop. 11]'s step (18), for
 `errorSolution_adaptive`.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+
+## Conclusion
+* the integrated exponential's tail lies in the adaptive remainder
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

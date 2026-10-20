@@ -9,22 +9,27 @@ public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 /-!
 # An inner approximation at a tolerance the caller names
 
-`exists_timePointStepError_lt` composed with `timePointStepInner_inner`: for
-every `ε > 0` there is a step at which taking off the ball of radius `ε` — the
-caller's own tolerance — already yields an inner approximation.
+`exists_timePointStepError_lt` composed with `timePointStepInner_inner`: for every `ε > 0` there is
+a step at which taking off the ball of radius `ε`, the caller's own tolerance, already yields an
+inner approximation. That is what makes the guarantee usable: `timePointStepError` mentions a matrix
+norm and an exponential remainder, so an implementation that had to evaluate it to know what to
+subtract would be subtracting a number it cannot certify. Here the step is chosen to put the true
+error under the tolerance, and `minkowskiDiff_mono` does the rest. The other direction does not
+compose: "the inner approximation fills the exact set to within `ε`" is false however small `ε` is,
+since where the exact set is lower dimensional every Minkowski difference by a ball is empty.
 
-That is what makes the guarantee usable: `timePointStepError` mentions a matrix
-norm and an exponential remainder, so an implementation that had to evaluate it
-to know what to subtract would be subtracting a number it cannot certify. Here
-the step is chosen to put the true error under the tolerance, and
-`minkowskiDiff_mono` does the rest — a larger subtrahend only shrinks the
-difference.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `η` – Taylor order
+* `ε` – admissible error
 
-The other direction does not compose. "The inner approximation fills the exact
-set to within `ε`" is false however small `ε` is: where the exact set is lower
-dimensional — a point `X₀` under a point `U` — every Minkowski difference by a
-nonempty ball is empty. Filling needs the exact set to be thick, a hypothesis on
-`X₀` and `U` that no step size can buy.
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* some step is short enough that its enclosure minus the error ball lies inside what it reaches
 -/
 
 -- Authors:       Claude Opus 5

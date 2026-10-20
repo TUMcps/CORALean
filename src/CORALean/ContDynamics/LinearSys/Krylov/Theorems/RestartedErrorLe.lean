@@ -10,13 +10,30 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 [1, Sec. 7]: the time range `[0, t]` is split into substeps `Δt_j`, the exact solution advances
 by `v^{[j]} = E(Δt_j)v^{[j-1]}` and the restarted Krylov approximation by
-`w^{[j]} = S^{[j]}_m(Δt_j)w^{[j-1]}`, from `w^{[0]} = v`. With `E(·)` nonexpansive and the
-local error of each substep at most `tol · Δt_j` (7.3), the accumulated error (7.2) satisfies
-`‖L⋆_m(t)v‖ ≤ tol · t`. The local error is that of the substep's own start vector,
-`‖L^{[j]}_m(Δt_j)w^{[j-1]}‖`, which the proof uses; (7.3) prints `w^{[j]}`. By induction:
-`v^{[j]} - w^{[j]} = E(Δt_j)(v^{[j-1]} - w^{[j-1]}) + L^{[j]}_m(Δt_j)w^{[j-1]}`. The steps are
-taken from `0` here, for any additive maps `E_j` that do not increase the norm and any maps
-`S_j`.
+`w^{[j]} = S^{[j]}_m(Δt_j)w^{[j-1]}`, from `w^{[0]} = v`. With `E(·)` nonexpansive and each local
+error at most `tol · Δt_j` (7.3), the accumulated error (7.2) satisfies `‖L⋆_m(t)v‖ ≤ tol · t`.
+The local error is that of the substep's own start vector, `‖L^{[j]}_m(Δt_j)w^{[j-1]}‖` (7.3
+prints `w^{[j]}`). By induction `v^{[j]} - w^{[j]} = E(Δt_j)(v^{[j-1]} - w^{[j-1]}) +
+L^{[j]}_m(Δt_j)w^{[j-1]}`, for any additive norm-nonincreasing maps `E_j` and any maps `S_j`.
+
+## Inputs
+* `E` – exact step maps
+* `S` – approximate step maps
+* `v` – exact iterates
+* `w` – approximate iterates
+* `Δt` – substep lengths
+* `tol` – tolerance per unit time
+* `N` – number of substeps
+
+## Hypotheses
+* `hE` – exact steps do not increase the norm
+* `hv` – exact iterates follow the exact steps
+* `hw` – approximate iterates follow the approximate steps
+* `h0` – both start at the same vector
+* `hloc` – local errors within the tolerance
+
+## Conclusion
+* the accumulated error is at most the tolerance times the total time
 
 ## References
 

@@ -17,6 +17,18 @@ What `timeIntervalStepError` and its relatives are built from, at `x = r‖A‖`
 counterpart at `nrm ≥ x`. The second and third are monotone in `x ≥ 0`, so `expNormUpFloat`,
 which bounds `e^{nrm}`, bounds them at `nrm`; the remainder is `expRemainderBound_le`, and is
 nonnegative because the admissible `η` keeps its geometric factor positive.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+
+## Conclusion
+* the scalar norm terms lie under their float bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

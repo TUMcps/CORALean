@@ -17,6 +17,18 @@ The step produced is shorter than the one at the step's end, and for a reason
 that survives here: `timeIntervalStepError` is first order in the step, so
 driving it under `ε` costs a step of order `ε` where the point error, second
 order, needs only `√ε`. The order helps at neither.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `η` – Taylor order
+* `ε` – admissible error
+
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* some step is short enough that its enclosure minus the error ball lies inside the visited states
 -/
 
 -- Authors:       Claude Opus 5

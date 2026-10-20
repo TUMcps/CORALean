@@ -11,17 +11,31 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 /-!
 # The discrete reachable set, under constant-input steps, sits inside `inputReach`
 
-A point of `inputReach` is exhibited here by a genuine piecewise-constant input,
-and with `reachSetExact_eq` the inclusion continues into `reachSetExact` itself: a
-trajectory being Carathéodory, that input drives a run.
+A point of `inputReach` is exhibited here by a genuine piecewise-constant input, and with
+`reachSetExact_eq` the inclusion continues into `reachSetExact` itself: a trajectory being
+Carathéodory, that input drives a run. Driven by induction on the step count:
+`inputReach_separation` supplies the one step `e^{Δt A} P^R(kΔt) + P^R(Δt) ⊆ P^R((k+1)Δt)`, and
+`expIntegral_mem_inputReach` places `stepInputConst c Δt` inside `P^R(Δt)`. `hne` and `hbdd` are not
+part of the CORA algorithm modelled; they are what the `k = 0` base case and `inputReach_separation`
+need from `U`. Nonemptiness is all the base case needs: holding any one point of `U` over `[0, 0]`
+is admissible and contributes the empty integral, `0`.
 
-Driven by induction on the step count: `inputReach_separation` supplies the
-one step `e^{Δt A} P^R(kΔt) + P^R(Δt) ⊆ P^R((k+1)Δt)`, and
-`expIntegral_mem_inputReach` places `stepInputConst c Δt` inside `P^R(Δt)`.
-`hne` and `hbdd` are not part of the CORA algorithm modelled; they are what
-the `k = 0` base case and `inputReach_separation` need from `U`. Nonemptiness
-is all the base case needs: holding any one point of `U` over `[0, 0]` is
-admissible and contributes the empty integral, `0`.
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `k` – number of steps
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+* `hUd` – sampled inputs are constant steps of input values
+
+## Conclusion
+* the discrete reachable set lies in the propagated start plus the input reach
 -/
 
 -- Authors:       Claude Opus 5

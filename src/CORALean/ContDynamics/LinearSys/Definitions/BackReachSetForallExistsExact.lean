@@ -15,6 +15,17 @@ time `t`. The paper's `U` and `W` are the signals for which the solution
 ones, so the `∀u` guard carries measurability as well as admissibility: it
 quantifies over the same signals `Z_U(t)` integrates, no more and no fewer.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `U` – admissible input set
+* `W` – admissible disturbance set
+* `Xend` – target set
+* `t` – target time
+
+## Output
+* states from which every input lets some disturbance reach the target
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

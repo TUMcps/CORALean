@@ -18,21 +18,34 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # Every point of the first enclosure is near a reachable one
 
-The half of [1, Lemma 2]'s convergence claim that is not the enclosure itself: a point
-`q = p + w` of `P + □(α_r + β_r)` is within `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` of
-`R_[0,r](Z)`. As in the printed proof, `p` splits as `(z + e^{rA}z)/2 + (I - e^{rA})z'/2`
-with `z ∈ Z` and `‖z'‖ ≤ sup ‖x‖`; the reachable point is `e^{(r/2)A}z`, the input held at
-`0`. The distance is then at most `‖w‖ + α_r + (e^{r‖A‖} - 1) sup ‖x‖ / 2`, that is
-`2α_r + β_r + (e^{r‖A‖} - 1) sup ‖x‖/2`.
+The half of [1, Lemma 2]'s convergence claim that is not the enclosure itself: a point `q = p + w`
+of `P + □(α_r + β_r)` is within `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` of `R_[0,r](Z)`. As in
+the printed proof, `p` splits as `(z + e^{rA}z)/2 + (I - e^{rA})z'/2` with `z ∈ Z` and
+`‖z'‖ ≤ sup ‖x‖`; the reachable point is `e^{(r/2)A}z`, the input held at `0`. The printed proof
+bounds `2α_r` by `e^{r‖A‖} r² sup ‖x‖`, which is false whenever `‖A‖ > 1` and `r` is small: `α_r` is
+of order `(r‖A‖)²`, not `r²`. What `e^x - 1 - x ≤ x²e^x/2` gives is
+`2α_r ≤ (r‖A‖)² e^{r‖A‖} sup ‖x‖`, so the factor printed as `(1/2 + r)` is `(1/2 + r‖A‖)` here
+(`exists_lt_hausdorffDist_iUnion_reachSetExact` shows the printed one fails).
 
-The printed proof bounds `2α_r` by `e^{r‖A‖} r² sup ‖x‖`, which is false whenever `‖A‖ > 1`
-and `r` is small: `α_r = (e^{r‖A‖} - 1 - r‖A‖) sup ‖x‖` is of order `(r‖A‖)²`, not `r²`.
-What `e^x - 1 - x ≤ x²e^x/2` gives is `2α_r ≤ (r‖A‖)² e^{r‖A‖} sup ‖x‖`, so the factor
-printed as `(1/2 + r)` is `(1/2 + r‖A‖)` here; `exists_lt_hausdorffDist_iUnion_reachSetExact`
-shows that the printed factor fails.
+## Inputs
+* `sys` – linear system
+* `Z` – initial zonotope
+* `U` – input zonotope
+* `μ` – input bound
+* `r` – step length
+* `s` – norm bound of the initial zonotope
+* `q` – point of the first enclosure
 
-`0 < r` is needed for `e^{(r/2)A}z` to be the midpoint's companion: at `r = 0`, `(r/2)/r` is
-Lean's `0 / 0`.
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length positive
+* `hμ` – input bound nonnegative
+* `hU` – input set is the ball of that radius
+* `hs` – norm bound holds on the initial zonotope
+* `hq` – point lies in the first enclosure
+
+## Conclusion
+* the point is within the corrected distance of a reachable point
 
 ## References
 

@@ -16,6 +16,14 @@ interval matrix (`intervalMatrix(obj.power.zono{i})`) before multiplying it by
 `[corrCoeff i, 0]`. The box of the zonotope power keeps the dependency between a
 member's own factors that `Interval.matPow` loses, so it is no wider than
 `matPow` of the boxed matrix zonotope.
+
+## Inputs
+* `M` – matrix zonotope
+* `r` – step length
+* `i` – order index
+
+## Output
+* interval matrix of the order's correction term
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 `E(Δt,η)·Δt·U` at the particular solution — not `timePointStepError`'s
 combined figure.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `U` – input zonotope
+
+## Output
+* radius of the remainder widening term
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

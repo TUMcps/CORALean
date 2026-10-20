@@ -15,6 +15,17 @@ that box as a zonotope, so `timePointStepInnerRep` is the time-point
 difference at a representation: `minkDiffRep` of the step by its error box,
 at a generator representation `M` the caller offers and the operation
 checks, `none` where it does not.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `M` – generator representation
+
+## Output
+* step's end minus its error box, if the representation checks out
 -/
 
 -- Authors:       Claude Sonnet 5

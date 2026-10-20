@@ -16,6 +16,15 @@ affine dynamics `ẋ = Ax + ũ`, over the elapsed times `[0,Δt]` of the step.
 other set in the display is relative to `t_k`; read literally the two do not compose, so the
 elapsed time `t - t_k ∈ [0,Δt]` is what this definition runs over.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+
+## Output
+* exact tube of the affine dynamics over the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

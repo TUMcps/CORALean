@@ -17,6 +17,24 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecL
 `V_m*V_m = I`; `τ_{m+1,m}` is any complex number, entering as `|τ_{m+1,m}|`, and `v_{m+1}` any
 vector, entering as the factor `‖v_{m+1}‖₂` that (2.2) makes `1`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – unit scaling
+* `w` – next vector
+* `t` – time
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hA` – scaled matrix has field of values in the left half-plane
+* `hσ` – scaling has modulus one
+* `ht` – time nonnegative
+
+## Conclusion
+* the Krylov error is at most the integral of the defect bound
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

@@ -14,6 +14,22 @@ distance in [1]'s infinity norm, which is `Vec ℝ n`'s own. One direction is th
 `exists_mem_inputReach_dist_le`: a point `e^{rA}z + w` of the enclosure is within the
 bound of `e^{rA}z + v`, `v` what a constant input reaches.
 
+## Inputs
+* `sys` – linear system
+* `Z` – initial zonotope
+* `U` – input zonotope
+* `μ` – input bound
+* `r` – step length
+
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length nonnegative
+* `hμ` – input bound nonnegative
+* `hU` – input set is the ball of that radius
+
+## Conclusion
+* the step's enclosure is within the stated Hausdorff distance of the reachable set
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

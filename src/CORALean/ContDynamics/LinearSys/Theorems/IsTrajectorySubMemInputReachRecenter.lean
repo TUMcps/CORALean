@@ -19,6 +19,24 @@ and the last term is one admissible `Ũ`-input's contribution, `inputReach Ũ t`
 The argument `WithInputSplit.reach_outer` makes inline, named so that a float
 reach can state its windows against the same three pieces.
 
+## Inputs
+* `sys` – linear system
+* `T` – horizon
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `V` – enclosing set
+* `t` – time
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hUV` – input set lies in the enclosing set
+* `ht` – time within the horizon
+
+## Conclusion
+* the run minus free motion and center contribution lies in the recentered input reach
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

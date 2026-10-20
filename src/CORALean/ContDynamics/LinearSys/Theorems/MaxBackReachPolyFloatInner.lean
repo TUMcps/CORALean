@@ -18,6 +18,23 @@ exact `F box(X_end)` (an outer enclosure, which only shrinks a difference) and t
 at least the exact `μ`. Each of the two differences is `HPolytope.minkDiffOf_inner`, whose
 equality-row condition is asked of both subtrahends.
 
+## Inputs
+* `p` – Newton steps per root
+* `X` – float polytope
+* `FB` – float zonotope of the correction box
+* `μ` – float curvature radius
+* `Fr` – exact correction set
+* `μr` – exact curvature radius
+
+## Hypotheses
+* `hFr` – exact correction set inside the float zonotope
+* `hμ` – exact radius at most the float one
+* `hker₁` – equality rows vanish on the correction zonotope
+* `hker₂` – equality rows vanish on the curvature ball
+
+## Conclusion
+* the float eroded polytope lies inside the exact one
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -13,6 +13,16 @@ public import CORALean.Global.Err
 `err`s added: `err(e^{Atk}((Σᵢ₌₁^η Ãᵢ)U0 ⊕ E(Δt,η)ΔtU0)) + err(e^{Atk}(⊕ᵢ₌₁^η ÃᵢU0 ⊕
 E(Δt,η)ΔtU0))`. Both start at `i0 = 1`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* sum of the correlated and decorrelated errors
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

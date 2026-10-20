@@ -14,6 +14,23 @@ the member `M` puts it in the exact `G` at `M`, which
 `1/2`, as the float remainder bound does, where the exact one asks `< 1`. This is the float `G`
 of `curvatureEnclosure`: the true object `∫₀ᵗ e^{Mσ}dσ - (t/r)∫₀ʳ e^{Mσ}dσ` of every matrix the
 box holds is in it.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+* `M` – member matrix
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the member's integrated interpolation error lies in the float integrated correction
 -/
 
 -- Authors:       Claude Sonnet 5.5

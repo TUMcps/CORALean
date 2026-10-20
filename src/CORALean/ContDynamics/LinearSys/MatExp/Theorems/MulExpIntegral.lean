@@ -15,6 +15,16 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
 `I` subtracted. [1]'s fallback for a singular `A` — "factor
 `A⁻¹` into the power series" — is `expIntegral` itself.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* `hA` – determinant is a unit
+
+## Conclusion
+* the integrated exponential equals the inverse times the exponential minus the identity
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

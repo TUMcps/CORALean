@@ -13,6 +13,20 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExponentialRemaind
 (`expmTerms_mem`) and the remainder in `exponentialRemainder` (`exponentialRemainder_outer`).
 Proved for `η ≥ 2` and `r ≠ 0`, where the series splits as written; CORA also runs smaller orders,
 with `H` and `E` overlapping.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonzero
+* `hη` – order at least two
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the exponential of the member lies in the enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,16 @@ public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 The exponential and its truncation are both continuous in `τ`, so their
 difference is, which is what makes the remainder of an input solution
 measurable and bounded on a compact step.
+
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential minus its truncation is continuous in time
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,14 @@ contribution by `t_i` plus anything an admissible `Ũ`-input contributes by
 then. The free motion is not carried: [1, Alg. 1] reaches every window from
 `X₀` by `e^{A t_i}`.
 
+## Inputs
+* `sys` – system
+* `V` – input zonotope bound
+* `s` – run state
+
+## Output
+* proposition that the state holds what it owes
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

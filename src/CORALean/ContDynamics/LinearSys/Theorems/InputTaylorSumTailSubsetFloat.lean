@@ -15,6 +15,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 (`smul_pow_mem_intervalInputTerm`), so its image is in the float product, and `⊞` holds the
 sum; the zero matrix below order `1` is in the point `0`. [1, Alg. 2] line 16's set.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `U` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+
+## Conclusion
+* the exact tail lies in the float tail
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

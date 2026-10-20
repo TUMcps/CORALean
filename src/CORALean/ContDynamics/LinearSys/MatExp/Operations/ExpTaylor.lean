@@ -13,6 +13,13 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 `expTaylor`: [1, Eq. 3.2–3.3]'s series truncated at `η`, the center of the enclosure
 `expEnclosure` builds around `exp x`.
 
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Output
+* Taylor truncation of the matrix exponential
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

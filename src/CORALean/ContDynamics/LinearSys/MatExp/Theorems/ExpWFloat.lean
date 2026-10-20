@@ -14,6 +14,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 `W(t)` at `toRealMat M` and `toReal t` lies in the interval matrix `expW M t`: `t M_ij` between
 its two directed products, `(M²)_ij` between the two directed dot products, `½ t²` between
 `halfSqBounds`, and the corner hull of the last two.
+
+## Inputs
+* `M` – float matrix
+* `t` – float time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact second-order term lies in the float interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

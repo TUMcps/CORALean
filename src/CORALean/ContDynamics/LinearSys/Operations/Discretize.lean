@@ -11,17 +11,20 @@ public import Mathlib.Analysis.Matrix.Normed
 /-!
 # Sampling a continuous-time linear system
 
-Sampling every `Δt` turns the system's canonical form into the discrete-time one whose matrix
-is `e^{AΔt}`, `LinearSysDT.canonical`, its input what a step accumulates in state coordinates,
-so reachability at the sample times is `LinearSysDT`'s and needs nothing new.
+Sampling every `Δt` turns the system's canonical form into the discrete-time one whose matrix is
+`e^{AΔt}`, `LinearSysDT.canonical`, its input what a step accumulates in state coordinates, so
+reachability at the sample times is `LinearSysDT`'s and needs nothing new. The result is a
+`LinearSysDT ℝ`, never `LinearSysDT 𝕋`: `e^{AΔt}` is transcendental, so no machine scalar holds
+it, and a float layer has to carry an interval matrix here instead. `exp` needs a norm on `Mat`,
+a choice rather than an instance, so every file reasoning about this definition must make the
+same one, the `l∞` operator norm, or the terms will not match.
 
-The result is a `LinearSysDT ℝ`, never `LinearSysDT 𝕋`: `e^{AΔt}` is
-transcendental, so no machine scalar holds it, and a float layer has to carry an
-interval matrix here instead.
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
 
-`exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
-file reasoning about this definition must make the same one — the `l∞` operator
-norm — or the terms will not match.
+## Output
+* sampled discrete-time system
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

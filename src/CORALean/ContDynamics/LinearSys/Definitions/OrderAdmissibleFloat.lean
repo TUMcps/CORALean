@@ -18,6 +18,15 @@ no paper states as a condition; the float layer asks `≤ 1/2`, its geometric fa
 constant `2`, where the exact layer's `timeIntervalStep_outer` asks `< 1`. At least `2`, from no
 paper: as `MatExp.intervalCorrectionMatrix`'s guarantee needs.
 
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Output
+* proposition that the order is at least two and its float remainder bound is sound
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

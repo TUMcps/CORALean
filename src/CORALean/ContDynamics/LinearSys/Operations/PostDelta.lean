@@ -8,16 +8,23 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 /-!
 # `postΔ`, named
 
-[1, Sec. 4.1], line 6 of Alg. 1: `R∆(τs) = post∆(R(ts), Ψ(τs), A)`, "a slight
-modification of the standard techniques for linear system reachability" that
-"returns the set of state differences ... instead of the set of states" — CORA's
-own `Rdelta = Rhom + RV`, with `A` carried by `sys`.
+[1, Sec. 4.1], line 6 of Alg. 1: `R∆(τs) = post∆(R(ts), Ψ(τs), A)`, "a slight modification of the
+standard techniques for linear system reachability" that "returns the set of state differences ...
+instead of the set of states": CORA's own `Rdelta = Rhom + RV`, with `A` carried by `sys`. Nothing
+is computed here that `deltaReach` and `inputSolution` do not already: `Rhom` is `deltaReach`'s
+homogeneous part, `RV` is `inputSolution` at the uncertain input set `Ψ`.
+`NonlinearSys.relinDeltaReach` already runs this composition per step of the re-linearization
+loop; this file gives the paper's own name and signature to it, decoupled from that loop.
 
-Nothing is computed here that `deltaReach` and `inputSolution` do not already:
-`Rhom` is `deltaReach`'s homogeneous part, `RV` is `inputSolution` at the
-uncertain input set `Ψ`. `NonlinearSys.relinDeltaReach` already runs this exact
-composition per step of the re-linearization loop; this file gives the paper's
-own name and signature to the composition on its own, decoupled from that loop.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `R₀` – initial set
+* `Ψ` – uncertain input set
+
+## Output
+* every state difference a step can span
 
 ## References
 

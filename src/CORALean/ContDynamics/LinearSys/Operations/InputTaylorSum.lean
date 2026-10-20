@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputTerm
 The sum is recursive rather than a fold over `Finset`, since `plus` is only an
 enclosure and never has to be reassociated this way; the guarantee is then one
 induction.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `U` – input set
+
+## Output
+* sum of the exact input orders up to the given index
 -/
 
 -- Authors:       Claude Opus 5

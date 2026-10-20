@@ -14,6 +14,14 @@ public import CORALean.ContDynamics.LinearSys.Definitions.WithInput
 itself, which `IsTrajectory` accepts as it accepts any other, as
 `NonlinearSys.WithSteps.reachUnionExact` does. The windows `reach` covers the
 horizon with are how it encloses this set, not part of it.
+
+## Inputs
+* `sys` – linear system with input
+* `tFinal` – final time
+* `X` – initial set
+
+## Output
+* states a run is in at some time up to the final time
 -/
 
 -- Authors:       Claude Opus 5.5

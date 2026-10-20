@@ -11,6 +11,16 @@ public import CORALean.Global.Err
 `particularSolutionTauError`: [1]'s eq. (26): `Δε^{U,τ}_k(Δt,η) := err(e^{Atk} bPU(Δt))`: `bPU`
 mapped by the (fixed, `Δt`-independent) matrix `e^{Atk}` and read at `err`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* error of the τ-form particular solution
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

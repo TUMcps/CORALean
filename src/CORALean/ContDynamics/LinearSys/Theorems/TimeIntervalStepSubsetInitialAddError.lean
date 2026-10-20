@@ -15,21 +15,27 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # What the step encloses beyond the initial set it starts from
 
-`timeIntervalStep_outer` run backwards, and sharper than
-`timeIntervalStep_subset_reach_add_error`: the exact point the enclosure is
-measured against is the state at `t = 0`, so the set on the right is `X₀`
-itself — a zonotope, hence convex and compact — rather than the union over the
-step, which is a union of images and need not be convex at all. That is what an
-inner approximation of the step needs, and what the union cannot give.
+`timeIntervalStep_outer` run backwards, and sharper than `timeIntervalStep_subset_reach_add_error`:
+the exact point the enclosure is measured against is the state at `t = 0`, so the set on the right
+is `X₀` itself, a zonotope, hence convex and compact, rather than the union over the step, which
+need not be convex. That is what an inner approximation of the step needs. The hull gap is the
+larger term: `linComb X₀ (e^{Ar}X₀)` reaches outside every state the flow visits over the step,
+costing `‖e^{Ar} - I‖` against the initial set's `ℓ¹` reach, *first* order in the step, where the
+correction matrix is second. So the correction does not pay for the hull, nor does any truncation
+order: `ε` reaches only the smaller term, and [1] tunes the correction, not the hull.
 
-The hull gap is real and it is the larger term. `linComb X₀ (e^{Ar}X₀)` reaches
-outside every state the flow visits over the step, and a zonotope's `linComb` is
-itself wider than the hull of its two operands. What that costs is
-`‖e^{Ar} - I‖` against the initial set's `ℓ¹` reach — *first* order in the step,
-where the correction matrix meant to account for the interpolation is second. So
-the correction does not pay for the hull, and no truncation order does either:
-`ε` reaches only the smaller of the two terms. What [1] tunes reaches the
-correction and not the hull.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the computed step lies in the initial set widened by the error
 
 ## References
 

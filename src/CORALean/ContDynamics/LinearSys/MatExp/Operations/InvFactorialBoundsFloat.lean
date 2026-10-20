@@ -14,6 +14,12 @@ directions: divide `one` by the factorial's upper bound to round down, by its
 lower bound (held positive) to round up. Returned as an interval, one declaration
 covering both bounds rather than two files that would otherwise duplicate the
 factorial computation.
+
+## Inputs
+* `k` – factorial argument
+
+## Output
+* float interval enclosing the inverse factorial
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -17,6 +17,26 @@ bound on the support of the step's set, the second through `Zonotope.lowerDot`, 
 `N_(j,·) x - ρ(Ẑ_{U₀}, -N_(j,·)) ≤ N_(j,·) x + N_(j,·) w`. Needs the error box of `Ẑ_{U₀}` to be
 non-empty, a property of the stored bounds the caller states.
 
+## Inputs
+* `sys` – linear system
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance float zonotope
+* `U₀` – initial input float zonotope
+* `Zw` – center trajectory contribution
+* `N` – direction matrix
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `ν` – number of squarings
+* `k` – step index
+* `j` – direction index
+
+## Hypotheses
+* `hE` – input error box is ordered
+
+## Conclusion
+* the float support value bounds the exact one from above
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

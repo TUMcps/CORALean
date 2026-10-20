@@ -8,19 +8,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetL
 /-!
 # `timeIntervalStep` contains the flow at every time in the step
 
-CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that makes it
-usable: not just at the sample times, but at every `t` in `[0, r]`, one named
-time at a time — `timeIntervalStep_outer`, the quantified statement through
-`reachExact`, is what a caller with no particular `t` in hand wants, and is
-proved from this one. The wrapping-effect-free construction of [1, Alg. 1], one
-step of it.
-
-`timeIntervalStep_outer_setLinComb` is the whole argument, at the level of `Set`s;
-this is that composed with `LinComb.linComb_outer` and `Plus.plus_outer`, the two
-lifts it takes to land in `construct (timeIntervalStep ...)`.
-
-Homogeneous only: with a non-zero input a trajectory also picks up the input
-integral, which is `TrajectoryTimeIntervalOuter`.
+CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that makes it usable: not just at
+the sample times, but at every `t` in `[0, r]`, one named time at a time. `timeIntervalStep_outer`,
+the quantified statement through `reachExact`, is what a caller with no particular `t` in hand
+wants, and is proved from this one. The wrapping-effect-free construction of [1, Alg. 1], one step
+of it. `timeIntervalStep_outer_setLinComb` is the whole argument, at the level of `Set`s; this is
+that composed with `LinComb.linComb_outer` and `Plus.plus_outer`. Homogeneous only: with a non-zero
+input a trajectory also picks up the input integral, which is `TrajectoryTimeIntervalOuter`.
 
 ## References
 

@@ -12,6 +12,15 @@ public import Mathlib.Tactic.Positivity
 Held at or above `one` by the exact `maximum` in its definition, and at or
 below `k!` by induction: each factor, clamped at `zero`, lies in `[0, k]`, so a
 product of it with the previous lower bound stays under `k · (k-1)!`.
+
+## Inputs
+* `k` – factorial argument
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float lower bound lies between one and the factorial
 -/
 
 -- Authors:       Claude Sonnet 5

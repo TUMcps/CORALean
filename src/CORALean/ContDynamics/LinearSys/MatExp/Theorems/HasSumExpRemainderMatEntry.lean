@@ -18,6 +18,19 @@ summability with the value, which a `tsum` equation alone does not give.
 
 Reading one entry is `1`-Lipschitz under the `l∞` operator norm the local instances put on
 `Mat ℝ n n`, which is what carries the matrix series' convergence to the entry's.
+
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the remainder entry is the sum of the series past the order
 -/
 
 -- Authors:       Claude Opus 5.5

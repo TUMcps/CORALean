@@ -20,6 +20,17 @@ from the reals is `e^{Ar}`; here it is `[e^{Ar}]`, the order-`η` interval-matri
 matrix. `box` is `Zonotope.interval` read back as a zonotope, and `R^h_k ⊕ P_k` is the sum of a
 bundle and a one-member bundle, as over `ℝ`; one `let` per line of the listing.
 
+## Inputs
+* `sys` – linear system
+* `Rh₀` – initial float homogeneous bundle
+* `Ri₀` – initial float input zonotope
+* `r` – float step length
+* `η` – Taylor order
+* `N` – number of steps
+
+## Output
+* float reachable bundles of the steps
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of

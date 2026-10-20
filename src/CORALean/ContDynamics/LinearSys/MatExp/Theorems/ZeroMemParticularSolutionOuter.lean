@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSoluti
 product `E(Δt,η)ΔtU₀`. Each holds `0` once `U₀` does, `[1]`'s Alg. 1 taking `U₀ = ⟨0, BG_u⟩`, and so
 does the sum, from any lowest order `i₀`.
 
+## Inputs
+* `A` – system matrix
+* `U0` – input set
+* `i0` – start index
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `h0` – origin lies in the input set
+
+## Conclusion
+* the origin lies in the particular solution outer approximation
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

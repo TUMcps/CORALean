@@ -13,6 +13,12 @@ public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 exponential through an integral or a derivative, which needs the map applying
 it to be continuous in the matrix, not only in the vector. Finite dimension is
 what makes every piece of it continuous.
+
+## Inputs
+* none
+
+## Output
+* matrix-vector product as a continuous linear map in the matrix
 -/
 
 -- Authors:       Claude Opus 5

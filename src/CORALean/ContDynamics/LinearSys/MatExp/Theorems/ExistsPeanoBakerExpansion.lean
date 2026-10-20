@@ -15,18 +15,36 @@ public import Mathlib.Topology.Algebra.Order.Floor
 /-!
 # The Peano–Baker expansion of a run with an input, and what it leaves
 
-A solution of `x(s) = x(0) + ∫₀ˢ A(σ) x(σ) + u(σ) dσ` on `[0, t]`, every `A(σ)` in
-the box `B` and `‖u‖ ≤ ν`, is its first `η + 1` Peano–Baker terms applied to
-`x(0)` plus the first `η + 1` terms of its input, each within its own remainder:
-`‖x(0)‖` respectively `t ν` times `expRemainderBound` at `t • B` — the exponential's
-own tail, not `e^{ct}` times it as a Grönwall step would give.
+A solution of `x(s) = x(0) + ∫₀ˢ A(σ) x(σ) + u(σ) dσ` on `[0, t]`, every `A(σ)` in the box `B`
+and `‖u‖ ≤ ν`, is its first `η + 1` Peano–Baker terms applied to `x(0)` plus the first `η + 1`
+terms of its input, each within its own remainder: `‖x(0)‖` respectively `t ν` times
+`expRemainderBound` at `t • B`, the exponential's own tail, not `e^{ct}` times it as a Grönwall
+step would give. Picard's iteration on the state: what `L` orders leave is `∫₀ˢ A(σ)` of what
+`L - 1` left, so at most `X (c s)^L / L!` with `c = ‖B.absMax‖` and `X` a bound on the run. The
+orders past `η` of both series are summable, each under its term of the exponential series of
+`c t`, and their sums are the two remainders.
 
-Picard's iteration on the state: what `L` orders leave is `∫₀ˢ A(σ)` of what `L - 1`
-left, so at most `X (c s)^L / L!` with `c = ‖B.absMax‖` and `X` a bound on the run,
-and it vanishes. The orders past `η` of both series are summable, each under its
-term of the exponential series of `c t`, and their sums are the two remainders.
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `u` – input signal
+* `x` – run
+* `t` – time
+* `ν` – input norm bound
+* `η` – Taylor order
 
-`Vec` carries the sup norm, and `‖A(σ)‖` is the `l∞` operator norm it induces.
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `hu` – input integrable
+* `ht` – time nonnegative
+* `hxc` – run continuous on the interval
+* `hx` – run solves the integral equation
+* `hν` – input norm bounded
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the run is its Peano–Baker terms plus two short remainders
 -/
 
 -- Authors:       Claude Opus 5.5

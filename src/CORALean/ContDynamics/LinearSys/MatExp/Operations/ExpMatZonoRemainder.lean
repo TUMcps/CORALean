@@ -10,6 +10,13 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 `expMatZonoRemainder`: [1, Sec. 3.3.2]'s tail, a box of uniform width `b` as a matrix
 zonotope: center zero, and one generator per entry carrying `b` there and nothing else.
 
+## Inputs
+* `m` – matrix dimension
+* `b` – entry bound
+
+## Output
+* matrix zonotope of the uniform-width box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

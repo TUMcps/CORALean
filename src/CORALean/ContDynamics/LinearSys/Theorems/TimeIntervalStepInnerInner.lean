@@ -13,22 +13,27 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 /-!
 # The same over a whole step
 
-`timePointStepInner_inner` at the time-interval step: what the step computes
-minus its own error ball is contained in the states the flow visits over the
-step.
+`timePointStepInner_inner` at the time-interval step: what the step computes minus its own error
+ball is contained in the states the flow visits over the step. The hull gap does not block this: the
+union over `t ∈ [0, r]` is a union of images and need not be convex, so the bridge cannot be applied
+at it; but the outer bound that carries the estimate, `timeIntervalStep_subset_initial_add_error`,
+measures against `X₀` alone, a zonotope. So the bridge lands inside `X₀`, and `t = 0` puts that
+inside the union. The price is exactly the price of the gap: the inner approximation is inside the
+*initial* set, not merely inside the tube, and coarse because `timeIntervalStepError` is first order
+in the step where the correction it is meant to pay for is second; only a shorter step improves it.
 
-The hull gap does not block this, and the reason is worth stating. The union
-over `t ∈ [0, r]` is a union of images and need not be convex, so the bridge
-cannot be applied at it; but the outer bound that carries the estimate,
-`timeIntervalStep_subset_initial_add_error`, measures against `X₀` alone, which
-is a zonotope. So the bridge lands inside `X₀`, and `t = 0` puts that inside the
-union.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
 
-The price is exactly the price of the gap: the inner approximation obtained is
-inside the *initial* set, not merely inside the tube. That is sound and it is
-coarse, and it is coarse because `timeIntervalStepError` is first order in the
-step where the correction it is meant to pay for is second — no truncation order
-improves it, only a shorter step.
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the enclosure minus the error ball lies inside the states the flow visits over the step
 -/
 
 -- Authors:       Claude Opus 5

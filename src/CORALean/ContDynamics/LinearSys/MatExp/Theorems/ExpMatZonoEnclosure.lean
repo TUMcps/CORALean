@@ -16,19 +16,25 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # The exponential of every matrix a matrix zonotope denotes lies in its enclosure
 
-CORA's `expmInd`, guaranteed: the truncation lands in the zonotope's own
-truncation, and what it left out is a matrix of entries no bigger than the tail
-bound, which is a point of the remainder box.
+CORA's `expmInd`, guaranteed [1, Eq. 3]: `e^{A r} ∈ Σ_{i=0}^η (A r)ⁱ/i! ⊕ E(r)` over a matrix
+zonotope of `A r`. The truncation lands in the zonotope's own truncation, and what it left out is
+a matrix of entries no bigger than the tail bound, a point of the remainder box. **`hε` is
+stated at `M.interval.absMax`**, and has to be: it must be checkable from the matrix zonotope
+alone, before any particular `A` is fixed, and `norm_le_absMax` carries it to the pointwise
+condition `norm_exp_sub_expTaylor_le` needs. The order `η` is unconstrained beyond that: a
+bigger one is a tighter enclosure, never a different guarantee.
 
-**`hε` is stated at `M.interval.absMax`**, and has to be: it must be checkable
-from the matrix zonotope alone, before any particular `A` is fixed, and
-`norm_le_absMax` is what carries it to the pointwise condition
-`norm_exp_sub_expTaylor_le` needs.
+## Inputs
+* `M` – matrix zonotope
+* `η` – Taylor order
+* `A` – member matrix
 
-The order `η` is unconstrained beyond that — a bigger one is a tighter
-enclosure, never a different guarantee.
+## Hypotheses
+* `hA` – member lies in the matrix zonotope
+* `hε` – dominating norm small enough for the Taylor order
 
-[1, Eq. 3]: `e^{A r} ∈ Σ_{i=0}^η (A r)ⁱ/i! ⊕ E(r)` over a matrix zonotope of `A r`.
+## Conclusion
+* the exponential of the member lies in the matrix-zonotope enclosure
 
 ## References
 

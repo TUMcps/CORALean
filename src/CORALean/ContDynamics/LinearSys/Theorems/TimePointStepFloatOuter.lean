@@ -11,6 +11,20 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 `e^{AΔt}` is in `expIntervalFloat Δt Δt`, and `Mtimes.mtimes_outer` at the float
 interval matrix carries every point of `R` through every matrix of the box. No
 sign is asked of `Δt`.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float state zonotope
+* `x` – state point
+
+## Hypotheses
+* `hη` – order admissible
+* `hx` – point lies in the zonotope
+
+## Conclusion
+* the exponential image of the point lies in the float step set
 -/
 
 -- Authors:       Claude Opus 5.5

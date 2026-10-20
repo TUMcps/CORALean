@@ -18,6 +18,12 @@ two convergent series rather than a bound written as a ratio that can blow up.
 [1]'s interval matrix `[−E(Δt,η), E(Δt,η)]` is this matrix read as a symmetric
 radius, `expRemainderInterval`: the matrices entrywise within it of `0`.
 
+## Inputs
+* `A` – matrix
+
+## Output
+* entrywise absolute value of the matrix
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

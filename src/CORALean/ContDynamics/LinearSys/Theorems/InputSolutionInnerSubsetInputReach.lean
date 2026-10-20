@@ -17,6 +17,17 @@ The half of [1, Prop. 1] that needs no estimate at all — and the half that mak
 the proposition's Hausdorff bound one-sided, the exact solution being enclosed
 between the two approximations.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+
+## Conclusion
+* the inner approximation lies in the input reach
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

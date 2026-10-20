@@ -13,6 +13,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 `maxBackReachInit`: [1, Alg. 3] lines 1-2, the two particular solutions accumulated up to
 `t₀`, before the first iteration.
 
+## Inputs
+* `sys` – linear system
+* `U` – input zonotope
+* `W₀` – initial disturbance zonotope
+* `t₀` – start time
+* `η` – Taylor order
+
+## Output
+* loop state before the first iteration
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

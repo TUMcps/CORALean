@@ -11,6 +11,16 @@ public import Mathlib.Algebra.CharP.Defs
 
 By strong induction on `k`: `k = 2 ⌊k/2⌋ + (k mod 2)`, and doubling and adding
 `Δt` are sums, which `addDown_le_add`/`add_le_addUp` bound outward at any sign.
+
+## Inputs
+* `Δt` – float step length
+* `k` – index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float interval brackets the sample time
 -/
 
 -- Authors:       Claude Opus 5.5

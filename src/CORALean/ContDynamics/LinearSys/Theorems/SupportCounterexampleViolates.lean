@@ -10,16 +10,36 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 /-!
 # A crossed lower bound hands back a run that crosses
 
-[1, Alg. 2], lines 9-10, with the counterexample of [1]'s Sec. 5.1: once line 16's
-`ρ(Ř(τ_k), ℓ_i)` exceeds `f_(i)`, the run from `supportCounterexample` — the
-initial state of [1]'s Eq. (19) and the piecewise-constant inputs of
-[1]'s Eq. (20), corrected — is a `IsTrajectory` of the system whose state leaves the
-halfspace `ℓ_i x ≤ f_(i)` at `t_k` or at `t_{k+1}`.
+[1, Alg. 2], lines 9-10, with the counterexample of [1]'s Sec. 5.1: once line 16's `ρ(Ř(τ_k), ℓ_i)`
+exceeds `f_(i)`, the run from `supportCounterexample` (the initial state of [1]'s Eq. (19) and the
+piecewise-constant inputs of [1]'s Eq. (20), corrected) is a `IsTrajectory` of the system whose
+state leaves the halfspace `ℓ_i x ≤ f_(i)` at `t_k` or at `t_{k+1}`. Which of the two is decided by
+line 16's maximum (`supportLower_timeInterval_le`), and needs `ũ ∈ U` for the second; [1]'s Sec. 5.1
+names only `ν(Ř(t_k), ℓ_i)`, which is the violating one only when the maximum is `ρ(H(t_k), ℓ_i)`.
+The run is on `[0, t_{k+1}]`, the whole of `τ_k`.
 
-Which of the two is decided by line 16's maximum (`supportLower_timeInterval_le`),
-and needs `ũ ∈ U` for the second; [1]'s Sec. 5.1 names only `ν(Ř(t_k), ℓ_i)`, which
-is the violating one only when the maximum is `ρ(H(t_k), ℓ_i)`. The run is on
-`[0, t_{k+1}]`, the whole of `τ_k`.
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `Δt` – step length
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `c` – point of the input set
+* `ℓ` – direction
+* `f` – bound
+* `k` – step index
+
+## Hypotheses
+* `hU` – input set bounded
+* `hΔt` – step length positive
+* `hν₀` – initial support vectors lie in the initial set
+* `hνU` – input support vectors lie in the input set
+* `hc` – point lies below the input support vectors
+* `hf` – lower bound exceeds the bound
+
+## Conclusion
+* a run is a trajectory on the horizon whose state violates the bound
 
 ## References
 

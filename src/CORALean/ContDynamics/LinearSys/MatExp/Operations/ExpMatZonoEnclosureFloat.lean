@@ -17,6 +17,13 @@ Taylor sum kept as a float matrix zonotope, and the tail bounded through the int
 matrix the zonotope encloses — `expRemainderBound` at `normUpperBound` of its `interval`,
 as `expIntervalEnclosure` bounds it — added as an interval matrix into the box.
 
+## Inputs
+* `M` – float matrix zonotope
+* `η` – Taylor order
+
+## Output
+* float matrix zonotope enclosing the exponential
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -11,20 +11,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 /-!
 # Sampling a continuous-time system, the exponential enclosed by a matrix zonotope
 
-`discretizeEnclosure` again, at a matrix zonotope in place of an interval
-matrix. Not a second spelling of the same thing: an interval matrix throws away
-every correlation between the entries of `e^{AΔt}`, a matrix zonotope keeps
-them, and that is why CORA carries `matZonotope` alongside `intervalMatrix`
-[1, Sec. 3.3.2].
-
-`sys.A` is one fixed matrix, so `ofPoint` is what enters the enclosure; the
-width is entirely the exponential's truncation error, and it leaves the
-enclosure as generators rather than as a box, so what multiplies a reachable
-set is a zonotope rather than an interval matrix.
-
-`𝕄𝒵` names this family, but only `Zonotope/Real/Instances` declares it, and
-that file brings the instances a *use* wants and a definition does not — so the
+`discretizeEnclosure` again, at a matrix zonotope in place of an interval matrix. Not a second
+spelling of the same thing: an interval matrix throws away every correlation between the entries
+of `e^{AΔt}`, a matrix zonotope keeps them, and that is why CORA carries `matZonotope` alongside
+`intervalMatrix` [1, Sec. 3.3.2]. `sys.A` is one fixed matrix, so `ofPoint` is what enters the
+enclosure; the width is entirely the exponential's truncation error, and it leaves the enclosure
+as generators rather than as a box. `𝕄𝒵` names this family, but only `Zonotope/Real/Instances`
+declares it, and that file brings instances a *use* wants and a definition does not, so the
 family is written out here, as `discretizeEnclosure` writes out `ℐ`.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+
+## Output
+* sampled system whose matrix is enclosed by a matrix zonotope
 
 ## References
 

@@ -11,6 +11,14 @@ The matrix `V` of [1, Alg. 1] after `ξ` passes: its columns `v⁽¹⁾, …, v�
 `0, …, ξ - 1`) are the first `ξ` vectors `arnoldi` stores, and `v⁽ξ⁺¹⁾`, the one the residual
 `h_{ξ+1,ξ} v⁽ξ⁺¹⁾` of the Arnoldi relation points along, is left out, as [1]'s (1) leaves it out.
 
+## Inputs
+* `C` – matrix
+* `v` – start vector
+* `ξ` – number of columns
+
+## Output
+* matrix with the Arnoldi vectors as columns
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

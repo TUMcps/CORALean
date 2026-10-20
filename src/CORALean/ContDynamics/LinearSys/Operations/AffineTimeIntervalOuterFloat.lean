@@ -12,6 +12,16 @@ public import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
 `affineTimePointNextFloat`, `[e^{AΔt}] H ⊕ P^u(Δt)`, for `H(t_{k+1})`. A point of `H(t_k)`
 flowing for any `τ ∈ [0, Δt]` is in it (`affineTimeIntervalOuterFloat_outer`).
 
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float zonotope enclosing the time-interval solution of the affine dynamics
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

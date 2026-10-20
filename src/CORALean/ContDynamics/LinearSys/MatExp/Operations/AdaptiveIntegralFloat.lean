@@ -13,6 +13,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffS
 the float `intervalInputRemainder`, which holds `Δt [-W, W]`
 (`adaptiveRemainder_subset_intervalInputRemainder`). The remainder is [1, Lemma 1]'s.
 
+## Inputs
+* `A` – float interval matrix
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float interval matrix enclosing the integrated exponential
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

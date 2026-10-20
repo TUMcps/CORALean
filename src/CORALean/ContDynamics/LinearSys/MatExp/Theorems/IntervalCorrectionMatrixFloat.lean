@@ -18,6 +18,23 @@ by `E(r M)`; `corrTerm_mem_intervalCorrTerm` puts each order inside the float
 term, `sumDown_le_sum`/`sum_le_sumUp` carry the orders through the rounded sums,
 and `expRemainderBound_le` the remainder. `hε` asks `1/2`, as the float
 remainder bound does, where the exact one asks `< 1`.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `m` – Taylor order offset
+* `M` – member matrix
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the member's interpolation error lies in the float correction matrix
 -/
 
 -- Authors:       Claude Opus 5.5

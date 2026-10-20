@@ -11,6 +11,22 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCo
 `[1, Eq. 6]`: `e^{At} Z ⊆ Z + M Z` for every `t ∈ [0, r]`, `Z` standing for `η(R(0), γ)`,
 with `M Z` the `ΔR` of [2]'s correction matrix.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+* `Z` – vector set
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the exponential image of the set lies in the set plus the variation matrices applied to it
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

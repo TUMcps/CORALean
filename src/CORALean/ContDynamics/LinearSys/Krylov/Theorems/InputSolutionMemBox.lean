@@ -15,6 +15,21 @@ public import CORALean.Global.EuclideanNorm
 the last coordinate does not increase the error, of which (3) at `t = δ` (`‖ṽ‖ = 1`) is the
 hypothesis, as for `Lemma III.1`.
 
+## Inputs
+* `A` – system matrix
+* `u` – constant input
+* `V` – Krylov basis
+* `H` – Hessenberg matrix
+* `e₁` – first unit vector
+* `ε` – error rate
+* `δ` – step length
+
+## Hypotheses
+* `h3` – Krylov error bound holds
+
+## Conclusion
+* the input solution lies in the Krylov approximation plus an error box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

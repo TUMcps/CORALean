@@ -12,6 +12,14 @@ public import CORALean.Global.Float.NoNaN
 result is a NaN. The floats of a step are its `Δt` and the set `R`; the rest is ℚ or ℕ.
 A `some` is the unchecked `some` (`reachAdaptiveFloatChecked_eq_some`), so whatever is
 proved of `reachAdaptiveFloat` holds of it, with the NaN test made.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – adaptive options
+
+## Output
+* steps of the adaptive run, or none if a result float is NaN
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

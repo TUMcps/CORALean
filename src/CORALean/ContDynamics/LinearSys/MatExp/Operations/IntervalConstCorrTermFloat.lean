@@ -17,6 +17,14 @@ lies in: `corrCoeff (i+2)` is in `[corrCoeffLow (i+2), 0]` and `r^{i+2}/(i+2)!` 
 `constCorrectionMatrix` sums, one factorial further along and one matrix power back than
 `intervalCorrTerm`.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `i` – order index
+
+## Output
+* float interval matrix of the order's integrated correction term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

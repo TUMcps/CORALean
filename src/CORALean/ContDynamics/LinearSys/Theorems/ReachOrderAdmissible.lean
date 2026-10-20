@@ -11,6 +11,17 @@ public import Mathlib.Tactic.Positivity
 `Nat.le_ceil` puts `‖r • A‖` at or under `reachOrder r`, so any order `η` at or
 above `reachOrder r + 2` puts it strictly under `η + 2`, the denominator
 `timeIntervalStep_outer` divides by. `reach` raises its `η` to exactly such one.
+
+## Inputs
+* `sys` – linear system
+* `r` – window width
+* `η` – Taylor order
+
+## Hypotheses
+* `hη` – order at least the chosen reach order plus two
+
+## Conclusion
+* the scaled norm is small enough for the order
 -/
 
 -- Authors:       Claude Sonnet 5

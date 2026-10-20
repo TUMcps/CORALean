@@ -23,15 +23,36 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeZonoBundleExact
 /-!
 # [1, Alg. 1] encloses the reachable set on every time interval
 
-If `R^h_0` contains `e^{Aτ}X₀` and `R^i_0` contains `inputReach U τ` for every `τ ∈ [0, r]`,
-the listing's own inputs `R^h([0, t_1])` and `R^i([0, t_1])`, then `R_k ⊇ R(t)` for every
-`t ∈ [kr, (k+1)r]` and `k ≤ N`: the claim of [1, Alg. 1] that it computes `R([t_k, t_{k+1}])`.
-`R(t)` is `reachSetExact` on `[0, t]`. Three invariants, by induction on `k`, at every
-`τ ∈ [0, r]`: `e^{A(kr+τ)}X₀ ⊆ R^h_k`, `e^{Akr} inputReach U τ ⊆ R^i_k` and
-`inputReach U (kr+τ) ⊆ P_k`; the last is where the superposition is, the input over
+If `R^h_0` contains `e^{Aτ}X₀` and `R^i_0` contains `inputReach U τ` for every `τ ∈ [0, r]`, the
+listing's own inputs `R^h([0, t_1])` and `R^i([0, t_1])`, then `R_k ⊇ R(t)` for every
+`t ∈ [kr, (k+1)r]` and `k ≤ N`; `R(t)` is `reachSetExact` on `[0, t]`. Three invariants, by
+induction on `k`, at every `τ ∈ [0, r]`: `e^{A(kr+τ)}X₀ ⊆ R^h_k`, `e^{Akr} inputReach U τ ⊆ R^i_k`
+and `inputReach U (kr+τ) ⊆ P_k`; the last is where the superposition is, the input over
 `[0, (k+1)r+τ]` separating into `e^{A(k+1)r}` of the input over `[0, τ]` plus the input over
-`[0, (k+1)r]` (`inputReach_separation_eq`). The sum of a bundle and a zonotope is enclosed by
-[1, Prop. 2], the image of a bundle by [1, Prop. 1]. Nothing is claimed of the tightness.
+`[0, (k+1)r]` (`inputReach_separation_eq`). The sum of a bundle and a zonotope is enclosed by [1,
+Prop. 2], the image of a bundle by [1, Prop. 1]. Nothing is claimed of the tightness.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – initial set
+* `U` – input set
+* `Rh₀` – initial homogeneous bundle
+* `Ri₀` – initial input zonotope
+* `r` – step length
+* `N` – number of steps
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hU` – input set bounded
+* `hh` – bundle holds the homogeneous flow
+* `hi` – zonotope holds the input reach
+* `hk` – window index within the step count
+* `ht` – time within the window
+
+## Conclusion
+* the window encloses the reachable set at the time
 
 ## References
 

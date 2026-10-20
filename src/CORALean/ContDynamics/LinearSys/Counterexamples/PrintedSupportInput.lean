@@ -11,20 +11,22 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # [1]'s Eq. (20) as printed does not reach the support vector
 
-[1, Sec. 4.2] simulates [1]'s Eq. (18) from `x(0) = ν(X₀, (e^{A t_k})ᵀ ℓ)` [1]'s Eq. (19)
-under `u(j) = ν(U₀, (e^{A t_j})ᵀ ℓ) + ũ` [1]'s Eq. (20) and calls the state `x(k)` the
-support vector `ν(Ř(t_k), ℓ)` of the set reached under piecewise-constant inputs: no such
-input sequence gets further along `ℓ`. (18) multiplies `u(j)` by `T = ∫₀^{Δt} e^{Aσ} dσ`
-before `e^{A t_{k-1-j}}` carries it to `t_k`, so the maximizing direction is
-`(e^{A t_{k-1-j}} T)ᵀ ℓ`; the printed one drops `T` and counts the steps from the
-wrong end.
+[1, Sec. 4.2] simulates [1]'s Eq. (18) from `x(0) = ν(X₀, (e^{A t_k})ᵀ ℓ)` under
+`u(j) = ν(U₀, (e^{A t_j})ᵀ ℓ) + ũ` [1]'s Eq. (20) and calls `x(k)` the support vector of the
+set reached under piecewise-constant inputs. (18) multiplies `u(j)` by `T = ∫₀^{Δt} e^{Aσ} dσ`
+before `e^{A t_{k-1-j}}`, so the maximizing direction is `(e^{A t_{k-1-j}} T)ᵀ ℓ`; the printed
+one drops `T` and counts from the wrong end. For `A = [[0, 1], [0, 0]]`, `Δt = 1`, `X₀ = {0}`,
+`U = [-1, 1]²`, `ℓ = (1, -1/4)` the printed input `(1, -1)` reaches `3/4`, the input `(1, 1)`
+reaches `5/4`. `supportCounterexample` uses the corrected direction.
 
-One step already shows it. `A = [[0, 1], [0, 0]]`, `Δt = 1`, `X₀ = {0}` and the box
-`U = [-1, 1]²` (so `ũ = 0` and `U₀ = U`): `T = I + A/2`. Along
-`ℓ = (1, -1/4)` the printed input is `ν(U, ℓ) = (1, -1)`, reaching
-`ℓ(T (1, -1)) = 3/4`, while the input `(1, 1)` reaches `ℓ(T (1, 1)) = 5/4`. With the
-safe set `ℓ x ≤ 1` the inner approximation is unsafe, and the printed counterexample
-is not one. `supportCounterexample` uses the corrected direction.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed inputs do not always reach furthest along the direction
 
 ## References
 

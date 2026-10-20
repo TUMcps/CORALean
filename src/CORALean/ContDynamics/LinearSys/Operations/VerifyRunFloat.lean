@@ -13,6 +13,18 @@ comparison is only trusted when it answers `true`, so the tests are written for 
 is `ν̂_G ≤ 0` and `ν̂_F` certified positive (`ltStrict`), falsified is `ν̌_G` certified positive or
 `ν̌_F ≤ 0`. Where a comparison cannot be certified the loop runs on, to `none` at worst.
 
+## Inputs
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax` – float maximal error
+
+## Output
+* verdict after a given number of iterations
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

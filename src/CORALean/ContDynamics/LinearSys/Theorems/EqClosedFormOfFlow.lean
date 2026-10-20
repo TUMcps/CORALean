@@ -13,21 +13,34 @@ public import Mathlib.Analysis.ODE.Gronwall
 /-!
 # A run of the integral equation *is* the closed form, point by point
 
-`IsTrajectory`'s uniqueness, stated at the raw hypotheses rather than at
-the structure: continuity, the integral equation, and a bounded measurable
-input. Two callers need it at shapes no `IsTrajectory` has —
-`ReachSetExactSubset` names an `R₀` this statement never mentions, and the
-two-signal run of `IsPerturbedTrajectory` reaches it only after
-subtracting off the disturbance's own closed form, where no initial set is left
-to name — so the hypotheses are what travels, not the bundle.
+`IsTrajectory`'s uniqueness, stated at the raw hypotheses rather than at the structure: continuity,
+the integral equation, and a bounded measurable input. Two callers need it at shapes no
+`IsTrajectory` has: `ReachSetExactSubset` names an `R₀` this statement never mentions, and the
+two-signal run of `IsPerturbedTrajectory` reaches it only after subtracting off the disturbance's
+own closed form. `x` and `closedForm (x 0) u` solve the same integral equation against the same
+input, so `d := x - closedForm (x 0) u` solves the *homogeneous* one, `d τ = ∫₀^τ A d`, which
+`hcont` makes legitimate. `A d` continuous gives `d` an everywhere right derivative `A d`, and
+Grönwall's `eq_zero_of_abs_deriv_le_mul_abs_self_of_eq_zero_right` forces `d ≡ 0`.
 
-`x` and `closedForm (x 0) u` solve the same integral equation against the same
-input, so `d := x - closedForm (x 0) u` solves the *homogeneous* one,
-`d τ = ∫₀^τ A d` — legitimate only because `hcont` makes both sides' integrands
-genuinely interval-integrable, so the two equations actually subtract. `A d`
-continuous then gives `d` an everywhere right derivative `A d` by the
-fundamental theorem, and Grönwall's
-`eq_zero_of_abs_deriv_le_mul_abs_self_of_eq_zero_right` forces `d ≡ 0`.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `t` – time
+* `x` – state signal
+* `u` – input signal
+* `τ` – point of the window
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hu` – input values lie in the set on the window
+* `hmeas` – input measurable on the window
+* `hcont` – state continuous on the window
+* `hflow` – state solves the integral equation
+* `hτ` – point lies within the window
+
+## Conclusion
+* the solution agrees with the closed form from its own start
 -/
 
 -- Authors:       Claude Opus 5

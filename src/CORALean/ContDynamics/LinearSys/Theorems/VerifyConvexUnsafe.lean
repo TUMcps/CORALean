@@ -20,6 +20,30 @@ of the unsafe set, is proved rather than assumed: `reachSetExact_eq` turns
 it into a linear image of `R₀` summed with `inputReach`, `Convex.linear_image`
 and `inputReach_convex` handling the two halves.
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `Uin` – input set
+* `t` – time
+* `L` – convex unsafe set
+* `ℓ` – direction sequence
+* `fuel` – number of iterations
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hR₀` – initial set convex
+* `hUin` – input set convex
+* `hbdd` – input set bounded
+* `hL` – unsafe set convex
+* `bO` – support bound on the reach set
+* `bL` – support bound on the unsafe set
+* `wO` – support witness on the reach set
+* `wL` – support witness on the unsafe set
+* `h` – verification answers violated
+
+## Conclusion
+* the reach set really meets the unsafe set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

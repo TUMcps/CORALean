@@ -18,6 +18,25 @@ sided inside `T`. `T` convex and containing `0`, and `U` bounded, are what a win
 and its integrability cost; `u`'s measurability is the derivative's
 (`aestronglyMeasurable_of_hasDerivWithinAt`), the drift `A x` being continuous. This is how a run
 written down in closed form, a derivative at hand, is shown to be a run.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+
+## Hypotheses
+* `hTconv` – time domain convex
+* `h0T` – zero lies in the time domain
+* `hU` – input set bounded
+* `init` – start lies in the initial set
+* `input` – inputs lie in the input set
+* `hd` – state has the derivative on the time domain
+
+## Conclusion
+* the classical run is a canonical trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

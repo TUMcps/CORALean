@@ -14,6 +14,13 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 product) nor `½ t²` is held exactly by a float, so an entry is `t M_ij` plus the product of two
 brackets, each rounded outward.
 
+## Inputs
+* `M` – float matrix
+* `t` – float time
+
+## Output
+* float interval matrix holding the second-order Taylor term
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

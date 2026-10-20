@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
 Needed before `ExpDiff` can split its tsum into a finite sum and a tail: the
 split lemma needs summability of the whole series, and shifting the index by
 two is what drops the constant and linear terms that cancel.
+
+## Inputs
+* `A` – system matrix
+* `t` – time
+* `r` – step length
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interpolation-error series is summable
 -/
 
 -- Authors:       Claude Opus 5

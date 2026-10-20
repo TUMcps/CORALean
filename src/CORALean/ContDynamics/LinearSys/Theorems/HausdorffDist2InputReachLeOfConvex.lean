@@ -13,19 +13,31 @@ public import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
 /-!
 # [1, Prop. 11] without eq. (20)'s soundness
 
-[1, Prop. 11] bounds `d_H(e^{At_k}P^U(Δt), e^{At_k}P̂^U(Δt))` by `Δε^U_k` of eq. (25), and its
-proof uses eq. (20)'s soundness `P^U(Δt) ⊆ P̂^U(Δt)`, which [1] cites and does not prove.
-`MatExp.hausdorffDist₂_particularSolution_le` is that proof with the soundness as a hypothesis.
-This file proves the bound without it, for the input set [1]'s Alg. 1 has: `U₀` convex, closed,
-bounded and containing `0` (`U₀ = ⟨0, BG_u⟩`).
+[1, Prop. 11] bounds `d_H(e^{At_k}P^U(Δt), e^{At_k}P̂^U(Δt))` by `Δε^U_k` of eq. (25), and its proof
+uses eq. (20)'s soundness `P^U(Δt) ⊆ P̂^U(Δt)`, which [1] cites and does not prove.
+`MatExp.hausdorffDist₂_particularSolution_le` is that proof with the soundness as a hypothesis. This
+file proves the bound without it, for the input set [1]'s Alg. 1 has: `U₀` convex, closed, bounded
+and containing `0`. From an exact point, the outer set has the point that drops the tail:
+`P^U(Δt) ∋ x + t` with `x ∈ ⊕_{i≤η}ÃᵢU₀` and `t` in the closed convex hull of `E(Δt,η)ΔtU₀`, and
+`x + 0 ∈ P̂^U(Δt)`. The gap `e^{At_k}t` is bounded by `err(e^{At_k}P̂^U_∞(Δt))`: `err` reads only
+each coordinate's extreme values, the same over a set and its closed convex hull.
 
-From an exact point, the outer set has the point that drops the tail:
-`P^U(Δt) ∋ x + t` with `x ∈ ⊕_{i≤η}ÃᵢU₀` and `t` in the closed convex hull of `E(Δt,η)ΔtU₀`
-(`inputReach_mem_add_closure_convexHull`), and `x + 0 ∈ P̂^U(Δt)`. The gap `e^{At_k}t` is
-bounded by `err(e^{At_k}P̂^U_∞(Δt))`: `err` reads only each coordinate's extreme values, and
-those are the same over a set and over its closed convex hull
-(`norm₂_mulVec_le_err_of_mem_closure_convexHull`). The other direction is [1]'s
-own witness, the constant input at the same `x₀`, as in the hypothesised version.
+## Inputs
+* `sys` – linear system
+* `tk` – step start time
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `h0` – origin in the input set
+* `hΔt` – step length positive
+
+## Conclusion
+* the propagated Hausdorff distance is at most the particular solution error
 
 ## References
 

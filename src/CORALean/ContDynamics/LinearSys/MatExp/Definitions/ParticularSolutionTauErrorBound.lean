@@ -13,6 +13,16 @@ public import Mathlib.Analysis.Matrix.Normed
 `particularSolutionTauError` — `e^{Atk}`'s own row sums times
 `norm₂_le_of_mem_particularSolutionOuter`'s bound on `bPU`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* polynomial in the step length dominating the τ-form particular solution error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

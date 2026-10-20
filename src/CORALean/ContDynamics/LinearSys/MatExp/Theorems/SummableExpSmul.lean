@@ -12,6 +12,16 @@ public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 The same series `exp_smul_tsum` sums to, stated on its own: summability is
 needed before its terms can be shifted or subtracted term by term, which is
 what subtracting two such series in `ExpDiff` does.
+
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the series behind the scaled exponential is summable
 -/
 
 -- Authors:       Claude Opus 5

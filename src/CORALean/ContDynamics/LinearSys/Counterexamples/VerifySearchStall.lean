@@ -17,14 +17,19 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 `Alg. 3` halves `Δt` (line 15) only when `falsifiable = false` and `0 ∈ P̂`, the polytope of the
 outer support vectors, but lines 19 and 23 choose the directions from `P̌`, the inner one's.
+For `ẋ = x + u`, `X₀ = {0}`, `U = [-1, 1]`, `t = 1`, `L = {c}` with `c` the order-`η` Taylor sum
+of `e - 1` plus `1/(η+1)!` lies at distance `c - (e - 1) > 0` from `R(1)`. Every vertex of `P̌`
+is left of the origin, so lines 19 and 23 return `ℓ₁ = +1` again, every vertex of `P̂` right of
+it: the exits fail and `verifySearch` answers `undecided` for every `fuel`, `η` and oracle.
 
-For `ẋ = x + u`, `X₀ = {0}`, `U = [-1, 1]`, `t = 1`, `R(1) ⊆ [-(e - 1), e - 1]`; `L = {c}`, with
-`c` the order-`η` Taylor sum of `e - 1` plus `1/(η+1)!`, lies strictly between `e - 1` and the
-upper bound of `Alg. 1` at `Δt = 1`, at distance `c - (e - 1) > 0` from `R(1)`. Every vertex of
-`P̌` is left of the origin, so lines 19 and 23 return `ℓ₁ = +1` again, and every vertex of `P̂`
-right of it: the safe exit, `0 ∈ P̌` and `0 ∈ P̂` all fail, and `verifySearch` answers
-`undecided` for every `fuel`. This holds for every `η`, so for whichever one the tuning of
-Sec. 5.1 picks, and for every sound support function oracle, support vectors and hull test.
+## Inputs
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the safe instance stays undecided for every fuel and sound oracle
 
 ## References
 

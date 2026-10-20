@@ -18,6 +18,24 @@ bounded and measurable — no continuity, so a piecewise-constant input is
 covered. It gets there from nothing but the formula itself, by a Duhamel
 swap: `∫₀ᵗ∫₀ᵖ = ∫₀ᵗ∫_σ^t` over the triangle `0 ≤ σ ≤ ρ ≤ τ`, folded into a
 rectangle by an indicator so `intervalIntegral_intervalIntegral_swap` applies.
+
+## Inputs
+* `sys` – linear system
+* `x0` – initial point
+* `U` – input set
+* `t` – time
+* `u` – input signal
+* `τ` – point of the window
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hu` – input values lie in the set on the window
+* `hmeas` – input measurable on the window
+* `hτ` – point lies within the window
+
+## Conclusion
+* the closed form satisfies the integral equation at the point
 -/
 
 -- Authors:       Claude Opus 5

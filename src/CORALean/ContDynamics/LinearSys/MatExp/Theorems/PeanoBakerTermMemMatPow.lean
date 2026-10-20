@@ -11,18 +11,28 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 /-!
 # The `k`-th Peano–Baker term lies in the `k`-th power of the box
 
-When every `A(σ)` lies in the box `B`, `k! P_k(s)` lies in `matPow (s • B) k`:
-the iterated integral of `A(σ₁) ⋯ A(σ_k)` over the ordered simplex is that
-simplex's volume `s^k/k!` times an average of products of members, and the box
-power is convex and holds every such product.
+When every `A(σ)` lies in the box `B`, `k! P_k(s)` lies in `matPow (s • B) k`: the iterated
+integral of `A(σ₁) ⋯ A(σ_k)` over the ordered simplex is that simplex's volume `s^k/k!` times an
+average of products of members, and the box power is convex and holds every such product. By
+induction, entry by entry: `P_k(σ)` sits between `σ^k/k!` times `matPow B k`'s endpoints,
+`matMul`'s corner products carry that through one more factor `A(σ)`, and integrating `σ^k/k!`
+gives `s^{k+1}/(k+1)!`; `Interval.matPow_smul` reads the scaled endpoints as the box of `s • B`.
+A different member at every factor is what `Interval.matPow` admits, so this is CORA's
+`expmIndMixed`'s powers made sound for a matrix that varies in time.
 
-By induction, entry by entry: `P_k(σ)` sits between `σ^k/k!` times `matPow B k`'s
-endpoints, `matMul`'s corner products carry that through one more factor `A(σ)`,
-and integrating `σ^k/k!` over `[0, s]` gives `s^{k+1}/(k+1)!`. `Interval.matPow_smul`
-then reads the scaled endpoints as the box of `s • B`.
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `k` – term index
+* `s` – time
 
-A different member at every factor is exactly what `Interval.matPow` admits, so
-this is CORA's `expmIndMixed`'s powers made sound for a matrix that varies in time.
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `hs` – time nonnegative
+
+## Conclusion
+* the factorial times the term lies in the box power of the scaled box
 -/
 
 -- Authors:       Claude Opus 5.5

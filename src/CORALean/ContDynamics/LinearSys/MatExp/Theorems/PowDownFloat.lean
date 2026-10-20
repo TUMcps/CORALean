@@ -9,6 +9,16 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.PowDownFloat
 
 Induction on `k`, `mulDown_le_mul` at each step; `toReal a ≥ 0` is what lets
 the step multiply the inductive bound by `toReal a` without flipping it.
+
+## Inputs
+* `a` – float base
+* `k` – exponent
+
+## Hypotheses
+* `ha` – base nonnegative
+
+## Conclusion
+* the float lower power is at most the real power
 -/
 
 -- Authors:       Claude Opus 5.5

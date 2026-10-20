@@ -16,6 +16,14 @@ box of a matrix-zonotope power spanning the interval between it and zero, and
 everything past `η` in the remainder bound at `r` times the box the zonotope
 encloses, as `intervalCorrectionMatrix` takes it at a box. The orders are stored
 once, not per entry, so a read costs a lookup.
+
+## Inputs
+* `M` – float matrix zonotope
+* `r` – float step length
+* `η` – Taylor order
+
+## Output
+* float interval matrix of the correction at the matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,15 +7,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2ManualRunRe
 /-!
 # [1, Prop. 4]'s eq. (28) at varying step parameters
 
-`HausdorffDist2ManualRunReduceLe.lean` accumulates the reduction error along `Alg. 1`'s
-`manualRun`, one `Δt`, `η` and `ρ` throughout. Eq. (28), `ε^r_{k+1} = ε^r_k + Δε^r_k(ρ_k)`, is
-printed with a `ρ_k` per step, and the propagated particular solution at step `j` is
-`e^{At_j}P̂^U(Δt_j)` at that step's own `Δt_j, η_j`. This is the recursion in that generality:
-`W j` is the zonotope `P̂^U(Δt_j)` computed at step `j` (`LinearSys.inputSolution` at `Δt_j, η_j`
-for `Alg. 2`), `Φ j` the matrix `e^{At_j}` it is propagated by, and the state `P` follows line 10,
-`P̂^U(t_{j+1}) = reduce(P̂^U(t_j) ⊕ Φ_j W_j, ρ_j)`, at `ρ_j`. Nothing but eq. (29) and the two
-facts of the constant-parameter proof is used, so no hypothesis on `Δt_j`, `η_j` or `ρ_j` is
-needed.
+`HausdorffDist2ManualRunReduceLe.lean` accumulates the reduction error along `Alg. 1`'s `manualRun`,
+one `Δt`, `η` and `ρ` throughout. Eq. (28), `ε^r_{k+1} = ε^r_k + Δε^r_k(ρ_k)`, is printed with a
+`ρ_k` per step, and the propagated particular solution at step `j` is `e^{At_j}P̂^U(Δt_j)` at that
+step's own `Δt_j, η_j`. This is the recursion in that generality: `W j` is the zonotope `P̂^U(Δt_j)`
+computed at step `j`, `Φ j` the matrix `e^{At_j}` it is propagated by, and the state `P` follows
+line 10, `P̂^U(t_{j+1}) = reduce(P̂^U(t_j) ⊕ Φ_j W_j, ρ_j)`. Nothing but eq. (29) and the two facts
+of the constant-parameter proof is used, so no hypothesis on `Δt_j`, `η_j` or `ρ_j` is needed.
+
+## Inputs
+* `W` – one-step zonotopes
+* `Φ` – propagation matrices
+* `ρ` – zonotope orders
+* `P` – reduced states
+* `k` – number of steps
+
+## Hypotheses
+* `h0` – reduced state starts at the origin
+* `hstep` – reduced states follow the reduction recursion
+
+## Conclusion
+* the reduced accumulation is within the summed per-step reduction errors
 
 ## References
 

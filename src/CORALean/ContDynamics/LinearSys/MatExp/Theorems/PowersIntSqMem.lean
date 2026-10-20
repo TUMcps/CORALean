@@ -13,6 +13,20 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 `expm` and `expmMixed` start `powers` at `intSq` of `dependentTerms(intMat * (1/r), r)`, which is
 `r² (M/r)² = M²` for the member `M`; so the power of order `j ≥ 2`, `M ^ 2 * M ^ (j - 2)`, is in
 `powers A intSq (j - 2)` (`powers_outer`).
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `M` – member matrix
+* `j` – power
+
+## Hypotheses
+* `hr` – step length nonzero
+* `hM` – member lies in the interval matrix
+* `hj` – power at least two
+
+## Conclusion
+* the member's power lies in the power enclosure from the exact square
 -/
 
 -- Authors:       Claude Sonnet 5.5

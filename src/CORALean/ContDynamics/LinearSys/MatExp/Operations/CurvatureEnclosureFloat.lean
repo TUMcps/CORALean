@@ -12,15 +12,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `MatExp.curvatureEnclosure` in floats: line 8 of [1, Alg. 1]
 
-`C = F(Δt,η) H(t_k) ⊕ G(Δt,η) ũ` of eq. (15)-(16), with `F` and `G` the float interval
-matrices `intervalCorrectionMatrix` and `intervalConstCorrectionMatrix`, each rounded outward.
-Both are interval matrices, so the products are `Mtimes` at the interval-matrix family, and
-`ũ` enters as the point zonotope `{ũ}`.
+`C = F(Δt,η) H(t_k) ⊕ G(Δt,η) ũ` of eq. (15)-(16), with `F` and `G` the float interval matrices
+`intervalCorrectionMatrix` and `intervalConstCorrectionMatrix`, each rounded outward. The
+products are `Mtimes` at the interval-matrix family, and `ũ` enters as the point zonotope `{ũ}`.
+The real `Real.MatExp.curvatureEnclosure` takes `G` from `constCorrectionMatrix`, a point matrix
+the float layer has no place for; `intervalConstCorrectionMatrix` is its enclosure at the box
+`A`, so this is the same true object, enclosed (`curvatureEnclosure_outer`).
 
-The real `Real.MatExp.curvatureEnclosure` takes `G` from `constCorrectionMatrix`, a point
-matrix the float layer has no place for; `intervalConstCorrectionMatrix` is its enclosure at the
-box `A`, so this is the same true object, enclosed (`curvatureEnclosure_outer`), and not a
-different enclosure such as the input solution of the segment `[0, ũ]`.
+## Inputs
+* `A` – float interval matrix
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float zonotope enclosing the curvature of the step
 
 ## References
 

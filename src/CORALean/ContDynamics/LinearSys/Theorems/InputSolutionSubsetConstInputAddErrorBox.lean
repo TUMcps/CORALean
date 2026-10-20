@@ -19,6 +19,19 @@ replaced by `timePointStepErrorBox`, which contains it.
 
 This is the per-step fact a run accumulates. The radius depends on `U` only,
 never on the initial set, so the same box is paid at every step of a run.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `U` – input zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the input solution lies in the held-input contribution plus the error box
 -/
 
 -- Authors:       Claude Opus 5.5

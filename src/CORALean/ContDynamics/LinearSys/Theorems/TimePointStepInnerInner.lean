@@ -15,22 +15,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # The first inner approximation of a continuous reachable set here
 
-`reachInner_inner` at a continuous-time step. Every other reachability theorem
-about `LinearSys` puts the computed set on the *left* of the inclusion; this
-puts it on the right, so what the step computes minus its own error ball is
-*contained in* what the step reaches.
+`reachInner_inner` at a continuous-time step. Unlike the other reachability theorems about
+`LinearSys`, the computed set is on the right of the inclusion: what the step computes minus its own
+error ball is *contained in* what the step reaches. The bridge `minkowskiDiff_inner_of_outer` wants
+the set on the right convex and closed, and `e^{Ar} X₀ ⊕ inputReach U r` is not known to be either
+here (closing `inputReach` is a weak-compactness argument this development lacks). So the outer
+bound is the sharper `timePointStep_subset_constInput_add_error`, with right-hand side
+`e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`, a zonotope; `expIntegral_mem_inputReach` weakens the conclusion
+back to the set the outer statements are about.
 
-The bridge `minkowskiDiff_inner_of_outer` wants the set on the right convex and
-closed, and `e^{Ar} X₀ ⊕ inputReach U r` is not known to be either here —
-`inputReach` quantifies over every measurable input, and closing it is a
-weak-compactness argument this development does not have. So the outer bound
-used is the sharper `timePointStep_subset_constInput_add_error`, whose right-hand
-side is `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`: two zonotope images and a sum, hence a
-zonotope, hence convex and compact outright. `expIntegral_mem_inputReach` then
-weakens the conclusion back to the set the outer statements are about.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
 
-Nonemptiness of the error ball is read off the enclosure rather than computed,
-so the sign of `timePointStepError` never has to be examined.
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the step's end minus its error ball lies in the exact end states
 -/
 
 -- Authors:       Claude Opus 5

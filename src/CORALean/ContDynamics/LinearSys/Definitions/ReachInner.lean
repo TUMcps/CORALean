@@ -14,6 +14,21 @@ sampled run minus everything it owes. `reachInner_inner` puts it inside
 An outer approximation minus its error bound is [1]'s route to an inner one;
 here the bound is a zonotope, carried along the run rather than restated.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – number of steps
+
+## Hypotheses
+* `ho` – order is positive
+
+## Output
+* inner approximation of the reachable set at the step count's time
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

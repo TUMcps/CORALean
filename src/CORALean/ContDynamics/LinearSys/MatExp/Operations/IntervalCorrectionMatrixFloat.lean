@@ -15,6 +15,14 @@ between it and zero, everything past `η` in the remainder bound at `r • A` �
 the bound the exponential and the input remainder of the same step are taken
 at. The orders are stored once, not per entry, so a read costs a lookup.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+
+## Output
+* float interval matrix of the correction over the box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

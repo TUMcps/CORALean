@@ -16,6 +16,17 @@ integrates and the ones a `IsPerturbedTrajectory` exists for.
 `∃x` inside `∀w`, not `∀x`: quantifying the run itself universally would hold
 vacuously for a `w` no run witnesses, and would silently enlarge the set.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `U` – admissible input set
+* `W` – admissible disturbance set
+* `Xend` – target set
+* `t` – target time
+
+## Output
+* states from which some input reaches the target whatever the disturbance
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

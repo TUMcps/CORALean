@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 `quadTermLo`: the least value [1, Prop. 4]'s `quadTerm t` takes on `[a, b]`. `-1/t` is the
 vertex; where `t = 0` the `if` reads `-1/t` as `0` and this is sound but not tight.
 
+## Inputs
+* `t` – time
+* `a` – box lower end
+* `b` – box upper end
+
+## Output
+* least value of the diagonal factor on the box
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

@@ -13,6 +13,14 @@ and does not run. This is the same choice as a halving search at a float represe
 `r₀, r₀/2, r₀/4, …` for at most `fuel` candidates (`half` is exact), stopping at the first
 one that passes `stepTest`. A caller who runs out of fuel gets `none`.
 
+## Inputs
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `η` – Taylor order
+
+## Output
+* first halved step passing the float test, if any
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

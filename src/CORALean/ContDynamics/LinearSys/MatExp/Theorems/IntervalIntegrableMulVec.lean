@@ -15,6 +15,19 @@ there and `w` is continuous on it: each coordinate is a finite sum of an
 integrable function against a continuous one, and a map into `Vec` is integrable
 when each coordinate is. Nothing is asked of `A` as a matrix-valued map, which
 under the `l∞` operator norm Mathlib's integral could not be stated for.
+
+## Inputs
+* `A` – matrix-valued function of time
+* `w` – vector function
+* `a` – interval start
+* `b` – interval end
+
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hw` – vector function continuous on the interval
+
+## Conclusion
+* the matrix applied to the vector function is interval integrable
 -/
 
 -- Authors:       Claude Opus 5.5

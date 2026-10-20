@@ -14,6 +14,20 @@ public import Mathlib.Tactic.Linarith
 `MatExp.abs_entry_le_of_mem_sum`: a member of `⊕ₖ [a_k, 0] B_k` is entrywise within
 `Σₖ |a_k| |(B_k)_{ij}|` of `0`. Shared by `abs_entry_le_of_mem_stateCorrectionSet` and
 `abs_entry_le_of_mem_inputCorrectionSet`, so it is public rather than `aux_`-named.
+
+## Inputs
+* `s` – index set
+* `a` – segment ends
+* `B` – boxed matrices
+* `M` – member matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hM` – member of the Minkowski sum of boxed segments
+
+## Conclusion
+* the entry is bounded by the weighted sum of the matrices' entries
 -/
 
 -- Authors:       Claude Sonnet 5

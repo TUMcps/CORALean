@@ -8,17 +8,26 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 /-!
 # Holding the input at one point is admissible
 
-The one member of `inputReach` an algorithm can name: hold the input at a single
-`v ∈ U` for the whole window and the contribution is `(∫₀^τ e^{As} ds) v`, the
-integrated exponential applied to that point.
-
-So `(∫₀^τ e^{As} ds) '' U` sits inside `inputReach U τ`, and that image — a
-linear image of a representation — is convex and compact wherever `U` is, which
-`inputReach` itself is not known to be here. Every inner approximation of a
-continuous step in this development goes through this inclusion for that reason.
-
-The substitution `s ↦ τ - s` maps the window to itself, which is why
+The one member of `inputReach` an algorithm can name: hold the input at a single `v ∈ U` for the
+whole window and the contribution is `(∫₀^τ e^{As} ds) v`, the integrated exponential applied to
+that point. So `(∫₀^τ e^{As} ds) '' U` sits inside `inputReach U τ`, and that image, a linear image
+of a representation, is convex and compact wherever `U` is, which `inputReach` itself is not known
+to be here. Every inner approximation of a continuous step in this development goes through this
+inclusion for that reason. The substitution `s ↦ τ - s` maps the window to itself, which is why
 `inputReach` is stated over `Icc` and no endpoint bookkeeping is needed.
+
+## Inputs
+* `sys` – linear system
+* `τ` – time
+* `U` – input set
+* `v` – point of the input set
+
+## Hypotheses
+* `hτ` – time nonnegative
+* `hv` – point lies in the input set
+
+## Conclusion
+* the integrated exponential at a held point lies in the input reach
 -/
 
 -- Authors:       Claude Opus 5

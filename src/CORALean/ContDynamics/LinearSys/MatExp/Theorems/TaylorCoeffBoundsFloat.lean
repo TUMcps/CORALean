@@ -13,6 +13,16 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
 Each end is a product of two one-sided bounds of nonnegative quantities: the
 power (`powDown_le`/`le_powUp`) and the reciprocal factorial
 (`invFactorialBounds_mem`), multiplied and then rounded the same way.
+
+## Inputs
+* `r` – float step length
+* `k` – order index
+
+## Hypotheses
+* `hr` – step length nonnegative
+
+## Conclusion
+* the float interval encloses the Taylor coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

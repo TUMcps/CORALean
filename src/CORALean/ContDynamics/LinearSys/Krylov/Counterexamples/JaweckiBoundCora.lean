@@ -14,17 +14,21 @@ public import CORALean.Global.EuclideanNorm
 # CORA's Krylov error test without the nonexpansive hypothesis
 
 [1, Thm. 1] bounds the Krylov error by `τ_{m+1,m} γ_m t^m/m!` (Err_a) in the nonexpansive case
-`W(σA) ⊆ ℂ⁻`, and only there. CORA's `priv_subspace_Krylov_individual_Jawecki` evaluates
-Err_a for any system matrix, and `priv_inputSolution_Krylov` and `priv_krylov_R_uTrans` for the
-integrator matrix `C̃ = [A u; 0 0]` of an input `u` at the start vector `[0ₙ; 1]`, at order
-`m ≥ 2` (their first order is `1 + krylovStep`), then add a box of radius `krylovError` to the
-Krylov approximation `V e^{tT}e₁`.
+`W(σA) ⊆ ℂ⁻`, and only there. CORA's `priv_subspace_Krylov_individual_Jawecki` evaluates Err_a
+for any matrix, and `priv_inputSolution_Krylov` and `priv_krylov_R_uTrans` use it on the
+integrator matrix `C̃ = [A u; 0 0]` at `[0ₙ; 1]`, order `m ≥ 2`, then add a box of radius
+`krylovError` to the Krylov approximation `V e^{tT}e₁`. At `A = [0 0; 1 1]`, `u = e₁`, Arnoldi
+gives `V = [e₃ e₁]`, `τ₃,₂ = γ₂ = 1`, so Err_a is `t²/2`; `V` has no second coordinate, but
+`(e^{tC̃}e₃)₂ = e^t - 1 - t > t²/2` for every `t > 0`. `A` is not nonexpansive: `e₂ᵀAe₂ = 1 > 0`.
 
-At `A = [0 0; 1 1]`, `u = e₁`, Alg. (Arnoldi) on `C̃ = [0 0 1; 1 1 0; 0 0 0]` from `e₃` gives
-`V = [e₃ e₁]`, `T = [0 0; 1 0]`, `τ₃,₂ = 1`, `γ₂ = T₂,₁ = 1`, the next vector `e₂`, so Err_a is
-`t²/2`. `V` has no second coordinate, while `(e^{tC̃}e₃)₂ = Σ_{k≥2} tᵏ/k! = e^t - 1 - t > t²/2`
-for every `t > 0`. With `tFinal = timeStep = t` and `krylovError = t²/2` CORA accepts the order
-and its box misses the input solution. `A` is not nonexpansive: `e₂ᵀAe₂ = 1 > 0`.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Krylov error exceeds the Jawecki bound at every positive time
 
 ## References
 

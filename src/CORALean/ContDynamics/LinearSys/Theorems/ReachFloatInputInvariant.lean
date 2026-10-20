@@ -25,6 +25,17 @@ By induction on the pass, `reachFloatInputStep_invariant` the step. The start:
 `∫₀^τ e^{Aσ}dσ ũ` as the constant input `ũ` over `[0, τ]` with values in
 `[0, ũ] ∋ 0` (`inputReach_mono`); and `P^R(t_1)` and the propagated one-step
 set are both `P^R(Δt)`, by `inputReach_subset_inputSolutionFloat`.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* a successful run's loop states each hold the invariant they owe
 -/
 
 -- Authors:       Claude Opus 5.5

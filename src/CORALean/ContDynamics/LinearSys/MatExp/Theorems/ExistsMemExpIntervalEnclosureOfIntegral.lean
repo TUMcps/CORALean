@@ -14,19 +14,31 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 # A run inside a box is mapped by a member of the box's exponential enclosure
 
 `exp_mem_expIntervalEnclosure` for a matrix that varies in time. A solution of
-`x(s) = x(0) + ∫₀ˢ A(σ) x(σ) dσ` on `[0, t]`, every `A(σ)` in `B`, reaches
-`x(t) = Φ x(0)` for some `Φ ∈ expIntervalEnclosure (t • B) η` — the very
-interval matrix `'constParam'` uses, so CORA's `'varParam'` mapping matrix
-(`expmIndMixed` in `priv_mappingMatrix`) needs nothing wider.
+`x(s) = x(0) + ∫₀ˢ A(σ) x(σ) dσ` on `[0, t]`, every `A(σ)` in `B`, reaches `x(t) = Φ x(0)` for
+some `Φ ∈ expIntervalEnclosure (t • B) η`, the interval matrix `'constParam'` uses, so CORA's
+`'varParam'` mapping matrix (`expmIndMixed` in `priv_mappingMatrix`) needs nothing wider. `Φ` is
+the first `η + 1` Peano–Baker terms plus a correction: their sum lies in
+`expIntervalTaylor (t • B) η` term by term (`peanoBakerTerm_mem_matPow`), and what it misses of
+`x(t)` has norm at most `‖x(0)‖` times the remainder bound (`norm_sub_peanoBakerSum_le`); any such
+vector is `E x(0)` for `E` with entries within it, the widening `expIntervalEnclosure` adds.
 
-`Φ` is the first `η + 1` Peano–Baker terms plus a correction. Their sum lies in
-`expIntervalTaylor (t • B) η` term by term (`peanoBakerTerm_mem_matPow`), and what
-it misses of `x(t)` is a vector of norm at most `‖x(0)‖` times the remainder bound
-(`norm_sub_peanoBakerSum_le`). Any such vector is `E x(0)` for a matrix `E` whose
-entries are within that bound — one column, the one where `x(0)` attains its sup
-norm — and `E` is exactly the widening `expIntervalEnclosure` adds.
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `x` – run
+* `t` – time
+* `η` – Taylor order
 
-`Φ` depends on `x(0)`, as no single matrix maps a time-varying run's every start.
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `ht` – time nonnegative
+* `hxc` – run continuous on the interval
+* `hx` – run solves the integral equation
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the run's end is a member of the exponential enclosure applied to its start
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -24,6 +24,14 @@ returning `R̂(τ_0), …, R̂(τ_{N-1})`. `B` and `c` are the system's; `V = B 
 raised until the float enclosures admit it (`reachOrderFloat`), as the other float reaches
 raise it; `Δt` must divide the horizon exactly.
 
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Output
+* float windows of the run, if it completes
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

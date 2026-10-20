@@ -11,13 +11,40 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 [1, Alg. 2] with line 8 at `e^{Akδ}` and line 10's `theorem_III.2` given its own end set
 (`alg2Corrected`) encloses every `e^{At}x₀ + y`, `x₀ ∈ X₀`, `y ∈ R_p(t)`, `t ∈ [0, t_f]`, given
-what its subroutines are proved to deliver: `theorem_III.1 X t ⊇ e^{At}X` (`Thm. III.1`,
-`image_subset_of_approx`), `corollary_IV.2 ⊇ R_p(δ)` (`Cor. IV.2` corrected,
-`inputReach_subset_krylovZonotope`), and `theorem_III.2 X (theorem_III.1 X δ) ⊇ e^{At}X` on
-`[0, δ]` (`Thm. III.2` corrected, `timeInterval_subset`); and `0 ∈ U`, which line 3's
-`conv(0ₙ, R*_{b,1})` presumes. The pass for `k` covers `[kδ, (k + 1)δ]`: the homogeneous part
-from `R*_{h,k} ⊇ e^{Akδ}X₀`, the input part as `⊕_{i ≤ k} e^{Aiδ}R_p(δ)`
-(`inputReach_subset_sum_exp_image`), each term inside the box of the matching `R*_{b,i+1}`.
+what its subroutines deliver: `theorem_III.1 X t ⊇ e^{At}X` (`image_subset_of_approx`),
+`corollary_IV.2 ⊇ R_p(δ)` (`inputReach_subset_krylovZonotope`), `theorem_III.2` enclosing
+`e^{At}X` on `[0, δ]` (`timeInterval_subset`), and `0 ∈ U`, which line 3's `conv(0ₙ, R*_{b,1})`
+presumes. The pass for `k` covers `[kδ, (k + 1)δ]`: the homogeneous part from
+`R*_{h,k} ⊇ e^{Akδ}X₀`, the input part as `⊕_{i ≤ k} e^{Aiδ}R_p(δ)`
+(`inputReach_subset_sum_exp_image`), each term inside the box of `R*_{b,i+1}`.
+
+## Inputs
+* `A` – system matrix
+* `U` – input set
+* `theoremIII1` – subroutine enclosing the matrix-exponential image
+* `corollaryIV2` – input solution enclosure
+* `theoremIII2` – subroutine for the homogeneous step solution
+* `X₀` – initial set
+* `δ` – step length
+* `tf` – final time
+* `t` – time
+* `x₀` – initial point
+* `y` – input solution point
+
+## Hypotheses
+* `hbdd` – input set bounded
+* `h0` – origin in the input set
+* `hδ` – step length positive
+* `htf` – final time positive
+* `hIII1` – first subroutine encloses the exponential image
+* `hIV2` – enclosure contains the input solution
+* `hIII2` – third subroutine encloses the step solution
+* `ht` – time within the horizon
+* `hx₀` – initial point in the initial set
+* `hy` – point lies in the input reach
+
+## Conclusion
+* the point lies in the repaired Alg. 2 set
 
 ## References
 

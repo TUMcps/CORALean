@@ -17,6 +17,16 @@ does, since `‖x‖ = Δt · ‖absMat A‖ → 0`. `tendsto_expRemainderBound_
 carries that bound itself to `0`, and `tendsto_zero_iff_norm_tendsto_zero`
 turns the squeezed norm back into convergence of the matrix.
 
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entrywise remainder tends to zero as the step shrinks
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

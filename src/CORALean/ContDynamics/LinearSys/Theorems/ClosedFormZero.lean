@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 `closedForm x0 u 0 = x0`: the exponential at `0` is the identity and the
 integral over a point is `0`, so the formula reduces to its own initial
 point — needed wherever a run built from it has to meet `init`.
+
+## Inputs
+* `sys` – linear system
+* `x0` – initial point
+* `u` – input signal
+
+## Hypotheses
+* none
+
+## Conclusion
+* the closed form at time zero is the initial point
 -/
 
 -- Authors:       Claude Opus 5

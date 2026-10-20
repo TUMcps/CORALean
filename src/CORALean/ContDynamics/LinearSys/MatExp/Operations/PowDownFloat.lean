@@ -9,6 +9,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 `a ^ k` for a nonnegative `a`, rounded down at every multiplication: the lower
 end of a Taylor coefficient `r ^ k / k!`, which `powUp` bounds from above.
+
+## Inputs
+* none
+
+## Output
+* float lower bounds of the nonnegative powers
 -/
 
 -- Authors:       Claude Opus 5.5

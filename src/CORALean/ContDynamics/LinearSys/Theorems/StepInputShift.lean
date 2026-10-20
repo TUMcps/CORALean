@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
 signal re-anchored at `kΔt` *is* step `k` of the original. That is what lets a
 loop that re-anchors the trajectory at every step state its input hypothesis in
 the original clock while each step is proved on a clock starting at zero.
+
+## Inputs
+* `sys` – linear system
+* `u` – input signal
+* `Δt` – step length
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the first step of the re-anchored signal is the original step input
 -/
 
 -- Authors:       Claude Opus 5

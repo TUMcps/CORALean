@@ -8,19 +8,25 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 /-!
 # The support vector of [1, Sec. 4.2], as an initial state and an input sequence
 
-The run whose state at `t_k` is the support vector `ν(Ř(t_k), ℓ)` of the inner
-approximation [1, Alg. 1 (lower bounds)] bounds: the initial state of
-[1]'s Eq. (19) and the piecewise-constant inputs of [1]'s Eq. (20), to be simulated
-by [1]'s Eq. (18) (`heldSim`) or run in continuous time under `heldInput`.
+The run whose state at `t_k` is the support vector `ν(Ř(t_k), ℓ)` of the inner approximation
+[1, Alg. 1 (lower bounds)] bounds: the initial state of [1]'s Eq. (19) and the piecewise-constant
+inputs of [1]'s Eq. (20), to be simulated by [1]'s Eq. (18) (`heldSim`) or run in continuous time
+under `heldInput`. Eq. (20) is not used as printed: it sets `u(j) = ν(U₀, (e^{A t_j})ᵀ ℓ) + ũ`,
+while (18) multiplies `u(j)` by `T` and then by `e^{A t_{k-1-j}}` on the way to `x(k)`, so the
+direction has to be `(e^{A t_{k-1-j}} T)ᵀ ℓ`, steps counted from the end. `PrintedSupportInput` is
+a system on which the printed inputs miss the support vector. `ν(U₀, d) + ũ = ν(U, d)`, so `νU` is
+`ν(U, ·)`, and `d_j` is line 8 of [1, Alg. 1 (lower bounds)] in closed form.
 
-[1]'s Eq. (20) is not used as printed. It sets
-`u(j) = ν(U₀, (e^{A t_j})ᵀ ℓ) + ũ`, while (18) multiplies `u(j)` by `T` and then by
-`e^{A t_{k-1-j}}` on the way to `x(k)`: the direction has to be
-`(e^{A t_{k-1-j}} T)ᵀ ℓ`, with the steps counted from the end and `T` applied.
-`PrintedSupportInput` is a system on which the printed inputs miss
-the support vector; the page for [1] under `references/` says more.
-`ν(U₀, d) + ũ = ν(U, d)`, so `νU` is `ν(U, ·)`, and `d_j` is line 8 of
-[1, Alg. 1 (lower bounds)] in closed form.
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `ℓ` – direction
+* `k` – step index
+
+## Output
+* initial state and held input sequence reaching the support vector
 
 ## References
 

@@ -9,16 +9,33 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetDistInner
 /-!
 # The outer approximation converges to the exact particular solution
 
-The outer half of [1, Prop. 1], with a rate. Both directions of the distance are
-measured through the *inner* approximation, which is what the proposition's own
-proof does: the inner set is inside both the exact solution and the outer one,
-one step of the outer set is `O(Δt²)` from it, and one step of the exact
-solution is too, so neither direction needs an upper bound on a set that a
-representation would only over-approximate.
-
-`Δt‖A‖ ≤ 1` is the one-step estimate's hypothesis and also gives the truncation
-order's side condition; the enclosure `Z_S ⊆ Ẑ_S` is never used, and so no
+The outer half of [1, Prop. 1], with a rate. Both directions of the distance are measured through
+the *inner* approximation, which is what the proposition's own proof does: the inner set is inside
+both the exact solution and the outer one, one step of the outer set is `O(Δt²)` from it, and one
+step of the exact solution is too, so neither direction needs an upper bound on a set that a
+representation would only over-approximate. `Δt‖A‖ ≤ 1` is the one-step estimate's hypothesis and
+also gives the truncation order's side condition; the enclosure `Z_S ⊆ Ẑ_S` is never used, and so no
 convexity is asked of the outer approximation's interval-matrix factor.
+
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `ρ` – input norm bound
+* `η` – Taylor order
+* `ω` – number of steps
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hAΔ` – step times matrix norm at most one
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+* `hρ` – input norms bounded
+
+## Conclusion
+* the propagated outer approximation is within a rate in the step of the exact solution
 
 ## References
 

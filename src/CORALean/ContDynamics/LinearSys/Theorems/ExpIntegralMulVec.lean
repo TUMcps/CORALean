@@ -18,6 +18,17 @@ here, while `∫ (e^{Aσ} v) dσ` exists perfectly well in `Vec`.
 The exchange is dominated convergence over the partial sums, dominated by the
 constant `e^{‖A‖t}‖v‖`. Termwise `∫₀ᵗ σⁱ/i! dσ = t^{i+1}/(i+1)!`, which is
 where the shifted factorial in `expIntegral` comes from.
+
+## Inputs
+* `A` – system matrix
+* `v` – vector
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+
+## Conclusion
+* the integrated exponential applied to the vector is the integral of the propagated vector
 -/
 
 -- Authors:       Claude Opus 5

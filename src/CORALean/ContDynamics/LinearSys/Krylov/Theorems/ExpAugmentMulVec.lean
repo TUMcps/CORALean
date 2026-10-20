@@ -17,6 +17,18 @@ coordinates of `e^{C̃t}[0ₙ; 1]`, `C̃ = [A u; 0 0]`, are `∫₀ᵗ e^{Aσ}d�
 the last unit vector are `[A^{k-1}u; 0]` for `k ≥ 1` (`augment_pow_mulVec`), so the exponential
 series there is `[Σₖ t^{k+1}/(k+1)! Aᵏ u; 1]`, which is `expIntegral`'s series applied to `u`.
 
+## Inputs
+* `A` – system matrix
+* `u` – constant input
+* `t` – time
+* `j` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the augmented exponential gives the constant-input solution coordinate
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

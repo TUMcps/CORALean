@@ -10,18 +10,23 @@ public import CORALean.Global.Err
 # `ε_P([t_i,t_i+Δt_i])`, eq. (22)
 
 [1]'s eq. (22): `ε_P([t_i,t_{i+1}]) = err(e^{At_i} E(Δt_i,η_i) Δt_i U)`, the error of the
-inhomogeneous solution over the `i`-th step — `err` of `PR^+([0,Δt]) = E(Δt,η)ΔtU` (eq. (20))
-carried to `t_i` by `e^{At_i}` as eq. (2) requires. `err` is `Global/Err.lean`'s `r(box(·))`,
-[1, Prop. 1]'s radius of the smallest hypersphere at the origin enclosing the box, so this is the
-Euclidean quantity [1] states and not a supremum-norm stand-in.
-
+inhomogeneous solution over the `i`-th step: `err` of `PR^+([0,Δt]) = E(Δt,η)ΔtU` (eq. (20))
+carried to `t_i` by `e^{At_i}`. `err` is `Global/Err.lean`'s `r(box(·))`, [1, Prop. 1]'s radius of
+the smallest hypersphere at the origin enclosing the box, the Euclidean quantity [1] states.
 `E(Δt,η)` is the interval matrix `[−E_abs(Δt,η), E_abs(Δt,η)]` of eq. (15)-(16), `E_abs` being
-`MatExp.expRemainderMat`, and `intervalMulVecSet` is that interval matrix acting on a set of
-vectors. It reads the radius as `|E_abs|`, which is `E_abs` itself at every step `Δt ≥ 0`.
+`MatExp.expRemainderMat`; `intervalMulVecSet` is that matrix acting on a set of vectors.
+`LinearSys.timePointStepRemainderError` is a different number: a scalar bound at the base step
+`t_i = 0`, built from a zonotope's `absBound`s and the operator-norm remainder.
 
-`LinearSys.timePointStepRemainderError` is a different number: a scalar upper bound at the base
-step `t_i = 0`, built from a zonotope's `absBound`s and the operator-norm remainder, rather than
-`err` of the set.
+## Inputs
+* `A` – system matrix
+* `ti` – step start time
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* set whose error is the particular remainder error of the step
 
 ## References
 

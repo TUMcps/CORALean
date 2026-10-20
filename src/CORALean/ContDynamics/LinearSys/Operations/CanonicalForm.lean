@@ -14,6 +14,17 @@ are real arithmetic, and `Recenter` is what `U - centerU` needs. One piece of th
 constant `uVec`, `vVec` at a time: CORA's extra zero column for the `steps + 1` output
 times only repeats the formula with `uVec = 0`.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `uVec` – input offset
+* `W` – disturbance set
+* `V` – noise set
+* `vVec` – noise offset
+
+## Output
+* canonical system with its input set, input offset, noise set and noise offset
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

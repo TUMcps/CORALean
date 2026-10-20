@@ -12,6 +12,12 @@ no float format computes soundly. Since `a^(i-1) = 1/i`, the coefficient is
 `-(1 - 1/i)·a`, and Bernoulli's inequality puts `a` below `1 - 1/i`; so
 `-(1 - 1/i)²` bounds it from below, exactly at `i = 2`, the order a short step
 is dominated by, and within `0.06` at `i = 3`.
+
+## Inputs
+* `i` – order
+
+## Output
+* float lower bound of the correction coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

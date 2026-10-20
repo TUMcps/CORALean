@@ -18,15 +18,30 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 /-!
 # `Alg. 3`: the EA time-interval backward reachable set, every line
 
-[1, Alg. 3] in full. Lines 3-5 compute the two polytopes of the inner approximated
-homogeneous time-interval solution (21): `box(X_end)` from the caller's support oracle `ρ`
-(the linear programs of (9)), `F box(X_end)` with `F` the interval matrix (19), `μ` (22) at
-the spectral norm, `P₁ = X_end ⊖ F box(X_end) ⊖ B_μ` and `P₂ = e^{AΔt}X_end ⊖ F box(X_end) ⊖ B_μ`,
-`e^{AΔt}X_end` the image of the halfspace description under the invertible `e^{AΔt}`, which is
-the preimage under `e^{-AΔt}`. Lines 1-2 and 6-14 are `maxBackReachTimeInterval`, which takes
-the two polytopes. Line 14's union is no constrained zonotope, so the result is a `Set`.
+[1, Alg. 3] in full. Lines 3-5 compute the two polytopes of the inner approximated homogeneous
+time-interval solution (21): `box(X_end)` from the caller's support oracle `ρ` (the linear
+programs of (9)), `F box(X_end)` with `F` the interval matrix (19), `μ` (22) at the spectral norm,
+`P₁ = X_end ⊖ F box(X_end) ⊖ B_μ` and `P₂ = e^{AΔt}X_end ⊖ F box(X_end) ⊖ B_μ`, `e^{AΔt}X_end` the
+image of the halfspace description under the invertible `e^{AΔt}`. Lines 1-2 and 6-14 are
+`maxBackReachTimeInterval`, which takes the two polytopes. Line 14's union is no constrained
+zonotope, so the result is a `Set`. `Zw` is (27), the constant center trajectory's contribution.
 
-`Zw` is (27), the constant center trajectory's contribution over one interval.
+## Inputs
+* `sys` – linear system
+* `Xend` – target polytope
+* `U` – input zonotope
+* `W₀` – initial disturbance zonotope
+* `Zw` – center trajectory contribution
+* `t₀` – start time
+* `tend` – end time
+* `η` – Taylor order
+* `ω` – number of iterations
+
+## Hypotheses
+* `ρ` – support oracle for polytopes
+
+## Output
+* union of the inner approximated time-interval backward reachable sets
 
 ## References
 

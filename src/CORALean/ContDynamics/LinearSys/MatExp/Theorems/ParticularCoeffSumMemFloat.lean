@@ -17,6 +17,20 @@ public import Mathlib.Algebra.BigOperators.Intervals
 `intervalInputTerm` (`smul_pow_mem_intervalInputTerm`), `matPlus` holds the sum of members,
 and an empty range sums to `0`, which the point `0` holds.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `M` – member matrix
+* `i0` – start index
+* `η` – Taylor order
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the exact coefficient sum lies in the float sum
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

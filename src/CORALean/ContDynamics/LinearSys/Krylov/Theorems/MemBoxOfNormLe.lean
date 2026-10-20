@@ -12,6 +12,17 @@ solution lies in `x̂_h(t) ⊕ [-1, 1]ⁿ ‖x₀‖ε t` (10). Taken here with 
 any vector `x` and approximation `x̂`: every coordinate is at most the Euclidean norm. The
 bound itself is [1]'s citation of Wang and Ye's a-posteriori estimate, not proved here.
 
+## Inputs
+* `x` – exact vector
+* `xhat` – approximation
+* `e` – error bound
+
+## Hypotheses
+* `h` – Euclidean error at most the bound
+
+## Conclusion
+* the exact vector is the approximation plus a vector in the error box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

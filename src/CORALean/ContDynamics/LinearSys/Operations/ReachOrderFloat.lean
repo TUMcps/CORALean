@@ -18,6 +18,15 @@ is `max(η, 2, ⌈2 t ‖|A|‖∞⌉ - 2)`, `‖|A|‖∞` the largest row sum 
 magnitudes: the order to give CORA for the same run. The search stops after `4096` orders
 and says `none`: a norm past `(max η 2 + 4097)/2`, or one the float format
 cannot hold (an overflow, a `NaN`), gets no order rather than an unchecked one.
+
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – starting Taylor order
+
+## Output
+* first order the float remainder bound admits, if found
 -/
 
 -- Authors:       Claude Opus 5.5

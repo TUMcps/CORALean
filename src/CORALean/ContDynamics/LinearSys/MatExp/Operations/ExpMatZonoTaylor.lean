@@ -12,6 +12,12 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 matching `MatExp.expTaylor`'s `Finset.range (η + 1)` exactly — `expIntervalTaylor`'s recursion
 at a zonotope, so that the correlations between a system matrix's entries survive the powers.
 
+## Inputs
+* `M` – matrix zonotope
+
+## Output
+* matrix zonotope of the Taylor truncation up to the given order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

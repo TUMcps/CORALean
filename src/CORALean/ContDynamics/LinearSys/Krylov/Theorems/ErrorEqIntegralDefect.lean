@@ -17,6 +17,20 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 `M = σA`: `e^{(t-s)M}y(s)` has derivative `e^{(t-s)M}D(s)`, and the fundamental theorem of
 calculus gives the identity.
 
+## Inputs
+* `M` – matrix
+* `y` – error function
+* `D` – defect function
+* `t` – time
+
+## Hypotheses
+* `hy0` – error vanishes at zero
+* `hy` – error solves the defect equation
+* `hD` – defect continuous
+
+## Conclusion
+* the error equals the integral of the propagated defect
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

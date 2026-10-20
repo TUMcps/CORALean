@@ -15,6 +15,17 @@ run's time-interval step from `R_k`, which `timeIntervalStepFloat_outer` covers.
 Nothing is asked of `η`, nor of `Δt`: the correction matrix needs it positive,
 which `Reach.steps` checked before the run took a step, and `N` steps of it
 span `[tStart, tFinal]` exactly.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact flow from every initial point lies in the window sets
 -/
 
 -- Authors:       Claude Opus 5.5

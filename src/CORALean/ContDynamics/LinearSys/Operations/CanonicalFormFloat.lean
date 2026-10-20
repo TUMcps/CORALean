@@ -20,6 +20,17 @@ zonotopes (`recenter` is exact), and the offsets `u_`, `v_`, which are real vect
 sums at ℝ, are boxes here, each sum and product rounded outward. Soundness is
 `canonicalFormFloat_state_outer` and `canonicalFormFloat_output_outer`.
 
+## Inputs
+* `sys` – linear system
+* `U` – input zonotope
+* `uVec` – input offset
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `vVec` – noise offset
+
+## Output
+* canonical system with its input zonotope, offset box, noise zonotope and offset box
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

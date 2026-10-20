@@ -9,15 +9,12 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # What `Alg. 3`'s passed-in functions must satisfy
 
-`verify` takes `reachFn`, `innerApprox`, the two distances and the comparison `le` as
-parameters in [1, Alg. 3], so its soundness is relative to what they promise. Written for a
-set `Reach` of states reached by some trajectory:
-
-* `reachFn ε` is an outer approximation of `Reach` for every `ε` (the algorithm's `R̂`),
-* `innerApprox R ε` lies inside `Reach` (the algorithm's `Ř`),
-* `distG C P ≤ 0` means `C ⊆ P`, and `0 < distG C P` that it does not,
-* `0 < distF C P` means `C` misses `P`, and `distF C P ≤ 0` that it meets it,
-* `le` decides `≤`.
+`verify` takes `reachFn`, `innerApprox`, the two distances and the comparison `le` as parameters in
+[1, Alg. 3], so its soundness is relative to what they promise. Written for a set `Reach` of states
+reached by some trajectory: `reachFn ε` is an outer approximation of `Reach` for every `ε`;
+`innerApprox R ε` lies inside `Reach`; `distG C P ≤ 0` means `C ⊆ P` and `0 < distG C P` that it
+does not; `0 < distF C P` means `C` misses `P` and `distF C P ≤ 0` that it meets it; `le` decides
+`≤`.
 
 ## References
 

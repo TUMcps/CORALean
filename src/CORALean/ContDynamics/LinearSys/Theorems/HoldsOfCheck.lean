@@ -14,6 +14,21 @@ back by `holds_of_outer`. A `true` is the specification on every state the
 homogeneous flow reaches from `X₀` by `tFinal`, at an order admissible for `Δt`.
 `holds_of_check_wrappingFree` is the same at `reachWrappingFree`; `Reach.holds_of_check`
 reaches this one at `LinearSys`, `reachInstance` now running the same recursive `reach`.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+* `spec` – specification
+
+## Hypotheses
+* `htFinal` – horizon positive
+* `hΔt` – step length positive
+* `hη` – order at least two
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* a passed check on the computed reach implies the specification holds on the exact reach
 -/
 
 -- Authors:       Claude Opus 5.5

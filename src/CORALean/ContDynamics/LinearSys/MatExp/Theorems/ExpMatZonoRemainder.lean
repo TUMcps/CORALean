@@ -11,6 +11,16 @@ The generator carrying entry `(i, j)` is the only one that reaches it, so the
 coefficient it needs is that entry's share of the bound. A zero bound pins every
 entry to zero and the coefficient with it, which is the only case the division
 has to be kept away from.
+
+## Inputs
+* `b` – entry bound
+* `D` – matrix
+
+## Hypotheses
+* `hD` – entries within the bound
+
+## Conclusion
+* the matrix lies in the remainder zonotope
 -/
 
 -- Authors:       Claude Opus 5

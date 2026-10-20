@@ -21,6 +21,44 @@ every vertex of `P̌` in `R(t) - L`; `R(t) - L` is convex, so `0 ∈ conv(P̌)` 
 The oracles are held to what the exits read: `ρL` and `ρ` bound, `ν₀`, `νU` and `νL` are points of
 their sets, and `inHull V = true` means the origin is in the hull of `V`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial set
+* `U` – input set
+* `t` – time
+* `m` – Taylor order offset
+* `ρ` – support function oracle
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `νL` – support vector map of the specification set
+* `L` – specification set
+* `ρL` – support function of the specification set
+* `νhat` – support vector map of the outer approximation
+* `inHull` – origin-in-hull test
+* `closestFacet` – closest facet finder
+* `gramSchmidt` – orthogonal direction finder
+* `ℓ₁` – first direction
+* `fuel` – number of iterations
+* `s` – loop state
+
+## Hypotheses
+* `hX₀` – initial set convex
+* `hUconv` – input set convex
+* `hρ` – oracle bounds the support function of every set
+* `hν₀` – initial support vectors lie in the initial set
+* `hνU` – input support vectors lie in the input set
+* `hL` – specification set convex
+* `hνL` – specification support vectors lie in the set
+* `hρL` – specification support function bounds the set
+* `hhull` – hull test is sound
+* `hΔt` – loop step positive
+* `hk` – steps times step length equal the time
+* `hε` – scaled norm small enough for the Taylor order
+* `hP` – vertices lie in the reach set minus the specification set
+
+## Conclusion
+* a safe answer means the sets are disjoint and a violated one that they meet
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

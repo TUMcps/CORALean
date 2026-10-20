@@ -12,19 +12,29 @@ public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 /-!
 # [1, Prop. 3]: the time-point AE backward reachable set, exactly
 
-`R^{∀∃}(-t) = e^{-At}((Xend ⊕ -Z_W(t)) ⊖ Z_U(t))`, with `Z_U` and `Z_W` the
-exact particular solutions `inputReach U t` and `inputReach W t` — plain sets of
-points, which is what "independently of the set representations chosen" means.
+`R^{∀∃}(-t) = e^{-At}((Xend ⊕ -Z_W(t)) ⊖ Z_U(t))`, with `Z_U` and `Z_W` the exact particular
+solutions `inputReach U t` and `inputReach W t`, plain sets of points. Superposition turns the
+quantifiers over *signals* into quantifiers over *points* of those two sets, in both directions:
+every point of `inputReach` is some admissible signal's integral, and every admissible signal's
+integral is a point of it. The remaining step is the adjunction `{y} ⊕ Z_U ⊆ S ↔ y ∈ S ⊖ Z_U`, read
+off `minkowskiDiff`'s definition, and no summand is ever cancelled off a Minkowski difference. The
+paper defers its proof to a discrete-time predecessor; the argument here is direct, and needs `U`
+and `W` bounded, which the paper's zonotopes are.
 
-Superposition turns the quantifiers over *signals* into quantifiers over
-*points* of those two sets, in both directions: every point of `inputReach` is
-some admissible signal's integral, and every admissible signal's integral is a
-point of it. The remaining step is the adjunction `{y} ⊕ Z_U ⊆ S ↔ y ∈ S ⊖ Z_U`,
-read off `minkowskiDiff`'s definition, and no summand is ever cancelled off a
-Minkowski difference — which would be unsound.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `W` – disturbance set
+* `Xend` – target set
+* `t` – target time
 
-The paper defers its proof to a discrete-time predecessor; the argument here is
-direct, and needs `U` and `W` bounded, which the paper's zonotopes are.
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `hW` – disturbance set bounded
+
+## Conclusion
+* the set is the propagated target plus the negated disturbance solution, eroded by the input
 
 ## References
 

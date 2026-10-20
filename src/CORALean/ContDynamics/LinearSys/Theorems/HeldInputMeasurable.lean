@@ -13,6 +13,16 @@ whose every function out of is measurable: the admissibility a Carathéodory
 `IsTrajectory` asks of its input, for the piecewise-constant inputs of
 [1, Sec. 4.2] whatever the values held.
 
+## Inputs
+* `Δt` – step length
+* `v` – input value per step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the piecewise-constant input is measurable
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

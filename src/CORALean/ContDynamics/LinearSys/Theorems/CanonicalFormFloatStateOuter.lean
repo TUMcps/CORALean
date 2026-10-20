@@ -18,6 +18,23 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 what moves, the box `u_` the rest. All quantities are the real values of stored floats; an outer
 statement.
 
+## Inputs
+* `sys` – linear system
+* `U` – input float zonotope
+* `uVec` – input offset
+* `W` – disturbance float zonotope
+* `V` – noise float zonotope
+* `vVec` – noise offset
+* `u` – input value
+* `w` – disturbance value
+
+## Hypotheses
+* `hu` – input lies in its zonotope
+* `hw` – disturbance lies in its zonotope
+
+## Conclusion
+* the float canonical state set holds the state input of every input and disturbance
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

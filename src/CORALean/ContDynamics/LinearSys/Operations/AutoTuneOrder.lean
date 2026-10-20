@@ -10,18 +10,27 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularSoluti
 /-!
 # `Alg. 2` lines 9-15: the order sweep
 
-`η_k` sweeps upward from `2`, `I_i(Δt)` (eq. 17) being undefined below it,
-until it clears both the accumulating-error bound `ε^{a,τ}_k` (eq. 37) and
-the non-accumulating one `ε^{n,τ}_k` (eq. 38).
+`η_k` sweeps upward from `2`, `I_i(Δt)` (eq. 17) being undefined below it, until it clears both
+the accumulating-error bound `ε^{a,τ}_k` (eq. 37) and the non-accumulating one `ε^{n,τ}_k`
+(eq. 38). One deliberate departure: [1]'s own `η_k` search (lines 8-12) is a *numerical* device,
+tracking `T(j) := ⊕_{i=1}^j I_i(Δt)Aⁱ/i!` until its relative Frobenius-norm change is under
+`10^{-10}`, decoupled from the bounds lines 13-15 check, and its index range does not typecheck
+against eq. (17): at `i=1`, `I_1(Δt)`'s exponent `-1/(i-1)` divides by zero. `autoTuneOrder`
+ties `η_k` directly to the bounds, sweeping against `le` as CDC'20's `adaptTimeStepOrder` does.
 
-One departure, deliberate. [1]'s own `η_k` search (lines 8-12) is a
-*numerical* device — track `T(j) := ⊕_{i=1}^j I_i(Δt)Aⁱ/i!` and stop once its
-relative Frobenius-norm change is under `10^{-10}` — decoupled from the
-bounds lines 13-15 actually check, and its own index range does not
-typecheck against eq. (17): at `i=1`, `I_1(Δt)`'s exponent `-1/(i-1)`
-divides by zero. `autoTuneOrder` ties `η_k` directly to the bounds it must
-satisfy instead, sweeping against `le` as CDC'20's `adaptTimeStepOrder`
-does, rather than a fixed tolerance whose own printed index is ill-defined.
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `H` – state zonotope
+* `ũ` – constant input
+* `tk` – step start time
+* `U₀` – recentered input zonotope
+* `Δt` – step length
+* `εaτ` – accumulating error share
+* `εnτ` – non-accumulating error share
+
+## Output
+* coarsest order meeting both error shares, if any
 
 ## References
 

@@ -17,6 +17,18 @@ turns [1, Prop. 3] and [1, Prop. 5] from statements about an image into
 statements about the propagated point, and it holds for every `A` and `t`,
 singular `A` included.
 
+## Inputs
+* `A` – matrix
+* `t` – time
+* `M` – set
+* `x₀` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership in the image is membership of the propagated point
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

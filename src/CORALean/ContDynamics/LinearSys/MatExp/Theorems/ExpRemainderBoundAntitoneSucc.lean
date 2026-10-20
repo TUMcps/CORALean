@@ -12,6 +12,16 @@ Raising `η` by one shrinks the truncated tail's leading term and the geometric
 factor alike, given the side condition at `η` — which then also holds at
 `η + 1`, since `‖x‖/(η + 3) ≤ ‖x‖/(η + 2)`. A step at a time, not a general
 `Antitone`: the successor case is all the tuning algorithm needs.
+
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hx` – norm small enough for the Taylor order
+
+## Conclusion
+* one more order never raises the remainder bound
 -/
 
 -- Authors:       Claude Opus 5

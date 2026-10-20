@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccEqIm
 
 `[1, Eq. 6]`: the propagated enclosure of the input-free reach set of `Z`.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `m` – Taylor order offset
+* `k` – step index
+* `Z` – initial set
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the reach set of the step lies in the propagated set plus the variation
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

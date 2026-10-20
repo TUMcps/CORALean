@@ -14,6 +14,15 @@ in `𝕋`: `Σⱼ|X₀|ⱼ (‖e^{rA} - I‖ + 2(e^x - 1 - x + E(rA, η)))` at `
 `‖e^{rA} - I‖` is bounded by `e^{‖rA‖} - 1` (`norm_exp_sub_one_le_exp_norm`), so no matrix
 exponential is taken; the other factors are as in `timeIntervalStepCurvatureErrorFloat`.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X₀` – initial float zonotope
+
+## Output
+* float upper bound of how far the time-interval step reaches past the run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

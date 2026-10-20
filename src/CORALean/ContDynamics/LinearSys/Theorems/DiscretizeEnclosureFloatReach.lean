@@ -12,6 +12,31 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 `discretizeEnclosure_mem_reach` is at the real layer: at the float
 interval-matrix family, `LinParamSysDT.reach` is the discrete recursion run in
 floats, and the sampled continuous run is inside it at every sample time.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `k` – step index
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs lie in the sampled input set
+* `hη` – order admissible
+* `ho` – zonotope order positive
+
+## Conclusion
+* the sample after the given steps lies in the float-sampled reach set
 -/
 
 -- Authors:       Claude Opus 5.5

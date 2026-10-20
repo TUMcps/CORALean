@@ -12,16 +12,40 @@ public import CORALean.Global.EuclideanHausdorffDistAddLe
 # [1, Prop. 2]: one step of the time-point error in the particular solution
 
 Eq. (24)'s displayed recursion `ε^U_{k+1} = ε^U_k + Δε^U_k(Δt_k,η_k)`, one step of it. The exact
-`P^U(t_k+Δt_k)` really does split as `P^U(t_k) ⊕ e^{At_k}P^U(Δt_k)` — `inputReach_separation_eq`,
-Althoff's `Prop. 3.2` — so the recursively computed `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)` is compared
-summand by summand: `hausdorffDist₂_add_le` for the split, `hausdorffDist₂_inputReach_le_of_convex`
+`P^U(t_k+Δt_k)` splits as `P^U(t_k) ⊕ e^{At_k}P^U(Δt_k)` (`inputReach_separation_eq`, Althoff's
+`Prop. 3.2`), so the recursively computed `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)` is compared summand by
+summand: `hausdorffDist₂_add_le` for the split, `hausdorffDist₂_inputReach_le_of_convex`
 (`Prop. 11`, without eq. (20)'s soundness) for the new summand, and the error at `t_k` is the
-hypothesis eq. (24) reads it as.
+hypothesis eq. (24) reads it as. Compactness of the four sets is what `Def. 5` asks of everything it
+measures, and makes the nearest points in `hausdorffDist₂_add_le` exist. Eq. (21)'s accumulation
+over the horizon is not proved here: `Prop. 2`'s own display is this single step.
 
-Compactness of the four sets is what `Def. 5` asks of everything it measures, and is what makes
-the nearest points in `hausdorffDist₂_add_le` exist. Eq. (21)'s accumulation over the horizon is
-not proved here: it is an induction over a recursion this file does not name, and `Prop. 2`'s own
-display is this single step.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `tk` – step start time
+* `Δt` – step length
+* `η` – Taylor order
+* `Pk` – computed set at the step start
+* `εk` – error at the step start
+
+## Hypotheses
+* `htk` – start time nonnegative
+* `hΔt` – step length positive
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+* `hcP` – input reach at the start compact
+* `hcPΔ` – input reach over a step compact
+* `hcQ` – computed set compact
+* `hQne` – computed set nonempty
+* `hcQΔ` – outer one-step set compact
+* `hstep` – error at the start bounds the distance
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `h0` – origin in the input set
+
+## Conclusion
+* the distance at the next time is at most the error plus the one-step error
 
 ## References
 

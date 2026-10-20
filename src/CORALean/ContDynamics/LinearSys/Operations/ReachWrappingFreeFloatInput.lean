@@ -17,17 +17,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # Wrapping-free reachability with inputs in floats
 
-`ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, in `𝕋`, read and split as
-`reachFloatInput` reads and splits it, with windows taken as
-`reachWrappingFreeFloat` takes them: [1, Alg. 3]'s window
-`R(τ_k) = e^{A t_k}(H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R(t_{k+1})`, as
-`WithInputSplit.reachStepk` states it over ℝ, with `[e^{A t_k}]` taken at `t_k`
-directly (`reachStepkWrappingFreeFloat`), so no window's error compounds into the
-next. `P^R(t_{k+1}) = e^{A t_k} P^R(Δt) ⊕ P^R(t_k)`, so the first summand is
-carried with the first window and the rest accumulates from `{0}` by
-`P(t_{k+1}) = P(t_k) ⊕ [e^{A t_k}](P̃(Δt) ⊕ P^R(Δt))`, reduced to order `ρ`.
-CORA's `priv_reach_wrappingfree` steps by `[e^{AΔt}]` and keeps the input in a
-box instead; the float layer's choice is `reachWrappingFreeFloat`'s.
+`ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, in `𝕋`, read and split as `reachFloatInput` reads
+and splits it, with windows taken as `reachWrappingFreeFloat` takes them: [1, Alg. 3]'s window
+`R(τ_k) = e^{A t_k}(H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R(t_{k+1})`, as `WithInputSplit.reachStepk`
+states it over ℝ, with `[e^{A t_k}]` taken at `t_k` directly, so no window's error compounds into
+the next. `P^R(t_{k+1}) = e^{A t_k} P^R(Δt) ⊕ P^R(t_k)`, so the first summand is carried with the
+first window and the rest accumulates from `{0}` by
+`P(t_{k+1}) = P(t_k) ⊕ [e^{A t_k}](P̃(Δt) ⊕ P^R(Δt))`, reduced to order `ρ`. CORA's
+`priv_reach_wrappingfree` steps by `[e^{AΔt}]` and keeps the input in a box instead.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Output
+* float windows of the run with inputs, if it completes
 
 ## References
 

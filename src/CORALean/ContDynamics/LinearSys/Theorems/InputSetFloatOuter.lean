@@ -10,6 +10,16 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 
 For every `u ∈ U`, the system's own input term `B u + c` lies in `inputSetFloat U`: `B u` in
 the product `B U`, `c` in the point `c`.
+
+## Inputs
+* `sys` – linear system
+* `U` – input float zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float input set holds the state-space image of every input
 -/
 
 -- Authors:       Claude Opus 5.5

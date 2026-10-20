@@ -14,6 +14,23 @@ What `inputSolution_outer` asks of the input, in the reflected form the
 substitution `τ = c - s` leaves behind. The reflected argument sweeps
 `[c - r, c)`, so a domain covering the step ending at `c` is what it needs.
 `StepInputOuter` is the one caller, matching `stepInput`'s own reflection.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `c` – reflection point
+* `r` – step length
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hT` – reflected interval lies in the time domain
+
+## Conclusion
+* the reflected input is almost everywhere strongly measurable on the step
 -/
 
 -- Authors:       Claude Opus 5

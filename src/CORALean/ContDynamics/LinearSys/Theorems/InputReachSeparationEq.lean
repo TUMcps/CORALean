@@ -8,17 +8,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubse
 /-!
 # The input reach set separates exactly, not just up to enclosure
 
-[1, Prop. 3.2] as it is printed: an equality. Both inclusions are available —
-`inputReach_separation` concatenates two shorter runs into one over `[0, a+b]`,
-`inputReach_separation_subset` takes an arbitrary such run apart — so
-`P_R(a+b)` is exactly `e^{Ab} P_R(a) + P_R(b)`, and this is the antisymmetry.
+[1, Prop. 3.2] as it is printed: an equality. Both inclusions are available (`inputReach_separation`
+concatenates two shorter runs into one over `[0, a+b]`, `inputReach_separation_subset` takes an
+arbitrary such run apart) so `P_R(a+b)` is exactly `e^{Ab} P_R(a) + P_R(b)`. Taking
+`a = (k-1)r + Δt` and `b = r` is the recursion [1, Prop. 3.2] states; `k = 1`, so that `a = Δt`, is
+[1, Cor. 3.1]. `0 ≤ a` and `0 ≤ b` are what make the windows windows, and a bounded input set is
+what makes every admissible input integrable, so that the split at `a` and the concatenation at `a`
+are both legal.
 
-Taking `a = (k-1)r + Δt` and `b = r` is the recursion [1, Prop. 3.2] states;
-`k = 1`, so that `a = Δt`, is [1, Cor. 3.1].
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `a` – first window length
+* `b` – second window length
 
-`0 ≤ a` and `0 ≤ b` are what make the windows windows, and a bounded input set
-is what makes every admissible input integrable, so that the split at `a` and
-the concatenation at `a` are both legal.
+## Hypotheses
+* `ha` – first length nonnegative
+* `hb` – second length nonnegative
+* `hbdd` – input set bounded
+
+## Conclusion
+* the contribution of the joined window equals the propagated first plus the second
 
 ## References
 

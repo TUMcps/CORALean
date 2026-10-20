@@ -13,6 +13,19 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSuperset
 measurable input a witness in `inputReach` can name — a piecewise-constant one
 among them — drives a run. This is what lets the layer refute as well as prove.
 `ReachSetExactSubset`/`ReachSetExactSuperset` are the two halves.
+
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+
+## Conclusion
+* the reach set is the propagated start set plus the input reach
 -/
 
 -- Authors:       Claude Opus 5.5

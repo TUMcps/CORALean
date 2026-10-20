@@ -11,6 +11,12 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
 `Real.MatExp.expMatZonoTaylor` rounded, the same recursion `i = 0 … η`, each partial sum
 materialised before the next order joins it.
 
+## Inputs
+* `M` – float matrix zonotope
+
+## Output
+* float matrix zonotope of the Taylor truncation up to the given order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

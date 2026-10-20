@@ -12,6 +12,17 @@ the tail of the exponential series, `Σ_i z^{i+N}/(i + N)!`, with `z^N` factored
 behind the explicit Taylor remainder of [1, Remark 2]. For `z` in any complete normed
 ℝ-algebra; the tail series is summable, dominated by the exponential series.
 
+## Inputs
+* `𝔸` – normed algebra
+* `z` – element
+* `N` – split index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential is a partial sum plus a series factor times a power
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

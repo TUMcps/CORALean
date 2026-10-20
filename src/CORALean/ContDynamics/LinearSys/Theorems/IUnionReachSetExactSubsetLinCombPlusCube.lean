@@ -16,18 +16,32 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # The first time interval, enclosed by a zonotope
 
-[1, Lemma 2], first half: `R_[0,r](Z) ⊆ P + □(α_r + β_r)`, with `P` the zonotope of
-eq. 5 of [1], `(c + e^{rA}c)/2` and generators `(gᵢ ± e^{rA}gᵢ)/2`, `(c - e^{rA}c)/2` — which is
-`Zonotope.linComb Z (e^{rA}Z)`, CORA's `enclose` — and `α_r = (e^{r‖A‖} - 1 - r‖A‖) sup ‖x‖`.
+[1, Lemma 2], first half: `R_[0,r](Z) ⊆ P + □(α_r + β_r)`, with `P` the zonotope of eq. 5 of [1],
+`(c + e^{rA}c)/2` and generators `(gᵢ ± e^{rA}gᵢ)/2`, `(c - e^{rA}c)/2`, which is
+`Zonotope.linComb Z (e^{rA}Z)`, CORA's `enclose`, and `α_r = (e^{r‖A‖} - 1 - r‖A‖) sup ‖x‖`.
+`R_[0,r](Z)` is the union of `Φ_t(Z)` over `t ∈ [0, r]`, each a `reachSetExact` on `[0, t]`, as Sec.
+3 of [1] defines it. A point of `Φ_t(Z)` is `e^{tA}z + v`; `z + (t/r)(e^{rA}z - z)` is on a segment
+from `Z` to `e^{rA}Z`, so in `P`, and the rest is at most `α_r` (eq. 6,
+`MatExp.norm_exp_mulVec_sub_interpolate_le`) plus `β_t ≤ β_r` (eq. 3 of [1]). `sup_{x∈Z} ‖x‖` is
+taken as any bound `s` on `Z`'s norms; the enclosure only grows with `s`.
 
-`R_[0,r](Z)` is the union of `Φ_t(Z)` over `t ∈ [0, r]`, each `Φ_t(Z)` a
-`reachSetExact` on `[0, t]`, as Sec. 3 of [1] defines it. A point of `Φ_t(Z)` is
-`e^{tA}z + v`; `z + (t/r)(e^{rA}z - z)` is on a segment from `Z` to `e^{rA}Z`, so in `P`, and
-the rest is at most `α_r` (eq. 6, `MatExp.norm_exp_mulVec_sub_interpolate_le`) plus
-`β_t ≤ β_r` (eq. 3 of [1]).
+## Inputs
+* `sys` – linear system
+* `Z` – initial zonotope
+* `U` – input zonotope
+* `μ` – input bound
+* `r` – step length
+* `s` – norm bound of the initial zonotope
 
-`sup_{x∈Z} ‖x‖` is taken as any bound `s` on `Z`'s norms, the supremum being the least; the
-enclosure only grows with `s`.
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length nonnegative
+* `hμ` – input bound nonnegative
+* `hU` – input set is the ball of that radius
+* `hs` – norm bound holds on the initial zonotope
+
+## Conclusion
+* the reachable set lies in the zonotope enclosure
 
 ## References
 

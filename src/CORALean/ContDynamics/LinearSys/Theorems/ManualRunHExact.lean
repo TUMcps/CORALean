@@ -10,17 +10,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # `manualRun`'s `H` is exact, not an enclosure
 
-[1, Alg. 1] treats `H(t_k)` as an exact set throughout — Line 7's `H(t_{k+1}) ← e^{At_{k+1}}X₀ +
-P^u(t_{k+1})` names no enclosure, unlike `Ĥ(τ_k)` and `R̂(τ_k)`, which do. This is that reading,
-made outright: `manualRun`'s `H` field always denotes the image of `X₀` under `e^{A t_k}`,
-Minkowski-shifted by the exact particular solution `P^u(t_k)`. `Zonotope.mtimes_exact` and
-`Zonotope.plus_exact` carry `Zonotope.mtimes`/`Zonotope.plus` to equalities rather than
-`mtimes_outer`/`plus_outer`'s `⊆`, and `mem_ofPoint_iff` reads a point off `Zonotope.ofPoint`.
+[1, Alg. 1] treats `H(t_k)` as an exact set throughout: Line 7's
+`H(t_{k+1}) ← e^{At_{k+1}}X₀ + P^u(t_{k+1})` names no enclosure, unlike `Ĥ(τ_k)` and `R̂(τ_k)`,
+which do. This is that reading, made outright: `manualRun`'s `H` field always denotes the image of
+`X₀` under `e^{A t_k}`, Minkowski-shifted by the exact particular solution `P^u(t_k)`.
+`Zonotope.mtimes_exact` and `Zonotope.plus_exact` make the `⊆` of `mtimes_outer`/`plus_outer`
+equalities. This does *not* establish `H(t_k) ⊇ R(t_k)` against [1]'s `Def. 6`: that needs the
+particular solution due to the *uncertain* part `U₀` of the input, which `P̂^U(t_k)` answers for.
 
-What this does *not* establish is `H(t_k) ⊇ R(t_k)` against [1]'s `Def. 6`: that needs the
-particular solution due to the *uncertain* part of the input, `U₀`, which `H` never carries —
-it is `P̂^U(t_k)` (line 10) that answers for it, and no theorem here bounds `P̂^U` against a real
-trajectory either (that is [1, Prop. 2]-[1, Prop. 3], both open on the reference page).
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `Δt` – step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the state's H is exactly the propagated start set shifted by the particular solution
 
 ## References
 

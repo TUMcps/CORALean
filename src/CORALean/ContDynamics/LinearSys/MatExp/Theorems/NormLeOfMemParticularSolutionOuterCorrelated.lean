@@ -14,6 +14,19 @@ application into the same sum of images `norm₂_sum_le` bounds exactly as
 `particularSolutionOuter` does, so `norm₂_le_of_mem_particularCoeffSum_image` reuses its
 per-`i` computation directly.
 
+## Inputs
+* `A` – system matrix
+* `U0` – input set
+* `i0` – start index
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* every point is within an explicit polynomial of the origin
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

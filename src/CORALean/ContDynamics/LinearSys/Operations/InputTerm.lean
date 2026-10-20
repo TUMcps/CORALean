@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 CORA's `Aⁱr^{i+1}/(i+1)!`: the `i`-th term of the exponential integrated once
 over the step. `inputTaylorSum` sums these; `InputSolutionOuter` names the
 same order to state what each summand of the input's Taylor series encloses.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `i` – order index
+
+## Output
+* matrix the order contributes to the input solution
 -/
 
 -- Authors:       Claude Opus 5

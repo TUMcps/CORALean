@@ -17,6 +17,16 @@ public import CORALean.Global.Float.GenOpNorm
 `genOpNormUp` of the float `genMinus` at `[e^{AΔt}]`. A tuning quantity: the step is sound at
 any value this takes.
 
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float upper bound of the affine dynamics error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

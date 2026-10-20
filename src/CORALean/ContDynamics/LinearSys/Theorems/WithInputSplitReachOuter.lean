@@ -27,6 +27,17 @@ their values at `τ`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`).
 At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, and the `Ũ` part is
 in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recenter`'s.
 
+## Inputs
+* `sys` – linear system with split input
+* `params` – reach parameters
+* `options` – step options
+
+## Hypotheses
+* `hΔt` – step length positive
+
+## Conclusion
+* the exact reach lies in the window sets
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

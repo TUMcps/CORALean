@@ -15,6 +15,15 @@ initialPower)`: `eI` starts at `initialPower / initialOrder!`, the powers contin
 `initialPower` by right multiplication with `intMat`, the terms `initialOrder + 1 … maxOrder` are
 added, and the remainder closes the series. `expmMixed` calls it for the part of the series past its
 intermediate order. The time step `r` is unused in this branch, so it is not an argument.
+
+## Inputs
+* `A` – interval matrix
+* `η` – Taylor order
+* `k` – start order
+* `P` – enclosure of the start power
+
+## Output
+* interval matrix of the exponential series from the start order
 -/
 
 -- Authors:       Claude Sonnet 5.5

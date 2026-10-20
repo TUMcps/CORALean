@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearSys.Operations.GirardReach
 being the loop body and `N = ⌈T/r⌉` (at least one set, `Q₀`, even at `T ≤ 0`). What the
 theorems about `girardReach` reason about is this iterate, not the fold.
 
+## Inputs
+* `sys` – linear system
+* `I` – initial zonotope
+* `μ` – input norm bound
+* `r` – step length
+* `T` – time horizon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the list is the first enclosure iterated by the step map
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

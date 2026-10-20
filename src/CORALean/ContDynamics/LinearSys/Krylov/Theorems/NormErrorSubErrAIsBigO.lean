@@ -14,6 +14,24 @@ at most the norm of the remainder, and the leading term has norm `τ_{m+1,m}|γ_
 `|σ| = 1`, `‖v_{m+1}‖₂ = 1`, `τ_{m+1,m} ≥ 0` and `t ≥ 0`, the step sizes of [1]; so `t → 0`
 from above. No hypothesis on `A`.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – unit scaling
+* `w` – next vector
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+* `hτ` – subdiagonal entry nonnegative
+* `hσ` – scaling has modulus one
+* `hw` – next vector has unit norm
+
+## Conclusion
+* the error norm minus Err_a is of the next order in time
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

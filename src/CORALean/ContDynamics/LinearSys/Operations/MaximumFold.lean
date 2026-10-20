@@ -10,6 +10,12 @@ public import CORALean.Global.Float.FloatOps
 `maximumFold f` is the greatest of `f 0, …, f k`, by the exact `maximum`. Unlike `maximumOver`, it
 has no `zero` below the entries, so a negative maximum stays negative, which a verification
 that asks whether every distance is `≤ 0` needs.
+
+## Inputs
+* none
+
+## Output
+* greatest entry of a nonempty family
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,15 +10,36 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # The time-interval reachable set inside an exact sum, not a representation
 
-`timeIntervalReachSetExact_subset_inputSolution` encloses [1, Def. 3.2]'s
-`R̂(τ_k)` with `construct (Plus.plus (timeIntervalStep ...) (inputSolution ...))`: an
-operation whose only guarantee is `⊆`, so a bound on it cannot be assembled
-from bounds on the two operands (`exists_outer_without_supportBound`). This is
-the same content one step earlier, where `+` is the genuine Minkowski sum and
-`Set.linComb` the genuine hull — everything `LinearSys.timeIntervalBound` needs.
-
-Built the same way, off `timeIntervalStep_outer_setLinComb` in place of
+`timeIntervalReachSetExact_subset_inputSolution` encloses [1, Def. 3.2]'s `R̂(τ_k)` with
+`construct (Plus.plus (timeIntervalStep ...) (inputSolution ...))`: an operation whose only
+guarantee is `⊆`, so a bound on it cannot be assembled from bounds on the two operands
+(`exists_outer_without_supportBound`). This is the same content one step earlier, where `+` is the
+genuine Minkowski sum and `Set.linComb` the genuine hull, everything `LinearSys.timeIntervalBound`
+needs. Built the same way, off `timeIntervalStep_outer_setLinComb` in place of
 `timeIntervalStep_outer` and no further lift at the top.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `m` – Taylor order offset
+
+## Hypotheses
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin in the input set
+
+## Conclusion
+* the interval reach set lies in the exact hull of segments plus the exact sum
 
 ## References
 

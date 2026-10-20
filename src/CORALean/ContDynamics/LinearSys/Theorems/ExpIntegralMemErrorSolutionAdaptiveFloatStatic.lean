@@ -15,6 +15,24 @@ is `∫₀^Δt e^{Aσ}dσ` times `s`, and that matrix is in the exact `eAtInt`
 (`expIntegral_sub_sum_mem_adaptiveRemainder`), so in the float one
 (`adaptiveIntegral_outer_refines`). Outer only, held inputs only, by [1, Lemma 1].
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `Vdyn` – dynamic noise float zonotope
+* `Vstat` – static noise float zonotope
+* `v` – dynamic input value
+* `s` – static input value
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hv` – dynamic value lies in its zonotope
+* `hs` – static value lies in its zonotope
+
+## Conclusion
+* what the two held inputs contribute lies in the float error solution with the static input
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

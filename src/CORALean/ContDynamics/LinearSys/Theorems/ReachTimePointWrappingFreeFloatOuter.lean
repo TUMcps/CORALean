@@ -17,6 +17,17 @@ every point of `X₀` through the window's matrix directly, `k = 0` included --
 run used, certified admissible by `reachOrderFloat_spec` exactly as
 `reachWrappingFreeFloat_outer` uses it, `N` spanning `[tStart, tFinal]` as there;
 `LinParamSys.mapM_eq_some` reads one `mapM` result per `k`.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact flow from every initial point lies in the time-point sets
 -/
 
 -- Authors:       Claude Opus 5.5

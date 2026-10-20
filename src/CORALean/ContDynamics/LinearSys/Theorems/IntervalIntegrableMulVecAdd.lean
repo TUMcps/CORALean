@@ -16,6 +16,22 @@ integrable first — so it is stated once rather than rebuilt in each file.
 
 The window `[0, τ]` is any sub-window of `[0, t]`, which is what lets a flow
 equation stated for all `τ ∈ [0, t]` be manipulated at each `τ` separately.
+
+## Inputs
+* `A` – matrix
+* `f` – continuous function
+* `v` – integrable function
+* `t` – window end
+* `τ` – integration limit
+
+## Hypotheses
+* `hf` – function continuous on the window
+* `hv` – second function integrable on the window
+* `ht` – window end nonnegative
+* `hτ` – integration limit within the window
+
+## Conclusion
+* the flow integrand is interval integrable
 -/
 
 -- Authors:       Claude Opus 5

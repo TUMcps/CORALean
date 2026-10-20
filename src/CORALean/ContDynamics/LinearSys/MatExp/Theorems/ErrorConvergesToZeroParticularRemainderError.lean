@@ -11,16 +11,25 @@ public import CORALean.Global.ErrorConvergesToZero
 # `Prop. 4`: `ε_P` of eq. (22) converges to `0` with the step
 
 [1, Prop. 4]: the error `ε_P([t_i,t_{i+1}]) = err(e^{At_i} E(Δt_i,η_i) Δt_i U)` of eq. (22)
-converges to `0` for `Δt_i → 0`, and so satisfies `Assumption 1` — stated at the `i`-th step,
-`t_i` arbitrary, and at `err` itself rather than at a scalar bound of it.
+converges to `0` for `Δt_i → 0`, and so satisfies `Assumption 1`, stated at the `i`-th step with
+`t_i` arbitrary and at `err` itself rather than at a scalar bound of it. [1]'s proof: `Δt_i` is
+a multiplicative factor. Here every point of the set is within `C·n²·‖E(Δt,η)‖·|Δt|·err(U)` of
+the origin, `C` the row norms of `e^{At_i}`, so `err_le_of_forall_norm₂_le` puts `ε_P` under `√n`
+times that, which vanishes with `Δt` (`tendsto_expRemainderMat_zero`). `U` bounded is the one
+hypothesis: it makes `err(U)` the enclosing radius rather than Lean's junk value for an
+unbounded set, and [1]'s `U` is a zonotope.
 
-[1]'s proof: `Δt_i` is a multiplicative factor. Here every point of the set is within
-`C·n²·‖E(Δt,η)‖·|Δt|·err(U)` of the origin, `C` the row norms of `e^{At_i}`, so
-`err_le_of_forall_norm₂_le` puts `ε_P` under `√n` times that, which vanishes with `Δt` —
-`|Δt|` does, and so does `E(Δt,η)` by `tendsto_expRemainderMat_zero`.
+## Inputs
+* `A` – system matrix
+* `ti` – step start time
+* `U` – input set
+* `η` – Taylor order
 
-`U` bounded is the one hypothesis: it is what makes `err(U)` the input set's enclosing radius
-rather than Lean's junk value for an unbounded set, and [1]'s `U` is a zonotope.
+## Hypotheses
+* `hU` – input set bounded
+
+## Conclusion
+* the particular remainder error converges to zero with the step
 
 ## References
 

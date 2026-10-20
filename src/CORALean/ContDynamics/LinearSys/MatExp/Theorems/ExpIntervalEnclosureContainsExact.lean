@@ -10,15 +10,25 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttain
 /-!
 # The exact-second-order enclosure is inside the uniform one
 
-What [1, Thm. 3.2] buys over [1, Sec. 3.3.1] as `expIntervalEnclosure` writes
-it: the same remainder, the same orders from three on, and orders one and two
-narrower — so the sharper enclosure is contained in the cruder one and never
-the other way.
+What [1, Thm. 3.2] buys over [1, Sec. 3.3.1] as `expIntervalEnclosure` writes it: the same
+remainder, the same orders from three on, and orders one and two narrower, so the sharper
+enclosure is contained in the cruder one and never the other way. The comparison is where
+*exactness* pays off rather than soundness: each bound of `expIntervalW` is a value `W(t)` really
+takes, and `expIntervalTaylor` is sound, so that value lies in the cruder box. Soundness of
+`expIntervalW` alone would say nothing about which of the two is narrower.
 
-The comparison is where *exactness* pays off rather than soundness: each bound
-of `expIntervalW` is a value `W(t)` really takes, and `expIntervalTaylor` is
-sound, so that value lies in the cruder box. Soundness of `expIntervalW` alone
-would say nothing about which of the two is narrower.
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `κ` – Taylor order
+
+## Hypotheses
+* `ht` – time nonzero
+* `hA` – box nonempty
+* `hκ` – order at least two
+
+## Conclusion
+* the exact-second-order enclosure lies inside the uniform one
 
 ## References
 

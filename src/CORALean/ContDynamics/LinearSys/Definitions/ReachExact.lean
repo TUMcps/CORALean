@@ -13,6 +13,14 @@ of `[0, tFinal]` — [1, Def. 3.1] at `U = 0`, the case `Reach.reachExact` has
 room for. `reach_outer` and `reachWrappingFree_outer` put it inside `reach` and
 `reachWrappingFree`, one window at a time.
 
+## Inputs
+* `sys` – linear system
+* `tFinal` – final time
+* `X₀` – initial set
+
+## Output
+* images of the initial set under the matrix exponential up to the final time
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

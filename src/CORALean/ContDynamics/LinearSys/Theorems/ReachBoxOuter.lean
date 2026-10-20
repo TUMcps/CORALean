@@ -21,18 +21,34 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # [1, Alg. 2] encloses the reachable set on every time interval
 
-`reachBox`'s `R_k ⊇ R(t)` for every `t ∈ [kr, (k+1)r]` and `k ≤ N`, from a zonotope `X⁰` and
-an input zonotope `U ∋ 0`, at a Taylor order admissible for `r` and `A`: the claim of [1, Alg.
-2] that it computes `R([0, t_f])` window by window. `R(t)` is `reachSetExact` on `[0, t]`.
+`reachBox`'s `R_k ⊇ R(t)` for every `t ∈ [kr, (k+1)r]` and `k ≤ N`, from a zonotope `X⁰` and an
+input zonotope `U ∋ 0`, at a Taylor order admissible for `r` and `A`: the claim of [1, Alg. 2] that
+it computes `R([0, t_f])` window by window. `R(t)` is `reachSetExact` on `[0, t]`. Three invariants,
+by induction on `k`, at every `τ ∈ [0, r]`: `e^{A(kr+τ)}X⁰ ⊆ H^R_k`, `e^{Akr} inputReach U τ ⊆ V_k`
+and `inputReach U (kr+τ) ⊆ P^R_k`. The first holds at `k = 0` by `reachStepkWrappingFree_outer`, the
+second by [1, Thm. 3.1] (`inputReach_subset_inputSolution`) once `inputReach U τ ⊆ inputReach U r`,
+which `0 ∈ U` gives ([1, Prop. 3.3], `inputReach_mono`); the third is the superposition
+(`inputReach_separation_eq`), the first summand inside `box(V_{k+1})`.
 
-Three invariants, by induction on `k`, at every `τ ∈ [0, r]`: `e^{A(kr+τ)}X⁰ ⊆ H^R_k`,
-`e^{Akr} inputReach U τ ⊆ V_k` and `inputReach U (kr+τ) ⊆ P^R_k`. The first holds at `k = 0` by
-`reachStepkWrappingFree_outer` at its window `0`, the second by [1, Thm. 3.1]
-(`inputReach_subset_inputSolution`) once `inputReach U τ ⊆ inputReach U r`, which `0 ∈ U` gives
-([1, Prop. 3.3], `inputReach_mono`); the third is the superposition, the input over
-`[0, (k+1)r+τ]` separating into `e^{A(k+1)r}` of the input over `[0, τ]` plus the input over
-`[0, (k+1)r]` (`inputReach_separation_eq`), the first summand inside `V_{k+1}` and so inside
-`box(V_{k+1})`. Zonotopes are exactly closed under the linear maps and sums used.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `r` – step length
+* `m` – Taylor order offset
+* `N` – number of steps
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `h0` – origin lies in the input zonotope
+* `hk` – window index within the step count
+* `ht` – time within the window
+
+## Conclusion
+* the window encloses the reachable set at the time
 
 ## References
 

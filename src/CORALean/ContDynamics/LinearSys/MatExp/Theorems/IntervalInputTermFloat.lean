@@ -13,6 +13,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 `matPow_outer` puts `Mⁱ` in the power box, `taylorCoeffBounds_mem` the scalar
 in its interval, and `smul_outer` joins them: the float counterpart of the point
 term `LinearSys.inputTerm` needs nothing more.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `M` – member matrix
+* `i` – order index
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's input term lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5

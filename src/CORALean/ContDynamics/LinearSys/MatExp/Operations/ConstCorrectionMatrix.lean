@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 of `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and everything past `η` in `E(r)·r`,
 integrating the exponential's tail scaling it by at most the step.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the integrated correction
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

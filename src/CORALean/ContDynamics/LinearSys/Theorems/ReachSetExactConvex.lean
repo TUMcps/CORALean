@@ -13,6 +13,21 @@ set plus a convex one. [1, Sec. 4.2] uses it to read an inner approximation off
 the convex hull of reachable support vectors, and [1]'s Sec. 5.2 to run GJK
 against the reachable set.
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hR₀` – initial set convex
+* `hUconv` – input set convex
+* `hU` – input set bounded
+
+## Conclusion
+* the reach set at the time is convex
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

@@ -10,6 +10,18 @@ public import CORALean.ContDynamics.LinearSys.Operations.ManualRun
 `manualReach`: `R̂([0,t_end])`, the union of the first `K` steps' time-interval sets, `K`
 standing for `t_end/Δt`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `Δt` – step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `K` – number of steps
+
+## Output
+* union of the time-interval sets of the steps
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

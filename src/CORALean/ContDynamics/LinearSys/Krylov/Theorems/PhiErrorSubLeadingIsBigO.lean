@@ -15,6 +15,22 @@ v_{m+1} + O(t^{m+1})` as `t → 0`, for any `A`, under (2.2), upper Hessenberg `
 integral, and its remainder is bounded by `C|θt|^{m+1} ≤ C|t|^{m+1}` near `0`. [1] expands the
 series (4.1a) instead. `τ_{m+1,m}` is any complex number here.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – scaling
+* `w` – next vector
+* `p` – φ-function index
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+
+## Conclusion
+* the φ-function error minus its leading term is of the next order in time
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

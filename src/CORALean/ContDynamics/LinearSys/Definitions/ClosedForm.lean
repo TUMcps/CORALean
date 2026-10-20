@@ -15,6 +15,15 @@ public import Mathlib.Analysis.Matrix.Normed
 equation `IsTrajectory.flow` asks for, for *any* measurable bounded `u`. Named
 apart from either use: `Theorems/ClosedFormFlow.lean` and the `⊇` half of
 `reachSetExact_eq` both build on it, at a point rather than a run.
+
+## Inputs
+* `sys` – linear system
+* `x0` – initial state
+* `u` – input signal
+* `t` – time
+
+## Output
+* state at the time by the variation-of-constants formula
 -/
 
 -- Authors:       Claude Sonnet 5

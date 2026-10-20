@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
 `expMatZonoTerm`: order `i` of [1, Sec. 3.3.2]'s series as a matrix zonotope: the zonotope's
 `i`-th power scaled by `1/i!`.
 
+## Inputs
+* `M` – matrix zonotope
+* `i` – order
+
+## Output
+* matrix zonotope of the order's Taylor term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

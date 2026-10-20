@@ -13,6 +13,18 @@ Induction on the fuel: the search returns either the candidate it just tested, w
 returns. Both satisfy `StepAdmissible`, [1]'s step predicate, at `toReal ε`. Maximality of the
 step is not claimed.
 
+## Inputs
+* `A` – system matrix
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `η` – Taylor order
+
+## Hypotheses
+* `hA` – matrix norm under the float bound
+
+## Conclusion
+* every step the search returns is admissible
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

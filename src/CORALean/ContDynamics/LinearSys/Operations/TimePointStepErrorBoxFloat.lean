@@ -12,6 +12,15 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 per coordinate, `ε` the upward-rounded radius `timePointStepErrorFloat`. Centered at the origin
 with a zero error box, so its denotation is exactly that box: the error is paid once, in `ε`,
 rounded up, which is the direction an inner approximation needs of the set it takes off.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – input float zonotope
+
+## Output
+* float box zonotope of the step's error radius
 -/
 
 -- Authors:       Claude Sonnet 5.5

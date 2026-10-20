@@ -15,6 +15,20 @@ first is in the float `particularCoeffSum` (`particularCoeffSum_mem`), the secon
 `intervalInputRemainder` (`adaptiveRemainder_subset_intervalInputRemainder`), and `matPlus`
 holds their sum.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the exact integrated exponential lies in the float one
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

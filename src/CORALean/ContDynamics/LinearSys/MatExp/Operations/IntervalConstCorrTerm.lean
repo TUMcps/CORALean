@@ -12,6 +12,14 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 `intervalConstCorrTerm`: what order `i` contributes to [1]'s constant correction over a whole
 box: `constCorrTerm`'s scalar factor against the box the `(i+1)`-th power lies in.
 
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `i` – order index
+
+## Output
+* interval matrix of the order's integrated correction term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

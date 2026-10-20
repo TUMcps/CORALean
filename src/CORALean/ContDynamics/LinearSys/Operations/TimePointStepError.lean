@@ -9,17 +9,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 /-!
 # How far `timePointStep` reaches past the states the step actually ends at
 
-The counterpart of `LinearSysDT.reachError`, as a radius rather than a set: at
-`Zonotope` the excess of a continuous step is not a box but a ball, so what is
-named here is how large that ball has to be.
+The counterpart of `LinearSysDT.reachError`, as a radius rather than a set: at `Zonotope` the
+excess of a continuous step is not a box but a ball, so what is named here is how large that ball
+has to be. Both radii scale with `∑ⱼ absBound j`, the operand's `ℓ¹` reach, which bounds a point of
+it. `timePointStepError` has two parts, and the second is the one [1] tunes: `e^{r‖A‖} - 1` is what
+a Minkowski sum over the orders costs, each order free to pick its own input where a trajectory
+holds one (second order in the step and untouched by the truncation order), and
+`expRemainderBound` is the series remainder, which the order does reduce.
 
-Both radii scale with `∑ⱼ absBound j`, the operand's `ℓ¹` reach, which bounds a
-point of it and is what the boxed generators of an interval-matrix product are
-summed over. `timePointStepError` has two parts, and the second is the one
-[1] tunes: `e^{r‖A‖} - 1` is what a Minkowski sum over the orders costs, each
-order free to pick its own input where a trajectory holds one — second order
-in the step and untouched by the truncation order — and `expRemainderBound`
-is the series remainder, which the order does reduce.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `U` – input zonotope
+
+## Output
+* radius by which the time-point step reaches past the states it ends at
 
 ## References
 

@@ -14,6 +14,15 @@ while `e^{Ar} - I` is first order. In `ℝ¹` with `A = 1`, `r = 1/10` and `x(0)
 `e^{Ar} - I + F` is positive, so `Δx(0) = 0` is not in `(e^{Ar} - I + F) x(0)`; the
 interpolation weight `t/r` on `e^{Ar} - I` cannot be dropped.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed unscaled matrices miss the zero variation of a point
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

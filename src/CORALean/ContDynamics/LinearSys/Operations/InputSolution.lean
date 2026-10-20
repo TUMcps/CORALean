@@ -16,6 +16,15 @@ rather than a second argument about convergence.
 `Mtimes ℐ S` is what the remainder needs: it is an interval matrix, so the
 representation must multiply by one of those and not only by a plain matrix.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `U` – input set
+
+## Output
+* set of everything the input contributes over one step
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

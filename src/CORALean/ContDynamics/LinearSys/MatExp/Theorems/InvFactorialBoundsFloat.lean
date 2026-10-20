@@ -12,6 +12,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialUpFloat
 The low bound divides `one` by an upper bound of `k!` and compares reciprocals
 (`one_div_le_one_div_of_le`); the high bound is exactly `one_div_le_divUp` at
 `factorialDown`'s two facts.
+
+## Inputs
+* `k` – factorial argument
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float interval encloses the inverse factorial
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -7,16 +7,24 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
 /-!
 # `|Aⁱ_{jk}| ≤ (|A|ⁱ)_{jk}`, entrywise
 
-By induction on `i`: the base case is the identity matrix, entry for entry equal
-on both sides; the step expands `Aⁱ⁺¹ = Aⁱ·A` via `Matrix.mul_apply`, bounds the
-sum of products by the triangle inequality, and bounds each product's first
-factor by the inductive hypothesis against `A`'s own entrywise absolute value —
-the second factor, `|A l k|`, already equals `(MatExp.absMat A) l k` by
-definition, so no bound is needed there.
+By induction on `i`: the base case is the identity matrix, equal on both sides; the step expands
+`Aⁱ⁺¹ = Aⁱ·A` via `Matrix.mul_apply`, bounds the sum of products by the triangle inequality, and
+bounds each product's first factor by the inductive hypothesis against `A`'s entrywise absolute
+value; the second factor, `|A l k|`, already equals `(MatExp.absMat A) l k`. [1]'s `E(Δt,η)` is
+built from `MatExp.absMat A`, and its entrywise domination of the particular solution's own tail
+needs this to compare `Aⁱ`'s contribution against it order by order.
 
-[1]'s `E(Δt,η)` is built from `MatExp.absMat A`, and its entrywise domination
-of the particular solution's own tail needs this to compare `Aⁱ`'s contribution
-against it order by order.
+## Inputs
+* `A` – matrix
+* `i` – power
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the power's entry is at most the absolute-value power's entry
 
 ## References
 

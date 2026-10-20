@@ -37,6 +37,21 @@ of `0`. So `Δt` is missed for every `krylovError = ε ∈ [0, Δt/2)` (CORA che
 CORALean's `LinearSys` the input `B u + c = 1` is the input set `{1}`. The Arnoldi pass on
 `[0 0; 0 0]` from `e₂` is exact, and breaks down, so the multiprecision branch is never run.
 
+## Inputs
+* `Δt` – step length
+* `ε` – Krylov error bound
+* `eps` – tolerance
+* `o` – Krylov order
+
+## Hypotheses
+* `hε0` – error bound nonnegative
+* `hε` – twice the error bound below the step
+* `heps` – tolerance nonnegative
+* `ho` – order at least two
+
+## Conclusion
+* CORA's set misses the run's state at the end of the step
+
 ## References
 
 * [1] `contDynamics/@linearSys/private/priv_reach_krylov.m`

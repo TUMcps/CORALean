@@ -13,6 +13,45 @@ iteration. Whatever `maxBackReachTimeInterval_inner` says of the exact run's set
 float's, which are inside them. This is the `R` of `maxBackReachRunFloat_encloses`.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `sys` – linear system
+* `Bx` – conversion box
+* `P₁` – first eroded float polytope
+* `P₂` – second eroded float polytope
+* `U` – input float zonotope
+* `W₀` – initial disturbance float zonotope
+* `Zw` – center trajectory contribution over a bracket
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `P₁r` – first exact polytope
+* `P₂r` – second exact polytope
+* `Ur` – exact input zonotope
+* `W₀r` – exact initial disturbance zonotope
+* `Zwr` – exact center trajectory contribution
+* `k` – iteration count
+
+## Hypotheses
+* `ρ` – support oracle for exact polytopes
+* `ht₀` – start time nonnegative
+* `hΔt` – step length positive
+* `hU0` – input error box contains zero
+* `hU` – exact input zonotope inside the float one
+* `hWE` – disturbance error box is zero
+* `hW₀r` – exact disturbance zonotope inside the float one
+* `hZw` – float center contribution holds the exact one
+* `hP₁` – first float polytope inside the exact one
+* `hP₂` – second float polytope inside the exact one
+* `hP₁0` – first polytope error box contains zero
+* `hP₂0` – second polytope error box contains zero
+* `hker₁` – first float polytope has no equality rows
+* `hker₂` – second float polytope has no equality rows
+* `hkerr₁` – first exact polytope has no equality rows
+* `hkerr₂` – second exact polytope has no equality rows
+
+## Conclusion
+* the float run's sets lie inside the exact run's
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

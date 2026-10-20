@@ -13,6 +13,14 @@ public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
 `IsTrajectory` on it, from a bare initial set and under inputs in `sys.U`, is at,
 at some time of it. The split of `U` and the windows are how `reach` encloses
 this set, not part of it.
+
+## Inputs
+* `sys` – linear system with split input
+* `tFinal` – final time
+* `X` – initial set
+
+## Output
+* states a run is in at some time up to the final time
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,21 @@ leading `(m-1) × (m-1)` block `T'` of `T_m` satisfies a Krylov identity (2.2) o
 `|(T_m)_{m,m-1}|∫₀ˢ|δ'(r)|dr`, and induction on `m` gives the bound. In the nonexpansive case
 `W(σT_m) ⊆ W(σA) ⊆ ℂ⁻` (3.4), so this is the form [1, Thm. 1] uses.
 
+## Inputs
+* `m` – Krylov order
+* `T` – Hessenberg matrix
+* `σ` – unit scaling
+* `s` – time
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hT` – scaled matrix has field of values in the left half-plane
+* `hσ` – scaling has modulus one
+* `hs` – time nonnegative
+
+## Conclusion
+* the last entry of the first column is bounded by the subdiagonal product term
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

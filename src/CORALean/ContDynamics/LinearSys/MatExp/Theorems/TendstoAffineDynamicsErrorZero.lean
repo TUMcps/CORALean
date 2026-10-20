@@ -15,6 +15,18 @@ bound `exists_affineDynamicsError_le_const_mul` gives eventually, which itself t
 The printed proof splits the two summands and reads each at `Δt = 0`; this one keeps them
 together, the single bound covering both, since `Δt` divides out of neither.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine dynamics error tends to zero as the step shrinks
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

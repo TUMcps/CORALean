@@ -17,6 +17,15 @@ the exact `Tᵢ = Aⁱ r^{i+1}/(i+1)!`. This box bounds it from above against `T
 applied to `U`'s *nominal* zonotope: `mtimesIntervalMatBox` pays `[Tᵢ] U`'s
 excess over `Tᵢ U`, and `[Tᵢ]` applied to `U`'s error box pays what the nominal
 zonotope leaves out. A summand of `inputTaylorSumBoxFloat`.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `U` – float input zonotope
+* `i` – order index
+
+## Output
+* float zonotope of how far one order's float product reaches beyond the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

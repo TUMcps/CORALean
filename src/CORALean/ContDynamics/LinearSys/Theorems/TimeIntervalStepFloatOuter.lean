@@ -16,6 +16,24 @@ The first term is on the segment `linComb` covers, once `e^{AΔt}` is in
 `expIntervalFloat`; the second is in `[F] R` by
 `MatExp.expDiff_mem_intervalCorrectionMatrix`, whose norm bound is the one
 `OrderAdmissibleFloat` asks of `[Δt, Δt] · A`.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `R` – float state zonotope
+* `x` – state point
+* `s` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `hx` – point lies in the zonotope
+* `hs0` – time nonnegative
+* `hs` – time within the step
+
+## Conclusion
+* the exponential image of the point lies in the float step set
 -/
 
 -- Authors:       Claude Opus 5.5

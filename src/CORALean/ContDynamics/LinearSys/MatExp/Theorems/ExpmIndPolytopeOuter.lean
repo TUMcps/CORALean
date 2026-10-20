@@ -20,6 +20,17 @@ and with the identity make `expTaylor M η`. The rest of the series is in the re
 interval matrix (`exponentialRemainder_outer`, the box containing the polytope), and the box is its
 own vertex polytope (`matPolytope_exact`): a nonempty box, as it contains that very remainder. Holds
 for every `η`.
+
+## Inputs
+* `P` – matrix polytope
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the polytope
+
+## Conclusion
+* the exponential of the member lies in the polytope enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,13 @@ The scalar every order of a step scales a matrix power by: the input term's
 power and a reciprocal factorial rounded the same way; the reciprocal's lower
 end is clamped at `zero`, which `1/k! > 0` makes free and which lets the lower
 product be compared without a sign case.
+
+## Inputs
+* `r` – float step length
+* `k` – order index
+
+## Output
+* float interval enclosing the Taylor coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

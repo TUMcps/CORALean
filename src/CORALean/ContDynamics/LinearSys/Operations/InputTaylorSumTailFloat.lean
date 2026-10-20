@@ -14,6 +14,14 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 float box `intervalInputTerm` times `U`, summed by `⊞` in the same recursion; below order `1`
 the point `0` matrix, as the exact one has the zero matrix.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `U` – float input zonotope
+
+## Output
+* float sum of the input orders from one up to the given index
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

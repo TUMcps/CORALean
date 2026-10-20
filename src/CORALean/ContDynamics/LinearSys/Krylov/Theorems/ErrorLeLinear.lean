@@ -16,6 +16,26 @@ any `ω` above the maximum (35) and `ϕ` as in (34). (32) is the hypothesis — 
 for `ν > 0` the slope of `exp` from `0` grows with `t` (convexity), for `ν ≤ 0` it is at
 most `1` (`x + 1 ≤ eˣ`). [1]'s series argument for the sign of `ϕ̇` holds only for `ν > 0`.
 
+## Inputs
+* `err` – error function
+* `M` – defect bound function
+* `a` – scale constant
+* `ω` – uniform bound on the defect bound
+* `ν` – decay rate
+* `tf` – final time
+* `t` – time
+
+## Hypotheses
+* `htf` – final time positive
+* `ha` – scale constant nonnegative
+* `hM0` – defect bound nonnegative on the horizon
+* `hMω` – defect bound at most the uniform bound
+* `h32` – error obeys the integral-type bound
+* `ht` – time within the horizon
+
+## Conclusion
+* the error is at most a linear function of the time
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

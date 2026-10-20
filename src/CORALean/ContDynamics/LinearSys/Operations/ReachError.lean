@@ -9,16 +9,27 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
 /-!
 # What a sampled run owes, as a zonotope
 
-The continuous-time run here is `LinearSysDT.reach` of the sampled system
-`sys.discretize Δt`, with `inputSolution Δt η U` as every step's input set. It
-loses ground in two places, and each has its own accumulated zonotope:
+The continuous-time run here is `LinearSysDT.reach` of the sampled system `sys.discretize Δt`,
+with `inputSolution Δt η U` as every step's input set. It loses ground in two places, each with
+its own accumulated zonotope: the reductions, which `LinearSysDT.reachError` already accumulates,
+and the input enclosures, each wider than what one held input contributes, which
+`reachInputError` accumulates the same way. `reachError` is their sum. Both summands are
+zonotopes, so this is one too, and `minkDiffRep` can take it off the run (`reachInnerRep`).
 
-* the reductions, which `LinearSysDT.reachError` already accumulates;
-* the input enclosures, each wider than what one held input contributes, which
-  `reachInputError` accumulates the same way.
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – number of steps
 
-`reachError` is their sum. Both summands are zonotopes, so this is one too, and
-`minkDiffRep` can take it off the run (`reachInnerRep`).
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* accumulated reduction and input enclosure errors of the sampled run
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -10,6 +10,16 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 `t + c t² = t² (c - (-1/t))`, so it takes the sign of `c` measured against the vertex `-1/t` of
 [1, Prop. 4]'s `γ` — and vanishes at `t = 0`, where `-1/t` reads as `0`.
 
+## Inputs
+* `t` – time
+* `c` – coefficient
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum factors through the parabola's vertex
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

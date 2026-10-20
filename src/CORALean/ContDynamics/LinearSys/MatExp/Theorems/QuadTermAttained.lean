@@ -18,6 +18,18 @@ box, so no smaller interval encloses `γ` there.
 `-1/2` only where `-1/t` is a real point. At `t = 0` the enclosure is still
 sound — see `quadTerm_between` — but the vertex branch's `-1/2` is then a gap.
 
+## Inputs
+* `t` – time
+* `a` – box lower end
+* `b` – box upper end
+
+## Hypotheses
+* `hab` – box nonempty
+* `ht` – time nonzero
+
+## Conclusion
+* both bounds of the parabola are attained inside the box
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

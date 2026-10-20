@@ -9,19 +9,25 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 /-!
 # [1, Alg. 1 (lower bounds)]'s lower bounds on the support function of the reachable set
 
-Lines 1-4, 6-10 and 14-16 of `[1, Alg. 1 (lower bounds)]`, the half that computes the lower
-bounds `ρ(Ř(t_k), ℓ)` and `ρ(Ř(τ_k), ℓ)`, for one direction `ℓ` and a step `Δt`.
-The system is `ẋ = Ax + u`, `u ∈ U`, so `[1]`'s `B` is the identity and `p` is
-zero: `ũ` is a point `c` of `U` (line 2's `center(U)`) and `U₀ = U - ũ`.
+Lines 1-4, 6-10 and 14-16 of `[1, Alg. 1 (lower bounds)]`, the half that computes the lower bounds
+`ρ(Ř(t_k), ℓ)` and `ρ(Ř(τ_k), ℓ)`, for one direction `ℓ` and a step `Δt`. The system is
+`ẋ = Ax + u`, `u ∈ U`, so `[1]`'s `B` is the identity and `p` is zero: `ũ` is a point `c` of `U`
+(line 2's `center(U)`) and `U₀ = U - ũ`. Every set enters through a support vector: `ν₀ d` is
+`ν(X₀, d)` and `νU d` is `ν(U, d)`, so `ρ(X₀, d) = d (ν₀ d)` and `ρ(U₀, d) = d (νU d) - d ũ`.
+Nothing here asks that they be maximizers. `T` is `MatExp.expIntegral`, [1]'s Eq. (13) without its
+`A⁻¹`. The loop of line 6 is the recursion on `k`; the state after `k` steps carries `d_k`,
+`P_u(t_k)`, `ρ(H(t_k), ℓ)`, `ρ(P̌_U(t_k), ℓ)` and the two outputs.
 
-Every set enters through a support vector, which is what [1, Def. 1] pairs each
-support function with and what the counterexample of [1, Sec. 4.2] is built from:
-`ν₀ d` is `ν(X₀, d)` and `νU d` is `ν(U, d)`, so `ρ(X₀, d) = d (ν₀ d)` and
-`ρ(U₀, d) = d (νU d) - d ũ`. Nothing here asks that they be maximizers; the
-theorems that need it say so. `T` is `MatExp.expIntegral`, [1]'s Eq. (13) without
-its `A⁻¹`. The loop of line 6 is the recursion on `k`; the state after `k` steps
-carries `d_k`, `P_u(t_k)`, `ρ(H(t_k), ℓ)`, `ρ(P̌_U(t_k), ℓ)` and the two outputs,
-`ρ(Ř(t_k), ℓ)` and `ρ(Ř(τ_{k-1}), ℓ)`.
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `c` – point of the input set
+* `ℓ` – direction
+
+## Output
+* state after a given number of steps
 
 ## References
 

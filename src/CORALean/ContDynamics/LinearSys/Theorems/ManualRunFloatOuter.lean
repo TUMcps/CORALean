@@ -12,6 +12,21 @@ Induction on the iterations of [1, Alg. 1], each one `manualStepFloat_outer`: fr
 holding the invariant at `t_k`, the `j`-th window returned holds every run over
 `[t_k + jΔt, t_k + (j+1)Δt]`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `Δt` – float step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+
+## Conclusion
+* the windows each hold every run over their step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

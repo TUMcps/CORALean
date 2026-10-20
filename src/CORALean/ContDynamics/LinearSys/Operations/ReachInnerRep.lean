@@ -14,6 +14,22 @@ matrix; its box, `timePointStepErrorBox`, stays a zonotope. That is what
 gives `reachInnerRep`: `minkDiffRep` of the run by its error, at a generator
 representation `M` the caller offers and the operation checks. A wrong `M`
 gives `none`, costing precision and never soundness.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – number of steps
+* `M` – generator representation
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* sampled run minus its budget, if the representation checks out
 -/
 
 -- Authors:       Claude Sonnet 5

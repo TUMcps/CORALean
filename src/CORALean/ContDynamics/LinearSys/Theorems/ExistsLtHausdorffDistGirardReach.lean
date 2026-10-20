@@ -17,6 +17,15 @@ the two bounds agree; so `girardExample_spec`, which breaks [1, Lemma 2], breaks
 
 `hausdorffDist_girardReach_le` is the corrected bound, with `(1/2 + r‖A‖)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed convergence bound is exceeded by an example meeting every hypothesis
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

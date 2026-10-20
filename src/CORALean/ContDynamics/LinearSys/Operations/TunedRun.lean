@@ -16,6 +16,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 t < t_f` is no Lean recursion, so the caller supplies the iteration count and a run that has
 reached `t_f` stands still.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εSmax` – maximal reduction error
+* `tf` – final time
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Output
+* loop state after a given number of iterations, if the tuning holds out
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

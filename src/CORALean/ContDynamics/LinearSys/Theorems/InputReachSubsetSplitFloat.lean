@@ -16,6 +16,19 @@ first and line 17 boxes the second. Everything an input in `V` contributes over 
 length `Δt` is in the sum of the two float sets, in that split: the exact orders are
 `inputTaylorSum`, whose order `0` comes off at the front and whose rest is `inputTaylorSumTail`.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `V` – input float zonotope
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+
+## Conclusion
+* the input reach lies in the first-order term plus the Taylor tail and remainder in floats
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

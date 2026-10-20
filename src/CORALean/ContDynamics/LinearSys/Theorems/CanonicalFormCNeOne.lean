@@ -13,6 +13,19 @@ form is `y = Cx + v` and `canonicalForm` returns the original `C`. With a `1 × 
 matrix `C = 2` the system `canonicalForm` returns has `C ≠ I`, though it is in canonical
 form for every other entry.
 
+## Inputs
+* `U` – input set
+* `uVec` – input offset
+* `W` – disturbance set
+* `V` – noise set
+* `vVec` – noise offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* canonical form keeps an output matrix that is not the identity
+
 ## References
 
 * [1] `contDynamics/@linearSys/isCanonicalForm.m`

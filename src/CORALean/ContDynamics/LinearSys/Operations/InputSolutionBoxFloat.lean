@@ -17,6 +17,15 @@ which is what an inner approximation pays for running the input solution in
 floats. The Taylor sum pays `inputTaylorSumBoxFloat`; the remainder term
 `[E(r)·r] U` is bounded through the zero matrix, a member of its interval, so it
 pays its whole `mtimesIntervalMatBox`, and the exact remainder term holds `0`.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `U` – float input zonotope
+
+## Output
+* float zonotope of how far the float input solution reaches beyond the exact one
 -/
 
 -- Authors:       Claude Opus 5.5

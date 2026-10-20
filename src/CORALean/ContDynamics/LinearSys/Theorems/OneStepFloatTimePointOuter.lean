@@ -17,11 +17,30 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 is the constant `u` plus a signal in `U` is `e^{AΔt} x₀ + Γ(Δt) u + p` with `p` one `U`-input's
 contribution (`sub_mem_inputReach_shift`). `e^{AΔt}` is in `expIntervalFloat`
 (`exp_mem_expIntervalFloat`), `Γ(Δt) u` is the constant input's contribution, which `Pu` holds, and
-`p` is in `PU`, both by `inputReach_subset_inputSolutionFloat`.
+`p` is in `PU`, both by `inputReach_subset_inputSolutionFloat`. The real theorem's convexity,
+closedness and boundedness hypotheses on `U`, `{u}` and their remainder images are gone: float
+zonotopes have all three, and the float input solution's soundness asks only an admissible order.
 
-The real theorem's convexity, closedness and boundedness hypotheses on `U`, `{u}` and their
-remainder images are gone: float zonotopes have all three, and the float input solution's
-soundness asks only an admissible order. Outer only.
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `X` – float start zonotope
+* `U` – input float zonotope
+* `W` – set of trajectory inputs
+* `x` – state trajectory
+* `w` – input signal
+* `u` – float constant input
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `traj` – signal is a canonical trajectory
+* `hWU` – shifted inputs lie in the input zonotope
+* `hW` – set of trajectory inputs bounded
+
+## Conclusion
+* the state at the end of the step lies in the float time-point set
 
 ## References
 

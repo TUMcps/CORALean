@@ -14,16 +14,31 @@ public import CORALean.Global.Float.ToRat
 /-!
 # `Alg. 2` in floats: the step size and the truncation order for one step
 
-`adaptTimeStep` computed in `𝕋`: enlarge the previous step by `1/μ`, clip it
-to what is left of the horizon, then run `aux_adaptTimeStepSearchFloat` and
-accumulate `ε_P`, eq. (9). The clip is CORA's `maxTimeStep`, not [1]'s, whose
-`Alg. 1` can step past `t_f`: `t_f - t_i` is exact in ℚ, and `ratUp` turns
-it into a candidate. Nothing rests on the candidate being exact: the run reads
-the step it took back through `ToRat`, and clips the window it reports.
+`adaptTimeStep` computed in `𝕋`: enlarge the previous step by `1/μ`, clip it to what is left of
+the horizon, then run `aux_adaptTimeStepSearchFloat` and accumulate `ε_P`, eq. (9). The clip is
+CORA's `maxTimeStep`, not [1]'s, whose `Alg. 1` can step past `t_f`: `t_f - t_i` is exact in ℚ,
+and `ratUp` turns it into a candidate. Nothing rests on the candidate being exact: the run reads
+the step it took back through `ToRat`. Tuning only: `adaptiveStepFloat` re-checks the step and
+order it is given, and `adaptiveStepFloat_outer` holds for any. A NaN read through `ToRat` is
+`1.5 · 2 ^ 1024`; the clip replaces a NaN `Δt` by the horizon.
 
-Tuning only: `adaptiveStepFloat` re-checks the step and order it is given, and
-`adaptiveStepFloat_outer` holds for any. A NaN read through `ToRat` is `1.5 · 2 ^ 1024`. The clip
-replaces a NaN `Δt` by the horizon.
+## Inputs
+* `sys` – linear system
+* `eAt` – float exponential enclosure
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εPacc` – accumulated particular error
+* `tf` – final time
+* `ti` – step start time
+* `Δtprev` – previous step length
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Output
+* step size, order and both errors, if one is found
 
 ## References
 

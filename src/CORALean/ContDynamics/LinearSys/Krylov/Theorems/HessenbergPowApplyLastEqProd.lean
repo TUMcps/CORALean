@@ -14,6 +14,15 @@ only `l = k` survives, `T_{k+1,l}` vanishing for `l < k` and `(T^k)_{l,1}` for `
 (`hessenberg_pow_apply_eq_zero`). Over any commutative semiring, so for the complex `T_m`
 of [1]. `γ_m` is the factor of the bound Err_a in [1, Thm. 1].
 
+## Inputs
+* `T` – Hessenberg matrix
+
+## Hypotheses
+* `hT` – matrix is upper Hessenberg
+
+## Conclusion
+* the last-row first-column entry is the product of subdiagonal entries
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

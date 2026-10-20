@@ -18,6 +18,26 @@ two boxes, of radii `ε̃(δ - t₀)` and `ε̃(δ - tₑ)`, and their differenc
 `[0, δ]`, the hypothesis of `Lemma IV.1`. The proof of [1, Thm. IV.2] (Appendix A) sums the
 printed statement over `l` sub-intervals of `[0, δ]`; with these radii the sum grows with `l`.
 
+## Inputs
+* `A` – system matrix
+* `u` – constant input
+* `V` – Krylov basis
+* `H` – Hessenberg matrix
+* `e₁` – first unit vector
+* `ε` – error rate
+* `δ` – step length
+* `t₀` – part start
+* `tₑ` – part end
+
+## Hypotheses
+* `ht₀` – part start nonnegative
+* `htₑ` – part start at most the part end
+* `hδ` – part end within the step
+* `h3` – Krylov error bound on the step
+
+## Conclusion
+* the partial input solution lies in the Krylov approximation plus an error box
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

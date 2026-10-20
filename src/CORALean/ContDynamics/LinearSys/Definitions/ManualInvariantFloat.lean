@@ -16,6 +16,15 @@ With the input set `V` split `ũ ⊕ Ũ` at its stored center, as [1, Alg. 1] li
 constant's share `P^u(t_k)` from every initial state, `Pu` holds `P^u(t_k)`, and `PU` holds
 anything an admissible `Ũ`-input contributes by `t_k`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `s` – run state
+
+## Output
+* proposition that the state holds what it owes at the current step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

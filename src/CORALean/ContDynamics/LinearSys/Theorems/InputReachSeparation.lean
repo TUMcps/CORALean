@@ -10,19 +10,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # The input reach set splits at any intermediate time
 
-[1, Prop. 3.2], in the direction the enclosures need: concatenating an input over
-`[0,a]` with one over `[0,b]` gives an input over `[0,a+b]`, and what it
-contributes is `e^{Ab}` applied to the first contribution plus the second.
+[1, Prop. 3.2], in the direction the enclosures need: concatenating an input over `[0,a]` with one
+over `[0,b]` gives an input over `[0,a+b]`, and what it contributes is `e^{Ab}` applied to the first
+contribution plus the second. This direction has to build an input rather than take one apart
+(`InputReachSeparationSubset` takes one apart, `InputReachSeparationEq` puts the two together).
+Taking `a = Δt` and `b = r` is [1, Cor. 3.1]. The concatenation is measured by splitting the window
+and rebuilding it: `intervalIntegrable_expSub_mulVec` gives integrability on each half, and
+`aux_aestronglyMeasurable_comp_sub_right` moves the second half back to zero.
 
-This is the direction that has to build an input rather than take one apart;
-`InputReachSeparationSubset` takes one apart, and `InputReachSeparationEq` puts
-the two together into the equality [1] prints. Taking `a = Δt` and `b = r` is
-[1, Cor. 3.1], which the two-argument form already covers.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `a` – first window length
+* `b` – second window length
 
-The concatenation is measured by splitting the window and rebuilding it:
-`intervalIntegrable_expSub_mulVec` gives integrability on each half, and
-`aux_aestronglyMeasurable_comp_sub_right` moves the second half's measurability
-back to a window starting at zero.
+## Hypotheses
+* `ha` – first length nonnegative
+* `hb` – second length nonnegative
+* `hbdd` – input set bounded
+
+## Conclusion
+* the propagated first contribution plus the second lies in the contribution of the joined window
 
 ## References
 

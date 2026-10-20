@@ -8,18 +8,29 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
 /-!
 # What a float sampled run owes, as a float zonotope
 
-The float counterpart of `reachError`. The run is `discretizeEnclosureFloat`'s
-`reach` with `inputSolutionFloat Δt η U` as its input set, the float counterpart
-of the sampled run `reachError` is measured on, and what it owes is measured
-against the exact held-input sampled set: `discretize Δt` from `R₀`'s nominal
-zonotope under `(∫₀^Δt e^{As} ds) U` at `U`'s. Two summands, as `reachError`
-has: the run's own excess `reachExcessFloat`, and the input enclosures' error
-boxes `reachInputErrorFloat`.
+The float counterpart of `reachError`. The run is `discretizeEnclosureFloat`'s `reach` with
+`inputSolutionFloat Δt η U` as its input set, and what it owes is measured against the exact
+held-input sampled set: `discretize Δt` from `R₀`'s nominal zonotope under `(∫₀^Δt e^{As} ds) U`
+at `U`'s. Two summands, as `reachError` has: the run's own excess `reachExcessFloat`, and the
+input enclosures' error boxes `reachInputErrorFloat`. A different quantity from `reachError`: it
+also pays every rounding of the float run and the width of `[e^{AΔt}]`, because the inner
+approximation it serves takes it off the float run. Each part is an outer enclosure computed in
+`𝕋`, so it only errs large; `discretizeEnclosureFloat_reach_subset_add_errorFloat` is the guarantee.
 
-A different quantity from `reachError`: it also pays every rounding of the float
-run and the width of `[e^{AΔt}]`, because the inner approximation it serves takes
-it off the float run. Each part is an outer enclosure computed in `𝕋`, so it only
-errs large; `discretizeEnclosureFloat_reach_subset_add_errorFloat` is the guarantee.
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – number of steps
+
+## Hypotheses
+* `ho` – zonotope order positive
+
+## Output
+* float zonotope of the run's excess and the input enclosures' error boxes
 -/
 
 -- Authors:       Claude Opus 5.5

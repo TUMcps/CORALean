@@ -9,6 +9,12 @@ public import CORALean.Global.Float.FloatOps
 
 `minimumFold f` is the least of `f 0, …, f k`, by the exact `minimum`, with no `zero` above the
 entries (see `maximumFold`).
+
+## Inputs
+* none
+
+## Output
+* least entry of a nonempty family
 -/
 
 -- Authors:       Claude Opus 5.5

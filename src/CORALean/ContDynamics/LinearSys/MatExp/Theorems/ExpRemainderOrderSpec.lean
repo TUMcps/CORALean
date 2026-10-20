@@ -17,6 +17,16 @@ bound and the side condition without naming an order at all.
 `2 ≤ η` costs nothing to reach: the auxiliary lemma raises an admissible order
 by one, so the witness the existence theorem hands over is raised twice and is
 then at least `2` outright.
+
+## Inputs
+* `x` – matrix
+* `ε` – admissible error
+
+## Hypotheses
+* `hε` – error positive
+
+## Conclusion
+* the chosen order is admissible for the error
 -/
 
 -- Authors:       Claude Opus 5

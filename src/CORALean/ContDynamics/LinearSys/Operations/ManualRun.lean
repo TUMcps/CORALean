@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.ManualStep
 `manualRun`: [1, Alg. 1] lines 4-11, iterate `manualStep` `k` times, reaching the state at
 `t_k`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `Δt` – step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+
+## Output
+* loop state after a given number of iterations
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

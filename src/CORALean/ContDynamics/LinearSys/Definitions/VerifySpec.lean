@@ -12,6 +12,14 @@ public import CORALean.Specification.Specification
 The specification [1, Alg. 3] verifies on a set `X` of states: `X` inside every safe set
 `G j` and disjoint from every unsafe set `F j`.
 
+## Inputs
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `X` – set to check
+
+## Output
+* proposition that the set satisfies every safe and unsafe set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

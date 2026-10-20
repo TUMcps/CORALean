@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 same remainder that bounds the exponential, and indexed from `2`, the constant and linear
 terms of the interpolation error cancelling.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the correction
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

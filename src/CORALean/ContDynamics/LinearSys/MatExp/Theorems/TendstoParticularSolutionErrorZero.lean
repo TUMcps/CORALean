@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsParticularSo
 [1, Lemma 2]: squeezed between `0` (`err` is always nonnegative) and the quadratic bound
 `exists_particularSolutionError_le_const_mul_sq` gives eventually, which itself tends to `0`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the particular solution error tends to zero as the step shrinks
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

@@ -13,15 +13,25 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 # [1, Alg. 1 (upper bounds)]'s upper bounds on the support function of the reachable set
 
 Lines 1-5, 7-13 of `[1, Alg. 1 (upper bounds)]`, for one direction `ℓ` and a step `Δt`. The system
-is `ẋ = Ax + u`, `u ∈ U`, so `[1]`'s `B` is the identity and `p` is zero, and every set is a
-set of the representation `S`: the representation's own `Recenter` splits `U` into `ũ`, a
-point, and `U₀`, a set holding the origin (line 2); `P̂_U(Δt)` is `inputSolution` at `U₀`
-(Eq. 16), and `C = F X₀ ⊕ G ũ` (Eq. 14-15) the two correction matrices applied to `X₀` and to
-`ũ`, with `X₀` itself where `[1]` encloses it by `box(X₀)` for a representation that cannot
-multiply an interval matrix. Every support function is read from `ρ`, which any representation
-that can bound `ρ(X, d)` supplies. The loop of line 6 is the recursion on `k`; the state after
-`k` steps carries `d_k`, `P_u(t_k)`, `ρ(H(t_k), ℓ)`, `ρ(P̂_U(t_k), ℓ)` and the two outputs,
-`ρ(R̂(t_k), ℓ)` and `ρ(R̂(τ_{k-1}), ℓ)`.
+is `ẋ = Ax + u`, `u ∈ U`, so `[1]`'s `B` is the identity and `p` is zero, and every set is a set of
+the representation `S`: its own `Recenter` splits `U` into a point `ũ` and a set `U₀` holding the
+origin (line 2); `P̂_U(Δt)` is `inputSolution` at `U₀` (Eq. 16), and `C = F X₀ ⊕ G ũ`
+(Eq. 14-15) the two correction matrices applied to `X₀` and to `ũ`. Every support function is
+read from `ρ`, which any representation that can bound `ρ(X, d)` supplies. The loop of line 6 is
+the recursion on `k`; the state after `k` steps carries `d_k`, `P_u(t_k)`, `ρ(H(t_k), ℓ)`,
+`ρ(P̂_U(t_k), ℓ)` and the two outputs `ρ(R̂(t_k), ℓ)` and `ρ(R̂(τ_{k-1}), ℓ)`.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `U` – input set
+* `ρ` – support function oracle
+* `ℓ` – direction
+
+## Output
+* state after a given number of steps
 
 ## References
 

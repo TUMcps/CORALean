@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularSolution
 [1, Lemma 2]: eventually, as `Δt → 0⁺`, `particularSolutionError` is under one quadratic
 bound `K · Δt²`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the particular solution error is eventually under a constant times the squared step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

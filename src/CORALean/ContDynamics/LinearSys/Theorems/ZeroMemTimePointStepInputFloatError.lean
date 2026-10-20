@@ -13,6 +13,22 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloat
 (`exp_mem_expIntervalFloat`), so does the input solution, and so does their
 float sum. What the next step of a float run asks of its operand before its
 upper bounds apply.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X` – float state zonotope
+* `U` – input float zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hη` – order admissible
+* `hX` – state error box contains zero
+* `hU` – input error box contains zero
+
+## Conclusion
+* the float step's error box contains zero
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,17 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
 When the box is certified off the vertex the exact `if` takes its `min` branch, which the two
 endpoint lower bounds undercut. Otherwise the float returns `-1/2`, which `γ` never goes below,
 so it is below either branch of the exact one.
+
+## Inputs
+* `t` – float time
+* `a` – float box lower end
+* `b` – float box upper end
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float lower value is at most the exact least value
 -/
 
 -- Authors:       Claude Sonnet 5.5

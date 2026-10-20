@@ -17,6 +17,13 @@ to NaN; the exponential of a real matrix is always finite here, so that branch h
 It is the quantity of [1, Eq. 6] at the dominating matrix of the box, not the norm bound
 `expRemainderBound`.
 
+## Inputs
+* `A` – interval matrix
+* `η` – Taylor order
+
+## Output
+* interval matrix of the exponential remainder
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

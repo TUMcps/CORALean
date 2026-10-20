@@ -12,6 +12,24 @@ Lines 3-25 of [1, Alg. 3]. If the inner approximation's best distance to leaving
 0`, or its distance to some unsafe set is `≤ 0`, a reached state breaks the specification:
 `innerApprox` lies inside `Reach`, so what `distG`/`distF` say of it holds of `Reach`.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `le` – comparison oracle on reals
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `εmax` – maximal error
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hfalse` – the iteration's distance test fails
+
+## Conclusion
+* the specification does not hold
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

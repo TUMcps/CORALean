@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 Pure `Set.Icc` arithmetic: a domain covering `[0, KΔt]` covers every step
 `[kΔt, (k+1)Δt]` with `k < K`, which is what lets `discretize_horizon` iterate
 one step at a time instead of asking for all of forward time.
+
+## Inputs
+* `T` – time domain
+* `Δt` – step length
+* `K` – number of steps
+* `k` – step index
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the horizon
+* `hk` – step index below the number of steps
+
+## Conclusion
+* the step lies in the time domain
 -/
 
 -- Authors:       Claude Opus 5

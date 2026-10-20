@@ -18,15 +18,31 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # `Alg. 2` line 16: the AE time-interval backward reachable set
 
-`minBackReachTimeInterval`: [1, Alg. 2] line 16, `R^{∀∃}(-τ)`, the `ω` steps' sets united,
-each cut by the polytope `⟨N,p⟩_H` the propagated support functions built, over the
-time-inverted dynamics `ẋ̃ = -A x̃ - u - w`. Nothing here searches, so no fuel: `ω` and `η`
-are fixed by [1, Assumption 1] and the loop is bounded by `ω`.
+`minBackReachTimeInterval`: [1, Alg. 2] line 16, `R^{∀∃}(-τ)`, the `ω` steps' sets united, each cut
+by the polytope `⟨N,p⟩_H` the propagated support functions built, over the time-inverted dynamics
+`ẋ̃ = -A x̃ - u - w`. Nothing here searches, so no fuel: `ω` and `η` are fixed by
+[1, Assumption 1] and the loop is bounded by `ω`. `ρ` is the caller's support oracle for a
+constrained zonotope, a linear program which `HPolytope.supportBound` solves but only as an
+`Option`. `Zw` is (27), the constant center trajectory's contribution over one interval. Line 16's
+union is no constrained zonotope, so the result is a `Set`, as `tunedReach` returns one.
 
-`ρ` is the caller's support oracle for a constrained zonotope — a linear program, which
-`HPolytope.supportBound` solves but only as an `Option`. `Zw` is (27), the constant center
-trajectory's contribution over one interval. And line 16's union is no constrained zonotope,
-so the result is a `Set`, as `tunedReach` returns one for the same reason.
+## Inputs
+* `sys` – linear system
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance zonotope
+* `U₀` – initial input zonotope
+* `Zw` – center trajectory contribution
+* `N` – direction matrix
+* `t₀` – start time
+* `tend` – end time
+* `η` – Taylor order
+* `ω` – number of iterations
+
+## Hypotheses
+* `ρ` – support oracle for constrained zonotopes
+
+## Output
+* union of the steps' sets, each cut by the polytope of the support functions
 
 ## References
 

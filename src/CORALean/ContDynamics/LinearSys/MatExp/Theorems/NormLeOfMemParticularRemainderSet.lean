@@ -12,6 +12,19 @@ public import CORALean.Global.Err
 `norm₂_le_of_mem_particularRemainderSet`: every point of [1]'s `e^{At_i} E(Δt,η) Δt U` is
 within an explicit multiple of `‖E(Δt,η)‖·|Δt|` of the origin.
 
+## Inputs
+* `A` – system matrix
+* `ti` – step start time
+* `U` – input set
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hU` – input set bounded
+
+## Conclusion
+* every point is within an explicit multiple of the remainder norm of the origin
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

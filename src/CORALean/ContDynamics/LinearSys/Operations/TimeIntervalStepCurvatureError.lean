@@ -14,6 +14,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 `timeIntervalStepError`'s combined figure, which also carries a *hull* term
 (independent of `η`, first order in the step) that [1] does not fold into it.
 
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+
+## Output
+* radius of the correction matrix's widening term
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

@@ -14,6 +14,16 @@ is one, a static set `Vstat`: `⊕ᵢ₌₀^η Aⁱ Δt^{i+1}/(i+1)! Vdyn ⊕ E 
 `adaptiveIntegral`. The order `η` is a parameter; CORA's own choice of it is
 `errorSolutionOrder`.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `Vdyn` – dynamic noise set
+* `Vstat` – optional static noise set
+
+## Output
+* error solution set of the adaptive scheme
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

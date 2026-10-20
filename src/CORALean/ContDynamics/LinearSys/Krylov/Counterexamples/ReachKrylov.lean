@@ -20,16 +20,21 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 `reach` (l. 80-81) runs `priv_reach_krylov` on `A = [0 0; 1 1]`, `B = [1; 0]`, `R0 = {0}`,
 `U = zonotope(1)`, `tFinal = timeStep = t = 3`, `krylovError = t²/2`, `krylovStep = 1`,
-`zonotopeOrder = 10`, `'girard'`. `U` becomes `uTrans = 1`, so `B uTrans = e₁` and every
-input set is a point. `priv_krylov_R_uTrans` calls `priv_subspace_Krylov_individual_Jawecki`
-on `[A e₁; 0 0]` from `e₃` at order `2` (l. 149-166), where Arnoldi does not break down and
-Err_a `= t²/2` passes (`Krylov.jawecki_bound_cora_counterexample`). `R0` and `U` have no
-generators, so no other Krylov subspace is built. The first time-point set (`aux_propagation`
-l. 121-156) is `reduce(Htp + RTrans + zonotope(U_0_sol))`: `Htp = zonotope([0, εI])`,
-`RTrans = zonotope([V E e₁, εI])`, `U_0_sol = 0`, `ε = krylovError`; no reduction at order `10`.
-`V = [e₃ e₁]` has second row `0`, so the set lies in `|x₂| ≤ 2ε = 9`, while the run from `0`
-under `u ≡ 1` has `x₂(3) = e³ - 4 > 16`. `E` is `expm(H t)`, quantified over every matrix;
-the margin `7` exceeds any floating error, the Arnoldi steps on `0/1` data are exact.
+`zonotopeOrder = 10`, `'girard'`. `priv_krylov_R_uTrans` calls the Jawecki test on `[A e₁; 0 0]`
+at order `2` (l. 149-166), which passes (`Krylov.jawecki_bound_cora_counterexample`). The first
+time-point set (`aux_propagation` l. 121-156) is `reduce(Htp + RTrans + zonotope(U_0_sol))` with
+`Htp = zonotope([0, εI])`, `RTrans = zonotope([V E e₁, εI])`, `ε = krylovError`. `V = [e₃ e₁]` has
+second row `0`, so the set lies in `|x₂| ≤ 2ε = 9`, while the run under `u ≡ 1` has
+`x₂(3) = e³ - 4 > 16`; `E` is `expm(H t)`, quantified over every matrix.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the first time-point set misses the state of a run
 -/
 
 -- Authors:       Claude Opus 5.5

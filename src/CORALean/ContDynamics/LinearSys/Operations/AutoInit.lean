@@ -9,6 +9,13 @@ public import CORALean.ContDynamics.LinearSys.Definitions.AutoState
 
 `autoInit`: [1, Alg. 2] lines 1-2, before the first iteration.
 
+## Inputs
+* `X₀` – initial zonotope
+* `tend` – final time
+
+## Output
+* loop state before the first iteration
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

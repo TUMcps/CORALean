@@ -11,6 +11,20 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 verified, `false` where it is falsified, `none` where `fuel` repeat-until iterations did not
 reach a verdict. Line 1's "estimated from simulations" is left a parameter, `ε_max₀`.
 
+## Inputs
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `le` – comparison oracle on reals
+* `εmax₀` – initial maximal error
+* `fuel` – number of iterations
+
+## Output
+* verdict: verified, falsified, or undecided
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

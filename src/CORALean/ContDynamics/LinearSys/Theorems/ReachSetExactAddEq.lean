@@ -13,6 +13,21 @@ at one time: `Φ_{t+r}(R₀) = e^{rA}Φ_t(R₀) + inputReach U r`. Both sides in
 (`reachSetExact_eq`), it is the input reach set's separation
 (`inputReach_separation_eq`) and `e^{(t+r)A} = e^{rA}e^{tA}`.
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – first time
+* `r` – second time
+
+## Hypotheses
+* `ht` – first time nonnegative
+* `hr` – second time nonnegative
+* `hU` – input set bounded
+
+## Conclusion
+* the later reach set is the propagated earlier one plus the input reach
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

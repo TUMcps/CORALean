@@ -12,18 +12,27 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SumExpTailLe
 /-!
 # How wide the integrated correction matrix is, in `r` and `‖A‖` alone
 
-`AbsCorrectionMatrixLe` for `constCorrectionMatrix`, which is [1]'s `G(Δt,η)`
-of eq. (16) — the same orders one factorial further along and one matrix power
-back, which is what integrating each order of the exponential does to it.
+`AbsCorrectionMatrixLe` for `constCorrectionMatrix`, [1]'s `G(Δt,η)` of eq. (16): the same orders
+one factorial further along and one matrix power back, as integrating each order of the
+exponential does. Every order carries an extra `r` over `correctionMatrix`'s, so the whole bound
+is `r·(e^{r‖A‖} - 1)` against that file's `e^{r‖A‖} - 1 - r‖A‖`: one power of the step cheaper
+in the factorial, one dearer in front. The `(i+2)!` is discarded down to `(i+1)!` so that
+`sum_expTail_le` applies, enough for an asymptotic bound in `r`. The side condition is what
+makes `expRemainderBound` nonnegative; without it the two endpoints are crossed.
 
-Every order carries an extra `r` over `correctionMatrix`'s, so the whole bound
-is `r·(e^{r‖A‖} - 1)` against that file's `e^{r‖A‖} - 1 - r‖A‖`: one power of
-the step cheaper in the factorial, one power of the step dearer in front. The
-`(i+2)!` is discarded down to `(i+1)!` so that `sum_expTail_le` applies; nothing
-sharper is needed, the use being an asymptotic bound in `r`.
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+* `j` – row index
+* `k` – column index
 
-The side condition is what makes `expRemainderBound` nonnegative; without it the
-geometric factor is negative and the two endpoints are crossed.
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* both endpoints of the integrated correction are bounded in magnitude
 
 ## References
 

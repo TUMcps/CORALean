@@ -9,21 +9,30 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 /-!
 # An enclosure asked for by error rather than by order
 
-`timeIntervalStep_outer_at` carried over to the chosen order, and the point of
-choosing one: its side condition `‖rA‖/(η+2) < 1` is gone, discharged by
-`expRemainderOrder_spec`, and `0 < ε` is the only thing a caller supplies
-beyond the step. So "enclose this with a remainder under `ε`" is a request the
-library answers soundly, which is what a tuning rule has to mean here.
+`timeIntervalStep_outer_at` carried over to the chosen order, and the point of choosing one: its
+side condition `‖rA‖/(η+2) < 1` is gone, discharged by `expRemainderOrder_spec`, and `0 < ε` is the
+only thing a caller supplies beyond the step. So "enclose this with a remainder under `ε`" is a
+request the library answers soundly. `2 ≤ η` is what lets the chosen order be written in the `m + 2`
+form `timeIntervalStep_outer_at` takes. A smaller `ε` gives a tighter correction matrix, and
+`timeIntervalStep_subset_reach_add_error` turns that into a statement about the enclosure's own
+error; it also says `ε` reaches the smaller term only: over a whole step the convex hull costs a
+first-order excess that the correction matrix, second order, does not pay for.
 
-`2 ≤ η` is what lets the chosen order be written in the `m + 2` form
-`timeIntervalStep_outer_at` takes; the selector's predicate carries it for exactly
-that reason.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `ε` – admissible error
+* `X₀` – initial set
+* `t` – time
 
-A smaller `ε` gives a tighter correction matrix, and
-`timeIntervalStep_subset_reach_add_error` is what turns that into a statement
-about the enclosure's own error. It also says `ε` reaches the smaller term
-only: over a whole step the convex hull costs a first-order excess that the
-correction matrix, second order, does not pay for.
+## Hypotheses
+* `hr` – step length positive
+* `hε` – error positive
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the exponential image lies in the step set at the order the error asks for
 -/
 
 -- Authors:       Claude Opus 5

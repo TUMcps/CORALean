@@ -22,6 +22,15 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 `(e⁴ - 1)/9 < 4e^{8/3}/9` since `e^{4/3} < 4`. The error of `e^{C̃s}ṽ` is not linear in `s` the
 way the difference of two of its values would need.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* no admissible error closes the printed partial-step input solution
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

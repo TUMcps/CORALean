@@ -24,18 +24,35 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # The truncated Peano–Baker series plus a short remainder, over a float box
 
-`Real.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder` with the float
-step's own two interval matrices, `expIntervalEnclosure (r • A)` and
-`intervalCorrectionMatrix A r` at a float box `A`, every `Â(σ)` in it. Their
-float guarantees are stated per member's exponential, and a Peano–Baker term is
-no member's, so this goes through the boxes themselves: the `k`-th rescaled term
-lies in the real `k`-th power of `r • A`'s nominal box, and that is inside the
-float power (`Interval.matPow_subset`), the box admitting products of different
-members in both layers; likewise the unscaled power the correction term scales.
-From there the coefficients `1/k!` and `(λ^k - λ) r^k/k!` lie in the float
-intervals `invFactorialBounds` and `[cLo, 0]`, and the remainder `ρ` is a matrix
-within the float remainder bound, which bounds the real one at a member attaining
-the box's norm.
+`Real.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder` with the float step's own two
+interval matrices, `expIntervalEnclosure (r • A)` and `intervalCorrectionMatrix A r` at a float
+box `A`, every `Â(σ)` in it. Their float guarantees are stated per member's exponential, and a
+Peano–Baker term is no member's, so this goes through the boxes: the `k`-th rescaled term lies in
+the real `k`-th power of `r • A`'s nominal box, inside the float power (`Interval.matPow_subset`);
+likewise the unscaled power the correction term scales. The coefficients `1/k!` and
+`(λ^k - λ) r^k/k!` lie in the float intervals `invFactorialBounds` and `[cLo, 0]`, and the
+remainder `ρ` is a matrix within the float remainder bound.
+
+## Inputs
+* `A` – float interval matrix
+* `Â` – time-varying matrix
+* `r` – float step length
+* `m` – Taylor order offset
+* `t` – time
+* `x₀` – start vector
+* `ρ` – remainder vector
+
+## Hypotheses
+* `hÂ` – matrix entries integrable
+* `hÂB` – matrix stays in the box
+* `hr` – step length positive
+* `hε` – float norm bound small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+* `hρ` – remainder short enough
+
+## Conclusion
+* the truncated series plus remainder is an interpolation plus a correction member
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 `affineDynamicsErrorBound`: an explicit `Δt`-polynomial dominating `affineDynamicsError`, so
 [1, Lemma 3]'s asymptotics reduce to that bound's, a real-valued computation.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* polynomial in the step length bounding the affine dynamics error
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

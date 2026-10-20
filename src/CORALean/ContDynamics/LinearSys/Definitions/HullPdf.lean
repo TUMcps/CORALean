@@ -17,6 +17,18 @@ solution for an input `u` is the Gaussian of `[1, Eq. 2]`: mean `e^{rA} μ₀ + 
 white noise's law taken from Eq. 2 since the stochastic process itself is not defined here.
 Admissible inputs stay in `U` and are measurable, the class `LinearSys.inputReach` uses.
 
+## Inputs
+* `sys` – linear system
+* `C` – noise matrix
+* `U` – input set
+* `μ₀` – initial mean
+* `Sig₀` – initial covariance
+* `r` – time
+* `x` – evaluation point
+
+## Output
+* supremum of the density at the point over admissible inputs
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

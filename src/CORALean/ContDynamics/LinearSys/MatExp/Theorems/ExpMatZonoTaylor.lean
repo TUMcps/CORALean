@@ -19,6 +19,17 @@ scales the power `matPow_outer` places.
 The powers are where the dependency is kept — `matPow` carries the cross
 generators an interval matrix would have thrown away — and every term is bounded
 against the *same* `A`, unlike `expIntervalTaylor`.
+
+## Inputs
+* `M` – matrix zonotope
+* `A` – member matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hA` – member lies in the matrix zonotope
+
+## Conclusion
+* the member's Taylor truncation lies in the zonotope's truncation
 -/
 
 -- Authors:       Claude Opus 5

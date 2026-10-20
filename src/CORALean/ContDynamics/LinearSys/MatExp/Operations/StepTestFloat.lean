@@ -11,6 +11,15 @@ The test the step selector of [1] runs at one candidate `r`, at a float represen
 positive, the scaled norm bound `r · nrm` meeting the side condition, and the contribution
 `r · expRemainderBound (r · nrm) η` strictly under `ε`. `nrm` is a float upper bound of `‖A‖`.
 
+## Inputs
+* `nrm` – float norm bound
+* `ε` – float admissible error
+* `η` – Taylor order
+* `r` – candidate step length
+
+## Output
+* whether the candidate step passes the float test
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

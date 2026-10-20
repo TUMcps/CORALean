@@ -8,18 +8,20 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # The Peano–Baker terms of a time-varying matrix
 
-The `k`-th term of the Peano–Baker (Dyson) series of `x' = A(t) x` from time
-`0`: the identity at `k = 0`, then `P_{k+1}(s) = ∫₀ˢ A(σ) P_k(σ) dσ` — Picard's
-iteration on the fundamental matrix, which unrolls to the iterated integral of
-`A(σ₁) ⋯ A(σ_k)` over the ordered simplex without ever writing the simplex down.
+The `k`-th term of the Peano–Baker (Dyson) series of `x' = A(t) x` from time `0`: the identity at
+`k = 0`, then `P_{k+1}(s) = ∫₀ˢ A(σ) P_k(σ) dσ`, Picard's iteration on the fundamental matrix,
+which unrolls to the iterated integral of `A(σ₁) ⋯ A(σ_k)` over the ordered simplex. The integral
+is taken entry by entry, as a real one: Mathlib's interval integral of a matrix-valued map cannot
+be stated under the `l∞` operator norm the tree uses for matrices. At a constant `A` the terms
+are `(s A)^k / k!`. At a run whose `A(σ)` ranges over a box they are what
+`MatExp.norm_sub_peanoBakerSum_le` and `MatExp.peanoBakerTerm_mem_matPow` are about: the series
+of `'varParam'`.
 
-The integral is taken entry by entry, as a real one. Mathlib's interval
-integral of a matrix-valued map cannot be stated under the `l∞` operator norm
-the tree uses for matrices, whose topology is not the one `Matrix` carries.
+## Inputs
+* `A` – matrix-valued function of time
 
-At a constant `A` the terms are `(s A)^k / k!`, the exponential's. At a run
-whose `A(σ)` ranges over a box they are what `MatExp.norm_sub_peanoBakerSum_le`
-and `MatExp.peanoBakerTerm_mem_matPow` are about: the series of `'varParam'`.
+## Output
+* Peano–Baker matrix term of the given order as a function of time
 -/
 
 -- Authors:       Claude Opus 5.5

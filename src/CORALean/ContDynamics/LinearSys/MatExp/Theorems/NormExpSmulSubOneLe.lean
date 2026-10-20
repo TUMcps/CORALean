@@ -18,6 +18,16 @@ closes it without any `‖t • A‖ < c` side condition. This is the bound
 [1, Lemma 2]'s Appendix B needs a Lipschitz constant for `e^{AΔt}` from, over
 the whole of `Δt ∈ [0, t_end]` and not only a neighbourhood of `0`.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* `ht` – time nonnegative
+
+## Conclusion
+* the propagator stays within the stated distance of the identity
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

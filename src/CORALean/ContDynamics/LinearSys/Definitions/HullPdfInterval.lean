@@ -10,6 +10,18 @@ public import CORALean.ContDynamics.LinearSys.Definitions.HullPdf
 `[1, Def. 2]`, second display: `f̄_X(x, [0, r]) = sup {f̄_X(x, t) | t ∈ [0, r]}`, the supremum
 of the hulls at the times of the interval (`LinearSys.hullPdf`).
 
+## Inputs
+* `sys` – linear system
+* `C` – noise matrix
+* `U` – input set
+* `μ₀` – initial mean
+* `Sig₀` – initial covariance
+* `r` – interval end
+* `x` – evaluation point
+
+## Output
+* supremum of the hull density over the times of the interval
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

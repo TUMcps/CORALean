@@ -15,6 +15,21 @@ The linear algebra behind the exactness of [1, Alg. 1]: if `C V e_k = V H e_k` f
 `x` up by at most one, so `j` steps never reach the last column, the one whose relation carries
 the residual `h_{m+1,m} v⁽ᵐ⁺¹⁾`. At `x = e₁` this is `C^j V e₁ = V H^j e₁` for `j < m`.
 
+## Inputs
+* `C` – matrix
+* `V` – Krylov basis
+* `H` – Hessenberg matrix
+* `j` – power
+* `x` – coefficient vector
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hrel` – relation holds on the leading columns
+* `hx` – coefficients vanish on trailing indices
+
+## Conclusion
+* the matrix power on the basis image is the basis image of the Hessenberg power
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

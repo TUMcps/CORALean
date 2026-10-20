@@ -15,6 +15,24 @@ the tail `MatExp.expIntervalEnclosure` already pays for a constant member.
 `MatExp.exists_peanoBaker_expansion` at the zero input, whose terms all vanish.
 
 `Vec` carries the sup norm, and `‖A(σ)‖` is the `l∞` operator norm it induces.
+
+## Inputs
+* `B` – interval matrix
+* `A` – time-varying matrix
+* `x` – run
+* `t` – time
+* `η` – Taylor order
+
+## Hypotheses
+* `hA` – matrix entries integrable
+* `hAB` – matrix stays in the box
+* `ht` – time nonnegative
+* `hxc` – run continuous on the interval
+* `hx` – run solves the integral equation
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the run is its truncated Peano–Baker series up to the remainder bound
 -/
 
 -- Authors:       Claude Opus 5.5

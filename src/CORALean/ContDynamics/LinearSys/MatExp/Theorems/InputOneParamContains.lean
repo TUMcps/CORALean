@@ -17,6 +17,21 @@ polynomial of degree `η + 1` with the coefficients `w_k`, and `Zonotope.ofOnePa
 encloses it. The remainder `∫ E(r) dt c(β) ⊆ E(r) r c(β)` is [1]'s citation of Althoff's thesis
 and is not part of this statement.
 
+## Inputs
+* `C` – center matrix
+* `G` – generator matrix
+* `c_c` – input center
+* `g_c` – input generator
+* `r` – step length
+* `η` – Taylor order
+* `β` – generator weight
+
+## Hypotheses
+* `hβ` – weight within one in magnitude
+
+## Conclusion
+* the partial input solution's Taylor part lies in the zonotope
+
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety

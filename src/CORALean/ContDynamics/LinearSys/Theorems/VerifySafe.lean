@@ -12,6 +12,25 @@ Relative to what the passed-in functions promise (`VerifySound`): where `verify`
 `some true`, every safe set contains and every unsafe set misses all states reached by a
 trajectory. `none` (fuel exhausted) claims nothing.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `le` – comparison oracle on reals
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `εmax₀` – initial maximal error
+* `fuel` – number of iterations
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hv` – the verification answers true
+
+## Conclusion
+* the specification holds
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

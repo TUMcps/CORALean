@@ -16,6 +16,20 @@ integrand is dominated by a constant over a finite measure.
 Stated for a bare signal rather than for a run, since the two-signal flow of
 `IsPerturbedTrajectory` needs it once per signal and neither of those is
 the input of a `IsTrajectory` on its own.
+
+## Inputs
+* `U` – bounded set
+* `t` – window end
+* `u` – signal
+
+## Hypotheses
+* `ht` – window end nonnegative
+* `hU` – set bounded
+* `hu` – signal values lie in the set on the window
+* `hmeas` – signal measurable on the window
+
+## Conclusion
+* the signal is interval integrable on the window
 -/
 
 -- Authors:       Claude Opus 5

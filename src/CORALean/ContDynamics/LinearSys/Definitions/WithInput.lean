@@ -7,15 +7,12 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # A continuous-time system paired with its input set
 
-The input set `U` a `IsTrajectory` draws from is bundled with the system rather
-than taken from CORA's `params.U`, because `0 ∈ U` is a proof about it that
-`params` cannot carry; `Reach LinearSys.WithInput` reads it off the system it is
-asked about, exactly as it reads `sys.A`.
-
-`0 ∈ U` is a field, being [1, Alg. 2]'s own precondition: with the origin
-admissible, what the input contributes only grows with time (`inputReach_mono`),
-so one accumulated set serves a whole window. An input set off the origin is
-[1, Alg. 3], a constant split off first: `LinearSys.WithInputSplit`.
+The input set `U` a `IsTrajectory` draws from is bundled with the system rather than taken from
+CORA's `params.U`, because `0 ∈ U` is a proof about it that `params` cannot carry;
+`Reach LinearSys.WithInput` reads it off the system it is asked about, exactly as it reads `sys.A`.
+`0 ∈ U` is a field, being [1, Alg. 2]'s own precondition: with the origin admissible, what the input
+contributes only grows with time (`inputReach_mono`), so one accumulated set serves a whole window.
+An input set off the origin is [1, Alg. 3], a constant split off first: `LinearSys.WithInputSplit`.
 
 ## References
 

@@ -17,6 +17,14 @@ It is an inner approximation because it is exactly what the *constant* inputs of
 `S` contribute: `expIntegral A Δt *ᵥ s = ∫₀^{Δt} e^{A(Δt-σ)}s dσ`. A plain image
 and not a `Mtimes`, since `Mtimes` only ever over-approximates.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+
+## Output
+* inner approximation of everything a constant input contributes over the step
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

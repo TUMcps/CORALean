@@ -14,6 +14,13 @@ order plus `2` up clears it outright, `reachOrder_admissible` its proof. Read
 for `reach`'s floor on `η` and no further, so no tightness is claimed — a caller
 wanting one closer to `[1, Alg. 1]`'s tuned choice reaches for `aux_tunedStep`.
 
+## Inputs
+* `sys` – linear system
+* `r` – window width
+
+## Output
+* order admissible for the window once two is added
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

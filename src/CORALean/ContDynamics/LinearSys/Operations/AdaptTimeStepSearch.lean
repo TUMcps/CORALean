@@ -13,6 +13,22 @@ share `ε_P,max,i` (eq. 10) being recomputed at each new `Δt_i` (lines 2 and
 shrinks `Δt_i` with no stated iteration count, so `fuel` is an argument and
 the result an `Option`.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εPacc` – accumulated particular error
+* `tf` – final time
+* `ti` – step start time
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+
+## Output
+* step size and order clearing both bounds, if any
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

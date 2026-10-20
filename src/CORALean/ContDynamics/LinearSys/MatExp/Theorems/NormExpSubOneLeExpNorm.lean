@@ -13,6 +13,15 @@ public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 The series of `exp x - 1` compared termwise with that of `Real.exp ‖x‖ - 1`, under the `l∞`
 operator norm, with no side condition on `‖x‖`. `norm_exp_smul_sub_one_le` loosens it to
 `t‖A‖e^{t‖A‖}`; the float step error `timeIntervalStepErrorFloat` uses it as it stands.
+
+## Inputs
+* `x` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential is within the real exponential of the norm minus one of the identity
 -/
 
 -- Authors:       Claude Sonnet 5.5

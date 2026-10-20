@@ -12,21 +12,14 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # `LinearSys` and `LinearSys.WithInput` instantiate `ContDynamics` and `Reach`
 
-`params` is `Reach.Params` at real time, `options` `ReachStepOptions`; `reachExact` is
-each system's own on `[0, tFinal - tStart]`, the system being time-invariant. All of it is the
-canonical form's, as CORA's `reach` runs on `canonicalForm`: a `U` is the combined input
-`B U ⊕ c ⊕ E W` in state coordinates, and `LinearSys` alone reads `A`, its `reachExact` the
-homogeneous flow. `LinearSys.WithInput` carries `U`, `0 ∈ U` among its fields; it asks the
-representation to be convex and compact, what [1, Thm. 3.1]'s enclosure needs of `U` —
-[1, Alg. 2]. `LinearSys.WithInputSplit` drops `0 ∈ U` and asks for `Recenter` and `OfPoint`
-too — [1, Alg. 3]; it bundles `U` as well, the pair's type choosing the algorithm, as `P` and
-`O` are the instance's outputs. Every run is `none` unless `0 < timeStep`.
-
-`LinearSys` is the homogeneous case, asking none of this: a non-convex representation
-reaches. `LinearSys.reachInstance` runs `reachAdmissible`, CORA's `standard` scheme and its
-default — [1, Alg. 4], recursively — `none` also unless `tStart < tFinal` keeps a window, `η`
-raised until admissible. `LinearSys.reachWrappingFreeInstance` is the same interface at
-`reachWrappingFree`, [1, Alg. 1], a named `def` so resolution stays unambiguous.
+`params` is `Reach.Params` at real time, `options` `ReachStepOptions`; `reachExact` is each system's
+own on `[0, tFinal - tStart]`, the system being time-invariant. All of it is the canonical form's,
+as CORA's `reach` runs on `canonicalForm`: a `U` is the combined input `B U ⊕ c ⊕ E W` in state
+coordinates. `LinearSys.WithInput` carries `U`, `0 ∈ U` among its fields, and asks the
+representation to be convex and compact, what [1, Thm. 3.1] needs of `U` ([1, Alg. 2]);
+`LinearSys.WithInputSplit` drops `0 ∈ U` and asks for `Recenter` and `OfPoint` too ([1, Alg. 3]).
+`LinearSys` is the homogeneous case: `reachInstance` runs `reachAdmissible` (CORA's `standard`, [1,
+Alg. 4]), `reachWrappingFreeInstance` `reachWrappingFree` ([1, Alg. 1]); `none` unless `0 < Δt`.
 
 ## References
 

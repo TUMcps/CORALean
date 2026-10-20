@@ -13,19 +13,22 @@ public import CORALean.Global.Float.ToRat
 /-!
 # Wrapping-free reachability in floats: `R(τ_k) = [e^{A t_k}] R(τ_0)`
 
-[1, Alg. 1] without an input, computed in `𝕋`, CORA's `linAlg =
-'wrapping-free'`, at `params` and `options` read as `reachFloat` reads them: the
-first window is
-`timeIntervalStepFloat`, reduced by Girard's rule to order `ρ` (`ρ` at or above
-its order leaves it alone), and window `k < N` is that one set carried by an
-enclosure of `e^{A t_k}` taken at `t_k` directly — `reachStepkWrappingFreeFloat` — so no
-window's error compounds into the next one's.
+[1, Alg. 1] without an input, computed in `𝕋`, CORA's `linAlg = 'wrapping-free'`, at `params` and
+`options` read as `reachFloat` reads them: the first window is `timeIntervalStepFloat`, reduced by
+Girard's rule to order `ρ`, and window `k < N` is that one set carried by an enclosure of
+`e^{A t_k}` taken at `t_k` directly (`reachStepkWrappingFreeFloat`), so no window's error
+compounds into the next one's. `η` is raised with `reachOrderFloat` to the first order from
+`max η 2` the float remainder bound at `Δt · A` admits; each window scales `t_k` down to the step
+by squarings and keeps that order. `N = (tFinal - tStart) / Δt` by `Reach.steps`; `none` when
+that is no natural number or a search fails.
 
-`η` is raised with `reachOrderFloat` to the first order from `max η 2` the float
-remainder bound at `Δt · A` admits; each window scales `t_k` down to the step
-by squarings and keeps that order. `N = (tFinal - tStart) / Δt` by `Reach.steps`.
-`none` when that is no natural number or a search fails; otherwise `N`
-windows.
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
+
+## Output
+* float windows of the run, if it completes
 
 ## References
 

@@ -21,6 +21,17 @@ truncation order and reduction order [1]'s `Alg. 2` and `Alg. 3` chose, the
 initial state holds the invariant (nothing contributed by time `0`) and every
 step keeps it (`adaptiveStepFloat_outer`).
 
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – adaptive options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the steps' windows cover the horizon and hold every run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

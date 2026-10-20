@@ -13,6 +13,23 @@ public import CORALean.ContDynamics.LinearSys.Operations.TunedRun
 Nothing here clips `Δt_i` to what is left of the horizon — [1] does not either — so a run
 can step past `t_f`; the accompanying theorem asks that it does not.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εSmax` – maximal reduction error
+* `tf` – final time
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `K` – number of iterations
+
+## Output
+* union of the time-interval sets of the first iterations
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

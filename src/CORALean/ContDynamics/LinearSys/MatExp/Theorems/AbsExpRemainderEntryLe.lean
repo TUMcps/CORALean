@@ -17,6 +17,21 @@ matrix exponential, which is what puts `(e^{Aτ} − Σ_{i≤η}(Aτ)ⁱ/i!) v` 
 product for every `τ` up to `Δt`. Order by order, `|(Aⁱ)_{jk}| ≤ (|A|ⁱ)_{jk}` and `τⁱ ≤ Δtⁱ`; the
 series are the exponential's from order `η + 1` on.
 
+## Inputs
+* `A` – system matrix
+* `τ` – time
+* `Δt` – step length
+* `η` – Taylor order
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `hτ` – time nonnegative
+* `hτΔt` – time within the step
+
+## Conclusion
+* the entry of the exponential's Taylor remainder is under the remainder matrix entry
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

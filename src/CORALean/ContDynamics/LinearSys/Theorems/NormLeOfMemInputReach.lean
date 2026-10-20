@@ -17,6 +17,22 @@ by. Pointwise `‖e^{A(τ-s)} u(s)‖ ≤ e^{(τ-s)‖A‖} μ`, and that bound 
 `0 < ‖A‖` is [1]'s own, implicit in dividing by `‖A‖`: at `A = 0` the right side reads
 Lean's `0 / 0 = 0` while the input still reaches `τ μ`.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `μ` – input norm bound
+* `τ` – time
+* `v` – point of the input reach
+
+## Hypotheses
+* `hA` – matrix norm positive
+* `hτ` – time nonnegative
+* `hU` – input norms bounded
+* `hv` – point lies in the input reach
+
+## Conclusion
+* the point's norm is at most the stated bound
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

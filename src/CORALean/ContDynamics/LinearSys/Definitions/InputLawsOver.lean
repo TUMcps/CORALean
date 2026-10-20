@@ -11,6 +11,16 @@ public import CORALean.ContDynamics.LinearSys.Definitions.InputLaws
 time interval, as the family of all its laws at the times of the interval
 (`LinearSys.inputLaws`).
 
+## Inputs
+* `sys` – linear system
+* `C` – noise matrix
+* `U` – input set
+* `t₁` – interval start
+* `t₂` – interval end
+
+## Output
+* set of input-solution laws at the times of the interval
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -17,6 +17,22 @@ outer and the inner approximation.
 With `c` of order `Δt²` and `ω = t/Δt` this is the whole of the proposition:
 `ω · M · c` is of order `Δt`, and `M ≤ e^{‖A‖t}` uniformly in the step count.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `Z` – one-step set
+* `Z'` – approximating one-step set
+* `c` – one-step distance
+* `M` – bound on the propagator norms
+* `ω` – number of steps
+
+## Hypotheses
+* `hM` – propagator bound nonnegative
+* `h` – every point of the one-step set has a witness within the distance
+
+## Conclusion
+* every propagated point has a witness within the summed distance
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

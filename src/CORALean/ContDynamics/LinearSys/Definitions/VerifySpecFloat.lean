@@ -12,6 +12,14 @@ public import CORALean.Specification.Specification
 `X` satisfies every safe set `G j` and every unsafe set `F j` of [1, Alg. 3], the sets stored as
 float halfspace polytopes and read as the real sets they denote.
 
+## Inputs
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `X` – set to check
+
+## Output
+* proposition that the set satisfies every safe and unsafe set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -15,6 +15,22 @@ first lower bound in the tree on a continuous-time reachable set: every
 enclosure elsewhere runs `⊆`, which only a witness — a point genuinely in the
 set — can turn into a lower bound, and only the equality supplies one.
 
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
+* `c` – direction
+
+## Hypotheses
+* `ht` – time nonnegative
+* `hU` – input set bounded
+* `w₀` – support witness on the initial set
+* `wP` – support witness on the input reach
+
+## Output
+* support witness on the time-point reachable set along the direction
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

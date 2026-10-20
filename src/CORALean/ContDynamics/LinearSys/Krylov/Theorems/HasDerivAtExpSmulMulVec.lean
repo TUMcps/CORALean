@@ -14,6 +14,17 @@ public import Mathlib.Analysis.Calculus.Deriv.Comp
 `L' = σAL + D`: Mathlib's derivative of `s ↦ e^{sM}` in the normed algebra of complex
 matrices over `ℝ`, carried through the continuous ℝ-linear map `B ↦ Bx`.
 
+## Inputs
+* `M` – complex matrix
+* `x` – vector
+* `s` – real time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential trajectory has the matrix times itself as derivative
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

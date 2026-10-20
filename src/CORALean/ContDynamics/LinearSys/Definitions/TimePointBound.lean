@@ -9,14 +9,36 @@ public import CORALean.Global.SupportFunction.Composition
 # A support bound at the end of a step, not over the whole of it
 
 [1, Alg. 1 (upper bounds)]'s lines 10-12:
-`ρ(R(t_{k+1}), ℓ) ← ρ(R₀, ℓᵀe^{Ar}) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term —
-`SupportBound.image` for the direction pulled back through `e^{Ar}` rather than the value
-moved, `SupportBound.add` for the `+`, and
-`SupportBound.mono` to cross `reachSetExact_subset_image_inputSolution`.
+`ρ(R(t_{k+1}), ℓ) ← ρ(R₀, ℓᵀe^{Ar}) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term: `SupportBound.image`
+for the direction pulled back through `e^{Ar}`, `SupportBound.add` for the `+`, and
+`SupportBound.mono` to cross `reachSetExact_subset_image_inputSolution`. The two bounds are
+hypotheses, as `timeIntervalBound` takes its three: any representation that answers
+`SupportBound` on `R₀` and on the particular solution may be handed in.
 
-The two bounds are hypotheses, exactly as `timeIntervalBound` takes its three:
-any representation that can answer `SupportBound` on `R₀` and on the particular
-solution may be handed in, and neither is named here.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `η` – Taylor order
+* `c` – direction
+
+## Hypotheses
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `b₀` – support bound on the initial set
+* `bP` – support bound on the particular solution
+
+## Output
+* support bound on the time-point reachable set along the direction
 
 ## References
 

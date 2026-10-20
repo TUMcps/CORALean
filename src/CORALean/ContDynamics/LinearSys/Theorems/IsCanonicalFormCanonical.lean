@@ -11,6 +11,20 @@ public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
 `(A, I, 0, C, 0, 0, 0, I)`: `B = I`, `c = k = 0`, `E = 0`, `D = 0` and `F = I`, `n` inputs,
 `q` noises, whatever system it was handed.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `uVec` – input offset
+* `W` – disturbance set
+* `V` – noise set
+* `vVec` – noise offset
+
+## Hypotheses
+* none
+
+## Conclusion
+* the returned system is in canonical form
+
 ## References
 
 * [1] `contDynamics/@linearSys/isCanonicalForm.m`

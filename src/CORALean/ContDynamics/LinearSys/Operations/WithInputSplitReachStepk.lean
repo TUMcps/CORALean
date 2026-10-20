@@ -19,6 +19,16 @@ Alg. 2's accumulated set, one set for the whole window since `0 ∈ Ũ`.
 The paper subtracts `P̃(r)` from the first window and adds `P̃(t_{k+1})` back;
 adding `P̃(t_k)` alone is the same sum without the subtraction.
 
+## Inputs
+* `sys` – linear system with split input
+* `Δt` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `k` – window index
+
+## Output
+* set over the window with the split input
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

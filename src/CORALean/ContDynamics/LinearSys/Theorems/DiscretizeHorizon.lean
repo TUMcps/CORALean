@@ -11,6 +11,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 `IsTrajectoryOn K`, not a total `IsTrajectory` — nothing pins `x` or `u` past step
 `K`, which is what lets `reach_outer_horizon` answer for a run over `[0, KΔt]`
 without asking for all of forward time.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+* `K` – number of steps
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the horizon
+* `hU` – input set bounded
+* `hUd` – step inputs before the horizon lie in the sampled input set
+
+## Conclusion
+* the run sampled over the horizon is a trajectory of the sampled system
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,16 @@ What a constant input contributes over a step, `∫₀ʳ e^{A(r-s)} u ds`, is wi
 `(e^{r‖A‖} - 1 - r‖A‖)/‖A‖ · ‖u‖` of `r u`: the first of the two terms the proof of
 [1, Lemma 1] bounds.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+
+## Hypotheses
+* `hr` – step length nonnegative
+
+## Conclusion
+* the integrated exponential is the step times the identity up to the second-order remainder
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

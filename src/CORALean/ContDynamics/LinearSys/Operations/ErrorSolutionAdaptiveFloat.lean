@@ -14,6 +14,16 @@ float order boxes (`inputTaylorSumFloat`), the float remainder box
 `intervalInputRemainder`, which holds `adaptiveRemainder`, and the float `adaptiveIntegral`.
 Without a static set this is `inputSolutionFloat` itself.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `η` – Taylor order
+* `Vdyn` – dynamic noise zonotope
+* `Vstat` – optional static noise zonotope
+
+## Output
+* float error solution zonotope of the adaptive scheme
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

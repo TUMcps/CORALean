@@ -16,6 +16,28 @@ point: `A x_j + B u_j + c = dx_j`. Nothing about lower ranks, nor about data no 
 produced.
 The source is [1].
 
+## Inputs
+* `x` – state data
+* `dx` – state derivative data
+* `u` – input data
+* `V` – singular vectors over the state-input space
+* `s` – singular values
+* `W` – singular vectors over the data points
+* `A'` – true system matrix
+* `B'` – true input matrix
+* `c'` – true offset
+* `j` – data point
+
+## Hypotheses
+* `hX1` – data matrix has the given decomposition
+* `hV` – state-input singular vectors orthonormal
+* `hW` – data singular vectors orthonormal
+* `hs` – singular values nonzero
+* `hdata` – data follows the true system
+
+## Conclusion
+* the candidate reproduces the derivative of each data point
+
 ## References
 
 * [1] `contDynamics/@linearSys/private/priv_identifyDMD.m`

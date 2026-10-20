@@ -17,20 +17,29 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # The interpolation error lies in the correction matrix
 
-[1, Prop. 3.1]. Orders `2` through `η` are kept exactly, each contributing the
-interval between `corrTerm` and zero; everything past `η` goes into the same
-remainder that bounds the exponential. Substituting `t = s·r` turns order `i`
-into `r^i (s^i - s)`, which `corrCoeff` bounds exactly, so the finite part is as
-tight as [1] claims.
+[1, Prop. 3.1]. Orders `2` through `η` are kept exactly, each contributing the interval between
+`corrTerm` and zero (`corrCoeff` bounds `r^i (s^i - s)` for `t = s·r`); everything past `η` goes
+into the remainder that bounds the exponential. The tail is not as tight: for
+`E(t) = [-1,1]Φ(t)`, [1] concludes `E(t) - (t/r)E(r) ⊆ E(r)` by pulling a *single* `[-1,1]` out
+of both remainders; as independent interval matrices the difference has radius
+`Φ(t) + (t/r)Φ(r)`, twice what `E(r)` allows at `t = r`. What holds (`ExpDiff`) is that the
+remainders share `A^i` term by term: never splitting them leaves one series, and
+`|t^i - t·r^(i-1)| ≤ r^i` bounds it by `∑_{i>η} ‖A‖^i r^i / i!`.
 
-The tail is not. For `Φ(t)` the scalar tail bound and `E(t) = [-1,1]Φ(t)`, [1]
-concludes `E(t) - (t/r)E(r) ⊆ E(r)` by pulling a *single* `[-1,1]` out of both
-remainders; read as two independent interval matrices that difference has radius
-`Φ(t) + (t/r)Φ(r)`, twice what `E(r)` allows at `t = r`. What does hold, and what
-`ExpDiff` sets up, is that the two remainders share `A^i` term by term: never
-splitting them leaves one series, and `|t^i - t·r^(i-1)| ≤ r^i` on `[0,r]` bounds
-it by `∑_{i>η} ‖A‖^i r^i / i!`, the proposition's own bound. CORA argues the
-integrated remainder `Ê` the same way in `Documentation/inputErrorBounds`.
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `m` – Taylor order offset
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the interpolation error of the exponential lies in the correction matrix
 
 ## References
 

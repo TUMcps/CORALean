@@ -14,6 +14,17 @@ public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 second is inside the polytope it converts, wherever its box lies.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `Bx` – conversion box
+* `P` – float polytope
+* `ZW` – float disturbance zonotope
+
+## Hypotheses
+* `hker` – equality rows of the polytope vanish on the zonotope
+
+## Conclusion
+* the float conversion lies inside the eroded polytope
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

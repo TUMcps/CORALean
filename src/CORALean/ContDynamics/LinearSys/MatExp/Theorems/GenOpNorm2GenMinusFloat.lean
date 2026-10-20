@@ -13,6 +13,18 @@ For a matrix `E = e^{AΔt}` that `[e^{AΔt}]` holds, the true generators `(E - I
 of the float ones. This is the float upper bound on `genOpNorm₂` that [1]'s `Δε^h_k`, eq. (23),
 needs.
 
+## Inputs
+* `p` – norm exponent
+* `eA` – float exponential enclosure
+* `E` – member matrix
+* `H` – float state zonotope
+
+## Hypotheses
+* `hE` – member lies in the exponential enclosure
+
+## Conclusion
+* the true generators' operator norm is under the float bound
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

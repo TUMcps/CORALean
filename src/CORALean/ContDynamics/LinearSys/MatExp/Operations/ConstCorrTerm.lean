@@ -12,6 +12,16 @@ public import CORALean.Global.Tensor
 as `corrTerm`, one factorial further along and one matrix power back, which is what
 integrating each order of the exponential does to it.
 
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `i` – order index
+* `j` – row index
+* `k` – column index
+
+## Output
+* contribution of the order to the integrated correction entry
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

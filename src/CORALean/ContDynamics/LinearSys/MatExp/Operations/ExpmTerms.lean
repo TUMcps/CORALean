@@ -14,6 +14,14 @@ The finite part of CORA's `@intervalMatrix/expm`, before the remainder is added:
 of order zero to two, `H` of `dependentTerms` run on `intMat * (1/r)` with step `r`, plus the
 terms `iPow{i} / i!` for `i = 3 … maxOrder`, where the powers start from the exact square and
 multiply by `intMat` on the right. `expmMixed` stops this sum at its intermediate order.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Output
+* Taylor terms of the exponential before the remainder is added
 -/
 
 -- Authors:       Claude Sonnet 5.5

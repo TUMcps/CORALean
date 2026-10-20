@@ -13,13 +13,26 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 A correct form of [1, Cor. IV.2]: for `U = (c_u, g⁽¹⁾_u, …, g⁽q⁾_u)`, `R_p(δ)` lies in the sum
 over `j = 1, …, η + 1` of the zonotopes
-`(P Ṽ(c_u)H̃ʲ(c_u)e₁ δʲ/j!, P Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)e₁ δʲ/j!)`, whose sum is [1]'s
-`(c̃_u, g̃⁽ⁱ'ʲ⁾_u)` by (4), plus the remainder of Althoff's thesis [2, Thm. 3.1] in place of
-[1]'s `R_p,err`, below the Krylov order `η + 1 ≤ m` (Alg. 1 run `m + 1` passes).
-There [1]'s splitting of `{Ṽ(u)H̃ʲ(u) | u ∈ U}` into center and generators holds: after `P`
-and `e₁` the Krylov term is `A^{j-1}u` (`augment_arnoldi_pow`), linear in `u`, so the image of
-the zonotope is the zonotope of the images. [1]'s `R_p,err` fails
+`(P Ṽ(c_u)H̃ʲ(c_u)e₁ δʲ/j!, P Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)e₁ δʲ/j!)`, plus the remainder of Althoff's
+thesis [2, Thm. 3.1] in place of [1]'s `R_p,err`, below the Krylov order `η + 1 ≤ m`. There [1]'s
+splitting into center and generators holds: after `P` and `e₁` the Krylov term is `A^{j-1}u`
+(`augment_arnoldi_pow`), linear in `u`. [1]'s `R_p,err` fails
 (`varying_input_reach_counterexample`).
+
+## Inputs
+* `A` – system matrix
+* `Z` – input zonotope
+* `δ` – step length
+* `η` – Taylor order
+* `m` – Krylov order
+
+## Hypotheses
+* `hδ` – step length positive
+* `hηm` – Taylor order below the Krylov order
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the input solution lies in the Krylov zonotopes plus the remainder
 
 ## References
 

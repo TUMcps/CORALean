@@ -8,16 +8,32 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
 /-!
 # `Alg. 2` keeps both accumulated errors inside their shares, at every step
 
-Eq. (33)'s `ε^a_{k+1} = ε^a_k + Δε^a_k` and eq. (28)'s `ε^r_{k+1} = ε^r_k + Δε^r_k` are the
-two accumulations line 29 carries, and eq. (36)/(35) are the shares of `ε_max` they may
-occupy at `t_k`. This is the invariant [1] maintains across the loop rather than proves:
-along every run, `ε^a_k ≤ (t_k/t_end)(1-ζ)ε_max` and `ε^r_k ≤ (t_k/t_end)ζε_max`.
-
-What keeps them there is *not* the accumulation but the two checks the tuning stops on.
-Line 14 measures `Δε^a_k` against `ε^{a,τ}_k = (t_{k+1}/t_end)(1-ζ)ε_max - ε^a_k`, already
-net of what has accumulated, and line 22 measures `Δε^r_k(ρ_k)` against line 19's
-`ε^{r,τ}_k = (t_{k+1}/t_end)ζε_max - ε^r_k` likewise; so each step re-establishes its own
+Eq. (33)'s `ε^a_{k+1} = ε^a_k + Δε^a_k` and eq. (28)'s `ε^r_{k+1} = ε^r_k + Δε^r_k` are the two
+accumulations line 29 carries, and eq. (36)/(35) are the shares of `ε_max` they may occupy at `t_k`.
+This is the invariant [1] maintains across the loop rather than proves: along every run,
+`ε^a_k ≤ (t_k/t_end)(1-ζ)ε_max` and `ε^r_k ≤ (t_k/t_end)ζε_max`. What keeps them there is the two
+checks the tuning stops on: line 14 measures `Δε^a_k` against
+`ε^{a,τ}_k = (t_{k+1}/t_end)(1-ζ)ε_max - ε^a_k`, already net of what has accumulated, and line 22
+measures `Δε^r_k(ρ_k)` against line 19's `ε^{r,τ}_k` likewise; so each step re-establishes its own
 bound outright and the induction carries nothing but the time and the step size.
+
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Hypotheses
+* `hle` – comparison oracle is sound
+* `htend` – final time positive
+
+## Conclusion
+* both accumulated errors stay within their shares at every step
 
 ## References
 

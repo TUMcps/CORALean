@@ -14,6 +14,14 @@ matrix: the power as `matPow`, the scalar as `taylorCoeffBounds`, and the two
 joined by `smul`. The float counterpart of `LinearSys.inputTerm` at a point
 (a point box) and of `LinParamSys.inputTerm` at a set.
 
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `i` – order index
+
+## Output
+* float interval matrix of the input solution's order term
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

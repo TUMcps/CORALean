@@ -12,6 +12,29 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExact
 together, through `timeIntervalReachSetExact_eq_iUnion`: the per-time statement and
 this one carry the same content, but this one names no time at all, which is
 the point of having `timeIntervalReachSetExact` in the first place.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `m` – Taylor order offset
+
+## Hypotheses
+* `hr` – step length positive
+* `hT` – step lies in the time domain
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin in the input set
+
+## Conclusion
+* the interval reach set lies in the computed step enclosure plus input solution
 -/
 
 -- Authors:       Claude Opus 5

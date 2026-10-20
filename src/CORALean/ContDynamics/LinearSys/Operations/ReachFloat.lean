@@ -12,22 +12,22 @@ public import CORALean.Global.Float.ToRat
 /-!
 # Recursive reachability in floats: `R_{k+1} = reduce([e^{AΔt}] R_k, ρ)`
 
-[1, Alg. 4] at a point matrix, no input, in `𝕋` — CORA's `linAlg = 'standard'`,
-`X₀ = params.X₀`, `Δt`, `η`, `ρ` the `options`' `Δt`, `η`,
-`ρ`, `N = (tFinal - tStart) / Δt` by `Reach.steps`, `none` unless a
-natural number: time-point sets `R_0 = X₀, …, R_N` by `timePointStepFloat` and
-Girard's reduction to order `ρ`, window `k < N` by `timeIntervalStepFloat` from
-`R_k`, not reduced; nothing is propagated from it.
+[1, Alg. 4] at a point matrix, no input, in `𝕋`, CORA's `linAlg = 'standard'`: `X₀ = params.X₀`,
+`Δt`, `η`, `ρ` the `options`', `N = (tFinal - tStart) / Δt` by `Reach.steps`, `none` unless a
+natural number. Time-point sets `R_0 = X₀, …, R_N` by `timePointStepFloat` and Girard's reduction
+to order `ρ`, window `k < N` by `timeIntervalStepFloat` from `R_k`, not reduced. The error box is
+never folded into a generator: `mtimesIntervalMat` multiplies it by the interval matrix every
+step and `reduce` keeps it, so the box holds rounding alone and wraps (it grows with the matrix's
+norm step after step), the effect `reachWrappingFreeFloat` avoids. The two matrices are computed
+once, `η` raised as `reachWrappingFreeFloat` raises it, and the steps apply them in place.
 
-The error box is never folded into a generator: `mtimesIntervalMat` multiplies
-it by the interval matrix every step, its width going to `n` new generators as
-in CORA, and `reduce` keeps it, Girard's box becoming `n` generators. So the box
-holds rounding alone and wraps — it grows with the matrix's norm, step after
-step — the effect `reachWrappingFreeFloat` avoids; the generators stay at order `ρ`.
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – reach options
 
-The two matrices are computed once, `η` raised as `reachWrappingFreeFloat` raises it, and
-the steps apply them in place: `timePointStepFloat` and `timeIntervalStepFloat`
-compute them per call, which the compiler does not share across calls.
+## Output
+* windows and time-point sets of the run, if it completes
 
 ## References
 

@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 `expRemainder`: the `E(Δt, η)` of [1] itself, without `inputRemainder`'s extra `r ·`.
 `Theorems/SuperlinearDecreaseExpRemainder` is `Lemma 1` about this.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix of the exponential remainder at the step
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

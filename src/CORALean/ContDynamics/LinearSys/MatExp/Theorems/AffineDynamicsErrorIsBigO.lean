@@ -13,6 +13,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoAffineDynam
 `O(Δt)` and not better: the curvature term `2·err(C)` is `O(Δt²)` whenever `η ≥ 1`, but
 `‖G^{(-)}_h‖₂ = ‖(e^{AΔt} - I)G_h‖₂` is only linear, and it is what the rate is.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine dynamics error is of the order of the step as it shrinks to zero
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

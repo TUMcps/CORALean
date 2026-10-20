@@ -13,6 +13,18 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 substituted primitive is what both `closedForm_continuousOn` and
 `variation_of_constants` read off, the first for its continuity in `ρ`, the
 second to cancel `e^{ρA}` against `e^{-ρA}`.
+
+## Inputs
+* `sys` – linear system
+* `x0` – initial point
+* `u` – input signal
+* `ρ` – time
+
+## Hypotheses
+* `hint` – integrand interval integrable
+
+## Conclusion
+* the closed form has the exponential outside the integral
 -/
 
 -- Authors:       Claude Opus 5.5

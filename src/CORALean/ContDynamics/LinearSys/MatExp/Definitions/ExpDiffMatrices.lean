@@ -12,6 +12,14 @@ public import Mathlib.Analysis.SpecialFunctions.Exponential
 correction matrix of [2] (`MatExp.correctionMatrix`); the weight `s` stands for `t/r` and cannot be
 dropped, since `(e^{Ar} - I + F) Z` alone misses `Δx(0) = 0`.
 
+## Inputs
+* `A` – system matrix
+* `r` – interval end
+* `m` – Taylor order offset
+
+## Output
+* matrices enclosing the variation of a point over the interval
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

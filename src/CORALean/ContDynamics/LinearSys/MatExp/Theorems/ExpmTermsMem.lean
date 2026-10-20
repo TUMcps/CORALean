@@ -17,6 +17,19 @@ The terms of order zero to two are `H`: the scaled member `M / r` at step `r` ha
 `I + (M/r) r + ½ (M/r)² r² = I + M + ½ M²`, the square of `M` is in the scaled-back exact square,
 and the later terms are the right-multiplied powers from it (`powers_outer`), added one at a time
 (`foldl_plus_mem`).
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `k` – order offset
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonzero
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's Taylor sum lies in the terms enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

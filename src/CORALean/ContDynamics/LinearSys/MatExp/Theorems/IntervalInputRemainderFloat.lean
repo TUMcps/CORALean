@@ -14,6 +14,20 @@ The exact `Real.MatExp.inputRemainder M r η` at any member `M`, as a set, sits
 inside the float box: its width `r · E(r M)` is below `r` times the float
 remainder bound (`expRemainderBound_le` at `norm_smul_le_normUpperBound`),
 rounded up. `hε` asks `1/2`, as every float remainder bound does.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's input remainder lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5

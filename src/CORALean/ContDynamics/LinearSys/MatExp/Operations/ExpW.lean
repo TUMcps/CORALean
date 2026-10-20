@@ -11,6 +11,13 @@ public import Mathlib.Data.Matrix.Mul
 `expW`: [1, Prop. 4]'s `W(t) = M t + ½ M² t²` at one matrix, which is orders one and two
 of `expTaylor (t • M)`.
 
+## Inputs
+* `M` – matrix
+* `t` – time
+
+## Output
+* second-order Taylor term of the exponential at the matrix
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

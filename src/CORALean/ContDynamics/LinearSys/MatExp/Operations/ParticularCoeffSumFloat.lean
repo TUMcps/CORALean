@@ -14,6 +14,14 @@ of eq. (25) in [1, Prop. 11] applies to `U0` once, as a float interval matrix ho
 every member of `A`. Each `Ãᵢ` is `intervalInputTerm`, the sum one `matPlus` per order,
 stored as it is built; an empty range is the point `0`.
 
+## Inputs
+* `A` – float interval matrix
+* `Δt` – float step length
+* `i0` – start index
+
+## Output
+* float interval matrix of the coefficient sums by upper index
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

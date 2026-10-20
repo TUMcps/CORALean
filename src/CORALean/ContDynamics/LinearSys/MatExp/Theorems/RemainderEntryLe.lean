@@ -16,6 +16,23 @@ by.
 
 Entrywise, an entry never exceeding the norm — the bound is on a norm, and
 nothing sharper per entry is available.
+
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `τ` – time
+* `η` – Taylor order
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `hr` – step length positive
+* `hτ0` – time nonnegative
+* `hτr` – time within the step
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* every entry of the remainder is within the step's bound
 -/
 
 -- Authors:       Claude Opus 5

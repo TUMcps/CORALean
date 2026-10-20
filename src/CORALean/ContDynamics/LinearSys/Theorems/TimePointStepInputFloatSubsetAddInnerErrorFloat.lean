@@ -22,6 +22,22 @@ the system reaches at `t = r` (`discretize_reachSetExact_subset_inputReach`).
 
 `timePointStepInputFloat_subset_add_excess` does the step; what is left is
 `X₀`'s own error box, which `e^{Ar}` carries into `[e^{Ar}]` applied to it.
+
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hη` – order admissible
+* `hX₀` – initial error box contains zero
+* `hU` – input error box contains zero
+
+## Conclusion
+* the float step lies in the exact held-input step widened by the budget
 -/
 
 -- Authors:       Claude Opus 5.5

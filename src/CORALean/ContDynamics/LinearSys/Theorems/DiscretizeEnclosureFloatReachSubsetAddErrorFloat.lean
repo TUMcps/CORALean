@@ -15,20 +15,32 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # A float sampled run lies in the exact held-input sampled set, plus its budget
 
 The budget theorem of `reachInnerRepFloat`, and the float counterpart of
-`reach_subset_discretize_reachSetExact_add_error`: the float run
-`discretizeEnclosureFloat`'s `reach`, with `inputSolutionFloat` as its input
-set, lies after `k` steps in the exact held-input sampled set — the sampled
-system `discretize Δt` from `R₀`'s nominal zonotope, under the held-input
-contribution `(∫₀^Δt e^{As} ds) U` of `U`'s nominal zonotope — widened by
-`reachErrorFloat`.
+`reach_subset_discretize_reachSetExact_add_error`: the float run `discretizeEnclosureFloat`'s
+`reach`, with `inputSolutionFloat` as its input set, lies after `k` steps in the exact held-input
+sampled set (`discretize Δt` from `R₀`'s nominal zonotope, under `(∫₀^Δt e^{As} ds) U` of `U`'s
+nominal zonotope) widened by `reachErrorFloat`. By induction on `k`: a step peels the reduction's
+box (`reduce_subset_add_box`), then the float step against the exact held-input step
+(`timePointStepInputFloat_subset_add_excess`); the induction hypothesis splits the previous float
+point into the exact set, the run's excess and the input errors.
 
-By induction on `k`. A step peels, in the order the run applies them, the
-reduction's box (`reduce_subset_add_box`), then the float step against the exact
-held-input step (`timePointStepInputFloat_subset_add_excess`); the induction
-hypothesis splits the previous float point into the exact set, the run's excess
-and the input errors, and `e^{AΔt}` carries the last two into `[e^{AΔt}]` applied
-to them, a member of which it is.
+## Inputs
+* `sys` – linear system
+* `Δt` – float sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – number of steps
 
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order admissible
+* `ho` – zonotope order positive
+* `hR₀` – initial error box contains zero
+* `hU` – input error box contains zero
+
+## Conclusion
+* the float sampled run lies in the exact held-input sampled set widened by its budget
 -/
 
 -- Authors:       Claude Opus 5.5

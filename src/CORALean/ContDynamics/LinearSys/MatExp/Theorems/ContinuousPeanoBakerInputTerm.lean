@@ -12,6 +12,18 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 Each is a primitive of a function integrable over every window — the input itself
 at order `0`, then `A(σ)` against the continuous term one order down — and a
 primitive of a locally integrable function is continuous.
+
+## Inputs
+* `A` – matrix-valued function of time
+* `u` – input signal
+* `k` – term index
+
+## Hypotheses
+* `hA` – entries of the matrix function integrable
+* `hu` – input integrable
+
+## Conclusion
+* the Peano–Baker input term is continuous in time
 -/
 
 -- Authors:       Claude Opus 5.5

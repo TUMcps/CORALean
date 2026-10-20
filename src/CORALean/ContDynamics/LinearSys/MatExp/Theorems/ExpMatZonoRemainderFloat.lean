@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 # Every matrix within the bound lies in the float remainder box
 
 Entry by entry, `abs_le` against `[-b, b]`.
+
+## Inputs
+* `b` – float entry bound
+* `D` – matrix
+
+## Hypotheses
+* `hD` – entries within the bound
+
+## Conclusion
+* the matrix lies in the float remainder box
 -/
 
 -- Authors:       Claude Opus 5.5

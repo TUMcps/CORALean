@@ -13,6 +13,18 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
 caller supplies no `hη` and no `hε`: `reachOrder_admissible` gives `hε`
 directly at that raised order, and `2 ≤ max η (reachOrder Δt + 2)` is
 immediate. `LinearSys.reachInstance` states its guarantee through this.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+
+## Hypotheses
+* `htFinal` – horizon positive
+* `hΔt` – step length positive
+
+## Conclusion
+* the exact reach lies in the admissible-order reach
 -/
 
 -- Authors:       Claude Opus 5.5

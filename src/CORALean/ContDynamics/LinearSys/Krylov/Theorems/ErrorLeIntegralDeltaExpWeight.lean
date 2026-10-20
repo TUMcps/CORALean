@@ -19,6 +19,23 @@ e^{(s-t)ν}` (`Krylov.norm_exp_neg_smul_mulVec_le`). Stated for any real `ν` wi
 `V_k`, `H_k` satisfying (3.1); neither orthonormality nor the Hessenberg form is used. CORA's
 `priv_subspace_Krylov_individual_Wang` sums this integrand.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `w` – next vector
+* `ν` – lower bound on the field of values
+* `t` – time
+
+## Hypotheses
+* `hK` – Krylov identity holds
+* `hA` – real part of the Rayleigh quotient at least the lower bound
+* `ht` – time nonnegative
+
+## Conclusion
+* the Arnoldi error is at most a weighted integral of the defect bound
+
 ## References
 
 * [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix

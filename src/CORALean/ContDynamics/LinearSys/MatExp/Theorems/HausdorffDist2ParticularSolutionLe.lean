@@ -10,16 +10,31 @@ public import CORALean.Global.EuclideanHausdorffDist
 /-!
 # [1, Prop. 11]: the error of eq. (20)'s particular solution, propagated by `e^{At_k}`
 
-`P^U(Δt)` is squeezed between [1]'s own inner-approximation `qP^U(Δt) = (∫₀^{Δt}e^{A(Δt-θ)}dθ)U0`
-— constant inputs, `MatExp.expIntegral` — and eq. (20)'s `bPU(Δt)`, and those two inclusions are
-all [1]'s proof uses of it, so they are what this theorem asks for. `Real.MatExp.expIntegral_mulVec`
-and `LinearSys.expIntegral_mem_inputReach` discharge the first for the exact `P^U(Δt)`; the second
-is eq. (20)'s soundness, which [1] cites to Althoff's thesis rather than proving.
+`P^U(Δt)` is squeezed between [1]'s inner-approximation `qP^U(Δt) = (∫₀^{Δt}e^{A(Δt-θ)}dθ)U0`
+(constant inputs, `MatExp.expIntegral`) and eq. (20)'s `bPU(Δt)`; those two inclusions are all
+[1]'s proof uses, so this theorem asks for them. `Real.MatExp.expIntegral_mulVec` and
+`LinearSys.expIntegral_mem_inputReach` discharge the first for the exact `P^U(Δt)`; the second
+is eq. (20)'s soundness, which [1] cites. The witness is more direct than [1]'s two-step
+triangle inequality: for `Δtx₀ ⊕ r ∈ bPU(Δt)` the nearby exact point is `qP^U`'s own at the
+*same* `x₀`, whose gap `(Σ_{i≥1}Ãᵢ)x₀` is eq. (25)'s *correlated* summand and `r` its
+decorrelated one; the tail past `η` is `MatExp.abs_particularTail_entry_le`.
 
-The witness is more direct than [1]'s own two-step triangle inequality: for `Δtx₀ ⊕ r ∈ bPU(Δt)`
-the nearby exact point is `qP^U`'s own `(∫₀^{Δt}e^{A(Δt-θ)}dθ)x₀` at the *same* `x₀`, whose gap
-`(Σ_{i≥1}Ãᵢ)x₀` is eq. (25)'s *correlated* summand and `r` its decorrelated one. The tail past `η`
-is `MatExp.abs_particularTail_entry_le`, which is where `E(Δt,η)Δt` enters.
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `Δt` – step length
+* `η` – Taylor order
+* `P` – intermediate set
+
+## Hypotheses
+* `hU0` – input set bounded
+* `hΔt` – step length positive
+* `hinner` – inner approximation lies in the intermediate set
+* `houter` – intermediate set lies in the outer approximation
+
+## Conclusion
+* the propagated Hausdorff distance is at most the particular solution error
 
 ## References
 

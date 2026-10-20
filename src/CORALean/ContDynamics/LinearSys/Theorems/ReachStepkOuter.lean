@@ -15,6 +15,24 @@ inner point `e^{A k Δt} x₀` is in `timePoint Δt X₀ k` by `timePoint_outer`
 `e^{As} (e^{A k Δt} x₀) = e^{At} x₀` in `reachStepk Δt η X₀ k =
 timeIntervalStep Δt η (timePoint Δt X₀ k)`. The statement is
 `reachStepkWrappingFree_outer`'s, word for word.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `X₀` – initial set
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hη` – order at least two
+* `hε` – scaled norm small enough for the Taylor order
+* `hkt` – time at least the window start
+* `htk` – time within the window
+
+## Conclusion
+* the exponential image of the initial set lies in the window's set
 -/
 
 -- Authors:       Claude Opus 5.5

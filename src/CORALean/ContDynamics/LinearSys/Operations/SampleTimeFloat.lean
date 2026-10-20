@@ -13,6 +13,12 @@ the bracket of `t_{⌊k/2⌋}` and adds `Δt` once more when `k` is odd, roundin
 down on one side and up on the other. `O(log k)` additions, each sound at any
 sign of `Δt` — `addDown`/`addUp` bound a sum whatever its terms — and each
 window's bracket computed from `k` alone, independent of every other window.
+
+## Inputs
+* `Δt` – float step length
+
+## Output
+* float interval bracketing the sample time of a given index
 -/
 
 -- Authors:       Claude Opus 5.5

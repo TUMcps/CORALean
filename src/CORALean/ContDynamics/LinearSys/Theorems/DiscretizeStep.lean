@@ -13,6 +13,25 @@ Variation of constants over `[kΔt, (k+1)Δt]`, where the propagator is
 `e^{AΔt}` whatever `k` is: every bounded-horizon statement is this iterated, so
 it is stated apart from `discretize`, which needs every step at once. The domain
 reaches back to `0`, where the integral equation is anchored.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+* `k` – step index
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hU` – input set bounded
+* `hT` – time domain contains the window
+
+## Conclusion
+* the state one step on is the sampled matrix times the state plus the step input
 -/
 
 -- Authors:       Claude Opus 5

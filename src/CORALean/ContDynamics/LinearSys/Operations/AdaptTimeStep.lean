@@ -12,6 +12,24 @@ then run `adaptTimeStepSearch`. Line 12's connective is `∨` here; see the
 `Alg. 2` finding on the reference page. `noncomputable` only because ℝ
 arithmetic is.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `εHmax` – maximal homogeneous error
+* `εPmax` – maximal particular error
+* `εPacc` – accumulated particular error
+* `tf` – final time
+* `ti` – step start time
+* `Δtprev` – previous step length
+* `μ` – shrink factor
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+
+## Output
+* step size, order and accumulated particular error, if one is found
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

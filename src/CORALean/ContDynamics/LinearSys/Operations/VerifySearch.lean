@@ -12,6 +12,26 @@ Line 1 of `[1, Alg. 3 (search)]` — `i ← 1`, `ℓ₁ ← I_n(·,1)`, `Δt ←
 functional, written as a sum over the coordinates so that dimension `0` needs no case; `k = 1`
 because `Δt = t`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial set
+* `U` – input set
+* `t` – time
+* `η` – Taylor order
+* `ρ` – support function oracle
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `νL` – support vector map of the specification set
+* `νhat` – support vector map of the outer approximation
+* `ρL` – support function of the specification set
+* `inHull` – origin-in-hull test
+* `closestFacet` – closest facet finder
+* `gramSchmidt` – orthogonal direction finder
+* `fuel` – number of iterations
+
+## Output
+* answer of the first exit reached, or undecided
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

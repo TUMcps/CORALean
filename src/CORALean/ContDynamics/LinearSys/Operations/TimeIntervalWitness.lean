@@ -16,6 +16,23 @@ turns a witness for a subset into a witness for the superset it sits in — the
 opposite of `LinearSys.timeIntervalBound`, which needs a set-level enclosure
 to shrink an upper bound the other way.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – step length
+* `t` – time
+* `c` – direction
+* `w` – support witness at the time
+
+## Hypotheses
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Output
+* support witness for the whole step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

@@ -12,6 +12,12 @@ by `nsmulUp`: `k` multiplications rather than the `k!` additions a count of
 copies would take, and never below `k!`, both factors being nonnegative upper
 bounds, so it is safe to divide by — `Theorems/InvFactorialBoundsFloat` is where
 that division happens.
+
+## Inputs
+* none
+
+## Output
+* float upper bounds of the factorials
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -19,6 +19,17 @@ bound is replaced by its rounded bracket, and the corner hull of two brackets ho
 product of the two reals they hold.
 
 The time is a float `t`, read as `toReal t`.
+
+## Inputs
+* `A` – float interval matrix
+* `t` – float time
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's second-order term lies in the float interval matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,20 @@ runs reach (`reachSetExact_eq`): the integral equation admits every measurable i
 So nothing needs the derivative of `MatExp.expIntegral`: the held input the
 inner approximation is built on is one admissible input, and its run is a
 `IsTrajectory` by `closedForm_flow`.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the step's end minus its error ball lies in the exact reach set
 -/
 
 -- Authors:       Claude Opus 5.5

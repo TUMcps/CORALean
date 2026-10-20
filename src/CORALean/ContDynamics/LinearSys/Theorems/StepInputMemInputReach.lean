@@ -15,6 +15,23 @@ Step `k`, shifted to start at zero (`stepInput_eq_shifted`), is the integral
 the step and is measurable there, translation preserving Lebesgue measure. So
 any enclosure of `inputReach` encloses every step's input, which is how a float
 input solution, guaranteed against `inputReach`, becomes a sampled one.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – step length
+* `k` – step index
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hT` – step lies in the time domain
+
+## Conclusion
+* the step's input contribution lies in the input reach over one step
 -/
 
 -- Authors:       Claude Opus 5.5

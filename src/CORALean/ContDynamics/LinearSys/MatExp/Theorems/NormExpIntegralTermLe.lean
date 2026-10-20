@@ -9,18 +9,25 @@ public import Mathlib.Tactic.Positivity
 /-!
 # One order of the integrated exponential, in terms of the exponential's own
 
-`expIntegral` is the exponential integrated once over `[0, r]`, so its order `i`
-carries `r^{i+1}/(i+1)!` where the exponential carries `r^i/i!`. One factor of
-`r` comes out in front and what is left is the exponential's order `i` at `r A`,
-which is why `inputRemainder`'s radius is `r · expRemainderBound (r A) η` and
-not a bound of its own.
+`expIntegral` is the exponential integrated once over `[0, r]`, so its order `i` carries
+`r^{i+1}/(i+1)!` where the exponential carries `r^i/i!`. One factor of `r` comes out in front and
+what is left is the exponential's order `i` at `r A`, which is why `inputRemainder`'s radius is
+`r · expRemainderBound (r A) η` and not a bound of its own. The extra factorial is dropped:
+`(i+1)! ≥ i!` makes this the exponential's order at the same index and not a tighter one, which
+the step size in front already pays for. Only orders `1` and up, `‖A^i‖ ≤ ‖A‖^i` being false at
+`i = 0`, where the power is the identity and the operator norm bounds nothing.
 
-The extra factorial is dropped rather than kept: `(i+1)! ≥ i!` makes this the
-exponential's order at the same index and not a tighter one, which is what the
-step size in front already pays for.
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `j` – order index
 
-Only orders `1` and up, `‖A^i‖ ≤ ‖A‖^i` being false at `i = 0`, where the power
-is the identity and the operator norm bounds nothing.
+## Hypotheses
+* `hr` – step length nonnegative
+* `hj` – order at least one
+
+## Conclusion
+* one integrated term is under the step times the exponential's own term
 -/
 
 -- Authors:       Claude Opus 5

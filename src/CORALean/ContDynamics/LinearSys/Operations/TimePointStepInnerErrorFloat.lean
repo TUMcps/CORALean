@@ -10,21 +10,24 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # What a float step owes, for an inner approximation
 
-The budget `timePointStepInnerRepFloat` takes off the float step
-`timePointStepInputFloat`: everything the float step holds beyond the exact
-held-input step `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U` at the nominal zonotopes of `X₀`
-and `U`. Three parts:
+The budget `timePointStepInnerRepFloat` takes off the float step `timePointStepInputFloat`:
+everything the float step holds beyond the exact held-input step `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`
+at the nominal zonotopes of `X₀` and `U`. Three parts: `[e^{Ar}]` applied to `X₀`'s error box, which
+the exact step at `X₀`'s nominal zonotope does not see; `timePointStepExcessFloat`, what floats add
+to the step; and `timePointStepErrorBoxFloat`, what the exact input solution holds beyond the held
+input. `timePointStepInputFloat_subset_add_innerErrorFloat` is the guarantee. Every part is an outer
+enclosure computed in `𝕋`, so the budget only errs large, which costs an inner approximation
+precision and never soundness.
 
-* `[e^{Ar}]` applied to `X₀`'s error box, which the exact step at `X₀`'s nominal
-  zonotope does not see;
-* `timePointStepExcessFloat`, what floats add to the step;
-* `timePointStepErrorBoxFloat`, what the exact input solution holds beyond the
-  held input.
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `η` – Taylor order
+* `X₀` – initial float zonotope
+* `U` – input float zonotope
 
-`timePointStepInputFloat_subset_add_innerErrorFloat` is the guarantee: the float
-step lies in the exact held-input step plus this budget. Everything is computed
-in `𝕋` and every part is an outer enclosure, so the budget only errs large,
-which costs an inner approximation precision and never soundness.
+## Output
+* float zonotope of what the float step holds beyond the exact held-input step
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,23 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
 exact reachable set violates a safe or an unsafe set, since the inner approximation, which it
 contains, does.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax` – float maximal error
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hfalse` – the iteration's distance test fails
+
+## Conclusion
+* the specification does not hold
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

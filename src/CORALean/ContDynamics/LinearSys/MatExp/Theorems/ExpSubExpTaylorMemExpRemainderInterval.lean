@@ -17,6 +17,17 @@ The right-hand side is `expRemainderMat`, and the chain is the printed one: each
 remainder is the series' tail, its terms bounded by those of the `|A|` series,
 `abs_pow_entry_le_absMat_pow_entry`, whose tail is `hasSum_expRemainderMat_entry`.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+* `η` – Taylor order
+
+## Hypotheses
+* `ht` – time nonnegative
+
+## Conclusion
+* the Taylor remainder lies in the remainder interval
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in

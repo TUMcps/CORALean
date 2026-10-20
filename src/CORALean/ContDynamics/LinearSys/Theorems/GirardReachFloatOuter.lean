@@ -31,6 +31,23 @@ the segment from `z` to `e^{rA} z` at `t/r`, which `conv(I, [e^{rA}] I)` holds, 
 float `α_r` and `β_r` bound the real ones because `e^x - 1 - x` grows with `x ≥ 0` and
 `(e^{ra} - 1)/a` with `a > 0`, the latter by the convexity of `exp`.
 
+## Inputs
+* `sys` – linear system
+* `I` – initial float zonotope
+* `U` – input float zonotope
+* `μ` – float input norm bound
+* `r` – float step length
+* `T` – time horizon
+
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length positive
+* `hμ` – input bound nonnegative
+* `hU` – input values have norm at most the bound
+
+## Conclusion
+* every state a run reaches over the horizon lies in some float zonotope
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

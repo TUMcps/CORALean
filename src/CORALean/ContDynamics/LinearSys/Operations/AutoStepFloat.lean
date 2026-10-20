@@ -20,20 +20,26 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `autoStep` computed in `𝕋`. `autoTuneDeltaTFloat` picks `Δt_k`, `η_k` (lines 5-15),
 `Zonotope.autoTuneSetOrder` picks `ρ_k` (lines 19-22), then one step combines both with the
-affine-dynamics update, lines 16-18 and 23-30. `V` is split `ũ ⊕ U₀` at its stored center
-(line 3). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by scaling and squaring at their float
-brackets, so `H(t_{k+1})` is reached from `X₀` directly, as line 26 reaches it. `P^u(t_{k+1})`,
-a point in [1], is kept as a box. `bPU_0(Δt_k)` is `Δt_k·U₀`, `bPU_∞(Δt_k)` the orders `1 … η_k`
-and the remainder, and `box(·)` (line 17) is `Zonotope.interval` after `Interval.zonotope`.
+affine-dynamics update, lines 16-18 and 23-30. `V` is split `ũ ⊕ U₀` at its stored center (line
+3). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by scaling and squaring at their float brackets,
+so `H(t_{k+1})` is reached from `X₀` directly, as line 26 reaches it. The tuned `(Δt_k, η_k)` is
+checked before it is used (`Δt_k > 0`, `η_k ≥ 2`, `‖Δt_k A‖` admitted, no NaN), so the step is
+sound at any pair the tuning returns (`autoStepFloat_outer`). Line 27 hats an `H(t_k)` no other
+line produces; this uses the unhatted `H`. The curvature `C` is `MatExp.curvatureEnclosure`, floats.
 
-The tuned `(Δt_k, η_k)` is checked before it is used: `Δt_k > 0`, `η_k ≥ 2` and `‖Δt_k A‖`
-admitted at `η_k`, none of them a NaN. So the step is sound at any pair the tuning returns,
-and `autoStepFloat_outer` asks nothing of it.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `tend` – final float time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `s` – float loop state
 
-One correction, as in the real layer: line 27 hats an `H(t_k)` no other line produces, and
-this uses the unhatted `H`, matching Alg. 1's line 8. The curvature `C` is the float
-`MatExp.curvatureEnclosure`, whose `G` is `intervalConstCorrectionMatrix`, not the segment's
-input solution that `manualStepFloat` falls back on.
+## Output
+* next float loop state and time-interval enclosure, if the tuning holds out
 
 ## References
 

@@ -16,6 +16,17 @@ A time `t ∈ [0, tFinal]` falls in a window `τ_k` `reachWrappingFree` keeps
 (`exists_reach_window`), and `reachStepkWrappingFree_outer` puts `e^{At} x₀` in that
 window's set: `e^{At} = e^{A t_k} e^{Aτ}` with `τ = t - t_k ∈ [0, Δt]`. The
 order is `reachWrappingFree`'s own, `reachOrder_admissible`'s.
+
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters
+* `options` – step options
+
+## Hypotheses
+* `hΔt` – step length positive
+
+## Conclusion
+* the exact reach lies in the wrapping-free window sets
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,17 @@ compare a `tsum` of matrices, entry by entry, against another one; both
 `Matrix.linftyOp*`'s norm makes evaluating an entry `1`-Lipschitz, hence
 continuous, so it commutes with any convergent sum.
 
+## Inputs
+* `f` – series terms
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `hf` – series summable
+
+## Conclusion
+* the entry of the sum is the sum of the entries
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

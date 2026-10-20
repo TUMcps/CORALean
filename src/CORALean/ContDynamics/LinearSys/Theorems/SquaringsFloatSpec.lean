@@ -14,6 +14,19 @@ public import Mathlib.Tactic.Positivity
 `nrm ≤ half (η + 2)↓ ≤ (η + 2)/2`, `half` exact and the count rounded down —
 `admissibleOrder_spec`'s argument at the scaled range. The other test, the
 step's norm, is precision and not needed here. `2 ≤ η` is the caller's.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – float step length
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Hypotheses
+* `h2` – order at least two
+
+## Conclusion
+* every returned count makes the scaled range admissible
 -/
 
 -- Authors:       Claude Opus 5.5

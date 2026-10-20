@@ -15,6 +15,20 @@ the Krylov order it is: `P Ṽ(u) H̃ʲ(u) e₁ = A^{j-1} u` (`augment_arnoldi_p
 the linear image `A^{j-1} U / j!` of the convex `U`. At and above the order `ξ` the identity,
 and with it the argument, is gone.
 
+## Inputs
+* `A` – system matrix
+* `U` – input set
+* `m` – Krylov order
+* `j` – power
+
+## Hypotheses
+* `hU` – input set convex
+* `hj1` – power at least one
+* `hj` – power at most the Krylov order
+
+## Conclusion
+* the set of Krylov Taylor terms is convex
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

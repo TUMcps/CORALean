@@ -29,6 +29,21 @@ share by `t_{i+1}` comes apart at `t_i` (`inputReach_separation_subset`) into
 `e^{At_i} p + q`: the bracket is in `[e^{At_i}](HR₀ ⊕ P̃^R ⊕ PR)`, the rest in
 `P(t_i)` by the invariant. The same split at `t_{i+1}` carries the invariant on.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `t₀` – start time
+* `tf` – final time
+* `options` – adaptive options
+* `s` – loop state
+
+## Hypotheses
+* `hinv` – state holds the invariant
+
+## Conclusion
+* the step reaches a later state holding the invariant and its window holds every run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

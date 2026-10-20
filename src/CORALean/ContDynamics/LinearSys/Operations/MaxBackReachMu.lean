@@ -18,6 +18,14 @@ the spectral norm, the operator norm between Euclidean spaces (Mathlib's
 the ℓ^∞ one), and `G ∈ ℝ^{n×γ}` is the generator matrix of `box(X_end)`, its columns the
 zonotope's generators.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `B` – target box zonotope
+
+## Output
+* curvature radius of the step
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

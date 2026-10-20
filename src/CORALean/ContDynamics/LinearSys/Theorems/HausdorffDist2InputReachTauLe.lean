@@ -16,19 +16,41 @@ public import CORALean.Global.EuclideanHausdorffDistAddLe
 
 Eq. (26)'s displayed bound: at every `t ∈ τ_k = [t_k,t_{k+1}]`, the exact `P^U(t)` sits within
 `ε^U_k + Δε^{U,τ}_k(Δt_k,η_k)` of the *fixed* set `P̂^U(t_{k+1}) = P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)`
-eq. (24) recursively computes — the same target `Prop. 2` bounds only at `t = t_{k+1}` itself, now
-bounded uniformly over the whole interval.
+eq. (24) computes, uniformly over the whole interval. With `t = t_k + s`, `inputReach_separation_eq`
+splits `P^U(t)` as `P^U(t_k) ⊕ e^{At_k}P^U(s)`, so `hausdorffDist₂_add_le` compares summand by
+summand: `ε^U_k` on the accumulated one, and on the new one [1]'s own argument: since `0 ∈ U_0`,
+`e^{At_k}P^U(s)` is nested increasing in `s` (`inputReach_mono`), so every exact point lies in the
+closed convex hull of `P̂^U(Δt_k)` (`inputReach_subset_closure_convexHull`), and the distance to
+that target is largest at `s = 0`, where the exact set is `{0}`.
 
-Writing `t = t_k + s` with `s ∈ [0,Δt_k]`, `inputReach_separation_eq` splits `P^U(t)` the same way
-`Prop. 2` splits `P^U(t_{k+1})`: `P^U(t_k) ⊕ e^{At_k}P^U(s)`, so `hausdorffDist₂_add_le` again
-compares summand by summand — `ε^U_k` on the accumulated one, and on the new one, `[1]`'s own
-argument: since `0 ∈ U_0`, `e^{At_k}P^U(s)` is nested increasing in `s` (`inputReach_mono`,
-Althoff's `Prop. 3.3`, `0 ∈ U_0` is exactly what it asks for), so every exact point lies in
-`P^U(Δt_k)` and with it in the closed convex hull of `P̂^U(Δt_k)`
-(`inputReach_subset_closure_convexHull`, no eq. (20) soundness), where `err` is the fixed
-target's own. The Hausdorff distance to that target is then largest at `s = 0`, where the exact
-set is `{0}`: `d_H(0,e^{At_k}P̂^U(Δt_k)) ≤ err(e^{At_k}P̂^U(Δt_k)) =: Δε^{U,τ}_k(Δt_k,η_k)`,
-`[1]`'s eq. (12) read off a single witness on each side.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `tk` – step start time
+* `Δt` – step length
+* `η` – Taylor order
+* `Pk` – computed set at the step start
+* `εk` – error at the step start
+* `t` – time
+
+## Hypotheses
+* `htk` – start time nonnegative
+* `hbdd` – input set bounded
+* `h0` – origin in the input set
+* `hcP` – input reach at the start compact
+* `hcQ` – computed set compact
+* `hQne` – computed set nonempty
+* `hcPs` – input reach compact over the step
+* `hcQΔ` – outer one-step set compact
+* `hstep` – error at the start bounds the distance
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hΔt` – step length positive
+* `ht1` – time at least the step start
+* `ht2` – time within the step
+
+## Conclusion
+* the distance at the time is at most the error plus the time-interval error
 
 ## References
 

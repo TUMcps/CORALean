@@ -14,6 +14,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 `Δt₋₁ = t_end`, `H(t₀) = X₀`, the particular solutions the point `{0}` and both accumulated
 errors `0`.
 
+## Inputs
+* `X₀` – initial float zonotope
+* `tend` – final float time
+
+## Output
+* float loop state before the first iteration
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -12,6 +12,20 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStepFloat
 iterations; `0` is the pre-loop state of lines 1-6, so the `k`-th iteration's set is `run
 (k+1)`'s.
 
+## Inputs
+* `sys` – linear system
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance float zonotope
+* `U₀` – initial input float zonotope
+* `Zw` – center trajectory contribution
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `ν` – number of squarings
+
+## Output
+* float loop state after a given number of iterations
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

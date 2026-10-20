@@ -13,6 +13,21 @@ its `err` is at most that of every one of them, the full-rank candidate among th
 comparison `lt` that is `<`. Only as good as `err`.
 The source is [1].
 
+## Inputs
+* `lt` – strict comparison oracle on reals
+* `err` – error measure of a candidate
+* `dx` – state derivative data
+* `V` – singular vectors over the state-input space
+* `s` – singular values
+* `W` – singular vectors over the data points
+
+## Hypotheses
+* `hlt` – oracle decides strict order
+* `hr` – rank positive
+
+## Conclusion
+* identify returns a candidate no worse than the full-rank one
+
 ## References
 
 * [1] `contDynamics/@linearSys/private/priv_identifyDMD.m`

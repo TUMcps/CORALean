@@ -14,6 +14,19 @@ the thesis states it as, and is what lets a `reachSetExact`-indexed hypothesis �
 per time in `[0, r]`, as `ReachSetExactSubsetTimeIntervalInputSolution` supplies —
 answer for the whole interval at once.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `r` – interval end
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval reach set is the union of the point-in-time reach sets
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
 # The float `quadTermHi` is at least the exact one
 
 Each endpoint's float upper bound is at least `γ` there, and `max` is monotone.
+
+## Inputs
+* `t` – float time
+* `a` – float box lower end
+* `b` – float box upper end
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float upper value is at least the exact greatest value
 -/
 
 -- Authors:       Claude Sonnet 5.5

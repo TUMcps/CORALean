@@ -9,18 +9,27 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 /-!
 # `Alg. 3` lines 3-25: one iteration of the main loop
 
-`verifyStep`: [1, Alg. 3]. Recompute the outer- and inner-approximation at the current
-`ε_max` (lines 3-4), run `Prop. 7`'s containment check against every safe set and `Prop.
-8`'s intersection check against every unsafe set (lines 5-17), then shrink `ε_max` (lines
-18-25).
+`verifyStep`: [1, Alg. 3]. Recompute the outer- and inner-approximation at the current `ε_max`
+(lines 3-4), run `Prop. 7`'s containment check against every safe set and `Prop. 8`'s intersection
+check against every unsafe set (lines 5-17), then shrink `ε_max` (lines 18-25). Lines 3-4, 7, 9, 13,
+15 are call-outs in `[1]` itself, none inlined there either, so `reachFn`, `innerApprox`, `distG`,
+`distF` stand for them here too, `Zonotope.conZonotope` letting one `distG`/`distF` pair cover
+eq. (46)'s zonotope case and eq. (45)'s general one; no solver is invented for either. `sys`, `X₀`,
+`U`, `t_end` enter only through `reachFn`. `r + 1`/`w + 1` keep both set families nonempty, as
+`for j ← 1 to r` already presumes.
 
-Lines 3-4, 7, 9, 13, 15 are call-outs in `[1]` itself — "comp. with Alg. 2", "see Sec. V",
-"see (46)/(45)", "see Prop. 8" — none inlined there either, so `reachFn`, `innerApprox`,
-`distG`, `distF` stand for them here too, `Zonotope.conZonotope` letting one `distG`/`distF`
-pair cover eq. (46)'s zonotope case and eq. (45)'s general one; no solver is invented for
-either, matching this page's `Prop. 7`/`Prop. 8` findings. `sys`, `X₀`, `U`, `t_end` enter only
-through `reachFn`. `r + 1`/`w + 1` keep both set families nonempty, as `for j ← 1 to r` already
-presumes.
+## Inputs
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `le` – comparison oracle on reals
+* `εmax` – maximal error
+
+## Output
+* iteration outcome and the shrunk error for the next one
 
 ## References
 

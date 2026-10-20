@@ -15,6 +15,16 @@ entrywise within `|E(Δt,η)|` of `0` — the standard reading of an interval ma
 vector set. `i0` starts the sum at `0` for `bPU` itself or at `1` for `bPU_∞` of eq. (27),
 which [1, Lemma 2]'s second `err` term and [1, Lemma 4] both need.
 
+## Inputs
+* `A` – system matrix
+* `U0` – input set
+* `i0` – start index
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* outer approximation of the particular solution over the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

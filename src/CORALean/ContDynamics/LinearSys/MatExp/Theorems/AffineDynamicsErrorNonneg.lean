@@ -11,6 +11,19 @@ public import CORALean.Global.EuclideanGenOpNorm
 
 `affineDynamicsError_nonneg`: [1]'s `Δε^h_k`, eq. (23), a sum of two nonnegative terms.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine dynamics error is nonnegative
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

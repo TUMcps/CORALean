@@ -10,18 +10,29 @@ public import Mathlib.Tactic.Positivity
 /-!
 # A series dominated by the exponential's tail sums to no more than it
 
-`scalar_term_le` termwise against a geometric series, whose sum is the closed
-form `MatExp.expRemainderBound` is written in, and the majorant carries the
-summability of whatever is dominated, so a caller supplies neither.
+`scalar_term_le` termwise against a geometric series, whose sum is the closed form
+`MatExp.expRemainderBound` is written in, and the majorant carries the summability of whatever
+is dominated, so a caller supplies neither. Stated at bare reals rather than at `‖x‖`, and over
+a dominated sequence rather than the tail itself: no matrix appears, so the matrix norm
+instances stay out of the elaboration. The scale `s` is what an integrated series carries, one
+factor of the step in front of each order. The side condition is the one every enclosure here
+carries; without it the geometric series diverges and there is nothing to sum.
 
-Stated at bare reals rather than at `‖x‖`, and over a dominated sequence rather
-than the tail itself: no matrix appears, so the matrix norm instances every
-caller makes local stay out of the elaboration, and a caller that has bounded
-its own terms is done. The scale `s` is what an integrated series carries — one
-factor of the step in front of each order.
+## Inputs
+* `c` – norm bound
+* `s` – scale
+* `η` – Taylor order
+* `a` – dominated sequence
 
-The side condition is the one every enclosure here carries; without it the
-geometric series diverges and there is nothing to sum.
+## Hypotheses
+* `hc` – norm bound nonnegative
+* `hs` – scale nonnegative
+* `hε` – side condition holds
+* `ha0` – terms nonnegative
+* `ha` – terms under the scaled exponential terms
+
+## Conclusion
+* the sum is at most the scale times the closed-form tail bound
 -/
 
 -- Authors:       Claude Opus 5

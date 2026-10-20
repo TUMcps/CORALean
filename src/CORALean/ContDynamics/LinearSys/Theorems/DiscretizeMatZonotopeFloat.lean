@@ -17,6 +17,28 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 `e^{AΔt}`, whose argument lies in the rounded `AΔt` (`smul_outer` at `mem_point`), so the
 exponential lies in its float enclosure by `exp_mem_expMatZonoEnclosure`. `hε` is that
 theorem's side condition, a float comparison a caller can check before running.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – float sampling step
+* `η` – Taylor order
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs lie in the sampled input set
+* `hε` – float norm bound small enough for the Taylor order
+
+## Conclusion
+* the sampled trajectory is a trajectory of the float matrix-zonotope sampled system
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

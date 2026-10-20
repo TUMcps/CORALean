@@ -13,6 +13,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFl
 by the remainder bound taken at `normUpperBound`, exactly as the exact layer
 widens by `expRemainderBound` at `A.absMax`. Both are bound once, outside the
 entries, so reading every entry evaluates the Taylor sum once, not per entry.
+
+## Inputs
+* `A` – float interval matrix
+* `η` – Taylor order
+
+## Output
+* float interval matrix enclosing the exponential of every member
 -/
 
 -- Authors:       Claude Sonnet 5

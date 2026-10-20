@@ -13,16 +13,25 @@ public import Mathlib.Topology.Instances.Matrix
 /-!
 # `reachBox`: [1, Alg. 2], the wrapping-free reachable set with `box()`
 
-[1, Alg. 2], "Compute `R([0, t_f])`", for `ẋ = Ax + u`, `u ∈ U ∋ 0`, on zonotopes, one `let`
-per printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰` (`timeIntervalStep`),
+[1, Alg. 2], "Compute `R([0, t_f])`", for `ẋ = Ax + u`, `u ∈ U ∋ 0`, on zonotopes, one `let` per
+printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰` (`timeIntervalStep`),
 `V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolution`, [1, Thm. 3.1]), `P^R_0 = box(V₀)`,
 `R₀ = H^R_0 + P^R_0`, and then, `N` times, `H^R_k = e^{Ar}H^R_{k-1}`, `V_k = e^{Ar}V_{k-1}`,
-`P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The result is the list
-`R₀, …, R_N`, whose union is the printed `R([0, t_f])` at `N = t_f/r - 1`.
+`P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The result is the list `R₀, …, R_N`,
+whose union is the printed `R([0, t_f])` at `N = t_f/r - 1`. `box` is `Zonotope.interval` read
+back as a zonotope, which keeps the order of `P^R_k` at one: the input part's generators do not
+pile up. The step is the exact `e^{Ar}`; `LinearSys.WithInput.reach` runs it without `box()`.
 
-`box` is `Zonotope.interval` read back as a zonotope, which keeps the order of `P^R_k` at
-one: the point of the listing, the input part's generators not piling up. The step is the
-exact `e^{Ar}`. `LinearSys.WithInput.reach` runs the same windows without `box()`.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `r` – step length
+* `η` – Taylor order
+* `N` – number of steps
+
+## Output
+* reachable zonotopes of the steps
 
 ## References
 

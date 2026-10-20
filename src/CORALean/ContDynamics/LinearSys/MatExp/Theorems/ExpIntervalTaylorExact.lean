@@ -21,6 +21,19 @@ into `I + W(t)`, and the orders past it. The first piece is enclosed exactly by
 `2 ≤ κ` is what makes the split legitimate; below it the definition's tail is
 empty and this would be claiming more orders than the truncation has.
 
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `M` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hκ` – order at least two
+
+## Conclusion
+* the member's Taylor truncation lies in the sharper interval truncation
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

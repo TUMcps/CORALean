@@ -19,6 +19,17 @@ term for term.
 
 Three base cases rather than one, because the definition has three: below order
 three the range is empty and the tail is `point 0`.
+
+## Inputs
+* `B` – interval matrix
+* `N` – member matrix
+* `κ` – Taylor order
+
+## Hypotheses
+* `hN` – member lies in the interval matrix
+
+## Conclusion
+* orders three and up of the member lie in the interval tail
 -/
 
 -- Authors:       Claude Opus 5

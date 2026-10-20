@@ -11,6 +11,13 @@ public import Mathlib.Data.Matrix.Mul
 `intervalMulVecSet`: the set an interval matrix entrywise within `|E|` of `0` can map `S` to —
 [1]'s `[-E(Δt,η),E(Δt,η)]` acting on a vector set.
 
+## Inputs
+* `E` – remainder matrix bound
+* `S` – vector set
+
+## Output
+* vectors an interval matrix within the bound can map the set to
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

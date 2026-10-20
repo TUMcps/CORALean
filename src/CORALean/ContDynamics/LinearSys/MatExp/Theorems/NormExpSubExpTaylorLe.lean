@@ -17,6 +17,16 @@ geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows
 `(η+1)!` by at least `(η+2)` a step. Summing that geometric series is where the
 `1 / (1 - ε)` comes from, and where `ε < 1` is needed.
 
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Hypotheses
+* `hε` – norm small enough for the Taylor order
+
+## Conclusion
+* the Taylor truncation error is at most the remainder bound
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

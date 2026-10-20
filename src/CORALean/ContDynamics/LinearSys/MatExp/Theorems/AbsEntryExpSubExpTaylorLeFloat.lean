@@ -18,6 +18,20 @@ Entry by entry as `Real.MatExp.exp_mem_expIntervalEnclosure` does: `norm_le_absM
 
 `hε` asks `1/2`, not `< 1`: `expRemainderBound_le`'s geometric factor is the fixed constant `2`,
 sound only under the stronger margin.
+
+## Inputs
+* `A` – float interval matrix
+* `η` – Taylor order
+* `M` – member matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hε` – float norm bound small enough for the Taylor order
+
+## Conclusion
+* the entry of the Taylor error is under the float tail bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -15,6 +15,15 @@ CORA's `@intervalMatrix/expmMixed(intMat, r, intermediateOrder, maxOrder)`: the 
 five-argument `expm` (`expmFrom`) from order `intermediateOrder + 1`, started at
 `intMat * iPow{intermediateOrder}`, with the remainder after `maxOrder`. CORA refuses an
 intermediate order below `2` (`CORA:wrongValue`); here it is a hypothesis of the theorem.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `k` – intermediate order
+* `η` – Taylor order
+
+## Output
+* terms and remainder of the mixed exponential enclosure
 -/
 
 -- Authors:       Claude Sonnet 5.5

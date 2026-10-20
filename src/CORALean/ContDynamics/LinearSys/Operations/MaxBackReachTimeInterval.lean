@@ -7,16 +7,31 @@ public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
 /-!
 # `Alg. 3` line 14: the EA time-interval backward reachable set
 
-`maxBackReachTimeInterval`: [1, Alg. 3] line 14, `R̂^{∃∀}(-τ)`, the union of the `ω`
-iterations' inner approximated time-interval solutions. Nothing here searches, so no fuel:
-`ω` and `η` are fixed by [1, Assumption 1] and the loop is bounded by `ω`.
+`maxBackReachTimeInterval`: [1, Alg. 3] line 14, `R̂^{∃∀}(-τ)`, the union of the `ω` iterations'
+inner approximated time-interval solutions. Nothing here searches, so no fuel: `ω` and `η` are
+fixed by [1, Assumption 1] and the loop is bounded by `ω`. Lines 1-2 and 6-14 of it: the two
+polytopes `P₁`, `P₂` of lines 3-5 are taken here, and `LinearSys.maxBackReach` is the whole
+listing. Line 14's union is no constrained zonotope, so the result is a `Set`, as in `Alg. 2`.
+`ρ` is the caller's support oracle for a polytope, the linear program of (9). `Zw` is (27), the
+constant center trajectory's contribution over one interval.
 
-Lines 1-2 and 6-14 of it: the two polytopes `P₁`, `P₂` of lines 3-5 are taken here, and
-`LinearSys.maxBackReach` is the whole listing, computing them first. Line 14's union is no
-constrained zonotope, so the result is a `Set`, as in `Alg. 2`.
+## Inputs
+* `sys` – linear system
+* `P₁` – first eroded polytope
+* `P₂` – second eroded polytope
+* `U` – input zonotope
+* `W₀` – initial disturbance zonotope
+* `Zw` – center trajectory contribution
+* `t₀` – start time
+* `tend` – end time
+* `η` – Taylor order
+* `ω` – number of iterations
 
-`ρ` is the caller's support oracle for a polytope — the linear program of (9). `Zw` is (27),
-the constant center trajectory's contribution over one interval.
+## Hypotheses
+* `ρ` – support oracle for polytopes
+
+## Output
+* union of the iterations' inner approximated time-interval solutions
 
 ## References
 

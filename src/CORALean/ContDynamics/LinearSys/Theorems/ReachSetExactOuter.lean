@@ -7,15 +7,27 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 /-!
 # `reachSetExact` contains every trajectory
 
-Half of the two-step form, and the cheap half: a trajectory is in the set of
-what trajectories reach by construction, so the proof is the pair itself. That
-is the point rather than a shortcoming — all the content of a reachability
-claim then sits in the *other* half, the inclusion of this set in a computed
-one, where it can be read as one set inside another.
+Half of the two-step form, and the cheap half: a trajectory is in the set of what trajectories reach
+by construction, so the proof is the pair itself. That is the point rather than a shortcoming: all
+the content of a reachability claim then sits in the *other* half, the inclusion of this set in a
+computed one, where it can be read as one set inside another. Stated at every `t`, including outside
+`T`: there `IsTrajectory` constrains nothing beyond `x 0 ∈ R₀`, so the set is large and the
+enclosure theorems that consume it ask for the window they speak about.
 
-Stated at every `t`, including outside `T`: there `IsTrajectory` constrains
-nothing beyond `x 0 ∈ R₀`, so the set is large and the enclosure theorems that
-consume it ask for the window they speak about.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `t` – time
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+
+## Conclusion
+* the trajectory's state at the time lies in the exact reach set
 -/
 
 -- Authors:       Claude Opus 5

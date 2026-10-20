@@ -11,6 +11,15 @@ public import CORALean.ContDynamics.LinearSys.Theorems.EntryIsFloatSound
 One-sided: when `isCanonicalFormFloat` answers `true`, the real coefficients the floats denote are
 in canonical form [1]. `false` says nothing, since `le` is only sound when it answers `true`.
 
+## Inputs
+* `sys` – linear system with float coefficients
+
+## Hypotheses
+* `h` – the float canonical-form test passes
+
+## Conclusion
+* the real system is in canonical form
+
 ## References
 
 * [1] `contDynamics/@linearSys/isCanonicalForm.m`

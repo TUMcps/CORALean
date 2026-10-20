@@ -15,6 +15,14 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
 (`Zonotope.matPow`, then `interval`), against the scalar `corrCoeff i · r^i/i!`
 replaced by the range `[κ·r^i/i!, 0]` it lies in, exactly as `intervalCorrTerm`
 does at a box. CORA boxes the powers before the correction, and so does this.
+
+## Inputs
+* `M` – float matrix zonotope
+* `r` – float step length
+* `i` – order index
+
+## Output
+* float interval matrix of the order's correction term
 -/
 
 -- Authors:       Claude Opus 5.5

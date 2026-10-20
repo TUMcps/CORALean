@@ -17,6 +17,23 @@ term lies in the box of the matching `R*_{b,i+1}`. One step of [2, Prop. 3.2]
 the part of the step before `δ`. Line 8 as printed takes `e^{A(k+1)δ}`, one step too many
 (`printed_input_propagation_counterexample`).
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `δ` – step length
+* `k` – step count
+* `s` – offset in the step
+
+## Hypotheses
+* `hbdd` – input set bounded
+* `h0` – origin in the input set
+* `hδ` – step length nonnegative
+* `hs0` – offset nonnegative
+* `hsδ` – offset at most the step length
+
+## Conclusion
+* the input reach lies in the sum of propagated one-step input reaches
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

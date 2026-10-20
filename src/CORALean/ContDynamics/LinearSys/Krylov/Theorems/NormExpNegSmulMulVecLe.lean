@@ -15,6 +15,19 @@ values in the closed left half-plane, so `e^{r(-A+ν)}` does not increase the Eu
 (`Krylov.norm_exp_smul_mulVec_le`), and `e^{r(-A+ν)} = e^{rν}e^{-rA}`. `‖·‖₂` is the norm of
 `EuclideanSpace ℂ (Fin n)`, reached by `WithLp.toLp 2`.
 
+## Inputs
+* `A` – matrix
+* `ν` – lower bound on the field of values
+* `x` – vector
+* `r` – time
+
+## Hypotheses
+* `hA` – real part of the Rayleigh quotient at least the lower bound
+* `hr` – time nonnegative
+
+## Conclusion
+* the norm of the exponential image is at most the decayed norm
+
 ## References
 
 * [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix

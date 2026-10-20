@@ -11,6 +11,12 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
 `i^(-i/(i-1)) - i^(-1/(i-1))`, which `aux_corrCoeff_eq` confirms; in this form the
 exponent is a natural number and the bound is provable as stated.
 
+## Inputs
+* `i` – order
+
+## Output
+* how far below zero the correction polynomial reaches
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -9,20 +9,28 @@ public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 /-!
 # The input reach set comes apart at any intermediate time
 
-[1, Prop. 3.2] in the direction `InputReachSeparation` leaves open: every run
-over `[0, a+b]` is its own first `a` propagated across the remaining `b`, plus
-its own last `b`. Nothing is built here — both inputs are the given one, read
-on a different window — so the work is all in the integral.
+[1, Prop. 3.2] in the direction `InputReachSeparation` leaves open: every run over `[0, a+b]` is its
+own first `a` propagated across the remaining `b`, plus its own last `b`. Nothing is built here,
+both inputs are the given one read on a different window, so the work is all in the integral.
+Splitting at `a` is legal because `intervalIntegrable_expSub_mulVec` holds on the whole window;
+`e^{(a+b-s)A} = e^{bA} e^{(a-s)A}` pulls the propagator out of the first piece, and
+`integral_comp_add_left` moves the second back to a window starting at zero
+(`aux_aestronglyMeasurable_comp_add_left`). With `InputReachSeparationEq` the two inclusions give
+the equality [1, Prop. 3.2] prints, and [1, Cor. 3.1] at `a = Δt` and `b = r`.
 
-Splitting at `a` is legal because `intervalIntegrable_expSub_mulVec` holds on
-the whole window; `e^{(a+b-s)A} = e^{bA} e^{(a-s)A}` pulls the propagator out
-of the first piece, and `integral_comp_add_left` moves the second back to a
-window starting at zero, `aux_aestronglyMeasurable_comp_add_left` carrying the
-measurability with it.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `a` – first window length
+* `b` – second window length
 
-The two inclusions together are the equality [1, Prop. 3.2] prints, and with
-it [1, Cor. 3.1], which is that proposition at `a = Δt` and `b = r`; see
-`InputReachSeparationEq`.
+## Hypotheses
+* `ha` – first length nonnegative
+* `hb` – second length nonnegative
+* `hbdd` – input set bounded
+
+## Conclusion
+* the contribution of the joined window lies in the propagated first plus the second
 
 ## References
 

@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsParticularSo
 [1, Lemma 2]: `exists_particularSolutionError_le_const_mul_sq`'s eventual quadratic bound is
 exactly an `IsBigO` witness once its constant is read at `|K|`.
 
+## Inputs
+* `A` – system matrix
+* `tk` – step start time
+* `U0` – input set
+* `η` – Taylor order
+
+## Hypotheses
+* `hU0` – input set bounded
+
+## Conclusion
+* the error is of the order of the squared step as the step shrinks to zero
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

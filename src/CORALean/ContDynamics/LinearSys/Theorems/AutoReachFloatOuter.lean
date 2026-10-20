@@ -17,6 +17,23 @@ itself, and the constant and the `Ũ`-input have contributed `0`, which `{0}` ho
 `autoRunFloat_outer` does the rest: the loop reached `t_end` or `autoReachFloat` is `none`, so
 every time in `[0, t_end]` is in one of the windows.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `tend` – final float time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `K` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* every run is in the window covering its time
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

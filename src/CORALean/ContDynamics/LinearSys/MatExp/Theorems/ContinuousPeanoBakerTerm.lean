@@ -12,6 +12,18 @@ Entry by entry. The base term is constant; each later one is a primitive of
 `A(σ) P_k(σ)`, an integrable entry of `A` against a continuous one of `P_k`, and
 a primitive of a locally integrable function is continuous. Nothing is asked of
 `A` beyond integrability of its entries over every bounded window.
+
+## Inputs
+* `A` – matrix-valued function of time
+* `k` – term index
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – entries of the matrix function integrable
+
+## Conclusion
+* each entry of the Peano–Baker term is continuous in time
 -/
 
 -- Authors:       Claude Opus 5.5

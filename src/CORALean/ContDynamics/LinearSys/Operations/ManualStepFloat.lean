@@ -15,17 +15,26 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # `Alg. 1` lines 5-11 in floats: one iteration of the main loop
 
-`manualStep` computed in `𝕋`, at a fixed step `Δt`, order `η` and zonotope order `ρ`. `V` is
-split `ũ ⊕ Ũ` at its stored center (line 1). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by
-scaling and squaring at their float brackets, so `H(t_{k+1})` is reached from `X₀` directly,
-as line 7 reaches it. `P^u(t_{k+1})`, a point in [1], is kept as a box, so its rounding
-does not accumulate generators.
+`manualStep` computed in `𝕋`, at a fixed step `Δt`, order `η` and zonotope order `ρ`. `V` is split
+`ũ ⊕ Ũ` at its stored center (line 1). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by scaling and
+squaring at their float brackets, so `H(t_{k+1})` is reached from `X₀` directly, as line 7 does.
+`P^u(t_{k+1})`, a point in [1], is kept as a box. One departure, the float layer's: lines 8-9's
+`comb(H(t_k), H(t_{k+1})) ⊕ F H(t_k) ⊕ G ũ` is taken as
+`comb(H(t_k), [e^{AΔt}] H(t_k)) ⊕ [F] H(t_k)` (`timeIntervalStepFloat`) plus the input solution of
+the segment `[0, ũ]`: the float layer has no `G`. `η` must be admissible for the float
+enclosures; `manualReachFloat` raises it until it is.
 
-One departure, the float layer's: lines 8-9's `comb(H(t_k), H(t_{k+1})) ⊕ F H(t_k) ⊕ G ũ`
-is taken as `comb(H(t_k), [e^{AΔt}] H(t_k)) ⊕ [F] H(t_k)` (`timeIntervalStepFloat`) plus
-the input solution of the segment `[0, ũ]`, which holds `P^u(τ)` for every `τ ∈ [0, Δt]`:
-the float layer has no `G`, and encloses a constant input's share this way throughout.
-`η` must be admissible for the float enclosures; `manualReachFloat` raises it until it is.
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `Δt` – float step length
+* `η` – Taylor order
+* `ρ` – zonotope order
+* `s` – float loop state
+
+## Output
+* next float loop state and window, if the squaring counts fit
 
 ## References
 

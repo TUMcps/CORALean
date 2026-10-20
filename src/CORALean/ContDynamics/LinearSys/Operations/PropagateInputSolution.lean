@@ -19,6 +19,14 @@ Taken at an arbitrary one-step set, so the outer approximation, the inner
 approximation and the exact particular solution are the same recursion at three
 arguments, and the proofs about it are shared.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `Z` – one-step set
+
+## Output
+* input solution after a given number of steps
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

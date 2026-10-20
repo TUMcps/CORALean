@@ -19,17 +19,46 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 /-!
 # `Thm. 2`: what `Alg. 3` returns is inside the EA set over `τ`
 
-[1, Thm. 2] holds [1, Alg. 3] to its claim, and it runs `⊆`, not `⊇`: (54) is an
-*inner* approximation. Proved outright: line 12's linear map and `⊕ -Z̲_U(t_k)`,
-line 11's hull and conversion, `Lemma 1` carrying the hull of two erosions into
-the erosion of the hull — the step the lemma exists for — the time-point
-identity `Prop. 5` in its inner direction, `Prop. 2`, and line 14's union.
+[1, Thm. 2] holds [1, Alg. 3] to its claim, and it runs `⊆`, not `⊇`: (54) is an *inner*
+approximation. Proved outright: line 12's linear map and `⊕ -Z̲_U(t_k)`, line 11's hull and
+conversion, `Lemma 1` carrying the hull of two erosions into the erosion of the hull, the time-point
+identity `Prop. 5` in its inner direction, `Prop. 2`, and line 14's union. `hhom` and `hZU` are what
+the paper imports: (21)'s inner homogeneous time-interval solution and (25)-(29)'s particular
+solutions. Both are stated *per time* `t ∈ τ_k`. The paper's own proof states them against the union
+over `τ_k` and then erodes that union, which needs `(⋃ₜ Aₜ) ⊖ B ⊆ ⋃ₜ (Aₜ ⊖ B)`, the direction that
+fails; see the findings on the paper's page.
 
-`hhom` and `hZU` are what the paper imports: (21)'s inner homogeneous
-time-interval solution and (25)-(29)'s particular solutions. Both are stated
-*per time* `t ∈ τ_k`. The paper's own proof states them against the union over
-`τ_k` and then erodes that union, which needs `(⋃ₜ Aₜ) ⊖ B ⊆ ⋃ₜ (Aₜ ⊖ B)` — the
-direction that fails; see the findings on the paper's page.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `W` – disturbance set
+* `Xend` – target set
+* `t₀` – start time
+* `tend` – end time
+* `ω` – number of iterations
+* `τ` – target time set
+* `st` – loop states
+* `c` – point of the input set
+
+## Hypotheses
+* `hΔt` – step is the horizon over the iteration count
+* `ht₀` – start time nonnegative
+* `hΔt0` – step nonnegative
+* `hst` – states follow the run
+* `hτ` – interval lies in the target time set
+* `hlast` – last iteration ends within the horizon
+* `hU` – input set bounded
+* `hW` – disturbance set bounded
+* `hc` – point lies in the input set
+* `hker₁` – first polytope has no equality rows
+* `hker₂` – second polytope has no equality rows
+* `hne₁` – first erosions nonempty
+* `hne₂` – second erosions nonempty
+* `hhom` – inner homogeneous solution covers the eroded hull slice by slice
+* `hZU` – input particular solutions lie in the propagated input reach
+
+## Conclusion
+* what the algorithm returns lies inside the time-interval backward reachable set
 
 ## References
 

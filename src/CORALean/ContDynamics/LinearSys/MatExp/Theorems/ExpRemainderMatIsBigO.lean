@@ -15,6 +15,16 @@ of `expRemainderBound` is capped at `2` instead of merely bounded, which turns
 leading term of the remainder's own Taylor series, `A`'s norm folded into the
 constant.
 
+## Inputs
+* `A` – system matrix
+* `η` – Taylor order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the entrywise remainder is of order one power higher than the Taylor order in the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

@@ -17,6 +17,20 @@ equality rather than an enclosure: it is [2, Prop. 3.2] read at `a = Δt` and
 `construct U` nonempty is what the base case needs — with no admissible input at
 all there is no run, and `P_R(0)` is empty rather than `{0}`.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `ω` – number of steps
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hbdd` – input set bounded
+* `hne` – input set nonempty
+
+## Conclusion
+* the propagated one-step reach is the exact reach over the horizon
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

@@ -17,19 +17,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # Recursive reachability with inputs in floats: CORA's `priv_reach_standard`
 
-`ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, computed in `𝕋`: `X₀`, `U` (in
-input space), `Δt`, `η`, `ρ` and `N` read as `reachFloat` reads them, `B` and `c`
-the system's. `V = B U ⊕ c` (`inputSetFloat`, CORA's `canonicalForm` at `W = {0}`)
-is split at its stored center into the constant `ũ` and `Ũ = V - ũ ∋ 0`, as
-CORA's `canonicalForm` splits it, so `0 ∈ U` is not asked.
+`ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, computed in `𝕋`: `X₀`, `U` (in input space),
+`Δt`, `η`, `ρ` and `N` read as `reachFloat` reads them, `B` and `c` the system's. `V = B U ⊕ c`
+(`inputSetFloat`, CORA's `canonicalForm` at `W = {0}`) is split at its stored center into the
+constant `ũ` and `Ũ = V - ũ ∋ 0`, so `0 ∈ U` is not asked. The constant contributes `P̃(Δt)` per
+step, and `P̃^R(τ_0)` within the first window: the input set `[0, ũ]` over one step
+(`inputReach_mono`). `Ũ` contributes `P^R(Δt)` per step, and the loop (`reachFloatInputStep`) runs
+CORA's: `H ← reduce([e^{AΔt}] H ⊕ P̃(Δt))`, and `P^R` accumulates the propagated one-step set.
+Window `k` is `H(τ_k) ⊕ P^R(t_{k+1})`; every input set is `inputSolutionFloat`.
 
-The constant contributes `P̃(Δt)` per step, and `P̃^R(τ_0)` within the first
-window: the input set `[0, ũ]` over one step, which holds `∫₀^τ e^{Aσ}dσ ũ` at
-every `τ ≤ Δt` (`inputReach_mono`). `Ũ` contributes `P^R(Δt)` per step, and
-the loop (`reachFloatInputStep`) runs CORA's: `H ← reduce([e^{AΔt}] H ⊕ P̃(Δt))`
-for the time-point and time-interval sets, and `P^R` accumulates the propagated
-one-step set. Window `k` is `H(τ_k) ⊕ P^R(t_{k+1})`, time point `k + 1` is
-`H(t_{k+1}) ⊕ P^R(t_{k+1})`. Every input set is `inputSolutionFloat`.
+## Inputs
+* `sys` – linear system
+* `params` – reach parameters with initial and input sets
+* `options` – reach options
+
+## Output
+* windows and time-point sets of the run with inputs, if it completes
 -/
 
 -- Authors:       Claude Opus 5.5

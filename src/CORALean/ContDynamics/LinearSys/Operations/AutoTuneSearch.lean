@@ -14,6 +14,22 @@ sweep goes through `le` and is a bounded recursion with an explicit `fuel` —
 [1]'s own `Δt`-shrink has no stated bound either, so `Option` is what a
 caller who runs out gets back.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `H` – state zonotope
+* `ũ` – constant input
+* `tk` – step start time
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `εaAcc` – accumulated approximation error
+* `ηmax` – maximal Taylor order
+* `U₀` – recentered input zonotope
+
+## Output
+* step size and order from the halving sweep, if found
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

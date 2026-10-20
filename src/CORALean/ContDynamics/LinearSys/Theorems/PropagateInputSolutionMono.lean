@@ -12,6 +12,19 @@ with the set so far. It is what carries the three-way sandwich
 `inner ⊆ exact ⊆ outer` of [1, Prop. 1] from one step to the horizon, so that
 the proposition's Hausdorff bounds only ever have to be proved over a step.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `Z` – one-step set
+* `Z'` – larger one-step set
+* `ω` – number of steps
+
+## Hypotheses
+* `h` – one-step set lies in the larger one
+
+## Conclusion
+* the propagated sets keep the inclusion
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

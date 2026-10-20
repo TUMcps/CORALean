@@ -9,6 +9,15 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # `halfSqBounds` brackets `t² / 2`
 
 `mulDown`/`mulUp` of `t` with itself bracket `t * t`, and `half` is exact.
+
+## Inputs
+* `t` – float time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float interval brackets half the square
 -/
 
 -- Authors:       Claude Sonnet 5.5

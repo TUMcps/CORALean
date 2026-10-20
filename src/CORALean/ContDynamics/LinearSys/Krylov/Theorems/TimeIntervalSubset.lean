@@ -15,13 +15,41 @@ public import Mathlib.Tactic.Module
 [1, Thm. III.2]: `R_h([0, δ]) ⊆ conv(X₀, R_h(δ)) ⊕ N` for the zonotope `X₀ = (c, g⁽¹⁾, …, g⁽ᵖ⁾)`,
 `R_h(δ)` the enclosure of `Thm. III.1` and `N` built from `Lemma III.3`'s correction matrices at
 `c` and at each `g⁽ⁱ⁾`. [1] derives `N = N⁽⁰⁾ ⊕ ⨁ᵢ [-1, 1]N⁽ⁱ⁾` and drops the `[-1, 1]` on the
-claim that `F(g⁽ⁱ⁾)` is symmetric; its entries `[(i^{-i/(i-1)} - i^{-1/(i-1)})δⁱ, 0]` are not,
-and without the factor the theorem fails (`printed_time_interval_counterexample`). This is the
-statement with `[-1, 1]` kept, from (3) at each vector (`e_v = ‖v‖ε_norm`, one bound per vector,
-as for `Thm. III.1`) and the first Arnoldi column `‖v‖Ve₁ = v`. The proof uses the Krylov
-approximation only at `c` and the `g⁽ⁱ⁾`: the approximation error at `t` is at most `t/δ` times
-the box of `R_h(δ)`, which the hull reaches with weight `t/δ`. It is lines 4 and 10 of
-[1, Alg. 2].
+claim that `F(g⁽ⁱ⁾)` is symmetric; its entries are not, and without the factor the theorem fails
+(`printed_time_interval_counterexample`). This is the statement with `[-1, 1]` kept, from (3) at
+each vector (`e_v = ‖v‖ε_norm`) and the first Arnoldi column `‖v‖Ve₁ = v`: the approximation
+error at `t` is at most `t/δ` times the box of `R_h(δ)`, which the hull reaches with weight
+`t/δ`. It is lines 4 and 10 of [1, Alg. 2].
+
+## Inputs
+* `A` – system matrix
+* `c` – zonotope center
+* `g` – zonotope generators
+* `mc` – center Krylov dimension
+* `Vc` – center Krylov basis
+* `Hc` – center Hessenberg matrix
+* `e1c` – center unit vector
+* `βc` – center norm scale
+* `ec` – center error rate
+* `mg` – generator Krylov dimensions
+* `Vg` – generator Krylov bases
+* `Hg` – generator Hessenberg matrices
+* `e1g` – generator unit vectors
+* `βg` – generator norm scales
+* `eg` – generator error rates
+* `δ` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hδ` – step length positive
+* `hη` – Taylor order at least one
+* `hVc` – center basis maps back to the center
+* `hVg` – generator bases map back to the generators
+* `h3c` – center Krylov error bound
+* `h3g` – generator Krylov error bounds
+
+## Conclusion
+* the time-interval solution lies in the hull plus the correction set
 
 ## References
 

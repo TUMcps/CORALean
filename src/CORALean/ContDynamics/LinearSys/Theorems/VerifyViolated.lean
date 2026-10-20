@@ -11,6 +11,25 @@ public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
 Relative to what the passed-in functions promise (`VerifySound`): where `verify` returns
 `some false`, some trajectory reaches a state outside a safe set or inside an unsafe one.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – reachable set as a function of the error
+* `innerApprox` – inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `le` – comparison oracle on reals
+* `G` – safe polytopes
+* `F` – unsafe polytopes
+* `εmax₀` – initial maximal error
+* `fuel` – number of iterations
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hv` – the verification answers false
+
+## Conclusion
+* the specification does not hold
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -7,19 +7,27 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubM
 /-!
 # The input reach set is convex
 
-Half of what an inner approximation asks of the set `timePointStep` is measured
-against. Mixing two admissible inputs pointwise is admissible — that is `U`'s
-own convexity — and the integral is linear in the input, so the contributions
-mix the same way. Integrability is what makes the second step legal, and it is
-where `U`'s boundedness enters.
+Half of what an inner approximation asks of the set `timePointStep` is measured against. Mixing two
+admissible inputs pointwise is admissible (that is `U`'s own convexity) and the integral is linear
+in the input, so the contributions mix the same way. Integrability is what makes the second step
+legal, and it is where `U`'s boundedness enters. The other half, closedness, is *not* here and is
+not a technicality: closing `inputReach` is the statement that a limit of contributions is itself
+the contribution of some admissible input, a weak-compactness argument in `L^∞` (Banach–Alaoglu and
+Mazur), which this development lacks. So the continuous-time inner approximations go through
+`expIntegral_mem_inputReach` and a zonotope instead, never through this set.
 
-The other half, closedness, is *not* here and is not a technicality. Closing
-`inputReach` is the statement that a limit of contributions is itself the
-contribution of some admissible input, which is a weak-compactness argument
-about the admissible inputs in `L^∞` — Banach–Alaoglu and Mazur, neither of
-which this development has. So the continuous-time inner approximations go
-through `expIntegral_mem_inputReach` and a zonotope instead, and never through
-this set.
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `τ` – time
+
+## Hypotheses
+* `hτ` – time nonnegative
+* `hconv` – input set convex
+* `hbdd` – input set bounded
+
+## Conclusion
+* the input reach set is convex
 -/
 
 -- Authors:       Claude Opus 5

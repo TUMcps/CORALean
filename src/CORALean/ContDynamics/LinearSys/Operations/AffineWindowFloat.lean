@@ -16,6 +16,17 @@ is `intervalConstCorrectionMatrix`. A point of `H(t_k)` flowing for any `τ ∈ 
 Eq. (22) takes `H(t_{k+1}) = [e^{AΔt}] H(t_k) ⊕ P^u(Δt)` (`affineTimeIntervalOuterFloat`),
 Alg. 2's line 26 takes `[e^{At_{k+1}}] X₀ ⊕ P^u(t_{k+1})`, which is tighter.
 
+## Inputs
+* `sys` – linear system
+* `H` – float state zonotope
+* `Hnext` – float next state zonotope
+* `ũ` – float constant input
+* `Δt` – float step length
+* `η` – Taylor order
+
+## Output
+* float zonotope enclosing the window between the two time points
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

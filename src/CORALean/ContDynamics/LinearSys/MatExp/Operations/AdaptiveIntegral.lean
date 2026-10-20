@@ -12,6 +12,14 @@ CORA's `eAtInt = Asum + E Δt` of `errorSolution_adaptive`, where `Asum` is `Δt
 `Aⁱ Δt^{i+1}/(i+1)!` for `i = 1, …, η` and `E Δt = [-ΔtW, ΔtW]`: the matrix a *static*
 uncertain input is multiplied by, centered on the exact orders, the remainder being [1, Lemma 1]'s.
 
+## Inputs
+* `A` – system matrix
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* interval matrix enclosing the integrated exponential
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

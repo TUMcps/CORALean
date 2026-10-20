@@ -12,6 +12,16 @@ The series identity behind `expIntegral_eq_inv_mul`, with no invertibility asked
 exponential is `A⁻¹ (e^{At} - I)` where `A` is invertible [1, Eq. 12], and this is what remains
 of it where it is not. Termwise: `A · Aⁱ tⁱ⁺¹/(i+1)!` is term `i + 1` of `e^{At}`.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix times the integrated exponential equals the exponential minus the identity
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

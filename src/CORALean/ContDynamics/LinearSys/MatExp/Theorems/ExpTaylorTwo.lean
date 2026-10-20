@@ -18,6 +18,16 @@ Proved entrywise, `(t • M) ^ 2 = t ² • (M * M)` having been taken out first
 the scalars are then real numbers and `ring` closes it, where the matrix-level
 identity would have to be assembled from `smul` lemmas by hand.
 
+## Inputs
+* `M` – matrix
+* `t` – time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the second-order truncation is the identity plus the second-order term
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

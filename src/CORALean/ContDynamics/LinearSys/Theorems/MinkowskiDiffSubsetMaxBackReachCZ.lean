@@ -16,6 +16,17 @@ off, because the attaining point of `Ẑ_W` is added into `P`, and an equality r
 subtrahend.
 The lines are those of [1, Alg. 3].
 
+## Inputs
+* `Pr` – exact polytope
+* `ZWr` – exact disturbance zonotope
+
+## Hypotheses
+* `ρ` – support oracle for exact polytopes
+* `hker` – equality rows of the polytope vanish
+
+## Conclusion
+* the difference lies in the exact eroded polytope's conversion
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

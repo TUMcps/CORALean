@@ -16,6 +16,21 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfKrylovI
 by (2.2), with `γ_m` from (2.5). No hypothesis on `A`; `O(·)` in the sup norm of `Fin n → ℂ`,
 the same in any norm.
 
+## Inputs
+* `A` – matrix
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `τ` – next subdiagonal entry
+* `σ` – time scale
+* `w` – next vector
+
+## Hypotheses
+* `hH` – Hessenberg matrix is upper Hessenberg
+* `hK` – Krylov identity holds
+
+## Conclusion
+* the error minus its leading term is of the next order in time
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

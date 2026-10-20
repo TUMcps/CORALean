@@ -11,6 +11,34 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 The same as `reach_outer`, with the input set named rather than assumed:
 `inputSolution Δt η U` encloses every step's contribution, so nothing about the
 input is left to the caller beyond the properties of `U` itself.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input signal
+* `Δt` – sampling step
+* `η` – Taylor order
+* `o` – zonotope order
+* `k` – step index
+
+## Hypotheses
+* `traj` – signal is a canonical trajectory
+* `hΔt` – step length positive
+* `hT` – time domain contains the nonnegative reals
+* `hε` – scaled norm small enough for the Taylor order
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `ho` – zonotope order positive
+
+## Conclusion
+* the trajectory's sample lies in the sampled reach set
 -/
 
 -- Authors:       Claude Opus 5

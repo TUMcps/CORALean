@@ -19,6 +19,37 @@ that the propagated sets and support values really do enclose, is `hcov` and `hp
 the float run's own outputs. `hp` is stated at the real number `p_(j)` denotes, and
 `minBackReachSupportFloat_ge` is what makes that number an upper bound of the support values.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `τ` – target time set
+* `U` – input set
+* `W` – disturbance set
+* `Xend` – target set
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance float zonotope
+* `U₀` – initial input float zonotope
+* `Zw` – center trajectory contribution
+* `N` – direction matrix
+* `t₀` – float start time
+* `Δt` – float step length
+* `η` – Taylor order
+* `ν` – number of squarings
+* `ω` – number of iterations
+* `u₀` – central input signal
+* `û` – per-direction input signals
+
+## Hypotheses
+* `hu₀` – central input lies in the input set
+* `hmu₀` – central input measurable
+* `hû` – direction inputs lie in the input set
+* `hmû` – direction inputs measurable
+* `hcov` – steps' sets cover the set of the central input
+* `hp` – each direction is bounded by a cut direction
+
+## Conclusion
+* the union of the cut float steps encloses the AE backward reachable set
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

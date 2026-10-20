@@ -19,6 +19,12 @@ Each partial sum is `materialiseMat`d before the next term is added, and what ru
 power along instead of rebuilding `Bᵏ` at every order, by `@[csimp]`, exactly as
 `expIntervalTaylor` does.
 
+## Inputs
+* `B` – float interval matrix
+
+## Output
+* float interval matrix of the Taylor terms from order three up to the given order
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

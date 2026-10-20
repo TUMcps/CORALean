@@ -13,6 +13,15 @@ public import Mathlib.Data.Matrix.Mul
 entry at most one row down, so `(Tʲ)_{i,l} = 0` when `i > l + j`; the printed case is row `m`,
 column `1`. Over any semiring, so for the complex `T_m` of [1].
 
+## Inputs
+* `T` – Hessenberg matrix
+
+## Hypotheses
+* `hT` – matrix is upper Hessenberg
+
+## Conclusion
+* entries of its powers below the band vanish
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

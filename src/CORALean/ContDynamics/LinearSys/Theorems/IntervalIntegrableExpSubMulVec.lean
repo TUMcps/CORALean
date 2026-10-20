@@ -15,6 +15,22 @@ it and a matrix-valued factor never gets `Continuous.aestronglyMeasurable`;
 is built from two `exists_bound` witnesses: one for the input set, one for the
 exponential over the compact step. `InputReachSeparation` needs this three
 times over, at the three windows a concatenation splits into.
+
+## Inputs
+* `A` – system matrix
+* `U` – input set
+* `c` – shift
+* `τ` – window length
+* `u` – input signal
+
+## Hypotheses
+* `hτ` – window length nonnegative
+* `hbdd` – input set bounded
+* `hu` – input values lie in the set on the window
+* `hmeas` – input measurable on the window
+
+## Conclusion
+* the propagated admissible input is interval integrable
 -/
 
 -- Authors:       Claude Opus 5

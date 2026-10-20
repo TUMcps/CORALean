@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
 `timePointStepError` is `2 (∑ⱼ absBound j) r` times `e^{r‖A‖} - 1` plus the series remainder:
 the reach is a sum of absolute values, `e^x ≥ 1 + x`, and the remainder is non-negative where
 its geometric factor is bounded.
+
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `U` – input zonotope
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – scaled norm at most half the order bound
+
+## Conclusion
+* the error radius is nonnegative
 -/
 
 -- Authors:       Claude Sonnet 5.5

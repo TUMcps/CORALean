@@ -14,6 +14,16 @@ fresh enclosure, so what rounding and the Taylor remainder cost grows with the
 `s ≈ log₂(t/Δt)` squarings a range needs, and does not depend on any other
 range's enclosure. A squaring roughly doubles the relative width, so the
 enclosure is about `2^s` times as wide, relatively, as the scaled one.
+
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+* `s` – number of squarings
+
+## Output
+* float interval matrix enclosing the exponential by scaling and squaring
 -/
 
 -- Authors:       Claude Opus 5.5

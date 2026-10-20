@@ -19,6 +19,27 @@ is in the float box and `Γ(Δt) ũ` in `P̃(Δt)`. The `Ũ`-input's share comes
 apart at `Δt` (`inputReach_separation_subset`): its first step carried across
 `t_{k+1}`, which the propagated one-step set holds, plus its share by
 `t_{k+1}`, which `P^R(t_{k+1})` holds.
+
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `X₀` – initial states
+* `ũ` – constant input
+* `Ũ` – recentered input zonotope
+* `eAΔt` – float exponential enclosure of the step
+* `Pu` – float constant input contribution
+* `ρ` – zonotope order
+* `k` – pass index
+* `s` – loop state
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `heA` – float matrix holds the exponential
+* `hPu` – constant input contribution lies in the float set
+* `h` – state holds the invariant of the pass
+
+## Conclusion
+* the next state holds the invariant of the next pass
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,19 +10,47 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 /-!
 # `Thm. 1`: what `Alg. 2` returns encloses the AE set over `τ`
 
-[1, Thm. 1] holds [1, Alg. 2] to its claim: `R^{∀∃}(-τ)` sits inside the union of
-the `ω` steps' sets, each cut by `⟨N,p⟩_H`. Three of the theorem's four moves are
-proved outright — restricting `∀u(·)∈U` to the finite `Û`, enclosing each
-trajectory's own set by the halfspaces, and distributing the intersection over
-the union. The fourth, that the propagated sets and support values really do
-enclose, is what the paper imports from the standard propagation for (44), (45)
-and (46); it is `hcov` and `hp` here, stated against `Alg. 2`'s own outputs.
+[1, Thm. 1] holds [1, Alg. 2] to its claim: `R^{∀∃}(-τ)` sits inside the union of the `ω` steps'
+sets, each cut by `⟨N,p⟩_H`. Three of the theorem's four moves are proved outright: restricting
+`∀u(·)∈U` to the finite `Û`, enclosing each trajectory's own set by the halfspaces, and distributing
+the intersection over the union. The fourth, that the propagated sets and support values really do
+enclose, is what the paper imports from the standard propagation for (44), (45) and (46); it is
+`hcov` and `hp` here. `⊆`, not `=`: [1, (48)] claims an outer approximation and nothing more. The
+sets are over Carathéodory runs: under derivative-everywhere runs a non-measurable input admits
+none, the left-hand side would be empty whenever `U` holds two points.
 
-`⊆`, not `=`: [1, (48)] claims an outer approximation and nothing more.
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `τ` – target time set
+* `U` – input set
+* `W` – disturbance set
+* `Xend` – target set
+* `CZ` – target constrained zonotope
+* `W₀` – initial disturbance zonotope
+* `U₀` – initial input zonotope
+* `Zw` – center trajectory contribution
+* `N` – direction matrix
+* `t₀` – start time
+* `tend` – end time
+* `Δt` – step length
+* `η` – Taylor order
+* `ω` – number of iterations
+* `u₀` – central input signal
+* `û` – per-direction input signals
 
-The sets are over Carathéodory runs: under derivative-everywhere runs a
-non-measurable input admits none, the left-hand side would be empty whenever `U`
-holds two points, and the statement would be true and empty.
+## Hypotheses
+* `ρ` – support oracle for constrained zonotopes
+* `hΔt` – step is the horizon over the iteration count
+* `hu₀` – central input lies in the input set
+* `hmu₀` – central input measurable
+* `hû` – direction inputs lie in the input set
+* `hmû` – direction inputs measurable
+* `hcov` – steps' sets cover the set of the central input
+* `hp` – each direction is bounded by a cut direction
+
+## Conclusion
+* the union of the cut steps encloses the AE backward reachable set
 
 ## References
 

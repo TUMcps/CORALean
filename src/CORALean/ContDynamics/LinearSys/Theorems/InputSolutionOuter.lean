@@ -15,19 +15,13 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # `inputSolution` contains everything the input can contribute over a step
 
-Althoff's Thm. 3.1. Substituting `τ = r - s` turns `∫₀ʳ e^{A(r-s)}u(s)ds` into
-`∫₀ʳ e^{Aτ}u(r-τ)dτ`, and the exponential splits into its first `η+1` orders
-plus a remainder — a *finite* sum, so linearity of the integral does the whole
-split and no series has to be exchanged with an integral.
-
-Each exact order comes out as `Aⁱ/i!` applied to `∫₀ʳ τⁱ u(r-τ)dτ`, the matrix
-leaving the integral before `integral_pow_smul_mem` is used, so convexity is
-asked only of `U`. The remainder cannot do that — `R(τ)` varies with `τ` — so
-there the convex closed set is the product `E(r)·r·U`, which is why that
-hypothesis is about the operation's result rather than its argument.
-
-`0 ∈ U` is not needed: this is the enclosure at `r`, and Prop. 3.3 is what would
-extend it to all of `[0,r]`.
+Althoff's Thm. 3.1. Substituting `τ = r - s` turns `∫₀ʳ e^{A(r-s)}u(s)ds` into `∫₀ʳ e^{Aτ}u(r-τ)dτ`,
+and the exponential splits into its first `η+1` orders plus a remainder, a *finite* sum, so
+linearity of the integral does the whole split. Each exact order comes out as `Aⁱ/i!` applied to
+`∫₀ʳ τⁱ u(r-τ)dτ`, the matrix leaving the integral before `integral_pow_smul_mem` is used, so
+convexity is asked only of `U`. The remainder cannot do that, `R(τ)` varying with `τ`, so there the
+convex closed set is the product `E(r)·r·U`. `0 ∈ U` is not needed: this is the enclosure at `r`,
+and Prop. 3.3 would extend it to all of `[0,r]`.
 -/
 
 -- Authors:       Claude Opus 5

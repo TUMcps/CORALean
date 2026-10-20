@@ -14,6 +14,27 @@ is the same sum, bracketed differently. So whatever is proved of `IsCanonicalTra
 input set `U' ⊇ B U ⊕ c ⊕ E W`, which `canonicalForm` computes, holds of every run of the full
 system. The output equation plays no part: the canonical form keeps the state.
 
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `X₀` – initial set
+* `U` – input set
+* `W` – disturbance set
+* `V` – noise set
+* `x` – state trajectory
+* `u` – input signal
+* `w` – disturbance signal
+* `v` – noise signal
+* `y` – output signal
+* `U'` – combined input set
+
+## Hypotheses
+* `traj` – signal is a trajectory
+* `hU'` – combined input lies in the combined set
+
+## Conclusion
+* the run is a canonical trajectory under the combined input
+
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`

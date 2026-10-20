@@ -11,6 +11,20 @@ public import Mathlib.Logic.Function.Iterate
 `k` passes of a loop that replaces the state by `step` and appends `out` of the new state to a
 list, started at `(s₀, [out s₀])`, end at `step^[k] s₀` with the outputs `out (step^[j] s₀)`
 for `j ≤ k`. The reach algorithms of `LinearSys` run this loop over their time windows.
+
+## Inputs
+* `σ` – state type
+* `β` – output type
+* `step` – step map
+* `out` – output map
+* `s₀` – start state
+* `k` – number of passes
+
+## Hypotheses
+* none
+
+## Conclusion
+* the loop is the iterated step with the outputs of the iterates
 -/
 
 -- Authors:       Claude Opus 5.5

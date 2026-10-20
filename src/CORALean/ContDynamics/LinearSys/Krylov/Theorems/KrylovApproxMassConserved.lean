@@ -16,6 +16,18 @@ public import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 squared norm `y*y`; (8.3) prints its middle term `e₁*e^{itT_m}V_m*V_me^{-itT_m}e₁`, which is the
 squared norm too.
 
+## Inputs
+* `V` – Krylov basis
+* `T` – Hessenberg matrix
+* `t` – time
+
+## Hypotheses
+* `hT` – Hessenberg matrix Hermitian
+* `hV` – basis has orthonormal columns
+
+## Conclusion
+* the Krylov approximation of the unitary evolution has unit norm
+
 ## References
 
 * [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations

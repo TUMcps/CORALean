@@ -20,6 +20,20 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 `‖Δt|A|‖ = ‖Δt A‖` (the row sums of `|A|` are those of `A`), and that is under the float
 remainder bound `intervalInputRemainder` is built from. So the float box, `Δt` times one bound
 in every entry, holds the exact one at every member of the interval matrix.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – float norm bound small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the exact remainder box lies inside the float input remainder
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,17 @@ divides it by `h_{k+1,k} = ‖w‖`; at a happy breakdown `‖w‖ = 0` makes `w
 holds for every column. That the `v(i)` are orthonormal, which makes `H` the projection of `C`,
 is not shown here.
 
+## Inputs
+* `C` – matrix
+* `v` – start vector
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix maps the step's Arnoldi vector to its orthogonal expansion
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

@@ -15,6 +15,21 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 in its own point interval, and `MatExp.exp_mem_expIntervalEnclosure` does the
 rest at an admissible order. No sign is asked of `t`: a range straddling zero is
 enclosed as soundly as a positive one.
+
+## Inputs
+* `sys` – linear system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `hη` – order admissible
+* `htLo` – time at least the lower bound
+* `htHi` – time at most the upper bound
+
+## Conclusion
+* the exponential at the time lies in the float interval enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

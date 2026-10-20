@@ -15,6 +15,15 @@ and `z̃ > 0` is the case of interest (a positive definite `A`, Cor. 5.3). At `z
 `∫₀¹e^{-t}dt = 1 - e^{-1} > e^{-1}`. The printed bound (5.4) itself is not refuted: it follows
 from the weighted bound of the proof of Thm. 3.1 (`Krylov.error_le_of_decay_bound`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the integral bound fails for some positive exponent and step
+
 ## References
 
 * [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix

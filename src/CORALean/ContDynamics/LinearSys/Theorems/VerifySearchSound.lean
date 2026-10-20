@@ -13,6 +13,40 @@ sound whatever the oracles do, as `verifySearchLoop_sound` says of any state in 
 invariants hold, and at line 1 they do: `1·t = t`, `P̌` has no vertex, and `Δt = t` is small
 enough for `Alg. 1` when `‖tA‖ < η + 2`. Not claimed: that the loop ever reaches an exit.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial set
+* `U` – input set
+* `t` – time
+* `m` – Taylor order offset
+* `ρ` – support function oracle
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `νL` – support vector map of the specification set
+* `L` – specification set
+* `ρL` – support function of the specification set
+* `νhat` – support vector map of the outer approximation
+* `inHull` – origin-in-hull test
+* `closestFacet` – closest facet finder
+* `gramSchmidt` – orthogonal direction finder
+* `fuel` – number of iterations
+
+## Hypotheses
+* `hX₀` – initial set convex
+* `hUconv` – input set convex
+* `ht` – time positive
+* `hε` – scaled norm small enough for the Taylor order
+* `hρ` – oracle bounds the support function of every set
+* `hν₀` – initial support vectors lie in the initial set
+* `hνU` – input support vectors lie in the input set
+* `hL` – specification set convex
+* `hνL` – specification support vectors lie in the set
+* `hρL` – specification support function bounds the set
+* `hhull` – hull test is sound
+
+## Conclusion
+* a safe answer means the sets are disjoint and a violated one that they meet
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated

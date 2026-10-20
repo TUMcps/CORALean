@@ -14,6 +14,20 @@ the window is past the next state and the rest of the run covers it. A run
 ending with iterations to spare has reached `t_f`. Soundness is
 `adaptiveStepFloat_outer` at each step, its time shifted back by `t₀`.
 
+## Inputs
+* `sys` – linear system
+* `X₀` – initial float zonotope
+* `V` – input float zonotope
+* `t₀` – start time
+* `tf` – final time
+* `options` – adaptive options
+
+## Hypotheses
+* none
+
+## Conclusion
+* a successful run covers the rest of the horizon and its windows hold every run
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

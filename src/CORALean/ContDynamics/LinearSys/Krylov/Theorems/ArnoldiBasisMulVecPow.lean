@@ -18,6 +18,18 @@ coefficients of `‖v‖ V e^{Ht} e₁`, [1]'s (2), agree with those of `e^{Ct} 
 not used. A pass stores what earlier passes stored unchanged, which is what lets the
 relation, stated at pass `k + 1`, be read in the matrices of pass `ξ`.
 
+## Inputs
+* `C` – matrix
+* `v` – start vector
+* `m` – Krylov order
+* `j` – power
+
+## Hypotheses
+* `hj` – power at most the Krylov order
+
+## Conclusion
+* the Krylov approximation of the power applied to the start vector is exact
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the

@@ -17,6 +17,22 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 scalar is in `[κ · r^i/i!, 0]`: `κ ≤ corrCoeff i ≤ 0` and `0 ≤ r^i/i!` below the
 stored upper end, so the float lower end, a product of a nonpositive and a
 nonnegative bound, only decreases. `smul_outer` and `matPow_outer` finish.
+
+## Inputs
+* `A` – float interval matrix
+* `r` – float step length
+* `i` – order index
+* `M` – member matrix
+* `j` – row index
+* `k` – column index
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hi` – order at least two
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's correction entry lies within the float box entry
 -/
 
 -- Authors:       Claude Opus 5.5

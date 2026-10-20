@@ -10,19 +10,43 @@ public import Mathlib.Analysis.Convex.Combination
 # The interpolated counterexample of [1, Alg. 3 (exits)]
 
 [1]'s Sec. 5.2: once the simplex `P̌ = ⟨[v̌_1 … v̌_{n+1}]⟩_V` of [1, Alg. 3 (exits)] holds the
-origin, with `v̌_j = ν(Ř(t), ℓ_j) - ν(L, -ℓ_j)`, the weights `λ_j` of
-`∑ λ_j v̌_j = 0`, `∑ λ_j = 1` interpolate the initial states `x_j(0)` and the input
-sequences `u_j(k)` of the runs reaching the vertices, and the interpolated run is
-the counterexample. Here the vertices' runs are any held-input runs from `R₀`
-under inputs of `U` and the points `y_j` any points of `L`; [1]'s Eq. (18) is
-linear in the initial state and the inputs together, so the interpolated run's
-state at `t_k` is `∑ λ_j x_j(k) = ∑ λ_j y_j`, a point of the convex `L`, and its
-initial state and inputs are convex combinations of admissible ones.
+origin, with `v̌_j = ν(Ř(t), ℓ_j) - ν(L, -ℓ_j)`, the weights `λ_j` of `∑ λ_j v̌_j = 0`, `∑ λ_j = 1`
+interpolate the initial states `x_j(0)` and the input sequences `u_j(k)` of the runs reaching the
+vertices, and the interpolated run is the counterexample. Here the vertices' runs are any held-input
+runs from `R₀` under inputs of `U` and the points `y_j` any points of `L`; [1]'s Eq. (18) is linear
+in the initial state and the inputs together, so the interpolated run's state at `t_k` is
+`∑ λ_j x_j(k) = ∑ λ_j y_j`, a point of the convex `L`. The weights have to be non-negative, which
+[1] leaves to the simplex; a negative weight extrapolates out of `X₀` and `U`.
 
-The weights have to be non-negative, which [1] leaves to the simplex: with
-affinely independent vertices the linear system has exactly one solution and
-`0 ∈ P̌` makes it non-negative, but a degenerate simplex admits others, and a
-negative weight extrapolates out of `X₀` and `U`.
+## Inputs
+* `sys` – linear system
+* `R₀` – initial set
+* `U` – input set
+* `Δt` – step length
+* `L` – target set
+* `ι` – index type of the vertices
+* `s` – vertex index set
+* `w` – weights
+* `x` – vertex start states
+* `v` – vertex held inputs
+* `y` – target points
+* `k` – step index
+
+## Hypotheses
+* `hR₀` – initial set convex
+* `hUconv` – input set convex
+* `hU` – input set bounded
+* `hΔt` – step length positive
+* `hL` – target set convex
+* `hw₀` – weights nonnegative
+* `hw₁` – weights sum to one
+* `hx` – start states lie in the initial set
+* `hv` – held values lie in the input set
+* `hy` – target points lie in the target set
+* `h0` – weighted state-target differences vanish
+
+## Conclusion
+* the interpolated run is a trajectory whose state at the step lies in the target set
 
 ## References
 

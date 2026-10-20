@@ -12,6 +12,16 @@ at `0` and not at `T`; `meas` restricts with the measure. This is what makes the
 domain a parameter worth having —
 a run over all forward time is a run over `[0, τ]`, so a one-step guarantee
 applies to it without restating the hypotheses.
+
+## Inputs
+* none
+
+## Hypotheses
+* `traj` – run on the larger time domain
+* `hT` – smaller domain lies in the larger one
+
+## Conclusion
+* the run is a trajectory on the smaller domain
 -/
 
 -- Authors:       Claude Opus 5

@@ -9,15 +9,30 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetEx
 # The first time interval: the enclosure converges
 
 [1, Lemma 2], second half, corrected:
-`d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)`. One
-direction is the first half, `iUnion_reachSetExact_subset_linComb_plus_cube`; the other is
-`exists_mem_iUnion_reachSetExact_dist_le`.
+`d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)`. One direction is
+the first half, `iUnion_reachSetExact_subset_linComb_plus_cube`; the other is
+`exists_mem_iUnion_reachSetExact_dist_le`. [1] prints `(1/2 + r)` where this has `(1/2 + r‖A‖)`. The
+printed proof reaches its factor through `2α_r ≤ e^{r‖A‖} r² sup ‖x‖`, which drops `‖A‖²`, and the
+printed bound is false: `exists_lt_hausdorffDist_iUnion_reachSetExact` is a scalar system where the
+distance exceeds it. With `r‖A‖` in place of `r` the bound is dimensionally consistent.
 
-[1] prints `(1/2 + r)` where this has `(1/2 + r‖A‖)`. The printed proof reaches its factor
-through `2α_r ≤ e^{r‖A‖} r² sup ‖x‖`, which drops `‖A‖²`, and the printed bound is false:
-`exists_lt_hausdorffDist_iUnion_reachSetExact` is a scalar system where the distance
-exceeds it. With `r‖A‖` in place of `r` the bound is dimensionally consistent, `r‖A‖` being
-unitless where `r` is a time.
+## Inputs
+* `sys` – linear system
+* `Z` – initial zonotope
+* `U` – input zonotope
+* `μ` – input bound
+* `r` – step length
+* `s` – norm bound of the initial zonotope
+
+## Hypotheses
+* `hA` – matrix norm positive
+* `hr` – step length positive
+* `hμ` – input bound nonnegative
+* `hU` – input set is the ball of that radius
+* `hs` – norm bound holds on the initial zonotope
+
+## Conclusion
+* the enclosure is within the corrected Hausdorff distance of the reachable set
 
 ## References
 

@@ -21,6 +21,22 @@ Both factors there are `O(Δt)` and `O(1)`, so the integral is `O(Δt²)`.
 Convexity and closedness of `U` are what the mean needs; any other point of `U`
 would only give `O(Δt)`, which summed over `t/Δt` steps converges to nothing.
 
+## Inputs
+* `sys` – linear system
+* `U` – input set
+* `Δt` – step length
+* `ρ` – input norm bound
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hρ` – input norms bounded
+
+## Conclusion
+* every point of the input reach is near the inner approximation
+
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed

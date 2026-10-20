@@ -17,6 +17,22 @@ admissible at the real scaled matrix (`tuneOrder_spec`, the bound reaching `‖r
 order is chosen by a computation rather than by `expRemainderOrder`'s infimum, and the
 enclosure guarantee is the same.
 
+## Inputs
+* `sys` – linear system
+* `r` – float step length
+* `ε` – float admissible error
+* `fuel` – number of orders tried
+* `X₀` – initial set
+* `t` – time
+
+## Hypotheses
+* `hr` – step length positive
+* `ht0` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the exponential image lies in the step set at every order the search returns
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

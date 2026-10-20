@@ -13,6 +13,16 @@ public import CORALean.Global.EuclideanGenOpNorm
 `affineDynamicsError`: `Δε^h_k(Δt,η) := 2·err(C) + √γ_h ‖G^{(-)}_h‖₂`, the error [1, Prop. 1]
 charges the affine dynamics for one step.
 
+## Inputs
+* `A` – system matrix
+* `H` – state zonotope
+* `ũ` – constant input
+* `Δt` – step length
+* `η` – Taylor order
+
+## Output
+* error of the affine dynamics over the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

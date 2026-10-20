@@ -10,17 +10,21 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # Sampling a continuous-time system, the exponential only enclosed
 
-`discretize` puts `e^{AΔt}` into a `LinearSysDT` as an exact real matrix, but
-`e^{AΔt}` is transcendental — nothing can compute it. `expEnclosure` is the
-computable enclosure of it, and an enclosure is a *set* of matrices, so the
-discretized system is no longer a `LinearSysDT` at all: it is a `LinParamSysDT`
-over interval matrices. The uncertainty here is not modelling uncertainty, it
-is the numerical error of the exponential, and `LinParamSysDT` is exactly its
-home.
+`discretize` puts `e^{AΔt}` into a `LinearSysDT` as an exact real matrix, but `e^{AΔt}` is
+transcendental, so nothing can compute it. `expEnclosure` is the computable enclosure, and an
+enclosure is a *set* of matrices, so the discretized system is a `LinParamSysDT` over interval
+matrices: the uncertainty is the numerical error of the exponential, not modelling uncertainty.
+`ℐ` (`ContSet/Interval/Real/Instances`) would name the matrix family, but it comes with the
+`ConvexSet`/`CompactSet`/`Mtimes` instances a *use* of this system wants and a mere definition
+does not, so the family is written out here.
 
-`ℐ` (`ContSet/Interval/Real/Instances`) would name the matrix family, but it
-comes with the `ConvexSet`/`CompactSet`/`Mtimes` instances a *use* of this
-system wants and a mere definition does not, so the family is written out here.
+## Inputs
+* `sys` – linear system
+* `Δt` – sampling step
+* `η` – Taylor order
+
+## Output
+* sampled system whose matrix is only enclosed
 
 ## References
 

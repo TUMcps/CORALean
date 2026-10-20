@@ -18,6 +18,19 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
 At `r = 0` the window is the point `t = 0`, where both sides vanish; `t / r` is then
 Lean's `0 / 0 = 0`, which is harmless there.
 
+## Inputs
+* `A` – system matrix
+* `t` – time
+* `r` – step length
+* `z` – vector
+
+## Hypotheses
+* `ht` – time nonnegative
+* `htr` – time within the step
+
+## Conclusion
+* the flow deviates from the straight line by at most the second-order bound times the norm
+
 ## References
 
 * [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid

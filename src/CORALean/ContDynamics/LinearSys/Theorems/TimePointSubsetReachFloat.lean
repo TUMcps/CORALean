@@ -12,16 +12,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 /-!
 # The nominal time-point set refines `reachFloat`'s, at a `Real.Zonotope`
 
-`sys.reachFloat`'s time-point sets `Rtp`, computed in `𝕋`, enclose the same
-recursion the nominal `timePoint` runs at a `Real.Zonotope`, given the initial
-sets agree that way: `Real.Zonotope.mtimes_exact` makes `timePoint`'s own step
-exact, so a point of `timePoint (k + 1)`'s set is `e^{AΔt} x` for some `x` of
-`timePoint k`'s, and `ih` puts that `x` in `Rtp[k]`; `timePointStepFloat_outer`
-and `Reduce.reduce_outer` carry it into `Rtp[k + 1]`, `reachFloat`'s own step
-from there. Time points only: a window's nominal `timeIntervalStep` widens by
-a correction matrix at the *nominal* `sys.A`, while `reachFloat`'s window widens
-by one at the *interval* enclosure of it, and the two error terms are not
-compared here.
+`sys.reachFloat`'s time-point sets `Rtp`, computed in `𝕋`, enclose the same recursion the nominal
+`timePoint` runs at a `Real.Zonotope`, given the initial sets agree that way:
+`Real.Zonotope.mtimes_exact` makes `timePoint`'s own step exact, so a point of `timePoint (k + 1)`'s
+set is `e^{AΔt} x` for some `x` of `timePoint k`'s, and `ih` puts that `x` in `Rtp[k]`;
+`timePointStepFloat_outer` and `Reduce.reduce_outer` carry it into `Rtp[k + 1]`. Time points only: a
+window's nominal `timeIntervalStep` widens by a correction matrix at the *nominal* `sys.A`, while
+`reachFloat`'s window widens by one at the *interval* enclosure of it, and the two error terms are
+not compared here.
+
+## Inputs
+* `sys` – linear system
+* `X₀` – exact initial zonotope
+* `X₀float` – float initial zonotope
+* `tStart` – start time
+* `tFinal` – final time
+* `options` – reach options
+
+## Hypotheses
+* `hX₀` – exact start lies in the float one
+
+## Conclusion
+* the nominal time-point sets lie in the float time-point sets
 -/
 
 -- Authors:       Claude Opus 5.5

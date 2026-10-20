@@ -15,6 +15,24 @@ public import CORALean.Global.Float.ToRat
 `2·Δt_{k-1}` did not suffice. The tuned pair enters `autoStepFloat`, which re-checks it before
 use, so the step is sound at any pair this returns: no soundness theorem is owed.
 
+## Inputs
+* `sys` – linear system
+* `eAtk` – float exponential enclosure at the step start
+* `H` – float state zonotope
+* `ũ` – float constant input
+* `tk` – step start time
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `εaAcc` – accumulated approximation error
+* `Δtprev` – previous float step length
+* `ηmax` – maximal Taylor order
+* `fuel` – number of halvings
+* `U₀` – recentered float input zonotope
+
+## Output
+* step size and order, if the halvings suffice
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

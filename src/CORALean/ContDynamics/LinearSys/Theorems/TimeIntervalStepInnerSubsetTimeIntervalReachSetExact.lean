@@ -18,15 +18,26 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 /-!
 # The whole-step inner approximation lands in the exact tube
 
-`timeIntervalStepInner_inner` at the reachable set over `[0, r]`, for
-any input set `U`. The inner approximation lies in `X₀` itself
-(`timeIntervalStep_subset_initial_add_error` measures against `X₀`), and every
-point of `X₀` is the state at `t = 0` of a Carathéodory run on `[0, r]`: hold
-the input at `U`'s center and take `closedForm`, which `closedForm_flow` makes
-a `IsTrajectory`.
+`timeIntervalStepInner_inner` at the reachable set over `[0, r]`, for any input set `U`. The inner
+approximation lies in `X₀` itself (`timeIntervalStep_subset_initial_add_error` measures against
+`X₀`), and every point of `X₀` is the state at `t = 0` of a Carathéodory run on `[0, r]`: hold the
+input at `U`'s center and take `closedForm`, which `closedForm_flow` makes a `IsTrajectory`.
+`timeIntervalStep` carries no input, so `U` enters only through that witness; a zonotope is never
+empty, so no hypothesis on `U` is needed.
 
-`timeIntervalStep` carries no input, so `U` enters only through that witness;
-a zonotope is never empty, so no hypothesis on `U` is needed.
+## Inputs
+* `sys` – linear system
+* `r` – step length
+* `η` – Taylor order
+* `X₀` – initial zonotope
+* `U` – input zonotope
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the enclosure minus the error ball lies inside the exact interval reach set
 -/
 
 -- Authors:       Claude Opus 5.5

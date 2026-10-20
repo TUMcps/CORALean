@@ -11,15 +11,24 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TsumLeExpTail
 /-!
 # Truncating the integrated exponential costs one step times the remainder
 
-`expIntegral` is the exponential integrated once over `[0, r]`, so its order `i`
-carries `r^{i+1}/(i+1)!` where the exponential carries `r^i/i!`. One factor of
-`r` comes out in front and the rest is bounded by the exponential's own tail,
-which is why `inputRemainder`'s radius is `r · expRemainderBound (r A) η` and not
-a bound of its own.
+`expIntegral` is the exponential integrated once over `[0, r]`, so its order `i` carries
+`r^{i+1}/(i+1)!` where the exponential carries `r^i/i!`. One factor of `r` comes out in front and
+the rest is bounded by the exponential's own tail, which is why `inputRemainder`'s radius is
+`r · expRemainderBound (r A) η` and not a bound of its own. `norm_expIntegralTerm_le` is the
+estimate one order at a time; here it is summed over the orders past `η`, every one of which is
+at least `1`, which is what lets that estimate apply at all.
 
-`norm_expIntegralTerm_le` is the estimate one order at a time; here it is summed
-over the orders past `η`, every one of which is at least `1`, which is what lets
-that estimate apply at all.
+## Inputs
+* `A` – system matrix
+* `r` – step length
+* `η` – Taylor order
+
+## Hypotheses
+* `hr` – step length nonnegative
+* `hε` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the integrated series tail is at most the step times the remainder bound
 -/
 
 -- Authors:       Claude Opus 5

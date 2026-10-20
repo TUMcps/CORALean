@@ -12,15 +12,26 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # The box's input remainder contains every member's
 
-`E(r)·r` is a box of one uniform width, so widening it to a whole interval
-matrix is widening that one number: `expRemainderBound_mono` at
-`norm_le_absMax`, and nothing else. Stated as a containment between the two
-interval matrices, which is how an input solution uses it — the point
-remainder is where a member's tail is shown to lie, and this carries that into
-the set-valued one.
-
-`hε` is stated at the dominating matrix of `r • A`, checkable before a member is
+`E(r)·r` is a box of one uniform width, so widening it to a whole interval matrix is widening
+that one number: `expRemainderBound_mono` at `norm_le_absMax`, and nothing else. Stated as a
+containment between the two interval matrices, which is how an input solution uses it: the
+point remainder is where a member's tail is shown to lie, and this carries that into the
+set-valued one. `hε` is stated at the dominating matrix of `r • A`, checkable before a member is
 fixed, as everywhere else in this directory.
+
+## Inputs
+* `A` – interval matrix
+* `r` – step length
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hr` – step length positive
+* `hε` – dominating norm small enough for the Taylor order
+* `hM` – member lies in the interval matrix
+
+## Conclusion
+* the member's input remainder lies in the box's input remainder
 -/
 
 -- Authors:       Claude Opus 5

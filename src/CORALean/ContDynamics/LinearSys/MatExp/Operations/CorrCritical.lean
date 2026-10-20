@@ -10,6 +10,12 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 `corrCritical`: where [1]'s `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only stationary
 point, and the minimum because the map is convex.
 
+## Inputs
+* `i` – order
+
+## Output
+* critical point of the correction polynomial
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

@@ -21,6 +21,24 @@ grows with time [1, Prop. 3.3], so every `t ≤ t_{k+1}` is bounded by
 one step in `inputSolution`; and the recursion `particularSolution` computes
 encloses that propagation, one `plus` and one `mtimes` per window.
 
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `η` – Taylor order
+* `U` – input set
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step length positive
+* `hε` – scaled norm small enough for the Taylor order
+* `h0` – origin in the input set
+* `ht0` – time nonnegative
+* `htk` – time within the window end
+
+## Conclusion
+* the input reach at the time lies in the accumulated particular solution
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

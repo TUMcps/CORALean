@@ -7,17 +7,21 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
 /-!
 # The interpolation coefficient never leaves the unit interval
 
-`corrCoeff i` is `a^i - a` at the stationary point `a = corrCritical i`, which
-sits in `(0, 1]` for every `i ≥ 2`. So the coefficient is at most `0` — its
-upper bound is `corrCoeff_le_sub` at `s = 0` — and at least `-a ≥ -1`, the power
-being nonnegative.
+`corrCoeff i` is `a^i - a` at the stationary point `a = corrCritical i`, which sits in `(0, 1]`
+for every `i ≥ 2`. So the coefficient is at most `0` (`corrCoeff_le_sub` at `s = 0`) and at least
+`-a ≥ -1`. It buys an entrywise bound on `correctionMatrix` that mentions only `r` and `‖A‖`:
+each order contributes at most `(r‖A‖)^i / i!`, so the finite part is under
+`e^{r‖A‖} - 1 - r‖A‖` and the correction vanishes with the step. The sign is not symmetric, but
+a bound on the absolute value is what an interval's two endpoints both need.
 
-What it buys is an entrywise bound on `correctionMatrix` that mentions only `r`
-and `‖A‖`: each order contributes at most `(r‖A‖)^i / i!`, so the whole finite
-part is under `e^{r‖A‖} - 1 - r‖A‖` and the correction vanishes with the step.
+## Inputs
+* none
 
-The sign is not symmetric — the coefficient is never positive — but a bound on
-the absolute value is what an interval's two endpoints both need.
+## Hypotheses
+* `hi` – order at least two
+
+## Conclusion
+* the correction coefficient is at most one in magnitude
 -/
 
 -- Authors:       Claude Opus 5

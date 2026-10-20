@@ -11,6 +11,15 @@ public import Mathlib.Tactic.Positivity
 
 By induction: `le_nsmulUp` at `one` puts each factor at or above `k`, and a
 product of nonnegative upper bounds is one, so `mulUp` stays above `k · (k-1)!`.
+
+## Inputs
+* `k` – factorial argument
+
+## Hypotheses
+* none
+
+## Conclusion
+* the factorial is at most its float upper bound
 -/
 
 -- Authors:       Claude Sonnet 5

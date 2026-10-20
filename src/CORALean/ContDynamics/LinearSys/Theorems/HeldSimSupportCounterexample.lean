@@ -10,19 +10,29 @@ public import Mathlib.Algebra.BigOperators.Intervals
 /-!
 # The corrected counterexample reaches the lower bound exactly
 
-[1, Sec. 4.2]: simulating [1]'s Eq. (18) from the initial state of [1]'s Eq. (19)
-under the inputs of [1]'s Eq. (20) lands, at `t_k`, on a point whose value along
-`ℓ` *is* line 15's `ρ(Ř(t_k), ℓ)` of [1, Alg. 1 (lower bounds)] — an equality, not a
-bound, with the inputs of `supportCounterexample`, which runs the steps from the end and
-applies `T`.
+[1, Sec. 4.2]: simulating [1]'s Eq. (18) from the initial state of [1]'s Eq. (19) under the inputs
+of [1]'s Eq. (20) lands, at `t_k`, on a point whose value along `ℓ` *is* line 15's `ρ(Ř(t_k), ℓ)` of
+[1, Alg. 1 (lower bounds)]: an equality, not a bound, with the inputs of `supportCounterexample`,
+which runs the steps from the end and applies `T`. Both sides are read in closed form: `heldSim` as
+`e^{AΔt k} x₀` plus each input carried forward by `e^{AΔt (k-1-i)} T`, and `supportLower`'s fields
+as sums over the steps. Line 15 then sums `ρ(X₀, d_k)`, the constant input's `ℓ(P_u(t_k))` and line
+14's `ρ(T U₀, d_j) = ρ(T U, d_j) - d_j(T ũ)`, where the two `ũ` terms cancel, so the value does not
+depend on which point of `U` line 2 calls its center.
 
-Both sides are read in closed form: `heldSim` as `e^{AΔt k} x₀` plus each input
-carried forward by `e^{AΔt (k-1-i)} T`, and `supportLower`'s fields as sums over
-the steps, the direction of line 8 as `ℓ ∘ e^{AΔt j}`. Line 15 then sums
-`ρ(X₀, d_k)`, the constant input's `ℓ(P_u(t_k))` and line 14's
-`ρ(T U₀, d_j) = ρ(T U, d_j) - d_j(T ũ)`, where the two `ũ` terms cancel: the
-value does not depend on which point of `U` line 2 calls its center. Reflecting
-the sum over the steps (`Finset.sum_range_reflect`) matches the two.
+## Inputs
+* `sys` – linear system
+* `Δt` – step length
+* `ν₀` – support vector map of the initial set
+* `νU` – support vector map of the input set
+* `c` – point of the input set
+* `ℓ` – direction
+* `k` – step index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the counterexample's state attains the lower bound along the direction
 
 ## References
 

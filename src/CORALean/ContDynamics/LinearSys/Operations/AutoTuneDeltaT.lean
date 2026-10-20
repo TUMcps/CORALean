@@ -10,6 +10,24 @@ public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
 [1, Alg. 2]: line 5 doubles the previous step, then `autoTuneSearch` shrinks
 and `autoTuneOrder` sweeps until both admissible-error bounds clear.
 
+## Inputs
+* `sys` – linear system
+* `le` – comparison oracle on reals
+* `H` – state zonotope
+* `ũ` – constant input
+* `tk` – step start time
+* `tend` – final time
+* `εmax` – admissible error
+* `ζ` – error budget share
+* `εaAcc` – accumulated approximation error
+* `Δtprev` – previous step length
+* `ηmax` – maximal Taylor order
+* `fuel` – number of shrinkings
+* `U₀` – recentered input zonotope
+
+## Output
+* step size and order, if the halvings suffice
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

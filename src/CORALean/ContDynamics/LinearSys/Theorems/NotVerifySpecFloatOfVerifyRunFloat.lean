@@ -11,6 +11,24 @@ public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecFloatOfVerif
 [1, Alg. 3]: `some false` from `verifyRunFloat` means an iteration's falsified test passed, the
 comparisons certifying `ν̌_G > 0` or `ν̌_F ≤ 0`.
 
+## Inputs
+* `Reach` – reachable set
+* `reachFn` – float reachable set as a function of the error
+* `innerApprox` – float inner approximation at an error
+* `distG` – distance to a safe polytope
+* `distF` – distance to an unsafe polytope
+* `G` – float safe polytopes
+* `F` – float unsafe polytopes
+* `εmax` – float maximal error
+* `fuel` – number of iterations
+
+## Hypotheses
+* `h` – the oracles are sound
+* `hrun` – the run answers false
+
+## Conclusion
+* the specification does not hold
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of

@@ -14,6 +14,20 @@ Two roundings composed: the real bound at `‖x‖` is first bounded, entirely i
 ℝ, by the numerator at `toReal nrm` times the constant `2` (`hε` keeping the
 geometric factor under it); then `powUp`, `factorialDown` and the two
 `divUp`/`mulUp` calls each pay their own rounding to reach the float value.
+
+## Inputs
+* `n` – matrix dimension
+* `x` – matrix
+* `nrm` – float norm bound
+* `η` – Taylor order
+
+## Hypotheses
+* `hx` – matrix norm under the float bound
+* `hnn` – float bound nonnegative
+* `hε` – float bound small enough for the Taylor order
+
+## Conclusion
+* the real remainder bound is under the float one
 -/
 
 -- Authors:       Claude Sonnet 5

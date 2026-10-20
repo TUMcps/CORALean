@@ -12,6 +12,13 @@ public import Mathlib.Analysis.Matrix.Normed
 to, the radius of `expEnclosure`. Sound only under `‖x‖ / (η + 2) < 1`; without it the geometric
 bound diverges and this is meaningless rather than merely loose.
 
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+
+## Output
+* bound on the Taylor remainder
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety

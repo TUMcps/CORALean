@@ -17,6 +17,19 @@ a nonnegative radius picks out — so `⊆` unfolds to exactly this inequality.
 `expRemainderBound` factor superlinearly by `Lemma 1`'s own workhorse, so the
 proof gets `φ²·ε_P(Δt) ≤ φ·ε_P(Δt)`, tighter than [1]'s own bound.
 
+## Inputs
+* `sys` – linear system
+* `η` – Taylor order
+* `U` – input zonotope
+* `Δt` – step length
+
+## Hypotheses
+* `hΔt0` – step length positive
+* `hΔt` – scaled norm small enough for the Taylor order
+
+## Conclusion
+* the remainder error decreases superlinearly in the step
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

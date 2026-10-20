@@ -11,6 +11,17 @@ public import Mathlib.Tactic.Positivity
 `List.find?` returns only an entry its test accepted, and `le`'s `true` is sound:
 `nrm ≤ half (η + 2)↓ ≤ (η + 2)/2`, `nsmulDown_le` bounding the rounded count and
 `half` being exact. The entry is `η₀ + k` by construction, so at least `η₀`.
+
+## Inputs
+* `nrm` – float norm bound
+* `η₀` – first order tried
+* `fuel` – number of orders tried
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned order passes the float side condition and is at least the first tried
 -/
 
 -- Authors:       Claude Opus 5.5

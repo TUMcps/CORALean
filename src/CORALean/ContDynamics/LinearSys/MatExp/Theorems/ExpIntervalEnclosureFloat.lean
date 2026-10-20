@@ -20,6 +20,18 @@ a float, and `subDown_le_sub`/`add_le_addUp` finish widening the Taylor box.
 
 `hε` asks `1/2`, not `< 1`: `expRemainderBound_le`'s geometric factor is the
 fixed constant `2`, sound only under the stronger margin.
+
+## Inputs
+* `A` – float interval matrix
+* `η` – Taylor order
+* `M` – member matrix
+
+## Hypotheses
+* `hM` – member lies in the interval matrix
+* `hε` – float norm bound small enough for the Taylor order
+
+## Conclusion
+* the exponential of the member lies in the float interval enclosure
 -/
 
 -- Authors:       Claude Sonnet 5

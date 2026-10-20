@@ -11,20 +11,27 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # `expIntervalW` attains both of its bounds
 
-[1, Lemma 3.1], the half the word *exact* stands for: every entry's two bounds
-are values `W(t)` really takes on the box, so no smaller interval matrix
-encloses `W(t)` entrywise. Together with `expW_mem_expIntervalW` this is the
-lemma as [1] states it.
+[1, Lemma 3.1], the half the word *exact* stands for: every entry's two bounds are values `W(t)`
+really takes on the box, so no smaller interval matrix encloses `W(t)` entrywise. With
+`expW_mem_expIntervalW` this is the lemma as [1] states it. The witness is built entry by entry,
+which the single-use rearrangement buys: the variables `A i j`, the two diagonal entries, and the
+`A i k`, `A k j` of the `k ≠ i, j` sum are pairwise distinct, so each may be sent to whichever
+corner its own term wants. The two diagonal entries enter through one factor `[L, H]`, so they
+move together (`aux_diag_choice`). Exactness is entrywise, not as a set: the image of the box
+under `W(t)` is generally no interval matrix, as [1, Remark 3.1] notes for the sibling result.
 
-The witness is built entry by entry, which is what the single-use rearrangement
-buys: the variables `A i j`, the two diagonal entries, and the `A i k`, `A k j`
-of the `k ≠ i, j` sum are pairwise distinct, so each may be sent to whichever
-corner its own term wants and one matrix realises all of them at once. The two
-diagonal entries are the exception — they enter through one factor `[L, H]`,
-so they move together, which is what `aux_diag_choice` records.
+## Inputs
+* `A` – interval matrix
+* `t` – time
+* `i` – row index
+* `j` – column index
 
-Exactness is entrywise, not as a set: the image of the box under `W(t)` is
-generally no interval matrix, as [1, Remark 3.1] notes for the sibling result.
+## Hypotheses
+* `ht` – time nonzero
+* `hA` – box nonempty
+
+## Conclusion
+* both bounds of the entry are attained by members of the box
 
 ## References
 

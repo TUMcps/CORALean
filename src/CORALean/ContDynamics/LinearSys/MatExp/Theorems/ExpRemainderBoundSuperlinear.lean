@@ -16,6 +16,19 @@ further, since a smaller argument shrinks its own denominator less.
 `hx` is stated at `x`, the larger argument, and is what `Enclosures.lean`'s
 side condition already asks for — `φ • x` needs no separate check, `φ < 1`
 carrying it down automatically.
+
+## Inputs
+* `x` – matrix
+* `η` – Taylor order
+* `φ` – scale factor
+
+## Hypotheses
+* `hφ0` – scale factor positive
+* `hφ1` – scale factor below one
+* `hx` – norm small enough for the Taylor order
+
+## Conclusion
+* scaling the argument scales the bound down by at least the factor
 -/
 
 -- Authors:       Claude Opus 5

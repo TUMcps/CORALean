@@ -9,18 +9,33 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 /-!
 # `reach` encloses the set the flow reaches, at the sample times
 
-`reach_outer` with the trajectory quantifier moved off the front: what it says
-of every run at `kΔt`, this says of the set of them at once, so a specification
-about `reachSetExact` meets a bound on `reach` as one inclusion.
-
-`Ud` is any set covering what an input can contribute over a step, and the
-hypothesis is that same condition over every admissible run rather than over
-one — `stepInput_outer` supplies it, and
-`ReachSetExactSubsetTimeIntervalInputSolution` is the shape where nothing is left to
-supply.
-
-Between the sample times this says nothing; that is
+`reach_outer` with the trajectory quantifier moved off the front: what it says of every run at
+`kΔt`, this says of the set of them at once, so a specification about `reachSetExact` meets a bound
+on `reach` as one inclusion. `Ud` is any set covering what an input can contribute over a step, and
+the hypothesis is that same condition over every admissible run rather than over one:
+`stepInput_outer` supplies it, and `ReachSetExactSubsetTimeIntervalInputSolution` is the shape where
+nothing is left to supply. Between the sample times this says nothing; that is
 `reachSetExact_subset_timeInterval_inputSolution`.
+
+## Inputs
+* `sys` – linear system
+* `T` – time domain
+* `R₀` – initial set
+* `U` – input set
+* `Ud` – sampled input set
+* `Δt` – sampling step
+* `o` – zonotope order
+* `k` – step index
+
+## Hypotheses
+* `hΔt` – step length nonnegative
+* `hT` – time domain contains the nonnegative reals
+* `hU` – input set bounded
+* `hUd` – step inputs of every run lie in the sampled input set
+* `ho` – zonotope order positive
+
+## Conclusion
+* the exact reach set lies in the sampled reach set
 -/
 
 -- Authors:       Claude Opus 5
