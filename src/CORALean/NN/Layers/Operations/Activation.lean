@@ -25,6 +25,12 @@ The layer needs `IntervalOuter`, which the linear one does not, because the rela
 function of the input bounds. It rounds in exactly one place, `Relaxation.box`; the slope
 matrix is stored exactly and the propagation rounds inside `mtimes` and `plus`. `σ` appears
 only in `Layer.activation_encloses`: the layer itself never sees it.
+
+## Inputs
+* `R` – relaxation of the activation
+
+## Output
+* layer applying the relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

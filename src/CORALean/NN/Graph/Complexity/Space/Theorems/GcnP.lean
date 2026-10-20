@@ -15,6 +15,17 @@ against the structure instance in `Operations/Map.lean`.
 This is the layer [1, Prop. 2] calls exact; the counts say the other half of
 that, which is that exactness is not bought with generators.
 
+## Inputs
+* `P` – adjacency matrix
+* `W` – weight matrix
+* `pZ` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer leaves the number of factors unchanged
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

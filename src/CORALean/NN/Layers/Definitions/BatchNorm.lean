@@ -12,6 +12,14 @@ channel: affine and coordinatewise, so a scale and a shift per channel. Folding 
 into them is arithmetic on parameters, done once when a network is read, and at ℝ it is this —
 the exact fold `Real.batchNorm_sound` proves the layer against. A network read in floats folds
 in floats, and verifies the network its folded numbers describe.
+
+## Inputs
+* `gamma` – learned scale
+* `var` – running variance
+* `eps` – numerical stabiliser
+
+## Output
+* scale after folding the statistics into the layer
 -/
 
 -- Authors:       Claude Opus 5.5

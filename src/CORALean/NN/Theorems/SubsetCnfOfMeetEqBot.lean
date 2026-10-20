@@ -16,6 +16,23 @@ statement covers the paper's linear constraints and is not tied to `CatCond`, wh
 conjunctions and so not closed under negation. The meet takes a whole conjunction, as the paper's
 does.
 
+## Inputs
+* `sat` – set a literal denotes
+* `neg` – negation of a literal
+* `meet` – meet of an abstract element with literals
+* `bot` – bottom element
+* `a` – abstract element
+* `cnf` – formula as a list of clauses
+
+## Hypotheses
+* `hneg` – negation denotes the complement
+* `hmeet` – the meet contains the intersection
+* `hbot` – bottom denotes the empty set
+* `h` – the element meets every negated clause to bottom
+
+## Conclusion
+* the element's set lies in the formula's set
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

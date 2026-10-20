@@ -14,6 +14,18 @@ public import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
 # The polynomial sigmoid relaxation is sound
 
 Where `Real.sigmoid` appears, and the whole of what the assembly owes.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `c` – fit coefficients for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial relaxation is sound for the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

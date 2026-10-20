@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 The chord `β ≤ u/(u-l) (y - l)` above the ReLU needs `l < 0 < u` and a positive `u - l`. Each is
 certified by `ltStrict`, whose `true` is strict, and a bound for which the test fails gets no
 chord: the new factor is then only bounded, which loses precision and not soundness.
+
+## Inputs
+* `b` – bounds of the neuron
+
+## Output
+* true iff the bounds straddle zero with positive width
 -/
 
 -- Authors:       Claude Opus 5.5

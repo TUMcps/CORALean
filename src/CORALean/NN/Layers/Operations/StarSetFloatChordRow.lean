@@ -14,6 +14,14 @@ over the factors with the new one `β` appended. `k` is only known within `[klo,
 quotient rounded both ways, so the generator coefficients are `-(k G_jk)` rounded to the side
 that makes the row weaker at the least `α`, and what that costs at the widest `α` of the box
 is added to the right-hand side, together with `k (c_j - l)` rounded up.
+
+## Inputs
+* `s` – float star set
+* `j` – neuron index
+* `b` – bounds of the neuron
+
+## Output
+* coefficients and constant of the chord constraint
 -/
 
 -- Authors:       Claude Opus 5.5

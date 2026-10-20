@@ -19,6 +19,12 @@ CORA's `nnSoftmaxLayer`, runnable: a box and nothing else, `softmaxBox` at the i
 `k` is the exponential's reduction depth, precision alone as in the sigmoid layer. Over ℝ the
 exact layer `Real.Layer.softmax` also has a raw lower bound, which needs an upper bound on an
 exponential that no machine scalar supplies totally.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Output
+* layer normalising the exponentials of its input
 -/
 
 -- Authors:       Claude Opus 5.5

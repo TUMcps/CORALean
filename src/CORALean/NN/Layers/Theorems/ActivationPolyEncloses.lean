@@ -37,6 +37,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 appears: `absorbRounding` leaves no independent generator, so a point of the input is a nominal
 point at some factors, the fits' outward evaluation holds the polynomial there, and the box the
 deviation from it.
+
+## Inputs
+* `P` – relaxation of every neuron
+
+## Hypotheses
+* `hP` – every neuron's relaxation is sound for the activation
+
+## Conclusion
+* the layer encloses the activation coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

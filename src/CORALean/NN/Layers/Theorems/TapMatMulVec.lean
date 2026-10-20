@@ -14,6 +14,18 @@ Row `j` of the product is the weighted sum over output `j`'s taps, the weights r
 convolution's stencil this is [1, Sec. II (Conv to CAT)]: Appendix A's `W^F`, whose entries are
 `Σ W_{i'j'k'} [l = idx(i', j', k')]`, times `x` is the convolution, at any injective stencil.
 
+## Inputs
+* `tap` – input index of every kernel position
+* `w` – weight of every kernel position
+* `x` – input vector
+* `j` – output coordinate
+
+## Hypotheses
+* `htap` – the taps of an output are distinct
+
+## Conclusion
+* the stencil matrix gives the weighted sum over the taps
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

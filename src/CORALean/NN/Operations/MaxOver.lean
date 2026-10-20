@@ -11,6 +11,12 @@ public import CORALean.Global.Float.FloatOps
 A fold of `maximum`, which is exact, so no direction is chosen; a layer with no neurons gives
 `zero`, where [1] leaves the maximum of nothing unsaid.
 
+## Inputs
+* none
+
+## Output
+* largest entry, zero for an empty layer
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

@@ -8,6 +8,20 @@ public import CORALean.NN.Definitions.Encloses
 # Soundness at a layer
 
 Composition at `layer`: the constructor read at `f = h ∘ g`.
+
+## Inputs
+* `L` – family of layer types
+* `curr` – first layer
+* `tail` – remaining network
+* `g` – map of the first layer
+* `h` – map of the remaining network
+
+## Hypotheses
+* `hL` – the first layer encloses its map
+* `htail` – the remaining network encloses its map
+
+## Conclusion
+* the whole network encloses the composition
 -/
 
 -- Authors:       Claude Opus 5

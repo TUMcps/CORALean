@@ -9,6 +9,16 @@ public import CORALean.NN.Layers.Definitions.Enclosure
 
 `σ l - λ l + (hi - λ)(u - l)`, rounded up. Both factors of `(hi - λ)(u - l)` are non-negative,
 so the widest box makes the product largest, and the width rounds up here too.
+
+## Inputs
+* `E` – enclosure of the activation
+* `hi` – upper derivative bracket for each box
+* `lam` – slope for each box
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* upper end of the activation minus the slope times the input, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

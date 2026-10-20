@@ -9,6 +9,12 @@ public import CORALean.NN.Layers.Operations.SquareRelaxation
 # The square layer
 
 CORA's `nnSquareLayer`: `Layer.activation` at `squareRelaxation`.
+
+## Inputs
+* none
+
+## Output
+* layer applying the square relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

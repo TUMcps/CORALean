@@ -12,6 +12,22 @@ public import CORALean.NN.Theorems.RefineVerifyFromSound
 set `Sᵤ`, whatever the refinement rule and however many iterations it took, provided the
 disjointness test is sound. `refineVerifyFrom_sound` at line 1's order pattern.
 
+## Inputs
+* `rn` – refinable network
+* `ρ` – order after reduction
+* `X` – input set
+* `Su` – unsafe set
+* `isDisjoint` – test that the output set misses the unsafe set
+* `refineStep` – refinement of the schedule
+* `I` – maximal number of iterations
+
+## Hypotheses
+* `hdis` – a passed test implies the set avoids the unsafe set
+* `h` – the loop returns verified
+
+## Conclusion
+* no output on the input set is unsafe
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

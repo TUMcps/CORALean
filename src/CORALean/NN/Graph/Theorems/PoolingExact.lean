@@ -9,16 +9,20 @@ public import CORALean.NN.Graph.Theorems.SumPoolLinApply
 /-!
 # Summation pooling loses nothing
 
-[1, Prop. 3]. `PolyZonotope.map_exact` again, here at the map that sums each
-feature across the nodes.
+[1, Prop. 3]. `PolyZonotope.map_exact` again, here at the map that sums each feature across the
+nodes. The statement is `1 H` as [1] writes it rather than the column sum the definition is, so the
+guarantee can be checked against the paper without unfolding anything; `sumPoolLin_apply` carries it
+across. The image lands in `Vec ℝ F`, so this equality is also the seam: a set that arrives
+matrix-shaped leaves in the shape `NeuralNetwork` encloses, and nothing is lost.
 
-The statement is `1 H` as [1] writes it rather than the column sum the
-definition is, so that the guarantee can be checked against the paper without
-unfolding anything; `sumPoolLin_apply` is what carries it across.
+## Inputs
+* `pZ` – node features as a polynomial zonotope
 
-The image lands in `Vec ℝ F`, so this equality is also the seam: a set that
-arrives matrix-shaped leaves in the shape `NeuralNetwork` encloses, and
-nothing is lost crossing it.
+## Hypotheses
+* none
+
+## Conclusion
+* the pooled set is exactly the image of the features under summation
 
 ## References
 

@@ -11,6 +11,15 @@ public import CORALean.NN.Definitions.ReducibleNetwork
 layers store them. What it adds to `Instance` is the network itself, which `ReducesAt` needs and
 nothing else does; forgetting it is this, one constructor at a time, the map unchanged.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* an instance network computes an instance
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

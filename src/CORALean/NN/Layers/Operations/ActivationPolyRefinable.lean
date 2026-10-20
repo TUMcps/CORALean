@@ -19,6 +19,15 @@ schedule changes nothing about correctness. `RefinableLayer` stores `eval`, so `
 here and nowhere below. Convergence is stated over ℝ only: at a machine scalar the representation's
 own rounding is charged to an error box no refinement level touches.
 
+## Inputs
+* `F` – family of polynomial relaxations
+
+## Hypotheses
+* `hF` – the family is sound for the activation
+
+## Output
+* refinable layer with one enclosure per refinement level
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

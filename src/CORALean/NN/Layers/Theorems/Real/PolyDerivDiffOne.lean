@@ -12,6 +12,19 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 ℝ-only, as the bound is: the radius vanishes and the center is the slope, so this is the bracket
 `Relaxation.ofDeriv` works with and no precision is lost.
+
+## Inputs
+* `lo` – lower end of the derivative bracket
+* `hi` – upper end of the derivative bracket
+* `c` – coefficients of a degree-one fit
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* none
+
+## Conclusion
+* at order one the derivative bound is the larger distance from the bracket's ends to the slope
 -/
 
 -- Authors:       Claude Opus 5.5

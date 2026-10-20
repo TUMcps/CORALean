@@ -9,6 +9,13 @@ public import CORALean.Global.Float.FloatOps
 
 `Fin n` has no index type for "everything but `i`", so the `i`-th term is zeroed instead and
 the sum taken over all of `Fin n`, `sumUp` rounding each partial sum up.
+
+## Inputs
+* `i` – omitted index
+* `v` – summands
+
+## Output
+* sum of the summands without the omitted one, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

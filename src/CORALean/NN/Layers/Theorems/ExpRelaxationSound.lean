@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
 
 Where the right end is at most `2ᵏ/2`: `expDown` bounds `exp` from below everywhere and
 `le_expUp` from above there, and `exp` is monotone.
+
+## Inputs
+* `k` – reduction depth
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for the exponential where the upper end is in range
 -/
 
 -- Authors:       Claude Opus 5.5

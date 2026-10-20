@@ -14,6 +14,15 @@ public import CORALean.NN.Layers.Theorems.SShapeUnimodal
 the derivative is even and falls away from `0`, so it rises to `0` and falls after it, and
 `deepZSShape_sound` applies at `x' = 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* DeepZ's transformer is sound for the sigmoid
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

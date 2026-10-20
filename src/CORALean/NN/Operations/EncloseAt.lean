@@ -11,6 +11,14 @@ public import CORALean.NN.Operations.Enclose
 `atSchedule` produces an ordinary `NeuralNetwork`, so propagating at a schedule
 is `enclose` there and nothing new — every guarantee `enclose` already has
 transfers to every schedule for free.
+
+## Inputs
+* `rn` – refinable network
+* `sch` – schedule of order patterns
+* `X` – input set
+
+## Output
+* output set after the network at the schedule
 -/
 
 -- Authors:       Claude Opus 5

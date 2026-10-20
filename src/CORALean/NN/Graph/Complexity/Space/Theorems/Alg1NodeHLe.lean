@@ -13,6 +13,24 @@ public import CORALean.NN.Graph.Complexity.Space.Theorems.Alg1NodeEqGcnActSteps
 [1, Thm. 1 (generators)]: `Alg. 1` on the graph layers leaves at most `K^L m^(3L) (h_x + 1 + L
 ν)` generators, `h_x` the input's dependent and independent ones.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `L` – number of graph layers
+* `c` – layer widths
+* `W` – graph layer weights
+* `acts` – activation layers
+* `ν` – neurons an activation adds at most
+* `X` – input polynomial zonotope
+
+## Hypotheses
+* `hm` – at least one uncertain edge
+* `hadd` – each activation adds at most ν generators
+
+## Conclusion
+* generator count after the graph layers is bounded polynomially in the edges
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

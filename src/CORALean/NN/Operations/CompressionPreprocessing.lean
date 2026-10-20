@@ -8,15 +8,35 @@ public import CORALean.NN.Operations.ReducedLinearIdentity
 /-!
 # [1, Alg. 3]: compressing the input before verifying
 
-[1, Cor. 1]'s compression network `Φ_pre` — the identity kernel, a ReLU, the identity kernel —
-is prepended to `Φ_org` and reduced first, on the input box `I_X` alone. The set representation
-is only built for what survives, `H_{-2}`, and [1, Alg. 2] then runs from there on.
+[1, Cor. 1]'s compression network `Φ_pre` — the identity kernel, a ReLU, the identity kernel — is
+prepended to `Φ_org` and reduced first, on the input box `I_X` alone. The set representation is only
+built for what survives, `H_{-2}`, and [1, Alg. 2] then runs from there on. Three readings, each
+forced by [1, Def. 1]'s alternation: `Φ_org` has at least one layer pair; `L_0`, the identity, is
+composed into `L_1` before anything is reduced, so nothing rounds; and `Φ'_org` opens with
+`L̂_{-1}`, a nonlinear layer, so line 4 puts the identity before it, which line 5 reduces again. The
+ReLU is the caller's relaxation; `compressionPreprocessing_outer` asks it be sound.
 
-Three readings, each forced by [1, Def. 1]'s alternation. `Φ_org` has at least one layer pair.
-`L_0`, the identity, is composed into `L_1` before anything is reduced — [1, Prop. 4]'s column
-selection is what reaches `L_1`, never a product, so nothing rounds. And `Φ'_org` opens with
-`L̂_{-1}`, a nonlinear layer, so line 4 puts the identity before it, which line 5 reduces again.
-The ReLU is the caller's relaxation; `compressionPreprocessing_outer` asks it be sound.
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `R_relu` – relaxation of ReLU
+* `n` – input width
+* `n₁` – first hidden width
+* `m` – output width
+* `I_X` – input box
+* `L_1` – first reduced linear layer
+* `L_2` – second layer's relaxation
+* `B_2` – merge buckets of the second layer
+* `rest` – remaining reducible network
+* `ρ` – reduction rate
+
+## Hypotheses
+* `hσ_relu` – ReLU relaxation is sound for some function
+* `hσ_2` – second relaxation is sound for some function
+
+## Output
+* output set of the compressed and reduced network, or none if Alg. 1 gave out
 
 ## References
 

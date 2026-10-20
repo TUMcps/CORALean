@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Operations.LipConstrScale
 
 For `0 < λ`, the diagonal of `N` that `Layer.lipConstrScale` computes at the weights and
 `λ` the floats denote lies in `Layer.lipConstrScaleFloat`.
+
+## Inputs
+* `W` – weight matrix
+* `lam` – Lipschitz bound
+
+## Hypotheses
+* `hl` – Lipschitz bound is positive
+
+## Conclusion
+* the float scaling box contains the exact scaling
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,18 @@ columns, *added* to the layer's error box. [1, Prop. 4] sets `Î'_{k+1}` to it, 
 only while `I'_{k+1} = [0, 0]`; [1, Alg. 3] runs [1, Alg. 2] on a network already reduced, and
 adding it is how [1, Eq. 4] combines several buckets. The product and the sum round outward.
 
+## Inputs
+* `n₁` – width of the merged layer
+* `n₂` – output width
+* `d` – number of surviving neurons
+* `r` – number of merged neurons
+* `L` – reduced linear layer
+* `part` – split into survivors and merged neurons
+* `I_k` – bounds of the merged layer
+
+## Output
+* layer keeping the survivors' columns and boxing the merged contribution
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

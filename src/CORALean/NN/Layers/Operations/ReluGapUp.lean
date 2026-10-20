@@ -10,6 +10,14 @@ public import CORALean.Global.Float.FloatOps
 How far ReLU rises above the line of slope `λ` over `[l, u]` is `max((1 - λ) u, -λ l)`; this
 computes it rounding up, `(1 - λ) u` from the directed difference and `-λ l` from the negated
 rounded-down product. `reluGapOfSlope_le` is that it bounds the exact gap.
+
+## Inputs
+* `lam` – slope
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* gap between ReLU and the line, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

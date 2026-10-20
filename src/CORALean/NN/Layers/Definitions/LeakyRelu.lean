@@ -9,6 +9,13 @@ public import Mathlib.Data.Real.Basic
 
 CORA's `nnLeakyReLULayer` applies `max(α t, t)`. For a slope `α ≤ 1` below zero it is
 convex, which is what its relaxation reads. A specification over ℝ, never run.
+
+## Inputs
+* `α` – slope below zero
+* `t` – real number to transform
+
+## Output
+* identity above zero and slope α below
 -/
 
 -- Authors:       Claude Opus 5.5

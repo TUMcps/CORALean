@@ -13,6 +13,16 @@ enclosed set, never the exact image. Kept apart from `IsMinSuffExplanation`
 because minimality is not preserved by transfer — the abstract predicate is the
 stronger one, so a set minimal here can still be shrinkable at `nn`.
 
+## Inputs
+* `nnAbs` – abstract network
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – candidate explanation, a feature set
+* `l` – target label
+
+## Output
+* explanation is abstractly sufficient and no single feature can be dropped
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

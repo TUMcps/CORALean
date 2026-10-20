@@ -9,6 +9,18 @@ public import CORALean.NN.Layers.Operations.GridChecked
 # A fit's sampled bracket, upper end
 
 And from above, branching the same way.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients for each box
+* `M` – derivative bound for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* upper end of the fit's error bracket
 -/
 
 -- Authors:       Claude Opus 5.5

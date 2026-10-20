@@ -11,6 +11,14 @@ public import CORALean.NN.Layers.Operations.SigmoidDerivLo
 The secant, clamped into the derivative bracket. The secant is a guess and nothing more: the
 width may round to zero, where `divUp` bounds nothing, and the clamp makes that harmless — any
 slope in the bracket is sound.
+
+## Inputs
+* `E` – enclosure of the sigmoid
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* secant slope clamped into the derivative bracket
 -/
 
 -- Authors:       Claude Opus 5.5

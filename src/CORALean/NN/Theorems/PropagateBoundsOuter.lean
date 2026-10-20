@@ -11,6 +11,19 @@ If `seg` is sound at `f` and the bounds `j` already held contain the image of `B
 under `f`, which is what makes them bounds of that input, the propagated bounds contain it
 too: the intersection of two outer sets is an outer set of the points in both. Outer, not
 exact: the interval image through the stretch is an enclosure.
+
+## Inputs
+* `seg` – network segment
+* `f` – map the segment encloses
+* `B` – input set of the segment
+* `stored` – bounds already stored, if any
+
+## Hypotheses
+* `hf` – the segment encloses the map
+* `hstored` – the stored bounds contain the map's image of the set
+
+## Conclusion
+* the map of every point lies in the propagated bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

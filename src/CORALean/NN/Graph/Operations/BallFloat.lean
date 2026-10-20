@@ -11,6 +11,13 @@ runs: `v` itself at radius `0`, and one more hop of `E`'s edges (or staying put)
 radius [1, §4.3]. With `E = GNN.support A` it is the neighbourhood of a float adjacency matrix;
 with any larger `E`, a larger one.
 
+## Inputs
+* `E` – Boolean edge test
+* `v` – center node
+
+## Output
+* nodes within r hops of the center, for each radius r
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

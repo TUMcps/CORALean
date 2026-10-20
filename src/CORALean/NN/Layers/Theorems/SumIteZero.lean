@@ -9,6 +9,16 @@ public import Mathlib.Data.Real.Basic
 # A sum with one term zeroed is the sum without it
 
 What meets `Finset.erase` halfway: the zeroed term contributes nothing.
+
+## Inputs
+* `i` – omitted index
+* `h` – summands
+
+## Hypotheses
+* none
+
+## Conclusion
+* zeroing one term gives the sum without it
 -/
 
 -- Authors:       Claude Opus 5.5

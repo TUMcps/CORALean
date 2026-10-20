@@ -15,6 +15,20 @@ Induction on the radius, mirroring `mem_ball_self`.
 
 This is what lets a caller *omit* an isolated node from an enumeration: it
 never joins the ball at any radius, so nothing else has to say so again.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `w` – isolated node
+* `r` – radius in hops
+
+## Hypotheses
+* `hw` – no edge points at the node
+* `hwv` – node is not the center
+
+## Conclusion
+* the node never lies in the ball
 -/
 
 -- Authors:       Claude Opus 5

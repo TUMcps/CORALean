@@ -12,6 +12,12 @@ The mirror of `Relaxation.ofMonotone` for a falling `σ`: over `[l, u]` it stays
 values at `u` and at `l`, so the offset is the midpoint of the enclosure's lower end at `u` and
 upper end at `l`, and the error the larger distance to either, rounded up. The inverse square
 root a graph network normalises by is the function it exists for.
+
+## Inputs
+* `E` – enclosure of the antitone function
+
+## Output
+* relaxation by the function's range at slope zero
 -/
 
 -- Authors:       Claude Opus 5.5

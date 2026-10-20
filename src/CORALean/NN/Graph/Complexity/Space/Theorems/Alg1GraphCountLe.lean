@@ -18,6 +18,28 @@ the pooling adds at most its neurons ([1, Prop. 1]), so the tail adds at most th
 layers do (`tailEnclose_count_le`). With `n_k` the neurons of the activation layers and `n_max` the
 most of them, that sum is at most `(κ - 2κ') n_max`.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `L` – number of graph layers
+* `T` – number of layers after the pooling
+* `c` – layer widths
+* `W` – graph layer weights
+* `acts` – activation layers
+* `ν` – neurons an activation adds at most
+* `f` – enclosure maps of the later layers
+* `e` – generators each later layer adds at most
+* `X` – input polynomial zonotope
+
+## Hypotheses
+* `hm` – at least one uncertain edge
+* `hadd` – each graph activation adds at most ν generators
+* `hf` – later layer t adds at most e t generators
+
+## Conclusion
+* generator count of the output is bounded by the graph layers' plus the later additions
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

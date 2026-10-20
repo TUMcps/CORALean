@@ -13,6 +13,15 @@ operation, so no expression can be proved to step by a bounded amount; a caller 
 samples, and this certifies them with `le` alone: the left end reached, every gap and the
 right end within `dx`, every sample inside the box. A grid that fails yields no bracket rather
 than a wrong one.
+
+## Inputs
+* `p` – proposed sample points
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `dx` – maximal gap between samples
+
+## Output
+* true iff the points cover the box with gaps at most dx
 -/
 
 -- Authors:       Claude Opus 5.5

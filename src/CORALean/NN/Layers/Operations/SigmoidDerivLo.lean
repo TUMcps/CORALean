@@ -10,6 +10,14 @@ public import CORALean.NN.Layers.Definitions.Enclosure
 `σ'` is a product of two sigmoids, each monotone and positive, so the enclosure at the box's
 ends brackets it with no case on sign — the lower factors floored at zero, which rounding could
 otherwise push below it — and the product rounds down.
+
+## Inputs
+* `E` – enclosure of the sigmoid
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* lower bound of the sigmoid's derivative over the box
 -/
 
 -- Authors:       Claude Opus 5.5

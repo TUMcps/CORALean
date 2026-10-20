@@ -10,6 +10,19 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Which makes the recentered relaxation sound however the shift rounded: each end of the max
 covers one end of the moved bracket.
+
+## Inputs
+* `c0` – stored constant
+* `lo` – lower end of the bracket
+* `hi` – upper end of the bracket
+* `y` – real number in the bracket
+
+## Hypotheses
+* `h1` – number is above the lower end
+* `h2` – number is below the upper end
+
+## Conclusion
+* the number is within the stored radius of the shifted center
 -/
 
 -- Authors:       Claude Opus 5.5

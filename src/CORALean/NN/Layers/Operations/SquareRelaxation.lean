@@ -11,6 +11,12 @@ public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 `x ↦ x²` is not monotone, so its relaxation is the one a derivative bracket buys,
 `Relaxation.ofDeriv`: `σ' x = 2x` lies in `[2l, 2u]` over the box and the slope is the chord's.
 The error is quadratic in the width of the box.
+
+## Inputs
+* none
+
+## Output
+* relaxation of the square from a bracket of its derivative
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.NN.Operations.IntervalChainFwd
 How a small change `δ = (δl, δu)` of the interval moves the output, layer by layer: the linear
 layer's map is linear in `(l, u)`, the bias dropping out, and the activation scales each end by
 the derivative there. It is the specification `IntervalChain.backprop` is the adjoint of.
+
+## Inputs
+* none
+
+## Output
+* box of output tangents from the box of input tangents
 -/
 
 -- Authors:       Claude Opus 5.5

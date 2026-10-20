@@ -9,6 +9,18 @@ public import CORALean.NN.Graph.Definitions.BallEnumIdx
 
 `ballEnumIdx` is `Exists.choose` of exactly the witness this theorem states;
 `Exists.choose_spec` is its proof.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `L` – radius in hops
+
+## Hypotheses
+* none
+
+## Conclusion
+* the enumeration maps the center's index back to the center
 -/
 
 -- Authors:       Claude Opus 5

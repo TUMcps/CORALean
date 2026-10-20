@@ -10,15 +10,27 @@ public import Mathlib.Tactic.Linarith
 /-!
 # DeepZ's ReLU band has the least area
 
-[1, Thm. 3.1], the optimality half, over the parallelograms of [1, Fig. 1] at every slope: a
-band `λ t + c ≤ ReLU(t) ≤ λ t + d` over a crossing box `[l, u]` has area `(d - c)(u - l)` in
-the input-output plane, and no sound band has less than DeepZ's, `2 μ (u - l) = -l u`. Read
-at `t = 0` the band gives `c ≤ 0`, and at the two ends `d ≥ -λ l` and `d ≥ (1 - λ) u`, whose
-combination with weights `u` and `-l` loses `λ`; [1, Eq. 3] and [1, Eq. 4] are the two
-families' areas, minimized where they meet.
+[1, Thm. 3.1], the optimality half, over the parallelograms of [1, Fig. 1] at every slope: a band `λ
+t + c ≤ ReLU(t) ≤ λ t + d` over a crossing box `[l, u]` has area `(d - c)(u - l)` in the
+input-output plane, and no sound band has less than DeepZ's, `2 μ (u - l) = -l u`. At `t = 0` the
+band gives `c ≤ 0`, and at the two ends `d ≥ -λ l` and `d ≥ (1 - λ) u`; [1, Eq. 3] and [1, Eq. 4]
+are the two families' areas, minimized where they meet. The paper's class `O` of zonotopes is wider
+than these bands and not defined beyond the figure.
 
-The paper's class `O`, every zonotope altering only `ŷ`, is wider than these bands and is not
-defined beyond the figure; the bands are what its argument ranges over.
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `lam` – slope of the band
+* `c` – lower offset of the band
+* `d` – upper offset of the band
+
+## Hypotheses
+* `hl` – box starts below zero
+* `hu` – box ends above zero
+* `hband` – the band encloses ReLU on the box
+
+## Conclusion
+* the band's area is at least DeepZ's
 
 ## References
 

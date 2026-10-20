@@ -14,6 +14,15 @@ at `N + 1` evenly spaced points, and pads by `M · (u - l) / N` for `|g'| ≤ M`
 `ofSampling` charges, read as a function of `N` so a limit in it can be stated, and what no
 bound beats — half the range `g` actually spans over the box.
 
+## Inputs
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+* `N` – number of sample intervals
+* `i` – sample index
+
+## Output
+* the sample point at the given index
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

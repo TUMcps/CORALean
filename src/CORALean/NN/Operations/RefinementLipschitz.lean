@@ -9,15 +9,17 @@ public import Mathlib.Topology.MetricSpace.Basic
 /-!
 # The Lipschitz hypothesis, asked of a layer instead of a tail
 
-`RefinableNetwork.Convergent` wants a bound on every *tail*, which is a
-statement about a composite and so nothing a layer library can hand over. This
-is the per-layer form: each node's own `eval` Lipschitz, one existential per
-layer, which is what a linear layer's matrix and an activation's slope actually
-give.
+`RefinableNetwork.Convergent` wants a bound on every *tail*, a statement about a composite and so
+nothing a layer library can hand over. This is the per-layer form: each node's own `eval` Lipschitz,
+one existential per layer, which is what a linear layer's matrix and an activation's slope give.
+`Theorems.EvalLipschitz` turns this into the tail bounds, the constants multiplying along the chain,
+so a network is checked one layer at a time and its tails follow.
 
-`Theorems.EvalLipschitz` turns this into the tail bounds, the constants
-multiplying along the chain — so a network is checked one layer at a time and
-its tails follow.
+## Inputs
+* none
+
+## Output
+* every layer's own map is Lipschitz
 -/
 
 -- Authors:       Claude Opus 5

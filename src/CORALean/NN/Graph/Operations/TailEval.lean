@@ -10,6 +10,12 @@ public import CORALean.ContSet.ContSet.ContSet
 [1, Alg. 1], lines 11 to 14: the standard layers after the pooling, applied one after the other,
 the width `d t` changing from layer to layer. `tailEnclose` is their enclosure on sets.
 
+## Inputs
+* none
+
+## Output
+* point after the layers following the pooling
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

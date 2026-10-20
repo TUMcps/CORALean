@@ -11,6 +11,14 @@ public import CORALean.ContSet.ContSet.ContSet
 value a graph's own iteration computes, written at a *matrix* rather than at a
 set and a factor vector, which is what the soundness statement of `gcnSteps`
 needs to read against.
+
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `Pm` – message-passing matrix
+
+## Output
+* node features after the chain of steps
 -/
 
 -- Authors:       Claude Sonnet 5

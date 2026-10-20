@@ -11,6 +11,12 @@ The network's `enclose` as a plain `Layer`, for a statement that wants one: a la
 `enclose` and nothing else, so this is that field and no proof, and what the block computes is
 said by `NeuralNetwork.Encloses.enclose_outer`, exactly `Layer.Encloses` at the same function. To
 put a network inside another, it is an `Enclose` kind and goes in through `Enclose.pack`.
+
+## Inputs
+* `nn` – network
+
+## Output
+* the network as a single layer
 -/
 
 -- Authors:       Claude Opus 5

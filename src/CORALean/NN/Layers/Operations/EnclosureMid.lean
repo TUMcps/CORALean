@@ -10,6 +10,14 @@ public import CORALean.NN.Layers.Definitions.Enclosure
 Any stored value between the enclosure's two ends would be a sound offset — the error is
 measured from whichever one is written down — so the midpoint is a precision choice, and its
 rounding costs nothing. Halving is exact in a binary format.
+
+## Inputs
+* `E` – enclosure of the activation
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* midpoint of the enclosure's ends
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,15 +10,28 @@ public import CORALean.NN.Graph.Theorems.GcnStepsP
 /-!
 # The chain, at one factor vector
 
-Induction on the number of steps, `gcnShared_point` at each: the chain's point
-is `evalSteps` at the graph's own point, so one factor vector drives every step
-and a recurring edge weighs the same at each of them.
+Induction on the number of steps, `gcnShared_point` at each: the chain's point is `evalSteps` at the
+graph's own point, so one factor vector drives every step and a recurring edge weighs the same at
+each of them.
 
-The casts are the only bookkeeping. `gcnSteps_p` says every set in the chain has
-`P`'s factors, so all of them are the identity; only the proofs they carry
-differ from step to step, and `Fin.cast` ignores its proof, so a `show` on the
-whole goal discharges the difference — as `MessagePassingEnclosureOuter` already
-does at a shared factor set.
+The casts are the only bookkeeping. `gcnSteps_p` says every set in the chain has `P`'s factors, so
+all of them are the identity; only the proofs they carry differ, and `Fin.cast` ignores its proof,
+so a `show` on the whole goal discharges the difference.
+
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `P` – polynomial zonotope of the graph
+* `L` – number of steps
+* `W` – weights of the steps
+* `H` – polynomial zonotope of the node features
+* `a` – factor vector
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Conclusion
+* the chain's point is the iteration at the graph's point
 -/
 
 -- Authors:       Claude Opus 5

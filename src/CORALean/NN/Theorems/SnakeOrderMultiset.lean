@@ -12,6 +12,17 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 As a multiset the spiral's list is the sum of the singletons of all entries of the matrix: a
 rearrangement of the entries, none dropped, none repeated.
+
+## Inputs
+* `h` – number of rows
+* `w` – number of columns
+* `A` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the spiral lists every entry exactly once
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,17 @@ minimality here does not follow from minimality there. It is the form
 `minSuffExplanationExact_of_refined` needs of a refinement, since transfer along
 a refinement lands in the exact predicate and nowhere else.
 
+## Inputs
+* `S` – set representation
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – candidate explanation, a feature set
+* `l` – target label
+
+## Output
+* explanation is exactly sufficient and no single feature can be dropped
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

@@ -15,6 +15,14 @@ public import CORALean.NN.Layers.Layer
 `Layer.lipConstrScaleFloat`, so `N W` and `N b` are interval matrices and vectors: each entry is
 the corner hull of the scaling's box against the stored weight, rounded outward. The weights
 act through `mtimes` at an interval matrix and the bias enters as a box.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `lam` – Lipschitz bound
+
+## Output
+* layer applying the rescaled affine map with enclosed scaling
 -/
 
 -- Authors:       Claude Opus 5.5

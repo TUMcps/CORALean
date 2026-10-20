@@ -16,6 +16,12 @@ builds its `sigmoidRelaxation`, and no function, the same way): the exact functi
 data of the layer but the `f` that `Layer.Encloses` relates it to, stated by
 `Layer.relu_encloses`. The relaxation is what the layer computes with, so it is what the layer is
 built from; the slope `lam` is the one choice ReLU leaves open.
+
+## Inputs
+* `lam` – slope choice for each box
+
+## Output
+* layer applying the ReLU relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,18 +12,12 @@ public import CORALean.NN.NeuralNetwork
 # A network in the form [1, Alg. 2] reads and writes
 
 [1, Def. 1]'s alternating network, read two layers at a time — the linear layer `k-1`, then the
-nonlinear layer `k`, for `k = 2, 4, …, κ` — which is exactly the stride of [1, Alg. 2]'s loop.
-Each linear layer is in [1, Eq. 2]'s form `W h + b ⊕ I'`, stored in the scalar `𝕋`: an original
-network has `I' = [0, 0]`, a reduced one carries there what merging cost it. So [1, Alg. 2]'s
-input and output are one type, which is what [1, Alg. 3] needs. Each nonlinear layer stores its
-relaxation, a proof that it encloses some `σ`, and where its merge buckets are initialised:
-the proof is what lets `toNetwork` hand the layer to a `NeuralNetwork`, and stores nothing.
-
-`Instance` is what `Φ` stands for: a map built from the exact affine maps the stored scalars
-denote, every error box at one real value `c - b` in it, and every activation a `σ` its
-relaxation is sound for. `InstanceNetwork` is the same at `𝕋 := ℝ`, naming the network of
-layers each instance is, which is what `ReducesAt` relates; an instance's bias is real, so no
-other scalar can store it.
+nonlinear layer `k` — the stride of [1, Alg. 2]'s loop. Each linear layer is in [1, Eq. 2]'s form `W
+h + b ⊕ I'`, stored in `𝕋`: an original network has `I' = [0, 0]`, a reduced one carries there what
+merging cost it, so [1, Alg. 2]'s input and output are one type, as [1, Alg. 3] needs. Each
+nonlinear layer stores its relaxation, a proof that it encloses some `σ`, and its merge buckets.
+`Instance` is what `Φ` stands for, a map built from the exact affine maps the stored scalars denote;
+`InstanceNetwork` is the same at `𝕋 := ℝ`, which `ReducesAt` relates.
 
 ## References
 

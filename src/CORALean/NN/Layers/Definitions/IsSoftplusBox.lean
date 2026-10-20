@@ -9,6 +9,16 @@ public import CORALean.NN.Layers.Operations.OnePlusExpDown
 
 The boxes `softplusEnclosure` brackets softplus on: the sharpness is positive, `expUp` covers the
 right end, and `logDown` covers `1 + exp` at the left one.
+
+## Inputs
+* `β` – sharpness
+* `k` – reduction depth of the exponential
+* `nl` – range exponent of the logarithm
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* sharpness is positive and the exponential and logarithm stay in range
 -/
 
 -- Authors:       Claude Opus 5.5

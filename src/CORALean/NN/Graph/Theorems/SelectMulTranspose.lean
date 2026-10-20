@@ -12,6 +12,16 @@ exactly when `i = κ k`, so the sum defining each product collapses to that one
 term whatever `κ` does, even if it repeats a node or misses one. Injectivity is
 what `SubmatrixMulOfClosed` needs instead, once the product is a *restriction
 of a larger one* rather than one computed from scratch.
+
+## Inputs
+* `κ` – indices of the selected nodes
+* `P` – message-passing matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the projected matrix is the submatrix on the selected rows and columns
 -/
 
 -- Authors:       Claude Sonnet 5

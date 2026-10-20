@@ -13,6 +13,16 @@ shrinking by one hop per step (`GNN.reduceKeep`) down to `{v}`. The layers betwe
 message-passing steps act per node, so they are the weights `W` here; the result has one row,
 `v`'s, when `L ≥ 1`.
 
+## Inputs
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of message-passing steps
+* `W` – weights of the steps
+* `X` – node-feature matrix
+
+## Output
+* node features of the kept nodes after the reduced network
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

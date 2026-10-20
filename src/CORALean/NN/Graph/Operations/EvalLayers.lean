@@ -11,6 +11,12 @@ The exact network behind [1, Alg. 1]'s lines 3 to 6: `L` graph convolutions, ste
 `H ↦ σₛ (Pm H Wₛ)` with the activation applied entrywise, the feature width `c s` changing from
 step to step. `GNN.evalSteps` is the case of one width and the identity activation.
 
+## Inputs
+* `Pm` – message-passing matrix
+
+## Output
+* node features after the convolutions with their activations
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

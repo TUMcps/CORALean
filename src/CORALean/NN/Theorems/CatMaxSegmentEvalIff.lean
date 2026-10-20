@@ -17,6 +17,19 @@ the window's maximum in its place, and maps a point to nothing else. The case th
 the first position holding a maximum: its guard holds, every earlier one fails, and its
 selection keeps that coordinate. A maximum exists, the window being nonempty.
 
+## Inputs
+* `a` – coordinates before the window
+* `k` – window size minus one
+* `b` – coordinates after the window
+* `x` – input point
+* `y` – output point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the step maps the point to the output iff the output replaces the window by its maximum
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

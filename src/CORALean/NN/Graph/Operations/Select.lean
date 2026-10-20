@@ -10,6 +10,12 @@ public import CORALean.ContSet.ContSet.ContSet
 `select κ` is `I_{|𝒩|}(𝒦,·)`: the identity's rows named by the subgraph's node
 indices `κ : Fin K → Fin N`.
 
+## Inputs
+* `κ` – indices of the selected nodes
+
+## Output
+* rows of the identity matrix for the selected nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

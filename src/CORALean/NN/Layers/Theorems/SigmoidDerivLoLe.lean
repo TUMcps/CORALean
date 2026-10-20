@@ -12,6 +12,20 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 
 Both factors are non-negative lower bounds on the two sigmoids, which is what makes their
 rounded-down product one on the derivative.
+
+## Inputs
+* `E` – enclosure of the sigmoid
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `x` – point in the box
+
+## Hypotheses
+* `hE` – enclosure is sound for the sigmoid
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the rounded lower bound is at most the sigmoid's derivative
 -/
 
 -- Authors:       Claude Opus 5.5

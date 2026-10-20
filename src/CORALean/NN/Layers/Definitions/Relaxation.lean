@@ -7,16 +7,14 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # What an activation function has to supply
 
-An activation layer applies one scalar function `σ` to every neuron, and no representation is
-closed under one, so the layer is an enclosure and a `Relaxation` is what makes it a sound one:
-per neuron, an affine map `slope · t + offset` and the `error` to allow for, all functions of
-the neuron's bounds `[l, u]` and stored in the scalar `𝕋`. ReLU has no affine enclosure with a
-finite error on all of ℝ, which is why they are functions of the bounds.
+An activation layer applies one scalar function `σ` to every neuron, and no representation is closed
+under one, so a `Relaxation` is what makes the layer a sound enclosure: per neuron, an affine map
+`slope · t + offset` and the `error` to allow for, all functions of the neuron's bounds `[l, u]` and
+stored in `𝕋` (ReLU has no affine enclosure with finite error on all of ℝ). `Sound` ties it to `σ`,
+split off so nothing compiled mentions ℝ: an *inequality* against `error` from the values actually
+stored, so a slope and offset computed in any precision are sound as they stand and only `error`
+grows. At `𝕋 := ℝ` this is CORA's relaxation as printed.
 
-`Sound` is what ties a relaxation to `σ`, split off so that nothing compiled mentions ℝ: it is
-an *inequality* against `error`, measured from the values actually stored, so a slope and an
-offset computed in any precision are sound as they stand and only `error` has to grow. At
-`𝕋 := ℝ` every rounding is exact and this is CORA's relaxation as printed.
 -/
 
 -- Authors:       Claude Opus 5.5

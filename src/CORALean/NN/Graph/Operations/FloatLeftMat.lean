@@ -11,6 +11,13 @@ public import CORALean.Global.Float.FloatOps
 On the stacked node-feature vector (`GNN.flatten`), `H ↦ P H` is the matrix with entry `P i i'`
 where the two positions share a feature and `0` elsewhere. It stores the entries of `P` and the
 exact zero only, so nothing rounds in building it; the rounding is paid by `PolyZonotope.mtimes`.
+
+## Inputs
+* `P` – message-passing matrix
+* `F` – feature width
+
+## Output
+* matrix applying the message passing to every feature column
 -/
 
 -- Authors:       Claude Opus 5.5

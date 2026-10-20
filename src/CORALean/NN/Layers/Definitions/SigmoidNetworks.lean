@@ -21,6 +21,12 @@ sigmoid, then `W x + b`, then sigmoid, the smallest in which every part of the l
 work, the first activation's residual surviving both layers after it. The weights are
 arbitrary, so each is a family and not an example.
 
+## Inputs
+* `n` – layer width
+
+## Output
+* refinable network made of one sigmoid layer
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

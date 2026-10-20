@@ -11,39 +11,23 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `Layer.softplusErrorLowerCora`: the lower error of `nnSoftPlusLayer`'s batch enclosure
 
-`nnSoftPlusLayer.computeExtremePointsBatch` (l. 65-77) gives the candidate extrema of
-`f(x) - m x`, the deviation of the activation from the line of slope `m`, to `aux_imgEncBatch`
-of `@nnActivationLayer/evaluateZonotopeBatch.m`:
+`computeExtremePointsBatch` (l. 65-77) gives `aux_imgEncBatch` the candidate extrema of `f(x) - m x`
+after `m = min(tol,max(m,1-tol))`. As `max(m,1-tol) >= 1-tol > tol`, `m` is the constant `tol`, the
+candidate `xs ≈ -18.4/k` lies outside every realistic `[l, u]` and gets deviation `inf`, so `el =
+min(ds)` ignores the interior minimum `x = log(m/(1-m))/k` and is too large. Read from the source,
+not run.
 
-```
-tol = 1e-8;
-m = min(tol,max(m,1-tol));
-xs = (1/k).*log(-m./(m-1));
-```
+With `sharpness = 1` on `[-1, 1]` the chord slope is `1/2` and the deviation `f(x) - x/2` is `log 2
+≈ 0.693` at `x = 0`, while CORA's `el` is the deviation at `l`, `0.813`.
 
-`max(m,1-tol) >= 1-tol > tol`, so `m` is the constant `tol` for every neuron (the clamp to
-`[tol, 1-tol]` is `max(tol,min(m,1-tol))`), and the candidate `xs = log(tol/(1-tol))/k ≈ -18.4/k`
-lies outside every realistic `[l, u]`. `aux_imgEncBatch` sets the deviation of a candidate outside
-the box to `inf` for `el = min(ds)` and `-inf` for `eu = max(ds)`, with the candidates `[xs, l]`
-for `poly_method = 'bounds'` (the default of `evaluateZonotopeBatch`) and no slope optimisation
-(`verif_slope_optim_step_size = 0`, the default), where the errors at `l` and `u` are equal:
+## Inputs
+* none
 
-```
-m  = (f(u) - f(l)) ./ (2*r);
-ds = f(xs) - m.*xs;   ds(xs < l | xs > u) = inf;   el = min(ds)
-```
+## Hypotheses
+* none
 
-The interior minimum `x = log(m/(1-m))/k` of `f(x) - m x` is never a candidate, so `el` is too
-large. `evaluateZonotopeBatch` then stores the center `m c + (eu + el)/2` and the generator radius
-`(eu - el)/2`. One neuron. Read from the source, not run.
-
-# CORA's lower error of a softplus neuron is above the deviation at an interior point
-
-With `sharpness = 1` on `[-1, 1]` the chord slope is `m = 1/2` and the deviation `f(x) - x/2` takes
-the value `log 2 ≈ 0.693` at `x = 0`, while CORA's `el` is the deviation at `l`, `0.813`. The
-generator of the neuron then maps the input point `0` to a value outside the enclosure
-`m x + [el, eu]`; for the zonotope `{(t, -t)}` the output point `(f 0, f 0)` is outside CORA's
-output set. Read from the source, not run.
+## Conclusion
+* some point's deviation from the chord lies below CORA's lower error
 -/
 
 -- Authors:       Claude Sonnet 5.5

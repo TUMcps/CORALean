@@ -9,19 +9,31 @@ public import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
 /-!
 # The uncertain-graph layer contains what the graph actually computes
 
-The composite, and the enclosure [1, Prop. 5] claims: whatever the uncertain
-edges weigh, the layer `P H W` that *that* graph computes at any point of the
-node-feature set is a point of `gcnUncertain W 𝒫 H`.
+The enclosure [1, Prop. 5] claims: whatever the uncertain edges weigh, the layer `P H W` that *that*
+graph computes at any point of the node-feature set is a point of `gcnUncertain W 𝒫 H`.
 
-Two facts and one factor vector. `messagePassing_mem_enclosure` puts the graph's
-own message passing in `𝒫`, and `𝒫` has no independent generators, so
-`exists_point_of_q_zero` names the factors reaching it; `gcnUncertain_exact`
-then asks only for the two halves side by side, which `Fin.append` supplies.
+`messagePassing_mem_enclosure` puts the graph's own message passing in `𝒫`, and `𝒫` has no
+independent generators, so `exists_point_of_q_zero` names the factors reaching it;
+`gcnUncertain_exact` then asks only for the two halves side by side, which `Fin.append` supplies.
+The only approximation left is the one `messagePassing_mem_enclosure` already paid.
 
-That the halves may be chosen independently is exactly what padding bought: the
-edges and the node features are separate factors, so no choice of one restricts
-the other, and the only approximation left in the composite is the one
-`messagePassing_mem_enclosure` already paid.
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `W` – weight matrix
+* `H` – polynomial zonotope of the node features
+* `aH` – factor vector of the features
+
+## Hypotheses
+* `hR` – relaxation is sound for the inverse square root
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+* `haH` – factors lie in the unit interval
+
+## Conclusion
+* the graph's exact layer output lies in the uncertain-graph convolution
 
 ## References
 

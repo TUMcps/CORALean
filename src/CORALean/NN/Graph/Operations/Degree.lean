@@ -10,6 +10,13 @@ public import CORALean.ContSet.ContSet.ContSet
 [1]'s `diag(1 Ã)` read at one node, as a column sum: `degree A j = ∑ i, (A + 1) i j`.
 For the symmetric adjacency a graph convolution uses, rows and columns agree.
 
+## Inputs
+* `A` – adjacency matrix
+* `j` – node
+
+## Output
+* degree of the node with self loops added
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

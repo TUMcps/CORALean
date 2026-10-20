@@ -7,18 +7,25 @@ public import CORALean.NN.Operations.RefineVerifyFrom
 /-!
 # Automatic abstraction refinement, the whole loop
 
-[1, Alg. 3]: at most `I` iterations from line 1's order pattern, every order `1`, each
-computing the output enclosure `Y⁽ⁱ⁾` with every layer's input reduced to order `ρ` (lines
-3-8), returning `VERIFIED` (`true`) once `Y⁽ⁱ⁾` misses the unsafe set (lines 10-11), and
-otherwise refining the order pattern (lines 14-15) and going round again; `UNKNOWN` (`false`)
-once the iterations run out (line 17).
+[1, Alg. 3]: at most `I` iterations from line 1's order pattern, every order `1`, each computing the
+output enclosure `Y⁽ⁱ⁾` with every layer's input reduced to order `ρ` (lines 3-8), returning
+`VERIFIED` (`true`) once `Y⁽ⁱ⁾` misses the unsafe set (lines 10-11), and otherwise refining the
+order pattern (lines 14-15); `UNKNOWN` (`false`) once the iterations run out (line 17). The check `Y
+∩ S = ∅` is the caller's `isDisjoint`, which `refineVerify_sound` holds to its meaning; lines 14-15
+are the caller's `refineStep` — `Def. 4.4`'s and `Def. 4.6`'s rules are
+`Schedule.refineWorstNeurons` and `Schedule.refineWorst` — and decide only where the next order
+goes, the result being sound at every schedule.
 
-The check `Y ∩ S = ∅` is the caller's `isDisjoint`, a test on the representation that
-`refineVerify_sound` holds to its meaning; lines 14-15, computing the heuristic `σ` and raising
-`ψ` where it is largest, are the caller's `refineStep` — `Def. 4.4`'s neuron-wise and
-`Def. 4.6`'s layer-wise rules are `Schedule.refineWorstNeurons` and `Schedule.refineWorst`,
-and which is used decides only where the next order goes, the result being sound at every
-schedule.
+## Inputs
+* `rn` – refinable network
+* `ρ` – order after reduction
+* `X` – input set
+* `isDisjoint` – test that the output set misses the unsafe set
+* `refineStep` – refinement of the schedule
+* `I` – maximal number of iterations
+
+## Output
+* verified if some iteration's output misses the unsafe set, otherwise unknown
 
 ## References
 

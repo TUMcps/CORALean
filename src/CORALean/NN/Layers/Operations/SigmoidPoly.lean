@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
 
 That relaxation as a layer, one fit and one grid per neuron: the polynomial activation layer,
 built rather than merely stated, every stored field an expression in the scalar.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `c` – fit coefficients for each neuron and box
+* `dx` – grid spacing for each neuron and box
+* `p` – proposed sample grid for each neuron and box
+
+## Output
+* polynomial activation layer at the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

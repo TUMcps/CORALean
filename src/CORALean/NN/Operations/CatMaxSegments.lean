@@ -14,6 +14,12 @@ already pooled and `r` windows of `k + 1` behind them, pool the first window wit
 affine identity maps that only rename coordinates, which the paper's arithmetic on indices
 does silently.
 
+## Inputs
+* `k` – window size minus one
+
+## Output
+* CAT function pooling a row of windows after the pooled coordinates
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

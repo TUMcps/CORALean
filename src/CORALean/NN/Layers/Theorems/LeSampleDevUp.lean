@@ -9,6 +9,17 @@ public import CORALean.NN.Layers.Theorems.EvalPolyDownLe
 # A sampled deviation's upper bound
 
 The enclosure's high end and the fit's low evaluation, subtracted upward.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `x` – sample point
+
+## Hypotheses
+* `hE` – enclosure is sound for the activation
+
+## Conclusion
+* the activation minus the fit at the sample is at most the upper bound
 -/
 
 -- Authors:       Claude Opus 5.5

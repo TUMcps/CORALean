@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Operations.PolyDerivRadiusUp
 What `ofSampling` asks for and nothing else supplies: an `M` with `|σ' - p'| ≤ M` on the box,
 stored. The `σ'` bracket's spread around the center through `subUp`, plus the radius, through
 one `addUp`.
+
+## Inputs
+* `c` – fit coefficients
+* `loD` – lower end of the derivative bracket
+* `hiD` – upper end of the derivative bracket
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* bound on how far the derivative strays from the fit's, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

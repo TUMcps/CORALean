@@ -9,39 +9,25 @@ public import Mathlib.Tactic.NormNum
 @[expose] public section
 
 /-!
-# `Layer.minMaxDiffOrderCora`: the error bound of a monotone activation as CORA's code computes it
+# `Layer.minMaxDiffOrderCora`: the error bound of a monotone activation as CORA computes it
 
-`nn/+nnHelper/minMaxDiffOrder.m` (l. 48-60), the branch for a layer whose `monotonicity` is at
-least 2 and a linear polynomial `coeffs = [a, b]` (`f` convex or concave, `f - p` has at most
-one interior extremum, where `df(x) = a`):
+`nnHelper.minMaxDiffOrder.m` (l. 48-60), branch for a layer of `monotonicity` at least 2 and a
+linear polynomial `[a, b]`: with `ddiff = df - a` it calls `fzero(ddiff, [l u])` when `ddiff(l) *
+ddiff(u) > 0`, and otherwise keeps `xs = [l,u]`. But `fzero` needs a sign change, `< 0`, and the
+slope of a chord of a convex `f` lies between `df(l)` and `df(u)`, so the interior extremum of `f -
+p` is missed. Read from the source, not run.
 
-```
-xs = [l,u];
-ddiff = @(x) layer.df(x) - coeffs(1);
-if ddiff(l) * ddiff(u) > 0
-    try xs = [xs fzero(ddiff, [l u])]; catch ME; keyboard; end
-end
-ys = layer.f(xs) - polyval(coeffs,xs);
-diffl = min(ys)-eps;  diffu = max(ys)+eps;  return
-```
+For `exp` on `[-1, 1]` with chord slope `m = (e - 1/e)/2` the code evaluates `f - p` at the end
+points (`1.543`), while the minimum is `0.986`: the value `1` at `0` is below the lower bound.
 
-`fzero` needs a sign change, `ddiff(l) * ddiff(u) < 0`. With `> 0` the branch looks for a root
-where there is none (`fzero` throws and the `catch` calls `keyboard`) and skips it where there is
-one. The slope of a regression line or a chord of a convex `f` lies between `df(l)` and `df(u)`,
-so the sign change is there, and `xs = [l,u]`: the interior extremum of `f - p`, its minimum for a
-convex `f`, is missed. `computeApproxError` turns `[diffl, diffu]` into the radius `d` of the
-error generator (`nnActivationLayer.m`, l. 198). Reached by `nnActLayerFromHandle(@exp, id, 2)`
-(the third argument is the documented "n-times monotonic") and `evaluate` of a `zonotope` with
-`poly_method` `'bounds'` (the training default) or `'regression'` (the default). `eps` is MATLAB's
-`2^-52`, `root` the result of `fzero`. Read from the source, not run.
+## Inputs
+* `root` – result of the root finder
 
-# CORA's error bound of a convex activation omits the interior minimum
+## Hypotheses
+* none
 
-For `exp` on `[-1, 1]` with the chord slope `m = (e - 1/e)/2` the code evaluates `f - p`
-at `-1` and `1`, where it is `cosh 1 ≈ 1.543`, while the minimum over the box is
-`m (1 - log m) ≈ 0.986` at `x = log m`; the value `1` at `x = 0` is already below the lower bound
-`diffl`. The line `m x + b` shifted by the bounds is therefore not an enclosure of `exp`. Read from
-the source, not run.
+## Conclusion
+* some point's difference to the line lies below CORA's lower bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

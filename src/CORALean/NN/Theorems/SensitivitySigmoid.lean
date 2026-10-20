@@ -17,6 +17,15 @@ enclosure and for the heuristic that decides where to tighten it.
 
 `sigmoidDeriv` is `σ t · σ (-t)`, so the diagonal is bounded by the bracket
 `Sigmoid` already proves — a neuron deep in saturation weighs almost nothing.
+
+## Inputs
+* `x` – input point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid layer's sensitivity is the diagonal of the sigmoid's derivatives
 -/
 
 -- Authors:       Claude Opus 5

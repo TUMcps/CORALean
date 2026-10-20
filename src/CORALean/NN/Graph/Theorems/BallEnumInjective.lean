@@ -9,6 +9,18 @@ public import CORALean.NN.Graph.Operations.BallEnum
 
 `ballEnum` is `Finset.orderEmbOfFin` coerced to a function, and an order
 embedding is injective on the nose — `RelEmbedding.injective` closes it.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `L` – radius in hops
+
+## Hypotheses
+* none
+
+## Conclusion
+* the enumeration of the ball is injective
 -/
 
 -- Authors:       Claude Opus 5

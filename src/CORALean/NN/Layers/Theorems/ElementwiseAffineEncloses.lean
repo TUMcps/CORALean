@@ -12,6 +12,16 @@ public import CORALean.NN.Layers.Theorems.LinearEncloses
 
 The affine map the stored scale and offset denote, coordinate by coordinate: the diagonal the
 layer places reads back as `Matrix.diagonal` of the scales, `toReal_diagonalBlock`.
+
+## Inputs
+* `scale` – scale of every neuron
+* `offset` – offset of every neuron
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the elementwise affine map
 -/
 
 -- Authors:       Claude Opus 5.5

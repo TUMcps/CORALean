@@ -13,6 +13,12 @@ public import CORALean.NN.Operations.Bucketed
 layer's `MergeBuckets` names: `aux_staticMergeBuckets` at stored values, `aux_dynamicMergeBuckets`
 at the neurons' centers.
 
+## Inputs
+* `le` – comparison of two scalars
+
+## Output
+* mask of the merged neurons for the chosen initialisation
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

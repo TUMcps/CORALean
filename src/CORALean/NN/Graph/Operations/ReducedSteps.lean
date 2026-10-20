@@ -12,6 +12,12 @@ stored `D̃^(-1/2) Ã D̃^(-1/2)` of the *whole* graph to the kept rows and colu
 sets are nested, a step and its projection are one product with `P` restricted to the new rows
 and the old columns. `S k` is the node set before step `k`; the features start on `S 0`.
 
+## Inputs
+* `P` – message-passing matrix
+
+## Output
+* features on the last kept node set after the steps
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

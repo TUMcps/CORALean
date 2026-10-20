@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Theorems.ToRealIteZero
 # A sum leaving one index out, bounded below
 
 Downward against any real bound on the terms, which is what the softmax layer has.
+
+## Inputs
+* `i` – omitted index
+* `v` – lower bounds of the summands
+* `h` – summands
+
+## Hypotheses
+* `hv` – each bound is below its summand
+
+## Conclusion
+* the rounded-down sum is at most the sum without the omitted term
 -/
 
 -- Authors:       Claude Opus 5.5

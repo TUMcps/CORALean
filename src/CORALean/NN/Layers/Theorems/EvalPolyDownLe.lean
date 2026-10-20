@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Theorems.PowRangeBounds
 # A polynomial is above its lower evaluation
 
 Term by term against the power's bracket, and the sum rounded down.
+
+## Inputs
+* `c` – stored coefficients
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the lower evaluation is at most the polynomial's value
 -/
 
 -- Authors:       Claude Opus 5.5

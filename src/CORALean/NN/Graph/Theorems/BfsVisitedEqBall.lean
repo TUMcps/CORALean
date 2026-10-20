@@ -14,6 +14,17 @@ frontier alone loses nothing: an edge out of a node reached at an earlier hop le
 already, so a node outside the ball is reached only from the frontier. The invariant carries that
 with the frontier lying in the ball: every node of the ball is on the frontier or in a smaller ball.
 
+## Inputs
+* `A` – adjacency matrix
+* `v` – start node
+* `r` – number of hops
+
+## Hypotheses
+* none
+
+## Conclusion
+* the visited nodes of the search are the ball
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

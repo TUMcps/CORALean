@@ -13,6 +13,14 @@ public import CORALean.NN.Layers.Operations.ShiftConst
 into the constant coefficient, and what is left is a radius. The bracket is a hypothesis of
 `ofBracket_sound` and not an argument here, which keeps `σ` out of the data.
 
+## Inputs
+* `c` – fit coefficients for each box
+* `lo` – lower end of the error bracket
+* `hi` – upper end of the error bracket
+
+## Output
+* polynomial relaxation recentered on the error bracket
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

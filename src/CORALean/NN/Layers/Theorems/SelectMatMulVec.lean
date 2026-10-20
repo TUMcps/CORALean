@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Theorems.TapMatMulVec
 
 Output `j` is input `sel j`: a stencil of one tap, which is injective trivially, at the
 stored `one`.
+
+## Inputs
+* `sel` – input read by each output
+* `x` – input vector
+* `j` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the selection matrix returns the selected input coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

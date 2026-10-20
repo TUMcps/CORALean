@@ -9,15 +9,22 @@ public import CORALean.NN.Theorems.NeuronMergingOuter
 /-!
 # `ReducesAt` is sound
 
-Induction on the derivation. `nil`: `eval` is the identity, so `image` is `construct s`
-itself. `keep`: `hg.enclose_outer` moves the point past the layer, then the hypothesis at that
-set. `merge`: `neuronMerging_sandwich_outer` moves it past the sandwich, then the hypothesis at
-that set — the four-layer chain splitting as `rest.eval (sandwich.eval x)` and likewise for
-`enclose`, both by `rfl` since `NeuralNetwork.eval`/`enclose` unfold definitionally on `layer`.
-`image_eq_eval_image` is what reopens each of those sets to a point in the first place.
-`widen`: `linearWithError_mem`, the bias being one value of the box. `freeze`: the survivors
-pass the trimmed layers as in `merge`, and the bucket's own value `w` is the one the hypothesis
-is read at, layer `k+1`'s sum splitting along the partition exactly as it does there.
+Induction on the derivation. `nil`: `eval` is the identity, so `image` is `construct s` itself.
+`keep`: `hg.enclose_outer` moves the point past the layer, then the hypothesis at that set. `merge`:
+`neuronMerging_sandwich_outer` moves it past the sandwich, then the hypothesis at that set;
+`image_eq_eval_image` reopens each of those sets to a point. `widen`: `linearWithError_mem`, the
+bias being one value of the box. `freeze`: the survivors pass the trimmed layers as in `merge`, and
+the bucket's own value `w` is the one the hypothesis is read at, layer `k+1`'s sum splitting along
+the partition exactly as it does there.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the original network's image lies in the reduced network's enclosure
 -/
 
 -- Authors:       Claude Opus 5

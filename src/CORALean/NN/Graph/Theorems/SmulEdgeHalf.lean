@@ -11,6 +11,16 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 One edge's weight split into the center it shifts and the generator it
 scales, which is the change of variable in matrix form: `λ = (1 + α)/2` at a
 factor `α` in the unit interval around zero.
+
+## Inputs
+* `t` – factor in the unit interval
+* `M` – edge matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scaled matrix splits into a center and a generator part
 -/
 
 -- Authors:       Claude Sonnet 5

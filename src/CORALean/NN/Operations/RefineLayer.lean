@@ -11,6 +11,13 @@ public import CORALean.NN.Operations.Raise
 [1, Lemma 4.3] costs no generators beyond what the layer's largest order
 already spends. One `raise` at every coordinate.
 
+## Inputs
+* `sch` – schedule of order patterns
+* `l` – layer index
+
+## Output
+* schedule with every neuron of the layer raised by one
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

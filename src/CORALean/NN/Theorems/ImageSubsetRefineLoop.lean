@@ -12,6 +12,19 @@ Split out of `EncloseAtOuter.lean` (issue #62): one of five genuinely public
 declarations there, none used outside the file, so split one file each.
 
 So does the loop, at every `pick` and every number of steps.
+
+## Inputs
+* `rn` – refinable network
+* `pick` – layer and neuron to refine next
+* `sch` – initial schedule
+* `k` – number of refinement steps
+* `X` – input set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact image lies in the enclosure after the refinement loop
 -/
 
 -- Authors:       Claude Opus 5

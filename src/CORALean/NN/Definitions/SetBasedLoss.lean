@@ -13,6 +13,16 @@ first term is the standard loss of the center (accuracy), the second the F-radiu
 enclosure (robustness), normalized by `ε`; `ε` and `τ` are not constrained here, what is proved
 about them says which values it needs.
 
+## Inputs
+* `L` – loss of target and output
+* `τ` – tradeoff between accuracy and robustness
+* `ε` – perturbation radius
+* `t` – target output
+* `Y` – output zonotope
+
+## Output
+* weighted sum of the center loss and the scaled F-radius
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

@@ -12,6 +12,15 @@ public import CORALean.NN.Definitions.Encloses
 different claim: taking `nn' = nn` — no `merge` step anywhere — is one of the derivations
 `reducesAt_outer` is proved sound for, at the same map, by induction on `Sound` through
 `keep`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a network that encloses a map reduces to itself at that map
 -/
 
 -- Authors:       Claude Opus 5

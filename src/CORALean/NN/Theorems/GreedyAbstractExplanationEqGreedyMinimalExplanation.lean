@@ -11,6 +11,25 @@ public import CORALean.NN.Theorems.ExplanationRefineLoopIff
 The refinement loop answers what a query on `f` would, under the hypotheses
 `explanationRefineLoop_iff` needs, so the two folds are one fold.
 
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `l` – target label
+* `absSuff` – abstract sufficiency check at each level
+* `genuine` – genuine counterexample check at each level
+* `N` – number of refinements to spend
+* `suff` – exact sufficiency oracle
+
+## Hypotheses
+* `habs` – an abstract pass implies sufficiency
+* `hgen` – a genuine counterexample implies insufficiency
+* `hlast` – at the last level every sufficient set passes
+* `hsuff` – the oracle decides sufficiency
+
+## Conclusion
+* the abstraction-refinement search returns the greedy minimal explanation
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

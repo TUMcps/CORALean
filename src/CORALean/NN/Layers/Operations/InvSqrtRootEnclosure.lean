@@ -10,6 +10,12 @@ public import CORALean.Global.Float.Sqrt
 
 `x ↦ 1/√(max x 1)` (`Real.invSqrt`) from the root: the clamp is exact, `sqrtUp` in the divisor
 gives a lower bound and `sqrtDown` floored at `1` (the true root is at least `1`) an upper one.
+
+## Inputs
+* `p` – number of Newton steps
+
+## Output
+* lower and upper bound of the clamped inverse square root
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -10,6 +10,12 @@ public import CORALean.NN.NeuralNetwork
 Its layers' `eval`s composed, first layer first, inside `Erased` as each of them is: the
 composite is built from `Erased.out`, which is noncomputable, but `Erased.mk` erases its
 argument before anything is compiled, so a network of float layers still runs.
+
+## Inputs
+* none
+
+## Output
+* function the network computes
 -/
 
 -- Authors:       Claude Opus 5.5

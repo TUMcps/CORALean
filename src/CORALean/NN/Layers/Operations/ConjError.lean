@@ -12,6 +12,17 @@ public import CORALean.NN.Layers.Operations.ConjTBound
 `ra`'s rounding of `f`'s own error, plus the slope gap charged against a bound on `t`, plus
 the offset gap, all rounded up. At exact scalings both gaps vanish and this is `ra` times `f`'s
 error, which is all the transport costs over ℝ.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `c` – output shift
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* error stored for the affine conjugate
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,14 @@ public import CORALean.Global.Float.FloatOps
 `a · x` for every `x` a bracket `[lo, hi]` holds, from below: both products and the smaller, which
 asks nothing of `a`'s sign — no comparison of stored values establishes one, `le` being
 constrained in one direction only.
+
+## Inputs
+* `a` – factor
+* `lo` – lower end of the bracket
+* `hi` – upper end of the bracket
+
+## Output
+* lower bound of the product over the bracket
 -/
 
 -- Authors:       Claude Opus 5.5

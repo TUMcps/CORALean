@@ -17,6 +17,17 @@ so a classifier is verified with no machinery beyond a bound per rival.
 
 Needed by both `Robustness` and `Classifies`, so it is public rather than
 duplicated into each.
+
+## Inputs
+* `O` – output set
+* `l` – target label
+
+## Hypotheses
+* `u` – support bound of the output set for each rival
+* `h` – every rival's bound is negative
+
+## Conclusion
+* the output set is disjoint from the misclassified outputs
 -/
 
 -- Authors:       Claude Opus 5

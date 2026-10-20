@@ -12,6 +12,21 @@ public import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
 
 Only the derivative bound is asked for: a grid that fails its checks costs precision and not
 soundness, and the fit owes nothing at all.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients for each box
+* `M` – derivative bound for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+
+## Hypotheses
+* `hE` – enclosure is sound for the activation
+* `hd` – the activation has the given derivative
+* `hM` – derivative differs from the fit's by at most the bound
+
+## Conclusion
+* the sampled polynomial relaxation is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

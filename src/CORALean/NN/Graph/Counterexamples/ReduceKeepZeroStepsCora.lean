@@ -10,6 +10,15 @@ At `numMPsteps == 0` CORA means to return the network (`% no gnn, return`) but i
 `return`, so it builds a reduced network whose first projection keeps the nodes within distance
 `1` of `n0` and no later projection narrows that to `n0`. On the graph with one edge the kept
 set of node `0` contains node `1`, though a network without message passing needs `{0}` only.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* with no step CORA's kept set is not the single node
 -/
 
 -- Authors:       Claude Sonnet 5.5

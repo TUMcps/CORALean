@@ -10,15 +10,19 @@ public import CORALean.NN.Operations.WorstIndex
 /-!
 # Which layer to refine next
 
-The paper's layer-wise heuristic [1, Def. 4.6]: `aux_layerRank` is [1, Eq. 28]'s
-`‖σ_k‖₂`, the Euclidean norm of a layer's per-neuron `refinementRank`s, as CORA's
-`norm(...)` takes it; `NeuralNetwork.aux_layerRank` reads that at the network's actual
-sensitivity, `aux_worstLayer` names the largest of `k + 1` such ranks (`k̃ = argmax_k
-‖σ_k‖₂`), and `refineWorst` spends a `refineLayer` step there.
+The paper's layer-wise heuristic [1, Def. 4.6]: `aux_layerRank` is [1, Eq. 28]'s `‖σ_k‖₂`, the
+Euclidean norm of a layer's per-neuron `refinementRank`s, as CORA's `norm(...)` takes it;
+`NeuralNetwork.aux_layerRank` reads that at the network's actual sensitivity, `aux_worstLayer` names
+the largest of `k + 1` such ranks (`k̃ = argmax_k ‖σ_k‖₂`), and `refineWorst` spends a `refineLayer`
+step there. Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds at *every*
+schedule, so this file only decides where the next order is spent.
 
-Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds
-at *every* schedule, so this file only decides where the next order is spent —
-the same freedom `reduceBy_outer` has at every partition.
+## Inputs
+* `sch` – schedule of order patterns
+* `r` – rank of every layer
+
+## Output
+* schedule with every neuron of the worst-ranked layer raised by one
 
 ## References
 

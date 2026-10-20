@@ -17,6 +17,22 @@ on every sub-box of the range. One fit does it: Weierstrass on `[L, U]`, and a s
 a subset of those points, so the sampled range never grows; `M` is bounded over the whole range
 because `polyDerivRadius` is monotone in the box, so one sample count serves every sub-box.
 
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `L` – lower end of the range
+* `U` – upper end of the range
+* `Mσ` – bound on the derivative
+* `ε` – accuracy
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hσ` – the derivative is bounded
+* `hε` – accuracy is positive
+
+## Conclusion
+* one sound relaxation has error below the accuracy on every box in the range
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Theorems.ToRealTapEntry
 
 An equality with no hypothesis: the stored stencil denotes the stencil over ℝ at the weights
 that were read in, entry for entry, `toReal_tapEntry` row by row.
+
+## Inputs
+* `tap` – input index of every kernel position
+* `w` – weight of every kernel position
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stencil matrix reads back as the stencil of the real weights
 -/
 
 -- Authors:       Claude Opus 5.5

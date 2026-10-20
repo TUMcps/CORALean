@@ -8,19 +8,24 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # `NeuralNetwork.enclose` contains the image
 
-Induction on `Sound`, applying each layer's own obligation in the order
-`enclose` applies the layers. Nothing else is used, so a new layer buys into the
-whole pipeline by proving `Layer.Encloses` and nothing more — which is the reason
-the obligation is one proposition about a layer rather than a theorem about a
-particular network.
-
-The enclosure degrades monotonically: each layer encloses the image of what it
-was handed, never of the exact set, so the error a layer introduces is carried
-by every layer after it. That is why an activation layer's relaxation is where
-all the precision goes, and why none of it is visible here.
-
-[1, Alg. 1]'s own postcondition, `PZ ⊇ Y`, proved once for any network rather
+Induction on `Sound`, applying each layer's own obligation in the order `enclose` applies the
+layers. Nothing else is used, so a new layer buys into the whole pipeline by proving
+`Layer.Encloses` and nothing more. The enclosure degrades monotonically: each layer encloses the
+image of what it was handed, never of the exact set, so the error a layer introduces is carried by
+every layer after it. [1, Alg. 1]'s own postcondition, `PZ ⊇ Y`, proved once for any network rather
 than only the quadratic-approximation layers the algorithm itself builds.
+
+## Inputs
+* `n` – input width
+* `m` – output width
+* `nn` – network
+* `f` – map the network encloses
+
+## Hypotheses
+* `hf` – the network encloses the map
+
+## Conclusion
+* the map of every point of an input set lies in the enclosure
 
 ## References
 

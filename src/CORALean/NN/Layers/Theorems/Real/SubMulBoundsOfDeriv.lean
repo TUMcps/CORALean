@@ -8,13 +8,30 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # A slope out of a bound on the derivative
 
-The mean value theorem read as a bracket. `Relaxation.ofMonotone` carries slope zero because
-monotonicity is all it has; a slope needs second-order information, and the cheapest form is a
-bracket `m ≤ σ' ≤ M` over the box. Every increment of `σ` is then between `m` and `M` times the
-increment of its argument, so `σ t - λ t` stays within `(M - m) (u - l)` of its value at `l`.
-The theorem asks only what that argument uses: continuity on the closed box and a derivative on
-the open one, so a kink at an endpoint costs nothing. It is about the exact `σ` and the exact
-reals a scalar's values denote, which is why `Relaxation.ofDeriv` reuses it at every scalar.
+With `m ≤ σ' ≤ M` over the box, `σ t - lam * t` cannot leave the ends the bracket allows.
+
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `m` – lower bound of the derivative
+* `M` – upper bound of the derivative
+* `lam` – slope of the line
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `hc` – the function is continuous on the box
+* `hd` – the function has the given derivative inside the box
+* `hm` – the derivative is at least its lower bound
+* `hM` – the derivative is at most its upper bound
+* `hml` – slope is at least the lower bound
+* `hlM` – slope is at most the upper bound
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the function minus the line stays within the ends the bracket allows
 -/
 
 -- Authors:       Claude Opus 5.5

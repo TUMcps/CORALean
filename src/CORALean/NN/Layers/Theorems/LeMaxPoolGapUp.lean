@@ -10,6 +10,19 @@ public import CORALean.NN.Layers.Operations.MaxPoolGapUp
 
 At any tap but the pivot, where `subUp` is the one rounding the layer pays, and the maximum is
 at least that entry: what `maxPool_bounds` asks of its `g`.
+
+## Inputs
+* `tap` – input index of every window position
+* `p` – pivot position of every window
+* `I` – box of the layer's input
+* `j` – window index
+* `l` – other position of the window
+
+## Hypotheses
+* `hl` – position is not the pivot
+
+## Conclusion
+* the position's reach above the pivot is within the stored gap
 -/
 
 -- Authors:       Claude Opus 5.5

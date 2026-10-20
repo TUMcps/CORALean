@@ -10,6 +10,12 @@ public import CORALean.NN.Layers.Definitions.Relaxation
 
 The affine relaxation is the order-1 case: `offset` and `slope` are the two coefficients, the
 constant first, and nothing is rounded — the same stored values, read differently.
+
+## Inputs
+* `R` – affine relaxation
+
+## Output
+* order-one polynomial relaxation with the same data
 -/
 
 -- Authors:       Claude Opus 5.5

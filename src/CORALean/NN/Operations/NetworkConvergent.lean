@@ -16,6 +16,12 @@ by everything downstream, so without a bound on the tail a vanishing residual
 at one layer buys nothing at the network's output. The bound is a hypothesis
 rather than a weakened claim, and it is one every standard layer meets — a
 linear layer by its matrix, an activation by its own slope.
+
+## Inputs
+* none
+
+## Output
+* every layer is convergent and every tail Lipschitz
 -/
 
 -- Authors:       Claude Opus 5

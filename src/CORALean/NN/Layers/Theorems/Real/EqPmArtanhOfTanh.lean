@@ -11,6 +11,18 @@ The solving step of [1, Prop. 10] for `tanh` and the sigmoid: for `s ∈ [0, 1)`
 puts `x` at `artanh s` or at `-artanh s`, `artanh` being `tanh⁻¹`. The derivative equations
 `1 - tanh(x)² = m` and `σ'(x) = m` come to this.
 
+## Inputs
+* `x` – real number
+* `s` – target magnitude
+
+## Hypotheses
+* `hs` – magnitude is nonnegative
+* `hs1` – magnitude is below one
+* `h` – the squared tanh equals the squared magnitude
+
+## Conclusion
+* the number is the inverse hyperbolic tangent of the magnitude or its negative
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

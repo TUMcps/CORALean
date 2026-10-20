@@ -9,6 +9,15 @@ public import Mathlib.Tactic.Positivity
 # Mirroring the argument complements the logistic function
 
 `σ (-t) = 1 - σ t`, which is what makes the derivative a product of two sigmoids.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid of the negated number is one minus the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

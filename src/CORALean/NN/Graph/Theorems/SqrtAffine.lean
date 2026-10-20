@@ -10,18 +10,25 @@ public import CORALean.NN.Graph.Theorems.DegreeAtEq
 /-!
 # `D̃^(-1/2)` at an uncertain degree, as an affine function of the edge factors
 
-The inverse square root of node `j`'s degree, read through a `Relaxation` at the
-box `[degree, degreeSup]` that node's degree is known to sit in. What comes
-back is a slope, an offset and an error, and composing the slope with the affine
-`degreeAt` of `degreeAt_eq` leaves `s_j` affine in the edge weights again:
+The inverse square root of node `j`'s degree, read through a `Relaxation` at the box `[degree,
+degreeSup]` that node's degree sits in. What comes back is a slope, an offset and an error;
+composing the slope with the affine `degreeAt` of `degreeAt_eq` leaves `s_j` affine in the edge
+weights: `s_j = sqrtConst + Σₑ sqrtEdgeCoeff ⬝ αₑ + (residual, at most aux_sqrtError)`.
+`sqrt_affine` is that identity at the factors `α = 2λ - 1` the uncertain adjacency uses. The
+residual is a factor of its own, one per node, spent by the enclosure.
 
-    s_j = sqrtConst + Σₑ sqrtEdgeCoeff ⬝ αₑ + (residual, at most aux_sqrtError)
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `j` – node
 
-`sqrt_affine` is that identity, stated at the factors `α = 2λ - 1` the uncertain
-adjacency already uses, so the two sets share their factors and a product of
-them keeps the dependence. The residual is not here: it is a factor of its own,
-one per node, and only the enclosure that spends it knows how many nodes there
-are to spend it on.
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation's affine map at the degree equals an affine form in the edge factors
 -/
 
 -- Authors:       Claude Sonnet 5

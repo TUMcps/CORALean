@@ -8,17 +8,24 @@ public import CORALean.NN.Theorems.LinearSigmoidConverges
 /-!
 # The output of `σ(W x + b)` converges to the exact image
 
-[1, Prop. 4.13] itself: on a two-layer network some schedule brings the enclosed
-output inside any inflation of the exact image, which with `encloseAt_outer`
-squeezes the enclosure onto it.
+[1, Prop. 4.13] itself: on a two-layer network some schedule brings the enclosed output inside any
+inflation of the exact image, which with `encloseAt_outer` squeezes the enclosure onto it. Split
+from `LinearSigmoidConverges.lean` as `ExistsScheduleSigmoidLinearSigmoidSubset.lean` is from its
+own pair. The paper's `h_max → ∞` is not a hypothesis here: `encloseAt` applies no order reduction
+at all, so there is no generator budget for a refinement to run into and the limit is taken in the
+order pattern alone.
 
-Split from `LinearSigmoidConverges.lean` as
-`ExistsScheduleSigmoidLinearSigmoidSubset.lean` is from its own pair: both
-declarations are public and neither uses the other outside its file.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `X` – input polynomial zonotope
+* `ε` – inflation radius
 
-The paper's `h_max → ∞` is not a hypothesis here. `encloseAt` applies no order
-reduction at all, so there is no generator budget for a refinement to run into
-and the limit is taken in the order pattern alone.
+## Hypotheses
+* `hε` – radius is positive
+
+## Conclusion
+* some schedule encloses the output inside the exact image inflated by the radius
 
 ## References
 

@@ -12,17 +12,23 @@ public import CORALean.Specification.Specification
 /-!
 # Sufficient explanation for an abstract network
 
-[1, Def. 3]: `nnAbs` outputs a set, so sufficiency becomes separation —
-propagating `explainBox` must never let a rival tie or beat the target class
-`l`. This is `disjoint_misclassified_of_bounds`'s conclusion in the paper's
-notation: a bound per rival label, each negative, is exactly "the target's
-minimum exceeds every rival's maximum".
+[1, Def. 3]: `nnAbs` outputs a set, so sufficiency becomes separation — propagating `explainBox`
+must never let a rival tie or beat the target class `l`. This is
+`disjoint_misclassified_of_bounds`'s conclusion in the paper's notation.
 
-[1, Def. 4] renames this same predicate rather than adding to it: a
-sufficient explanation for `nnAbs` is called an *abstract* sufficient
-explanation for whatever network `nnAbs` abstracts, without changing what it
-asks of `nnAbs` itself — so it is `IsSuffExplanationAbstract` again, read at
-the abstraction rather than at the network it abstracts.
+[1, Def. 4] renames this same predicate rather than adding to it: a sufficient explanation for
+`nnAbs` is called an *abstract* sufficient explanation for whatever network `nnAbs` abstracts,
+without changing what it asks of `nnAbs` itself.
+
+## Inputs
+* `nnAbs` – abstract network
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – candidate explanation, a feature set
+* `l` – target label
+
+## Output
+* enclosure of the explanation box never lets a rival tie the target
 
 ## References
 

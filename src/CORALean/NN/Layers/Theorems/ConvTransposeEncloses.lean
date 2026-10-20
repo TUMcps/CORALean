@@ -14,6 +14,18 @@ public import CORALean.NN.Layers.Theorems.TapMatMulVec
 The exact map the stored kernel denotes: output coordinate `j` collects, from every input `i`,
 the weight the helper convolution's row `i` places at `j`, and adds the bias. That is `Wᵀ x + b`
 for the helper's stencil `W`, read into ℝ.
+
+## Inputs
+* `chan` – channel of every neuron
+* `tap` – input index of every kernel position
+* `K` – kernel of every channel
+* `b` – bias of every output neuron
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the transposed convolution
 -/
 
 -- Authors:       Claude Opus 5.5

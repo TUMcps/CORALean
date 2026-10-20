@@ -7,6 +7,12 @@ public import CORALean.NN.Definitions.WeightLayer
 
 /-!
 # What a weight layer computes
+
+## Inputs
+* none
+
+## Output
+* function the weight layer computes
 -/
 
 -- Authors:       Claude Opus 5.5

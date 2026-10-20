@@ -11,6 +11,13 @@ The denominator of the logistic function, underestimated through `expDown` — a
 an exponential is the one direction available without a hypothesis on the argument — and held
 above one by an exact `maximum`, so a division by it never meets a divisor the arithmetic
 constrains in no way.
+
+## Inputs
+* `k` – reduction depth
+* `a` – exponent
+
+## Output
+* lower bound of one plus the exponential, at least one
 -/
 
 -- Authors:       Claude Opus 5.5

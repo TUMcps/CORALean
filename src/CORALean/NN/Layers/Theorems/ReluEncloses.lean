@@ -12,6 +12,15 @@ public import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 
 ReLU coordinatewise, at every slope: `reluRelaxation_sound` read through the activation
 layer's own soundness.
+
+## Inputs
+* `lam` – slope choice for each box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses ReLU coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

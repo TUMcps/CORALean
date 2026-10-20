@@ -9,17 +9,31 @@ public import CORALean.NN.Graph.Theorems.EvalStepsRowMask
 /-!
 # `[1, §4.3]`'s locality, uniform in the graph's own uncertainty
 
-Not `evalSteps_row_ball`: that theorem's `hκ` asks `κ`'s image to be *exactly*
-`ball A v L`, and the ball an admissible `adjAt A U lam` grows is graph-specific
-— it need not equal `ball (adjMax A U) v L` at any `lam` other than the one
-pinning every weight to `1`. `evalSteps_row_mask`'s `hS` is only an *inclusion*,
-which composes: `ball (adjAt A U lam) v L ⊆ ball (adjMax A U) v L` by
-`ball_mono_of_support`/`adjAt_support_subset`, so any `S` already large enough
-for `adjMax A U` is large enough for every admissible `adjAt A U lam` at once.
+Not `evalSteps_row_ball`: its `hκ` asks `κ`'s image to be *exactly* `ball A v L`, and the ball an
+admissible `adjAt A U lam` grows need not equal `ball (adjMax A U) v L`. `evalSteps_row_mask`'s `hS`
+is only an *inclusion*, which composes: `ball (adjAt A U lam) v L ⊆ ball (adjMax A U) v L` by
+`ball_mono_of_support`/`adjAt_support_subset`, so any `S` large enough for `adjMax A U` is large
+enough for every admissible `adjAt A U lam` at once.
 
-One `S`, sized against `adjMax A U`, therefore serves every `lam` — the
-subgraph reduction a caller already had at a known graph carries over to an
-uncertain one, uniformly.
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `v` – center node
+* `S` – set of nodes kept by the mask
+* `L` – number of steps
+* `W` – weights of the steps
+* `X` – first node-feature matrix
+* `Y` – second node-feature matrix
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+* `hS` – mask set contains the maximal ball
+* `hXY` – the two inputs agree on the maximal ball
+
+## Conclusion
+* the center's row is the same with and without the mask at every admissible weighting
 
 ## References
 

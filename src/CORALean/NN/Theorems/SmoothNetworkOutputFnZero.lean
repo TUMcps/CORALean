@@ -11,6 +11,15 @@ CORA's own comment on `nonlinearSysDT`: `func(x,0)` is equal to `evaluate(net, x
 input at zero every bias is untouched. True of CORA's code only if the scale of an elementwise
 affine layer is kept, which its conversion drops; see
 `SmoothNetwork.elementwiseAffine_cora_counterexample`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the output function at zero input equals the network's evaluation
 -/
 
 -- Authors:       Claude Sonnet 5.5

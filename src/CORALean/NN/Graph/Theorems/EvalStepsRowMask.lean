@@ -13,16 +13,31 @@ public import CORALean.NN.Graph.Theorems.RowEqMask
 /-!
 # Masking outside a large enough ball changes nothing at the center
 
-`[1, §4.3]`'s locality argument, stated at last: row `v` of an `L`-step chain
-is the same whether or not the graph is masked to `S`, provided `S` already
-contains `ball A v L` and the two starting feature matrices agree on it. The
-two inputs agreeing only there, not everywhere, is not slack — the induction's
-recursive call sees `P * X * W 0` against `mask S P * Y * W 0`, two genuinely
-different matrices, and needs exactly that weaker agreement to close.
+`[1, §4.3]`'s locality argument: row `v` of an `L`-step chain is the same whether or not the graph
+is masked to `S`, provided `S` already contains `ball A v L` and the two starting feature matrices
+agree on it. Agreeing only there, not everywhere, is not slack: the induction's recursive call sees
+two genuinely different matrices and needs exactly that weaker agreement.
 
-`GNN.row_eq_mask` is where the ball and the mask meet: at a node `u` already in the
-smaller ball, every message reaching it from outside lands in the next ball
-out by `mem_ball_succ_of_messagePassing`, so masking there costs nothing.
+`GNN.row_eq_mask` is where the ball and the mask meet: at a node already in the smaller ball, every
+message reaching it from outside lands in the next ball out, so masking there costs nothing.
+
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – center node
+* `S` – set of nodes kept by the mask
+* `L` – number of steps
+* `W` – weights of the steps
+* `X` – first node-feature matrix
+* `Y` – second node-feature matrix
+
+## Hypotheses
+* `hS` – mask set contains the ball
+* `hXY` – the two inputs agree on the ball
+
+## Conclusion
+* the center's row of the chain is the same with and without the mask
 
 ## References
 

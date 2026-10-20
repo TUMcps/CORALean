@@ -13,6 +13,17 @@ same: the symmetry `[1, §4.3]`'s adjacency needs. Public rather than an
 `aux_`: every caller of `edgeMat`, not only `AdjAtSymm`, needs this, and an
 `aux_` would be invisible to them by construction.
 
+## Inputs
+* `ij` – endpoints of the edge
+* `a` – row node
+* `b` – column node
+
+## Hypotheses
+* none
+
+## Conclusion
+* the edge matrix is symmetric
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

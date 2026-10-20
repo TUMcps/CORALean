@@ -9,6 +9,12 @@ public import CORALean.NN.Definitions.RefinableNetwork
 
 What a heuristic ranks over — a schedule is an infinite sequence and only its first `length`
 entries are ever read.
+
+## Inputs
+* none
+
+## Output
+* number of layers
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,19 @@ the input side: the predicate ranges over
 `construct (explainBox …)`, so the specification form is the stronger of the two
 and this direction is the only one that holds for every `S`.
 
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* `hexact` – the explanation is sufficient on the exact image
+
+## Conclusion
+* the explanation is sufficient pointwise
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

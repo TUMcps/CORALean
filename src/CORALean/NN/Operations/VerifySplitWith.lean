@@ -7,19 +7,21 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # Verification by recursively splitting the input set, at any checker
 
-`spec.Holds (construct s)` is a statement about a set of reals, not decidable,
-so there is deliberately no `Decidable` instance here: the loop takes a
-**sound checker**, a `Bool`-valued test whose `true` result a proof backs, and
-the recursion is only about *where* to spend that checker, never about
-deciding anything itself.
-
-`d` is a depth budget, not a step count: the recursion is a binary tree and
-`d` bounds its height. The `||` short-circuits, so a box the checker already
-verifies is not split further, which is the whole point of the method.
-
-`false` means only that this budget and this `splitter` did not establish the
-specification here, not that it fails; see `Theorems.VerifySplitWithSound`.
+`spec.Holds (construct s)` is a statement about a set of reals, not decidable, so there is
+deliberately no `Decidable` instance here: the loop takes a **sound checker**, a `Bool`-valued test
+whose `true` result a proof backs, and the recursion is only about *where* to spend that checker.
+`d` is a depth budget bounding the height of the binary tree. The `||` short-circuits, so a box the
+checker already verifies is not split further. `false` means only that this budget and this
+`splitter` did not establish the specification here (see `Theorems.VerifySplitWithSound`);
 `VerifySplit` is this at `Specification.check`.
+
+## Inputs
+* `nn` – network
+* `check` – sound checker on output sets
+* `splitter` – splits an input set into two halves
+
+## Output
+* whether the check passes on the whole set or on both halves recursively
 -/
 
 -- Authors:       Claude Opus 5.5

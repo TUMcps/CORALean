@@ -13,6 +13,16 @@ public import Mathlib.Analysis.SpecialFunctions.Exp
 A real is among an activation's `mergeValues` exactly when the function tends to it at `-∞` or at
 `+∞`, so the list is `f([-inf, inf])` less the infinite entries, both directions: nothing finite
 is missed and nothing extra is listed.
+
+## Inputs
+* `k` – activation kind
+* `y` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the number is a merge value iff the activation tends to it at one end
 -/
 
 -- Authors:       Claude Opus 5.5

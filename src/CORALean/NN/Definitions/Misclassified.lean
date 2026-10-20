@@ -12,6 +12,13 @@ The unsafe set a classification requirement is checked against: some label
 other than the target at least ties it, so the target is not the unique
 winner. Shared by `Robustness` and the sufficient-explanation theorems, which
 state the same requirement over an abstract network's output.
+
+## Inputs
+* `m` – number of labels
+* `l` – target label
+
+## Output
+* outputs where some other label at least ties the target
 -/
 
 -- Authors:       Claude Opus 5

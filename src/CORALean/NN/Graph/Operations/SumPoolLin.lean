@@ -16,6 +16,13 @@ matrix-shaped, so landing in the ambient type `Layer` and `NeuralNetwork`
 already use lets everything after the pooling be the ordinary vector-shaped
 layers with no conversion in between.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+
+## Output
+* linear map summing every feature over the nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

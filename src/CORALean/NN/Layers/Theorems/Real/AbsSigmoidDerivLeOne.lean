@@ -9,6 +9,15 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 
 A product of two sigmoids, so inside `(0, 1)` on all of ℝ: the global bound a refinement
 level's fit is chosen against.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid's derivative is at most one in absolute value
 -/
 
 -- Authors:       Claude Opus 5.5

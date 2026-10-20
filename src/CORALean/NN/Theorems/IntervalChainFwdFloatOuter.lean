@@ -20,6 +20,18 @@ bound, in the boxes `IntervalChain.fwd` returns. Layer by layer: the linear laye
 `mu = W (l + u)/2 + b` and `r = |W| (u - l)/2` are enclosed by `Interval.mtimes`, `plus`, `minus`
 and the exact `halve`, with `|W|` read as the exact `absolute` of the float entries; the
 activation's `[σ l, σ u]` by the stored scalar enclosure.
+
+## Inputs
+* `n` – input width
+* `k` – output width
+* `c` – float interval chain
+* `r` – real interval chain
+
+## Hypotheses
+* `hc` – the float chain stands for the real chain
+
+## Conclusion
+* the real forward pass lies bound by bound in the float result
 -/
 
 -- Authors:       Claude Opus 5.5

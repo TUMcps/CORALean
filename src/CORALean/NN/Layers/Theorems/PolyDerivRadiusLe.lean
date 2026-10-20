@@ -11,6 +11,17 @@ public import Mathlib.Tactic.Positivity
 # A stored radius bounds the exact one
 
 Each term rounded up: the box's worse end, the degree count from above, the coefficient exactly.
+
+## Inputs
+* `c` – fit coefficients
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact radius is at most the stored one
 -/
 
 -- Authors:       Claude Opus 5.5

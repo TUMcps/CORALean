@@ -14,6 +14,15 @@ An enclosure of `log(1 + exp(β t)) / β` for a stored sharpness `β`. Below, `l
 divided by `β`, rounded the same way. `k` is the exponential's reduction depth and `nl`, `kl` the
 logarithm's. Like `expUp` and `logDown`, the ends bracket the function only where their arguments
 are bounded, which `softplusRelaxation_sound` asks of the box.
+
+## Inputs
+* `β` – sharpness
+* `k` – reduction depth of the exponential
+* `nl` – range exponent of the logarithm
+* `kl` – reduction depth of the logarithm
+
+## Output
+* lower and upper bound of softplus at the stored sharpness
 -/
 
 -- Authors:       Claude Opus 5.5

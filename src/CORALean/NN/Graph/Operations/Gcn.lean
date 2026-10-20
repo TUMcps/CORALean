@@ -13,6 +13,14 @@ of matrices, so its propagation is `PolyZonotope.map` at `gcnLin` and nothing
 else — the whole of what CORA's layer computes at a graph with no uncertain
 edges, and why [1] records that this layer induces no outer approximation.
 
+## Inputs
+* `P` – message-passing matrix
+* `W` – weight matrix
+* `pZ` – node features as a polynomial zonotope
+
+## Output
+* polynomial zonotope of the layer's output
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

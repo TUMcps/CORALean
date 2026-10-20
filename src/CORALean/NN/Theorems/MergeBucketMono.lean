@@ -13,6 +13,21 @@ halves of `mergeBucket`'s conjunction are one-sided bounds on `δ`.
 `mergeBucket_card_mono` turns this into the search's monotone quantity and
 `exists_mergeBucket_all` into its endpoint.
 
+## Inputs
+* `n` – layer width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
+* `δ` – smaller tolerance
+* `δ'` – larger tolerance
+* `i` – neuron index
+
+## Hypotheses
+* `hδ` – tolerances are ordered
+* `hi` – neuron lies in the bucket at the smaller tolerance
+
+## Conclusion
+* the neuron lies in the bucket at the larger tolerance
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

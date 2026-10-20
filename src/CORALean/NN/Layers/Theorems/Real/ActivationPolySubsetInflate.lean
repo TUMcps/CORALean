@@ -44,6 +44,19 @@ of the input plus something from the residual box, so it is within `2 · error` 
 true value — the fit's own error and the box's, each once. The input box is ordered, a polynomial
 zonotope never being empty, and the error therefore nonnegative, soundness bounding an absolute
 value at a point the box contains.
+
+## Inputs
+* `P` – relaxation of every neuron
+* `s` – input polynomial zonotope
+* `ε` – inflation radius
+
+## Hypotheses
+* `hPs` – every neuron's relaxation is sound for the activation
+* `hε` – radius is nonnegative
+* `hP` – doubled errors fit under the radius
+
+## Conclusion
+* the enclosed set lies in the exact image inflated by the radius
 -/
 
 -- Authors:       Claude Opus 5.5

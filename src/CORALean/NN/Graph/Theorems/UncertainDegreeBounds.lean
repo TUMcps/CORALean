@@ -11,20 +11,26 @@ public import CORALean.NN.Graph.Theorems.OneLeDegree
 /-!
 # The uncertain degree is bracketed, and never below `1`
 
-Three bounds in one statement, because they are read together: the degree of a
-node at any admissible choice of edge weights sits between `degree` and
-`degreeSup`, and `degree` is itself at least `1`.
+Three bounds in one statement, because they are read together: the degree of a node at any
+admissible choice of edge weights sits between `degree` and `degreeSup`, and `degree` is itself at
+least `1`. The lower bound of `1` matters beyond arithmetic: [1] encloses `D̃^(-1/2)` over the
+interval the other two bounds give, and an enclosure of `x ↦ x^(-1/2)` is total only away from zero;
+the self-loop of `Ã = A + I` puts the whole interval at `1` or above (`GNN.one_le_degree`). The
+other two are the edges: a weight of at least `0` on a nonnegative edge only adds, and a weight of
+at most `1` adds at most `edgeDegree`.
 
-The lower bound of `1` is the one that matters beyond arithmetic. [1] encloses
-`D̃^(-1/2)` over the interval the other two bounds give, and an enclosure of
-`x ↦ x^(-1/2)` is total only away from zero — the self-loop of `Ã = A + I` is
-what puts the whole interval at `1` or above, so the enclosure never has to
-argue about it. That half is `GNN.one_le_degree` unchanged.
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `j` – node
 
-The other two are the edges themselves: a weight of at least `0` on a
-nonnegative edge only adds to a degree, and a weight of at most `1` adds at most
-that edge's column sum, which is exactly what `edgeDegree` collects. Both are
-read off `degreeAt_eq`, the affine form next door.
+## Hypotheses
+* `hlam` – edge weights lie in the unit interval
+* `hA` – adjacency entries are nonnegative
+
+## Conclusion
+* the degree is at least one and lies between the fixed and maximal degrees
 
 ## References
 

@@ -13,6 +13,15 @@ public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 
 ℝ-only, the relaxation being the exact sigmoid one at the exact doubling: the sigmoid's
 soundness transported along the conjugation identity.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for tanh
 -/
 
 -- Authors:       Claude Opus 5.5

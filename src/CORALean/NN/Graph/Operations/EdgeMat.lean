@@ -11,6 +11,12 @@ public import CORALean.ContSet.ContSet.ContSet
 orientations at once, so an edge costs one factor and not two — the adjacency
 a convolution reads is symmetric.
 
+## Inputs
+* `ij` – endpoints of the edge
+
+## Output
+* zero-one matrix with both orientations of the edge
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

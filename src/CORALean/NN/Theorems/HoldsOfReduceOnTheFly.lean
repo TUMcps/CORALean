@@ -15,6 +15,25 @@ a specification on the output set `Y` the algorithm computed is checking it on `
 scalar, `le`, `tol`, `fuel` and `ρ`, and at every instance of a network in [1, Eq. 2]'s form,
 the original network — every `I' = [0, 0]` — being the one [1] means.
 
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `ρ` – reduction rate
+* `n` – input width
+* `m` – output width
+* `X` – input set
+* `Φ` – reducible network
+* `f` – map the network is an instance of
+* `ContSet` – set representation of the specification
+* `spec` – specification
+
+## Hypotheses
+* `hΦ` – the network is an instance of the map
+
+## Conclusion
+* a specification holding on the returned output set holds on the original image
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

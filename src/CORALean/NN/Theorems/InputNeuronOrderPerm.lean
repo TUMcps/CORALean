@@ -16,6 +16,20 @@ given an `inputSize`): none left out, none repeated. For `snake` that is the spi
 cell of the image once, whatever its shape; for `sensitivity` it is that a sort permutes. The order
 itself, which neuron goes first, is not claimed here: it is `inOrder`'s by definition, and the
 spiral's and the sort's by their own definitions. `snake` needs an `inputSize`, as CORA does.
+
+## Inputs
+* `n` – input width
+* `m` – output width
+* `c` – network chain
+* `method` – ranking method
+* `x` – input point
+* `sz` – image size, if given
+
+## Hypotheses
+* `hs` – the spiral method has an image size
+
+## Conclusion
+* the ranking is a permutation of the ranked neuron indices
 -/
 
 -- Authors:       Claude Opus 5.5

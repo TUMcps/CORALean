@@ -12,6 +12,13 @@ public import CORALean.NN.Layers.Layer
 The largest any of its neurons asks for, at an order pattern [1, Eq. 23], which padding lifts
 the others to.
 
+## Inputs
+* `F` – family of polynomial relaxations
+* `t` – order pattern of the layer
+
+## Output
+* largest degree any neuron of the layer asks for
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

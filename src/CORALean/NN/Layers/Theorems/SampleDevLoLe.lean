@@ -9,6 +9,17 @@ public import CORALean.NN.Layers.Theorems.LeEvalPolyUp
 # A sampled deviation's lower bound
 
 The enclosure's low end and the fit's high evaluation, subtracted downward.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `x` – sample point
+
+## Hypotheses
+* `hE` – enclosure is sound for the activation
+
+## Conclusion
+* the lower bound is at most the activation minus the fit at the sample
 -/
 
 -- Authors:       Claude Opus 5.5

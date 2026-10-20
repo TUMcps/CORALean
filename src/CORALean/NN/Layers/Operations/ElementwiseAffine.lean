@@ -11,6 +11,13 @@ CORA's `nnElementwiseAffineLayer`: `x ↦ scale ⊙ x + offset`, `Layer.linear` 
 stored `scale`, as `Layer.batchNorm` is at a per-channel one. CORA lets `scale` and `offset` be
 scalars, broadcast over the neurons; here they are the full vectors, which is what its
 `aux_getScaleAndOffset` pads them to.
+
+## Inputs
+* `scale` – scale of every neuron
+* `offset` – offset of every neuron
+
+## Output
+* layer scaling and shifting each neuron separately
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,14 @@ public import CORALean.NN.Layers.Operations.Basic
 `1 + ∑_{j≠i} exp(x j - x i)` at the box's corner where every ratio is smallest, underestimated
 through `expDown`, and held above one by an exact `maximum`, so the quotient that follows never
 meets a divisor the arithmetic says nothing about.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `I` – box of the layer's input
+* `i` – output coordinate
+
+## Output
+* lower bound of the denominator, at least one
 -/
 
 -- Authors:       Claude Opus 5.5

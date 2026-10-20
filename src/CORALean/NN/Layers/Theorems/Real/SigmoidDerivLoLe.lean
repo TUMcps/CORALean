@@ -11,6 +11,18 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 
 ℝ-only, the bracket being `σ` itself at the box's ends: `σ` rises with its argument and
 `σ (-·)` falls, so each factor is smallest at one end.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the derivative bracket's lower end is at most the sigmoid's derivative
 -/
 
 -- Authors:       Claude Opus 5.5

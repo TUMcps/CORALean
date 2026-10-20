@@ -9,14 +9,12 @@ public import CORALean.NN.Definitions.Cat
 # What AI2 asks of an abstract domain
 
 [1, Thm. 1]: an abstract transformer for every CAT function needs a domain with an affine
-transformer `Aff`, a meet `⊓` with a guard, a join `⊔` and a least element `⊥`, each sound.
-The abstract elements of dimension `n` are a representation `S n`, and `construct` is the
-concretization `γ` of [1, Sec. III (transformers)]; `CatDomain` is the four operations and
-`CatDomain.Sound` the inclusions the paper assumes of them, an operation meeting its inclusion
-being an abstract transformer of that operation in the paper's sense.
+transformer `Aff`, a meet `⊓` with a guard, a join `⊔` and a least element `⊥`, each sound. The
+abstract elements of dimension `n` are a representation `S n`, and `construct` is the concretization
+`γ` of [1, Sec. III (transformers)]; `CatDomain.Sound` is the inclusions the paper assumes.
 
-The paper also assumes `⊥ ⊓ E = ⊥` and `a ⊔ ⊥ = a`; neither is needed for soundness, so neither
-is asked. `γ(⊥) = ∅` is asked, being what a containment proof by meet reads.
+The paper also assumes `⊥ ⊓ E = ⊥` and `a ⊔ ⊥ = a`; neither is needed for soundness, so neither is
+asked. `γ(⊥) = ∅` is asked.
 
 ## References
 

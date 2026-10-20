@@ -17,6 +17,16 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.Basic
 (P.h + 2)(h + 1) + n`. `P` is padded, never grown, so `P.h` is the same at every step. `L` steps
 leave `h + 1 ≤ (P.h + 2)^L (h₀ + 1 + L ν)` for activations adding at most `ν` each.
 
+## Inputs
+* `ν` – neurons an activation adds at most
+* `L` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* after L steps the generator count is bounded by a power of P.h + 2 times the input's plus L ν
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

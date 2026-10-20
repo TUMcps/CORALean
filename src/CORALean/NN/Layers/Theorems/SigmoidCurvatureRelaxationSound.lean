@@ -13,6 +13,15 @@ public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
 
 `Relaxation.ofDeriv_sound` at the bracket's two bounds, the clamped slope landing in the
 bracket by `maximum`/`minimum`, both exact.
+
+## Inputs
+* `E` – enclosure of the sigmoid
+
+## Hypotheses
+* `hE` – enclosure is sound for the sigmoid
+
+## Conclusion
+* the curvature relaxation is sound for the sigmoid
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,12 @@ is what `Chain.sensitivity` computes.
 
 Each map is asked at the point the forward pass hands it, which is why this
 recurses through `f x` rather than quantifying over the input.
+
+## Inputs
+* none
+
+## Output
+* every layer is differentiable at the point it receives
 -/
 
 -- Authors:       Claude Opus 5

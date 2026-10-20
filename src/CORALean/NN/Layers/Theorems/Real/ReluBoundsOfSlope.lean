@@ -14,6 +14,21 @@ all convexity gives and all a layer needs, whatever precision it chose its slope
 `reluGapOfSlope_eq_ite` naming the gap, these are the two families of parallelograms of
 [1, Fig. 1], each sound over its range of slopes.
 
+## Inputs
+* `lam` – slope of the line
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `h0` – slope is nonnegative
+* `h1` – slope is at most one
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* ReLU minus the line is nonnegative and at most the gap
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

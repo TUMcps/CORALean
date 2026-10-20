@@ -8,15 +8,27 @@ public import CORALean.NN.Theorems.MergeErrorWidthLe
 /-!
 # The tolerance's cost, without knowing the bucket first
 
-`mergeError_width_le` bounds a bucket's error box by *its own* row weight — the
-sum of `|W i ·|` over the bucket's indices, known only once the bucket is
-chosen. A tolerance search runs the other way, picking `δ` before any bucket
-exists, so it needs a bound over every neuron instead: `mergeRowWeight`.
+`mergeError_width_le` bounds a bucket's error box by *its own* row weight, known only once the
+bucket is chosen. [1]'s tolerance search picks `δ` before any bucket exists, so it needs a bound
+over every neuron instead: `mergeRowWeight`. The bucket's part of a row is at most the whole row,
+both being sums of absolute values over `Partition.sum_split₂`. That is exactly what
+`exists_mergeTolerance` turns into an existence statement.
 
-The bucket's part of a row is at most the whole row, both being sums of
-absolute values over `Partition.sum_split₂` — [1]'s search cannot need a
-sharper bound than this, since it cannot see the bucket yet either. That is
-exactly what `exists_mergeTolerance` turns into an existence statement.
+## Inputs
+* `n` – layer width
+* `n₂` – output width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
+* `δ` – merge tolerance
+* `W` – weight matrix
+* `i` – output index
+
+## Hypotheses
+* `hδ` – tolerance is nonnegative
+* `hY` – the bounds are nonempty
+
+## Conclusion
+* the error box is at most twice the tolerance wide per unit of the whole row weight
 
 ## References
 

@@ -13,6 +13,13 @@ public import Mathlib.Data.Real.Basic
 CORA's `computeWeightNorm`: `N = diag(1 ./ max(1, λ⁻¹ Σⱼ |Wᵢⱼ|))`, which divides each row by its
 absolute row sum over `λ` whenever that exceeds `1`, so the rows of `N W` have absolute sum at
 most `λ`.
+
+## Inputs
+* `W` – weight matrix
+* `lam` – Lipschitz bound
+
+## Output
+* diagonal scaling that makes the map Lipschitz
 -/
 
 -- Authors:       Claude Sonnet 5.5

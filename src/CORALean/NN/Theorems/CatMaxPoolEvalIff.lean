@@ -13,6 +13,17 @@ of window maxima, output `j` the largest of `x (tap j q)`, and to nothing else; 
 `Layer.maxPool_encloses` encloses. `f^MP` puts coordinate `q` of window `j` at `j (k + 1) + q`, and
 `Cat.maxSegments` from `a = 0` reads window `j` back there.
 
+## Inputs
+* `tap` – input index of every window position
+* `x` – input point
+* `y` – output point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the CAT function maps the point to the output iff the output is the window maxima
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

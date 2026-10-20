@@ -9,6 +9,17 @@ public import CORALean.NN.Layers.Operations.Basic
 
 Coordinate `i` of the list, read as reals, is neuron `i`'s own coefficients: what makes one
 evaluation carry `n` different polynomials, and what the enclosure states its exact side against.
+
+## Inputs
+* `P` – relaxation of every neuron
+* `I` – box of the layer's input
+* `i` – neuron index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the neuron's coordinate of the coefficient list is its own fit's coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

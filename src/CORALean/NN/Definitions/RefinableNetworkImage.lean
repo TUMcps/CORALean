@@ -8,6 +8,13 @@ public import CORALean.NN.Operations.RefinableNetworkEval
 # The exact image a refinement loop encloses
 
 `eval`'s image of an input set: fixed before a level is chosen, so every schedule encloses it.
+
+## Inputs
+* `rn` – refinable network
+* `X` – input set
+
+## Output
+* exact image of the input set under the network
 -/
 
 -- Authors:       Claude Opus 5.5

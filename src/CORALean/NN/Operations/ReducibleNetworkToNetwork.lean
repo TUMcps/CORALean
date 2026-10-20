@@ -12,6 +12,12 @@ Each pair unfolded into its two layers — `W h + b ⊕ I'`, then the activation
 pair stores — which is the network of layers every enclosure theorem reads. The
 linear layer runs on `I'.nonemptyHull`, which is `I'` whenever `I'` is nonempty.
 
+## Inputs
+* none
+
+## Output
+* network of the linear layers with error boxes and the activations
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

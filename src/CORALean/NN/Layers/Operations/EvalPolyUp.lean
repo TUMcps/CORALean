@@ -8,6 +8,13 @@ public import CORALean.NN.Layers.Operations.PowRange
 # A polynomial evaluated from above
 
 The mirror of `evalPolyDown`, the same terms rounded the other way.
+
+## Inputs
+* `c` – stored coefficients
+* `t` – evaluation point
+
+## Output
+* upper bound of the polynomial's value
 -/
 
 -- Authors:       Claude Opus 5.5

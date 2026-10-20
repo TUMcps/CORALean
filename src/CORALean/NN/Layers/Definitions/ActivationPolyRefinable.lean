@@ -20,6 +20,15 @@ precision alone. The neurons' orders differ, so their fits do; `atPattern` pads 
 layer's largest degree, which is exact, so one coefficient list still serves. ℝ-only, the
 enclosure being the exact layer's: this is the layer whose convergence is stated.
 
+## Inputs
+* `F` – family of polynomial relaxations
+
+## Hypotheses
+* `hF` – the family is sound for the activation
+
+## Output
+* refinable layer with one exact enclosure per refinement level
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

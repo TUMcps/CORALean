@@ -13,6 +13,16 @@ what the block computes has to be said separately — and it is the same
 proposition at the same function, `enclose_outer` read at one layer instead of
 a chain. That is what makes nesting free: a caller who has proved the
 sub-network sound has proved the layer sound, with nothing left to check.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+
+## Hypotheses
+* `hf` – the network encloses the map
+
+## Conclusion
+* the network as a layer encloses the map
 -/
 
 -- Authors:       Claude Opus 5

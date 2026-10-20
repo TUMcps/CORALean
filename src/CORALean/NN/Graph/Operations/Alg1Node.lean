@@ -18,6 +18,19 @@ message passing `P` of the uncertain graph ([1, Prop. 4]), and `κ'` pairs of a 
 The input's independent generators are made dependent, which the convolution needs to see them,
 and `P` is padded against the input set so an edge is the same factor throughout.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `L` – number of graph layers
+* `c` – layer widths
+* `W` – graph layer weights
+* `acts` – activation layers
+* `X` – input polynomial zonotope
+
+## Output
+* polynomial zonotope enclosing the node-level output
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

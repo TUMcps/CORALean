@@ -11,6 +11,15 @@ public import CORALean.NN.Layers.Operations.SigmoidEnclosure
 Where `Real.sigmoid` first appears: the enclosure names no real function. Each end asks only
 that the denominator be underestimated, which `expDown_le` gives; the lower end reads `σ` as
 `1 - (1 + eᵗ)⁻¹` so that it, too, needs only a lower bound on an exponential.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Hypotheses
+* none
+
+## Conclusion
+* the enclosure brackets the sigmoid at every stored number
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.NN.Layers.Operations.TanhRelaxation
 
 CORA's `nnTanhLayer`: `Layer.activation` at `tanhRelaxation k`, the sigmoid relaxation
 transported; `k` is the reduction depth the sigmoid underneath is built at.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Output
+* layer applying the tanh relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

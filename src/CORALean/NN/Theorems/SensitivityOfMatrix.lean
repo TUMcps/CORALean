@@ -15,6 +15,17 @@ and knows nothing about `toMatrix'`.
 
 The derivative is asked for as the continuous linear map a matrix induces rather
 than as an abstract one, which is what makes `toMatrix'` invert it on the nose.
+
+## Inputs
+* `f` – map of the layer
+* `A` – matrix
+* `x` – input point
+
+## Hypotheses
+* `h` – the map has the matrix as derivative at the point
+
+## Conclusion
+* the layer's sensitivity is the matrix
 -/
 
 -- Authors:       Claude Opus 5

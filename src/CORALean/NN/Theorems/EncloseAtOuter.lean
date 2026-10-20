@@ -10,17 +10,25 @@ public import CORALean.NN.Theorems.EncloseOuter
 /-!
 # Every schedule encloses the image
 
-The central claim of the refinement loop, and the reason the heuristic owes
-nothing: soundness does not depend on which layers were refined, only precision
-does. `reduceBy_outer` holds at every partition and `Relaxation.ofDeriv` at every
-slope in its bracket; this is that idiom at the loop.
+The central claim of the refinement loop, and the reason the heuristic owes nothing: soundness does
+not depend on which layers were refined, only precision does. `reduceBy_outer` holds at every
+partition and `Relaxation.ofDeriv` at every slope in its bracket; this is that idiom at the loop.
+There is no induction here: `atSchedule` produces an ordinary `NeuralNetwork` and `atSchedule_eval`
+says it computes the same function, so the claim is `NeuralNetwork.Encloses.enclose_outer` read at
+that network. `ImageSubsetEncloseAt.lean` and its corollaries state the same fact at a step and at
+the loop.
 
-There is no induction here. `atSchedule` produces an ordinary `NeuralNetwork`
-and `atSchedule_eval` says it computes the same function, so the claim is
-`NeuralNetwork.Encloses.enclose_outer` read at that network.
+## Inputs
+* `rn` – refinable network
+* `sch` – schedule of order patterns
+* `X` – input set
+* `x` – input point
 
-`ImageSubsetEncloseAt.lean` and its own three corollaries state the same
-fact at a step and at the loop.
+## Hypotheses
+* `hx` – point lies in the input set
+
+## Conclusion
+* the network's output at the point lies in the enclosure at the schedule
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,13 @@ public import CORALean.NN.Operations.RefinableNetworkLayers
 CORA's `getRefinableLayers`: the layers whose `is_refinable` is set, in order. The flag is a
 constant of a layer's class in CORA (`true` for activation layers, `false` for the others), so it
 is the predicate `isRefinable` here, which the caller supplies.
+
+## Inputs
+* `isRefinable` – test selecting refinable layers
+* `N` – refinable network
+
+## Output
+* the selected layers in order
 -/
 
 -- Authors:       Claude Opus 5.5

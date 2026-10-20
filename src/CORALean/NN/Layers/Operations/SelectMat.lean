@@ -9,6 +9,12 @@ public import CORALean.NN.Layers.Operations.TapMat
 
 One input per output — the affine part a pooled window keeps. One stored `one` per row,
 placed rather than computed, so it denotes the selection entry for entry.
+
+## Inputs
+* `sel` – input read by each output
+
+## Output
+* matrix selecting one input per output
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,17 @@ public import CORALean.NN.Graph.Operations.BallFloat
 # The float ball grows with the radius
 `GNN.ballFloat E v r ⊆ GNN.ballFloat E v (r + 1)`: staying put is one of the hops [1, §4.3].
 
+## Inputs
+* `E` – Boolean edge test
+* `v` – center node
+* `r` – radius in hops
+
+## Hypotheses
+* none
+
+## Conclusion
+* the ball at radius r is contained in the ball at r + 1
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

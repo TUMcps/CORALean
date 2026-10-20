@@ -12,6 +12,15 @@ public import CORALean.NN.Operations.RefinableNetworkEval
 input set, at every order pattern and every reduction order — each reduction encloses its
 input ([1, Prop. 2.13]) and each layer's enclosure its image ([1, Prop. 2.14]).
 
+## Inputs
+* `ρ` – order after reduction
+
+## Hypotheses
+* none
+
+## Conclusion
+* the network's output at any point of the input set lies in the reduced enclosure
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -16,6 +16,18 @@ rounding is in the error box, so what holds is an enclosure: every node-feature 
 stack lies in the input set is mapped by the exact layer `H ↦ P H W`, read at the reals the stored
 floats denote, into the output set.
 
+## Inputs
+* `P` – message-passing matrix
+* `W` – weight matrix
+* `pZ` – stacked node features
+* `H` – exact node-feature matrix
+
+## Hypotheses
+* `hH` – the features lie in the set
+
+## Conclusion
+* the exact layer's output lies in the float layer's set
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

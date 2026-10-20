@@ -14,6 +14,17 @@ public import CORALean.NN.Graph.Complexity.Space.Theorems.Basic
 The cubic bound [1, Thm. 1] carries into the message-passing steps, with the
 node count in the constant.
 
+## Inputs
+* `R` – relaxation of the square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+
+## Hypotheses
+* `hm` – at least one uncertain edge
+
+## Conclusion
+* the enclosure's generator count is bounded cubically in the edge count
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

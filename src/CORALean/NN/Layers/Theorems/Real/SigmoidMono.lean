@@ -9,6 +9,15 @@ public import Mathlib.Tactic.Positivity
 # The logistic function is monotone
 
 The denominator `1 + e⁻ᵗ` falls as `t` rises, so its reciprocal rises.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid is monotone
 -/
 
 -- Authors:       Claude Opus 5.5

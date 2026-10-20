@@ -12,6 +12,16 @@ public import CORALean.NN.Layers.Theorems.TapMatMulVec
 # What the average pooling layer encloses
 
 The window's sum scaled by the stored weight: at `winv := (k : ℝ)⁻¹` over ℝ, the average.
+
+## Inputs
+* `winv` – inverse of the window size
+* `tap` – input index of every window position
+
+## Hypotheses
+* `htap` – the taps of a window are distinct
+
+## Conclusion
+* the layer encloses the averaging map
 -/
 
 -- Authors:       Claude Opus 5.5

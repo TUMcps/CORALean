@@ -10,6 +10,14 @@ public import CORALean.NN.Graph.Operations.EdgeMat
 [1]'s `A(λ)`: the fixed edges of `A` plus each uncertain edge's own weighted
 contribution.
 
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+
+## Output
+* adjacency matrix with the uncertain edges weighted by lam
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

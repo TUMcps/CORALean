@@ -14,6 +14,12 @@ different `r`.
 
 Sorts on the negated rank: `Tuple.sort` is total, so `0` is largest, and ties
 go to the earlier index.
+
+## Inputs
+* `r` – rank of every candidate
+
+## Output
+* index of the largest rank, ties to the earlier one
 -/
 
 -- Authors:       Claude Opus 5

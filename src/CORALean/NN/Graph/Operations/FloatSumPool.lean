@@ -10,6 +10,12 @@ public import CORALean.NN.Graph.Operations.FloatSumPoolMat
 
 CORA's `nnGNNGlobalPoolingLayer` at the sum: `PolyZonotope.mtimes` at the pooling matrix, landing
 in `Vec 𝕋 F`, the shape every layer after it reads.
+
+## Inputs
+* `pZ` – stacked node features
+
+## Output
+* polynomial zonotope of the features summed over the nodes
 -/
 
 -- Authors:       Claude Opus 5.5

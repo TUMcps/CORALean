@@ -12,6 +12,24 @@ public import CORALean.NN.Theorems.EncloseOuter
 The network-level form of `disjoint_misclassified_of_bounds`: read at the
 enclosed image, a bound per rival label puts every point of that enclosure on
 the target's side of every margin.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `l` – target label
+* `x` – input point
+* `j` – rival label
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `u` – support bound of the output set for each rival
+* `h` – every rival's bound is negative
+* `hx` – point lies in the input set
+* `hj` – rival differs from the target
+
+## Conclusion
+* the target output exceeds the rival's at the point
 -/
 
 -- Authors:       Claude Opus 5

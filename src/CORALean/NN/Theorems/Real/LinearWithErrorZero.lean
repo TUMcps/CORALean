@@ -19,6 +19,16 @@ layer is the error-free case of the adapted one, not a different construction.
 That is [1, Eq. 2]'s initialization, `I'_k = [0, 0]`: a network adapted to carry the
 error of merging denotes, before any merge, the network it was adapted from.
 
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* with a zero error box the layer is the plain affine layer
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

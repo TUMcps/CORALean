@@ -15,6 +15,25 @@ public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
 polynomial the deviation is `ra` times `f`'s, and the stored coefficients, each rounded up from
 an exact one that the two roundings bracket, move the polynomial by at most the evaluation of
 the gaps at `max(|l|, |u|)`. The two scales arrive here as hypotheses on the roundings.
+
+## Inputs
+* `P` – polynomial relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `c` – output shift
+* `f` – activation function
+* `g` – conjugated function
+
+## Hypotheses
+* `hP` – relaxation is sound for the activation
+* `hA` – output rounding is sound for its scale
+* `hB` – input rounding is sound for its scale
+* `ha` – output scale is positive
+* `hb` – input scale is positive
+* `hg` – the conjugate is the scaled activation plus the shift
+
+## Conclusion
+* the conjugated polynomial relaxation is sound for the conjugate
 -/
 
 -- Authors:       Claude Opus 5.5

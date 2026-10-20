@@ -10,6 +10,18 @@ public import CORALean.NN.Graph.Operations.BallFloat
 If `E` is `true` wherever `A` is nonzero, `GNN.ballFloat E v r` contains `GNN.ball A v r` at
 every radius [1, §4.3].
 
+## Inputs
+* `A` – adjacency matrix
+* `E` – Boolean edge test
+* `v` – center node
+* `r` – radius in hops
+
+## Hypotheses
+* `hE` – the test holds wherever A is nonzero
+
+## Conclusion
+* the real ball is contained in the ball on the edge test
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

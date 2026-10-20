@@ -11,6 +11,16 @@ public import CORALean.NN.Complexity.Time.Operations.EncloseCost
 
 Raising every layer's bound raises the whole network's, so a caller who
 only has a *bound* on what each layer costs still bounds `encloseCost`.
+
+## Inputs
+* `LC` – cost bound of one layer
+* `LC'` – larger cost bound of one layer
+
+## Hypotheses
+* `h` – the second bound dominates the first on every layer
+
+## Conclusion
+* the network's cost under the first bound is at most under the second
 -/
 
 -- Authors:       Claude Opus 5.5

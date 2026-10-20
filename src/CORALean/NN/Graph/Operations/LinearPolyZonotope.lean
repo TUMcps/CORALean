@@ -12,6 +12,14 @@ public import CORALean.NN.Graph.Operations.Linear
 `evaluatePolyZonotope`: the affine map with bias on the center `c`, and without the bias on both
 generator blocks `G` and `GI`. That is `PolyZonotope.map` at the linear part, then `shift` by the
 bias: the layer induces no outer approximation.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `pZ` – node features as a polynomial zonotope
+
+## Output
+* polynomial zonotope after the linear layer
 -/
 
 -- Authors:       Claude Opus 5.5

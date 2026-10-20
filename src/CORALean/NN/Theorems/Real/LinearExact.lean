@@ -23,21 +23,23 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExac
 /-!
 # The linear layer loses nothing at a polynomial zonotope
 
-ℝ-only: `mtimes` and `plus` are exact at the exact polynomial zonotope, where a machine scalar
-pays its rounding into an error box.
+ℝ-only: `mtimes` and `plus` are exact at the exact polynomial zonotope, where a machine scalar pays
+its rounding into an error box. `Layer.linear` encloses by `mtimes` and then `plus`, and a
+polynomial zonotope is exact under both: a linear map of the ambient space cannot touch the
+monomials, and `plus` keeps the two factor blocks apart. The bias is a box of zero width, so the
+second half is a translation. This is what makes a linear layer convergent for nothing: the enclosed
+set *is* the image, so it lies inside every inflation of it and no level is spent.
 
-`Layer.linear` encloses by `mtimes` and then `plus`, and a polynomial zonotope
-is exact under both: a linear map of the ambient space cannot touch the
-monomials, and `plus` keeps the two factor blocks apart rather than identifying
-them.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `s` – input polynomial zonotope
 
-The bias is a box of zero width, so the second half is a translation. That is
-where the exactness of `plus` is actually needed — a singleton is what the
-`OfInterval` conversion has to denote, and it does, both the zonotope's center
-and its generators collapsing onto the point.
+## Hypotheses
+* none
 
-This is what makes a linear layer convergent for nothing: the enclosed set
-*is* the image, so it lies inside every inflation of it and no level is spent.
+## Conclusion
+* the layer's output set is exactly the affine image of the input set
 -/
 
 -- Authors:       Claude Opus 5.5

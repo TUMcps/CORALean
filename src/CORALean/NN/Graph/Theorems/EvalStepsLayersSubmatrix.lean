@@ -12,6 +12,23 @@ public import CORALean.NN.Graph.Theorems.SubmatrixMulOfClosed
 graph and restricted to a closed subgraph, are the same matrix as the steps run on the subgraph
 alone. A layer reads a row and nothing else, so restricting commutes with it.
 
+## Inputs
+* `N` – number of nodes
+* `K` – number of kept nodes
+* `F` – feature width
+* `Pm` – message-passing matrix
+* `κ` – indices of the kept nodes
+* `L` – number of steps
+* `g` – per-node layers
+* `X` – node-feature matrix
+
+## Hypotheses
+* `hinj` – kept indices are distinct
+* `hclosed` – the kept nodes receive nothing from outside
+
+## Conclusion
+* the chain on the whole graph restricted to the subgraph equals the chain on the subgraph
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

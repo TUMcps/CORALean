@@ -9,6 +9,23 @@ public import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
 
 ℝ-only, as the sampled range is: above the true half-range — soundness once more — and within
 one padding of it, so the padding is the entire price of sampling rather than searching.
+
+## Inputs
+* `g` – function
+* `g'` – its derivative
+* `M` – bound on the derivative
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `N` – number of sample intervals
+
+## Hypotheses
+* `hd` – the function has the given derivative
+* `hM` – derivative is bounded on the box
+* `hN` – number of intervals is positive
+* `hlu` – box is ordered
+
+## Conclusion
+* the sampling error exceeds the half-range by at most one padding
 -/
 
 -- Authors:       Claude Opus 5.5

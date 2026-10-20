@@ -10,6 +10,15 @@ public import CORALean.NN.Layers.Operations.ActivationLayerOf
 
 `Layer.activation_encloses`, stated at `Enclose.toLayer` of the kind: the form a network's
 `Sound` relation asks for, so a caller does not unfold the instance to use it.
+
+## Inputs
+* `R` – relaxation of the activation
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+
+## Conclusion
+* the layer built from the relaxation encloses the activation coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

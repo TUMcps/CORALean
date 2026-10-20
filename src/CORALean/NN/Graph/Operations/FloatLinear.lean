@@ -13,6 +13,14 @@ public import CORALean.NN.Graph.Operations.FloatRightMat
 `H ↦ H Wᵀ + 1 bᵀ` on the stacked node features (`GNN.flatten`): `PolyZonotope.mtimes` at the
 matrix of `H ↦ H Wᵀ`, then `PolyZonotope.plus` with the bias point. The rounding goes into the
 error box.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `pZ` – stacked node features
+
+## Output
+* polynomial zonotope enclosing the layer's output
 -/
 
 -- Authors:       Claude Opus 5.5

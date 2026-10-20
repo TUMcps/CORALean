@@ -9,27 +9,22 @@ public import Mathlib.Tactic.NormNum
 /-!
 # `Layer.evaluateIntervalCora`: `evaluateInterval` of a layer as CORA's code runs
 
-`nn/layers/nnLayer.m`, the default `evaluateInterval` (l. 141-144), which `nnSquareLayer`,
-`nnActLayerFromHandle` and `nnSoftmaxLayer` inherit (no `evaluateInterval` is defined for them;
-`nnActivationLayer.evaluateInterval` only updates the stored bounds and calls it):
+The default `evaluateInterval` of `nnLayer.m` (l. 141-144), inherited by `nnSquareLayer`,
+`nnActLayerFromHandle` and `nnSoftmaxLayer`, evaluates the layer function at the two end points and
+returns the results as the new bounds. That is the image only for a function increasing on the box.
+Read from the source, not run.
 
-```
-bounds = obj.evaluateNumeric(cat(3,bounds.inf,bounds.sup), options);
-bounds = interval(bounds(:,:,1),bounds(:,:,2));
-```
+`evaluate(nnSquareLayer, interval(-1,2))` is `interval(1,4)`, while `x^2` takes the value `0` at `x
+= 0 ∈ [-1,2]`: the enclosure is not one. The same holds for `sin` on `interval(0,3)`.
 
-The layer function is evaluated at the two end points and the results are the new bounds. That is
-the image only for a function that is increasing on the box. `neuralNetwork/evaluate` with an
-`interval` input reaches it layer by layer (`evaluate_.m`, `aux_evaluateInterval`). One neuron;
-the `interval` constructor's error for lower above upper (a decreasing function, `cos` on
-`[0, 4]`; tolerance `1e-6`) is not modelled. Read from the source, not run.
+## Inputs
+* none
 
-# CORA's `evaluateInterval` of `nnSquareLayer` misses the minimum
+## Hypotheses
+* none
 
-`nnSquareLayer` has `evaluateNumeric(x) = x.^2`, so `evaluate(nnSquareLayer, interval(-1,2))` is
-`interval(1,4)`, while `x^2` takes the value `0` at `x = 0 ∈ [-1,2]`: the enclosure is not one.
-The same holds for `sin` on `interval(0,3)` (`[0, 0.1411]` against `[0, 1]`). Read from the
-source, not run.
+## Conclusion
+* the result is `[1, 4]` and some point's image lies below its lower bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

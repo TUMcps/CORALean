@@ -16,6 +16,15 @@ kernel denotes, and everything after — the product with the set, the bias — 
 appears: it is only which taps each output reads. This is [1, Sec. II (Conv to CAT)]'s
 treatment of a convolution as the fully connected layer at `W^F`, `b^F`.
 
+## Inputs
+* `chan` – channel of every neuron
+* `tap` – input index of every kernel position
+* `K` – kernel of every channel
+* `b` – bias of every output neuron
+
+## Output
+* layer convolving with the kernel
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

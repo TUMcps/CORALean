@@ -14,6 +14,13 @@ slope [1, Def. 7], the errors `e`, `ē` [1, Def. 6]; line 6 `H̃ = m H + ½(e + 
 `H = H̃ ⊕ [e, ē]`, which by [1, Prop. 3] has center `c̃ + ½(e + ē)` and the generators of `H̃`
 and `½(ē - e)`. The midpoint is added by both lines.
 
+## Inputs
+* `ϕ` – activation function
+* `H` – input zonotope
+
+## Output
+* zonotope Alg. 1 prints for the activation
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

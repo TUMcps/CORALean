@@ -8,6 +8,13 @@ public import CORALean.NN.Definitions.Schedule
 # A pattern in front of a schedule
 
 How the induction over a network builds a schedule, one layer's pattern at a time.
+
+## Inputs
+* `t` – order pattern of the first layer
+* `sch` – schedule of the remaining layers
+
+## Output
+* schedule with the pattern in front
 -/
 
 -- Authors:       Claude Opus 5.5

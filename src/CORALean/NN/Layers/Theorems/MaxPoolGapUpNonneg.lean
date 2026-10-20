@@ -10,6 +10,18 @@ public import CORALean.NN.Layers.Operations.MaxPoolGapUp
 
 Read at the pivot, where the window contributes an exact `zero`, and the maximum is at least
 every entry.
+
+## Inputs
+* `tap` – input index of every window position
+* `p` – pivot position of every window
+* `I` – box of the layer's input
+* `j` – window index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the window's gap is nonnegative
 -/
 
 -- Authors:       Claude Opus 5.5

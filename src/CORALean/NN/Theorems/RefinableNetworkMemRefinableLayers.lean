@@ -10,6 +10,17 @@ public import CORALean.NN.Operations.RefinableNetworkRefinableLayers
 A layer is listed iff it is a layer of the network and `isRefinable` holds of it: nothing flagged
 is missing and nothing unflagged is listed. The list is a filter, so the order of the layers is
 kept.
+
+## Inputs
+* `isRefinable` – test selecting refinable layers
+* `N` – refinable network
+* `L` – layer with its widths
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer is selected iff it belongs to the network and is flagged
 -/
 
 -- Authors:       Claude Opus 5.5

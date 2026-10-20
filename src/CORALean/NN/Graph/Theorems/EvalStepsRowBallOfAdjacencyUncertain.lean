@@ -16,6 +16,30 @@ reducing row `v` to *its own* `L`-ball, not `adjMax A U`'s. That inner enumerati
 looser than `adjAt A U lam`'s own ball, so a masked entry need not match the submatrix built from
 `adjAt A U lam` pointwise; the exact enumeration is what a caller actually needs here.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `m` – number of uncertain edges
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `v` – node of interest
+* `L` – number of steps
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `W` – weights of the steps
+* `X` – node-feature matrix
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hlam` – edge weights lie in the unit interval
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the maximal ball one hop larger
+
+## Conclusion
+* the node's row is computable on a subgraph of the kept nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

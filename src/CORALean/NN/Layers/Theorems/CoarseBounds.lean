@@ -13,6 +13,24 @@ public import CORALean.NN.Layers.Theorems.SampleDevLoLe
 # The fallback bracket is sound outright
 
 The left end is in the box and the width covers it, so neither fact is a check.
+
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients
+* `M` – derivative bound
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `hE` – enclosure is sound for the activation
+* `hd` – the activation has the given derivative
+* `hM` – derivative differs from the fit's by at most the bound
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the activation minus the fit at the point lies between the coarse bounds
 -/
 
 -- Authors:       Claude Opus 5.5

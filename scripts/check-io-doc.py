@@ -45,7 +45,9 @@ symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.
 `(hy : (i : Fin N) → Vec ℝ (qy i))` is judged by its codomain, so it is data, not a hypothesis.
 A function type whose codomain is a data type (`(sel : (Z : Zonotope α) → Z.h = m + 2 → Fin m × Bool)`) is data, whatever its domain says. A function into a family, `(r : ℕ → ∀ i, Vec ℝ (p i))`, is judged by the family. A family binder `(A : ∀ a, Mat ℝ n (m a))` or `(X : ∀ a, Zonotope (Vec ℝ (m a)))` — a `∀` whose
 body ends in a data type (`Mat`, `Vec`, `Zonotope`, `Interval`, …, or a type variable `ι`; not `Option`) with no relation symbol — is data.
-A function binder `(contract : ∀ m : ℕ, A → B → (Fin m → ℝ) × (Fin m → ℝ))` — a `∀` whose body
+A family into `PolyZonotope` or `GNN.ActLayer` (`(acts : ∀ s, GNN.ActLayer N (c s))`, `(f : ∀ t,
+PolyZonotope (Vec ℝ (d t)) → PolyZonotope (Vec ℝ (d (t + 1))))`), or into `Cost` (`(LC : ∀ {a b : ℕ},
+Layer S a b → Cost)`), is data as well. A function binder `(contract : ∀ m : ℕ, A → B → (Fin m → ℝ) × (Fin m → ℝ))` — a `∀` whose body
 has no relation symbol and ends in a parenthesised codomain — is data (a contractor), not a statement.
 
 An entry whose description is only a backticked expression longer than 15 characters is
@@ -151,6 +153,7 @@ def binders(sig):
     return out
 
 
+NN_DATA_HEADS = {"PolyZonotope", "ActLayer"}  # families `∀ t, PolyZonotope ..`, `∀ s, GNN.ActLayer ..`
 TYPE_VARS = set("αβγδεζηθικλμνξπρστυφχψω")  # `ι`, `κ`, … : a universe variable names a data type
 DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*", "Sort", "Prop", "String",
               "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋"}
@@ -201,8 +204,10 @@ def is_prop(name, typ):
         # no relation symbol) is data too
         cod = body[k + 1:].strip() if k >= 0 else body
         hd = re.match(r"[^\s(]+", cod)
-        if hd and (hd.group(0) in (DATA_HEADS - {"Option"}) | {"Zonotope", "Interval"}
-                   or hd.group(0) in TYPE_VARS) and not any(
+        last_hd = hd.group(0).split(".")[-1] if hd else ""
+        if hd and (hd.group(0) in (DATA_HEADS - {"Option"}) | {"Zonotope", "Interval", "Cost"}
+                   or hd.group(0) in TYPE_VARS
+                   or last_hd in NN_DATA_HEADS) and not any(
                 c in flat_body for c in PROP_SYMBOLS):
             return False
     # a function type whose codomain is a data type (`(Z : Zonotope α) → {m : ℕ} → Z.h = m + 2 →

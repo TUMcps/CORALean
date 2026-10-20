@@ -12,6 +12,27 @@ polynomials that enclose `σ` on `(-∞, l_max]` and `[u_max, ∞)` as given, th
 `findRegionPolys` returns cover the whole line, each polynomial encloses `σ` within its error on
 its region, and every region found, as opposed to the two given, has error at most `tol`.
 Outer: an enclosure of `σ` by polynomial and error, not `σ` itself.
+
+## Inputs
+* `σ` – activation function
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+* `fuel` – bound on the number of halvings
+* `lMax` – left end of the domain
+* `uMax` – right end of the domain
+* `pStart` – polynomial left of the domain
+* `pEnd` – polynomial right of the domain
+
+## Hypotheses
+* `hF` – every relaxation is sound for the activation
+* `hs` – the start region is unbounded on the left and ends at the domain
+* `he` – the end region starts at the domain and is unbounded on the right
+* `hS` – the start polynomial encloses the activation
+* `hE` – the end polynomial encloses the activation
+
+## Conclusion
+* every point lies in a region whose polynomial is within its error of the activation
 -/
 
 -- Authors:       Claude Sonnet 5.5

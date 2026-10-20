@@ -8,20 +8,21 @@ public import Mathlib.Analysis.Calculus.FDeriv.Defs
 /-!
 # A layer's sensitivity
 
-CORA's `evaluateSensitivity`: the Jacobian of what the layer computes at a
-point — rows output neurons, columns input neurons — which is what weights a
-neuron's approximation error by how much it moves the output [1, Def. 2.3].
+CORA's `evaluateSensitivity`: the Jacobian of what the layer computes at a point — rows output
+neurons, columns input neurons — which weights a neuron's approximation error by how much it moves
+the output [1, Def. 2.3]. Total, and carrying no obligation: ReLU has no derivative at zero, so a
+differentiability hypothesis would exclude the commonest activation. Sensitivity is a *ranking*, and
+every refinement it orders is sound, so it is `fderiv` of the map with no side condition,
+junk-valued where that map has none (`Theorems.SensitivityFDeriv` makes it a good heuristic). A
+function and not a `Layer`, since `Layer` stores none; a matrix, since the matrix product composes
+the chain.
 
-Total, and carrying no obligation: ReLU has no derivative at zero, so asking for
-one would be a lie and a differentiability hypothesis would exclude the
-commonest activation. Sensitivity is a *ranking*, and every refinement it orders
-is sound, so it is `fderiv` of the map with no side condition, junk-valued
-exactly where that map has none. `Theorems.SensitivityFDeriv` is what makes it a
-good heuristic rather than an arbitrary one.
+## Inputs
+* `f` – map the layer computes
+* `x` – input point
 
-A function and not a `Layer`, since `Layer` stores none: `Chain` is where the
-layer maps live. A matrix and not the continuous linear map it comes from: the
-matrix product is what composes the chain.
+## Output
+* Jacobian of the map at the point
 
 ## References
 

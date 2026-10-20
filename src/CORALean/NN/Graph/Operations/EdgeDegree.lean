@@ -9,6 +9,13 @@ public import CORALean.NN.Graph.Operations.EdgeMat
 
 `edgeMat`'s column sum across every uncertain edge, at all weights `1` — the
 most an uncertain degree can gain over its fixed adjacency's own.
+
+## Inputs
+* `U` – uncertain edges
+* `j` – node
+
+## Output
+* amount the uncertain edges can add to the node's degree
 -/
 
 -- Authors:       Claude Sonnet 5

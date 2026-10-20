@@ -13,6 +13,18 @@ public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 `Real.raw_le_softmax` at the box the stored bounds denote. Where `aux_softmaxExpInRange` holds, each
 `expUp`'s hypothesis is discharged by the comparison with `aux_expUpLimit k`; where it does not, the
 bound is zero and `softmax_nonneg` is all that is needed.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `I` – box of the layer's input
+* `x` – input vector
+* `i` – output coordinate
+
+## Hypotheses
+* `hx` – the input lies in the box
+
+## Conclusion
+* the rounded raw lower bound is at most the softmax
 -/
 
 -- Authors:       Claude Sonnet 5.5

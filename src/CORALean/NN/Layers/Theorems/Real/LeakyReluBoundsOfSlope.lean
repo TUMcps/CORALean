@@ -11,6 +11,22 @@ public import Mathlib.Tactic.Linarith
 For a slope `m` in `[α, 1]` through the origin, `leakyRelu α t - m t` is non-negative and, on
 `[l, u]`, at most the larger of its values at the two ends: it is `max (p t) (q t)` with
 `p ≤ 0 ≤ q`, so the first piece is largest at `l` and the second at `u`.
+
+## Inputs
+* `α` – slope below zero
+* `m` – slope of the line
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+
+## Hypotheses
+* `h0` – line slope is at least the leak slope
+* `h1` – line slope is at most one
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the leaky ReLU minus the line is nonnegative and at most its larger end value
 -/
 
 -- Authors:       Claude Opus 5.5

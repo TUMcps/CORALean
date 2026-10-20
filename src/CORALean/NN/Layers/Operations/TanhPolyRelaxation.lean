@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
 
 `sigmoidPolyRelaxation` read through `tanh t = 2 σ(2t) - 1`: `PolyRelaxation.ofAffineConj` at
 `ra = rb = 2`, both doublings by self-addition, and `c = -1`, which `neg one` stores exactly.
+
+## Inputs
+* `N` – number of grid intervals
+* `k` – reduction depth of the exponential
+* `c` – fit coefficients for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+
+## Output
+* polynomial relaxation of tanh through the sigmoid's
 -/
 
 -- Authors:       Claude Opus 5.5

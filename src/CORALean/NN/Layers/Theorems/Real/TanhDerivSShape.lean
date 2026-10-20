@@ -11,6 +11,15 @@ public import Mathlib.Analysis.Complex.Trigonometric
 
 Its derivative `1 - tanh² t = 1 / cosh² t` is even and non-increasing in `|t|`, so
 `sShapeDerBounds_sound` applies to it.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* tanh's derivative is even and non-increasing on the nonnegative reals
 -/
 
 -- Authors:       Claude Opus 5.5

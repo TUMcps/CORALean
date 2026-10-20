@@ -15,6 +15,18 @@ At the reals the layer `H ↦ H Wᵀ + 1 bᵀ` is exact on a polynomial zonotope
 `mtimes` and the `plus` round, and the rounding is in the error box, so what holds is an
 enclosure: every node-feature matrix `H` whose stack lies in the input set is mapped by the exact
 layer, read at the reals the stored floats denote, into the output set.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `pZ` – stacked node features
+* `H` – exact node-feature matrix
+
+## Hypotheses
+* `hH` – the features lie in the set
+
+## Conclusion
+* the exact layer's output lies in the float layer's set
 -/
 
 -- Authors:       Claude Opus 5.5

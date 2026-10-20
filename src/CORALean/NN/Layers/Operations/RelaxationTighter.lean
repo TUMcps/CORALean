@@ -10,6 +10,13 @@ public import CORALean.NN.Layers.Definitions.Relaxation
 Two relaxations of the same `σ`, the smaller stored error taken on each box. `le` is
 unconstrained and does not have to be: both branches are sound, so a wrong answer costs
 precision and never soundness.
+
+## Inputs
+* `R₁` – first relaxation
+* `R₂` – second relaxation
+
+## Output
+* relaxation taking the smaller error on each box
 -/
 
 -- Authors:       Claude Opus 5.5

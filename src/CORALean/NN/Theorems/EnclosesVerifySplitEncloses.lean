@@ -11,6 +11,22 @@ public import CORALean.Specification.Theorems.CheckSound
 
 `Sound.verifySplitWith_sound` at `spec.check`, whose `hcheck` is `check_sound`: the
 checker's proof comes with the representation pair, so only the splitter still owes one.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `spec` – specification
+* `splitter` – splits an input set into two halves
+* `d` – depth budget
+* `X` – input set
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `hcov` – the halves cover the set
+* `hverify` – the splitting verifies the specification
+
+## Conclusion
+* the specification holds on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5.5

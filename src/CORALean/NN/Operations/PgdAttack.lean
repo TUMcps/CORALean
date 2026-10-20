@@ -10,6 +10,22 @@ public import CORALean.NN.Operations.FgsmAttack
 `l = max(l, x - ε)`, `u = min(u, x + ε)`, then `Q` passes of an FGSM step of size
 `stepsize = ε / Q` (by default) followed by a clip to `[l, u]`, starting at `z = x`. Deterministic:
 the body has no `rand`. The state after pass `q` is the point and the step size in force.
+
+## Inputs
+* `c` – network chain
+* `x` – input point
+* `t` – target output
+* `ε` – perturbation radius
+* `Q` – number of iterations
+* `l` – lower bounds of the input
+* `u` – upper bounds of the input
+* `stepsize` – initial step size
+* `stepsizeDecay` – step size decay factor
+* `stepsizeDecayIter` – iterations at which the step size decays
+* `lossDer` – derivative of the loss
+
+## Output
+* input point after the projected gradient steps
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,13 @@ already holds. `seg` is that stretch of layers (layer `i` to the one before `j`)
 network; finding `j` and the option gates (`propagate_bounds`, `reuse_bounds`, empty or `NaN`
 bounds) are the caller's. The store into `layer_j.l`, `layer_j.u` is the returned set.
 Generic in the representation: at the intervals of either layer it is CORA's.
+
+## Inputs
+* `seg` – network segment
+* `B` – input set of the segment
+
+## Output
+* bounds after the segment, met with the stored bounds if any
 -/
 
 -- Authors:       Claude Sonnet 5.5

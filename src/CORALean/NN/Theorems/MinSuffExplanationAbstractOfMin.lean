@@ -17,6 +17,22 @@ Minimal for `nn` and abstractly sufficient for `nnAbs` gives minimal for
 hypotheses are asked for at every `E'`, not only at `E`: minimality is about the
 queries one feature down.
 
+## Inputs
+* `f` – network function
+* `nnAbs` – abstract network
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
+
+## Hypotheses
+* `hcontain` – the abstract network's enclosure contains the exact image
+* `hsuffAbs` – the explanation is abstractly sufficient
+* `hmin` – the explanation is minimal for the network function
+
+## Conclusion
+* the explanation is minimal for the abstract network
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

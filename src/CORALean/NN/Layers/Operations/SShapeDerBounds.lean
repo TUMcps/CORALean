@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `getDerBounds`: the least and greatest derivative of an S-shaped activation over `[l, u]`.
 Its maximum is `df 0` when `0` lies inside and `df` at the nearer end otherwise; its minimum is
 `df` at the end farther from `0`. Not modelled: the `NaN` fallback `(0, 0.0001)`.
+
+## Inputs
+* `df` – derivative of the activation
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* bounds on the derivative over the box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Operations.ReluSlope
 
 ℝ-only, for the reason `reluSlope_nonneg` is: the secant `u / (u - l)` is at most `1` only once
 the exact order has put `l` below zero and `u` above it.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the default ReLU slope is at most one
 -/
 
 -- Authors:       Claude Opus 5.5

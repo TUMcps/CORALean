@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Operations.ConjSlopeLow
 
 The midpoint of the interval either rounding of `ra · rb · λ` could land in, exactly as
 `curvMid` picks one: any value there would do, the error being measured from it.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* slope stored for the affine conjugate
 -/
 
 -- Authors:       Claude Opus 5.5

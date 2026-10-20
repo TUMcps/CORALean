@@ -11,6 +11,13 @@ public import CORALean.Global.Float.FloatOps
 On the stacked node-feature vector (`GNN.flatten`), `H ↦ H W` is the matrix with entry `W j j'`
 where the two positions share a node and `0` elsewhere. It stores the entries of `W` and the
 exact zero only, so nothing rounds in building it.
+
+## Inputs
+* `N` – number of nodes
+* `W` – weight matrix
+
+## Output
+* matrix applying the weights to every node row
 -/
 
 -- Authors:       Claude Opus 5.5

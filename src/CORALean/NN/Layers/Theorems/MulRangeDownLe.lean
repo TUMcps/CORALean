@@ -9,6 +9,19 @@ public import CORALean.NN.Layers.Operations.MulRangeDown
 # The lower product bound
 
 Multiplication by `a` is monotone one way or the other, so one end of the bracket bounds it.
+
+## Inputs
+* `a` – factor
+* `lo` – lower end of the bracket
+* `hi` – upper end of the bracket
+* `x` – real number in the bracket
+
+## Hypotheses
+* `h1` – number is above the lower end
+* `h2` – number is below the upper end
+
+## Conclusion
+* the lower product bound is at most the product
 -/
 
 -- Authors:       Claude Opus 5.5

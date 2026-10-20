@@ -11,6 +11,12 @@ public import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
 `Real.sigmoidRelaxation` read through `tanh t = 2 σ(2t) - 1`, at the exact doubling, so the
 two slope roundings coincide and the transport costs nothing: the bracket carried over is
 tanh's own, `tanh' t = 4 σ'(2t)`. A specification, as the exact sigmoid relaxation is.
+
+## Inputs
+* none
+
+## Output
+* relaxation of tanh through the sigmoid relaxation
 -/
 
 -- Authors:       Claude Opus 5.5

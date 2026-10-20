@@ -12,6 +12,15 @@ public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
 ℝ-only, as convergence is: the nonlinear half of [1, Prop. 4.13], at a layer someone would
 actually build.
 
+## Inputs
+* `n` – layer width
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid layer converges under refinement
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -8,19 +8,24 @@ public import CORALean.NN.Graph.Operations.GcnUncertain
 /-!
 # `GNN.gcnShared`'s and `GNN.gcnUncertain`'s counts
 
-[1, Prop. 5]'s `O(h₁ h₂³)`: the layer at an uncertain graph is
-[1, Lemma 1]'s multiplication followed by an affine map, so its dependent
-generator count is `(P.h + 1) * (H.h + 1)` — the product [1, Lemma 1] predicts —
-and one of the per-layer counts [1, Thm. 1]'s overall bound is assembled from —
-and its independent block is empty, `bilin` being a claim about `point`. `rfl`
-against the structure instances in `ConvUncertain.lean` and
-`Operations/Bilin.lean`.
+[1, Prop. 5]'s `O(h₁ h₂³)`: the layer at an uncertain graph is [1, Lemma 1]'s multiplication
+followed by an affine map, so its dependent generator count is `(P.h + 1) * (H.h + 1)`, the product
+[1, Lemma 1] predicts, and its independent block is empty. `rfl` against the structure instances in
+`ConvUncertain.lean` and `Operations/Bilin.lean`.
 
-`gcnShared_p` is not here: a chain of steps rests on the factor set being kept,
-so it sits beside the definition rather than in this table.
+`gcnShared_p` sits beside the definition, as a chain of steps rests on the factor set being kept.
+Padding moves the factor count and nothing else, so `gcnUncertain` counts as `gcnShared` does.
 
-Padding moves the factor count and nothing else, which is why `gcnUncertain`
-counts generators exactly as `gcnShared` does over `P.p + H.p` factors.
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Conclusion
+* the dependent generator count is the product of the two inputs' plus one
 
 ## References
 

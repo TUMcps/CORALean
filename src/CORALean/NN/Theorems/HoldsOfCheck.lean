@@ -12,6 +12,17 @@ public import CORALean.Specification.Theorems.CheckSound
 what `enclose` computed, through the pair's `Contains` or `IsDisjoint`. So the statement
 has nothing left to prove by hand: a `true`, found by evaluation, is the specification on
 everything the network computes on the input set.
+
+## Inputs
+* `nn` – network
+* `X` – input set
+* `spec` – specification
+
+## Hypotheses
+* none
+
+## Conclusion
+* a passed check on the enclosed set implies the specification on the image
 -/
 
 -- Authors:       Claude Opus 5.5

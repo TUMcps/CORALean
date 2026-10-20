@@ -10,29 +10,22 @@ public import Mathlib.Tactic.Linarith
 /-!
 # `Layer.softplusDfCora`: the derivative of `nnSoftPlusLayer` as CORA's code caches it
 
-`nn/layers/nonlinear/nnSoftPlusLayer.m` declares `sharpness = 2` as the property default and its
-constructor reads
+`nnSoftPlusLayer.m` declares `sharpness = 2` as the property default and reads `sharpness` from
+`varargin` only *after* the superclass constructor has stored `obj.df = obj.getDf(1)`, the symbolic
+derivative of `(1/k) log(1 + exp(k x))` at the default `k = 2`. `lookupDf` keeps it in a persistent
+map under the class name, so every softplus layer gets the derivative of `k = 2` whatever its
+`sharpness`. Read from the source, not run.
 
-```
-[sharpness,name] = setDefaultValues({1, []}, varargin);
-obj@nnActivationLayer(name)
-obj.sharpness = sharpness;
-```
+With `sharpness = 1`, `layer.df(1)` returns `0.881` instead of `exp 1 / (1 + exp 1) = 0.731`.
 
-The superclass constructor runs first and stores `obj.df = obj.getDf(1)`, which is
-`nnHelper.lookupDf(obj,1)`: the symbolic derivative of `obj.f(x) = (1/k).*log(1 + exp(k*x))`,
-with `k = obj.sharpness`, which at that moment is the property default `2`. `lookupDf` keeps
-the derivative in a persistent map under `layer.layerid`, which is the class name
-(`nnLayer.m`, l. 68), so every softplus layer of the session gets the derivative of the layer
-with `k = 2`, `exp(2x)/(1 + exp(2x))`, whatever its `sharpness`. `getDerBounds`, which calls
-`obj.getDf(1)`, `evaluateSensitivity`, `backpropNumeric` (the training gradient), the Taylor
-coefficients and the tangent of `computeApproxPoly` use it. Read from the source, not run.
+## Inputs
+* none
 
-# CORA's `nnSoftPlusLayer` has the derivative of the layer with `sharpness = 2`
+## Hypotheses
+* none
 
-`nnSoftPlusLayer()` (`sharpness = 1`, the constructor default) is `log(1 + exp x)` with the
-derivative `exp x / (1 + exp x)`, and `layer.df(1)` returns `exp 2 / (1 + exp 2)` instead of
-`exp 1 / (1 + exp 1)`: `0.881` against `0.731`. Read from the source, not run.
+## Conclusion
+* CORA's derivative at one differs from the true derivative at sharpness one
 -/
 
 -- Authors:       Claude Sonnet 5.5

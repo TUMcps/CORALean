@@ -9,19 +9,30 @@ public import CORALean.Specification.Theorems.HoldsUnion
 /-!
 # `verifySplitWith` is sound, at any checker backed by a proof
 
-The splitter owes no proof beyond `hcov`, the checker no completeness beyond
-`hcheck`: `false` says only that this budget and this `splitter` did not
-establish the specification, never that it fails.
+The splitter owes no proof beyond `hcov`, the checker no completeness beyond `hcheck`: `false` says
+only that this budget and this `splitter` did not establish the specification, never that it fails.
+Induction on `d`, generalising `X`: `d = 0` is `holds_of_enclose`; `d + 1` case-splits the `||`, the
+left disjunct the same base case, the right combining both halves, verified at depth `d` by the
+induction hypothesis, through `hcov X` and the binary `Specification.holds_union`. At `Interval`,
+`Interval.splitAt` supplies `splitter` and `Interval.splitAt_cover` supplies `hcov`.
 
-Induction on `d`, generalising `X`: the recursive calls sit at different sets.
-`d = 0` is `holds_of_enclose`; `d + 1` case-splits the `||`, the left
-disjunct the same base case, the right combining both halves — verified at
-depth `d` by the induction hypothesis — through `hcov X` and the binary
-`Specification.holds_union`, `NeuralNetwork.holds_of_split` covers a single
-enclosed part, not a recursively re-verified one.
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `spec` – specification
+* `check` – sound checker on output sets
+* `splitter` – splits an input set into two halves
+* `d` – depth budget
+* `X` – input set
 
-At `Interval`, `Interval.splitAt` supplies `splitter` and `Interval.
-splitAt_cover` supplies `hcov`.
+## Hypotheses
+* `hf` – the network encloses the map
+* `hcheck` – a passed check implies the specification
+* `hcov` – the halves cover the set
+* `hverify` – the recursive check passes
+
+## Conclusion
+* the specification holds on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5.5

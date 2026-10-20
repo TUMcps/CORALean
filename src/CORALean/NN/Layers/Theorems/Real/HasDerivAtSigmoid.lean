@@ -13,6 +13,15 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 `σ' t = σ t · σ (-t)`: the reciprocal's derivative, the two negations cancelling and
 `e^t` being `(e^{-t})⁻¹`.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid has the stated derivative
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,18 @@ u (1 - λ)` and `λ (x̂ - l)`, and the gap times `u - l` their areas [1, Eq. 3]
 first falls in `λ`, the second rises, and both equal `-u l / (u - l)` at the secant slope.
 `relu_bounds_of_slope` is that each family is sound.
 
+## Inputs
+* `lam` – slope of the line
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hl` – box starts below zero
+* `hu` – box ends above zero
+
+## Conclusion
+* the gap is taken at the upper end for small slopes and at the lower end otherwise
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

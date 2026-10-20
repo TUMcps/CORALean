@@ -11,6 +11,12 @@ public import CORALean.NN.Layers.Operations.SigmoidRelaxation
 CORA's `nnSigmoidLayer`: `Layer.activation` at `sigmoidRelaxation k`. `k` is the exponential's
 reduction depth: every `k` is sound, a larger one tighter, and it reaches both the value and
 the derivative bracket.
+
+## Inputs
+* `k` – reduction depth of the exponential
+
+## Output
+* layer applying the sigmoid relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

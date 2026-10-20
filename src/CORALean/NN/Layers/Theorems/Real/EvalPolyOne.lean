@@ -10,6 +10,16 @@ public import Mathlib.Tactic.Ring
 # A degree-1 polynomial is an affine map
 
 ℝ-only, as `evalPoly` is: the order-1 case, as a relaxation writes its affine map.
+
+## Inputs
+* `c` – coefficients of a degree-one polynomial
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial is the affine map with those coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

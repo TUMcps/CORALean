@@ -11,6 +11,17 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 # A polynomial's derivative
 
 ℝ-only, as `evalPoly` is: termwise, the power rule scaled by the coefficient.
+
+## Inputs
+* `n` – polynomial degree
+* `c` – coefficients
+* `t` – evaluation point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial has the derivative given by its coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

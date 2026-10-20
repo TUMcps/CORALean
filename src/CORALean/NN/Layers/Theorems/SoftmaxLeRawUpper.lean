@@ -11,6 +11,18 @@ public import CORALean.NN.Layers.Theorems.SumOffDownLe
 
 `Real.softmax_le_raw` at the box the stored bounds denote, the denominator underestimated
 term by term through `expDown_le` and the reciprocal rounded up.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `I` – box of the layer's input
+* `x` – input vector
+* `i` – output coordinate
+
+## Hypotheses
+* `hx` – the input lies in the box
+
+## Conclusion
+* the softmax is at most the rounded raw upper bound
 -/
 
 -- Authors:       Claude Opus 5.5

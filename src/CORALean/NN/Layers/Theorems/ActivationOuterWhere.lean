@@ -17,6 +17,20 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 into the
 chosen affine map, which `mtimes` carries, and the deviation from it, which `sound` bounds by
 `offset ± error` coordinatewise and `subDown`/`addUp` widen outward into the box.
+
+## Inputs
+* `R` – relaxation of the activation
+* `P` – condition on the input box
+* `s` – input set
+* `x` – point of the input set
+
+## Hypotheses
+* `hR` – relaxation is sound where the condition holds
+* `hx` – point lies in the input set
+* `hP` – every coordinate's box satisfies the condition
+
+## Conclusion
+* the activation of the point lies in the layer's output set
 -/
 
 -- Authors:       Claude Opus 5.5

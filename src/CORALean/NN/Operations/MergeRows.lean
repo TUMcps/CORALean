@@ -12,6 +12,17 @@ The linear layer before a merged activation loses the rows of the merged neurons
 bias and error box alike are restricted to the survivors `B̄`, the left of the split. A
 selection, so nothing rounds, and the survivors compute exactly what they did.
 
+## Inputs
+* `n` – input width
+* `n₁` – width of the merged layer
+* `d` – number of surviving neurons
+* `r` – number of merged neurons
+* `L` – reduced linear layer
+* `part` – split into survivors and merged neurons
+
+## Output
+* layer keeping the survivors' rows
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

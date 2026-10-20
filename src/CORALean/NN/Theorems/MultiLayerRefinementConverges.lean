@@ -23,16 +23,23 @@ public import CORALean.NN.Theorems.SigmoidLipschitz
 /-!
 # The network statement, at a network with three layers
 
-`SigmoidRefinementConverges` discharges `Convergent` where the tail is empty and
-its Lipschitz constant is `LipschitzWith.id`. Here neither is free: the head
-activation's residual passes through a matrix and a second activation before it
-reaches the output, so the tail bound is a product of two real constants and the
-`K` in `EncloseAtInflate` is what the refinement level is divided by.
+`SigmoidRefinementConverges` discharges `Convergent` where the tail is empty and its Lipschitz
+constant is `LipschitzWith.id`. Here neither is free: the head activation's residual passes through
+a matrix and a second activation before it reaches the output, so the tail bound is a product of two
+real constants and the `K` in `EncloseAtInflate` is what the refinement level is divided by. The
+linear layer meets `Convergent` at every level, its propagation being exact, so the schedule spends
+its levels on the two activations. This is [1, Thm. 4.14]'s hypothesis met where the tail is not
+trivial.
 
-The linear layer meets `Convergent` at level `0` and every other level, its
-propagation being exact — so the schedule spends its levels on the two
-activations, and the middle layer only rescales what they leave. This is
-[1, Thm. 4.14]'s hypothesis met where the tail is not trivial.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid, linear, sigmoid network is convergent
 
 ## References
 

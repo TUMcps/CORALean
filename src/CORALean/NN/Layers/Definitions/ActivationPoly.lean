@@ -24,14 +24,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 # The polynomial activation layer over the exact polynomial zonotope
 
 The activation layer at a polynomial relaxation [1], at the exact polynomial zonotope, where
-`evalPoly` and `plus` are exact: a fit per neuron evaluated through `PolyZonotope.evalPoly` and
-only what the fits miss thrown into a box. [2, Alg. 1] is this at `m = 2`. `activationPolyOn`
-fits the neurons on a box handed to it rather than the input's own — [1, Prop. 4.2], where a
-later iteration uses the intersection of boxes earlier ones computed.
+`evalPoly` and `plus` are exact: a fit per neuron evaluated through `PolyZonotope.evalPoly` and only
+what the fits miss thrown into a box. [2, Alg. 1] is this at `m = 2`. `activationPolyOn` fits the
+neurons on a box handed to it rather than the input's own — [1, Prop. 4.2].
 
-ℝ-only, the representation being the exact one: the runnable layer is `Layer.activationPoly` at
-the stored polynomial zonotope, which rounds, and whose enclosure therefore does not approach the
-exact image. Its exactness, generator count and convergence are what this layer is for.
+ℝ-only, the representation being the exact one: the runnable layer is `Layer.activationPoly` at the
+stored polynomial zonotope, which rounds.
+
+## Inputs
+* `P` – polynomial relaxation of the activation
+
+## Output
+* layer applying the fits neuron by neuron and boxing the residual
 
 ## References
 

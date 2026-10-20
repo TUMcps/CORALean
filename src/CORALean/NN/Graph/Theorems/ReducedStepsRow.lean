@@ -15,6 +15,26 @@ node sets `S k` that still contain `ball A v (L - k)` before step `k` [1, §4.3]
 agreeing with `X` on `S 0`. Exact, an equality: a node outside the ball feeds no entry that a
 later row inside the ball reads. The kept sets need not be nested here, only large enough.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `S` – kept node sets, one per step
+* `W` – weights of the steps
+* `X` – node-feature matrix
+* `Y` – features on the first kept set
+* `a` – kept node
+
+## Hypotheses
+* `hS` – each kept set contains the ball the remaining steps read
+* `hY` – the features agree with X on the ball
+* `ha` – the kept node is the node of interest
+
+## Conclusion
+* the reduced chain's row equals the full chain's row for the node
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

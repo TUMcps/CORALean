@@ -11,6 +11,15 @@ exceeds the tolerance, and then try lower orders. A region narrower than the tol
 CORA's `CORA:notConverged` error, here `none`, as is running out of `fuel`, the loop's bound
 (CORA's halving ends by itself, in floats of finite exponent range). Returns the region and its
 right end.
+
+## Inputs
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+* `l` – left end of the uncovered domain
+
+## Output
+* accepted region from the left end with its right end, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

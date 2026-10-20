@@ -11,6 +11,17 @@ public import CORALean.NN.Graph.Operations.GcnShared
 `P.p` and `map` keeps `p`, which is what a chain of steps at one graph rests on,
 and what the type does not say.
 
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+
+## Hypotheses
+* `hp` – both sets share their factors
+
+## Conclusion
+* the step keeps the graph's factor count
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

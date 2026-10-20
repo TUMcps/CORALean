@@ -15,6 +15,24 @@ per-node layer after each is the same whether or not the graph is masked to `S`,
 contains `ball A v L` and the two starting features agree on it. A layer acts on a row alone, so
 the rows that agree before it agree after it, and `evalSteps_row_mask`'s induction goes through.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – center node
+* `S` – set of nodes kept by the mask
+* `L` – number of steps
+* `g` – per-node layers
+* `X` – first node-feature matrix
+* `Y` – second node-feature matrix
+
+## Hypotheses
+* `hS` – mask set contains the ball
+* `hXY` – the two inputs agree on the ball
+
+## Conclusion
+* the center's row of the layered chain is the same with and without the mask
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

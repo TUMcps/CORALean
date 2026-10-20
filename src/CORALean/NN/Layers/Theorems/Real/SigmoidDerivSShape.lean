@@ -11,6 +11,15 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 
 Its derivative `σ(t) σ(-t) = 1 / (2 + 2 cosh t)` is even and non-increasing in `|t|`, so
 `sShapeDerBounds_sound` applies to it.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid's derivative is even and non-increasing on the nonnegative reals
 -/
 
 -- Authors:       Claude Opus 5.5

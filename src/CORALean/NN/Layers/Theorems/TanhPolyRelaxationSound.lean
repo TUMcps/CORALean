@@ -12,6 +12,18 @@ public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
 # The polynomial tanh relaxation is sound
 
 The sigmoid's soundness, transported along the conjugation identity `tanh t = 2 σ(2t) - 1`.
+
+## Inputs
+* `k` – reduction depth of the exponential
+* `c` – fit coefficients for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polynomial relaxation is sound for tanh
 -/
 
 -- Authors:       Claude Opus 5.5

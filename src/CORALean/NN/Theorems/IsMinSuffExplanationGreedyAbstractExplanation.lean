@@ -12,6 +12,25 @@ public import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
 [1, Alg. 2] returns a minimal sufficient explanation for the original `f`: its oracle decides
 the exact query (`explanationRefineLoop_iff`), so [1, Alg. 1]'s guarantee applies.
 
+## Inputs
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `l` – target label
+* `absSuff` – abstract sufficiency check at each level
+* `genuine` – genuine counterexample check at each level
+* `N` – number of refinements to spend
+
+## Hypotheses
+* `hε` – radius is nonnegative
+* `habs` – an abstract pass implies sufficiency
+* `hgen` – a genuine counterexample implies insufficiency
+* `hlast` – at the last level every sufficient set passes
+* `hl` – all features together are sufficient
+
+## Conclusion
+* the search returns a minimal sufficient explanation
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

@@ -12,17 +12,19 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # Softmax, and its exact box
 
-CORA's `nnSoftmaxLayer`: `x i ↦ exp(x i) / ∑ⱼ exp(x j)`, the first layer whose output depends
-on *every* input coordinate, through a normalization; `Relaxation` cannot express that, so the
-layer is written directly, with no slope. The outputs sum to one, and no representation this
-layer can name keeps that hyperplane; its shadow on each coordinate it can, exact for a box:
-from raw bounds `rl ≤ y ≤ ru`, `y i ∈ [1 - ∑_{j≠i} ru j, 1 - ∑_{j≠i} rl j]`, intersected with
-`[rl i, ru i]`. The raw bounds divide through by `exp (x i)`, every term of what is left bounded
-by the box directly.
+CORA's `nnSoftmaxLayer`: `x i ↦ exp(x i) / ∑ⱼ exp(x j)`, the first layer whose output depends on
+*every* input coordinate; `Relaxation` cannot express that, so the layer is written directly, with
+no slope. The outputs sum to one, and no representation this layer can name keeps that hyperplane;
+its shadow on each coordinate is exact for a box: from raw bounds `rl ≤ y ≤ ru`, `y i ∈ [1 - ∑_{j≠i}
+ru j, 1 - ∑_{j≠i} rl j]`, intersected with `[rl i, ru i]`. Over ℝ, with both raw bounds, this is the
+exact layer; a machine scalar has no total upper bound on an exponential, so the exact box is a
+specification the runnable layer does not reproduce.
 
-Over ℝ, with both raw bounds, this is the exact layer; a machine scalar has no total upper bound
-on an exponential and so no raw lower bound, and takes its lower bound from the normalization
-alone. So the exact box is a specification the runnable layer does not reproduce.
+## Inputs
+* `x` – input vector
+
+## Output
+* vector of normalised exponentials
 -/
 
 -- Authors:       Claude Opus 5.5

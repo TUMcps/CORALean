@@ -15,6 +15,14 @@ weight. `𝒫`'s factors are edges and residuals and `H`'s are node features, so
 `padBack` gives `𝒫` the feature factors after its own and `padFront` gives `H`
 the edge factors before its own, both at exponent zero.
 
+## Inputs
+* `W` – weight matrix
+* `P` – polynomial zonotope of the graph
+* `H` – polynomial zonotope of the node features
+
+## Output
+* polynomial zonotope of the convolution at the uncertain graph
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

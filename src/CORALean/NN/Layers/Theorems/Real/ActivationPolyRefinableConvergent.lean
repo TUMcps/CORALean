@@ -23,6 +23,18 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalInfL
 ℝ-only, the enclosure approaching the exact image only at the exact representation. A level per
 neuron covering that neuron's own box and leaving `2 · error` under `ε`: nothing waits for the
 widest box in the layer, and padding leaves each neuron's error alone.
+
+## Inputs
+* `σ` – activation function
+* `σ'` – derivative of the activation
+* `Mσ` – bound on the derivative
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hσ` – the derivative is bounded
+
+## Conclusion
+* raising the pattern puts the enclosed set inside any inflation of the exact image
 -/
 
 -- Authors:       Claude Opus 5.5

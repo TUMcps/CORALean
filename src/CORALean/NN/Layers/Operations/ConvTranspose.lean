@@ -16,6 +16,15 @@ the helper's: output `i` of the helper, which is input `i` of this layer, reads 
 `tap i l` of this layer's output with the kernel `K (chan i)`. The layer scatters where the
 convolution gathers. The helper's stride, padding and dilation never appear, being only which
 taps it reads; CORA derives them from the stored fields, here they arrive as the taps.
+
+## Inputs
+* `chan` – channel of every neuron
+* `tap` – input index of every kernel position
+* `K` – kernel of every channel
+* `b` – bias of every output neuron
+
+## Output
+* layer applying the transposed convolution
 -/
 
 -- Authors:       Claude Opus 5.5

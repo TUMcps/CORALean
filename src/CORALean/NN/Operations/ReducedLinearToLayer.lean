@@ -13,6 +13,14 @@ public import CORALean.NN.Layers.Operations.LinearWithError
 `I'.nonemptyHull`, which is what `LinearWithErrorLayer` runs and is `I'` whenever `I'` is
 nonempty: the layers [1, Alg. 2] propagates through are then exactly `toNetwork`'s.
 
+## Inputs
+* `n` – input width
+* `m` – output width
+* `L` – reduced linear layer
+
+## Output
+* layer applying the affine map and adding the error box
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

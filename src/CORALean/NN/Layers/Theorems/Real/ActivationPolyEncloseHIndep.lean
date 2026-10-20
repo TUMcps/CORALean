@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseH
 ℝ-only, as the layer is. [1, Lemma 4.3] in words: same order pattern on the same input, same
 generator count, whatever the individual neurons' own fits.
 
+## Inputs
+* `P` – relaxation of every neuron
+* `P'` – second relaxation of every neuron
+* `s` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the generator count does not depend on the fits
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

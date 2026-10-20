@@ -15,6 +15,15 @@ public import CORALean.NN.Layers.Operations.EvalPolyUp
 coefficients are rescaled and stored rounded up; the error is `ra` times `f`'s, rounded up, plus
 what the coefficient roundings can move the polynomial by over the box, `max(|l|, |u|)` bounding
 the argument.
+
+## Inputs
+* `P` – polynomial relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `c` – output shift
+
+## Output
+* polynomial relaxation of the conjugated activation
 -/
 
 -- Authors:       Claude Opus 5.5

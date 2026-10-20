@@ -9,6 +9,19 @@ public import CORALean.NN.Layers.Theorems.RegionPolyOfRelaxationFits
 # The right region found fits
 Whatever `findRegionRight` returns is a region `[l', u]` enclosing `σ` with error at most the
 tolerance, `l'` being the left end it returns.
+
+## Inputs
+* `σ` – activation function
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+* `u` – right end of the uncovered domain
+
+## Hypotheses
+* `hF` – every relaxation is sound for the activation
+
+## Conclusion
+* a returned right region encloses the activation within the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

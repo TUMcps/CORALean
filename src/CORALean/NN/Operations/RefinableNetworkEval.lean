@@ -10,6 +10,12 @@ public import CORALean.NN.Definitions.RefinableNetwork
 Defined on the network and not read off a schedule, which is the point of `RefinableLayer`
 keeping `eval` outside `enclose`: the exact image is one set, fixed before any level is chosen,
 and every schedule encloses that same set.
+
+## Inputs
+* none
+
+## Output
+* function the refinable network computes
 -/
 
 -- Authors:       Claude Opus 5.5

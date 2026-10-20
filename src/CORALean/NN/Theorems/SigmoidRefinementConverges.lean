@@ -13,15 +13,21 @@ public import CORALean.NN.Theorems.EncloseAtInflate
 /-!
 # The network statement, at a network that exists
 
-`EncloseAtInflate` runs on a hypothesis — every layer convergent, every tail
-Lipschitz — and a hypothesis is worth only what satisfies it. This discharges it
-at a sigmoid layer, so the schedule it produces is one an implementation could
-be asked for.
-
-The tail is empty and its `eval` is the identity, which is where the Lipschitz
-constant comes from. That is the easy case of the hypothesis, and deliberately
-so: the point being made is that the *layer* half is met at a real activation,
+`EncloseAtInflate` runs on a hypothesis — every layer convergent, every tail Lipschitz — and a
+hypothesis is worth only what satisfies it. This discharges it at a sigmoid layer, so the schedule
+it produces is one an implementation could be asked for. The tail is empty and its `eval` is the
+identity, which is where the Lipschitz constant comes from: the easy case of the hypothesis,
+deliberately, since the point is that the *layer* half is met at a real activation,
 `Layer.activationPolySigmoid_convergent` being the part with content.
+
+## Inputs
+* `n` – layer width
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sigmoid network is convergent
 -/
 
 -- Authors:       Claude Opus 5

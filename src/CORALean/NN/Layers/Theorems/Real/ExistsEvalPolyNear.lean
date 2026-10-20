@@ -10,6 +10,19 @@ public import Mathlib.Topology.ContinuousMap.Weierstrass
 
 ℝ-only, as `evalPoly` is: an order and coefficients whose polynomial is within `ε` of `σ`
 everywhere on the box.
+
+## Inputs
+* `σ` – continuous function
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+* `ε` – accuracy
+
+## Hypotheses
+* `hcont` – the function is continuous on the interval
+* `hε` – accuracy is positive
+
+## Conclusion
+* some polynomial is within the accuracy of the function on the interval
 -/
 
 -- Authors:       Claude Opus 5.5

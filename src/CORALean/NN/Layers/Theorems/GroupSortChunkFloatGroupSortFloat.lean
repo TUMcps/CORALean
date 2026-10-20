@@ -8,6 +8,17 @@ public import CORALean.NN.Layers.Operations.GroupSortFloat
 # The chunk of the sorted vector is the sorted chunk
 
 Chunk `k` of `groupSortFloat g x` is chunk `k` of `x` sorted by `le`, for `g > 0`.
+
+## Inputs
+* `g` – group size
+* `x` – float input vector
+* `k` – group index
+
+## Hypotheses
+* `hg` – group size is positive
+
+## Conclusion
+* a group of the sorted vector is the sorted group
 -/
 
 -- Authors:       Claude Opus 5.5

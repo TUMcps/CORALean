@@ -20,6 +20,20 @@ public import CORALean.NN.Graph.Complexity.Space.Theorems.GcnStepsHLe
 [1, Thm. 1] for the graph layers: `L` message-passing steps at an uncertain
 graph are polynomial of degree `3L` in the number of uncertain edges.
 
+## Inputs
+* `R` – relaxation of the activations
+* `A` – adjacency matrix
+* `U` – uncertain edges for each edge count
+* `L` – number of steps
+* `W` – weights of the steps
+* `X` – input polynomial zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the generator count is big-O of the edge count to the power 3L
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

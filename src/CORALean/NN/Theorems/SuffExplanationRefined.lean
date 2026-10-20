@@ -9,22 +9,29 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 /-!
 # Refining an abstraction, enclosure to enclosure
 
-Both sides here are *enclosures*: `nnRef`'s enclosed set sits inside
-`nnAbs`'s, so separation survives the shrinking and what is sufficient for
-`nnAbs` is sufficient for `nnRef` — what lets each refinement step of
-[1, Alg. 2] only *free* further features, never lose one already freed.
+Both sides here are *enclosures*: `nnRef`'s enclosed set sits inside `nnAbs`'s, so separation
+survives the shrinking and what is sufficient for `nnAbs` is sufficient for `nnRef` — what lets each
+refinement step of [1, Alg. 2] only *free* further features. Not the containment [1, Prop. 3]
+states, which compares `nnRef`'s exact output with `nnAbs`'s enclosure; that is
+`suffExplanationExact_of_refined`, and neither reading implies the other. `hrefine` is nothing
+neuron merging produces — it suits a propagation technique whose enclosures nest — and says nothing
+about `nn`. The conclusion is [1, Def. 5]'s *refined* sufficient explanation at `nnRef`; the
+hypothesis is [1, Def. 4]'s reading at `nnAbs`.
 
-Not the containment [1, Prop. 3] states, which compares `nnRef`'s exact output
-with `nnAbs`'s enclosure; that is `suffExplanationExact_of_refined`, and
-neither reading implies the other. `hrefine` is nothing neuron merging
-produces — it suits a propagation technique whose enclosures nest, as CORA's
-zonotope propagation does inside the interval look-ahead a merge uses. It is
-satisfied by `nnRef = nnAbs` and says nothing about `nn`, which is why nothing
-here does.
+## Inputs
+* `nnAbs` – coarser abstract network
+* `nnRef` – refined abstract network
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – explanation, a feature set
+* `l` – target label
 
-The conclusion is [1, Def. 5]'s *refined* sufficient explanation read at
-`nnRef`; the hypothesis is [1, Def. 4]'s reading of it at `nnAbs`. Neither
-names more than `IsSuffExplanationAbstract` already does, so both cite it.
+## Hypotheses
+* `hrefine` – the refined enclosure lies in the coarser one
+* `hsuffAbs` – the explanation is abstractly sufficient for the coarser network
+
+## Conclusion
+* the explanation is abstractly sufficient for the refined network
 
 ## References
 

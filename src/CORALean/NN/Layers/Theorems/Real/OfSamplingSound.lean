@@ -14,6 +14,22 @@ public import CORALean.Global.Float.Instances.Real.Theorems.Basic
 ℝ-only, the sampling being exact: a derivative bound on `σ` minus the fit, and a positive
 sample count, and `sample_bounds_of_deriv` does the rest; the two ends average into the
 constant, so what is left of them is a radius.
+
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `n` – polynomial degree
+* `c` – fit coefficients for each interval
+* `M` – derivative bound for each interval
+* `N` – sample count for each interval
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hM` – derivative differs from the fit's by at most the bound
+* `hN` – sample counts are positive
+
+## Conclusion
+* the sampled polynomial relaxation is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,15 @@ public import Mathlib.Tactic.Positivity
 # Softplus is monotone
 
 For a positive sharpness: `exp`, `1 + ·`, `log` and division by `β` are all monotone there.
+
+## Inputs
+* `β` – sharpness
+
+## Hypotheses
+* `hβ` – sharpness is positive
+
+## Conclusion
+* softplus is monotone
 -/
 
 -- Authors:       Claude Opus 5.5

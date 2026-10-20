@@ -17,6 +17,17 @@ carries that the rest of the way — the form `Verified` composes with
 `Specification.holds_of_outer`. That is [1, Prop. 2.14]'s image enclosure, `H_k = enclose(L_k,
 H_{k-1})` an over-approximative output set, for a chain of layers.
 
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+
+## Hypotheses
+* `hf` – the network encloses the map
+
+## Conclusion
+* the image of the input set lies in the enclosed set
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

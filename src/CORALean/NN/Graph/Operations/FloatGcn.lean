@@ -12,6 +12,14 @@ public import CORALean.NN.Graph.Operations.FloatRightMat
 CORA's `nnGCNLayer`, `H ↦ P H W`, on the stacked node features (`GNN.flatten`): `W` then `P`,
 each as one `PolyZonotope.mtimes` at a matrix holding only entries of `P`, `W` and the exact zero.
 The rounding of the two products goes into the error box.
+
+## Inputs
+* `P` – message-passing matrix
+* `W` – weight matrix
+* `pZ` – stacked node features
+
+## Output
+* polynomial zonotope enclosing the layer's output
 -/
 
 -- Authors:       Claude Opus 5.5

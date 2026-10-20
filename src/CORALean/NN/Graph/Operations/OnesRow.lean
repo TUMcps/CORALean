@@ -10,6 +10,12 @@ public import CORALean.ContSet.ContSet.ContSet
 [1]'s `1`: the row vector, as a `1 × N` matrix, that `sumPoolLin_apply` reads
 `sumPoolLin`'s column sum back against.
 
+## Inputs
+* `N` – number of nodes
+
+## Output
+* row of ones
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -11,18 +11,33 @@ public import CORALean.NN.Graph.Theorems.MessagePassingEnclosureOuter
 /-!
 # A chain of steps contains what the graph actually computes
 
-The statement a caller of [1] wants over several message-passing steps: whatever
-the uncertain edges weigh, the iteration `H ↦ P H W_k` that *that* graph runs,
-started at any point of the node-feature set, is a point of `gcnSteps`.
+The statement a caller of [1] wants over several message-passing steps: whatever the uncertain edges
+weigh, the iteration `H ↦ P H W_k` that *that* graph runs, started at any point of the node-feature
+set, is a point of `gcnSteps`.
 
-The pieces are the ones the one-step version used. `messagePassing_mem_enclosure`
-puts the graph's own `P` in `𝒫`, `exists_point_of_q_zero` names the factors
-reaching it, and `Fin.append` puts those beside the feature factors on the one
-padded factor set `gcnSteps` then keeps for every step.
+`messagePassing_mem_enclosure` puts the graph's own `P` in `𝒫`, `exists_point_of_q_zero` names the
+factors reaching it, and `Fin.append` puts those beside the feature factors on the one padded factor
+set `gcnSteps` keeps for every step. Padding once, before the chain, is the point: every later step
+reads the edge factors it was handed, so an edge weighs the same at each of them.
 
-Padding once, before the chain, is the whole point: the edges and the features
-are independent only at the *first* step, and every later step reads the edge
-factors it was handed, so an edge weighs the same at each of them.
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `L` – number of steps minus one
+* `W` – weights of the steps
+* `H` – polynomial zonotope of the node features
+* `aH` – factor vector of the features
+
+## Hypotheses
+* `hR` – relaxation is sound for the inverse square root
+* `hA` – adjacency entries are nonnegative
+* `hlam` – edge weights lie in the unit interval
+* `haH` – factors lie in the unit interval
+
+## Conclusion
+* the graph's own iteration at any feature point lies in the chain
 
 ## References
 

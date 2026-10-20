@@ -13,6 +13,23 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 `sub_mul_bounds_of_deriv` is the whole mathematical content, about the exact `σ` and the
 exact reals the stored values denote; what is added is that the two ends, evaluated with
 rounding, are each pushed outward, and `abs_sub_le_spread` measures from the stored midpoint.
+
+## Inputs
+* `E` – enclosure of the activation
+* `lo` – lower derivative bracket for each box
+* `hi` – upper derivative bracket for each box
+* `lam` – slope for each box
+* `σ'` – derivative of the activation
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hE` – enclosure is sound for the activation
+* `hlo` – lower bracket is below the derivative
+* `hhi` – upper bracket is above the derivative
+* `hlam` – slope lies in the bracket
+
+## Conclusion
+* the relaxation from the derivative bracket is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

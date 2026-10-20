@@ -10,6 +10,12 @@ public import CORALean.Global.Tensor
 A conjunction over `Fin k`, as a fold rather than a `Finset`: the recursion is what proofs see,
 and `@[csimp]` swaps in the same conjunction as a loop, giving up the early exit on the first
 `false`, which only a check that fails would have reached.
+
+## Inputs
+* none
+
+## Output
+* true iff every index passes its check
 -/
 
 -- Authors:       Claude Opus 5.5

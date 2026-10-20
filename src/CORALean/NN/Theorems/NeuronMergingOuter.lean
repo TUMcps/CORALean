@@ -22,16 +22,36 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # Neuron merging: sound at every bucket
 
-[1, Prop. 4]. Given output bounds `Y` for a nonlinear layer `k`
-and *any* split of its neurons into survivors `B̄` and a bucket `B`, trimming
-the adjacent linear layers to `B̄` and boxing what `B` would have contributed to
-layer `k+1` — `W_{k+1}(·,B) · Y(B)` — soundly encloses the exact sandwich.
+[1, Prop. 4]. Given output bounds `Y` for a nonlinear layer `k` and *any* split of its neurons into
+survivors `B̄` and a bucket `B`, trimming the adjacent linear layers to `B̄` and boxing what `B`
+would have contributed to layer `k+1` — `W_{k+1}(·,B) · Y(B)` — soundly encloses the exact sandwich.
+The bucket tolerance that picks a *good* `B` never appears: the proof holds at every `B`, which
+makes it a heuristic rather than a soundness hypothesis, exactly as `ConPolyZono.reduceBy_outer`
+holds at every pair of partitions. It holds at every scalar: the trimming only selects stored
+weights, and the box's product rounds outward.
 
-The bucket tolerance that picks a *good* `B` (small `W_{k+1}(·,B) · Y(B)`) never
-appears: the proof below holds at every `B`, which is what makes it a heuristic
-rather than a soundness hypothesis, exactly as `ConPolyZono.reduceBy_outer`
-holds at every pair of partitions. It holds at every scalar: the trimming only selects
-stored weights, and the box's product rounds outward.
+## Inputs
+* `n0` – input width
+* `n` – width of the merged layer
+* `n2` – output width
+* `d` – number of surviving neurons
+* `r` – number of merged neurons
+* `part` – split into survivors and merged neurons
+* `W0` – first weight matrix
+* `b0` – first bias vector
+* `σ` – activation function
+* `R` – relaxation of the activation
+* `W1` – second weight matrix
+* `b1` – second bias vector
+* `Y` – bounds of the merged layer
+* `X` – input set
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+* `hY` – the bounds contain the activations over the input set
+
+## Conclusion
+* the sandwich's image lies in the enclosure of the merged sandwich
 
 ## References
 

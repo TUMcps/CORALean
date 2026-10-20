@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Theorems.GroupSortChunkFloatGroupSortFloat
 Every chunk of `groupSortFloat g x` is a permutation of the same chunk of `x`: sorting moves
 entries and computes none, so this holds whatever `le` answers, and at the real values they
 denote. Under an exact `le` each chunk is also ascending (`groupSortFloat_sorted`).
+
+## Inputs
+* `g` – group size
+* `x` – float input vector
+* `k` – group index
+
+## Hypotheses
+* `hg` – group size is positive
+
+## Conclusion
+* each group of the result is a permutation of the input group
 -/
 
 -- Authors:       Claude Opus 5.5

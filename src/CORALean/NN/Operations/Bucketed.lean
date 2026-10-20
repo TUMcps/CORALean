@@ -11,6 +11,13 @@ public import Mathlib.Data.Fintype.Basic
 [1, Def. 3]'s buckets are disjoint, so one mask, `true` on a merged neuron, describes them all,
 and the count of merged neurons is the mask's count.
 
+## Inputs
+* `n` – layer width
+* `B` – mask of the merged neurons
+
+## Output
+* number of merged neurons
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

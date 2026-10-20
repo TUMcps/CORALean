@@ -8,6 +8,24 @@ public import CORALean.NN.Layers.Definitions.PolyFamily
 # Each level of the family is accurate on its range
 
 ℝ-only, as the family is: level `o`'s error is under `1 / (o + 1)` on every box in `[-o, o]`.
+
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `Mσ` – bound on the derivative
+* `o` – level of the family
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hσ` – the derivative is bounded
+* `hl` – box starts within the level's range
+* `hlu` – box is ordered
+* `hu` – box ends within the level's range
+
+## Conclusion
+* the level's error on the box is below one over the level plus one
 -/
 
 -- Authors:       Claude Opus 5.5

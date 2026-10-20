@@ -11,6 +11,16 @@ public import CORALean.NN.Layers.Definitions.ScaleRounding
 `ra · rb · λ`, the slope `g t = ra f (rb t) + c` inherits from `f`'s relaxation read at the box
 `rb`'s rounding maps `[l, u]` to, rounded down: `rb`'s rounding first, then `ra`'s. `ra ≥ 0` is
 what lets the outer rounding preserve the inner one's direction.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* slope of the affine conjugate, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

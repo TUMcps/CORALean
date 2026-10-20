@@ -13,6 +13,15 @@ box, so the relaxation `approxErrorRelaxation ϕ` is sound for `ϕ`, and so is t
 (`Layer.activation_encloses`). The proof is [1, Def. 6]'s enclosure: `e_low ≤ ϕ(t) - m t ≤ e_up`,
 recentered.
 
+## Inputs
+* `ϕ` – activation function
+
+## Hypotheses
+* `hϕ` – the function is continuous
+
+## Conclusion
+* the relaxation from the approximation errors is sound
+
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".

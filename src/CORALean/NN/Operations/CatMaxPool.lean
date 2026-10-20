@@ -14,6 +14,12 @@ identity renames `0 + m` coordinates to `m`. The windows are any stencil `tap`, 
 `Layer.maxPool`; the paper's Appendix A's `p × q` blocks of an `m × n × r` image are one, its
 `W^MP` a permutation because they partition the image, which nothing here needs.
 
+## Inputs
+* `tap` – input index of every window position
+
+## Output
+* CAT function pooling the windows by their maximum
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

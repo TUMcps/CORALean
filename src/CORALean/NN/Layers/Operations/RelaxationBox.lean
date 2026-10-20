@@ -11,6 +11,13 @@ public import CORALean.NN.Layers.Definitions.Relaxation
 Per neuron, the deviation of `σ` from the relaxation's affine map lies in
 `offset ± error` over that neuron's bounds; this is that box, widened outward — `subDown` below,
 `addUp` above — which is the one place an activation layer itself rounds.
+
+## Inputs
+* `R` – relaxation of the activation
+* `I` – box of the layer's input
+
+## Output
+* box confining each neuron's deviation from its affine map
 -/
 
 -- Authors:       Claude Opus 5.5

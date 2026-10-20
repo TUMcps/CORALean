@@ -13,6 +13,19 @@ found, or in the fixed outer regions `ext` (CORA's start and end polynomials). A
 `[l, l']` moves `l` to `l'` and a right region `[u', u]` moves `u` to `u'`; the loop ends at
 `u ≤ l`, where every point is outside, and each region it adds encloses `σ` with error at most
 the tolerance. The new regions are in front of the old, which stay.
+
+## Inputs
+* `σ` – activation function
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+* `ext` – regions already covering the outside
+
+## Hypotheses
+* `hF` – every relaxation is sound for the activation
+
+## Conclusion
+* the loop's regions enclose the activation and cover the line
 -/
 
 -- Authors:       Claude Sonnet 5.5

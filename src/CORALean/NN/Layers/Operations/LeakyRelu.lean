@@ -11,6 +11,13 @@ public import CORALean.NN.Layers.Operations.LeakyReluRelaxation
 
 CORA's `nnLeakyReLULayer`: `Layer.activation` at `leakyReluRelaxation α lam`, the slope
 `aux_leakyReluSlope α` unless the caller names another. `α` is CORA's `alpha`, `0.01` by default.
+
+## Inputs
+* `α` – slope below zero
+* `lam` – slope choice for each box
+
+## Output
+* layer applying the leaky ReLU relaxation to every neuron
 -/
 
 -- Authors:       Claude Opus 5.5

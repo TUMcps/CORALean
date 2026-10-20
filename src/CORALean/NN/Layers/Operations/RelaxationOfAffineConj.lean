@@ -11,6 +11,15 @@ public import CORALean.NN.Layers.Operations.ConjError
 `[l, u]` to and rescaled: tanh is sigmoid's this way, `a = b = 2`, `c = -1`. The price for
 storing one slope rather than the exact product is the gap between its two roundings, charged
 against a bound on `t` itself; at exact scalings there is none.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `c` – output shift
+
+## Output
+* relaxation of the conjugated activation
 -/
 
 -- Authors:       Claude Opus 5.5

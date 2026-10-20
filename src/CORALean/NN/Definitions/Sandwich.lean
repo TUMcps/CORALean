@@ -16,6 +16,23 @@ Linear, activation, linear: the three layers `ReducesAt.merge` replaces by a red
 and the shape [1]'s neuron merging is stated on. ℝ-only, as the activation is the hypothesis
 `R.Sound σ` beside it.
 
+## Inputs
+* `n` – input width
+* `n₁` – hidden width
+* `n₂` – output width
+* `W0` – first linear layer's weights
+* `b0` – first linear layer's bias
+* `σ` – activation function
+* `R` – relaxation of the activation
+* `W1` – second linear layer's weights
+* `b1` – second linear layer's bias
+
+## Hypotheses
+* `hR` – relaxation is sound for the activation
+
+## Output
+* network of linear, activation, linear layers
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

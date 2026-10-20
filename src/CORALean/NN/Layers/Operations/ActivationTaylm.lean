@@ -17,6 +17,12 @@ range `[l, u]` of the input model, the polynomial fit and its error `d` on that 
 `r = c₀ + [-d, d] + Σ_{k ≥ 1} c_k · input^k`, the powers taken by the Taylor model's own `pow`
 and the coefficients applied as exact factors. CORA stores the fit highest degree first;
 `PolyRelaxation.coeffs` is lowest first, so `c₀` is CORA's `coeffs(end)`.
+
+## Inputs
+* `P` – polynomial relaxation of the activation
+
+## Output
+* layer fitting each neuron on the range of its input model
 -/
 
 -- Authors:       Claude Opus 5.5

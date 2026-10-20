@@ -10,6 +10,21 @@ public import CORALean.NN.Theorems.EncloseOuter
 `MemSafeSet`'s counterpart, kept in its own file as `Specification`'s own
 `Containment` and `Separation` keep the safe and unsafe directions apart:
 directly off `enclose_outer`, with no `Specification` in sight.
+
+## Inputs
+* `nn` – network
+* `f` – map the network encloses
+* `X` – input set
+* `unsafe'` – unsafe set
+* `x` – input point
+
+## Hypotheses
+* `hf` – the network encloses the map
+* `h` – the enclosed set is disjoint from the unsafe set
+* `hx` – point lies in the input set
+
+## Conclusion
+* the map of the point is not in the unsafe set
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,15 @@ public import CORALean.ContSet.StarSet.Real.Theorems.RowBoundsMem
 `relu (x_i)` coordinatewise. By induction over the neurons still to be visited: the neurons
 visited so far are ReLU'd in the set, the rest untouched, and one more neuron's step encloses its
 own ReLU on the set it is given, by `reluNeuron_outer` at the bounds that set satisfies.
+
+## Inputs
+* `n` – layer width
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses ReLU coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

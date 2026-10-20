@@ -22,6 +22,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 point `t` of the box and the values `f i t` of functions the models enclose; the fit
 evaluated at `f i` and the constant deviation `σ (x i) - p (x i)`, which the error bounds,
 are functions the output models enclose, and at `t` they add up to `σ (x i)`.
+
+## Inputs
+* `P` – relaxation of every neuron
+
+## Hypotheses
+* `hP` – every neuron's relaxation is sound for the activation
+
+## Conclusion
+* the layer encloses the activation coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

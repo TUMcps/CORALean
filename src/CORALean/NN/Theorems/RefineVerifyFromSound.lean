@@ -14,6 +14,20 @@ refinement rule — provided the disjointness test is sound, `isDisjoint Y` only
 `Sᵤ`. The returning iteration's enclosure holds every output (`encloseReduceAt_outer`), so it
 missing `Sᵤ` is enough.
 
+## Inputs
+* `rn` – refinable network
+* `ρ` – order after reduction
+* `X` – input set
+* `Su` – unsafe set
+* `isDisjoint` – test that the output set misses the unsafe set
+* `refineStep` – refinement of the schedule
+
+## Hypotheses
+* `hdis` – a passed test implies the set avoids the unsafe set
+
+## Conclusion
+* a verified result means no output on the input set is unsafe
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

@@ -10,6 +10,12 @@ public import CORALean.NN.Operations.WeightNetworkNormalFormAux
 CORA's `getNormalForm`: the network with consecutive affine layers fused, `W = W₂ W₁` and
 `b = W₂ b₁ + b₂`, so that linear layers and activations alternate. Not modelled: CORA's early
 return for a network already in that form, which computes the same function.
+
+## Inputs
+* `N` – weight network
+
+## Output
+* network with consecutive linear layers fused
 -/
 
 -- Authors:       Claude Opus 5.5

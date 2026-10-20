@@ -16,6 +16,24 @@ their intervals [1, §4.3]. The node sets come from `GNN.support A`, which misse
 so no node the receptive field of `v` reads is dropped; the equality of the real reduced chain
 (`GNN.reduceGNNForNode_exact`) is what the rows keep, the float products only widen them.
 
+## Inputs
+* `A` – float adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `P` – interval message-passing matrix
+* `W` – interval weights of the steps
+* `Wr` – exact weights of the steps
+* `Xi` – interval node-feature matrix
+* `X` – exact node-feature matrix
+
+## Hypotheses
+* `hP` – interval contains the exact message-passing matrix
+* `hW` – each interval contains its exact weights
+* `hX` – interval contains the exact features
+
+## Conclusion
+* some matrix in the float result has the exact chain's row at the node
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

@@ -9,6 +9,16 @@ public import CORALean.NN.Layers.Definitions.Softmax
 
 Dividing through by `exp (x i)`: the `j = i` term becomes exactly `1`, which is what makes the
 raw bounds tighter than bounding numerator and denominator apart.
+
+## Inputs
+* `x` – input vector
+* `i` – output coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the softmax is the reciprocal of one plus the exponentials relative to the coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

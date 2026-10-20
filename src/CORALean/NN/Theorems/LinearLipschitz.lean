@@ -10,16 +10,21 @@ public import Mathlib.Topology.MetricSpace.Lipschitz
 /-!
 # What a linear layer does to a distance
 
-The constant is the largest row sum of `|W|`, which is the matrix's `ℓ∞`
-operator norm — and `ℓ∞` is the metric a `Vec ℝ n` carries, being a pi type, so
-no other norm would answer for the coordinates the rest of the development
-reads. Mathlib's operator-norm instance is scoped and would have to displace
-that one, so the bound is proved from the row directly.
+The constant is the largest row sum of `|W|`, the matrix's `ℓ∞` operator norm — and `ℓ∞` is the
+metric a `Vec ℝ n` carries, being a pi type. Mathlib's operator-norm instance is scoped and would
+have to displace that one, so the bound is proved from the row directly. The bias drops out: it is
+the same on both points. Stated at the function rather than at `Layer.linear`, which needs three
+class instances to even be written down and none of them to be Lipschitz.
 
-The bias drops out: it is the same on both points, so only `W` enters.
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
 
-Stated at the function rather than at `Layer.linear`, which needs three class
-instances to even be written down and none of them to be Lipschitz.
+## Hypotheses
+* none
+
+## Conclusion
+* the affine map is Lipschitz with the largest absolute row sum
 -/
 
 -- Authors:       Claude Opus 5

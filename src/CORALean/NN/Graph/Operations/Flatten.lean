@@ -10,6 +10,12 @@ public import CORALean.ContSet.ContSet.ContSet
 A graph layer's input `H : Mat α N F` stacked row by row into a `Vec α (N * F)`, the shape a float
 polynomial zonotope has (`Float.PolyZonotope` is vector-shaped). Node `i`, feature `j` sits at
 `finProdFinEquiv (i, j)`. Generic over the entry type, so it flattens a real matrix and a float one.
+
+## Inputs
+* `H` – node-feature matrix
+
+## Output
+* the features stacked row by row into a vector
 -/
 
 -- Authors:       Claude Opus 5.5

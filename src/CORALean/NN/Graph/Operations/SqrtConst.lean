@@ -12,6 +12,15 @@ public import CORALean.NN.Graph.Operations.SqrtSlope
 
 `s_j` at all edge factors zero, which is every edge at half weight: the
 constant term of `s_j`'s affine form in the edge factors.
+
+## Inputs
+* `R` – relaxation of the inverse square root
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `j` – node
+
+## Output
+* relaxed inverse square root of the degree with every edge at half weight
 -/
 
 -- Authors:       Claude Sonnet 5

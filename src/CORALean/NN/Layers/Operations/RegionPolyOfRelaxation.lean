@@ -8,6 +8,15 @@ public import CORALean.NN.Layers.Definitions.RegionPoly
 # The region a relaxation is fitted on
 A relaxation stores a polynomial and an error per box; on the box `[l, u]` its region is that
 box with the polynomial and error stored for it, which is one entry of `findRegionPolys`'s result.
+
+## Inputs
+* `m` – polynomial degree
+* `R` – polynomial relaxation
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* the relaxation's polynomial and error on the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

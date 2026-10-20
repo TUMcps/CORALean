@@ -10,6 +10,12 @@ public import CORALean.Global.Float.FloatOps
 The other end of [1, Alg. 1, line 1]'s spread, and `maxOver` reflected: a fold of `minimum`,
 exact, and `zero` over a layer with no neurons.
 
+## Inputs
+* none
+
+## Output
+* smallest entry, zero for an empty layer
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

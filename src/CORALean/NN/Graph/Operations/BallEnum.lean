@@ -14,6 +14,14 @@ public import CORALean.NN.Graph.Operations.Ball
 `κ` needs. This is *an* enumeration of `[1, §4.3]`'s ball, not an efficient way to find
 one — see `Theorems/EvalStepsRowBallEnum.lean` for why that distinction matters here.
 
+## Inputs
+* `A` – adjacency matrix
+* `v` – center node
+* `L` – radius in hops
+
+## Output
+* the ball's nodes listed in increasing order
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

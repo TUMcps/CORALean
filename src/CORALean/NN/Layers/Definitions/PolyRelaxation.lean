@@ -8,15 +8,12 @@ public import CORALean.NN.Layers.Definitions.EvalPoly
 /-!
 # What a polynomial activation has to supply
 
-CORA's `computeApproxPoly` together with the error `computeApproxError` [1, Alg. 1] leaves: per
-box, the coefficients of a degree-`m` polynomial and the error to allow for, stored in the scalar.
+CORA's `computeApproxPoly` together with the error `computeApproxError` [1, Alg. 1] leaves: per box,
+the coefficients of a degree-`m` polynomial and the error to allow for, stored in the scalar.
 `Sound` is that it encloses `σ` on every box the stored values describe, measured against the
-coefficients *stored*: a rounded fit is a different fit and not a wrong one, and only the
-error pays. `Relaxation` is the order-1 case.
-
-A layer's abstraction is one relaxation per neuron, all at one degree, which is what an order
-pattern [1, Eq. 23] makes of a nonlinear layer; a family is one per refinement level, the order
-free to grow with it, and sound when every level is.
+coefficients *stored*: a rounded fit is a different fit and not a wrong one, and only the error
+pays. `Relaxation` is the order-1 case. A layer's abstraction is one relaxation per neuron, all at
+one degree, as an order pattern [1, Eq. 23] makes of a nonlinear layer; a family is one per level.
 
 ## References
 

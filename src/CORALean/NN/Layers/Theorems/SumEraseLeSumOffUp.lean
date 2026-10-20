@@ -10,6 +10,16 @@ public import CORALean.NN.Layers.Theorems.ToRealIteZero
 # A sum leaving one index out, bounded above
 
 The zeroed term contributes nothing, so the rounded-up sum bounds the erased one.
+
+## Inputs
+* `i` – omitted index
+* `v` – summands
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum without the omitted term is at most the rounded-up bound
 -/
 
 -- Authors:       Claude Opus 5.5

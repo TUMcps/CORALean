@@ -18,6 +18,13 @@ every order by `tanh t = 2 σ (2 t) - 1`: `ofAffineConj` rescales the coefficien
 Nothing is given away against `Relaxation.ofDeriv` at order 1: `polyDerivDiff_one` says the
 derivative bound is there exactly its bracket. Specifications over ℝ; the runnable relaxation is
 `sigmoidPolyRelaxation`, at a stored enclosure and a checked grid.
+
+## Inputs
+* `c` – fit coefficients for each interval
+* `N` – sample count for each interval
+
+## Output
+* polynomial relaxation of the sigmoid from the fit and its sampled error
 -/
 
 -- Authors:       Claude Opus 5.5

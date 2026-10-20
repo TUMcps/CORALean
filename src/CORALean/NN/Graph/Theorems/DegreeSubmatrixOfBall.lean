@@ -8,20 +8,35 @@ public import CORALean.NN.Graph.Theorems.BallSubsetSucc
 /-!
 # A degree is decided by one ring beyond the ball
 
-`[1, §4.3]`'s extra hop, stated for `degree` itself: `GNN.degree A j` sums a whole column
-of `Ã = A + I`, so computing it on a subgraph needs every node one hop past `j`, not just
-`j`'s own ball. Given a `κ` whose image *contains* `ball A v (r + 1)` — an inclusion, not
-an equality; the proof below never needs the reverse direction — the degree at `j`'s index
-survives restriction whenever `j` itself only reaches out to radius `r`.
+`[1, §4.3]`'s extra hop, stated for `degree` itself: `GNN.degree A j` sums a whole column of `Ã = A
++ I`, so computing it on a subgraph needs every node one hop past `j`. Given a `κ` whose image
+*contains* `ball A v (r + 1)`, the degree at `j`'s index survives restriction whenever `j` itself
+only reaches out to radius `r`.
 
-The direction needs `A`'s symmetry (`hSymm`), which `[1, §4.3]`'s undirected graph always
-has but the earlier ball facts never needed: `ball` grows via `A i j` with `i` already known
-and `j` new, while a column sum for fixed `j` ranges over rows `i` — the *other* orientation
-of the same entry. Without `hSymm` the claim is false: a single directed edge into `j` from
-outside `j`'s own ball is a counterexample.
+The direction needs `A`'s symmetry (`hSymm`), which `[1, §4.3]`'s undirected graph always has:
+`ball` grows via `A i j` with `i` known, while a column sum for fixed `j` ranges over rows `i`.
+Without `hSymm` the claim is false.
 
-Get the "outside contributes zero" step from `Finset.sum_subset`, mirroring
-`submatrix_mul_of_closed`.
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `r` – radius in hops
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `j` – node whose degree is read
+* `k` – index of that node among the kept ones
+
+## Hypotheses
+* `_hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the ball one hop larger
+* `hj` – node lies in the ball of radius r
+* `hk` – index names the node
+
+## Conclusion
+* the degree on the subgraph equals the degree in the whole graph
 
 ## References
 

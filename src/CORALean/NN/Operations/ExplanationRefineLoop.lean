@@ -11,6 +11,14 @@ The do-while that replaces [1, Alg. 1]'s `suff` call: pass at the current abstra
 on a genuine counterexample, and otherwise refine one level and repeat. Neither oracle is
 computed, for [1, Alg. 1]'s reason.
 
+## Inputs
+* `absSuff` – abstract sufficiency check at each level
+* `genuine` – genuine counterexample check at each level
+* `E` – candidate explanation
+
+## Output
+* whether the candidate is sufficient after the refinement loop
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

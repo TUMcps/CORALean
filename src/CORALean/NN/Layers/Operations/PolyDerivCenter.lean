@@ -9,6 +9,12 @@ public import CORALean.Global.Float.FloatOps
 
 The fit's linear coefficient, copied and so stored exactly; below order 1 there is none, and the
 center is zero.
+
+## Inputs
+* `c` – fit coefficients
+
+## Output
+* the fit's linear coefficient
 -/
 
 -- Authors:       Claude Opus 5.5

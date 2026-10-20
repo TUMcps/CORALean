@@ -13,6 +13,17 @@ on the input set, with no hypothesis: the network is sound at its own `eval`. A
 specification that fails on the enclosed set is not a counterexample; finding out which it
 is means tightening the enclosure. `Sound.holds_of_enclose` is the same transfer for any
 function the network is sound at, which a reduced network needs.
+
+## Inputs
+* `nn` – network
+* `X` – input set
+* `spec` – specification
+
+## Hypotheses
+* `h` – the specification holds on the enclosed set
+
+## Conclusion
+* the specification holds on the image of the input set
 -/
 
 -- Authors:       Claude Opus 5

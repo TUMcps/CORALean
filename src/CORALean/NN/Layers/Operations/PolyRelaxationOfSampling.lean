@@ -15,6 +15,16 @@ the recentering paying for its own rounding in `ofBracket`. The fit `c` owes not
 of stored values, a least-squares solve, a Taylor expansion or a guess — and decides precision
 alone. All four arguments are data; `ofSampling_sound` is what they are worth.
 
+## Inputs
+* `E` – enclosure of the activation
+* `c` – fit coefficients for each box
+* `M` – derivative bound for each box
+* `dx` – grid spacing for each box
+* `p` – proposed sample grid for each box
+
+## Output
+* polynomial relaxation from the fit and its checked grid
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

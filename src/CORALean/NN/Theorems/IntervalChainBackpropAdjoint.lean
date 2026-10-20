@@ -14,6 +14,15 @@ For every gradient `g` at the output and every change `δ` of the input interval
 tangent rule, and the chain composes them in opposite orders. The linear layer's `dmu - dr`,
 `dmu + dr` is the transpose of `(dmu - dr, dmu + dr)` in `δ`, with `|W|` held fixed; the
 activation's is a diagonal map, its own transpose.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* interval backpropagation is the adjoint of the tangent propagation
 -/
 
 -- Authors:       Claude Opus 5.5

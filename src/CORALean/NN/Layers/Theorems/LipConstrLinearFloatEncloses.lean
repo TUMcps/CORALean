@@ -14,6 +14,17 @@ public import CORALean.NN.Layers.Theorems.LipConstrScaleFloatMem
 The real layer `x ↦ N (W x + b)` at the weights, bias and `λ` the floats denote. The scaling
 `N` lies in its box, so `N W` lies in the interval matrix `mtimes` runs at and `N b` in the
 bias box. Needs `0 < λ`, which makes the box a bracket of `N`.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `lam` – Lipschitz bound
+
+## Hypotheses
+* `hl` – Lipschitz bound is positive
+
+## Conclusion
+* the layer encloses the rescaled affine map
 -/
 
 -- Authors:       Claude Opus 5.5

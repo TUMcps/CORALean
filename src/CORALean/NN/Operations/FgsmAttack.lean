@@ -12,6 +12,16 @@ public import Mathlib.Data.Real.Sign
 `y = evaluate(x)`, `grad = backprop(lossDer(t, y))`, `z = x + ε .* sign(grad)`. The loss
 derivative is an argument, as CORA's `lossDer` is (its default, `softmax(y) - t`, is the caller's
 to pass); `idxLayer` is every layer. Real: the gradient is `Chain.backprop`'s.
+
+## Inputs
+* `c` – network chain
+* `x` – input point
+* `t` – target output
+* `ε` – step size
+* `lossDer` – derivative of the loss
+
+## Output
+* input point after one signed gradient step
 -/
 
 -- Authors:       Claude Opus 5.5

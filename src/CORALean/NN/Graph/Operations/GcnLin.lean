@@ -11,6 +11,13 @@ CORA's `nnGCNLayer`, [1, Def. 4]: `H ↦ P H W`, `W` mixing features and `P` mix
 nodes. `P` and `W` stay separate arguments rather than one composed matrix: an
 uncertain graph replaces `P` by an enclosure and leaves `W` alone.
 
+## Inputs
+* `P` – message-passing matrix
+* `W` – weight matrix
+
+## Output
+* linear map mixing nodes by P and features by W
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

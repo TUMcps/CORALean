@@ -14,6 +14,17 @@ file's whole point over the others — so split one file each, as CORA gives
 each of the refinement rules a place too.
 
 The set-level reading of `encloseAt_outer`: the image of every point.
+
+## Inputs
+* `rn` – refinable network
+* `sch` – schedule of order patterns
+* `X` – input set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact image lies in the enclosure at the schedule
 -/
 
 -- Authors:       Claude Opus 5

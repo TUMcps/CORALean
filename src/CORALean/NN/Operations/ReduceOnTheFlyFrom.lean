@@ -24,6 +24,15 @@ buckets there, and `mergeRows`/`mergeCols` apply [1, Prop. 4]. Only then does th
 two reduced layers. The split of a layer's neurons is `Partition.ofPred`, which sorts rather
 than choosing.
 
+## Inputs
+* `le` – comparison of two scalars
+* `tol` – tolerance on the remaining fraction
+* `fuel` – bound on the loop iterations
+* `ρ` – reduction rate
+
+## Output
+* reduced network from the layer on with the output set, or none if the fuel runs out
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for

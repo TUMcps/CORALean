@@ -11,6 +11,30 @@ public import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
 
 `sample_bounds_of_cover` at a grid that passed its checks, which is the form a caller reaches:
 sound at every such grid, and tighter as `dx` shrinks.
+
+## Inputs
+* `g` – function
+* `g'` – its derivative
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `M` – bound on the derivative
+* `dx` – maximal gap between samples
+* `p` – sample points
+* `gLo` – lower bounds at the sample points
+* `gUp` – upper bounds at the sample points
+* `t` – point in the box
+
+## Hypotheses
+* `hd` – the function has the given derivative
+* `hM` – derivative is bounded on the box
+* `hchk` – the grid is checked
+* `hlo` – lower bounds hold at the samples
+* `hup` – upper bounds hold at the samples
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the function at the point lies within the sampled range widened by the slack
 -/
 
 -- Authors:       Claude Opus 5.5

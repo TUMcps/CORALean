@@ -8,27 +8,23 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # `Layer.elementwiseAffineConZonotopeCora`: `evaluateConZonotope` of `nnElementwiseAffineLayer`
 
-`nn/layers/linear/nnElementwiseAffineLayer.m`, l. 150-154 (and `evaluateTaylm`, l. 136-139):
+`nnElementwiseAffineLayer.m`, l. 150-154: `c = scale * c + offset; G = scale * G` with `scale` a
+column vector and `c` a column vector of the same length `n`, so `scale * c` is an `n x 1` times an
+`n x 1` matrix product, defined only for `n = 1` (`evaluatePolyZonotope` and the batch evaluation
+use the elementwise `scale(:) .* c`). The product of mismatched matrices is `none`, standing for
+MATLAB's error. Read from the source, not run.
 
-```
-[scale,offset] = obj.aux_getScaleAndOffset();
-c = scale * c + offset;
-G = scale * G;
-```
+`nnElementwiseAffineLayer([2;3], [0;1])` is valid, yet `evaluate(conZonotope([0;0], eye(2)))` stops
+with the error, where `diag(scale) c + offset` is the answer.
 
-`aux_getScaleAndOffset` returns `scale` as a column vector (`aux_getPaddedParameter`: `p(:)` for a
-vector parameter, and with `inputSize` unset the padded size is `1`), and `c` is a column vector
-of the same length `n` (`conversionConZonoStarSet`), so `scale * c` is an `n x 1` times an `n x 1`
-matrix product, defined only for `n = 1`. `evaluatePolyZonotope` and the batch evaluation use the
-elementwise `scale(:) .* c`. `nnBatchNormLayer` inherits both methods. The product of two matrices
-is `none` when the inner dimensions differ, which stands for MATLAB's error `Incorrect dimensions
-for matrix multiplication`. Read from the source, not run.
+## Inputs
+* `c` – center vector
 
-# CORA's elementwise affine layer stops on a constrained zonotope
+## Hypotheses
+* none
 
-`nnElementwiseAffineLayer([2;3], [0;1])` is a valid layer (the constructor takes column vectors),
-and `evaluate(conZonotope([0;0], eye(2)))` stops with the error, where `diag(scale) c + offset`
-is the answer. Read from the source, not run.
+## Conclusion
+* the matrix product is an error while the elementwise product is defined
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,15 @@ inside, and the nearer end otherwise. A float comparison is only trusted when it
 so where neither side of `0` is certified the peak `df 0`, a bound everywhere, is returned: wider
 than CORA's three cases there, never narrower. Not modelled, as at ℝ: the `NaN` fallback.
 
+## Inputs
+* `dfLo` – lower float bound of the derivative at a point
+* `dfHi` – upper float bound of the derivative at a point
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* float bounds on the derivative over the box
+
 ## References
 
 * [1] `nn/@nnSShapeLayer/getDerBounds.m`

@@ -13,6 +13,15 @@ An even derivative that does not increase away from `0` does not decrease up to 
 `0` it is its own mirror image. Which is the shape [1, Thm. 3.2] needs, `f'' ≥ 0` left of the
 inflection point and `f'' ≤ 0` right of it, at the inflection point `0`.
 
+## Inputs
+* `df` – derivative of the activation
+
+## Hypotheses
+* `h` – the derivative is S-shaped
+
+## Conclusion
+* the derivative rises up to zero and falls after it
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

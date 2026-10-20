@@ -13,6 +13,12 @@ layer. `tailEnclose` threads a set through the enclosures `f`, `tailEval` is the
 layers `g` they enclose. Which layer is which, and what each adds, is what `Alg. 1` fixes and the
 theorems about the tail take as hypotheses.
 
+## Inputs
+* none
+
+## Output
+* polynomial zonotope after enclosing the layers after the pooling
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

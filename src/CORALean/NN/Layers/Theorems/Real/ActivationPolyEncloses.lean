@@ -38,6 +38,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 neuron's relaxation is sound. `dependent` is exact, so a point of the input is the point of the
 dependent zonotope at some factors, and the fits' exact evaluation at those factors is the
 polynomial there; the deviation from it is in the box.
+
+## Inputs
+* `P` – relaxation of every neuron
+
+## Hypotheses
+* `hP` – every neuron's relaxation is sound for the activation
+
+## Conclusion
+* the exact layer encloses the activation coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

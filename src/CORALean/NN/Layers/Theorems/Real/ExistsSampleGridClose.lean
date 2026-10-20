@@ -8,6 +8,20 @@ public import CORALean.NN.Layers.Definitions.PolySampling
 # Every point of the box is near an exact sample
 
 ℝ-only, as the grid is: within one spacing, the sample below the point named by the floor.
+
+## Inputs
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `t` – point in the box
+* `N` – number of sample intervals
+
+## Hypotheses
+* `hN` – number of intervals is positive
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* some sample lies within one grid step of the point
 -/
 
 -- Authors:       Claude Opus 5.5

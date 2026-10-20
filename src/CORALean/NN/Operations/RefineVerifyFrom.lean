@@ -13,6 +13,16 @@ public import CORALean.NN.Operations.EncloseReduceAt
 (`false`) when none is left (line 17). The disjointness test and the refinement step are the
 caller's; `RefineVerify` starts it at line 1's pattern.
 
+## Inputs
+* `rn` – refinable network
+* `ρ` – order after reduction
+* `X` – input set
+* `isDisjoint` – test that the output set misses the unsafe set
+* `refineStep` – refinement of the schedule
+
+## Output
+* verified if some remaining iteration's output misses the unsafe set, otherwise unknown
+
 ## References
 
 * [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural

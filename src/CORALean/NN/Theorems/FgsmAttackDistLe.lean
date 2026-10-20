@@ -9,6 +9,20 @@ public import CORALean.NN.Operations.FgsmAttack
 
 Each coordinate moves by `ε * sign(·)`, and a sign has absolute value at most one, so
 `‖z - x‖∞ ≤ ε` for `ε ≥ 0`, the guarantee CORA documents.
+
+## Inputs
+* `c` – network chain
+* `x` – input point
+* `t` – target output
+* `ε` – step size
+* `lossDer` – derivative of the loss
+* `i` – input coordinate
+
+## Hypotheses
+* `hε` – step size is nonnegative
+
+## Conclusion
+* the attack moves every coordinate by at most the step size
 -/
 
 -- Authors:       Claude Opus 5.5

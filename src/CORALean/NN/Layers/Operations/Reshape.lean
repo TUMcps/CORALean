@@ -13,6 +13,12 @@ map, so `Layer.linear` at a permutation matrix would enclose the same set; it is
 the *guarantee*: `Mtimes.mtimes_outer` claims containment and has no room to claim more, and
 `Reindex` is that room, one method and one equality. A reshape carries no weights, so there is
 no scalar to name and nothing to round, and every representation's `Reindex` is exact.
+
+## Inputs
+* `e` – bijection from output to input coordinates
+
+## Output
+* layer permuting the coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

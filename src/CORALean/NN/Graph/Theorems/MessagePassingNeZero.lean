@@ -11,6 +11,18 @@ public import CORALean.NN.Graph.Operations.MessagePassing
 denominator (`GNN.one_le_degree` keeps both factors positive whenever `A` is
 nonnegative, but nothing here even needs that) never turns a zero numerator
 nonzero. Off the diagonal `(1 : Mat ℝ N N) i j = 0`, so the numerator is `A i j`.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `i` – sending node
+* `j` – receiving node
+
+## Hypotheses
+* `h` – message from i to j is nonzero
+
+## Conclusion
+* the nodes coincide or the adjacency has an edge between them
 -/
 
 -- Authors:       Claude Opus 5

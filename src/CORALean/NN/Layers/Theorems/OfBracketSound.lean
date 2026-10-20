@@ -11,6 +11,17 @@ public import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
 
 What the bracket buys, and the only place `σ` appears: the recentered fit encloses it wherever
 the two ends did. The fit is free and the bracket owes everything.
+
+## Inputs
+* `c` – fit coefficients for each box
+* `lo` – lower end of the error bracket
+* `hi` – upper end of the error bracket
+
+## Hypotheses
+* `hb` – the bracket contains the activation minus the fit
+
+## Conclusion
+* the recentered relaxation is sound for the activation
 -/
 
 -- Authors:       Claude Opus 5.5

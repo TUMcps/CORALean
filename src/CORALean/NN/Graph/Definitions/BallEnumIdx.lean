@@ -10,6 +10,15 @@ public import CORALean.NN.Graph.Theorems.MemBallSelf
 
 `mem_ball_self` puts `v` in the ball, and `mem_ballEnum_iff` turns that into an
 existential over indices — `Exists.choose` picks one.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `L` – radius in hops
+
+## Output
+* position of the center node in the enumerated ball
 -/
 
 -- Authors:       Claude Opus 5

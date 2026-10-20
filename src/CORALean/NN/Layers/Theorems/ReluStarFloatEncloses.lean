@@ -13,6 +13,15 @@ public import CORALean.ContSet.StarSet.Float.Theorems.RowBoundsMem
 
 The ReLU image of the star set lies in the set the float layer returns, as in
 `Layer.reluStar_encloses`, the stored numbers read as reals.
+
+## Inputs
+* `n` – layer width
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float layer encloses ReLU coordinatewise
 -/
 
 -- Authors:       Claude Opus 5.5

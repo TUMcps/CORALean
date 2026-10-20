@@ -15,6 +15,14 @@ reduced linear layer a neuron merge leaves behind, weights and box alike stored 
 `E` need not be centered at `0`, a merging error rarely is, so the layer commits to `E`'s own
 center as its nominal value and pays the rest into `enclose`, the way `Layer.activation` pays a
 relaxation's error. Nothing rounds beyond the representation's own `plus` and the box's sum.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `E` – added error box
+
+## Output
+* layer applying the affine map and adding the error box
 -/
 
 -- Authors:       Claude Opus 5.5

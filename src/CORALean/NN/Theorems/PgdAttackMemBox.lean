@@ -10,6 +10,29 @@ public import CORALean.NN.Operations.PgdAttack
 CORA's guarantees for `computePGDAttack`: the result lies in `[l, u]` and within `ε` of `x` in the
 sup norm. Both come from the last clip: `z ∈ [max(l, x - ε), min(u, x + ε)]`, which is nonempty
 exactly when the hypothesis holds, and at least one pass has run.
+
+## Inputs
+* `c` – network chain
+* `x` – input point
+* `t` – target output
+* `ε` – perturbation radius
+* `Q` – number of iterations
+* `l` – lower bounds of the input
+* `u` – upper bounds of the input
+* `stepsize` – initial step size
+* `stepsizeDecay` – step size decay factor
+* `stepsizeDecayIter` – iterations at which the step size decays
+* `lossDer` – derivative of the loss
+* `z` – attack point
+* `i` – input coordinate
+
+## Hypotheses
+* `hQ` – iteration count is positive
+* `hz` – the point is the attack's result
+* `hbox` – the perturbation box meets the input bounds
+
+## Conclusion
+* the attack stays in the bounds and within the radius of the input
 -/
 
 -- Authors:       Claude Opus 5.5

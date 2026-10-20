@@ -13,6 +13,14 @@ calls `Transition.aux_jumpCost` prices for a hybrid automaton's reset.
 
 What `mtimes`, `plus` and the embedding cost are parameters, `S` being
 abstract here: `mtimesCost` is this at `cMtimes := Cost.matVec m n`.
+
+## Inputs
+* `cMtimes` – cost of the matrix product
+* `cPlus` – cost of the sum
+* `cEmbed` – cost of embedding the bias
+
+## Output
+* the three costs added
 -/
 
 -- Authors:       Claude Opus 5.5

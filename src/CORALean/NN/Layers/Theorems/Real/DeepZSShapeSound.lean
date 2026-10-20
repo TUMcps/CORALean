@@ -13,6 +13,19 @@ and falls after it. At `l = u` it is the constant `f(u)`; otherwise
 `λ t + μ₁ ∓ μ₂` are the two lines of `sShape_band_sound` at `λ = min(f'(l), f'(u))`, through
 `(l, f(l))` and `(u, f(u))`.
 
+## Inputs
+* `f` – activation function
+* `df` – its derivative
+* `x'` – turning point of the derivative
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+* `hmono` – derivative rises up to the turning point
+* `hanti` – derivative falls after the turning point
+
+## Conclusion
+* DeepZ's transformer is sound for the activation
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

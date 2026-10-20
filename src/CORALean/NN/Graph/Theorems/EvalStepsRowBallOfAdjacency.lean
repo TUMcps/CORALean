@@ -15,6 +15,26 @@ to have touched the rest of `A` at all. `φ` embeds the inner ball's own enumera
 it is existentially packaged rather than exposed as data, being an artifact of *which* two
 enumerations a caller happened to build, not a choice they made.
 
+## Inputs
+* `N` – number of nodes
+* `F` – feature width
+* `A` – adjacency matrix
+* `v` – node of interest
+* `L` – number of steps
+* `K` – number of kept nodes
+* `κ` – indices of the kept nodes
+* `W` – weights of the steps
+* `X` – node-feature matrix
+
+## Hypotheses
+* `hA` – adjacency entries are nonnegative
+* `hSymm` – adjacency matrix is symmetric
+* `hinj` – kept indices are distinct
+* `hκ` – kept nodes contain the ball one hop larger
+
+## Conclusion
+* the node's row is computable on a subgraph of the kept nodes
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

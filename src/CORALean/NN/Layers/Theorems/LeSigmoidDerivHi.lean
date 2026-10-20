@@ -11,6 +11,20 @@ public import CORALean.NN.Layers.Theorems.Real.Basic
 # The sigmoid derivative is below its rounded upper bound
 
 Each factor is below its upper end, both non-negative, and the product rounds up.
+
+## Inputs
+* `E` – enclosure of the sigmoid
+* `l` – lower end of the box
+* `u` – upper end of the box
+* `x` – point in the box
+
+## Hypotheses
+* `hE` – enclosure is sound for the sigmoid
+* `hl` – point is above the lower end
+* `hu` – point is below the upper end
+
+## Conclusion
+* the sigmoid's derivative is at most the rounded upper bound
 -/
 
 -- Authors:       Claude Opus 5.5

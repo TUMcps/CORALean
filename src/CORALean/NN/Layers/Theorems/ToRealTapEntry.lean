@@ -12,6 +12,15 @@ public import CORALean.NN.Layers.Operations.TapEntry
 `if` commutes with `toReal`, and the recursion does nothing else, so the entry a machine
 scalar stores reads as the entry the same recursion builds over ℝ from the weights read in:
 an equality, with no hypothesis, which is what "a stencil rounds nowhere" means.
+
+## Inputs
+* `n` – number of inputs
+
+## Hypotheses
+* none
+
+## Conclusion
+* a stencil entry reads back as the stencil entry of the real weights
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,15 @@ public import Mathlib.Analysis.Calculus.Deriv.Pow
 `Relaxation.ofDeriv_sound` at `σ' x = 2x`: the stored ends `2l` and `2u` bracket it on the box,
 the enclosure `a·a` brackets `x²` at every stored value, and the clamp lands the slope in the
 bracket.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for squaring
 -/
 
 -- Authors:       Claude Opus 5.5

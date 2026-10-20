@@ -10,6 +10,17 @@ public import CORALean.NN.Layers.Definitions.ScaleRounding
 
 `ra · offset + c`, rounded down. Addition needs no sign hypothesis, so this holds for any
 `ra`.
+
+## Inputs
+* `R` – relaxation of the activation
+* `A` – rounding of the output scale
+* `B` – rounding of the input scale
+* `c` – output shift
+* `l` – lower end of the box
+* `u` – upper end of the box
+
+## Output
+* offset of the affine conjugate, rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,17 @@ the incoming rows by `df` at the stored input.
 The relaxation takes no part — `eval` is `σ` coordinatewise whichever one the
 layer carries — so the hypothesis is on `σ` alone, and every layer built on a
 differentiable activation gets this at its own derivative.
+
+## Inputs
+* `σ` – activation function
+* `σ'` – its derivative
+* `x` – input point
+
+## Hypotheses
+* `hd` – the activation has the given derivative
+
+## Conclusion
+* the layer's sensitivity is the diagonal of the derivatives
 -/
 
 -- Authors:       Claude Opus 5

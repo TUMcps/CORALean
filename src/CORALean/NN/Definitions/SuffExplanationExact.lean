@@ -20,6 +20,17 @@ back from a containment whose left side is an exact image — the shape
 `IsSuffExplanation`, which ranges over `construct (explainBox …)` and not over
 its `ofInterval` image; `suffExplanation_of_exact` is that step.
 
+## Inputs
+* `S` – set representation
+* `f` – network function
+* `x` – input point
+* `ε` – perturbation radius
+* `E` – candidate explanation, a feature set
+* `l` – target label
+
+## Output
+* exact image of the explanation box never lets a rival tie the target
+
 ## References
 
 * [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining

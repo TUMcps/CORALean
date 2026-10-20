@@ -20,6 +20,15 @@ Along any curve `γ` of intervals with derivative `γ'` at `t`, the forward pass
 pass: the gradient of any loss that is a function of the output interval, pulled back.
 The interval map of a linear layer is linear in `(l, u)` up to the bias, `|W|` being a fixed
 matrix, and the activation's is a diagonal map.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the tangent propagation is the derivative of the forward pass along a curve
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,16 @@ public import CORALean.NN.Layers.Operations.Linear
 The exact affine map the stored weights denote, `x ↦ W x + b` read into ℝ: `mtimes` carries
 the weights over every point of the set and `plus` adds the bias's zero-width box. At `𝕋 := ℝ`
 the reading is the identity and this is `W x + b` itself.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer encloses the affine map of the stored weights
 -/
 
 -- Authors:       Claude Opus 5.5

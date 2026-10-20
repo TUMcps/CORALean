@@ -13,6 +13,12 @@ range over is carried through each layer by outward-rounded interval arithmetic.
 `mu = W (l + u)/2 + b`, `r = |W| (u - l)/2` are `Interval.mtimes` of the float `W` and `|W|`
 (`absolute` entrywise, exact) against the halved sum and difference, read back as
 `[mu - r, mu + r]`; the activation's is the stored scalar enclosure `σE`, entrywise.
+
+## Inputs
+* none
+
+## Output
+* float box of the chain's outputs from the box of inputs
 -/
 
 -- Authors:       Claude Opus 5.5

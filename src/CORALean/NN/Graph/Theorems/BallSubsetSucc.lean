@@ -9,6 +9,18 @@ public import CORALean.NN.Graph.Operations.Ball
 
 Immediate from the `i = j` disjunct in `ball`'s successor case: every node
 already in the ball reaches itself, so it stays in at the next radius too.
+
+## Inputs
+* `N` – number of nodes
+* `A` – adjacency matrix
+* `v` – center node
+* `r` – radius in hops
+
+## Hypotheses
+* none
+
+## Conclusion
+* the ball at radius r is contained in the ball at r + 1
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,14 @@ CORA's `nnLipConstrLinearLayer`: `x ↦ N (W x + b)`, `N` the diagonal of `Layer
 
 At ℝ only: `N` divides and takes absolute values of the stored weights, which a float layer would
 round, and the weights it then runs are the computed `N W`.
+
+## Inputs
+* `W` – weight matrix
+* `b` – bias vector
+* `lam` – Lipschitz bound
+
+## Output
+* layer applying the rescaled affine map
 -/
 
 -- Authors:       Claude Sonnet 5.5

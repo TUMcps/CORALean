@@ -14,6 +14,15 @@ offset's own rounding is paid for. The error is quadratic in the box width where
 is, against the linear one monotonicity gives. The bracket, the slope and `σ` at the left end
 all arrive as stored values, `σ` through an `Enclosure`. Nothing constrains `λ`: a caller
 passing a clamped guess owes only that the clamp lands in the bracket.
+
+## Inputs
+* `E` – enclosure of the activation
+* `lo` – lower derivative bracket for each box
+* `hi` – upper derivative bracket for each box
+* `lam` – slope for each box
+
+## Output
+* relaxation from the derivative bracket and slope
 -/
 
 -- Authors:       Claude Opus 5.5

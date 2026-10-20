@@ -18,6 +18,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `Real.softplus` at the stored sharpness, coordinatewise, for every point of a set whose box
 satisfies `IsSoftplusBox` at each coordinate: the sharpness positive and the arguments of `expUp`
 and `logDown` in the ranges those enclosures cover.
+
+## Inputs
+* `β` – sharpness
+* `k` – reduction depth of the exponential
+* `nl` – range exponent of the logarithm
+* `kl` – reduction depth of the logarithm
+* `s` – input set
+* `x` – point of the input set
+
+## Hypotheses
+* `hx` – point lies in the input set
+* `hs` – every coordinate's box is in range
+
+## Conclusion
+* softplus of the point lies in the layer's output set
 -/
 
 -- Authors:       Claude Opus 5.5

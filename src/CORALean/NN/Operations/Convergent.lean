@@ -12,6 +12,12 @@ Stated by a Minkowski inflation and no metric on sets: some order pattern
 brings the enclosure inside the exact image widened by any closed `ε`-ball.
 `Pointwise` addition does all the work, with no Hausdorff distance to define,
 to relate to `construct`, or to prove complete.
+
+## Inputs
+* `L` – refinable layer
+
+## Output
+* some pattern brings the enclosure inside any inflation of the exact image
 -/
 
 -- Authors:       Claude Opus 5

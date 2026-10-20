@@ -9,6 +9,16 @@ public import CORALean.NN.Layers.Operations.Reshape
 
 The only standard layer whose guarantee is an equality, at every scalar: a reindexing moves
 stored values without arithmetic, so it rounds nothing even at a machine scalar.
+
+## Inputs
+* `e` – bijection from output to input coordinates
+* `s` – input set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the layer's output is exactly the permuted input set
 -/
 
 -- Authors:       Claude Opus 5.5

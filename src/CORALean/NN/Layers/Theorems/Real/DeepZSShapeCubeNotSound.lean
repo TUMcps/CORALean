@@ -20,6 +20,15 @@ curvature being the reverse of the sigmoid's. The same input breaks CORA's `'sin
 branch of `computeApproxPoly`, which takes Eq. (7) for every activation declared monotone,
 `nnActLayerFromHandle(@(x) x.^3, [], 1)` among them, and returns `d = μ₂` unchecked.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cube is S-shaped as printed and monotone, yet the transformer is unsound for it
+
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness

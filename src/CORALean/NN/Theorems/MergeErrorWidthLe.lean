@@ -11,17 +11,29 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # What the tolerance buys
 
-`neuronMerging_sandwich_outer` is sound at *every* bucket of [1]'s `B_{k,y,δ}`,
-so which `y` and `δ` get chosen owes no proof. This is the statement that makes
-an automatic choice meaningful anyway: the error the merge costs is linear in
-`δ`, so driving `δ` down drives the reduction's cost to zero, the same shape as
-`ConPolyZono.reduceBy_outer` holding at every partition.
+`neuronMerging_sandwich_outer` is sound at *every* bucket of [1]'s `B_{k,y,δ}`, so which `y` and `δ`
+get chosen owes no proof. This is the statement that makes an automatic choice meaningful anyway:
+the error the merge costs is linear in `δ`, so driving `δ` down drives the reduction's cost to zero.
+`mergeBucket` alone only bounds `Y.sup i - Y.inf i`, one-sided; a bucket with crossed bounds at some
+index (denoting `∅`) satisfies that bound in the wrong direction, and the error box's *width* needs
+the other side too. `hY : Y.IsNonempty` is the one hypothesis this adds to the plan, exactly what a
+real relaxation's output box always has.
 
-`mergeBucket` alone only bounds `Y.sup i - Y.inf i`, one-sided; a bucket with
-crossed bounds at some index (`Y.sup i < Y.inf i`, denoting `∅`) satisfies that
-bound with room to spare in the wrong direction, and the error box's *width*
-needs the other side too. `hY : Y.IsNonempty` is the one hypothesis this adds
-to the plan, exactly what a real relaxation's output box always has.
+## Inputs
+* `n` – layer width
+* `n₂` – output width
+* `Y` – bounds of the layer's neurons
+* `y` – merge value
+* `δ` – merge tolerance
+* `W` – weight matrix
+* `i` – output index
+
+## Hypotheses
+* `hδ` – tolerance is nonnegative
+* `hY` – the bounds are nonempty
+
+## Conclusion
+* the error box is at most twice the tolerance wide per unit of the bucket's row weight
 
 ## References
 

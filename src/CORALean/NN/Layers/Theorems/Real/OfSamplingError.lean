@@ -9,6 +9,21 @@ public import CORALean.NN.Layers.Definitions.PolyOfSampling
 
 ℝ-only, as the construction is: by `rfl`, which ties the convergence theorems to `ofSampling`
 rather than to a lookalike.
+
+## Inputs
+* `n` – polynomial degree
+* `σ` – activation function
+* `c` – fit coefficients for each interval
+* `M` – derivative bound for each interval
+* `N` – sample count for each interval
+* `l` – lower end of the interval
+* `u` – upper end of the interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation's error is the sampling error of the fit
 -/
 
 -- Authors:       Claude Opus 5.5

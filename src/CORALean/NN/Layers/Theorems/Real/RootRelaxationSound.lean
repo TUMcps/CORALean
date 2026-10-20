@@ -11,6 +11,15 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 # The square root relaxation over ℝ is sound
 
 `Real.sqrt` is monotone and the exact enclosure is sound, so `Relaxation.ofMonotone_sound` applies.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for the square root
 -/
 
 -- Authors:       Claude Sonnet 5.5

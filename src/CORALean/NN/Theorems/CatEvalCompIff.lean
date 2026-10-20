@@ -10,6 +10,18 @@ public import CORALean.NN.Definitions.Cat
 `f₂ ∘ f₁` maps `x` to `y` exactly when some intermediate `z` is a value of `f₁` at `x` and `y`
 one of `f₂` at `z`: the inversion of `Cat.Eval` at `.comp`, [1, Fig. 3]'s third form.
 
+## Inputs
+* `f₂` – second function
+* `f₁` – first function
+* `x` – input point
+* `y` – output point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the composition maps the point to the output iff some intermediate point links them
+
 ## References
 
 * [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:

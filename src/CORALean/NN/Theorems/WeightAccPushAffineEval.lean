@@ -8,6 +8,18 @@ public import CORALean.NN.Operations.Basic
 # Fusing an elementwise affine layer composes the maps
 
 `s ⊙ (W x + b) + o = (diag s W) x + (s ⊙ b + o)`, exactly.
+
+## Inputs
+* `acc` – accumulated map
+* `s` – scale of every coordinate
+* `o` – offset of every coordinate
+* `x` – input vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pushed accumulator is the accumulated map followed by the affine map
 -/
 
 -- Authors:       Claude Opus 5.5

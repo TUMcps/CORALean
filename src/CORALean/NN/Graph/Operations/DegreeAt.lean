@@ -12,6 +12,15 @@ public import CORALean.NN.Graph.Operations.Degree
 time. `degree` and `degreeSup` are the two ends of the range `degreeAt` can
 take, at all weights `0` and at all weights `1`.
 
+## Inputs
+* `A` – adjacency matrix
+* `U` – uncertain edges
+* `lam` – weights of the uncertain edges
+* `j` – node
+
+## Output
+* degree of the node at the given edge weights
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph

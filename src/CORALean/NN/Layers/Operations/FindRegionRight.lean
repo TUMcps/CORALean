@@ -9,6 +9,15 @@ public import CORALean.NN.Layers.Operations.RegionPolyOfRelaxation
 From the right end `u` of the uncovered domain, fit `[l_i, u]`, halving `u - l_i` while the error
 exceeds the tolerance. No lower order is tried here, as in CORA. A region narrower than the
 tolerance, or running out of `fuel`, is `none`. Returns the region and its left end.
+
+## Inputs
+* `F` – polynomial relaxations by order
+* `order` – polynomial order
+* `tol` – error tolerance
+* `u` – right end of the uncovered domain
+
+## Output
+* accepted region from the right end with its left end, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5

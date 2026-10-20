@@ -10,6 +10,12 @@ public import CORALean.NN.Layers.Definitions.Relaxation
 
 And back, so nothing distinguishes the two at order 1: the same data, read as a slope and an
 offset rather than as two coefficients.
+
+## Inputs
+* `P` – order-one polynomial relaxation
+
+## Output
+* affine relaxation with the coefficients as slope and offset
 -/
 
 -- Authors:       Claude Opus 5.5

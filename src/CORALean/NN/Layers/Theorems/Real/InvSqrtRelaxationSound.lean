@@ -19,6 +19,15 @@ value theorem against the derivative bracket; below it the box straddles the kin
 relaxation, sound everywhere, is what is used; `tighter` keeps both. A sound bound on the error
 [1, Lemma 2] computes exactly, at its critical points.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxation is sound for the clamped inverse square root
+
 ## References
 
 * [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
