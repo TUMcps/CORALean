@@ -11,6 +11,17 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 The halved right-hand side read back as a weight on the original one. Stated as
 an `iff` on points, which is the form a constrained zonotope's convex hull needs
 it in: it has the weight in hand and owes the rows.
+
+## Inputs
+* `t` – linear functional
+* `P` – H-polytope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `halfScaled t` iff its constraints hold with bounds scaled by `(t x + 1) / 2`
 -/
 
 -- Authors:       Claude Opus 5

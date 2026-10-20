@@ -8,6 +8,13 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # `HPolytope.padRight`
 
 The mirror of `padLeft`, with the new coordinates padded in front.
+
+## Inputs
+* `n₁` – natural number
+* `P` – H-polytope
+
+## Output
+* `P` on a coefficient space wider by `n₁`, new coordinates padded with zeros in front
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

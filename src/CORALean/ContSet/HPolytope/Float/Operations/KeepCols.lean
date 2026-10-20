@@ -17,6 +17,13 @@ bound: an inequality reads `Aᵢ x ≤ bᵢ + |b_errorᵢ| + ∑ₗ |Aᵢ,right 
 equality, a slab that much wider. The float counterpart of the exact layer's `keepRows` without
 its equality pairs, which the slack makes unnecessary; the error box is not read (a constrained
 zonotope's constraint has none) and the result's is the origin.
+
+## Inputs
+* `P` – H-polytope
+* `part` – split of the coordinates into `q` kept and `r` dropped
+
+## Output
+* the rows at `part.left`, each slack grown by its columns at `part.right`, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

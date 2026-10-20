@@ -12,6 +12,14 @@ meets going forward. `none` when no `tᵢ` is positive, the ray never leaves (an
 not the paper's bounded `Q`). The first minimizer is taken; a tie is a corner, which the billiard
 walk then discards.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+
+## Output
+* the index of `t̄` in `[1, Eq. 1]`
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

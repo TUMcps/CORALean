@@ -23,7 +23,7 @@ eigenvalues are an argument: that they are those of `Q₁⁻¹ Q₂` is `log_det
 * `β` – positive weight
 
 ## Output
-* `∑ (1 − β² λᵢ) / (1 + β λᵢ)`
+* the sum over eigenvalues of `(1 − β² λᵢ) / (1 + β λᵢ)`
 
 ## References
 

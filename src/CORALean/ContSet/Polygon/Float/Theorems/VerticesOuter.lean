@@ -12,6 +12,15 @@ Each piece is its nominal polytope (the hull of the stored vertices,
 `VPolytope.construct_eq_convexHull`) plus its error box, so a point of the polygon is a point of
 the hull of all the stored vertices plus the error box of the piece it came from. Outer only: the
 float polygon is the nominal one only up to those boxes.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polygon lies in the hull of its stored vertices, inflated by its error box
 -/
 
 -- Authors:       Claude Opus 5.5

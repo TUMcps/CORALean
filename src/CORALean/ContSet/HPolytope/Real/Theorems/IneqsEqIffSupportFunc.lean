@@ -11,6 +11,18 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsSubsetIffSupportFunc
 checked by the support functions of [1, Eq. 5]. Nothing is assumed of either polytope, which is
 why the paper uses it for degenerate ones.
 
+## Inputs
+* `A₁` – `q₁ × n` matrix
+* `b₁` – offset vector of length `q₁`
+* `A₂` – `q₂ × n` matrix
+* `b₂` – offset vector of length `q₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* two polytopes are equal iff each one's support along the other's rows is within its bounds
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

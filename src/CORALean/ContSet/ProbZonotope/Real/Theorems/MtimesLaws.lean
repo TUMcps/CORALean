@@ -14,6 +14,16 @@ of `L P`. The image of `N(a, Σ)` is `N(La, LΣLᵀ)`, by characteristic functio
 (`⟨Lx, t⟩ = ⟨x, Lᵀt⟩`), and the means range over `L Z` (`Zonotope.mtimes_exact`). The
 covariance must be positive semidefinite.
 
+## Inputs
+* `M` – `m × n` matrix
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* `h` – `P.cov` is positive semidefinite
+
+## Conclusion
+* the images of the laws of `P` under `M` are the laws of `P.mtimes M`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

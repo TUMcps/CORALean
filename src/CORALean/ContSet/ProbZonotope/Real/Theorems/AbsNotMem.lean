@@ -10,6 +10,15 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
 The mean zonotope with generators `(1, 1)` and `(1, -1)` contains `(2, 0)`, whose entrywise absolute
 value is not in `abs` of it, which is the segment `{(t, t)}`: `abs` takes the entrywise absolute
 value of `[c, G]`, a different set and not an enclosure (`AbsLeCorner` is what it keeps).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.abs` does not enclose the absolute values of the means
 -/
 
 -- Authors:       Claude Opus 5.5

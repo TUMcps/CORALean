@@ -8,6 +8,18 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 # Membership in `HPolytope.stackRows` of error-free polytopes
 
 Without boxes the nominal parts are the sets, so membership splits over the sets themselves.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `h₁` – `P₁.ErrFree`
+* `h₂` – `P₂.ErrFree`
+
+## Conclusion
+* `x` lies in the stacked polytope iff it lies in both operands
 -/
 
 -- Authors:       Claude Sonnet 5.5

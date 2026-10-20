@@ -15,6 +15,12 @@ and added to the point by identity generators. Every stored entry is a stored fl
 negation, `zero` or `one`, so nothing rounds, and the box left over is the origin. What it is
 for: an operation that must see the whole set in the inequality (an intersection) can then work
 on the nominal shadow alone.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* the shadow with the error box turned into `n` free variables kept in the box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,16 @@ public import Mathlib.Analysis.Convex.Join
 `Set.linComb` is Mathlib's convex join, which lies in the hull of the union, and `convHull_outer`
 puts the hull inside the result. That is the guarantee `LinComb` asks of `convHull_`, and so of
 `enclose` and `or`.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* the segments between two float shadows are inside their convex hull's enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

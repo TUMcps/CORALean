@@ -17,6 +17,21 @@ covariance `Σ` in the interval, `N(μ, Σ)` puts at least `P[-m ≤ N(0, 1) ≤
 the exact probability carries over. Outer: the result is a diagonal-generator box around the mean
 zonotope, larger than the exact confidence set, which CORA's eigen generators span.
 
+## Inputs
+* `p` – natural number
+* `P` – probabilistic zonotope
+* `M` – scalar
+* `m` – real number
+* `ν` – measure
+
+## Hypotheses
+* `hm` – `0 < m`
+* `hmM` – `m ≤ toReal M`
+* `hν` – `ν ∈ P.laws`
+
+## Conclusion
+* every law of a float probabilistic zonotope puts `erf(m/√2)ⁿ` on its float confidence zonotope
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

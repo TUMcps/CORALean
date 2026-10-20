@@ -12,6 +12,14 @@ Whether every inequality row keeps a whole ball around `β₀` in the supremum n
 this, rounded up, is at most the bound with its slack, rounded down
 (`HPolytope.ineqsContainBall_sound`). The equality rows are not read: they leave no room for a
 ball, and a caller that needs one checks there are none.
+
+## Inputs
+* `P` – H-polytope
+* `β₀` – vector of length `n`
+* `δ` – scalar
+
+## Output
+* `true` when every inequality row, moved by `δ` from `β₀`, is certified within its bound
 -/
 
 -- Authors:       Claude Opus 5.5

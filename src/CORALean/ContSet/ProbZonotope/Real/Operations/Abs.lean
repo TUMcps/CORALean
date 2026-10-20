@@ -12,6 +12,12 @@ CORA's `abs(probZ)`: `probZ.Z = abs(probZ.Z)`, the entrywise absolute value of t
 `[c, G]` of the mean zonotope, center column included, and the covariance kept. The mean
 zonotope becomes `Zonotope.abs` of itself, which is a different set and not an enclosure of the
 input; `Theorems.AbsLeCorner` says what it keeps.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* the mean zonotope with entrywise absolute value of `[c, G]`, covariance kept
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,17 @@ is the uniform number of step 2 and `ξ` the Gaussian vector of step 3, so `ℓ 
 loop of steps 2-4 is that retry, left to the caller because Lean has no random draw to retry
 with. `‖·‖` is the Euclidean norm of the inner product space, as the paper's unit sphere is.
 
+## Inputs
+* `P` – H-polytope
+* `R` – natural number
+* `τ` – real number
+* `x` – point
+* `η` – real number
+* `ξ` – space
+
+## Output
+* the next point of the Billiard Walk from `x`, given `R`, `τ` and the draws `η`, `ξ`
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

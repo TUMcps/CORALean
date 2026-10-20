@@ -14,6 +14,13 @@ inequality `(aᵢ, x) ≤ bᵢ`; it is a unit vector only if the row is normaliz
 is the row, the Riesz representative of the functional `P.A i`, divided by its length. It points
 out of the polytope; the reflection `d - 2 (d, s) s` does not see the sign.
 
+## Inputs
+* `P` – H-polytope
+* `i` – index below `P.m`
+
+## Output
+* the unit outward normal of the `i`-th inequality: its row `aᵢ`, normalized
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

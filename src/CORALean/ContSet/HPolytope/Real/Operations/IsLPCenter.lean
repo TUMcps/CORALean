@@ -12,6 +12,13 @@ linear program `max r  s.t.  A x + ‖aᵢ‖₂ r ≤ b,  Aₑ x = bₑ,  r ≥
 An optimum cannot be computed here, so the center is the specification: `x` is a center when some
 radius `r` is feasible with it and no feasible pair has a larger one. Every optimal `x` is a
 center, and nothing says one exists: an unbounded program (no row bounds `r`) has none.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Output
+* `x` is an optimal solution of `aux_center_LP`
 -/
 
 -- Authors:       Claude Opus 5.5

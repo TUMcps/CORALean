@@ -9,6 +9,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
 
 The inequality `diag(1 - β, β - 1) ⪰ 0` has the diagonal entries `1 - β` and `β - 1`, so it holds
 only at `β = 1`, and then it is the zero matrix: the set is the point `{1}`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `singletonOne` is the point `1`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
 # `Polygon.isIntersecting` is region intersection
 
 Exactly: the regions share a point iff some pair of pieces does.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.isIntersecting` is region intersection
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,12 @@ the existential variables `y` (tolerances `1e-12`, `1e-5`). Here the equality is
 written out, as `x - c - G β ⪰ 0` and its negation along the diagonal beside the shadow's
 inequality, so the existential variables are all of `β`. It is a different pair `(B, C)` of the same
 set (`Theorems.GenerateESumRepExact`); the cache and the SVD are not modelled.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* the existential sum representation of `S`, with `x = c + G β` written out
 -/
 
 -- Authors:       Claude Opus 5.5

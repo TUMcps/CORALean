@@ -9,6 +9,15 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Basic
 
 The expectations of the laws of `P` are exactly the points of `mean P = Z`: the expectation
 of `N(μ, Σ)` is `μ`.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.mean` is the set of expectations
 -/
 
 -- Authors:       Claude Opus 5.5

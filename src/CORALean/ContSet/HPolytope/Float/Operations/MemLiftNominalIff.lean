@@ -10,6 +10,17 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # Membership in the nominal part of `HPolytope.lift_`
 
 A point is in the lifted nominal part iff its selected coordinates are in the original one.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+* `y` – vector of length `N`
+
+## Hypotheses
+* `hdims` – `dims` is injective
+
+## Conclusion
+* `y` lies in the nominal part of the lift iff its selected coordinates lie in that of `P`
 -/
 
 -- Authors:       Claude Sonnet 5.5

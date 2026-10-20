@@ -22,6 +22,15 @@ For `P = {x | x ≤ 0, -x ≤ -1}` (empty) and `S = [0, 1]`, the convex hull of 
 `@polytope/convHull_.m` exits with `polytope.empty(1)` as soon as one operand is empty
 (`HPolytope.convHullCora`, whatever its later branches compute): `0` is missing.
 
+## Inputs
+* `rest` – set of points
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's hull of an empty `P` and `[0, 1]` misses the point `0` of the true hull
+
 ## References
 
 * [1] `contSet/@polytope/convHull_.m`, CORA, ll. 60-97.

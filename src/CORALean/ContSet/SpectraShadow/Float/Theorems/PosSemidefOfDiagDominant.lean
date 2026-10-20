@@ -12,6 +12,16 @@ The certificate a float test can check for `⪰ 0`: every diagonal entry at leas
 magnitudes off the diagonal in its row. Each cross term `xᵢ Mᵢⱼ xⱼ` is at least
 `-|Mᵢⱼ| (xᵢ² + xⱼ²) / 2`, and symmetry gives every row its own half of each, so the quadratic
 form is at least `Σᵢ (Mᵢᵢ - Σⱼ≠ᵢ |Mᵢⱼ|) xᵢ² ≥ 0`.
+
+## Inputs
+* `M` – `k × k` matrix
+
+## Hypotheses
+* `hsym` – `M` is symmetric
+* `hdom` – every diagonal entry of `M` dominates its row
+
+## Conclusion
+* A diagonally dominant symmetric matrix is positive semidefinite
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Conversion.Float.Theorems.SpectraShadowIntervalCo
 
 The certified interval hull exists and holds the set (`SpectraShadow.interval_contains`), and a
 float box is compact, so bounded.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – matrices indexed by `Fin n`
+* `Ylo` – matrices indexed by `Fin n`
+
+## Hypotheses
+* `h` – `S.isBounded Yup Ylo` holds
+
+## Conclusion
+* A `true` from `SpectraShadow.isBounded` proves the set bounded
 -/
 
 -- Authors:       Claude Opus 5.5

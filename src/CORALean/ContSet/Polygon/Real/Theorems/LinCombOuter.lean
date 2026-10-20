@@ -11,6 +11,16 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 
 Every segment between a point of one polygon and a point of the other lies in the segment set of
 some pair of pieces, which the pair's `VPolytope.linComb` encloses.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.linComb` encloses the segments
 -/
 
 -- Authors:       Claude Opus 5.5

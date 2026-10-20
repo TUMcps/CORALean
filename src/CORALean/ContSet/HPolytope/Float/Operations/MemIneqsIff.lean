@@ -9,6 +9,17 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # Membership in `HPolytope.ineqs`, over a floating-point scalar
 
 Membership at each shape, the block that is absent discharged by `Fin.elim0`.
+
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `ineqs A b` iff every row of `A x` is at most `b`
 -/
 
 -- Authors:       Claude Opus 5

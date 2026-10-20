@@ -9,6 +9,15 @@ public import Mathlib.Tactic.Linarith
 # Membership in `HPolytope.unitBox`
 
 Membership is the two constraint halves read back as a bound on the magnitude.
+
+## Inputs
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the unit box iff every coordinate has absolute value at most `1`
 -/
 
 -- Authors:       Claude Opus 5

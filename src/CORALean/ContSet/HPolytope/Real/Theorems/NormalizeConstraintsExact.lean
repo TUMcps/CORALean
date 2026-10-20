@@ -9,6 +9,15 @@ public import Mathlib.Tactic.Linarith
 # `normalizeConstraints` denotes the same set, exactly
 
 Each row is divided by a positive number, or an equality row by a nonzero one, on both sides.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `normalizeConstraints` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

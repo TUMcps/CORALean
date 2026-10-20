@@ -15,6 +15,24 @@ of the enclosing probabilistic hull on the confidence rings `Qᵢ` (Fig. 5) and 
 (`UnsafeProbPrinted`). [1]'s `1 - erf(γ/√2)^{2n}` is its bound on `P(X ∉ E)`,
 here whatever `(μ.withDensity f) Eᶜ` is.
 
+## Inputs
+* `μ` – measure
+* `f` – `α → ℝ≥0∞`
+* `E` – set of points
+* `B` – set of points
+* `k` – natural number
+* `Q` – sets indexed by `Fin k`
+* `h` – family indexed by `Fin k`
+
+## Hypotheses
+* `hB` – `MeasurableSet B`
+* `hQ` – every `Q i` is measurable
+* `hE` – `E ⊆ ⋃ i, Q i`
+* `hf` – `f` is at most `h i` on each `Q i`
+
+## Conclusion
+* the probability of an unsafe set, bounded by heights times volumes
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

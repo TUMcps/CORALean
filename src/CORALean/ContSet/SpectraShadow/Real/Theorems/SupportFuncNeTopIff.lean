@@ -8,6 +8,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 # `SpectraShadow.supportFunc_ne_top_iff`
 
 The support function is below `⊤` exactly when `c` has a real upper bound on the set.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – linear functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the support function is finite iff `c` is bounded above on the shadow
 -/
 
 -- Authors:       Claude Opus 5.5

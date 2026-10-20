@@ -14,6 +14,19 @@ scaled entry is inside the rounded hull `A` (`minimumOver_le`, `le_maximumOver`)
 deviation from `A_reduced` is inside the rounded difference, and each product inside its rounded
 corners (`mul_between_corners`). The float counterpart of the exact layer's
 `reduceOverDomain_rows`; `reduceOverDomain_outer` and `reduceOverDomain_inner` both read it.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+* `x` – point of length `n`
+* `i` – index below `P.m`
+
+## Hypotheses
+* `hx` – `x` lies in `dom`
+
+## Conclusion
+* every scaled row is within the reduced row's reach over the domain
 -/
 
 -- Authors:       Claude Opus 5.5

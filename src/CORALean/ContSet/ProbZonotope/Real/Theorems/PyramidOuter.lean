@@ -14,14 +14,28 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 # The pyramid bounds the probability of a set, up to its floor
 
 Every law `N(μ, Σ)` of a probabilistic zonotope with positive definite covariance has density
-at most `max(probZ, mᵢ)` outside `zonotope(probZ, mᵢ)` (the open `mᵢ`-sigma ellipsoid around
-`μ` is inside it, `mem_zonotope_of_quad_lt`) and at most the peak everywhere. For a descending
-`mArray` the layers telescope, and for a set `Q`
-`P[X ∈ Q] ≤ maxVal(1) · V(Q) + pyramid(probZ, mArray, Q)`:
-the density steps times the volumes of the layers, plus the lowest level over the whole of `Q`.
-`pyramid` alone, which is what CORA returns, omits that floor: it is the probability mass above
-the level `maxVal(1)` only. `pyramid_not_ge_prob` is a set of probability `1` with `pyramid < 1`.
-Outer, up to the floor: not an enclosure of the probability by `pyramid` itself.
+at most `max(probZ, mᵢ)` outside `zonotope(probZ, mᵢ)` (`mem_zonotope_of_quad_lt`) and at most
+the peak everywhere. For a descending `mArray` the layers telescope, and for a set `Q`
+`P[X ∈ Q] ≤ maxVal(1) · V(Q) + pyramid(probZ, mArray, Q)`: the density steps times the volumes
+of the layers, plus the lowest level over the whole of `Q`. `pyramid` alone, which is what CORA
+returns, omits that floor: `pyramid_not_ge_prob` is a set of probability `1` with
+`pyramid < 1`. Outer, up to the floor: not an enclosure of the probability by `pyramid` itself.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `k` – natural number
+* `mArray` – real numbers indexed by `Fin k`
+* `Q` – set of points
+* `ν` – measure
+
+## Hypotheses
+* `hP` – `P.cov.PosDef`
+* `h0` – the entries of `mArray` are nonnegative
+* `hanti` – `Antitone mArray`
+* `hν` – `ν ∈ P.laws`
+
+## Conclusion
+* the pyramid bounds the probability of a set, up to its floor
 -/
 
 -- Authors:       Claude Opus 5.5

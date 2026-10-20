@@ -26,6 +26,15 @@ Read from the source, not run.
 
 `randPoint(polygon([0 1 1 0],[0 0 1 1]), 'all', 'extreme')` returns `(0,0)` and `(1,0)`; the
 vertices `(1,1)` and `(0,1)` are missing.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unit square keeps its first two vertices; a polygon with a NaN column keeps none
 -/
 
 -- Authors:       Claude Sonnet 5.5

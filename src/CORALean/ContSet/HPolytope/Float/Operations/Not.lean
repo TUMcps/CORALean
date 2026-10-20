@@ -12,6 +12,13 @@ CORA's `not(P)` for a polytope given by a single inequality `a x ≤ b`: the pol
 from the boundary. The other cases CORA handles (an empty polytope maps to the full space, a full
 space to the empty set) need its emptiness test, and any other polytope throws; here they answer
 `none`. The row is read with the error box folded in (`absorbRounding`).
+
+## Inputs
+* `P` – H-polytope
+* `ε` – scalar
+
+## Output
+* the right-hand side is rounded down, so the result is the smaller set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

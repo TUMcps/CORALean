@@ -12,6 +12,12 @@ with its slack, rounded down, is at least `0`, and each equality's right-hand si
 its slack of `0` (`HPolytope.containsOrigin_sound`). The error box is not read: the test is of
 the nominal part, which is what a constrained zonotope's coefficient polytope denotes. `false`
 says only that the origin was not certified.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* every slack-widened inequality bound certified nonnegative, every equality within its slack
 -/
 
 -- Authors:       Claude Opus 5.5

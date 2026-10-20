@@ -13,6 +13,13 @@ The multivariate Gaussian density with mean `c` and covariance `Σ` on `ℝⁿ`,
 `(2π)^{-n/2} exp(-‖x‖²/2)`, and [1, Prop. 1]'s printed form, which has `(2π)^{-q/2}` with the
 number `q` of probabilistic generators in place of the dimension `n`.
 
+## Inputs
+* `n` – natural number
+* `y` – point
+
+## Output
+* the standard Gaussian density `(2π)^{-n/2} exp(-‖y‖²/2)` at `y`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -12,6 +12,18 @@ cube moves coordinate `k` of `g β` by at most `√(n Σₖₖ)`: by Cauchy-Schw
 `√(Σⱼ gₖⱼ²) √(Σⱼ βⱼ²)`, and `Σⱼ gₖⱼ² = (g gᵀ)ₖₖ = Σₖₖ`, `Σⱼ βⱼ² ≤ n`. This bounds the
 confidence set `zonotope(probZ, m)` by a box that reads the covariance's diagonal alone, which is
 what a float implementation can compute without a matrix square root.
+
+## Inputs
+* `S` – `n × n` matrix
+* `γ` – vector of length `n`
+* `k` – index below `n`
+
+## Hypotheses
+* `hS` – `S.PosSemidef`
+* `hγ` – `∀ j, |γ j| ≤ 1`
+
+## Conclusion
+* each coordinate of `√S γ` is at most `√(n S k k)` in absolute value
 -/
 
 -- Authors:       Claude Sonnet 5.5

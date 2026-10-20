@@ -16,6 +16,23 @@ nonnegative weight.
 Stated at `comap` rather than at `halfScaled` alone: the block is what a caller
 has a member of, and it reaches the constraints only through the map that reads
 it off.
+
+## Inputs
+* `f` – `γ →ₗ[ℝ] α`
+* `t` – `γ →ₗ[ℝ] ℝ`
+* `P` – H-polytope
+* `x` – `γ`
+* `w` – real number
+* `y` – space
+
+## Hypotheses
+* `hw` – `w` is the weight `(t x + 1) / 2`
+* `hw0` – `0 ≤ w`
+* `hy` – `y ∈ P.construct`
+* `hf` – `f x = w • y`
+
+## Conclusion
+* A weighted point meets the weighted constraints
 -/
 
 -- Authors:       Claude Opus 5

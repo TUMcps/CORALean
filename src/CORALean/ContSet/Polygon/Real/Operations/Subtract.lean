@@ -15,6 +15,13 @@ not a union of convex pieces as it stands, but its regularization is a region al
 closure of what is left, `closure (interior P₁ \ P₂)`. So the result is the region, not a
 `Polygon`; no convex decomposition of it is computed (R-PG), and `polyshape`'s tolerance for
 near-coincident boundaries is not modelled.
+
+## Inputs
+* `P₁` – polygon
+* `P₂` – polygon
+
+## Output
+* the regularized difference of the regions of `P₁` and `P₂`
 -/
 
 -- Authors:       Claude Sonnet 5.5

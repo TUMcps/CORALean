@@ -14,6 +14,13 @@ side stays a point.
 It is the coefficient domain a zonotope ranges over, which the constrained
 zonotope keeps outside its `P`; an operation that weights the coefficients has
 to put the two back together and reads the box from here.
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – natural number
+
+## Output
+* the supremum-norm unit ball as the `2n` rows `±xⱼ ≤ 1`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

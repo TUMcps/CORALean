@@ -12,6 +12,15 @@ meets the hyperplane of the `i`-th inequality. Division is Lean's, so a row para
 line (`(aᵢ, d) = 0`) has `tᵢ = 0`, which neither extreme of the chord ever picks: the paper
 leaves the parallel rows out silently.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+* `i` – index below `P.m`
+
+## Output
+* `tᵢ` of `[1, Eq. 1]`, for the row `i` of `P` and the line through `x` along `d`
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

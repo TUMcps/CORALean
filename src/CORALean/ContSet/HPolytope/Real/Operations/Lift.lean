@@ -12,6 +12,13 @@ CORA's `@polytope/lift_`: `A(:,dims) = A` and zeros elsewhere, the right-hand si
 Row `i` of the lifted polytope reads coordinate `dims k` where row `i` of `P` read `k`, which is
 `comap` along the coordinate selection `x ↦ (x (dims k))ₖ`. The lifted set is unbounded in the
 new coordinates, so only the halfspace form has a lift.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Output
+* `P` precomposed with the coordinate selection `dims`, the other coordinates free
 -/
 
 -- Authors:       Claude Opus 5.5

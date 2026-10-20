@@ -17,6 +17,22 @@ public import Mathlib.Tactic.Abel
 coefficient vector is `Fin.append` of the two, `(X₁, X₂)` the horizontal stacking and
 `blk(H₁, H₂)` the block-diagonal rows; a point of `P_⊕` splits back into its two halves.
 
+## Inputs
+* `x₁` – point of length `n`
+* `x₂` – point of length `n`
+* `X₁` – `n × n₁` matrix
+* `X₂` – `n × n₂` matrix
+* `H₁` – `q₁ × n₁` matrix
+* `h₁` – vector of length `q₁`
+* `H₂` – `q₂ × n₂` matrix
+* `h₂` – vector of length `q₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum of two AH-polytopes
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

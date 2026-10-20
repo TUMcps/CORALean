@@ -10,6 +10,13 @@ public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 
 CORA's `polygon/linComb`: the hull of every pair of pieces, one from each operand, as CORA's
 `convHull(list1{i}, list2{j})` after triangulating.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* the convex combinations of every pair of pieces, one from each polygon
 -/
 
 -- Authors:       Claude Opus 5.5

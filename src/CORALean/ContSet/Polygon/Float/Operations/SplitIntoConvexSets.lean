@@ -9,6 +9,12 @@ public import CORALean.ContSet.Polygon.Float.Polygon
 
 The stored convex pieces, as over ℝ: a float polygon is a list of float convex polytopes, and
 the list is returned as it is, so nothing rounds.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the stored convex pieces
 -/
 
 -- Authors:       Claude Opus 5.5

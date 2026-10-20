@@ -12,6 +12,15 @@ A point lies in the triangle `a b c`: the triangle's orientation is certified po
 `a b x`) are certified nonnegative by `le`. These are the barycentric coordinates times the
 triangle's orientation, so `true` is certain; a triangle of the other orientation is the same
 triangle with two corners swapped, which a search over corners also tries.
+
+## Inputs
+* `a` – vector of length `2`
+* `b` – offset vector of length `2`
+* `c` – center of length `2`
+* `x` – point of length `2`
+
+## Output
+* `true` when `a b c` is positively oriented and `x` is inside its edges
 -/
 
 -- Authors:       Claude Opus 5.5

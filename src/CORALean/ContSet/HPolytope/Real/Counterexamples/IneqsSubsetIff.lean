@@ -17,6 +17,15 @@ H-polytopes in the sense of `[1, Def. 1]` (`ker H = {0}`). Yet no `Λ ≥ 0` has
 whose second coordinates are `0, 0, 1`. So "only if" needs `X` nonempty
 (`ineqs_subset_iff`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Lemma 1]` fails at an empty inbody
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

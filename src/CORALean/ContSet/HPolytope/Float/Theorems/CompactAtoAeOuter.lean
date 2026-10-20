@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
 
 `pairsToEq` is exact (`pairsToEq_exact`), so what is left of the outer statement is the
 normalization's (`normalizeRows_outer`).
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float `compactAtoAe` keeps every point of the polytope in the domain
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 The same line again, with the direction pulled back through the map before the
 certificate is asked for: a bound on `(Aq i) ∘ M` over the source is a bound on
 `Aq i` over the image.
+
+## Inputs
+* `P` – H-polytope
+* `M` – linear map
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u` – a support bound of `P.construct` along each row
+
+## Conclusion
+* the certified linear image encloses
 -/
 
 -- Authors:       Claude Opus 5

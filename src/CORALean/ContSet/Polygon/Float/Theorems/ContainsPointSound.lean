@@ -11,6 +11,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 The point is in the nominal piece (`Polygon.pieceHolds_sound`), plus the origin, which the
 piece's error box holds; so it is in the piece, and the piece is in the region.
+
+## Inputs
+* `P` – polygon
+* `x` – point of length `2`
+
+## Hypotheses
+* `h` – `Polygon.containsPoint P x` holds
+
+## Conclusion
+* the point `x` lies in the region of `P`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -36,7 +36,7 @@ conditions and Cauchy–Schwarz.
 * `hS` – `S` bounds the updated level
 * `hα` – `0 < α`
 * `hγ` – `0 < α + β v·v`
-* `hSα` – `S ≤ α² (1 - lam)`
+* `hSα` – `S` is at most `α²` times `1 - lam`
 * `hSγ` – `S` bounded by the second scaling
 
 ## Conclusion

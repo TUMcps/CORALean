@@ -11,6 +11,17 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 Every kept row is a row of a certified dual bound (`dualBound_le`): `Σ aᵣ xᵣ ≤ dualBound` for
 every point of the shadow. Outer: finitely many rows, each rounded up.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `dirs` – vectors indexed by `Fin N`
+* `Y` – matrices indexed by `Fin N`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float outer polytope of a shadow encloses it
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -27,6 +27,15 @@ not run.
 support value `4 > 0` and lower value `0 ≤ 0`, so it "cuts through" and CORA returns
 `representsa_(P, 'emptySet')`, which is `false` since `P` is nonempty. A false negative, not
 unsound. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polytope is the interval `[0, 0]²`, yet CORA does not accept it as an interval
 -/
 
 -- Authors:       Claude Opus 5.5

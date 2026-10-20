@@ -18,7 +18,7 @@ the eigenvalues `λᵢ` of `Q₁⁻¹ Q₂` it is `log det Q₁ + ∑ᵢ log((1 
 * `β` – positive weight
 
 ## Output
-* `∑ log((1 + 1/β) + (1 + β) λᵢ)`
+* the sum over eigenvalues of `log((1 + 1/β) + (1 + β) λᵢ)`
 
 ## References
 

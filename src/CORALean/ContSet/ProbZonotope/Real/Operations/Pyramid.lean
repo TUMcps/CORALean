@@ -15,6 +15,15 @@ takes the volume by `modVolume`, `volume` where that exists and otherwise the vo
 hull, an over-estimate it warns about; the exact volume is used here, and `Theorems.PyramidOuter`
 is only the stronger for the larger one. `P` is any set of Euclidean space, with Lebesgue measure,
 and `mArray` is meant to descend, as the steps are negative for an ascending one.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `k` – natural number
+* `mArray` – real numbers indexed by `Fin k`
+* `Q` – set of points
+
+## Output
+* the sum over the layers of density step times the volume of the zonotope meeting `Q`
 -/
 
 -- Authors:       Claude Opus 5.5

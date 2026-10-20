@@ -8,6 +8,17 @@ public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
 # An inverted pair is inverted both ways
 
 The test checks each direction, so it is symmetric.
+
+## Inputs
+* `Q` – H-polytope
+* `i` – index below `Q.m`
+* `j` – index below `Q.m`
+
+## Hypotheses
+* `h` – rows `i` and `j` of `Q` are an inverted pair
+
+## Conclusion
+* an inverted pair is inverted both ways
 -/
 
 -- Authors:       Claude Opus 5.5

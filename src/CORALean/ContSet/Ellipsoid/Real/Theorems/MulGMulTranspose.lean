@@ -18,7 +18,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 * none
 
 ## Conclusion
-* `(M G)(M G)ᵀ = M Q Mᵀ`
+* `M G` has Gram matrix `M Q Mᵀ`
 -/
 
 -- Authors:       Claude Opus 5.5

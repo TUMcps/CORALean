@@ -19,6 +19,18 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopePolyZonotopeCon
 Outer: the same chain as over ℝ, with the float triangulation (exact), the box conversion
 (`VPolytope.polyZonotope_contains`), `PolyZonotope.quadMap_outer` and
 `PolyZonotope.polygon_outer`. The quadratic map is that of the matrices the floats read as.
+
+## Inputs
+* `P` – polygon
+* `Q` – matrices indexed by `Fin 2`
+* `splits` – number of splits
+* `pick` – refinement rule: whether to split a piece in a given round
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.quadMap` encloses the image of the float polygon
 -/
 
 -- Authors:       Claude Sonnet 5.5

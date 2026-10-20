@@ -20,6 +20,22 @@ mean `μ` of `probZ` and `a ∈ [0, 1]`, the float mean zonotope of `enclose(pro
 `a μ + (1 - a)(e^{Ar} μ + Rtrans)`, at a Taylor order `η` whose remainder bound is admissible
 (`MatExp.exp_mem_expIntervalEnclosure`). Outer, for the means only; what it says of the
 covariance is nothing.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `Ar` – `n × n` matrix
+* `η` – natural number
+* `Rtrans` – vector of length `n`
+* `μ` – mean of length `n`
+* `a` – real number
+
+## Hypotheses
+* `hη` – the norm bound over `η + 2` is at most `1 / 2`
+* `hμ` – `μ` lies in `P.Z`
+* `ha` – `a` lies in `[0, 1]`
+
+## Conclusion
+* the float mean zonotope of `enclose` contains the segments from `μ` to `e^{Ar} μ + Rtrans`
 -/
 
 -- Authors:       Claude Opus 5.5

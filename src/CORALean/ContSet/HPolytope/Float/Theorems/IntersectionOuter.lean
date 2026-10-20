@@ -14,6 +14,16 @@ With both boxes certified empty of error, the intersection is exact
 (`HPolytope.boxToSlack_outer`), whose result has the origin box and so is read at its nominal
 part, and the stacked nominal rows are the two nominal parts' intersection
 (`HPolytope.mem_stackRows_iff`).
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection contains every point of both operands
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

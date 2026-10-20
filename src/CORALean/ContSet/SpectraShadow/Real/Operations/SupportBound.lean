@@ -16,6 +16,18 @@ semidefinite `Y` with `tr(Aᵢ Y) = -c(Gᵢ)` for every `i` bounds the functiona
 supremum under complementary slackness (`SpectraShadow.supportFunc_eq_of_complementary`), which
 is not claimed in general. CORA's `'lower'` and `'range'` types and the maximiser are not
 modelled.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – linear functional
+* `Y` – `S.k × S.k` matrix
+
+## Hypotheses
+* `hY` – `Y.PosSemidef`
+* `hc` – `Y` meets the dual equalities `tr(Aᵢ Y) = -c(Gᵢ)`
+
+## Output
+* the bound `c(c₀) + tr(A₀ Y)` that a dual certificate `Y` proves
 -/
 
 -- Authors:       Claude Opus 5.5

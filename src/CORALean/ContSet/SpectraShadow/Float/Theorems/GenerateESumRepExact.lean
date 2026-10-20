@@ -14,6 +14,15 @@ Exact, nothing rounds: the stored matrices of the float representation read, ent
 the matrices the exact layer's `generateESumRep` builds from the nominal shadow, so the set of the
 representation is the set of the stored shadow's nominal part. The shadow's error box is not
 carried by the representation, so the statement is about `nominalSet`, not `construct`.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float `generateESumRep` denotes the nominal shadow exactly
 -/
 
 -- Authors:       Claude Opus 5.5

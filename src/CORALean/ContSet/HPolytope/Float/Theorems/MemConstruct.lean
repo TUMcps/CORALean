@@ -8,15 +8,23 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 /-!
 # Membership in an error-free float halfspace description, in the stored fields
 
-What an error-free polytope denotes is its nominal part, the exact layer's `ineqs`
-intersected with its `eqs`, so membership arrives as a nesting of three lemmas. This unfolds
-it once into the two blocks the stored matrices state: a bound per inequality row, and
-a value per equality row.
+What an error-free polytope denotes is its nominal part, the exact layer's `ineqs` intersected
+with its `eqs`, so membership arrives as a nesting of three lemmas. This unfolds it once into the
+two blocks the stored matrices state: a bound per inequality row, and a value per equality row.
 
-It is the form every operation and every conversion at this layer states its
-obligation in, which is why `Operations/` here reaches back into `Theorems/`. A polytope
-that carries an error box reads through `HPolytope.mem_rows_of_mem_construct` instead,
+It is the form every operation and every conversion at this layer states its obligation in. A
+polytope that carries an error box reads through `HPolytope.mem_rows_of_mem_construct` instead,
 which gives the rows with the box folded in.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `hP` – `P.ErrFree`
+
+## Conclusion
+* `x` lies in an error-free polytope iff it meets every inequality and equality as stored
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

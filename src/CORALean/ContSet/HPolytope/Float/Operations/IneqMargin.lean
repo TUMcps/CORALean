@@ -11,6 +11,13 @@ A candidate radius of a ball around `β₀` inside every inequality row: the lea
 row's room, its bound with its slack less its reading of `β₀` (rounded down), over the row's
 absolute sum (rounded down), a row that is zero leaving room one. Nothing is trusted about it:
 `HPolytope.ineqsContainBall` checks the radius it is given, and a bad candidate fails there.
+
+## Inputs
+* `P` – H-polytope
+* `β₀` – vector of length `n`
+
+## Output
+* the least room, over its row's absolute sum, of the inequality rows at `β₀`, at most one
 -/
 
 -- Authors:       Claude Opus 5.5

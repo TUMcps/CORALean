@@ -15,6 +15,15 @@ For a shadow `T` of `ℝ^N`, `N ≥ 1`, `SpectraShadow.cone T` is exactly the se
 shadow, and the apex, which is what [[t, zᵀ], [z, s I]] ⪰ 0 allows at `s = 0`. Not closed: it
 contains no recession direction of `T`, which is why the convex hull built from two of these is
 exact and not a closure.
+
+## Inputs
+* `T` – spectrahedral shadow
+
+## Hypotheses
+* `hN` – `0 < N`
+
+## Conclusion
+* the cone of a shadow is the perspective cone with its apex
 -/
 
 -- Authors:       Claude Opus 5.5

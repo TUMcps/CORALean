@@ -14,6 +14,12 @@ they span. This is a cover by triangles whose union is the region (`Polygon.tria
 not CORA's partition: the triangles overlap and their number is cubic in the vertex count. The
 triangulation of the boundary (R-PG) is not modelled. It is the cover `linComb` and `quadMap`
 need, which take unions over the triangles.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the vertex triangles of every piece
 -/
 
 -- Authors:       Claude Sonnet 5.5

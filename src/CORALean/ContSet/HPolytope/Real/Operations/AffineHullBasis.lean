@@ -17,6 +17,13 @@ return. The Chebyshev center of line 1 is the shift, a point of the polytope, wh
 specification takes as `c`. Called as `affineHullBasis ε xiter n 0 Fin.elim0`: `n` iterations
 left, no columns yet.
 
+## Inputs
+* `ε` – tolerance
+* `xiter` – maximizer of [1, Eq. 22] given the columns found so far
+
+## Output
+* the columns found (their number and the family), appended until `x_iter` is at most `ε`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

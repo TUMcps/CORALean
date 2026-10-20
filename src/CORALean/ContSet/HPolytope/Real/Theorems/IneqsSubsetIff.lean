@@ -15,6 +15,18 @@ Farkas' lemma, one row of `Hy` at a time, and needs the inbody nonempty, which t
 statement omits: `∅` lies in every set, and is not always cut out by rows that assemble
 `Hy` (`ineqs_subset_iff_counterexample`).
 
+## Inputs
+* `Hx` – `qx × n` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × n` matrix
+* `hy` – vector of length `qy`
+
+## Hypotheses
+* `hne` – the polytope `ineqs Hx hx` is nonempty
+
+## Conclusion
+* `ineqs Hx hx` lies in `ineqs Hy hy` iff a nonnegative `Λ` has `Λ Hx = Hy` and `Λ hx ≤ hy`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

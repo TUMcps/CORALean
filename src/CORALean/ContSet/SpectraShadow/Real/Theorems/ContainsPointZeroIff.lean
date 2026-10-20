@@ -8,6 +8,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPoint
 # `SpectraShadow.containsPoint_zero_iff`
 
 At tolerance `0` the point test is membership, exactly: the slack is forced to `0`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `p` – space
+
+## Hypotheses
+* none
+
+## Conclusion
+* `containsPoint` at tolerance `0` holds iff `p` lies in the shadow
 -/
 
 -- Authors:       Claude Opus 5.5

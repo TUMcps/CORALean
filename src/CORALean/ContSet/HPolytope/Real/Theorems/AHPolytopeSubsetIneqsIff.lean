@@ -14,6 +14,20 @@ linear in `Γ, β, Λ`: a linear program. "Only if" is `ineqs_subset_iff` on
 `Px ⊆ {Hy X p ≤ hy - Hy x̄}`, so it needs `Px` nonempty, which is weaker than the
 full-dimensionality `[1, Cor. 1]` asks for.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × n` matrix
+* `hy` – vector of length `qy`
+
+## Hypotheses
+* `hne` – the polytope `ineqs Hx hx` is nonempty
+
+## Conclusion
+* [1, Cor. 2]: `x̄ + X Px ⊆ Py` iff (12) of [1, Thm. 1] holds at `Y = I`, `ȳ = 0`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

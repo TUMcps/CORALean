@@ -16,6 +16,15 @@ polytope with its error box folded into its rows (`absorbRounding_outer`): every
 polytope that lies in the domain meets the normalized rows. Outer over the domain, as
 `reduceOverDomain_outer` is; the exact layer's `normalizeConstraints_exact` says the real operation
 is the same set.
+
+## Inputs
+* `a` – scalar
+
+## Hypotheses
+* none
+
+## Conclusion
+* `recipUp` is positive: `1 / a` rounded up for a certified positive `a`, and `1` otherwise
 -/
 
 -- Authors:       Claude Opus 5.5

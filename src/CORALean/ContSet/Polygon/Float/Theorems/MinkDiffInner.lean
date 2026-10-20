@@ -14,6 +14,16 @@ A point of the result lies in one shifted piece; that piece, unshifted, holds th
 any point of the subtrahend (`HPolytope.minkDiffOf_inner`, with no equality rows to keep in a
 kernel), and lies in its minuend piece (`Polygon.innerHRep_inner`), which lies in the minuend.
 Nothing is assumed of the subtrahend: no convexity, no center, no boundary loop.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float `Polygon.minkDiff` lies in the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5.5

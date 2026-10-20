@@ -15,6 +15,14 @@ lower bound at least the rounded-up sum of the off-diagonal magnitudes), which m
 positive semidefinite, and the remainder `p - c - G β`, bracketed by directed roundings, lies in
 the error box. Only `true` is certain; a combination that is semidefinite but not diagonally
 dominant answers `false`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `p` – point of length `n`
+* `β` – vector of length `S.m`
+
+## Output
+* `true` when the combination `A₀ + Σ βₗ Aₗ` is certified positive semidefinite and gives `p`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,12 @@ public import CORALean.ContSet.Polygon.Real.Polygon
 
 CORA's `polygon/representsa_` at `'emptySet'`: `isempty(vertices_(pgon))`. A polygon is empty
 iff every piece has no vertices.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* every piece has no vertex
 -/
 
 -- Authors:       Claude Opus 5.5

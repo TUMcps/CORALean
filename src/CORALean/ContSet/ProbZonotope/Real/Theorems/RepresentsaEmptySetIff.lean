@@ -10,6 +10,15 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 
 A probabilistic zonotope stands for the family of laws `N(μ, Σ)`, `μ ∈ Z`; it is empty iff
 `Z` is, and `Z` always holds its center.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.representsaEmptySet` says whether there are no laws
 -/
 
 -- Authors:       Claude Opus 5.5

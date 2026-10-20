@@ -16,6 +16,18 @@ probabilistic hull of `e^{At} 𝒵` at `x' = e^{At} x` is `e^{-tr(A)t}` times th
 maps onto the means of `e^{At} Z`, and `gaussPdf_exp_mulVec` scales each density. The
 supremum scales with the nonnegative factor `e^{-tr(A)t}`.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `A` – `n × n` matrix
+* `t` – real number
+* `x` – point
+
+## Hypotheses
+* `hP` – `0 < P.cov.det`
+
+## Conclusion
+* under `exp(tA)` the hull value at the image point is `exp(-t tr A)` times the value at `x`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

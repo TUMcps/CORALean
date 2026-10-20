@@ -9,6 +9,15 @@ public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
 
 Outer: the expectation of every law of `P` lies in the mean zonotope. Not exact: the covariance
 interval may hold no positive semidefinite matrix, leaving no law at all.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.mean` bounds the means
 -/
 
 -- Authors:       Claude Opus 5.5

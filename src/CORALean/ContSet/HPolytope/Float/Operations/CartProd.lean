@@ -14,6 +14,13 @@ columns on the right, the rows of `P₂` padded with zero columns on the left, a
 lists stacked, `A = [A₁ 0; 0 A₂]`, `b = [b₁; b₂]`. Padding and stacking only copy and
 concatenate entries, so nothing is computed and nothing rounds. The error box is the two boxes
 side by side.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Output
+* the Cartesian product, `P₁` and `P₂` padded and their rows stacked
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

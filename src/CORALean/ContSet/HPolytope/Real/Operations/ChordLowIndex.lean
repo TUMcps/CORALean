@@ -10,6 +10,14 @@ public import CORALean.ContSet.HPolytope.Real.Operations.HitTime
 `[1, Eq. 1]`: the row attaining `t̲ = max_{i : tᵢ < 0} tᵢ`, the first hyperplane the line
 meets going backward; `none` when no `tᵢ` is negative.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+
+## Output
+* the index of `t̲` in `[1, Eq. 1]`
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

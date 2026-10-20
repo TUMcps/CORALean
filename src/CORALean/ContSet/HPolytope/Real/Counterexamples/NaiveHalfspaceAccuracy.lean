@@ -17,6 +17,15 @@ radius is `2` and the sampled facet `x ≤ 1` gives `r_hs ≤ ‖(1, 1)‖₂ = 
 sample reaches `(1 - ε) r = 9/5` with probability `0`, while `P_S(1/10) > 0`. So the statement
 "`r_hs ≥ (1 - ε) r` with probability at least `P_S(ε)`" fails, whatever the sampling.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Cor. 4.8]`'s accuracy fails at a fixed `ε` too
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

@@ -15,6 +15,18 @@ halfspaces, the simplex's count. Nonempty suffices: with `q ≤ n` rows some `d 
 small — and that recession direction makes the polytope unbounded. `n ≥ 1`, the paper's `ℝⁿ`:
 `ℝ⁰` is bounded and full with no halfspace at all.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+
+## Hypotheses
+* `hn` – `0 < n`
+* `hne` – the polytope `ineqs A b` is nonempty
+* `hb` – `(HPolytope.ineqs A b)` is bounded
+
+## Conclusion
+* A bounded nonempty H-polytope needs `n + 1` halfspaces
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -12,6 +12,13 @@ of `N` coordinates, the others free. `A(:,dims) = A` is an assignment, so `dims`
 (a sum over a repeated coordinate would round); `liftCols` writes each column where it belongs and
 `b`, `Ae`'s right-hand side are unchanged. The error box is lifted the same way, so the
 free coordinates carry the point `[0, 0]`.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Output
+* `P` on the coordinates `dims` of `N` coordinates, the others free
 -/
 
 -- Authors:       Claude Sonnet 5.5

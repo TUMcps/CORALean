@@ -19,6 +19,15 @@ minimal and normalized, the rows `x ≤ 1` and `x ≤ 2` find no partner, and ne
 printed condition, the support function without them being `+∞`. `isequalNondeg` reads line 4 as
 the text describes it.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Alg. 1]` as printed accepts `[0, 1] = [0, 2]`
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

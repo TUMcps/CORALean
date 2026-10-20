@@ -21,6 +21,15 @@ see `references/coverage/contSet/spectraShadow.md`, row `representsa_`.
 `representsa_` at `'fullspace'`: every axis support of the line `{(t, t)}` is infinite, so CORA's
 `interval(SpS)` is the whole plane and it answers `true`, but the line is not the plane. Read from
 the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `'fullspace'` test accepts the line `{(t, t)}`, which is not the plane
 -/
 
 -- Authors:       Claude Opus 5.5

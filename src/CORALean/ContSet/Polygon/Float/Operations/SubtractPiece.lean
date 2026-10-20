@@ -19,6 +19,13 @@ pieces. Nothing is left when `q` certainly covers `r` (`Polygon.pieceSubset`). O
 of `r` outside `q` is outside that description, so it violates some row, `aᵢᵀx ≥ bᵢ`: `r` is
 replaced by one piece per row, the box hull of `r` cut to `-aᵢᵀx ≤ -bᵢ` by
 `Interval.contractHalfspace`. Without such a description `r` is kept whole.
+
+## Inputs
+* `q` – V-polytope
+* `r` – V-polytope
+
+## Output
+* the pieces that cover `r \ q`
 -/
 
 -- Authors:       Claude Opus 5.5

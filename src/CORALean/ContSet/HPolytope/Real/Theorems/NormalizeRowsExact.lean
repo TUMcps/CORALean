@@ -9,6 +9,15 @@ public import Mathlib.Tactic.Linarith
 # `normalizeRows` denotes the same set, exactly
 
 Each nonzero row is divided on both sides by its positive 2-norm.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `normalizeRows` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

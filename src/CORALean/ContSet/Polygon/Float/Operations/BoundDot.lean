@@ -13,6 +13,17 @@ CORA's `@polygon/supportFunc_` at `upper` as a `FloatBound`: the largest of the 
 `VPolytope.boundDot` (each a rounded dot product per vertex plus the error box's reach), seeded
 with the first piece's, so the bound of a polygon is not pulled up to `0`. A polygon without a piece
 is empty, and then `zero` is as good a bound as any (CORA gives `-Inf`, outside `𝕋`).
+
+## Inputs
+* `P` – polygon
+* `c` – center of length `2 →ₗ[ℝ] ℝ`
+* `a` – vector of length `2`
+
+## Hypotheses
+* `hc` – `c` is the dot product with the stored vector `a`
+
+## Output
+* the float bound on `c` over `P`, the largest of the pieces' bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
 CORA's `representsa(P, 'emptySet')`, answered one-sidedly. CORA answers `false`, the mean zonotope
 holding its center; here `true` only if some covariance entry's interval is crossed (`ltStrict` on
 its ends), which no matrix lies in, so there is no law. `false` refutes nothing.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Output
+* `true` when some covariance entry interval is crossed, so no law exists
 -/
 
 -- Authors:       Claude Opus 5.5

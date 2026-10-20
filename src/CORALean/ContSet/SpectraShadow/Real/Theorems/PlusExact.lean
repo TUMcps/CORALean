@@ -13,6 +13,16 @@ other's rows, so the two sets' variables stay independent: `Fin.append β₁ β�
 is the witness one way and the two halves of `β` the other. Nothing is lost, which
 is what `Plus` gives up in every other representation here and the reason this one
 exists as a sum's target.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.plus` is exactly the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,22 @@ public import Mathlib.Analysis.Normed.Operator.NormedSpace
 `r_hs = max_i ‖G'ᵀ λ_{jᵢ}‖_{p*} / |b_{jᵢ}|` with `G' = [G, c - d]`, the norm of each
 row being the operator norm of `HPolytope.extendedRow`.
 
+## Inputs
+* `p` – `ℝ≥0∞`
+* `G` – linear map
+* `c` – center of length `n`
+* `d` – direction of length `n`
+* `Λ` – `s × n` matrix
+* `b` – offset vector of length `s`
+* `N` – natural number
+* `j` – indices indexed by `Fin N`
+
+## Hypotheses
+* `hN` – `0 < N`
+
+## Output
+* `r_hs = maxᵢ ‖G'ᵀ λ_{jᵢ}‖_{p*} / |b_{jᵢ}|` over `N` sampled facets `jᵢ`
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

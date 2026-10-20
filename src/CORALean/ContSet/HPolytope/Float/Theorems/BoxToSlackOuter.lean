@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.LeErrUp
 A point of `P` is a nominal point plus a box point. Each row reads the nominal point within its
 slack and the box point within what `errUp` bounds, so the sum is within the widened slack, and
 the result's box is the origin.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box in the slacks encloses the polytope with its box
 -/
 
 -- Authors:       Claude Opus 5.5

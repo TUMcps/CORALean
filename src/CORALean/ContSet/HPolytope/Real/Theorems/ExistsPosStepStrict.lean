@@ -15,6 +15,18 @@ public import Mathlib.Data.Real.Basic
 Finitely many strict inequalities `A z < c` still hold at `z + s d` for some `s > 0`, whatever
 the direction `d`: the step `s = 1 / (1 + ∑ᵢ (|(A d)ᵢ| + 1) / (cᵢ - (A z)ᵢ))` is short enough for
 every row at once. Explicit, so no topology is needed where a facet argument steps off a point.
+
+## Inputs
+* `A` – `q × n` matrix
+* `c` – center of length `q`
+* `z` – point of length `n`
+* `d` – direction of length `n`
+
+## Hypotheses
+* `hz` – `z` is strictly inside every inequality `A z < c`
+
+## Conclusion
+* some positive step from `z` along `d` stays strictly inside every inequality
 -/
 
 -- Authors:       Claude Opus 5.5

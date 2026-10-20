@@ -21,6 +21,16 @@ height `1` is `s₁ x₁ + s₂ x₂` with `s₁ + s₂ = 1`, `sᵢ > 0`, or one
 origin and the point is the other shadow's. Every such point is a convex combination of points
 of the union; conversely the union is inside, and the result is convex (a shadow), so it holds
 the hull. Exact, with no closure and no emptiness case: the hull of `∅` and `S` is `S`.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.convHull_` is exactly the convex hull of the union
 -/
 
 -- Authors:       Claude Opus 5.5

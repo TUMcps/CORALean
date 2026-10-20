@@ -8,6 +8,17 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 # Two polytopes with the same nominal part and box denote the same set
 
 The set is the nominal part plus the box, so equal parts give equal sums.
+
+## Inputs
+* `P` – H-polytope
+* `Q` – H-polytope
+
+## Hypotheses
+* `hN` – `P` and `Q` have the same nominal part
+* `hE` – `P` and `Q` have the same error box
+
+## Conclusion
+* `P` and `Q` denote the same set
 -/
 
 -- Authors:       Claude Sonnet 5.5

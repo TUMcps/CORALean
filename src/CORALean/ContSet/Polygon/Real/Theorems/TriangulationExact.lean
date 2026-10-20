@@ -12,6 +12,15 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 
 Exactly: every returned set has three vertices and their union is the region of the polygon
 (`VPolytope.construct_eq_iUnion_triples` for each piece). The triangles need not be disjoint.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.triangulation` is a cover by triangles of the same region
 -/
 
 -- Authors:       Claude Sonnet 5.5

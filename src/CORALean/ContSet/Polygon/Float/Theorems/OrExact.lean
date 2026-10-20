@@ -9,6 +9,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 # `Polygon.or` is the union
 
 Exactly: the pieces of both.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.or` is the union
 -/
 
 -- Authors:       Claude Opus 5.5

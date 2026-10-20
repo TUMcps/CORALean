@@ -10,6 +10,11 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 No constraints at all, so every point qualifies: the unit of `intersection`, and what a
 conversion starts from when it has rows to add but none yet.
 
+## Inputs
+* `α` – type
+
+## Output
+* the polytope with no constraints, which every point satisfies
 -/
 
 -- Authors:       Claude Opus 5

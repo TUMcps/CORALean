@@ -20,6 +20,16 @@ Each of the two shadows is inside the result: a point `x` of `S₁` is `1 · (x,
 cone of `S₁ × {1}`, plus the origin of the other cone, at height `1`, and the projection gives `x`
 back. The result is convex, so it holds the hull. Outer: the cones are exact but their sum
 rounds the center into the box.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.convHull_` encloses the convex hull of the union, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

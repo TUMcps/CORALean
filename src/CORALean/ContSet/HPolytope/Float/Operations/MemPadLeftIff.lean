@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.PreimageAddImage
 
 Membership of the padded polytope is membership of the block it came from,
 both ways.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n₁ + n₂`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `P` padded on the left iff its left block lies in `P`
 -/
 
 -- Authors:       Claude Opus 5

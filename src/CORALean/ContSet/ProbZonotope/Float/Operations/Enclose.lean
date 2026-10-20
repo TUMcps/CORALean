@@ -14,18 +14,21 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 
 CORA's `enclose(probZ, Ar, Rtrans)` [1, Sec. VI] in `𝕋`, one `let` per printed step of the real
 `ProbZonotope.enclose`: `e^{Ar}` becomes the float interval enclosure
-`MatExp.expIntervalEnclosure` of the point box `[Ar, Ar]` at Taylor order `η` (as in
-`LinearSys.oneStepFloat`), `e^{Ar} - I` its interval sum with the point `-I`, the product with
-the zonotope `Zonotope.mtimesIntervalMat`, CORA's zonotope `enclose` the float
-`Zonotope.linComb`, and the covariance the interval product `[e^{Ar}] Σ [e^{Ar}]ᵀ`, when the
-trace of `Ar`, rounded up, is negative.
+`MatExp.expIntervalEnclosure` of `[Ar, Ar]` at Taylor order `η`, `e^{Ar} - I` its interval sum
+with `-I`, the product with the zonotope `Zonotope.mtimesIntervalMat`, CORA's zonotope `enclose`
+the float `Zonotope.linComb`, and the covariance the interval product `[e^{Ar}] Σ [e^{Ar}]ᵀ`.
+One step differs: the real operation multiplies the confidence set `zonotope(probZ, m)`, but the
+float layer stores the covariance as an interval matrix with no square root, so `Zaux` is built
+from the mean zonotope `Z` alone and `m` is no argument (`Theorems.EncloseMeanOuter`).
 
-One step differs: the real operation multiplies the confidence set `zonotope(probZ, m)`, the
-mean zonotope plus `m` times a square root of `Σ`. The float layer stores the covariance as an
-interval matrix and has no square root of it, so `Zaux` is built from the mean zonotope `Z`
-alone, and `m` is no argument. `Theorems.EncloseMeanOuter` says what the mean zonotope
-guarantees, the real operation's guarantee: it needs only the means. The covariance is not
-claimed to enclose anything, as for the real operation.
+## Inputs
+* `P` – probabilistic zonotope
+* `Ar` – `n × n` matrix
+* `η` – natural number
+* `Rtrans` – vector of length `n`
+
+## Output
+* the probabilistic zonotope enclosing `P` and its image under `e^{Ar}`, in float arithmetic
 
 ## References
 

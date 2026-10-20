@@ -17,6 +17,15 @@ public import Mathlib.Analysis.Normed.Module.Basic
 asks. `S_P(0) = 0 ≤ 1`, but `0 ∉ P`: the unit-ball claim of `[1, Lemma 1]` needs the
 origin inside `P`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unit ball of `S_P` is not `P` when the origin is outside
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

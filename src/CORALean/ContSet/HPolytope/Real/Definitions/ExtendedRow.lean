@@ -13,6 +13,17 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 on `E × ℝ` with the `ℓ_p` combination of the two norms, which on `E = ℓ_p^m` is `ℓ_p^{m+1}`.
 Its operator norm is `‖G'ᵀ λⱼ‖_{p*}`.
 
+## Inputs
+* `p` – `ℝ≥0∞`
+* `G` – linear map
+* `c` – center of length `n`
+* `d` – direction of length `n`
+* `Λ` – `s × n` matrix
+* `j` – index below `s`
+
+## Output
+* the row `j` of `Λ` applied to `G' = [G, c - d]`, a functional on `E × ℝ`
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

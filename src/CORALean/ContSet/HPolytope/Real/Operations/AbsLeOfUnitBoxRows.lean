@@ -14,6 +14,18 @@ every weight strictly above instead.
 
 This is what pins one side of a convex combination to a point as its weight
 vanishes, and so what makes the combination exact at its endpoints.
+
+## Inputs
+* `u` – vector of length `n`
+* `w` – real number
+* `j` – index below `n`
+
+## Hypotheses
+* `hw` – `0 ≤ w`
+* `h` – every unit-box row at `u` is at most `w` times its bound
+
+## Conclusion
+* `|u j| ≤ w`
 -/
 
 -- Authors:       Claude Opus 5

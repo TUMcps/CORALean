@@ -13,6 +13,17 @@ Every point of the shadow satisfies each kept row: `dᵀ(x - c) ≤ supportFunc 
 the support function is a supremum, and the value is finite for a kept row, so the inequality
 holds in `ℝ`; shifted back by `c` it is `dᵀ x ≤ val + dᵀ c`. Whatever `c` is. Outer: a
 polytope with finitely many rows is not the shadow.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – center of length `n`
+* `dirs` – family indexed by `Fin N`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the outer polytope of a shadow encloses it
 -/
 
 -- Authors:       Claude Opus 5.5

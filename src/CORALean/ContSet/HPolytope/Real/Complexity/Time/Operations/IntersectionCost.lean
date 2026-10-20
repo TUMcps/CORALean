@@ -13,6 +13,16 @@ Asserted, not proved, and no longer zero: `Operations/Intersection.lean` is six 
 is still a new polytope whose rows are all written, read, as `halfScaledCost` reads them, as dense
 vectors of length `d`: the `m₁ + m₂` inequality and `me₁ + me₂` equality rows of `d` coefficients
 and a right-hand side each.
+
+## Inputs
+* `d` – natural number
+* `m₁` – natural number
+* `m₂` – natural number
+* `me₁` – natural number
+* `me₂` – natural number
+
+## Output
+* one write for each of the `(m₁ + m₂ + me₁ + me₂) * (d + 1)` entries of the result
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

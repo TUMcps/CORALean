@@ -16,6 +16,36 @@ public import Mathlib.Analysis.Convex.Combination
 is `λᵢ Pᵢ` only for a nonempty bounded `Pᵢ`, and at `Yᵢ = I`, `ȳᵢ = 0` the printed
 statement inherits that proposition's counterexample at an empty `Pᵢ`.
 
+## Inputs
+* `ny` – natural numbers indexed by `Fin N`
+* `qy` – natural numbers indexed by `Fin N`
+* `xbar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `ybar` – vectors indexed by `Fin N`
+* `Y` – matrices indexed by `Fin N`
+* `Hy` – matrices indexed by `Fin N`
+* `hy` – vectors indexed by `Fin N`
+* `Λ` – matrices indexed by `Fin N`
+* `lam` – real numbers indexed by `Fin N`
+* `β` – vectors indexed by `Fin N`
+* `Γ` – matrices indexed by `Fin N`
+
+## Hypotheses
+* `hne` – each polytope is nonempty
+* `hb` – each polytope is bounded
+* `hΛ` – `Λ` has nonnegative entries
+* `hlam` – `∀ i, 0 ≤ lam i`
+* `h1` – each `Λ i` carries `Hx` to `Hy i Γ i`
+* `h2` – each bound of `Λ i` is at most the bound of `Hy i` shifted by `β i`
+* `hsum` – `∑ i, lam i = 1`
+* `hc` – the scaled centers minus `Y β` sum to `xbar`
+* `hX` – the generators `Y i Γ i` sum to `X`
+
+## Conclusion
+* an AH-polytope in a convex hull of AH-polytopes, sufficiently
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

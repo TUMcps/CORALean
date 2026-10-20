@@ -9,6 +9,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
 
 Only the constraints whose rows were kept: `x` is in `P.restrict S T` exactly when it satisfies
 the inequality rows in `S` and the equality rows in `T`.
+
+## Inputs
+* `P` – H-polytope
+* `S` – inequality rows kept
+* `T` – equality rows kept
+
+## Hypotheses
+* none
+
+## Conclusion
+* `restrict S T` is the set meeting the inequalities in `S` and the equalities in `T`
 -/
 
 -- Authors:       Claude Opus 5.5

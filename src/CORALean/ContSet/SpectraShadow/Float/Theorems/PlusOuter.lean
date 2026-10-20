@@ -15,15 +15,23 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.PosSemidefPlusIff
 /-!
 # `SpectraShadow.plus` over-approximates the Minkowski sum
 
-`InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
-spill only by the center rounding, and the box absorbs that spill along with the
-two incoming boxes.
+`InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts spill only by
+the center rounding, and the box absorbs that spill along with the two incoming boxes.
 
-The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂` as the
-witness, the inequality splitting along the diagonal into the two it came from —
-with the center displaced; the error obligation is two applications of
-`Interval.plus_outer`. The sizes are therefore still `k₁ + k₂` and `m₁ + m₂`, the
-rounding having gone into the box.
+The nominal obligation is the exact `plus` argument, `Fin.append β₁ β₂` as the witness and the
+inequality splitting along the diagonal into the two it came from, with the center displaced;
+the error obligation is two applications of `Interval.plus_outer`. The sizes are therefore
+still `k₁ + k₂` and `m₁ + m₂`, the rounding having gone into the box.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.plus` over-approximates the Minkowski sum
 -/
 
 -- Authors:       Claude Opus 5.5

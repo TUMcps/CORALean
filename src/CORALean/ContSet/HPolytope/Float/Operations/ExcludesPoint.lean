@@ -13,6 +13,13 @@ inequalities it stands for. The bounds are the right-hand sides with the error b
 (`bU`, `beU`, `beLN`), so a point of the inflated polytope is never excluded. Sufficient only:
 `true` proves the point is outside, `false` decides nothing, since `le` and `ltStrict` agree with
 the reals in one direction only.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Output
+* `true` when some row certifies that `x` violates a constraint
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

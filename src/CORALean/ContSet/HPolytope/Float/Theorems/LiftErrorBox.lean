@@ -11,6 +11,16 @@ public import Mathlib.LinearAlgebra.Pi
 
 The lifted box is the original carried by `Function.extend`, zero in the coordinates `dims`
 misses, which is what lets a lifted polytope with a box still be a lift of the sum.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Hypotheses
+* `hdims` – `dims` is injective
+
+## Conclusion
+* the error box of the lift is the zero-extended error box of `P`
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,16 @@ The inequality of `inter` is `plus`'s with one more diagonal block, `diag e ⊕ 
 positive semidefinite exactly when every entry of `e` is both nonnegative and nonpositive: `e = 0`.
 So a point is described when the two sets' variables, read off the halves of `β`, give the same
 point.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.inter` is exactly the intersection
 -/
 
 -- Authors:       Claude Opus 5.5

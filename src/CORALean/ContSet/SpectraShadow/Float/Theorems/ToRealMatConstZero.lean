@@ -9,6 +9,15 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 
 The block `plus` puts opposite a set's own matrices: a constant function of the
 stored `zero`, which `SoundFloatArithmetic` says reads as `0`.
+
+## Inputs
+* `a` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stored zero block reads as the zero matrix
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,7 +17,7 @@ stationarity condition [1, Eq. 18] as `β² ∑ λᵢ/(1+βλᵢ) = ∑ 1/(1+β�
 * `β` – positive weight
 
 ## Output
-* `∑ 1 / (1 + β λᵢ)`
+* the sum over eigenvalues of `1 / (1 + β λᵢ)`
 
 ## References
 

@@ -9,6 +9,17 @@ public import CORALean.ContSet.HPolytope.Float.Operations.RowScale
 
 The quotient `1 / ‖Aᵢ‖₂` is taken only at a norm certified positive, and rounded up, so it is
 above a positive number; otherwise the scale is `1`.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `i` – index below `P.m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* A row scale is positive
 -/
 
 -- Authors:       Claude Opus 5.5

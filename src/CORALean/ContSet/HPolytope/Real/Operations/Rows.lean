@@ -15,6 +15,12 @@ Not a soundness matter — `ofBounds` encloses whatever directions it is given �
 but the right default: the facet normals of a Minkowski sum of two polytopes are
 among the two summands' own, so `plus` over this template is exact wherever the
 rows are the facets.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* the inequality rows, then each equality row with either sign
 -/
 
 -- Authors:       Claude Opus 5

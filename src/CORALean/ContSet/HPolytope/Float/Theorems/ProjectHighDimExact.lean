@@ -16,6 +16,16 @@ The lifted polytope is `P` read at the coordinates `dims` (`lift_exact`, for an 
 `dims`), and the unit rows with the right-hand side `0` pin every coordinate `dims` misses to
 `0`: the same two conditions as over ℝ, with nothing rounded. The lifted error box is `0` in those
 coordinates too, so it moves the selected ones only.
+
+## Inputs
+* `P` – H-polytope
+* `dims` – indices indexed by `Fin n`
+
+## Hypotheses
+* `hdims` – `dims` is injective
+
+## Conclusion
+* `HPolytope.projectHighDim` is exact over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

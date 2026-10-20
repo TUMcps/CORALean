@@ -11,6 +11,16 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
 
 Each shadow lies in its absorbed nominal shadow (`absorbRounding_nominal`), and the tied shadow
 contains the intersection of the two nominal shadows (`tieInter_outer`).
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.inter` contains the intersection
 -/
 
 -- Authors:       Claude Opus 5.5

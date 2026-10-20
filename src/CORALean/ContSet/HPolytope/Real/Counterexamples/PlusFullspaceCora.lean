@@ -27,6 +27,15 @@ set. Read from the source, not run.
 
 The sum with the empty set has no points, but CORA returns `polytope.Inf(2)`. Read from the
 source, not run.
+
+## Inputs
+* `n` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA gives the full space for the sum of the full space and the empty set
 -/
 
 -- Authors:       Claude Sonnet 5.5

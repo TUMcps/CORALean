@@ -9,6 +9,21 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 
 Complementary slackness: a feasible `β` with `tr((A₀ + Σ βᵢ Aᵢ) Y) = 0` makes the dual bound the
 supremum, attained at `c₀ + Σ βᵢ Gᵢ`. The exact value, not an enclosure.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – linear functional
+* `Y` – `S.k × S.k` matrix
+* `β` – real numbers indexed by `Fin S.m`
+
+## Hypotheses
+* `hY` – `Y.PosSemidef`
+* `hc` – `Y` meets the dual equalities `tr(Aᵢ Y) = -c(Gᵢ)`
+* `hβ` – `(S.A₀ + ∑ i, β i • S.A i)` is positive semidefinite
+* `hslack` – the slack `tr((A₀ + Σ βᵢ Aᵢ) Y)` is zero
+
+## Conclusion
+* the support value is `c(c₀) + tr(A₀ Y)`, attained at `c₀ + Σ βᵢ Gᵢ`
 -/
 
 -- Authors:       Claude Opus 5.5

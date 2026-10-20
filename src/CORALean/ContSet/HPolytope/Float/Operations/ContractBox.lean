@@ -9,17 +9,21 @@ public import CORALean.ContSet.Interval.Float.Operations.Materialise
 /-!
 # `HPolytope.contractBox`
 
-A box cut to a halfspace description, one row after another by
-`Interval.contractHalfspace`: every inequality row `A_i x ≤ b_i`, then every
-equality row as its two halves, `Ae_i x ≤ beU_i` and `-Ae_i x ≤ beLN_i`; the right-hand sides
-carry the error box.
-Each row reads the box the previous one left, so a later row profits from an
-earlier one's cut; a single pass, not iterated to a fixpoint.
+A box cut to a halfspace description, one row after another by `Interval.contractHalfspace`:
+every inequality row `A_i x ≤ b_i`, then every equality row as its two halves, `Ae_i x ≤ beU_i`
+and `-Ae_i x ≤ beLN_i`; the right-hand sides carry the error box. Each row reads the box the
+previous one left; a single pass, not iterated to a fixpoint.
 
-The result is a box holding the box's intersection with the polytope, and in
-general more: a polytope's corners are not a box's. It is what a guard or an
-invariant is cut with where the set it cuts has no `Intersection` instance of
-its own, the float zonotope being one.
+The result is a box holding the intersection of the box with the polytope, and in general more.
+It is what a guard or an invariant is cut with where the set has no `Intersection` instance, the
+float zonotope being one.
+
+## Inputs
+* `P` – H-polytope
+* `I` – interval
+
+## Output
+* the box `I` cut by every row of `P` in turn, the equality rows as two halfspaces each
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

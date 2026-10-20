@@ -13,6 +13,16 @@ A point of `nominal ⊕ box` is a nominal point plus a box point. Each row reads
 most its right-hand side and the second at most `errUp`, so the point reads the row at most
 the right-hand side with the box folded in (`bU`, `beU`, `beLN`). This is how an operation
 that reads the rows sees a polytope that carries a box.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `hx` – `x ∈ P.construct`
+
+## Conclusion
+* the rows of a polytope with an error box, as its points read them
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

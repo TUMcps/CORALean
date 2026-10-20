@@ -13,6 +13,17 @@ caller actually has, a disturbance that does not move the state along a
 constrained direction. It is not a hypothesis to weaken — without it no `x` at
 all satisfies the difference along an equality row, so there is nothing weaker
 to assume, and the right answer is not to silently return `∅`.
+
+## Inputs
+* `P` – H-polytope
+* `T` – set of points
+
+## Hypotheses
+* `u` – a support bound of `T` along each row
+* `hker` – every point of `T` is in the kernel of the equality rows
+
+## Conclusion
+* the certified halfspace difference is an inner approximation
 -/
 
 -- Authors:       Claude Opus 5

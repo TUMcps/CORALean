@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
 Every row survives, inequalities and equalities alike — `minkDiffOf` only shifts
 `b`, never adds or drops a row. `rfl` against the structure instance in
 `Operations/MinkDiffOf.lean`.
+
+## Inputs
+* `P` – H-polytope
+* `T` – set of points
+
+## Hypotheses
+* `u` – a support bound of `T` along each row
+
+## Conclusion
+* `minkDiffOf` keeps the number of inequalities of `P`
 -/
 
 -- Authors:       Claude Opus 5

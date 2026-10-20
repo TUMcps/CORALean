@@ -10,6 +10,16 @@ public import CORALean.ContSet.Polygon.Float.Theorems.MtimesOuter
 
 `mtimes_outer` at the diagonal matrix, which reads as `Matrix.diagonal` over the reals
 (`toReal_diagonalBlock`).
+
+## Inputs
+* `v` – vector of length `2`
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.times` encloses the image
 -/
 
 -- Authors:       Claude Sonnet 5.5

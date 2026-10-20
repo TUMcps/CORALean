@@ -18,6 +18,15 @@ halfspaces". That is a property of a representation, not of a set, and not every
 third is redundant in the sense of [1, Eq. 1]. What does hold is `HPolytope.emptySet_rows_minimal`:
 the one-row representation CORA uses has the fewest rows any H-representation of `∅` can have.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* some empty H-polytope has a redundant row, so minimal representations are not unique
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

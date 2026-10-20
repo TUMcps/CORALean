@@ -9,6 +9,15 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
 
 `V √W · (V √W)ᵀ = V W Vᵀ = Σ` for a symmetric positive semidefinite `Σ`: the `n` probabilistic
 generators of `generators` and `probReduce` span the same Gaussian as the covariance.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* `h` – `P.cov` is positive semidefinite
+
+## Conclusion
+* the generators multiplied by their transpose give the covariance
 -/
 
 -- Authors:       Claude Opus 5.5

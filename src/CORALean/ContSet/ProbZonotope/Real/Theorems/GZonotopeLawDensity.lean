@@ -18,6 +18,16 @@ one (`q > n`)" does not make `Σ` invertible — `G` needs rank `n`, which `det 
 `c + G N` and `c + B N` have the same law (`gZonotopeLaw_eq`), and `B` is square and
 invertible (`gZonotopeLaw_eq_withDensity`).
 
+## Inputs
+* `c` – center of length `n`
+* `G` – `n × q` matrix
+
+## Hypotheses
+* `hG` – `G Gᵀ` is invertible
+
+## Conclusion
+* the law has the Gaussian density with mean `c` and covariance `G Gᵀ`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

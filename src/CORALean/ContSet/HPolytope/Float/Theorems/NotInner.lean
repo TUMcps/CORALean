@@ -11,6 +11,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 For a positive `ε` the polytope `-a x ≤ -b - ε` is a subset of the complement of `a x ≤ b`: an
 inner approximation, not the complement (which is open).
+
+## Inputs
+* `P` – H-polytope
+* `ε` – scalar
+
+## Hypotheses
+* `hε` – `0 < toReal ε`
+
+## Conclusion
+* `HPolytope.not` lies inside the complement
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,20 @@ For a mean `μ` of `P`, the point `μ + g β` is in `zonotope(probZ, m)` wheneve
 `μ + Σⱼ (βⱼ/m) (m g·ⱼ)`. This is the step of `zonotope_prob` that turns the probability of the
 cube into the probability of the confidence set, and of `ellipsoid_subset_zonotope`, which turns
 the `m`-sigma ellipsoid into it.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `μ` – mean of length `n`
+* `m` – real number
+* `β` – vector of length `n`
+
+## Hypotheses
+* `hμ` – `μ` lies in `P.Z`
+* `hm` – `0 < m`
+* `hβ` – `∀ j, |β j| ≤ m`
+
+## Conclusion
+* `μ` plus `√Σ β` lies in the confidence zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

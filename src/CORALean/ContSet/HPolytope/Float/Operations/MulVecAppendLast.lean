@@ -6,6 +6,19 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 /-!
 # A row carrying one trailing column reads the parameter it holds
+
+## Inputs
+* `A` – `m × N` matrix
+* `d` – direction of length `m`
+* `u` – vector of length `N`
+* `r` – radius
+* `i` – index below `m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* A row carrying one trailing column reads the parameter it holds
 -/
 
 -- Authors:       Claude Opus 5

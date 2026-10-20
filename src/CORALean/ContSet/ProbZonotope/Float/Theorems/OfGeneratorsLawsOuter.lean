@@ -11,6 +11,18 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
 
 Outer: for every mean `μ` of the zonotope, the law of `μ + g N` (`g` read as reals) is a law of
 the result, whose covariance `g gᵀ` the interval-matrix product encloses.
+
+## Inputs
+* `q` – natural number
+* `Z` – zonotope
+* `g` – `n × q` matrix
+* `μ` – mean of length `n`
+
+## Hypotheses
+* `hμ` – `μ ∈ Z.construct`
+
+## Conclusion
+* the Gaussian law with generators `g` is a law of `ofGenerators Z g`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,15 @@ x₂ ≤ 0}` empty and bounded, `Px = {0} × [-1, 0]`, `x̄ = 0`, `X = I`. With 
 `β = 0`, `Γ = (0, I)` every line of `[1, Prop. 4, Eq. 31]` holds — the `δ₂ = 0` summand only has to
 meet `H₂ y ≤ 0` — yet `Px` lies neither in `{0}` nor in `∅`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Prop. 4]` fails at an empty circumbody
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

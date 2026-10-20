@@ -17,6 +17,16 @@ splits this into the nominal shadow and the box. A point `x = c + Gβ` of the no
 carried to the point `M x` of the result at the variables `(β, x)`: the equalities hold, so
 their diagonal block is zero and the whole inequality is the old one beside it. The box is
 `Interval.mtimes_outer`.
+
+## Inputs
+* `M` – `m × n` matrix
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.mtimes` contains the image
 -/
 
 -- Authors:       Claude Sonnet 5.5

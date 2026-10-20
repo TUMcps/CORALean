@@ -15,6 +15,18 @@ and derives it, [1, Eq. 10], as the squared radius of the largest ball around th
 the definition leaves out: a ball of radius `s` lies in `aᵀ x ≤ b` iff `s ‖a‖₂ ≤ b`. With unit
 rows and `b ≥ 0` — the origin inside — the largest radius is `min b`, and its square `min(b²)`.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+
+## Hypotheses
+* `hq` – `0 < q`
+* `hA` – `∀ i, ‖A i‖₂ = 1`
+* `hb` – `0 ≤ b`
+
+## Conclusion
+* the largest ball around the origin in the polytope has the smallest bound as radius
+
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean

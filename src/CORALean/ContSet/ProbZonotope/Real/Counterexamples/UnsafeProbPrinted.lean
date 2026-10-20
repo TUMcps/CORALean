@@ -15,6 +15,15 @@ confidence rings `Qᵢ` partition `η`, `Σᵢ V(Qᵢ ∩ B) = V(B) = 6σ`. [1, 
 inequality, and `1 - p² + 0.06 < p` there: the printed `p̄` is no upper bound. The volumes need
 the hull's heights `hᵢ^max` as factors (`UnsafeProbLe`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* [1, Eq. 7] as printed under-estimates the probability
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

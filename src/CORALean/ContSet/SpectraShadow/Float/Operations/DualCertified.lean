@@ -14,6 +14,14 @@ program CORA's `supportFunc_` solves: `Y` symmetric and diagonally dominant (so 
 with `le` on stored entries, and the equalities `tr(Aᵢ Y) = -aᵀ Gᵢ` for every variable, which no
 rounded arithmetic can confirm and which are therefore decided exactly in ℚ (`ToRat`). A solver's
 `Y` rarely meets them exactly; the check is what makes its answer usable, not a way to find one.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `a` – vector of length `n`
+* `Y` – `S.k × S.k` matrix
+
+## Output
+* `true` when `Y` is symmetric, dominant and meets `tr(Aᵢ Y) = -aᵀGᵢ`
 -/
 
 -- Authors:       Claude Opus 5.5

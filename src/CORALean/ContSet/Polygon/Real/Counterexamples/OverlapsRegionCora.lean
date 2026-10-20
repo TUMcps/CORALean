@@ -20,6 +20,16 @@ finite boundary sample `V`, a boundary point `z` of `E` lies outside the sampled
 does a small square `P` about `z`: `P` meets `E` at `z`, yet `overlaps(P, polygon(E))` is false and
 CORA returns false. `contSet/isIntersecting.m` l. 38 reorders by precedence (polygon 15,
 ellipsoid 50) and calls the polygon method. Read from the source, not run.
+
+## Inputs
+* `V` – set of points
+
+## Hypotheses
+* `hV` – `V.Finite`
+* `hc` – every sample point lies on the unit circle
+
+## Conclusion
+* CORA's test says a square meeting the unit disk misses `polygon(E)`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,18 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Slab
 
 /-!
 # Membership in the nominal part of `HPolytope.slab`
+
+## Inputs
+* `A` – `q × n` matrix
+* `lo` – vector of length `q`
+* `hi` – vector of length `q`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the nominal part of the slab iff every row of `A x` is between `lo` and `hi`
 -/
 
 -- Authors:       Claude Sonnet 5.5

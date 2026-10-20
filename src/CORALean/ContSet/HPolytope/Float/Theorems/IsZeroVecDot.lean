@@ -9,6 +9,16 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 # A certified zero row is the zero functional
 
 Each entry reads `0`, so the dot product with any point is `0`.
+
+## Inputs
+* `v` – vector of length `n`
+* `x` – point of length `n`
+
+## Hypotheses
+* `h` – `HPolytope.isZeroVec v` holds
+
+## Conclusion
+* A certified zero row is the zero functional
 -/
 
 -- Authors:       Claude Opus 5.5

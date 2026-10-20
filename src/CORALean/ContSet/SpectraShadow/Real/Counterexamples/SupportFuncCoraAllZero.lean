@@ -20,6 +20,15 @@ Formalized as the code computes it, to state the counterexample
 
 `supportFunc_` and `isBounded` on the point `{0}` (`A₀ = 1`, `A₁ = 0`, `G = 0`): CORA's
 `all_Ai_zero` branch returns `+Inf` while the support is `0`. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `+Inf` support of the point `{0}` differs from its true support
 -/
 
 -- Authors:       Claude Opus 5.5

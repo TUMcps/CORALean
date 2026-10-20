@@ -13,6 +13,12 @@ a nonempty error box. The cross product `(b - a) × (c - a)` is six products of 
 coordinates, bracketed by directed roundings, and certified nonzero by `ltStrict` on one side
 of `0`; the box's `inf ≤ sup` by `le`. Only `true` is certain; CORA's count of boundary vertices
 (R-PG) is not what is tested.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* some piece with a nonempty box and three vertices certified not collinear
 -/
 
 -- Authors:       Claude Opus 5.5

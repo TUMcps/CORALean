@@ -10,6 +10,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 
 Every diagonal point is in the line example: take the coefficient `(t, 0)`, where the
 inequality is `I ⪰ 0`.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* none
+
+## Conclusion
+* the diagonal point `(t, t)` lies in the line example
 -/
 
 -- Authors:       Claude Opus 5.5

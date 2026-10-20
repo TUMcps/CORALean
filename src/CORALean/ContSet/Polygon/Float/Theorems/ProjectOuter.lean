@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
 # `Polygon.project` encloses the image
 
 Piece by piece (`VPolytope.project_outer`).
+
+## Inputs
+* `P` – polygon
+* `dims` – indices indexed by `Fin 2`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.project` encloses the image
 -/
 
 -- Authors:       Claude Opus 5.5

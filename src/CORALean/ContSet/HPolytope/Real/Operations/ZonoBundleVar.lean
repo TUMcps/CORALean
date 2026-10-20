@@ -11,6 +11,13 @@ public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 The variable `(x, y, a₁, …, a_q)` of `aux_isIntersecting_P_zB` in CORA's
 `@polytope/isIntersecting_.m`: a point `x`, one slack `yᵣ` per inequality row of the polytope
 (`m` of them) and the coefficients `aᵢ` of each zonotope of the bundle.
+
+## Inputs
+* `m` – natural number
+* `zB` – zonotope bundle
+
+## Output
+* the variable `(x, y, a₁, …, a_q)`, `y` with `m` slacks
 -/
 
 -- Authors:       Claude Sonnet 5.5

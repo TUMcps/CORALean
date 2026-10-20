@@ -10,6 +10,13 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 
 The hyperplane `ℝⁿ × {1}` of `ℝⁿ⁺¹` of `convHull_`: the trivial inequality `0 ⪰ 0`, the center `(0,
 1)` and the unit vectors of the first `n` coordinates as generators. The box is the origin.
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – natural number
+
+## Output
+* the hyperplane `ℝⁿ × {1}`: center `(0, 1)` and unit vectors as generators
 -/
 
 -- Authors:       Claude Opus 5.5

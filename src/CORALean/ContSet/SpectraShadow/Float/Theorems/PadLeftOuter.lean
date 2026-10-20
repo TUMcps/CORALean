@@ -14,6 +14,16 @@ Padding rounds nothing, so `InflatedContSet.image_subset` splits this into the n
 the box. The nominal shadow of the padded one is the exact layer's `map` of the nominal
 shadow under `blockPadLeft`, so `map_exact` gives the nominal obligation as an equality; the
 box's new coordinates are the exact zeros `padLeft` stores.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `m` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.padLeft` contains the embedded shadow
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -9,6 +9,18 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # Membership in `HPolytope.slab`
 
 A point is in the slab iff every row reads between the two bounds.
+
+## Inputs
+* `A` – `q × n` matrix
+* `lo` – vector of length `q`
+* `hi` – vector of length `q`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the slab iff every row of `A x` is between `lo` and `hi`
 -/
 
 -- Authors:       Claude Sonnet 5.5

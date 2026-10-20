@@ -11,17 +11,26 @@ public import Mathlib.Tactic.Positivity
 /-!
 # Extreme points of a halfspace description
 
-The characterisation vertex enumeration rests on: at an extreme point the rows
-that are tight there, together with the equalities, pin the point down
-completely. Any direction they all fail to see could be stepped along in both
-directions without leaving the polytope — the tight rows stay tight, the slack
-ones have room — which puts the point strictly between two others and so is not
-extreme.
+The characterisation vertex enumeration rests on: at an extreme point the rows that are tight
+there, together with the equalities, pin the point down completely. Any direction they all
+fail to see could be stepped along in both directions without leaving the polytope, which puts
+the point strictly between two others and so is not extreme.
 
-The step size comes from openness rather than from a minimum over the slack
-rows: finitely many strict inequalities cut out an open set, and any small
-enough step stays inside it. That avoids having to handle a polytope with no
-slack rows at all as a separate case.
+The step size comes from openness rather than from a minimum over the slack rows: finitely
+many strict inequalities cut out an open set, and any small enough step stays inside it.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+* `d` – direction of length `n`
+
+## Hypotheses
+* `hx` – `x` lies in `P.extremePoints ℝ`
+* `htight` – every direction `d` is invisible to the rows tight at `x`
+* `heq` – `d` is invisible to every equality row
+
+## Conclusion
+* `d = 0`
 -/
 
 -- Authors:       Claude Opus 5

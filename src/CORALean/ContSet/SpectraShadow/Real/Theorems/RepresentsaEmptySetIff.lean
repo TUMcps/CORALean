@@ -8,6 +8,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaEmptySet
 # `SpectraShadow.representsa_emptySet` is emptiness
 
 The inequality has no solution exactly when the set is `∅`.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `representsa_emptySet` holds iff the shadow is empty
 -/
 
 -- Authors:       Claude Opus 5.5

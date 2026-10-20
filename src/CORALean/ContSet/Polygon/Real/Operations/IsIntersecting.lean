@@ -12,6 +12,13 @@ pieces: some piece of one meets some piece of the other. Two vertex polytopes me
 system in the convex-combination weights is feasible (`VPolytope.inter_nonempty_iff`), which is
 what is stated here, a Prop and not a decision procedure (it needs a linear program). CORA's
 tolerance and `overlaps` on the boundary representation (R-PG) are not covered.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* some pair of pieces has a common convex combination of vertices
 -/
 
 -- Authors:       Claude Opus 5.5

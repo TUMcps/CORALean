@@ -10,6 +10,19 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 Weights that cancel the objective but not the right-hand side prove the
 description denotes nothing — the certificate of infeasibility an LP solver
 returns instead of a solution.
+
+## Inputs
+* `P` – H-polytope
+* `y` – real numbers indexed by `Fin P.m`
+* `z` – real numbers indexed by `Fin P.me`
+
+## Hypotheses
+* `hy` – `∀ i, 0 ≤ y i`
+* `h0` – the weighted rows sum to zero
+* `hneg` – the weighted bounds sum to a negative number
+
+## Conclusion
+* `P.construct = ∅`
 -/
 
 -- Authors:       Claude Opus 5

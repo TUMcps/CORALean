@@ -11,6 +11,21 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 A point within `δ` of `β₀` in every coordinate reads a row at most `δ` times the row's absolute
 sum away from `β₀`'s reading, and the test bounded both, rounded outward, by the bound with its
 slack.
+
+## Inputs
+* `P` – H-polytope
+* `β₀` – vector of length `n`
+* `δ` – scalar
+* `β` – vector of length `n`
+* `i` – index below `P.m`
+
+## Hypotheses
+* `h` – `P.ineqsContainBall β₀ δ` holds
+* `hδ` – `0 ≤ toReal δ`
+* `hβ` – `β` is within `δ` of `β₀` in every coordinate
+
+## Conclusion
+* A passed test keeps every point within `δ` of `β₀` inside every inequality row
 -/
 
 -- Authors:       Claude Opus 5.5

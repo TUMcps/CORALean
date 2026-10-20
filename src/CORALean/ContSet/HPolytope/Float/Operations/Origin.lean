@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `polytope.origin(n)` in its halfspace form: no inequalities and the `n` equality rows
 `xᵢ = 0`, the identity matrix against the point box `[0, 0]`. The entries are `one` and `zero`.
+
+## Inputs
+* `n` – natural number
+
+## Output
+* the equalities `xᵢ = 0`, no inequalities, and the origin error box
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

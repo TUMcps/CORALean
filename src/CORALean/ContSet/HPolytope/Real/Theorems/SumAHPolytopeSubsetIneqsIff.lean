@@ -18,6 +18,22 @@ spaces, whose rows are every summand's rows together. It needs every `Pᵢ` none
 the printed statement omits — at `N = 1` it is `[1, Lemma 1]`, and the same empty inbody
 breaks it (`sum_ahPolytope_subset_ineqs_iff_counterexample`).
 
+## Inputs
+* `nx` – natural numbers indexed by `Fin N`
+* `qx` – natural numbers indexed by `Fin N`
+* `xbar` – mean of length `n`
+* `X` – matrices indexed by `Fin N`
+* `Hx` – matrices indexed by `Fin N`
+* `hx` – vectors indexed by `Fin N`
+* `Hy` – `qy × n` matrix
+* `hy` – vector of length `qy`
+
+## Hypotheses
+* `hne` – each polytope is nonempty
+
+## Conclusion
+* A Minkowski sum of AH-polytopes in an H-polytope, exactly
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

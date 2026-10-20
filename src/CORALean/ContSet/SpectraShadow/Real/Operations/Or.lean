@@ -9,6 +9,13 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
 
 CORA's `or(SpS, S)` of a spectrahedral shadow: `S_out = convHull_(SpS, S, varargin{:})`, the
 convex hull of the union. A shadow is convex, so the union is closed under nothing smaller.
+
+## Inputs
+* `SpS` – spectrahedral shadow
+* `S` – spectrahedral shadow
+
+## Output
+* the convex hull of the union of `SpS` and `S`
 -/
 
 -- Authors:       Claude Opus 5.5

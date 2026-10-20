@@ -12,6 +12,13 @@ costs nothing and loses nothing. The operation halfspaces are for.
 
 The stacked system of [1, Eq. 36].
 
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Output
+* the polytope with the constraint lists of `P₁` and `P₂` concatenated
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

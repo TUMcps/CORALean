@@ -19,6 +19,23 @@ minimal size. The text calls `B` orthonormal; line 8 appends `x_iter` unscaled, 
 orthogonal. The paper's proof is the one here: the part of `z - c` perpendicular to `B` is a
 candidate, so it is no longer than `x_iter`.
 
+## Inputs
+* `P` – H-polytope
+* `c` – center of length `n`
+* `ε` – tolerance
+* `φ` – real number
+* `xiter` – maximizer of [1, Eq. 22] given the columns found so far
+
+## Hypotheses
+* `hc` – `c ∈ P.construct`
+* `hε` – `0 ≤ ε`
+* `hεφ` – `ε < φ`
+* `hfeas` – `xiter` is perpendicular to `B` and completes a point of `P`
+* `hopt` – `xiter` is longest, up to `φ`, among such completions
+
+## Conclusion
+* what `HPolytope.affineHullBasis` returns
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

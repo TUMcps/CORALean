@@ -15,6 +15,15 @@ public import Mathlib.Tactic.FinCases
 has `X† X = I`. The printed right-hand side `{y | H X† y ≤ h}` is the strip `|y₁| ≤ 1`,
 which contains `(0, 1)`, off the segment.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Eq. 4]` fails for a non-square map
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

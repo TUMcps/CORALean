@@ -10,6 +10,18 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 
 At a point the rows read through `sel` alone, the selected rows read the selected coordinates as
 the full rows read the point, so the two nominal parts agree on it, row by row.
+
+## Inputs
+* `P` – H-polytope
+* `sel` – indices indexed by `Fin k`
+* `x` – point of length `n`
+
+## Hypotheses
+* `hA` – the inequality rows read `x` through `sel` alone
+* `hE` – the equality rows read `x` through `sel` alone
+
+## Conclusion
+* the selected coordinates lie in the nominal part of `selectCols` iff `x` lies in that of `P`
 -/
 
 -- Authors:       Claude Opus 5.5

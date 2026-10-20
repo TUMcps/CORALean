@@ -17,6 +17,15 @@ The certified cross product (`Polygon.orientBounds_le`), read as reals, is the d
 span is everything, and the nominal piece has an interior point
 (`CORALean.Real.VPolytope.isFullDim_iff`). The piece's error box holds its lower corner, which
 moves that point into the piece, and the piece into the region.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* `h` – `Polygon.isFullDim P` holds
+
+## Conclusion
+* A `true` from `Polygon.isFullDim` proves an interior point
 -/
 
 -- Authors:       Claude Opus 5.5

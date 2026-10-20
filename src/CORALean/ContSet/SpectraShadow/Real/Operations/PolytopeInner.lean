@@ -13,6 +13,13 @@ supportFunc(dir)` returns as maximisers along a grid of directions, taken in the
 its `center`, and shifted back. The center `c` and the maximisers `v` are the solver's, so they are
 arguments; `Theorems.PolytopeInner` holds whichever points of the shifted shadow they are. CORA's
 `polytope.Inf` when no direction has a maximiser is not modelled: the vertex list is then empty.
+
+## Inputs
+* `c` – center of length `n`
+* `v` – vectors indexed by `Fin N`
+
+## Output
+* the V-polytope with vertices `v i + c`, the maximisers shifted back by the center
 -/
 
 -- Authors:       Claude Opus 5.5

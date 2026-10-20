@@ -8,7 +8,14 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 /-!
 # `SpectraShadow.Inf` denotes everything
 
+## Inputs
+* `n` – natural number
 
+## Hypotheses
+* none
+
+## Conclusion
+* `Inf` is the whole space
 -/
 
 -- Authors:       Claude Opus 5.5

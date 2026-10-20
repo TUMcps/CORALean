@@ -8,7 +8,14 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 /-!
 # `SpectraShadow.empty` denotes the empty set
 
+## Inputs
+* `n` – natural number
 
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.empty` denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

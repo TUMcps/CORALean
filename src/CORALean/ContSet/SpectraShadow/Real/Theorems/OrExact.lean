@@ -9,6 +9,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
 # `SpectraShadow.or` is exactly the convex hull of the union
 
 `or` is `convHull_`, so `convHull_exact` is its guarantee: equality, not an enclosure.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.or` is exactly the convex hull of the union
 -/
 
 -- Authors:       Claude Opus 5.5

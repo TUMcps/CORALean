@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 
 Every point of the polytope less `v`, and no other point, satisfies the shifted
 rows.
+
+## Inputs
+* `P` – H-polytope
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `HPolytope.minus` is exactly the shift by `-v`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,18 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 A point is in `P.restrict keepA keepE` iff it meets the rows the tests keep. The index of a kept
 row in the filtered list is the row, and every row of the list is kept.
+
+## Inputs
+* `P` – H-polytope
+* `keepA` – Booleans indexed by `Fin P.m`
+* `keepE` – Booleans indexed by `Fin P.me`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the nominal part of `restrict` iff it meets the kept rows up to their slacks
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -12,6 +12,18 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 For `x` in the domain, `(s v - ṽ)ᵀ x` lies between `scaleDevLo` and `scaleDevHi`, where `ṽ` is
 `s v` rounded down: each entry's deviation is between the two roundings of `s vⱼ` less the stored
 entry, and each product between its rounded corners (`mul_between_corners`).
+
+## Inputs
+* `v` – vector of length `n`
+* `s` – scalar
+* `dom` – domain interval
+* `x` – point of length `n`
+
+## Hypotheses
+* `hx` – `x` lies in `dom`
+
+## Conclusion
+* what rounding a scaled row costs, bounded over a domain
 -/
 
 -- Authors:       Claude Opus 5.5

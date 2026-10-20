@@ -9,6 +9,12 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 
 CORA's `@spectraShadow/representsa_` at type `emptySet`: `~aux_feasible`, the linear matrix
 inequality has no solution.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* `aux_feasible` negated: the linear matrix inequality has no solution
 -/
 
 -- Authors:       Claude Opus 5.5

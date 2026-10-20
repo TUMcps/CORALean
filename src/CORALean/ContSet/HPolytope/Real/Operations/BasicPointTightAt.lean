@@ -7,6 +7,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 
 /-!
 # A point no direction is free at is the one its own tight rows name
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* `hx` – `x ∈ P.construct`
+* `hpin` – the tight rows at `x` leave no direction `d` but `0`
+
+## Conclusion
+* A point no direction is free at is the one its own tight rows name
 -/
 
 -- Authors:       Claude Opus 5

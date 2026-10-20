@@ -10,6 +10,13 @@ public import CORALean.ContSet.Polygon.Float.Operations.Basic
 CORA's `@polygon/times`: `diag(M) * pgon`, so `mtimes` at the float diagonal matrix
 `diagonalBlock v`. Not `ContSet.times`: a polygon is fixed at dimension two and has no `Mtimes`
 instance.
+
+## Inputs
+* `v` – vector of length `2`
+* `P` – polygon
+
+## Output
+* every piece scaled coordinatewise by `v`: `mtimes` at `diag(v)`
 -/
 
 -- Authors:       Claude Sonnet 5.5

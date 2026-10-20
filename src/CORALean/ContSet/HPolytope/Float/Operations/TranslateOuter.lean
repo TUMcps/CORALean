@@ -12,6 +12,16 @@ Each bound shifts by what its own row reads of the shift, between its two roundi
 shifts with the nominal part. A shifted point of the nominal part reads each row within its slack
 of the exact shifted bound, which lies between those roundings, so it is in the nominal part
 `setRhs` builds (`HPolytope.mem_setRhs_nominal`).
+
+## Inputs
+* `t` – vector of length `n`
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the shifted polytope contains the shift of every point
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

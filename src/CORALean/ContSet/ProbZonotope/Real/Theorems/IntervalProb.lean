@@ -15,6 +15,19 @@ hull of a zonotope), so [1, Prop. 2] as `zonotope_prob` has it carries over: wha
 `μ ∈ Z`, `N(μ, Σ)` puts at least `P[-m ≤ N(0, 1) ≤ m]ⁿ` on it. Outer: the box is an
 overapproximation of the confidence set, not equal to it.
 
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+* `ν` – measure
+
+## Hypotheses
+* `hP` – `P.cov` is positive semidefinite
+* `hm` – `0 < m`
+* `hν` – `ν ∈ P.laws`
+
+## Conclusion
+* every law of a probabilistic zonotope puts `erf(m/√2)ⁿ` on its interval
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

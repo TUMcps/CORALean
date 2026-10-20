@@ -17,6 +17,14 @@ support value `val`, and the polytope shifted back. An empty shadow gives the em
 `center` is whichever feasible point the solver reports, so it is an argument `c`; the rows do not
 depend on it (`Theorems.PolytopeOuter` holds for every `c`). The grid is any family of functionals.
 An empty list of rows is the whole space, as CORA's `polytope.Inf`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – center of length `n`
+* `dirs` – family indexed by `Fin N`
+
+## Output
+* the rows `dirᵀ x ≤ support` along `dirs` of the shadow shifted by `c`, shifted back
 -/
 
 -- Authors:       Claude Opus 5.5

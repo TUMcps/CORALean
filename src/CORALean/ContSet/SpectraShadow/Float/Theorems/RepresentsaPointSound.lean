@@ -11,6 +11,18 @@ public import CORALean.ContSet.Conversion.Float.Theorems.SpectraShadowIntervalCo
 
 The set lies in the certified box (`SpectraShadow.interval_contains`), which is the single point
 its corner reads as, and that point is a member (`SpectraShadow.containsPoint_sound`).
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – matrices indexed by `Fin n`
+* `Ylo` – matrices indexed by `Fin n`
+* `β` – vector of length `S.m`
+
+## Hypotheses
+* `h` – `S.representsa_point Yup Ylo β` holds
+
+## Conclusion
+* the shadow is a single point
 -/
 
 -- Authors:       Claude Opus 5.5

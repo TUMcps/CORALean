@@ -9,6 +9,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 # `SpectraShadow.representsa_point` is a singleton
 
 A member whose coordinates are the support values exists exactly when the set is a singleton.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.representsa_point` is a singleton
 -/
 
 -- Authors:       Claude Opus 5.5

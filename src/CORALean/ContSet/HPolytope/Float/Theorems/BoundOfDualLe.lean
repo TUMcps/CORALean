@@ -10,6 +10,22 @@ public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
 Weak duality: every point of the polytope reads at most the float value of any
 nonnegative dual certificate the caller supplies. An upper bound only; the
 certificate is not claimed optimal.
+
+## Inputs
+* `P` – H-polytope
+* `c` – center of length `n →ₗ[ℝ] ℝ`
+* `y` – vector of length `P.m`
+* `zu` – vector of length `P.me`
+* `zl` – vector of length `P.me`
+
+## Hypotheses
+* `hy` – the entries of `y` are nonnegative
+* `hzu` – the entries of `zu` are nonnegative
+* `hzl` – the entries of `zl` are nonnegative
+* `hc` – `c` is the dual combination of the rows with weights `y`, `zu`, `zl`
+
+## Conclusion
+* `HPolytope.boundOfDual` bounds the support function
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 CORA's `spectraShadow.Inf(n)`: the `1 × 1` inequality `1 ⪰ 0` over `n` free coefficients that
 carry the unit vectors. Only the constant `one` is stored, so nothing rounds and the error box is
 the origin box.
+
+## Inputs
+* `n` – natural number
+
+## Output
+* `spectraShadow.Inf(n)`: the `1 × 1` inequality `1 ⪰ 0` over `n` free coefficients
 -/
 
 -- Authors:       Claude Sonnet 5.5

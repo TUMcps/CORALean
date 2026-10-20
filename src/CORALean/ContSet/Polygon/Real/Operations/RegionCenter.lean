@@ -14,6 +14,12 @@ position under the area measure. The region is what the convex pieces denote, so
 the average of the identity over it (`Polygon.regionCenter`); no formula (shoelace) and no
 computation from the vertices is given. For a region of zero area (a point, a segment) the average
 is `0` by Mathlib's convention where CORA's `centroid` reads the vertices (not covered).
+
+## Inputs
+* `S` – set of points
+
+## Output
+* the centroid of a planar region: the average of the position over it (area measure)
 -/
 
 -- Authors:       Claude Sonnet 5.5

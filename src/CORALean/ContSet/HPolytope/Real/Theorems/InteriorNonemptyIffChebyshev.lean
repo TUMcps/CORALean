@@ -15,6 +15,16 @@ feasible: a degenerate nonempty polytope has optimal radius `0`, as the text say
 display has the comparison the other way round (`⊤ if r > 0`); see
 `ineqs_degenerate_chebyshev_counterexample`.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interior is nonempty iff a ball of positive radius fits in every halfspace
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

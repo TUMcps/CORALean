@@ -11,6 +11,12 @@ public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
 
 The pieces' hulls folded with `VPolytope.convHull`, from the right. The empty list is the empty
 polytope and a single piece is itself, so no box is joined with a box that holds nothing.
+
+## Inputs
+* none
+
+## Output
+* the hull of a list of pieces
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,18 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 `β`-weighted sums of `blockDiag (diagonal gᵢ) (diagonal (-gᵢ))` are the block diagonal at the
 weighted sum of the `gᵢ`: what `inter` uses to write an equality `e = 0` as `e ⪰ 0` and `-e ⪰ 0`,
 and `generateESumRep` the same.
+
+## Inputs
+* `ι` – type
+* `s` – `Finset ι`
+* `β` – `ι → ℝ`
+* `g` – `ι → Vec ℝ n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the diagonal pair is linear in the vector it carries
 -/
 
 -- Authors:       Claude Opus 5.5

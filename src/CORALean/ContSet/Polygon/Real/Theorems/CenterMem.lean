@@ -14,6 +14,15 @@ public import CORALean.ContSet.Polygon.Real.Operations.Volume
 The centroid of a polygon of positive area lies in the convex hull of its vertices
 (`Polygon.regionCenter_mem` at that hull, closed since the vertex set is finite). The centroid
 itself is not computed; for a non-convex region (an L-shape, a ring) it may lie outside the region.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* `h0` – the polygon has nonzero volume
+
+## Conclusion
+* `Polygon.center` lies in the hull of the vertices
 -/
 
 -- Authors:       Claude Sonnet 5.5

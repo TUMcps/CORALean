@@ -14,6 +14,13 @@ and `FloatBound` take when it is a matrix row.
 It is only a name for `Real.HPolytope.rowLin (toRealMat M) i`, kept because the statements that
 take a row as the direction of a `FloatBound` use it at every site and would otherwise spell the
 conversion out each time.
+
+## Inputs
+* `M` – `q × n` matrix
+* `i` – index below `q`
+
+## Output
+* row `i` of a float matrix as a functional over ℝ, `Real.HPolytope.rowLin (toRealMat M) i`
 -/
 
 -- Authors:       Claude Opus 5

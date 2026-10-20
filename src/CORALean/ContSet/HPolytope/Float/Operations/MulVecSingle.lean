@@ -8,6 +8,17 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 # A row with one nonzero entry reads one coordinate
 
 The sign the entry carries times the coordinate; the other entries are `0` and drop out.
+
+## Inputs
+* `a` – scalar
+* `x` – point of length `n`
+* `j` – index below `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* A row with one nonzero entry reads one coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

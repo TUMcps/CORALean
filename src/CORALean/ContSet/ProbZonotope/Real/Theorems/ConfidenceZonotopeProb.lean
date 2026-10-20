@@ -17,6 +17,17 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 (`stdGaussian_cube`). [1] chooses `n` generators "without loss of generality"; that they are
 independent, `det G ≠ 0`, is what makes the probability exact rather than a lower bound.
 
+## Inputs
+* `G` – `n × n` matrix
+* `m` – real number
+
+## Hypotheses
+* `hG` – `G.det ≠ 0`
+* `hm` – `0 < m`
+
+## Conclusion
+* the confidence set holds the G-zonotope with probability `erf(m/√2)ⁿ`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

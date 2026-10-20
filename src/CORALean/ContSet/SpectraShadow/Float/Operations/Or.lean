@@ -8,6 +8,13 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
 # `SpectraShadow.or`, over a floating-point scalar
 
 CORA's `or(SpS, S)` of a spectrahedral shadow: `convHull_(SpS, S)`, the convex hull of the union.
+
+## Inputs
+* `SpS` – spectrahedral shadow
+* `S` – spectrahedral shadow
+
+## Output
+* the convex hull of the union of `SpS` and `S`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,14 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 `arrowMat s t w = [[t, wᵀ], [w, s I]]`, as the exact layer's (`Real.arrowMat`), in `𝕋`: the block of
 the cone that forces `s ≥ 0` and, at `s = 0`, the point `w = 0`. Its entries are the arguments and
 `zero`.
+
+## Inputs
+* `s` – scalar
+* `t` – scalar
+* `w` – weights of length `N`
+
+## Output
+* the arrowhead matrix `[[t, wᵀ], [w, s I]]`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -38,6 +38,16 @@ not `V1` (second vertex `C ≠ A`). So `isequal` answers `false` for equal polyg
 tolerance below `2`. The right start `idx(2) = 4` would give `V1`. A wrong answer, not unsound.
 Read from the source, not run; whether MATLAB's `polyshape` keeps such a pinched boundary as
 one loop in the order given is not checked.
+
+## Inputs
+* `tol` – tolerance
+
+## Hypotheses
+* `h0` – `0 ≤ tol`
+* `h2` – `tol < 2`
+
+## Conclusion
+* CORA's `isequal` calls a boundary and its re-start unequal
 -/
 
 -- Authors:       Claude Sonnet 5.5

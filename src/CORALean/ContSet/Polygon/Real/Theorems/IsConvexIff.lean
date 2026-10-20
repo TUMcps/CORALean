@@ -9,6 +9,15 @@ public import CORALean.ContSet.Polygon.Real.Theorems.ConvHullExact
 # `Polygon.isConvex` is convexity of the region
 
 Exactly, by `Polygon.convHull_exact`.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.isConvex` is convexity of the region
 -/
 
 -- Authors:       Claude Opus 5.5

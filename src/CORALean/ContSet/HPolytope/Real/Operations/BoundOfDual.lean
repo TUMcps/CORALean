@@ -10,6 +10,19 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 A halfspace description *is* an LP feasible set, so weak duality applies to it
 directly: a nonnegative weighting of its own rows bounds whatever objective the
 weighting assembles.
+
+## Inputs
+* `P` – H-polytope
+* `c` – linear functional
+* `y` – real numbers indexed by `Fin P.m`
+* `z` – real numbers indexed by `Fin P.me`
+
+## Hypotheses
+* `hy` – `∀ i, 0 ≤ y i`
+* `hc` – `c` is the combination of the rows with weights `y`, `z`
+
+## Output
+* a support bound in direction `c`, from the dual weights `y`, `zu`, `zl`
 -/
 
 -- Authors:       Claude Opus 5

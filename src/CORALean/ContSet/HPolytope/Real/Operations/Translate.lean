@@ -14,6 +14,13 @@ Exact, and the case `comap` cannot reach — `comap` precomposes with a *linear*
 map, and a translation is affine. Composed with `intersection` this is CORA's `plus`
 against a single point, which is the one Minkowski sum a halfspace description
 can take without enumerating vertices.
+
+## Inputs
+* `t` – space
+* `P` – H-polytope
+
+## Output
+* `P` shifted by `t`: every bound moves by its row's value at `t`
 -/
 
 -- Authors:       Claude Opus 5

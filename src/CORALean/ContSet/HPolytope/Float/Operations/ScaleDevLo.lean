@@ -12,6 +12,14 @@ A row `v` scaled by `s` is stored as `ṽ = s v` rounded down. Each entry of the
 `s v` lies between its two roundings, so its deviation from the stored entry is between the
 roundings less the stored entry, rounded outward. Over a box `dom` the deviation `(s v - ṽ)ᵀ x` is
 then at least this sum of lower corner products, each rounded down.
+
+## Inputs
+* `v` – vector of length `n`
+* `s` – scalar
+* `dom` – domain interval
+
+## Output
+* the lower bound of `(s v - ṽ)ᵀ x` over `x ∈ dom`, for `ṽ = mulDown v s`
 -/
 
 -- Authors:       Claude Opus 5.5

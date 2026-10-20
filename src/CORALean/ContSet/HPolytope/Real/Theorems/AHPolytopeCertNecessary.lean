@@ -15,6 +15,26 @@ Then `Y'` is onto: `w = H'ᵧ (H'ᵧ† w)`, and splitting `H'ᵧ† w` by `[1, 
 `w = Y' c`. So `Y` is injective, and `ahPolytope_subset_iff_of_injective` applies — which
 is why `[1, Cor. 1]` follows: the hypothesis is the same.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `ybar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Y` – `n × ny` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × ny` matrix
+* `hy` – vector of length `qy`
+* `Hdag` – `qy × ny` matrix
+
+## Hypotheses
+* `hfull` – the polytope `ineqs Hx hx` has nonempty interior
+* `hdag` – `Hyᵀ * Hdag = 1`
+* `h18` – every `u` splits as `Hdag Yᵀ c + k` with `Hyᵀ k = 0`
+* `hsub` – the AH-polytope in `Px` lies in the one in `Py`
+
+## Conclusion
+* a certificate `Γ`, `β`, `Λ` of the conditions (12) exists
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

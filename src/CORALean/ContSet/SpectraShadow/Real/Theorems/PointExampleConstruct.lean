@@ -9,6 +9,15 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 # `SpectraShadow.pointExample_construct`
 
 The point example denotes `{0}`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point example is `{0}`
 -/
 
 -- Authors:       Claude Opus 5.5

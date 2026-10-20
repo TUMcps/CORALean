@@ -12,6 +12,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 
 The H-representation of a box (`Interval.hPolytope`) denotes the box (`hPolytope_exact`), so its
 volume is the product of the widths, `Interval.volume`.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume of the interval as a polytope equals the volume of the interval
 -/
 
 -- Authors:       Claude Opus 5.5

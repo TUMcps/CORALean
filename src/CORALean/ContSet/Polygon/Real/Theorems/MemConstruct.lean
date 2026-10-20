@@ -10,6 +10,16 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # Containment of a point in a polygon
 
 CORA's `polygon/contains_` at a point: some piece contains it. Exact.
+
+## Inputs
+* `P` – polygon
+* `x` – point of length `2`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `P` iff it lies in some piece
 -/
 
 -- Authors:       Claude Opus 5.5

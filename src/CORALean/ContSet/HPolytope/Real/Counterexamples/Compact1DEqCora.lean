@@ -20,9 +20,7 @@ after the first has set `Ae = 1`, so the merged row is `x = be(1)`, the normaliz
 
 The output is the triple `(empty, Ae, be)` of the source as a flag and an `HPolytope` of equality
 rows (`HPolytope.ofEqs1D`); `none` is the error. `withinTol` reads as exact equality. Read from
-the source, not run. `vertices_` of a 1-D polytope passes its raw constraints here
-(`priv_vertices_1D.m`, l. 35); `compact_(P, 'all')` reaches it after `priv_compact_alignedEq`,
-which keeps a pair `x = c`, `-x = -c` since it tests alignment, not anti-alignment.
+the source, not run.
 
 # CORA's `priv_compact_1D` moves a repeated equality constraint
 
@@ -30,6 +28,15 @@ The rows `2x = 1`, `2x = 1` describe `{½}`. `priv_compact_1D` normalizes both t
 offset `1`, finds them equal and merges them into `Ae = 1; be = be(1) / Ae(1)`, which after the
 first assignment is `1 / 1`: CORA returns `x = 1`, non-empty, and `½` is not in it
 (`HPolytope.compact1DEqCora`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* for `2x = 1`, `2x = 1`, CORA's merged equality excludes the point `½`
 
 ## References
 

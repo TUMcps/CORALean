@@ -13,6 +13,13 @@ The mirror of `halfScaledLeft`: `P` reads the second block, and the trailing
 coefficient carries the complementary weight `(1 - t) / 2`, which is the other
 side of the same convex combination. Only the sign of the weighting column
 differs.
+
+## Inputs
+* `n₁` – natural number
+* `P` – H-polytope
+
+## Output
+* the constraints of `P` at weight `(1 - t) / 2` on a coefficient space wider by `n₁ + 1`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

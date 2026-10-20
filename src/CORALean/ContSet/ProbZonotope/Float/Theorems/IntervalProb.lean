@@ -22,6 +22,21 @@ the mean in the mean zonotope and the positive semidefinite covariance in the in
 at least `P[-m ≤ N(0, 1) ≤ m]ⁿ` on the box, for `0 < m` up to the float `m`. Outer: the box contains
 the confidence set and is not equal to it.
 
+## Inputs
+* `p` – natural number
+* `P` – probabilistic zonotope
+* `M` – scalar
+* `m` – real number
+* `ν` – measure
+
+## Hypotheses
+* `hm` – `0 < m`
+* `hmM` – `m ≤ toReal M`
+* `hν` – `ν ∈ P.laws`
+
+## Conclusion
+* every law of a float probabilistic zonotope puts `erf(m/√2)ⁿ` on its float interval
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

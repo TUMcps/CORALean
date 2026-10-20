@@ -11,6 +11,15 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose
 
 Its probabilistic generators are `0` (a zero covariance has the factor `G Gᵀ = 0`, so `G = 0`), and
 `interval.m` boxes the center `0` by `Σ|G| = 0`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `interval` of `[-1, 1]` with no covariance is the origin
 -/
 
 -- Authors:       Claude Opus 5.5

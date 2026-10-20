@@ -13,6 +13,12 @@ A row is deleted when another row with an equal normal (`eqVec`) and no larger s
 certified to have a smaller right-hand side (`ltStrict`), or an equal-or-smaller one and a
 smaller index (`le`), so ties keep the first. A comparison that is not certified keeps the row.
 The equality rows are untouched.
+
+## Inputs
+* `Q` – H-polytope
+
+## Output
+* the inequality rows not dominated by a row with the same normal
 -/
 
 -- Authors:       Claude Opus 5.5

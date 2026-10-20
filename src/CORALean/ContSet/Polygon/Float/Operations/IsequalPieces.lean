@@ -12,6 +12,13 @@ The real layer's one-sided `isequal`, as a test: every piece of each polygon lie
 piece of the other, each inclusion certified by `Polygon.pieceSubset`. `true` proves the regions
 equal; `false` says nothing (a piece may be covered by several pieces, or by one only up to
 rounding). CORA's comparison of boundary vertex lists (R-PG) is not what is tested.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* `true` when every piece of each polygon lies inside a piece of the other
 -/
 
 -- Authors:       Claude Opus 5.5

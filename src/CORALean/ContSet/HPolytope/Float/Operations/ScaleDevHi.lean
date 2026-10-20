@@ -9,6 +9,14 @@ public import CORALean.ContSet.Interval.Float.Operations.MulHi
 # `HPolytope.scaleDevHi`, the upper end of what rounding a scaled row costs over a domain
 
 The upper counterpart of `scaleDevLo`: the sum of the upper corner products, each rounded up.
+
+## Inputs
+* `v` – vector of length `n`
+* `s` – scalar
+* `dom` – domain interval
+
+## Output
+* the upper bound of `(s v - ṽ)ᵀ x` over `x ∈ dom`, for `ṽ = mulDown v s`
 -/
 
 -- Authors:       Claude Opus 5.5

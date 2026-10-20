@@ -13,6 +13,20 @@ The centroid of a compact region of positive area is in its convex hull (an aver
 the region), hence in the hull of the polygon's vertices (`Polygon.convexHull_vertices`) and in
 every convex set that holds the region. The centroid itself is not computed; for a convex region
 it lies in the region, for a non-convex one (an L-shape, a ring) it may lie outside.
+
+## Inputs
+* `S` – set of points
+* `C` – set of points
+
+## Hypotheses
+* `hS` – `IsCompact S`
+* `hC` – `Convex ℝ C`
+* `hCc` – `IsClosed C`
+* `hSC` – `S ⊆ C`
+* `h0` – `S` has nonzero volume
+
+## Conclusion
+* `Polygon.regionCenter` lies in every closed convex set holding the region
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,13 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 Storing the lower of the two directed roundings of a center sum leaves this
 much to pay into the box. The same box a zonotope pays, written again here rather
 than imported, so that the two representations stay independent of each other.
+
+## Inputs
+* `a` – vector of length `n`
+* `b` – offset vector of length `n`
+
+## Output
+* storing the lower of the two directed roundings leaves this much to pay
 -/
 
 -- Authors:       Claude Opus 5.5

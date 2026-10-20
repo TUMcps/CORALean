@@ -9,6 +9,15 @@ public import CORALean.ContSet.ProbZonotope.Float.Operations.RepresentsaEmptySet
 
 A `true` answer exhibits a covariance entry whose interval is crossed, so the interval holds no
 matrix and the family of laws is empty.
+
+## Inputs
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* `h` – `P.representsaEmptySet` holds
+
+## Conclusion
+* `P.laws = ∅`
 -/
 
 -- Authors:       Claude Opus 5.5

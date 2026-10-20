@@ -12,6 +12,16 @@ projection, and a linear map carries the sum `c + Σ βᵢ Gᵢ` through term by
 That a linear image of a spectrahedral shadow is another is what makes the
 representation closed under `mtimes`, and every image guarantee here is this one
 at a particular map.
+
+## Inputs
+* `f` – linear map
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `SpectraShadow.map` is exactly the image under a linear map
 -/
 
 -- Authors:       Claude Opus 5.5

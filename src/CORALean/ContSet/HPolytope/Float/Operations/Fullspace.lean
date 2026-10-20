@@ -9,6 +9,13 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 No constraints, so every point qualifies: what a zonotope's coefficients
 answer to beyond the unit box.
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – natural number
+
+## Output
+* the polytope with no constraints, which every point qualifies for
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

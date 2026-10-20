@@ -13,6 +13,16 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.ConvMultivariateGaussi
 Outer: the convolution of a law of each operand (independent sums) is a law of the result: `N(a,
 Σ₁) ∗ N(b, Σ₂) = N(a + b, Σ₁ + Σ₂)`, the means in the float zonotope sum and the covariances in
 the interval-matrix sum.
+
+## Inputs
+* `P₁` – probabilistic zonotope
+* `P₂` – probabilistic zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the convolutions of laws of `P₁` and `P₂` are laws of the sum
 -/
 
 -- Authors:       Claude Opus 5.5

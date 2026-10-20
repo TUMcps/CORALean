@@ -9,6 +9,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # `HPolytope.emptySet` denotes `∅`
 
 The one row reads `0 ≤ -1`, which no point satisfies.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float `emptySet` denotes `∅`
 -/
 
 -- Authors:       Claude Opus 5.5

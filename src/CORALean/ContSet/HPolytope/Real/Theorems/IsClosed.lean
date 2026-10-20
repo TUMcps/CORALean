@@ -15,6 +15,15 @@ rather than at any module.
 
 Not bounded: unbounded halfspace descriptions are exactly what the
 representation admits and a vertex description cannot.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* A halfspace description is closed
 -/
 
 -- Authors:       Claude Opus 5

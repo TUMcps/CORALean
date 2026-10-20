@@ -10,6 +10,17 @@ public import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
 
 When the converted polygon lies in `S`, the difference `P \ S` lies in `P \ Sp`, which
 `Polygon.subtract_outer` takes into the result. Outer.
+
+## Inputs
+* `P` – polygon
+* `Sp` – polygon
+* `S` – set of points
+
+## Hypotheses
+* `hSp` – `Sp` lies in `S`
+
+## Conclusion
+* `Polygon.mldivide` encloses the difference with any set
 -/
 
 -- Authors:       Claude Opus 5.5

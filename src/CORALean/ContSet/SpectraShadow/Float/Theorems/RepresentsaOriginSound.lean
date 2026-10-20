@@ -10,6 +10,18 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSoun
 
 The certified singleton is the box's corner (`SpectraShadow.representsa_point_sound`'s
 argument), and that corner reads as `0`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – matrices indexed by `Fin n`
+* `Ylo` – matrices indexed by `Fin n`
+* `β` – vector of length `S.m`
+
+## Hypotheses
+* `h` – `S.representsa_origin Yup Ylo β` holds
+
+## Conclusion
+* A `true` from `SpectraShadow.representsa_origin` proves the set is `{0}`
 -/
 
 -- Authors:       Claude Opus 5.5

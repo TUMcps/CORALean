@@ -26,6 +26,13 @@ reads within `εᵢ` of `beᵢ` is then moved onto the hyperplanes, `β' = β + 
 a move (`∑ⱼ |Aᵢⱼ| τ`), its `b` kept (#218), the equalities without slack, and `τ`, which the caller
 pays into the point's error box. `none`, when the certificate or the slack fails, leaves the
 fallback to the caller (`anchorEqsInBox_sound`).
+
+## Inputs
+* `P` – H-polytope
+* `ε` – vector of length `P.me`
+
+## Output
+* `P` with equalities kept and the residuals `ε` paid in, and the coefficient move, or `none`
 -/
 
 -- Authors:       Claude Opus 5.5

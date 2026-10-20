@@ -17,6 +17,12 @@ nonsmooth boundary of the paper, here every corner and edge of the polytope) or 
 `R` reflections. `R` counts the reflections still allowed. A bounded polytope always has a `t̄`;
 without one the ray never leaves and the end is `x + ℓ d`.
 
+## Inputs
+* `P` – H-polytope
+
+## Output
+* the end of the billiard trajectory of length `ℓ` from `x` along `d`, at most `R` reflections
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

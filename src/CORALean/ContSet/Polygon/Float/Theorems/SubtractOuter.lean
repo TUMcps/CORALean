@@ -12,6 +12,16 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 A point of `P \ Q` lies in a piece `p` of `P`, and stays in the pieces after each piece `q` of
 `Q` it is not in (`Polygon.subtractPiece_outer`). Outer for the set difference. The cut pieces
 are box hulls, so the result is not claimed to lie in `P`.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Polygon.subtract` encloses the set difference
 -/
 
 -- Authors:       Claude Opus 5.5

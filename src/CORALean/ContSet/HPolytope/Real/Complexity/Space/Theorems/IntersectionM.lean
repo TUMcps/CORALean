@@ -10,6 +10,16 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 Both rows lists concatenate, inequalities and equalities alike, so an
 intersection costs nothing and loses nothing. `rfl` against the structure
 instance in `Operations/Intersection.lean`.
+
+## Inputs
+* `P₁` – H-polytope
+* `P₂` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection has as many inequalities as both operands together
 -/
 
 -- Authors:       Claude Opus 5

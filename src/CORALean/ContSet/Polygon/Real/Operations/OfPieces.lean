@@ -9,6 +9,12 @@ public import CORALean.ContSet.Polygon.Real.Polygon
 
 The constructor: a polygon from convex pieces, which `polygon(V)` of CORA's constructor does
 from a boundary, after a triangulation this file does not do.
+
+## Inputs
+* `pieces` – list of convex pieces
+
+## Output
+* the union of the convex pieces `pieces`
 -/
 
 -- Authors:       Claude Opus 5.5

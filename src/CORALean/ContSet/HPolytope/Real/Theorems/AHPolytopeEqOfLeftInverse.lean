@@ -18,6 +18,19 @@ equality, `(I - X X†)(y - x̄) = 0`, makes it exact — the H-representation t
 was after, equality rows and all. Only when `X` is square, so that `X X† = I`, is the
 printed form right.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `X` – `n × m` matrix
+* `Xd` – `m × n` matrix
+* `H` – `q × m` matrix
+* `h` – vector of length `q`
+
+## Hypotheses
+* `hX` – `Xd * X = 1`
+
+## Conclusion
+* with a left inverse `Xd` the AH-polytope is the `y` meeting halfspaces and an affine condition
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

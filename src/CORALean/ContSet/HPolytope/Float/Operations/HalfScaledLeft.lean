@@ -25,6 +25,13 @@ holds every weighted point, exactly so for a slack-free `P` (`smul_mem_halfScale
 
 Padding and weighting are one operation rather than two: the weight lives in the new coordinate,
 which is not a block a `padLeft` could add.
+
+## Inputs
+* `P` – H-polytope
+* `n₂` – natural number
+
+## Output
+* the constraints of `P` at weight `(t + 1) / 2` on a coefficient space wider by `n₂ + 1`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5

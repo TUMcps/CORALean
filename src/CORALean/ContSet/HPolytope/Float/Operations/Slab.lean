@@ -11,6 +11,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 `lo ≤ A x ≤ hi`, as the two inequalities `A x ≤ hi` and `-A x ≤ -lo`: what an equality with a
 rounded right-hand side becomes when no certificate keeps it (`ConZonotope.anchorSlab`). Negation is
 exact, so the rows copy `A` and `lo` and compute nothing.
+
+## Inputs
+* `A` – `q × n` matrix
+* `lo` – vector of length `q`
+* `hi` – vector of length `q`
+
+## Output
+* the polytope `lo ≤ A x ≤ hi`, as `A x ≤ hi` and `-A x ≤ -lo`
 -/
 
 -- Authors:       Claude Sonnet 5.5

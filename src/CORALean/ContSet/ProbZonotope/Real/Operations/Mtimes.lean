@@ -12,6 +12,13 @@ CORA's `mtimes` by a matrix (its numeric branch) and [1, Eq. 4]'s linear map
 `L Z₁ = (L c, L g⁽¹…ᵖ⁾, L Σ₁ Lᵀ)`. CORA's interval-matrix branch, which [1] does not state, is not
 modelled. `Theorems.MtimesLaws` says what it means for the laws.
 
+## Inputs
+* `M` – `m × n` matrix
+* `P` – probabilistic zonotope
+
+## Output
+* the image `(M c, M g, M Σ Mᵀ)` of `P` under `M`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -12,6 +12,13 @@ CORA's `@polygon/contains_` for a point, at the region: some piece whose error b
 origin (`le` both ways) and whose stored vertices hold the point in one of their triangles
 (`Polygon.pieceHolds`). No linear program and no certificate. Only `true` is certain; CORA's
 tolerance and boundary expansion are not modelled.
+
+## Inputs
+* `P` – polygon
+* `x` – point of length `2`
+
+## Output
+* `true` when a piece with origin error box holds `x` in a triangle of its vertices
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,13 @@ CORA's `@spectraShadow/supportFunc_` solves the semidefinite program `min ∓ d�
 infeasible. `supportFunc` is the value that program has, the supremum of the functional over the
 set, in `EReal`: `⊥` for the empty set, `⊤` for an unbounded direction. A specification, not
 computed, as the program is not; `SpectraShadow.supportBound` is the certified bound.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `c` – linear functional
+
+## Output
+* the supremum of `c` over the set, `⊥` if it is empty and `⊤` if `c` is unbounded on it
 -/
 
 -- Authors:       Claude Opus 5.5

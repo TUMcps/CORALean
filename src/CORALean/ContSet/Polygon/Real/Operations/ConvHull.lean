@@ -9,6 +9,12 @@ public import CORALean.ContSet.Polygon.Real.Operations.Vertices
 
 CORA's `polygon/convHull_` at one polygon, and with it `polytope(pgon)`, which is
 `polytope(vertices(convHull(pgon)))`: the polytope spanned by all vertices.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the polytope spanned by the vertices of all pieces
 -/
 
 -- Authors:       Claude Opus 5.5

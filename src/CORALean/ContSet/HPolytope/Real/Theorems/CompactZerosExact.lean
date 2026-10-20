@@ -12,6 +12,15 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 
 A zero row `0 ≤ b` with `b ≥ 0` or `0 = 0` holds at every point, so deleting it changes nothing;
 an infeasible one empties the set, and the empty set is what is returned.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `compactZeros` denotes the same set, exactly
 -/
 
 -- Authors:       Claude Opus 5.5

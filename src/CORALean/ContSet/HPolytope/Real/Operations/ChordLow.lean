@@ -10,6 +10,14 @@ public import CORALean.ContSet.HPolytope.Real.Operations.ChordLowIndex
 `[1, Eq. 1]`: `t̲ = max_{i : tᵢ < 0} tᵢ`, the lower end of the Boundary Oracle's segment
 `[t̲, t̄]`; `none` for a ray that never leaves backward.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+
+## Output
+* `t̲` of `[1, Eq. 1]`
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

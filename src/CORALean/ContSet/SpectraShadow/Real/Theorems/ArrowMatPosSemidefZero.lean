@@ -10,6 +10,15 @@ public import Mathlib.Analysis.Matrix.Order
 # The arrowhead matrix at the apex
 
 For `s = 0`, `w = 0` and `0 ≤ t` the arrowhead matrix is positive semidefinite: its form is `t a²`.
+
+## Inputs
+* `t` – real number
+
+## Hypotheses
+* `ht` – `0 ≤ t`
+
+## Conclusion
+* the arrowhead matrix with `s = 0` and `w = 0` is positive semidefinite
 -/
 
 -- Authors:       Claude Opus 5.5

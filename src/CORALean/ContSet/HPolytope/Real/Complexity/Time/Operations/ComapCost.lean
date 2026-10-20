@@ -8,15 +8,20 @@ public import CORALean.Global.Cost
 /-!
 # `HPolytope.comapCost`
 
-Asserted, not proved: `Operations/Comap.lean` precomposes each of the `m`
-inequality rows and `me` equality rows with `f` and leaves the right-hand sides
-alone. What one precomposition costs depends on `f` and on how a row is held,
-so it is a parameter, as `mapCost` takes what one application of `f` costs.
+Asserted, not proved: `Operations/Comap.lean` precomposes each of the `m` inequality rows and
+`me` equality rows with `f` and leaves the right-hand sides alone. What one precomposition costs
+depends on `f` and on how a row is held, so it is a parameter, as `mapCost` takes what one
+application of `f` costs. `cr` counts everything one precomposition does, the write of the new
+row included. At a coordinate embedding such as `blockLeft` it is the `d' + 1` writes of the
+dense-row reading `HPolytope.halfScaledCost` states, at the new dimension `d'`.
 
-`cr` counts everything one precomposition does, the write of the new row included. At a
-coordinate embedding such as `blockLeft` it is the writes of the dense-row reading
-`HPolytope.halfScaledCost` states: the new row is the old one copied into a longer vector of
-zeros, `d' + 1` writes at the new dimension `d'`.
+## Inputs
+* `m` – natural number
+* `me` – natural number
+* `cr` – `Cost`
+
+## Output
+* the cost of `comap` on `m` inequality and `me` equality rows, one precomposition costing `cr`
 -/
 
 -- Authors:       Claude Sonnet 5.5

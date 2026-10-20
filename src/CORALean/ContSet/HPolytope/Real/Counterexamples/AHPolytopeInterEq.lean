@@ -17,6 +17,15 @@ read with `H₂` on the `w` block and the offset `x̄₁` it drops, so that it t
 all of `[-1, 1] × [-1, 1]`, and `0` lies in its image. Every `v` passes, `v = 5 - x` being
 out of `range X₂ = {0}` included.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `[1, Eq. 7]` fails without a range row
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

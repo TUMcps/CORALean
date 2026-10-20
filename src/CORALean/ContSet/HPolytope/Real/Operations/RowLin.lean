@@ -10,6 +10,13 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 Row `i` of a constraint matrix, as the functional a constraint is. Only here
 does a constraint become a matrix row, and only at `Vec` — the representation
 itself needs no coordinates.
+
+## Inputs
+* `M` – `q × n` matrix
+* `i` – index below `q`
+
+## Output
+* row `i` of `M`, as the functional a constraint is
 -/
 
 -- Authors:       Claude Opus 5

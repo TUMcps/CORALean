@@ -13,6 +13,14 @@ roundings. Expanded, it is six products of stored coordinates (the term `p₀ p�
 each product is rounded down for the lower bound and up for the upper one, and the sums alike.
 Every certified planar predicate below (non-collinearity, a point in a triangle) reads off the
 sign of these bounds.
+
+## Inputs
+* `p` – point of length `2`
+* `q` – vector of length `2`
+* `r` – vector of length `2`
+
+## Output
+* `(lo, hi)` around `(q - p) × (r - p)`
 -/
 
 -- Authors:       Claude Opus 5.5

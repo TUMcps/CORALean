@@ -17,6 +17,15 @@ non-redundant, for which `A(k,·) ν = b(k)` holds". The unit square with the ex
 the corner `(1, 1)`, and `x + y ≤ 2` is tight there yet redundant as well. A face of a polytope
 can lie on a halfspace's boundary without that halfspace defining it.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a halfspace tight at a support vector can still be redundant
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

@@ -6,6 +6,17 @@ public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 
 /-!
 # An equality is the degenerate slab
+
+## Inputs
+* `Ae` – `q × n` matrix
+* `be` – vector of length `q`
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* an equality is the degenerate slab, which is how CORA's `Ae x = be` reads in this form
 -/
 
 -- Authors:       Claude Opus 5

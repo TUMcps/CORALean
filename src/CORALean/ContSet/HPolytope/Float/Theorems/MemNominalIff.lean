@@ -12,6 +12,16 @@ public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 
 The nominal part is the exact layer's `ineqs` at `b + |b_error|` intersected with its `slab` at
 `be ± |be_error|`, so membership is the stored rows and slacks read as reals.
+
+## Inputs
+* `P` – H-polytope
+* `x` – point of length `n`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the nominal part iff it meets every inequality and equality up to its slack
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

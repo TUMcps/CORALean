@@ -23,6 +23,18 @@ For `P = polygon(E)` and `E = ellipsoid(eye(2))`, `contains(P, E)` compares `are
 `area(union(P, polygon(E)))`, equal, and returns true, though a boundary point of `E` between two
 samples is outside `P`. Holds for every finite sample `V` of boundary points. Read from the source,
 not run; the modelled and abstracted parts are in `Polygon.sampledHullCora`.
+
+## Inputs
+* `V` – set of points
+* `tol` – tolerance
+
+## Hypotheses
+* `hV` – `V.Finite`
+* `hc` – every sample point lies on the unit circle
+* `htol` – `0 ≤ tol`
+
+## Conclusion
+* CORA's test accepts the unit disk `E` against `polygon(E)`, but `E ⊄ P`
 -/
 
 -- Authors:       Claude Opus 5.5

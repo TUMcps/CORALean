@@ -9,6 +9,12 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 
 CORA's `spectraShadow.empty(n)`: the inequality `-1 ⪰ 0` on a `1 × 1` matrix, which no
 coefficient meets, over `n` free coefficients that carry the unit vectors (CORA's `[-1 0 … 0]`).
+
+## Inputs
+* `n` – natural number
+
+## Output
+* `spectraShadow.empty(n)`: the `1 × 1` inequality `-1 ⪰ 0` over `n` free coefficients
 -/
 
 -- Authors:       Claude Opus 5.5

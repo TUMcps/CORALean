@@ -17,6 +17,14 @@ rounded up, or `1` for a row whose norm is not certified positive (CORA leaves a
 and `scaleRows` multiplies by it, paying the rounding on the right-hand side over the box `dom`.
 A polytope whose box is certified empty keeps its equalities; one with a box has it folded into
 the rows first (`absorbRounding`), the equalities written as inequality pairs.
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Output
+* every row multiplied by `1 / ‖row‖₂` rounded up, the rounding moved to the right-hand sides
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

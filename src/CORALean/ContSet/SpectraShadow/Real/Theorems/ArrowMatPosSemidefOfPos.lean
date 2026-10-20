@@ -11,6 +11,18 @@ public import Mathlib.Analysis.Matrix.Order
 
 For `s > 0` and `‖w‖² ≤ s t` the arrowhead matrix is positive semidefinite: `s` times its quadratic
 form is `‖s y + a w‖² + a² (s t - ‖w‖²)`, a sum of squares and a non-negative multiple of one.
+
+## Inputs
+* `s` – real number
+* `t` – real number
+* `w` – weights of length `N`
+
+## Hypotheses
+* `hs` – `0 < s`
+* `ht` – `w ⬝ᵥ w ≤ s * t`
+
+## Conclusion
+* the arrowhead matrix is positive semidefinite
 -/
 
 -- Authors:       Claude Opus 5.5

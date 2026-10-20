@@ -11,6 +11,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 Every law `N(μ, Σ)`, `μ ∈ Z`, of `P` is a law of the reduced one, as the reduced zonotope
 contains `Z` (`reduceGirard_outer`) and the covariance is unchanged. Not equal: the reduced
 zonotope has more means.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `o` – natural number
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ProbZonotope.reduceGirard` over-approximates the family of laws
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,18 @@ For a covariance of positive determinant, the density `N(μ, Σ)` at `x` is at m
 `max(probZ, m)` exactly when `x` lies on or outside the `m`-sigma ellipsoid,
 `m² ≤ (x - μ)ᵀ Σ⁻¹ (x - μ)`; on its boundary it equals it. `max` is therefore not merely an
 over-approximation of the maximum there: it is attained.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `c` – center of length `n`
+* `x` – point
+* `m` – real number
+
+## Hypotheses
+* `hd` – `0 < P.cov.det`
+
+## Conclusion
+* `ProbZonotope.max` is the density on the `m`-sigma bound
 -/
 
 -- Authors:       Claude Opus 5.5

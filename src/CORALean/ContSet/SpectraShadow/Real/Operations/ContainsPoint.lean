@@ -12,6 +12,14 @@ it solves `min t` subject to `A₀ + Σ βᵢ Aᵢ + diag(s) ⪰ 0`, `c + G β =
 answers `t ≤ tol`. That has a solution exactly when some `β` and some slack `s` of size at most
 `tol` give a positive semidefinite matrix. At `tol = 0` the slack is zero and the test is
 membership; for `tol > 0` it admits points slightly outside, which is why CORA has the slack.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `p` – space
+* `tol` – tolerance
+
+## Output
+* some `β` reaches `p` and some slack of size `≤ tol` makes the inequality hold
 -/
 
 -- Authors:       Claude Opus 5.5

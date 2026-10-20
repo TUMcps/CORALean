@@ -9,6 +9,14 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 
 The polytope `{x ∈ ℝ¹ | Ae i * x = be i for all i}`, no inequality rows: the column vectors
 `Ae`, `be` of a 1-D CORA polytope's equality constraints.
+
+## Inputs
+* `k` – natural number
+* `Ae` – real numbers indexed by `Fin k`
+* `be` – real numbers indexed by `Fin k`
+
+## Output
+* the one-dimensional polytope of the equality rows `Ae i * x = be i` and no inequality
 -/
 
 -- Authors:       Claude Opus 5.5

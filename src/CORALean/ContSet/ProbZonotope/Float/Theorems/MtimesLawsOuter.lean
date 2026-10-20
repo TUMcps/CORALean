@@ -12,6 +12,17 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussia
 
 Outer: the image of a law of `P` under `x ↦ Mx` is a law of `M P`: `M N(a, Σ) = N(M a, M Σ Mᵀ)`,
 the means in the float zonotope image and the covariances in the interval-matrix product.
+
+## Inputs
+* `m` – natural number
+* `M` – `m × n` matrix
+* `P` – probabilistic zonotope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the images of the laws of `P` under `M` are laws of `P.mtimes M`
 -/
 
 -- Authors:       Claude Opus 5.5

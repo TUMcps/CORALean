@@ -12,6 +12,16 @@ public import Mathlib.Analysis.Convex.Hull
 `Set.linComb` is the set `linComb` has to enclose, `{λ x₁ + (1 - λ) x₂}`; for a shadow `linComb` is
 `convHull_`, whose set is the convex hull of the union (`convHull_exact`), so the segments lie
 in it.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* the segments between two shadows are inside their convex hull
 -/
 
 -- Authors:       Claude Opus 5.5

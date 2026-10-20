@@ -12,6 +12,13 @@ alone, which is why a spectrahedral shadow is closed under one and why the shado
 needs nothing but the projection to be.
 
 `mtimes` is this at `A *ᵥ ·`.
+
+## Inputs
+* `f` – linear map
+* `S` – spectrahedral shadow
+
+## Output
+* the shadow with center and generators mapped by `f` and the inequality kept
 -/
 
 -- Authors:       Claude Opus 5.5

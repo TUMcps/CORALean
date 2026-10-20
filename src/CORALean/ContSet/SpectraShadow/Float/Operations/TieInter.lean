@@ -16,6 +16,13 @@ and the result is `z` itself, generators `[0 | I]` and center `0`. Over ℝ the 
 the two points directly, `c₁ - c₂ + G₁ β₁ - G₂ β₂ = 0`, which needs the rounded `c₁ - c₂`; the
 extra variable keeps every stored entry a stored float, its exact negation, `zero` or `one`. The
 error boxes are ignored: `SpectraShadow.inter` absorbs them first.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Output
+* the intersection of the nominal shadows, their points tied by equalities to `n` new variables
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -19,6 +19,15 @@ code computes it, to state `SpectraShadow.containsPointCora_line`; see
 `contains_` on a numeric operand: `(1, 0)` is not on the line `{(t, t)}`, so `c + G β = p` is
 infeasible and CORA, reading the solver's status `1` as an internal error, answers `true`. Read from
 the source, not run.
+
+## Inputs
+* `tol` – tolerance
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA answers `true` for `(1, 0)` against the line `{(t, t)}`, which excludes it
 -/
 
 -- Authors:       Claude Opus 5.5

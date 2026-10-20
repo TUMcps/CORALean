@@ -9,6 +9,15 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # A polygon is compact
 
 CORA's `polygon/isBounded` returns `true`: a finite union of polytopes is bounded, and closed.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* A polygon is compact
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -8,6 +8,13 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # `HPolytope.ineqs`, over a floating-point scalar
 
 CORA's inequality constructor. Absorbs its rounding by raising `b`.
+
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+
+## Output
+* the polytope with inequality rows `A x ≤ b`, exact slacks and origin error box
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

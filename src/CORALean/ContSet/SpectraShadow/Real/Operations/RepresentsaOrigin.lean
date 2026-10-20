@@ -9,6 +9,12 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
 
 CORA's `@spectraShadow/representsa_` at type `origin`, at tolerance `0` (where `withinTol` is
 equality): every upper support `supportFunc_(SpS, ±eᵢ, 'upper')` is `0`.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* both upper supports along every axis are `0`
 -/
 
 -- Authors:       Claude Opus 5.5

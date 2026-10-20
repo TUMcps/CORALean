@@ -9,6 +9,17 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
 
 `M N(a, Σ) = N(M a, M Σ Mᵀ)` for a positive semidefinite covariance, by characteristic functions
 (`⟨Mx, t⟩ = ⟨x, Mᵀt⟩`).
+
+## Inputs
+* `M` – `m × n` matrix
+* `a` – point
+* `S` – `n × n` matrix
+
+## Hypotheses
+* `hS` – `S.PosSemidef`
+
+## Conclusion
+* a linear map `L` of a Gaussian is the Gaussian with mean `La` and covariance `LΣLᵀ`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,13 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 `n` probabilistic generators, the columns of `G`, turned into the zonotope whose generators
 are `m` times them. `Theorems.ConfidenceZonotopeProb` is its probability.
 
+## Inputs
+* `G` – `n × n` matrix
+* `m` – real number
+
+## Output
+* the confidence set operator
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

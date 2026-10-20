@@ -16,6 +16,18 @@ written explicitly". An absent end (`none`) is no constraint on that side. The s
 is what the formula needs: from a boundary point a row with `tᵢ = 0` and `(aᵢ, d) > 0` is
 dropped from the minimum although it binds at once.
 
+## Inputs
+* `P` – H-polytope
+* `x` – point
+* `d` – direction
+* `t` – real number
+
+## Hypotheses
+* `hx` – `x` is strictly inside every inequality
+
+## Conclusion
+* the Boundary Oracle's segment is exactly the chord
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

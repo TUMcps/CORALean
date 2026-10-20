@@ -19,6 +19,18 @@ lies in `{x | aᵢᵀx ≤ bᵢ}` iff `bᵢ ≥ r` for every `i`. If so, Cauchy-
 inequality. So Goffin's test [1, Eq. 5] of whether the shrunken ball `B'` lies in the polyhedron
 is the check that `bᵢ ≥ 1/(n√(1+ε))` for all `i`, and a failure names the violated inequality.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `r` – radius
+
+## Hypotheses
+* `hA` – `∀ i, ‖A i‖₂ = 1`
+* `hr` – `0 ≤ r`
+
+## Conclusion
+* [1, Eq. 6]: `B_r ⊆ {A x ≤ b}` iff `r ≤ bᵢ` for every `i`, for unit rows
+
 ## References
 
 * [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.

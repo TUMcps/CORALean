@@ -10,6 +10,13 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 The same constraints on a wider coefficient space, the new coordinates padded
 with zeros on the right so they answer to nothing, and the error box padded with the point
 `[0, 0]` there. Exact: padding copies floats and computes none.
+
+## Inputs
+* `P` – H-polytope
+* `n₂` – natural number
+
+## Output
+* `P` on a coefficient space wider by `n₂`, new coordinates padded with zeros on the right
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

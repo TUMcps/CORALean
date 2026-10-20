@@ -8,6 +8,13 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 # `HPolytope.ineqs`
 
 CORA's `polytope(A, b)`: one inequality per row.
+
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+
+## Output
+* CORA's `polytope(A, b)`: one inequality per row
 -/
 
 -- Authors:       Claude Opus 5

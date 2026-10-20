@@ -40,6 +40,14 @@ binder named `h…` whose type is headed by a data type but contains a depth-0 r
 set-builder is taken for a hypothesis. The cure for each is to rename the binder, or to put the
 file on the allowlist and say why in the issue.
 
+The number types `ℝ≥0∞`, `ℝ≥0`, `ℚ≥0` are read as plain number types: their `≥` is not a relation
+symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.) A dependent family
+`(hy : (i : Fin N) → Vec ℝ (qy i))` is judged by its codomain, so it is data, not a hypothesis.
+
+An entry whose description is only a backticked expression longer than 15 characters is
+rejected: it repeats the signature; say it in words. Inputs/Hypotheses entries read exactly
+`* `name` – description`.
+
 `--root DIR` reads another tree (used to test the rule on a mutated copy). Prints findings and
 exits 1 on any.
 """
@@ -145,16 +153,23 @@ DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*",
 
 def is_prop(name, typ):
     t = typ.strip()
+    # a dependent family `(i : Fin N) → T` is judged by its codomain `T`
+    while True:
+        m = re.match(r"\(\w+ : [^()]*(?:\([^()]*\)[^()]*)*\)\s*→\s*", t)
+        if not m:
+            break
+        t = t[m.end():]
     head0 = re.match(r"[^\s(]+", t)
     # a name `h…` is a hypothesis, unless its type is headed by a data type with no relation
     # symbol at depth 0 (`(hi : Fin k → Vec 𝕋 n)`, `(h : ℕ)`)
     if name == "h" or re.match(r"^h.", name):
         data = bool(head0 and head0.group(0) in DATA_HEADS)
-        if not (data and not any(c in top_level(t) for c in PROP_SYMBOLS)):
+        if not (data and not any(c in re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(t)) for c in PROP_SYMBOLS)):
             return True
     while t.startswith("(") and matching(t, 0) == len(t) - 1:
         t = t[1:-1].strip()
-    flat = top_level(t)
+    # `ℝ≥0∞` / `ℝ≥0` / `ℚ≥0` are number types, not the relation `≥`
+    flat = re.sub(r"[ℝℚ]≥0∞?", "ℝ", top_level(t))
     # a function type `A → B` is a hypothesis only when its last component is one
     if any(c in flat for c in PROP_SYMBOLS):
         return True
@@ -263,6 +278,9 @@ def bad_description(desc, minwords=0):
     words = [w for w in re.findall(r"[a-z]+", low) if w not in ("a", "an", "the")]
     if " ".join(words) in FILLER:
         return "generic filler"
+    m = re.fullmatch(r"`([^`]*)`\.?", desc.strip())
+    if m and len(m.group(1)) > 15:
+        return "only a formula (say it in words)"
     if len(desc.split()) < minwords:
         return f"too short (need {minwords} words)"
     return None
@@ -316,8 +334,8 @@ def check(path, text):
         for e in entries(body[sec]):
             if e.rstrip() == "* none":
                 continue
-            m = re.match(r"^\* `[^`]+`\s*–\s*(.*)$", e)
-            why = bad_description(m.group(1)) if m else None
+            m = re.match(r"^\* `[^`]+` – (.*)$", e)
+            why = bad_description(m.group(1)) if m else "malformed (reads `* `name` – description`)"
             if why:
                 out.append(f"{where}: `## {sec}` entry description is {why}: {e.strip()}")
     last = "Conclusion" if theorem else "Output"

@@ -15,6 +15,21 @@ row at `δ` and the scaling's rounding against `δ` (`sum_mul_affine_split`), th
 row's gap either way (`abs_sum_mulDown_gap_le`). So the scaled row reads `δ` within its slack of
 `b - A ξm` less that rounding, a value between the two ends the operation hands `setRhs`
 (`HPolytope.mem_setRhs_nominal`), and the same for every equality.
+
+## Inputs
+* `P` – H-polytope
+* `ξm` – vector of length `n`
+* `ξr` – vector of length `n`
+* `δ` – vector of length `n`
+* `ξ` – vector of length `n`
+
+## Hypotheses
+* `hδ` – `∀ j, |δ j| ≤ 1`
+* `hξ` – `ξ` is `ξm + diag(ξr) δ` coordinatewise
+* `hP` – `ξ` lies in `P.nominal`
+
+## Conclusion
+* A unit-box `δ` whose image `ξm + diag(ξr) δ` is in the nominal part is in the rescaled one
 -/
 
 -- Authors:       Claude Opus 5.5

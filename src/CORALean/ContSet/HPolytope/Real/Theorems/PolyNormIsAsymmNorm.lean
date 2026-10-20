@@ -17,6 +17,16 @@ right-hand sides — a ratio of a sum is a sum of ratios. The last two need ever
 ball is the rows read off, and definiteness is `P`'s boundedness: `S(x) = S(-x) = 0` puts
 `x` in the recession cone `{H x ≤ 0}`.
 
+## Inputs
+* `H` – `s × n` matrix
+* `h` – vector of length `s`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the polyhedral norm is an asymmetric norm
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

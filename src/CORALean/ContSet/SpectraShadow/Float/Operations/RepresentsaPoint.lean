@@ -13,6 +13,15 @@ above and from below. Here both are certificates checked by float tests: the cer
 hull (`SpectraShadow.interval`, `2n` dual certificates) has `inf = sup` in every coordinate
 (`le` both ways), and that corner is a member (`SpectraShadow.containsPoint` with the
 certificate `β`). Then the set is that single point. Sufficient only.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Yup` – matrices indexed by `Fin n`
+* `Ylo` – matrices indexed by `Fin n`
+* `β` – vector of length `S.m`
+
+## Output
+* `true` when the certified interval hull has `inf = sup` and contains the member `β` gives
 -/
 
 -- Authors:       Claude Opus 5.5

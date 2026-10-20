@@ -26,7 +26,7 @@ Lean and would satisfy the bound vacuously. Only `_outer`: the sum is not an ell
 ## Hypotheses
 * `hne₁` – `s₁ ≠ 0`
 * `hne₂` – `s₂ ≠ 0`
-* `hs` – `1/s₁² + 1/s₂² ≤ 1`
+* `hs` – the inverse squared scalings `1/s₁²`, `1/s₂²` sum to at most one
 
 ## Conclusion
 * the Minkowski sum lies in the result

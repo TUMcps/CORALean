@@ -14,6 +14,25 @@ The step every encoding in `[1]` rests on, `[1, Thm. 1, Eq. 17]`: nonnegative we
 `Λ Hx = Hy Γ` and `Λ hx ≤ hy + Hy β` put `Γ p - β` in `{y | Hy y ≤ hy}` for every `p` with
 `Hx p ≤ hx`. Weak duality, row by row; no hypothesis on either polytope.
 
+## Inputs
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × ny` matrix
+* `hy` – vector of length `qy`
+* `Γ` – `ny × nx` matrix
+* `β` – vector of length `ny`
+* `Λ` – `qy × qx` matrix
+* `p` – point of length `nx`
+
+## Hypotheses
+* `hΛ` – `Λ` has nonnegative entries
+* `h1` – `Λ * Hx = Hy * Γ`
+* `h2` – the bound of `Λ` is at most `hy` shifted by `Hy β`
+* `hp` – `p` lies in `(HPolytope.ineqs Hx hx)`
+
+## Conclusion
+* `Γ p - β` lies in the polytope `ineqs Hy hy`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

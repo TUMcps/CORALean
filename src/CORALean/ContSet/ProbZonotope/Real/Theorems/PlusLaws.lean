@@ -16,6 +16,17 @@ laws of `X₁ + X₂`, convolutions `μ₁ ∗ μ₂` with `μᵢ` a law of `P�
 functions — and the means range over `Z₁ ⊕ Z₂` (`Zonotope.plus_exact`). The covariances must
 be positive semidefinite, as a covariance is; [1] leaves the independence implicit.
 
+## Inputs
+* `P₁` – probabilistic zonotope
+* `P₂` – probabilistic zonotope
+
+## Hypotheses
+* `h₁` – `P₁.cov` is positive semidefinite
+* `h₂` – `P₂.cov` is positive semidefinite
+
+## Conclusion
+* the convolutions of laws of `P₁` and `P₂` are the laws of the sum
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -9,6 +9,19 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
 
 `N(a, Σ₁) ∗ N(b, Σ₂) = N(a + b, Σ₁ + Σ₂)` for positive semidefinite covariances, by characteristic
 functions.
+
+## Inputs
+* `a` – point
+* `b` – point
+* `S₁` – `n × n` matrix
+* `S₂` – `n × n` matrix
+
+## Hypotheses
+* `h₁` – `S₁.PosSemidef`
+* `h₂` – `S₂.PosSemidef`
+
+## Conclusion
+* the convolution of two Gaussians is the Gaussian with summed means and covariances
 -/
 
 -- Authors:       Claude Opus 5.5

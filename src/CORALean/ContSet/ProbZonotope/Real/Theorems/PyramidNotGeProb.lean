@@ -14,6 +14,15 @@ covariance `1`), `mArray` the single value `1` and the polytope `Q = ℝ`. The s
 `1`, and
 `pyramid = (maxVal(2) - maxVal(1)) · V(zonotope(probZ, 1))` is the density step from the
 `1`-sigma bound to the peak times the length `2` of `[-1, 1]`, which is below `1`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* `pyramid` alone is not an upper bound of the probability
 -/
 
 -- Authors:       Claude Opus 5.5

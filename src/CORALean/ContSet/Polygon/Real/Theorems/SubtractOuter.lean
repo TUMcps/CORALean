@@ -13,6 +13,16 @@ contains the set difference `P₁ \ P₂`, lies in `P₁`, and avoids the interi
 needs `P₂` closed (`Polygon.isCompact_construct`): a point outside `P₂` has a neighbourhood
 outside it, which meets the interior of `P₁`. It is an outer statement for the set difference;
 the result is larger than it only by boundary points of `P₂`.
+
+## Inputs
+* `P₁` – polygon
+* `P₂` – polygon
+
+## Hypotheses
+* `hreg` – `P₁` is the closure of its interior
+
+## Conclusion
+* `Polygon.subtract` encloses the set difference and stays in the minuend
 -/
 
 -- Authors:       Claude Sonnet 5.5

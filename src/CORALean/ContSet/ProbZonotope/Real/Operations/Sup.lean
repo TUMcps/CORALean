@@ -12,6 +12,13 @@ CORA's `sup(probZ)` (`@probZonotope/sup.m`): the larger of the two sup-norms of 
 bounds, `max(‖inf I‖∞, ‖sup I‖∞)`, which its help calls `sup(‖x‖∞), x ∈ Z`. `Vec` carries the
 sup norm. Taken here at the box of the confidence set, `interval`; `supCora` is CORA's, at the
 box that leaves out the deterministic generators.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+
+## Output
+* the larger sup-norm of the bounds of the interval hull at `m`
 -/
 
 -- Authors:       Claude Opus 5.5

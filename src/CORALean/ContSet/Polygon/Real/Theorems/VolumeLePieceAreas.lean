@@ -11,6 +11,15 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 The area of the region is at most the sum of the piece areas, and equal to it when the pieces are
 pairwise almost-everywhere disjoint (`Polygon.volume_eq_pieceAreas`).
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume of `P` is at most the sum of its piece areas
 -/
 
 -- Authors:       Claude Opus 5.5

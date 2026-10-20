@@ -11,6 +11,13 @@ CORA's `@spectraShadow/mtimes`: `map` at `A *ᵥ ·`, spelt with `*ᵥ` because 
 the form every caller states its matrix in. The matrices of the inequality are
 untouched, so a singular `M` costs nothing, unlike a representation that stores
 the set by its boundary.
+
+## Inputs
+* `M` – `m × n` matrix
+* `S` – spectrahedral shadow
+
+## Output
+* the shadow with center and generators multiplied by `M` and the inequality kept
 -/
 
 -- Authors:       Claude Opus 5.5

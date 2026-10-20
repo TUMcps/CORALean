@@ -14,6 +14,23 @@ any `R`, any `τ ≥ 0`, any `η ∈ (0, 1]` and any direction. The step starts 
 the point it returns can lie on the boundary only if `ℓ` equals a segment length exactly, which
 the uniform draw of `η` hits with probability zero.
 
+## Inputs
+* `P` – H-polytope
+* `R` – natural number
+* `τ` – real number
+* `x` – point
+* `η` – real number
+* `ξ` – space
+
+## Hypotheses
+* `hx` – `x` is strictly inside every inequality
+* `hτ` – `0 ≤ τ`
+* `hη₀` – `0 < η`
+* `hη₁` – `η ≤ 1`
+
+## Conclusion
+* A step of the Billiard Walk stays in the polytope
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

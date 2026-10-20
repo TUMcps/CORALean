@@ -16,6 +16,17 @@ and `linComb` is the convex hull `convHull_` (the `LinComb` instance in `Instanc
 set is the documented one, `{a x₁ + (1 - a) x₂ | x₁ ∈ SpS, x₂ ∈ M SpS + SpSplus, a ∈ [0, 1]}`,
 with equality. There is none of the `M*Splus` slip of `@capsule/enclose.m` and
 `@ellipsoid/enclose.m`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `M` – `n × n` matrix
+* `Splus` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* `enclose` of a spectrahedral shadow is exactly the convex hull of `S` and `M S ⊕ S₂`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ CORA's `polygon/isFullDim` counts the boundary vertices of the polyshape (`size(
 region given as convex pieces the question is whether the region has an interior point, which
 holds iff some piece has vertices that affinely span the plane (`Polygon.isFullDim_iff`). The
 boundary-vertex count itself (R-PG) is not formalized.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* some piece has vertices that affinely span the plane
 -/
 
 -- Authors:       Claude Opus 5.5

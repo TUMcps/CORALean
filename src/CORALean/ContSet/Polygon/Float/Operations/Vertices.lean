@@ -10,6 +10,12 @@ public import CORALean.ContSet.Polygon.Float.Polygon
 CORA's `polygon/vertices_`, as the exact layer: the stored vertices of every piece (the columns of
 each piece's vertex matrix). Each piece carries an error box besides, which these vertices do not
 include: `Polygon.vertices_outer` says where the polygon lies relative to them.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the stored vertices of every piece
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -7,18 +7,14 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Polytopes: the halfspace representation
 
-The definition is [1, Def. 2]; [2, Def. 3] restates it beside the vertex form.
+The definition is [1, Def. 2]; [2, Def. 3] restates it beside the vertex form. CORA's `polytope`
+with `isHRep` set: the points satisfying finitely many inequalities `A x ≤ b` and equalities
+`Ae x = be`. A constraint is a linear functional rather than a matrix row, so the representation
+lives at any real module; `ofMat` reads CORA's matrices into it.
 
-CORA's `polytope` with `isHRep` set: the points satisfying finitely many
-inequalities `A x ≤ b` and equalities `Ae x = be`.
-
-A constraint is a linear functional rather than a matrix row, so the
-representation lives at any real module; `ofMat` reads CORA's matrices into it.
-
-Exact under intersection and preimage, and under nothing else — a Minkowski sum
-or a convex hull of two halfspace descriptions needs vertex enumeration. That is
-what `VPolytope` is for, the two representations being good at disjoint
-operations.
+Exact under intersection and preimage, and under nothing else: a Minkowski sum or a convex hull
+of two halfspace descriptions needs vertex enumeration. That is what `VPolytope` is for, the two
+representations being good at disjoint operations.
 
 ## References
 

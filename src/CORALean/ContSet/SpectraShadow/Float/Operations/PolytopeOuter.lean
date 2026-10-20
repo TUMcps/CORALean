@@ -16,6 +16,14 @@ row is kept only if `dualCertified` accepts the certificate (CORA keeps the rows
 support value). CORA shifts the shadow by its `center` first and shifts the polytope back, which
 leaves the rows as they are: the shift is not needed here. A direction with no certificate is
 skipped.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `dirs` – vectors indexed by `Fin N`
+* `Y` – matrices indexed by `Fin N`
+
+## Output
+* the rows `dirᵀ x ≤ val` along `dirs`, kept where the certificate `Y i` is checked
 -/
 
 -- Authors:       Claude Opus 5.5

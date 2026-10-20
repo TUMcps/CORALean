@@ -8,6 +8,13 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 # `HPolytope.eqs`
 
 CORA's `polytope([], [], Ae, be)`: one equality per row.
+
+## Inputs
+* `Ae` – `q × n` matrix
+* `be` – vector of length `q`
+
+## Output
+* CORA's `polytope([], [], Ae, be)`: one equality per row
 -/
 
 -- Authors:       Claude Opus 5

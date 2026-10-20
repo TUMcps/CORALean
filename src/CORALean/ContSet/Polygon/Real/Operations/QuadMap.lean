@@ -18,6 +18,15 @@ then `quadMap`), take the `polygon` of each image and unite them. The triangles 
 `polygon` of a polynomial zonotope is `PolyZonotope.polygon` with its `splits` and `pick`
 parameters, and the conversion to a polynomial zonotope goes through the triangle's box
 (`VPolytope.polyZonotope`), so the result is an enclosure, not CORA's tight sampled boundary.
+
+## Inputs
+* `P` – polygon
+* `Q` – matrices indexed by `Fin 2`
+* `splits` – number of splits
+* `pick` – refinement rule: whether to split a piece in a given round
+
+## Output
+* the union of the polygons of the images of the triangles
 -/
 
 -- Authors:       Claude Sonnet 5.5

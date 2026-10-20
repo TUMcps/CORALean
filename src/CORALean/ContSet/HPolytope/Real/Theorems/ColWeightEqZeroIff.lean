@@ -8,6 +8,16 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 # `HPolytope.colWeight` is zero exactly when no row reads the direction
 
 A sum of absolute values vanishes exactly when every term does.
+
+## Inputs
+* `P` – H-polytope
+* `v` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* no row reads `v` exactly when the rows' weight along `v` is zero
 -/
 
 -- Authors:       Claude Opus 5.5

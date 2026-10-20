@@ -12,6 +12,13 @@ probabilistic generators `g⁽¹…ᑫ⁾`, the covariance `Σ = g gᵀ`. [1, De
 G-zonotope with uncertain mean `Z ⊞ (0, g⁽¹…ᑫ⁾)` the same way. `Theorems.OfGeneratorsLaws` reads
 its laws as those of `μ + g N`, `μ ∈ Z`.
 
+## Inputs
+* `Z` – zonotope
+* `g` – `n × q` matrix
+
+## Output
+* the probabilistic zonotope with mean zonotope `Z` and covariance `g gᵀ`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

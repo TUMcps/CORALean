@@ -13,6 +13,15 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 The polytope with its error box moved into the rows contains the polytope: a point of the
 box adds to a row at most the box's support in that row's direction, and the right-hand side
 was raised by exactly that, rounded up.
+
+## Inputs
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* `P` is contained in `absorbRounding P`
 -/
 
 -- Authors:       Claude Sonnet 5.5

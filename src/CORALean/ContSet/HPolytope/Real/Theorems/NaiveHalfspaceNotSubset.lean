@@ -12,6 +12,25 @@ at most the radius `r(Ê, Ẑ)`, the largest facet value over `Ê`, so a value a
 point of `Ê` beyond a facet of `Ẑ = d + Z(H)`. The second half, `Ê ⊆ Ẑ` "with probability at
 least `P_S(1 - r_hs)`", fails (`HPolytope.naiveHalfspace_printed_counterexample`).
 
+## Inputs
+* `p` – `ℝ≥0∞`
+* `G` – linear map
+* `c` – center of length `n`
+* `d` – direction of length `n`
+* `Λ` – `s × n` matrix
+* `b` – offset vector of length `s`
+* `N` – natural number
+* `j` – indices indexed by `Fin N`
+
+## Hypotheses
+* `hb` – `∀ i, 0 < b i`
+* `hsym` – every row has an opposite row with the same bound
+* `hN` – `0 < N`
+* `h` – the naive halfspace value exceeds `1`
+
+## Conclusion
+* naive halfspace sampling's `False` is certain
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

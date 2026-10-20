@@ -14,6 +14,29 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
 hypothesis that `Px` is full-dimensional is used only for the converse
 (`ahPolytope_subset_iff_of_injective`), and is not needed here.
 
+## Inputs
+* `xbar` – mean of length `n`
+* `ybar` – mean of length `n`
+* `X` – `n × nx` matrix
+* `Y` – `n × ny` matrix
+* `Hx` – `qx × nx` matrix
+* `hx` – vector of length `qx`
+* `Hy` – `qy × ny` matrix
+* `hy` – vector of length `qy`
+* `Γ` – `ny × nx` matrix
+* `β` – vector of length `ny`
+* `Λ` – `qy × qx` matrix
+
+## Hypotheses
+* `hX` – `X = Y * Γ`
+* `hβ` – the center offset is `Y β`
+* `hΛ` – `Λ` has nonnegative entries
+* `h1` – `Λ * Hx = Hy * Γ`
+* `h2` – the bound of `Λ` is at most `hy` shifted by `Hy β`
+
+## Conclusion
+* the AH-polytope of `Px` lies in the AH-polytope of `Py`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

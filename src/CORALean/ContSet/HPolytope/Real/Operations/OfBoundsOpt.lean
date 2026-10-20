@@ -7,15 +7,22 @@ public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 /-!
 # `HPolytope.ofBoundsOpt`
 
-`ofBounds` where a direction may come back without a bound. The missing row is
-not dropped — that would change the row count, and the count is a field — but
-replaced by `0 x ≤ 0`, which every point satisfies and which therefore says
-nothing.
+`ofBounds` where a direction may come back without a bound. The missing row is not dropped, as
+the row count is a field, but replaced by `0 x ≤ 0`, which every point satisfies and which
+therefore says nothing.
 
-That is what makes a *total* `plus` possible on a type that admits unbounded
-sets: the oracle a closed-over instance would need does not exist, but a partial
-one does, and a direction it cannot answer costs precision rather than the
-operation.
+That is what makes a *total* `plus` possible on a type that admits unbounded sets: the oracle a
+closed-over instance would need does not exist, but a partial one does, and a direction it
+cannot answer costs precision rather than the operation.
+
+## Inputs
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u` – an optional support bound of `S` along each row
+
+## Output
+* one row per direction, a direction with no bound contributing the vacuous row `0 x ≤ 0`
 -/
 
 -- Authors:       Claude Opus 5

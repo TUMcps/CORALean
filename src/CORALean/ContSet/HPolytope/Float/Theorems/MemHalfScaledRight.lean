@@ -15,6 +15,18 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 The converse of `smul_mem_halfScaledRight`: a coefficient vector in the weighted polytope has its
 last block meeting `P`'s rows at the weight `(1 - t) / 2` its trailing coordinate names, an
 inequality's bound and an equality's right-hand side both scaled by it.
+
+## Inputs
+* `P` – H-polytope
+* `z` – point of length `n₁`
+* `y` – vector of length `n₂`
+* `t` – real number
+
+## Hypotheses
+* `h` – the point `(z, y, t)` lies in `halfScaledRight`
+
+## Conclusion
+* what a point of `halfScaledRight` says about its second block
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -12,6 +12,18 @@ public import Mathlib.Tactic.Linarith
 `P' = ⟨A B, b - A c⟩`, so the vertices of `P` are those of `P'` mapped back. Every point of `P`
 is `B y + c` for some `y`, and `y ∈ P'` is the same inequalities rewritten.
 
+## Inputs
+* `A` – `q × n` matrix
+* `b` – offset vector of length `q`
+* `B` – `n × r` matrix
+* `c` – center of length `n`
+
+## Hypotheses
+* `hP` – every point of the polytope is `c` plus a combination of the columns of `B`
+
+## Conclusion
+* a polytope inside the affine hull `c + range B` is the image of the restricted polytope
+
 ## References
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral

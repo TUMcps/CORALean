@@ -10,6 +10,12 @@ public import CORALean.ContSet.Polygon.Real.Operations.Volume
 The sum of the pieces' own areas, which counts overlaps twice. `Polygon.volume_le_pieceAreas` bounds
 the area of the region by it, and `Polygon.volume_eq_pieceAreas` makes it exact when the pieces
 overlap in null sets only.
+
+## Inputs
+* `P` – polygon
+
+## Output
+* the sum of the pieces' own areas
 -/
 
 -- Authors:       Claude Opus 5.5

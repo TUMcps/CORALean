@@ -20,6 +20,15 @@ Read from the source, not run.
 
 For `P1 = [0, 2]` and `P2 = [1, 3]` the difference `P1 \ P2` contains `0`, and CORA's result,
 the difference of `P1` with itself, is empty. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's result is not `P1 \ P2` for `P1 = [0, 2]`, `P2 = [1, 3]`
 -/
 
 -- Authors:       Claude Opus 5.5

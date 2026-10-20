@@ -9,6 +9,17 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 # The set of `moveToEq`
 
 The inequality rows in `S`, the old equality rows, and the moved rows as equalities.
+
+## Inputs
+* `P` – H-polytope
+* `S` – inequality rows kept
+* `L` – `List (Fin P.m)`
+
+## Hypotheses
+* none
+
+## Conclusion
+* `moveToEq` denotes the original polytope with the rows in `L` required to hold with equality
 -/
 
 -- Authors:       Claude Opus 5.5

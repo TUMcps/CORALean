@@ -10,6 +10,17 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 `and_(.., 'exact')` over a list, as CORA folds the members of a bundle: a point is in the fold
 exactly when it is in the start and in every polytope of the list. Induction on the list, one
 `mem_intersection_iff` per step.
+
+## Inputs
+* `L` – list of polytopes
+* `P₀` – H-polytope
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* A point of the folded intersection is a point of the start and of every member
 -/
 
 -- Authors:       Claude Opus 5.5

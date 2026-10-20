@@ -11,6 +11,14 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
 Keep the inequality rows indexed by `S`, and turn the rows listed in `L` into equality rows
 appended after the existing ones: CORA's `Ae = [Ae; A(i,:)]`, `be = [be; b(i)]` followed by
 `A = A(~idxMoveToEq,:)` in `priv_compact_toEquality`.
+
+## Inputs
+* `P` – H-polytope
+* `S` – inequality rows kept
+* `L` – `List (Fin P.m)`
+
+## Output
+* the rows of `S` kept as inequalities and the rows of `L` appended as equalities
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,12 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 CORA's `spectraShadow(SpS.A)`: the base spectrahedron, the variables `β` themselves as the
 points, center `0`, identity generators and the origin box. The stored matrices are the shadow's
 own, so nothing rounds.
+
+## Inputs
+* `S` – spectrahedral shadow
+
+## Output
+* the base spectrahedron, with `β` as points, center `0` and identity generators
 -/
 
 -- Authors:       Claude Opus 5.5

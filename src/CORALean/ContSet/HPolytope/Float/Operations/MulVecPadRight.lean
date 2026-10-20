@@ -7,6 +7,18 @@ public import CORALean.Global.Block
 
 /-!
 # A padded row reads only the block it came from, on the right
+
+## Inputs
+* `m` – natural number
+* `M` – `m × n₂` matrix
+* `x` – point of length `n₁ + n₂`
+* `i` – index below `m`
+
+## Hypotheses
+* none
+
+## Conclusion
+* A padded row reads only the block it came from, on the right
 -/
 
 -- Authors:       Claude Opus 5

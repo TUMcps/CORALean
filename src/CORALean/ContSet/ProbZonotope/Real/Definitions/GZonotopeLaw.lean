@@ -13,6 +13,13 @@ Gaussian variables gives the random vector `c + Σᵢ N⁽ⁱ⁾(0, 1) g⁽ⁱ�
 standard Gaussian on `ℝ^q` pushed through `β ↦ c + Gβ`, here on Euclidean space, where
 Mathlib's `stdGaussian` lives: `toLp` and `ofLp` cross between it and `Vec ℝ n`.
 
+## Inputs
+* `c` – center of length `n`
+* `G` – `n × q` matrix
+
+## Output
+* the law of `c + G N`, `N` standard Gaussian on `ℝ^q`
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -12,6 +12,16 @@ directions' own count, not a function of the operand's — and the equality
 count is fixed at zero, an image under an arbitrary linear map bounding
 nothing exactly. `rfl` against `Operations/OfBounds.lean`, which `mtimesOf`
 does not otherwise touch.
+
+## Inputs
+* `M` – linear map
+* `Aq` – family indexed by `Fin q`
+
+## Hypotheses
+* `u` – a support bound of `P.construct` along each row
+
+## Conclusion
+* `mtimesOf` has one inequality per direction, `q` in all
 -/
 
 -- Authors:       Claude Opus 5

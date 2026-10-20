@@ -16,6 +16,16 @@ point of each polygon, over every pair of triangles of the two triangulations. C
 `j` builds the second polytope from `list2{i}` where `list2{j}` is meant
 (`references/coverage/contSet/polygon.md`, row `quadMap`); here the pair is `(list1{i}, list2{j})`.
 Otherwise as `Polygon.quadMap`.
+
+## Inputs
+* `P₁` – polygon
+* `P₂` – polygon
+* `Q` – matrices indexed by `Fin 2`
+* `splits` – number of splits
+* `pick` – refinement rule: whether to split a piece in a given round
+
+## Output
+* the union of the polygons of the images of the pairs of triangles
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,12 @@ x` for `s > 0` and `x` in the shadow, and the origin. Its free variables are the
 and `z = 0` when `s = 0`. That keeps the cone from adding the shadow's recession directions at `s =
 0`, which would make the closure. CORA writes the shadow's point as its own free coordinates first,
 through the SVD of `G` (`generateESumRep`); here the point is `s c + G β'` as it is stored.
+
+## Inputs
+* `T` – spectrahedral shadow
+
+## Output
+* the conic hull of `T`: the points `s x` for `s > 0` and `x` in `T`, and the origin
 -/
 
 -- Authors:       Claude Opus 5.5

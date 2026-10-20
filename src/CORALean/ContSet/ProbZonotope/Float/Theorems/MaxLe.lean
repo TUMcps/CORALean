@@ -16,6 +16,21 @@ For every symmetric `Σ` of the covariance interval, when the float `max` return
 positive and the real `max(probZ, m)`, `1 / ((2π)^{n/2} det(Σ)^{1/2}) · exp(-m²/2)`, is at most
 `v`. An upper bound, not the value: `det(Σ)` is bounded below by `gⁿ`, `g` the Gershgorin bound
 under every eigenvalue (`aux_pow_le_det`), and every other step is rounded the safe way.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – scalar
+* `p` – natural number
+* `k` – natural number
+* `Z` – real mean zonotope
+* `S` – `n × n` matrix
+
+## Hypotheses
+* `hS` – `S` lies in `P.cov`
+* `hSh` – `S.IsHermitian`
+
+## Conclusion
+* the real `max` is under the float `max`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,18 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.MapExact
 `map_exact` at `A *ᵥ ·`, the case reachability runs, and with no hypothesis on
 `M`: the inequality is not touched, so a singular or non-square matrix keeps the
 set exact where a representation stored by its boundary would lose it.
+
+## Inputs
+* `n` – natural number
+* `m` – natural number
+* `M` – `m × n` matrix
+* `S` – spectrahedral shadow
+
+## Hypotheses
+* none
+
+## Conclusion
+* A matrix times a spectrahedral shadow is exact
 -/
 
 -- Authors:       Claude Opus 5.5

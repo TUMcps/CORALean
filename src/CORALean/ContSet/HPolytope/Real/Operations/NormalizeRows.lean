@@ -14,6 +14,12 @@ the right-hand side too, so each such row is a unit vector. A zero row is left a
 `withinTol(normA, 0)` being the exact test at tolerance zero.
 
 The 2-norm of a row is that of the functional's coefficients, `√(Σⱼ (a e_j)²)`, so over `Vec ℝ n`.
+
+## Inputs
+* `P` – H-polytope
+
+## Output
+* every nonzero row, and its right-hand side, divided by the row's 2-norm
 -/
 
 -- Authors:       Claude Opus 5.5

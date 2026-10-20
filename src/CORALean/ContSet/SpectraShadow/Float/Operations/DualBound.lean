@@ -10,6 +10,14 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 The bound a dual certificate `Y` proves along `a`: `aᵀ c + tr(A₀ Y)` for the nominal shadow, plus
 the error box's largest value of `aᵀ e` (per coordinate the larger of the two corner products),
 every product and sum rounded up. What it bounds is `SpectraShadow.dualCertified`'s to decide.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `a` – vector of length `n`
+* `Y` – `S.k × S.k` matrix
+
+## Output
+* the bound `aᵀc + tr(A₀ Y)` plus the error box reach, every operation rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

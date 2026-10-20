@@ -23,6 +23,22 @@ to here would make the certificate unusable. The gap is paid by `addDir`
 instead — bound `c - yᵀA` over any enclosure already in hand and add the two.
 That keeps the rounding where it can be measured rather than hidden in a
 definition.
+
+## Inputs
+* `P` – H-polytope
+* `c` – center of length `n →ₗ[ℝ] ℝ`
+* `y` – vector of length `P.m`
+* `zu` – vector of length `P.me`
+* `zl` – vector of length `P.me`
+
+## Hypotheses
+* `hy` – the entries of `y` are nonnegative
+* `hzu` – the entries of `zu` are nonnegative
+* `hzl` – the entries of `zl` are nonnegative
+* `hc` – `c` is the dual combination of the rows with weights `y`, `zu`, `zl`
+
+## Output
+* where a float halfspace description's own bounds come from
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

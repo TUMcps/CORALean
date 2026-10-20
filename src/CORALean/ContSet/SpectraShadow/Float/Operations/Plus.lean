@@ -14,6 +14,13 @@ diagonal with `zero` between them, so only the center rounds and its `residual`
 goes into the box, leaving the sizes at `k₁ + k₂` and `m₁ + m₂` as over ℝ. Paying
 into new generators instead is not an option here: a generator of a shadow
 multiplies a variable nothing bounds.
+
+## Inputs
+* `S₁` – spectrahedral shadow
+* `S₂` – spectrahedral shadow
+
+## Output
+* the sum, generators and matrices concatenated, only the center rounding into the error box
 -/
 
 -- Authors:       Claude Opus 5.5

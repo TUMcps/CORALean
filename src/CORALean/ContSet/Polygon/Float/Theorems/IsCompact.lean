@@ -10,6 +10,15 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 
 CORA's `polygon/isBounded` returns `true`: a finite union of float polytopes denotes a compact
 set, since each does.
+
+## Inputs
+* `P` – polygon
+
+## Hypotheses
+* none
+
+## Conclusion
+* A float polygon is compact
 -/
 
 -- Authors:       Claude Opus 5.5

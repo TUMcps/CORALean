@@ -12,6 +12,13 @@ CORA's `@polygon/and_` read at the region, as over ℝ: every pair of pieces int
 real layer intersects a pair at given directions; here a pair is intersected by the float
 `VPolytope.intersection`, the box hulls of the two pieces intersected, which is coarser and
 outer.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* all pairs of pieces, intersected
 -/
 
 -- Authors:       Claude Opus 5.5

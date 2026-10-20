@@ -12,6 +12,19 @@ public import Mathlib.Tactic.Abel
 `[1, Eq. 5]`: `G (x̄ + X P) + g = (G x̄ + g) + G X P`. AH-polytopes are closed under affine
 maps with no new rows, which is half of why the encodings in `[1]` are stated for them.
 
+## Inputs
+* `G` – `k × n` matrix
+* `g` – vector of length `k`
+* `xbar` – mean of length `n`
+* `X` – `n × m` matrix
+* `P` – H-polytope
+
+## Hypotheses
+* none
+
+## Conclusion
+* the affine image of an AH-polytope has center `G xbar + g` and map `G X`
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

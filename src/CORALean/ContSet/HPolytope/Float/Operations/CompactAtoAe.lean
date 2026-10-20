@@ -11,6 +11,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
 CORA's `compact_(P, 'AtoAe')`: the unit normalization of `compact_` (`normalizeRows`, which pays
 its rounding on the right-hand sides over the box `dom`), then the inverted pairs turned into
 equalities (`pairsToEq`, which is exact).
+
+## Inputs
+* `p` – natural number
+* `P` – H-polytope
+* `dom` – domain interval
+
+## Output
+* the rows normalized, then each inverted pair of inequalities made an equality
 -/
 
 -- Authors:       Claude Opus 5.5

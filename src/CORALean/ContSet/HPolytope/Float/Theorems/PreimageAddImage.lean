@@ -13,6 +13,20 @@ For `L : α → β` with a section `S`, the points of `N` pulled back along `L`,
 a polytope that carries an error box is exact: the box is padded or lifted the same way, with
 zeros in the new coordinates. A constraint `C` on the new coordinates may ride along, if it
 does not notice a shift by `S e`.
+
+## Inputs
+* `L` – `α →+ β`
+* `S` – `β →+ α`
+* `N` – set of points
+* `E` – set of points
+* `C` – set of points
+
+## Hypotheses
+* `hLS` – `L` is a left inverse of `S`
+* `hC` – adding `S e` to a point does not change membership in `C`
+
+## Conclusion
+* A preimage plus the image of a section is the preimage of the sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

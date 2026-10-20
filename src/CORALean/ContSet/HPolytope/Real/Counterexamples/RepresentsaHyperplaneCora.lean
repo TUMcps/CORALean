@@ -16,11 +16,10 @@ if emptyObj; return; end
 ```
 
 and `@polytope/isemptyobject.m` (l. 36) calls an H-representation without inequality and without
-equality rows an "empty object" (its comment: "this represents R^n since there are no constraints
-excluding any point"). `@contSet/representsa_emptyObject.m` then treats every such object as the
-empty set: for `type = 'hyperplane'` it sets `res = true` (l. 68). Otherwise the branch
-`'hyperplane'` of `representsa_.m` (l. 259) reads `res = isempty(P.A_.val) && size(P.Ae_.val,1)
-== 1`. Read from the source, not run.
+equality rows an "empty object" (it represents `ℝⁿ`). `@contSet/representsa_emptyObject.m` then
+treats every such object as the empty set: for `type = 'hyperplane'` it sets `res = true`
+(l. 68). Otherwise the branch `'hyperplane'` of `representsa_.m` (l. 259) reads
+`res = isempty(P.A_.val) && size(P.Ae_.val,1) == 1`. Read from the source, not run.
 
 # CORA's `polytope/representsa_(P, 'hyperplane')` accepts `ℝⁿ`
 
@@ -28,8 +27,16 @@ The unconstrained H-polytope (`polytope.Inf(n)`, no inequality and no equality r
 `ℝⁿ`. `isemptyobject` counts it as an empty object, and `representsa_emptyObject` answers
 `'hyperplane'` with `true` for every empty object (written for the empty set of a vertex
 representation), so `representsa(polytope.Inf(2),'hyperplane')` is `true`, though `ℝ²` is no
-hyperplane. A wrong answer, not unsound. (`representsa_emptyObject` also answers `'convexSet'`
-and `'levelSet'` with `false` for it, which `ℝⁿ` is.) Read from the source, not run.
+hyperplane. A wrong answer, not unsound. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set is `ℝ²`, which is no hyperplane `{x | f x = c}` with `f ≠ 0`; CORA answers `true`
 -/
 
 -- Authors:       Claude Sonnet 5.5

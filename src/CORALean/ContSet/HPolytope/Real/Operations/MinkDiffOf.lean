@@ -16,6 +16,16 @@ not the issue that fixes that.
 
 Each inequality row shifts inward by the subtrahend's support in that row's
 own direction; the equality rows are copied unchanged.
+
+## Inputs
+* `P` – H-polytope
+* `T` – set of points
+
+## Hypotheses
+* `u` – a support bound of `T` along each row
+
+## Output
+* `P` with each inequality bound lowered by the support bound `u i` of the subtrahend `T`
 -/
 
 -- Authors:       Claude Opus 5

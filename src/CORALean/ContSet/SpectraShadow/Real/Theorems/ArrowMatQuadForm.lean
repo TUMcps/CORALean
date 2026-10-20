@@ -9,6 +9,18 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
 
 For `x = (a, y)` the quadratic form of `arrowMat s t w` is `t a² + 2 a ⟨w, y⟩ + s ‖y‖²`, which
 completes to `‖s y + a w‖² + a² (s t - ‖w‖²)` over `s` when `s > 0`.
+
+## Inputs
+* `s` – real number
+* `t` – real number
+* `w` – weights of length `N`
+* `x` – point of length `N + 1`
+
+## Hypotheses
+* none
+
+## Conclusion
+* the quadratic form of the arrowhead matrix is `t x₀² + 2 x₀ (w · x') + s ‖x'‖²`
 -/
 
 -- Authors:       Claude Opus 5.5

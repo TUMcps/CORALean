@@ -12,6 +12,16 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
 
 A member would give a `β` with the inequality's matrix `⪰ 0`; against the semidefinite `Y` its
 trace is nonnegative, but it is `tr(A₀ Y) + Σ βₗ tr(Aₗ Y) = tr(A₀ Y) < 0`.
+
+## Inputs
+* `S` – spectrahedral shadow
+* `Y` – `S.k × S.k` matrix
+
+## Hypotheses
+* `h` – `S.representsa_emptySet Y` holds
+
+## Conclusion
+* A `true` from `SpectraShadow.representsa_emptySet` proves the set empty
 -/
 
 -- Authors:       Claude Opus 5.5

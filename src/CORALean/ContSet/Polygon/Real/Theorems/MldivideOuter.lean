@@ -12,6 +12,18 @@ through the conversion `polygon(S)`, which is the set itself for a polygon and a
 polygon (`Ellipsoid.polygon_inner`) for the others. So the result is
 `Polygon.subtract` at the converted operand, and when that polygon lies inside `S` it encloses
 the difference with `S`: outer, and larger than `P \ S` by the part of `S` the polygon misses.
+
+## Inputs
+* `P` – polygon
+* `Sp` – polygon
+* `S` – set of points
+
+## Hypotheses
+* `hSp` – `Sp` lies in `S`
+* `hreg` – `P` is the closure of its interior
+
+## Conclusion
+* `Polygon.mldivide` encloses the difference with any set
 -/
 
 -- Authors:       Claude Sonnet 5.5

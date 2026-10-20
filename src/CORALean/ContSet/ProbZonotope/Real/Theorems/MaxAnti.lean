@@ -10,6 +10,19 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
 The density on the `m`-sigma bound, `K exp(-m²/2)` with `K ≥ 0`, is smaller on a larger bound:
 `0 ≤ m ≤ m'` gives `max(probZ, m') ≤ max(probZ, m)`. It is what makes the density steps of
 `pyramid` between consecutive layers non-negative.
+
+## Inputs
+* `P` – probabilistic zonotope
+* `m` – real number
+* `m'` – real number
+
+## Hypotheses
+* `hd` – `0 ≤ P.cov.det`
+* `h0` – `0 ≤ m`
+* `h` – `m ≤ m'`
+
+## Conclusion
+* `max` is antitone in `m`
 -/
 
 -- Authors:       Claude Opus 5.5

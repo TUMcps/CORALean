@@ -12,6 +12,13 @@ public import CORALean.ContSet.SetUnion.Operations.Plus
 CORA's `polygon/plus` at a polygon: every piece of one added to every piece of the other, which
 is what CORA does after triangulating both (the sum of two convex pieces is the hull of the
 vertex sums). `SetUnion.plus` at `VPolytope.plus`.
+
+## Inputs
+* `P` – polygon
+* `Q` – polygon
+
+## Output
+* the Minkowski sum: every pair of pieces, summed
 -/
 
 -- Authors:       Claude Opus 5.5
