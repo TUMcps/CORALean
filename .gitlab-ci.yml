@@ -444,3 +444,29 @@ release-oracle:
           link_type: other
   rules:
     - if: $CI_COMMIT_TAG
+
+# Publishes main to the public GitHub repository, but only once this pipeline's checks have
+# passed: `needs` makes the job wait for `build` and `conventions` and skip if either fails.
+# A newer push that cancels `build` therefore publishes nothing; the next green pipeline does.
+# The push is a plain fast-forward, never forced, so if GitHub ever holds a commit main lacks,
+# the job fails instead of overwriting it.
+#
+# Credentials: a GitHub deploy key with write access to TUMcps/CORALean. Its private half,
+# base64-encoded on one line (`base64 -w0 <key>`) so GitLab can mask it, is the CI/CD variable
+# `GITHUB_DEPLOY_KEY` (type Variable, protected, masked), set under Settings → CI/CD → Variables.
+# Without the variable the job is not created. GitHub's host key is pinned below
+# (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints).
+github-mirror:
+  image: alpine:3.20
+  needs: [build, conventions]
+  variables:
+    # The full history, so GitHub receives every commit, not one shallow revision.
+    GIT_DEPTH: "0"
+  script:
+    - apk add --no-cache -q git openssh-client
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - printf '%s' "$GITHUB_DEPLOY_KEY" | base64 -d > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+    - echo "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl" > ~/.ssh/known_hosts
+    - git push git@github.com:TUMcps/CORALean.git "$CI_COMMIT_SHA:refs/heads/main"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $GITHUB_DEPLOY_KEY
