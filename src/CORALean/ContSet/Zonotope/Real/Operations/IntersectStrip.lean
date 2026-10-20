@@ -8,8 +8,8 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # `Zonotope.intersectStrip`
 
-CORA's `@zonotope/intersectStrip` for a numeric weight matrix `Λ` (`aux_zonotopeFromLambda`, which
-CORA attributes to Prop. 1 of the same authors' ISIC 2013 paper; [1, Prop. 6] is its one-strip
+CORA's `@zonotope/intersectStrip` for a numeric weight matrix `Λ` (`aux_zonotopeFromLambda`, the
+zonotope `p̂(Λ) ⊕ Ĥ(Λ) Bʳ⁺ᵐ` of [4, Prop. 1], as CORA cites it; [1, Prop. 6] is its one-strip
 case, `Λ` a single column `λ`, and so is [3, Property 2]; [2, Lemma 1] is `intersectStripFamily`,
 the strips of several sensors at once). The strips `|C x - y| ≤ φ` meet the zonotope `c + G [-1,
 1]^h` in a set that the zonotope with center `c + Λ (y - C c)` and generators `[(I - Λ C) G, Λ
@@ -36,6 +36,9 @@ are tuning, as `Λ` is any matrix here, and the soundness does not depend on it.
       European Journal of Control, 2023.
 * [3] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
       Automatica, 41(6):1035-1043, 2005.
+* [4] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
+      estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium
+      on Intelligent Control (ISIC), pp. 212-217, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

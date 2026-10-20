@@ -11,7 +11,9 @@ public import Mathlib.Data.Matrix.Mul
 
 [1, Def. 4]: for `W = Wᵀ ≻ 0`, `ℓ_{F,W} = ‖⟨p, H⟩‖_{F,W} = ‖H‖_{F,W} = √tr(Hᵀ W H)`, the
 weighted Frobenius norm of the generator matrix, `√Σⱼ gⱼᵀ W gⱼ` over the generators `gⱼ`. It
-ignores the center. At `W = I` it is the F-radius of Combastel's zonotopic Kalman filter.
+ignores the center. [2, Def. 2] defines the same radius, `‖⟨c, R⟩‖_{F,W} = ‖R‖_{F,W} = √tr(Rᵀ W R)`
+for `W = Wᵀ ≻ 0`, and [2, Def. 3] the F-radius `‖R‖_F` as its value at `W = I`, which is
+`fwRadius 1`.
 
 ## Inputs
 * `W` – weight matrix
@@ -24,6 +26,8 @@ ignores the center. At `W = I` it is the F-radius of Combastel's zonotopic Kalma
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
       zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica, 55:265-273, 2015.
 -/
 
 -- Authors:       Claude Opus 5.5

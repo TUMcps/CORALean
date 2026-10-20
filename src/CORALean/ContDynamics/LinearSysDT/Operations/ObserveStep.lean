@@ -9,10 +9,10 @@ public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
 /-!
 # One step of the strip-based observer
 
-[1, Alg. 1]: Step 1 (prediction) `X̄_k = A X̂_{k-1} ⊕ W`, which is `A p̂ ⊕ [A Ĥ  F]` [1, Eq. 2], and
-Step 2 (update) the measurement strips `|c_iᵀ x - y_i| ≤ σ_i` met by `intersectStripSeq`
-[1, Eq. 3], or, as CORA's `intersectionType = 2` does, all at once by `intersectStrip`. CORA's
-prediction is its `post`, `A X̂ ⊕ B u ⊕ c`, before `W` is added; the paper's system has neither
+[1, Alg. 1]: Step 1 (prediction) `X̄_k = A X̂_{k-1} ⊕ W`, `A p̂ ⊕ [A Ĥ  F]` [1, Eq. 2]; Step 2
+(update) the strips `|c_iᵀ x - y_i| ≤ σ_i` met by `intersectStripSeq` [1, Eq. 3] or, as CORA's
+`intersectionType = 2` and [3, Alg. 1] do, all at once by `intersectStrip` ([3, Prop. 1]). CORA's
+prediction is its `post`, `A X̂ ⊕ B u ⊕ c`, before `W` is added; the papers' systems have neither
 input nor offset, `u = 0`, `c = 0`. Written once over the set classes and the scalar: at
 `Real.Zonotope` and ℝ it is the paper's step, at `Float.Zonotope` the same step in directed
 rounding; soundness for both is `observeStep_outer`. [2, Eq. 4]: the prediction and correction,
@@ -37,6 +37,9 @@ steps 1 and 3 of its Sec. 2.1.
 * [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
       International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+* [3] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
+      estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium
+      on Intelligent Control (ISIC), pp. 212-217, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

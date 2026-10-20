@@ -72,12 +72,14 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md) | Černý | Kybernetika, 48(5):890-906 | 2012 | 🟢 25/25 \| 23 |
 | [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md) | Althoff | HSCC | 2013 | 🟢 6/6 \| 5 |
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟢 14/14 \| 7 |
+| [Zonotope-based set-membership estimation for multi-output uncertain systems](2013/le-isic-multi-output-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | ISIC, pp. 212-217 | 2013 | 🟡 3/10 \| 21 |
 | [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟢 15/15 \| 15 |
 | [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟢 18/18 \| 17 |
 | [Formal and Compositional Analysis of Power Systems using Reachable Sets](2014/althoff-tps-power-systems.md) | Althoff | IEEE Transactions on Power Systems, 29(5):2270-2280 | 2014 | 🟡 3/4 \| 34 |
 | [Billiard walk - a new sampling algorithm for control and optimization](2014/polyak-ifac-billiard-walk.md) | Polyak, Gryazina | IFAC World Congress, IFAC Proceedings Volumes 47(3), pp. 6123-6128 | 2014 | 🟡 3/10 \| 11 |
 | [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md) | Raman, Donzé, Maasoumy, Murray, Sangiovanni-Vincentelli, Seshia | CDC, pp. 81-87 | 2014 | 🟢 16/16 \| 17 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 2 |
+| [Zonotopes and Kalman observers: Gain optimality under distinct uncertainty paradigms and robust convergence](2015/combastel-automatica-zonotopes-kalman.md) | Combastel | Automatica, 55:265-273 | 2015 | 🟡 3/13 \| 25 |
 | [Discovering governing equations from data by sparse identification of nonlinear dynamical systems](2016/brunton-pnas-sindy.md) | Brunton, Proctor, Kutz | Proceedings of the National Academy of Sciences, 113(15):3932-3937 | 2016 | 🟢 9/9 \| 12 |
 | [Parsimonious, Simulation Based Verification of Linear Systems](2016/duggirala-cav-parsimonious-verification.md) | Duggirala, Viswanathan | CAV | 2016 | 🟢 0/0 \| 14 |
 | [A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems](2016/maiga-tac-hybrid-reachability.md) | Maïga, Ramdani, Travé-Massuyès, Combastel | IEEE Transactions on Automatic Control, 61(9):2341-2356 | 2016 | 🟡 12/14 \| 13 |

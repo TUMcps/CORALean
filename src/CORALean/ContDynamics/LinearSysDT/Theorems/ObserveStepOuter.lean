@@ -11,11 +11,10 @@ public import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
 [1, Alg. 1]: if `X̂` holds every state `X` might be in, the step's result holds every
 `A x + u + ω` with `x ∈ X`, `ω ∈ W`, that lies in the measurement strips. The prediction
 is outer by `mtimes_outer` and `plus_outer` ([1, Eq. 2]; exact at `Real.Zonotope`), the update
-by `intersectStripSeq_outer`, [1, Eq. 3], or `intersectStrip_outer` all at once, for every gain.
-One statement for every representation and scalar: at a float type the matrices, inputs and
-strips are the reals the floats store.
-
-[2, Eq. 4]: the correction keeps `S_p ∩ Ŝ`.
+by `intersectStripSeq_outer`, [1, Eq. 3], or `intersectStrip_outer` all at once, for every gain;
+all at once it is [3, Alg. 1], whose correction step outer-approximates `X_{y_k} ∩ X̄_k`. One
+statement for every representation and scalar: at a float type the matrices, inputs and strips
+are the reals the floats store. [2, Eq. 4]: the correction keeps `S_p ∩ Ŝ`.
 
 ## Inputs
 * `sys` – system
@@ -40,6 +39,9 @@ strips are the reals the floats store.
 * [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
       International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+* [3] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
+      estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium
+      on Intelligent Control (ISIC), pp. 212-217, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,11 +12,13 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 # The set-propagation observer holds the true state
 
 [1, Eq. 6] at any gains: every run `x_{k+1} = A x_k + u_k + w_k`, `w_k ∈ W`, with outputs
-`y_k = C x_k + v_k`, `v_k ∈ V`, is in the observer's set at every step, provided `x_0 ∈ S_0`.
-The true state satisfies `x_{k+1} = (A - L C) x_k + u_k + L y_k + (-L) v_k + w_k`, a point of
-each summand of [1, Eq. 6]. [1] states the condition as `x̂_0 ∈ S_0` with `0 ∈ V`, `0 ∈ W`; the
-estimate's start says nothing of the true state's, and the origin is not needed: what the
-induction uses is `x_0 ∈ S_0`.
+`y_k = C x_k + v_k`, `v_k ∈ V`, is in the observer's set at every step, provided `x_0 ∈ S_0`:
+`x_{k+1} = (A - L C) x_k + u_k + L y_k + (-L) v_k + w_k` is a point of each summand. [1] asks
+`x̂_0 ∈ S_0`, `0 ∈ V`, `0 ∈ W`; the induction uses only `x_0 ∈ S_0`. [2, Prop. 1] is this
+induction for time-varying `A_k`, …, `F_k`, a feedthrough `D_k u`, a gain sequence and `↓_{q,W}`
+before the product; here the matrices are constant, `D = 0`, the gain a function of the current
+set and the reduction after the step. At `Zonotope.luenbergerGain` the sets are those of
+[2, Sec. 5], Combastel's zonotopic Kalman filter, without its covariation recursion.
 
 ## Inputs
 * `sys` – system
@@ -47,6 +49,8 @@ induction uses is `x_0 ∈ S_0`.
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
       International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
       EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica, 55:265-273, 2015.
 -/
 
 -- Authors:       Claude Opus 5.5
