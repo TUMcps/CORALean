@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 
 The entrywise product, each coordinate the hull of the four corner products, rounded away from the
 box: `mulLo` and `mulHi`.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Output
+* coordinatewise interval product of the boxes
 -/
 
 -- Authors:       Claude Opus 5.5

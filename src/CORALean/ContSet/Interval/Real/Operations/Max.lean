@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/max` at two intervals: the coordinatewise larger bound on each side,
 `[max inf₁ inf₂, max sup₁ sup₂]`. CORA's one-argument form (`max(I)`, the supremum) is
 `Interval.supremum`; a numeric second argument is the degenerate box `Interval.point`.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Output
+* interval of the entrywise maxima
 -/
 
 -- Authors:       Claude Opus 5.5

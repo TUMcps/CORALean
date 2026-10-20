@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Operations.IntervalMatrix
 
 The center and half-width of a box give its bounds back, so `intervalMatrix(center(I), rad(I))` is
 `I` itself, and denotes the same set, with no hypothesis.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval matrix of an interval is the interval itself
 -/
 
 -- Authors:       Claude Opus 5.5

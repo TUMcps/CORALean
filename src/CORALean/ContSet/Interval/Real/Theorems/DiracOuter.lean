@@ -13,6 +13,17 @@ interval: with `δ(t) = ∞` for `t = 0` and `0` otherwise, every point of the b
 value in the result. Outer only: the result is `[0, ∞)` where `δ` takes the two values `0` and
 `∞`, so no exactness is claimed. At `n ≥ 1` the value at `0` is a distribution, not a number, and
 nothing is stated there (`dirac_zero_mem` says the result contains `0`, the value off `0`).
+
+## Inputs
+* `I` – interval box
+* `x` – real point
+* `i` – coordinate index
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* the bounds enclose the Dirac value at coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 CORA's `center`, the midpoint of the two bounds. `half` is exact, so the one rounding is the sum,
 and `center` rounds it up: the stored center is at least the real midpoint (`Theorems/CenterGe`).
+
+## Inputs
+* `I` – interval box
+
+## Output
+* vector of rounded midpoints of the coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

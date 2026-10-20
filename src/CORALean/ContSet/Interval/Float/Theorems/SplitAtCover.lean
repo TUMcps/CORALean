@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
 The first half reaches the midpoint rounded up and the second starts at it rounded down, and the
 first is never below the second, so a point's `j`-th coordinate is on one side of one of them.
 A cover and not a partition, as over ℝ; and the halves may overlap by the rounding.
+
+## Inputs
+* `I` – interval box
+* `j` – coordinate to split at
+
+## Hypotheses
+* none
+
+## Conclusion
+* the two halves together cover the box
 -/
 
 -- Authors:       Claude Opus 5.5

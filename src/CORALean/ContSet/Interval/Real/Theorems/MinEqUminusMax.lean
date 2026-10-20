@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 # `Interval.min` is `-max(-I, -J)`
 
 CORA's definition of `min`, `-max(-I, -Y)`, agrees with the coordinatewise smaller bounds.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the minimum interval is the negated maximum of the negated intervals
 -/
 
 -- Authors:       Claude Opus 5.5

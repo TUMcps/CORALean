@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 Increasing, so `asinhDown` at the lower bound and `asinhUp` at the upper one
 (`Global/Float/InverseHyperbolic`). `p` is `logDown`'s range exponent, `k` the number of
 bisection and Newton steps.
+
+## Inputs
+* `p` – range exponent of `logDown`
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Output
+* interval box enclosing the inverse hyperbolic sine of `I`
 -/
 
 -- Authors:       Claude Sonnet 5.5

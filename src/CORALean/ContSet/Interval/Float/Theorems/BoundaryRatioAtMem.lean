@@ -10,6 +10,18 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
 A coordinate with a ratio has a certified sign: for a positive direction its bounds bracket `(sup
 - start) / dir`, for a negative one `(start - inf) / (-dir)`, the quotients of the exact reading
 of the stored floats.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* every returned ratio brackets the exact ratio of coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

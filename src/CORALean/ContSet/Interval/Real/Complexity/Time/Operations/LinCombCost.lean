@@ -13,6 +13,12 @@ Asserted, not proved: `Operations/LinComb.lean` is the entrywise hull, one
 costs the same `2 * n` comparisons and `2 * n` writes as `plus` — no interpolating generator to
 build, a box
 having no generators to pair.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* time cost of the linear combination in dimension `n`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

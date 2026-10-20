@@ -21,6 +21,18 @@ upper end is reached by moving row `i` of `M` to whichever end of its interval a
 column `j` of `N`, and every value between by moving it part of the way. `[M]` must be nonempty,
 every `inf ≤ sup`, as an interval matrix of the paper is.
 
+## Inputs
+* `IM` – interval matrix
+* `N` – real matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hIM` – `IM` has ordered bounds
+
+## Conclusion
+* entry `(i, j)` of the product ranges exactly over the center-radius interval
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

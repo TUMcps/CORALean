@@ -13,6 +13,16 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 that contains `S`. Each coordinate of `S` is bounded through the sup norm, so its `sSup` and
 `sInf` are its least upper and greatest lower bound.
 
+## Inputs
+* `S` – set of points
+
+## Hypotheses
+* `hne` – `S` nonempty
+* `hb` – `S` bounded
+
+## Conclusion
+* the hull contains the set and lies in every box containing it
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

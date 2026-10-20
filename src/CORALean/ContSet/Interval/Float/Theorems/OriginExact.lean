@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.OriginExact
 # `Interval.origin` is exactly the origin
 
 `zero` reads as `0`, so the stored box denotes the exact layer's origin interval.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* the origin box represents exactly the origin
 -/
 
 -- Authors:       Claude Opus 5.5

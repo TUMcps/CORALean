@@ -11,6 +11,13 @@ CORA's `@interval/minkDiff`: bounds subtract like-to-like, `inf` from `inf` and
 `sup` from `sup` — not `inf` from `sup`. A crossed result denotes `∅`, exactly
 as `Interval.construct`'s own docstring says, so no `IsNonempty` hypothesis
 belongs here.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Output
+* Minkowski difference interval
 -/
 
 -- Authors:       Claude Opus 5

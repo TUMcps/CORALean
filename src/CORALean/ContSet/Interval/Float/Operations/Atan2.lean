@@ -14,6 +14,15 @@ values. For a coordinate whose box lies in a half-plane the strict tests certify
 at the lower bound, or `y < 0` at the upper one) that is the enclosure CORA computes. CORA's
 corner hull is not an enclosure across the branch cut; where no half-plane is certified the result
 here is `[-π, π]`, so the float result encloses `atan2` over every box.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `I₁` – box of the ordinates
+* `I₂` – box of the abscissae
+
+## Output
+* interval box enclosing the four-quadrant arctangent over both boxes
 -/
 
 -- Authors:       Claude Opus 5.5

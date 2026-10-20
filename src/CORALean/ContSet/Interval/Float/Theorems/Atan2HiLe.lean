@@ -13,6 +13,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.ArgEqNegPiDivTwoSubArctanO
 The corner value `atan2Hi p k a b` is at least the argument of `a + b i`, whichever half-plane
 holds it: in each certified half-plane through the monotonicity of `arctan` and the rounded
 quotients, and `π` above every argument.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `a` – abscissa
+* `b` – ordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the argument of `a + b i` is below the upper bound
 -/
 
 -- Authors:       Claude Opus 5.5

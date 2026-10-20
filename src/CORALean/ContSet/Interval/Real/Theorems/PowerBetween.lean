@@ -10,6 +10,19 @@ public import CORALean.ContSet.Interval.Real.Operations.Power
 The scalar fact behind `Interval.power`: for `a ≤ x ≤ b`, the power `x ^ k` lies
 between `0` (even `k ≠ 0` over a box with `a < 0 < b`) or `min (a ^ k) (b ^ k)`
 and `max (a ^ k) (b ^ k)`. Odd `k` is monotone; even `k` is the monotone `|x| ^ k`.
+
+## Inputs
+* `a` – lower end
+* `b` – upper end
+* `x` – point of the interval
+* `k` – exponent
+
+## Hypotheses
+* `h₁` – lower end below `x`
+* `h₂` – `x` below the upper end
+
+## Conclusion
+* `x ^ k` lies between the computed power bounds
 -/
 
 -- Authors:       Claude Opus 5.5

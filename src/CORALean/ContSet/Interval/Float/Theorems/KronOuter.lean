@@ -13,6 +13,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 
 The real layer has proved the statement for the nominal boxes; what is left is that every corner
 product rounds the right way, `mulLo_le` and `le_mulHi`, exactly as `matMul_outer` does.
+
+## Inputs
+* `I` – left interval matrix
+* `J` – right interval matrix
+* `A` – member of the left matrix
+* `B` – member of the right matrix
+
+## Hypotheses
+* `hA` – `A` lies in `I`
+* `hB` – `B` lies in `J`
+
+## Conclusion
+* the Kronecker product of `A` and `B` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5.5

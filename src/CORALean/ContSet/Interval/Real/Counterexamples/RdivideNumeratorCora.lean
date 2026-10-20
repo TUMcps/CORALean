@@ -26,9 +26,19 @@ The `sup == 0` branch is right for `c > 0` only. One dimension, `±Inf` as `ERea
 # CORA's `c ./ I` drops half the range for `c < 0` and `sup(I) = 0`
 
 `-1 ./ interval(-2, 0)` is `[-Inf, 0.5]` in CORA (`@interval/rdivide.m` l. 86-88), while `-1/x`
-on `[-2, 0)` takes the values `[0.5, +Inf)`: at `x = -1/2` it is `2`. The public `./` of a numeric
-and an interval operand dispatches there, and a scalar passes `size(numerator) == 1`. Read from
-the source, not run.
+on `[-2, 0)` takes the values `[0.5, +Inf)`: at `x = -1/2` it is `2`. The public `./` dispatches
+there, a scalar passing `size(numerator) == 1`. Read from the source, not run.
+
+## Inputs
+* `c` – negative numerator
+* `lo` – negative lower bound
+
+## Hypotheses
+* `hc` – numerator negative
+* `hlo` – lower bound negative
+
+## Conclusion
+* CORA's upper bound lies below the true quotient
 -/
 
 -- Authors:       Claude Sonnet 5.5

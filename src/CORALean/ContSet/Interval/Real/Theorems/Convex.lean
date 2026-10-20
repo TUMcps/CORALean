@@ -13,6 +13,15 @@ points is admissible coordinate by coordinate. Holds for any bounds, the empty
 case included.
 
 What an integral valued in the set needs, being a limit of convex combinations.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval is convex
 -/
 
 -- Authors:       Claude Opus 5

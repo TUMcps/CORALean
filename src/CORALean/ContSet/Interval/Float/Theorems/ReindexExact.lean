@@ -12,6 +12,16 @@ The only float guarantee in the repository that is an equality rather than an
 enclosure, and the reason is that nothing rounds: the nominal box of a
 relabelled interval *is* the relabelled nominal box, by `rfl`, so the exact
 layer's theorem is the whole proof.
+
+## Inputs
+* `e` – coordinate bijection
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reindexed box is exactly the relabelled set
 -/
 
 -- Authors:       Claude Opus 5

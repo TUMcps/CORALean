@@ -11,6 +11,17 @@ What makes `center` and `radius` a genuine split of a box's point rather than
 two unrelated readings: every point the box denotes is off from the center by
 at most the radius, coordinate by coordinate — how every enclosure proof off a
 box reads it.
+
+## Inputs
+* `I` – interval
+* `x` – point of the interval
+* `i` – entry index
+
+## Hypotheses
+* `hx` – `x` lies in `I`
+
+## Conclusion
+* entry `i` of `x` is within the radius of the center
 -/
 
 -- Authors:       Claude Opus 5

@@ -14,6 +14,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Enlarge
 For a nonnegative factor `f`, the real box `[c - f·r, c + f·r]` of the stored box's reading sits
 inside the stored one: the center is rounded away on each side, the half-width is rounded up, and a
 nonnegative factor keeps the product's rounding in the outward direction. Not exact.
+
+## Inputs
+* `I` – interval box
+* `f` – enlargement factor
+
+## Hypotheses
+* `hf` – factor nonnegative
+
+## Conclusion
+* the exact enlargement lies in the float one
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,16 @@ Coordinatewise, and with no nonemptiness hypothesis, which is what separates it
 from the exactness claim: `[1, 0] + [0, 10]` is `∅` as a set but `[1, 10]` by
 the definition, so the inclusion survives crossed bounds and the equality does
 not. The float layer refines this one for that reason.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum lies in the result box
 -/
 
 -- Authors:       Claude Opus 5

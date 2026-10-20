@@ -14,11 +14,26 @@ the real product box `matMul X Y` is inside the float `matMul X' Y'` — a box, 
 only the products of its members, which is what a point that is merely between
 the real product's endpoints needs.
 
-Entry by entry the real endpoint is attained: the least corner sum is `(M N)ᵢⱼ`
-for the member `M` whose row `i` takes, entry by entry, the endpoint the least
-corner product picks, and `N` likewise in column `j`, the other entries any
-member's. The float product holds `M N` (`matMul_outer`), so its endpoint is no
-further in than the real one.
+Entry by entry the real endpoint is attained by a member `M` and a member `N` that take, entry by
+entry, the endpoints the least corner product picks; the float product holds `M N`
+(`matMul_outer`), so its endpoint is no further in than the real one.
+
+## Inputs
+* `X` – left real interval matrix
+* `Y` – right real interval matrix
+* `X'` – left float interval matrix
+* `Y'` – right float interval matrix
+* `M₀` – member of the left matrix
+* `N₀` – member of the right matrix
+
+## Hypotheses
+* `hM₀` – `M₀` lies in `X`
+* `hN₀` – `N₀` lies in `Y`
+* `hX` – `X` is contained in `X'`
+* `hY` – `Y` is contained in `Y'`
+
+## Conclusion
+* the real box product is contained in the float one
 -/
 
 -- Authors:       Claude Opus 5.5

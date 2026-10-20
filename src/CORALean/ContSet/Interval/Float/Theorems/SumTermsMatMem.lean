@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 
 If `M k ∈ f k` for every `k < N`, then `∑_{k<N} M k ∈ sumTermsMat f N`: the start is the point
 `0`, read exactly, and each `matPlus` holds the sum of a member of each summand.
+
+## Inputs
+* `f` – family of interval matrices
+* `M` – family of real matrices
+* `N` – number of terms
+
+## Hypotheses
+* `h` – each member lies in its box below `N`
+
+## Conclusion
+* the sum of the members lies in the term-wise float sum
 -/
 
 -- Authors:       Claude Opus 5.5

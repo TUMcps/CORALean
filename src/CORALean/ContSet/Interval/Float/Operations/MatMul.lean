@@ -12,6 +12,13 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 hull of `A`'s `(i, k)` interval against `B`'s `(k, j)` one, each hull `mulLo`/
 `mulHi` and the row itself summed with `sumDown`/`sumUp` — two roundings per
 entry, the corner and the row.
+
+## Inputs
+* `A` – left factor
+* `B` – right factor
+
+## Output
+* interval matrix product, rounded outward
 -/
 
 -- Authors:       Claude Sonnet 5

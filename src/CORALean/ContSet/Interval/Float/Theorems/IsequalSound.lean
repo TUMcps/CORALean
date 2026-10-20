@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.LeSound
 
 A `true` answer is `le` each way, which is the exact layer's `le_subset` each way, so the two boxes
 denote the same set. `false` refutes nothing, as `le` is certified in one direction only.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the two boxes represent the same set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,13 +11,20 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 CORA's `@interval/partition(I, splits)`: with `incr = (sup - inf) / splits`, the piece indexed by
 `ind` has bounds `inf + (ind - 1) * incr` and `inf + ind * incr` in each coordinate (CORA counts
-from `1`, here the index starts at `0`).
+from `1`, here from `0`).
 
 Over a float scalar a quotient by a count has no direction-free form, so the increment is the
 product of the width `[sup - inf]` (rounded both ways) with the ratio `k / splits`, bounded by
-`ratioLo` and `ratioHi`: a numerator rounded down over a denominator rounded up is below the
-ratio, and the ratio is `1` less the one for `splits - k`. Every piece then holds the exact one
-(`Theorems/PartitionCover`).
+`ratioLo` and `ratioHi`: a numerator rounded down over a denominator rounded up is below the ratio,
+and the ratio is `1` less the one for `splits - k` (`Theorems/PartitionCover`).
+
+## Inputs
+* `I` – interval box
+* `splits` – number of splits per coordinate
+* `ind` – piece index per coordinate
+
+## Output
+* piece of the box at grid index `ind`
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,18 @@ bounds with two indices instead, and this is the reading that gets it there.
 
 CORA's `intervalMatrix` is `Interval (Mat ℝ m n)`, so this is the only place the
 pair index has to be taken apart.
+
+## Inputs
+* `m` – number of rows
+* `n` – number of columns
+* `I` – interval matrix
+* `A` – real matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* membership holds iff every entry lies between its bounds
 -/
 
 -- Authors:       Claude Opus 5

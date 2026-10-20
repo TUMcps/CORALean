@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
 
 The upper corner minus the center is the half-width, so the corner is at distance `‖radius‖₂`
 from the center.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the upper bound minus the center is the radius
 -/
 
 -- Authors:       Claude Opus 5.5

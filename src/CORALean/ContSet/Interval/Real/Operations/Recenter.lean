@@ -11,6 +11,12 @@ Both bounds shifted by the center: the box moved to hold the origin exactly
 where its center sat. `Theorems/RecenterZeroMem.lean` needs the box nonempty
 to say the origin is still inside; `Instances.lean`'s docstring says why that
 keeps `Recenter` itself unavailable.
+
+## Inputs
+* `I` – interval
+
+## Output
+* interval shifted to center zero
 -/
 
 -- Authors:       Claude Opus 5

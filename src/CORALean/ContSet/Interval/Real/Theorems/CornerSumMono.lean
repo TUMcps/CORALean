@@ -12,6 +12,18 @@ On the box `[0, b₁] × … × [0, bₙ]`, `b ≥ 0`, a vertex raising every co
 at least its sum. [1, Lemma 6.5] rests on it: a piece of the partition, its later coordinates
 all raised, lies above the vertex line 6 rejected.
 
+## Inputs
+* `b` – upper bound vector
+* `l` – lower corner labels
+* `w` – raised corner labels
+
+## Hypotheses
+* `hb0` – bounds nonnegative
+* `hlw` – every label of `l` is also in `w`
+
+## Conclusion
+* the corner sum does not decrease
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

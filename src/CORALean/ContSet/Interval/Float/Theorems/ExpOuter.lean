@@ -14,6 +14,16 @@ which a caller discharges with `le_expUp_of_le` against a known bound.
 
 Eq. (3.2) of [1, Def. 5] for the exponential, under the precision bound.
 
+## Inputs
+* `p` – precision of the exponentials
+* `I` – interval box
+
+## Hypotheses
+* `hI` – upper bounds within the exponential range
+
+## Conclusion
+* the exponential image of `I` lies in the result box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

@@ -16,6 +16,17 @@ of `B ∩ {Σᵢ xᵢ = α}`: an edge meets the plane at most once, at `t⋆`, [
 points are the points of the cut on an edge, [1, Sec. 1]. For a box with positive side lengths,
 where `t⋆` divides by an edge length, and `n ≥ 1`: a `0`-dimensional box has no edge at all.
 
+## Inputs
+* `I` – interval box
+* `α` – level of the plane
+
+## Hypotheses
+* `hn` – dimension positive
+* `hI` – lower bounds strictly below upper bounds
+
+## Conclusion
+* the naive algorithm returns exactly the vertices of the cut
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

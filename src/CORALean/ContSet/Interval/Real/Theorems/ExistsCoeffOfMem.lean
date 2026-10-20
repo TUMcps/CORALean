@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 Every `x` of a box is `center + β ⊙ radius` with `|β_i| ≤ 1`: the coefficients `[x] = mid([x]) ⊕
 rad([x]) ⊗ [-1, 1]` leaves free, where a coordinate has width `0` taking `β_i = 0`. This is the
 step from a box to the zonotope with one generator per coordinate.
+
+## Inputs
+* `I` – interval box
+* `x` – point of the box
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* `x` is the center plus coefficients of absolute value at most one times the radius
 -/
 
 -- Authors:       Claude Sonnet 5.5

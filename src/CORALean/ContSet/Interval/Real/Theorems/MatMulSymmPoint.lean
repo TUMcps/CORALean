@@ -8,21 +8,24 @@ public import CORALean.ContSet.Interval.Real.Operations.MatMul
 /-!
 # A symmetric interval matrix times a point matrix, in closed form
 
-[1, Lemma 3.2]. `Interval.matMul` bounds a general interval-times-interval
-product through four corner bounds per summand; when the left factor is
-symmetric (`S.inf = -S.sup`) and the right one is a single ("regular", in the
-thesis's word for non-interval) matrix rather than an interval, those corners
-collapse entrywise to `|M|` scaled by `S.sup` — the thesis's `S M = [-S̄|M|, S̄|M|]`
-half of (3.18), the `M S` half following by the same argument transposed.
+[1, Lemma 3.2]. `Interval.matMul` bounds a general interval-times-interval product through four
+corner bounds per summand; when the left factor is symmetric (`S.inf = -S.sup`) and the right one
+a single matrix rather than an interval, those corners collapse entrywise to `|M|` scaled by
+`S.sup` — the thesis's `S M = [-S̄|M|, S̄|M|]` half of (3.18). Proved at full matrix generality,
+one column of `M` at a time, needing no regularity of `M`, only that `M` is a point. The bound is
+stated entrywise, as CORA's row/column sum is. `S.IsNonempty` stands in for "`S = [-S̄, S̄]` is a
+genuine interval": crossed bounds would make `S.sup` negative somewhere.
 
-Proved at full matrix generality rather than the thesis's row-times-column
-sketch: the same corner computation, one column of `M` at a time, needing no
-regularity of `M` at all — the proof never uses it, only that `M` is a point
-rather than an interval. The bound is stated entrywise, as CORA's row/column
-sum is, rather than through `Matrix.mul`, which needs no more from the reader.
+## Inputs
+* `S` – symmetric interval matrix
+* `M` – point matrix
 
-`S.IsNonempty` stands in for "`S = [-S̄, S̄]` is a genuine interval": crossed
-bounds would make `S.sup` negative somewhere, and the formula wrong there.
+## Hypotheses
+* `hSne` – `S` nonempty
+* `hSsymm` – lower bound is the negated upper bound
+
+## Conclusion
+* the product with a point matrix is the symmetric box of absolute sums
 
 ## References
 

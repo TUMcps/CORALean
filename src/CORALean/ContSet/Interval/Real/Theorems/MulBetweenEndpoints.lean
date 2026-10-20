@@ -11,6 +11,19 @@ Where `min` and `max` absorb the sign of the scale: for a negative one the two
 endpoints swap roles, and taking the extremes of the pair is what makes the one
 statement cover both. Every interval product in the tree reduces to this,
 whether the other factor is a matrix entry or an interval matrix's.
+
+## Inputs
+* `c` – scalar factor
+* `lo` – lower endpoint
+* `hi` – upper endpoint
+* `x` – value between the endpoints
+
+## Hypotheses
+* `h₁` – lower endpoint below `x`
+* `h₂` – `x` below the upper endpoint
+
+## Conclusion
+* the scaled value lies between the scaled endpoints
 -/
 
 -- Authors:       Claude Opus 5

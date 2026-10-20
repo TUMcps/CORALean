@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Radius2
 
 The stored half-widths bound the exact ones for a nonempty box, so a certificate `σ` with
 `radiusSq ≤ σ·σ` bounds the exact layer's `Interval.radius₂` by `|σ|`.
+
+## Inputs
+* `I` – interval box
+* `σ` – certified bound of the radius
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+* `hσ` – squared radius at most `σ` squared
+
+## Conclusion
+* the exact Euclidean radius is at most the certified bound
 -/
 
 -- Authors:       Claude Opus 5.5

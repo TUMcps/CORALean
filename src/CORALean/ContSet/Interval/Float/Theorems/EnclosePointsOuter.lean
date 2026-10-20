@@ -8,6 +8,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Interval.enclosePoints` contains every point
 
 Each coordinate is bounded by `minimumOver` and `maximumOver`, which are under and over every entry.
+
+## Inputs
+* `k` – number of points
+* `p` – family of float points
+* `l` – point index
+
+## Hypotheses
+* none
+
+## Conclusion
+* point `l` lies in the box enclosing all points
 -/
 
 -- Authors:       Claude Opus 5.5

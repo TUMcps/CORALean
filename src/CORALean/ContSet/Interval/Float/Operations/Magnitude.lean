@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 The larger of the two ends' absolute values, per coordinate. A point of the interval is at most
 this far from `0` in each coordinate (`abs_le_magnitude`), and it is the radius of the smallest
 box about the origin that holds the interval.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* vector of the coordinatewise largest absolute values
 -/
 
 -- Authors:       Claude Opus 5.5

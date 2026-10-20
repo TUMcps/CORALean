@@ -8,6 +8,16 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # `Interval.halve` contains half of every vector in the box
 Exact: the bounds are halved exactly (`toReal_half`), so `(1/2) • x` lies in the halved box.
+
+## Inputs
+* `I` – interval box
+* `x` – point of the box
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* half of `x` lies in the halved box
 -/
 
 -- Authors:       Claude Opus 5.5

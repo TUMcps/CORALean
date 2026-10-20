@@ -11,6 +11,19 @@ public import CORALean.Global.EvalList
 
 At every point of the box `[lo, hi]` the value of the polynomial with the integer coefficients `l`
 (`evalL l x`) lies between the two ends.
+
+## Inputs
+* `lo` – lower bound of the argument
+* `hi` – upper bound of the argument
+* `x` – real argument
+* `l` – integer coefficient list
+
+## Hypotheses
+* `h₁` – lower bound below `x`
+* `h₂` – `x` below the upper bound
+
+## Conclusion
+* the polynomial value at `x` lies between the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

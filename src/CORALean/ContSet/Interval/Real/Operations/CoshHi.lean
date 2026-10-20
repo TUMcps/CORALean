@@ -10,6 +10,13 @@ public import Mathlib.Analysis.Complex.Trigonometric
 The upper bound of `cosh` on one coordinate `[lb, ub]`, from CORA's `@interval/cosh`: `cosh lb` if
 the range lies at or left of `0`, `cosh ub` if at or right of it, and `cosh` at the end of larger
 absolute value if `0` lies inside.
+
+## Inputs
+* `lb` – lower end
+* `ub` – upper end
+
+## Output
+* upper bound of the hyperbolic cosine over `[lb, ub]`
 -/
 
 -- Authors:       Claude Sonnet 5.5

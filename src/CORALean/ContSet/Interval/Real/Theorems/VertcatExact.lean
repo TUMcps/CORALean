@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Vertcat
 
 A matrix lies in the stacked box iff its top block is in the first box and its bottom block in the
 second: no hypothesis.
+
+## Inputs
+* `I` – top interval matrix
+* `J` – bottom interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stacked box is exactly the set of stacked pairs
 -/
 
 -- Authors:       Claude Opus 5.5

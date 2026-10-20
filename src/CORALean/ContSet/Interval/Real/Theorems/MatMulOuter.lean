@@ -14,12 +14,23 @@ Entry `(i, j)` of `M * N` is `∑ k, M i k * N k j` (`Matrix.mul_apply`), each
 summand between the corresponding `mulLo`/`mulHi` by `mul_between_corners`, and
 `Finset.sum_le_sum` twice finishes it — the same shape as `mtimesIntervalMat`'s.
 
-Outer and never exact: the `k` summands are bounded independently although they
-come from one and the same pair of matrices, so a product entry that would need
-two different `k`-corners at once is admitted. The usual interval-arithmetic
-dependency loss, and why Althoff §3.3.2 moves to matrix zonotopes.
+Outer and never exact: the `k` summands are bounded independently although they come from one
+pair of matrices, so a product entry that would need two different `k`-corners at once is
+admitted. The usual interval-arithmetic dependency loss, and why Althoff §3.3.2 moves to matrix
+zonotopes. [1, Eq. 16], an enclosure, as the paper defines it.
 
-[1, Eq. 16], an enclosure, as the paper defines it.
+## Inputs
+* `A` – left interval matrix
+* `B` – right interval matrix
+* `M` – member of the left matrix
+* `N` – member of the right matrix
+
+## Hypotheses
+* `hM` – `M` lies in `A`
+* `hN` – `N` lies in `B`
+
+## Conclusion
+* the product `M N` lies in the result
 
 ## References
 

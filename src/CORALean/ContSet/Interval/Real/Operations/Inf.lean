@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Real.Operations.EBox
 
 CORA's `interval.Inf(n)`: the interval `(-∞, ∞)ⁿ`, lower bound `-Inf(n,1)`, upper bound
 `Inf(n,1)`. Its bounds are infinite, so the result is an `Interval.EBox`.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* extended box unbounded in every coordinate
 -/
 
 -- Authors:       Claude Opus 5.5

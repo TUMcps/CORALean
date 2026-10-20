@@ -16,6 +16,13 @@ coordinate strictly between its bounds. [1, Def. 3]: a squashed face `(p₁, …
 fixes the first `j` labels, the only s-faces the algorithm forms; `prefixFace j p` is the
 set `V(s)` of labels it represents, a label `l` naming the vertex `I.corner l`.
 
+## Inputs
+* `a` – normal vector
+* `α` – level of the hyperplane
+
+## Output
+* the hyperplane with normal `a` at level `α`
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

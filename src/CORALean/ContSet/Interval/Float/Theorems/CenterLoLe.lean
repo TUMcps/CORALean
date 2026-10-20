@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 # `Interval.centerLo` is at most the real midpoint
 
 The sum rounds down and `half` is exact.
+
+## Inputs
+* `I` – interval box
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rounded-down center is at most the real midpoint
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 Each coordinate is bounded by the family's minimum and maximum there. Both bounds are attained, so
 the box is the smallest one, but only containment is stated.
+
+## Inputs
+* `κ` – index type
+* `p` – family of points
+* `k` – point index
+
+## Hypotheses
+* none
+
+## Conclusion
+* point `k` lies in the box enclosing all points
 -/
 
 -- Authors:       Claude Opus 5.5

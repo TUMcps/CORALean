@@ -12,6 +12,16 @@ corners in `D` onto exactly the box of its endpoint images, by the intermediate 
 coordinate by coordinate. An antitone one swaps the two corners. Without continuity (`sign`,
 `round`) only the outer statement holds: the image sits inside the box of endpoint images, with
 no hypothesis on `f` beyond `Monotone`.
+
+## Inputs
+* `f` – function applied coordinatewise
+* `I` – interval box
+
+## Hypotheses
+* `hf` – `f` nondecreasing
+
+## Conclusion
+* the image of `I` lies in the box of images of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,16 @@ Under the `l∞` operator norm: each entry at the endpoint of larger absolute
 value is a member with the same entrywise absolute values as `absMax`, hence the
 same row sums and the same norm. So `norm_le_absMax`'s bound is attained, and a
 bound on every member's norm bounds `‖absMax‖` too.
+
+## Inputs
+* `X` – interval matrix
+* `M₀` – member of the box
+
+## Hypotheses
+* `hM₀` – `M₀` lies in `X`
+
+## Conclusion
+* some member has the norm of the largest-absolute-value matrix
 -/
 
 -- Authors:       Claude Opus 5.5

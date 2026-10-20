@@ -11,6 +11,12 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 CORA's `@interval/round` at its default of zero digits: MATLAB's `round` sends halves away from
 zero, unlike Mathlib's `round`, which sends them up, so the function is spelled out. Only the
 default `N = 0` is covered.
+
+## Inputs
+* `x` – real number
+
+## Output
+* nearest integer, halves away from zero
 -/
 
 -- Authors:       Claude Opus 5.5

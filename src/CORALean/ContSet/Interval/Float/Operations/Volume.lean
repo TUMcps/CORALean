@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `volume_`, the product of the widths, as an upper bound: each width rounded up and clipped at
 zero (a crossed coordinate denotes `∅` and counts as `0`, as over ℝ), the product rounded up.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* upper bound of the volume of the box
 -/
 
 -- Authors:       Claude Opus 5.5

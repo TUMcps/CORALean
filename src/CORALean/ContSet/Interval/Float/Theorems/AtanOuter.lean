@@ -8,6 +8,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Atan
 # `Interval.atan` contains the image under `arctan`
 
 For every box: monotonicity, then `atanDown_le`/`le_atanUp` at the corners.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the arctangent image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

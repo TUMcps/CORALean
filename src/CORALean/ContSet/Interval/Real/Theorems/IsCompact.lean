@@ -13,6 +13,15 @@ combined here rather than re-exported. `Vec ℝ n` is a proper space, where
 Heine–Borel makes closed and bounded exactly compact.
 
 At `Vec ℝ n`, since boundedness is.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval is compact
 -/
 
 -- Authors:       Claude Opus 5

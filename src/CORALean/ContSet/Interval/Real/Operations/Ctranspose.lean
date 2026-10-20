@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 CORA's `@interval/ctranspose`: the conjugate transpose, which over ℝ is the transpose, and CORA's
 code for it is the same line.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* transposed interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

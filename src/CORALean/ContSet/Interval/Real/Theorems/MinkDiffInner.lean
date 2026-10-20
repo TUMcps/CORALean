@@ -12,6 +12,16 @@ Unconditional, no `IsNonempty` on either argument: coordinatewise,
 `a - c ≤ x ≤ b - d` implies `a ≤ x + y ≤ b` for every `y ∈ [c, d]`, which is
 exactly what `minkowskiDiff` asks for. `MinkDiffExact` is the converse, and it
 does need a hypothesis.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the difference interval lies inside the Minkowski difference
 -/
 
 -- Authors:       Claude Opus 5

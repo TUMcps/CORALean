@@ -12,6 +12,15 @@ The stored box denotes the exact layer's box `nominal`, which is compact by
 Heine–Borel. This is the theorem behind the `CompactSet` instance of
 `Float/Instances.lean`, and with it `CompactSet.isBounded_construct` gives
 `isBounded` at float.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box is compact
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,6 +18,18 @@ scaled one of [1, Sec. 6.3 (scaling)] — the extreme points of `B ∩ P` are it
 most one coordinate strictly inside. Two such coordinates `i`, `j` leave the direction
 `aⱼeᵢ - aᵢeⱼ` free inside `B ∩ P`; with one, `P` fixes it once the others are at their bounds.
 
+## Inputs
+* `I` – interval box
+* `a` – normal vector of the plane
+* `α` – level of the plane
+* `x` – candidate vertex
+
+## Hypotheses
+* `ha` – normal entries nonzero
+
+## Conclusion
+* `x` is a vertex of the cut iff it lies in the cut and on an edge of the box
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

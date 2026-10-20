@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Mask
 For a box with no empty entry, the masked box is the image of the box under zeroing the entries
 outside the pattern: the in-pattern entries keep their ranges and the rest are the point `0`. This
 is `tril` and `triu` at their patterns.
+
+## Inputs
+* `keep` – predicate selecting the entries to keep
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the masked box is exactly the image with unkept entries zeroed
 -/
 
 -- Authors:       Claude Opus 5.5

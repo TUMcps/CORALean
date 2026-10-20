@@ -15,6 +15,12 @@ why the vectors are built here rather than by a helper.
 
 This is also the storage of five other representations, which carry an error box
 of this type and materialise it through here.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* the same box with its bounds stored as vectors
 -/
 
 -- Authors:       Claude Opus 5

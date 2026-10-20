@@ -9,6 +9,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Dirac
 
 `δ⁽ⁿ⁾` vanishes off `0`, and every bound `dirac` returns is `0`, `-∞` or `∞`, so the result
 contains `0` in every coordinate, for every `n`.
+
+## Inputs
+* `n` – derivative order
+* `I` – interval box
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bounds at coordinate `i` enclose the value zero
 -/
 
 -- Authors:       Claude Opus 5.5

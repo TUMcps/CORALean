@@ -10,6 +10,12 @@ public import Mathlib.Analysis.Complex.Exponential
 
 CORA's `@interval/exp`: the exponential is increasing, so it acts on the two bounds, coordinate by
 coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the exponentials of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

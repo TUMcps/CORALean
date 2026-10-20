@@ -13,6 +13,23 @@ This is the scalar fact every interval-matrix product in the tree reduces to:
 apply `mul_between_endpoints` once holding the argument fixed and moving the
 coefficient, once the other way, no case split on signs needed. Was file-local
 to `MtimesIntervalMatOuter`; `matMul_outer` needs it too, hence public here.
+
+## Inputs
+* `a` – lower end of the first factor
+* `b` – upper end of the first factor
+* `c` – lower end of the second factor
+* `d` – upper end of the second factor
+* `y` – value of the first factor
+* `x` – value of the second factor
+
+## Hypotheses
+* `hy₁` – lower end below `y`
+* `hy₂` – `y` below the upper end
+* `hx₁` – lower end below `x`
+* `hx₂` – `x` below the upper end
+
+## Conclusion
+* the product `y x` lies between the lower and upper corner products
 -/
 
 -- Authors:       Claude Opus 5

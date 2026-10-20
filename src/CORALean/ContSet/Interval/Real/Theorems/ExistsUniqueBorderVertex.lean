@@ -14,6 +14,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 `Σᵢ vᵢ ≤ α`, its border vertex `(v₁, …, v_j, 0, …, 0)`: every other raises some `k > j`, and
 `b_k ≥ b_{j+1}`. The paper's `b_{j+1}` is `b ⟨j, hj⟩` here, coordinates counted from `0`.
 
+## Inputs
+* `b` – upper bound vector
+* `j` – index of the face
+* `p` – prefix labels
+* `α` – level of the plane
+
+## Hypotheses
+* `hb` – bounds nondecreasing
+* `hb0` – bounds nonnegative
+* `hj` – face index below the dimension
+* `h5` – corner sum at the prefix at most the level, below the next bound
+
+## Conclusion
+* exactly one vertex of the face lies below the plane
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

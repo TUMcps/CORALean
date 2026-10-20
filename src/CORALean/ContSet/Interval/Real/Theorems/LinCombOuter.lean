@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.LinComb
 
 A weighted average of two numbers never leaves the range spanned by both, so
 each coordinate is handled on its own and the bound is immediate.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the two sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5

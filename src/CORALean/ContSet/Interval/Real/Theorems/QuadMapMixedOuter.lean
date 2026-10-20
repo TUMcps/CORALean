@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 CORA bounds `{x₁ᵀQₖx₂ | x₁ ∈ I₁, x₂ ∈ I₂}` through the boxes' zonotopes, so the statement is an
 outer one: a zonotope's coefficients are free, and `Zonotope.bilin` only over-approximates the
 products of two of them (`Zonotope.bilin_outer`).
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bilinear map image over both boxes lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

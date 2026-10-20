@@ -14,6 +14,19 @@ since the tangent and cotangent of [1, Eq. 14] reduce modulo `π`, and with whic
 case 1 exactly when `y̲ ≤ y̅`, which is the test [1] says suffices. `mod(x, p)` is MATLAB's,
 `x - p⌊x/p⌋`.
 
+## Inputs
+* `p` – period
+* `lo` – lower end
+* `hi` – upper end
+
+## Hypotheses
+* `hp` – period positive
+* `hle` – lower end at most upper end
+* `hw` – width smaller than the period
+
+## Conclusion
+* the reduced bounds differ by the width or by the width less a period
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

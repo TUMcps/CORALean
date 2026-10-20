@@ -13,6 +13,16 @@ Under the `l∞` operator norm: entrywise, `M i j` sits between `A`'s endpoints 
 `|M i j| ≤ A.absMax i j`, and `A.absMax i j` is its own absolute value since it
 is non-negative; summing that domination over a row and taking the sup over
 rows carries it from entries to the whole norm.
+
+## Inputs
+* `A` – interval matrix
+* `M` – member of the box
+
+## Hypotheses
+* `hM` – `M` lies in `A`
+
+## Conclusion
+* the norm of `M` is at most the norm of the largest-absolute-value matrix
 -/
 
 -- Authors:       Claude Opus 5

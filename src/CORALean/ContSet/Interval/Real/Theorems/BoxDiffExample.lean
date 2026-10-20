@@ -13,6 +13,15 @@ public import Mathlib.Data.Fin.VecNotation
 `I₁ = [0, 4] × [0, 6]`, `I₂ = [2, 3] × [1, 3]`: the margins are `dₗ = (2, 1)` and
 `dᵤ = (1, 3)`, the widest is `dᵤ(2) = 3`, so `I₁ \ I₂ ⊇ [0, 4] × ]3, 6]`, as printed.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box difference of the example is the stated slab
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

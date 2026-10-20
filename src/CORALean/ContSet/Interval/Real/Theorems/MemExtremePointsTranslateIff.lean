@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyper
 `[0, b₁ - a₁] × … × [0, bₙ - aₙ]` cut by `Σᵢ x⋆ᵢ = α - Σᵢ aᵢ`, every solution `c⋆` of the latter
 to the solution `c = c⋆ + a` of the former. The vertices of the two cuts correspond exactly.
 
+## Inputs
+* `I` – interval box
+* `α` – level of the plane
+* `c` – candidate vertex
+
+## Hypotheses
+* none
+
+## Conclusion
+* `c` is a vertex of the cut iff its translate is a vertex of the translated cut
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

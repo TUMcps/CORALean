@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Lt
 
 A `true` answer is a strict inequality for every bound, `toReal_lt_of_ltStrict`, hence
 containment.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the first box is contained in the second
 -/
 
 -- Authors:       Claude Opus 5.5

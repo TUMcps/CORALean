@@ -17,6 +17,16 @@ and summing, `Finset.sum_le_sum` twice, is all that is left to do here.
 Outer and never exact for the same reason `Interval.mtimes` is not: the rows are
 summed independently, so the result admits combinations of the corner extremes
 that no single matrix in the box realises.
+
+## Inputs
+* `IM` – interval matrix
+* `I` – box
+
+## Hypotheses
+* none
+
+## Conclusion
+* every matrix in the box applied to every vector lies in the result
 -/
 
 -- Authors:       Claude Opus 5

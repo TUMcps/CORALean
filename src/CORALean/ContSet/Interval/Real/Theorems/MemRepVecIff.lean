@@ -9,6 +9,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 A point lies in `I.repVec a` iff each of its `a` blocks lies in `I`, block `j` being the entries
 `finProdFinEquiv (j, k)`, as `repVec` lays the copies out.
+
+## Inputs
+* `a` – number of repetitions
+* `I` – interval box
+* `x` – point of the repeated space
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the repeated box iff every block lies in `I`
 -/
 
 -- Authors:       Claude Opus 5.5

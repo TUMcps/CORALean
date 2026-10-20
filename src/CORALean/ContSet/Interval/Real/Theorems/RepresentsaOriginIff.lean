@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
 # `Interval.representsa_origin` is being the origin
 
 Both bounds zero is the single point `0`, and the single point `0` forces both bounds to `0`.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the test holds iff the interval is the origin
 -/
 
 -- Authors:       Claude Opus 5.5

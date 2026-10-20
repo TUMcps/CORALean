@@ -14,6 +14,16 @@ For `x` in the box, `x ^ k` lies between the bounds: the upper one by `le_powHi`
 `pow_between` names; the lower one is `0` for an uncertified even power (always valid), else the
 minimum of the two `powLo` values, under `min (a ^ k) (b ^ k) ≤ x ^ k`, the real scalar fact, which
 applies because the `le` certificates rule out the case `a < 0 < b`.
+
+## Inputs
+* `I` – interval box
+* `k` – exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* every coordinatewise power of a box point lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,15 @@ above, (12): `Î = [l₁(i*), l₂(i*)[` if `dₗ(i*) ≥ dᵤ(i*)`, else `]u₂
 half-open, so it is a set here and not a box; [1, Alg. 1] stores it closed, `boxDiffBounds`.
 `argmax` keeps the first of equal margins; with no axis at all the slab is empty.
 
+## Inputs
+* `l₁` – lower bound of the first box
+* `u₁` – upper bound of the first box
+* `l₂` – lower bound of the second box
+* `u₂` – upper bound of the second box
+
+## Output
+* inner approximation of the difference of the two boxes
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

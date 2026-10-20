@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 For every order `n`, the result contains `0` in every coordinate (`δ⁽ⁿ⁾` vanishes off `0`): each
 stored lower bound is at most `0`, each stored upper bound at least `0`.
+
+## Inputs
+* `n` – derivative order
+* `I` – interval box
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* any stored bounds enclose the value zero
 -/
 
 -- Authors:       Claude Opus 5.5

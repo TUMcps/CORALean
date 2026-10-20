@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
 
 Transposition commutes with reading the floats as reals, so the stored box denotes the exact layer's
 transpose of the reading, and `Real.Interval.transpose_exact` carries over.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the transposed box is exactly the set of transposes
 -/
 
 -- Authors:       Claude Opus 5.5

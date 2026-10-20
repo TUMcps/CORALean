@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 # `Interval.uminus` is exactly the negated set
 
 Coordinatewise. Needs no nonemptiness: a crossed box negates to a crossed box.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the negated box represents exactly the negated set
 -/
 
 -- Authors:       Claude Opus 5.5

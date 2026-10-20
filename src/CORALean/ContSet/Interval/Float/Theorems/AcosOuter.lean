@@ -9,6 +9,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Acos
 
 For every box, no domain hypothesis: `Real.arccos` is antitone on all of `ℝ`, so the corners
 swap.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the arccosine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

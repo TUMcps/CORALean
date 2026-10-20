@@ -16,6 +16,15 @@ value theorem on the monotone piece that carries the target value. A crossed coo
 
 [1, Eq. 7], all three cases.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the hyperbolic cosine box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

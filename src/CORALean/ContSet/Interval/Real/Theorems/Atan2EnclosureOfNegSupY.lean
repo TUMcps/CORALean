@@ -15,6 +15,20 @@ When `sup I₁ < 0` in every coordinate, `atan2 y x = -(π/2) - arctan (x / y)`:
 four-corner hull. The box then misses the
 branch cut, `x ≤ 0 ∧ y = 0`, the one place CORA's rule fails
 (`Interval.atan2_cora_counterexample`).
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+* `y` – ordinate point
+* `x` – abscissa point
+
+## Hypotheses
+* `hy₀` – upper bounds of `I₁` negative
+* `hy` – `y` lies in `I₁`
+* `hxm` – `x` lies in `I₂`
+
+## Conclusion
+* the vector of arguments lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

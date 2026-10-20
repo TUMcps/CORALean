@@ -11,6 +11,19 @@ The rest of the row is bounded term by term, each at the end its sign picks and
 summed upward, so `a_j x_j ≤ c_j` holds at every point of the box meeting the
 halfspace; dividing by a coefficient certified positive, or negated when
 certified negative, rounds outward.
+
+## Inputs
+* `I` – interval box
+* `a` – normal vector of the halfspace
+* `b` – offset of the halfspace
+* `x` – point of the box
+
+## Hypotheses
+* `hx` – `x` lies in the box
+* `hab` – `x` satisfies the halfspace inequality
+
+## Conclusion
+* the point lies in the contracted box
 -/
 
 -- Authors:       Claude Opus 5.5

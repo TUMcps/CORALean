@@ -15,6 +15,15 @@ crossed it lies outside both of them.
 This is what lets a layer commit its nominal value to a box it was handed —
 `Layer.linearWithError` does, an approximation error rarely being centered at
 zero — without knowing anything about where the box came from.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `hI` – `I` is nonempty
+
+## Conclusion
+* the center lies in the interval
 -/
 
 -- Authors:       Claude Opus 5

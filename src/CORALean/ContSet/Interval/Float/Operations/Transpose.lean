@@ -8,6 +8,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 # `Interval.transpose`
 
 Transposing both bound matrices moves floats without computing on them, so nothing is rounded.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* transposed interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 The strict containment test at float, `ltStrict` for each bound: it asks for a positive margin, so
 `true` is strict.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Output
+* `true` when each bound of `I` lies strictly inside `J`
 -/
 
 -- Authors:       Claude Opus 5.5

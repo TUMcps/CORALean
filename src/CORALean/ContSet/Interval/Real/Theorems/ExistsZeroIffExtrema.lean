@@ -18,6 +18,22 @@ continuous on `[Y]`, which the paper does not state: without it the condition fa
 (convex, hence preconnected), and the minimum and maximum are taken, as the paper's `min`
 and `max` say.
 
+## Inputs
+* `Y` – domain type
+* `S` – domain set
+* `g` – function
+* `lo` – least value
+* `hi` – greatest value
+
+## Hypotheses
+* `hS` – `S` preconnected
+* `hg` – `g` continuous on `S`
+* `hlo` – `lo` is the least value of `g`
+* `hhi` – `hi` is the greatest value of `g`
+
+## Conclusion
+* a zero exists iff zero lies between the extrema
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

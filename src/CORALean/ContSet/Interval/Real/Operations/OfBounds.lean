@@ -14,6 +14,16 @@ arrive as bounds against `-eⱼ`, a linear program bounding only from above.
 
 This is what every representation's `interval` is once its bounds are in hand,
 so the enclosure is proved once here rather than per representation.
+
+## Inputs
+* none
+
+## Hypotheses
+* `up` – upper bounds, one per coordinate
+* `lo` – negated lower bounds, one per coordinate
+
+## Output
+* box with the given upper bounds and negated lower bounds
 -/
 
 -- Authors:       Claude Opus 5

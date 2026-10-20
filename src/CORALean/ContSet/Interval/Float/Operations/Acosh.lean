@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 Increasing for `1 ≤ x`, so `acoshDown` at the lower bound and `acoshUp` at the upper one
 (`Global/Float/InverseHyperbolic`). CORA throws below `1`; here the domain is a hypothesis of
 the theorem.
+
+## Inputs
+* `p` – range exponent of `logDown`
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Output
+* interval box enclosing the inverse hyperbolic cosine of `I`
 -/
 
 -- Authors:       Claude Sonnet 5.5

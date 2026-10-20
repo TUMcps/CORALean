@@ -11,6 +11,12 @@ public import Mathlib.Analysis.SpecialFunctions.Arcosh
 CORA's `@interval/acosh`:
 the inverse hyperbolic cosine is increasing for `1 ≤ x`, so it acts on the two
 bounds, coordinate by coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the inverse hyperbolic cosines of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

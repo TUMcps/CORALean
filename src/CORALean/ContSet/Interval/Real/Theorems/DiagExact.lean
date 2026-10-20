@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Operations.Diag
 
 The diagonal matrices over a vector box are exactly the box `diag` builds: its off-diagonal
 entries are the point `0`.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the diagonal interval matrix is exactly the set of diagonal matrices
 -/
 
 -- Authors:       Claude Opus 5.5

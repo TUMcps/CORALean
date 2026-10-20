@@ -11,6 +11,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 Increasing (and constant outside `[-1, 1]`, as `Real.arcsin` is), so `asinDown` at the lower
 bound and `asinUp` at the upper one (`Global/Float/InverseTrig`), sound for every box. `p` is the
 number of halvings of the sine and cosine, `k` the number of bisection and Newton steps.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Output
+* interval box enclosing the arcsine of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

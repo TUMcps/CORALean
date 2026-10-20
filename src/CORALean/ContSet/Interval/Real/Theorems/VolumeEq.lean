@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Instances
 
 The box is `Set.Icc inf sup`, whose volume Mathlib gives as the product of the widths. A crossed
 box is empty and so is the product's zero factor: no separate case.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the volume of the box is the Lebesgue volume
 -/
 
 -- Authors:       Claude Opus 5.5

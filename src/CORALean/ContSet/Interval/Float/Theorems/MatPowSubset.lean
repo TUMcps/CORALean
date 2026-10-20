@@ -17,6 +17,19 @@ member's zeroth power.
 
 What lets a point of a real power box that is no member's power — a product of
 different members, averaged — be read in the float box.
+
+## Inputs
+* `X` – real interval matrix
+* `X'` – float interval matrix
+* `M₀` – member of the box
+* `k` – exponent
+
+## Hypotheses
+* `hM₀` – `M₀` lies in `X`
+* `hX` – `X` is contained in `X'`
+
+## Conclusion
+* the real box power is contained in the float one
 -/
 
 -- Authors:       Claude Opus 5.5

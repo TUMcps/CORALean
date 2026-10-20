@@ -10,6 +10,22 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 The image of the rectangle `[a, b] × [c, d]` under multiplication is connected, so it contains
 everything between its least and greatest values; those are the extreme corner products. The
 converse of `mul_between_corners`.
+
+## Inputs
+* `a` – lower end of the first factor
+* `b` – upper end of the first factor
+* `c` – lower end of the second factor
+* `d` – upper end of the second factor
+* `z` – target value
+
+## Hypotheses
+* `hab` – first interval ordered
+* `hcd` – second interval ordered
+* `hz₁` – `z` above the lower corner product
+* `hz₂` – `z` below the upper corner product
+
+## Conclusion
+* some factors in the two intervals have product `z`
 -/
 
 -- Authors:       Claude Opus 5.5

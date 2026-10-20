@@ -14,6 +14,18 @@ public import Mathlib.Algebra.BigOperators.Ring.Finset
 adjacent vertices of a box the denominator is the edge's length `bⱼ - aⱼ`, nonzero for a box
 with positive side lengths, which the division needs and the paper takes for granted.
 
+## Inputs
+* `v` – edge start
+* `u` – edge end
+* `α` – level of the hyperplane
+* `t` – edge parameter
+
+## Hypotheses
+* `hden` – coordinate sums of the endpoints differ
+
+## Conclusion
+* the edge point lies in the hyperplane iff `t` takes the crossing value
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

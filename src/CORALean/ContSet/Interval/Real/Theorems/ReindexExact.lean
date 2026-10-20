@@ -14,6 +14,16 @@ contain, and it exists only because every coordinate is hit exactly once.
 A non-injective relabelling would break the `⊆` direction — two output
 coordinates reading the same input must agree, and an axis-aligned box cannot
 express that — which is why `Reindex` takes an `Equiv`.
+
+## Inputs
+* `e` – coordinate bijection
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reindexed box is exactly the relabelled set
 -/
 
 -- Authors:       Claude Opus 5

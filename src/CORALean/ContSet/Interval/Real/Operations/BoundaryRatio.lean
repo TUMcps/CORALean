@@ -12,10 +12,20 @@ about the start point, `d = 2 * rad(I)`, `bound = infimum(I) + d .* max(sign(dir
 of the shifted box that `dir` points to in each coordinate (its supremum if `dir i > 0`, its
 infimum otherwise), and `ratio = min(bound ./ dir)` over the coordinates with `dir i ≠ 0`.
 
-The code also drops the infinite ratios (`ratio(~isinf(ratio))`) and sets the coordinates of an
-unbounded `I` along `dir` to `Inf`: an interval of this library has real endpoints, so only the
-bounded case arises. The non-emptiness and containment checks on `startPoint` and `dir` are
-hypotheses of the theorems; here `dir ≠ 0` is what makes the minimum over a non-empty set.
+The code also drops the infinite ratios; intervals here have real endpoints, so only the bounded
+case arises. The checks on `startPoint` and `dir` are hypotheses of the theorems; `dir ≠ 0` makes
+the minimum over a non-empty set.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Hypotheses
+* `hdir` – direction nonzero
+
+## Output
+* ray parameter at which the ray leaves the box
 -/
 
 -- Authors:       Claude Opus 5.5

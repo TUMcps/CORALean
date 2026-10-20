@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
 The padding is `Function.extend proj · 0`. For distinct `proj`, a point of the padded box is `0`
 off the range and bounded on it, so it is the padding of its own restriction. An empty box gives
 `empty N`, which is empty because `proj` of a crossed coordinate makes `0 < N`.
+
+## Inputs
+* `I` – interval box
+* `proj` – coordinate embedding
+
+## Hypotheses
+* `hproj` – embedding injective
+
+## Conclusion
+* the lifted box is exactly the zero-padded set
 -/
 
 -- Authors:       Claude Opus 5.5

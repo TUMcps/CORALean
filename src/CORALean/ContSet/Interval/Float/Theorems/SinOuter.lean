@@ -11,6 +11,16 @@ For every box and precision: `sinRange_mem` on every coordinate.
 
 Eq. (3.2) of [1, Def. 5] for the sine.
 
+## Inputs
+* `p` – halving count
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sine image of `I` lies in the result box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

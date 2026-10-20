@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/min` at two intervals: `-max(-I, -Y)`, which is the coordinatewise smaller bound
 on each side, `[min inf₁ inf₂, min sup₁ sup₂]`. It is written that way here, and
 `Theorems/MinEqUminusMax` proves it is `-max(-I, -J)`.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Output
+* interval of the entrywise minima
 -/
 
 -- Authors:       Claude Opus 5.5

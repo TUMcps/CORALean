@@ -12,6 +12,20 @@ itself sits between `lo / c` and `hi / c`, whichever way dividing by `c` swaps t
 [1, Alg. 1] uses this at each coefficient it tightens, solving a row of `A ξ = b` for `ξⱼ`
 in terms of a bound already known on the rest.
 
+## Inputs
+* `c` – nonzero factor
+* `lo` – lower endpoint of the product
+* `hi` – upper endpoint of the product
+* `x` – the quotient
+
+## Hypotheses
+* `hc` – factor nonzero
+* `h₁` – lower endpoint below the product
+* `h₂` – product below the upper endpoint
+
+## Conclusion
+* `x` lies between the quotients of the endpoints
+
 ## References
 
 * [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for

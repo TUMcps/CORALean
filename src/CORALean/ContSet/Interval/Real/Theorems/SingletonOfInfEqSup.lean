@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Real.Interval
 # A box with equal bounds is a single point
 
 Every coordinate is squeezed between two equal bounds.
+
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* `h` – bounds equal
+
+## Conclusion
+* the interval is the single point of its bounds
 -/
 
 -- Authors:       Claude Opus 5.5

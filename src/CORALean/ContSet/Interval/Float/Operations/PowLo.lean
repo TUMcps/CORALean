@@ -12,6 +12,13 @@ public import CORALean.Global.Float.PowDown
 A lower bound on `a ^ k` for a scalar `a` of either sign, the mirror of `Interval.powHi`. An even
 power is `powDown |a|`; an odd one is `powDown a` for a certified `a ≥ 0`, and `-(powUp |a|)`
 otherwise, since `a ^ k ≥ -|a| ^ k` for every sign.
+
+## Inputs
+* `a` – end point
+* `k` – exponent
+
+## Output
+* lower end of `x ^ k` over the interval at `a`
 -/
 
 -- Authors:       Claude Opus 5.5

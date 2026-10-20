@@ -10,6 +10,19 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 `Interval.plus`'s counterpart at `Mat 𝕋 m n`: nothing about sums of sets — the
 whole obligation is that each bound rounds the right way, entrywise.
+
+## Inputs
+* `I₁` – first interval matrix
+* `I₂` – second interval matrix
+* `M` – member of the first matrix
+* `N` – member of the second matrix
+
+## Hypotheses
+* `hM` – `M` lies in `I₁`
+* `hN` – `N` lies in `I₂`
+
+## Conclusion
+* the sum `M + N` lies in the result
 -/
 
 -- Authors:       Claude Sonnet 5

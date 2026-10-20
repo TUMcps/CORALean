@@ -14,9 +14,16 @@ layer has no exact real to scale by, so every use, `expIntervalTaylor`'s
 hull `mulLo`/`mulHi` already computes for two interval matrices, with `[cLo,
 cHi]` standing in for the second factor at every entry.
 
-At `cLo = cHi` this is a rounded version of `Real.Interval.smul` at an exact
-scalar; the extra bound costs nothing then and is exactly what a scalar known
-only approximately needs otherwise.
+At `cLo = cHi` this is a rounded `Real.Interval.smul` at an exact scalar; the extra bound is what
+a scalar known only approximately needs otherwise.
+
+## Inputs
+* `cLo` – lower end of the scalar
+* `cHi` – upper end of the scalar
+* `I` – interval matrix
+
+## Output
+* interval matrix scaled by the scalar interval `[cLo, cHi]`
 -/
 
 -- Authors:       Claude Sonnet 5

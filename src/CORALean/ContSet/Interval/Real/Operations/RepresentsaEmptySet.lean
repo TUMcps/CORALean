@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 
 CORA's `@interval/representsa_` at type `emptySet`: the interval denotes the empty set. In CORA
 that is a zero-size `inf`; here the crossed bounds, which is what `Interval.empty` returns.
+
+## Inputs
+* `I` – interval
+
+## Output
+* the interval is empty
 -/
 
 -- Authors:       Claude Opus 5.5

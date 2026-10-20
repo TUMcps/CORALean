@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.VertcatExact
 
 Stacking commutes with reading the floats as reals, so the stored box denotes the exact layer's
 stack of the readings.
+
+## Inputs
+* `I` – top interval matrix
+* `J` – bottom interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stacked box is exactly the set of stacked pairs
 -/
 
 -- Authors:       Claude Opus 5.5

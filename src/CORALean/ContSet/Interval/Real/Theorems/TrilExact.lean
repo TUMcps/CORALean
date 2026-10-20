@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MaskExact
 
 CORA's `tril` of an interval matrix takes MATLAB's `tril` of both bounds. For a box with no empty
 entry that is the image of the box under `tril` of the matrix, entry by entry.
+
+## Inputs
+* `K` – diagonal offset
+* `I` – interval matrix
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the lower-triangular box is exactly the set of masked matrices
 -/
 
 -- Authors:       Claude Opus 5.5

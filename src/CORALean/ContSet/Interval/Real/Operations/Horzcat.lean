@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/horzcat`: the two bound matrices are concatenated side by side. CORA's
 `horzcat` takes any number of arguments, and a numeric argument is the point interval; it is
 associative, so two operands are the whole content (a numeric matrix is `Interval.point`).
+
+## Inputs
+* `I` – left interval matrix
+* `J` – right interval matrix
+
+## Output
+* interval matrix of the two side by side
 -/
 
 -- Authors:       Claude Opus 5.5

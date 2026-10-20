@@ -10,6 +10,20 @@ public import Mathlib.Data.Matrix.Basic
 
 If `|M i k| ≤ R i k` and `|x k| ≤ ξ k`, then `|(M x) i| ≤ dotUp (R i) ξ`: each product is below
 its rounded-up bound, and the sum is below the rounded-up sum.
+
+## Inputs
+* `M` – real matrix
+* `R` – float matrix of entrywise bounds
+* `x` – real vector
+* `ξ` – float vector of entrywise bounds
+* `i` – row index
+
+## Hypotheses
+* `hM` – entries of `M` bounded by those of `R`
+* `hx` – entries of `x` bounded by those of `ξ`
+
+## Conclusion
+* entry `i` of `M x` is bounded in absolute value by the rounded-up dot product
 -/
 
 -- Authors:       Claude Opus 5.5

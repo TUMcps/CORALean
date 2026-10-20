@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.LogExact
 
 `logUp` holds at every positive argument, `logDown` only from `1 ≤ a ≤ 2 ^ p / 2` (`logDown_le`),
 so the theorem asks that of every lower bound. A box with a lower bound below `1` is not covered.
+
+## Inputs
+* `p` – precision of `expUp`
+* `k` – bisection steps
+* `I` – interval box
+
+## Hypotheses
+* `hI` – lower bounds at least one, within the range
+
+## Conclusion
+* the logarithm image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

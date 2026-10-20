@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Horzcat
 
 A matrix lies in the concatenated box iff its left block is in the first box and its right block in
 the second: no hypothesis, an empty operand gives an empty result and conversely.
+
+## Inputs
+* `I` – left interval matrix
+* `J` – right interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the side-by-side interval matrix is exactly the set of side-by-side pairs
 -/
 
 -- Authors:       Claude Opus 5.5

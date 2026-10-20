@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 At `tol = 0` the tests `inf < M`, `|inf - M| ≤ 0` collapse to `inf ≤ M`, and likewise for the
 upper end; the emptiness test of a column then follows from `M` being in it.
+
+## Inputs
+* `A` – interval matrix
+* `M` – real matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* containment with zero tolerance is membership
 -/
 
 -- Authors:       Claude Sonnet 5.5

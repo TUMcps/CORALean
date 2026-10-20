@@ -16,6 +16,13 @@ and each summand is between the two corner products by
 `Interval.mul_between_endpoints` — `Interval.supportBound`'s argument, carried
 out over any `Entrywise` ambient type rather than `Vec ℝ n` alone. This gives
 `Interval (Mat ℝ m n)` a support bound, which the `Vec`-only version could not.
+
+## Inputs
+* `I` – interval
+* `c` – linear functional
+
+## Output
+* support bound of the box in direction `c`, entry by entry
 -/
 
 -- Authors:       Claude Opus 5

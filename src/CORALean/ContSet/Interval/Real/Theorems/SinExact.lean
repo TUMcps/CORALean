@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.ImageCosIcc
 `sin x = cos (x - π/2)`, so the image of `[lb, ub]` under the sine is that of
 `[lb - π/2, ub - π/2]` under the cosine, `Interval.image_cos_Icc`. For a nonempty box, as for
 `Interval.cos_exact`.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – `I` has ordered bounds
+
+## Conclusion
+* the sine box is exactly the image of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

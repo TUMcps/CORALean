@@ -12,6 +12,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.VolumeEq
 Every width is rounded up and clipped at zero, and a product of nonnegative upper bounds, each
 product rounded up, bounds the product. Read in `ENNReal`, as the exact layer's `Interval.volume`
 is, so a crossed coordinate needs no case.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact volume is at most the float volume
 -/
 
 -- Authors:       Claude Opus 5.5

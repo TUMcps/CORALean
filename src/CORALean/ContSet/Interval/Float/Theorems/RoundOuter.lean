@@ -13,6 +13,15 @@ Outer: the exact layer's `Interval.round` of the nominal box is inside the float
 construct, so, with the exact layer's `round_outer`, is the rounding of every point of the nominal
 box. The bounds are the integers `roundAway` of the scalars' exact values, between `intDown` and
 `intUp` of themselves.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact rounded box lies in the float one
 -/
 
 -- Authors:       Claude Opus 5.5

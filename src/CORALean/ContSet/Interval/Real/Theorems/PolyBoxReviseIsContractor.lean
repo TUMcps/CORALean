@@ -21,6 +21,24 @@ searches to meet `IsLeftRootBound`/`IsRightRootBound`. A solution makes `Σᵢ f
 vanish, so it passes the extremal test, and the extremal functions are continuous, each term
 being `min(c̲ᵢ xⁱ, c̅ᵢ xⁱ)`; the bound steps then keep it.
 
+## Inputs
+* `d` – polynomial degree
+* `c` – constraint function
+* `F` – coefficient functions
+* `coeff` – coefficient enclosure of a box
+* `k` – contracted coordinate
+* `rootL` – left root search
+* `rootR` – right root search
+
+## Hypotheses
+* `hc` – `c` is the polynomial in coordinate `k`
+* `hF` – coefficient enclosure holds on every box
+* `hL` – `rootL` is a left root bound
+* `hR` – `rootR` is a right root bound
+
+## Conclusion
+* the revised box map is a contractor of `c`
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

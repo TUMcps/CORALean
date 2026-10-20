@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
 
 The exact box of the stored center and radius read as reals: an entry within `r` of `c` lies
 above `subDown c r ≤ c - r` and below `addUp c r ≥ c + r`.
+
+## Inputs
+* `c` – float center matrix
+* `r` – float radius matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact box built from center and radius lies in the float box
 -/
 
 -- Authors:       Claude Opus 5.5

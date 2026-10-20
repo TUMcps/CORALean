@@ -11,15 +11,25 @@ public import Mathlib.Topology.Order.IntermediateValue
 # `Interval.tanByRegions` is the tangent's range, or its hull `]-∞, ∞[`
 
 [1, Eq. 14] with its missing case supplied, on any `lo ≤ hi` whose ends are not poles: a finite
-result is the exact range of the tangent on `[lo, hi]`, its poles left out, and `]-∞, ∞[` comes
-exactly when a pole lies inside, which makes the range unbounded both ways
-(`Interval.tan_unbounded_of_pole`), so that `]-∞, ∞[` is its interval hull.
+result is the exact range of the tangent on `[lo, hi]`, and `]-∞, ∞[` comes exactly when a pole lies
+inside, making the range unbounded both ways (`Interval.tan_unbounded_of_pole`).
 
 The ends must not be poles. At `lo ≡ π/2 (mod π)` the printed `z̲ ∈ R_t2` makes `[tan z̲, tan z̅]`
 the answer, but the range on `(lo, hi]` is `]-∞, tan hi]`; at `hi ≡ π/2` with `z̲ ∈ R_t1` the
 answer `]-∞, ∞[` is an enclosure of `[tan lo, ∞[` but not its hull. As in
-`Interval.sinByRegions_exact`, the range is shifted to `[z̲, z̲ + (hi - lo)]`, whose upper end
-[1, Prop. 1] gives as `z̅` or `z̅ + π`.
+`Interval.sinByRegions_exact`, the range is shifted to `[z̲, z̲ + (hi - lo)]`.
+
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Hypotheses
+* `hle` – lower end at most upper end
+* `hlo` – cosine nonzero at the lower end
+* `hhi` – cosine nonzero at the upper end
+
+## Conclusion
+* none means the tangent is unbounded, else the interval is its exact range
 
 ## References
 

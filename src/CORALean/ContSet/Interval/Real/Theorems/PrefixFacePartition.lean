@@ -15,6 +15,20 @@ public import Mathlib.Order.CompleteLattice.Basic
 partition of `V(s)`: a vertex of `s` either agrees with `s'` up to `k` or first differs at one
 `i`. Coordinates counted from `0`: the pieces are `i ∈ [j, k)`, each fixing `i + 1` labels.
 
+## Inputs
+* `j` – index of the face
+* `k` – index of the sub-face
+* `p` – labels of the face
+* `q` – labels of the sub-face
+
+## Hypotheses
+* `hjk` – face index at most sub-face index
+* `hkn` – sub-face index at most the dimension
+* `hq` – labels agree below the face index
+
+## Conclusion
+* the face splits into the sub-face and disjoint pieces
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

@@ -9,6 +9,17 @@ public import CORALean.ContSet.Interval.Float.Operations.Asin
 
 For every box, no domain hypothesis: `Real.arcsin` is monotone on all of `ℝ`, constant outside
 `[-1, 1]`, and `asinDown`/`asinUp` clamp their argument the same way.
+
+## Inputs
+* `p` – halving count
+* `k` – bisection and Newton steps
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the arcsine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

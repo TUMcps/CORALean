@@ -13,6 +13,13 @@ An upper bound on `a ^ k` for a scalar `a` of either sign. `powUp` and `powDown`
 nonnegative base, so the sign is read off by `le`, whose `true` certifies it: an even power is
 that of `|a|`; an odd one is `powUp a` for `a ≥ 0`, and `-(powDown |a|)` for `a ≤ 0`, where
 `a ^ k = -|a| ^ k`; when neither sign is certified, `powUp |a|` bounds both.
+
+## Inputs
+* `a` – end point
+* `k` – exponent
+
+## Output
+* upper end of `x ^ k` over the interval at `a`
 -/
 
 -- Authors:       Claude Opus 5.5

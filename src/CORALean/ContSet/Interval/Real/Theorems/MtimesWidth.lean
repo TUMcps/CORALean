@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 An equality, not a bound, and unconditional: it holds whether or not `I` is
 itself a nonempty interval, the absolute value on the right absorbing the
 `I.sup k < I.inf k` case the same way it absorbs a negative `M i k`.
+
+## Inputs
+* `M` – real matrix
+* `I` – interval box
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the width of row `i` of the image is the weighted sum of the widths
 -/
 
 -- Authors:       Claude Opus 5

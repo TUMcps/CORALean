@@ -12,6 +12,15 @@ Per coordinate the real reciprocal brackets the point's reciprocal (`aux_inv_bet
 directed divisions bracket the real reciprocals: `divUp one a` is above `1/a` and `divDown one b`
 below `1/b`, for positive `a` and `b`. A negative coordinate is negated first. The box is
 assumed to avoid `0`, certified by `ltStrict` as the float operations are.
+
+## Inputs
+* `J` – second interval box
+
+## Hypotheses
+* `hJ` – no coordinate of `J` contains zero
+
+## Conclusion
+* every coordinatewise reciprocal of a box point lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

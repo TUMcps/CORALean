@@ -15,6 +15,16 @@ exact `min ≤ max` leaves only widens.
 Stated of `nominal`, which is the interval this one denotes and the only one a
 layer's committed center is measured in — `Layer.linearWithError` over floats
 asks for exactly this of the box a neuron merge computes.
+
+## Inputs
+* `M` – float matrix
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the nominal part of the image box is nonempty
 -/
 
 -- Authors:       Claude Opus 5

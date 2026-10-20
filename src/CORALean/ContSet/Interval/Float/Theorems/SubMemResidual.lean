@@ -9,6 +9,18 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 Both bounds are one directed subtraction away from the bracket the caller already
 has. How every float representation reaches its error box.
+
+## Inputs
+* `lo` – float lower bound vector
+* `hi` – float upper bound vector
+* `stored` – stored float vector
+* `x` – real vector
+
+## Hypotheses
+* `h` – `x` lies between the bounds
+
+## Conclusion
+* the residual of `x` against the stored vector lies in the residual box
 -/
 
 -- Authors:       Claude Opus 5

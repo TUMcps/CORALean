@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.CoshExact
 `coshUp p a` holds only for `|toReal a| ≤ 2 ^ p / 2` (the range of `expUp`, at `a` and `-a`):
 the theorem takes `sup ≤ 2 ^ p / 2` and `-inf ≤ 2 ^ p / 2` on the box, which covers every
 argument `coshHi` uses.
+
+## Inputs
+* `p` – precision of the exponentials
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds within the exponential range
+
+## Conclusion
+* the hyperbolic cosine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

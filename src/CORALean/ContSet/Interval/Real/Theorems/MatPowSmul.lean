@@ -16,6 +16,17 @@ corner products cannot see.
 
 It is what lets a bound proved once against the unscaled box, at every time `s`
 of a step, be read off the box of the step `smul s A` itself.
+
+## Inputs
+* `A` – interval matrix
+* `s` – scalar factor
+* `k` – exponent
+
+## Hypotheses
+* `hs` – scalar nonnegative
+
+## Conclusion
+* scaling the box scales the bounds of the power
 -/
 
 -- Authors:       Claude Opus 5.5

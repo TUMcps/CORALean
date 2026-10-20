@@ -18,6 +18,17 @@ functions, then the two bounds by the three cases, each search supplied (`BoxNar
 Cardano's formulas below degree four). The new interval is intersected with the old, as CORA's
 `contractPolyBoxRevise` does with `& dom`, so a search landing outside `[x]` costs nothing.
 
+## Inputs
+* `d` – polynomial degree
+* `coeff` – coefficient enclosure of a box
+* `k` – contracted coordinate
+* `rootL` – left root search
+* `rootR` – right root search
+* `B` – box to contract
+
+## Output
+* box contracted to the region where the polynomial can vanish
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

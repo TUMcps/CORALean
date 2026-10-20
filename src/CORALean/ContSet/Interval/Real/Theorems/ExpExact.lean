@@ -14,6 +14,15 @@ one.
 
 [1, Eq. 4]: `e^[x] = [e^x̲, e^x̅]`.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exponential box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

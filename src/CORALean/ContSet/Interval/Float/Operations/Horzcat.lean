@@ -9,6 +9,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 Concatenating the bound matrices side by side moves floats without computing on them, so
 nothing is rounded.
+
+## Inputs
+* `I` – left interval matrix
+* `J` – right interval matrix
+
+## Output
+* interval matrix of the two side by side
 -/
 
 -- Authors:       Claude Opus 5.5

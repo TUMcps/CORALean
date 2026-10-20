@@ -12,6 +12,12 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 `norm(M, type)` of a numeric matrix: `1` is the maximum absolute column sum, `Inf` the maximum
 absolute row sum, `'fro'` the square root of the sum of squares. The maxima are `⨆` over a
 finite index, which is `0` for an empty matrix, as MATLAB's `norm([])` is.
+
+## Inputs
+* none
+
+## Output
+* the chosen norm of the matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

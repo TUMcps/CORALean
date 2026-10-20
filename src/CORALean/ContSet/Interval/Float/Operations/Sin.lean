@@ -13,6 +13,13 @@ derivative is certified of one sign on the range, the midpoint form clamped to `
 otherwise. CORA's exact case analysis on the extremal points needs `π` and a rounding to an
 integer, which the scalar does not offer; the real layer's `Interval.sin` does it. `p` is the
 number of halvings of the sine and cosine.
+
+## Inputs
+* `p` – halving count
+* `I` – interval box
+
+## Output
+* interval box enclosing the sine of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

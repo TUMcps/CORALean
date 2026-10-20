@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
 
 For injective `proj`: `Fin.find` recovers the index of a coordinate in the range, and every other
 coordinate is `0`. A box certified empty has no points to pad.
+
+## Inputs
+* `I` – interval box
+* `proj` – coordinate embedding
+
+## Hypotheses
+* `hproj` – embedding injective
+
+## Conclusion
+* every zero-padded point lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

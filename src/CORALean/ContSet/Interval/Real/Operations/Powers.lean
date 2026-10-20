@@ -15,6 +15,13 @@ is `pow{k + 1}`. `maxOrder` only cuts the array, and is the caller's bound on `k
 **Recurses on the right of the accumulated power, `(A ^ k) * A`, unlike `Interval.matPow`**, which
 multiplies `A` from the left: the two enclose different sets, since interval products are not
 associative.
+
+## Inputs
+* `A` – interval matrix
+* `P` – initial power
+
+## Output
+* interval power of `A` starting from `P`, as a function of the step count
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,13 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 `Real.Interval.matMul`: a row is the sum over `k` of the corner hull of the
 matrix's `(i, k)` interval against the vector's `k`-th one, each hull and the
 row sum rounded away from the box.
+
+## Inputs
+* `IM` – interval matrix
+* `I` – box
+
+## Output
+* interval matrix times box, rounded outward
 -/
 
 -- Authors:       Claude Sonnet 5

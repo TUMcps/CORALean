@@ -10,6 +10,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 The box placed into the coordinates `proj` of `𝕋ᴺ`, every other coordinate `zero`; a box certified
 empty stays empty. The index of a coordinate is found by `Fin.find`, which `proj` makes unique
 when injective.
+
+## Inputs
+* `I` – interval box
+* `N` – target dimension
+* `proj` – coordinate embedding
+
+## Output
+* box in the higher dimension, unconstrained coordinates zero
 -/
 
 -- Authors:       Claude Opus 5.5

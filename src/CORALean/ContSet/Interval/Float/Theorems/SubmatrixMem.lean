@@ -8,6 +8,18 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 /-!
 # A submatrix of a matrix in a box lies in the submatrix of the box
 Exact, entry by entry: the bounds of the submatrix are the bounds at the chosen rows and columns.
+
+## Inputs
+* `I` – interval matrix
+* `M` – matrix of the box
+* `r` – row selection
+* `c` – column selection
+
+## Hypotheses
+* `hM` – `M` lies in `I`
+
+## Conclusion
+* the submatrix of `M` lies in the submatrix box
 -/
 
 -- Authors:       Claude Opus 5.5

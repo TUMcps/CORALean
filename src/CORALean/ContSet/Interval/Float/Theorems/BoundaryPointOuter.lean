@@ -17,6 +17,19 @@ nominal box (`start + ratio * dir`, the ratio the greatest `s` with `start + s *
 lies in the result. The clamped lower end of the ratio interval lies in the box on the ray, so it
 is at most the greatest ratio; each coordinate's upper bound is at least it. The exact point is on
 the box's boundary; the float result is a box around it, not a point of the boundary.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Hypotheses
+* `hs` – `start` lies in the box
+* `hex` – some direction coordinate is nonzero
+* `hcert` – each nonzero direction coordinate has a certified sign
+
+## Conclusion
+* the float result contains the exact boundary point
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,25 @@ public import Mathlib.Topology.Order.IntermediateValue
 pass `x`; case 3 is the same at `g̅`. Continuity of the extremal functions is assumed, as the
 paper does for its `hᵢ`.
 
+## Inputs
+* `gLo` – lower polynomial bound
+* `gHi` – upper polynomial bound
+* `root` – root search procedure
+* `xl` – lower end of the coordinate
+* `xu` – upper end of the coordinate
+* `x` – solution in the interval
+
+## Hypotheses
+* `hroot` – root search is a left root bound
+* `hLo` – lower bound continuous
+* `hHi` – upper bound continuous
+* `hx` – `x` lies in the interval
+* `hxLo` – lower bound nonpositive at `x`
+* `hxHi` – upper bound nonnegative at `x`
+
+## Conclusion
+* the new lower end is at most the solution `x`
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

@@ -8,6 +8,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 # A box that is a single point has both bounds at it
 
 A nonempty box contains its two bounds, so if the whole box is `{v}` both bounds are `v`.
+
+## Inputs
+* `I` – interval
+* `v` – the point
+
+## Hypotheses
+* `h` – the interval is the single point `v`
+
+## Conclusion
+* both bounds equal the point
 -/
 
 -- Authors:       Claude Opus 5.5

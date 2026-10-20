@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.MaxCos
 `maxCos` is the greatest cosine on the range (attained at a multiple of `2π` inside it, or at an
 end), the negated `maxCos` of the range shifted by `π` the least, and the image of an interval
 under a continuous function is the interval between the two.
+
+## Inputs
+* `lb` – lower end
+* `ub` – upper end
+
+## Hypotheses
+* `hab` – lower end at most upper end
+
+## Conclusion
+* the cosine image of `[lb, ub]` is the stated interval
 -/
 
 -- Authors:       Claude Opus 5.5

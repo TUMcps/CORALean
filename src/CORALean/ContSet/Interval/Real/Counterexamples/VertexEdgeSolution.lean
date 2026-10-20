@@ -14,6 +14,15 @@ with `α = 1/2`, the vertex `v = 1` has `Σⱼ vⱼ = 1 > α`, yet its one edge,
 holds the solution `1/2`. The "only if" holds for the edges `v` raises, the low border vertices
 of [1, Def. 4], which `Interval.vertex_edge_solution_iff` states.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point on an edge solves the equation though the lowered vertex sum is too large
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

@@ -12,6 +12,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 A quotient is the numerator point times the reciprocal of the denominator point:
 `recip_outer` puts the reciprocal in the reciprocal box and `times_outer` the product in the
 product box.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Hypotheses
+* `hJ` – no coordinate of `J` contains zero
+
+## Conclusion
+* every entrywise quotient of box points lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

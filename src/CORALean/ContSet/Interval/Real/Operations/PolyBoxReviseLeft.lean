@@ -14,6 +14,16 @@ selects `g̅`, and the bound becomes the smallest root of the selected function 
 `BoxNarrow` or a closed form computes. That search is the argument `root`; what it has to
 guarantee is `Interval.IsLeftRootBound`.
 
+## Inputs
+* `gLo` – lower polynomial bound
+* `gHi` – upper polynomial bound
+* `root` – root search procedure
+* `xl` – lower end of the coordinate
+* `xu` – upper end of the coordinate
+
+## Output
+* new lower end of the contracted coordinate
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

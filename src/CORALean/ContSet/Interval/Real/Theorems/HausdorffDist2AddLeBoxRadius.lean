@@ -8,20 +8,25 @@ public import CORALean.Global.EuclideanHausdorffDist
 /-!
 # `Prop. 1`: a Minkowski summand's box bounds how far the sum moves
 
-[1, Prop. 1]: `d_H(S=, S= ⊕ S+) ≤ err(S+) := r(box(S+))` when `0 ∈ S+`, `r(·)`
-being the radius of the smallest hypersphere at the origin enclosing its
-argument — Euclidean, stated here at `hausdorffDist₂`, the norm [1] writes.
-
-`box(S+)` is any `Interval (Vec ℝ n)` containing `S+`, not a canonical
-tightest one: [1]'s own proof only uses `S+ ⊆ box(S+)`, so a looser box gives
-a true, looser bound, the same leniency every `_outer` result in this tree
-already carries. `r` of a box is closed form — the farthest corner from the
-origin, per coordinate whichever endpoint has the larger magnitude — rather
-than a fresh `sSup`, since a box's own shape already picks it out.
-
-No compactness or nonemptiness hypothesis: `hausdorffDist₂_le_of_mem_dist`
-bounds the distance from above regardless, `0 ∈ S+` alone supplying the first
+[1, Prop. 1]: `d_H(S=, S= ⊕ S+) ≤ err(S+) := r(box(S+))` when `0 ∈ S+`, `r(·)` being the radius of
+the smallest hypersphere at the origin enclosing its argument (Euclidean, as `hausdorffDist₂`).
+`box(S+)` is any `Interval (Vec ℝ n)` containing `S+`, not a canonical tightest one: [1]'s proof
+only uses `S+ ⊆ box(S+)`, so a looser box gives a true, looser bound. `r` of a box is closed
+form: the farthest corner from the origin. No compactness or nonemptiness hypothesis:
+`hausdorffDist₂_le_of_mem_dist` bounds the distance from above, `0 ∈ S+` supplying the first
 witness and `hB` the second.
+
+## Inputs
+* `S` – set of points
+* `SPlus` – summand containing the origin
+* `B` – box containing the summand
+
+## Hypotheses
+* `h0` – the origin lies in the summand
+* `hB` – the summand lies in `B`
+
+## Conclusion
+* the Hausdorff distance of the sum is at most the Euclidean norm of the box magnitude
 
 ## References
 

@@ -14,6 +14,15 @@ public import Mathlib.Data.Real.Basic
 `b₁(5 + 3(b₂ - d₂)) + (-5 + 3b₂ - 3d₂)d₁ + 6(-b₂ + d₂)f₁ = 0`. Both are the same polynomial,
 which a rewriting has to be; the CPU-time effects the remarks report are measurements.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* both rewritings of the remarks are polynomial identities
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

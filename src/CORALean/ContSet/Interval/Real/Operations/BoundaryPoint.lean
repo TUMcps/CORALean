@@ -10,6 +10,17 @@ public import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
 CORA's `@interval/boundaryPoint.m` in the bounded case: `x = dir * ratio + startPoint`, where
 `ratio` is `Interval.boundaryRatio`. The farthest point of the ray from `startPoint` along `dir`
 that stays in `I`; `Interval.boundaryRatio_isGreatest` says so.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Hypotheses
+* `hdir` – direction nonzero
+
+## Output
+* point where the ray leaves the box
 -/
 
 -- Authors:       Claude Opus 5.5

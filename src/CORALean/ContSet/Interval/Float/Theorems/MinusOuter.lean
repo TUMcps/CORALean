@@ -12,6 +12,16 @@ public import Mathlib.Order.BourbakiWitt
 
 Nothing about differences of sets appears here: `Real` has already proved that. The whole
 obligation is that each bound rounded the right way.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the pointwise difference of the sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

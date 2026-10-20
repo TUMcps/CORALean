@@ -8,6 +8,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Cos
 # `Interval.cos` contains the image under `cos`
 
 For every box and precision: `cosRange_mem` on every coordinate.
+
+## Inputs
+* `p` – halving count
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the cosine image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

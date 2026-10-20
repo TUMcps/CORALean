@@ -12,6 +12,14 @@ on a numeric column. A column that is empty contains nothing. Otherwise every en
 `inf < M + tol` and `sup > M - tol`, or be within `tol` of that bound by `withinTol`, which is
 `|a - b| <= tol` or `|a - b| / min(|a|, |b|) <= tol`; the quotient is written as a product, which
 differs only at `min = 0`, where the absolute test decides anyway.
+
+## Inputs
+* `A` – interval matrix
+* `M` – real matrix
+* `tol` – tolerance
+
+## Output
+* `M` lies in `A` up to the tolerance
 -/
 
 -- Authors:       Claude Sonnet 5.5

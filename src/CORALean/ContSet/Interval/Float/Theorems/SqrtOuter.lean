@@ -6,6 +6,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Sqrt
 
 /-!
 # `Interval.sqrt` contains the image under `sqrt`
+
+## Inputs
+* `p` – Newton steps
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the square root image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Sonnet 5.5

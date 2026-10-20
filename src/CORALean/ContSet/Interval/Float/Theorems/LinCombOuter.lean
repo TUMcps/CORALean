@@ -13,6 +13,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 The refinement here is an equality in disguise: `toReal_minimum` and
 `toReal_maximum` say the stored bounds are exactly the exact ones, so no
 precision is lost.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* every segment between the two sets lies in the result box
 -/
 
 -- Authors:       Claude Opus 5

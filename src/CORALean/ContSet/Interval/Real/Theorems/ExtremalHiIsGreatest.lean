@@ -14,6 +14,16 @@ The mirror image of `Interval.extremalLo_isLeast`, [1, Remark (optimal)]: at eac
 `g̅[Y](x)` is the greatest of `Σᵢ cᵢ hᵢ(x)` over `cᵢ ∈ [cᵢ]`, and is taken. Its upper-bound half
 is [1, Sec. 3 (extremal bounds)]'s `f(x, y) ≤ g̅(x)`.
 
+## Inputs
+* `C` – box of coefficients
+* `h` – weight vector
+
+## Hypotheses
+* `hC` – `C` is nonempty
+
+## Conclusion
+* the extremal upper value is the greatest value over the box
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

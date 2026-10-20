@@ -11,6 +11,17 @@ public import CORALean.Global.Float.FloatBound
 A box answers an arbitrary direction too: a linear function of one coordinate
 is largest at one end of its range, so each term takes the endpoint its sign
 picks and the terms are summed upward.
+
+## Inputs
+* `I` – interval box
+* `c` – linear functional
+* `a` – float coefficient vector of `c`
+
+## Hypotheses
+* `hc` – `c` is the dot product with `a`
+
+## Output
+* float upper bound of `c` on the box `I`
 -/
 
 -- Authors:       Claude Opus 5

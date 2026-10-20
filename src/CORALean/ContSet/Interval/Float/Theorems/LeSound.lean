@@ -9,6 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 A `true` answer chains `toReal_le_of_le` through every coordinate, which is the exact layer's
 `le_subset` read at the stored bounds.
+
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Hypotheses
+* `h` – test returned true
+
+## Conclusion
+* the first box is contained in the second
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,12 @@ CORA's `@interval/radius`: the Euclidean norm of the half-widths, `sqrt(sum(rad(
 `Interval.radius`, which is CORA's `rad`, the half-width vector itself. `Theorems/Radius2IsLeast`
 says what it measures: the radius of the smallest Euclidean ball about the center containing the
 box.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* Euclidean norm of the radius
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,16 @@ whole obligation is that each bound rounded the right way.
 With `MulBetweenCorners` and the float intrinsics' outer theorems, this is the admissible
 interval arithmetic [1, Def. 5] assumes, eq. (3.1) for `⊕`, proved here from directed rounding.
 
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum of the two sets lies in the result box
+
 ## References
 
 * [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion

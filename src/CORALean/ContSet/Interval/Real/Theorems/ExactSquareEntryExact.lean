@@ -17,6 +17,17 @@ apart from `A i i ^ 2`, whose extremum is a corner or `0`), and the entry is con
 convex box, so everything between is taken.
 
 Exactness is per entry, not as a set: the set of squares is in general no box.
+
+## Inputs
+* `A` – interval matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* the range of entry `(i, j)` of the square over the box is exactly the computed interval
 -/
 
 -- Authors:       Claude Sonnet 5.5

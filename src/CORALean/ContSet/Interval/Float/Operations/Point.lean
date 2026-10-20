@@ -15,6 +15,13 @@ Generic over the ambient type, as `Real.Interval.point` is, so `matPow`'s
 identity `Interval.point 1 : Interval (Mat 𝕋 n n)` reaches it too. Composed with
 `plus`/`matPlus` this is a translation, so a layer needs no operation of its own
 for a bias — which is how a linear layer's offset reaches a set here.
+
+## Inputs
+* `α` – carrier type
+* `v` – the point
+
+## Output
+* degenerate interval at `v`
 -/
 
 -- Authors:       Claude Opus 5

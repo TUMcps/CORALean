@@ -8,6 +8,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.ArgEqPiDivTwoSubArctanOfIm
 
 /-!
 # The argument in the lower half-plane is a shifted arctangent
+
+## Inputs
+* `z` – complex number
+
+## Hypotheses
+* `h` – imaginary part negative
+
+## Conclusion
+* the argument is minus a quarter turn minus an arctangent
 -/
 
 -- Authors:       Claude Opus 5.5

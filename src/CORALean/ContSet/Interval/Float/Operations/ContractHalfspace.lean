@@ -7,16 +7,22 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # `Interval.contractHalfspace`
 
-The box cut by one halfspace `a · x ≤ b`, coordinate by coordinate. The rest of
-the row is bounded over the box, so `a_j x_j ≤ b - ∑_{k ≠ j} a_k x_k ≤ b + s_j`,
-and dividing by `a_j` bounds `x_j` from above where `a_j > 0` and from below
-where `a_j < 0`: one forward-backward pass of interval constraint propagation
-on a linear constraint, every coordinate read against the box it was given.
+The box cut by one halfspace `a · x ≤ b`, coordinate by coordinate. The rest of the row is bounded
+over the box, so `a_j x_j ≤ b - ∑_{k ≠ j} a_k x_k ≤ b + s_j`, and dividing by `a_j` bounds `x_j`
+from above where `a_j > 0` and from below where `a_j < 0`: one forward-backward pass of interval
+constraint propagation on a linear constraint, every coordinate read against the box it was given.
 
-A coefficient whose sign `ltStrict` cannot certify leaves its coordinate as it
-was, `divUp` asking a divisor known to be positive. A result whose lower end
-passes its upper one is a box no point lies in, which is what the cut is when
-the box misses the halfspace; `representsa_emptySet` is what says so.
+A coefficient whose sign `ltStrict` cannot certify leaves its coordinate as it was, `divUp` asking
+a divisor known to be positive. A result whose lower end passes its upper one is an empty cut,
+which `representsa_emptySet` says.
+
+## Inputs
+* `I` – interval box
+* `a` – normal vector of the halfspace
+* `b` – offset of the halfspace
+
+## Output
+* box shrunk to the part inside the halfspace `a ⬝ x ≤ b`
 -/
 
 -- Authors:       Claude Opus 5.5

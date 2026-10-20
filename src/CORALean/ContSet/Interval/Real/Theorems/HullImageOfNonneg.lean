@@ -13,6 +13,18 @@ coordinate of `A x` is monotone in `x`, so it is least at `a` and greatest at `b
 The lemma also prints `A I = [A a, A b]`, the image itself a box, which is false
 (`image_of_nonneg_counterexample`); only the hull is.
 
+## Inputs
+* `A` – nonnegative matrix
+* `a` – lower bound vector
+* `b` – upper bound vector
+
+## Hypotheses
+* `hA` – entries nonnegative
+* `hab` – bounds ordered
+
+## Conclusion
+* the hull of the image of the box is the box of the images of its corners
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

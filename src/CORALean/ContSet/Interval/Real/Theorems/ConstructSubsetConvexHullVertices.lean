@@ -15,6 +15,15 @@ matrices with every entry at an end of its interval (`vert[M]`, [1, Sec. 2]). A 
 product of its edges, and `convexHull_pi` takes the hull factor by factor, where the hull of
 two numbers is the segment between them.
 
+## Inputs
+* `IM` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box lies in the convex hull of its vertices
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

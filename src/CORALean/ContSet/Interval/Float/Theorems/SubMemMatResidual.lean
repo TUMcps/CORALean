@@ -9,6 +9,18 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 `Interval.sub_mem_residual` at `Mat 𝕋 m n`, the pair index taken apart the way
 `Interval.mem_mat_iff` does.
+
+## Inputs
+* `lo` – float lower bound matrix
+* `hi` – float upper bound matrix
+* `stored` – stored float matrix
+* `A` – real matrix
+
+## Hypotheses
+* `h` – `A` lies between the bounds
+
+## Conclusion
+* the residual of `A` against the stored matrix lies in the residual box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 CORA's `@interval/quadMap(I, Q)`: `quadMap(zonotope(I), Q)` boxed. The quadratic map
 `x ↦ (xᵀQ₁x, …, xᵀQₘx)` over the box is bounded through the zonotope of the box and
 `Zonotope.bilin`, then `Zonotope.interval`.
+
+## Inputs
+* `Q` – family of quadratic form matrices
+* `I` – interval box
+
+## Output
+* box enclosing the quadratic map of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

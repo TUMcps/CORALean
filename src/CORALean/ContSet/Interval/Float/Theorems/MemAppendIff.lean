@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 The bounds are copied, so the stored box appended reads back as the exact boxes appended, and a
 point lies in it iff each block lies in its own box (`Real.Interval.mem_append_iff`).
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+* `x` – point of the concatenated space
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the appended box iff both parts lie in their boxes
 -/
 
 -- Authors:       Claude Opus 5.5

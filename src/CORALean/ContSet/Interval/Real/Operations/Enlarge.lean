@@ -11,6 +11,13 @@ CORA's `@interval/enlarge`: scale the half-width about the center, `[c - f·r, c
 a scalar or entrywise factor; this is the scalar one. CORA's infinite half-widths (`Inf` stays `Inf`
 for a factor above one, and a factor below one is an error) have no counterpart: a box over ℝ has
 finite bounds.
+
+## Inputs
+* `I` – interval
+* `f` – enlargement factor
+
+## Output
+* interval enlarged about its center by factor `f`
 -/
 
 -- Authors:       Claude Opus 5.5

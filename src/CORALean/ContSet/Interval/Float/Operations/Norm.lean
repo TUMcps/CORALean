@@ -11,6 +11,12 @@ public import CORALean.Global.Float.EuclideanNorm
 CORA's `norm_` at `type = 2`, as the squared length rounded up. There is no float square root, so
 the root is a certificate (`Global/Float/EuclideanNorm`): the caller proposes `σ` and
 `normSq ≤ σ·σ` is the check, in `Theorems/NormNominalLe`.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* squared Euclidean length of the box, rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

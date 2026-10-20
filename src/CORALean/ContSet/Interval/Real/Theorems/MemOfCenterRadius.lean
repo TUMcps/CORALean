@@ -12,6 +12,17 @@ This is the meaning of CORA's `intervalMatrix(C, Δ)`.
 
 [1, Sec. 2]: `[x] = mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`, membership read off the center and radius.
 
+## Inputs
+* `c` – center
+* `r` – radius
+* `x` – candidate point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the interval iff each entry is within the radius of the center
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

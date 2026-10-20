@@ -10,6 +10,14 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 Monotone, so `logDown` at the lower bound and `logUp` at the upper one. `p` is `expUp`'s precision
 and `k` the number of bisection steps (`Global/Float/Log`).
+
+## Inputs
+* `p` – precision of `expUp`
+* `k` – bisection steps
+* `I` – interval box
+
+## Output
+* interval box enclosing the logarithm of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

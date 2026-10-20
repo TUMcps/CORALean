@@ -12,6 +12,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 `f 0 + … + f (m − 1)` of interval matrices, from the point `0`, one `matPlus` at a time, each
 partial sum materialised: the series of [1] summed as their loops add their terms.
 
+## Inputs
+* `f` – family of interval matrices
+
+## Output
+* partial sums of the family, as a function of the term count
+
 ## References
 
 * [1] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_constantFlow`

@@ -12,6 +12,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyper
 `Σᵢ xᵢ = Σᵢ bᵢ - α`. Stated for the vertices of the cut, the solutions the paper means, and as
 an equivalence: `x ↦ b - x` maps the box onto itself and edges onto edges.
 
+## Inputs
+* `b` – upper bound vector
+* `α` – level of the plane
+* `c` – candidate vertex
+
+## Hypotheses
+* none
+
+## Conclusion
+* `c` is a vertex of the cut iff `b - c` is a vertex of the complementary cut
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

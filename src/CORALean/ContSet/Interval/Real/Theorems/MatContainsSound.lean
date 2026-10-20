@@ -10,6 +10,20 @@ public import CORALean.ContSet.Interval.Real.Definitions.MatContains
 Each of the three tests that admit a bound moves it by at most `tol * max 1 |M i j|`: the strict
 test by `tol`, the absolute test by `tol`, the relative one by `tol * |M i j|`. A column that
 `matContains` accepts is nonempty.
+
+## Inputs
+* `A` – interval matrix
+* `M` – real matrix
+* `tol` – tolerance
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `ht` – tolerance nonnegative
+* `h` – containment up to tolerance holds
+
+## Conclusion
+* the entry lies within the tolerance of the bounds
 -/
 
 -- Authors:       Claude Sonnet 5.5

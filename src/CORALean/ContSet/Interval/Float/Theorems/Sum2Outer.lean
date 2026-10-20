@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Operations.Sum2
 
 The lower bounds sum rounding down and the upper bounds rounding up. No nonemptiness is
 needed: the rounding only widens.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact row-sum box lies in the float one
 -/
 
 -- Authors:       Claude Opus 5.5

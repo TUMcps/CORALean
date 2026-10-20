@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Real.Interval
 The smallest box holding both, coordinate by coordinate. Exact for boxes: a
 segment between two of them never leaves the enclosing box, so nothing looser
 is needed.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Output
+* interval hull of the two
 -/
 
 -- Authors:       Claude Opus 5

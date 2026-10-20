@@ -18,6 +18,18 @@ At an end on a pole the printed `[cot z̅, cot z̲]` is not the range: on `[π, 
 `cot x = tan(π/2 - x)`, so a pole of the cotangent inside is one of the tangent
 (`Interval.tan_unbounded_of_pole`), and between two poles the cotangent falls.
 
+## Inputs
+* `lo` – lower end
+* `hi` – upper end
+
+## Hypotheses
+* `hle` – lower end at most upper end
+* `hlo` – sine nonzero at the lower end
+* `hhi` – sine nonzero at the upper end
+
+## Conclusion
+* none means the cotangent is unbounded, else the interval is its exact range
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

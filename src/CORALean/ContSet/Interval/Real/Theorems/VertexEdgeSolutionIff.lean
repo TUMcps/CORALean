@@ -15,6 +15,17 @@ has `bᵢ > α - Σⱼ vⱼ`, namely `(v₁, …, α - Σⱼ vⱼ, …, vₙ)`. 
 the far end, the reading the low border vertices of [1, Def. 4] give; for every edge at `v`
 the "only if" fails, `Interval.vertex_edge_solution_counterexample`.
 
+## Inputs
+* `b` – upper bound vector
+* `α` – level of the plane
+* `l` – corner labels
+
+## Hypotheses
+* `hb0` – bounds positive
+
+## Conclusion
+* the vertex lies in the plane iff its sum is the level, and the edge solutions follow
+
 ## References
 
 * [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection

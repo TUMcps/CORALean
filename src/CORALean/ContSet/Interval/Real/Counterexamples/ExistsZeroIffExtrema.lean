@@ -15,6 +15,15 @@ public import Mathlib.Order.Interval.Set.Defs
 on `[Y] = [-1, 1]`, the minimum `-1` and the maximum `1` bracket `0`, and `f` never vanishes.
 `Interval.exists_zero_iff_extrema` restores the equivalence for continuous `f(x, ·)`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a function with extrema of opposite sign that never attains zero
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

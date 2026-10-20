@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
 Entrywise, `c • v`'s coordinate sits between the two scaled endpoints by
 `mul_between_endpoints`, whichever way `c`'s sign swaps them; reading that back
 through `Entrywise.entry_smul` is the rest.
+
+## Inputs
+* `c` – scalar factor
+* `I` – interval
+* `v` – member of the interval
+
+## Hypotheses
+* `hv` – `v` lies in the interval
+
+## Conclusion
+* the scaled point lies in the scaled interval
 -/
 
 -- Authors:       Claude Opus 5

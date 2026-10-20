@@ -13,6 +13,16 @@ ones.
 
 [1, Eq. 1]: `[x] ∩ [y] = [max(x̲, y̲), min(x̅, y̅)]`, empty when crossed.
 
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the intersection box represents the intersection of the two sets
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

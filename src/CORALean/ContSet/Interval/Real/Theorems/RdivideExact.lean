@@ -16,6 +16,18 @@ numerator may contain `0`; the denominator avoids it in every coordinate, as COR
 
 [1, Eq. 3] on boxes away from `0`, `[x]/[y] = [x]·(1/[y])`.
 
+## Inputs
+* `I` – first interval box
+* `J` – second interval box
+
+## Hypotheses
+* `hI` – `I` nonempty
+* `hJ` – `J` nonempty
+* `h0` – no coordinate of `J` contains zero
+
+## Conclusion
+* the quotient box is exactly the set of entrywise quotients
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

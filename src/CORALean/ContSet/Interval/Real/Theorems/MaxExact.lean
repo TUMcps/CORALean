@@ -12,6 +12,17 @@ For two nonempty boxes, the points `max(x, y)` with `x` in the first and `y` in 
 `[max inf₁ inf₂, max sup₁ sup₂]` entirely: in each coordinate a target `z` between the two larger
 bounds is `max` of a coordinate of each box (`aux_max_exists`). Nonemptiness is needed, for an
 empty operand has no maxima to fill the box.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* `h₁` – `I₁` is nonempty
+* `h₂` – `I₂` is nonempty
+
+## Conclusion
+* the maximum interval is exactly the set of entrywise maxima
 -/
 
 -- Authors:       Claude Opus 5.5

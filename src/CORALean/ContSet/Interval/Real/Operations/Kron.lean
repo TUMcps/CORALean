@@ -13,6 +13,13 @@ product is `I(i, j) * J(k, l)`, and its bounds are the least and greatest of the
 products (`mulLo`, `mulHi`), which is what CORA's `min`/`max` over the four Kronecker products of
 the bounds computes. The block `(i, j)` of the result sits at row `i * p + k` and column `j * q + l`
 (`finProdFinEquiv`), CORA's layout.
+
+## Inputs
+* `I` – left factor
+* `J` – right factor
+
+## Output
+* interval Kronecker product
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,17 @@ by the definition. `plus_outer` is the half that needs no such hypothesis.
 
 [1, Eq. 2] for scalars and [1, Eq. 17] for matrices, `α` being either.
 
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* `h₁` – `I₁` is nonempty
+* `h₂` – `I₂` is nonempty
+
+## Conclusion
+* the sum box is exactly the Minkowski sum
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

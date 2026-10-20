@@ -10,6 +10,16 @@ public import CORALean.ContSet.Interval.Real.Operations.Or
 Unconditional: each operand lies inside the coordinatewise hull whether or not the other is empty.
 Where CORA returns the other operand for an empty one, this returns the hull of both, which is
 coarser, so the statement is an enclosure and never an equality.
+
+## Inputs
+* `I₁` – first interval
+* `I₂` – second interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* the union of the two sets lies in the result
 -/
 
 -- Authors:       Claude Opus 5.5

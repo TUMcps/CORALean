@@ -13,6 +13,18 @@ For a start point in the box and a non-zero direction, `boundaryRatio` is the gr
 the ray is outside: the boundary point CORA's docstring promises. Per coordinate with `dir i ≠ 0`
 the constraint is `s ≤ bound i / dir i`, the ratio is the least of them, and the ones with
 `dir i = 0` never bind, the start point being in the box.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Hypotheses
+* `hdir` – direction nonzero
+* `hs` – `start` lies in the box
+
+## Conclusion
+* the ratio is the greatest parameter keeping the ray inside the box
 -/
 
 -- Authors:       Claude Opus 5.5

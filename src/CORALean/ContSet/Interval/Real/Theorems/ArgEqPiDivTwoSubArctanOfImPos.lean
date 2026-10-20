@@ -6,6 +6,15 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 /-!
 # The argument in the upper half-plane is a shifted arctangent
+
+## Inputs
+* `z` – complex number
+
+## Hypotheses
+* `h` – imaginary part positive
+
+## Conclusion
+* the argument is a quarter turn minus an arctangent
 -/
 
 -- Authors:       Claude Opus 5.5

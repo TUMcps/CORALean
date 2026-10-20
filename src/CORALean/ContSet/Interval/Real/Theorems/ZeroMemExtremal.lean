@@ -13,6 +13,18 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
 extremal functions of `Interval.extremalLo`/`extremalHi`: if some coefficient vector of `C`
 makes `Σᵢ cᵢ hᵢ(x)` vanish, as `cᵢ = fᵢ(y)` does at a solution, then `g̲(x) ≤ 0 ≤ g̅(x)`.
 
+## Inputs
+* `C` – interval box
+* `h` – weight vector
+* `c` – solution in the box
+
+## Hypotheses
+* `hc` – `c` lies in the box
+* `h0` – `c` is orthogonal to `h`
+
+## Conclusion
+* zero lies between the extremal lower and upper values
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

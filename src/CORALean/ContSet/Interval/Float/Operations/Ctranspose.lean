@@ -8,6 +8,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Transpose
 # `Interval.ctranspose`
 
 The conjugate transpose is the transpose over the reals a float reads as, so it moves floats only.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* transposed interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

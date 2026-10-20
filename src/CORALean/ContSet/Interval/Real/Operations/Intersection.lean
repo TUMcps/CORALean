@@ -12,6 +12,13 @@ of its coordinates clears both lower bounds and stays under both upper ones.
 
 The result may be empty, and says so the way this representation always does —
 some coordinate's `sup` below its `inf`.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Output
+* box of the coordinatewise overlap
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ Some float matrix inside the box, entrywise: `half` is exact, so only the sum
 `inf + sup` rounds, and only downward — the interval-matrix-times-zonotope
 enclosure needs no tighter a midpoint than this, only a sound bound on how far
 any denoted matrix can be from it, which `Interval.matResidual` states.
+
+## Inputs
+* `IM` – interval matrix
+
+## Output
+* matrix of rounded entrywise midpoints
 -/
 
 -- Authors:       Claude Opus 5.5

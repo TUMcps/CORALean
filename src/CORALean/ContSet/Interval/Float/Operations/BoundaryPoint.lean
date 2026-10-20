@@ -11,6 +11,14 @@ CORA's `boundaryPoint(I, dir, startPoint)`: `dir * ratio + startPoint`, the box 
 ratio's bounds. The ratio is at least `0` (the lower end is clamped, `maximum zero`); each
 coordinate is the corner products of the ratio interval and `dir ᵢ`, plus `startᵢ`, rounded
 outward. `none` when no coordinate of `dir` is certified nonzero.
+
+## Inputs
+* `I` – interval box
+* `dir` – ray direction
+* `start` – ray start point
+
+## Output
+* enclosure of the boundary point of the box along the ray, if any
 -/
 
 -- Authors:       Claude Opus 5.5

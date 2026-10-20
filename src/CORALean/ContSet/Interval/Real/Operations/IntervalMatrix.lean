@@ -11,6 +11,12 @@ public import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
 CORA's `@interval/intervalMatrix`: the interval matrix with the interval's center and half-width,
 `intervalMatrix(center(I), rad(I))`. It denotes the same set, since the center and half-width of a
 box give its bounds back (`Theorems/IntervalMatrixEq`).
+
+## Inputs
+* `I` – interval
+
+## Output
+* interval symmetric about its center with the same radius
 -/
 
 -- Authors:       Claude Opus 5.5

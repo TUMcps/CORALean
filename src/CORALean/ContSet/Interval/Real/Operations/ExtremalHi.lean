@@ -15,6 +15,13 @@ selects: the upper one where `hᵢ(x) ≥ 0`, the lower one where `hᵢ(x) ≤ 0
 is `C` and `h` the vector of values `hᵢ(x)` at one `x`, every index summed, the constant
 term included: the paper sums from `i = 1` while its `g[Y]` and its example start at `i = 0`.
 
+## Inputs
+* `C` – box of coefficients
+* `h` – weight vector
+
+## Output
+* largest value of `h` against the box
+
 ## References
 
 * [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor

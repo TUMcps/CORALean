@@ -13,6 +13,12 @@ divisor, so a coordinate below `0` is negated first: for a positive box `[a, b]`
 lies on is decided by `ltStrict`, whose `true` certifies the strict inequality; the negative branch
 is taken whenever the positive one is not certified, which is sound for a box the caller certifies
 to avoid `0`.
+
+## Inputs
+* `J` – box to invert
+
+## Output
+* box of coordinatewise reciprocals
 -/
 
 -- Authors:       Claude Opus 5.5

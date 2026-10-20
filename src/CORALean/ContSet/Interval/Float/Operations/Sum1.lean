@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 CORA's `sum` of an interval matrix down each column: the lower bounds are summed rounding down and
 the upper bounds rounding up, so the stored box holds every column sum the exact one does.
+
+## Inputs
+* `I` – interval matrix
+
+## Output
+* box of the column sums
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,12 @@ public import CORALean.ContSet.Interval.Real.Operations.EBox
 
 The points of `ℝⁿ` whose every coordinate lies between the two `EReal` bounds of an
 `Interval.EBox`.
+
+## Inputs
+* `B` – extended box
+
+## Output
+* the set of points between the extended bounds
 -/
 
 -- Authors:       Claude Opus 5.5

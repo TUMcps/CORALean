@@ -14,6 +14,16 @@ Termwise the rounded products enclose the exact ones, and `minimum`/`maximum`
 are exact, so both layers pick the same endpoint; `sumDown`/`sumUp` then enclose
 the sum. The sign of `M i k` is never examined — that case split lives once, in
 `Real`.
+
+## Inputs
+* `M` – float matrix
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `I` under the real reading of `M` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5

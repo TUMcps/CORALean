@@ -11,6 +11,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 The matrices of a box, read as functions `Fin m → Fin n → ℝ` with the product measure, form the
 product over rows of the products over columns of the entry intervals; `Measure.pi` gives the
 product of the volumes, and each row is `Real.volume_Icc_pi`.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the matrix volume is the Lebesgue volume of the box
 -/
 
 -- Authors:       Claude Sonnet 5.5

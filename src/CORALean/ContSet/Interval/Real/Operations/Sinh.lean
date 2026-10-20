@@ -10,6 +10,12 @@ public import Mathlib.Analysis.Complex.Trigonometric
 
 CORA's `@interval/sinh`: the hyperbolic sine is strictly increasing and continuous on all of `ℝ`,
 so it acts on the two bounds, coordinate by coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the hyperbolic sines of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,12 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 CORA's `@interval/atan`: the arctangent is strictly increasing and continuous on all of `ℝ`, so it
 acts on the two bounds, coordinate by coordinate.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* box of the arctangents of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

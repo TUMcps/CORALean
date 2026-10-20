@@ -10,16 +10,30 @@ public import Mathlib.MeasureTheory.MeasurableSpace.Pi
 /-!
 # A measurable member of a box mapping a measurable vector to a measurable one
 
-Where some member of the box maps `y(s)` to `w(s)`, one does measurably in `s`:
-chosen by a formula rather than by choice. Row by row, the least and greatest
-value a row of the box takes against `y(s)` are attained at the corner rows, each
-entry at the endpoint the sign of `y(s)`'s coordinate picks; `w(s)` lies between
-them, so it is one convex combination of the two corner rows, with a weight that
-is a quotient of measurable functions. Off the set where a member exists, any
-fixed member of the box serves.
+Where some member of the box maps `y(s)` to `w(s)`, one does measurably in `s`: chosen by a
+formula rather than by choice. Row by row, the least and greatest value a row of the box takes
+against `y(s)` are attained at the corner rows, each entry at the endpoint the sign of `y(s)`'s
+coordinate picks; `w(s)` lies between them, so it is one convex combination of the two corner
+rows, with a weight that is a quotient of measurable functions. Off the set where a member exists,
+any fixed member of the box serves. What lets a time-varying parameter that `IsTrajectory` asks
+nothing of be replaced by one an integral can take.
 
-What lets a time-varying parameter that `IsTrajectory` asks nothing of be replaced
-by one an integral can take.
+## Inputs
+* `B` – interval matrix
+* `M₀` – member of the box
+* `y` – measurable vector function
+* `w` – measurable target function
+* `S` – measurable set of parameters
+
+## Hypotheses
+* `hM₀` – `M₀` lies in `B`
+* `hy` – `y` measurable
+* `hw` – `w` measurable
+* `hS` – `S` measurable
+* `hex` – each parameter in `S` has a member mapping `y s` to `w s`
+
+## Conclusion
+* a measurable family of box members maps `y s` to `w s` on `S`
 -/
 
 -- Authors:       Claude Opus 5.5

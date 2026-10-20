@@ -14,6 +14,15 @@ hypothesis, both corners positive.
 
 [1, Eq. 5], its first case, at `x̲ > 0`.
 
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds positive
+
+## Conclusion
+* the logarithm box is exactly the image of `I`
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

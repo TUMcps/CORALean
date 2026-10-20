@@ -11,6 +11,15 @@ The center minus the half-width is the lower bound: the split `center ± radius`
 
 [1, Sec. 2] writes an interval as `mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`; this is its lower end.
 
+## Inputs
+* `I` – interval
+
+## Hypotheses
+* none
+
+## Conclusion
+* center minus radius is the lower bound
+
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In

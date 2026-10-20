@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
 # `Interval.uminus` is exactly the negated set
 
 Negation is exact, so the float box denotes the same set the exact layer's does.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the negated box represents exactly the negated set
 -/
 
 -- Authors:       Claude Opus 5.5

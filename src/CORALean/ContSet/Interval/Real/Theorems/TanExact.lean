@@ -14,6 +14,15 @@ The tangent is strictly increasing and continuous on `(-π/2, π/2)`, so
 that is at least `π` wide or contains a pole at an odd multiple of `π/2`, and otherwise evaluates
 `tan` at the bounds. The statement here covers the principal branch, both corners in
 `(-π/2, π/2)`, as a hypothesis.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* `hI` – bounds strictly inside `(-π/2, π/2)`
+
+## Conclusion
+* the tangent box is exactly the image of `I`
 -/
 
 -- Authors:       Claude Opus 5.5

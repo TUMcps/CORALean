@@ -13,6 +13,12 @@ interval, `stlInterval(I.inf, I.sup, true, true)`, closed at both ends (CORA thr
 interval is `1 × 1`; the type `Interval (Vec ℝ 1)` is that). The class `stlInterval` has no
 counterpart in the tree, so the result is the set of times it denotes, a subset of `ℝ`. CORA's
 constructor turns `lb > ub` into its empty interval, which `Set.Icc` is.
+
+## Inputs
+* `I` – interval box
+
+## Output
+* closed real interval between the first entries of the bounds
 -/
 
 -- Authors:       Claude Opus 5.5

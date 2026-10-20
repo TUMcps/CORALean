@@ -13,6 +13,16 @@ a box whose bounds do not cross the value is a maximum: coordinate `i` is moved
 to whichever endpoint the sign of the direction's weight on it picks, and
 `Entrywise.ofEntry` assembles that point. An empty box has a bound and no point
 attaining it, so the hypothesis cannot be dropped.
+
+## Inputs
+* `I` – interval
+* `c` – linear functional
+
+## Hypotheses
+* `hI` – `I` nonempty
+
+## Conclusion
+* some point of the box attains the support bound
 -/
 
 -- Authors:       Claude Opus 5.5

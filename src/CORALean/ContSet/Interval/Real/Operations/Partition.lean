@@ -10,6 +10,14 @@ public import CORALean.ContSet.Interval.Real.Interval
 CORA's `@interval/partition(I, splits)`: cut every coordinate into `splits` equal pieces and
 return the `splits ^ n` sub-boxes, indexed by which piece each coordinate took. CORA returns them as
 a cell array; here the index tuple `Fin n → Fin splits` is the position in it.
+
+## Inputs
+* `I` – interval box
+* `splits` – number of splits per coordinate
+* `ind` – piece index per coordinate
+
+## Output
+* piece of the box at grid index `ind`
 -/
 
 -- Authors:       Claude Opus 5.5

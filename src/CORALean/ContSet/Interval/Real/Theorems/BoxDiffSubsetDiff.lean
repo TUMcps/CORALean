@@ -11,6 +11,18 @@ public import CORALean.ContSet.Interval.Real.Operations.BoxDiff
 above `u₂(i*)`, so `x ∉ I₂` whatever the boxes. The printed proof's second goal, `I₃ ∩ I₁ = ∅`,
 is a slip for `I₃ ∩ I₂ = ∅`, which is what its argument shows and what is proved here.
 
+## Inputs
+* `l₁` – lower bound of the first box
+* `u₁` – upper bound of the first box
+* `l₂` – lower bound of the second box
+* `u₂` – upper bound of the second box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box difference lies in the set difference of the boxes
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

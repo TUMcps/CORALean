@@ -13,6 +13,13 @@ lower bound *up* and the upper bound *down* shrinks the box, which is the
 direction that keeps it inside. Every other float operation here widens; this
 one narrows, and a reader who pattern-matches on `addDown`/`addUp` will get it
 backwards.
+
+## Inputs
+* `I₁` – first interval box
+* `I₂` – second interval box
+
+## Output
+* Minkowski difference box, rounded inward
 -/
 
 -- Authors:       Claude Opus 5

@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.MatNormIsGreatest
 
 `norm(abs(A), Inf)` is `norm(|center| + rad, Inf)` on a nonempty box (`abs_center_add_radius`),
 so this is `matNorm_isGreatest` at the type `Inf`.
+
+## Inputs
+* `A` – interval matrix
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* the infinity norm of the box is the greatest member norm
 -/
 
 -- Authors:       Claude Sonnet 5.5

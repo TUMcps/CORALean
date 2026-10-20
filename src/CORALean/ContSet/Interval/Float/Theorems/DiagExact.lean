@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.DiagExact
 # `Interval.diag` over floats is exact
 
 `zero` reads as `0`, so the stored box denotes the exact layer's diagonal box of the reading.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the diagonal interval matrix is exactly the set of diagonal matrices
 -/
 
 -- Authors:       Claude Opus 5.5

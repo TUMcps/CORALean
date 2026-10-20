@@ -10,6 +10,15 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 The certified `le` is all that is needed: `0 ≤ inf` forces `sign x = 0` or `1`, and `sup ≤ 0`
 forces `sign x ≤ 0`. No hypothesis.
+
+## Inputs
+* `I` – interval box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sign image of `I` lies in the result box
 -/
 
 -- Authors:       Claude Opus 5.5

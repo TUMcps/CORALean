@@ -15,6 +15,13 @@ summand, the two products `M i k * inf k` and `M i k * sup k` and takes their
 
 Not `Cost.matVec`, which is one product and one sum per row: an interval
 matrix-vector product does the work of two and compares as well.
+
+## Inputs
+* `m` – number of rows
+* `n` – number of columns
+
+## Output
+* time cost of the matrix-box product
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

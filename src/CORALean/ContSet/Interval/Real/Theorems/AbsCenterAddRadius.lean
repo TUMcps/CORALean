@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 On a nonempty box the matrix `|center| + rad` that `norm` evaluates is the entrywise
 `max |inf| |sup|`: `(a + b) / 2` has the sign of the end of larger magnitude, and adding the
 half-width reaches that end.
+
+## Inputs
+* `A` – interval matrix
+* `i` – row index
+* `j` – column index
+
+## Hypotheses
+* `hA` – `A` has ordered bounds
+
+## Conclusion
+* center magnitude plus radius equals the largest absolute value
 -/
 
 -- Authors:       Claude Sonnet 5.5

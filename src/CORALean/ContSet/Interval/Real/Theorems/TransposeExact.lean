@@ -9,6 +9,15 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 The transposes of the matrices in the box fill the transposed box, with no hypothesis, since
 transposition only permutes the entries and so the bounds on them.
+
+## Inputs
+* `I` – interval matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the transposed box is exactly the set of transposes
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,17 @@ public import CORALean.ContSet.Interval.Real.Theorems.PartitionExact
 The real piece of the box's reading sits inside the float piece of the same index. The ratio
 `k / splits` is bracketed without dividing by a rounded-down count: `divDown` by a count rounded
 up bounds it below, and the upper bound is `1` less the lower bound of the complement.
+
+## Inputs
+* `I` – interval box
+* `splits` – number of splits per coordinate
+* `ind` – piece index per coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact piece lies in the float piece
 -/
 
 -- Authors:       Claude Sonnet 5.5
