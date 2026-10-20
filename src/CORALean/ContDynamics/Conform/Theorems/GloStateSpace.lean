@@ -20,6 +20,28 @@ from the Taylor bounds of the conservative-polynomialization paper the corollary
 it is the hypothesis here; `Êₖ` is the set-based evaluation of `ēₖ` over them, and [1, Thm. 1]
 (`reachSetOfExact_subset`) gives the reachable set. A linear model has `l = 0` and so `ē = 0`.
 
+## Inputs
+* `x` – states
+* `xb` – reference states
+* `u` – inputs
+* `ub` – reference inputs
+* `y` – outputs
+* `yb` – reference outputs
+* `A` – state Jacobians
+* `B` – input Jacobians of the state
+* `C` – state-to-output Jacobians
+* `D` – feedthrough Jacobians
+* `lx` – state remainders
+* `ly` – output remainders
+* `k` – step
+
+## Hypotheses
+* `hx` – the state linearization holds
+* `hy` – the output linearization holds
+
+## Conclusion
+* the output equals the linearization along the reference plus the remainder terms
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

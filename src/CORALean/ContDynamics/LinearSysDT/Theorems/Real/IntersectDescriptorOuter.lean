@@ -18,6 +18,28 @@ adding `Λ(y₊ + F α - C x₊) = 0` gives the zonotope's point at the coeffici
 noise `α` enters twice, as `(I - ΛC)NF α` and `ΛF α`; the zonotope lets the two vary independently,
 which is where it is larger than the set.
 
+## Inputs
+* `E` – descriptor matrix
+* `T` – decoupling matrix
+* `A` – state matrix
+* `N` – measurement decoupling matrix
+* `Λ` – correction matrix
+* `B` – input matrix
+* `D` – disturbance matrix
+* `Dd` – unknown input matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `u` – previous input
+* `y` – measurement
+* `X` – previous zonotope
+
+## Hypotheses
+* `hTN` – decoupling identity holds
+* `hTD` – decoupling kills the unknown input
+
+## Conclusion
+* the exact uncertain set lies in the intersection zonotope
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

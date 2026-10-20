@@ -15,20 +15,22 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # What a float run of `reach` owes
 
-The float counterpart of `reachError`, and a strictly bigger obligation: at
-`Zonotope (Vec 𝕋 n)` none of `plus`, `mtimes` or `reduce` is exact — `SoundFloatArithmetic`
-constrains each outward only — so a step loses ground at every operation, not
-only at `reduce`, and this recursion carries a box per operation.
+The float counterpart of `reachError`, and a strictly bigger obligation: at `Zonotope (Vec 𝕋 n)`
+none of `plus`, `mtimes` or `reduce` is exact — `SoundFloatArithmetic` constrains each outward
+only — so a step loses ground at every operation and this recursion carries a box per operation.
+`mtimesBox`, `plusBox` and `reduceGirardBox` bound how far a float result reaches beyond the
+exact operation on its operand, computed in `𝕋` from the same float values `reach` produces that
+step, and read back into this real accumulator by `.nominal`. `U.E.nominal.zonotope` has no
+`reachError` counterpart: `plusBox` bounds against `U`'s *float* construct while `reachSetExact`
+advances by its *nominal* one. At `k = 0` the error is `R₀`'s own error box.
 
-`mtimesBox`, `plusBox` and `reduceGirardBox` bound how far a float result
-reaches beyond the exact operation on its operand, computed entirely in `𝕋`
-from the *same* float values `reach` produces that step, and read back into
-this real accumulator by `.nominal`, the same conversion the box's own
-`construct` already goes through. `U.E.nominal.zonotope` has no `reachError`
-counterpart: `plusBox` bounds `(M.plus U).construct` against `U`'s *float*
-construct while `reachSetExact` advances by its *nominal* construct alone.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
 
-At `k = 0` the error is `R₀`'s own error box, read back as a zonotope.
+## Output
+* the real error zonotope a float run owes
 -/
 
 -- Authors:       Claude Sonnet 5

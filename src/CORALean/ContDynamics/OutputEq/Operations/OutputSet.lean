@@ -9,14 +9,18 @@ public import CORALean.ContDynamics.OutputEq.OutputEq
 
 CORA's `outputSet` without the noise term, `C R ⊕ D U ⊕ k`: `mtimes` twice, `plus` twice and the
 offset as a point, operations `LinearSysDT.reach` already runs on, so an output set is computed
-wherever a reachable set is, at a float representation included. Nothing here is a scalar
-operation of its own, which is why there is no second version of it.
+wherever a reachable set is, at a float representation included. The state and the input are
+enclosed independently, so every state of `R` is paired with every input of `U`. That is the
+looseness a closed loop already pays, and at `D = 0` it is not paid at all. CORA's shortcut
+`Y = R` at `C = 1`, `D = 0`, `k = 0` is not taken: the set computed is the same, only coarser.
 
-The state and the input are enclosed independently, so every state of `R` is
-paired with every input of `U` rather than with the input that occurs at it.
-That is the looseness a closed loop already pays, and at `D = 0` it is not paid
-at all. CORA's shortcut `Y = R` at `C = 1`, `D = 0`, `k = 0` is not taken: the
-set computed is the same, only coarser.
+## Inputs
+* `out` – output equation
+* `R` – state set
+* `U` – input set
+
+## Output
+* the enclosure of all outputs
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

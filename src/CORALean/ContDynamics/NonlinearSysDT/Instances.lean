@@ -8,17 +8,13 @@ public import CORALean.ContDynamics.Interfaces
 /-!
 # `NonlinearSysDT.WithSteps` instantiates `ContDynamicsDT` and `Reach`
 
-`params` is `Reach.Params` counted in sampling periods, `options`
-`NonlinearSysDT.ReachOptions`; `U` stays the system's, since each step's
-certificate is issued for it. `reachExact` is `reachUnionExact` over
-`tFinal - tStart` steps, the certificates counted from the run's start, `reach` is
-`reachUnion`, and the guarantee is `reachUnion_outer`. `reach` can return `none`,
-as `NonlinearSys`'s can: each step's linearization is trusted only once the set it
-starts from is shown, at run time, inside that step's region, which is what lets
-`reach_outer` hold with no confinement hypothesis on any run.
-
-`NonlinearSysDT` is a `ContDynamicsDT`: every one of the `m` arguments of `f` an input, no
-disturbance, a run a `IsTrajectory`.
+`params` is `Reach.Params` counted in sampling periods, `options` `NonlinearSysDT.ReachOptions`;
+`U` stays the system's, since each step's certificate is issued for it. `reachExact` is
+`reachUnionExact` over `tFinal - tStart` steps, `reach` is `reachUnion`, and the guarantee is
+`reachUnion_outer`. `reach` can return `none`, as `NonlinearSys`'s can: each step's
+linearization is trusted only once the set it starts from is shown, at run time, inside that
+step's region, which lets `reach_outer` hold with no confinement hypothesis on any run.
+`NonlinearSysDT` is a `ContDynamicsDT`: no disturbance, a run an `IsTrajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5

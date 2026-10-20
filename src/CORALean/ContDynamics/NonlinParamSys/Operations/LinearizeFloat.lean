@@ -16,10 +16,17 @@ the float `LinParamSys.reachFloat` runs on, and the point `(p.x, p.u, p.p)`. The
 evaluated at the point boxes of the expansion point `(xs, us)` over the parameter box `P`: the
 enclosures of the two Jacobians are the system's `A` and `B` (`linearizeFloat_jacobianX_mem`,
 `linearizeFloat_jacobianU_mem`), and the system's constant is the real value of the stored center
-of the constant term's enclosure (`aux_linearizeFFloat`, which holds at every parameter of the box,
-`linearizeFloat_f_mem`). Where CORA splits `f` along the unit vectors and so assumes it affine in
-`p`, the model's enclosure over `P` asks no such thing. The center of the box is the stored
-`Interval.center`, rounded up. The `'linRem'` option and the numeric-`p` branch are not carried.
+of the constant term's enclosure (`linearizeFloat_f_mem`). Where CORA splits `f` along the unit
+vectors and so assumes it affine in `p`, the model's enclosure over `P` asks no such thing.
+
+## Inputs
+* `fm` – float model
+* `xs` – state expansion point
+* `us` – input expansion point
+* `P` – parameter box
+
+## Output
+* the interval-matrix linearization with its expansion point
 
 ## References
 

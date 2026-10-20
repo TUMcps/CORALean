@@ -13,6 +13,19 @@ public import Mathlib.Tactic.Positivity
 `LinearSys.squaringsFloat_spec` at the system's interval matrix: `List.find?`
 returns only an `s` its test accepted, and `le`'s `true` is sound, so
 `nrm ≤ half (η + 2)↓ ≤ (η + 2)/2`. `2 ≤ η` is the caller's.
+
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Hypotheses
+* `h2` – order at least two
+
+## Conclusion
+* a returned count makes the scaled time range admissible
 -/
 
 -- Authors:       Claude Opus 5.5

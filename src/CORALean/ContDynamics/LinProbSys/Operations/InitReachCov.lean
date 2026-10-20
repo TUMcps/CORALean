@@ -13,6 +13,14 @@ diagonal `A = diag(l)`, `V = I`, this is `D_ij/(l_i + l_j) (1 - e^{-(l_i+l_j) r}
 [2, Sec. II] prints. It is the covariance for the drift `-A`, not `A`, see
 `references/coverage/contDynamics/linProbSys.md`, row `initReach`.
 
+## Inputs
+* `l` – eigenvalues
+* `C` – noise matrix
+* `r` – step size
+
+## Output
+* the covariance matrix of the probabilistic input solution
+
 ## References
 
 * [1] `contDynamics/@linProbSys/private/priv_inputSolution.m`

@@ -12,16 +12,31 @@ public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
 /-!
 # `reach` contains every trajectory known only up to a bound
 
-Induction on the step count, exactly `LinearSysDT.reach_outer_on`'s: no `shift`
-or `restrict` is needed, unlike `NonlinearSys.relinReach_outer`, since a
-discrete step already reads `x(k+1) = f(x(k), u(k))` at the step index itself
-— nothing to re-anchor onto `[0, Δt]`. `linInput_outer` supplies the one fact
-a step needs, in place of the hypothesis `NonlinearSys.relinReach_outer` takes
-on `Ud`.
+Induction on the step count, exactly `LinearSysDT.reach_outer_on`'s: no `shift` or `restrict` is
+needed, unlike `NonlinearSys.relinReach_outer`, since a discrete step already reads
+`x(k+1) = f(x(k), u(k))` at the step index itself. `linInput_outer` supplies the one fact a step
+needs, in place of the hypothesis `NonlinearSys.relinReach_outer` takes on `Ud`. Confinement
+(`hR`) stays a hypothesis per step, and the asymmetry — below `K`, never at `K` — is what
+`confinement_of_subset` needs to discharge it from a check on the computed sets.
 
-Confinement (`hR`) stays a hypothesis per step, and the asymmetry — below `K`,
-never at `K` — is exactly what `confinement_of_subset` needs to discharge it
-from a check on the computed sets rather than on the trajectory.
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `K` – number of known steps
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory known up to the step count
+* `hR` – states below the count stay in regions
+
+## Conclusion
+* every state up to the count lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

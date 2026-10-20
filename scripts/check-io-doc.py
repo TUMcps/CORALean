@@ -33,6 +33,8 @@ is a hypothesis when
   * its type's head identifier is `Is…`/`Has…` (also after a namespace, `Zonotope.IsFoo`), or one
     of a short list of Mathlib predicates (`Convex`, `Continuous`, `Nonempty`, …) or the type is
     `x.Nonempty`-style with such a trailing component.
+A binder named `h…` whose type is a single universe variable (`α`, `τ`, … : `(h₀ : τ)` with
+`{τ : Type}`) is data, a value of that type, not a hypothesis (#251).
 Known limits: a `Prop` binder with a name not starting with `h`, a type with no listed operator
 and a head not listed (`(P : Foo Z)` for a `Prop` structure `Foo`) is taken for an input; a data
 binder named `h…` whose type is headed by a data type but contains a depth-0 relation symbol
@@ -179,7 +181,7 @@ def is_prop(name, typ):
     # a name `h…` is a hypothesis, unless its type is headed by a data type with no relation
     # symbol at depth 0 (`(hi : Fin k → Vec 𝕋 n)`, `(h : ℕ)`)
     if name == "h" or re.match(r"^h.", name):
-        data = bool(head0 and head0.group(0) in DATA_HEADS)
+        data = bool(head0 and (head0.group(0) in DATA_HEADS or head0.group(0) in TYPE_VARS))
         if not data:
             # a function type `α → 𝕋` is data when its codomain is
             flat0 = top_level(t)

@@ -18,22 +18,38 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # `inputSolution` contains what the input contributes at every matrix of the set
 
-`LinearSys.inputSolution_outer` at a matrix drawn from `construct sys.A`, which
-is the whole difference: the run is `'constParam'`, so one member `A` is fixed
-and the argument about the integral is the point one unchanged. What changes is
-where each piece lands — every order is now an interval matrix, reached by
-`matPow_outer` and `smul_outer` rather than by a singleton, and the tail goes
-through the member's own remainder into the box's by
-`intervalInputRemainder_contains`.
+`LinearSys.inputSolution_outer` at a matrix drawn from `construct sys.A`: the run is `'constParam'`,
+so one member `A` is fixed and the argument about the integral is the point one unchanged. What
+changes is where each piece lands — every order is now an interval matrix, reached by
+`matPow_outer` and `smul_outer`, and the tail goes through the member's own remainder into the
+box's by `intervalInputRemainder_contains`. `hε` is stated at the box, checkable before a member
+is fixed. The three hypotheses on the remainder product are asked of the product and not of `U`,
+`R(τ)` varying with `τ`. `0 ∈ U` is not needed: this is the enclosure at `r`; the extension to
+all of `[0, r]` is `inputSolution_timeInterval_outer`.
 
-`hε` is stated at the box, checkable before a member is fixed; `hεA` is what it
-gives at the member, which is what the entrywise bound needs.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `U` – input set
+* `u` – input signal
 
-The three hypotheses on the remainder product are asked of the product and not
-of `U`, `R(τ)` varying with `τ`, exactly as in the point case.
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `hu` – input values lie in `U`
+* `hmeas` – input measurable
 
-`0 ∈ U` is not needed: this is the enclosure at `r`. The extension to all of
-`[0, r]` is `inputSolution_timeInterval_outer`, and that is where it is paid.
+## Conclusion
+* the input's contribution at the end of the step lies in the enclosure
 -/
 
 -- Authors:       Claude Opus 5

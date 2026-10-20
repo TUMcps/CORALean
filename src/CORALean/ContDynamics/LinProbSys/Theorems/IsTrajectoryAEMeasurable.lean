@@ -11,6 +11,26 @@ At every time `t ≥ 0` of `T` the state `x t` of a `LinProbSys.IsTrajectory` is
 measurable, and `P` is a probability measure: `law` says that the image of `P` under `x t` is a
 Gaussian, a probability measure, and the image under a map that is not almost everywhere
 measurable is `0`.
+
+## Inputs
+* `sys` – system
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `X₀` – initial set
+* `U` – input set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `t` – time
+
+## Hypotheses
+* `traj` – probabilistic trajectory
+* `ht` – `t` lies in `T`
+* `h0` – time nonnegative
+
+## Conclusion
+* the state is almost everywhere measurable and `P` is a probability measure
 -/
 
 -- Authors:       Claude Opus 5.5

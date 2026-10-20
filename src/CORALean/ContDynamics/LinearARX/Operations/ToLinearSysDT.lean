@@ -10,14 +10,18 @@ public import CORALean.Global.ExactScalar
 # Conversion to a discrete-time linear system
 
 The window `(y(k-p), …, y(k-1))` becomes the state, as in CORA's `nonlinearSysDT`,
-`f(x,u) = [x(dim_y+1:end); f_ARX(x,u)]`: block `a < p-1` of the next window is
-block `a+1` of this one, and the last block is `∑ Ā_i y(k-i)` — block `a'`
-carries `Ā_{p-a'}`, `Fin.rev a'` here. The input terms `∑ B̄_i u(k-i+1)` are not
-in `A`: they enter in state coordinates, through `inputMat` and `inputSet`.
+`f(x,u) = [x(dim_y+1:end); f_ARX(x,u)]`: block `a < p-1` of the next window is block `a+1` of
+this one, and the last block is `∑ Ā_i y(k-i)`, block `a'` carrying `Ā_{p-a'}`. The input terms
+`∑ B̄_i u(k-i+1)` enter in state coordinates, through `inputMat` and `inputSet`. CORA stacks the
+last `p+1` inputs into an input of dimension `dim_u (p+1)`; the converted system is the canonical
+form `LinearSysDT.canonical`, so they fold into the input set, which loses the dependency
+between the copies of `u`.
 
-CORA stacks the last `p+1` inputs into an input of dimension `dim_u (p+1)`; the converted
-system is the canonical form `LinearSysDT.canonical`, so they fold into the input set instead,
-which is what loses the dependency between the copies of `u`.
+## Inputs
+* `sys` – ARX system
+
+## Output
+* the discrete-time system on the output window
 -/
 
 -- Authors:       Claude Opus 5.5

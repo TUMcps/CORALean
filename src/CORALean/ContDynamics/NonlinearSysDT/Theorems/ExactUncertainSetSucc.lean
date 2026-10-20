@@ -13,6 +13,25 @@ steps is one of `k` steps and one more, whose end state `x_{k+1} = f(x_k, w_k)` 
 `y_{k+1} = g(x_{k+1}, v_{k+1})`. The paper does not prove it. A run is extended past `k` by
 overwriting its state at `k + 1`, its disturbance at `k` and its noise at `k + 1`.
 
+## Inputs
+* `n` – state dimension
+* `nw` – disturbance dimension
+* `nv` – noise dimension
+* `p` – output dimension
+* `sys` – system
+* `g` – measurement map
+* `W` – disturbance set
+* `V` – noise set
+* `X₀` – initial set
+* `y` – measured outputs
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the next exact set is the image met with the consistent set
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

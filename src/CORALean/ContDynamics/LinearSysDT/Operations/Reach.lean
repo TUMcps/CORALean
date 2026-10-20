@@ -9,21 +9,22 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Discrete-time linear systems: reachability
 
-`reach` is written against `Plus` and `Reduce` alone, so it runs at a
-representation with no `linComb`.
+`reach` is written against `Plus` and `Reduce` alone, so it runs at a representation with no
+`linComb`. `reduce` is called once per step, at `o = options.ρ`, kept positive by `ReachOptions`.
+The result is the time-point set at `params.tFinal`, CORA's last `timePoint.set`; `reachUnion`
+collects the earlier ones. The horizon is counted in sampling periods: CORA's `linearSysDT` takes
+`(tFinal - tStart) / dt` steps, but no `dt` can be divided exactly at every scalar this runs at,
+so `tStart`, `tFinal` are ℕ, the times `tStart dt`, `tFinal dt` of `sys.dt`. The step count
+`tFinal - tStart` is then exact; a horizon ending before it starts is `0` steps under ℕ's
+subtraction, where CORA refuses it, and every guarantee here is stated at `tStart = 0`.
 
-`reduce` is called once per step, at `o = options.ρ`, kept positive
-by `ReachOptions`. The result is the time-point set at `params.tFinal`, CORA's
-last `timePoint.set`; `reachUnion` collects the earlier ones.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
 
-The horizon is counted in sampling periods: CORA's `linearSysDT` takes
-`(tFinal - tStart) / dt` steps of its `dt`, but no `dt` can be divided exactly at every scalar
-this runs at — ℝ, where `discretize` holds `e^{AΔt}` exactly, has no computable
-exact quotient — so `tStart`, `tFinal` are ℕ, the times `tStart dt`, `tFinal dt` of the
-system's `sys.dt`, which the result does not depend on. The step count `tFinal - tStart` is
-then exact, as CORA's integer check demands; a horizon ending before it starts is `0` steps
-under ℕ's subtraction, where CORA refuses it, and every guarantee here is stated at
-`tStart = 0`.
+## Output
+* the reachable set at the final time
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

@@ -13,6 +13,19 @@ and `{c} ⊆ classes(Y_ZCP(x))` iff some `z ∈ Y_ZCP(x)` has its `c`-th score l
 `0 ≤ T z` for `T` of (21), iff by [1, Lemma 5] some `|β| ≤ α` has
 `-T f(x) ≤ T D̄(x) G_u β` (20e). For `α ≥ 0`.
 
+## Inputs
+* `c` – class index
+* `fx` – prediction at the point
+* `D` – derivative in the uncertainties
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the class is predicted iff some coefficient vector fulfils the class constraints
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

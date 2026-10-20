@@ -23,17 +23,37 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # `inputSolutionZono` contains what the input contributes at every matrix of the set
 
-[1, Thm. 1] at a matrix drawn from `construct sys.A`, the run being
-`'constParam'` as in `InputSolutionOuter`. The Taylor sum splits into four
-pieces rather than two: orders `0` and `1` land in `aux_inputTermZono` by
-`matPow_outer` at the matrix zonotope, orders `2` through `η` and the remainder
-land in the interval-matrix pieces by the same argument `InputSolutionOuter`
-already makes, now at `sys.A.interval` rather than a set-valued matrix given
-directly.
+[1, Thm. 1] at a matrix drawn from `construct sys.A`, the run being `'constParam'` as in
+`InputSolutionOuter`. The Taylor sum splits into four pieces: orders `0` and `1` land in
+`aux_inputTermZono` by `matPow_outer` at the matrix zonotope, orders `2` through `η` and the
+remainder in the interval-matrix pieces by the argument `InputSolutionOuter` makes, now at
+`sys.A.interval`. `2 ≤ η` makes the split legitimate: below it the "order `1`, then orders
+`2 … η`" reading is no truncation of the exponential, `expTaylor _ 0` not reaching order `1`.
 
-`2 ≤ η` is what makes the split legitimate: below it the
-"order `1`, then orders `2 … η`" reading does not correspond to any truncation
-of the exponential, `expTaylor _ 0` not reaching order `1` at all.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `U` – input set
+* `u` – input signal
+
+## Hypotheses
+* `hr` – step positive
+* `hη` – Taylor order at least two
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix zonotope
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `hu` – input values lie in `U`
+* `hmeas` – input measurable
+
+## Conclusion
+* the input's contribution at the end of the step lies in the enclosure
 
 ## References
 

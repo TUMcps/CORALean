@@ -17,6 +17,17 @@ whichever segment came from the half holding that start.
 the intended one — and is left abstract: the step is the caller's, and so is what
 it promises. Induction on the fuel, the two halves as the two hypotheses.
 
+## Inputs
+* `step` – step on a zonotope
+* `pick` – generator to split
+* `P` – property of start and answer
+
+## Hypotheses
+* `hstep` – step answers every start it accepts
+
+## Conclusion
+* every start in the set is answered by a returned segment
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear

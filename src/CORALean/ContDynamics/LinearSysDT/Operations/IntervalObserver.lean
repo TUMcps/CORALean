@@ -15,6 +15,21 @@ the bounds swapped, bound the disturbance term `E w - L F v` for `w̲ ≤ w ≤ 
 [1, Lemma 2]; `M⁺ = max{0, M}`, `M⁻ = M⁺ - M`. Started from given bounds `x̲₀`, `x̅₀`; an
 interval observer when `A - LC ≥ 0` [1, Thm. 4]. Real only, as the other observers are.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `xl₀` – lower initial bound
+* `xu₀` – upper initial bound
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the state interval after each number of steps
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

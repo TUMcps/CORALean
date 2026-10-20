@@ -19,6 +19,29 @@ observer [1, Thm. 4] and the proof uses it (Lemma 5 at `A - LC`). `W` and `V` li
 between the observer's bounds less `x̂_k`, the upper one following `ē_{k+1} = (A - LC) ē_k + d̅`
 (its Eq. 57); the box of Alg. 1 is the hull of the reachable error.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+* `i` – coordinate
+
+## Hypotheses
+* `hM` – error dynamics matrix nonnegative
+* `hW` – disturbance zonotope within the bounds
+* `hV` – noise zonotope within the bounds
+
+## Conclusion
+* the estimator's bounds are tighter than the interval observer's
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

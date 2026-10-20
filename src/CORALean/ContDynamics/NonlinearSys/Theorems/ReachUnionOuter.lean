@@ -15,16 +15,24 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 /-!
 # A union `reachUnion` returns contains every state reached within the horizon
 
-The run-time tests are what the proof spends. A returned union means every test
-passed; `contains_sound`, `region_subset` and the box inside the ball of radius
-`2MΔt` turn each into the ball check `reachSetExact_confinement_of_subset` asks for,
-the confinement it returns is what `reachSetExact_subset_relinTimeInterval_horizon`
-places the reachable set with, and `2MΔt > MΔt` is the strictness
-`confined_of_ball` spends. No confinement is assumed of any run.
+The run-time tests are what the proof spends. A returned union means every test passed;
+`contains_sound`, `region_subset` and the box inside the ball of radius `2MΔt` turn each into the
+ball check `reachSetExact_confinement_of_subset` asks for, the confinement it returns is what
+`reachSetExact_subset_relinTimeInterval_horizon` places the reachable set with, and `2MΔt > MΔt`
+is the strictness `confined_of_ball` spends. No confinement is assumed of any run. The order is
+raised until `reachOrder_admissible` applies at every step; convexity, closedness and
+boundedness are the representation's own, `ConvexSet` and `CompactSet`.
 
-The other side conditions are discharged once and for all: the order is raised
-until `reachOrder_admissible` applies at every step, and convexity, closedness
-and boundedness are the representation's own, `ConvexSet` and `CompactSet`.
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the returned union contains every exact reachable state
 -/
 
 -- Authors:       Claude Opus 5.5

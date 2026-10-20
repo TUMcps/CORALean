@@ -13,6 +13,19 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 Every parameter `computeGO` returns for the real values of the stored matrices lies in the
 interval matrix `computeGOFloat` returns for it: `A{k}`, `B{k,j}`, `C{k}` and `D{k,j}`. An outer
 statement; the interval matrices are not the parameters.
+
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `nk` – number of steps
+* `k` – step index
+* `j` – input index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real GO parameters lie in the interval ones
 -/
 
 -- Authors:       Claude Opus 5.5

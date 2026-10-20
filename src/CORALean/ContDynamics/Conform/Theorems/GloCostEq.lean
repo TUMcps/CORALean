@@ -15,6 +15,26 @@ the bracket applied to `α` blockwise, per test case `m` and step `k`; `C̄` and
 test case's GLO matrices, `k` running below the test-case length `n_k`. This is the
 objective of [1, Alg. 1]'s program, the cost half of [1, Thm. 2].
 
+## Inputs
+* `M` – test case index type
+* `ιx` – index type of the initial generators
+* `ιu` – index type of the input generators
+* `Cb` – state-to-output matrices
+* `Db` – input-to-output matrices
+* `Gx` – initial generators
+* `αx` – initial stretch factors
+* `Gu` – input generators
+* `αu` – input stretch factors
+* `w` – step weights
+* `nk` – number of steps
+
+## Hypotheses
+* `hαx` – initial factors nonnegative
+* `hαu` – input factors nonnegative
+
+## Conclusion
+* the weighted cost equals the expression linear in the stretch factors
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

@@ -13,6 +13,13 @@ offset as a point. It is the `U'` the canonical form of a run is driven from
 (`IsTrajectory.canonical`), and what `reachUnion` forms from `params.U` before splitting it at its
 center; soundness is `mem_inputSet`.
 
+## Inputs
+* `sys` – system
+* `U` – input set
+
+## Output
+* the input set in state coordinates
+
 ## References
 
 * [1] `contDynamics/@linParamSys/private/priv_inputSolution.m`

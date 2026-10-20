@@ -10,13 +10,20 @@ public import Mathlib.Data.Real.Basic
 
 [1, Sec. III]: for `ż = f(z, u)` with solution `φ(t; z₀, u)`, the robustly reachable set
 `R_AE(t; Z₀, U) = {z | ∀u_A ∈ U_A, ∃u_E ∈ U_E, ∃z₀ ∈ Z₀, z = φ(t; z₀, (u_A, u_E))}`: the
-disturbance part `u_A` of the input universally quantified, the control part `u_E`
-existentially. The maximal reachable set `R_E` is the case of a single disturbance signal,
-the minimal one `R_A` that of a single control signal.
+disturbance part `u_A` of the input universally quantified, the control part `u_E` existentially.
+The maximal reachable set `R_E` is the case of a single disturbance signal, the minimal one `R_A`
+that of a single control signal. [1] assumes a unique solution for every initial state and input
+signal, so the solution map `φ` is an argument; the admissible signals are the sets `UA`, `UE`.
 
-[1] assumes a unique solution for every initial state and input signal, so the solution
-map `φ` is an argument; the admissible signals — [1]'s piecewise constant ones with
-finitely many discontinuities — are the sets `UA` and `UE`.
+## Inputs
+* `φ` – solution map
+* `Z₀` – initial set
+* `UA` – disturbance signals
+* `UE` – control signals
+* `t` – time
+
+## Output
+* the states reached for every disturbance signal by some control signal
 
 ## References
 

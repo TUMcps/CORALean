@@ -14,15 +14,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
 /-!
 # The set every input contributes over one step, at a matrix zonotope
 
-[1, Thm. 1]: `LinearSys.inputSolution` adapted to a system matrix that is a
-matrix zonotope `A_Z`. Orders `0` and `1` — "linear" and "quadratic" — are
-`aux_inputTermZono`, computed exactly through the matrix zonotope; from order `2`
-on, `A_Z` is over-approximated by its enclosing interval matrix `A_Z.interval`,
-matching `inputTaylorSumTail` and `intervalInputRemainder` from there ([1, Sec. 4.4]
-keeps matrix zonotopes to second order for the same reason).
+[1, Thm. 1]: `LinearSys.inputSolution` adapted to a system matrix that is a matrix zonotope
+`A_Z`. Orders `0` and `1` are `aux_inputTermZono`, computed exactly through the matrix zonotope;
+from order `2` on, `A_Z` is over-approximated by its enclosing interval matrix `A_Z.interval`,
+matching `inputTaylorSumTail` and `intervalInputRemainder` ([1, Sec. 4.4] keeps matrix zonotopes
+to second order for the same reason). The four pieces stay four separate products, as CORA's
+`priv_inputSolution` takes them, not factored into `(r + A_Zr²/2!)U`.
 
-The four pieces below stay four separate products, each its own `mtimes`, as CORA's
-`priv_inputSolution` takes them: they are not factored into `(r + A_Zr²/2!)U`.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `U` – input set
+
+## Output
+* the set the inputs contribute over one step
 
 ## References
 

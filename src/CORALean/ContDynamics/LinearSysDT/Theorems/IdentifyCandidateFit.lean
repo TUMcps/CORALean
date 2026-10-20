@@ -16,6 +16,28 @@ point: `A x_j + B u_j + c = xNext_j`. Nothing about lower ranks, nor about data 
 produced.
 The source is [1].
 
+## Inputs
+* `x` – states per data point
+* `xNext` – successor states
+* `u` – inputs per data point
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `A'` – consistent state matrix
+* `B'` – consistent input matrix
+* `c'` – consistent offset
+* `j` – data point
+
+## Hypotheses
+* `hX1` – regressors factor as `V S Wᵀ`
+* `hV` – `V` has orthonormal columns
+* `hW` – `W` has orthonormal columns
+* `hs` – singular values nonzero
+* `hdata` – data obey the consistent system
+
+## Conclusion
+* the full-rank candidate reproduces every data point's successor state
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

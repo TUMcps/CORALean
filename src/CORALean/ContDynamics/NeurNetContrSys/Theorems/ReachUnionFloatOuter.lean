@@ -11,6 +11,27 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 
 `reachFloat_outer` at the order `reachOrderFloat` finds, for each period boundary
 `i ≤ tFinal - tStart` in the list.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `params` – reachability parameters
+* `options` – reachability options
+* `π` – controller function
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* every run lies in the list's set at its period boundary
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

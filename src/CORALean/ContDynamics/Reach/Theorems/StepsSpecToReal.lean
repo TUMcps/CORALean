@@ -11,6 +11,18 @@ public import CORALean.Global.Float.ToRat
 What a float run needs of the step count it derived: `timeStep` denotes a
 positive real, and `N` of it span the horizon exactly, in the reals the
 guarantees are stated in. `ToRat.toReal_toRat` carries `steps_spec` across.
+
+## Inputs
+* `𝕋` – float type
+* `tStart` – start time
+* `tFinal` – final time
+* `timeStep` – float step size
+
+## Hypotheses
+* none
+
+## Conclusion
+* the float step is positive and the steps span the horizon
 -/
 
 -- Authors:       Claude Opus 5.5

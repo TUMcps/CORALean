@@ -13,6 +13,16 @@ through a supplied `ReducedModel` and the ordinary system it leaves is run. Here
 `NonlinearSys.FloatModel.reachFloat`, from a `FloatModel` of the reduced field
 `x ↦ f(x, h(x, u), u)`. CORA's linearization of the DAE with an algebraic error term is not what
 is run. Soundness is `NonlinDASys.reachFloat_outer`.
+
+## Inputs
+* `sys` – system
+* `_red` – reduced ordinary model
+* `fm` – float model of the reduced system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the windows of the reduced system's float run, or none
 -/
 
 -- Authors:       Claude Opus 5.5

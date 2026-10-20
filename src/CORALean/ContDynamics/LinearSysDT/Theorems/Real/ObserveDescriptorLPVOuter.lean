@@ -16,6 +16,38 @@ the reduction is outer and `x₀ ∈ X₀`, then every run of
 vertex gains `Λᵢ`. By induction: [1, Thm. 1] (`intersectDescriptorHd_outer`) at the scheduled
 matrices, which [1, Cor. 1] (`intersectDescriptorLPV_eq`) turns into the zonotope of line 7.
 
+## Inputs
+* `E` – descriptor matrix
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `Hd` – disturbance generator matrix
+* `A` – vertex state matrices
+* `B` – vertex input matrices
+* `D` – vertex disturbance matrices
+* `Λ` – correction matrices
+* `ρ` – vertex weights per step
+* `red` – zonotope reduction
+* `X₀` – initial zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `b` – disturbance coefficients
+* `k` – step
+
+## Hypotheses
+* `hTN` – decoupling identity holds
+* `hρ` – weights sum to one
+* `hred` – the reduction is outer
+* `h0` – start lies in `X₀`
+* `hb` – coefficients within one
+* `hstep` – the descriptor dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the estimator zonotope
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

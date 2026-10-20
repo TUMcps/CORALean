@@ -18,15 +18,31 @@ public import CORALean.NN.Complexity.Time.Operations.EncloseCost
 
 The worked composition: nothing here is asserted. The leaf counts come from
 `Zonotope/Real/Complexity/Time/` and `NN/Complexity/Time/Enclose.lean`, the generator count each is
-evaluated at comes from `reach_order_le` and the caller's own bound `hEnc` on
-the controller's output, and monotonicity of a count in the operand size is
-what joins the two. What is left is induction on the step count.
+evaluated at comes from `reach_order_le` and the caller's own bound `hEnc` on the controller's
+output, and monotonicity of a count in the operand size is what joins the two; what is left is
+induction on the step count. `hR₀` and `hEnc` are the two hypotheses no size fact here supplies:
+`hR₀` because `reach_order_le` bounds every set the run *produces*, not the caller's own `R₀`;
+`hEnc` because how many generators an enclosure carries depends on which layers the controller
+runs.
 
-`hR₀` and `hEnc` are the two hypotheses no size fact here supplies: `hR₀`
-because `reach_order_le` bounds every set the run *produces*, not the
-caller's own `R₀`; `hEnc` because how many generators an enclosure carries
-depends on which layers the controller runs, which no `Complexity/Space/` fact
-states for `NeuralNetwork.enclose` in general.
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `LC` – per-layer cost bound
+* `hEnc` – bound on the enclosure's generator count
+* `hU` – bound on the external inputs' generator count
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial zonotope within the order bound
+* `hE` – every enclosure within its bound
+* `hUe` – external inputs within their bound
+
+## Conclusion
+* the cost of `k` steps is at most `k` worst-case steps
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

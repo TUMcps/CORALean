@@ -21,6 +21,27 @@ CORA's input set is `U + uTrans` [1]. For a `LinProbSys.IsTrajectory` with that 
 (`LinearSys.inputReach` of the canonical form at `A`): the form `initReach_tp_outer` and
 `initReach_ti_outer` take the mean in.
 
+## Inputs
+* `sys` – system
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `X₀` – initial zonotope
+* `U` – input zonotope
+* `uTrans` – constant input
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `t` – time
+
+## Hypotheses
+* `traj` – probabilistic trajectory
+* `h0` – time nonnegative
+* `hT` – window lies in the time set
+
+## Conclusion
+* the mean splits into the constant input part and a reachable contribution
+
 ## References
 
 * [1] `contDynamics/@linProbSys/private/priv_inputSolution.m`

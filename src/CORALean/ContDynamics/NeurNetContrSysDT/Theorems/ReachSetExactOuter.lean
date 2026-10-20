@@ -10,6 +10,23 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachSetExact
 The cheap half, exactly as `LinearSysDT.reachSetExact_outer`: a run is in the set of
 what runs reach by construction, so the proof is the pair itself. All the
 content sits in the other half, `reachSetExact_subset_reach`.
+
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+* `k` – step
+
+## Hypotheses
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the run's state lies in the exact reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

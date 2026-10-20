@@ -17,6 +17,33 @@ As in the paper: the errors `x̅_k - x_k` and `x_k - x̲_k` follow `e_{k+1} = (A
 with `δ_k ≥ 0` by [1, Lemma 2] (`mulVec_posNeg_bounds`), and stay nonnegative by [1, Lemma 3]
 (`nonneg_of_nonneg_recurrence`).
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `xl₀` – lower initial bound
+* `xu₀` – upper initial bound
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `hM` – error dynamics matrix nonnegative
+* `h0` – start within the bounds
+* `hw` – disturbances within the bounds
+* `hv` – noise within the bounds
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the observer's interval
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

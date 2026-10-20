@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 The right block of columns of `B`, read into ℝ, is the same block of `B` read into ℝ: a
 column selection and `toRealMat` act on different things. The discrete-time loop keeps `B_nn` and
 `B_ext` in the plant's scalar, its theorems read them in ℝ.
+
+## Inputs
+* `𝕋` – scalar type
+* `n` – row count
+* `M` – column count
+* `m` – split column
+* `B` – matrix
+
+## Hypotheses
+* `hm` – split column fits
+
+## Conclusion
+* selecting the right columns commutes with reading into ℝ
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,18 @@ CORA's `identify` with `options.alg = 'dmd'` [1]: every rank `1, …, rankMax` g
 arguments). The interpolation to a uniform step (`uniformTimeStepSize`) is not modelled, and
 `'opt'` is a solver.
 
+## Inputs
+* `dt` – sampling time
+* `lt` – order test on errors
+* `err` – error of a candidate matrix
+* `yNext` – successor outputs
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+
+## Output
+* the system of least error over all ranks, if any
+
 ## References
 
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`

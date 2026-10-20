@@ -13,6 +13,20 @@ public import CORALean.ContDynamics.Conform.Theorems.IntervalNormSmul
 norm `1ᵀ|R D̄(x) G_u diag(α)|1` is `1ᵀ|R D̄(x) G_u| α` for `α ≥ 0` (17). The norm is that of the
 generator matrix the set is given by, as [1, Def. 2] defines it.
 
+## Inputs
+* `nr` – number of rows of `R`
+* `R` – rotation matrix
+* `fx` – prediction at the point
+* `D` – derivative in the uncertainties
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the rotated prediction set is a template whose interval norm is linear in `α`
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

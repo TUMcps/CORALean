@@ -17,6 +17,21 @@ reachable sets `Y(k) … Y(k₊)`. The loop keeps `S = Ã(k) ỹ_init ⊕ ⊕_{i
 line 13 is that invariant at `k + p` by [1, Lemma 1], and the stored `B̃ᵢ`, `i < 2p`, are
 `B̃ᵢ(k)` by [1, Lemma 2] once refreshed at `k < 3p`. Then line 7 is [1, Eq. 12].
 
+## Inputs
+* `sys` – ARX system
+* `yinit` – measured first output window
+* `U` – input sets per step
+* `kinit` – initial step
+* `m` – pass index
+
+## Hypotheses
+* `hU` – input sets nonempty
+* `hp` – at least one lag
+* `hk` – initial step at least the lag count
+
+## Conclusion
+* pass `m` returns exactly the reachable windows
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

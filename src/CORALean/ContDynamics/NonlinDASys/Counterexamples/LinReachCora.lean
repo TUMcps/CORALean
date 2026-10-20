@@ -19,35 +19,33 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `NonlinDASys.linReachCora`
 
 CORA's `@nonlinDASys/linReach.m` for one step as printed, at the error-loop pass that ends it:
-`priv_linearize` builds `Ã = A - CF⁻¹D`, `B̃ = B - CF⁻¹E` and `f0 = f(z*) - CF⁻¹g(z*)`,
-`oneStep` runs the linearized system from `Rinit - x*` without the error, and the error set
-`Verror` of `priv_linError_mixed_noInt` (`NonlinDASys.linErrorCora`, `+ CF_inv` on the algebraic
-part) enters afterwards as `Rerror = particularSolution_timeVarying(linsys, Verror)`, added to
-both sets once they are moved back by `x*`. This is the step `initReach` (line 66) and `post`
-take with CORA's default `alg = 'lin'`, `tensorOrder = 2`.
-
-The `while` loop that grows the assumed error until it covers the computed one is not run:
-its last pass computes `Verror` over a deviation zonotope `R^z_Δ` (CORA's `R_xyu`, reduced)
-and the Hessians' midpoints and radii over that pass's box, and these are the arguments
-`R_Δ`, `Hd_c`, `Hd_Δ`, `Ha_c`, `Ha_Δ`, as in `linErrorCora`. The algebraic set `Rti_y` and
-the split decision are left out. `particularSolution_timeVarying` is `inputSolution`, the
-time-varying input part `oneStep` takes too. With `NonlinDASys.linError` in `Verror`'s place,
-this is `NonlinDASys.linReach` up to where the error enters (there, in `oneStep`'s input).
+`priv_linearize` builds `Ã = A - CF⁻¹D`, `B̃ = B - CF⁻¹E` and `f0 = f(z*) - CF⁻¹g(z*)`, `oneStep`
+runs the linearized system from `Rinit - x*` without the error, and the error set `Verror` of
+`priv_linError_mixed_noInt` (`NonlinDASys.linErrorCora`, `+ CF_inv` on the algebraic part) enters
+afterwards as `Rerror = particularSolution_timeVarying(linsys, Verror)`. The `while` loop that
+grows the assumed error is not run: its last pass's deviation zonotope and the Hessians' midpoints
+and radii are the arguments `R_Δ`, `Hd_c`, `Hd_Δ`, `Ha_c`, `Ha_Δ`, as in `linErrorCora`; the
+algebraic set `Rti_y` and the split decision are left out.
 
 # CORA's `nonlinDASys/linReach` misses a reachable state
 
-The sign error of `priv_linError_mixed_noInt` (`NonlinDASys.linErrorCora`, `+ CF_inv` where
-[1, Cor. 1] has `- CF⁻¹`) reaches the step CORA's `reach` takes for a DAE with the default
-`'lin'` algorithm, `reach` → `initReach` / `post` → `linReach` (`NonlinDASys.linReachCora`).
+The sign error of `priv_linError_mixed_noInt` (`+ CF_inv` where [1, Cor. 1] has `- CF⁻¹`) reaches
+the step CORA's `reach` takes for a DAE with the default `'lin'` algorithm. `ẋ = y`,
+`0 = y - u²`, `x(0) = 0`, `u ∈ [-1, 1]`, linearized at `z* = 0`: `Ã = 0`, `B̃ = 0`, `f0 = 0`,
+`C F⁻¹ = 1`. The one nonzero Hessian is the constraint's, `-2` in `u`; on the constraint
+`ẋ = u² ∈ [0, 1]` while the linearization gives `0`. CORA's error set is `½ (-2) [0, 1] = [-1, 0]`,
+its time-point set `Δt [-1, 0]`, and the run under `u ≡ 1`, `x(t) = t`, ends outside it. With
+[1, Cor. 1]'s set the tree's `linReach` holds it (`linReach_outer`), at every `Δt > 0`.
 
-`ẋ = y`, `0 = y - u²`, `x(0) = 0`, `u ∈ [-1, 1]`, linearized where CORA does, at
-`z* = (0, 0, center(U)) = 0`: `Ã = 0`, `B̃ = 0`, `f0 = 0`, `C F⁻¹ = 1`. The one nonzero
-Hessian is the constraint's, `-2` in `u`, so the error is computed over `R^z_Δ = U` (the `u`
-part of `R_xyu = R_xy × U`). On the constraint `ẋ = u² ∈ [0, 1]` while the linearization
-gives `0`; CORA's error set is `½ (-2) [0, 1] = [-1, 0]`, its time-point set `Δt [-1, 0]`,
-and the run under `u ≡ 1`, `x(t) = t`, ends outside it. With [1, Cor. 1]'s set
-(`NonlinDASys.linError`) the tree's `linReach` holds it (`linReach_outer`). At every `Δt > 0`
-and Taylor order; in one dimension `reduce` does not change a set.
+## Inputs
+* `Δt` – step size
+* `η` – Taylor order
+
+## Hypotheses
+* `hΔt` – step positive
+
+## Conclusion
+* the run ends outside CORA's time-point set but inside the paper-based one
 
 ## References
 

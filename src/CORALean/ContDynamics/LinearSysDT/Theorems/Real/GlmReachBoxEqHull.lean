@@ -16,6 +16,18 @@ a zonotope sum is the sum of the boxes, [1, Eq. 3] at the representation; so `Ω
 box of the zonotope `Ωᵢ` that `glmReach` returns, which is `Interval.hull` of its set
 (`Zonotope.interval_eq_hull`), and that set is `Ωᵢ` (`LinearSysDT.glmReach_eq`).
 
+## Inputs
+* `sys` – system
+* `Ω₀` – initial zonotope
+* `U` – input zonotope
+* `N` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* the boxes are the interval hulls of the reachable sets
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

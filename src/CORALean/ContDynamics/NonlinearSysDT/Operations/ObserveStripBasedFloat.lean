@@ -15,6 +15,21 @@ prediction and update of `observeStepFloat` at the linearization `steps k`, then
 `FRad-C` of `executeObserver` are this loop at their own intersection technique (the gain); the
 enclosure holds for every gain. Soundness is `observeStripBasedFloat_outer`.
 
+## Inputs
+* `sys` – system
+* `U` – input zonotope
+* `steps` – linearization steps
+* `o` – maximum order
+* `C` – output matrix
+* `σ` – strip half-widths
+* `W` – disturbance zonotope
+* `R₀` – initial zonotope
+* `y` – measurements
+* `options` – observer options
+
+## Output
+* the set held after each measurement
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

@@ -8,19 +8,45 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinementOfSubset
 /-!
 # Confinement of the whole reachable set, from the computed sets
 
-`confinement_of_subset` with the trajectory quantifier gone rather than moved:
-its hypotheses name no run, so what it says of each run over step `i` it says
-of `reachSetExact` over step `i`, as one set inside the region step `i`'s
-certificate was issued for.
+`confinement_of_subset` with the trajectory quantifier gone rather than moved: its hypotheses name
+no run, so what it says of each run over step `i` it says of `reachSetExact` over step `i`, as one
+set inside the region step `i`'s certificate was issued for. `relinTimeInterval_outer` asks
+confinement of `x`, which only a run has; asking it of `reachSetExact` is a condition on `R₀`,
+`U` and `steps` alone, and this theorem discharges even that from the ball check `hsub`: inflate
+each computed set by `ρ > MΔt` and ask it to lie in that step's region. The regions are arbitrary
+sets, so the conclusion is `Set` inclusion.
 
-That is what the downstream statements need. `relinTimeInterval_outer` asks
-confinement of `x`, which only a run has; asking it of `reachSetExact` instead is a
-condition on `R₀`, `U` and `steps` alone, and this theorem discharges even that
-from the ball check `hsub` — inflate each computed set by `ρ > MΔt` and ask it
-to lie in that step's region.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `M` – field bound
+* `ρ` – ball radius
+* `η` – Taylor terms
+* `o` – maximum order
 
-The certified regions `(steps i).R` are arbitrary sets, not a representation,
-so the conclusion is `Set` inclusion and no operation class answers for it.
+## Hypotheses
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `hM₀` – bound nonnegative
+* `hM` – field bounded on regions
+* `hρ` – radius exceeds travel distance
+* `ho` – order positive
+* `hsub` – inflated sets inside regions
+
+## Conclusion
+* the exact reachable set stays in each step's certified region
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,27 @@ As for `NonlinearSys`: a state with the derivative `f(x t, y t, u t)` within a c
 every point of `T`, the field along it integrable from `0`, satisfies the integral equation
 `IsTrajectory` states; the derivative makes the field measurable on `T` and the state
 continuous. The constraint is pointwise, the same in both readings.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+
+## Hypotheses
+* `hTconv` – time set convex
+* `h0T` – zero lies in the time set
+* `init` – start lies in `R₀`
+* `input` – inputs lie in `U`
+* `hd` – the field is the derivative
+* `hint` – the field is integrable
+* `constraint` – the constraint holds
+
+## Conclusion
+* the classical run is a DAE trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

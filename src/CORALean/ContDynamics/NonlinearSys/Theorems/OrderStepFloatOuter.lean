@@ -12,6 +12,20 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
 `relinStepFloat_outer` at `κ = 1` and `linReachFloat_outer` at `'lin'` otherwise: the order only
 picks which remainder the step spends. See [1].
 
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `κ` – abstraction order
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* a successful step encloses every run over the step and at its end
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

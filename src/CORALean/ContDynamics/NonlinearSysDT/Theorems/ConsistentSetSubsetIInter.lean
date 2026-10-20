@@ -11,6 +11,20 @@ public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ConsistentSet
 `y_i = g_i(x, v)` for every component `i` at once. The intersection of the component sets is what
 the strips of [1, Property 1] bound, one per output.
 
+## Inputs
+* `n` – state dimension
+* `nv` – noise dimension
+* `p` – output dimension
+* `g` – measurement map
+* `V` – noise set
+* `y` – measured output
+
+## Hypotheses
+* none
+
+## Conclusion
+* the consistent set lies in the intersection of component sets
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

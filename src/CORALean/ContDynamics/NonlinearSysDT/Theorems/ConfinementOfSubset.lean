@@ -7,22 +7,33 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
 /-!
 # Confinement, discharged from the computed sets
 
-`reach_outer_on` asks for confinement (`x j ∈ (steps j).R`) at every step
-strictly *below* `K` to place `x K` — never at `K` itself. That asymmetry is
-what makes this theorem possible without circularity: strong induction on `k`
-gets confinement below `k` from the induction hypothesis, places `x k` inside
-`reach ... k` by `reach_outer_on`, and `hsub k` — the computed set contained
-in the candidate region — turns that placement into confinement *at* `k`,
-with confinement at `K` itself never assumed.
+`reach_outer_on` asks for confinement (`x j ∈ (steps j).R`) at every step strictly *below* `K`
+to place `x K`, never at `K` itself. That asymmetry makes this theorem possible without
+circularity: strong induction on `k` gets confinement below `k` from the hypothesis, places
+`x k` inside `reach ... k` by `reach_outer_on`, and `hsub k` turns that placement into
+confinement *at* `k`. `hsub` is a hypothesis about sets, not a decision procedure; what changes
+is *what* a caller must establish, a checkable property of the computed enclosures rather than
+of every trajectory. CORA also *enlarges* the candidate region on failure and retries; that
+search owes no proof here, and none is implemented.
 
-`hsub` is a hypothesis about sets, not a decision procedure: nothing here
-makes membership or subset checkable, and for a general `R : Set (Vec ℝ n)`
-it is not. What changes is *what* a caller must establish — a checkable
-property of the computed enclosures, rather than of every trajectory.
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
 
-CORA also *enlarges* the candidate region on failure and retries; that search
-owes no proof here, exactly as `ConPolyZono.reduceBy_outer` is sound at every
-partition without picking one. No search is implemented.
+## Hypotheses
+* `ho` – order positive
+* `hsub` – computed sets inside regions
+* `traj` – trajectory of the system
+
+## Conclusion
+* the state at the step lies in its certified region
 -/
 
 -- Authors:       Claude Opus 5

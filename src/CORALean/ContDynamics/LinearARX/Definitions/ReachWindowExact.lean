@@ -12,6 +12,15 @@ window `ỹ_init` under inputs `ũ(i) ∈ Ũ(i)`: the set [1, Eq. 12] computes, 
 Its (13) writes it as the Cartesian product `Y(k) × ⋯ × Y(k₊)`, which it is not;
 `reachWindowExact_ne_prod` is the counterexample.
 
+## Inputs
+* `sys` – ARX system
+* `y₀` – measured first output window
+* `U` – input sets per step
+* `k` – step
+
+## Output
+* the output windows some run reaches at step `k`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

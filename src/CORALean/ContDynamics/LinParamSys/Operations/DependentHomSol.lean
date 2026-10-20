@@ -15,17 +15,24 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 # `LinParamSys.dependentHomSol`, CORA's `priv_dependentHomSol` corrected
 
 The time-point solution after one step `r` when the matrix zonotope `sys.A` (`A_c + Σ pᵢ A_g⁽ⁱ⁾`)
-and the constant input `U_c + Σ pᵢ U_G⁽ⁱ⁾` share `pᵢ ∈ [-1, 1]`, in CORA's three parts:
-`R_lowOrder`, the orders up to `A²` from the center `c` of `Rinit`, dependent on `p` and
-**corrected** (`dependentLowOrder`); `R_rem`, orders `3 … η` and the remainder past `η`, of the
-state at `c` and of the input, independent of `p` (`priv_highOrderMappingMatrix`'s `eI`,
-`eI_input`); `R_hom_state`, the exponential on `Rinit - c`.
+and the constant input `U_c + Σ pᵢ U_G⁽ⁱ⁾` share `pᵢ ∈ [-1, 1]`, in CORA's three parts: the
+**corrected** `R_lowOrder` (`dependentLowOrder`), the orders up to `A²` from the center `c` of
+`Rinit`; `R_rem`, orders `3 … η` and the remainder, independent of `p`; `R_hom_state`, the
+exponential on `Rinit - c`. At `intermediateTerms = 2` every order of `R_rem` is an interval
+matrix over `sys.A.interval`, so `R_hom_state`'s exponential is the box's
+(`expIntervalEnclosure`), not CORA's mixed one: sound, looser than CORA above `2`. `η ≥ 2` is
+what the parts assume.
 
-At `intermediateTerms = 2`: every order of `R_rem` is an interval matrix over the box
-`sys.A.interval` (CORA keeps orders up to `intermediateTerms` as matrix zonotopes), so
-`eZhigh` and `eZhigh_input` are empty and `R_hom_state`'s exponential is the box's
-(`expIntervalEnclosure`), not CORA's mixed `mappingMatrixSet.zono + .int`. Sound, looser than
-CORA's above `2`. `η ≥ 2` is what the parts assume.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `Rinit` – initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+
+## Output
+* the zonotope of the time-point solution after one step
 -/
 
 -- Authors:       Claude Opus 5.5

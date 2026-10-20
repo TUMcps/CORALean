@@ -11,6 +11,20 @@ The same statement as `reach_outer`, one layer down: the induction step is the
 dynamics themselves rather than three class guarantees, since `reachSetExact` is
 built from the step and nothing else. So this holds at a representation with no
 `plus`, no `mtimes` and no `reduce` — none is mentioned.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `traj` – discrete-time trajectory
+
+## Conclusion
+* the trajectory state lies in the exact reachable set
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,21 @@ are in the errors `priv_abstractionError_adaptive` returns: `½ σ` in `Z_error_
 `Z_error_y`, `½ (σ - CF⁻¹ φ)` in `Z_error`, the sign of the linearized DAE ([1, Cor. 1]). All
 three are `NonlinDASys.linError_outer`, at `CF⁻¹ = 0` for the parts (CORA's tuning).
 
+## Inputs
+* `CF_inv` – the matrix `C F⁻¹`
+* `H` – Hessian intervals
+* `Hd` – dynamics Hessian rows
+* `Ha` – constraint Hessian rows
+* `ν` – deviation
+
+## Hypotheses
+* `hHd` – dynamics Hessians within their intervals
+* `hHa` – constraint Hessians within their intervals
+* `hν` – `ν` lies in the deviation zonotope
+
+## Conclusion
+* the three errors hold the quadratic forms of the Hessian rows
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

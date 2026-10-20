@@ -13,6 +13,13 @@ CORA's `intervalMatrix` or `matZonotope` times a set — `U` in input coordinate
 offset as a point. It is the `U'` the canonical form of a run is driven from
 (`IsTrajectory.canonical`); soundness is `IsTrajectory.mem_inputSet`.
 
+## Inputs
+* `sys` – system
+* `U` – input set
+
+## Output
+* the input set in state coordinates
+
 ## References
 
 * [1] `contDynamics/@linParamSys/private/priv_inputSolution.m`

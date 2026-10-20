@@ -11,6 +11,12 @@ public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 `IsTrajectory` is its `IsCanonicalTrajectory`. It is the system an operation handed only the matrix
 set builds: the discretization `e^{AΔt}` of a `LinearSys` or `LinParamSys`, enclosed, whose input
 is already in state coordinates; `LinParamSys.canonical` in discrete time.
+
+## Inputs
+* `A` – matrix set
+
+## Output
+* the canonical-form system with that matrix set
 -/
 
 -- Authors:       Claude Sonnet 5.5

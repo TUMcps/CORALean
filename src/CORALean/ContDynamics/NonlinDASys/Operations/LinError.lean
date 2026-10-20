@@ -14,18 +14,23 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 [1, Cor. 1]: the set of linearization errors `L` of [1, Eq. 15] over the zonotope `R^z_Δ` of
 deviations `ν = z - z*`, the Hessians bounded by interval matrices `Hᵈ = Hᵈ_c ⊕ [-Hᵈ_Δ, Hᵈ_Δ]`
-and `Hᵃ = Hᵃ_c ⊕ [-Hᵃ_Δ, Hᵃ_Δ]`:
-
-`L = ½ (d - CF⁻¹e, H - CF⁻¹V) ⊕ ½ ([-ζ, ζ] ⊕ (-CF⁻¹)[-ϱ, ϱ])`,
-
-`(d, H) = quad(Hᵈ_c, R^z_Δ)`, `(e, V) = quad(Hᵃ_c, R^z_Δ)` ([1, Lemma 1]),
-`ζ = |R^z_Δ|ᵀ Hᵈ_Δ |R^z_Δ|`, `ϱ = |R^z_Δ|ᵀ Hᵃ_Δ |R^z_Δ|` ([1, Thm. 1]). The first part `L_c`
-subtracts `CF⁻¹` times the algebraic quadratic map generator by generator: both maps are
-taken of the same zonotope, so their `j`-th generators carry the same factor, which is what
-keeps `σ` and `φ` correlated through the shared `ν`. The second part `L_Δ` is symmetric.
-
-`CF⁻¹` is the one matrix `C F⁻¹` of [1, Eq. 14], a parameter. CORA's `nonlinDASys` adds
+and `Hᵃ = Hᵃ_c ⊕ [-Hᵃ_Δ, Hᵃ_Δ]`: `L = ½ (d - CF⁻¹e, H - CF⁻¹V) ⊕ ½ ([-ζ, ζ] ⊕ (-CF⁻¹)[-ϱ, ϱ])`,
+with `(d, H) = quad(Hᵈ_c, R^z_Δ)`, `(e, V) = quad(Hᵃ_c, R^z_Δ)` ([1, Lemma 1]) and
+`ζ`, `ϱ` the radius terms ([1, Thm. 1]). The first part `L_c` subtracts `CF⁻¹` times the algebraic
+quadratic map generator by generator, which keeps `σ` and `φ` correlated; the second part `L_Δ` is
+symmetric. `CF⁻¹` is the matrix `C F⁻¹` of [1, Eq. 14], a parameter. CORA's `nonlinDASys` adds
 `CF_inv` times the algebraic part where this subtracts it (`NonlinDASys.linErrorCora`).
+
+## Inputs
+* `Hd_c` – dynamics Hessian midpoints
+* `Hd_Δ` – dynamics Hessian radii
+* `Ha_c` – constraint Hessian midpoints
+* `Ha_Δ` – constraint Hessian radii
+* `CF_inv` – the matrix `C F⁻¹`
+* `R_Δ` – deviation zonotope
+
+## Output
+* the zonotope of linearization errors
 
 ## References
 

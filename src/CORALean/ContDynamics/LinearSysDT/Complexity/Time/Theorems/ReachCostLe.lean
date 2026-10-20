@@ -14,18 +14,28 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ReduceGira
 /-!
 # `reach` costs at most `k` worst-case steps
 
-The worked composition, and the point of the whole arrangement: nothing is
-asserted here. The leaf counts come from `Zonotope/Real/Complexity/Time/`, the generator
-count each is evaluated at comes from the size fact `reach_order_le`, and
-monotonicity of a count in the operand size is what joins the two. What is left
-is induction on the step count.
+The worked composition: nothing is asserted here. The leaf counts come from
+`Zonotope/Real/Complexity/Time/`, the generator count each is evaluated at comes from the size
+fact `reach_order_le`, and monotonicity of a count in the operand size joins the two; what is left
+is induction on the step count. `hR₀` is the one hypothesis the size facts cannot supply:
+`reach_order_le` bounds every set the run produces but not the caller's own `R₀`. A caller who
+reduces it discharges `hR₀` by `reduce_order_le`. The bound is linear in `k` because `reduce` runs
+every step; without it the `plus` would carry `U`'s generators forward and the run would be
+quadratic.
 
-`hR₀` is the one hypothesis the size facts cannot supply: `reach_order_le`
-bounds every set the run produces but not the caller's own `R₀`, which no step
-has reduced yet. A caller who reduces it discharges `hR₀` by `reduce_order_le`.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-The bound is linear in `k` because `reduce` runs every step; without it the
-`plus` would carry `U`'s generators forward and the run would be quadratic.
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial zonotope already within the order
+
+## Conclusion
+* the cost of `k` steps is at most `k` worst-case steps
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -15,6 +15,16 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 `sampleTimeFloat` brackets `t_k`, and `expSquaringFloat` encloses `e^{At}` over
 that bracket at every member, with `s ≈ log₂ k` squarings from `squaringsFloat`,
 so the step's order `η` serves every window. No window when no `s` is found.
+
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `Rτ₀` – first window set
+* `k` – window index
+
+## Output
+* the float zonotope of window `k`, or none
 -/
 
 -- Authors:       Claude Opus 5.5

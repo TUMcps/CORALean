@@ -7,15 +7,23 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
 /-!
 # `innerMinkDiff`, the inner Minkowski-difference algorithm
 
-[1, Alg. 1]: from the initial set `X₀`, `ω` steps of size `Δt = t_end/ω` with the enlargement
-factor `μ = 1.1` (line 1), each step linearizing at `cen(R̂(t_k)) + ½Δt f(·)`, bounding the
-Lagrange remainder until `L ⊆ L̂`, and computing `R̂(t_{k+1})` by `Prop. 1` and `R̂(τ_k)` by
-`Prop. 2` (lines 2-17, `innerMinkDiffLoop`); the result is line 18's union
-`R̂(τ) = ⋃_k R̂(τ_k)`, which the listing ensures is an inner approximation of the reachable set.
-`fuel` bounds each step's remainder loop, and the result is `none` when one runs out.
+[1, Alg. 1]: from the initial set `X₀`, `ω` steps of size `Δt = t_end/ω` with enlargement factor
+`μ = 1.1` (line 1), each step linearizing at `cen(R̂(t_k)) + ½Δt f(·)`, bounding the Lagrange
+remainder until `L ⊆ L̂`, and computing `R̂(t_{k+1})` by `Prop. 1` and `R̂(τ_k)` by `Prop. 2`
+(lines 2-17, `innerMinkDiffLoop`); the output is line 18's union `R̂(τ) = ⋃_k R̂(τ_k)`, an inner
+approximation of the reachable set. `fuel` bounds each step's remainder loop; `none` when one
+runs out. The listing requires a polytopic `X₀` and the autonomous field `f`.
 
-The listing requires a polytopic `X₀ = ⟨H, d⟩_H` and the autonomous field `f`; over exact sets
-the representations do not appear, and `X₀` is any set.
+## Inputs
+* `ops` – set operations
+* `f` – autonomous field
+* `X₀` – initial set
+* `tend` – final time
+* `ω` – number of steps
+* `fuel` – bound per remainder loop
+
+## Output
+* the inner approximation over the whole time, or none
 
 ## References
 

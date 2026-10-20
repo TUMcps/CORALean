@@ -20,6 +20,19 @@ which covers both. No intersection is taken, so no strip widths enter. `A`, `B`,
 system's, the input `u` in input coordinates; as in CORA, neither `c` nor `E`, `D`, `k`, `F` enters
 (the counterexamples `observePropagation_state_offset_counterexample` and its siblings).
 
+## Inputs
+* `sys` – system
+* `gain` – gain function
+* `order` – zonotope order
+* `W` – disturbance zonotope
+* `R₀` – initial zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the observer's state set after each number of steps
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

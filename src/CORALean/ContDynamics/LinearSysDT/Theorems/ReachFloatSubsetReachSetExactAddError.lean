@@ -15,22 +15,29 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # A float run reaches no further than the exact set plus its own error
 
-The float counterpart of `reach_subset_reachSetExact_add_error`. The induction is
-the same shape, run against three growth bounds instead of one:
-`mtimes_subset_add_box`, `plus_subset_add_box` and `reduce_subset_add_box`
-each peel a box off a float operation, in the order `reach`'s own step applies
-them, and what is left after peeling all three is exactly the previous step's
-construct carried through `A`, plus `U`'s — which the induction hypothesis and
-`reachSetExact`'s own recursion close.
+The float counterpart of `reach_subset_reachSetExact_add_error`. The induction is the same shape,
+run against three growth bounds instead of one: `mtimes_subset_add_box`, `plus_subset_add_box` and
+`reduce_subset_add_box` each peel a box off a float operation, in the order `reach`'s own step
+applies them, and what is left is the previous step's construct carried through `A`, plus `U`'s —
+which the induction hypothesis and `reachSetExact`'s own recursion close.
+`reachFloat_zero_mem_error` supplies what `mtimes_subset_add_box` and `plus_subset_add_box` ask
+beyond `reduce_subset_add_box`: that the operands' error boxes bracket `0`. At `k = 0` the run is
+`R₀` itself and `reachErrorFloat 0` matches it exactly.
 
-`reachFloat_zero_mem_error` supplies what `mtimes_subset_add_box` and
-`plus_subset_add_box` ask beyond `reduce_subset_add_box`: that the operands'
-error boxes bracket `0`, carried from `hR₀` and `hU` by induction.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – step
 
-At `k = 0` the run is `R₀` itself and `reachErrorFloat 0` matches it exactly.
-Each box's own `construct` is computed in `𝕋` now, so it reaches
-`reachErrorFloat`'s real accumulator through one more `⊆` step, the two
-`aux_` lemmas below.
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial error box contains the origin
+* `hU` – input error box contains the origin
+
+## Conclusion
+* the float run lies in the exact set plus its accumulated error
 -/
 
 -- Authors:       Claude Opus 5

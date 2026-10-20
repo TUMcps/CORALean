@@ -10,6 +10,13 @@ public import CORALean.ContDynamics.LinearARX.Operations.InputMat
 `∑_j E' B̄_{j+1} U`, one `mtimes` per lag and `plus` between them. Every lag draws
 from the same `U` but the sum treats the `p+1` draws as independent, which
 encloses every ARX input and is where the conversion is looser than the ARX form.
+
+## Inputs
+* `sys` – ARX system
+* `U` – input set
+
+## Output
+* the input set of the converted system
 -/
 
 -- Authors:       Claude Opus 5.5

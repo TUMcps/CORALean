@@ -19,6 +19,14 @@ taken — in place of the one fixed `o` `reachError` reduces to throughout.
 At `Zonotope` and at `𝕋 = ℝ`, for the reasons `reachError`'s own docstring
 gives: `mtimes` is exact only there, and a zonotope rather than a `Set` is what
 `minkDiffRep` can take as an operand.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options with per-step orders
+
+## Output
+* the error zonotope the run owes at per-step orders
 -/
 
 -- Authors:       Claude Sonnet 5

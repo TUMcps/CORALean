@@ -14,6 +14,28 @@ covariance of the solution of [1, Eq. 2]: `Σ_s(t)` is positive semidefinite
 (`noiseCovariance_posSemidef`), so it is the covariance of the Gaussian `law` gives `x t`
 (`covariance_eval_multivariateGaussian`), read back through the image of `P`.
 
+## Inputs
+* `sys` – system
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `X₀` – initial set
+* `U` – input set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `t` – time
+* `i` – first coordinate
+* `j` – second coordinate
+
+## Hypotheses
+* `traj` – probabilistic trajectory
+* `ht` – `t` lies in `T`
+* `h0` – time nonnegative
+
+## Conclusion
+* the covariance of two state coordinates is the noise covariance entry
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

@@ -13,6 +13,16 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 [1, Eq. 15]: the zonotope `NonlinDASys.composeSubsystems` denotes exactly the sum of the sets
 `Φ⁽ⁱ⁾ R⁽ⁱ⁾(τ_k)`, with no overapproximation.
 
+## Inputs
+* `Φ` – embeddings of the subsystems
+* `R` – subsystem zonotopes
+
+## Hypotheses
+* none
+
+## Conclusion
+* the composed zonotope is the sum of the mapped sets
+
 ## References
 
 * [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets".

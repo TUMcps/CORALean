@@ -17,6 +17,27 @@ and generators `[C̄ G_x, D̄₀ G_u, …, D̄ₖ G_u]` (16c) stretched by `[α_
 (16b) — the initial estimates `c_x`, `c_u` cancel against the `-c_x`, `-c_u` of (7), leaving
 the shifts. An equality.
 
+## Inputs
+* `ιx` – index type of the initial generators
+* `ιu` – index type of the input generators
+* `yb` – reference output
+* `Cb` – state-to-output matrix
+* `Db` – input-to-output matrices
+* `cx` – nominal initial state
+* `dx` – initial center offset
+* `Gx` – initial generators
+* `αx` – initial stretch factors
+* `cu` – nominal input
+* `du` – input center offset
+* `Gu` – input generators
+* `αu` – input stretch factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the approximation set of stretched templates is one stretched template
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

@@ -20,6 +20,24 @@ expansion `Encloses.taylor_mem` hands back rewrites the remainder as
 `(J_x - A)(x - x✱) + (J_u - B)(u - u✱) + ½ dzᵀ Hᵢ dz`. The first two terms lie in
 their interval products, the last in `[-l, l]` by `abs_bilin_le_bilinUp`, every
 entry of `|dz|` and of `|Hᵢ|` bounded by the larger end of its box.
+
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `A` – state Jacobian center
+* `B` – input Jacobian center
+* `xs` – state expansion point
+* `us` – input expansion point
+* `X` – state box
+* `U` – input box
+
+## Hypotheses
+* `h` – model encloses system
+* `hxs` – state point in box
+* `hus` – input point in box
+
+## Conclusion
+* the Hessian remainder certifies the linearization over the boxes
 -/
 
 -- Authors:       Claude Opus 5.5

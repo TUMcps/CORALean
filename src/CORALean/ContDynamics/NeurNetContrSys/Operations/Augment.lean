@@ -9,15 +9,19 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 /-!
 # The augmented linear system of a control period
 
-CORA's `aux_augmentLinear`: the extended system of a linear plant is linear again, the state `[x;
-u_nn]` under `[A B_nn; 0 0]` with the input matrix `[B_ext; 0]` and the offset `[c; 0]` — the
-network's output is a state whose derivative is zero, and the external inputs `u_ext` stay inputs,
-`x' = A x + B_nn u_nn + B_ext u_ext + c`. `B_nn` and `B_ext` are the first `m` and the remaining
-columns of `B` (`leftCols`, `rightCols`). CORA gives the system a dummy zero column when there are
-no external inputs (`B_aug = zeros(n+m, 1)`, `n_ext = max(1, …)`), as a MATLAB system needs an input
-dimension; here the input dimension is `nExt` itself, `0` then, and the reach sets are the same, the
-dummy column being zero. Read in ℝ, so that `LinearSys`'s exact reachability runs on it;
-`augmentFloat` is the same matrices in the plant's scalar.
+CORA's `aux_augmentLinear`: the extended system of a linear plant is linear again, the state
+`[x; u_nn]` under `[A B_nn; 0 0]` with the input matrix `[B_ext; 0]` and the offset `[c; 0]` — the
+network's output is a state whose derivative is zero, and the external inputs `u_ext` stay inputs.
+`B_nn` and `B_ext` are the first `m` and the remaining columns of `B`. CORA gives the system a
+dummy zero column when there are no external inputs, as a MATLAB system needs an input dimension;
+here the input dimension is `nExt` itself, `0` then, and the reach sets are the same. Read in ℝ, so
+that `LinearSys`'s exact reachability runs on it; `augmentFloat` is the same in the plant's scalar.
+
+## Inputs
+* `sys` – closed-loop system
+
+## Output
+* the augmented linear system over the state and the network output
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

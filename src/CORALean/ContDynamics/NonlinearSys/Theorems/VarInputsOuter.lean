@@ -14,19 +14,31 @@ public import Mathlib.LinearAlgebra.QuadraticForm.Basic
 /-!
 # `varInputs` holds every value the varying input part can take
 
-`[1, Eq. 7]` read as a membership: at any `z`, `z∆` and `u∆` drawn from the three
-sets, the second-order part of `v∆` lies in `varInputs` at those sets. The
-statement is in the coordinates `[1]` writes them in, `D i j k` being the second
-derivative and the bracket the double sum over `j` and `k`.
+`[1, Eq. 7]` read as a membership: at any `z`, `z∆` and `u∆` drawn from the three sets, the
+second-order part of `v∆` lies in `varInputs` at those sets, in the coordinates `[1]` writes
+them in. Its three hypotheses are three separate memberships, so the theorem covers both
+readings of `[1, Eq. 7]`: the paper quantifies `z` over `R(τs) × U` there and over `R(ts) × U`
+in Sec. 4.2. The proof is one exactness fact per piece, after the double sum has been read back
+as the three pairings. Only `plus` loses anything, by letting the three terms choose
+separately.
 
-Its three hypotheses are three separate memberships, which is what makes the
-theorem cover both readings of `[1, Eq. 7]`: the paper quantifies `z` over
-`R(τs) × U` there and over `R(ts) × U` in Sec. 4.2, and either is an instance.
+## Inputs
+* `B` – input matrix
+* `D` – Hessian family
+* `Rz` – state-input range
+* `RzΔ` – varying state-input range
+* `UΔ` – varying input range
+* `z` – point of the range
+* `zΔ` – point of the varying range
+* `uΔ` – point of the input range
 
-The proof is one exactness fact per piece — `mtimes`, `map`, `plus` three times,
-`quadMapMixed` twice and `quadMap` once — after the double sum has been read back
-as the three pairings. Only `plus` loses anything, and it loses it by letting the
-three terms choose separately; every other step is an equality.
+## Hypotheses
+* `hz` – point in range
+* `hzΔ` – point in varying range
+* `huΔ` – point in input range
+
+## Conclusion
+* the varying input part lies in the enclosure
 
 ## References
 

@@ -11,6 +11,12 @@ public import CORALean.ContDynamics.LinParamSys.LinParamSys
 `IsCanonicalTrajectory`. It is the system an operation handed only the matrix set builds: an
 enclosure of a parametric matrix, the linearization of a parametric nonlinear system, a
 `LinearSys`'s point matrix.
+
+## Inputs
+* `A` – matrix set
+
+## Output
+* the canonical-form system with that matrix set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

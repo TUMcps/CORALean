@@ -13,6 +13,17 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 `reachUnionExact` of the differential-algebraic system is `reachUnionExact` of the bundled
 ordinary system, as sets: a trajectory of one is a trajectory of the other
 (`TrajectoryToNonlinearSys`, `TrajectoryOfNonlinearSys`), at the same `x`.
+
+## Inputs
+* `sys` – system with steps
+* `tFinal` – horizon
+* `X` – initial set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reachable states of the DAE and of its reduced system are equal
 -/
 
 -- Authors:       Claude Opus 5.5

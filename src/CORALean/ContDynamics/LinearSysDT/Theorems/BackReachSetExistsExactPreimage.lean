@@ -7,20 +7,25 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExistsEx
 /-!
 # The `∃` step is a preimage of a Minkowski *sum*
 
-`{x | ∃ u ∈ U, A x + u ∈ B}` written as `A ⁻¹' (B ⊕ (-U))`, which is what says
-the `∃` reading is computed by `plus`. Set the two readings side by side:
-`backReachSetForallExact`'s step is the same preimage of `B ⊖ U`, and `⊖` is a
-guarantee an implementation may only under-approximate while `⊕` is an
-enclosure it may over-approximate. So the two readings do not need the same
-half of an operation, and `backReachExists` runs on `Plus` and `Mtimes` alone.
+`{x | ∃ u ∈ U, A x + u ∈ B}` written as `A ⁻¹' (B ⊕ (-U))`, which says the `∃` reading is computed
+by `plus`. `backReachSetForallExact`'s step is the same preimage of `B ⊖ U`, and `⊖` is a
+guarantee an implementation may only under-approximate while `⊕` is an enclosure it may
+over-approximate, so the two readings do not need the same half of an operation. The preimage is
+shared; the direction it is used in separates them: `backReachExists_outer` travels along a *left*
+inverse with `mtimes_outer`, where `backReachForall_inner` travels along a right inverse and needs
+an exact `mtimes`. Stated at the step rather than at the whole run.
 
-The preimage is shared and is not what separates them; the direction it is used
-in is. `backReachExists_outer` travels along a *left* inverse and uses
-`mtimes_outer`, where `backReachForall_inner` travels along a right inverse and
-needs an exact `mtimes` that `mtimes_outer` does not give.
+## Inputs
+* `sys` – system
+* `T` – target set
+* `U` – input set
+* `k` – step
 
-Stated at the step rather than at the whole run: `backReachSetExistsExact` is already
-the property, and this is the operation that computes it.
+## Hypotheses
+* none
+
+## Conclusion
+* the next set is the preimage of the sum with the negated input set
 -/
 
 -- Authors:       Claude Opus 5

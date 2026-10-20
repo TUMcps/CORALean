@@ -17,6 +17,14 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 `centerAbstrReach`: `R([0,t_K])`, the union of the first `K` iterations'
 time-interval sets. Line 17's union is no zonotope, so this is a `Set`.
 
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the union of the time-interval sets
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for

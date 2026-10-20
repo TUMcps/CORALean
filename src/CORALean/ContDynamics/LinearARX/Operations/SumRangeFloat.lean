@@ -10,6 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 
 `sumRangeFloat f k` is `f 0 + … + f (k - 1)`, one `Interval.matPlus` per term, each entry rounded
 outward, from the origin: the interval counterpart of `∑ t ∈ range k`.
+
+## Inputs
+* `f` – term per index
+
+## Output
+* the interval sum of the first `k` terms
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,21 @@ carried window by window: by induction on `k`,
 `expEnclosure Δt η` and `Δt`'s own contribution a member of
 `constInputSolution Δt η ũ` at its right end.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `A` – system matrix member
+* `uc` – constant input
+
+## Hypotheses
+* `hΔt` – window length positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+
+## Conclusion
+* the contribution by every window start lies in the propagated set
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

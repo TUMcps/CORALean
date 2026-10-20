@@ -8,15 +8,44 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 /-!
 # One computed set encloses the whole reachable set over a step
 
-`relinTimeInterval_outer` restated on `reachSetExact`, and the nonlinear counterpart
-of `LinearSys.reachSetExact_subset_timeInterval_inputSolution`: no trajectory and no
-input signal appears anywhere in it, and the reachable set at every time of
-step `i` — not only at its ends — lies in one computed set.
+`relinTimeInterval_outer` restated on `reachSetExact`, and the nonlinear counterpart of
+`LinearSys.reachSetExact_subset_timeInterval_inputSolution`: no trajectory and no input signal
+appears in it, and the reachable set at every time of step `i`, not only at its ends, lies in one
+computed set. What survives of the linear statement's hypotheses are properties of each step's
+`linInput` and confinement, which `reachSetExact_confinement_of_subset` answers for from the
+computed sets. The step index stays: `relinTimeInterval` is one set per step.
 
-What survives of the linear statement's hypotheses are properties of each
-step's `linInput`, which a representation answers for, and confinement, which
-`reachSetExact_confinement_of_subset` answers for from the computed sets. The step
-index stays: `relinTimeInterval` is one set per step by construction.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `q` – Taylor terms minus two
+* `o` – maximum order
+* `i` – step index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hR` – reachable set inside certified regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `h0` – zero in widened input
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+* `hi` – index below step count
+* `ht` – time within the step
+
+## Conclusion
+* the exact reachable set at the time lies in the step enclosure
 -/
 
 -- Authors:       Claude Opus 5

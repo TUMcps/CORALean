@@ -8,22 +8,25 @@ public import Mathlib.Tactic.Ring
 /-!
 # What the first step's search for `Δ` buys
 
-The soundness of lines 3-7 of [1, Alg. 2]: a horizon the search reports meets
-eq. (32)'s condition `φ₁ ≥ ζ_Δ`, and it is the arbitrary initialization of line
-2 scaled down by `ζ_δ` a whole number of times — at least once, line 4 running
-before line 3 is ever tested.
+The soundness of lines 3-7 of [1, Alg. 2]: a horizon the search reports meets eq. (32)'s
+condition `φ₁ ≥ ζ_Δ`, and it is the initialization of line 2 scaled down by `ζ_δ` a whole number
+of times, at least once. It is not a minimum: the horizon reported is the *first* on the grid
+`ζ_δ^j Δinit` that clears the condition, hence the largest of them, what §3.4 wants. One
+hypothesis, on the caller's check: `le a b = true` implies `a ≤ b`; a check that gives up early
+shrinks `Δ` further and never reports a horizon that fails (32). The induction is on the
+search's own fuel; nothing here needs it to terminate.
 
-That is all (32) asks for. It is not a minimum: the horizon reported is the
-*first* one on the grid `ζ_δ^j Δinit` that clears the condition, hence the
-largest of them that does, which is what a walk downward from an arbitrary start
-can report and what §3.4 wants — a horizon as long as the linear interpolation
-of `φ` will bear. See the reference page on (32)'s `min`.
+## Inputs
+* `le` – comparison of reals
+* `dabs` – box diameter of the abstraction error
+* `ζδ` – limit gain
+* `ζΔ` – gain threshold
 
-One hypothesis, on the caller's check: `le a b = true` implies `a ≤ b`. Nothing
-asks the converse, so a check that gives up early shrinks `Δ` further and never
-reports a horizon that fails (32).
+## Hypotheses
+* `hle` – comparison implies less-or-equal
 
-The induction is on the search's own fuel; nothing here needs it to terminate.
+## Conclusion
+* the horizon meets the gain condition and is a scaled initialization
 
 ## References
 

@@ -20,6 +20,15 @@ the zonotope powers (`matZonoCorrectionMatrix`).
 
 `r • A` is the image of `A` under scaling, `Zonotope.map`, as `expMatZonoTerm`
 scales its powers.
+
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `X₀` – initial set
+
+## Output
+* the set covering the flow over the step at a matrix zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

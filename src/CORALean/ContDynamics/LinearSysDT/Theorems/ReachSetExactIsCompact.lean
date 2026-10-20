@@ -16,6 +16,19 @@ of two compact sets is compact.
 
 The other missing hypothesis `minkowskiDiff_inner_of_outer` asks of the exact
 set; `ReachSetExactConvex` supplies convexity.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+
+## Hypotheses
+* `hR₀` – initial set compact
+* `hU` – input set compact
+
+## Conclusion
+* the exact reachable set is compact
 -/
 
 -- Authors:       Claude Opus 5

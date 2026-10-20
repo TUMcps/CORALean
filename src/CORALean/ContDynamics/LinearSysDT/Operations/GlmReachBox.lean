@@ -18,6 +18,15 @@ minus the sums of the generators' absolute entries. The box is only ever taken o
 exact set, so nothing compounds: [1, Prop. 1], `LinearSysDT.glmReachBox_eq_hull`, says
 `Ω̄ᵢ` is the interval hull of `Ωᵢ`.
 
+## Inputs
+* `sys` – system
+* `Ω₀` – initial zonotope
+* `U` – input zonotope
+* `N` – number of steps
+
+## Output
+* the interval hulls of the reachable zonotopes of steps one to `N`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

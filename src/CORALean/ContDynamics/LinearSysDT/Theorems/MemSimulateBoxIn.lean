@@ -10,6 +10,22 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.SimulateBoxIn
 Any real sequence that starts in `B₀` and steps by `x(k+1) = A x(k) + u(k)` with
 `u(k)` in the `k`-th input box stays in the `k`-th box of `simulateBoxIn`. Both
 the point run (`simulate_mem_simulateBox`) and the ARX window run use it.
+
+## Inputs
+* `sys` – system
+* `B₀` – start box
+* `U` – input boxes per step
+* `x` – states
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `h₀` – start lies in `B₀`
+* `hu` – inputs lie in their boxes
+* `hstep` – the step recursion holds
+
+## Conclusion
+* the state at step `k` lies in the `k`-th box
 -/
 
 -- Authors:       Claude Opus 5.5

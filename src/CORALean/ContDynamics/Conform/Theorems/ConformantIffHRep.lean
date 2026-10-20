@@ -12,14 +12,36 @@ public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
 For `W = ⟨c_W, G'_W diag(α_W)⟩` and `V = ⟨c_V, G'_V diag(α_V)⟩`, the model is conformant on
 the test cases up to `K` exactly when, for every step `k`, test case `m` and row `n` of
 `N_k`, `n y_a⁽ᵐ⁾(k) ≤ [∑ᵢ n Eᵢ, n, ∑ᵢ |n Eᵢ G'_W|, |n G'_V|] ξ` — (19), linear in
-`ξ = (c_W, c_V, α_W, α_V)`. The maximum over `m` there is the conjunction here.
+`ξ = (c_W, c_V, α_W, α_V)`.
 
-`N_k` is any family carrying both signs of every cross-product normal of `R_a(k)`'s
-template `[E₀ G'_W ⋯ E_{k-1} G'_W  G'_V]` — so fixed before `ξ` is — and that template must
-span the output space, which [1, Prop. 1] needs and the theorem leaves implicit. The
-printed proof cancels `det(diag(α))` and so needs `α > 0`; this holds at `α ≥ 0`, the
-template's normals still describing a zonotope one of whose generators has vanished
-(`Zonotope.mem_scale_iff`).
+`N_k` carries both signs of every cross-product normal of `R_a(k)`'s template, which must span
+the output space ([1, Prop. 1] needs it). The printed proof needs `α > 0`; this holds at
+`α ≥ 0` (`Zonotope.mem_scale_iff`).
+
+## Inputs
+* `M` – test case index type
+* `κ` – normal index type
+* `sys` – plant
+* `ιW` – index type of the disturbance generators
+* `ιV` – index type of the noise generators
+* `cW` – disturbance center
+* `GW` – disturbance template generators
+* `αW` – disturbance stretch factors
+* `cV` – noise center
+* `GV` – noise template generators
+* `αV` – noise stretch factors
+* `T` – test cases
+* `K` – horizon
+* `N` – normal vectors per step
+
+## Hypotheses
+* `hαW` – disturbance factors nonnegative
+* `hαV` – noise factors nonnegative
+* `hspan` – template spans the output space
+* `hN` – `N` carries all template normals
+
+## Conclusion
+* conformance up to `K` iff the linear inequalities in the parameters hold
 
 ## References
 

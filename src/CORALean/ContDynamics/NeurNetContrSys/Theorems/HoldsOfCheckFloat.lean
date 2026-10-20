@@ -12,6 +12,36 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 `NeurNetContrSys.holds_of_check` at `reachFloat`: a `true` from `Specification.check` on the
 zonotope `reachFloat` computes, found by evaluation, is the specification on the exact state at
 the period boundary, since `reachFloat_outer` puts that state in the zonotope.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `o` – maximum zonotope order
+* `η` – Taylor order
+* `N` – steps per period
+* `Δt` – step size
+* `H` – number of periods
+* `R₀` – initial zonotope
+* `π` – controller function
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+* `spec` – specification
+* `i` – period index
+
+## Hypotheses
+* `ho` – order positive
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hη` – order admissible
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+* `hi` – period index within the horizon
+
+## Conclusion
+* a passed check on the float reachable set implies the specification at the period boundary
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

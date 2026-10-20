@@ -11,15 +11,25 @@ public import CORALean.Global.Float.BilinUp
 /-!
 # The abstraction error from a Hessian enclosure
 
-CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, in `𝕋`: with `dz`
-bounding `|z - z✱|` over `X × U` and `H_` the entrywise magnitude of the Hessian
-box there, the second-order remainder lies in `[-l, l]`, `lᵢ = 0.5 * dz' * H_ᵢ * dz`.
+CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, in `𝕋`: with `dz` bounding `|z - z✱|` over
+`X × U` and `H_` the entrywise magnitude of the Hessian box there, the second-order remainder
+lies in `[-l, l]`, `lᵢ = 0.5 * dz' * H_ᵢ * dz`. `A` and `B` are the centers the float run
+linearizes with, not the Jacobian itself, so the first-order slack
+`([J(z✱)] - A)(X - x✱) ⊕ ([J_u(z✱)] - B)(U - u✱)` is added, with the Jacobian box taken at the
+point. This is the box `slopeRemainder` replaces when no Hessian is known: second order in the
+deviation from `z✱` where that one is first.
 
-`A` and `B` are the centers the float run linearizes with, not the Jacobian
-itself, so the first-order slack `([J(z✱)] - A)(X - x✱) ⊕ ([J_u(z✱)] - B)(U - u✱)`
-is added, with the Jacobian box taken at the point and so as thin as the model
-makes it. This is the box `slopeRemainder` replaces when no Hessian is known:
-second order in the deviation from `z✱` where that one is first.
+## Inputs
+* `fm` – float Hessian model
+* `A` – center of the state Jacobian
+* `B` – center of the input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `X` – state box
+* `U` – input box
+
+## Output
+* the interval enclosing the linearization remainder
 -/
 
 -- Authors:       Claude Opus 5.5

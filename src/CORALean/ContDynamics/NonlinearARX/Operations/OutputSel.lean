@@ -10,6 +10,12 @@ public import CORALean.Global.Float.FloatOps
 
 `y(k)` is block `0` of the window at step `k`; `outputSel` is the matrix that selects
 it, as `LinearARX.outputEq`'s `C`, over `ℝ`.
+
+## Inputs
+* `_sys` – ARX system
+
+## Output
+* the matrix selecting the first output block of the window
 -/
 
 -- Authors:       Claude Opus 5.5

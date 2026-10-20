@@ -11,6 +11,25 @@ Every run of `x(k+1) = A x(k) + B̃ ũ(k)`, `y(k) = C x(k) + D̃ ũ(k)` satisfie
 `ofCharpoly` from `k = n` on [1]: unroll `x(k-j)` from `x(k-n)`, and `∑ a_j A^{n-j} = 0`
 removes `x(k-n)`; what is left is the convolution of `a` with the impulse response.
 
+## Inputs
+* `A` – state matrix
+* `Bu` – input matrix
+* `C` – output matrix
+* `Du` – feedthrough matrix
+* `dt` – sampling time
+* `x` – states
+* `u` – inputs
+* `y` – outputs
+* `k` – step
+
+## Hypotheses
+* `hx` – state recursion holds
+* `hy` – output equation holds
+* `hk` – step at least the order
+
+## Conclusion
+* the output satisfies the ARMAX recursion
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/linearARX.m`

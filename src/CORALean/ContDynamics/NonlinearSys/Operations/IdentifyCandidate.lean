@@ -13,6 +13,16 @@ columns of `X1`, their `dx` those of `X2`, and the candidate is `X2 W_k S_k⁻¹
 economy SVD `X1 = V S Wᵀ`, which is an argument, as is `φ` (CORA's `'trig'`, `'quad'`, ... bases
 or `options.phi`). The source is [1].
 
+## Inputs
+* `dx` – derivatives of the data points
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `k` – rank
+
+## Output
+* the candidate coefficient matrix of rank `k`
+
 ## References
 
 * [1] `contDynamics/@nonlinearSys/private/priv_identifyDMD.m`

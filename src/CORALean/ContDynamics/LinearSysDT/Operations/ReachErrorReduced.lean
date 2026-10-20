@@ -13,22 +13,22 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 /-!
 # `reachError` with the error reduced at every step
 
-`reachError` never reduces in its own recursion, so it gains a box per step and
-holds `k * n` generators: past `k = o` the subtrahend is described by more
-generators than the run it comes off, which is bounded at `o * n` throughout.
+`reachError` never reduces in its own recursion, so it gains a box per step and holds `k * n`
+generators: past `k = o` the subtrahend is described by more generators than the run it comes off,
+which is bounded at `o * n` throughout. A `reduce` per step caps it, and the *direction* makes that
+sound: the error stands on the right of `reach_subset_reachSetExact_add_error`, added to the exact
+set, so enlarging it keeps that inclusion, and `reduce_outer` enlarges. The price is precision,
+never soundness: the error is bigger, and `reachInnerReduced` is correspondingly smaller. It buys
+`reachErrorReduced_h_le` — `o * n` at every horizon, `k = 0` included. Otherwise the recursion
+of `reachError` unchanged, at the same instances: `Zonotope` and `𝕋 = ℝ`.
 
-A `reduce` per step caps it, and the *direction* is what makes that sound. The
-error stands on the right of `reach_subset_reachSetExact_add_error`, added to the
-exact set, so enlarging it keeps that inclusion — the reverse of the usual
-situation, where enlarging a computed set is what breaks a guarantee. And
-`reduce_outer` enlarges. So the price is precision, never soundness: the error
-is bigger, and `reachInnerReduced` is correspondingly smaller.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
 
-What it buys is `reachErrorReduced_h_le` — `o * n` at every horizon, `k = 0`
-included, which is the run's own bound.
-
-Otherwise the recursion of `reachError` unchanged, and at the same instances:
-`Zonotope` and `𝕋 = ℝ`, `mtimes` being exact only there.
+## Output
+* the reduced error zonotope the run owes
 -/
 
 -- Authors:       Claude Sonnet 5

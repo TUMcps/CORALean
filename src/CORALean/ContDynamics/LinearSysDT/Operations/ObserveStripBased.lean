@@ -8,17 +8,24 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
 # The strip-based observer
 
 CORA's `observe_stripBased`, the loop of [1, Alg. 1]: the initial set `R₀` met with the first
-measurement's strips, then at every step the prediction and update of `observeStep` followed
-by `reduce` to `ρ` ([1, Prop. 3] is one such reduction). The strip widths are
-CORA's `sigma = supremum(abs(interval(params.V)))`, here `σ`, so a noise `v ∈ V` needs only
-`|vᵢ| ≤ σᵢ`. CORA's estimators `FRad-A`, `FRad-B`, `PRad-A` to `PRad-D` and `VolMin-A` are
-this loop at their own gains; `observeStripBased_outer` holds for every gain.
+measurement's strips, then at every step the prediction and update of `observeStep` followed by
+`reduce` to `ρ` ([1, Prop. 3] is one such reduction). The strip widths are CORA's
+`sigma = supremum(abs(interval(params.V)))`, here `σ`. CORA's estimators `FRad-A`, `FRad-B`,
+`PRad-A` to `PRad-D` and `VolMin-A` are this loop at their own gains; `observeStripBased_outer`
+holds for every gain. Written once over the set classes and the scalar, at `Real.Zonotope` and ℝ
+as the paper's loop, at `Float.Zonotope` in directed rounding; [2, Eq. 4], over time.
 
-Written once over the set classes and the scalar: at `Real.Zonotope` and ℝ it is the paper's
-loop, at `Float.Zonotope` and a float type the same loop in directed rounding, and
-`observeStripBased_outer` is the soundness of both.
+## Inputs
+* `sys` – system
+* `σ` – strip widths
+* `W` – disturbance set
+* `R₀` – initial set
+* `u` – inputs
+* `y` – measurements
+* `options` – strip options
 
-[2, Eq. 4], over time.
+## Output
+* the observer's set after each measurement
 
 ## References
 

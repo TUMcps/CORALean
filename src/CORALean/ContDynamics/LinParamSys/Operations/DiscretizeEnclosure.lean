@@ -11,16 +11,19 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Sampling a system whose matrix was already a set
 
-`LinearSys.discretizeEnclosure` one level up. There the discretized system is
-set-valued only because `e^{AΔt}` cannot be computed; here the matrix is a box
-to begin with, and `expIntervalEnclosure` of `Δt • sys.A` covers both the
-uncertainty and the truncation at once. Either way the result is a
-`LinParamSysDT`, so the loop of [1, Alg. 1] — `R(k) = e^{AΔt}R(k-1) ⊞ P_R(0)`,
-reduced every step — is `LinParamSysDT.reach` and needs no recursion here.
+`LinearSys.discretizeEnclosure` one level up. There the discretized system is set-valued only
+because `e^{AΔt}` cannot be computed; here the matrix is a box to begin with, and
+`expIntervalEnclosure` of `Δt • sys.A` covers both the uncertainty and the truncation. Either
+way the result is a `LinParamSysDT`, so the loop of [1, Alg. 1] — `R(k) = e^{AΔt}R(k-1) ⊞ P_R(0)`,
+reduced every step — is `LinParamSysDT.reach` and needs no recursion here. `ℐ` names the family.
 
-`ℐ` names the family, where the point case writes it out: the argument is
-already a `LinParamSys ℐ n`, so the instances arrive with the system rather
-than with this definition.
+## Inputs
+* `sys` – system
+* `Δt` – sampling time
+* `η` – Taylor order
+
+## Output
+* the discrete-time system with the enclosed exponential
 
 ## References
 

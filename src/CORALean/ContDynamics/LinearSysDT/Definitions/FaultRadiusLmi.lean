@@ -14,6 +14,20 @@ public import Mathlib.Data.Matrix.ColumnRowPartitioned
 the blocks sized by the state and the generator counts of `⟨0, H_w⟩` and `⟨0, H_v⟩`; at `W = PL`
 it is [1, Eq. 16], and the gain is `L = P⁻¹W`. Stated as its negative being positive definite.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `Dx` – disturbance matrix
+* `Hw` – disturbance generators
+* `Dy` – noise matrix
+* `Hv` – noise generators
+* `P` – Lyapunov matrix
+* `W` – gain variable
+* `γ` – radius bound
+
+## Output
+* the block matrix is negative definite
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

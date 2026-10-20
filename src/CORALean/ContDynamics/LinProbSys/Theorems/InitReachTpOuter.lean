@@ -20,6 +20,31 @@ For every mean `x₀` of `Rinit` and every input signal in `B U`, the mean of th
 correction `inputCorr` is needed, `A` invertible still is (CORA divides by it). Only the means,
 as for `initReach_ti_outer`.
 
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `x₀` – initial mean
+* `w` – input signal contribution
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – matrix invertible
+* `hx₀` – `x₀` lies in the initial zonotope
+* `hw` – `w` is an input contribution
+
+## Conclusion
+* the mean of the solution at `r` lies in the time-point set
+
 ## References
 
 * [1] `contDynamics/@linProbSys/initReach.m`

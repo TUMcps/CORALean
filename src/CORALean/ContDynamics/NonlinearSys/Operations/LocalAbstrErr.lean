@@ -7,18 +7,18 @@ public import CORALean.Global.BoxDiameter
 /-!
 # The local abstraction error of a set-based solver
 
-`[1, Def. 4]`, equation (28): how much one step of a set-based solver adds to
-the exact answer, measured as the largest side of the box over the step's set of
-abstraction errors. The norm is the supremum norm, which is the one `Vec ℝ n`
-already carries, so no conversion is needed here.
+`[1, Def. 4]`, equation (28): how much one step of a set-based solver adds to the exact answer,
+measured as the largest side of the box over the step's set of abstraction errors, in the
+supremum norm `Vec ℝ n` already carries. Stated of the step's abstraction-error set alone. The
+paper's other form, `d(box(R ⊖ R̂))`, is `globalAbstrErr` at one step;
+`globalAbstrErr_eq_localAbstrErr` shows they agree. Not a function of a `NonlinearSys`:
+`[1, Def. 4]` measures whatever a solver returns.
 
-Stated of the step's abstraction-error set alone, which is the form the rest of
-the paper uses. The paper's other form, `d(box(R ⊖ R̂))`, is `globalAbstrErr`
-read at one step; `globalAbstrErr_eq_localAbstrErr` is where the two are shown
-to agree, and says which hypotheses that costs.
+## Inputs
+* `Rabs` – step's abstraction errors
 
-Not a function of a `NonlinearSys`: `[1, Def. 4]` measures whatever a solver
-returns, and asks nothing of how the set was produced.
+## Output
+* the widest side of their box
 
 ## References
 

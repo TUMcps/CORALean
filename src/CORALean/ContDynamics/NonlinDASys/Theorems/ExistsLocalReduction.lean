@@ -15,6 +15,25 @@ implicit function theorem for a curried bivariate function (`implicitFunctionOfB
 near `((x₀, u₀), y₀)`, so `ψ` is the unique solution there. A `ReducedModel` asks that
 for all `x`, `u`, `y`; this is why one is data. `G₁`, `G₂` are the partial derivatives, continuous
 at the point, which the theorem asks of `g` (`C¹` supplies them).
+
+## Inputs
+* `sys` – system
+* `x₀` – consistent differential state
+* `y₀` – consistent algebraic variable
+* `u₀` – consistent input
+* `G₁` – partial derivative of the constraint in state and input
+* `G₂` – partial derivative of the constraint in the algebraic variable
+
+## Hypotheses
+* `h₀` – the point satisfies the constraint
+* `hI` – index one at the point
+* `d₁` – `G₁` is the derivative in state and input
+* `d₂` – `G₂` is the derivative in the algebraic variable
+* `c₁` – `G₁` is continuous at the point
+* `c₂` – `G₂` is continuous at the point
+
+## Conclusion
+* the constraint is locally solved for the algebraic variable by a function of state and input
 -/
 
 -- Authors:       Claude Opus 5.5

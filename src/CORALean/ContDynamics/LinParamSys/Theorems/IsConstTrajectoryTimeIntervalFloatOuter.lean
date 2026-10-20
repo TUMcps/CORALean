@@ -14,6 +14,31 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 frozen member splits `x t` into its free motion, which
 `timeIntervalStepFloat_outer` places in the float step, and the input's
 contribution, which the caller's `Ud` holds.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `Ud` – set holding the input's contribution
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hη` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hUd` – input's contribution lies in `Ud`
+
+## Conclusion
+* the state at time `t` lies in the float step plus the input set
 -/
 
 -- Authors:       Claude Opus 5.5

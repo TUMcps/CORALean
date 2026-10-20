@@ -7,20 +7,21 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # The states some admissible input drives into the target
 
-Backward reachability, in the `∃` reading: `x` is in the `k`-step set when
-*some* input signal `U` admits carries it into `T` at step `k`. The `∀` reading
-— every signal does — is `backReachSetForallExact`, beside this one and never in
-place of it.
+Backward reachability, in the `∃` reading: `x` is in the `k`-step set when *some* input signal `U`
+admits carries it into `T` at step `k`. The `∀` reading is `backReachSetForallExact`, beside this
+one and never in place of it. Written as the property itself, one existential per step, rather
+than through an operation on sets. `Theorems.BackReachSetExistsExactPreimage` is the other face of
+it: the preimage under `A` of a *Minkowski sum* with `-U`. Like `reachSetExact` this names no
+operation class and nothing may widen it. `Theorems.BackReachSetExistsExactIsTrajectory` builds
+the run the name promises; `Theorems.BackReachExistsOuter` puts a computed set around it.
 
-Written as the property itself, one existential per step, rather than through an
-operation on sets. `Theorems.BackReachSetExistsExactPreimage` is the other face of
-it: the preimage under `A` of a *Minkowski sum* with `-U`, which is where the
-asymmetry with the `∀` reading sits — a sum is what `Plus` computes, outer,
-while a difference is a guarantee and only ever inner.
+## Inputs
+* `sys` – system
+* `T` – target set
+* `U` – input set
 
-Like `reachSetExact` and `backReachSetForallExact` this names no operation class and
-nothing may widen it. `Theorems.BackReachSetExistsExactIsTrajectory` builds the run the
-name promises; `Theorems.BackReachExistsOuter` puts a computed set around it.
+## Output
+* the states some input signal drives into the target in `k` steps
 -/
 
 -- Authors:       Claude Sonnet 5

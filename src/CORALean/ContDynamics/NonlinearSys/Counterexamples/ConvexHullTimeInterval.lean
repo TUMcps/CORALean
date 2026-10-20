@@ -11,15 +11,22 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # The time-interval inner set of L-CSS 2024 is not inside the reachable set
 
-[1, Prop. 2] claims `conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R([0, Δt])` for a compact,
-nonempty `X₀`. For `ẋ = w` the linearization is exact (`A = 0`), so the remainder, `R̂_err` (13),
-and the curvature error `C = F X₀ ⊕ G w` (17) vanish (`F`, `G` and the remainder `E(Δt)` are
-sums of powers of `A`), `c = 0`, `R̂(Δt) = X₀ + Δt w`, and (23) reads
-`conv(X₀ ∪ (X₀ + Δt w)) ⊆ X₀ + [0, Δt] w`. For the two squares
-`X₀ = ([0, 1/10] ∪ [9/10, 1]) × [0, 1/10]`, `w = (0, 1)`, `Δt = 1`, the point `(1/2, 1/2)` is the
-midpoint of `(0, 0)` and `(1, 1)` and so in the hull, and no run reaches it: its first coordinate
-stays in `[0, 1/10] ∪ [9/10, 1]`. The printed proof applies [1, Lemma 1] to
-`conv(X₀, R_aff(Δt))`, whose points need not be `x₀ + (t/Δt)(R_aff - x₀)` for one `x₀`.
+[1, Prop. 2] claims `conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R([0, Δt])` for a compact, nonempty
+`X₀`. For `ẋ = w` the linearization is exact (`A = 0`), so `R̂_err` (13) and `C = F X₀ ⊕ G w` (17)
+vanish, `c = 0`, `R̂(Δt) = X₀ + Δt w`, and (23) reads `conv(X₀ ∪ (X₀ + Δt w)) ⊆ X₀ + [0, Δt] w`. For
+the two squares `X₀ = ([0, 1/10] ∪ [9/10, 1]) × [0, 1/10]`, `w = (0, 1)`, `Δt = 1`, the point
+`(1/2, 1/2)` is the midpoint of `(0, 0)` and `(1, 1)` and so in the hull, and no run reaches it. The
+printed proof applies [1, Lemma 1] to `conv(X₀, R_aff(Δt))`, whose points need not be
+`x₀ + (t/Δt)(R_aff - x₀)` for one `x₀`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point of the hull of the initial set and its translate is reached by no run
 
 ## References
 

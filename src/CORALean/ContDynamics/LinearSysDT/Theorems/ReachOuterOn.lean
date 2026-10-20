@@ -15,6 +15,22 @@ the three that theorem uses — `plus_outer`, `reduce_outer` and `mtimes_outer`
 A bounded run is what `LinearSys.IsCanonicalTrajectory.reach_outer_horizon` produces by
 sampling on `[0, KΔt]`, and it hands off to this rather than redoing the
 recursion by hand.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `K` – step bound
+* `x` – trajectory
+* `u` – input signal
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory known up to `K`
+
+## Conclusion
+* every state up to step `K` lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

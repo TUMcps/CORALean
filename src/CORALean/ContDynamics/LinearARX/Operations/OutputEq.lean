@@ -11,6 +11,12 @@ public import CORALean.ContDynamics.OutputEq.OutputEq
 
 `y(k)` is block `0` of the window `stack y k`: `C` picks it, and `D = 0`, the input
 being already in the state's next window, and `k = 0`.
+
+## Inputs
+* `_sys` – ARX system
+
+## Output
+* the output equation picking the first block
 -/
 
 -- Authors:       Claude Opus 5.5

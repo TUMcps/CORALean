@@ -27,6 +27,29 @@ error obeys `e_{k+1} = (A - L C) e_k + (ω_k - L v_k)`; the three parts of its c
 `R_x`, `R_wv`, and the nominal estimate is in its own box, with every quantity the real value of a
 stored float. An outer statement.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `R₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `h0` – initial error lies in `R₀`
+* `hw` – disturbances lie in `W`
+* `hv` – noise lies in `V`
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+
+## Conclusion
+* the true state lies in the observer's interval
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

@@ -9,6 +9,25 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
 
 The total case of `reach_outer_on`, `K := k` and `le_rfl` away via
 `aux_toTrajectoryOn`, so nothing about a bounded run is proved twice.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory of the system
+* `hR` – states stay in regions
+
+## Conclusion
+* the state at the step lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

@@ -17,6 +17,18 @@ state and before the disturbance. Between `backReachSetForallExact` (no control)
 The system's matrices are arguments rather than a `LinearSysDT`, which carries `A` alone;
 over ℝ, with plain sets, since nothing here is computed.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `E` – disturbance matrix
+* `K` – offset
+* `U` – input set
+* `W` – disturbance set
+* `X₀` – target set
+
+## Output
+* the states steered into the target robustly in `k` steps
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

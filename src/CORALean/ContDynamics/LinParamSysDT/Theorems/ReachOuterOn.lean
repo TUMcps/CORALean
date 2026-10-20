@@ -10,6 +10,22 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
 `LinearSysDT.reach_outer_on`'s induction, unpacking `traj.step`'s existential
 for the `A` and the membership `reach_one_outer` now asks for, in place of
 reading `toRealMat sys.A` straight off the equation.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `K` – step bound
+* `x` – trajectory
+* `u` – input signal
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory known up to `K`
+
+## Conclusion
+* every state up to step `K` lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -12,17 +12,26 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 /-!
 # The inner approximation at the reduced error
 
-`reachInner_inner` with `reachErrorReduced` in place of `reachError`, and the
-same bridge doing the work: `reach_subset_reachSetExact_add_errorReduced` supplies
-the enclosure `reachSetExact_inner_of_outer` asks for, and the reduced error is a
-zonotope, so nonempty and bounded come from the representation exactly as
-before.
+`reachInner_inner` with `reachErrorReduced` in place of `reachError`, and the same bridge doing the
+work: `reach_subset_reachSetExact_add_errorReduced` supplies the enclosure
+`reachSetExact_inner_of_outer` asks for, and the reduced error is a zonotope, so nonempty and
+bounded come from the representation. Weaker than `reachInner_inner` in what it delivers, not in
+what it claims — `reachInnerReduced_subset_reachInner` measures the gap — and the reason to want it
+is `reachErrorReduced_h_le`: this subtrahend's description stays at `o * n`, so the cost does not
+grow with the horizon.
 
-Weaker than `reachInner_inner` in what it delivers, not in what it claims —
-`reachInnerReduced_subset_reachInner` measures the gap — and the reason to want
-it is `reachErrorReduced_h_le`: this subtrahend's description stays at `o * n`,
-so a caller gets an inner approximation whose cost does not grow with the
-horizon.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reduced inner approximation lies in the exact reachable set
 -/
 
 -- Authors:       Claude Sonnet 5

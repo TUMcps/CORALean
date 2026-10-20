@@ -24,17 +24,33 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # The corrected `priv_dependentHomSol` holds the solution at the end of the step
 
-`LinParamSys.dependentHomSol_outer`: for every parameter `p ∈ [-1, 1]ᵏ`, shared by the system
-matrix `A(p) = A_c + Σ pᵢ A_g⁽ⁱ⁾` and the constant input `u(p) = U_c + Σ pᵢ U_G⁽ⁱ⁾`, and every
-`x₀ ∈ Rinit`, the solution `e^{A(p) r} x₀ + ∫₀ʳ e^{A(p)(r-s)} u(p) ds` lies in
-`dependentHomSol r η Rinit U_c U_G`.
+For every parameter `p ∈ [-1, 1]ᵏ`, shared by the system matrix `A(p) = A_c + Σ pᵢ A_g⁽ⁱ⁾` and the
+constant input `u(p) = U_c + Σ pᵢ U_G⁽ⁱ⁾`, and every `x₀ ∈ Rinit`, the solution
+`e^{A(p) r} x₀ + ∫₀ʳ e^{A(p)(r-s)} u(p) ds` lies in `dependentHomSol r η Rinit U_c U_G`. It splits
+as the parts do: `e^{Ar}(x₀ - c)` (`R_hom_state`), the orders up to `A²` from `c` and of `u`
+(`mem_dependentLowOrder`, `R_lowOrder`), orders `3 … η` of both
+(`taylorTail_mem_expIntervalTaylorTail`, `inputTail_mem_inputIntervalTaylorTail`) and what is
+past `η` (`norm_exp_sub_expTaylor_le`, `norm_expIntegral_sub_taylor_le`), `R_rem`. `hε` is CORA's
+convergence condition; `η = m + 2`.
 
-The solution splits as the parts do: `e^{Ar}(x₀ - c)` (the box's exponential, `R_hom_state`),
-the time orders up to `A²` from `c` and of `u` (`mem_dependentLowOrder`, `R_lowOrder`), orders
-`3 … η` of both (`taylorTail_mem_expIntervalTaylorTail`, `inputTail_mem_inputIntervalTaylorTail`)
-and what is past `η` (`norm_exp_sub_expTaylor_le`, `norm_expIntegral_sub_taylor_le`), `R_rem`.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `m` – Taylor order minus two
+* `Rinit` – initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+* `p` – shared parameter
+* `x₀` – initial state
 
-`hε` is CORA's convergence condition `‖A r‖_∞/(η + 2) < 1`, at the box of `A r`; `η = m + 2`.
+## Hypotheses
+* `hr` – step positive
+* `hε` – convergence condition holds
+* `hp` – parameters within `[-1, 1]`
+* `hx₀` – initial state lies in `Rinit`
+
+## Conclusion
+* the solution at the end of the step lies in the computed zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

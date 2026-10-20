@@ -13,6 +13,24 @@ For any data, consistent with an ARX system or not, and the SVD `X1 = V S Wᵀ` 
 regressors with `s ≠ 0`: no matrix `[A B]` has a smaller sum of squared residuals
 `y(j) - [A B] x_j` over the data points than the full-rank candidate [1, Eq. 2.7].
 
+## Inputs
+* `y` – outputs per data point
+* `u` – inputs per data point
+* `k` – step per data point
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `B` – competing matrix
+
+## Hypotheses
+* `hX1` – regressors factor as `V S Wᵀ`
+* `hV` – `V` has orthonormal columns
+* `hW` – `W` has orthonormal columns
+* `hs` – singular values nonzero
+
+## Conclusion
+* no matrix has a smaller squared residual than the full-rank candidate
+
 ## References
 
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`

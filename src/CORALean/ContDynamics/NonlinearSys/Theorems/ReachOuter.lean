@@ -11,19 +11,43 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 
 The payoff, [1, Sec. IV-A]: nothing new is computed for a nonlinear system. Once `linearize` has
 turned the run into a run of the linear canonical form,
-`LinearSys.IsCanonicalTrajectory.reach_outer` is the whole proof, the enclosing set the linear
-system's `reach`.
+`LinearSys.IsCanonicalTrajectory.reach_outer` is the whole proof. The nonlinearity is paid for
+entirely in `linInput`, so `reach_outer_inputSolution` differs from its linear counterpart only
+in a widened `U` and a confinement hypothesis. `exp` takes the `l∞` operator norm on `Mat`, a
+choice. `reach_outer` leaves the discrete input set to the caller and asks confinement of all
+forward time; the `_horizon` and `_inputSolution` variants relax each in turn.
 
-The nonlinearity is paid for entirely in `linInput`, which is why
-`reach_outer_inputSolution` differs from its linear counterpart only in that
-`U` has been widened and a confinement hypothesis added. `exp` needs a norm on
-`Mat` — a choice, not an instance — and it is the `l∞` operator norm here as
-everywhere `discretize` is.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `Ud` – discrete input set
+* `L` – remainder set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `Δt` – step size
+* `y` – output trajectory
+* `cert` – abstraction-error certificate
+* `o` – maximum order
+* `k` – sample index
 
-`reach_outer` leaves the discrete input set to the caller and asks confinement
-of all forward time; the `_horizon` and `_inputSolution` variants relax each of
-those in turn. Neither discharges confinement — `confinement_of_subset` does,
-over the steps of a re-linearization loop.
+## Hypotheses
+* `traj` – trajectory of the system
+* `hT` – nonnegative times in time set
+* `hR` – trajectory stays in region
+* `hΔt` – step size nonnegative
+* `hU` – widened input bounded
+* `hUd` – discrete input set holds the step inputs
+* `ho` – order positive
+
+## Conclusion
+* the state at each sample lies in the linearized reachable set
 
 ## References
 

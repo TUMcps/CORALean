@@ -8,19 +8,13 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 /-!
 # A parametric system, bundled with its augmented `Reach` run
 
-`Reach` runs this class through `augment`, the parameter as `q` states with
-zero dynamics, so what a run spends is `NonlinearSys.WithSteps`'s data for the
-augmented system in dimension `n + q`: its input set, its chain of
-linearizations, their checkable regions and the field bound. `aug_sys` ties
-that data to `sys`. The parameter set `P`, CORA's `params.paramInt`, is bundled
-beside it rather than taken from `params`: the regions the certificates are issued
-for cover the parameter's coordinates, so `P` is chosen with them. One `Reach`
-instance per input dimension `m` and parameter dimension `q`.
-
-The linearizations are of the augmented field, so each certificate already
-covers the parameter's uncertainty through the region's last `q` coordinates;
-the matrix-set linearization of CORA's `nonlinParamSys`, a `LinParamSys` per
-step, is not what is run here.
+`Reach` runs this class through `augment`, the parameter as `q` states with zero dynamics, so
+what a run spends is `NonlinearSys.WithSteps`'s data for the augmented system in dimension
+`n + q`: its input set, chain of linearizations, checkable regions and field bound. `aug_sys`
+ties that data to `sys`. The parameter set `P`, CORA's `params.paramInt`, is bundled beside it
+rather than taken from `params`: the regions cover the parameter's coordinates, so `P` is chosen
+with them. The linearizations are of the augmented field; CORA's matrix-set linearization, a
+`LinParamSys` per step, is not what is run here.
 -/
 
 -- Authors:       Claude Opus 5.5

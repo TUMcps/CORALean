@@ -8,19 +8,34 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemExpInterv
 /-!
 # A time-varying run is mapped by a member of the box's exponential enclosure
 
-CORA's `'varParam'` mapping matrix made sound for `IsTrajectory`, a fresh
-`A t ∈ sys.A` at every instant: an input-free run reaches `x(t) = Φ x(0)` for some
-`Φ ∈ expIntervalEnclosure (t • sys.A) η` — the interval matrix `expmIndMixed`
-computes in `priv_mappingMatrix`, and the very one `'constParam'` already uses.
-So the two readings need the same mapping matrix, where freezing one member and
-paying the drift as input (`IsTrajectory.timeInterval_outer`) needs a wider set.
+CORA's `'varParam'` mapping matrix made sound for `IsTrajectory`, a fresh `A t ∈ sys.A` at every
+instant: an input-free run reaches `x(t) = Φ x(0)` for some
+`Φ ∈ expIntervalEnclosure (t • sys.A) η` — the interval matrix `expmIndMixed` computes in
+`priv_mappingMatrix`, and the one `'constParam'` already uses. The run solves the integral
+equation at a measurable member of the box (`IsTrajectory.exists_integral_eq`), and the
+Peano–Baker expansion of that equation (`MatExp.exists_mem_expIntervalEnclosure_of_integral`) is
+the rest. Input-free only, as CORA too splits the input off into `Rtrans` and the input solution.
 
-The run solves the integral equation at a measurable member of the box
-(`IsTrajectory.exists_integral_eq`), and the Peano–Baker expansion of that equation
-(`MatExp.exists_mem_expIntervalEnclosure_of_integral`) is the rest.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `t` – time
+* `η` – Taylor order
 
-Input-free only, as CORA too splits the input off into `Rtrans` and the input
-solution.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `ht` – time nonnegative
+* `hT` – window lies in the time set
+* `hu` – input vanishes on the window
+* `hε` – order admissible
+
+## Conclusion
+* the state at `t` is the start mapped by a member of the exponential enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

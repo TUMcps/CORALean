@@ -12,6 +12,26 @@ The expectation of the state of a `LinProbSys.IsTrajectory` at a time `t ≥ 0` 
 Gaussian `law` gives `x t` (`integral_id_multivariateGaussian`), read back through the image of
 `P`.
 
+## Inputs
+* `sys` – system
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `X₀` – initial set
+* `U` – input set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `t` – time
+
+## Hypotheses
+* `traj` – probabilistic trajectory
+* `ht` – `t` lies in `T`
+* `h0` – time nonnegative
+
+## Conclusion
+* the expected state is the deterministic solution
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

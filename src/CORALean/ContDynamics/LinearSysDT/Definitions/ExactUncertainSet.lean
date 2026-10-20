@@ -14,6 +14,17 @@ consistent set of [1, Def. 1]. The system is [1, Eq. 1], `x_{k+1} = A x_k + ω_k
 but constant. The paper's claim that this is exactly the set of states consistent with the
 measurements is `exactUncertainSet_eq`.
 
+## Inputs
+* `sys` – system
+* `C` – output matrix
+* `V` – noise set
+* `X₀` – initial set
+* `W` – disturbance set
+* `y` – measurements
+
+## Output
+* the exact uncertain set after each number of steps
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

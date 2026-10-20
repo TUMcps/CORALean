@@ -14,6 +14,21 @@ public import Mathlib.Tactic.Linarith
 `n_m - n_out` of the data points lie in their prediction sets, at most `n_out` violating
 (10b). The points kept are those with `ρₘ = 1`; a discarded point takes `βₘ = 0`.
 
+## Inputs
+* `nm` – number of data points
+* `nout` – allowed outliers
+* `f` – predictions per point
+* `D` – derivatives per point
+* `y` – targets per point
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the mixed-integer constraints are feasible iff all but `nout` points fit
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

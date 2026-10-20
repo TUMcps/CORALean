@@ -17,6 +17,28 @@ the hyperplane up to `T` is, reparametrized by `NonlinearSys.reparametrize`, a r
 scaled system's. The time change is the classical chain rule, which is why the field's
 continuity is asked; a Carathéodory time change would need the chain rule for absolutely
 continuous functions.
+
+## Inputs
+* `sys` – system
+* `T` – final time
+* `R₀` – initial set
+* `U` – input set
+* `c` – guard normal
+* `b` – guard offset
+* `p` – scaling constant
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+
+## Hypotheses
+* `hT` – final time nonnegative
+* `hp` – scaling constant positive
+* `hrun` – trajectory of the system
+* `hf` – field continuous along run
+* `hpos` – run strictly before the guard
+
+## Conclusion
+* the states lie on a run of the scaled system
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,26 @@ reachSetExact sys R₀ U k` that hypothesis is exactly `reachSetExact_convex` an
 `reachSetExact_isCompact` (for the closedness), so a caller supplies only what is
 true of `R₀`, `U` and the error set `E` — nothing about `reachSetExact` itself is
 left to discharge.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+* `Ŷ` – outer approximation
+* `E` – error set
+
+## Hypotheses
+* `hR₀conv` – initial set convex
+* `hR₀comp` – initial set compact
+* `hUconv` – input set convex
+* `hUcomp` – input set compact
+* `hE` – `E` nonempty
+* `hEb` – `E` bounded
+* `hOuter` – `Ŷ` lies in the exact set plus `E`
+
+## Conclusion
+* the Minkowski difference of `Ŷ` and `E` lies in the exact set
 -/
 
 -- Authors:       Claude Opus 5

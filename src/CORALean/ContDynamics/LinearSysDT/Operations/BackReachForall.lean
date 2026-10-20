@@ -9,21 +9,22 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Backward reachability, computed
 
-`backReachSetForallExact`'s two steps at a representation: `diff` for the Minkowski
-difference, and `mtimes Ainv` for the preimage under `A`, taken as the image
-under a right inverse the caller hands in. `sys` is carried and never read —
-the dynamics enter through `backReachForall_inner`'s `hA` alone.
+`backReachSetForallExact`'s two steps at a representation: `diff` for the Minkowski difference,
+and `mtimes Ainv` for the preimage under `A`, taken as the image under a right inverse the caller
+hands in. `sys` is carried and never read — the dynamics enter through `backReachForall_inner`'s
+`hA` alone. `diff` is an option rather than the `MinkDiff` class because `Zonotope` has no
+instance of it and can have none: a zonotope difference exists only at a checked generator
+representation, so `Zonotope.minkDiffRep` is `Option`-valued, and `none` is what an implementation
+returns where it cannot certify a subset. No `reduce` in the loop, and so no `0 < o`: at
+`Zonotope` the count never grows.
 
-`diff` is an option rather than the `MinkDiff` class because `Zonotope` has
-no instance of it and can have none: a zonotope difference exists only at a
-checked generator representation, so `Zonotope.minkDiffRep` is `Option`-valued
-and a total `minkDiff : S → S → S` has nowhere to fail. This is `Option`-valued
-for that reason, and `none` is what an implementation returns where it cannot
-certify a subset — never a set it has not earned.
+## Inputs
+* `_sys` – system
+* `params` – reachability parameters with inputs
+* `options` – backward reachability options
 
-No `reduce` in the loop, and so no `0 < o`: at `Zonotope` the count never grows
-— `minkDiffRep` keeps the minuend's generators and `mtimes` keeps them — so an
-order would have nothing to bound.
+## Output
+* the computed backward reachable set, or none
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -16,6 +16,30 @@ induction on the fuel, on a state `(t, R(t), R_union)` as for `reachLoop_outer`.
 cannot affect it: the certificate is asked of whatever step the pass chose, and the loop only
 takes steps that are positive and end by `t_f`.
 
+## Inputs
+* `sys` – system
+* `T` – tuning heuristics
+* `U` – input zonotope
+* `tFinal` – final time
+* `tol` – tolerance
+* `k` – Taylor order minus two
+* `fuelErr` – error loop fuel
+* `fuelHalf` – step halving fuel
+* `R0` – start set
+* `Tmax` – horizon of the trajectory
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `hT` – final time within the horizon
+* `hcert` – every adaptive pass certifies the run
+
+## Conclusion
+* the run up to the time reached lies in the returned union
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

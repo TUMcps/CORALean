@@ -8,19 +8,14 @@ public import CORALean.ContSet.Interval.Float.Instances
 /-!
 # What a float run is told about the field
 
-`NonlinearSys` stores `f` over ℝ, which no float run can evaluate. A `FloatModel`
-is what it evaluates instead: interval extensions of `f` and of its two Jacobian
-blocks over a box `X × U`, as computable functions at the scalar `𝕋`. `Encloses`
-ties them to `f`, beside the class rather than inside it, so the real class and
-every certificate built on it stay unchanged and a float run never holds `f`.
-
-The Jacobian is asked for as a *slope* enclosure: any two points of the box differ
-under `f` by some matrix pair in the boxes applied to their difference. That is
-all the run spends, it is what the mean value theorem gives for an interval
-Jacobian over a convex box (`Encloses.of_hasFDerivAt`), and for a polynomial field
-it is plain algebra. The price is the remainder: `slopeRemainder` is first order,
-`O(‖δ‖)` in the deviation from the expansion point where CORA's Hessian bound
-[1, Prop. 1] is `O(‖δ‖²)`; `FloatHessModel` adds the Hessian enclosure.
+`NonlinearSys` stores `f` over ℝ, which no float run can evaluate. A `FloatModel` is what it
+evaluates instead: interval extensions of `f` and of its two Jacobian blocks over a box `X × U`,
+as computable functions at the scalar `𝕋`. `Encloses` ties them to `f`, beside the class rather
+than inside it. The Jacobian is asked for as a *slope* enclosure: any two points of the box
+differ under `f` by some matrix pair in the boxes applied to their difference, which the mean
+value theorem gives for an interval Jacobian over a convex box (`Encloses.of_hasFDerivAt`). The
+price is the remainder: `slopeRemainder` is `O(‖δ‖)` in the deviation from the expansion point
+where CORA's Hessian bound [1, Prop. 1] is `O(‖δ‖²)`; `FloatHessModel` adds the Hessian.
 
 ## References
 

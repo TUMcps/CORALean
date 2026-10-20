@@ -11,15 +11,42 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # `inputSolution` contains the input's contribution at every time in the step
 
-`inputSolution_outer` encloses what the input contributed where the step *ends*.
-A time-interval enclosure needs one set covering every `t ∈ [0, r]`, and
-[1, Sec. 3.3] says `0 ∈ U` makes those the same set — a statement about sets of
-points, so it is the point system at the fixed member that carries it and the
-matrix set never enters.
+`inputSolution_outer` encloses what the input contributed where the step *ends*. A time-interval
+enclosure needs one set covering every `t ∈ [0, r]`, and [1, Sec. 3.3] says `0 ∈ U` makes those
+the same set — a statement about sets of points, so it is the point system at the fixed member
+that carries it and the matrix set never enters. The member's `inputReach` grows with the
+window, and `inputReach_subset_inputSolution` sends the longest window into the enclosure
+computed from the box.
 
-That is the whole of the extension: the member's `inputReach` grows with the
-window, and `inputReach_subset_inputSolution` sends the longest window into the
-enclosure computed from the box.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `η` – Taylor order
+* `t` – time
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin lies in the input set
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the input's contribution up to time `t` lies in the enclosure
 
 ## References
 

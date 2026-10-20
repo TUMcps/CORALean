@@ -17,22 +17,39 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 /-!
 # The re-linearization loop encloses the run at every step boundary
 
-One induction on the step count: step `i` is the one-step guarantee applied to
-the run re-anchored at `iΔt`, with what the induction hypothesis encloses as its
-initial set. Nothing about step `i` reaches past its own window.
+One induction on the step count: step `i` is the one-step guarantee applied to the run
+re-anchored at `iΔt`, with what the induction hypothesis encloses as its initial set. Time is
+handled by re-anchoring rather than by absolute windows: every statement in `LinearSys` reads
+`Set.Icc 0 r ⊆ T` and `IsTrajectory.init` pins `x 0`, so `IsTrajectory.shift` moves the run and
+the one-step theorems apply unchanged. Confinement is a hypothesis per step, on that step's own
+window; `confinement_of_subset` discharges it from a check on the computed sets. Step
+boundaries only here; `relinTimeInterval_outer` covers the time between them.
 
-Time is handled by re-anchoring rather than by absolute windows. Every statement
-in `LinearSys` reads `Set.Icc 0 r ⊆ T` and `IsTrajectory.init` pins `x 0`, so
-`IsTrajectory.shift` moves the run and the one-step theorems apply unchanged. The
-price is a shifted trajectory, paid once for the flow in `Shift` and once for the
-input integral in `LinearSys.stepInput_shift`.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `steps` – linearization steps
+* `Ud` – input enclosures per step
+* `Δt` – step size
+* `N` – number of steps
+* `y` – output trajectory
+* `o` – maximum order
 
-Confinement is a hypothesis per step, asked on that step's own window alone.
-`confinement_of_subset` discharges it from a check on the computed sets, so a
-caller need not already know where the run goes in order to use this.
+## Hypotheses
+* `traj` – trajectory of the system
+* `hΔt` – step size nonnegative
+* `hT` – horizon inside time set
+* `hR` – trajectory stays in regions
+* `hU` – widened inputs bounded
+* `hUd` – input enclosures hold step inputs
+* `ho` – order positive
 
-Step boundaries only in this file; `relinTimeInterval_outer` covers the time
-between them, each step's enclosure at every time rather than just its ends.
+## Conclusion
+* the trajectory state at each boundary lies in the loop result
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,6 +11,12 @@ public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 `Ā_p … Ā_1`. It is the state matrix of the conversion to `LinearSysDT`, read into ℝ, so
 the window recursion (11) is `toLinearSysDT_step` and needs no second proof.
 
+## Inputs
+* `sys` – ARX system
+
+## Output
+* the extended output matrix
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

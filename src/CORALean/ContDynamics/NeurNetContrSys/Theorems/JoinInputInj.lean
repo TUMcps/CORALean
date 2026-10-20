@@ -11,6 +11,21 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 `joinInput` places the network's part in the first `m` coordinates and the external part after
 them, so neither is lost: `[a; e] = [a'; e']` forces `a = a'` and `e = e'`. This is what lets a
 run of the plant under `input (π x) (v t)` hand back that `v t` lies in `U_ext`.
+
+## Inputs
+* `M` – plant input dimension
+* `m` – network output dimension
+* `a` – first network part
+* `a'` – second network part
+* `e` – first external part
+* `e'` – second external part
+
+## Hypotheses
+* `hm` – network part fits in the input
+* `h` – the joined inputs are equal
+
+## Conclusion
+* the network parts and the external parts agree
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,23 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 deviation, plus `E{k,j}` applied to each linearization error `L_j = [L_x; L_y]`, for every run
 of the system, `y` its output as `IsTrajectory` states it. As for the state, an identity: the
 errors are the `linResidual`s, not bounded.
+
+## Inputs
+* `sys` – system
+* `x0` – initial point
+* `u_ref` – reference input
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
+
+## Hypotheses
+* `traj` – trajectory of the system
+
+## Conclusion
+* the output deviation is the sum of the parameter terms
 -/
 
 -- Authors:       Claude Opus 5.5

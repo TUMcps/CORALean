@@ -8,18 +8,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # The abstraction error of a conservative polynomialization
 
-`AbstractionError` at a set, refined so that the error is a *function of the same
-factors the initial set is written in* — [1], and what `options.alg = 'poly'`
-selects in CORA's `linReach`. The state is `pZ.point a` rather than a member of a
-set, and the error at that state is `L.point` at that same `a`, up to `W`.
-
-Two pieces, as CORA's `errorStat` and `VerrorDyn` are two: `L` keeps the
-dependency and is added back with `exactPlus`, `W` is what had to be boxed and is
-added with an ordinary Minkowski sum. `L.p = pZ.p` is what "the same factors"
-means, and `hp` is what lets the statement say it.
-
-`Ba` names a sub-box of the factor domain, as `AbstractionError`'s `R` names a
-subset of the state space; `subsetAt` is the set of states it reaches.
+`AbstractionError` at a set, refined so that the error is a *function of the same factors the
+initial set is written in* — [1], and what `options.alg = 'poly'` selects in CORA's `linReach`.
+The state is `pZ.point a` rather than a member of a set, and the error at that state is
+`L.point` at that same `a`, up to `W`. Two pieces, as CORA's `errorStat` and `VerrorDyn` are
+two: `L` keeps the dependency and is added back with `exactPlus`, `W` is what had to be boxed.
+`L.p = pZ.p` is what "the same factors" means, and `Ba` names a sub-box of the factor domain.
 
 ## References
 

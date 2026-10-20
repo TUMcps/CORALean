@@ -18,6 +18,15 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 `Λ⁽ⁱ⁾` the diagonal matrix of ones at the interface inputs and zeros elsewhere (here any
 matrix; [1] means a diagonal one). With `Λ = I` it is the enlargement of [1, Eq. 12].
 
+## Inputs
+* `lamU` – enlargement factor
+* `Λ` – interface selection matrix
+* `c` – center
+* `U` – input zonotope
+
+## Output
+* the enlarged assumed input zonotope
+
 ## References
 
 * [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets".

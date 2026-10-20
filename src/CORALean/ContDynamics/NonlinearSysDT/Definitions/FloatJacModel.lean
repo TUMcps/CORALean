@@ -9,16 +9,13 @@ public import CORALean.Global.Jacobian
 /-!
 # What a float run is told about a map and its Jacobians
 
-`computeGO` linearizes the field `f` and the output equation along the reference run, by real
-Jacobians (`jacobianMat`, i.e. `fderiv`), which no float run can evaluate. A `FloatJacModel` of a
-map `g : ℝⁿ × ℝᵐ → ℝʳ` is what it evaluates instead: interval extensions of `g` and of its two
-Jacobian blocks `∂g/∂x`, `∂g/∂u` over a box of states and a box of inputs, as computable
-functions at the scalar `𝕋`. The field is `r = n`, the output equation any `r`. `Encloses` ties it
-to `g`, beside the structure rather than inside it.
-
-Unlike `NonlinearSys.FloatModel`, whose Jacobian is a slope enclosure, the Jacobians here are
-asked for pointwise: at every point of the boxes, the Jacobian itself lies in the interval
-matrix, because `computeGO`'s parameters are products of Jacobians at the reference points.
+`computeGO` linearizes the field `f` and the output equation along the reference run by real
+Jacobians, which no float run can evaluate. A `FloatJacModel` of a map `g : ℝⁿ × ℝᵐ → ℝʳ` is
+what it evaluates instead: interval extensions of `g` and of its two Jacobian blocks over a box
+of states and a box of inputs, as computable functions at the scalar `𝕋`. `Encloses` ties it to
+`g`. Unlike `NonlinearSys.FloatModel`, whose Jacobian is a slope enclosure, the Jacobians here
+are asked for pointwise, because `computeGO`'s parameters are products of Jacobians at the
+reference points.
 -/
 
 -- Authors:       Claude Opus 5.5

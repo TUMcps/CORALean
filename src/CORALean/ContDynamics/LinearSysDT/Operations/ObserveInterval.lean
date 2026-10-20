@@ -15,6 +15,19 @@ CORA stores as `R{k+2}`: its loop writes `R{i+1}` from the variables before they
 
 [1, Alg. 1], lines 4-5.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `R₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+
+## Output
+* the interval enclosing the state after `k` measurements
+
 ## References
 
 * [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th

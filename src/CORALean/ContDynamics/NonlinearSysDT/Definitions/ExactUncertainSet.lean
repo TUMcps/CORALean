@@ -14,6 +14,22 @@ a stray index `i` on `y`; it is read as `y_j = g(x_j, v_j)`, `j = 1, …, k`. Th
 are `w_0, …, w_{k-1}` and the noises `v_1, …, v_k`, as in the paper. `g` is an argument:
 `NonlinearSysDT` carries `f`, with `w` as its input.
 
+## Inputs
+* `n` – state dimension
+* `nw` – disturbance dimension
+* `nv` – noise dimension
+* `p` – output dimension
+* `sys` – system
+* `g` – measurement map
+* `W` – disturbance set
+* `V` – noise set
+* `X₀` – initial set
+* `y` – measured outputs
+* `k` – step
+
+## Output
+* the states at the step consistent with the measurements
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

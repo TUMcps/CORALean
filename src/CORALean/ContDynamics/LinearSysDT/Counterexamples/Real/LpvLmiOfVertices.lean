@@ -12,15 +12,22 @@ public import Mathlib.Algebra.Order.Star.Real
 /-!
 # The vertex conditions of the LPV estimator as printed
 
-[1, Cor. 2] concludes Eq. 19 of [1, Thm. 2] at the scheduled matrices from `Ψᵢᵢ ≻ 0` (its
-Eq. 29a) and `2/(h-1) Ψᵢᵢ + Ψᵢⱼ + Ψⱼᵢ ≽ 0` for `i < j` (its Eq. 29b), `Ψᵢⱼ` its Eq. 30. With
-`h = 2` vertices, `n_x = n_y = n_d = 1`, `T = N = C = 1`, `F = 0`, `D_j = 0`, `A₁ = 0`, `A₂ = 1`,
-`P = 2`, `Y₁ = -2`, `Y₂ = 3/2` (`Λᵢ = P⁻¹Yᵢ = -1, 3/4`), `α = 1/4`, `β = 1/2`, the only coupling in
-`Ψᵢⱼ` is `(2 - Yᵢ)Aⱼ`, between the first and the last block: `0` in `Ψ₁₁`, `1/2` in `Ψ₂₂`, so both
-are positive definite, and `4` in `2Ψ₁₁ + Ψ₁₂ + Ψ₂₁`, which is singular and positive semidefinite.
-At `ρ = (1/2, 1/2)` the coupling of Eq. 19 is `P(1 - Λ(θ)C)TA(θ) = 9/8`, and its form at
+[1, Cor. 2] concludes Eq. 19 of [1, Thm. 2] at the scheduled matrices from `Ψᵢᵢ ≻ 0` (its Eq. 29a)
+and `2/(h-1) Ψᵢᵢ + Ψᵢⱼ + Ψⱼᵢ ≽ 0` for `i < j` (its Eq. 29b), `Ψᵢⱼ` its Eq. 30. With `h = 2`
+vertices, `n_x = n_y = n_d = 1`, `T = N = C = 1`, `F = 0`, `D_j = 0`, `A₁ = 0`, `A₂ = 1`, `P = 2`,
+`Y₁ = -2`, `Y₂ = 3/2`, `α = 1/4`, `β = 1/2`, both diagonal conditions hold and
+`2Ψ₁₁ + Ψ₁₂ + Ψ₂₁` is positive semidefinite, but at `ρ = (1/2, 1/2)` the form of Eq. 19 at
 `(1, 0, 0, -9/16)` is `-17/128`. The condition for `(j, i) = (2, 1)`, which the corollary omits,
 fails; with it, strict, the corollary holds (`lpvLmi_of_vertices`).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the vertex conditions hold while the estimator condition fails
 
 ## References
 

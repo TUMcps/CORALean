@@ -19,6 +19,15 @@ at every step, so `⨁ A^{k-i} W = ⨁ Aⁱ W` — and so is everything the pape
 (7), [1, Eq. 15] subtracting the input term whatever its form: with `A^{k-i}`, (7) is
 `mem_reachOutExact_iff` at `x0 = 0`, the image under `C` distributed over the sum.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a plant and inputs exist where the printed formula differs from the reachable set
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

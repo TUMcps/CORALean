@@ -7,21 +7,21 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # `linPoint`, the point a step linearizes at
 
-Line 3 of [1, Alg. 1], which its eq. (6) spells out: the state expansion point
-is the center of the set the step starts from, carried half a step along the
-field, and the input expansion point is the center of the input set — [2, Sec. V]'s
-`z✱ = ĉ + (r/2) f(ĉ, mid(p))`, read as moving the state block of `ĉ` alone.
+Line 3 of [1, Alg. 1], which its eq. (6) spells out: the state expansion point is the center of
+the set the step starts from, carried half a step along the field, and the input expansion point
+is the center of the input set — [2, Sec. V]'s `z✱ = ĉ + (r/2) f(ĉ, mid(p))`. Half a step, so
+the point sits where the flow is in the middle of the step; that makes `A` and `Ψ` of eq. (32)
+functions of the step size, which [1, Def. 5] compares. `Recenter.center` is what a
+representation offers as its center. There is no `y✱`: this is the ODE specialization of `Alg. 1`.
 
-Half a step and not none: the linearization is meant to be good over the whole
-of `[t_k, t_{k+1}]`, so the point is put where the flow is in the middle of it.
-That is also what makes `A` and `Ψ` of eq. (32) functions of the step size,
-which is what [1, Def. 5] compares two of.
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `R` – start set
+* `U` – input set
 
-`Recenter.center` is what a representation offers as its center; nothing here
-asks it to be a barycenter, and a representation without one cannot run this
-line. `xs` and `us` spell `x✱` and `u✱`, which are no Lean identifiers, and are
-`LinStep`'s names for them. No algebraic equation and so no `y✱`: this is the
-ordinary-differential specialization [1] gives directly under its `Alg. 1`.
+## Output
+* the state and input expansion points
 
 ## References
 

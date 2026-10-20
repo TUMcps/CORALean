@@ -17,6 +17,20 @@ keeps `S_c = ⊕_{i<k} B̃ᵢ(k) Ũ_c`, `T_c1 = ⊕_{i=k}^{k₊} B̃ᵢ(k) Ũ_c`
 Ũ_c` (from the first pass on) and `s_v` as Alg. 1's `S` on the points, by [1, Lemma 1] and
 [1, Lemma 2]. For `k_init > p` the theorem fails: `alg2_ne_reachWindowExact`.
 
+## Inputs
+* `sys` – ARX system
+* `yinit` – measured first output window
+* `Uc` – constant input set
+* `uv` – varying input
+* `m` – pass index
+
+## Hypotheses
+* `hUc` – constant input set nonempty
+* `hp` – at least one lag
+
+## Conclusion
+* pass `m` returns exactly the reachable windows
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

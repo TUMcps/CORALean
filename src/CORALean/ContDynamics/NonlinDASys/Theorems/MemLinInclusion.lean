@@ -8,16 +8,40 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
 /-!
 # A consistent state's derivative lies in the abstracting inclusion
 
-[1, Eq. 13] and [1, Eq. 16]: inserting the algebraic deviation ([1, Eq. 12]) into the
-linearized dynamics ([1, Eq. 10]) gives `ẋ = w + Ã Δx + B̃ Δu + (ℓᵈ - C F⁻¹ ℓᵃ)`, so
-`ẋ ∈ Ã Δx ⊕ Ũ` once `L` holds `ℓᵈ - C F⁻¹ ℓᵃ` and `u ∈ U`.
+[1, Eq. 13] and [1, Eq. 16]: inserting the algebraic deviation ([1, Eq. 12]) into the linearized
+dynamics ([1, Eq. 10]) gives `ẋ = w + Ã Δx + B̃ Δu + (ℓᵈ - C F⁻¹ ℓᵃ)`, so `ẋ ∈ Ã Δx ⊕ Ũ` once `L`
+holds `ℓᵈ - C F⁻¹ ℓᵃ` and `u ∈ U`. `ℓᵈ` and `ℓᵃ` are the exact linearization errors at
+`z = (x, y, u)`, and the hypothesis is that `L` holds their combination. [1, Eq. 15] prints `L`
+with one Lagrange point `ξ` for all rows, which need not hold it (`SharedLagrangePoint`); with one
+`ξ` per row, [1, Eq. 8], it does (`NonlinDASys.exists_lagrange_remainder`), and so does every
+enclosure [1, Cor. 1] computes. The state must be consistent, `g(z) = 0`; only `F⁻¹ F = I` is used.
 
-`ℓᵈ = f(z) - (f(z*) + A Δx + B Δu + C Δy)` and `ℓᵃ = g(z) - (g(z*) + D Δx + E Δu + F Δy)` are
-the exact linearization errors at `z = (x, y, u)`, and the hypothesis is that `L` holds their
-combination. [1, Eq. 15] prints `L` with one Lagrange point `ξ` for all rows of `f` and
-`g`, which need not hold it (`SharedLagrangePoint`); with one `ξ` per row,
-[1, Eq. 8], it does (`NonlinDASys.exists_lagrange_remainder`), and so does every enclosure
-[1, Cor. 1] computes. The state must be consistent, `g(z) = 0`, and only `F⁻¹ F = I` is used.
+## Inputs
+* `sys` – system
+* `xs` – linearization state
+* `ys` – linearization algebraic variable
+* `us` – linearization input
+* `A` – dynamics Jacobian in the state
+* `B` – dynamics Jacobian in the input
+* `C` – dynamics Jacobian in the algebraic variable
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F` – constraint Jacobian in the algebraic variable
+* `F_inv` – inverse of `F`
+* `U` – input set
+* `L` – linearization error set
+* `x` – differential state
+* `y` – algebraic variable
+* `u` – input at the point
+
+## Hypotheses
+* `hF` – `F_inv` is a left inverse of `F`
+* `hu` – `u` lies in `U`
+* `hg` – the state is consistent
+* `hL` – `L` holds the combined linearization error
+
+## Conclusion
+* the field lies in the inclusion's right-hand side
 
 ## References
 

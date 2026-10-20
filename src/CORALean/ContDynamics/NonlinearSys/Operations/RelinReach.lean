@@ -15,22 +15,24 @@ public import CORALean.ContDynamics.Reach.Definitions.Params
 /-!
 # The re-linearization loop
 
-CORA's `nonlinearSys/reach`, and the while loop of [1, Alg. 1] — its line 17
-`post` and its line 18 `reduce`: one linearization per time step, the enclosure
-reached at the end of a step becoming the initial set of the next. Step `i` runs
-the linear machinery of step `i`'s own system for exactly one step, so the whole
-loop is one step of `LinearSysDT.reach` iterated at a matrix that changes each time.
+CORA's `nonlinearSys/reach`, and the while loop of [1, Alg. 1] — its line 17 `post` and line 18
+`reduce`: one linearization per time step, the enclosure reached at the end of a step becoming
+the initial set of the next. Nothing new is computed: what re-linearizing costs is a fresh
+certificate per step, data the caller supplies. Time is counted in steps, `tStart` and `tFinal`
+being ℕ as in `LinearSysDT.reach`, so the sample times are the step boundaries and absolute time
+is `iΔt`. `steps` and `Ud` are the certificates CORA computes inside `reach`. `exp` takes the
+`l∞` operator norm on `Mat`, a choice.
 
-Nothing new is computed: what re-linearizing costs is a fresh certificate per step,
-data the caller supplies. One step per linearization, so the sample times are the
-step boundaries and absolute time is `iΔt`.
+## Inputs
+* `sys` – system
+* `U` – input set
+* `params` – reachability parameters
+* `options` – reachability options
+* `steps` – linearization steps
+* `Ud` – input enclosures per step
 
-Time is counted in steps, `tStart` and `tFinal` being ℕ as in `LinearSysDT.reach`,
-not in ℚ with `Reach.steps`: `Δt` is an ℝ that `discretize` needs, and the
-guarantees are stated at every boundary `iΔt`, which in ℚ time would be a partial
-`Option` per horizon. The count `tFinal - tStart` is exact, and every guarantee is
-stated at `tStart = 0`. `steps` and `Ud` are the certificates CORA computes inside
-`reach`. `exp` takes the `l∞` operator norm on `Mat`, a choice.
+## Output
+* the reachable set after the last step
 
 ## References
 

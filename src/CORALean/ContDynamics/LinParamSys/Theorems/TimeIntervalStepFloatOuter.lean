@@ -13,6 +13,26 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrection
 the stored matrix: `e^{As} x` splits into a point of the segment from `x` to
 `e^{AΔt} x`, which `linComb` holds once `e^{AΔt}` is in the float box, and the
 interpolation error, which `[F]` at `sys.A` holds.
+
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `η` – Taylor order
+* `R` – initial zonotope
+* `A` – system matrix member
+* `x` – start point
+* `s` – time
+
+## Hypotheses
+* `hΔt` – step positive
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix set
+* `hx` – `x` lies in `R`
+* `hs0` – time nonnegative
+* `hs` – time at most the step
+
+## Conclusion
+* the member's flow of the point lies in the float step
 -/
 
 -- Authors:       Claude Opus 5.5

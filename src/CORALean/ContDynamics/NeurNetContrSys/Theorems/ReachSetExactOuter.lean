@@ -10,6 +10,24 @@ public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSetExact
 The cheap half, exactly as in the continuous classes: a run is in the set of
 what runs reach by construction, so the proof is the pair itself. All the
 content sits in the other half, `reachSetExact_subset_reach`.
+
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `H` – number of periods
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+* `t` – time
+
+## Hypotheses
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the run's state lies in the exact reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

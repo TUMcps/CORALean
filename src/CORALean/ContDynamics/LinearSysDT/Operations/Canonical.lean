@@ -12,6 +12,13 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 `LinearSys.canonical` is in continuous time. Its `IsTrajectory` is its `IsCanonicalTrajectory`, so
 it is the system an operation handed only a state matrix builds: a discretization, a
 linearization, an observer's error dynamics.
+
+## Inputs
+* `A` – state matrix
+* `dt` – sampling time
+
+## Output
+* the canonical-form system at that matrix
 -/
 
 -- Authors:       Claude Opus 5.5

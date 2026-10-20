@@ -12,20 +12,26 @@ public import Mathlib.Tactic.FinCases
 /-!
 # CORA's dependent low-order solution misses the solution's second order
 
-`priv_dependentHomSol` (`LinParamSys.dependentHomSolLowOrder`) keeps, of the input's
-`A r²/2 u` term, only the parts with one parameter: the products `A_g⁽ⁱ⁾ U_G⁽ʲ⁾ r²/2` of the
-matrix's and the input's parameter terms (the coefficient of `pᵢpⱼ`) are missing, the
-`pᵢ²` coefficient of `A² r³/6 U_c` is printed as `A_g⁽ⁱ⁾ r³/6 U_c` rather than with
-`(A_g⁽ⁱ⁾)²`, and the third-order products in `p` are dropped. They are of time order two
-and three, which the high-order mapping matrices (orders three and four up) do not hold.
+`priv_dependentHomSol` (`LinParamSys.dependentHomSolLowOrder`) keeps, of the input's `A r²/2 u`
+term, only the parts with one parameter; the products `A_g⁽ⁱ⁾ U_G⁽ʲ⁾ r²/2`, the `(A_g⁽ⁱ⁾)²` in
+`A² r³/6 U_c` and the third-order products in `p` are missing.
 
-The counterexample: `A = p₁ N`, `N` the nilpotent shift, `u = p₁ e₂`, a second parameter with
-zero generators (so that CORA takes `expmMixed` rather than `expmOneParam`), `x(0) = 0`. At
-`p₁ = 1`, `x(t) = (t²/2, t)`; every point of `R_lowOrder` has first coordinate `0`, so
-`x(r)` is in `R_lowOrder ⊕ Z` for no `Z` whose first coordinates stay below `r²/2` in
-absolute value. CORA's remaining terms at this system (the high-order mapping matrices, all
-products with `N² = 0` or with the zero vector, and `E r` times the input) are of size
-`O(r^(η+2))`, read from the source, not run.
+The counterexample: `A = p₁ N`, `N` the nilpotent shift, `u = p₁ e₂`, a second parameter with zero
+generators (so CORA takes `expmMixed`), `x(0) = 0`. At `p₁ = 1`, `x(t) = (t²/2, t)`; every point of
+`R_lowOrder` has first coordinate `0`, so `x(r)` is in `R_lowOrder ⊕ Z` for no `Z` whose first
+coordinates stay below `r²/2`. CORA's other terms are `O(r^(η+2))`, read from the source.
+
+## Inputs
+* `r` – step size
+* `δ` – bound on first coordinates
+* `Z` – error set
+
+## Hypotheses
+* `hδ` – bound below half the squared step
+* `hZ` – first coordinates of `Z` within `δ`
+
+## Conclusion
+* the solution at `r` lies outside the low-order set enlarged by `Z`
 -/
 
 -- Authors:       Claude Opus 5.5

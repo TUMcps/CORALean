@@ -19,6 +19,27 @@ is the one-step set propagated `k + 1` times [1, Alg. 1], and that one step
 lies in `inputSolutionFloat`. Each propagator `e^{A t_j}` is in the window
 `reachStepkFloat` computes.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `ρ` – zonotope order bound
+* `A` – system matrix member
+* `U` – input zonotope
+* `k` – window index
+* `t` – time
+
+## Hypotheses
+* `hΔt` – window length positive
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix set
+* `h0` – origin lies in the input set
+* `ht0` – time nonnegative
+* `htk` – time at most the window end
+
+## Conclusion
+* everything an input contributes by time `t` lies in the particular solution
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

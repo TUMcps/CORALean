@@ -14,6 +14,19 @@ public import Mathlib.Data.Matrix.ColumnRowPartitioned
 `n_x` and the fault dimension; it is [1, Eq. 26] at `Q = αP`, `W = PL`, and the gain is
 `L = P⁻¹W`. Stated as its negative being positive definite, the `⋆` blocks the transposes.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `P` – Lyapunov matrix
+* `W` – gain variable
+* `Y` – weight matrix
+* `α` – scaling
+* `β` – sensitivity level
+
+## Output
+* the block matrix is negative definite
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

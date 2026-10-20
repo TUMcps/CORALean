@@ -16,6 +16,16 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 The same costs at a step's worst case: `o * n` generators reaching the
 `mtimes`, `hEnc` a bound on what the controller's enclosure and `hU` on what the external inputs
 carry into the `reduce`.
+
+## Inputs
+* `sys` – closed-loop system
+* `o` – maximum zonotope order
+* `hEnc` – bound on the enclosure's generator count
+* `hU` – bound on the external inputs' generator count
+* `LC` – per-layer cost bound
+
+## Output
+* the cost of one step at its worst case
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

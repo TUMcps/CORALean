@@ -15,6 +15,14 @@ system encloses; a time-varying parameter, `IsTrajectory`, is not enclosed, its
 augmented state not having zero derivative. Nothing here mentions the
 augmentation or the linearizations: they are how `reach` encloses this set.
 Positional, as the mathematics: `Reach` reads the horizon off `params`.
+
+## Inputs
+* `sys` – parametric system with steps
+* `tFinal` – horizon
+* `X` – initial set
+
+## Output
+* the states some constant-parameter run is at within the horizon
 -/
 
 -- Authors:       Claude Opus 5.5

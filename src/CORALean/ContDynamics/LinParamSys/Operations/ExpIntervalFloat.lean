@@ -12,6 +12,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclo
 point one: `MatExp.expIntervalEnclosure` of the box `[tLo, tHi] · sys.A`,
 stored. The float counterpart of `LinParamSys.expEnclosure`, its order given
 rather than raised; `reachOrderFloat` finds one that is admissible.
+
+## Inputs
+* `sys` – system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Output
+* float interval matrix enclosing the exponential over the time range
 -/
 
 -- Authors:       Claude Opus 5.5

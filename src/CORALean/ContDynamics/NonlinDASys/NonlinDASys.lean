@@ -9,18 +9,12 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 # Continuous-time nonlinear differential-algebraic systems: the representation
 
 CORA's `nonlinDASys`: `ẋ(t) = f(x(t), y(t), u(t))`, `0 = g(x(t), y(t), u(t))`, with `y` algebraic,
-and the output equation `z = h(x, y, u)`. `n` states, `p` constraints (CORA's `nrOfConstraints`,
-the dimension of `y`) and `m` inputs; the output dimension `q` is a field, as CORA's `nrOfOutputs`
-is a property. Time-invariant as CORA's is. `IsTrajectory` carries the output
-`z t = h (x t) (y t) (u t)`, as every class with an output equation does.
-
-A `IsTrajectory` is `(x, y, u)` with `x` a Carathéodory solution along `f`, the integral equation
-`x t = x 0 + ∫₀ᵗ f(x s, y s, u s) ds` as for `NonlinearSys`, and the constraint holding on all
-of `T`; a jumping input is admissible, `y` jumping with it. [1, Eq. 1] states no solution concept
-beyond "unique solutions"; its classical ones are among these (`IsTrajectory.of_hasDerivWithinAt`).
-The constraint at `0` is the consistency condition on `y 0`. CORA assumes differentiation index 1,
-`∂g/∂y` invertible along solutions; the class does not carry it, as CORA's does not, and
-`IsIndex1` in `Definitions/` states it. The setting is [1, Eq. 1]: semi-explicit, index 1.
+and the output equation `z = h(x, y, u)`. `n` states, `p` constraints and `m` inputs; the output
+dimension `q` is a field. `IsTrajectory` is `(x, y, u)` with `x` a Carathéodory solution along
+`f` as for `NonlinearSys`, and the constraint holding on all of `T`; a jumping input is
+admissible, `y` jumping with it. [1, Eq. 1] states no solution concept beyond "unique
+solutions"; its classical ones are among these. CORA assumes differentiation index 1, `∂g/∂y`
+invertible along solutions; the class does not carry it, and `IsIndex1` in `Definitions/` states it.
 
 ## References
 

@@ -20,6 +20,24 @@ with a disturbance `E` sends to `0`, is with `a` appended to it a Carathéodory 
 entering as `B_aug v ∈ B_aug U_ext`. `U_ext` is bounded, which makes `B_ext v` integrable: `v` is
 measurable only. CORA's loop drops `E` instead; the hypothesis on the disturbance is what makes
 that sound.
+
+## Inputs
+* `sys` – closed-loop system
+* `τ` – period length
+* `U_ext` – external input set
+* `W` – disturbance set
+* `x` – plant states
+* `a` – held network output
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hU` – external input set bounded
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – plant trajectory under the held and external inputs
+
+## Conclusion
+* the plant run with the held output appended solves the augmented system
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -16,6 +16,15 @@ with it.
 through; in `n = 0` dimensions it is `sSup ∅ = 0`, junk of the same kind
 `boxDiameter` returns off its domain and for the same reason.
 
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `h` – step size
+* `δ` – shrink factor
+
+## Output
+* the largest share of its width any dimension keeps
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

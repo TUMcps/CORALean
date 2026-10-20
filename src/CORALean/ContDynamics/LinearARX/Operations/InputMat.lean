@@ -12,6 +12,13 @@ public import CORALean.Global.ExactScalar
 input's contribution to the next window, which enters in state coordinates as
 `LinearSysDT`'s input does. CORA's `B_ext{j+1} = E' B̄_{j+1}`, in
 `linearARX.setTVP`.
+
+## Inputs
+* `sys` – ARX system
+* `j` – lag index
+
+## Output
+* the lag input matrix in state coordinates
 -/
 
 -- Authors:       Claude Opus 5.5

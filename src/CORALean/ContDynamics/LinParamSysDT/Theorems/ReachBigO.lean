@@ -11,6 +11,18 @@ public import Mathlib.Analysis.Asymptotics.Defs
 `LinearSysDT.reach_h_isBigO`'s statement and proof, character for character, at
 a set-valued `sys.A`: reduction is still what holds the generator count
 independent of `k`, and `reach_order_le`'s `o * n` is still the bound behind it.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the generator count of the reachable set is bounded by a constant
 -/
 
 -- Authors:       Claude Opus 5

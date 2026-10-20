@@ -20,6 +20,15 @@ particular solution grows by the box of `RauxDet`, the probabilistic one by `pRi
 input solution of one step that `initReach` computes (an argument here), and the time-interval
 set is `Rhom + Rpar_prob + zonotope(Rpar_det)`, a probabilistic zonotope. `Rnext.tp` is `[]`.
 
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `pRinput` – probabilistic input solution
+* `st` – post state
+
+## Output
+* the next post state and the time-interval set
+
 ## References
 
 * [1] `contDynamics/@linProbSys/post.m`

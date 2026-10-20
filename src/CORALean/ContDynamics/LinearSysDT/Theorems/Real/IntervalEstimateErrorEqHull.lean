@@ -21,6 +21,22 @@ alike, which is its Eq. 21; each box is attained by a point of its zonotope
 (`Zonotope.interval_attained`), so in each coordinate their sum is attained by a point of `Ω_k`
 (its Eq. 25, [1, Property 2]).
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the error box encloses the reachable error and is its interval hull
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

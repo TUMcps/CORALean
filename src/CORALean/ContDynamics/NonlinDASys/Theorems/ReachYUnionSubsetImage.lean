@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.Basic
 Every `y t` is `h (x t) (u t)` (`y_eq`), with `x t` in the union `reachUnion` returns
 (`reachUnion_outer`) and `u t` in `U`: an outer image of the product, no tighter than `h`
 over it.
+
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reached algebraic variables lie in the output map's image of the union and inputs
 -/
 
 -- Authors:       Claude Opus 5.5

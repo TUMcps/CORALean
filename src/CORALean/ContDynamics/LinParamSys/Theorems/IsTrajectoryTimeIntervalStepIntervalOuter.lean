@@ -11,15 +11,36 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A time-varying run at a matrix zonotope, in the step of its box
 
-What `'varParam'` gets at `𝕄𝒵`: a run drawing a fresh member of the matrix
-zonotope at every instant draws one of its box too (`Zonotope.interval_contains`),
-so it is an input-free run of the interval system, and the box's own step holds it
-(`IsTrajectory.timeIntervalStep_outer`).
+What `'varParam'` gets at `𝕄𝒵`: a run drawing a fresh member of the matrix zonotope at every
+instant draws one of its box too (`Zonotope.interval_contains`), so it is an input-free run of
+the interval system, and the box's own step holds it (`IsTrajectory.timeIntervalStep_outer`). Not
+the matrix-zonotope step `timeIntervalStepZono`, which only
+`IsConstTrajectory.timeIntervalZono_outer` reaches: the Peano–Baker averaging would carry over
+but is not done here.
 
-Not the matrix-zonotope step `timeIntervalStepZono`, which only
-`IsConstTrajectory.timeIntervalZono_outer` reaches. The Peano–Baker averaging would
-carry over — a matrix-zonotope power holds products of different members and is
-closed and convex — but is not done here.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hu` – input vanishes on the step
+* `hε` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the state at time `t` lies in the step of the zonotope's box
 -/
 
 -- Authors:       Claude Opus 5.5

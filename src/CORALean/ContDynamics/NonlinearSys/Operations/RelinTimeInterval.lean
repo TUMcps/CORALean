@@ -17,6 +17,23 @@ proves, not one invented ahead of it.
 `R(τ_s)` of [1, Alg. 1], its line 13, and what its line 22 collects into the
 union the algorithm returns.
 
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `Δt` – step size
+* `η` – Taylor terms
+* `steps` – linearization steps
+* `Ud` – input enclosures per step
+* `R₀` – initial set
+* `i` – step index
+
+## Hypotheses
+* `ho` – order positive
+
+## Output
+* the enclosure of step `i` over its interval
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

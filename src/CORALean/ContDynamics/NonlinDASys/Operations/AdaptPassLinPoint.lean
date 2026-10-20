@@ -10,6 +10,16 @@ public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
 The linearization of a pass with the errors it settled on: the accepted pass's sets are
 `linReach` at it ([1, Alg. 1] with CORA's tuning).
 
+## Inputs
+* `n` – state dimension
+* `p` – algebraic dimension
+* `m` – input dimension
+* `pass` – accepted pass
+* `L` – linearization
+
+## Output
+* the linearization with the abstraction errors the pass settled on
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

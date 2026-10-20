@@ -10,6 +10,14 @@ public import Mathlib.Data.Real.Basic
 `interpGain`: [1]'s `φ(j+1)` of eq. (54), the gain interpolated between `φ⁽¹⁾` at
 the horizon and the limit gain `ζ_δ`.
 
+## Inputs
+* `ζδ` – limit gain
+* `φ1` – gain at the horizon
+* `j` – interpolation index
+
+## Output
+* the interpolated gain
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

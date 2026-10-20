@@ -16,6 +16,18 @@ Jacobian `out_jacobian` returns, that of `x` alone, with `R` and leaves `R_y` an
 (`NonlinDASys.outputSetLinearCora`). The second- and third-order terms, zero for a linear `h`,
 are not defined.
 
+## Inputs
+* `sys` – system
+* `p_x` – state center
+* `p_y` – algebraic center
+* `p_u` – input center
+* `R` – state set
+* `R_y` – algebraic set
+* `U` – input set
+
+## Output
+* the set of the linear output equation's values
+
 ## References
 
 * [1] `contDynamics/@nonlinDASys/outputSet.m`

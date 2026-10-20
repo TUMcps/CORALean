@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.LinearARX.Operations.Bext
 in the window `ỹ(k:k₊)`. `Ã(k) = Ā_ext^k` (9a) needs no definition of its own.
 The index `i` is an integer so that Lemma 3's `B̄_ext,i+1-k` is a term, not a case split.
 
+## Inputs
+* `sys` – ARX system
+* `k` – step
+* `i` – lag index
+
+## Output
+* the weight matrix of the input at lag `i`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

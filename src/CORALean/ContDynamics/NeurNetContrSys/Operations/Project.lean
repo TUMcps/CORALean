@@ -11,6 +11,12 @@ public import CORALean.ContSet.ContSet.ContSet
 read at its first `n` coordinates. Written against `Mtimes` alone, as the matrix `[I 0]`, so that
 it runs at whichever representation the loop is reached in (`project_outer`).
 
+## Inputs
+* `Z` – extended set
+
+## Output
+* the set of the first state coordinates
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

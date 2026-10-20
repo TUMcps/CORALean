@@ -19,6 +19,20 @@ lies in what `computeGOFloat` returns: the reference run `x`, `y` and the parame
 enclosure is `FloatJacModel.Encloses.toNonlinearSysDTFloat`, and at the selection matrix, whose
 Jacobians are itself and zero. An outer statement; with `computeGO_output` it encloses the
 output deviation of every run, the linearization errors `L_j` aside.
+
+## Inputs
+* `sys` – ARX system
+* `fm` – float Jacobian model
+* `x0` – float initial window
+* `u_ref` – float reference inputs
+* `k` – step index
+* `j` – input index
+
+## Hypotheses
+* `h` – the float model encloses the system
+
+## Conclusion
+* the real GO parameters lie in the interval ones
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

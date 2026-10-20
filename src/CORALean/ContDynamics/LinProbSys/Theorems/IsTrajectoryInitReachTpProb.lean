@@ -16,17 +16,43 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 For every `LinProbSys.IsTrajectory` from a point of `Rinit`'s zonotope of means under inputs in
 CORA's `U + uTrans` [1], on a `T` that holds the first step `[0, r]`, the state at `r` lies in
 the set of `Rfirst.tp = eAt Rinit + zonotope(Rpar)` with probability at least
-`erf(γ/√2)ⁿ = P[-γ ≤ N(0, 1) ≤ γ]ⁿ`, `γ = gamma` the cut-off `zonotope(Rpar)` takes: the bound
-[2, Prop. 2] and [2, Sec. V] give the `γ`-confidence set of a G-zonotope with uncertain mean. The
-set is `η(𝒵, γ)` for `𝒵 = (eAt Rinit + Rinput, Σ)`, `Σ` the input covariance of `initReach`,
-which is `Σ_s(r)` (`inputCov_eq_noiseCovariance`), the covariance of the run at `r`; the mean of
-the run is in `eAt Rinit + Rinput`, as in `initReach_tp_outer`; and
-`IsTrajectory.zonotope_prob` bounds the probability.
+`P[-γ ≤ N(0, 1) ≤ γ]ⁿ`, `γ = gamma`: the bound [2, Prop. 2] and [2, Sec. V] give the
+`γ`-confidence set of a G-zonotope with uncertain mean. The set is `η(𝒵, γ)` for
+`𝒵 = (eAt Rinit + Rinput, Σ)`, `Σ` the input covariance of `initReach`, which is `Σ_s(r)`
+(`inputCov_eq_noiseCovariance`); the run's mean is in `eAt Rinit + Rinput` (`initReach_tp_outer`)
+and `IsTrajectory.zonotope_prob` bounds the probability. Asked: `initReach_tp_outer`'s, and `γ > 0`.
 
-What is asked: those of `initReach_tp_outer` (`A` invertible, `‖Ar‖_∞/(η + 2) < 1`), `A`
-diagonalizable with real eigenvalues, given as its eigendecomposition `(V, λ)`, which
-`inputCov_eq_noiseCovariance` needs, and `γ > 0`. `Rinit` is read as a set of points: its
-covariance enters the set through `eAt Rinit` only, and the run starts from a point.
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+
+## Hypotheses
+* `hV` – eigenvector matrix invertible
+* `hAV` – `Veig` and `lambda` diagonalize the matrix
+* `hr` – step positive
+* `hε` – order admissible
+* `hγ` – confidence level positive
+* `hA` – matrix invertible
+* `traj` – probabilistic trajectory
+* `hT` – first step lies in the time set
+
+## Conclusion
+* the state at `r` lies in the time-point set with the Gaussian probability
 
 ## References
 

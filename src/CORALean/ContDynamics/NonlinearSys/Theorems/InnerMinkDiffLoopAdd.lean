@@ -12,6 +12,23 @@ So the time-point set `R̂(t_k)` that a run of `ω ≥ k` steps passes through i
 component of `innerMinkDiffLoop … k X₀ ∅`, and a statement about that is one about every
 time-point set the algorithm computes.
 
+## Inputs
+* `ops` – set operations
+* `f` – autonomous field
+* `Δt` – step size
+* `μ` – enlargement factor
+* `fuel` – bound per remainder loop
+* `k` – first step count
+* `j` – second step count
+* `Rtk` – start set
+* `Rτ` – accumulated time-interval sets
+
+## Hypotheses
+* none
+
+## Conclusion
+* steps added together equal the steps run one after another
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

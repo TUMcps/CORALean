@@ -21,6 +21,21 @@ representation, so it is taken at plain sets; each of their pieces then sits in
 the float one, because the member's order-`i` matrix is in
 `intervalInputTerm sys.A` and its remainder box in `intervalInputRemainder sys.A`.
 
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `V` – input zonotope
+
+## Hypotheses
+* `hΔt` – step positive
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix set
+
+## Conclusion
+* everything the input contributes over the step lies in the enclosure
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

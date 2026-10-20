@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
 next one starts from — the while loop of [1, Alg. 1] — collecting each step's set over its whole
 interval. One failed step fails the run.
 
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+
+## Output
+* the time-interval sets of the iterated steps from a start set, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for

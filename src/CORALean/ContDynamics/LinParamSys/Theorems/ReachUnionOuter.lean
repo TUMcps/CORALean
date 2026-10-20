@@ -25,15 +25,24 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 # `reachUnion` encloses every constant-parameter run
 
 [1, Alg. 1]'s soundness, the input set anywhere. A run fixes `A` and `B`, and its combined input
-`B u + c` lies in `V = B U ⊕ c` (`mem_inputSet`), so it is a run of the canonical form under
-`V`, the point system `⟨A⟩`'s (`toLinearSys`): at `t` it is at
-`e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u'(s) ds`.
-With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ` plus one admissible `Ũ`-input's
-contribution, and with `t = t_k + τ` both the free motion and the constant's part are
-`e^{A t_k}` of their values at `τ`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`).
-At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
+`B u + c` lies in `V = B U ⊕ c` (`mem_inputSet`), so it is a run of the canonical form under `V`,
+the point system `⟨A⟩`'s (`toLinearSys`): at `t` it is at `e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u'(s) ds`.
+With `u' = ũ + (u' - ũ)` and `t = t_k + τ`, both the free motion and the constant's part are
+`e^{A t_k}` of their values at `τ`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`). At
+`τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
 `expIntegral_mem_constPropagate`, and the `Ũ` part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being
-`Recenter`'s: no hypothesis on `U` holds the origin.
+`Recenter`'s.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Hypotheses
+* `hΔt` – window length positive
+
+## Conclusion
+* every state a constant-parameter run reaches lies in the union of windows
 
 ## References
 

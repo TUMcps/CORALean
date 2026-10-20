@@ -17,6 +17,21 @@ other way without knowing the set is that point.
 
 This is what lets the closed form — `variation_of_constants` and everything
 resting on it — be used at `'constParam'` without being restated.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+
+## Conclusion
+* the run is a trajectory of the linear system at that matrix
 -/
 
 -- Authors:       Claude Opus 5

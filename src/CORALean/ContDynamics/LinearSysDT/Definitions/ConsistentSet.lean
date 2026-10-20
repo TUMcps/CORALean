@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 [1, Def. 1]: `X_y = {x | y - C x ∈ V}`, every state the output `y = C x + v` with `v ∈ V` can
 have come from. No representation: `V` is any set, and so is the result.
 
+## Inputs
+* `C` – output matrix
+* `V` – noise set
+* `y` – measurement
+
+## Output
+* the states consistent with the measurement
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

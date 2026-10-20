@@ -14,14 +14,23 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 # `linReachInner`, CORA's inner linearized step
 
 CORA's `contDynamics/linReachInner.m`, the step of `'minkdiff'` `reachInner` and its form of a
-step of [1, Alg. 1], line by line over exact sets, the representation-specific calls supplied
-(`LinReachInnerOps`): `some none` when the start box is empty (`options.empty`), `none` when
-the error loop (`aux_linReachInnerErr`) runs out of `fuel`. Two departures, both where CORA is
-unsound: `minkDiff` is the exact `minkowskiDiff`, not CORA's default `'approx'`
-(`Zonotope.minkDiffApprox_not_inner`); and `Rti` is `Rinit ∪ Rtp`, each inside the reachable
-set at its own time, not CORA's `convHull_(Rstart_ti_cZ, Rend_ti_cZ)`, [1, Prop. 2], which is
-not inner (`convexHull_timeInterval_convex_counterexample`), so `Rstart_ti` and `Rend_ti` are
-not computed.
+step of [1, Alg. 1], over exact sets with the representation-specific calls supplied
+(`LinReachInnerOps`): `some none` when the start box is empty, `none` when the error loop
+runs out of `fuel`. Two departures, where CORA is unsound: `minkDiff` is the exact
+`minkowskiDiff`, not CORA's `'approx'` (`Zonotope.minkDiffApprox_not_inner`); and `Rti` is
+`Rinit ∪ Rtp`, not CORA's `convHull_(Rstart_ti_cZ, Rend_ti_cZ)` [1, Prop. 2], which is not
+inner (`convexHull_timeInterval_convex_counterexample`).
+
+## Inputs
+* `ops` – set operations
+* `f` – autonomous field
+* `Δt` – step size
+* `fuel` – bound for error loop
+* `Rinit` – start set
+* `abstrerr` – abstraction error guess
+
+## Output
+* the inner step state, or none
 
 ## References
 

@@ -15,6 +15,33 @@ errors the pass settled on, at the step size it chose ([1, Prop. 2]); so `linRea
 the `Δt` and the errors the certificate is asked of. `abstractionErrorAdaptive_outer` is the
 certificate's remainder part, with the Hessian intervals holding over the region.
 
+## Inputs
+* `sys` – system
+* `T` – tuning heuristics
+* `Rstart` – start set
+* `U` – input zonotope
+* `fuelErr` – error loop fuel
+* `fuelHalf` – step halving fuel
+* `adm_x` – admissible state errors
+* `adm_y` – admissible algebraic errors
+* `k` – Taylor order minus two
+* `h` – horizon
+* `lastStep` – whether this is the last step
+* `pass` – accepted pass
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+
+## Hypotheses
+* `_hpass` – the adaptive step returned `pass`
+* `traj` – DAE trajectory
+* `hΔt` – pass step positive
+* `hc` – the linearization certifies the run
+
+## Conclusion
+* the run lies in the sets of the accepted pass
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

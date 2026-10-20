@@ -17,6 +17,21 @@ to each stacked-input deviation, plus `E{k,j}` applied to each linearization err
 An identity, as for `NonlinearSysDT`: the errors are the `linResidual`s of the converted
 system, not bounded. `0 < p`, as the output is a block of the window. The source is [1].
 
+## Inputs
+* `sys` – ARX system
+* `x0` – initial window
+* `u_ref` – reference inputs
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `hp` – at least one lag
+* `hy` – the ARX recursion holds
+
+## Conclusion
+* the output deviation is the initial, input and linearization-error terms
+
 ## References
 
 * [1] `contDynamics/@nonlinearARX/computeGO.m`

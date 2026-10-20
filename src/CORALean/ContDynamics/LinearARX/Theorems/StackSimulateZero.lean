@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinearARX.Operations.Simulate
 `stack` at `0` reads the first `p` outputs, which `simulate` defines as the start
 window's blocks. Shared by `simulate_isTrajectory` (real sets) and
 `simulate_mem_simulateBox` (float boxes).
+
+## Inputs
+* `sys` – ARX system
+* `y₀` – start window
+* `u` – inputs
+
+## Hypotheses
+* none
+
+## Conclusion
+* the first simulated window is the start window
 -/
 
 -- Authors:       Claude Opus 5.5

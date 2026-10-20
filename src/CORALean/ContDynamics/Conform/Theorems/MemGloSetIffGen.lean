@@ -15,6 +15,29 @@ public import Mathlib.Tactic.Linarith
 `Q_c c_Δ = C̄ c_Δ,x + ∑ᵢ D̄ᵢ c_Δ,u`, `Q_β` the template `[C̄ G_x, D̄₀ G_u, …, D̄ₖ G_u]`. Where a
 factor `αⱼ` is `0`, `βⱼ = 0` is forced and the generator drops out, as from the zonotope.
 
+## Inputs
+* `ιx` – index type of the initial generators
+* `ιu` – index type of the input generators
+* `yb` – reference output
+* `Cb` – state-to-output matrix
+* `Db` – input-to-output matrices
+* `cx` – nominal initial state
+* `dx` – initial center offset
+* `Gx` – initial generators
+* `αx` – initial stretch factors
+* `cu` – nominal input
+* `du` – input center offset
+* `Gu` – input generators
+* `αu` – input stretch factors
+* `y` – output point
+
+## Hypotheses
+* `hαx` – initial factors nonnegative
+* `hαu` – input factors nonnegative
+
+## Conclusion
+* the point is in the set iff some coefficients meet the generator constraints
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

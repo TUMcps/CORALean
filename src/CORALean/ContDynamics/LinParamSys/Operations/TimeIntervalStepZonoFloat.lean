@@ -16,6 +16,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 zonotope (`expMatZonoEnclosure` at `Δt • A`, `matSmul` at the point range `[Δt, Δt]`),
 and the correction `F` the boxed powers give (`matZonoCorrectionMatrix`). `Δt` is a
 float and its own value is the step.
+
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `η` – Taylor order
+* `R` – initial zonotope
+
+## Output
+* the float zonotope covering the flow over one step
 -/
 
 -- Authors:       Claude Opus 5.5

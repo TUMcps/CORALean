@@ -12,19 +12,27 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 /-!
 # The computed run reaches no further than the exact set plus its own error
 
-`reach_outer` run backwards, and the inclusion an inner approximation needs:
-the computed set is inside the exact one *plus* `reachError`, so subtracting
-`reachError` off it lands back inside `reachSetExact`.
+`reach_outer` run backwards, and the inclusion an inner approximation needs: the computed set is
+inside the exact one *plus* `reachError`, so subtracting `reachError` off it lands back inside
+`reachSetExact`. The induction is the whole argument: `plus_exact` and `mtimes_exact` say a step
+loses nothing until it reduces, `reduce_subset_add_box` bounds what reducing costs, and the previous
+step's error rides through the step's own `A`, which is why `reachError` multiplies it rather than
+carrying it unchanged. At `k = 0` the run is `R₀` itself and the error is the origin. Not stated
+over `Reduce`: the class gives only `construct s ⊆ construct (reduce s o)`, which bounds nothing in
+this direction.
 
-The induction is the whole argument. `plus_exact` and `mtimes_exact` say a step
-loses nothing until it reduces, `reduce_subset_add_box` bounds what reducing
-costs, and the previous step's error rides through the step's own `A` — which
-is why `reachError` multiplies it rather than carrying it unchanged.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-At `k = 0` the run is `R₀` itself and the error is the origin.
+## Hypotheses
+* `ho` – order positive
 
-Not stated over `Reduce`: the class gives only `construct s ⊆ construct
-(reduce s o)`, which bounds nothing in this direction.
+## Conclusion
+* the computed run lies in the exact set plus its accumulated error
 -/
 
 -- Authors:       Claude Sonnet 5

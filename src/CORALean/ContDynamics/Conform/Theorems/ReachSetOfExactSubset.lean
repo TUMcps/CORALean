@@ -13,6 +13,25 @@ produce, then the reachable set lies in `Ȳ ⊕ Ê` (6) — the output is `τ̄ 
 reaches exactly `Ȳ` (`reachSetOfExact_glo`). How tight it is depends on `Ê` alone, `Ȳ` being
 exact.
 
+## Inputs
+* `τ` – output map
+* `yb` – reference output
+* `Cb` – state-to-output matrix
+* `Db` – input-to-output matrices
+* `xs` – nominal initial state
+* `cx` – initial center offset
+* `X0` – initial uncertainty set
+* `us` – nominal inputs
+* `cu` – input center offset
+* `U` – input uncertainty sets
+* `E` – linearization error set
+
+## Hypotheses
+* `hE` – `E` holds every linearization error
+
+## Conclusion
+* the reachable set lies in the approximation set plus `E`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

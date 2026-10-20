@@ -17,6 +17,13 @@ the first block of the window `stack y k`, which `A_ext^k` carries from the init
 `t+p-j` is `i`. CORA reads the output from the last block of the window `k+1-p` steps on
 (`E A_ext^{k+1-p}`), the same value; the loop over `A_ext_powerk` is the powers here.
 
+## Inputs
+* `sys` – ARX system
+* `nk` – number of steps
+
+## Output
+* the output parameters as real matrices
+
 ## References
 
 * [1] `contDynamics/@linearARX/computeGO.m`

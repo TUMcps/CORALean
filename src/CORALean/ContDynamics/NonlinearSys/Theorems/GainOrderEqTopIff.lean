@@ -8,17 +8,22 @@ public import Mathlib.Order.BourbakiWitt
 /-!
 # A method has zero abstraction error exactly when its gain order is infinite
 
-The sentence `[1, Def. 6]` closes with: `R` yields zero abstraction error if and
-only if `q = ∞`, because by `[1, (35)]` the error vanishes exactly when every
-coefficient `‖Aᵖ(h)G(h)‖₁,ᵢ` does, which by `[1, Lemma 3]` is every `a⁽ᵖ⁾ᵢ`
-being zero.
+The sentence `[1, Def. 6]` closes with: `R` yields zero abstraction error iff `q = ∞`, because by
+`[1, (35)]` the error vanishes exactly when every coefficient `‖Aᵖ(h)G(h)‖₁,ᵢ` does, which by
+`[1, Lemma 3]` is every `a⁽ᵖ⁾ᵢ` being zero. `hconv` is `[1, Lemma 3]`'s own convention — a
+coefficient of order `⊤` has a zero leading vector — a hypothesis because it is about where the
+two families came from. Without it a single order-`⊤` coefficient with a nonzero vector would
+leave the infimum `⊤` while the error is not zero, and the theorem would be false.
 
-`hconv` is `[1, Lemma 3]`'s own convention — a coefficient of order `⊤` has a
-zero leading vector — and is a hypothesis rather than a field on `gainOrderDim`
-because it is a fact about where the two families came from, not about what the
-infimum means. Without it a single order-`⊤` coefficient with a nonzero vector
-would put `⊤` into the set and leave the infimum `⊤` while the error is not
-zero, so the theorem would be false.
+## Inputs
+* `q` – orders of the coefficients
+* `a` – leading vectors of the coefficients
+
+## Hypotheses
+* `hconv` – infinite order has zero vector
+
+## Conclusion
+* the gain order is infinite exactly when all vectors vanish
 
 ## References
 

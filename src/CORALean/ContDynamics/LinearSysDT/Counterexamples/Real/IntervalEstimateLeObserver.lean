@@ -18,6 +18,15 @@ Both start at `[-1, 1]`. At `k = 1` the estimate is `[-1, 1]`, the generator `-1
 `(A - LC) S_x`, while Eq. 36 maps the bounds `x̲ = -1`, `x̅ = 1` to `L(y - C x̲) = 1` and
 `L(y - C x̅) = -1`: the lower bound `1` exceeds Alg. 1's `-1`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the interval estimate is not within the observer without the nonnegativity condition
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

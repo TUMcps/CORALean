@@ -11,15 +11,29 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 /-!
 # A time-varying run is driven by a measurable member of the box everywhere
 
-`IsTrajectory.measParam` makes `t ↦ A t` measurable on `T`, almost everywhere and
-only there; the Peano–Baker expansion (`MatExp.norm_sub_peanoBakerSum_le`) wants a
-parameter measurable everywhere and inside the box at every instant. This
-supplies one equal to `A` almost everywhere on the window, so the flow, an
-integral, cannot tell the two apart.
+`IsTrajectory.measParam` makes `t ↦ A t` measurable on `T`, almost everywhere and only there; the
+Peano–Baker expansion (`MatExp.norm_sub_peanoBakerSum_le`) wants a parameter measurable
+everywhere and inside the box at every instant. This supplies one equal to `A` almost everywhere
+on the window, so the flow, an integral, cannot tell the two apart. Each entry is replaced by a
+measurable representative; where box membership fails — a null set — the member `A 0` stands in.
 
-Each entry is replaced by a measurable representative, the box membership is a
-measurable condition on those, and where it fails — a null set inside the window,
-the run's own `A` lying in the box there — the member `A 0` stands in.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `t` – time
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `ht` – time nonnegative
+* `hT` – window lies in the time set
+
+## Conclusion
+* a measurable parameter inside the box agrees with `A` almost everywhere
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,19 @@ inverse `F⁻¹ F = I` of the constraint's `y`-block, a region `R^z` the run `(x
 over `[0, Δt]`, the two error zonotopes holding every consistent point's linearization errors
 over `R^z`, `u* ∈ U`, `0 ∈ Verror`, and the step admissible for `oneStep` at order `q + 2`.
 `initReach` asks it of the linearization of the part that holds the run's start.
+
+## Inputs
+* `L` – linearization point
+* `sys` – system
+* `U` – input zonotope
+* `Δt` – step size
+* `q` – Taylor order minus two
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+
+## Output
+* the linearization is sound for the run over the step
 -/
 
 -- Authors:       Claude Opus 5.5

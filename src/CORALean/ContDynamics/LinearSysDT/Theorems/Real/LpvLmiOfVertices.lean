@@ -18,6 +18,29 @@ prints the lemma's condition (its Eq. 29b) for `i < j` and with `≽`, which fai
 (`lpvLmi_of_vertices_counterexample`); here it is strict and for every ordered pair `i ≠ j`
 (`doubleSum_posDef`). The weights need `ρ ≥ 0`, `Σ ρ = 1` [1, Eq. 2], and `P` is symmetric.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `P` – Lyapunov matrix
+* `Λ` – vertex gains
+* `Y` – vertex gain variables
+* `A` – vertex state matrices
+* `D` – vertex disturbance matrices
+* `α` – first scaling
+* `β` – second scaling
+* `ρ` – vertex weights
+
+## Hypotheses
+* `hρ0` – weights nonnegative
+* `hρ1` – weights sum to one
+* `hPT` – Lyapunov matrix symmetric
+* `hY` – gain variables equal the Lyapunov matrix times the gains
+
+## Conclusion
+* the vertex conditions imply the estimator inequality at the scheduled matrices
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

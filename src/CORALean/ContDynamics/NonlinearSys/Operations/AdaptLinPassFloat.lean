@@ -17,6 +17,15 @@ abstraction error left out. What a step adds to them is `R_abs`, whose radius `a
 reads off the difference to a full step; no soundness statement is made of the pass, it only
 tunes. See [1].
 
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – current set
+
+## Output
+* the linearized matrix and the two linear-pass sets, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

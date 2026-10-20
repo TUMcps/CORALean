@@ -13,6 +13,24 @@ A run of `ẋ = A x + B u + c`, `A` and `B` fixed in their sets, is a run of the
 the integrand is the same sum, bracketed differently. So whatever is proved of
 `IsCanonicalConstTrajectory` at an input set `U' ⊇ B U ⊕ c` holds of every run; `inputSet` is
 such a `U'`.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `X₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `B` – input matrix member
+* `U'` – set holding the combined input
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hU'` – combined input lies in `U'`
+
+## Conclusion
+* the combined input drives the canonical form along the same state
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

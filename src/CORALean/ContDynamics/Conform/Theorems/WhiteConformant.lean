@@ -7,19 +7,42 @@ public import CORALean.ContDynamics.Conform.Theorems.MemGloSetIffGen
 /-!
 # [1, Thm. 2]: a feasible point of the white-box program is reachset conformant
 
-[1, Alg. 1] builds the program and hands it to a solver; what is proved here is what
-every point it may return guarantees.
+[1, Alg. 1] builds the program and hands it to a solver; proved here is what every point it
+may return guarantees. Any `(α, c_Δ, β)` meeting (22b) in [1, Lemma 4]'s form and `α ≥ 0` (22c)
+puts every measurement `y⁽ᵐ'ˢ⁾ₖ` into `Ȳₖ⁽ᵐ⁾`, hence into `Ŷₖ⁽ᵐ⁾ = Ȳₖ⁽ᵐ⁾ ⊕ Êₖ⁽ᵐ⁾` once `0 ∈ Ê` — the
+constraint (4b), whose `Ŷ` encloses the reachable set by [1, Thm. 1] (`reachSetOfExact_subset`).
+[1, Lemma 3] is equivalent (`mem_gloSet_iff_hRep`), the objective is the cost (`gloCost_eq`).
+For a nonlinear model `Ê ≠ {0}` and (23b) is stricter than (4b), so the optimum is that of
+the restriction (23), not of Problem 1.1; for a linear model the two coincide.
 
-Any `(α, c_Δ, β)` meeting (22b) in [1, Lemma 4]'s form and `α ≥ 0` (22c) puts
-every measurement `y⁽ᵐ'ˢ⁾ₖ` into `Ȳₖ⁽ᵐ⁾`, hence into `Ŷₖ⁽ᵐ⁾ = Ȳₖ⁽ᵐ⁾ ⊕ Êₖ⁽ᵐ⁾` once `0 ∈ Ê` — the
-conformance constraint (4b), whose `Ŷ` encloses the reachable set by [1, Thm. 1]
-(`reachSetOfExact_subset`). [1, Lemma 3]'s halfspace form is equivalent (`mem_gloSet_iff_hRep`),
-and the program's objective is the cost (`gloCost_eq`). This is what "solved" can mean
-for a program handed to `linprog`: its feasible points are conformant and its objective
-is `∑ₘ ∑ₖ wₖ ‖Ȳ‖_I`. For a nonlinear model `Ê ≠ {0}` and (23b) is stricter than (4b),
-so the program's optimum is that of the restriction (23), not of Problem 1.1;
-for a linear model `Ê = {0}` and the two coincide. (22d), `B_c c_Δ = 0`, only
-restricts the point further and plays no part here.
+## Inputs
+* `M` – test case index type
+* `S` – sample index type
+* `ιx` – index type of the initial generators
+* `ιu` – index type of the input generators
+* `nk` – number of steps
+* `yb` – reference outputs
+* `Cb` – state-to-output matrices
+* `Db` – input-to-output matrices
+* `cx` – nominal initial state
+* `dx` – initial center offset
+* `Gx` – initial generators
+* `αx` – initial stretch factors
+* `cu` – nominal input
+* `du` – input center offset
+* `Gu` – input generators
+* `αu` – input stretch factors
+* `y` – measurements
+* `E` – linearization error sets
+
+## Hypotheses
+* `hαx` – initial factors nonnegative
+* `hαu` – input factors nonnegative
+* `hE` – error sets contain zero
+* `hfeas` – every measurement is feasible for the program
+
+## Conclusion
+* every measurement lies in the approximation set plus the error set
 
 ## References
 

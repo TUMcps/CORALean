@@ -14,6 +14,15 @@ The Lagrange remainder CORA's `linReach` adds as `Rerror` bounds
 For `ẋ = p²` the field does not depend on `x` or `u`, the Hessian is zero, and the quantity
 itself is zero at every `(x, u, p)`: `Rerror = {0}` is exact, so the error set cannot cover the
 miss of `linReachCora_misses_counterexample`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the linearization remainder vanishes at every point
 -/
 
 -- Authors:       Claude Opus 5.5

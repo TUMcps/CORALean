@@ -12,6 +12,24 @@ two projections of a member of `construct W` back into `construct U` and
 `construct P`, which is what lets `w ∘ Fin.castAdd q` and `w ∘ Fin.natAdd m`
 serve as `u` and `p`. `sys.toNonlinearSys.f` unfolds to exactly that split, so
 `flow` needs no rewriting.
+
+## Inputs
+* `sys` – parametric system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `P` – parameter set
+* `W` – combined input set
+* `x` – state trajectory
+* `w` – combined input signal
+* `y` – output signal
+
+## Hypotheses
+* `traj` – trajectory of the combined-input system
+* `hUP` – both parts of a combined input lie in their sets
+
+## Conclusion
+* the run is a parametric trajectory with the input and parameter split
 -/
 
 -- Authors:       Claude Opus 5

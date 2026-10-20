@@ -10,22 +10,22 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 /-!
 # The non-truncated set of abstraction errors
 
-`[1, (32)]`: `R^∞_abs(h) = ⊕_{p≥0} h^{p+1}/(p+1)! · Aᵖ(h) Ψ(h)`, the set
-`[1, (8)]` would compute if it never truncated the series and never paid a
-remainder box for the tail; `[1, (31)]` measures the local abstraction error on
-this instead, it being the quantity the gain function is about.
+`[1, (32)]`: `R^∞_abs(h) = ⊕_{p≥0} h^{p+1}/(p+1)! · Aᵖ(h) Ψ(h)`, the set `[1, (8)]` would compute
+if it never truncated the series and never paid a remainder box for the tail; `[1, (31)]`
+measures the local abstraction error on this instead. `A` and `Ψ` are functions of `h` and not a
+fixed matrix and set: both are read off a linearization point that `[1, (6)]` puts half a step
+ahead, so shrinking the step moves them (`[1, Def. 5]`). A `Set` and not a representation: an
+infinite Minkowski sum has no finite generator matrix. Its points are the series sums whose `p`-th
+term comes from the `p`-th summand, each `ψ p` chosen independently: `[1, Prop. 1]`.
+`HasSum` and not a limit of partial sums: `⊕` is commutative, so a family sums unconditionally.
 
-`A` and `Ψ` are functions of `h` and not a fixed matrix and set: both are read
-off a linearization point that `[1, (6)]` puts half a step ahead, so shrinking
-the step moves them — which is what makes `[1, Def. 5]`'s comparison of
-`R^∞_abs(δh)` with `R^∞_abs(h)` a comparison of two expansions.
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `h` – step size
 
-A `Set` and not a representation: an infinite Minkowski sum has no finite
-generator matrix. Its points are the sums of the series whose `p`-th term comes
-from the `p`-th summand, each `ψ p` chosen independently — the whole content of
-`[1, Prop. 1]`, where the summands' row norms are added rather than the matrices
-first. `HasSum` and not a limit of partial sums: `⊕` is commutative, so an
-unordered family sums unconditionally, and over a bounded `Ψ h` both agree.
+## Output
+* the sums of the series over independent choices
 
 ## References
 

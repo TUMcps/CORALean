@@ -12,6 +12,43 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 The same as `reach_outer`, with the input enclosure named, so no quantity
 depending on the trajectory survives into the hypotheses. Its price is that
 `linInput` has to be convex, closed and bounded.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `L` – remainder set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `Δt` – step size
+* `y` – output trajectory
+* `cert` – abstraction-error certificate
+* `η` – Taylor terms
+* `o` – maximum order
+* `k` – sample index
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hT` – nonnegative times in time set
+* `hR` – trajectory stays in region
+* `hΔt` – step size positive
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+
+## Conclusion
+* the state at each sample lies in the linearized reachable set
 -/
 
 -- Authors:       Claude Opus 5

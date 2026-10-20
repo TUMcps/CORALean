@@ -10,16 +10,50 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 /-!
 # `linReachPoly`'s step is sound
 
-Whatever step `linReachPoly` returns, a run that stays in the region it certified over
-the step's window is inside the linearized system's reachable set at the step's end,
-the error it certified widening the input. `reach_outer_horizon` at `K = 1` does the
-work, at the step's own certificate; what is read off the `some` is only that the
-step is the linearization at the `A` the run was handed, `abstrErrPolySearch_eq_some`.
+Whatever step `linReachPoly` returns, a run that stays in the region it certified over the
+step's window is inside the linearized system's reachable set at the step's end, the error it
+certified widening the input. `reach_outer_horizon` at `K = 1` does the work, at the step's own
+certificate; what is read off the `some` is only that the step is the linearization at the `A`
+the run was handed (`abstrErrPolySearch_eq_some`). Confinement stays a hypothesis, on the
+certified region `step.R`: CORA concludes it from `trueError ≤ appliedError`, which this tree
+does not reproduce, and `confinement_of_subset` discharges it from the computed sets.
 
-Confinement stays a hypothesis, on the certified region `step.R`, which is candidate
-`k`'s `Rinit.dependent ⊞ (Rdiff + RallError)` over the whole factor box: CORA
-concludes it from `trueError ≤ appliedError`, which this tree does not reproduce, and
-`confinement_of_subset` discharges it from the computed sets as for any other step.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `U` – input polynomial zonotope
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `H` – Hessian family
+* `E` – third-derivative bounds
+* `Δt` – step size
+* `η` – Taylor terms
+* `errorOrder` – order for the error
+* `intermediateOrder` – intermediate order
+* `Rinit` – start polynomial zonotope
+* `Ud` – input enclosure
+* `abstrerr` – previous abstraction error
+* `fuel` – bound for the search
+* `step` – returned step
+* `y` – output trajectory
+* `o` – maximum order
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `h` – search returned the step
+* `hT` – step window inside time set
+* `hR` – trajectory stays in certified region
+* `hΔt` – step size nonnegative
+* `hU` – step input bounded
+* `hUd` – input enclosure holds the step input
+* `ho` – order positive
+
+## Conclusion
+* the state at the step end lies in the linearized reachable set
 -/
 
 -- Authors:       Claude Opus 5.5

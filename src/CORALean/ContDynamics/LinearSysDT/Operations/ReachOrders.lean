@@ -12,6 +12,14 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
 fixed `o`; `reachOrders_const_eq_reach` recovers `reach` at a constant
 sequence. Expressible, as [1]'s tuning algorithm needs, not *chosen*.
 
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options with per-step orders
+
+## Output
+* the reachable set at the final time, with per-step orders
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning

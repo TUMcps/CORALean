@@ -12,20 +12,42 @@ public import Mathlib.Topology.Instances.Matrix
 /-!
 # The Minkowski difference as an inner time-point reachable set
 
-[1, Prop. 1]: for a compact initial set `X₀` and the centrally symmetric error set `R̂_err`
-of [1, Eq. 13] (a zonotope, so convex and compact), `R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c` lies in
-the exact reachable set `R(Δt)` (20), `c = cen(R̂_err)`, `R_aff(Δt) = e^{AΔt} X₀ + R_con(Δt)`.
+[1, Prop. 1]: for a compact initial set `X₀` and the centrally symmetric error set `R̂_err` of
+[1, Eq. 13] (a zonotope, so convex and compact), `R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c` lies in the
+exact reachable set `R(Δt)` (20), `c = cen(R̂_err)`, `R_aff(Δt) = e^{AΔt} X₀ + R_con(Δt)`. The
+representation (21) is restated from the conservative-linearization papers and is a hypothesis
+(`herr`), as are the solutions (`hex`) and the Lipschitz constant of the field (`hLip`);
+`IsTrajectory.sub_mem_inputSolution` derives (21). What [1] adds is proved: Grönwall makes
+`x₀ ↦ x(Δt)` continuous, and `minkowskiDiff_subset_of_continuous_of_convex` gives the inclusion.
+The printed proof applies [1, Lemma 1] with a set not convex for a nonconvex `X₀`.
 
-The proof's representation (21), `x(Δt) = R_con + e^{AΔt} x(0) + z(x(0))` with `z` in
-`R̂_err`, is restated from the conservative-linearization papers and is a hypothesis here
-(`herr`, for `M = e^{AΔt}` invertible and `v = R_con`), as are the solutions themselves
-(`hex`, from each `x₀`, under one admissible input `u₀`) and the Lipschitz constant of the
-field along them (`hLip`); `IsTrajectory.sub_mem_inputSolution` derives (21) from a
-linearization (`minkowskiDiff_inputSolution_subset_reachSetExact`). What [1] adds is proved:
-Grönwall makes `x₀ ↦ x(Δt)` continuous, so `z` is, and
-`minkowskiDiff_subset_of_continuous_of_convex` gives the inclusion. The printed proof applies
-[1, Lemma 1] with `A = R_aff(Δt)`, which is not convex for a nonconvex `X₀`; the convexity of
-`R̂_err` is what carries it.
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `Δt` – step size
+* `M` – transition matrix
+* `v` – particular solution
+* `E` – error set
+* `c` – center of symmetry
+* `u₀` – constant input
+* `Ω` – Lipschitz region
+* `K` – Lipschitz constant
+
+## Hypotheses
+* `hΔt` – step size nonnegative
+* `hM` – matrix invertible
+* `hE` – error set compact
+* `hEc` – error set convex
+* `hEne` – error set nonempty
+* `hEs` – error set symmetric about center
+* `hu₀` – input in input set
+* `hLip` – field Lipschitz on region
+* `hex` – solutions exist from every start
+* `herr` – solutions have the error representation
+
+## Conclusion
+* the shifted Minkowski difference lies in the exact reachable set
 
 ## References
 

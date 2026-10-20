@@ -14,6 +14,13 @@ public import Mathlib.Analysis.Matrix.Normed
 `LinearSys.reachOrder`'s formula, at the interval matrix's own bound in place
 of a point matrix's norm: `⌈‖(Interval.smul r sys.A).absMax‖⌉₊`, no search.
 `reachOrder_admissible` is its proof, exactly `LinearSys`'s.
+
+## Inputs
+* `sys` – system
+* `r` – window length
+
+## Output
+* an order admissible for the window at every member
 -/
 
 -- Authors:       Claude Sonnet 5

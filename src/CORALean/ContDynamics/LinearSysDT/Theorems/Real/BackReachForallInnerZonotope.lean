@@ -9,19 +9,29 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 /-!
 # `backReachForall` at `Zonotope`, with both operation hypotheses discharged
 
-The representation that can run a backward step today: `mtimes_exact` gives
-`hinv`, which `mtimes_outer` alone never could, and `minkDiffRep_inner` gives
-`hdiff` at any family `M` of generator representations — a wrong `M` yields
-`none` and the run stops there. So a caller is left with `hA`, and with
-choosing `M`.
+The representation that can run a backward step today: `mtimes_exact` gives `hinv`, which
+`mtimes_outer` alone never could, and `minkDiffRep_inner` gives `hdiff` at any family `M` of
+generator representations — a wrong `M` yields `none` and the run stops there. So a caller is left
+with `hA`, and with choosing `M`. `M` is a family and not one matrix: which sets the steps produce
+is not known before the run. `Interval` cannot take this place: it has the `MinkDiff` instance, so
+`hdiff` is free there, but its `mtimes` is an enclosure and carries no exactness theorem to read
+`hinv` off.
 
-`M` is a family and not one matrix: which sets the steps produce is not known
-before the run, and `minkDiffRep`'s argument is indexed by the generator counts
-of the particular pair it is handed.
+## Inputs
+* `sys` – system
+* `Ainv` – right inverse of the state matrix
+* `M` – family of generator representations
+* `T` – target zonotope
+* `U` – input zonotope
+* `k` – step
+* `R` – returned zonotope
 
-`Interval` cannot take this place. It has the `MinkDiff` instance, so `hdiff`
-is free there, but its `mtimes` is an enclosure and carries no exactness
-theorem to read `hinv` off.
+## Hypotheses
+* `hA` – `Ainv` is a right inverse
+* `hR` – the computation returns `R`
+
+## Conclusion
+* the returned zonotope lies in the exact backward reachable set
 -/
 
 -- Authors:       Claude Sonnet 5

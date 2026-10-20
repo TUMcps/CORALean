@@ -8,15 +8,28 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 /-!
 # `reachOrders` contains every trajectory
 
-The same induction `reach_outer_on` runs, at `reach_one_outer` once per step —
-soundness needs nothing about which order a step reduces to, `reduce_outer`
-holding at every one, so the sequence `o` costs the argument nothing past
-reading `o (k + 1)` off at step `k + 1` instead of one fixed `o`.
+The same induction `reach_outer_on` runs, at `reach_one_outer` once per step — soundness needs
+nothing about which order a step reduces to, `reduce_outer` holding at every one, so the sequence
+`o` costs the argument nothing past reading `o (k + 1)` off at step `k + 1`. Proved directly
+against `IsTrajectory` rather than through a `IsTrajectoryOn` bridge as `ReachOuter.lean` is: that
+bridge is an `aux_` lemma local to its own file, and `IsTrajectory`'s fields already hold at every
+`k` unconditionally.
 
-Proved directly against `IsTrajectory` rather than through a `IsTrajectoryOn`
-bridge as `ReachOuter.lean` is: that bridge is an `aux_` lemma local to its own
-file, and `IsTrajectory`'s fields already hold at every `k` unconditionally, so
-nothing here needs a bound to discharge.
+## Inputs
+* `sys` – system
+* `o` – orders per step
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – orders positive
+* `traj` – discrete-time trajectory
+
+## Conclusion
+* the state at step `k` lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

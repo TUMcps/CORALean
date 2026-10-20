@@ -16,6 +16,18 @@ independent inputs is all of them: one way is `stack_eq_tvp`, the other builds t
 signal from the summands and runs `simulate` on it. Every `Ũ(i)` nonempty, so that the
 inputs past `k₊`, which no window up to here reads, can be chosen at all.
 
+## Inputs
+* `sys` – ARX system
+* `y₀` – measured first output window
+* `U` – input sets per step
+* `k` – step
+
+## Hypotheses
+* `hU` – input sets nonempty
+
+## Conclusion
+* the reachable windows are one Minkowski sum
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

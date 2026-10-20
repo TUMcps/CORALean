@@ -17,6 +17,15 @@ input set is multiplied by one of those.
 `matPow` is where this loses tightness against a run at one fixed matrix: it
 admits products of different members at different factors, as everywhere else
 interval arithmetic takes a power.
+
+## Inputs
+* `n` – dimension
+* `sys` – system
+* `r` – step size
+* `i` – order
+
+## Output
+* the interval matrix that order `i` contributes
 -/
 
 -- Authors:       Claude Opus 5

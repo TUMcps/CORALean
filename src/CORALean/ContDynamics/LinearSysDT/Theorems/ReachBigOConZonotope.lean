@@ -11,6 +11,18 @@ Restates `reach_order_le_conZonotope` as growth, the shape `reach_h_isBigO`
 sets for `Zonotope`: the bound `o * n` carries no `k`, so the generator count
 of a `ConZonotope` reachable set is bounded independent of how long the run
 goes, the same fact `reduce` in the loop buys at either representation.
+
+## Inputs
+* `sys` – system
+* `o` – maximum order
+* `R₀` – initial constrained zonotope
+* `U` – input constrained zonotope
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the generator count of the reachable set is bounded by a constant
 -/
 
 -- Authors:       Claude Opus 5

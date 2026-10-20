@@ -15,6 +15,30 @@ Where an abstraction error `L` is certified on `R × U`, the field is its affine
 point of `L`. Along a state continuous on a compact time set and confined to `R`, under a fixed
 input of `U`, the affine part is continuous, so bounded, and a bounded `L` bounds the rest: the
 field is bounded along the state. It is what a classical solution needs to be integrable.
+
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `U` – input region
+* `L` – abstraction error
+* `cert` – abstraction-error certificate
+* `x` – state trajectory
+* `K` – time set
+* `u₀` – fixed input
+
+## Hypotheses
+* `hL` – error set bounded
+* `hK` – time set compact
+* `hx` – trajectory continuous
+* `hR` – trajectory stays in region
+* `hu₀` – input in region
+
+## Conclusion
+* the field is bounded along the trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

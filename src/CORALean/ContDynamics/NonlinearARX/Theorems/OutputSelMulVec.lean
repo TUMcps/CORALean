@@ -10,6 +10,17 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 `y(k)` is block `0` of the window `stack p y k`, which `outputSel` selects; at `p = 0` the
 window is empty and says nothing about `y`.
+
+## Inputs
+* `sys` – ARX system
+* `y` – outputs
+* `k` – step
+
+## Hypotheses
+* `hp` – at least one lag
+
+## Conclusion
+* the selection matrix applied to the window gives the output
 -/
 
 -- Authors:       Claude Sonnet 5.5

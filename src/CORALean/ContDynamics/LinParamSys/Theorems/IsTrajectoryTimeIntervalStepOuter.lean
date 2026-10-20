@@ -9,20 +9,38 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalC
 /-!
 # An input-free time-varying run stays in the box's step, unwidened
 
-`LinParamSys.timeIntervalStep_outer` at `'varParam'`: a fresh `A t ∈ sys.A` at
-every instant, and still the same set — `CH(X₀, e^{[A]r} X₀) ⊕ F X₀` with the
-box's exponential enclosure and correction matrix, CORA's `initReach` for
-`linParamSys`, `expmIndMixed` and `priv_tie`. Nothing is frozen and no drift is
-paid as input, which `IsTrajectory.timeInterval_outer` needs.
+`LinParamSys.timeIntervalStep_outer` at `'varParam'`: a fresh `A t ∈ sys.A` at every instant, and
+still the same set — `CH(X₀, e^{[A]r} X₀) ⊕ F X₀` with the box's exponential enclosure and
+correction matrix, CORA's `initReach` for `linParamSys`, `expmIndMixed` and `priv_tie`. Nothing
+is frozen and no drift is paid as input. The run solves the integral equation at a measurable
+member of the box (`IsTrajectory.exists_integral_eq`), and the Peano–Baker expansion of that
+equation puts it on the interpolation from its start to a member of the enclosure plus a member
+of `F` applied to its start (`MatExp.exists_mem_intervalCorrectionMatrix_of_integral`).
+Input-free only; with an input, `…TimeIntervalStepOuterInputSolution`.
 
-The run solves the integral equation at a measurable member of the box
-(`IsTrajectory.exists_integral_eq`), and the Peano–Baker expansion of that equation
-puts it, at every time of the step, on the interpolation from its start to a
-member of the enclosure plus a member of `F` applied to its start
-(`MatExp.exists_mem_intervalCorrectionMatrix_of_integral`).
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
 
-Input-free only; with an input, `…TimeIntervalStepOuterInputSolution`. The float step
-is `…TimeIntervalStepFloatOuter`.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hu` – input vanishes on the step
+* `hε` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the state at time `t` lies in the box's step
 -/
 
 -- Authors:       Claude Opus 5.5

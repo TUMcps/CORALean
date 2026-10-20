@@ -13,6 +13,19 @@ The counterpart of `FloatModel.Encloses.reachFloat_outer` at either `alg`, again
 same object: every run of `ẋ = f(x, u)` on `[0, tFinal - tStart]` from `X₀` under any
 input signal in `U`. `Reach.steps` makes the horizon `N` steps exactly, and
 `linReachRunFloat_outer` does the rest.
+
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `alg` – abstraction algorithm
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* every run lies in the returned set of its window
 -/
 
 -- Authors:       Claude Opus 5.5

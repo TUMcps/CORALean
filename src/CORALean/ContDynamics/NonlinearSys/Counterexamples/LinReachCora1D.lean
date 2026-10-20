@@ -17,29 +17,30 @@ public import Mathlib.Analysis.ODE.ExistUnique
 CORA's `@contDynamics/linReach.m` at `alg = 'lin'`, `tensorOrder = 2`, default `maxError = Inf`,
 without inputs, line by line: `linearize` (`p = cx + f(cx)·Δt/2`), `oneStep` from `Rdelta`, the
 `while perfIndCurr > 1` loop over `priv_abstrerr_lin` ([1, Prop. 1], its Hessian read over
-`interval(Rmax) + p`), and `Rerror`. Sets are `Real.Interval ℝ`: in 1D a zonotope is its
-interval hull, and `enclose(X, X + v)` is `conv(X ∪ (X + v))`. Only `A = f'(p) = 0` is modelled
-(else `none`): there `eAdt = 1`, `E = F = G = 0`, `particularSolution_constant` is `Δt · uTrans`
-(`Ainv` is empty) and `particularSolution_timeVarying` of a box `V` is `Δt · V`; `PU = 0`, `du = 0`.
-
-`hess lo hi` is CORA's `max(infimum(abs(H)), supremum(abs(H)))` for its interval Hessian over
-`totalInt_x = [lo, hi]`, supplied as the user's Hessian file supplies it. At `maxError = Inf`,
-`perfInd` is zero, so the loop is `abstrErrLoop` with factor `1.1` and test `perfIndCurr ≤ 1`,
-over the reals `trueError ≤ appliedError` (`0/0`, `NaN`, also ends MATLAB's loop); it states no
-iteration count, so `fuel` is an argument and the result an `Option`.
+`interval(Rmax) + p`), and `Rerror`. Sets are `Real.Interval ℝ`. Only `A = f'(p) = 0` is modelled
+(else `none`): there `eAdt = 1`, `E = F = G = 0`, `PU = 0`, `du = 0`. `hess lo hi` is CORA's
+`max(infimum(abs(H)), supremum(abs(H)))` for its interval Hessian over `[lo, hi]`. At
+`maxError = Inf` the loop is `abstrErrLoop` with factor `1.1` and test `perfIndCurr ≤ 1`; it
+states no iteration count, so `fuel` is an argument and the result an `Option`.
 
 # CORA's `'lin'` step accepts a set that misses a reachable state
 
 For `ẋ = f(x) = 1 - (1001/750) x + (1001/3000) x⁴` from `x(0) = 0`, `Δt = 2`, CORA's step
-(`linReachCora1D`) linearizes at `p = 1`, where `f(1) = -1/1000` and `f'(1) = 0`. The linearized
-run drifts from `0` to `-1/500`, away from `p`, so the loop's region `Rmax + p` is about
-`[-1/500, 2·10⁻⁵]`. `priv_abstrerr_lin` reads `f''(x) = (1001/250) x²` only there, below
-`2·10⁻⁵`, takes `½ dx² max|f''| ≈ 8·10⁻⁶` (`dx ≈ 1`), its second pass accepts that, and `Rti`
-ends below `1/50000`. But [1, Prop. 1] needs `f''` over the range of `ξ`, the segment from `p`,
-which crosses `[0, 1]`, where `f''` reaches `4`: the remainder at `0` is `1001/1000`. The run
-from `0` starts at speed `1` and is at `x(1/4) ≥ 1/20`. `hess` is the exact maximum of `|f''|`
-over a box, what CORA's interval `x1^2` (`interval/power.m`) gives, so the miss is the region,
-not overestimation; CORA's confinement check, `trueError ≤ appliedError`, passes.
+linearizes at `p = 1`, where `f(1) = -1/1000` and `f'(1) = 0`. The linearized run drifts from `0`
+to `-1/500`, away from `p`, so the loop's region `Rmax + p` is about `[-1/500, 2·10⁻⁵]`.
+`priv_abstrerr_lin` reads `f''(x) = (1001/250) x²` only there, takes `½ dx² max|f''| ≈ 8·10⁻⁶`,
+its second pass accepts that, and `Rti` ends below `1/50000`. But [1, Prop. 1] needs `f''` over the
+segment from `p`, which crosses `[0, 1]`, where `f''` reaches `4`. The run from `0` is at
+`x(1/4) ≥ 1/20`. `hess` is the exact maximum of `|f''|` over a box, so the miss is the region.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's step settles on a set that misses a reachable state
 
 ## References
 

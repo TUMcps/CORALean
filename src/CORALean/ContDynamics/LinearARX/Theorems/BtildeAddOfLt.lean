@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearARX.Operations.Btilde
 [1, Lemma 2]: for `i < k`, `B̃ᵢ(k+Δk) = B̃ᵢ(k)`. The terms `j ≥ k` that `k + Δk` adds
 to (9b) of [1, Thm. 1] carry `B̄_ext,i-j` with `i - j < 0`, which is zero.
 
+## Inputs
+* `sys` – ARX system
+* `k` – step
+* `Δk` – step increment
+* `i` – lag index
+
+## Hypotheses
+* `hi` – lag below the step
+
+## Conclusion
+* the parameter at lag `i` is unchanged by later steps
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

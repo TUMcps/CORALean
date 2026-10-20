@@ -16,10 +16,38 @@ computes (`LinPoint.Certifies`, the hypotheses of `linReach_outer`), is in the u
 `reachLoop` returns. By induction on the fuel, on a state `(t_k, Rᵈ(t_k), R_union)` with the
 run's state at `t_k` in `Rᵈ(t_k)` and everything before `t_k` in `R_union`: a step takes the run
 from `t_k` to `t_{k+1}` (`linReach_outer` on the run counted from `t_k`, `TrajectoryShift`), its
-`Rᵈ(τ_k)` joins the union, and a split puts the run's state in one half, which the recursive
-call, from `t = 0` and horizon `t_f - t_k`, holds by the induction hypothesis. The run is counted
-from an offset `k₀ r` so that the recursion's relative time is the run's absolute time.
-`t_f = N r` and `t_k = k r`: the horizon is a whole number of steps, which `[1]` does not say.
+`Rᵈ(τ_k)` joins the union, and a split puts the run's state in one half, which the recursive call
+holds by the induction hypothesis. `t_f = N r` and `t_k = k r`: the horizon is a whole number of
+steps, which `[1]` does not say.
+
+## Inputs
+* `sys` – system
+* `taylor` – linearization of a start set
+* `corollary1` – error-set computation
+* `sub` – subset test
+* `Lmax` – bound on the linearization errors
+* `lam` – enlargement factor
+* `r` – step size
+* `q` – Taylor order minus two
+* `U` – input zonotope
+* `splitFn` – set splitting
+* `R0` – start set
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `K` – number of steps
+* `z` – output signal
+* `fuel` – iteration bound
+
+## Hypotheses
+* `hsub` – the subset test is sound
+* `hr` – step positive
+* `hsplit` – the split halves cover the set
+* `traj` – DAE trajectory
+* `hcert` – every step is certified by the error loop
+
+## Conclusion
+* the run up to the horizon lies in the union the loop returns
 
 ## References
 

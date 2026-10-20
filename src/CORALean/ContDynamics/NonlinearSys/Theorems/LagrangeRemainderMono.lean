@@ -11,15 +11,25 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 /-!
 # `lagrangeRemainder` grows with the region it is taken over
 
-`[2, Lemma 3]`'s property (6) for `[1, Sec. 4.1]`'s remainder box, proved rather than
-assumed. It holds for a reason worth naming: `γ` is not an artefact of the
-zonotope's generators but exactly `max |z - z✱|` over what it denotes, so a
-larger denoted set gives a larger `γ` whatever representation carries it — which
-is what fails for `zono`, the one step of `[2, Alg. 2]` that does not have this.
+`[2, Lemma 3]`'s property (6) for `[1, Sec. 4.1]`'s remainder box, proved rather than assumed.
+`γ` is not an artefact of the zonotope's generators but exactly `max |z - z✱|` over what it
+denotes, so a larger denoted set gives a larger `γ` whatever representation carries it — which
+is what fails for `zono`, the one step of `[2, Alg. 2]` without this. `0 ≤ E` is carried and
+is not an added hypothesis: `E` bounds a third derivative entrywise, so
+`AbstractionError.of_lagrange`'s own `hEb` already forces it.
 
-`0 ≤ E` is carried and is not an added hypothesis: `E` bounds a third derivative
-entrywise, so `AbstractionError.of_lagrange`'s own `hEb` already forces it. The
-box would otherwise shrink as `γ` grew, in the coordinates where `E` was negative.
+## Inputs
+* `E` – third-derivative bounds
+* `Z₁` – smaller zonotope
+* `Z₂` – larger zonotope
+* `zs` – expansion point
+
+## Hypotheses
+* `hE` – bounds nonnegative
+* `hZ` – zonotopes nested
+
+## Conclusion
+* a larger region gives a larger remainder box
 
 ## References
 

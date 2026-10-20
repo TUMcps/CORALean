@@ -14,6 +14,25 @@ in general not invertible.
 
 Per step, as `holds_of_reach` is, and for the same reason: `reach` returns one
 set per step.
+
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+* `h` – specification holds on the output set
+
+## Conclusion
+* the specification holds at the output of step `k`
 -/
 
 -- Authors:       Claude Opus 5

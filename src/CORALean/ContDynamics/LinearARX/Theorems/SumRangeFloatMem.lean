@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 If each real matrix `M t` lies in the interval matrix `f t`, then `∑ t ∈ range k, M t` lies in
 `sumRangeFloat f k`.
+
+## Inputs
+* `f` – interval matrices per index
+* `M` – real matrices per index
+* `k` – number of terms
+
+## Hypotheses
+* `h` – each real matrix lies in its interval
+
+## Conclusion
+* the real sum lies in the interval sum
 -/
 
 -- Authors:       Claude Opus 5.5

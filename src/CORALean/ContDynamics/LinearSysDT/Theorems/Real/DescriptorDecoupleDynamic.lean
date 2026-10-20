@@ -14,6 +14,17 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 exist iff `rank D_d = rank CD_d`. Necessity needs no full rank: `D_d = N̄ (CD_d)` bounds `rank
 D_d` by `rank CD_d`, and `rank CD_d ≤ rank D_d` always. Sufficiency: `CD_d` then has `n_d`
 independent columns, a left inverse `G` with `G CD_d = I`, and `N̄ = D_d G` gives `T̄ = I - N̄C`.
+
+## Inputs
+* `C` – output matrix
+* `Dd` – unknown input matrix
+
+## Hypotheses
+* `hDd` – unknown input matrix of full column rank
+
+## Conclusion
+* the decoupling matrices are determined and exist iff the ranks agree
+
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on

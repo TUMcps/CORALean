@@ -9,19 +9,44 @@ public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIff
 /-!
 # [2, Thm. 1]: the linear program's constraints are exactly reachset conformance
 
-`X̃₀`, `W` and `V` stretched templates [2, Eq. 9], `z = (c, α)` (14). A point `z`
-with `α ≥ 0` satisfies (12)'s `Ã z ≤ b̃` — row `k`:
-`max_y N(t_k)(y - ỹ) ≤ N(t_k) Γ(t_k) c + G̃(N(t_k), t_k) α`, (18)-(20) with the
-signs moved across — exactly when (8) holds at every `k ≤ K`, i.e. every measurement lies
-in its test case's reachable set. Both directions: the program's feasible set is the
-set of conformant parameters, so its optimum (`n^T z`, `LpCostEq`) is the cost's minimum
-over conformant models — what the solver then returns is the solver's.
+`X̃₀`, `W` and `V` stretched templates [2, Eq. 9], `z = (c, α)` (14). A point `z` with `α ≥ 0`
+satisfies (12)'s `Ã z ≤ b̃` — row `k`: `max_y N(t_k)(y - ỹ) ≤ N(t_k) Γ(t_k) c + G̃(N(t_k), t_k) α`
+— exactly when (8) holds at every `k ≤ K`: the program's feasible set is the set of conformant
+parameters, so its optimum (`LpCostEq`) is the cost's minimum over conformant models.
 
-`N(t_k)` is any family carrying both signs of every cross product of the template
-`[Λ_k G_X, Λ₀ G_W ⋯ Λ_{k-1} G_W, G_V]`, which must span the output space. The printed
-proof takes the normals of `G(t_k)` itself, citing [1, Thm. 1] for their independence of
-`α`; that independence fails where some `αᵢ = 0`, which the program allows. The statement
-holds there too (`Zonotope.mem_scale_iff`).
+`N(t_k)` carries both signs of every cross product of the template
+`[Λ_k G_X, Λ₀ G_W ⋯ Λ_{k-1} G_W, G_V]`, which must span the output space. The printed proof needs
+normals independent of `α` ([1, Thm. 1]); that fails at `αᵢ = 0` (`Zonotope.mem_scale_iff`).
+
+## Inputs
+* `M` – test case index type
+* `κ` – normal index type
+* `sys` – plant
+* `ιX` – index type of the initial generators
+* `ιW` – index type of the disturbance generators
+* `ιV` – index type of the noise generators
+* `cX` – initial center
+* `GX` – initial template generators
+* `αX` – initial stretch factors
+* `cW` – disturbance center
+* `GW` – disturbance template generators
+* `αW` – disturbance stretch factors
+* `cV` – noise center
+* `GV` – noise template generators
+* `αV` – noise stretch factors
+* `T` – test cases
+* `K` – horizon
+* `N` – normal vectors per step
+
+## Hypotheses
+* `hαX` – initial factors nonnegative
+* `hαW` – disturbance factors nonnegative
+* `hαV` – noise factors nonnegative
+* `hspan` – template spans the output space
+* `hN` – `N` carries all template normals
+
+## Conclusion
+* conformance up to `K` iff the program's constraints hold
 
 ## References
 

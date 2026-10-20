@@ -15,15 +15,11 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 [1, Prop. 1]'s hypotheses for one step of [1, Alg. 1] from the start set `X = R̂(t_k)`, in the
 form its proof spends them: the abstraction error `R̂_err(L̂)` is convex, compact, nonempty and
 symmetric about the center `c` line 14 computes; solutions from `X` exist over `[0, Δt]` with
-the field Lipschitz along them (the paper's standing assumption); and every solution from `X`
-satisfies the representation (21), `x(Δt) ∈ x* + e^{AΔt}(x(0) - x*) + R_con(Δt) + R̂_err(L̂)`,
-which is what the remainder loop of lines 10-13 is there to certify (written about `x*`, as
-(10)-(12) are once `x* = 0ₙ` is undone). `IsInnerMinkDiffCert.of_abstractionError` derives that
-last field from an `AbstractionError` certificate for `L̂` on a region the solutions do not leave.
-
-`symm` asks for symmetry about line 14's `c = cen(C) + cen(R̂_err)`, not about `cen(R̂_err)` as
-`Prop. 1` does: a nonempty bounded set symmetric about two points is invariant under the
-translation by twice their difference, so for line 15 this holds only when `cen(C) = 0`.
+the field Lipschitz along them; and every solution from `X` satisfies the representation (21),
+`x(Δt) ∈ x* + e^{AΔt}(x(0) - x*) + R_con(Δt) + R̂_err(L̂)`, which the remainder loop certifies
+(`IsInnerMinkDiffCert.of_abstractionError`). `symm` asks for symmetry about line 14's
+`c = cen(C) + cen(R̂_err)`, not about `cen(R̂_err)` as `Prop. 1` does; for line 15 they agree
+only when `cen(C) = 0`.
 
 ## References
 

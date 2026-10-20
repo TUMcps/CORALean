@@ -18,6 +18,16 @@ What `V` holds is the caller's: `oneStepFloat_outer` asks that the field less it
 linear part, `f(x, u) - A(x - x✱)`, lie in `V` along the run. The `'lin'` and `'poly'`
 variants differ only in the `V` they build; this is [1, Alg. 1]'s line 13 at either.
 
+## Inputs
+* `A` – state matrix
+* `xs` – state expansion point
+* `V` – input zonotope
+* `R` – start zonotope
+* `options` – reachability options
+
+## Output
+* the time-interval and end sets, or none
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

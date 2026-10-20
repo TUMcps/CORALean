@@ -9,21 +9,34 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A time-varying run is a run at any frozen matrix, with the drift as input
 
-`IsConstTrajectory.toLinearSys` has no free counterpart at `'varParam'`: a run
-drawing a fresh `A t` at every instant is a `LinearSys.IsCanonicalTrajectory` for no matrix
-at all, which is why the closed form never applied there. It is one at *every*
-matrix `Â` once the mismatch is paid into the input —
-`A t x + u = Â x + ((A t - Â) x + u)` — and that is what this states.
+`IsConstTrajectory.toLinearSys` has no free counterpart at `'varParam'`: a run drawing a fresh
+`A t` at every instant is a `LinearSys.IsCanonicalTrajectory` for no matrix at all. It is one at
+*every* matrix `Â` once the mismatch is paid into the input — `A t x + u = Â x + ((A t - Â) x + u)`.
+The price is `hV`: the input set has to hold the drift `(A t - Â) x t` as well as `u t`, so it is
+a set the caller supplies and not `U`; the drift is bounded by `‖A t - Â‖ ‖x t‖`, which
+`IsTrajectory.norm_le` bounds a priori. `Â` need not lie in `construct sys.A`; the linear run
+lives on a measurable `T' ⊆ T`, where `x`'s continuity makes the drift measurable.
 
-The price is `hV`: the input set has to hold the drift `(A t - Â) x t` as well
-as `u t`, so it is a set the caller supplies and not `U`. That makes the
-statement a conservative linearization in the parameter rather than an identity,
-and the drift is bounded by `‖A t - Â‖ ‖x t‖`, which `IsTrajectory.norm_le`
-bounds a priori.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `V` – set holding input plus drift
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `Â` – frozen matrix
+* `T'` – measurable subset of the times
 
-`Â` need not lie in `construct sys.A`; the theorems that use this ask it
-separately, being about the matrix set's own enclosures. The linear run lives on a
-measurable `T' ⊆ T`, where `x`'s continuity makes the drift measurable.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hT'` – `T'` lies in the time set
+* `hT'm` – `T'` measurable
+* `hV` – drift plus input lies in `V`
+
+## Conclusion
+* the run is a linear-system trajectory at `Â` with the drift as input
 -/
 
 -- Authors:       Claude Opus 5

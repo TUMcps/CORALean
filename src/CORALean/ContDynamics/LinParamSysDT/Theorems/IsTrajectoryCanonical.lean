@@ -12,6 +12,23 @@ A run of `x(k+1) = A(k) x(k) + B(k) u(k) + c` is a run of the canonical form
 value it takes: the right-hand side is the same sum, bracketed differently. So whatever is proved
 of `IsCanonicalTrajectory` at an input set `U' ⊇ B U ⊕ c` holds of every run, as for
 `LinParamSys.IsTrajectory.canonical`. `mem_inputSet` is the `U'` CORA's `V = B*U + c` gives.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `B` – input matrix signal
+* `U'` – set holding the combined input
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hU'` – combined input lies in `U'`
+
+## Conclusion
+* the combined input drives the canonical form along the same state
 -/
 
 -- Authors:       Claude Sonnet 5.5

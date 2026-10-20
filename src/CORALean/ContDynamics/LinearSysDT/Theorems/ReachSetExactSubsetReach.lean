@@ -15,6 +15,19 @@ set rather than to a point — `reach_one_outer` is that step, reused verbatim.
 What it buys: a bound obtained on `reach` by asking the representation, and a
 bound obtained on `reachSetExact` by propagation, are bounds on nested sets, so the
 tighter of the two is available at every step without either being trusted.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the exact reachable set lies in the computed one
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,16 @@ is one over the sum of the indices, without renumbering into a `Fin`.
 `n` generators of `G`, up to a positive factor: the directions [2, Thm. 1] and
 [3, Lemma 3] take from the template's halfspace representation.
 
+## Inputs
+* `m` – dimension
+* `ι` – generator index type
+* `c` – center
+* `G` – template generators
+* `α` – stretch factors
+
+## Output
+* the zonotope with the generators stretched by `α`
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

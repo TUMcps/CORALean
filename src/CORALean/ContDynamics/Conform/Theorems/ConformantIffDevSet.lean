@@ -12,6 +12,21 @@ public import CORALean.ContDynamics.Conform.Theorems.MemReachOutExactIff
 step, the union over the test cases of the deviations `y_a = y - y_*` lies in the one
 deviation set `R_a(k)` — `mem_reachOutExact_iff` once per measurement.
 
+## Inputs
+* `M` – test case index type
+* `sys` – plant
+* `X0` – initial set
+* `W` – disturbance set
+* `V` – noise set
+* `T` – test cases
+* `K` – horizon
+
+## Hypotheses
+* none
+
+## Conclusion
+* conformance holds iff the deviations lie in the deviation set at every step
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

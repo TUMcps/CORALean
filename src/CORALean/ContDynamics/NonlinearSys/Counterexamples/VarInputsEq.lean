@@ -17,6 +17,15 @@ of `Eq. 7` is `z·z∆ + z∆²/2`, whose least value over the square is `-1/2`,
 `varInputs` is `½([-1, 1] ⊕ [-1, 1] ⊕ [0, 1])` and holds `-1`, at `z = 1`, `z∆ = -1` in
 the first pairing, `z∆ = -1`, `z = 1` in the second and `z∆ = 0` in the third.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set of values differs from the paper's input operator
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative

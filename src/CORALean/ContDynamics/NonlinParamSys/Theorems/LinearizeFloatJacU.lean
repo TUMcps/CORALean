@@ -11,6 +11,21 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 For a float model enclosing the field and its Jacobians, the input Jacobian at the real value of
 the float expansion point and at every parameter of the box lies in the enclosure `linearizeFloat`
 returns as the system's matrix set.
+
+## Inputs
+* `sys` – parametric system
+* `fm` – float model
+* `xs` – float state expansion point
+* `us` – float input expansion point
+* `P` – parameter box
+* `p` – parameter vector
+
+## Hypotheses
+* `h` – the float model encloses the system
+* `hp` – `p` lies in the box
+
+## Conclusion
+* the input Jacobian at the parameter lies in the returned system's `B`
 -/
 
 -- Authors:       Claude Opus 5.5

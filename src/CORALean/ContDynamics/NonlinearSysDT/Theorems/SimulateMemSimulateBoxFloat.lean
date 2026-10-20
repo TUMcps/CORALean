@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat
 For a `FloatModel` that encloses the system, the real `simulate` from the real value of a float
 start under the real value of a float input signal lies, at every step, in the box
 `simulateBoxFloat` computes. An outer statement; the boxes are not the run.
+
+## Inputs
+* `sys` – system
+* `fm` – float field model
+* `x₀` – float start state
+* `u` – float input signal
+* `k` – step
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* the real run lies in the float boxes
 -/
 
 -- Authors:       Claude Opus 5.5

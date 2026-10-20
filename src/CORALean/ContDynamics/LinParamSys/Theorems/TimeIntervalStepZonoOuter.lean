@@ -17,6 +17,25 @@ matrix-zonotope exponential of `r • A` (`exp_mem_expMatZonoEnclosure`, `r • 
 member of the scaled zonotope), and the interpolation error, which the
 matrix-zonotope correction matrix holds (`expDiff_mem_matZonoCorrectionMatrix`).
 Two conditions, one per enclosure, each checkable from `sys.A` alone.
+
+## Inputs
+* `sys` – system
+* `r` – step size
+* `m` – Taylor order minus two
+* `X₀` – initial set
+* `A` – system matrix member
+* `t` – time
+
+## Hypotheses
+* `hr` – step positive
+* `hεe` – exponential order admissible
+* `hεF` – correction order admissible
+* `hA` – `A` lies in the matrix zonotope
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the member's flow image of the initial set lies in the zonotope step
 -/
 
 -- Authors:       Claude Opus 5.5

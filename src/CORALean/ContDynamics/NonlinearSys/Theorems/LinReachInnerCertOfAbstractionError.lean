@@ -14,17 +14,39 @@ public import CORALean.ContSet.Conversion.Real.Instances
 /-!
 # The abstraction error certificate gives CORA's inner step what it needs
 
-The representation (21) the time-point set of CORA's `contDynamics/linReachInner.m` relies on,
-from what its abstraction error loop is there to establish: when `Rerror` is
-`particularSolution_timeVarying` of `VerrorDyn` (`inputSolution Δt η VerrorDyn`), and
-`VerrorDyn` an `AbstractionError` certificate for the linearization `A` at `p` on a region `R`
-the solutions from `Rinit` do not leave over `[0, Δt]` (CORA's `Rmax`), every solution satisfies
-`x(Δt) - (p + e^{AΔt}(x(0) - p) + Rcon) ∈ Rerror` (`IsTrajectory.sub_mem_inputSolution`, with
-`A ∫₀^Δt e^{As} ds = e^{AΔt} - I`). With [1, Prop. 1]'s other hypotheses, passed through, that
-is `IsLinReachInnerCert`. The argument is `IsInnerMinkDiffCert.of_abstractionError`'s.
+The representation (21) of CORA's `contDynamics/linReachInner.m`, from what its error loop
+establishes: when `Rerror` is `particularSolution_timeVarying` of `VerrorDyn`
+(`inputSolution Δt η VerrorDyn`), `VerrorDyn` an `AbstractionError` certificate for `A` at `p`
+on a region `R` the solutions from `Rinit` do not leave over `[0, Δt]` (CORA's `Rmax`), every
+solution satisfies `x(Δt) - (p + e^{AΔt}(x(0) - p) + Rcon) ∈ Rerror`. With [1, Prop. 1]'s other
+hypotheses that is `IsLinReachInnerCert`, as in `IsInnerMinkDiffCert.of_abstractionError`. Still
+assumed: the confinement `hconf` and the properties of `VerrorDyn` and `Rerror`.
 
-What stays assumed is what conservative linearization assumes: the confinement `hconf`, and
-the properties of `VerrorDyn` and of `Rerror` at it.
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `U` – input set
+* `Δt` – step size
+* `fuel` – bound for error loop
+* `η` – Taylor terms
+* `X` – start set
+* `e` – abstraction error guess
+* `B` – input matrix
+* `R` – confinement region
+* `Ω` – Lipschitz region
+* `K` – Lipschitz constant
+
+## Hypotheses
+* `hu₀` – input in input set
+* `hΔt` – step size positive
+* `herr` – operations compute the input solution
+* `hconf` – solutions stay in region
+* `hLip` – field Lipschitz on region
+* `hex` – solutions exist from every start
+
+## Conclusion
+* the step satisfies the inner-step certificate
 
 ## References
 

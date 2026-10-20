@@ -13,6 +13,21 @@ stacked input whose `p+1` blocks all lie in `U`, hypothesis `hV`; no `ContSet`
 here has a product, so the caller supplies it. The converse is not stated: a run of
 the converted system need not have its window's blocks agree, nor its input be of the
 form `feed p u`.
+
+## Inputs
+* `sys` – ARX system
+* `Y₀` – initial window set
+* `U` – input set
+* `V` – stacked input set
+* `y` – outputs
+* `u` – inputs
+
+## Hypotheses
+* `hV` – `V` encloses the stacked inputs from `U`
+* `traj` – ARX trajectory
+
+## Conclusion
+* the window sequence is a trajectory of the converted system
 -/
 
 -- Authors:       Claude Opus 5.5

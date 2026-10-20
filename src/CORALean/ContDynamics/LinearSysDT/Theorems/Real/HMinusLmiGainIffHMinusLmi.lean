@@ -12,6 +12,22 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
 (`LinearSysDT.HMinusLmiGain`) is the inequality of Eq. 27 (`LinearSysDT.HMinusLmi`), the same
 matrix: `QA - QLC = αPA - αWC`, `-QLE = -αWE` and `-Q - CᵀMᵀMC = -αP - CᵀYC`.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `L` – observer gain
+* `P` – Lyapunov matrix
+* `M` – residual weight
+* `α` – scaling
+* `β` – sensitivity level
+
+## Hypotheses
+* none
+
+## Conclusion
+* the gain form and the weighted form of the inequality agree
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

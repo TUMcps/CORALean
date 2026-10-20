@@ -16,12 +16,42 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 [1, Prop. 1]'s proof writes every solution at the end of a step as
 `x(Δt) = e^{AΔt} x(0) + R_con + z(x(0))`, `z(x(0)) ∈ R̂_err` (21). Here it is derived from the
 linearization: a run under the constant input `u₀` that stays in the region `R` of an
-`AbstractionError` certificate `L` solves `ẋ = Ax + w + l(t)`, `w = f(x✱,u✱) - Ax✱ + B(u₀ - u✱)`,
-`l(t) ∈ L` (`IsTrajectory.linearize`); the variation of constants splits off
-`R_con = ∫₀^Δt e^{A(Δt-s)} w ds`, and what `l` contributes lies in `inputSolution Δt η L`
-(`inputSolution_outer`), CORA's `particularSolution_timeVarying(linsys, VerrorDyn, Δt)`, which
-is `R̂_err`. The confinement of the run to `R` is the hypothesis `hR`, as everywhere in
-conservative linearization.
+`AbstractionError` certificate `L` solves `ẋ = Ax + w + l(t)`, `l(t) ∈ L`
+(`IsTrajectory.linearize`); the variation of constants splits off `R_con`, and what `l`
+contributes lies in `inputSolution Δt η L` (`inputSolution_outer`), which is `R̂_err`. The
+confinement of the run to `R` is the hypothesis `hR`, as in conservative linearization.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `L` – remainder set
+* `U` – input set
+* `x` – state trajectory
+* `u₀` – constant input
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – confinement region
+* `Δt` – step size
+* `y` – output trajectory
+* `cert` – abstraction-error certificate
+* `η` – Taylor terms
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hR` – trajectory stays in region
+* `hΔt` – step size positive
+* `hε` – step norm small enough
+* `hconv` – remainder set convex
+* `hclosed` – remainder set closed
+* `hbdd` – remainder set bounded
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+
+## Conclusion
+* the end state less the affine part lies in the error contribution
 
 ## References
 

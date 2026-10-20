@@ -23,20 +23,30 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # The first step of the probabilistic reach loop
 
-CORA's `linProbSys/initReach` [1] with its three private helpers inlined, line by line, the
-sign of the noise covariance corrected. `priv_pexpm` is `e^{Ar}` and the remainder bound,
-`priv_tie` the correction matrix `F` (`MatExp.correctionMatrix`), `priv_inputSolution` the
-input solution of `B U` (`LinearSys.inputSolution`: `Vsum` plus `E r V`), the constant
-input's `A⁻¹(e^{Ar} - I) B uTrans`, its correction `A⁻¹ F B uTrans` unless `originContained`,
-and the probabilistic input solution: a probabilistic zonotope at the origin whose covariance
-is `inputCov`, CORA's `Sigma` with `e^{(λ_i+λ_j)r} - 1` in place of `1 - e^{-(λ_i+λ_j)r}`. The
-eigendecomposition `[V,W] = eig(A)` is the argument `(V, λ)`.
+CORA's `linProbSys/initReach` [1] with its three private helpers inlined, line by line, the sign
+of the noise covariance corrected. `priv_pexpm` is `e^{Ar}` and the remainder bound, `priv_tie`
+the correction matrix `F`, `priv_inputSolution` the input solution of `B U` plus the constant
+input's `A⁻¹(e^{Ar} - I) B uTrans` and its correction `A⁻¹ F B uTrans` unless `originContained`,
+and the probabilistic input solution: a probabilistic zonotope at the origin whose covariance is
+`inputCov`. The eigendecomposition `[V,W] = eig(A)` is the argument `(V, λ)`. The output is
+`(Rfirst.tp, Rfirst.ti, options, pRinput)`, the sets `post` reads; `gammaInit` is `Rinit`'s own
+`gamma` and `gamma` is `options.gamma`.
 
-The output is `(Rfirst.tp, Rfirst.ti, options, pRinput)`: the time-point and time-interval
-sets, the four sets `post` reads from `options`, and `obj.taylor.pRinput`, which `post` reads
-from the object. `gammaInit` is `Rinit`'s own `gamma`, which `zonotope(Rinit)` uses, and
-`gamma` is `options.gamma`. `options.Rhom` is passed on as a set, as `post` carries it: the
-covariance `enclose` gives it stays in `Rfirst.ti`, `0` for a deterministic `Rinit`.
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+
+## Output
+* the time-point set, time-interval set, post state and probabilistic input
 
 ## References
 

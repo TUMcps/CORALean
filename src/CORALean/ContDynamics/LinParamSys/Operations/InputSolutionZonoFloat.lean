@@ -16,6 +16,15 @@ the system's float matrix zonotope (`inputTermZonoFloat`), orders `2 … η` and
 `[E(r)·r]` over the interval matrix it encloses, `sys.A.matInterval`. The four pieces stay
 four products, as in CORA's `priv_inputSolution`.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `V` – input zonotope
+
+## Output
+* the zonotope the inputs contribute over one step
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

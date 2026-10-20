@@ -17,6 +17,17 @@ convex and holds both ends, gives the point.
 The paper's `z` is the state and the input, and its parameter `p` enters `fᵢ` beside them; here
 `fᵢ` is any `C²` function of the stacked variable, which a parameter is one more coordinate of.
 
+## Inputs
+* `f` – scalar function
+* `zs` – expansion point
+* `z` – evaluation point
+
+## Hypotheses
+* `hf` – twice continuously differentiable
+
+## Conclusion
+* the function is its expansion plus a remainder at a point of the segment
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear

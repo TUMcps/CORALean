@@ -12,20 +12,21 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 /-!
 # What a run of `reach` owes
 
-`plus` and `mtimes` are exact at `Zonotope`, so a step loses ground only where
-it reduces, and `reduceBox` names that step's error exactly. What the run owes
-after `k + 1` steps is therefore this step's box together with everything owed
-after `k`, carried forward by one application of `A`: a box dropped at step `j`
-reaches step `k` multiplied by `A` exactly `k - 1 - j` times, which the
-recursion produces without ever writing that power down.
+`plus` and `mtimes` are exact at `Zonotope`, so a step loses ground only where it reduces, and
+`reduceBox` names that step's error exactly. What the run owes after `k + 1` steps is therefore
+this step's box together with everything owed after `k`, carried forward by one application of
+`A`. At `Zonotope` and at `𝕋 = ℝ`, not at the `Reduce` class: the class obliges the outer
+direction only, so no box for the reverse one can be read off it, and `Mtimes (Mat ℝ) 𝒵` is the
+instance whose `mtimes` is exact. A zonotope rather than a `Set`: nonemptiness and boundedness
+then come from the representation, and `minkDiffRep` can take it as an operand.
 
-At `Zonotope` and at `𝕋 = ℝ`, not at the `Reduce` class. The class obliges the
-outer direction only, so no box for the reverse one can be read off it; and
-`Mtimes (Mat ℝ) 𝒵` is the matrix instance whose `mtimes` is exact, which is
-what carrying an error forward needs.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
 
-A zonotope rather than a `Set`: nonemptiness and boundedness then come from the
-representation, and `minkDiffRep` can take it as an operand.
+## Output
+* the error zonotope the run of `reach` owes
 -/
 
 -- Authors:       Claude Sonnet 5

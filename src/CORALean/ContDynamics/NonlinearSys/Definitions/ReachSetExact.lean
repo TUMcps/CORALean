@@ -7,21 +7,24 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # The set a nonlinear run actually reaches
 
-The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same set, as are
-[3, Def. 1]'s `R_e(r)`, its time-varying parameters being inputs here, and [4, Def. 1]'s
-`R(t)`, the autonomous case, as is [5, Def. 1]'s `R_{X₀}(t)`.
+The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same set, as are [3, Def. 1]'s
+`R_e(r)`, its time-varying parameters being inputs here, [4, Def. 1]'s `R(t)` and [5, Def. 1]'s
+`R_{X₀}(t)`. `LinearSys.reachSetExact`'s shape at a nonlinear field, quantified over the runs:
+nothing is computed or widened, so "the trajectory is in the reachable set" holds by construction
+and a claim's content sits in the inclusion in a computed set. The runs are Carathéodory, as
+`LinearSys`'s are. `relinReach` encloses it through linearizations, so its theorems carry a
+confinement hypothesis: `ReachSetExactOuter` puts every trajectory into it,
+`ReachSetExactConfinementOfSubset` keeps it inside each step's certified region.
 
-`LinearSys.reachSetExact`'s shape at a nonlinear field, quantified over the runs: nothing
-is computed or widened, so "the trajectory is in the reachable set" holds by
-construction and a claim's content sits in the inclusion in a computed set. The runs
-are Carathéodory, as `LinearSys`'s are; under a continuous input they are the classical
-solutions the papers quantify over (`IsTrajectory.hasDerivWithinAt`).
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `t` – time
 
-`relinReach` encloses it through linearizations, each conservative only where its
-certificate was issued, so its theorems carry a confinement hypothesis.
-`ReachSetExactOuter` puts every trajectory into it, `ReachSetExactConfinementOfSubset` keeps
-it inside each step's certified region, and `ReachSetExactSubsetRelinReach` and
-`ReachSetExactSubsetRelinTimeInterval` put it inside what is computed.
+## Output
+* the states some trajectory is at at time `t`
 
 ## References
 

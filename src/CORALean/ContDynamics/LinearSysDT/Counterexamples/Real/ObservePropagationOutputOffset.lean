@@ -9,16 +9,24 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 /-!
 # CORA's observers drop the output offset `k` and the feedthrough `D u`
 
-`linearSysDT` documents `y(k) = C x(k) + D u(k) + k + F v(k)`, and its `simulate` adds `D u`
-and `k`, but every observer reads the measurement as `C x` plus noise: the strips
-`|C_i x - y_i| ≤ σ_i` (`priv_observe_intersectionMethod_I`, l. 50; `_II`, l. 45;
-`ESO_A`, l. 61, 82; `ESO_B`, l. 56, 76; `CZN_B`, l. 67, 89), the set `y - V` met through `C`
-(`CZN_A`, l. 45, 58), and the corrections `L y` and `L (y - C x)`
-(`priv_observe_intersectionFree`, l. 54; `intersectionFreeAdaptive`, l. 69; `interval`, l. 63;
-`ESO_C`, l. 68; `ESO_D`, l. 69). Here `A = C = 1`, `k = 1`, `R0 = W = V = {0}`, `u = 0`: the
-state stays at `0`, the output is `y₀ = 1`, and the next set of `observePropagation` (`PRad-E`,
-`Nom-G`, `FRad-C`) is `{L}`, which misses `x₁ = 0` at every gain `L ≠ 0`; `D u` enters
-`y` the same way. Read from the source, not run.
+`linearSysDT` documents `y(k) = C x(k) + D u(k) + k + F v(k)`, and its `simulate` adds `D u` and
+`k`, but every observer reads the measurement as `C x` plus noise: the strips
+`|C_i x - y_i| ≤ σ_i` (`priv_observe_intersectionMethod_I`, l. 50; `_II`, l. 45; `ESO_A`, l. 61,
+82; `ESO_B`, l. 56, 76; `CZN_B`, l. 67, 89), the set `y - V` met through `C` (`CZN_A`, l. 45, 58),
+and the corrections `L y` and `L (y - C x)` (`priv_observe_intersectionFree`, l. 54; `interval`,
+l. 63). Here `A = C = 1`, `k = 1`, `R0 = W = V = {0}`, `u = 0`: the state stays at `0`, the output
+is `y₀ = 1`, and the next set of `observePropagation` (`PRad-E`, `Nom-G`, `FRad-C`) is `{L}`,
+which misses `x₁ = 0` at every gain `L ≠ 0`. Read from the source, not run.
+
+## Inputs
+* `gain` – gain function
+* `order` – zonotope order
+
+## Hypotheses
+* none
+
+## Conclusion
+* the true next state lies outside the observer's next set at nonzero gains
 -/
 
 -- Authors:       Claude Opus 5.5

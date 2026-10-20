@@ -13,6 +13,22 @@ and Varaiya. `∀w` is the difference by `EW`, `∃u` the sum with `-BU`, and th
 through `A` alone, so the step is a preimage and asks nothing of `A`; [1, Prop. 5] reads it
 as the image under `A⁻¹` (`backReachAligned`).
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `E` – disturbance matrix
+* `K` – offset
+* `U` – input set
+* `W` – disturbance set
+* `X₀` – target set
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the next set is the preimage of a difference, a sum and an offset
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

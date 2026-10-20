@@ -17,6 +17,21 @@ affine map `x₀ ↦ e^{AΔt}x₀ + (x* - e^{AΔt}x* + R_con(Δt))`, its matrix 
 
 The input is the constant `u₀`, `U = {u₀}`, the autonomous system (4) of [1].
 
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `Δt` – step size
+* `μ` – enlargement factor
+* `fuel` – bound per remainder loop
+* `X` – start set
+
+## Hypotheses
+* `hΔt` – step size nonnegative
+
+## Conclusion
+* the next time-point set lies in the exact reachable set
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

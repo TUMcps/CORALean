@@ -22,18 +22,28 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # The abstraction error of a conservative polynomialization, in floats
 
-CORA's `priv_precompStatError` and `priv_abstrerr_poly`, [1, Sec. 4.1], in `𝕋`. A state
-of the step is `x = x(0) + δ` with `x(0) - x✱ ∈ Rdelta` and `δ ∈ Rdiff`, so at
-`z₀ = (x(0) - x✱, 0)` and `δz = (δ, u - u✱)` the second-order term splits into
-`errorStat = ½ quadMap(Zdelta, H(z✱))`, kept as the polynomial it is over the start
-set's factors and only then enclosed, and the products carrying a `δz`. Those are
-`error_secondOrder_dyn`, boxed here as `abstrerr_lin` boxes, and with them what the
-Hessian box over the step leaves of `H(z✱)`: CORA bounds that by the third-order
-tensor, which the model does not carry, so this is the second-order Lagrange form.
+CORA's `priv_precompStatError` and `priv_abstrerr_poly`, [1, Sec. 4.1], in `𝕋`. A state of the
+step is `x = x(0) + δ` with `x(0) - x✱ ∈ Rdelta` and `δ ∈ Rdiff`, so at `z₀ = (x(0) - x✱, 0)` and
+`δz = (δ, u - u✱)` the second-order term splits into `errorStat = ½ quadMap(Zdelta, H(z✱))`, kept
+as the polynomial it is over the start set's factors and only then enclosed, and the products
+carrying a `δz`. Those are `error_secondOrder_dyn`, boxed here as `abstrerr_lin` boxes, and with
+them what the Hessian box over the step leaves of `H(z✱)`: CORA bounds that by the third-order
+tensor, which the model does not carry, so this is the second-order Lagrange form. `A`, `B` are
+centers, not the Jacobian, so `hessRemainder`'s first-order slack is added.
 
-`A`, `B` are centers, not the Jacobian, so `hessRemainder`'s first-order slack is
-added. `Zdelta`'s input block is `0`, CORA's `Ustat`, so `errorStat` needs the state
-block of `H(z✱)` alone.
+## Inputs
+* `fm` – float Hessian model
+* `A` – center of the state Jacobian
+* `B` – center of the input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `X` – state box
+* `U` – input box
+* `Rdelta` – start deviation set
+* `Rdiff` – step difference set
+
+## Output
+* the abstraction error zonotope
 
 ## References
 

@@ -15,6 +15,27 @@ reachable set either. An enclosure is a superset, so a specification holding
 on it proves safety and one violated on it proves nothing — the violation may
 sit entirely in the approximation error. A run is exact, so what it violates
 is genuinely violated.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `A` – matrices chosen per step
+* `x₀` – initial state
+* `u` – inputs
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hA` – every chosen matrix lies in the set
+* `hx₀` – start lies in `R₀`
+* `hu` – inputs lie in `U`
+* `hbad` – specification fails along the run
+
+## Conclusion
+* the specification does not hold on the reachable set
 -/
 
 -- Authors:       Claude Opus 5

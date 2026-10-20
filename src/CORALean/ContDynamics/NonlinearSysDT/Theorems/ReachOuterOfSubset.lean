@@ -8,15 +8,31 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
 /-!
 # `reach` contains a run whose linearization is self-consistent
 
-The payoff of `confinement_of_subset`: a caller no longer assumes confinement
-of every trajectory, only that each step's computed reachable set lies inside
-the region its own certificate was issued for — `hsub`, checkable against the
-concrete sets `reach` builds, unlike a hypothesis about `x` itself.
+The payoff of `confinement_of_subset`: a caller no longer assumes confinement of every
+trajectory, only that each step's computed reachable set lies inside the region its own
+certificate was issued for — `hsub`, checkable against the concrete sets `reach` builds. Sound
+at every `steps` whose regions pass that check, exactly as `ConPolyZono.reduceBy_outer` is sound
+at every partition without searching for one. CORA's enlarge-and-retry search for a region that
+passes is not implemented or proved here.
 
-Sound at every `steps` whose regions pass that check, exactly as
-`ConPolyZono.reduceBy_outer` is sound at every partition without searching
-for one. CORA's enlarge-and-retry search for a region that passes is not
-implemented or proved here.
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hsub` – computed sets inside regions
+* `traj` – trajectory of the system
+
+## Conclusion
+* the state at the step lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5

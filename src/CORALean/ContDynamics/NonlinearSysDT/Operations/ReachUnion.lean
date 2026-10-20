@@ -18,6 +18,14 @@ starts from is tested against that step's region before the step is trusted:
 since nothing after it is sound; `List.all` stops at the first `false`.
 
 The last set, step `K`'s, is tested against nothing: no step starts from it.
+
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the union of the step sets, or none
 -/
 
 -- Authors:       Claude Opus 5.5

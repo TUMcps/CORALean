@@ -14,6 +14,19 @@ At `k + 1`, not at `k`, and by the same argument as `LinearSysDT.reach_order_le`
 `reach o R₀ (k + 1)` unfolds to one step of `LinearSysDT.reach`, which ends in
 a `reduce`, so `reduce_order_le` bounds it regardless of the controller's own
 output size and of the external inputs'. No induction, and the controller's enclosure never enters.
+
+## Inputs
+* `sys` – closed-loop system
+* `o` – maximum zonotope order
+* `U_ext` – external input zonotope
+* `R₀` – initial zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reachable set has at most `o * n` generators
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

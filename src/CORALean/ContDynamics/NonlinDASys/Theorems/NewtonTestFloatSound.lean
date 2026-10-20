@@ -19,6 +19,21 @@ then `g` has exactly one zero in the closed sup-norm ball of radius `r` about `c
 the test is a hypothesis of `existsUnique_zero_of_newtonTest`, read through the outward rounding:
 the ball lies in the rounded box `c ± r`, the real `R J` in the interval product, `|1 - R J|` below
 the magnitudes of its residual box, and `R g(c)` in `Interval.mtimes`.
+
+## Inputs
+* `g` – map
+* `G` – interval extension of the map
+* `J` – slope enclosure of the map
+* `c` – box center
+* `r` – box radius
+
+## Hypotheses
+* `hG` – `G` encloses `g` on every box
+* `hJ` – `J` encloses the slopes of `g`
+* `h` – the Newton test passes
+
+## Conclusion
+* `g` has exactly one zero in the ball
 -/
 
 -- Authors:       Claude Opus 5.5

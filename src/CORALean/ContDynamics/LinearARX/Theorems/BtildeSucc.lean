@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.LinearARX.Operations.Btilde
 `Ā_ext` out of the rest. This is the recursion (11) unrolls into, and the induction step
 behind [1, Thm. 1] and [1, Lemma 1].
 
+## Inputs
+* `sys` – ARX system
+* `k` – step
+* `i` – lag index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the next parameter is the extended input plus the shifted previous one
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

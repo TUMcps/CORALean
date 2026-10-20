@@ -16,6 +16,26 @@ enters `Rfirst` and `options` only as the `gamma`-confidence set, as in [1, Alg.
 the two hypotheses of `post_cov`. Covariances only: nothing here says that a probabilistic
 zonotope encloses the law of the process.
 
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+
+## Hypotheses
+* `hV` – eigenvector matrix invertible
+* `hA` – `Veig` and `lambda` diagonalize the matrix
+
+## Conclusion
+* the carried covariances are the noise covariances of one step and of zero time
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

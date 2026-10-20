@@ -17,6 +17,35 @@ has `(y - C x')ᵀ V⁻¹ (y - C x') ≤ 1` (the measurement noise in `E(0, V)`)
 `σ²_prev = 1` encloses its meet with the measurement set (`Ellipsoid.intersectStripLiu_outer`);
 without the update the prediction is the result. CORA's step does not enclose it
 (`LinearSysDT.observeEsoB1D_counterexample`).
+
+## Inputs
+* `sys` – system
+* `W` – disturbance shape
+* `V` – noise shape
+* `p` – prediction weight
+* `lam` – update weight
+* `σsqPrev` – previous sigma squared
+* `u` – input at this step
+* `y` – measurement at this step
+* `Q` – ellipsoid shape
+* `c` – ellipsoid center
+* `x` – state
+* `w` – disturbance
+
+## Hypotheses
+* `hW` – disturbance shape positive definite
+* `hV` – noise shape positive definite
+* `hp0` – prediction weight positive
+* `hp1` – prediction weight below one
+* `hl0` – update weight positive
+* `hl1` – update weight below one
+* `hQ` – ellipsoid shape positive definite
+* `hx` – `x` lies in the estimate
+* `hw` – `w` lies in the disturbance ellipsoid
+* `hy` – the measurement noise lies in its ellipsoid
+
+## Conclusion
+* the next state lies in the updated ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

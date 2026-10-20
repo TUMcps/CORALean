@@ -17,6 +17,26 @@ an aligned zonotope around `EW` with scalings in `[0, 1]`.
 zonotope being larger than `EW` in general (the paper's page). Iterated, the inputs
 drive `x₀ ∈ Z̲_k` into `Z₀` in `k` steps (`backReachAligned_feedback`).
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `E` – disturbance matrix
+* `K` – offset
+* `U` – input zonotope
+* `W` – disturbance set
+* `Z₀` – target zonotope
+* `σ` – alignment choice per zonotope
+* `k` – step
+* `x` – state
+
+## Hypotheses
+* `hA` – state matrix invertible
+* `hσ` – alignments inside the scaling range and around the disturbance set
+* `hx` – `x` lies in the next backward zonotope
+
+## Conclusion
+* some input steers the state into the previous zonotope against every disturbance
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

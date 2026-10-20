@@ -15,6 +15,25 @@ taken as given; the solver is not part of the algorithm's guarantee). Line 8's b
 zonotope's box, `Zonotope.interval`. The reduction is a parameter, as `↓_{q,W}` is any outer
 reduction for the enclosure. Real only, as the other descriptor estimators are.
 
+## Inputs
+* `T` – decoupling matrix
+* `N` – measurement decoupling matrix
+* `C` – output matrix
+* `F` – noise matrix
+* `Hd` – disturbance generator matrix
+* `A` – vertex state matrices
+* `B` – vertex input matrices
+* `D` – vertex disturbance matrices
+* `Λ` – correction matrices
+* `ρ` – vertex weights per step
+* `red` – zonotope reduction
+* `X₀` – initial zonotope
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the estimator zonotope after each number of steps
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

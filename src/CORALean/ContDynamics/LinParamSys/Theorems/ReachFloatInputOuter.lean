@@ -21,14 +21,25 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 # `LinParamSys.reachFloatInput` holds every member's run at every time of every window
 
 A run fixes `A` and `B`, and its combined input `B u + sys.c` lies in `V = B U ⊕ c` (`c` the float
-vector that is `sys.c` through `toRealVec`, as `LinearSys.inputSetFloat_outer` has it), so it is a
-run of the canonical form under `V`, the point system `⟨A⟩`'s run (`toLinearSys`): at `t` it is at
-`e^{At} x(0) + ∫₀ᵗ e^{A(t-σ)} u'(σ) dσ`. With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ`
-plus one admissible `Ũ`-input's contribution, and with `t = t_k + s` both the free motion and the
-constant's part are `e^{A t_k}` of their values at `s`, the constant's plus `P̃(t_k)`
-(`expIntegral_add_mulVec`). At `s ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
-`expIntegral_mem_constPropagateFloat`, and the `Ũ` part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being
-`Recenter`'s: nothing asks `U` to hold the origin. -/
+vector that is `sys.c` through `toRealVec`), so it is a run of the canonical form under `V`, the
+point system `⟨A⟩`'s run (`toLinearSys`): at `t` it is at `e^{At} x(0) + ∫₀ᵗ e^{A(t-σ)} u'(σ) dσ`.
+With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ` plus one admissible `Ũ`-input's
+contribution, and with `t = t_k + s` both the free motion and the constant's part are `e^{A t_k}`
+of their values at `s` (`expIntegral_add_mulVec`). At `s ∈ [0, Δt]` those are in `H^R(τ_0)` and
+`P̃^R(τ_0)`, `P̃(t_k)` is `expIntegral_mem_constPropagateFloat`, and `0 ∈ Ũ` is `Recenter`'s.
+
+## Inputs
+* `sys` – system
+* `c` – offset as a float vector
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Hypotheses
+* `hc` – `c` is the system offset
+
+## Conclusion
+* the returned windows hold every constant-parameter run at every time
+-/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026

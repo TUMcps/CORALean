@@ -9,6 +9,30 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStep
 
 `adaptRun`: iterate [1, Alg. 2] while `t_k < t_end`, as `Alg. 1`'s line 2 does.
 
+## Inputs
+* `sys` – system
+* `U` – input set
+* `lin` – linearization at a point
+* `Φ` – true-error map
+* `sub` – containment test
+* `enlarge` – enlargement of the applied error
+* `le` – comparison of reals
+* `rad` – radius of a set
+* `dbox` – box widths of a set
+* `ζδ` – first tuning constant
+* `ζh` – second tuning constant
+* `ζZ` – third tuning constant
+* `ζK` – fourth tuning constant
+* `tend` – end time
+* `ηlin` – Taylor order of the linearization
+* `ηabs` – Taylor order of the abstraction error
+* `o` – zonotope order
+* `fuel` – iteration bound
+* `s₀` – initial loop state
+
+## Output
+* the loop state after each number of iterations, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

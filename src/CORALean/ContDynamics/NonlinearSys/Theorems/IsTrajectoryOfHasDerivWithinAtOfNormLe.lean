@@ -12,6 +12,26 @@ public import CORALean.Global.AestronglyMeasurableOfHasDerivWithinAt
 run on `T` is integrable on every window from `0`, the derivative being measurable
 (`aestronglyMeasurable_of_hasDerivWithinAt`). A run confined to a compact region on which the
 field is bounded, or one an abstraction error certifies there, has such a field.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `C` – field bound
+
+## Hypotheses
+* `hTconv` – time set convex
+* `h0T` – zero in time set
+* `init` – start state in initial set
+* `input` – inputs in input set
+* `hd` – field is the derivative
+* `hC` – field bounded along run
+
+## Conclusion
+* the state and input form a trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

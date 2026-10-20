@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
 `reachFloatChecked` is `reachFloat` followed by `checkNoNaN`, so a `some` of it is the
 unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachFloat` is
 proved of the checked result, which has passed the NaN test as well.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* a checked result is the unchecked one and contains no NaN
 -/
 
 -- Authors:       Claude Opus 5.5

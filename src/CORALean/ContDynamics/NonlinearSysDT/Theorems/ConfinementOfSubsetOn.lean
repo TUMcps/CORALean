@@ -12,6 +12,25 @@ induction, each step `k < K` placed inside `reach ... k` by `reach_outer_on`
 from confinement strictly below `k`, then inside `(steps k).R` by `hsub k`.
 Only the sets below `K` are asked about, which is exactly what `reachUnion`
 tests at run time: the set step `K` ends in starts no step of the horizon.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `K` – number of known steps
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+
+## Hypotheses
+* `ho` – order positive
+* `hsub` – computed sets inside regions
+* `traj` – trajectory known up to the step count
+
+## Conclusion
+* every state below the step count lies in its region
 -/
 
 -- Authors:       Claude Opus 5.5

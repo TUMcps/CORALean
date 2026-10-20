@@ -14,6 +14,19 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 Where `fm` encloses the lifted system, every run of `ẋ = f(x, u, p)` from `X₀` under inputs in `U`
 with one parameter `p ∈ P` is, at every time of window `k`, in the `k`-th set
 `NonlinParamSys.reachFloat` returns. An outer statement.
+
+## Inputs
+* `sys` – parametric system
+* `fm` – float model of the augmented system
+* `P` – parameter zonotope
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Hypotheses
+* `h` – the float model encloses the augmented system
+
+## Conclusion
+* every constant-parameter run lies in the returned window sets
 -/
 
 -- Authors:       Claude Opus 5.5

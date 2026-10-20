@@ -8,17 +8,13 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 /-!
 # `LinearSysDT` instantiates `ContDynamicsDT` and `Reach`
 
-`params` is `Reach.InputParams` counted in sampling periods, `U` among them as in
-CORA, the combined input `B U ⊕ c ⊕ E W` of the canonical form in state coordinates, which
-`IsTrajectory.canonical` reads every run of the full equation into; `options` is
-`LinearSysDT.ReachOptions`. `reachExact` is `reachUnionExact`
-over `tFinal - tStart` steps, the system being time-invariant, `reach` is
-`reachUnion` (always `some`: nothing here can fail at run time), and the guarantee
-is `reachUnion_outer` — nothing new, every field already proved for its own
-sake in `Definitions`, `Operations` and `Theorems`.
-
-`LinearSysDT` is a `ContDynamicsDT`: `m` inputs and `r` disturbances, a run a `IsTrajectory` of
-the whole equation under any noise, its output what the output equation makes it.
+`params` is `Reach.InputParams` counted in sampling periods, `U` among them as in CORA, the
+combined input `B U ⊕ c ⊕ E W` of the canonical form in state coordinates; `options` is
+`LinearSysDT.ReachOptions`. `reachExact` is `reachUnionExact` over `tFinal - tStart` steps, the
+system being time-invariant, `reach` is `reachUnion` (always `some`), and the guarantee is
+`reachUnion_outer`, every field already proved in `Definitions`, `Operations` and `Theorems`.
+`LinearSysDT` is a `ContDynamicsDT`: `m` inputs and `r` disturbances, a run an `IsTrajectory`
+of the whole equation under any noise.
 -/
 
 -- Authors:       Claude Sonnet 5

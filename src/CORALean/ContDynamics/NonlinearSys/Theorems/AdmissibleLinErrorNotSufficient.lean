@@ -11,19 +11,22 @@ public import Mathlib.LinearAlgebra.Matrix.Notation
 /-!
 # `L̂ ≤ L̄` does not keep the error set inside `[-θ r, θ r]`
 
-[1, Eq. 7] asserts that `[-L̂, L̂] ⊆ M [-θ r, θ r]`, `M := (e^{Ar} - I)⁻¹ A`, "is
-fulfilled if `|M| θ r =: L̄ ≥ L̂`", so that `R̄err(r) = A⁻¹(e^{Ar} - I)[-L̂, L̂]` stays
-inside the box (6). `|M| θ r` is the radius of the *interval hull* of `M [-θ r, θ r]`,
-and a box inside the hull of a parallelotope need not be inside the parallelotope.
+[1, Eq. 7] asserts that `[-L̂, L̂] ⊆ M [-θ r, θ r]`, `M := (e^{Ar} - I)⁻¹ A`, "is fulfilled if
+`|M| θ r =: L̄ ≥ L̂`". But `|M| θ r` is the radius of the *interval hull* of `M [-θ r, θ r]`, and
+a box inside the hull of a parallelotope need not be inside the parallelotope. At
+`A = [[1, 1], [0, 2]]`, `r = 1`, `θ = (1, 1)` and `L̂ = L̄`, the corner `L̂` is sent by
+`N := A⁻¹(e^{A} - I)` to a point whose first coordinate is `(3e - 1)/(e + 1) > 1`. Any `A` with
+two distinct real eigenvalues and non-orthogonal eigenvectors does the same. A counterexample,
+and so real only: nothing is computed.
 
-At `A = [[1, 1], [0, 2]]`, `r = 1`, `θ = (1, 1)` and `L̂ = L̄`, the corner
-`L̂` of `[-L̂, L̂]` is sent by `N := A⁻¹(e^{A} - I)` to a point whose first coordinate
-is `(3e - 1)/(e + 1) > 1`. The arithmetic is exact: `A` is `V diag(1, 2) V⁻¹` with
-`V = [[1, 1], [0, 1]]`, so `e^{A} = [[e, e² - e], [0, e²]]`, and both inverses are
-upper triangular. Any `A` with two distinct real eigenvalues and non-orthogonal
-eigenvectors does the same; in one dimension, or at a diagonal `A`, the claim holds.
+## Inputs
+* none
 
-A counterexample, and so real only: nothing is computed.
+## Hypotheses
+* none
+
+## Conclusion
+* a two-dimensional system where the error set leaves the box
 
 ## References
 

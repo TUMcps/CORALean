@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 `feed` of the real values of a float input signal lies in `feedBox`: each lag term is
 a matrix times a point, enclosed by `mtimes`, and the fold adds them by `plus`.
+
+## Inputs
+* `sys` – ARX system
+* `u` – float input signal
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real input feed lies in the feed box
 -/
 
 -- Authors:       Claude Opus 5.5

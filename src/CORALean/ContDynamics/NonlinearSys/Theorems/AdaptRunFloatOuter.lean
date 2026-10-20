@@ -15,6 +15,26 @@ run of that step re-anchored at the step's start (`IsTrajectory.shift`), so `ada
 applies to each in turn. The steps' lengths are whatever the tuning chose; only their sum, the
 horizon, enters. See [1].
 
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `ζδ` – first tuning constant
+* `ζh` – second tuning constant
+* `ζZ` – third tuning constant
+* `ζK` – fourth tuning constant
+* `prec` – precision
+* `bis` – bisection depth
+* `fuel` – iteration bound
+* `tend` – final time
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* every run of the system lies in the sets of its step
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

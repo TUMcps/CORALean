@@ -17,6 +17,32 @@ observer from the system gives [1, Eq. 14], `e_{k+1} = (A - LC) e_k + E w_k - L 
 unrolling it the theorem's Eq. 23. The box of its Eq. 21 is the hull of `Ω_k`
 (`intervalEstimate_error_eq_hull`).
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `x` – true states
+* `xh` – estimates
+* `w` – true disturbances
+* `v` – true noise
+* `k` – step
+
+## Hypotheses
+* `h0` – start lies in `X₀`
+* `hw` – disturbances lie in `W`
+* `hv` – noise lies in `V`
+* `hstep` – the dynamics hold
+* `hy` – the measurements follow the outputs
+* `hxh0` – the estimate starts at the center
+* `hxh` – the estimate follows the observer
+
+## Conclusion
+* the estimation error lies in its reachable set
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

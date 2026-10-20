@@ -14,6 +14,16 @@ which `[tLo/2^s, tHi/2^s] · sys.A` has a float norm bound no larger than the
 step's `[Δt, Δt] · sys.A`, and admissible at `η`. `half` is exact, so the
 scaled range is the range divided by `2^s`. The first test is precision, the
 second soundness; `none` if no `s` passes.
+
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Output
+* the first admissible number of squarings, or none
 -/
 
 -- Authors:       Claude Opus 5.5

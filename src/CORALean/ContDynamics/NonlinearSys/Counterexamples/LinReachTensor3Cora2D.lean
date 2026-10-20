@@ -16,30 +16,34 @@ public import Mathlib.Analysis.Calculus.Deriv.Prod
 CORA's `@contDynamics/linReach.m` at `alg = 'lin'`, `tensorOrder = 3`, default `maxError = Inf`,
 line by line, with `priv_abstrerr_lin`'s `tensorOrder == 3` branch: `H` is the Hessian at `p`,
 `[T,ind]` the generated tensor file over `totalInt_x`, and the remainder loop indexes `T{i,j}` and
-`dz(j)` by the position `j` in `ind{i}`, as printed. Sets are carried as interval hulls
-(`Real.Interval ℝ`) per coordinate: only `A = f'(p) = 0` and `H(p) = 0` are modelled (else
-`none`), where `eAdt = I`,
-`E = F = G = 0`, `Rtp = X + Δt·f0`, `Rti = enclose(X, Rtp)`, `errorSec = 0` and `priv_abstrerr_lin`
-reads `R` only through `interval(R)`; there the hulls are exact (that of `enclose(X, X + v)` is the
-componentwise `min`/`max`). The input column (all-zero for `U = {0}`) is left out.
-
-`quad dz M` is CORA's interval `dz.'*M*dz` and `imul` its interval product: both are arguments.
-`T x i j` is the tensor file's `T{i,j}` at `totalInt_x = x`, `ind i` its `ind{i}` (0-based); the
-position `j < length(ind{i}) ≤ 2` is read as a column as `Fin.ofNat 2 j`, exact there.
-The loop is `abstrErrLoop` with factor `1.1` and test `∀ i, trueError i ≤ appliedError i`, which is
-MATLAB's `max(trueError./appliedError) ≤ 1` (`max` skips `NaN`, `0/0`); `fuel` bounds it.
+`dz(j)` by the position `j` in `ind{i}`, as printed. Sets are interval hulls (`Real.Interval ℝ`)
+per coordinate: only `A = f'(p) = 0` and `H(p) = 0` are modelled (else `none`). `quad dz M` is
+CORA's interval `dz.'*M*dz` and `imul` its interval product: both are arguments. The loop is
+`abstrErrLoop` with factor `1.1` and test `∀ i, trueError i ≤ appliedError i`; `fuel` bounds it.
 
 # CORA's third-order remainder reads the wrong tensor columns
 
 `priv_abstrerr_lin`'s `tensorOrder == 3` loop takes `T{i,j}*…*dz(j)` for the position `j` in
 `ind{i}`, the list of non-zero columns of the tensor, where `priv_abstrerr_poly` and
-`priv_linError_thirdOrder` take column `ind{i}(j)`. For `ẋ₁ = x₂³`, `ẋ₂ = 0` from
-`{0} × [-1, 1]`, `ind{1}` holds column `2` only: the loop reads `T{1,1} = 0` and the remainder
-is `0`, while `T{1,2}` holds `∂³f₁/∂x₂³ = 6`. At `p = 0` the Jacobian and Hessian vanish, so
-CORA's step (`linReachTensor3Cora2D`), at every `Δt > 0`, for every interval kernel that maps a
-zero matrix, or a zero factor, to `[0, 0]`, accepts on its first pass and keeps `x₁` at `[0, 0]`
-in both `Rti` and `Rtp`; the run from `(0, 1)` is `(t, 1)`, at `x₁(Δt) = Δt`. The miss is the
-index, not the region: `p` lies in the box the tensor is read over.
+`priv_linError_thirdOrder` take column `ind{i}(j)`. For `ẋ₁ = x₂³`, `ẋ₂ = 0` from `{0} × [-1, 1]`,
+`ind{1}` holds column `2` only: the loop reads `T{1,1} = 0` and the remainder is `0`, while `T{1,2}`
+holds `∂³f₁/∂x₂³ = 6`. At `p = 0` the Jacobian and Hessian vanish, so CORA's step, at every
+`Δt > 0`, for every interval kernel that maps a zero matrix, or a zero factor, to `[0, 0]`, keeps
+`x₁` at `[0, 0]`; the run from `(0, 1)` is `(t, 1)`, at `x₁(Δt) = Δt`. The miss is the index.
+
+## Inputs
+* `quad` – interval quadratic form
+* `imul` – interval product
+* `Δt` – step size
+* `fuel` – iteration bound
+
+## Hypotheses
+* `hquad` – a zero matrix gives a zero form
+* `himul` – a zero factor gives a zero product
+* `hΔt` – step positive
+
+## Conclusion
+* CORA's first coordinate stays at zero while the run moves
 -/
 
 -- Authors:       Claude Opus 5.5

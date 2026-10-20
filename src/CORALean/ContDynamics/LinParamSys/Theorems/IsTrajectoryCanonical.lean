@@ -13,6 +13,24 @@ combined input `u' = B u + c`, wherever `U'` holds every value it takes: the int
 same sum, bracketed differently. So whatever is proved of `IsCanonicalTrajectory` at an input set
 `U' ⊇ B U ⊕ c` holds of every run, as CORA's `reach` hands its core `B U + c`; `inputSet` is
 such a `U'`.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `X₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `B` – input matrix signal
+* `U'` – set holding the combined input
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hU'` – combined input lies in `U'`
+
+## Conclusion
+* the combined input drives the canonical form along the same state
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

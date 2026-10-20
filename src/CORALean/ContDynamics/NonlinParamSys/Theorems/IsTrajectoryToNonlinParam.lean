@@ -12,6 +12,23 @@ embedded system needs; only `param` is new, and needs `construct P` nonempty to
 supply the constant parameter the embedded trajectory reads — a trajectory of
 the embedded system needs some `p` to exist, which `sys.IsTrajectory` alone does
 not provide.
+
+## Inputs
+* `sys` – nonlinear system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `P` – parameter set
+* `x` – state trajectory
+* `u` – input signal
+* `y` – output signal
+
+## Hypotheses
+* `traj` – nonlinear trajectory
+* `hP` – parameter set nonempty
+
+## Conclusion
+* the run is a trajectory of the embedded parametric system
 -/
 
 -- Authors:       Claude Opus 5

@@ -7,22 +7,22 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # `abstrErrLoop`, the abstraction error's fixed point
 
-Lines 8-11 of [1, Alg. 1] — lines 7-10 of [2, Alg. 1], which numbers the same
-loop one lower — and what [1, Alg. 2] line 7 names `abstrErrLoop`: guess an
-applied error, compute the true one it induces, and enlarge and retry until the
-true error sits inside the applied one. What comes back is the *true* error —
-the tighter of the two — and line 12 is what spends it.
+Lines 8-11 of [1, Alg. 1] — lines 7-10 of [2, Alg. 1] — and what [1, Alg. 2] line 7 names
+`abstrErrLoop`: guess an applied error, compute the true one it induces, and enlarge and retry
+until the true error sits inside the applied one. What comes back is the *true* error, the tighter
+of the two. `enlarge` and the true-error map `Φ` are supplied: `enlarge` is [1]'s "constant factor
+greater than 1", and `Φ` is the `abstrErr` of whichever abstraction the caller runs. Routing the
+containment test through a `Bool` keeps the loop runnable. `Ψ ⊄ Ψ̄` is a loop with no stated
+iteration count, so `fuel` is an argument and the result an `Option`; `abstrErrPolySearch` is the
+same shape for the polynomial abstraction. The applied error is `Ψapp`, the true one `Ψtrue`.
 
-`enlarge` and the true-error map `Φ` are supplied. Neither is a property of a
-set: `enlarge` is [1]'s "constant factor greater than 1", and `Φ` is the
-`abstrErr` of whichever abstraction the caller runs, of which this tree has
-`abstrErr` and `abstrErrLin`. Routing the containment test through a `Bool`
-keeps the loop runnable, as `Alg. 3` of the CDC paper is.
+## Inputs
+* `sub` – containment test
+* `enlarge` – enlargement of the applied error
+* `Φ` – true-error map
 
-`Ψ ⊄ Ψ̄` is a loop with no stated iteration count, so `fuel` is an argument and
-the result an `Option`; `abstrErrPolySearch` beside it is the same shape for
-the polynomial abstraction. `Ψ̄` is no Lean identifier, so the applied error is
-`Ψapp` and the true one `Ψtrue`.
+## Output
+* the first true error contained in its applied error, or none
 
 ## References
 

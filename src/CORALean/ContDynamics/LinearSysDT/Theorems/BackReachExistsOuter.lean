@@ -8,19 +8,28 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExistsEx
 /-!
 # `backReachExists` encloses the backward reachable set
 
-The ordinary outer direction, propagated along a run, and what it buys is the
-contrapositive: a state *outside* the computed set is one no admissible input
-signal drives into the target. Only `plus_outer` and `mtimes_outer` are used, so
-this holds at every representation with `Plus` and `Mtimes` — no exactness, and
-no inner half of anything.
+The ordinary outer direction, propagated along a run, and what it buys is the contrapositive: a
+state *outside* the computed set is one no admissible input signal drives into the target. Only
+`plus_outer` and `mtimes_outer` are used, so this holds at every representation with `Plus` and
+`Mtimes`. `hA` is a *left* inverse, `Ainv A = 1`, where `backReachForall_inner` asks for a right
+one: it turns the preimage under `A` into an image under `Ainv` the outer way. At a square matrix
+each inverse is the other; the proofs do not. `hneg` is the input set negated, an enclosure like
+every other hypothesis here.
 
-`hA` is a *left* inverse, `Ainv A = 1`, where `backReachForall_inner` asks for a
-right one: it is what turns the preimage under `A` into an image under `Ainv`
-the outer way, since a state the step keeps is recovered from where it lands.
-At a square matrix each inverse is the other, so a caller supplies the same
-thing; the proofs do not.
+## Inputs
+* `sys` – system
+* `Ainv` – left inverse of the state matrix
+* `T` – target set
+* `U` – input set
+* `negU` – set enclosing the negated inputs
+* `k` – step
 
-`hneg` is the input set negated, an enclosure like every other hypothesis here.
+## Hypotheses
+* `hA` – `Ainv` is a left inverse
+* `hneg` – `negU` encloses the negated inputs
+
+## Conclusion
+* the exact backward reachable set lies in the computed one
 -/
 
 -- Authors:       Claude Opus 5

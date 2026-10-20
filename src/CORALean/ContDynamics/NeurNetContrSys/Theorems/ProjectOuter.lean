@@ -11,6 +11,16 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 `[I 0] z` is `z`'s first `n` coordinates, in `project Z` by `Mtimes`'s guarantee. What
 [1, Alg. 2] asks of the projection.
 
+## Inputs
+* `Z` – extended set
+* `z` – extended point
+
+## Hypotheses
+* `hz` – `z` lies in `Z`
+
+## Conclusion
+* the state part of the point lies in the projected set
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

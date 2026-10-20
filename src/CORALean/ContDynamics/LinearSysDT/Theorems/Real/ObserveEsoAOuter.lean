@@ -16,6 +16,34 @@ measurement strip `‖C x - y‖₂ ≤ φ`, then the next state lies in `observ
 positive definite, so the corrected update encloses its meet with the strip
 (`Ellipsoid.intersectStripGollamudi_outer`); without the update the prediction is the result.
 CORA's step does not enclose it (`LinearSysDT.observeEsoA1D_counterexample`).
+
+## Inputs
+* `sys` – system
+* `W` – disturbance shape
+* `φ` – trigger threshold
+* `p` – prediction weight
+* `lam` – update weight
+* `σsqPrev` – previous sigma squared
+* `u` – input at this step
+* `y` – measurement at this step
+* `Q` – ellipsoid shape
+* `c` – ellipsoid center
+* `x` – state
+* `w` – disturbance
+
+## Hypotheses
+* `hW` – disturbance shape positive definite
+* `hp0` – prediction weight positive
+* `hp1` – prediction weight below one
+* `hl0` – update weight nonnegative
+* `hl1` – update weight below one
+* `hQ` – ellipsoid shape positive definite
+* `hx` – `x` lies in the estimate
+* `hw` – `w` lies in the disturbance ellipsoid
+* `hy` – the next state meets the measurement strip
+
+## Conclusion
+* the next state lies in the updated ellipsoid
 -/
 
 -- Authors:       Claude Opus 5.5

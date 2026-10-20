@@ -7,22 +7,25 @@ public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 /-!
 # The set a sampled closed-loop run actually reaches
 
-`LinearSys.reachSetExact`'s shape at a zero-order-hold run: every state some run of
-`sys` under `π` visits at time `t`, quantified over the runs themselves rather
-than over `reach`'s enclosure. So "the trajectory is in the reachable set"
-holds by construction, and the content of a reachability claim sits in the
-other inclusion, of this set in a computed one.
+`LinearSys.reachSetExact`'s shape at a zero-order-hold run: every state some run of `sys` under `π`
+visits at time `t`, quantified over the runs themselves rather than over `reach`'s enclosure. So
+"the trajectory is in the reachable set" holds by construction, and the content of a reachability
+claim sits in the other inclusion. Stated at every `t`, as in the continuous classes:
+`IsTrajectory` constrains `x` only within the `H` periods it names, so the set stays large outside
+them. `Theorems.ReachSetExactOuter` puts every run into it. [1, Def. 3]'s `ξ(t, x0, uc(·), w(·))`
+is `x t` here, at whichever `x`, external input `v` and disturbance `w` a `IsTrajectory` supplies.
 
-Stated at every `t`, as in the continuous classes: `IsTrajectory` constrains `x`
-only within the `H` periods it names, so the set stays large outside them.
-`ReachSetExactSubsetReach` only reaches content at the period boundaries `reach` is
-indexed by — nothing between them, the same silence `ReachOuter` names.
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller
+* `H` – number of periods
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `t` – time
 
-`Theorems.ReachSetExactOuter` puts every run into it.
-
-[1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x`, external input `v` and
-disturbance `w` a `IsTrajectory` supplies, at any plant, the external input in `U_ext`, the
-disturbance in `W`.
+## Output
+* the states some sampled closed-loop run is at at time `t`
 
 ## References
 

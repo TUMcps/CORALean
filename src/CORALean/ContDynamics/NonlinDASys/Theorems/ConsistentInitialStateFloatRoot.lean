@@ -12,6 +12,21 @@ A returned `y'` lies within `tol`, in the sup norm, of exactly one zero of `g(x�
 consistent initial algebraic state exists there and is unique in that ball. The real
 `consistentInitialState_spec` claims only CORA's stopping test, a last Newton step below `tol`;
 here the test the float run adds (`newtonTestFloat_sound`) makes the claim about the root itself.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `tol` – step tolerance
+* `fuel` – iteration bound
+* `x₀` – initial differential state
+* `u₀` – initial input
+* `y₀` – initial guess
+
+## Hypotheses
+* `hfm` – the float model encloses the system
+
+## Conclusion
+* a returned point is within the tolerance of exactly one constraint solution
 -/
 
 -- Authors:       Claude Opus 5.5

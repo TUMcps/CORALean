@@ -13,6 +13,20 @@ public import Mathlib.Data.Fintype.Prod
 `⨁_{i<k} ⟨cᵢ, Gᵢ diag(αᵢ)⟩ = ⟨∑ cᵢ, [G₀ ⋯ G_{k-1}] diag([α₀; ⋯; α_{k-1}])⟩`, the generators
 indexed by `Fin k × ι`: one copy of the template per time step, as the disturbances of
 a reachable set enter one per step.
+
+## Inputs
+* `m` – dimension
+* `k` – number of summands
+* `ι` – generator index type
+* `c` – centers
+* `G` – template generators per summand
+* `α` – stretch factors per summand
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum is one template with stacked generators
 -/
 
 -- Authors:       Claude Opus 5.5

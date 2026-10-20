@@ -15,6 +15,29 @@ that is the point of the pivot being one theorem: it only ever sees a superset.
 
 Per step, since that is what `reach` returns. A requirement over a horizon is
 this at each `k`.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `spec` – specification
+* `π` – controller function
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+* `h` – specification holds on the reachable set
+
+## Conclusion
+* the specification holds at the state of step `k`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

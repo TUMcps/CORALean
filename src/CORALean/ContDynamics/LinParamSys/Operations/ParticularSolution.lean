@@ -14,6 +14,15 @@ window at a time from `P^R(Δt)`, `inputSolution`'s set, as
 `R_k = M(r) R_{k-1} + P_0` unrolled with the new window prepended, with `e^{[A] t_k}` the interval
 matrix `expEnclosure`. Indexed from `0`, so that `P^R(t_0) = {0}` never has to be represented.
 
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `U` – input set
+
+## Output
+* the input's contribution up to the end of each window
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

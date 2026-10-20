@@ -22,6 +22,15 @@ stored, as `materialiseMat` does, so it is eliminated once rather than per entry
 and that `qᵢ r + |R g(c)|ᵢ ≤ r`: Krawczyk's operator over `B`, bounded by magnitudes, lies in `B`.
 `true` certifies exactly one zero of `g` within `r` of `c` in the sup norm
 (`NonlinDASys.newtonTestFloat_sound`).
+
+## Inputs
+* `G` – interval extension of the map
+* `J` – slope enclosure of the map
+* `c` – box center
+* `r` – box radius
+
+## Output
+* whether the box passes the Krawczyk test
 -/
 
 -- Authors:       Claude Opus 5.5

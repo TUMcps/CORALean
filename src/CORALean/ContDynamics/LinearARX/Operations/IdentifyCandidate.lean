@@ -13,6 +13,16 @@ columns of `X1`, their `y(j)` those of `X2`, and the candidate is `X2 W_k S_k⁻
 (`aux_dynamicModeDecomposition`) for an economy SVD `X1 = V S Wᵀ`, which is an argument.
 The source is [1].
 
+## Inputs
+* `yNext` – successor outputs
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `k` – rank
+
+## Output
+* the candidate matrix of rank `k`
+
 ## References
 
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`

@@ -15,21 +15,23 @@ public import CORALean.ContDynamics.Reach.Definitions.Params
 /-!
 # The sampled loop at a linear plant: reachability at two rates
 
-[1, Alg. 2] (`reachWith`) at a `LinearSys` plant, CORA's `neurNetContrSys/reach` with
-`aux_reachability` choosing `linearSys`'s own. The outer recursion is on the control period: the
-network's image `Y` of the set reached so far is stacked under it (`cartProd`, CORA's
-`aux_appendU2X`), the pair reached as one state of the augmented system `[A B_nn; 0 0]`, `[B_ext;
-0]`, `[c; 0]` (`augment`, CORA's `aux_augmentLinear`) and projected back (`project`). The inner
-level is `N` steps of length `Δt` of that system by `LinearSys`'s own machinery: `discretize`,
-`reach ... N`, and `inputSolution` of `B_aug U_ext ⊕ [c; 0]`, the external inputs `U_ext` (CORA's
-`params.U`) entering through `B_ext` as `aux_augmentLinear` has them.
+[1, Alg. 2] (`reachWith`) at a `LinearSys` plant, CORA's `neurNetContrSys/reach`. The outer
+recursion is on the control period: the network's image `Y` of the set reached so far is stacked
+under it (`cartProd`), the pair reached as one state of the augmented system (`augment`) and
+projected back (`project`). The inner level is `N` steps of length `Δt` of that system by
+`LinearSys`'s own machinery (`discretize`, `reach`, `inputSolution` of `B_aug U_ext ⊕ [c; 0]`).
+The network's input is a state, so its constancy over the period is kept; only the dependence of
+`Y` on the state is lost. Only the period boundaries are reached; `tStart`, `tFinal` are ℕ, in
+control periods, and every guarantee is stated at `tStart = 0`.
 
-The network's input is a state, so its constancy over the period is kept and the same input acts
-at all `N` steps; only the dependence of `Y` on the state is lost, the product being the plain
-one. The external input is free in `U_ext` at every instant.
-Only the period boundaries are reached (`rx` returns no sets over a period), the gap
-`relinReach` has. Time is counted in control periods, `tStart` and `tFinal` being ℕ as in
-`LinearSysDT.reach`; every guarantee is stated at `tStart = 0`.
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the reachable set at the end of the last control period
 
 ## References
 

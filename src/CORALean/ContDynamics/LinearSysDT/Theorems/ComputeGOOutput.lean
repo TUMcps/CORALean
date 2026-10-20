@@ -12,6 +12,22 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.IsTrajectoryStateEq
 the `C` and `D` of the GO model are the coefficients of the output in the initial state and the
 inputs, for every run of the system; the constant `k`, which CORA's GO model leaves out, is added
 as it stands.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `out` – output equation
+* `nk` – number of steps
+* `k` – step index
+
+## Hypotheses
+* `h` – discrete-time trajectory
+
+## Conclusion
+* the output is the initial-state term plus weighted inputs plus offset
 -/
 
 -- Authors:       Claude Opus 5.5

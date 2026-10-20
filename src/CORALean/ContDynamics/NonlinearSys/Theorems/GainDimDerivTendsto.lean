@@ -11,18 +11,32 @@ public import Mathlib.Analysis.Calculus.Deriv.Mul
 # The limit of the gain's derivative as the time span shrinks
 
 The derivative half of `[1, Prop. 2 (derivative)]`, `lim_{h→0} dφᵢ(h;δ)/dh`. As in
-`gainDim_tendsto_pow` the content is that `dᵢ(box(R^∞_abs(t)))` is `t^{qᵢ+1}g(t)` with `g(0) ≠ 0`,
-so `φᵢ(h;δ) = δ^{qᵢ+1}·g(δh)/g(h)` near `0`. Differentiating that quotient needs `g`
-differentiable near `0` with `g'` continuous at `0`, and then
-`dφᵢ/dh → δ^{qᵢ+1}(δ − 1) g'(0)/g(0)`. This is not `[1]`'s closing formula, which has only the
-coefficient of `t^{qᵢ+2}` where `g'(0)` also carries the derivative at `0` of the coefficient of
-`t^{qᵢ+1}`, the sum of the `Q̇⁽ᵖ⁾ᵢ(0)`; `(B.5)` evaluates `Q` at `δh` where it needs `h`, and the
-difference is of that order. `GainDimDerivLimitNonpos` reads the sign off, `GainDeriv`
-is a family where it is positive.
+`gainDim_tendsto_pow`, `dᵢ(box(R^∞_abs(t)))` is `t^{qᵢ+1}g(t)` with `g(0) ≠ 0`, so
+`φᵢ(h;δ) = δ^{qᵢ+1}·g(δh)/g(h)` near `0`, and then `dφᵢ/dh → δ^{qᵢ+1}(δ − 1) g'(0)/g(0)`. This
+is not `[1]`'s closing formula, which has only the coefficient of `t^{qᵢ+2}`; `(B.5)` evaluates
+`Q` at `δh` where it needs `h`. `g` and `g'` are given as a pair `HasDerivAt g (g' t) t` near `0`;
+`[1]` differentiates termwise inside an infinite series, the step this hypothesis stands in for.
+`GainDimDerivLimitNonpos` reads the sign off.
 
-`g` and `g'` are given as a pair `HasDerivAt g (g' t) t` near `0`, so no smoothness class is named;
-`[1]` differentiates termwise inside an infinite series, the step this hypothesis stands in for,
-as it does in `gainDim_tendsto_pow`.
+## Inputs
+* `A` – matrix as a function of the step
+* `Ψ` – error set as a function of the step
+* `i` – dimension
+* `qi` – order of the dimension
+* `g` – leading factor of the width
+* `g'` – its derivative
+* `δ` – shrink factor
+
+## Hypotheses
+* `hδ0` – shrink factor nonnegative
+* `hδ1` – shrink factor at most one
+* `hg` – leading factor differentiable
+* `hg'` – derivative continuous at zero
+* `hg0` – leading factor nonzero at zero
+* `hexp` – width has the power form
+
+## Conclusion
+* the gain derivative tends to the stated limit
 
 ## References
 

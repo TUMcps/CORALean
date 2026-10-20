@@ -15,6 +15,16 @@ the model's Jacobian boxes, first order in the deviation from the expansion poin
 order. Either way the region is checked first, so the abstraction-error loop of lines 7-11 needs
 no fixed point. Any `κ` other than `1` is the second order.
 
+## Inputs
+* `fm` – float Hessian model
+* `κ` – abstraction order
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Output
+* the time-interval and end sets, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

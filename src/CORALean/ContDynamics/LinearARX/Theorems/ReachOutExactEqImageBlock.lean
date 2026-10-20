@@ -13,6 +13,19 @@ reading under which [1, Eq. 12] and Alg. 1–2 return the reachable sets, one pe
 and the one CORA's `reach` takes (`project` per block). The windows themselves are not
 the product of these projections; see `reachWindowExact_ne_prod`.
 
+## Inputs
+* `sys` – ARX system
+* `y₀` – measured first output window
+* `U` – input sets per step
+* `k` – step
+* `a` – block index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the reachable outputs are the block projection of the window set
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

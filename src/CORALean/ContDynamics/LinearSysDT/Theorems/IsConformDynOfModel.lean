@@ -18,6 +18,22 @@ If every test case `i` is a run of the system `x(k+1) = A x(k) + B u(k) + c + E 
 that: `true` is no proof that one run explains all samples of a test case, the check being
 one sample at a time.
 
+## Inputs
+* `sys` – system
+* `X₀` – initial set
+* `W` – disturbance set
+* `V` – noise set
+* `K` – horizon
+* `x0` – initial states per test case
+* `u` – inputs per test case
+* `y` – measured outputs per test case
+
+## Hypotheses
+* `hmodel` – every test case is a run of the model
+
+## Conclusion
+* the dynamic conformance check accepts
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/isconform_dyn.m`

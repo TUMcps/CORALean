@@ -10,6 +10,16 @@ public import CORALean.ContDynamics.LinearARX.Operations.Bext
 `B̄_ext,i = 0` for `i < 0` and `i > p`, as [1] reads it below Eq. 10: the convention
 every reindexing of (9b) in [1, Thm. 1] leans on.
 
+## Inputs
+* `sys` – ARX system
+* `i` – lag index
+
+## Hypotheses
+* `hi` – lag outside the range
+
+## Conclusion
+* the extended input matrix is zero
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

@@ -23,6 +23,15 @@ against the specification (l. 129). After the loop `Rout{end} = Rout{steps+1}` i
 `x⁺ = x + 1` from `R0 = {0}` with `dt = tFinal = 1` is one step. The loop checks `Rout{1} = {0}`
 only; `Rout{2} = {1}` is computed after it. Against the unsafe set `[1/2, 3/2]` the state
 `x(1) = 1` is unsafe, yet `res = true`.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's verdict is true although the final state is unsafe
 -/
 
 -- Authors:       Claude Opus 5.5

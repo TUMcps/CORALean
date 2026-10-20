@@ -9,15 +9,13 @@ public import CORALean.ContDynamics.Interfaces
 /-!
 # `NeurNetContrSys.Linear` instantiates `Reach`
 
-The system carries its control period `dt`, CORA's `sys.dt`, since the set a closed
-loop reaches depends on it and `reachExact` reads no options. `params` is
-`Reach.Params` counted in control periods, `options` `NeurNetContrSys.ReachOptions`.
-`reachExact` is `reachUnionExact` over `tFinal - tStart` periods of length `dt`, the
-closed loop being time-invariant; `reach` is `reachUnion`, `none` unless
-`0 < Δt` and the `N` steps of `Δt` make up exactly `dt` — CORA's check
-that `Δt` divides `dt`, decided in ℝ; the guarantee is `reachUnion_outer`.
-The input set is the external `U` the system carries (`U_ext`), the network's part being read off
-the controller; and no disturbance, `W = {0}`, as CORA's loop at a linear plant drops `E`.
+The system carries its control period `dt`, CORA's `sys.dt`, since the set a closed loop reaches
+depends on it and `reachExact` reads no options. `params` is `Reach.Params` counted in control
+periods, `options` `NeurNetContrSys.ReachOptions`. `reachExact` is `reachUnionExact` over
+`tFinal - tStart` periods of length `dt`; `reach` is `reachUnion`, `none` unless `0 < Δt` and the
+`N` steps of `Δt` make up exactly `dt`, CORA's check that `Δt` divides `dt`, decided in ℝ; the
+guarantee is `reachUnion_outer`. The input set is the external `U` the system carries (`U_ext`),
+and no disturbance, `W = {0}`, as CORA's loop at a linear plant drops `E`.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

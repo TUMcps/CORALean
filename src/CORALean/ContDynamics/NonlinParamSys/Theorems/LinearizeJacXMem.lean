@@ -9,6 +9,21 @@ public import CORALean.ContDynamics.NonlinParamSys.Theorems.JacobianFamilyMem
 
 For a system affine in `p` and differentiable in the state, `∂f/∂x (x*, u*, p)` lies in the matrix
 zonotope `zA` of `linearize` for every `p` of the parameter box (`jacobianFamily_mem` at the state).
+
+## Inputs
+* `sys` – parametric system
+* `xs` – state expansion point
+* `us` – input expansion point
+* `I` – parameter box
+* `p` – parameter vector
+
+## Hypotheses
+* `hAff` – the dynamics are affine in the parameter
+* `hd` – differentiable in the state
+* `hp` – `p` lies in the box
+
+## Conclusion
+* the state Jacobian at the parameter lies in `zA`
 -/
 
 -- Authors:       Claude Sonnet 5.5

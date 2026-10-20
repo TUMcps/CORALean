@@ -9,16 +9,46 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
 /-!
 # [1, Thm. 1] on the reachable set, with each step's input enclosure named
 
-`relinReach_evalOn` restated on `reachSetExact`: what it says of every run at `iΔt`,
-this says of the exact reachable set of the sub-initial set at once, which is
-what [1, (25)] claims — `Rᵉ` on the left, the computed polynomial zonotope
-evaluated at the parameters naming the subset on the right.
+`relinReach_evalOn` restated on `reachSetExact`: what it says of every run at `iΔt`, this says of
+the exact reachable set of the sub-initial set at once, which is what [1, (25)] claims: `Rᵉ` on
+the left, the computed polynomial zonotope evaluated at the parameters naming the subset on the
+right. `Ud` is named rather than assumed, as in `relinReach_outer_inputSolution`, so the only
+hypotheses left about a step are `stepInput_outer`'s. The confinement is asked of `reachSetExact`,
+which `reachSetExact_confinement_of_subset` discharges from a check on the computed sets.
 
-`Ud` is named rather than assumed, as in `relinReach_outer_inputSolution`, so
-the only hypotheses left about a step are `stepInput_outer`'s: the truncation
-bound and the properties of that step's `linInput`. The confinement is asked of
-`reachSetExact`, which `reachSetExact_confinement_of_subset` discharges from a check on
-the computed sets.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `η` – Taylor terms
+* `Ud` – input enclosures per step
+* `o` – maximum order
+* `X₀` – sub-initial set
+* `Bs` – factor domains
+
+## Hypotheses
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hR` – reachable set inside certified regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `hUd` – input enclosures hold step inputs
+* `ho` – order positive
+* `h0` – zero in widened input
+* `hunit` – factor domains bounded by one
+* `hnext` – factor domains closed under steps
+
+## Conclusion
+* the exact reachable set lies in the computed set evaluated at the subset factors
 
 ## References
 

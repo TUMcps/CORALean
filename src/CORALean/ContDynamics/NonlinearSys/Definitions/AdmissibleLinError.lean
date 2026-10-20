@@ -8,19 +8,21 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 /-!
 # The admissible linearization error of an expansion vector
 
-[1, Eq. 7]: the bound `L̄ := |(e^{Ar} - I)⁻¹ A| θ r` a linearization error must stay
-under, so that the set `R̄err(r) = A⁻¹(e^{Ar} - I)[-L̂, L̂]` it drives stays inside
-`[-θ r, θ r]`, the paper's eq. (6). `θ` is the user's expansion vector.
-
-One `let` per printed factor: `M` is the matrix the paper multiplies (6) by, and
-the absolute value is entrywise, as the paper says. `r • θ` is the paper's `θ · r`.
-
-The paper's claim that `L̂ ≤ L̄` suffices is false in two dimensions;
+[1, Eq. 7]: the bound `L̄ := |(e^{Ar} - I)⁻¹ A| θ r` a linearization error must stay under, so that
+the set `R̄err(r) = A⁻¹(e^{Ar} - I)[-L̂, L̂]` it drives stays inside `[-θ r, θ r]`, the paper's
+eq. (6). `θ` is the user's expansion vector; the absolute value is entrywise, and `r • θ` is the
+paper's `θ · r`. The paper's claim that `L̂ ≤ L̄` suffices is false in two dimensions;
 `Theorems/AdmissibleLinErrorNotSufficient.lean` has the counterexample and
-`Theorems/ErrReachSubsetOfAbsLe.lean` the condition that does suffice.
+`Theorems/ErrReachSubsetOfAbsLe.lean` the condition that does suffice. Real only: a
+specification, built from `exp` and a matrix inverse, with nothing to round.
 
-Real only: a specification, built from `exp` and a matrix inverse, with nothing
-to round.
+## Inputs
+* `A` – system matrix
+* `r` – step size
+* `θ` – expansion vector
+
+## Output
+* the admissible linearization error bound
 
 ## References
 

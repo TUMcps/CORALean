@@ -13,6 +13,18 @@ residual center `p = MCe + MEf` [1, Eq. 20] and the Lyapunov function `V = eᵀQ
 quantity `pᵀp - β²fᵀf - (V⁺ - V)` is positive for every `(e, f) ≠ 0`. It is the form
 `≻ 0` of [1, Eq. 24] read at the pair `(e, f)` it is a function of.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – fault matrix
+* `L` – observer gain
+* `Q` – Lyapunov matrix
+* `M` – residual weight
+* `β` – sensitivity level
+
+## Output
+* the step quantity is positive at every nonzero error and fault
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

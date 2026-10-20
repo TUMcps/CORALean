@@ -21,19 +21,44 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # The time-interval set of `initReach` encloses the mean over the first step
 
-For every mean `x₀` of `Rinit`, every time `t ∈ [0, r]` and every input signal in `B U`, the
-mean of the solution at `t`, `e^{At} x₀ + ∫₀ᵗ e^{Aσ}dσ B uTrans + ∫₀ᵗ e^{A(t-s)} u(s) ds`, lies in
-the set of `Rfirst.ti` [1]: the deterministic part of `initReach` is an outer enclosure. The proof
-is that of the `LinearSys` step, with the constant input folded into the segment: the
-interpolation error `M = e^{At} - I - (t/r)(e^{Ar} - I) ∈ F` (`expDiff_mem_correctionMatrix`)
-carries `x₀` into `F zonotope(Rinit)` and `B uTrans` into `inputCorr = A⁻¹ F B uTrans`, and
-`-Rtrans` there cancels the `Rtrans` of `Rinput`.
+For every mean `x₀` of `Rinit`, every time `t ∈ [0, r]` and every input signal in `B U`, the mean
+of the solution at `t`, `e^{At} x₀ + ∫₀ᵗ e^{Aσ}dσ B uTrans + ∫₀ᵗ e^{A(t-s)} u(s) ds`, lies in the
+set of `Rfirst.ti` [1]. The proof is that of the `LinearSys` step, with the constant input folded
+into the segment: the interpolation error `M ∈ F` (`expDiff_mem_correctionMatrix`) carries `x₀`
+into `F zonotope(Rinit)` and `B uTrans` into `inputCorr = A⁻¹ F B uTrans`. What is asked: `A`
+invertible (CORA divides by it), Taylor order `η ≥ 2` with `‖Ar‖_∞/(η + 2) < 1`, `0 ∈ U`, and
+`uTrans = 0` in effect whenever `originContained`. Only the means: nothing is said of the
+probabilistic zonotope's law.
 
-What is asked: `A` invertible (CORA divides by it), Taylor order `η ≥ 2` with
-`‖Ar‖_∞/(η + 2) < 1` (the remainder bound, `priv_pexpm`'s `epsilon < 1`), `0 ∈ U` (one input
-solution for the whole step), and `uTrans = 0` in effect whenever `originContained`, since
-the correction is dropped then. Only the means: what this says of the probabilistic zonotope's
-law is nothing.
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `k` – Taylor order minus two
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `x₀` – initial mean
+* `t` – time
+* `w` – input signal contribution
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – matrix invertible
+* `hoc` – origin flag implies zero constant input
+* `h0` – origin lies in `U`
+* `hx₀` – `x₀` lies in the initial zonotope
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hw` – `w` is an input contribution
+
+## Conclusion
+* the mean of the solution at `t` lies in the time-interval set
 
 ## References
 

@@ -20,6 +20,27 @@ of the input the controller produces there, and the external part is in `U_ext`;
 as `D_nn a + D_ext e` (`outputSet`), each in its own product. The input set the output is read at
 is the enclosed one, not the looser one `reach` itself widens through, as
 `NeurNetContrSysDT.Operations` already notes at the state.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the run's output lies in the output set of the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

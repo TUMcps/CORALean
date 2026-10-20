@@ -8,17 +8,39 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSo
 /-!
 # `relinReach` encloses the reachable set at the step boundaries
 
-`relinReach_outer_inputSolution` restated on `reachSetExact`: what it says of every
-run at `iΔt`, this says of the set of them at once, so a specification about
-the reachable set meets the loop's enclosure as a single inclusion.
+`relinReach_outer_inputSolution` restated on `reachSetExact`: what it says of every run at
+`iΔt`, this says of the set of them at once, so a specification about the reachable set meets
+the loop's enclosure as a single inclusion. Confinement is asked of `reachSetExact` rather than
+of a run, the only change to the hypotheses; nothing here mentions `x` or `u`, and
+`reachSetExact_confinement_of_subset` supplies `hR` from a check on the computed sets. Between
+the boundaries this says nothing; that is `reachSetExact_subset_relinTimeInterval`.
 
-Confinement is asked of `reachSetExact` rather than of a run, which is the only
-change to the hypotheses and the whole point of the restatement — nothing here
-mentions `x` or `u`, and `reachSetExact_confinement_of_subset` supplies `hR` from a
-check on the computed sets.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `η` – Taylor terms
+* `o` – maximum order
 
-Between the boundaries this says nothing; that is
-`reachSetExact_subset_relinTimeInterval`.
+## Hypotheses
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hR` – reachable set inside certified regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+
+## Conclusion
+* the exact reachable set at each boundary lies in the loop result
 -/
 
 -- Authors:       Claude Opus 5

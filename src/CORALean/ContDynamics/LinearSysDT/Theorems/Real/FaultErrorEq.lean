@@ -16,6 +16,28 @@ the error `e_k = x_k - x̂_k` follows `e_{k+1} = (A - LC) e_k + D_x w_k - L D_y 
 the residual is `r_k = M(y_k - C x̂_k) = M C e_k + M D_y v_k + M E f_k`. At `w_k = v_k = 0` and
 `x̂_k = p_k`, the center of [1, Eq. 10], these are [1, Eq. 19] and [1, Eq. 20].
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `C` – output matrix
+* `L` – observer gain
+* `M` – residual weight
+* `Dx` – disturbance matrix
+* `Dy` – noise matrix
+* `E` – fault matrix
+* `x` – state
+* `xh` – estimate
+* `u` – input at this step
+* `w` – disturbance
+* `v` – noise
+* `f` – fault
+
+## Hypotheses
+* none
+
+## Conclusion
+* the error and the residual follow the stated dynamics
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

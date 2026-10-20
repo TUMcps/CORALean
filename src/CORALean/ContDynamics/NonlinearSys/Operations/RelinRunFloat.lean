@@ -10,6 +10,14 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 # The float re-linearization loop, at the half-step point
 
 `relinRunAtFloat` with each step linearized at `linPointFloat` of its start set.
+
+## Inputs
+* `fm` – float model
+* `U` – input zonotope
+* `options` – reachability options
+
+## Output
+* the time-interval sets of the steps, or none
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,13 +11,9 @@ public import CORALean.ContSet.Interval.Float.Instances
 `NonlinDASys` stores `f` and `g` over ℝ, which no float run can evaluate. A `FloatModel` is what
 it evaluates instead: interval extensions of `f` and `g` and of the four Jacobian blocks CORA's
 `jacobian` returns, `A = ∂f/∂x`, `C = ∂f/∂y`, `D = ∂g/∂x`, `F = ∂g/∂y`, over a box `X × Y × U`,
-as computable functions at the scalar `𝕋`. `Encloses` ties them to `sys`, beside the structure,
-as `NonlinearSys.FloatModel.Encloses` does for an ordinary system.
-
-The blocks are asked for as *slope* enclosures, at a common input: any two states of the box
-differ under `f` (under `g`) by some pair `A, C` (`D, F`) in the boxes applied to their
-difference. The mean value theorem gives this for interval Jacobians over a convex box, and for a
-polynomial system it is algebra.
+as computable functions at the scalar `𝕋`. `Encloses` ties them to `sys`. The blocks are asked
+for as *slope* enclosures at a common input: any two states of the box differ under `f` (under
+`g`) by some pair in the boxes applied to their difference, as the mean value theorem gives.
 -/
 
 -- Authors:       Claude Opus 5.5

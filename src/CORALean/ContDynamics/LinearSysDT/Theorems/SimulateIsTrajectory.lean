@@ -11,6 +11,20 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 `u` stays in `construct U` at every step: `init` and `input` are the
 hypotheses handed in, `step` is `rfl`, since `simulate` is `IsTrajectory.step`'s
 equation read as a recursive definition rather than as a predicate.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x₀` – initial state
+* `u` – inputs
+
+## Hypotheses
+* `hx₀` – start lies in `R₀`
+* `hu` – inputs lie in `U`
+
+## Conclusion
+* the simulated run is a canonical trajectory
 -/
 
 -- Authors:       Claude Opus 5

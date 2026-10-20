@@ -14,6 +14,14 @@ holds only at an order admissible for `t`, and a window far into the horizon
 needs a higher one than the first. So `exp_mem_expEnclosure` asks nothing of
 `t` or of the order, only that the matrix be a member.
 
+## Inputs
+* `sys` – system
+* `t` – time
+* `η` – Taylor order
+
+## Output
+* interval matrix enclosing the exponential for every member
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

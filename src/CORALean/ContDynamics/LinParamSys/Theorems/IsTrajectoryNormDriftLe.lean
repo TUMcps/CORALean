@@ -7,18 +7,44 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryNormLe
 /-!
 # How large the enlarged input of a frozen step has to be
 
-`IsTrajectory.toLinearSys` pays the parameter mismatch into the input, and this is
-what it costs: `‖(A t - Â) x t + u t‖`, bounded by the matrix set's radius
-around `Â` times the Grönwall bound of the state, plus the input's own bound.
-Every constant is read off `sys.A`, `U` and `R₀` before a run is fixed, so a
-caller can check `hV` of `IsTrajectory.timeInterval_outer_inputSolution` against a
-ball of this radius rather than against the run.
+`IsTrajectory.toLinearSys` pays the parameter mismatch into the input, and this is what it costs:
+`‖(A t - Â) x t + u t‖`, bounded by the matrix set's radius around `Â` times the Grönwall bound of
+the state, plus the input's own bound. Every constant is read off `sys.A`, `U` and `R₀` before a
+run is fixed, so a caller can check `hV` of `IsTrajectory.timeInterval_outer_inputSolution`
+against a ball of this radius. The bound is taken at the far end of the window, `gronwallBound`
+being monotone there, so one radius serves the whole step. `δ` is smallest at the box's center,
+where it is the box's radius.
 
-The bound is taken at the far end of the window, `gronwallBound` being monotone
-there, so one radius serves the whole step — which is what the enlarged input
-set has to be, being one set for all of it.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `a` – window start
+* `b` – window end
+* `M` – bound on the matrix norm
+* `ν` – bound on the input norm
+* `ρ` – bound on the start norm
+* `δ` – bound on the distance to `Â`
+* `Â` – frozen matrix
 
-`δ` is smallest at the box's center, where it is the box's radius.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hT` – window lies in the time set
+* `hM` – matrix norm bounded by `M`
+* `hν` – input norm bounded by `ν`
+* `hρ` – start norm bounded by `ρ`
+* `hδ` – matrix within `δ` of `Â`
+* `hδ0` – `δ` nonnegative
+* `hM0` – `M` nonnegative
+* `hν0` – `ν` nonnegative
+* `hρ0` – `ρ` nonnegative
+
+## Conclusion
+* drift plus input stays below one radius over the whole window
 -/
 
 -- Authors:       Claude Opus 5

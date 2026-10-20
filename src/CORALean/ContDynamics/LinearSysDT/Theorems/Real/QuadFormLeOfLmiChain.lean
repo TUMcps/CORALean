@@ -21,6 +21,28 @@ in their hull: `quadForm_le_of_lmi` for `j` outputs, by the same Schur complemen
 single output replaced by one row per output. The unknown gain `λ_{j-1} = P⁻¹ Y` enters through
 `κ_{j-1}` and `u_{j-1}`; here the gains are all given, and the inequality is what makes them good.
 
+## Inputs
+* `j` – step index
+* `G` – vertex matrices
+* `F` – disturbance matrix
+* `κ` – strip update matrices
+* `u` – gain direction vectors
+* `φ` – strip widths per step
+* `β` – contraction factor
+* `P` – radius matrix
+* `A` – state matrix member
+* `θ` – error vector
+* `γ` – disturbance coefficients
+* `η` – strip coefficients
+
+## Hypotheses
+* `hP` – radius matrix positive definite
+* `hLMI` – matrix inequality holds at every vertex
+* `hA` – `A` lies in the hull of the vertices
+
+## Conclusion
+* the quadratic form of step `j` is bounded
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

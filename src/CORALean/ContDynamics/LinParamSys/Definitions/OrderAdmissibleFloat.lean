@@ -13,6 +13,15 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 place of a point one: `η` is at least `2`, and the float norm bound of
 `[tLo, tHi] · sys.A` over `η + 2` is at most `1/2`, so the float remainder is
 sound at every member and every time of the range.
+
+## Inputs
+* `sys` – interval-matrix system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – Taylor order
+
+## Output
+* `η` is at least 2 and the float remainder bound at the time range is sound
 -/
 
 -- Authors:       Claude Opus 5.5

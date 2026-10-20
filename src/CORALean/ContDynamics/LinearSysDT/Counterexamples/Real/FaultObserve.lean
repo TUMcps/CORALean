@@ -14,6 +14,15 @@ enclosure needs `f_k = 0` (`LinearSysDT.faultObserve_outer`). In one dimension w
 `C = L = E = 1`, no disturbance or noise, `X̂_k = {0}` and `x_k = 0`, a fault `f_k = 1` gives
 `y_k = 1` and `X̂_{k+1} = {1}`, which misses `x_{k+1} = 0`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the observer zonotope misses the state under a sensor fault
+
 ## References
 
 * [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer

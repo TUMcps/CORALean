@@ -15,6 +15,16 @@ external input in `U_ext` and the disturbance in `W`; `Reach`'s instance takes `
 CORA's loop at a linear plant drops the disturbance.
 Positional, as the mathematics: `Reach` reads `sys.dt` off the system, as CORA does,
 and `H = tFinal - tStart` and the initial set off `params`.
+
+## Inputs
+* `sys` – closed-loop system
+* `H` – number of periods
+* `U_ext` – external input set
+* `W` – disturbance set
+* `X` – initial set
+
+## Output
+* the states some closed-loop run is at a period boundary within `H` periods
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

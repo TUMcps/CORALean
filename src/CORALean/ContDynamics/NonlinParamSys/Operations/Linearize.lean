@@ -15,15 +15,19 @@ CORA's `nonlinParamSys/linearize` [1], the branch for uncertain parameters in a 
 (`isa(params.paramInt,'interval')`), which hands on a `linParamSys` and the point it expands about.
 The result is that `LinParamSys` over matrix zonotopes: `zA` and `zB`, the Jacobians in `x` and `u`
 over the parameter box, and as its constant the center of `zf`, the zonotope of the constant term
-`f(p.x, p.u, p)` (`linearizeF`), with `(p.x, p.u, p.p)`, the point `(xs, us)` and the center of the
-parameter box. The dynamics are split as `parametricDynamicFile` does (`derivatives`,
-`aux_parametric`): the part without parameters, `f(x, u, 0)`, and for each parameter the difference
-`f(x, u, e_i) - f(x, u, 0)` to the unit vector, which is `f_i` in `f = f_0 + ∑ p_i f_i`; the box is
-normalized, `f_0 + ∑ c_i f_i` with generators `r_i f_i`, for `f` and for the two Jacobians. Nothing
-checks that `f` is affine in `p`; the split is right only if it is. CORA also wraps the input set,
-`U = zB (U + uTrans - p.u)` and the constant input `zf + Ucenter`; that packaging is not carried.
-The numeric-`p` branch is `NonlinearSys.linearize` at the fixed `p` and the `'linRem'` option adds
-`lin_error2dAB`; neither is carried.
+(`linearizeF`), with `(p.x, p.u, p.p)`. The dynamics are split as `parametricDynamicFile` does
+(`aux_parametric`): `f(x, u, 0)` and, per parameter, the difference `f(x, u, e_i) - f(x, u, 0)`; the
+box is normalized, `f_0 + ∑ c_i f_i`. Nothing checks that `f` is affine in `p`. The input packaging,
+the numeric-`p` branch and `'linRem'` are not carried.
+
+## Inputs
+* `sys` – parametric system
+* `xs` – state expansion point
+* `us` – input expansion point
+* `paramInt` – parameter box
+
+## Output
+* the linearized system over matrix zonotopes with its expansion point
 
 ## References
 

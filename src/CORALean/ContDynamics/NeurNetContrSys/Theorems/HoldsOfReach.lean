@@ -15,6 +15,37 @@ network changed nothing about this step, which only ever sees a superset.
 At the period boundaries, since that is where `reach` has anything to say. A
 requirement between them needs the time-interval enclosure that `Operations`
 records as missing.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `o` – maximum zonotope order
+* `η` – Taylor order
+* `N` – steps per period
+* `Δt` – step size
+* `H` – number of periods
+* `R₀` – initial set
+* `π` – controller function
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+* `spec` – specification
+* `i` – period index
+
+## Hypotheses
+* `ho` – order positive
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hε` – order admissible
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+* `hi` – period index within the horizon
+* `h` – specification holds on the reachable set
+
+## Conclusion
+* the specification holds at the state at the period boundary
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

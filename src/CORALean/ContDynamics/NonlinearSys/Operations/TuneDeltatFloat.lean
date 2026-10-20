@@ -14,6 +14,26 @@ public import CORALean.Global.Float.FloatOps
 statement reads it, so every rounding is upward and no theorem is owed. What a run guarantees
 holds for whatever this returns. See [1].
 
+## Inputs
+* `n` – dimension
+* `prec` – precision
+* `bis` – bisection depth
+* `dabs` – box diameter of the abstraction error
+* `rabs` – radius of the abstraction error
+* `ζδ` – limit gain
+* `ζΔ` – gain threshold
+* `ζZ` – start-set constant
+* `ζP` – second constant
+* `r₀` – initial radius
+* `φ1` – last step's gain
+* `Δ` – last finite horizon
+* `Δinit` – initial finite horizon
+* `s` – step number
+* `fuel` – bound for the search
+
+## Output
+* the float step size and the gain for the next step, or none
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

@@ -13,20 +13,22 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 # A network in the loop: reachability
 
 The alternation and nothing else: run the controller over the current enclosure to enclose the
-inputs it can produce there, map them by the plant's `B_nn`, add the external inputs `U_ext` (CORA's
-`params.U`) mapped by `B_ext` and the plant's `c`, and hand `B_nn N(R) ⊕ B_ext U_ext ⊕ c` to the
-plant as one step's input set, so a step is `reduce(A R ⊕ B_nn N(R) ⊕ B_ext U_ext ⊕ c)`, CORA's step
-of the augmented `[x; u]`. Both halves are already written: one step of `LinearSysDT.reach` is the
-step and `NeuralNetwork.enclose` the input set it maps.
+inputs it can produce there, map them by the plant's `B_nn`, add the external inputs `U_ext`
+mapped by `B_ext` and the plant's `c`, and hand `B_nn N(R) ⊕ B_ext U_ext ⊕ c` to the plant as one
+step's input set. Both halves are already written: one step of `LinearSysDT.reach` and
+`NeuralNetwork.enclose`. The precision is lost in one place: `enclose` runs on the same set the step
+is taken from and `plus` combines the two, so every state in the enclosure is paired with every
+input in it, not with the input the controller produces at that state. `ρ` is uniform across steps
+and time is counted in sampling periods (`ℕ`), as in `LinearSysDT.reach`.
 
-The precision is lost in one place, and it is worth naming. `enclose` runs on
-the same set the step is taken from and `plus` combines the two, so every state
-in the enclosure is paired with every input in it, not with the input the
-controller produces at that state. No order bound recovers the difference.
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `params` – reachability parameters
+* `options` – reachability options
 
-`ρ` is uniform across steps, as in `LinearSysDT.reach`, and time is
-counted in sampling periods (`ℕ`) with `tFinal - tStart` steps, as there; a
-`Reach.Params`, since the controller, not the caller, supplies the inputs.
+## Output
+* the reachable set at the final time
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

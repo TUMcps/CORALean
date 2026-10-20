@@ -9,19 +9,14 @@ public import Mathlib.Probability.Distributions.Gaussian.Multivariate
 /-!
 # Linear systems with white noise: the representation
 
-CORA's `linProbSys` [1], the multivariate Ornstein-Uhlenbeck process
-`ẋ = A x + B u + C ξ` with white Gaussian noise `ξ`, [3, Eq. 1] with its input through `B`.
-Real layer only: the noise is a Gaussian process, with no float counterpart. `C` is square, as
-CORA's `inputArgsCheck` asks.
-
-`IsTrajectory` is a run, given by its law: a process `x` on `(Ω, P)`, from a point `x₀ ∈ X₀`
-(as `simulate` [2] starts) under a measurable input `u` in `U`, whose state at every `t ≥ 0` of
-`T` has the law `N(e^{At} x₀ + ∫₀ᵗ e^{A(t-s)} B u(s) ds, noiseCovariance A C t)`: [3, Eq. 2],
-the law of `x(t) = e^{At} x₀ + ∫₀ᵗ e^{A(t-s)} B u(s) ds + ∫₀ᵗ e^{A(t-s)} C dW(s)`, restated there
-from Gardiner's handbook. It is the definition, not a theorem: Mathlib's Brownian motion
-(`IsBrownianReal`) comes with neither existence nor a stochastic integral, so the solution
-driven by a Brownian `W` is not defined and its law is not derived. Only the law at each time
-is fixed, not the joint law of two times; a reach set at a time point asks no more.
+CORA's `linProbSys` [1], the multivariate Ornstein-Uhlenbeck process `ẋ = A x + B u + C ξ` with
+white Gaussian noise `ξ`, [3, Eq. 1] with its input through `B`. Real layer only: the noise is a
+Gaussian process, with no float counterpart. `C` is square, as CORA's `inputArgsCheck` asks.
+`IsTrajectory` is a run given by its law: a process `x` on `(Ω, P)` from `x₀ ∈ X₀` (as
+`simulate` [2] starts) under a measurable input `u` in `U`, whose state at every `t` has the
+law `N(e^{At} x₀ + ∫₀ᵗ e^{A(t-s)} B u(s) ds, noiseCovariance A C t)`, [3, Eq. 2]. It is the
+definition, not a theorem: Mathlib's Brownian motion has no stochastic integral. Only the law at
+each time is fixed, which is all a reach set at a time point asks.
 
 ## References
 

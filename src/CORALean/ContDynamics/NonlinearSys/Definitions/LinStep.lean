@@ -8,18 +8,13 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # One step of the re-linearization loop
 
-A single linearization is `AbstractionError` together with the matrices and the
-expansion point it was issued for. Bundling them is what makes a *sequence* of
-linearizations sayable: seven parallel families indexed by the step count is not
-a statement anyone can read, and the certificate has to travel with the data it
-certifies or the wrong `L` reaches the wrong `A`.
-
-A chain of steps is a function `ℕ → LinStep`: `relinReach` recurses on the step
-index and looks nothing up, the composition theorem is `Nat.rec` with one
-hypothesis family `∀ i < N` per obligation, and a chain longer than the horizon
-costs nothing. Not an inductive chain as `HybridAutomaton.IsRun` is: a hybrid run is
-a datum of the *system*, a chain of linearizations one of the *analysis*, and
-inductive would put the enclosures inside the proof.
+A single linearization is `AbstractionError` together with the matrices and the expansion point
+it was issued for. Bundling them is what makes a *sequence* of linearizations sayable, and the
+certificate has to travel with the data it certifies or the wrong `L` reaches the wrong `A`. A
+chain of steps is a function `ℕ → LinStep`: `relinReach` recurses on the step index and looks
+nothing up, and a chain longer than the horizon costs nothing. Not an inductive chain as
+`HybridAutomaton.IsRun` is: a hybrid run is a datum of the *system*, a chain of linearizations
+one of the *analysis*, and inductive would put the enclosures inside the proof.
 -/
 
 -- Authors:       Claude Sonnet 5

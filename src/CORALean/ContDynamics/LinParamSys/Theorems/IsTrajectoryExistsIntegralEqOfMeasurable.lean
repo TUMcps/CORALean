@@ -18,6 +18,24 @@ over the window, at a parameter `Â` inside the box with entries integrable over
 every window — `IsTrajectory.exists_measurable_param`'s, equal to `A` almost
 everywhere on the window, which the integral does not see. The input is already
 measurable, by `IsTrajectory.meas`, so nothing is asked of it here.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `t` – time
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `ht` – time nonnegative
+* `hT` – window lies in the time set
+
+## Conclusion
+* a parameter in the box with integrable entries solves the integral equation with input
 -/
 
 -- Authors:       Claude Opus 5.5

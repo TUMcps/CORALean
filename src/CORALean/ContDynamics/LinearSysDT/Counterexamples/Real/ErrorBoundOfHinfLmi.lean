@@ -17,6 +17,15 @@ error system and makes both sides `0`, so no `α`, `β` work. The instance `A = 
 `x₁² + (2x₂ - x₄)² + 4x₃² + x₄²`), so the claim is not vacuous there. The proof's strict steps
 need `(e_k, d_k) ≠ 0`; with `≤` the bound holds (`errorBound_of_hinfLmi`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the strict error bound fails at the zero run
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

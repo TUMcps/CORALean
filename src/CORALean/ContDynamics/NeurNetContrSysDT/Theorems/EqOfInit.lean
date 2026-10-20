@@ -13,6 +13,30 @@ carries no information beyond `x 0 ∈ R₀` and `v ∈ U_ext`. Stated in the fo
 whichever initial sets and disturbance sets the two runs were taken from, agreeing at step zero
 and under the same external input they agree everywhere, via `aux_eq_simulate` identifying each
 with `simulate` at its own starting point.
+
+## Inputs
+* `sys` – closed-loop system
+* `R₀` – first initial set
+* `R₁` – second initial set
+* `U_ext` – external input set
+* `π` – controller function
+* `W₀` – first disturbance set
+* `W₁` – second disturbance set
+* `x` – first run
+* `y` – second run
+* `v` – shared external input signal
+* `w₀` – first disturbance signal
+* `w₁` – second disturbance signal
+
+## Hypotheses
+* `hW₀` – first disturbances sent to zero by the disturbance matrix
+* `hW₁` – second disturbances sent to zero by the disturbance matrix
+* `hx` – first run is a trajectory
+* `hy` – second run is a trajectory
+* `h` – both runs start at the same state
+
+## Conclusion
+* the two runs are equal
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

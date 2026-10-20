@@ -17,6 +17,27 @@ and a float type the rounded one, with `A`, `u`, `C`, `y`, `σ` the reals the fl
 
 [2, Eq. 4], over time: the strip-based observer encloses the true state.
 
+## Inputs
+* `sys` – system
+* `σ` – strip widths
+* `W` – disturbance set
+* `R₀` – initial set
+* `u` – inputs
+* `y` – measurements
+* `options` – strip options
+* `x` – true states
+* `w` – true disturbances
+* `k` – step
+
+## Hypotheses
+* `h0` – start lies in `R₀`
+* `hw` – disturbances lie in `W`
+* `hstep` – the dynamics hold
+* `hy` – the outputs meet the strips
+
+## Conclusion
+* the true state lies in the observer's set at step `k`
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

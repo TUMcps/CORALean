@@ -11,13 +11,24 @@ public import CORALean.ContDynamics.Conform.Theorems.ConvexFitsUnder
 
 [1, Sec. 5.1.1]: the least leaf cost of the search tree is the least cost of (19) or (20) over
 all removals of at most `k` points, and some such removal attains it. `sol S` is an optimum of
-the program on the points `S` (`α ≥ 0`, every point of `S` admitted, `γᵀα` least), `cost S`
-its value, `bd S` the boundary points of `sol S` ([1, Prop. 8]). The heart is that removing
-points none of which is a boundary point of `sol S` does not lower the cost: each such point
-admits a neighbourhood of `sol S` in the orthant (`not_isBoundaryPoint_iff`), so `sol S` is a
-local, hence by convexity (`convex_fitsUnder`) a global, optimum of the smaller program. The
-paper defers the method to Campi et al.'s Alg. 1; the argument is for this boundary notion,
-with no non-degeneracy assumed.
+the program on the points `S`, `cost S` its value, `bd S` the boundary points of `sol S`
+([1, Prop. 8]). Removing points none of which is a boundary point of `sol S` does not lower the
+cost: each admits a neighbourhood of `sol S` (`not_isBoundaryPoint_iff`), so `sol S` is a local,
+by convexity (`convex_fitsUnder`) a global, optimum. The paper defers the method to Campi et
+al.'s Alg. 1; no non-degeneracy is assumed.
+
+## Inputs
+* `P` – data point type
+* `C` – constraint set per point
+* `γ` – cost coefficients
+* `sol` – optimum per set of points
+* `bd` – boundary points per set of points
+
+## Hypotheses
+* `hC` – constraint sets convex
+
+## Conclusion
+* the search returns the least cost over removals of at most `k` points
 
 ## References
 

@@ -16,6 +16,15 @@ built from the H-representation `(H, h)` of `W` and not of `EW`. One dimension i
 `c = 0` (`Zonotope.aligned_subset_of_maxIn_counterexample`), so the first step of (13) is
 `Z₀ ⊖ Z₀ = {0}`, while `X₁ = [-½, ½]`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the aligned-zonotope enclosure fails for some system
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

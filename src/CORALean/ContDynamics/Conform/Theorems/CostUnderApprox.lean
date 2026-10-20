@@ -21,6 +21,31 @@ optimum from below. `y_Δ` is `[C̄, ∑ᵢ D̄ᵢ] B̃_c c_Δ`; at a point meet
 `B̃_c c_Δ = c_Δ`, which is the form used here. The executions are indexed by `Fin (n_s + 1)`,
 so that the maximum is over a nonempty set.
 
+## Inputs
+* `M` – test case index type
+* `ιx` – index type of the initial generators
+* `ιu` – index type of the input generators
+* `nk` – number of steps
+* `ns` – number of samples
+* `yb` – reference outputs
+* `Cb` – state-to-output matrices
+* `Db` – input-to-output matrices
+* `dx` – initial center offset
+* `Gx` – initial generators
+* `αx` – initial stretch factors
+* `du` – input center offset
+* `Gu` – input generators
+* `αu` – input stretch factors
+* `w` – step weights
+* `y` – sampled outputs
+
+## Hypotheses
+* `hw` – weights nonnegative
+* `hfeas` – every sample is feasible for the program
+
+## Conclusion
+* the cost lower bound is at most the cost that is linear in the factors
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

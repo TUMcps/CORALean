@@ -7,20 +7,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 /-!
 # The static abstraction error, kept as a polynomial
 
-CORA's `priv_precompStatError` at `tensorOrder = 2`: `0.5*quadMap(Z,H)`, the
-second-order term of the expansion evaluated on the set itself rather than
-boxed. `quadMapDep` is what keeps it in the factors `pZ` is written in — `quadMap`
-would run `dependent` first and index the result by `p + q` fresh factors
-instead.
+CORA's `priv_precompStatError` at `tensorOrder = 2`: `0.5*quadMap(Z,H)`, the second-order term of
+the expansion evaluated on the set itself rather than boxed. `quadMapDep` keeps it in the factors
+`pZ` is written in, where `quadMap` would run `dependent` first. Two departures from CORA, both in
+what the caller does: the shift by the linearization point is here, `linReach` having done it
+before the call; and `Q` is the halved Hessian family. A caller wanting all of `construct pZ`
+covered runs `dependent` on `pZ` first, which is exact.
 
-Two departures from CORA's file, both in what the caller does rather than in what
-is computed. The shift by the linearization point is here, `linReach` having done
-it before the call; and `Q` is the *halved* Hessian family, so no scalar multiple
-is needed on the way out. CORA's `Z` is the set extended by a zero input block,
-which contributes nothing, so `Q` is square in the state alone.
+## Inputs
+* `Q` – halved Hessian family
+* `xs` – linearization point
+* `pZ` – polynomial zonotope
 
-A caller wanting the whole of `construct pZ` covered runs `dependent` on `pZ`
-first, which is exact and empties the independent block.
+## Output
+* the second-order term as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

@@ -13,6 +13,25 @@ land in `construct W`, there being no cartesian-product class on `ContSet` to
 build `W` from `U` and `P` instead. `Fin.append_left`/`_right` read the two
 halves back out of it, which is what turns `sys.toNonlinearSys.f` at that input
 into `sys.f (x t) (u t) (p t)`.
+
+## Inputs
+* `sys` – parametric system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `P` – parameter set
+* `W` – combined input set
+* `x` – state trajectory
+* `u` – input signal
+* `p` – parameter signal
+* `y` – output signal
+
+## Hypotheses
+* `traj` – parametric trajectory
+* `hW` – appended input and parameter lie in `W`
+
+## Conclusion
+* the run with the combined input is a nonlinear trajectory
 -/
 
 -- Authors:       Claude Opus 5

@@ -16,6 +16,12 @@ block row the Jacobians of `f_ARX`, read newest first as the conversion does. Th
 `FloatModel.toNonlinearSysDTFloat`'s. Only stored bounds and exact `one`/`zero` are placed, so no
 rounding enters beyond the extensions'.
 
+## Inputs
+* `fm` – float Jacobian model of the ARX system
+
+## Output
+* the float Jacobian model of the converted discrete-time system
+
 ## References
 
 * [1] `contDynamics/@nonlinearARX/computeGO.m`

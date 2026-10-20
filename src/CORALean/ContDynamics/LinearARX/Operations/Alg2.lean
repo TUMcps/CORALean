@@ -12,6 +12,17 @@ public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
 B̃ᵢ ũ_v(k₊ - i)`, `Ỹ(k:k₊) ← ỹ_v ⊕ Ỹ_c`. The constant part is only ever added to or moved
 by `Ā_ext^p`, which is what keeps its cost linear in the horizon.
 
+## Inputs
+* `sys` – ARX system
+* `yinit` – measured first output window
+* `Uc` – constant input set
+* `uv` – varying input
+* `kinit` – initial step
+* `m` – pass index
+
+## Output
+* the window of reachable sets of the `m`-th pass
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

@@ -15,18 +15,33 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 /-!
 # `linError` holds the linearization error at every Hessian of the intervals
 
-[1, Cor. 1]: `{½ (σ - CF⁻¹φ) | σᵢ = νᵀHᵈ⁽ⁱ⁾ν, φⱼ = νᵀHᵃ⁽ʲ⁾ν, ν ∈ R^z_Δ} ⊆ L_c ⊕ L_Δ` for
-every `Hᵈ⁽ⁱ⁾` in `Hᵈ_c⁽ⁱ⁾ ⊕ [-Hᵈ_Δ⁽ⁱ⁾, Hᵈ_Δ⁽ⁱ⁾]` and `Hᵃ⁽ʲ⁾` in `Hᵃ_c⁽ʲ⁾ ⊕ [-Hᵃ_Δ⁽ʲ⁾, Hᵃ_Δ⁽ʲ⁾]`.
-Each row may take its own matrix, so this holds the set of [1, Eq. 15] whether its Hessians
-are taken at one `ξ` for all rows, as printed, or at one `ξ` per row, as [1, Eq. 8] gives
-them; `ξ ∈ R^z` puts them in the intervals.
+[1, Cor. 1]: `{½ (σ - CF⁻¹φ) | σᵢ = νᵀHᵈ⁽ⁱ⁾ν, φⱼ = νᵀHᵃ⁽ʲ⁾ν, ν ∈ R^z_Δ} ⊆ L_c ⊕ L_Δ` for every
+`Hᵈ⁽ⁱ⁾`, `Hᵃ⁽ʲ⁾` in their intervals. Each row may take its own matrix, so this holds the set of
+[1, Eq. 15] whether its Hessians are taken at one `ξ` for all rows, as printed, or at one `ξ` per
+row, as [1, Eq. 8] gives them. By the printed proof. The midpoint part: `σ_c - CF⁻¹φ_c` is the
+quadratic map of the one family `Hᵈ_c⁽ⁱ⁾ - Σⱼ (CF⁻¹)ᵢⱼ Hᵃ_c⁽ʲ⁾` at `ν`, which [1, Lemma 1] encloses.
+The radius part: `|νᵀ(Hᵈ⁽ⁱ⁾ - Hᵈ_c⁽ⁱ⁾)ν| ≤ |ν|ᵀHᵈ_Δ⁽ⁱ⁾|ν| ≤ ζᵢ` as in [1, Thm. 1]. The printed proof
+ends with `L_c ⊆ (d + CF⁻¹e, H + CF⁻¹V)`, the sign flipped against the statement; the
+statement's `-` is what holds.
 
-By the printed proof. The midpoint part: `σ_c - CF⁻¹φ_c` is the quadratic map of the one
-family `Hᵈ_c⁽ⁱ⁾ - Σⱼ (CF⁻¹)ᵢⱼ Hᵃ_c⁽ʲ⁾` at `ν`, which [1, Lemma 1] encloses in a zonotope whose
-center and generators are `d - CF⁻¹e` and `H - CF⁻¹V`, the map being linear in the matrices.
-The radius part: `|νᵀ(Hᵈ⁽ⁱ⁾ - Hᵈ_c⁽ⁱ⁾)ν| ≤ |ν|ᵀHᵈ_Δ⁽ⁱ⁾|ν| ≤ ζᵢ` as in [1, Thm. 1], the same for
-`φ` and `ϱ`. The printed proof ends with `L_c ⊆ (d + CF⁻¹e, H + CF⁻¹V)`, the sign flipped
-against the statement; the statement's `-` is what holds.
+## Inputs
+* `Hd_c` – dynamics Hessian midpoints
+* `Hd_Δ` – dynamics Hessian radii
+* `Ha_c` – constraint Hessian midpoints
+* `Ha_Δ` – constraint Hessian radii
+* `CF_inv` – the matrix `C F⁻¹`
+* `R_Δ` – deviation zonotope
+* `Hd` – dynamics Hessian rows
+* `Ha` – constraint Hessian rows
+* `ν` – deviation
+
+## Hypotheses
+* `hHd` – dynamics Hessians within their intervals
+* `hHa` – constraint Hessians within their intervals
+* `hν` – `ν` lies in the deviation zonotope
+
+## Conclusion
+* the quadratic-form error lies in the linearization error set
 
 ## References
 

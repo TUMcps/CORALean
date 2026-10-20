@@ -9,20 +9,26 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorReducedC
 /-!
 # What reducing the error costs, stated
 
-The two inner approximations differ only in their subtrahend, and
-`minkowskiDiff` is antitone there: a point that survives every offset of the
-reduced error survives every offset of the unreduced one, which is a subset of
-it. So the reduced approximation is the smaller.
+The two inner approximations differ only in their subtrahend, and `minkowskiDiff` is antitone
+there: a point that survives every offset of the reduced error survives every offset of the
+unreduced one, which is a subset of it. So the reduced approximation is the smaller. Worth stating
+rather than leaving the two definitions side by side: soundness is not what the reduction costs —
+`reachInnerReduced_inner` is the same claim as `reachInner_inner` — it is precision, exactly, the
+trade the bounded generator count of `reachErrorReduced_h_le` is bought with. `subset_` and not
+`contains`: both sides are `Set`s, neither a representation.
 
-Worth stating rather than leaving the two definitions side by side. Soundness
-is not what the reduction costs — `reachInnerReduced_inner` is the same claim
-as `reachInner_inner` — and without this line a reader has no way to see what
-it does cost. It is precision, exactly, and it is the trade the bounded
-generator count of `reachErrorReduced_h_le` is bought with.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-`subset_` and not `contains`: both sides are `Set`s here, neither a
-representation, so the convention that reads a containment off a receiver does
-not apply.
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reduced inner approximation lies in the unreduced one
 -/
 
 -- Authors:       Claude Sonnet 5

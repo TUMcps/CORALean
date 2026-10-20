@@ -8,17 +8,24 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # `Alg. 2`: reachable sets of a neural network controlled system
 
-[1, Alg. 2], CORA's `neurNetContrSys/reach`: over the control cycles, the image `Y` of the
-current reachable set through the network ([1, Alg. 1]), its Cartesian product with the set
-(equation (7), CORA's `aux_appendU2X`), the reachable sets at the end of the cycle and over it
-for the extended system of equation (4), projected back (equation (5)). The image is the
-network's `enclose`; the Cartesian product `cp`, the projection `pr` and the reachability
-algorithm for the extended system `rx` are arguments, as [1] runs "arbitrary reachability
-algorithms for nonlinear systems" and CORA's `aux_reachability` chooses the plant's own by its
-class. `rx` returns the set at the end of the cycle and the sets over it (CORA's `timePoint` and
-`timeInterval`); the result is the set at the end and the sets over the cycles, newest first,
-whose union is the paper's `R`. The extended state `[x; u]` stacks the network's `m` outputs, not
-the plant's inputs: the external ones (`nExt`) stay inputs of `rx`, which holds `U_ext`.
+[1, Alg. 2], CORA's `neurNetContrSys/reach`: over the control cycles, the image `Y` of the current
+reachable set through the network ([1, Alg. 1]), its Cartesian product with the set (equation
+(7)), the reachable sets at the end of the cycle and over it for the extended system of equation
+(4), projected back (equation (5)). The image is the network's `enclose`; the product `cp`, the
+projection `pr` and the reachability algorithm `rx` for the extended system are arguments, as [1]
+runs "arbitrary reachability algorithms for nonlinear systems". `rx` returns the set at the end of
+the cycle and the sets over it; the result is the set at the end and the sets over the cycles,
+newest first, whose union is the paper's `R`. The extended state stacks the network's `m` outputs.
+
+## Inputs
+* `sys` – closed-loop system
+* `cp` – Cartesian product operation
+* `pr` – projection to the state
+* `rx` – reachability algorithm of the extended system
+* `X₀` – initial set
+
+## Output
+* the set at the end of each number of cycles with the sets over the cycles
 
 ## References
 

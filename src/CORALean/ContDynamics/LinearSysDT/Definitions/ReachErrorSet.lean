@@ -17,6 +17,17 @@ ranges over
 the initial set `X₀ = ⟨p₀, H₀⟩` moved to the origin. The input and the measurements do not
 enter: the error dynamics `e_{k+1} = (A - LC) e_k + E w_k - L F v_k` [1, Eq. 14] is free of them.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial error zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `k` – step
+
+## Output
+* the estimation error set at step `k`
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

@@ -14,17 +14,39 @@ public import CORALean.ContSet.Conversion.Real.Instances
 /-!
 # The remainder certificate gives one step of the inner algorithm what it needs
 
-The representation (21) a step of [1, Alg. 1] relies on, from what the remainder loop of
-lines 10-13 is there to establish: when `R̂_err(L̂)` is (13) at the enlarged remainder `L̂`
-(`inputSolution Δt η L̂`), `L̂` an `AbstractionError` certificate for the linearization `A` at
-`x*` on a region `R` that the solutions from `X` do not leave over `[0, Δt]`, every solution
-satisfies `x(Δt) - (x* + e^{AΔt}(x(0) - x*) + R_con(Δt)) ∈ R̂_err(L̂)`
-(`IsTrajectory.sub_mem_inputSolution`, with `e^{AΔt}x(0) + ∫ e^{A(Δt-s)}(w - Ax*) ds` rewritten
-about `x*` by `A ∫₀^Δt e^{As} ds = e^{AΔt} - I`). With [1, Prop. 1]'s other hypotheses, passed
-through, that is `IsInnerMinkDiffCert`.
+The representation (21) a step of [1, Alg. 1] relies on, from what the remainder loop of lines
+10-13 establishes: when `R̂_err(L̂)` is (13) at the enlarged remainder `L̂` (`inputSolution Δt η
+L̂`), `L̂` an `AbstractionError` certificate for `A` at `x*` on a region `R` the solutions from
+`X` do not leave over `[0, Δt]`, every solution satisfies
+`x(Δt) - (x* + e^{AΔt}(x(0) - x*) + R_con(Δt)) ∈ R̂_err(L̂)`. With [1, Prop. 1]'s other
+hypotheses, passed through, that is `IsInnerMinkDiffCert`. What stays assumed is what
+conservative linearization assumes: the confinement `hconf` and the properties of `L̂`.
 
-What stays assumed is what conservative linearization assumes: the confinement `hconf`, which
-the box (25) of line 12 is meant to provide, and the properties of `L̂` and of (13) at it.
+## Inputs
+* `ops` – set operations
+* `sys` – system
+* `u₀` – constant input
+* `U` – input set
+* `Δt` – step size
+* `μ` – enlargement factor
+* `fuel` – bound per remainder loop
+* `η` – Taylor terms
+* `X` – start set
+* `B` – input matrix
+* `R` – confinement region
+* `Ω` – Lipschitz region
+* `K` – Lipschitz constant
+
+## Hypotheses
+* `hu₀` – input in input set
+* `hΔt` – step size positive
+* `herr` – operations compute the input solution
+* `hconf` – solutions stay in region
+* `hLip` – field Lipschitz on region
+* `hex` – solutions exist from every start
+
+## Conclusion
+* the step satisfies the inner-step certificate
 
 ## References
 

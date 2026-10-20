@@ -15,6 +15,22 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 The bounds in the original coordinates are `intervalObserverTransformed`. Real only, as the
 other observers are.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `S` – coordinate transformation
+* `wl` – lower disturbance bound
+* `wu` – upper disturbance bound
+* `vl` – lower noise bound
+* `vu` – upper noise bound
+* `xl₀` – lower initial bound
+* `xu₀` – upper initial bound
+* `u` – inputs
+* `y` – measurements
+
+## Output
+* the interval in transformed coordinates after each number of steps
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

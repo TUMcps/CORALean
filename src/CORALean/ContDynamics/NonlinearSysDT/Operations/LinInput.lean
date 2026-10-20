@@ -13,6 +13,14 @@ public import CORALean.ContDynamics.NonlinearSysDT.Definitions.LinStep
 `linInput` does: the constant box `c`, `B(U ⊖ u✱)` and `L`. Nothing evaluates `f`:
 the constant is the box the step carries, so it runs at a float scalar as it does
 at `ℝ`. `u✱` is shifted out as a point box at `-u✱`, exact in either.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `step` – linearization step
+
+## Output
+* the input set of the step's linear system
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -12,6 +12,24 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
 `k` is the step count of the loop, carried by `t_k`. `u* = center(U)` is the expansion point's
 `u`, `taylor`'s.
 
+## Inputs
+* `sys` – system
+* `taylor` – linearization of a start set
+* `corollary1` – error-set computation
+* `sub` – subset test
+* `splitFn` – set splitting
+* `R0` – start set
+* `tf` – final time
+* `r` – step size
+* `U` – input zonotope
+* `Lmax` – bound on the linearization errors
+* `lam` – enlargement factor
+* `η` – Taylor order
+* `fuel` – iteration bound
+
+## Output
+* the union of the time-interval sets, or none
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

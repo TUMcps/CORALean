@@ -15,6 +15,18 @@ public import CORALean.NN.Theorems.EnclosesEval
 `isTrajectory_of_map` at the controller's own `eval` is a `IsTrajectory`,
 `sound_eval` needing no hypothesis; `reach_outer` places it in `reach`'s
 step, and every step lands in its own branch of the `SetUnion`.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* the computed union encloses the exact reachable union
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

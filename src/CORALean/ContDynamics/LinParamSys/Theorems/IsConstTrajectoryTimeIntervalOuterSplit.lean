@@ -12,22 +12,37 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 /-!
 # The step enclosure at a box whose input set misses the origin
 
-`ConstTrajectoryTimeIntervalOuterInputSolution` needs `0 ∈ U`, which no
-representation has to satisfy. `Recenter` takes the input set apart into a
-center and a remainder holding the origin, `OfPoint` gives the constant its own
-singleton, and `linComb (ofPoint 0) (ofPoint c)` is the segment the constant is
-enclosed against, exactly as the point-matrix split does it, so no
-representation-specific development is needed here either.
+`ConstTrajectoryTimeIntervalOuterInputSolution` needs `0 ∈ U`, which no representation has to
+satisfy. `Recenter` takes the input set apart into a center and a remainder holding the origin,
+`OfPoint` gives the constant its own singleton, and `linComb (ofPoint 0) (ofPoint c)` is the
+segment the constant is enclosed against. That is `R_0` of [1, Alg. 1], extended to an input set
+missing the origin: the enclosure over one step `[0,r]`, at every matrix the box holds; the loop
+over the horizon is `discretizeEnclosure_mem_reach`. The point-matrix construction subtracts
+`P̃(r) = C(r)ũ` inside the hull and adds it back, which cancels only where `P̃(r)` is a point; the
+segment does that work with no subtraction to cancel.
 
-That is `R_0` of [1, Alg. 1], extended to an input set missing the origin, and nothing beyond
-it: the enclosure over one step `[0,r]`, at every matrix the box holds; the loop over the horizon
-is `discretizeEnclosure_mem_reach`. The point-matrix construction subtracts `P̃(r) = C(r)ũ` inside
-the hull and adds it back, which cancels only where `P̃(r)` is a point — true at a point matrix,
-false at a box, where `C(r)` is itself an interval matrix. The segment does that work with no
-subtraction to cancel.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
 
-`Mtimes (Mat ℝ) S` is not asked for, where the point case needs it: every factor
-is now an interval matrix, `C(r)` included.
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the state at time `t` lies in the step enclosure for the split input set
 
 ## References
 

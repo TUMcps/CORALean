@@ -7,21 +7,28 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
 /-!
 # `LinearSysDT.observeEsoB1D`
 
-One step of CORA's ellipsoidal observer `ESO-B` (`linearSysDT/executeObserver` with
-`options.alg = 'ESO-B'`, `priv_observe_ESO_B`) for `n = 1`, as the code computes it: from the
-estimate `E(Q, c)` (`{x | (x - c)² / Q ≤ 1}`) and the previous `σ²_prev`, the prediction the code
-takes from Eq. 21 and Eq. 48 of Liu, Zhao and Wu (IET Control Theory & Applications, 2016),
+One step of CORA's ellipsoidal observer `ESO-B` (`priv_observe_ESO_B`) for `n = 1`, as the code
+computes it: from the estimate `E(Q, c)` and the previous `σ²_prev`, the prediction of Eq. 21 and
+Eq. 48 of Liu, Zhao and Wu (IET Control Theory & Applications, 2016),
+`Q_next = (1 - p)⁻¹ A Q A + (σ²_prev p)⁻¹ W`, centered at `A c + u`, then the update of Thm. 3 of
+the same paper (`intersectStrip(…, 'Liu2016')`): the trigger `σ²_prev + δ² > 1` and
+`Ellipsoid.intersectStripLiu1D`; the observer starts from `R0` with `sigma_sq = 0.3`. The update's
+shape is `(1 - λ)²` times the one the fusion needs (`Ellipsoid.intersectStripLiu1D_counterexample`,
+`LinearSysDT.observeEsoB1D_counterexample`); `LinearSysDT.observeEsoB` is the corrected step.
 
-  `Q_next = (1 - p)⁻¹ A Q A + (σ²_prev p)⁻¹ W`,  `p = √W / (√(σ²_prev A Q A) + √W)`,
+## Inputs
+* `A` – state coefficient
+* `C` – output coefficient
+* `W` – disturbance variance
+* `V` – noise variance
+* `u` – input at this step
+* `y` – measurement
+* `Q` – ellipsoid shape
+* `c` – ellipsoid center
+* `σsqPrev` – previous sigma squared
 
-centered at `A c + u` (`post`: `A x + B u + c`, the known input folded into `u`), then the update
-the code takes from Thm. 3 of the same paper, by `intersectStrip(…, 'Liu2016')` with `sys.V = V`
-and `sys.bar_V = chol(inv(V))` (`√(V⁻¹)` at `n = 1`) for the measurement noise `E(0, V)`: the
-trigger `σ²_prev + δ² > 1` and `Ellipsoid.intersectStripLiu1D`. It returns the new center, shape
-and `sigma_sq`; the observer starts from `R0` with `sigma_sq = 0.3`. The update's shape is
-`(1 - λ)²` times the one the fusion needs (`Ellipsoid.intersectStripLiu1D_counterexample`); the
-observer inherits that (`LinearSysDT.observeEsoB1D_counterexample`). `LinearSysDT.observeEsoB` is
-the corrected step.
+## Output
+* the new center, shape and sigma squared
 -/
 
 -- Authors:       Claude Opus 5.5

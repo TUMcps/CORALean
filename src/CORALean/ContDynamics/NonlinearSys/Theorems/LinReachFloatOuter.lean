@@ -38,6 +38,20 @@ does the rest. At `'lin'`, `L` is `hessRemainder`, an abstraction-error certific
 At `'poly'` it is `abstrErrPolyFloat`, which needs the run's differences from its start:
 the `'lin'` membership makes `x - x✱` a run of the linearized system with inputs in
 `Vlin`, so `postDeltaFloat_outer` places `x(t) - x(0)` in `Rdiff`.
+
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `alg` – abstraction algorithm
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* a successful step encloses every run over the step and at its end
 -/
 
 -- Authors:       Claude Opus 5.5

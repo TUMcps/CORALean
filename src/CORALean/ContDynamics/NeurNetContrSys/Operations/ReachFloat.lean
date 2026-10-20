@@ -25,6 +25,15 @@ exact `discretize` and `inputSolution` replaced by their float enclosures. The o
 caller's; `reachFloat_outer` asks it to be admissible for the augmented matrix. It is
 [1, Alg. 2] at a linear plant.
 
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the float reachable set at the end of the last control period
+
 ## References
 
 * [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification

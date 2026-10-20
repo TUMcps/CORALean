@@ -14,6 +14,20 @@ the vector one follows from `Matrix.mulVec_add`/`mulVec_mulVec`.
 
 Only `plus_outer` and `mtimes_outer` are used, matching what `reachHeld` itself
 names — no `reduce_outer`, since `reachHeld` calls no `reduce`.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – held input
+* `N` – number of steps
+
+## Hypotheses
+* `h` – held trajectory
+
+## Conclusion
+* the state after `N` steps lies in the held reachable set
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -10,21 +10,33 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBound
 /-!
 # The reachable set's sup-norm ball over a whole run, at a fixed order
 
-`reach_step_subset_closedBall` leaves its box term a hypothesis; here it is
-discharged by `reduceBox_absBound_le`, which needs nothing about the order —
-the box a step pays is never wider than that step's own pre-reduction
-zonotope, so a run bounded so far bounds its own next box for free. That
-crudeness is the whole cost: the true reduction can throw away far less than
-its own width once the order is past a handful of generators, and
-`reach_subset_closedBall_of_reduceBoxOrder` is where a caller-stated tolerance
-buys that back.
+`reach_step_subset_closedBall` leaves its box term a hypothesis; here it is discharged by
+`reduceBox_absBound_le`, which needs nothing about the order — the box a step pays is never wider
+than that step's own pre-reduction zonotope. That crudeness is the whole cost: the true reduction
+can throw away far less once the order is past a handful of generators, and
+`reach_subset_closedBall_of_reduceBoxOrder` is where a caller-stated tolerance buys that back. What
+results is `(2 * ‖sys.A‖) ^ k * r₀ + 2 * rU * ∑ⱼ<ₖ (2 * ‖sys.A‖) ʲ`, [1]'s shape, with a `2` folded
+into the base because domination pays the box term at the pre-reduction radius twice. No sharper
+form is proved: `Do not state a sharper closed form than you prove`.
 
-What results is `(2 * ‖sys.A‖) ^ k * r₀ + 2 * rU * ∑ⱼ<ₖ (2 * ‖sys.A‖) ʲ`, [1]'s
-shape — a geometric run in the matrix norm applied to the initial ball, plus a
-geometric sum of it against the input's — with a `2` folded into the base
-because domination pays the box term at the pre-reduction radius twice, not
-once. No sharper form is proved: `Do not state a sharper closed form than you
-prove`.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `r₀` – radius of the initial set
+* `rU` – radius of the input set
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial set lies in its ball
+* `hr₀` – initial radius nonnegative
+* `hU` – input set lies in its ball
+* `hrU` – input radius nonnegative
+
+## Conclusion
+* the reachable set lies in a ball with a geometric radius
 
 ## References
 

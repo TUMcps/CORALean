@@ -13,6 +13,19 @@ a partition of the coordinates), the Minkowski sum `Φ⁽¹⁾R⁽¹⁾ ⊕ ... 
 `{x | ∀ i, Υ⁽ⁱ⁾ x ∈ R⁽ⁱ⁾}`, the Cartesian product of the subsystems' sets. This is the form
 that `[1, Alg. 2]` tests against, `Υ⁽ⁱ⁾ R(τ_k) ⊆ Λ⁽ⁱ⁾ Û⁽ⁱ⁾`.
 
+## Inputs
+* `Φ` – embeddings of the subsystems
+* `Υ` – readouts of the subsystems
+* `R` – subsystem zonotopes
+
+## Hypotheses
+* `hdiag` – readouts invert the embeddings
+* `hoff` – readouts ignore the other embeddings
+* `hsum` – embeddings and readouts partition the coordinates
+
+## Conclusion
+* the composed set is the set whose every subsystem part lies in place
+
 ## References
 
 * [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets".

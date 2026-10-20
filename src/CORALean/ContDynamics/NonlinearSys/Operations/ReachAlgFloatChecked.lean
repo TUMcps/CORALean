@@ -12,6 +12,15 @@ public import CORALean.Global.Float.NoNaN
 a NaN. A `some` is the unchecked `some` (`reachAlgFloatChecked_eq_some`), so whatever is proved
 of `reachAlgFloat` holds of it, and the NaN test that the trust base asks of the caller has
 been made.
+
+## Inputs
+* `fm` – float Hessian model
+* `alg` – abstraction algorithm
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the time-interval sets, or none if a float is NaN
 -/
 
 -- Authors:       Claude Opus 5.5

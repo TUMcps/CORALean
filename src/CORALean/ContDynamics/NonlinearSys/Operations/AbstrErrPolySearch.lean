@@ -8,21 +8,34 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 /-!
 # Searching for an applied error the certificate accepts
 
-CORA's `linReach` while loop for `alg = 'poly'`, and the repeat-until of [1, Alg. 1],
-its lines 8-16: `priv_abstrerr_poly` estimates the true error against an applied one,
-and a rejection multiplies the applied error by `1.1` and retries —
-`perfIndCurr = max(trueError ./ appliedError) ≤ 1` the test.
+CORA's `linReach` while loop for `alg = 'poly'`, and the repeat-until of [1, Alg. 1], its lines
+8-16: `priv_abstrerr_poly` estimates the true error against an applied one, and a rejection
+multiplies the applied error by `1.1` and retries — `perfIndCurr = max(trueError ./ appliedError)
+≤ 1` the test. That test is `PolyAbstractionError` itself: `AbstractionError.of_poly` already
+proves a step meeting it a sound enclosure, so any `some step` carries `step.cert` and a wrong
+`Ws k` costs no soundness, only convergence. What is new is only the search: package the first
+candidate the certificate accepts into a `LinStep`, `none` once `fuel` runs out. A candidate is a
+region `pZ k`, its sub-box and static error as well as `Ws k`; `aux_abstrErrPolyCandidates`.
 
-That test is `PolyAbstractionError` itself, already landed: `AbstractionError.of_poly`
-already proves a step meeting it a sound enclosure, so nothing new is proved about
-acceptance — the return type below is the proof. Any `some step` carries `step.cert`,
-so a wrong `Ws k` costs no soundness, only convergence, as a wrong pivot costs
-`dualCandidate` nothing but a `none`.
+## Inputs
+* `sys` – system
+* `U` – polynomial zonotope of inputs
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `pZ` – candidate regions
+* `Ba` – candidate sub-boxes
+* `L` – candidate static errors
+* `Ws` – candidate applied errors
+* `fuel` – iteration bound
 
-What is new is only the search: package the first candidate the certificate accepts
-into a `LinStep`, `none` once `fuel` runs out — `minkDiffRep`'s shape. A candidate is a
-region `pZ k`, its sub-box and static error as well as `Ws k`, since CORA's `Rmax`
-grows with the applied error; `aux_abstrErrPolyCandidates` computes them.
+## Hypotheses
+* `hp` – the parameter counts agree
+* `hBa` – sub-boxes lie in the unit box
+
+## Output
+* the first accepted candidate as a linearization step, or none
 
 ## References
 

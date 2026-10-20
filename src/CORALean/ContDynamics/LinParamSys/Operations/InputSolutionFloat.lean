@@ -12,6 +12,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRem
 remainder `[E(r)·r]` over the whole box `sys.A`, `MatExp.intervalInputRemainder`
 at `sys.A` itself, times the input set.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `V` – input zonotope
+
+## Output
+* the zonotope the inputs contribute over one step
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

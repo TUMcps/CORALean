@@ -13,6 +13,40 @@ set `post` returns is that of the state of every `LinProbSys.IsTrajectory` at `r
 `T` that holds that time: both are `Σ_s(r + k r)`, the loop's by `initReach_post_cov` and the
 run's by `IsTrajectory.covariance_eq`. For a diagonalizable `A` given as its eigendecomposition.
 The covariance, not the law: the means `post` carries have no statement.
+
+## Inputs
+* `sys` – system
+* `Veig` – eigenvector matrix
+* `lambda` – eigenvalues
+* `Rinit` – initial probabilistic zonotope
+* `gammaInit` – confidence level of the initial set
+* `U` – input zonotope
+* `uTrans` – constant input
+* `r` – step size
+* `η` – Taylor order
+* `gamma` – confidence level
+* `originContained` – input set holds the origin
+* `k` – number of post steps
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `X₀` – initial set of the run
+* `U'` – input set of the run
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `i` – first coordinate
+* `j` – second coordinate
+
+## Hypotheses
+* `hV` – eigenvector matrix invertible
+* `hA` – `Veig` and `lambda` diagonalize the matrix
+* `hr` – step nonnegative
+* `traj` – probabilistic trajectory
+* `hT` – the time `r + k r` lies in `T`
+
+## Conclusion
+* the run's covariance is that of the set after `k` post steps
 -/
 
 -- Authors:       Claude Opus 5.5

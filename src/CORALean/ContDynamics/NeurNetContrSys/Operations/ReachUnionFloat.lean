@@ -12,6 +12,15 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 `tFinal - tStart` of `reachFloat`, from `R0`, at `η` raised by
 `LinearSys.reachOrderFloat` to an order admissible for the step `Δt` at the augmented matrix
 `[A B_nn; 0 0]` (`augmentFloat`). `none` when no such order is found.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the float reachable sets at every period boundary, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

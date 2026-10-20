@@ -11,19 +11,37 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 /-!
 # How far a time-varying run can get, a priori
 
-Grönwall's inequality in [1]'s own integral form, `‖x(t)‖ ≤ δ + ∫ₐᵗ (M‖x‖ + ν)`:
-a bound on the state over a window that needs no solution and no matrix
-exponential, only bounds on the matrix set and on the input set. It is what makes
-the drift `(A t - Â) x t` of `IsTrajectory.toLinearSys` bounded, and so the enlarged
-input set constructible — without it that theorem's `hV` is a hypothesis about the
-run itself. `M` and `ν` are read off the two sets a `LinParamSys` carries, `δ` off
-the initial set, so every constant here is available before a run is fixed.
+Grönwall's inequality in [1]'s own integral form, `‖x(t)‖ ≤ δ + ∫ₐᵗ (M‖x‖ + ν)`: a bound on the
+state over a window that needs no solution and no matrix exponential, only bounds on the matrix
+set and on the input set. It is what makes the drift `(A t - Â) x t` of `IsTrajectory.toLinearSys`
+bounded, and so the enlarged input set constructible. `M` and `ν` are read off the two sets a
+`LinParamSys` carries, `δ` off the initial set. The window `[a, b]` need not reach back to `0`:
+if the integrand is integrable on `[0, a]` the flow differs by `∫ₐᵗ`, and if not the flow reads
+`x t = x 0` throughout and the bound holds trivially.
 
-The window `[a, b]` need not reach back to `0`, where the flow is anchored: if the
-integrand is integrable on `[0, a]` the flow differs by `∫ₐᵗ`, and if not it is
-integrable on no `[0, t]` either, the flow reads `x t = x 0` throughout, and the
-bound holds trivially. Mathlib's comparison wants a derivative, so it is run on
-the majorant `δ + ∫ₐᵗ (M‖x‖ + ν)`, whose integrand is continuous.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `a` – window start
+* `b` – window end
+* `M` – bound on the matrix norm
+* `ν` – bound on the input norm
+* `δ` – bound on the start norm
+
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hT` – window lies in the time set
+* `hM` – matrix norm bounded by `M`
+* `hν` – input norm bounded by `ν`
+* `hδ` – start norm bounded by `δ`
+
+## Conclusion
+* the state norm stays below the Grönwall bound
 
 ## References
 

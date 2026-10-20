@@ -17,6 +17,15 @@ public import Mathlib.Tactic.Linarith
 should return `y(3) ∈ [-3, 3]` and returns `[-2, 2]`, dropping `B̃₂(3) Ũ_c = Ũ_c`. Unsound
 for an outer approximation; CORA's `reach` always starts at `k_init = p` and is not hit.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* Algorithm 2 started past `p` misses a reachable window
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

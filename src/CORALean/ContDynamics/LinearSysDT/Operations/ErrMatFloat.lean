@@ -12,6 +12,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 The matrix `A - L C` of the observers' error dynamics, from the stored `A`, `L`, `C`: the product
 `L C` by `Interval.matMul` and one directed subtraction per entry, so the interval matrix holds
 the real `A - L C` (`errMatFloat_mem`).
+
+## Inputs
+* `A` – state matrix
+* `L` – observer gain
+* `C` – output matrix
+
+## Output
+* the error matrix as an interval matrix
 -/
 
 -- Authors:       Claude Opus 5.5

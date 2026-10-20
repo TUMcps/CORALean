@@ -12,6 +12,15 @@ none of `reach`'s set instances. CORA's `linearARX/simulate` for the normal para
 (its `tvp` branch is not modelled): the first `p` outputs are the initial window `y₀`, whose
 block `k` holds `y(k)`, and every later one is the recursion
 `y(k+1) = B̄₀ u(k+1) + ∑ᵢ Āᵢ y(k+1-i) + B̄ᵢ u(k+1-i)`, which `IsTrajectory.step` states.
+
+## Inputs
+* `sys` – ARX system
+* `y₀` – initial output window
+* `u` – input signal
+* `k` – step
+
+## Output
+* the output of the run at step `k`
 -/
 
 -- Authors:       Claude Sonnet 5.5

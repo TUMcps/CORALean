@@ -15,6 +15,16 @@ coefficients of the characteristic polynomial `x^n + a₁ x^{n-1} + … + a_n`, 
 in place of an observer gain, `p = n`. `Abar i` is `Ā_{i+1}` and `Bbar j` is `B̄_j`, as in
 `ofObserver`. CORA zeroes the coefficients of `poly(A)` below `1e4 eps`; exact here.
 
+## Inputs
+* `A` – state matrix
+* `Bu` – input matrix
+* `C` – output matrix
+* `Du` – feedthrough matrix
+* `dt` – sampling time
+
+## Output
+* the ARX system from the characteristic polynomial
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/linearARX.m`

@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.Conform.Definitions.Glo
 of [1, Cor. 1] and [1, Cor. 2] grows by its latest factor on the left, which is what unrolling
 a recursion `x_{k+1} = A_k x_k + …` needs.
 
+## Inputs
+* `A` – Jacobians per step
+* `k` – step
+* `m` – number of factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product with one more factor is the latest Jacobian times the shorter product
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

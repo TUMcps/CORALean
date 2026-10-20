@@ -18,6 +18,22 @@ The input is the constant `u₀`, `U = {u₀}`, as in [1]. The concatenated run 
 integral equation piece by piece: up to `T` it is the first run's, after `T` the second run's
 added to what the first had reached, the integral split at `T`.
 
+## Inputs
+* `sys` – system
+* `X₀` – initial set
+* `X` – start set
+* `u₀` – constant input
+* `T` – start time
+* `Δt` – step size
+
+## Hypotheses
+* `hT` – start time nonnegative
+* `hΔt` – step size nonnegative
+* `hX` – start set reachable at start time
+
+## Conclusion
+* what is reached after both durations is reached at their sum
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for

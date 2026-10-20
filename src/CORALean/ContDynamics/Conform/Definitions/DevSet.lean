@@ -15,6 +15,16 @@ state and inputs, which is what lets one set check every test case at once.
 
 `⨁` is Mathlib's pointwise sum of sets, over `Fin k`.
 
+## Inputs
+* `sys` – plant
+* `X0` – initial uncertainty set
+* `W` – disturbance set
+* `V` – measurement noise set
+* `k` – step
+
+## Output
+* the deviation set at step `k`: reachable outputs minus the nominal run
+
 ## References
 
 * [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:

@@ -15,6 +15,14 @@ above. Indexed by an integer because [1, Cor. 2] sums `B_ext,k-j,k-i-j` over shi
 `0 ≤ i ≤ n_p`, and the Jacobian block `B_{k,i}` exists only inside that range; it is read as
 zero outside, which the printed formula needs and does not say.
 
+## Inputs
+* `np` – number of lags
+* `B` – input Jacobian blocks per lag
+* `i` – lag index
+
+## Output
+* the extended input matrix block at lag `i`
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

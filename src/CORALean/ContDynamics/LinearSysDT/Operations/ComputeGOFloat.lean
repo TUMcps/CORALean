@@ -17,6 +17,14 @@ of the stored `A` are `Interval.matPow` of its point box, the products with the 
 `Interval.matMul` each, so every entry is rounded outward. The same time-invariant branch as
 `computeGO`; soundness is `computeGOFloat_outer`.
 
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `nk` – number of steps
+
+## Output
+* the GO parameters as enclosing interval matrices
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/computeGO.m`

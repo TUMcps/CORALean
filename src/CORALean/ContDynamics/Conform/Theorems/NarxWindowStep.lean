@@ -22,6 +22,24 @@ reference, with remainder `l_k`, is the recursion `δξ_{k+1} = A_ext,k δξ_k +
 window, which `NonlinearARX.stack` reads at `k - n_p`. Unrolling it is [1, Cor. 2]'s GLO
 matrices.
 
+## Inputs
+* `np` – number of lags
+* `A` – output Jacobians
+* `B` – input Jacobians
+* `l` – remainders
+* `y` – outputs
+* `yb` – reference outputs
+* `u` – inputs
+* `ub` – reference inputs
+* `k` – step
+
+## Hypotheses
+* `hy` – the Taylor expansion holds
+* `hk` – step at least the number of lags
+
+## Conclusion
+* the window deviation moves by the extended matrices and the remainder
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

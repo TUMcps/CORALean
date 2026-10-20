@@ -9,17 +9,12 @@ public import Mathlib.Data.Real.Basic
 /-!
 # The model a reachset-conformance test is about
 
-`x(k+1) = A x(k) + B u(k) + w(k)`, `y(k) = C x(k) + D u(k) + v(k)` [1, Eq. 5], over ℝ:
-the discrete-time model of [2, Sec. 3] and the state-space model of [3, Cor. 1] with
-linear `f`, `g`.
-Kept apart from `LinearSysDT`, which folds `B u` into its input: conformance subtracts
-the run under the *known* inputs `u` from the measurements and keeps the disturbance
-`w` and the noise `v` as the unknowns, so the two must not be one signal.
-
-Every object here is a specification over ℝ — a set of outputs, a linear program's
-feasible set — and nothing is computed, so there is no scalar parameter and no float
-layer: the programs are handed to a solver in CORA (`linprog`, `quadprog`), and what
-is proved is what any feasible point of them guarantees.
+`x(k+1) = A x(k) + B u(k) + w(k)`, `y(k) = C x(k) + D u(k) + v(k)` [1, Eq. 5], over ℝ: the
+discrete-time model of [2, Sec. 3] and the state-space model of [3, Cor. 1] with linear `f`, `g`.
+Kept apart from `LinearSysDT`, which folds `B u` into its input: conformance subtracts the run
+under the *known* inputs `u` from the measurements and keeps `w` and `v` as the unknowns. Every
+object here is a specification over ℝ and nothing is computed, so there is no scalar parameter
+and no float layer: CORA hands its programs to a solver (`linprog`, `quadprog`).
 
 ## References
 

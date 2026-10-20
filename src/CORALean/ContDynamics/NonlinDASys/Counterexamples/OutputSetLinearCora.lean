@@ -23,6 +23,23 @@ For the linear output `h(x, y, u) = y`, `NonlinDASys.outputSetLinearCora` is the
 `p_y` of its set `R_y` is in no term. A point `(x, y, u)` with `y ≠ p_y` has the output `y`, which
 is not in the set.
 
+## Inputs
+* `f` – dynamics
+* `g` – constraint
+* `R` – state set
+* `p_x` – state center
+* `p_u` – input center
+* `p_y` – algebraic center
+* `x` – state
+* `y` – algebraic variable
+* `u` – input at the point
+
+## Hypotheses
+* `hy` – the algebraic variable differs from its center
+
+## Conclusion
+* the true output lies outside CORA's output set
+
 ## References
 
 * [1] `contDynamics/@nonlinDASys/outputSet.m`

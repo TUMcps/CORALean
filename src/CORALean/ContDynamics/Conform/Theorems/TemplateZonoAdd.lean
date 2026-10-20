@@ -9,6 +9,23 @@ public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
 
 `⟨c₁, G₁ diag(α₁)⟩ ⊕ ⟨c₂, G₂ diag(α₂)⟩ = ⟨c₁ + c₂, [G₁ G₂] diag([α₁; α₂])⟩`, the generators
 indexed by the sum of the two index types rather than renumbered.
+
+## Inputs
+* `m` – dimension
+* `ι₁` – first generator index type
+* `ι₂` – second generator index type
+* `c₁` – first center
+* `c₂` – second center
+* `G₁` – first template generators
+* `G₂` – second template generators
+* `α₁` – first stretch factors
+* `α₂` – second stretch factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum has the summed center and the joined generators
 -/
 
 -- Authors:       Claude Opus 5.5

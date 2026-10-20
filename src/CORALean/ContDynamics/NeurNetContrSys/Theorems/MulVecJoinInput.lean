@@ -10,6 +10,20 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 `B [a; e] = B(:, 1:m) a + B(:, m+1:end) e`: CORA's split of `B` into `B_nn` and `B_ext` in
 `aux_augmentLinear`, `leftCols` and `rightCols`. Over the rows' sum, cut at `m`.
+
+## Inputs
+* `n` – row count
+* `M` – plant input dimension
+* `m` – network output dimension
+* `B` – input matrix
+* `a` – network part
+* `e` – external part
+
+## Hypotheses
+* `hm` – network part fits in the input
+
+## Conclusion
+* the matrix acts on the two parts of the input separately
 -/
 
 -- Authors:       Claude Sonnet 5.5

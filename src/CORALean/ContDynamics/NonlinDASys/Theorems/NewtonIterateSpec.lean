@@ -10,6 +10,17 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
 A returned point is `z + step z` for an iterate `z` whose step the test accepted. This is the
 stopping test CORA makes, on the step and not on the residual: nothing is said of the point's
 distance to a root, only that the last step was small.
+
+## Inputs
+* `V` – vector type
+* `step` – Newton step
+* `small` – smallness test on a step
+
+## Hypotheses
+* none
+
+## Conclusion
+* a returned point is one step past an iterate whose step was accepted
 -/
 
 -- Authors:       Claude Opus 5.5

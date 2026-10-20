@@ -11,6 +11,14 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
 `NonlinearSys.WithSteps.reachUnion` on the reduced ordinary system, its result unchanged:
 the union encloses the states, and the algebraic variables are `h` of them,
 `reachYUnion_subset_image`.
+
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the union of the time-interval sets, or none
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,18 @@ With `e^L = A_d`, `dt ≠ 0` and `A_d - I` regular, `∫₀^dt e^{Aσ}dσ` appli
 converted system accumulates is the discrete one's, as [1] intends. Only for a regular
 `A_d - I`; where `linsolve` fails CORA falls back on a numerical fit.
 
+## Inputs
+* `sys` – discrete-time system
+* `L` – matrix logarithm candidate
+
+## Hypotheses
+* `hdt` – sampling time nonzero
+* `hL` – `L` is a matrix logarithm of the state matrix
+* `hM` – state matrix minus identity invertible
+
+## Conclusion
+* the accumulated input matrices of the converted system are the original ones
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/linearSys.m`

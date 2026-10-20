@@ -14,6 +14,15 @@ CORA's closed loop `aux_augmentLinear` at a `linearSysDT`, read one step at a ti
 CORA drops it. A function of the state and the external input: the controller reads the state, so
 the external input is the only thing along a run that is chosen. `IsTrajectory.linear` says that a
 run with no disturbance steps by it.
+
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `x` – state
+* `e` – external input at this step
+
+## Output
+* the next state of the closed loop
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

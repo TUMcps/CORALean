@@ -22,6 +22,32 @@ form of `Ĥ_{k/p} ẑ` is bounded, `‖(κ_{p-1} ⋯ κ₀)(A θ + F γ) + ∑�
 strip after strip, `κ` of a point of the zonotope before plus `φ η λ`; unrolled, that is the
 product form above.
 
+## Inputs
+* `A` – state matrix
+* `P` – radius matrix
+* `F` – disturbance matrix
+* `C` – output matrix
+* `φ` – strip widths
+* `y` – measurements
+* `Λ` – gain columns
+* `κ` – strip update matrices
+* `u` – gain direction vectors
+* `β` – contraction factor
+* `L` – bound on the previous radius
+* `ψ` – bound on the disturbance term
+* `X` – previous zonotope
+
+## Hypotheses
+* `hκ` – update matrices built from the gains
+* `hu` – direction vectors built from gains and widths
+* `hJ` – the quadratic form bound holds
+* `hβ` – contraction factor nonnegative
+* `hL` – previous radius bounded by `L`
+* `hψ` – disturbance term bounded by `ψ`
+
+## Conclusion
+* the P-radius after the prediction and strips is at most the stated bound
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

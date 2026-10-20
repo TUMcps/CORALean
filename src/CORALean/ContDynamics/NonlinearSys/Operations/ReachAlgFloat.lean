@@ -8,16 +8,20 @@ public import CORALean.ContDynamics.Reach.Operations.Steps
 /-!
 # Nonlinear reachability in floats: CORA's `nonlinearSys/reach` at `alg = 'lin'` or `'poly'`
 
-`ẋ = f(x, u)`, `u(t) ∈ U` arbitrary in time, from `X₀`, computed in `𝕋` from a
-`FloatHessModel` of `f`: `N = (tFinal - tStart) / Δt` steps of `linReachFloat`
-(`linReachRunFloat`), each returning its set over the whole step. `N` is read as
-`FloatModel.reachFloat` reads it, and `none` is returned where it is no natural number
-or a step fails.
+`ẋ = f(x, u)`, `u(t) ∈ U` arbitrary in time, from `X₀`, computed in `𝕋` from a `FloatHessModel`:
+`N = (tFinal - tStart) / Δt` steps of `linReachFloat` (`linReachRunFloat`), each returning its set
+over the whole step. `N` is read as `FloatModel.reachFloat` reads it, and `none` is returned where
+it is no natural number or a step fails. The guarantee `reachAlgFloat_outer` is against the real
+system's runs through `FloatHessModel.Encloses`, with no certificate and no confinement asked.
 
-`NonlinearSys.aux_polyReachRun` and `linReachPoly` are the real layer's `'poly'` loop and
-step at supplied derivatives and certificates; this one computes its own from the
-model, and its guarantee `reachAlgFloat_outer` is against the real system's runs
-through `FloatHessModel.Encloses`, with no certificate and no confinement asked.
+## Inputs
+* `fm` – float Hessian model
+* `alg` – abstraction algorithm
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the time-interval sets of all steps, or none
 
 ## References
 

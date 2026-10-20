@@ -12,16 +12,48 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 /-!
 # The re-linearization loop, over the whole of a step rather than its ends
 
-`relinReach_outer_inputSolution` places `x (iΔt)` at the start of step `i`; the
-run re-anchored there is a run of the linearized system on `[0, Δt]`, which is
-`IsTrajectory.linearize`, and `timeInterval_outer_inputSolution` covers every time
-of that run at once. The extra cost beyond the discrete chain is `η ≥ 2` (the
-time-interval correction matrix needs it) and `0 ∈ linInput` (`inputReach_mono`'s
-own price), neither asked of `relinReach` at all.
+`relinReach_outer_inputSolution` places `x (iΔt)` at the start of step `i`; the run re-anchored
+there is a run of the linearized system on `[0, Δt]` (`IsTrajectory.linearize`), and
+`timeInterval_outer_inputSolution` covers every time of that run at once. The extra cost beyond
+the discrete chain is `η ≥ 2` (the time-interval correction matrix needs it) and `0 ∈ linInput`
+(`inputReach_mono`'s own price). `hR` is asked at step `i` itself, not below it, so
+`confinement_of_subset` gets it from the step's start instead.
 
-`hR` is asked at step `i` itself, not below it, so step `i`'s confinement can
-never come from this theorem's own conclusion; `confinement_of_subset` gets it
-from the step's start instead.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `y` – output trajectory
+* `q` – Taylor terms minus two
+* `o` – maximum order
+* `i` – step index
+* `t` – time
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hΔt` – step size positive
+* `hT` – horizon inside time set
+* `hR` – trajectory stays in regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `h0` – zero in widened input
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+* `hi` – index below step count
+* `ht` – time within the step
+
+## Conclusion
+* the trajectory state at the time lies in the step enclosure
 -/
 
 -- Authors:       Claude Opus 5

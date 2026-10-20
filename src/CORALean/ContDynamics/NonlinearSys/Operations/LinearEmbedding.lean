@@ -12,6 +12,12 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 `LinearSys`, so that deleting this directory leaves the linear development
 standing — the conversion belongs to the more general representation. The
 guarantee that trajectories agree is `ClassicalTrajectoryIffNonlinearSys.lean`.
+
+## Inputs
+* `sys` – linear system
+
+## Output
+* the linear system as a nonlinear one
 -/
 
 -- Authors:       Claude Opus 5

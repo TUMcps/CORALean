@@ -18,6 +18,13 @@ states of the full system, whose product would have dimension `n_s n`; the join 
 Minkowski sum `Φ⁽¹⁾R⁽¹⁾ ⊕ ... ⊕ Φ⁽ⁿˢ⁾R⁽ⁿˢ⁾`, which for the `Φ⁽ⁱ⁾` of disjoint coordinates is that
 product, the coordinates of each subsystem in place.
 
+## Inputs
+* `Φ` – embeddings of the subsystems
+* `R` – subsystem sets
+
+## Output
+* the zonotope of the complete system
+
 ## References
 
 * [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets".

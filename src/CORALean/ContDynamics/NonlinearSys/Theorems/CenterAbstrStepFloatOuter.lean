@@ -10,6 +10,19 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
 
 `relinStepAtFloat_outer` at `x✱ = center(R)`: where a step linearizes is the caller's, a poor
 point costing a larger remainder and never soundness.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* a successful step encloses every run over the step and at its end
 -/
 
 -- Authors:       Claude Sonnet 5.5

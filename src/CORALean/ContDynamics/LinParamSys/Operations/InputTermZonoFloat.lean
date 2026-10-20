@@ -15,6 +15,14 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 matrix zonotope to the power `i`, kept as a matrix zonotope, scaled by `r^{i+1}/(i+1)!`, which
 `taylorCoeffBounds` brackets because no float holds it exactly.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `i` – order
+
+## Output
+* the matrix zonotope that order `i` contributes
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

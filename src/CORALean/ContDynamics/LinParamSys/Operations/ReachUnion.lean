@@ -18,13 +18,17 @@ public import CORALean.ContSet.SetUnion.SetUnion
 the windows `τ_0, …, τ_{N-1}`, one `aux_reachStepkInput` each, collected as a `SetUnion`,
 `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one. The state-space input set
 `V = B U ⊕ c` is formed here, as CORA's `priv_inputSolution` forms it, and each window splits
-it at its center, so `0 ∈ U` is not asked: the remainder `V - ũ` holds the origin by
-construction. No `box()` on the accumulated input set: that bounds a zonotope's order and is a
-reduction, which an enclosure need not make.
+it at its center, so `0 ∈ U` is not asked. No `box()` on the accumulated input set: that is a
+reduction, which an enclosure need not make. `η = options.η` is raised to `reachOrder Δt + 2`
+where that is higher: the enclosures hold only at an admissible order.
 
-`η = options.η` is the order asked for, raised to `reachOrder Δt + 2` where that is higher:
-`timeIntervalStep`, `constInputSolution` and `inputSolution` hold only at an order admissible
-for `Δt` and every member of `sys.A`.
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* one time-interval set per window, as a union
 
 ## References
 

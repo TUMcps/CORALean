@@ -12,6 +12,19 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 Where `fm` encloses the reduced system, the differential variable of every trajectory of the
 algebraic system on `[0, tFinal - tStart]` from `X₀` under inputs in `U` is, at every time of
 window `k`, in the `k`-th set `NonlinDASys.reachFloat` returns. An outer statement.
+
+## Inputs
+* `sys` – system
+* `red` – reduced ordinary model
+* `fm` – float model of the reduced system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Hypotheses
+* `h` – the float model encloses the reduced system
+
+## Conclusion
+* every trajectory's differential state lies in the returned window sets
 -/
 
 -- Authors:       Claude Opus 5.5

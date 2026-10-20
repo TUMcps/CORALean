@@ -16,6 +16,16 @@ If `fm` encloses `f_ARX` with its Jacobians, `fm.toNonlinearSysDTFloat` encloses
 `f_ARX` being differentiable on the boxes, the converted field's Jacobian is the shift in the
 first block rows and `f_ARX`'s Jacobian, reindexed newest first, in the last (the chain rule
 through the reindexing, which is its own inverse).
+
+## Inputs
+* `fm` – float Jacobian model
+* `sys` – ARX system
+
+## Hypotheses
+* `h` – the float model encloses the system
+
+## Conclusion
+* the converted float model with Jacobians encloses the converted system
 -/
 
 -- Authors:       Claude Opus 5.5

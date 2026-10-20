@@ -12,6 +12,19 @@ public import CORALean.ContDynamics.Conform.Theorems.MemTemplateZonoIffGen
 [1, Lemma 3] and the substitution `β̄ = diag(α) λ` (`mem_templateZono_iff_gen`), as in
 Lützow and Althoff's `mem_gloSet_iff_gen`.
 
+## Inputs
+* `fx` – prediction at the point
+* `D` – derivative in the uncertainties
+* `Gu` – uncertainty generators
+* `α` – generator scaling
+* `y` – output point
+
+## Hypotheses
+* `hα` – scalings nonnegative
+
+## Conclusion
+* the point is in the prediction set iff some coefficients bounded by `α` reach it
+
 ## References
 
 * [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal

@@ -16,6 +16,37 @@ the matrix inequality of step `j` holds at every vertex of `[A]`, the estimate s
 [1, Eq. 9] with [1, Eq. 4]. The program's objective, `max τ`, picks among the gains the
 inequality admits and is not a claim; any feasible gain is sound.
 
+## Inputs
+* `G` – vertex matrices
+* `F` – disturbance matrix
+* `C` – output matrix
+* `φ` – strip widths
+* `y` – measurements
+* `Λ` – gain columns
+* `κ` – strip update matrices
+* `u` – gain direction vectors
+* `φ'` – strip widths per step
+* `β` – contraction factor
+* `P` – radius matrix
+* `A` – state matrix member
+* `L` – bound on the previous radius
+* `ψ` – bound on the disturbance term
+* `X` – previous zonotope
+
+## Hypotheses
+* `hκ` – update matrices built from the gains
+* `hu` – direction vectors built from gains and widths
+* `hφ` – widths per step copy the strip widths
+* `hP` – radius matrix positive definite
+* `hβ` – contraction factor nonnegative
+* `hLMI` – matrix inequality holds at every vertex
+* `hA` – `A` lies in the hull of the vertices
+* `hL` – previous radius bounded by `L`
+* `hψ` – disturbance term bounded by `ψ`
+
+## Conclusion
+* the P-radius after the strips is at most the stated bound
+
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state

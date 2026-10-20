@@ -9,19 +9,28 @@ public import Mathlib.Analysis.Normed.Group.FunctionSeries
 /-!
 # The limit gain at a fixed linearization
 
-`[2, Prop. 1]`: at a *constant* `A` and `Ψ`, the gain of dimension `i` tends to `ζ_δ^{λᵢ}`
-as `Δt → 0`, with `λᵢ = j+1` for the first `j` such that `(Aʲ Ψ)ᵢ ≠ {0}` — read off the
-generator row, as `[1, Def. 6]`/`gainOrderDim` already does, since a center shifts a box
-without widening it. `R_abs` is `abstrSolInf` at that fixed `A` and `Ψ`, matching `[1]`'s
-own convention of the un-truncated `[1, (8)]` rather than `[2]`'s own truncated `(6)`; see
-the paper page's finding.
+`[2, Prop. 1]`: at a *constant* `A` and `Ψ`, the gain of dimension `i` tends to `ζ_δ^{λᵢ}` as
+`Δt → 0`, with `λᵢ = j+1` for the first `j` such that `(Aʲ Ψ)ᵢ ≠ {0}`, read off the generator
+row, as `[1, Def. 6]` does. `R_abs` is `abstrSolInf` at that fixed `A` and `Ψ`, matching `[1]`'s
+un-truncated `[1, (8)]` rather than `[2]`'s truncated `(6)`. This is `gainDim_tendsto_pow`
+(`[1, Thm. 2]`) at `A t = A`, proved rather than restated: there `hexp` is a hypothesis because
+a limit inside an infinite series needs uniform control. Here every summand is independent of
+`t`, so the expansion is elementary.
 
-This is `gainDim_tendsto_pow` — `[1, Thm. 2]` — at `A t = A` and `Ψ t = Ψ` for every `t`,
-proved rather than restated: `[1, Thm. 2]`'s `hexp` is a hypothesis there because passing a
-limit inside an infinite series needs uniform control over the index that a moving `A(h)`,
-`Ψ(h)` does not give. Here every summand is already independent of `t`, so the same
-expansion is elementary, and is proved below by peeling the vanishing leading terms off the
-series `boxDiameter_abstrSolInf` supplies and showing what is left is continuous into `0`.
+## Inputs
+* `A` – state matrix
+* `Z` – error zonotope
+* `i` – dimension
+* `j` – first nonvanishing order
+* `δ` – shrink factor
+
+## Hypotheses
+* `hj` – row norm nonzero at the order
+* `hjmin` – row norms vanish below
+* `hδ` – shrink factor nonnegative
+
+## Conclusion
+* the gain tends to the shrink factor power
 
 ## References
 

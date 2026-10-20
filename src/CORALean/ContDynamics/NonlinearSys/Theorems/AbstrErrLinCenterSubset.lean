@@ -8,22 +8,23 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # The center is the best expansion point
 
-[1, Prop. 2]: `abstrErrLin`'s box is smallest at `zs = Z.c`. The radius `γ`
-carries `|c - zs|` as an additive term in every coordinate, and a quadratic form
-with nonnegative entries is monotone in a nonnegative argument, so any other
-expansion point only inflates the box.
+[1, Prop. 2]: `abstrErrLin`'s box is smallest at `zs = Z.c`. The radius `γ` carries `|c - zs|`
+as an additive term in every coordinate, and a quadratic form with nonnegative entries is
+monotone in a nonnegative argument. `hH` is what the proposition's `H` gives for free, and the
+corollary is false without it. The printed proof says the second-derivative range "is independent
+of `z✱`"; that range is the convex hull of `Ẑ` and `z✱`, strictly larger unless `z✱ ∈ Ẑ`. The
+corollary survives: an `H` valid for some `z✱` is valid at the center.
 
-`hH` is what the proposition's `H` gives for free — it is an entrywise bound on
-an absolute value — and the corollary is false without it: at `d = n = 1`, a
-negative `H` turns the minimum into a maximum.
+## Inputs
+* `H` – Hessian bounds
+* `Z` – zonotope
+* `zs` – expansion point
 
-The printed proof argues the other half differently, and wrongly: it says the
-second-derivative range `{ξ(z, z✱) | z ∈ Ẑ}` "is independent of `z✱`", so that
-`max |Jᵢ|` is unaffected by it. That range is the convex hull of `Ẑ` and `z✱`,
-which equals `Ẑ` exactly when `z✱ ∈ Ẑ` and is strictly larger otherwise, so the
-max is affected. The corollary survives because the dependence runs one way: an
-`H` valid for some `z✱` is valid at the center, which is why the same `H` stands
-on both sides here.
+## Hypotheses
+* `hH` – bounds nonnegative
+
+## Conclusion
+* the error box at the center is inside the one at `zs`
 
 ## References
 

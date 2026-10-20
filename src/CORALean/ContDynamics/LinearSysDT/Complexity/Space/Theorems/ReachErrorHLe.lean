@@ -9,20 +9,26 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Theorems.ReduceBox
 /-!
 # `LinearSysDT.reachError` does not bound its own generator count
 
-`reach_order_le` bounds `(sys.reach (S := 𝒵) o ho R₀ U (k + 1)).h` by `o * n`
-for *every* `k`, the last step always ending in a `reduce`. `reachError`
-reduces nothing — it is one box per step, carried forward and added to — so
-what bounds it is `k * n`: linear in the steps taken, not a constant the run
-never crosses.
+`reach_order_le` bounds the generator count of `sys.reach` by `o * n` for *every* `k`, the last
+step always ending in a `reduce`. `reachError` reduces nothing — it is one box per step, carried
+forward and added to — so what bounds it is `k * n`: linear in the steps taken. The proof mirrors
+its recursion: `mtimes_h` and `plus_h` cost the running total nothing, and `reduceBox_h` adds at
+most `n` per step. Unlike `reach_order_le`, no `k`-independent bound holds in general: past
+`k = o` steps the proved bound exceeds every bound `reach`'s own count can reach, the sharp form
+of the worry `ReachInner.lean` records.
 
-The proof mirrors `reachError`'s own recursion: `mtimes_h` and `plus_h` cost
-the running total nothing, and `reduceBox_h` adds at most `n` per step. Its
-`if` can take either branch, so a system where `U` has no generators and `R₀`
-is already at order `o` pays nothing at all — this is the shape of the worst
-case, not a guarantee it is met. But unlike `reach_order_le`, no
-`k`-independent bound holds in general, so the *proved* bound is the one that
-grows: past `k = o` steps it already exceeds every bound `reach`'s own count
-can ever reach, which is the sharp form of the worry `ReachInner.lean` records.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the error set has at most `k * n` generators
 -/
 
 -- Authors:       Claude Opus 5

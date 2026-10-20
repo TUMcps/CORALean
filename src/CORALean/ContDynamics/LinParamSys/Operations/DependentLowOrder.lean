@@ -13,15 +13,20 @@ CORA's `R_lowOrder` of `linParamSys/private/priv_dependentHomSol` is meant to ho
 orders up to `A²` of one step `r` of `ẋ = A x + u` from the center `c` of `Rinit`,
 `(I + A r + A² r²/2) c + (I r + A r²/2 + A² r³/6) u`, with `A = A_c + Σ pᵢ A_g⁽ⁱ⁾` and
 `u = U_c + Σ pᵢ U_G⁽ⁱ⁾` sharing `p ∈ [-1, 1]ᵏ`: a cubic in `p`, one generator per monomial.
-CORA's code (`dependentHomSolLowOrder`, refuted) drops terms; here order zero and one are as
-CORA prints them, and the lines marked in the code are corrected or added: the `pᵢ²` block
-(`A_g⁽ⁱ⁾² r³/6 U_c` for CORA's `A_g⁽ⁱ⁾ r³/6 U_c`, `A_g⁽ⁱ⁾ U_G⁽ⁱ⁾ r²/2` added), the `pᵢpⱼ`, `i < j`,
-block (`A_g U_G r²/2` both ways and the second mixed half added), and the `pᵢpⱼpₗ` block
-`A_g⁽ⁱ⁾ A_g⁽ʲ⁾ U_G⁽ˡ⁾ r³/6`, which CORA has none of.
+CORA's code (`dependentHomSolLowOrder`, refuted) drops terms: here the `pᵢ²` block, the `pᵢpⱼ`
+block and the `pᵢpⱼpₗ` block `A_g⁽ⁱ⁾ A_g⁽ʲ⁾ U_G⁽ˡ⁾ r³/6` are corrected or added. Each monomial
+is its own generator; mixed generators are indexed by all pairs, zero unless `i < j`.
 
-Each monomial is its own generator, the dependency between monomials dropped, as in CORA's;
-the squares keep CORA's half-center, half-generator split. Mixed generators are indexed by all
-pairs, zero unless `i < j`, triples by all ordered triples.
+## Inputs
+* `Ac` – center matrix
+* `Ag` – matrix generators
+* `c` – center of the initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+* `r` – step size
+
+## Output
+* the corrected low-order part as a zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

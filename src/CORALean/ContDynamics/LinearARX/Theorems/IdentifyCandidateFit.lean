@@ -15,6 +15,26 @@ at step `k j`, one signal pair per point; points of one trajectory repeat it) an
 satisfy it at every point. Nothing about lower ranks, nor about data no such system produced.
 The source is [1].
 
+## Inputs
+* `y` – outputs per data point
+* `u` – inputs per data point
+* `k` – step per data point
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `sys'` – ARX system the data obey
+* `j` – data point
+
+## Hypotheses
+* `hX1` – regressors factor as `V S Wᵀ`
+* `hV` – `V` has orthonormal columns
+* `hW` – `W` has orthonormal columns
+* `hs` – singular values nonzero
+* `hdata` – data obey the recursion of `sys'`
+
+## Conclusion
+* the full-rank candidate reproduces every data point's output
+
 ## References
 
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`

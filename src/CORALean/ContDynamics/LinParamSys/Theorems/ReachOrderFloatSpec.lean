@@ -11,6 +11,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFlo
 
 `MatExp.admissibleOrder_spec` at the norm bound `reachOrderFloat` searches with,
 which is the one `OrderAdmissibleFloat` names, as for `LinearSys`.
+
+## Inputs
+* `sys` – system
+* `tLo` – lower time bound
+* `tHi` – upper time bound
+* `η` – minimal order
+
+## Hypotheses
+* none
+
+## Conclusion
+* a returned order is admissible and at least the one asked
 -/
 
 -- Authors:       Claude Opus 5.5

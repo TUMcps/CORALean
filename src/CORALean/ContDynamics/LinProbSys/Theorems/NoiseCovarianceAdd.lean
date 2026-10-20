@@ -12,6 +12,18 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSu
 the noise picked up in `s`. The identity behind `post`'s recursion `eAt Σ eAtᵀ + Σ₁` for the
 covariance of the particular solution [1, Sec. II]. Entry by entry, as `noiseCovariance` is.
 
+## Inputs
+* `A` – system matrix
+* `C` – noise matrix
+* `s` – first time
+* `t` – second time
+
+## Hypotheses
+* none
+
+## Conclusion
+* the covariance over two times is the carried one plus the first
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

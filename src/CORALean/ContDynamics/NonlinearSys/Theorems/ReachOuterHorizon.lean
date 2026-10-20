@@ -11,6 +11,38 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 The one-step statement: confinement on `[0, KΔt]` alone puts the run inside
 the linearized reachable set at every sample time of that horizon, assuming
 nothing past `KΔt` — which is what re-linearizing from there needs.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `Ud` – discrete input set
+* `L` – remainder set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `Δt` – step size
+* `K` – number of steps
+* `y` – output trajectory
+* `cert` – abstraction-error certificate
+* `o` – maximum order
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hT` – horizon inside time set
+* `hR` – trajectory stays in region over horizon
+* `hΔt` – step size nonnegative
+* `hU` – widened input bounded
+* `hUd` – discrete input set holds the step inputs
+* `ho` – order positive
+
+## Conclusion
+* the state at each sample of the horizon lies in the linearized reachable set
 -/
 
 -- Authors:       Claude Opus 5

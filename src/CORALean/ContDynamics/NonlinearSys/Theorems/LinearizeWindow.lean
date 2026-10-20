@@ -15,6 +15,28 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 on `[0, τ]` from the point `x t₀`, with `ũ` in any set `V` holding it over the step. The sets are
 plain sets, `(S := 𝒮)`: the point and `V` are what the step knows, whatever the representation the
 run's own sets are in, and every `LinearSys` guarantee is generic in it.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – state trajectory
+* `u` – input trajectory
+* `A` – state matrix
+* `V` – input set
+* `t₀` – window start
+* `τ` – window length
+* `y` – output trajectory
+
+## Hypotheses
+* `traj` – trajectory of the system
+* `hτ` – window length nonnegative
+* `hT` – window inside time set
+* `hV` – remainder inputs in input set
+
+## Conclusion
+* the re-anchored window is a linear trajectory
 -/
 
 -- Authors:       Claude Opus 5.5

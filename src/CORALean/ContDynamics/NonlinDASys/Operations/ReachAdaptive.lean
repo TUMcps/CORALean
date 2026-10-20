@@ -12,6 +12,24 @@ the finite horizon and the admissible errors, and the loop `reachAdaptiveLoop`. 
 the time-interval sets and the time reached, `consistentInitialState` for `Rstart_y` not run (the
 linearization's `y*` is `T.taylor`'s).
 
+## Inputs
+* `sys` – system
+* `T` – tuning heuristics
+* `R0` – start set
+* `U` – input zonotope
+* `tFinal` – final time
+* `tol` – tolerance
+* `h₀` – initial step size
+* `adm_x₀` – admissible state errors
+* `adm_y₀` – admissible algebraic errors
+* `η` – Taylor order
+* `fuelErr` – error loop fuel
+* `fuelHalf` – step halving fuel
+* `fuel` – iteration bound
+
+## Output
+* the union of the time-interval sets and the time reached, or none
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

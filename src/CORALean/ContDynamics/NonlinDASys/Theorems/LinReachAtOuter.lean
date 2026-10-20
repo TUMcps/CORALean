@@ -14,6 +14,26 @@ A run on `[0, Δt]` that the linearization certifies (`LinPoint.Certifies`, the 
 `F⁻¹F = I`, the step admissible for `oneStep`; [1, Prop. 2]) is in the time-point set at `Δt`,
 in the time-interval set and with `(x, y)` in the joint set throughout (CORA's tuning).
 
+## Inputs
+* `sys` – system
+* `L` – linearization
+* `Δt` – step size
+* `Rinit` – start set
+* `U` – input zonotope
+* `x` – differential trajectory
+* `y` – algebraic trajectory
+* `u` – input signal
+* `z` – output signal
+* `k` – Taylor order minus two
+
+## Hypotheses
+* `traj` – DAE trajectory
+* `hΔt` – step positive
+* `hc` – the linearization certifies the run
+
+## Conclusion
+* the run lies in the time-point, time-interval and joint sets
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

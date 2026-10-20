@@ -11,6 +11,24 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 `construct sys.A` instead of the one `toRealMat sys.A` a point matrix denotes.
 `Set.mem_biUnion hA` replaces the singleton's `Set.mem_biUnion rfl`: `hA` is a
 real membership proof, doing what `rfl` only stood in for there.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R` – initial set
+* `U` – input set
+* `A` – system matrix member
+* `x` – state
+* `u` – input value
+
+## Hypotheses
+* `ho` – order positive
+* `hA` – `A` lies in the matrix set
+* `hx` – `x` lies in `R`
+* `hu` – `u` lies in `U`
+
+## Conclusion
+* the one-step successor lies in the one-step reachable set
 -/
 
 -- Authors:       Claude Opus 5

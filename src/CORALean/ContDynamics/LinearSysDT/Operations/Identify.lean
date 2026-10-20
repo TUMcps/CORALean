@@ -18,6 +18,18 @@ differences of `getDataPoints` are not modelled. Returns the system CORA's const
 `ofABc`, the remaining matrices at their defaults, at the data's sampling time `dt`.
 `'opt'` is `fmincon`.
 
+## Inputs
+* `dt` – sampling time
+* `lt` – order test on errors
+* `err` – error of a candidate matrix
+* `xNext` – successor states
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+
+## Output
+* the system of least error over all ranks, if any
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

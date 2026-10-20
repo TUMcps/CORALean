@@ -14,6 +14,15 @@ could consume. `reachInnerRep` is the same difference at a representation:
 caller offers and the operation checks. A wrong `M` gives `none`, costing
 precision and never soundness, exactly as `backReachForall` does.
 It is noncomputable because the exact layer's `reduce` is.
+
+## Inputs
+* `sys` – system
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+* `M` – coefficients for the generator difference
+
+## Output
+* the run minus its error, or none if `M` fails
 -/
 
 -- Authors:       Claude Opus 5.5

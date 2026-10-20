@@ -18,6 +18,18 @@ paper's derivation from [1, Eq. 2]: `Xᵢ ⊕ Sᵢ = Ωᵢ` and `Sᵢ ⊕ Vᵢ =
 being `S_{i+1} = Φ^iU ⊕ … ⊕ U` read one step at a time. Linear maps distribute over
 Minkowski sums of arbitrary sets, so neither convexity nor boundedness of `U` is used.
 
+## Inputs
+* `sys` – system
+* `Ω₀` – initial zonotope
+* `U` – input zonotope
+* `N` – number of steps
+
+## Hypotheses
+* none
+
+## Conclusion
+* the returned sets are the exact reachable sets of steps one to `N`
+
 ## References
 
 * [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of

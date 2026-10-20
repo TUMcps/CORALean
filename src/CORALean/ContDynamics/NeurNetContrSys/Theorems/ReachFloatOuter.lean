@@ -19,6 +19,33 @@ and projection (`project_outer`), a period read as a run of the augmented system
 matrices reading as the real ones (`toRealMat_augmentFloat`, `augment_flow`) — handed to
 `discretizeEnclosureFloat_mem_reach_horizon` for `N` steps. The control period is `N` times the
 real time `toReal Δt` the float step denotes.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input zonotope
+* `o` – maximum zonotope order
+* `η` – Taylor order
+* `N` – steps per period
+* `Δt` – step size
+* `H` – number of periods
+* `R₀` – initial zonotope
+* `π` – controller function
+* `W` – disturbance set
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `ho` – order positive
+* `hΔt` – step positive
+* `hdt` – the period is `N` steps
+* `hη` – order admissible
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* the state at every period boundary lies in the float reachable set
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

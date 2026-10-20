@@ -19,6 +19,27 @@ The program minimizes `½ z^T H z`, half the cost, with the same minimizers; its
 constraints are [1, Thm. 1]'s, so a feasible point is conformant by `conformant_iff_lp`.
 No sign condition on `α` and no definiteness of `P` is needed for the identity.
 
+## Inputs
+* `sys` – plant
+* `ιX` – index type of the initial generators
+* `ιW` – index type of the disturbance generators
+* `ιV` – index type of the noise generators
+* `GX` – initial template generators
+* `αX` – initial stretch factors
+* `GW` – disturbance template generators
+* `αW` – disturbance stretch factors
+* `GV` – noise template generators
+* `αV` – noise stretch factors
+* `P` – norm weight matrix
+* `ω` – step weights
+* `K` – horizon
+
+## Hypotheses
+* none
+
+## Conclusion
+* the weighted Frobenius cost is quadratic in the stretch factors
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

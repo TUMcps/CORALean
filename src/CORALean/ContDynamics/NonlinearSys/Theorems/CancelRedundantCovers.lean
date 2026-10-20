@@ -13,6 +13,21 @@ segment is inside the union of the polytopes of the past `ζ` steps, so every po
 current segment is in a kept segment or in an enclosure of a past one. This is the whole of
 what the check says: the dropped segment is "reached before" only up to those enclosures.
 
+## Inputs
+* `seg` – segment set
+* `poly` – polytope enclosure
+* `δ` – cancellation period
+* `ζ` – history length
+* `k` – step number
+* `hist` – past segments
+* `segs` – current segments
+
+## Hypotheses
+* `hpoly` – polytope encloses segment
+
+## Conclusion
+* every segment point is kept or in a past polytope
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear

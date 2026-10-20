@@ -17,6 +17,25 @@ public import CORALean.Global.Tensor
 The exponential, the input integral and `Υ` enter only as a matrix `Φ`, a vector `b` and
 a matrix `Υ`, so the statement is made for any of these: nothing else is used.
 
+## Inputs
+* `n` – state dimension
+* `m` – output dimension
+* `C` – output matrix
+* `Φ` – state transition matrix
+* `Υ` – disturbance matrix
+* `x0` – nominal initial state
+* `b` – nominal input contribution
+* `X0` – initial uncertainty set
+* `Wc` – disturbance set
+* `V` – noise set
+* `y` – output point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is in the output set iff its deviation from the nominal output is in the shifted set
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

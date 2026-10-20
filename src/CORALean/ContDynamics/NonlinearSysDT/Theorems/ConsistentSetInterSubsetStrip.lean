@@ -15,6 +15,25 @@ obtains `c = mid □∇ₓg_i(X̄, V)` and the enclosure by interval arithmetic)
 difference of the two ranges. Any `c` does, `c` being a hypothesis. The paper prints the strip's
 offset as `s_i` where it first names a scalar `d_i`; `s_i` is what the proof uses.
 
+## Inputs
+* `n` – state dimension
+* `nv` – noise dimension
+* `p` – output dimension
+* `g` – measurement map
+* `V` – noise set
+* `y` – measured output
+* `i` – output component
+* `Xbar` – state bound
+* `c` – strip direction
+* `s` – strip offset
+* `σ` – strip half-width
+
+## Hypotheses
+* `h` – difference stays within the offset band
+
+## Conclusion
+* the bounded consistent states lie in the strip
+
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".

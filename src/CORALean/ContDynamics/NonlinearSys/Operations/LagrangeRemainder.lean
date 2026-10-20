@@ -10,19 +10,19 @@ public import Mathlib.Data.Matrix.Mul
 # The cubic remainder of a second-order expansion
 
 CORA's `priv_lagrangeRemainder`, [1, Sec. 4.1]: the box `[-l, l]` with
-`lᵢ = (1/6) Σⱼ γⱼ (γᵀ Eᵢⱼ γ)`, where `γ` bounds `|z - z✱|` over the set the step
-runs on and `Eᵢⱼ` bounds the third derivative of coordinate `i` — differentiated
-once more in the direction the outer index `j` names — entrywise.
+`lᵢ = (1/6) Σⱼ γⱼ (γᵀ Eᵢⱼ γ)`, where `γ` bounds `|z - z✱|` over the set the step runs on and
+`Eᵢⱼ` bounds the third derivative of coordinate `i` entrywise. `γ` is read off the zonotope
+`abstrErrLin` reads it from. `E` is data, as `abstrErrLin`'s `H` is: nothing here
+differentiates `f`, and a wrong `E` yields a box `PolyAbstractionError.of_lagrange` cannot
+certify rather than an unsound one. The family is `Fin n → Fin d → Mat ℝ d d`.
 
-`γ` is read off the same zonotope `abstrErrLin` reads it from: the region a
-step's quadratic expansion is trusted on is the region its linear one is. `E`
-is data, as `abstrErrLin`'s `H` is: nothing here differentiates `f`, and a wrong
-`E` yields a box `PolyAbstractionError.of_lagrange` cannot certify rather than
-an unsound one.
+## Inputs
+* `E` – third-derivative bounds
+* `Z` – zonotope of states and inputs
+* `zs` – expansion point
 
-The three-index family is `Fin n → Fin d → Mat ℝ d d` rather than a rank-three
-array of its own: `CORALean.Tensor` is not indexed by an operation family, and
-this is the shape `abstrErrLin`'s two-index `H` already fixed, extended by one.
+## Output
+* the symmetric box bounding the cubic remainder
 
 ## References
 

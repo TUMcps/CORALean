@@ -11,6 +11,23 @@ public import CORALean.Specification.Theorems.CheckSound
 `holds_of_reach` with its hypothesis discharged by running `Specification.check` on the
 set `reach` computed, through the pair's `Contains` or `IsDisjoint`: a `true`, found by
 evaluation, is the specification on the exact state, with nothing left to prove by hand.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+
+## Conclusion
+* a passed check on the reachable set implies the specification at step `k`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

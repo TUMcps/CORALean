@@ -12,6 +12,13 @@ public import Mathlib.Analysis.Matrix.Normed
 steps are taken with, the augmented `A_aug = [A B; 0 0]` (`augment`) —
 `‖Δt • A_aug‖ / (η + 2) < 1` has no `+ 2` on the numerator's denominator here, so
 `⌈‖Δt • A_aug‖⌉₊` alone clears it, `reachOrder_admissible` its proof.
+
+## Inputs
+* `sys` – closed-loop system
+* `Δt` – step size
+
+## Output
+* an order admissible for the step at the augmented matrix
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

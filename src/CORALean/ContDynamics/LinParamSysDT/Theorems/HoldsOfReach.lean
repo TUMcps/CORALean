@@ -11,6 +11,24 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 `LinearSysDT.holds_of_reach`'s statement, at a system matrix ranging over a
 set: `reach_outer` handed to `Specification.holds_of_outer`, the same step a
 network's exact image takes, on the same theorem.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+* `h` – specification holds on the reachable set
+
+## Conclusion
+* the specification holds at the state of step `k`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

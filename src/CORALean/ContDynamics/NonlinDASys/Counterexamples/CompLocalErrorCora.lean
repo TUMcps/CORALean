@@ -20,10 +20,9 @@ The linearization error of one subsystem of CORA's compositional option, as
 91-99 when `options` has the field `index`). The subsystem's Hessians `Hf`, `Hg`, split into
 midpoint and radius, act on the zonotope `R_xyu` of its `(x, y, u)` (`Rsub`, `Rsub_y_cor +
 Rsub_y_add`, `Usub`), and the algebraic error enters through `Csub * pinv(Fsub)` of the
-*subsystem's own* `Csub`, `Fsub` (l. 150-152), not the block of the full system's `C F⁻¹`. With
-`Fsub` nonsingular `pinv` is the inverse. As in `linErrorCora`, the radius `dz_abs` is
-`R_xyu.absBound` and the `reduce` before `quadMap` (l. 104) is left out; the `+` of `CFsub_inv *
-error_y` is CORA's.
+*subsystem's own* `Csub`, `Fsub` (l. 150-152), not the block of the full system's `C F⁻¹`. As in
+`linErrorCora`, the radius `dz_abs` is `R_xyu.absBound` and the `reduce` before `quadMap` (l. 104)
+is left out.
 
 # CORA's compositional linearization error ignores the coupling of the subsystems
 
@@ -36,6 +35,15 @@ its Hessians are `0` and CORA's set `error{1}` is `{0}` for every `R_xyu` and wh
 `ẋ₁` at the consistent point `x₂ = 1`, `y = (1, 1)` is `1`: `f₁ = y₁ = 1` against the
 linearization's `0`. Component 1 of `errorTotal` comes from `error{1}` alone (`index{2}.X'` has
 a zero first row), so CORA's set misses it.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's local error set is zero while the true error is one
 
 ## References
 

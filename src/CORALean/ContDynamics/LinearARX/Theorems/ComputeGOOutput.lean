@@ -14,6 +14,22 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.IsTrajectoryStateEq
 the window runs through `toLinearSysDT`, its closed form is `state_eq`, and the first block is
 the output. The inputs that `D` leaves out are exactly those `A_ext` has not carried to the
 first block yet, which is `outputC_pow_mulVec_inputMat`.
+
+## Inputs
+* `sys` – ARX system
+* `Y₀` – initial window set
+* `U` – input set
+* `y` – outputs
+* `u` – inputs
+* `nk` – number of steps
+* `k` – step index
+
+## Hypotheses
+* `hp` – at least one lag
+* `traj` – ARX trajectory
+
+## Conclusion
+* the output is the initial-window term plus the weighted inputs
 -/
 
 -- Authors:       Claude Opus 5.5

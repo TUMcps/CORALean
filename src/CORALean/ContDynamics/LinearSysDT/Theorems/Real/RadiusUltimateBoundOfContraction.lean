@@ -17,6 +17,20 @@ where there is one, `L ≤ γ L + ε`, and, without that assumption, for every `
 0`: the bound for the limit superior. The step `V(X(k)) ≤ γ V(X(k-1)) + ε` is
 `Zonotope.correctedStep_pRadius_le`. `0 ≤ γ < 1` and `ε ≥ 0` are used.
 
+## Inputs
+* `V` – radius sequence
+* `γ` – contraction factor
+* `ε` – disturbance level
+
+## Hypotheses
+* `hγ0` – contraction factor nonnegative
+* `hγ1` – contraction factor below one
+* `hε` – disturbance level nonnegative
+* `h15` – radii contract
+
+## Conclusion
+* the radii are bounded by a geometric term plus the ultimate bound
+
 ## References
 
 * [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on

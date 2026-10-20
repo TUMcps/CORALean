@@ -9,6 +9,20 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 `x(k) = Aᵏ x(0) + ∑_{j<k} A^{k-1-j} u(j)`, the variation-of-constants formula the GO
 parameters of `computeGO` tabulate.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `h` – canonical trajectory
+
+## Conclusion
+* the state is the matrix power applied to the start plus weighted inputs
 -/
 
 -- Authors:       Claude Opus 5.5

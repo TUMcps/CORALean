@@ -13,6 +13,23 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 What the constant `ũ` contributes by `t_k = k Δt` at a member `A` of `sys.A`, `∫₀^{t_k} e^{Aσ}dσ ũ`,
 is carried across one more window by `expIntegral_add_mulVec`: `e^{AΔt}` of its value at `t_k`
 plus its value over `Δt`, the first in `[e^{[A]Δt}] P̃(t_k)`, the second in `P̃^R(τ_0)`.
+
+## Inputs
+* `sys` – system
+* `Δt` – window length
+* `η` – Taylor order
+* `ρ` – zonotope order bound
+* `A` – system matrix member
+* `uc` – constant input
+* `k` – window index
+
+## Hypotheses
+* `hΔt` – window length positive
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix set
+
+## Conclusion
+* the contribution by the window start lies in the propagated zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

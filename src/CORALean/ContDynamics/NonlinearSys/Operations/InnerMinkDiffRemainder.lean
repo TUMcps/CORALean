@@ -8,15 +8,23 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 /-!
 # `innerMinkDiffRemainder`, the Lagrange remainder loop of the inner algorithm
 
-Lines 10-13 of [1, Alg. 1], as in the conservative linearization [1] builds on: enlarge the
-remainder guess `L` by `μ`, bound the abstraction error it induces by (13), evaluate the
-Lagrange remainder (9) on the box (25) of the time-interval affine solution plus that error,
-and repeat until the new remainder `L` lies in the enlarged guess `L̂`; line 14 then spends
-`L̂`. The loop's start `L = [0ₙ, 0ₙ]` is line 9, the caller's.
+Lines 10-13 of [1, Alg. 1]: enlarge the remainder guess `L` by `μ`, bound the abstraction error
+it induces by (13), evaluate the Lagrange remainder (9) on the box (25) of the time-interval
+affine solution plus that error, and repeat until the new `L` lies in the enlarged guess `L̂`;
+line 14 then spends `L̂`. `fuel` bounds the passes, so the result is an `Option`, `none` once
+they have not met the condition; the containment test is the `Bool` the caller supplies, as in
+`abstrErrLoop`. `L̂` is `Lhat`, the remainder of line 12 `L'`.
 
-`repeat ... until` states no iteration count, so `fuel` is an argument and the result an
-`Option`, `none` once `fuel` passes have not met the condition; the containment test is the
-`Bool` the caller supplies, as in `abstrErrLoop`. `L̂` is `Lhat`, the remainder of line 12 `L'`.
+## Inputs
+* `ops` – set operations
+* `Δt` – step size
+* `μ` – enlargement factor
+* `A` – linearization matrix
+* `xstar` – linearization point
+* `Raffτ` – time-interval affine solution
+
+## Output
+* the enlarged remainder the loop settles on, or none
 
 ## References
 

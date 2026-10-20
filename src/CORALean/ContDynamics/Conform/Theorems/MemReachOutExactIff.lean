@@ -11,14 +11,26 @@ public import CORALean.ContDynamics.Conform.Theorems.StateAddDev
 
 `y ∈ R(k)` from `x0 ⊕ X̃₀` under `u` exactly when `y - y_*(k) ∈ C Aᵏ X̃₀ ⊕ ⨁_{i<k} C Aⁱ W ⊕ V`:
 [1, Eq. 15], `R_a(k) = R(k) - y_*(k)`, at `X̃₀ = {0}`, and [2, Eq. 8] for the discrete-time
-model, which [2, Sec. 3] reaches by "performing the same steps" — an equivalence, with
-nothing lost either way. That is what lets [1, Eq. 16] replace the test-case-specific
-reachable sets by one deviation set. At `x0 = 0` it is also [1, Eq. 7] with the input
-term's powers corrected, `A^{k-i} B u(i)` for the printed `Aⁱ B u(i)`, and [2, Eq. 7] for the
-model whose disturbance is drawn afresh at every step.
+model, which [2, Sec. 3] reaches by "performing the same steps" — an equivalence. That lets
+[1, Eq. 16] replace the test-case-specific reachable sets by one deviation set. At `x0 = 0` it
+is also [1, Eq. 7] with the input term's powers corrected, `A^{k-i} B u(i)` for the printed
+`Aⁱ B u(i)`, and [2, Eq. 7].
 
-The disturbances `w(0), …, w(k-1)` enter as `Aⁱ w(k-1-i)`; reading the sum backwards is
-the reindexing between a run and a point of `⨁ C Aⁱ W`.
+## Inputs
+* `sys` – plant
+* `x0` – nominal initial state
+* `X0` – initial uncertainty set
+* `W` – disturbance set
+* `V` – noise set
+* `u` – inputs
+* `k` – step
+* `y` – output point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the point is reachable iff its deviation from the nominal run is in the deviation set
 
 ## References
 

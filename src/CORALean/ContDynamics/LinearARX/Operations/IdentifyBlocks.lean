@@ -10,6 +10,13 @@ public import CORALean.ContDynamics.LinearARX.LinearARX
 `A = Alist{i}(:,1:n*p)`, `B = Alist{i}(:,n*p+1:end)` of `priv_identifyDMD` [1], cut by
 `mat2cell` into `p` blocks `A_i` of width `n` and `p+1` blocks `B_j` of width `m`.
 
+## Inputs
+* `dt` – sampling time
+* `M` – identified matrix
+
+## Output
+* the ARX system with the blocks of that matrix
+
 ## References
 
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`

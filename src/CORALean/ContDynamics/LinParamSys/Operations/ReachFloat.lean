@@ -20,6 +20,14 @@ reduced to order `ρ` as `LinearSys.reachWrappingFreeFloat` reduces it, and wind
 `[e^{[A]Δt}]`, so no window pays for the ones before it. `N = (tFinal - tStart) / Δt`
 by `Reach.steps`; `η` raised by `reachOrderFloat`; `none` when either fails.
 
+## Inputs
+* `sys` – system
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the reachable zonotope of every window, or none
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

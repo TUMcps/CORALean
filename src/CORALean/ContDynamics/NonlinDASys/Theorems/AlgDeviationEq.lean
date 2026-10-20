@@ -17,6 +17,24 @@ nothing about which set holds it: [1, Eq. 12] prints the set `{-½ F⁻¹ φ | �
 (`SharedLagrangePoint`); with one `ξ⁽ʲ⁾` per row it does
 (`NonlinDASys.exists_lagrange_remainder`). Only `F⁻¹ F = I` is used.
 
+## Inputs
+* `g₀` – constraint at the linearization point
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F` – constraint Jacobian in the algebraic variable
+* `F_inv` – inverse of `F`
+* `Δx` – state deviation
+* `Δu` – input deviation
+* `Δy` – algebraic deviation
+* `ℓa` – algebraic linearization error
+
+## Hypotheses
+* `hF` – `F_inv` is a left inverse of `F`
+* `hg` – the linearized constraint holds
+
+## Conclusion
+* the algebraic deviation is determined by the other deviations
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

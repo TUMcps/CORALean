@@ -26,6 +26,16 @@ l. 105) and an unsafe set disjoint from it, whatever the system does. The failin
 abstracted as an arbitrary error: `Ytrue`, the set the step ought to have produced, may violate
 the specification, and the verdict is `true` all the same.
 
+## Inputs
+* `spec` – specification
+* `Ytrue` – true output set
+
+## Hypotheses
+* `_hviolated` – the specification fails on the true set
+
+## Conclusion
+* CORA's stored output set after an error satisfies the specification
+
 ## References
 
 * [1] `contDynamics/@nonlinearARX/reach.m`, CORA, ll. 137-166.

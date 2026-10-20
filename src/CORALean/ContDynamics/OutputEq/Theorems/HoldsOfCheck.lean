@@ -11,6 +11,21 @@ public import CORALean.Specification.Theorems.CheckSound
 `holds_of_outputSet` with its hypothesis discharged by running `Specification.check` on
 the set `outputSet` computed: a `true`, found by evaluation, is the specification on the
 exact output of every state and input the two sets hold.
+
+## Inputs
+* `out` – output equation
+* `R` – state set
+* `U` – input set
+* `spec` – specification
+* `x` – state
+* `u` – admissible input
+
+## Hypotheses
+* `hx` – state in state set
+* `hu` – input in input set
+
+## Conclusion
+* a passed check gives the specification on the output
 -/
 
 -- Authors:       Claude Opus 5.5

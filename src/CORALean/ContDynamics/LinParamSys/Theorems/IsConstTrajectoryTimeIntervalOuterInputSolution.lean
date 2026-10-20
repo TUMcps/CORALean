@@ -15,6 +15,36 @@ covered every `t ∈ [0, r]`; what was missing was the input half, and
 
 `0 ∈ U` is the one hypothesis beyond `step_outer`'s, and it is what buys a
 single enclosure for the whole step rather than one per time.
+
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `A` – system matrix member
+* `r` – step size
+* `m` – Taylor order minus two
+* `t` – time
+
+## Hypotheses
+* `traj` – constant-parameter trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hconv` – input set convex
+* `hclosed` – input set closed
+* `hbdd` – input set bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin lies in the input set
+
+## Conclusion
+* the state at time `t` lies in the step enclosure plus the input solution
 -/
 
 -- Authors:       Claude Opus 5

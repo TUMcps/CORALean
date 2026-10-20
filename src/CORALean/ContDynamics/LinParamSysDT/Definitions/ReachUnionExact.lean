@@ -10,6 +10,15 @@ public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSetExact
 Every state reachable in at most `K` steps from `R₀` under inputs in `U`, at every
 matrix the set holds. Positional, as the mathematics: `Reach` reads `R₀`, `U` and
 `K = tFinal - tStart` off `params`, the system being time-invariant.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `K` – step bound
+
+## Output
+* the states reachable in at most `K` steps
 -/
 
 -- Authors:       Claude Sonnet 5

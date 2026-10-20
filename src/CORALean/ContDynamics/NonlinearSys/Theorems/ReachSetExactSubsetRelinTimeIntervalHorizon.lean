@@ -7,18 +7,44 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRel
 /-!
 # The horizon, as the union of what the loop computes on each step
 
-`reachSetExact_subset_relinTimeInterval` covers one step; this covers `[0, NΔt]` at
-once, which is the line `Rᵘⁿⁱᵒⁿ = Rᵘⁿⁱᵒⁿ ∪ R(τₛ)` of [1, Alg. 1] and the
-`R([0, t_f])` it returns. Nothing new is computed: the union is over the very
-sets the per-step theorem already places the run in.
+`reachSetExact_subset_relinTimeInterval` covers one step; this covers `[0, NΔt]` at once, the line
+`Rᵘⁿⁱᵒⁿ = Rᵘⁿⁱᵒⁿ ∪ R(τₛ)` of [1, Alg. 1] and the `R([0, t_f])` it returns. Nothing new is
+computed: the union is over the sets the per-step theorem already places the run in. The work is
+the covering, where `0 < Δt` and `0 < N` are spent: every `t` of the horizon sits in some step's
+window, `⌊t/Δt⌋` naming it except at the right end, where the last step covers `t`. A horizon of
+no steps encloses nothing. The union is over `i < N`, so a caller reads a membership off
+`Set.mem_iUnion₂`.
 
-The work is the covering, and it is where `0 < Δt` and `0 < N` are spent: every
-`t` of the horizon sits in some step's window, `⌊t/Δt⌋` naming it except at the
-right end, where that index is `N` and the last step is what covers `t`. A
-horizon of no steps encloses nothing, so `0 < N` is not cosmetic.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `steps` – linearization steps
+* `Δt` – step size
+* `N` – number of steps
+* `q` – Taylor terms minus two
+* `o` – maximum order
+* `t` – time
 
-The union is over `i < N` rather than over a `Finset`, so a caller reads a
-membership off `Set.mem_iUnion₂` and never a `Finset.sum`-shaped goal.
+## Hypotheses
+* `hΔt` – step size positive
+* `hN` – step count positive
+* `hT` – horizon inside time set
+* `hR` – reachable set inside certified regions
+* `hε` – step norm small enough
+* `hconv` – widened input convex
+* `hclosed` – widened input closed
+* `hbdd` – widened input bounded
+* `h0` – zero in widened input
+* `hRconv` – remainder input convex
+* `hRclosed` – remainder input closed
+* `hRbdd` – remainder input bounded
+* `ho` – order positive
+* `ht` – time within the horizon
+
+## Conclusion
+* the exact reachable set at the time lies in the union of step enclosures
 
 ## References
 

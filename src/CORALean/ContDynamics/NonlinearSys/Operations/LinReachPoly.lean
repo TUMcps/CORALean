@@ -26,20 +26,33 @@ public import CORALean.Global.Block
 /-!
 # One step of `linReach` at `alg = 'poly'`, end to end
 
-CORA's `linReach` for [1, Alg. 1], lines 3-10, linearization to accepted error:
-`aux_deltaReach` for `Rdiff`, `relinDeltaReach`'s shape at this step with the input
-taken error-free; `priv_precompStatError` for `VerrorStat`; and the `while` loop,
-whose candidates `aux_abstrErrPolyCandidates` computes and `abstrErrPolySearch` tests.
-Only what CORA takes as data is supplied: the expansion point, `A`, `B`, the Hessian
-`H`, the third-order bound `E`, and the previous step's `abstrerr`.
+CORA's `linReach` for [1, Alg. 1], lines 3-10: `aux_deltaReach` for `Rdiff`, `priv_precompStatError`
+for `VerrorStat`, and the `while` loop, whose candidates `aux_abstrErrPolyCandidates` computes and
+`abstrErrPolySearch` tests. Only what CORA takes as data is supplied: the expansion point, `A`,
+`B`, the Hessian `H`, the third-order bound `E`, and the previous step's `abstrerr`. Candidate `k`
+is certified by CORA's split of the second-order term, so `W` must cover exactly `VerrorDyn`'s
+products carrying `δ` and the cubic remainder. No termination is claimed; `linReachPoly_outer`
+says what a `some` means.
 
-Candidate `k` is certified by CORA's split of the second-order term: over the region
-`Rinit.dependent ⊞ (Rdiff + RallError)`, start factors first, `L` is the start's
-static error read over them by `padBack`, so what `W` must cover at `x = z + δ` is
-exactly `VerrorDyn`'s: the products carrying `δ` and the cubic remainder. CORA's
-reduction of the start before its static error is skipped, since it re-indexes the
-factors `L` is read at. No termination is claimed; `linReachPoly_outer` says what a
-`some` means.
+## Inputs
+* `sys` – system
+* `U` – input polynomial zonotope
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `H` – Hessian family
+* `E` – third-derivative bounds
+* `Δt` – step size
+* `η` – Taylor terms
+* `errorOrder` – order for the error
+* `intermediateOrder` – intermediate order
+* `Rinit` – start polynomial zonotope
+* `abstrerr` – previous abstraction error
+* `fuel` – bound for the search
+
+## Output
+* the first accepted linearization step, or none
 
 ## References
 

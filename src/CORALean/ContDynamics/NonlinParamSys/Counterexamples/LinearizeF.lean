@@ -11,6 +11,15 @@ CORA builds `parametricDynamicFile` from `f(x, u, 0)` and the unit vectors, and 
 that `f` is affine in `p` (the `try` of `aux_parametric` catches symbolic failures only). For
 `ẋ = p²` and the parameter box `[1, 2]` the zonotope `zf` of the constant term is `[1, 2]`, while
 `f(x*, u*, 2) = 4` is not in it.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the dynamics value at the parameter lies outside the constant-term zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

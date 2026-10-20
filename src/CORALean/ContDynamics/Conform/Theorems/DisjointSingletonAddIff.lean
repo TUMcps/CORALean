@@ -14,6 +14,18 @@ public import Mathlib.Tactic.Abel
 Sec. 2.2] prints `R ⊕ V`, which is the same only for `V = -V`
 (`FalsifyAdd`).
 
+## Inputs
+* `α` – additive group
+* `R` – reachable set
+* `V` – error set
+* `y` – measurement
+
+## Hypotheses
+* none
+
+## Conclusion
+* `y ⊕ V` misses `R` iff `y` lies outside `R ⊕ (-V)`
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

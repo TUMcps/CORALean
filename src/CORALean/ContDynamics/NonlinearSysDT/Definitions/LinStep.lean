@@ -10,16 +10,13 @@ public import CORALean.Global.Float.Instances.Real.Instances
 /-!
 # One linearization of a discrete step
 
-`AbstractionError` is stated over the map `f` itself, not a system — no flow,
-no derivative, nothing continuous — so it applies here unchanged, fed `sys.f`
-directly. The certificate it builds is the same one CORA computes for the
-continuous case, checked instead against
-`f(x,u) = f(xs,us) + A(x - xs) + B(u - us) + L(x,u)`, which is exactly what a
-discrete step needs: `x(k+1) = f(x(k), u(k))`, no integral in sight.
-
-`Δt` and `MatExp` play no role, so `LinStep` carries no discretization: the
-matrix a certificate is issued for is already what `LinearSysDT.reach` steps
-with.
+`AbstractionError` is stated over the map `f` itself, not a system — no flow, no derivative —
+so it applies here unchanged, fed `sys.f` directly. The certificate is the same one CORA
+computes for the continuous case, checked against
+`f(x,u) = f(xs,us) + A(x - xs) + B(u - us) + L(x,u)`, which is what a discrete step needs:
+`x(k+1) = f(x(k), u(k))`, no integral in sight. `Δt` and `MatExp` play no role, so `LinStep`
+carries no discretization: the matrix a certificate is issued for is already what
+`LinearSysDT.reach` steps with.
 -/
 
 -- Authors:       Claude Sonnet 5

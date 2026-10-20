@@ -14,11 +14,33 @@ public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 is, at the end of each of the first `i` control cycles, in the set `reachWith` holds, and at every
 instant of those cycles in one of the sets over a cycle. Induction on the cycle: the network's
 guarantee puts the held input in `Y`, so the state and the input are in the product, the cycle is a
-run of the plant under that held input (`IsTrajectory.flow`), and the reachability algorithm `rx`
-for the extended state `[x; u]`, the product `cp` and the projection `pr` each satisfy the enclosure
-the algorithm asks of them. At any plant: `rx` is asked to enclose the plant's own runs, read
-through `ContDynamics.IsTrajectory`. `reachWith_timePoint_outer` is the cycle ends alone, for an
-`rx` with no sets over a cycle.
+run of the plant under that held input (`IsTrajectory.flow`), and `rx`, `cp` and `pr` each satisfy
+the enclosure the algorithm asks of them. At any plant: `rx` is asked to enclose the plant's own
+runs. `reachWith_timePoint_outer` is the cycle ends alone, for an `rx` with no sets over a cycle.
+
+## Inputs
+* `sys` – closed-loop system
+* `cp` – Cartesian product operation
+* `pr` – projection to the state
+* `rx` – reachability algorithm of the extended system
+* `X₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `π` – controller function
+* `H` – number of cycles
+* `x` – plant states
+* `v` – external input signal
+* `w` – disturbance signal
+
+## Hypotheses
+* `hcp` – the product encloses stacked pairs
+* `hpr` – the projection encloses state parts
+* `hrx` – the extended reachability encloses plant runs
+* `hπ` – the network encloses `π`
+* `traj` – closed-loop trajectory
+
+## Conclusion
+* a run lies in the algorithm's sets at each cycle end and within each cycle
 
 ## References
 

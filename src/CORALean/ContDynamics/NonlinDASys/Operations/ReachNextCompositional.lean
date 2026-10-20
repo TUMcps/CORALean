@@ -11,14 +11,23 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
 
 [1, Alg. 2]: the reachable sets of the subsystems of a partitioned power system, one step. Each
 pass re-enlarges the interface inputs of the subsystems whose assumption is not yet confirmed
-(line 5, [1, Eq. 14]), runs [1, Alg. 1] on them (line 6, the argument `subReach`), joins the
-local sets (line 9, [1, Eq. 15]) and tests, for every subsystem, that the joined set read at its
+(line 5, [1, Eq. 14]), runs [1, Alg. 1] on them (line 6, the argument `subReach`), joins the local
+sets (line 9, [1, Eq. 15]) and tests, for every subsystem, that the joined set read at its
 interface, `Υ⁽ⁱ⁾ R(τ_k)`, lies in `Λ⁽ⁱ⁾ Û⁽ⁱ⁾` (lines 10-15), until all do (line 18). Line 1's
-all-false flags are the start state's. Line 16 sets `U⁽ⁱ⁾ = Λ Û ⊕ (I - Λ) U`.
+all-false flags are the start state's; line 16 sets `U⁽ⁱ⁾ = Λ Û ⊕ (I - Λ) U`. The `repeat` has no
+stated bound: `fuel` bounds the passes, and the result is `none` where it runs out. `sub` is the
+inclusion test.
 
-The `repeat` has no stated bound: `fuel` bounds the passes, and the result is `none` where it
-runs out. `sub` is the inclusion test; `[1, Alg. 2]` is described under the assumption that no
-split is required.
+## Inputs
+* `subReach` – reachability of a subsystem
+* `Φ` – embeddings of the subsystems
+* `Υ` – interface readouts
+* `Λ` – interface selection matrices
+* `lamU` – enlargement factor
+* `sub` – inclusion test
+
+## Output
+* the subsystem sets, joined set and assumed inputs of the last pass, or none
 
 ## References
 

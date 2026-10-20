@@ -8,20 +8,31 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
 /-!
 # `precompStatError` certifies whatever is left over
 
-The certificate the polynomialization variant runs on, assembled: the caller
-says how far the field departs from its second-order expansion — one set `W`
-covering every state in `Ba` and every input in `U` — and `precompStatError` is
-then a dependency-preserving abstraction error for it.
+The certificate the polynomialization variant runs on: the caller says how far the field
+departs from its second-order expansion — one set `W` covering every state in `Ba` and every
+input in `U` — and `precompStatError` is then a dependency-preserving abstraction error for it.
+That hypothesis is what CORA computes as `error_thirdOrder_dyn` and the higher-order remainder
+in `priv_abstrerr_poly`, and the only place the field is touched: `Q` is data, so a wrong
+Hessian yields a `W` nothing can satisfy rather than an unsound certificate. `hp` is `rfl`:
+`quadMapDep` keeps the factor count it was handed.
 
-That hypothesis is what CORA computes as `error_thirdOrder_dyn` and the
-higher-order remainder in `priv_abstrerr_poly`, and it is the only place the
-field is touched: `Q` is data, so a wrong Hessian yields a `W` nothing can
-satisfy rather than an unsound certificate. At a field quadratic in the state and
-affine in the input, `W` is a point.
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `pZ` – region polynomial zonotope
+* `Ba` – factor domain
+* `U` – input region
+* `W` – remainder polynomial zonotope
+* `Q` – halved Hessian family
 
-`hp` is `rfl`: `precompStatError` runs `quadMapDep`, whose factor count is the
-one it was handed, so "the same factors" holds definitionally rather than by a
-cast.
+## Hypotheses
+* `hW` – remainder lies in the covering set
+
+## Conclusion
+* the second-order term plus the cover is a polynomial certificate
 -/
 
 -- Authors:       Claude Opus 5

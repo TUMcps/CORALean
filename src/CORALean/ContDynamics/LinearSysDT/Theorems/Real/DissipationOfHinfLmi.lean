@@ -17,6 +17,22 @@ for some `ε > 0`. The Schur complement of the block `P` (`posDef_schur_of_fromB
 Eq. 18, and a positive definite form has a margin (`exists_pos_le_of_posDef`); that margin is
 what makes the `H∞` bound of [1, Thm. 1] strict.
 
+## Inputs
+* `A` – state matrix
+* `C` – output matrix
+* `E` – disturbance matrix
+* `F` – noise matrix
+* `P` – Lyapunov matrix
+* `Y` – gain variable
+* `γ` – attenuation level
+
+## Hypotheses
+* `hP` – Lyapunov matrix positive definite
+* `h` – the design inequality holds
+
+## Conclusion
+* the dissipation inequality holds with a positive margin
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

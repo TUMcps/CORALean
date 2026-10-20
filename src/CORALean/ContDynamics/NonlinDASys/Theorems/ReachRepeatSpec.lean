@@ -11,6 +11,26 @@ A last pass of lines 5-10 is one whose time-interval set is `linReach` at the as
 carries (lines 6-8) and whose exit test holds: `L ⊆ L̄` for both errors, or `L ⊈ L_max`
 (line 10). By induction on the passes, each either the exit or the pass before it.
 
+## Inputs
+* `sys` – system
+* `taylor` – linearization of the start set
+* `corollary1` – error-set computation
+* `sub` – subset test
+* `Lmax` – bound on the linearization errors
+* `lam` – enlargement factor
+* `r` – step size
+* `η` – Taylor order
+* `Rk` – start set
+* `U` – input zonotope
+* `fuel` – iteration bound
+* `L` – previous errors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the loop's result is `linReach` at its assumed errors and its exit test holds
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic

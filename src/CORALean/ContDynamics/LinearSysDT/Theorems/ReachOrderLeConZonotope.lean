@@ -18,6 +18,19 @@ representation runs it, so the bound is a property of the last operation each
 step performs, not of what the operation is reducing. Any representation whose
 `reduce` bounds its own size — `ConZonotope.reduce_order_le` here — gives the
 same conclusion the same way, no induction needed either time.
+
+## Inputs
+* `sys` – system
+* `o` – maximum order
+* `R₀` – initial constrained zonotope
+* `U` – input constrained zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reachable set has at most `o * n` generators
 -/
 
 -- Authors:       Claude Opus 5

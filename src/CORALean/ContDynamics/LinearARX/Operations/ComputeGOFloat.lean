@@ -16,6 +16,13 @@ powers of the converted system's `A` by `Interval.matPow`, each product with the
 and input matrices by `Interval.matMul`, the sums over steps and lags by `sumRangeFloat`, every
 entry rounded outward. Soundness is `computeGOFloat_outer`.
 
+## Inputs
+* `sys` – ARX system
+* `nk` – number of steps
+
+## Output
+* the output parameters as enclosing interval matrices
+
 ## References
 
 * [1] `contDynamics/@linearARX/computeGO.m`

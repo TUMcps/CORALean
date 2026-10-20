@@ -7,16 +7,23 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
 /-!
 # The set a closed-loop run actually reaches
 
-`LinearSysDT.reachSetExact`'s shape at a network in the loop: every state some run
-of `sys` under `π` from `R₀` is at after `k` steps, quantified over the runs
-themselves rather than over `reach`'s enclosure. So "the trajectory is in the
-reachable set" holds by construction, and the content of a reachability claim
-sits in the other inclusion, of this set in a computed one.
+`LinearSysDT.reachSetExact`'s shape at a network in the loop: every state some run of `sys` under
+`π` from `R₀` is at after `k` steps, quantified over the runs themselves rather than over `reach`'s
+enclosure. So "the trajectory is in the reachable set" holds by construction, and the content of a
+reachability claim sits in the other inclusion. Not `LinearSysDT.reachSetExact`'s recursion: a step
+here already alternates the plant with the network's enclosure. `Theorems.ReachSetExactOuter` puts
+every run into it, `ReachSetExactSubsetReach` puts it inside `reach`.
 
-Not `LinearSysDT.reachSetExact`'s recursion: there is no `Plus`/`Reduce`-free step
-to unfold, since a step here already alternates the plant with the network's
-enclosure. `Theorems.ReachSetExactOuter` puts every run into it,
-`ReachSetExactSubsetReach` puts it inside `reach`.
+## Inputs
+* `sys` – closed-loop system
+* `π` – controller function
+* `R₀` – initial set
+* `U_ext` – external input set
+* `W` – disturbance set
+* `k` – step
+
+## Output
+* the states some closed-loop run is at after `k` steps
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

@@ -36,6 +36,33 @@ with `dz = z₀ + δz` the quadratic term is `½ z₀ᵀ H(z✱)ᵢ z₀` plus
 `½ (z₀ᵀ (Hᵢ - H(z✱)ᵢ) z₀ + z₀ᵀ Hᵢ δz + δzᵀ Hᵢ z₀ + δzᵀ Hᵢ δz)`. The first is the
 static error at `x(0) - x✱`, a point of the start set, so `quadMap_outer` places it;
 each of the other four is bounded by `abs_bilin_le_bilinUp`.
+
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `A` – state Jacobian center
+* `B` – input Jacobian center
+* `xs` – state expansion point
+* `us` – input expansion point
+* `X` – state box
+* `U` – input box
+* `Rdelta` – start deviation set
+* `Rdiff` – step difference set
+* `x₀` – start state
+* `x` – state
+* `u` – admissible input
+
+## Hypotheses
+* `h` – model encloses system
+* `hxs` – state point in box
+* `hus` – input point in box
+* `hx` – state in box
+* `hu` – input in box
+* `hx₀` – start state deviation in set
+* `hδ` – state difference in set
+
+## Conclusion
+* the affine-split remainder lies in the polynomial error enclosure
 -/
 
 -- Authors:       Claude Opus 5.5

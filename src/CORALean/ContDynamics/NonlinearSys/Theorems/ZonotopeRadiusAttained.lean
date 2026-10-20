@@ -13,6 +13,17 @@ public import Mathlib.Tactic.Ring
 the point that attains it takes each generator with the sign that makes its contribution
 agree with the center's offset. This is what makes the radius `lagrangeRemainder` reads off a
 zonotope a property of the set and not of its generators.
+
+## Inputs
+* `Z₁` – zonotope
+* `zs` – reference point
+* `j` – coordinate
+
+## Hypotheses
+* none
+
+## Conclusion
+* some point of the zonotope attains the radius
 -/
 
 -- Authors:       Claude Sonnet 5.5

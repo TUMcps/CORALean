@@ -11,6 +11,27 @@ public import CORALean.Global.DmdCandidateFit
 If the data points obey dx `= A' φ(x, u)` for some `A'` and `X1 = V S Wᵀ` is an SVD of the
 basis values with `s ≠ 0`, the full-rank candidate satisfies it at every point: `A φ(x_j, u_j) =
 dx_j`. Nothing about lower ranks, nor about data no such system produced.
+
+## Inputs
+* `φ` – basis functions
+* `x` – state data
+* `u` – input data
+* `dx` – derivative data
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `A'` – generating matrix
+* `j` – data index
+
+## Hypotheses
+* `hX1` – basis values have this decomposition
+* `hV` – left vectors orthonormal
+* `hW` – right vectors orthonormal
+* `hs` – singular values nonzero
+* `hdata` – data follows the generating matrix
+
+## Conclusion
+* the full-rank candidate reproduces every derivative
 -/
 
 -- Authors:       Claude Opus 5.5

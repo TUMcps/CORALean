@@ -11,19 +11,47 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A time-varying run's whole step, both halves computed from the two sets
 
-`IsTrajectory.timeInterval_outer` with `Vd` named: `sys.inputSolution` at the
-enlarged set `V`, extended across the step by the frozen matrix's own
-`inputReach_mono`, exactly as at `'constParam'`. So `'varParam'` is enclosed by
-`'constParam'` at any frozen `Â ∈ construct sys.A`, over an input set that has
-absorbed the parameter drift.
+`IsTrajectory.timeInterval_outer` with `Vd` named: `sys.inputSolution` at the enlarged set `V`,
+extended across the step by the frozen matrix's own `inputReach_mono`, as at `'constParam'`. So
+`'varParam'` is enclosed by `'constParam'` at any frozen `Â ∈ construct sys.A`, over an input set
+that has absorbed the parameter drift. `V` is the whole price of the time-varying reading, a set
+the caller supplies; `IsTrajectory.norm_drift_le` makes it constructible: any `V` containing a
+ball of the radius it names will do. `0 ∈ V` buys one enclosure for the whole step rather than
+one per time.
 
-`V` is the whole price of the time-varying reading, and it is a set the caller
-supplies. `IsTrajectory.norm_drift_le` is what makes it constructible: any `V`
-containing a ball of the radius it names will do, and every constant in that
-radius is read off `sys.A`, `U` and `R₀`.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `V` – set holding input plus drift
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `r` – step size
+* `m` – Taylor order minus two
+* `Â` – frozen matrix member
+* `t` – time
 
-`0 ∈ V` is what buys one enclosure for the whole step rather than one per time,
-and it holds for the ball `norm_drift_le` names.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `hÂ` – `Â` lies in the matrix set
+* `hV` – drift plus input lies in `V`
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hconv` – `V` convex
+* `hclosed` – `V` closed
+* `hbdd` – `V` bounded
+* `hRconv` – remainder image convex
+* `hRclosed` – remainder image closed
+* `hRbdd` – remainder image bounded
+* `h0` – origin lies in `V`
+
+## Conclusion
+* the state at time `t` lies in the step enclosure plus the input solution of `V`
 -/
 
 -- Authors:       Claude Opus 5

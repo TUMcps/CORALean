@@ -14,6 +14,17 @@ system's, which `NonlinearSys.WithSteps.reachUnion_outer` encloses with no confi
 It says what the reduced run encloses, given the reduced model; it does not say CORA's
 algorithm, which linearizes the differential-algebraic system itself, is sound. The algebraic
 part is `ReachYUnionSubsetImage`.
+
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* every state the system reaches lies in the returned union
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,6 +21,15 @@ initial output set `timePoint.set{1}` is never checked.
 `x⁺ = x + 1` from `R0 = {0}` for one step, against the unsafe set `[-1/2, 1/2]`: the initial
 state `0` is unsafe, yet `res = true` (the later sets `{1}` are safe). No other code checks
 `R0` first: `reach` is the entry point and `check` is called only at l. 87.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the check reports safe although the initial state is unsafe
 -/
 
 -- Authors:       Claude Opus 5.5

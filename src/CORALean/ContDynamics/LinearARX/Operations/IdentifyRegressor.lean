@@ -11,6 +11,15 @@ One data point of `aux_getDataPoints` in `priv_identifyDMD` [1]: the column
 `[x(j-1); …; x(j-p); u(j); …; u(j-p)]` that `reshape(fliplr(...))` stacks, newest output first.
 The two windows are `NonlinearARX.pastOut` and `NonlinearARX.pastIn`, which stack the same way.
 
+## Inputs
+* `p` – number of lags
+* `y` – outputs
+* `u` – inputs
+* `k` – step
+
+## Output
+* the regressor column of the data point
+
 ## References
 
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`

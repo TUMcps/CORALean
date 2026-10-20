@@ -16,6 +16,16 @@ coordinates. Here the same lift is run in `𝕋`: the initial set is the float p
 (`Zonotope.cartProd`), the run is `NonlinearSys.FloatModel.reachFloat` of a `FloatModel` of the
 lifted field, and each window is projected back (`Zonotope.project`). Soundness is
 `NonlinParamSys.reachFloat_outer`, against every constant-parameter run.
+
+## Inputs
+* `_sys` – parametric system
+* `fm` – float model of the augmented system
+* `P` – parameter zonotope
+* `params` – reachability parameters with inputs
+* `options` – reachability options
+
+## Output
+* the windows of the augmented run projected to the state, or none
 -/
 
 -- Authors:       Claude Opus 5.5

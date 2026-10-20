@@ -11,6 +11,25 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 `LinearSysDT.holds_of_output`'s statement, at a system matrix ranging over a
 set: `holds_of_reach` at the output rather than the state, for the same
 reason `LinearSysDT`'s pair exists — `C` is in general not invertible.
+
+## Inputs
+* `sys` – system
+* `out` – output equation
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `spec` – specification
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+* `h` – specification holds on the output set
+
+## Conclusion
+* the specification holds at the output of step `k`
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

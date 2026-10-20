@@ -15,6 +15,18 @@ CORA's `computeGO` [1]: every parameter it returns for the real values of the st
 in the interval matrix `computeGOFloat` returns for it: `C{k}` and `D{k,i}`. An outer statement;
 the interval matrices are not the parameters.
 
+## Inputs
+* `sys` – ARX system
+* `nk` – number of steps
+* `k` – step index
+* `i` – input index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the real output parameters lie in the interval ones
+
 ## References
 
 * [1] `contDynamics/@linearARX/computeGO.m`

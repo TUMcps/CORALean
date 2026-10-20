@@ -10,20 +10,12 @@ public import CORALean.NN.NeuralNetwork
 
 CORA's `neurNetContrSys(sys, nn, dt)`: one class over every plant, any `ContDynamics`, the
 network's output `u = π(x(i dt))` computed at the sampling instants and *held* over the control
-period `dt`, stored in the system as CORA stores it. [1, Alg. 2]'s system
-`ẋ(t) = f(x(t), u_c(x(t), t), w(t))`, with the disturbance `w(t) ∈ W`.
-
-The network drives the first `m` inputs of the plant, `m ≤ nrOfInputs`; the remaining
-`nExt = nrOfInputs − m` are external, CORA's `n_ext`, and range over `U_ext`, CORA's `params.U` of
-the closed system. The plant receives `U_nn × U_ext` (`inputSet`), its input vector being `[a; e]`
-(`input`): in a run `U_nn` is the held `{π(x(i dt))}` and `e` the external signal `v`. With
-`nExt = 0` (`ofFull`) the network drives every input. The plant's disturbance
-(`nrOfDisturbances`) is the loop's; CORA's loop at a linear plant drops `E`, so its reachability
-there is stated for a `W` that `E` sends to `0`. The discrete-time loop is `NeurNetContrSysDT`.
-
-What the loop denotes is its runs, `IsTrajectory`, stated here as for every other system class:
-on period `i` a run of the plant (a Carathéodory run for every continuous-time class here),
-shifted to `i dt`, under the held input `[π(x(i dt)); v]`, which jumps at a sampling instant.
+period `dt`. [1, Alg. 2]'s system is `ẋ(t) = f(x(t), u_c(x(t), t), w(t))`, `w(t) ∈ W`. The
+network drives the first `m` inputs of the plant; the remaining `nExt = nrOfInputs − m` are
+external, CORA's `n_ext`, over `U_ext`, and the plant receives `U_nn × U_ext` (`inputSet`). With
+`nExt = 0` (`ofFull`) the network drives every input. CORA's loop at a linear plant drops `E`.
+The runs are `IsTrajectory`: on period `i` a run of the plant, shifted to `i dt`, under the held
+input `[π(x(i dt)); v]`. The discrete-time loop is `NeurNetContrSysDT`.
 
 ## References
 

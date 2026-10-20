@@ -11,6 +11,30 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 `LinearSysDT.holds_of_output`'s statement, at the enclosed input sets
 `output_outer` reads the output at: `holds_of_reach` for the output rather
 than the state, and for the same reason there — `C` in general not invertible.
+
+## Inputs
+* `sys` – closed-loop system
+* `U_ext` – external input set
+* `Y` – output set type
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `spec` – specification
+* `π` – controller function
+* `W` – disturbance set
+* `x` – states
+* `v` – external input signal
+* `w` – disturbance signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `hπ` – the network encloses `π`
+* `hW` – disturbances sent to zero by the disturbance matrix
+* `traj` – closed-loop trajectory
+* `h` – specification holds on the output set
+
+## Conclusion
+* the specification holds at the output of step `k`
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

@@ -13,29 +13,37 @@ public import Mathlib.Analysis.Calculus.Deriv.Prod
 /-!
 # `abstrErrAdaptiveTensor3Cora2D`, `priv_abstractionError_adaptive` at `tensorOrder = 3`
 
-CORA's `@nonlinearSys/private/priv_abstractionError_adaptive.m`, `alg = 'lin'`,
-`tensorOrder = 3` branch (l. 110-199), in two dimensions without inputs, line by line: `H` the
-Hessian at `p`, `dz = IH_x`, `errorSec = 0.5 * quadMap(Z,H)`, `[T,ind]` the tensor file over
-`totalInt_x`, and the remainder loop as printed (l. 168-172): the tensor is `T{i,ind{i}(j)}`
-but the factor is `dz(j)`, the position `j`, not the column `ind{i}(j)`. An all-empty `ind` gives
-`errorLagr = 0`. Sets are interval hulls (`Real.Interval ℝ`) per coordinate; `err` is
-`abs(center) + sum(abs(generators))` of `VerrorDyn`, i.e. `max |inf| |sup|` of its hull.
-
-`quad dz M` is the interval `dz.'*M*dz`, `imul` the interval product, `qmap` the hull of
-`quadMap(Z,H)` for `Z` the reduced `R`, `red` the hull of `reduce(VerrorDyn,'adaptive',…)`:
-all arguments (the order reductions are not modelled; the zonotope is its hull, exact for a
-box `VerrorDyn`).
+CORA's `@nonlinearSys/private/priv_abstractionError_adaptive.m`, `alg = 'lin'`, `tensorOrder = 3`
+branch (l. 110-199), in two dimensions without inputs, line by line: `H` the Hessian at `p`,
+`dz = IH_x`, `errorSec = 0.5 * quadMap(Z,H)`, `[T,ind]` the tensor file over `totalInt_x`, and the
+remainder loop as printed (l. 168-172): the tensor is `T{i,ind{i}(j)}` but the factor is `dz(j)`,
+the position `j`, not the column `ind{i}(j)`. Sets are interval hulls (`Real.Interval ℝ`) per
+coordinate; `err` is `abs(center) + sum(abs(generators))` of `VerrorDyn`. `quad dz M` is the
+interval `dz.'*M*dz`, `imul` the interval product, `qmap` the hull of `quadMap(Z,H)`, `red` the
+hull of `reduce(VerrorDyn,'adaptive',…)`: all arguments.
 
 # CORA's adaptive third-order remainder multiplies by the wrong factor
 
-`priv_abstractionError_adaptive` at `tensorOrder = 3` (reached from `linReach_adaptive`, l. 449,
-460, 492-539, for `'lin-adaptive'`) takes the right tensor `T{i,ind{i}(j)}` but the factor `dz(j)`
-of the position `j` (l. 171), not `dz(ind{i}(j))`. For `ẋ₁ = x₂³`, `ẋ₂ = 0` over `Rmax = {0} ×
-[-1, 1]` at `p = 0`, `ind{1}` holding column 2 only: the factor is `dz(1)`, the `x₁` range `[0,
-0]`, so for every interval product that maps a zero factor to `[0, 0]` and every reduction fixing
-the zero box, the returned `err` is `0`, while at `x = (0, 1)`, in the set, the Taylor remainder
-of `f₁` is `1`: the error does not enclose it. The row is not the Hessian region: `p` lies in the
-box, and `H(p) = 0`, `A = 0`.
+`priv_abstractionError_adaptive` at `tensorOrder = 3` (reached from `linReach_adaptive`) takes the
+right tensor `T{i,ind{i}(j)}` but the factor `dz(j)` of the position `j` (l. 171), not
+`dz(ind{i}(j))`. For `ẋ₁ = x₂³`, `ẋ₂ = 0` over `Rmax = {0} × [-1, 1]` at `p = 0`, `ind{1}` holding
+column 2 only: the factor is `dz(1)`, the `x₁` range `[0, 0]`, so for every interval product that
+maps a zero factor to `[0, 0]` and every reduction fixing the zero box, the returned `err` is `0`,
+while at `x = (0, 1)`, in the set, the Taylor remainder of `f₁` is `1`: it is not enclosed.
+
+## Inputs
+* `quad` – interval quadratic form
+* `imul` – interval product
+* `qmap` – hull of the quadratic map
+* `red` – hull of the reduction
+
+## Hypotheses
+* `himul` – a zero factor gives a zero product
+* `hqmap` – a zero Hessian gives a zero map
+* `hred` – the zero box is fixed by the reduction
+
+## Conclusion
+* CORA's error is zero while the true remainder at a point of the set is one
 -/
 
 -- Authors:       Claude Opus 5.5

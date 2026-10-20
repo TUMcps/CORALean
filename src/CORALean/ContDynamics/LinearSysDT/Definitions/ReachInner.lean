@@ -7,19 +7,27 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
 /-!
 # An inner approximation of a reachable set
 
-`reachInner` is the computed run minus the error that run accumulated:
-`reachInner_inner` puts it *inside* `reachSetExact`, the opposite direction to every
-other reachability guarantee here, where the computed set is the larger one.
+`reachInner` is the computed run minus the error that run accumulated: `reachInner_inner` puts it
+*inside* `reachSetExact`, the opposite direction to every other reachability guarantee here, where
+the computed set is the larger one. `reachInner` is a `Set` — `minkowskiDiff` is a specification
+and computes nothing — so on its own it is a guarantee about a set rather than an object a later
+step could consume; `reachInnerRep` in `Operations/` is the same difference at a representation.
+`minkDiffAligned` cannot take that place: it asks for equal generator counts and for every error
+generator to be a scaled copy of the run generator at the same index, which earlier boxes carried
+through `A` are not.
 
-What this is, and is not. `reachInner` is a `Set` — `minkowskiDiff` is a
-specification and computes nothing — so on its own it is a guarantee about a
-set rather than an object a later step could consume; `reachInnerRep` in
-`Operations/` is the same difference at a representation.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-`minkDiffAligned` cannot take that place. It asks for equal generator counts —
-the run holds `o * n`, the error one box per reducing step — and for every error
-generator to be a scaled copy of the run generator at the same index, which
-earlier boxes carried through `A` are not.
+## Hypotheses
+* `ho` – order positive
+
+## Output
+* the computed run minus its accumulated error, an inner approximation
 -/
 
 -- Authors:       Claude Sonnet 5

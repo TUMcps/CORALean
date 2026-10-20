@@ -13,18 +13,38 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # The corrected `initReach_inputDependence` holds the first step
 
-`LinParamSys.initReachInputDependence_outer`: for every parameter `p ∈ [-1, 1]ᵏ` shared by the
-system matrix and the constant input, every `x₀ ∈ Rinit` and every `t ∈ [0, r]`, the solution
-`x(t) = e^{A(p) t} x₀ + ∫₀ᵗ e^{A(p)(t-s)} (B u(p) + c) ds`, `u(p)` in input coordinates and `B` any
-member of `sys.B`, lies in the time-interval set, and `x(r)` in the time-point set: the part
-`B_c u(p) + c` that shares the parameters is `dependentHomSol_outer`, and the deviation
-`(B - B_c) u(p)`, in `B_Δ Uconst`, is `inputSolutionZono_outer`.
+For every parameter `p ∈ [-1, 1]ᵏ` shared by the system matrix and the constant input, every
+`x₀ ∈ Rinit` and every `t ∈ [0, r]`, the solution
+`x(t) = e^{A(p) t} x₀ + ∫₀ᵗ e^{A(p)(t-s)} (B u(p) + c) ds`, `B` any member of `sys.B`, lies in the
+time-interval set, and `x(r)` in the time-point set: the part `B_c u(p) + c` is
+`dependentHomSol_outer`, the deviation `(B - B_c) u(p)` is `inputSolutionZono_outer`. The
+time-interval argument is `timeIntervalStep_outer`'s with an input: the state's curvature lies in
+`F Rinit` and the input's in `inputF (B Uconst ⊕ c)`. The last is where CORA's
+`inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its center.
 
-The time-interval argument is `timeIntervalStep_outer`'s with an input: `x(t)` is the point
-`(1 - t/r) x₀ + (t/r) x(r)` of `enclose(Rinit, Rhom_tp)` plus the state's curvature
-`(e^{At} - I - (t/r)(e^{Ar} - I)) x₀ ∈ F Rinit` plus the input's,
-`(∫₀ᵗ e^{As} ds - (t/r) ∫₀ʳ e^{As} ds) (B u(p) + c) ∈ inputF (B Uconst ⊕ c)`. The last is where
-CORA's `inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its center.
+## Inputs
+* `sys` – system
+* `r` – step size
+* `m` – Taylor order minus two
+* `Rinit` – initial zonotope
+* `Uc` – input center
+* `UG` – input generators
+* `p` – shared parameter
+* `B` – input matrix member
+* `x₀` – initial state
+* `t` – time
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – convergence condition holds
+* `hp` – parameters within `[-1, 1]`
+* `hB` – `B` lies in the input matrix set
+* `hx₀` – initial state lies in `Rinit`
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the solution lies in the time-point set at `r` and the time-interval set at `t`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

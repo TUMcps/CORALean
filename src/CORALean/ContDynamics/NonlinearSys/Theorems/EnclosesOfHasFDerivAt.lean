@@ -9,18 +9,23 @@ public import Mathlib.Analysis.Calculus.Deriv.Prod
 /-!
 # An interval Jacobian is a slope enclosure
 
-`FloatModel.Encloses` asks the Jacobian boxes for slopes; this is where a model
-built the usual way — an interval enclosure of the derivative over the box —
-supplies them. Per row `i`, the mean value theorem on the segment from
-`(x', u')` to `(x, u)` gives a point `c_i` of it where the row's derivative equals
-the difference quotient; the segment lies in the box, so the derivative there
-is in the boxes, and row `i` of the slope is row `i` of that derivative. The
-rows come from different points, which is why the slope is asked for in a box of
-matrices, entrywise, and not as one derivative.
+`FloatModel.Encloses` asks the Jacobian boxes for slopes; this is where a model built the usual
+way — an interval enclosure of the derivative over the box — supplies them. Per row `i`, the mean
+value theorem on the segment from `(x', u')` to `(x, u)` gives a point `c_i` where the row's
+derivative equals the difference quotient; the segment lies in the box, so the derivative there
+is in the boxes. The rows come from different points, which is why the slope is asked for in a
+box of matrices, entrywise. The derivative `D` is a continuous linear map on the stacked space.
 
-The derivative is a continuous linear map `D` on the stacked space, related to
-the two matrix blocks by its values, so no conversion between the two is asked of
-a caller.
+## Inputs
+* `fm` – float model
+* `sys` – system
+
+## Hypotheses
+* `hf` – field box encloses field
+* `hJ` – Jacobian boxes enclose derivative
+
+## Conclusion
+* the model encloses the system
 -/
 
 -- Authors:       Claude Opus 5.5

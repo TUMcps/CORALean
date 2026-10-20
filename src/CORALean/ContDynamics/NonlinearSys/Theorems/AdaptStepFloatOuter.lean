@@ -12,6 +12,26 @@ The step `adaptStepFloat` returns is a step of `orderStepFloat` at the time step
 reduced; `orderStepFloat_outer` places every run, and the tuning, whatever it chose, enters only
 through that time step. See [1].
 
+## Inputs
+* `fm` – float Hessian model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `ζδ` – first tuning constant
+* `ζh` – second tuning constant
+* `ζZ` – third tuning constant
+* `ζK` – fourth tuning constant
+* `prec` – precision
+* `bis` – bisection depth
+* `fuel` – iteration bound
+* `s` – loop state
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* time advances and every run of the system lies in the step's sets
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

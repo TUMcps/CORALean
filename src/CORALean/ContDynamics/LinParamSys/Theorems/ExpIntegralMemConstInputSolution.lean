@@ -21,6 +21,24 @@ first through `inputSolution_outer` at the constant input `(t/r) ũ` on the
 segment `[0, ũ]`, the second through
 `expIntegralDiff_mem_intervalConstCorrectionMatrix`.
 
+## Inputs
+* `sys` – system
+* `r` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `uc` – constant input
+* `t` – time
+
+## Hypotheses
+* `hr` – step positive
+* `hε` – order admissible
+* `hA` – `A` lies in the matrix set
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+
+## Conclusion
+* the constant input's contribution by time `t` lies in the enclosure
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

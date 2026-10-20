@@ -16,6 +16,30 @@ If the mean `e^{At} x₀ + ∫₀ᵗ e^{A(t-s)} B u(s) ds` of a `LinProbSys.IsTr
 at least `erf(γ/√2)ⁿ = P[-γ ≤ N(0, 1) ≤ γ]ⁿ`, the bound of [1, Prop. 2] and [1, Sec. V]: the law
 of `x t` is one of the laws of `𝒵`, and `ProbZonotope.zonotope_prob` bounds each of them.
 
+## Inputs
+* `sys` – system
+* `Ω` – sample space
+* `P` – probability measure
+* `T` – time set
+* `X₀` – initial set
+* `U` – input set
+* `x₀` – initial state
+* `u` – input signal
+* `x` – state process
+* `t` – time
+* `Z` – zonotope of means
+* `γ` – confidence cut-off
+
+## Hypotheses
+* `traj` – probabilistic trajectory
+* `ht` – `t` lies in `T`
+* `h0` – time nonnegative
+* `hZ` – the mean lies in `Z`
+* `hγ` – cut-off positive
+
+## Conclusion
+* the state lies in the confidence set with at least the Gaussian probability
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

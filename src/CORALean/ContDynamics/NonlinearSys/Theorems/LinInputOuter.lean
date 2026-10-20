@@ -10,19 +10,33 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 /-!
 # The widened input set holds every input the field can demand
 
-The set-level heart of conservative linearization, and the only place the
-certificate is used: wherever the state is in `R` and the input in `U`, the
-quantity `f(x,u) - A x` — what the linearized system has to be fed to follow
-the nonlinear one — lies in `linInput`.
+The set-level heart of conservative linearization, and the only place the certificate is used:
+wherever the state is in `R` and the input in `U`, the quantity `f(x,u) - A x` — what the
+linearized system has to be fed to follow the nonlinear one — lies in `linInput`. No time
+appears: the statement is about one state and one input, so how long a trajectory stays in `R`
+is the caller's choice. The identity doing the work is
+`f(x,u) - A x = (f(x✱,u✱) - A x✱) + B(u - u✱) + L(x,u)`, whose three summands are the three
+parts `linInput` is built from.
 
-No time appears, which is the point: the statement is about one state and one
-input, so how long a trajectory is asked to stay in `R` is the caller's choice
-rather than this theorem's.
+## Inputs
+* `f` – field
+* `A` – state Jacobian
+* `B` – input Jacobian
+* `xs` – state expansion point
+* `us` – input expansion point
+* `R` – state region
+* `U` – input set
+* `L` – remainder set
+* `cert` – abstraction-error certificate
+* `x` – state
+* `u` – admissible input
 
-The identity doing the work is
-`f(x,u) - A x = (f(x✱,u✱) - A x✱) + B(u - u✱) + L(x,u)`, where the three
-summands are exactly the three parts `linInput` is built from and the `A x✱`
-terms cancel.
+## Hypotheses
+* `hx` – state in region
+* `hu` – input in set
+
+## Conclusion
+* the field less its linear part lies in the input set
 -/
 
 -- Authors:       Claude Opus 5

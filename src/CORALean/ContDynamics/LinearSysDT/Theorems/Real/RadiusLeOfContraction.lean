@@ -16,6 +16,24 @@ worst case over the box, not the peak of a particular disturbance, which can be 
 recursion is the one [1, Thm. 2] gives at every step (`intersectDescriptorHd_pRadius_le`, with its
 block split), unrolled as in the paper's proof (its Eq. 32).
 
+## Inputs
+* `ϱ` – radius sequence
+* `ℓ` – bound sequence
+* `α` – contraction factor
+* `γ` – scaling
+* `ℓd` – disturbance level
+* `k` – step
+
+## Hypotheses
+* `hα0` – contraction factor nonnegative
+* `hα1` – contraction factor below one
+* `hℓd` – disturbance level nonnegative
+* `h21a` – radii contract
+* `h21b` – bounds follow the radii
+
+## Conclusion
+* the bound at step `k` is a geometric term plus the disturbance level
+
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for

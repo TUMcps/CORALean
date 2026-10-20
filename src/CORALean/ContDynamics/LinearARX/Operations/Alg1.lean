@@ -12,6 +12,16 @@ public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
 window of reachable sets at `k = k_init + m p`. The loop bound `k ≤ p + k_h` only says
 when to stop, so every pass is defined; `aux_alg1State` carries the rest of the listing.
 
+## Inputs
+* `sys` – ARX system
+* `yinit` – measured first output window
+* `U` – input sets per step
+* `kinit` – initial step
+* `m` – pass index
+
+## Output
+* the window of reachable sets of the `m`-th pass
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the

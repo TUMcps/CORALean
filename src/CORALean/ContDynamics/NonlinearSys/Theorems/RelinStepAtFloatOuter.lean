@@ -26,6 +26,20 @@ linearized system `δ̇ = A δ + ũ` with `ũ = f(x, u) - A δ` in `linInputFloa
 (`linInputFloat_outer`), from `R - x✱`. `reachFloatInput_outer` and its
 time-point twin place `δ` over the window and at its end, and adding `x✱` back
 places `x`. No certificate and no confinement is asked of the caller.
+
+## Inputs
+* `fm` – float model
+* `sys` – system
+* `U` – input zonotope
+* `options` – reachability options
+* `R` – start zonotope
+* `xs` – expansion point
+
+## Hypotheses
+* `h` – model encloses system
+
+## Conclusion
+* a successful step encloses every run over the step and at its end
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

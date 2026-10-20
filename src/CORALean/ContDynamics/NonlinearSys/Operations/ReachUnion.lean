@@ -13,19 +13,20 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # The re-linearization loop as one union, or a run-time failure
 
-`relinTimeInterval` at steps `0` through `N - 1`, one member of the `SetUnion`
-per step — the `Reach.reach` field of the instance, [1, Alg. 1]'s `R([0, t_f])`.
-`N = (tFinal - tStart) / Δt`, `none` unless it is a positive natural number,
-CORA's integer-steps check, decided in ℝ since `Δt` is the real `discretize`
-takes; `none` too at `ρ = 0`, CORA's `geone`. `η` is a floor,
-raised to what every step's matrix admits. Step `i`'s certificate is conservative
-only while the run stays in `(steps i).R`, so, as CORA does, each step is tested
-before it is trusted, and one failed test makes the answer `none`.
+`relinTimeInterval` at steps `0` through `N - 1`, one member of the `SetUnion` per step — the
+`Reach.reach` field of the instance, [1, Alg. 1]'s `R([0, t_f])`. `N = (tFinal - tStart) / Δt`,
+`none` unless a positive natural number, decided in ℝ; `none` too at `ρ = 0`. `η` is a floor,
+raised to what every step's matrix admits. Each step is tested before it is trusted, as CORA
+does, and one failed test makes the answer `none`: the step's start, inflated by the box
+`‖·‖∞ ≤ 2MΔt`, must lie inside `region i` (`confined_of_ball`).
 
-The test is the one `confined_of_ball` proves sound: the set step `i` starts
-from, inflated by the box `‖·‖∞ ≤ 2MΔt`, inside `region i`. CORA tests the
-time-interval set instead, which closes no induction here: its enclosure is
-proved only for runs already confined over the whole step.
+## Inputs
+* `sys` – system with steps
+* `params` – reachability parameters
+* `options` – reachability options
+
+## Output
+* the union of the step enclosures, or none
 
 ## References
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

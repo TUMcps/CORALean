@@ -20,6 +20,15 @@ its slab `[l₁(1), l₂(1)[` is empty, and line 6 stores it closed as the face 
 It is in the second piece of `B` too, so the answer is not feasible for [1]'s (10) either.
 `PolyZonotope.innerScaling_subset_of_lt` is the statement corrected, at a box that is not flat.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the scaled set leaves the reachable set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets

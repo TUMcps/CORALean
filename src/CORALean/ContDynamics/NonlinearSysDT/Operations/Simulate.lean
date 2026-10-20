@@ -9,6 +9,14 @@ public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 
 `simulate` samples one run directly against `sys.f`, no linearization needed:
 a point computation carrying none of `reach`'s set instances.
+
+## Inputs
+* `sys` – system
+* `x₀` – initial point
+* `u` – input signal
+
+## Output
+* the sampled states at each step
 -/
 
 -- Authors:       Claude Sonnet 5

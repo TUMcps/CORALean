@@ -10,18 +10,28 @@ public import Mathlib.Data.Matrix.Mul
 # `NonlinDASys.jointReachSet`
 
 [1, Prop. 2]: the reachable set of the differential and algebraic variables together,
-
 `R(τₖ) = ([c_d; c_a], [G_d 0 0; -F⁻¹D G_d  -F⁻¹E G_u  -F⁻¹G_l])`,
 `c_a = y* - F⁻¹(g(z*) + D(c_d - x*) + E(c_u - u*) + c_l)`,
-
 from `Rᵈ(τₖ) = (c_d, G_d)`, `U = (c_u, G_u)` and the algebraic linearization errors
 `L̄ᵃ = (c_l, G_l)`. The algebraic part is [1, Eq. 19], `Rᵃ(τₖ)`, kept correlated with the
-differential part through the shared generators `G_d`: tighter than `Rᵈ(τₖ) × Rᵃ(τₖ)`, which
-would repeat them. CORA builds the same zonotope as `R_xy` in `nonlinDASys`'s
-`priv_linError_mixed_noInt`.
+differential part through the shared generators `G_d`: tighter than `Rᵈ(τₖ) × Rᵃ(τₖ)`. CORA
+builds the same zonotope as `R_xy` in `priv_linError_mixed_noInt`. Over the product
+`Vec ℝ n × Vec ℝ p` rather than the stacked `ℝ^{n+p}`; `F⁻¹` is a parameter.
 
-Over the product `Vec ℝ n × Vec ℝ p` rather than the stacked `ℝ^{n+p}`; a generator column
-`[a; b]` is the pair `(a, b)`. `F⁻¹` is a parameter.
+## Inputs
+* `xs` – linearization state
+* `ys` – linearization algebraic variable
+* `us` – linearization input
+* `g₀` – constraint at the linearization point
+* `D` – constraint Jacobian in the state
+* `E` – constraint Jacobian in the input
+* `F_inv` – inverse of the constraint Jacobian in the algebraic variable
+* `R_d` – differential reachable set
+* `U` – input zonotope
+* `L_a` – algebraic linearization errors
+
+## Output
+* the joint zonotope of differential and algebraic variables
 
 ## References
 

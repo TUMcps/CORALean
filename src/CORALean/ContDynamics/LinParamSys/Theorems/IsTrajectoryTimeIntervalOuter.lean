@@ -9,21 +9,44 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # A time-varying run stays in the step enclosure, the drift paid as input
 
-`IsConstTrajectory.timeInterval_outer` at `'varParam'`. The homogeneous half is
-unchanged — `timeIntervalStep` is the box's and knows no member, so freezing
-`Â ∈ construct sys.A` costs nothing there. What changes is the second half:
-`IsTrajectory.toLinearSys` turns the parameter mismatch into input, so the set
-`Vd` has to hold the drift `(A s - Â) x s` as well as `u s`, integrated against
-the frozen exponential.
+`IsConstTrajectory.timeInterval_outer` at `'varParam'`. The homogeneous half is unchanged —
+`timeIntervalStep` is the box's and knows no member, so freezing `Â ∈ construct sys.A` costs
+nothing there. What changes is the second half: `IsTrajectory.toLinearSys` turns the parameter
+mismatch into input, so the set `Vd` has to hold the drift `(A s - Â) x s` as well as `u s`.
+This is not CORA's `'varParam'` branch: `Interval.matPow` admits a different member at each
+factor, tighter than freezing one; `IsTrajectory.timeIntervalStep_outer` proves *that* set sound
+for an input-free run. This is the enclosure freezing gives, sound at every `Â` and with an input.
+`Â` is a free choice; the box's center makes the drift smallest.
 
-This is not CORA's `'varParam'` branch. `Interval.matPow` admits a different
-member at each factor, which is tighter than freezing one and paying the
-mismatch; `IsTrajectory.timeIntervalStep_outer` proves *that* set sound for an
-input-free run, through a Peano–Baker expansion. This is the enclosure freezing
-gives, sound at every `Â` at once and with an input, which that one is not.
+## Inputs
+* `sys` – system
+* `T` – time set
+* `R₀` – initial set
+* `U` – input set
+* `V` – set holding input plus drift
+* `Vd` – set holding the integrated effect
+* `x` – trajectory
+* `u` – input signal
+* `A` – matrix signal
+* `r` – step size
+* `m` – Taylor order minus two
+* `Â` – frozen matrix member
+* `t` – time
 
-`Â` is a free choice; the box's center makes the drift smallest, its radius
-bounding `‖A s - Â‖` uniformly.
+## Hypotheses
+* `traj` – time-varying trajectory
+* `hr` – step positive
+* `hT` – step lies in the time set
+* `hε` – order admissible
+* `hÂ` – `Â` lies in the matrix set
+* `hV` – drift plus input lies in `V`
+* `hVb` – `V` bounded
+* `ht0` – time nonnegative
+* `htr` – time at most the step
+* `hVd` – integrated effect lies in `Vd`
+
+## Conclusion
+* the state at time `t` lies in the step enclosure plus `Vd`
 -/
 
 -- Authors:       Claude Opus 5

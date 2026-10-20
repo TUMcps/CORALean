@@ -13,6 +13,20 @@ The Jacobian of a map affine in `p` in the variable `z` is affine in `p` as well
 `J f_0 + ∑ cᵢ J fᵢ`, generators `rᵢ J fᵢ`, with `J fᵢ = J f(·, eᵢ) - J f(·, 0)` as CORA's
 `aux_parametric` forms it. So for every `p` of the box the Jacobian lies in the matrix zonotope
 `linearize` builds. `z` is the state or the input: `zA` and `zB` are the two cases.
+
+## Inputs
+* `F` – map affine in the parameter
+* `z` – point
+* `I` – parameter box
+* `p` – parameter vector
+
+## Hypotheses
+* `hAff` – the map is affine in the parameter
+* `hd` – the map is differentiable at `z`
+* `hp` – `p` lies in the box
+
+## Conclusion
+* the Jacobian at the parameter lies in the matrix zonotope
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -11,6 +11,14 @@ At step `k` the window moves to `y(k+1..k+p)`, and `y(k+p)` reads the inputs
 `u(k+p), …, u(k)`; `feed u k` stacks them oldest first, block `a` holding `u(k+a)`. It is
 generic in the scalar: at ℝ the input signal of the converted system, at a float type the stored
 values a float run has.
+
+## Inputs
+* `p` – number of lags
+* `u` – inputs
+* `k` – step
+
+## Output
+* the stacked inputs of the converted system at step `k`
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

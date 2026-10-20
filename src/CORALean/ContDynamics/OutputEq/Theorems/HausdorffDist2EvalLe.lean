@@ -11,21 +11,27 @@ public import CORALean.Global.EuclideanHausdorffDist
 # The output-set error a state-space error induces, at the Euclidean norm
 
 [1, Prop. 5]: given `d_H(R(τ_k), R̂(τ_k)) ≤ ε` for the reachable set, the output set has error
-`d_H(Y(τ_k), Ŷ(τ_k)) ≤ ε · ‖C‖₂`, `‖C‖₂` the largest singular value.
-
-[1]'s eq. (43)'s `Y(t) = C R(t) ⊕ WV + q` is `Set.image2 out.eval` here: `out.eval x u =
-C *ᵥ x + D *ᵥ u + k`, `D`, `V` and `k` playing `W`, the disturbance and `q`. Stated for arbitrary
-compact nonempty `X1 X2` and one common `V`, not for a system's `R(τ_k)`/`R̂(τ_k)` by name:
-nothing about *how* `X2` over-approximates `X1` is used, and `V` needs no compactness —
-`hausdorffDist_add_le` asks nothing of the fixed summand.
-
+`d_H(Y(τ_k), Ŷ(τ_k)) ≤ ε · ‖C‖₂`, `‖C‖₂` the largest singular value. [1]'s eq. (43) is
+`Set.image2 out.eval` here: `out.eval x u = C *ᵥ x + D *ᵥ u + k`. Stated for arbitrary compact
+nonempty `X1 X2` and one common `V`: nothing about how `X2` over-approximates `X1` is used.
 `‖C‖₂` is not `‖mulVecLin (toRealMat out.C)‖`: `Vec ℝ n` carries the supremum norm, so that
-operator norm is the largest absolute row sum, not `Def. 5`'s `‖·‖₂`. Reading `C` in the paper's
-own norm needs it conjugated through `toEuclidean` on both sides at once, `aux_toEuclideanCLM`.
+operator norm is the largest absolute row sum. Reading `C` in the paper's norm needs it
+conjugated through `toEuclidean`, `aux_toEuclideanCLM`.
 
-The proof composes two Hausdorff-distance bounds: `hausdorffDist_add_le` peels the shared `D V + k`
-term off both sides, and `hausdorffDist_image_le` bounds what is left, `C`'s part, at the
-Euclidean read of its operator norm.
+## Inputs
+* `out` – output equation
+* `X1` – first state set
+* `X2` – second state set
+* `V` – input set
+
+## Hypotheses
+* `hX1` – first set compact
+* `hX1ne` – first set nonempty
+* `hX2` – second set compact
+* `hX2ne` – second set nonempty
+
+## Conclusion
+* the output sets are as close as the state sets scaled by the matrix norm
 
 ## References
 

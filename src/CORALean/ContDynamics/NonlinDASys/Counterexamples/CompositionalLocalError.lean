@@ -12,15 +12,20 @@ public import Mathlib.Tactic.Linarith
 [1, Sec. V-B] evaluates the Lagrange remainder per subsystem, the neighbours' variables inputs,
 and joins the parts as in [1, Eq. 15]. The error of the dynamics is `ℓᵈ - C F⁻¹ ℓᵃ`
 ([1, Eq. 8], [1, Eq. 10]) with the `F⁻¹` of the full system; where the constraints couple the
-subsystems, `F` is not block diagonal and a subsystem's `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹` is not its block of `C F⁻¹`.
+subsystems, a subsystem's `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹` is not its block of `C F⁻¹`. Take `f(x, y) = y`,
+`g(x, y) = (y₁ - y₂, y₂ - x₂²)` about `0`, subsystem 1 = `(x₁, y₁)` with input `y₂`, subsystem 2 =
+`(x₂, y₂)`: `F = [[1, -1], [0, 1]]`, `ℓᵃ = (0, -x₂²)`, `ℓᵈ = 0`. Subsystem 1 has `C₁ = F₁ = 1` and
+linear rows, so its local error is `0` while the true error of `ẋ₁` is `1` at `x₂ = 1`: the product
+of the local sets misses it. CORA's `priv_linError_mixed_noInt_comp` computes the local one.
 
-`f(x, y) = y`, `g(x, y) = (y₁ - y₂, y₂ - x₂²)` about `0`, subsystem 1 = `(x₁, y₁)` with input
-`y₂`, subsystem 2 = `(x₂, y₂)`. `C = I`, `D = 0`, `F = [[1, -1], [0, 1]]`, `F⁻¹ = [[1, 1], [0, 1]]`,
-`ℓᵃ = (0, -x₂²)`, `ℓᵈ = 0`. At the consistent points `y = (x₂², x₂²)` the dynamics' error
-`f(x, y) - (w + Ã Δx) = y` (`w = 0`, `Ã = 0`) is `ℓᵈ - C F⁻¹ ℓᵃ = (x₂², x₂²)`. Subsystem 1
-has `C₁ = F₁ = 1` and linear rows `f₁ = y₁`, `g₁ = y₁ - y₂`, so its local error is `0` at every
-point while the true error of `ẋ₁` is `1` at `x₂ = 1`: the product of the local sets misses it.
-CORA's `priv_linError_mixed_noInt_comp` computes the local one (`Csub * pinv(Fsub)`).
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the local blocks give zero error while the coupled error is one
 
 ## References
 

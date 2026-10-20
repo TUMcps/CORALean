@@ -27,6 +27,21 @@ exact sum is regrouped as the float one is, Minkowski sums being associative.
 
 `hη` is `OrderAdmissibleFloat` of the interval system `sys.A.matInterval` — a float check.
 
+## Inputs
+* `sys` – system
+* `Δt` – step size
+* `η` – Taylor order
+* `A` – system matrix member
+* `V` – input zonotope
+
+## Hypotheses
+* `hΔt` – step positive
+* `hη` – order admissible
+* `hA` – `A` lies in the matrix zonotope
+
+## Conclusion
+* everything the input contributes over the step lies in the enclosure
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear

@@ -11,6 +11,19 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
 `reach_outer_on`'s induction, off a represented set rather than off one
 trajectory: each step's image at every `A ∈ construct sys.A`, plus every input in
 `construct U`, is exactly what `reach_one_outer` already bounds.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the exact reachable set lies in the computed one
 -/
 
 -- Authors:       Claude Opus 5.5

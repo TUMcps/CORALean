@@ -14,6 +14,15 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 The window `(y_{k-n_p}, …, y_{k-1})` of [1, Cor. 2] is `np` blocks of `ny` coordinates under
 `finProdFinEquiv`, so a sum over its coordinates is a sum over the blocks of a sum over each.
 
+## Inputs
+* `g` – function on the window coordinates
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum over coordinates is the sum over blocks of block sums
+
 ## References
 
 * [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE

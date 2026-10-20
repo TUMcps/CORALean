@@ -10,22 +10,23 @@ public import Mathlib.Tactic.Linarith
 /-!
 # One Lagrange point for all coordinates misses the linearization error
 
-[1, Eq. 10], [1, Eq. 11] and [1, Eq. 20] write the remainder of the linearization as
-`½ σ`, `σᵢ = νᵀ H⁽ⁱ⁾(ξ) ν`, `ξ ∈ R^z`, `ν ∈ R^z_Δ`, with one `ξ` shared by every coordinate
-`i`. The mean value theorem of [1, Eq. 8] gives each row its own `ξ⁽ⁱ⁾`; one shared need not exist.
+[1, Eq. 10], [1, Eq. 11] and [1, Eq. 20] write the remainder of the linearization as `½ σ`,
+`σᵢ = νᵀ H⁽ⁱ⁾(ξ) ν`, `ξ ∈ R^z`, `ν ∈ R^z_Δ`, with one `ξ` shared by every coordinate `i`. The
+mean value theorem of [1, Eq. 8] gives each row its own `ξ⁽ⁱ⁾`; one shared need not exist. Take two
+differential variables and no algebraic ones or inputs: `f(x) = (p(x₁), q(x₁))`,
+`p(x) = x²/2 - x³/3 + x⁴/12`, `q(x) = x⁴/12`, so `p'' = (1 - x)²`, `q'' = x²`. With
+`R^z = [-½, 1]²`, `z* = 0` and `z = (1, 0)` the remainder is `f(z) = (1/4, 1/12)`. The shared-`ξ`
+set holds it only if `½ ν₁²(1 - ξ₁)² = 1/4` and `½ ν₁² ξ₁² = 1/12` for some `ξ₁, ν₁ ∈ [-½, 1]`,
+which forces `2ξ₁² + 2ξ₁ - 1 = 0` while `ν₁² ≤ 1` forces `ξ₁ ≤ ⅓`; the quadratic is negative there.
 
-Two differential variables and no algebraic ones or inputs (an ordinary system, which the
-paper covers as a special case; for [1, Eq. 11] the same `p`, `q` serve as the constraints
-`g = (p(x₁) - y₁, q(x₁) - y₂)`, `F = -I`, whose remainder is the same pair):
-`f(x) = (p(x₁), q(x₁))`, `p(x) = x²/2 - x³/3 + x⁴/12`, `q(x) = x⁴/12`, so
-`p'' = (1 - x)²`, `q'' = x²` (the first four conjuncts certify these derivatives), and the
-Hessians are `diag(p''(ξ₁), 0)`, `diag(q''(ξ₁), 0)`. Take `R^z = [-½, 1]²`, the
-linearization point `z* = 0` inside it, and `z = (1, 0)`. Then `f(z*) = 0`, the Jacobian
-at `z*` is `0`, and the remainder is `f(z) = (1/4, 1/12)`. The shared-`ξ` set holds it only
-if `½ ν₁²(1 - ξ₁)² = 1/4` and `½ ν₁² ξ₁² = 1/12` for some `ξ₁, ν₁ ∈ [-½, 1]` (`R^z_Δ = R^z`
-here), which forces `(1 - ξ₁)² = 3 ξ₁²`, so `2ξ₁² + 2ξ₁ - 1 = 0`, while `ν₁² ≤ 1` forces
-`(1 - ξ₁)² ≥ ½`, so `ξ₁ ≤ ⅓`; the quadratic is negative on `[-½, ⅓]`. Per row the points
-exist, `ξ⁽¹⁾ = 1 - 1/√2`, `ξ⁽²⁾ = 1/√6`.
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* no single Lagrange point reproduces the remainder
 
 ## References
 

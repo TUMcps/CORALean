@@ -20,6 +20,20 @@ in `δ = x - x✱`, a run of `δ̇ = A δ + ũ` from `R - x✱` with `ũ ∈ V`.
 `reachFloatInput_outer` and its time-point twin place `δ` over the window and at its
 end, and adding `x✱` back places `x`. The argument of `relinStepFloat_outer` with
 the input set left to the caller.
+
+## Inputs
+* `sys` – system
+* `A` – state matrix
+* `xs` – expansion point
+* `V` – input zonotope
+* `R` – start zonotope
+* `options` – reachability options
+
+## Hypotheses
+* none
+
+## Conclusion
+* a successful step encloses every run whose field stays in the input
 -/
 
 -- Authors:       Claude Opus 5.5

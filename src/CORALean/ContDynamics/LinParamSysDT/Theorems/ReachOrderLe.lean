@@ -14,6 +14,19 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 `reach` is the same recursion at a set-valued `sys.A`, so the last step still
 ends in a `reduce`, and `reduce_order_le` closes it the same way, without
 touching `k`.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the reachable set has at most `o * n` generators
 -/
 
 -- Authors:       Claude Opus 5

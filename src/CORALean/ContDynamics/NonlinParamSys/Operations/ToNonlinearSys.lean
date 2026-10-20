@@ -12,6 +12,12 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 the two halves `Fin.castAdd` and `Fin.natAdd` split `w` into. The trajectory
 correspondence, in both directions, is `TrajectoryToNonlinearSys.lean` and
 `TrajectoryOfNonlinearSys.lean`.
+
+## Inputs
+* `sys` – parametric system
+
+## Output
+* the nonlinear system with the parameter as extra input
 -/
 
 -- Authors:       Claude Opus 5

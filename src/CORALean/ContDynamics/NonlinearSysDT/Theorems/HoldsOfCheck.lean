@@ -12,6 +12,26 @@ public import CORALean.Specification.Theorems.CheckSound
 set `reach` computed, through the pair's `Contains` or `IsDisjoint`: a `true`, found by
 evaluation, is the specification on the exact state, with nothing left to prove by hand.
 The trajectory still owes `hR`, staying where each step's linearization was certified.
+
+## Inputs
+* `sys` – system
+* `U` – input set
+* `o` – maximum order
+* `steps` – linearization steps
+* `R₀` – initial set
+* `spec` – specification
+* `x` – state trajectory
+* `u` – input trajectory
+* `y` – output trajectory
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – trajectory of the system
+* `hR` – states stay in regions
+
+## Conclusion
+* a passed check gives the specification on the state
 -/
 
 -- Authors:       Claude Opus 5.5

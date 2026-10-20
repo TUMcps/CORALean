@@ -8,21 +8,13 @@ public import CORALean.ContDynamics.Interfaces
 /-!
 # `NonlinearSys.WithSteps` instantiates `ContDynamics` and `Reach`
 
-`params` is `Reach.Params` at real time, `options` `LinearSys.ReachOptions` — each
-step is a linear one, and CORA's `nonlinearSys` reads the same `timeStep`,
-`taylorTerms` and `zonotopeOrder`. `U` stays the system's, since each step's
-certificate is issued for it. `reachExact` is `reachUnionExact` on
-`[0, tFinal - tStart]`, the certificates counted from the run's start, `reach` is
-`reachUnion`, and the guarantee is `reachUnion_outer`. `reach` returns `none` where
-the horizon is no multiple of `Δt`, or a step's linearization could not be
-trusted: the set it starts from, inflated by `2MΔt`, not shown inside its region
-at run time. That test is what lets `reach_outer` hold with no confinement
-hypothesis on any run. `ConvexSet` and `CompactSet` are asked of the
-representation, as `NeurNetContrSys`'s instance asks them, and discharge every side
-condition the linear step would otherwise put in `options`.
-
-`NonlinearSys` is a `ContDynamics`: every one of the `m` arguments of `f` an input, no
-disturbance, a run a `IsTrajectory`.
+`params` is `Reach.Params` at real time, `options` `LinearSys.ReachOptions`. `U` stays the
+system's, since each step's certificate is issued for it. `reachExact` is `reachUnionExact` on
+`[0, tFinal - tStart]`, `reach` is `reachUnion`, and the guarantee is `reachUnion_outer`.
+`reach` returns `none` where the horizon is no multiple of `Δt`, or a step's start, inflated
+by `2MΔt`, is not shown inside its region at run time; that test lets `reach_outer` hold with
+no confinement hypothesis on any run. `ConvexSet` and `CompactSet` are asked of the
+representation. `NonlinearSys` is a `ContDynamics`: no disturbance, a run an `IsTrajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5

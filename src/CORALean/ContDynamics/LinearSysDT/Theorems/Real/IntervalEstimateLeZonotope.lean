@@ -18,6 +18,25 @@ Its Eq. 34b prints the generators `E`, `-LF`, for the sets `⟨0, D_w⟩`, `⟨0
 [1, Eq. 9]; read, as the proof's Eq. 50 uses them, as `E W` and `(-LF) V`. By induction
 `x̂_k + Ω_k ⊆ Z_k` (its Eq. 52), and the box of Alg. 1 is the hull of `Ω_k`.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `u` – inputs
+* `y` – measurements
+* `Z` – zonotopes of the zonotope method
+* `k` – step
+* `i` – coordinate
+
+## Hypotheses
+* `hZ0` – `X₀` lies in the first zonotope
+* `hZ` – every zonotope encloses the next step
+
+## Conclusion
+* the estimator's box lies within the zonotope method's box
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

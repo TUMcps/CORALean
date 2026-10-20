@@ -9,6 +9,21 @@ public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
 
 `M ⟨c, G diag(α)⟩ = ⟨M c, M G diag(α)⟩`: the image keeps the stretch factors, so the
 factors stay the unknowns after every linear map the reachable set applies.
+
+## Inputs
+* `m` – domain dimension
+* `m'` – image dimension
+* `ι` – generator index type
+* `M` – linear map
+* `c` – center
+* `G` – template generators
+* `α` – stretch factors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image is the template with mapped center and generators
 -/
 
 -- Authors:       Claude Opus 5.5

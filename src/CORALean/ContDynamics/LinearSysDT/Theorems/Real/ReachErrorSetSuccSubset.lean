@@ -16,6 +16,20 @@ dynamics [1, Eq. 14] on sets. The proofs of [1, Thm. 6], [1, Thm. 7] and [1, Thm
 of the two sums are the new `E W`, `(-LF) V`; the others and `(A - LC)ᵏ⁺¹ Ω₀` are `A - LC`
 applied to a point of `Ω_k`.
 
+## Inputs
+* `sys` – system
+* `L` – observer gain
+* `X₀` – initial zonotope
+* `W` – disturbance zonotope
+* `V` – noise zonotope
+* `k` – step
+
+## Hypotheses
+* none
+
+## Conclusion
+* the next error set lies in the propagated error plus disturbance and noise
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

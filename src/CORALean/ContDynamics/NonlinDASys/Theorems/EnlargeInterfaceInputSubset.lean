@@ -19,6 +19,18 @@ interface part of `Û` holds that of `U`: `Λ U ⊆ Λ Û`, since `Λ ((λ_U - 1
 `U ⊆ Û` itself is not claimed: `Û` scales the interface coordinates only, which breaks any
 correlation of `U` between them and the others.
 
+## Inputs
+* `lamU` – enlargement factor
+* `Λ` – interface selection matrix
+* `U` – input zonotope
+
+## Hypotheses
+* `hlam` – enlargement factor at least one
+* `hΛ` – interface matrix idempotent
+
+## Conclusion
+* the interface part of the input set lies in that of the enlarged set
+
 ## References
 
 * [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets".

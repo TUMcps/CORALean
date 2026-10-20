@@ -16,6 +16,24 @@ public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 difference is inside `Z̲_k ⊖ EW ⊆ X_k ⊖ EW`, and [1, Eq. 4] reads the rest. `A` is
 invertible, [1]'s assumption A3.
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `E` – disturbance matrix
+* `K` – offset
+* `U` – input zonotope
+* `W` – disturbance set
+* `Z₀` – target zonotope
+* `σ` – alignment choice per zonotope
+* `k` – step
+
+## Hypotheses
+* `hA` – state matrix invertible
+* `hσ` – alignments inside the scaling range and around the disturbance set
+
+## Conclusion
+* the aligned recursion lies inside the robust backward reachable set
+
 ## References
 
 * [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward

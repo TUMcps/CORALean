@@ -9,6 +9,22 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
 
 `reach_outer` is the total case of `reach_outer_on`, `K := k` and `le_rfl` away
 via `aux_toCanonicalTrajectoryOn`, so nothing here is proved twice.
+
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `k` – step
+
+## Hypotheses
+* `ho` – order positive
+* `traj` – discrete-time trajectory
+
+## Conclusion
+* the state at step `k` lies in the reachable set
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

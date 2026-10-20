@@ -17,6 +17,20 @@ conjugates to `V e^{Λs} V⁻¹`, so the integrand is `V e^{Λs} D e^{Λs} Vᵀ`
 exponent, is not this covariance (`initReachCov_lt_noiseCovariance`). The noise covariance is
 the one [1, Sec. II] recalls for `ẋ = Ax + u + Cξ`.
 
+## Inputs
+* `A` – system matrix
+* `V` – eigenvector matrix
+* `lambda` – eigenvalues
+* `C` – noise matrix
+* `r` – step size
+
+## Hypotheses
+* `hV` – eigenvector matrix invertible
+* `hA` – `V` and `lambda` diagonalize `A`
+
+## Conclusion
+* the corrected input covariance is the one-step noise covariance
+
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems

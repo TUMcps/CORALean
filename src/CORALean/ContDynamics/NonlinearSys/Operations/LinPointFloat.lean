@@ -18,6 +18,15 @@ Nothing is rounded in a direction that matters. The point only has to be *some*
 point, since no guarantee depends on where a step linearizes; the run pays for a
 poor one in a larger remainder, never in soundness.
 
+## Inputs
+* `fm` – float model
+* `Δt` – step size
+* `R` – start zonotope
+* `U` – input zonotope
+
+## Output
+* the float state and input expansion points
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

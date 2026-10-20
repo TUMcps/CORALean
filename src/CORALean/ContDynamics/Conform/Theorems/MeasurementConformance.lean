@@ -13,6 +13,21 @@ exact output is reachable (measurement conformance); if `y ⊕ V` misses an oute
 approximation, it is not (a falsification). Neither needs the exact reachable set,
 which is the point of Fig. 2.
 
+## Inputs
+* `α` – additive group
+* `R` – exact reachable set
+* `Ru` – inner approximation
+* `Ro` – outer approximation
+* `V` – error set
+* `y` – measurement
+* `yt` – exact output
+
+## Hypotheses
+* `hyt` – exact output lies in `y ⊕ V`
+
+## Conclusion
+* an inner approximation certifies reachability, an outer one refutes it
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

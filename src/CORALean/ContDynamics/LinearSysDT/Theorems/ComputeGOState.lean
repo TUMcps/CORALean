@@ -10,6 +10,22 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.IsTrajectoryStateEq
 
 `x(k+1) = A{k} x(0) + ∑_j B{k,j} u(j)`, for every run of the system, whatever its sets: the
 `A` and `B` of the GO model are exactly the coefficients of the closed form of the state.
+
+## Inputs
+* `sys` – system
+* `R₀` – initial set
+* `U` – input set
+* `x` – trajectory
+* `u` – input signal
+* `out` – output equation
+* `nk` – number of steps
+* `k` – step index
+
+## Hypotheses
+* `h` – discrete-time trajectory
+
+## Conclusion
+* the next state is the initial-state term plus weighted inputs
 -/
 
 -- Authors:       Claude Opus 5.5

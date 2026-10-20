@@ -12,22 +12,29 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 /-!
 # The float inner approximation of a reachable set
 
-`reachInner_inner` at the float layer: `reachInnerFloat` puts the computed
-float run's own error back off the run, and the result lands *inside*
-`reachSetExact` — the exact, real-valued reachable set read from the nominal parts
-of `R₀` and `U` — which is the same reversed direction `reachInner_inner`
-states, now for a run computed in a machine scalar.
+`reachInner_inner` at the float layer: `reachInnerFloat` puts the computed float run's own error
+back off the run, and the result lands *inside* `reachSetExact` — the exact, real-valued reachable
+set read from the nominal parts of `R₀` and `U` — the same reversed direction `reachInner_inner`
+states, now for a run computed in a machine scalar. The bridge is `reachSetExact_inner_of_outer`
+again: `reach_float_subset_reachSetExact_add_error` supplies the enclosure, and every further
+hypothesis is a fact about the nominal zonotopes, already in the tree at `Real`. New relative to
+`Real` are `hR₀`, `hU`: a float run's own error box has no guaranteed shape, so they are asked of
+the caller.
 
-The bridge is `reachSetExact_inner_of_outer` again, discharged the same way:
-`reach_float_subset_reachSetExact_add_error` supplies the enclosure, and every
-further hypothesis is a fact about the *nominal* zonotopes `R₀` and `U`
-denote, already in the tree at `Real`. `reachErrorFloat k` is a real zonotope,
-so nonempty and bounded come from `center_mem_construct` and
-`isBounded_construct` exactly as at `reachInner_inner`.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial float zonotope
+* `U` – input float zonotope
+* `k` – step
 
-What is new relative to `Real` is `hR₀`, `hU`: a float run's own error box has
-no guaranteed shape, so the two hypotheses `reach_float_subset_reachSetExact_add_error`
-needs are asked of the caller here rather than derived.
+## Hypotheses
+* `ho` – order positive
+* `hR₀` – initial error box contains the origin
+* `hU` – input error box contains the origin
+
+## Conclusion
+* the float inner approximation lies in the exact reachable set
 -/
 
 -- Authors:       Claude Opus 5

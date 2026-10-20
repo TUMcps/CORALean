@@ -7,22 +7,27 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
 /-!
 # An inner approximation whose subtrahend has a bounded description
 
-`reachInner` with `reachErrorReduced` in place of `reachError`. Same guarantee
-— `reachInnerReduced_inner` puts it inside `reachSetExact`, exactly as
-`reachInner_inner` does — and a strictly weaker one in content:
-`reachInnerReduced_subset_reachInner` says this is the smaller set, because
-reducing the error can only grow what is taken off.
+`reachInner` with `reachErrorReduced` in place of `reachError`. Same guarantee —
+`reachInnerReduced_inner` puts it inside `reachSetExact` — and a weaker one in content:
+`reachInnerReduced_subset_reachInner` says this is the smaller set, because reducing the error can
+only grow what is taken off. What is bought is cost: `reachError` holds `k * n` generators, so past
+`k = o` the subtrahend of `reachInner` grows without bound; `reachErrorReduced_h_le` holds this one
+at `o * n`. A `Set` and not a representation, as `reachInner` is: `minkowskiDiff` is a
+specification and computes nothing. `minkDiffRep` would take a reduced error as readily, and needs
+a generator representation `M` from the caller.
 
-What is bought for that is cost. `reachError` holds `k * n` generators, so past
-`k = o` the subtrahend of `reachInner` is described more expensively than the
-run it comes off, and grows without bound; `reachErrorReduced_h_le` holds this
-one at `o * n` at every horizon. A caller who wants the tightest inner
-approximation takes `reachInner`; a caller who wants one whose description does
-not outgrow the run takes this.
+## Inputs
+* `sys` – system
+* `o` – maximum zonotope order
+* `R₀` – initial zonotope
+* `U` – input zonotope
+* `k` – step
 
-A `Set` and not a representation, as `reachInner` is: `minkowskiDiff` is a
-specification and computes nothing. `minkDiffRep` would take a reduced error as
-readily, and needs a generator representation `M` from the caller to do it.
+## Hypotheses
+* `ho` – order positive
+
+## Output
+* the computed run minus its reduced error, a smaller inner approximation
 -/
 
 -- Authors:       Claude Sonnet 5

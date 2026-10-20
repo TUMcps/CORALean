@@ -8,19 +8,13 @@ public import CORALean.ContDynamics.Interfaces
 /-!
 # `NonlinParamSys.WithSteps` instantiates `ContDynamics` and `Reach`
 
-`params` and `options` are the augmented `NonlinearSys.WithSteps` run's own,
-`Reach.Params` at real time and `LinearSys.ReachOptions`, `X₀` lifted to `X₀ × P`
-inside `reach`. `reachExact` is `reachUnionExact` on `[0, tFinal - tStart]`, the
-constant-parameter reachable set; `reach` is `reachUnion`, the augmented-state run
-projected back; the guarantee is `reachUnion_outer`. `reach` returns `none` exactly
-where the augmented run does: a horizon no multiple of `Δt`, or some step's
-start, inflated by `2MΔt`, not shown inside its region, tested in dimension `n + q`,
-the parameter's coordinates with the state's. `ConvexSet` and `CompactSet` are asked
-of the representation for the same reason as there.
-
-`NonlinParamSys` is a `ContDynamics`: `m` inputs, and the `q` parameters as the disturbance, a
-fresh `p t` in the parameter set at every instant, as `IsTrajectory` reads them; a constant-
-parameter run is one.
+`params` and `options` are the augmented `NonlinearSys.WithSteps` run's own, `X₀` lifted to
+`X₀ × P` inside `reach`. `reachExact` is `reachUnionExact` on `[0, tFinal - tStart]`, the
+constant-parameter reachable set; `reach` is `reachUnion`, the augmented-state run projected
+back; the guarantee is `reachUnion_outer`. `reach` returns `none` exactly where the augmented
+run does, tested in dimension `n + q`. `NonlinParamSys` is a `ContDynamics`: `m` inputs, and
+the `q` parameters as the disturbance, a fresh `p t` in the parameter set at every instant, as
+`IsTrajectory` reads them.
 -/
 
 -- Authors:       Claude Opus 5.5

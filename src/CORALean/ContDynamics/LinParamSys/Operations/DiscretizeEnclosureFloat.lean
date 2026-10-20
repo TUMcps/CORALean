@@ -14,6 +14,14 @@ is `[e^{AΔt}]` over the whole box, `expIntervalFloat` at the point range
 `[Δt, Δt]`, so the result is a `LinParamSysDT` over float interval matrices,
 whose `reach` runs as it stands.
 
+## Inputs
+* `sys` – system
+* `Δt` – sampling time
+* `η` – Taylor order
+
+## Output
+* the discrete-time system with the float-enclosed exponential
+
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
