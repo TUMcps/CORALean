@@ -11,6 +11,15 @@ public import CORALean.Global.CoeffNorm
 `G = id` on `ℝ` (any `p`, `E_p(G) = [-1, 1]`) the circle is `{-1, 1}`, which misses `0`.
 The unit ball is meant (`coeffNorm_ball_eq`).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the unit circle of the identity's coefficient norm differs from the image of the unit ball
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

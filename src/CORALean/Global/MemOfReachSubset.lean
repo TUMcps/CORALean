@@ -10,14 +10,28 @@ public import CORALean.Global.RobustInvariant
 What the verification of a region of attraction in [1, Sec. 3.1.2] shows: if `S` is robust
 positively invariant (`RobustInvariant`) and the reachable set from `R(0)` lies in `S` at one
 time, `∃ t > 0 : R(t) ⊆ S`, then every solution from `R(0)` is in `S` at every later time. That
-is the conclusion the criterion supports; that the solution converges, which the region of
-attraction `D` asks for, it does not (`regionOfAttraction_counterexample`).
+the solution converges, which the region of attraction `D` asks for, it does not show
+(`regionOfAttraction_counterexample`). The argument restarts the solution at `t`: the system of
+[1, Eq. 4] is time-invariant with a unique solution [1, Sec. 3.1], so
+`γ(t + s, x₀, u) = γ(s, γ(t, x₀, u), u(t + ·))` (`hγ`), and the shifted input is admissible (`hU`),
+as for the input sets of [1, Sec. 3.3]. `R(t) ⊆ S` is stated pointwise.
 
-The argument restarts the solution at `t`: the system of [1, Eq. 4] is time-invariant with a
-unique solution [1, Sec. 3.1], so `γ(t + s, x₀, u) = γ(s, γ(t, x₀, u), u(t + ·))` (`hγ`), and
-the shifted input is admissible (`hU`), as it is for the input sets of [1, Sec. 3.3], which do
-not depend on time. `R(t) ⊆ S` is stated pointwise, `γ(t, x₀, u) ∈ S` for `x₀ ∈ R(0)` and
-`u ∈ U`.
+## Inputs
+* `γ` – flow of the system
+* `U` – set of admissible inputs
+* `S` – robust invariant set
+* `R₀` – set of initial states
+* `t` – time
+
+## Hypotheses
+* `hS` – the set is robust positively invariant
+* `hγ` – the flow is time-invariant
+* `hU` – shifted inputs are admissible
+* `ht` – the time is nonnegative
+* `hR` – states from the initial set are in the set at the time
+
+## Conclusion
+* every solution from the initial set stays in the set from the time on
 
 ## References
 

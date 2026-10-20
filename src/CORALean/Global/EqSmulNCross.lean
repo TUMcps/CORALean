@@ -19,6 +19,18 @@ The scalar comes out of the Gram relation: `(z ⬝ᵥ nX) • z - (z ⬝ᵥ z) �
 annihilates `z` and every column, hence the whole space those span, hence
 itself, hence is zero.
 
+## Inputs
+* `H` – matrix of the given vectors as columns
+* `z` – vector annihilating them
+
+## Hypotheses
+* `hz` – the vector is nonzero
+* `hcol` – the vector is orthogonal to every column
+* `hind` – the columns are linearly independent
+
+## Conclusion
+* the vector is a nonzero multiple of the cross product
+
 ## References
 
 * [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".

@@ -14,6 +14,19 @@ continuous path from `y` to `z` meets `∂E`. The proof is the paper's: the path
 connected, so it cannot lie in the disjoint open sets `int E` and `(closure E)ᶜ` once it
 misses the frontier.
 
+## Inputs
+* `K` – closed set
+* `w` – path
+
+## Hypotheses
+* `hK` – the set is closed
+* `hw` – the path is continuous on the unit interval
+* `h0` – the path starts in the interior
+* `h1` – the path ends outside the set
+
+## Conclusion
+* the path meets the frontier at some time
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

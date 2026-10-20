@@ -12,6 +12,17 @@ public import Mathlib.Analysis.Normed.Field.Basic
 The dividend's `s`-bit shift and the exponent's `-s` cancel, at any `s`, which
 is what leaves an integer quotient facing a real one — the whole content of
 division going the way it says, shared by `quotDown_le_div` and `le_quotUp`.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+* `s` – shift in bits
+
+## Hypotheses
+* `hb` – the divisor's mantissa is nonzero
+
+## Conclusion
+* the real quotient is the shifted integer quotient at the adjusted scale
 -/
 
 -- Authors:       Claude Opus 5

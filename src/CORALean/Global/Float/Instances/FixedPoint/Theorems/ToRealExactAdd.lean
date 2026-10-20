@@ -14,6 +14,16 @@ public import Mathlib.Tactic.Positivity
 cross-multiplied sum read back. What
 `SoundFloatArithmetic.add_le_addUp`/`addDown_le_add` compose with the
 rounding step to get.
+
+## Inputs
+* `a` – first addend
+* `b` – second addend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact sum denotes the real sum
 -/
 
 -- Authors:       Claude Opus 5.5

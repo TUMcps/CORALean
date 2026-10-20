@@ -13,16 +13,24 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 /-!
 # The linear relaxation bounds the containment radius
 
-[1, Thm. 15 (relaxation)]: for `H` surjective,
-`LR_q(G, H) = min_{HX = G} ‖X‖_{L⊤₁,q}` (Eq. 29) is a minimum, attained, and bounds the radius
-from above, `r(Z(G), E_q(H)) ≤ LR_q(G, H)` (the first inequality of Eq. 30). `‖X‖_{L⊤₁,q}` is
-the `q`-norm of the vector of `X`'s rows' absolute sums, `HX = G` reads `G α = H (X α)` for
-every `α`, and `r` is the maximum over the cube of the ellipsotope norm `coeffNorm H`. The
-feasible set is closed and `‖X‖_{L⊤₁,q}` bounds every entry, so the minimum is over a compact
-piece of it; a minimizer `X` gives every `G α` the preimage `X α`, whose `q`-norm is at most
-`‖X‖_{L⊤₁,q}` on the cube. `LR_q ≤ 1` then gives `Z(G) ⊆ E_q(H)`, which
-`zonotope_subset_ellipsotope_of_lr` proves from any feasible `X`. The bound is also the half
-`r ≤ LR_q` of [1, Thm. 16]'s equality.
+[1, Thm. 15 (relaxation)]: for `H` surjective, `LR_q(G, H) = min_{HX = G} ‖X‖_{L⊤₁,q}` (Eq. 29) is
+a minimum, attained, and bounds the radius from above, `r(Z(G), E_q(H)) ≤ LR_q(G, H)` (the first
+inequality of Eq. 30). `‖X‖_{L⊤₁,q}` is the `q`-norm of the vector of `X`'s rows' absolute sums,
+`HX = G` reads `G α = H (X α)` for every `α`, and `r` is the maximum over the cube of
+`coeffNorm H`. The feasible set is closed and the norm bounds every entry, so the minimum is over
+a compact piece; a minimizer `X` gives every `G α` the preimage `X α`. `LR_q ≤ 1` then gives
+`Z(G) ⊆ E_q(H)`, which `zonotope_subset_ellipsotope_of_lr` proves from any feasible `X`.
+
+## Inputs
+* `q` – exponent of the coefficient norm
+* `G` – zonotope generator map
+* `H` – ellipsotope generator map
+
+## Hypotheses
+* `hH` – the ellipsotope generator map is onto
+
+## Conclusion
+* the relaxation value is attained and bounds every containment radius from above
 
 ## References
 

@@ -11,6 +11,16 @@ public import Mathlib.Algebra.Ring.CharZero
 A mantissa scaled by `2 ^ (f - e)` and read at `e` is that number read at `f`.
 Shared by `toReal_align` and `toReal_exactAdd`, both of which move a dyadic
 from its own exponent onto a common, smaller one.
+
+## Inputs
+* `e` – smaller exponent
+* `f` – larger exponent
+
+## Hypotheses
+* `h` – the smaller exponent is at most the larger
+
+## Conclusion
+* the power for the gap times the power at the smaller exponent is the power at the larger
 -/
 
 -- Authors:       Claude Opus 5

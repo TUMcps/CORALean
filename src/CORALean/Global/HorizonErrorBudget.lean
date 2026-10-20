@@ -9,21 +9,26 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `Prop. 2`: a particular-solution error budget over a fixed horizon
 
-[1, Prop. 2]: if `ε_P` decreases superlinearly (Def. 1), for any `ε_{P,max}>0`
-there is a sequence of time intervals whose errors sum below it. [1]'s own
-proof needs more than `SuperlinearDecrease` supplies: read at one reference
-length, that predicate only bounds `ε_P(Δt)` by the *line through*
-`(Δt_ref, ε_P(Δt_ref))`, which a linear `ε_P` already satisfies with equality —
-so no plain reading of Def. 1 rules out a fixed positive limit for
-`ε_P(Δt)/Δt` as `Δt→0`, and no `ε_{P,max}` budget could then be met. What the
-construction below needs, and what [1]'s "superlinear" has to mean for its own
-claim to hold, is `ε_P(Δt)/Δt → 0` — `Assumption 1`'s convergence, of the
-*ratio* rather than of `ε_P` itself.
+[1, Prop. 2]: if `ε_P` decreases superlinearly (Def. 1), for any `ε_{P,max}>0` there is a
+sequence of time intervals whose errors sum below it. [1]'s proof needs more than
+`SuperlinearDecrease` supplies: that predicate only bounds `ε_P(Δt)` by the line through
+`(Δt_ref, ε_P(Δt_ref))`, which a linear `ε_P` satisfies with equality, so no `ε_{P,max}` budget
+could then be met. What the construction needs, and what [1]'s "superlinear" has to mean, is
+`ε_P(Δt)/Δt → 0`, `Assumption 1`'s convergence of the *ratio*. Proved over a fixed horizon `t_f`,
+covered by finitely many steps summing to it exactly: the reading `Thm. 1` needs.
 
-Proved over a fixed horizon `t_f`, covered by finitely many steps summing to it
-exactly: the reading `Thm. 1` needs, not the weaker "some sequence exists, of
-whatever total length", which `Assumption 1` alone already gives for free and
-which is not the claim at stake here.
+## Inputs
+* `εP` – particular-solution error as a function of step length
+* `tf` – horizon
+* `εPmax` – error budget
+
+## Hypotheses
+* `hεP_ratio` – the error ratio tends to zero with the step length
+* `htf` – the horizon is positive
+* `hεPmax` – the budget is positive
+
+## Conclusion
+* a finite partition of the horizon has step errors summing within the budget
 
 ## References
 

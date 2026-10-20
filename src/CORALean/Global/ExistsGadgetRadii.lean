@@ -17,6 +17,17 @@ and the lemma states `L > n - 1`: the inequalities it splits into are strict for
 is what is proved. The lemma is stated for `n ∈ ℕ \ {1}`; at `n = 0` no such `L` exists, the right
 side of Eq. 67 being positive and `L` negative, so `n ≥ 2` is the hypothesis, the paper's `n > 1`.
 
+## Inputs
+* `n` – dimension
+* `p` – norm exponent
+
+## Hypotheses
+* `hn` – the dimension is at least two
+* `hp` – the exponent exceeds one
+
+## Conclusion
+* radii `L` and `ϱ` exist in the stated ranges and satisfy both gadget equations
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

@@ -8,6 +8,17 @@ public import Mathlib.Analysis.Normed.Lp.PiLp
 # The `q`-norm is monotone in the absolute values
 
 `|aᵢ| ≤ bᵢ` for all `i` gives `‖a‖_q ≤ ‖b‖_q`, for every `q ≥ 1` including `∞`.
+
+## Inputs
+* `q` – exponent
+* `a` – first vector
+* `b` – second vector
+
+## Hypotheses
+* `h` – each entry of the first vector is bounded by the second in absolute value
+
+## Conclusion
+* the norm of the first vector is at most that of the second
 -/
 
 -- Authors:       Claude Opus 5.5

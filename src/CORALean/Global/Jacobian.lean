@@ -12,6 +12,13 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 The matrix of the Fréchet derivative of `g : ℝⁿ → ℝᵐ` at `x`, the `∂g/∂x` of CORA's symbolic
 `jacobian` files. `fderiv` is `0` where `g` is not differentiable, so a statement about this
 matrix assumes differentiability where it needs it.
+
+## Inputs
+* `g` – map
+* `x` – point
+
+## Output
+* the matrix of the map's Fréchet derivative at the point
 -/
 
 -- Authors:       Claude Opus 5.5

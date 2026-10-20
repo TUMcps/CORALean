@@ -14,6 +14,15 @@ public import Mathlib.Data.Int.ConditionallyCompleteOrder
 `RoundDownLe`'s mirror: at or below `f` digits `roundUp` only pads with zeros,
 exact by `toReal_align`; past it, the ceiling is the floor of the negation,
 and `Int.ediv_mul_le` applied there gives the same fact the other way.
+
+## Inputs
+* `x` – fixed-point value
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding up does not decrease the value
 -/
 
 -- Authors:       Claude Opus 5.5

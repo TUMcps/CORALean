@@ -15,6 +15,22 @@ public import Mathlib.Tactic.Linarith
 nonnegative is elementwise nonnegative for all `k` once `x_0` is. By induction, a nonnegative
 matrix mapping nonnegative vectors to nonnegative vectors.
 
+## Inputs
+* `A` – nonnegative matrix
+* `x` – state sequence
+* `w` – input sequence
+* `k` – step
+* `i` – coordinate
+
+## Hypotheses
+* `hA` – the matrix is nonnegative
+* `hw` – the inputs are nonnegative
+* `h0` – the initial state is nonnegative
+* `hstep` – the states follow the recurrence
+
+## Conclusion
+* the state's coordinate at the step is nonnegative
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

@@ -17,9 +17,7 @@ the declaration and not listed. `## Hypotheses` lists the `Prop` binders the sam
 
 Exempt: `Basic.lean`, `API.lean`, `Instances.lean`, `Interfaces.lean`, and every file with no
 `MAIN THEOREM` / `MAIN DEFINITION` banner (`MAIN TYPE`, `MAIN INSTANCE`, `INSTANCES`, files that
-declare nothing). Files not yet converted are listed in `scripts/io-doc-allowlist.txt`, one path
-per line; the list only shrinks, and an entry whose file now conforms (or is exempt, or gone) is
-reported as stale.
+declare nothing). There is no allowlist: every other file conforms.
 
 Which binder is a `Prop` is decided by a text proxy, since no elaboration happens here. A binder
 is a hypothesis when
@@ -39,8 +37,7 @@ Known limits: a `Prop` binder with a name not starting with `h`, a type with no 
 and a head not listed (`(P : Foo Z)` for a `Prop` structure `Foo`) is taken for an input; a data
 binder named `h…` whose type is headed by a data type but contains a depth-0 relation symbol
 (`(hull : Set X ⊆ ..)`) is taken for a hypothesis; a data binder whose type has a depth-0 relation symbol in an unparenthesised
-set-builder is taken for a hypothesis. The cure for each is to rename the binder, or to put the
-file on the allowlist and say why in the issue.
+set-builder is taken for a hypothesis. The cure for each is to rename the binder.
 
 The number types `ℝ≥0∞`, `ℝ≥0`, `ℚ≥0` are read as plain number types: their `≥` is not a relation
 symbol. (Without this, `(f : α → ℝ≥0∞)` was sorted into the hypotheses.) A dependent family
@@ -67,7 +64,6 @@ ROOT = Path(__file__).resolve().parent.parent
 args = sys.argv[1:]
 if "--root" in args:
     ROOT = Path(args[args.index("--root") + 1]).resolve()
-LIST = ROOT / "scripts/io-doc-allowlist.txt"
 
 EXEMPT_NAMES = {"Basic.lean", "API.lean", "Instances.lean", "Interfaces.lean"}
 BANNER = re.compile(r"^-- =+  MAIN (THEOREM|DEFINITION)  =+ --$")
@@ -427,33 +423,14 @@ def files():
 
 
 def main():
-    allow = {}
-    if LIST.exists():
-        for n, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
-            if l.strip() and not l.startswith("#"):
-                allow[l.strip()] = n
-    findings, seen, hit = [], set(), set()
+    findings = []
     for p in files():
         rel = p.relative_to(ROOT).as_posix()
-        text = p.read_text(encoding="utf-8")
-        res = check(rel, text)
-        seen.add(rel)
-        if res is None:
-            continue
-        if rel in allow:
-            if res:
-                hit.add(rel)
-            continue
-        for r in res:
+        res = check(rel, p.read_text(encoding="utf-8"))
+        for r in res or []:
             findings.append(f"{rel}:{r}")
-    for rel, n in allow.items():
-        if rel not in seen:
-            findings.append(f"scripts/io-doc-allowlist.txt:{n}: stale entry `{rel}` — no such file")
-        elif rel not in hit:
-            findings.append(f"scripts/io-doc-allowlist.txt:{n}: stale entry `{rel}` — the file "
-                            f"conforms or is exempt; the list only shrinks")
     if "--list" in args:
-        print("\n".join(sorted(hit | {f.split(":")[0] for f in findings if f.startswith("src/")})))
+        print("\n".join(sorted({f.split(":")[0] for f in findings})))
         return 0
     if findings:
         print("\n".join(findings))

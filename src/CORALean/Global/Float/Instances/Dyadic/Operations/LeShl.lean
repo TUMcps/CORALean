@@ -9,6 +9,14 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 
 For `n ≠ 0` and `g` above the bit length of `m`, `|n| * 2 ^ g` exceeds `|m|` and only the sign of
 `n` decides, so the power is formed only when `g` is at most the bit length of `m`.
+
+## Inputs
+* `m` – integer mantissa
+* `n` – integer factor
+* `g` – shift
+
+## Output
+* whether the mantissa is at most the factor times the power of two, without forming the power
 -/
 
 -- Authors:       Claude Sonnet 5.5

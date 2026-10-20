@@ -9,20 +9,15 @@ public import CORALean.Global.MeasureProdViolationLt
 /-!
 # The reliability of an identified interval predictor model
 
-[1, Thm. 3]: data `x(t) = (ϕ(t), y(t))`, `t = 1, …, N`, independent with marginal `P` (Assumptions
-1-2), a convex Problem 1′ in `d` variables `Q ∈ 𝒬` with cost `μ_Q` and constraints
-`y(t) ∈ I_Q(ϕ(t))`, `t ∈ A(D_N)`, kept by any algorithm `A` discarding `k < N - d` of them, and
-`ε ∈ (0, 1)`: the solution `Î^A_{N,k}` has reliability `R = P{y ∈ I(ϕ)} ≥ 1 - ε` with probability
-`> 1 - β`, `β = β₀ Σ_{i=0}^k C(N - d, i) εⁱ/(1 - ε)ⁱ` (Eq. 13), `β₀ = C(N, d)(1 - ε)^{N-d}`
-(Eq. 14). The proof is Appendix B: `d` of the kept constraints give the same solution
-(`ipm_exists_subset_card_eq`), which violates at most `k` of the other `N - d` samples; given the
-`d`, that has probability below the binomial tail at `ε` when the solution is bad
-(`measure_prod_violation_lt`); a union over the `C(N, d)` sets.
-The solutions `ẑ_F` are assumed unique for every `F` of at least `d` constraints, as the proof
-uses them. Not printed and supplied: the consistency relation `y ∈ I_Q(ϕ)` is jointly measurable
-and the solution map from `d` constraints is measurable, without which the probabilities in the
-proof are not defined. Where no bad outcome has positive probability the printed chain's first
-strict inequality reads `0 < 0`; the bound stays strict through the second.
+[1, Thm. 3]: data `x(t) = (ϕ(t), y(t))`, `t = 1, …, N`, independent with marginal `P`, a convex
+Problem 1′ in `d` variables with constraints `y(t) ∈ I_Q(ϕ(t))`, kept by an algorithm `A` discarding
+`k < N - d`, and `ε ∈ (0, 1)`: the solution `Î^A_{N,k}` has reliability `R = P{y ∈ I(ϕ)} ≥ 1 - ε`
+with probability `> 1 - β`, `β` of Eq. 13-14. Appendix B: `d` of the kept constraints give the same
+solution (`ipm_exists_subset_card_eq`), which violates at most `k` of the other samples, with
+probability below the binomial tail at `ε` when it is bad (`measure_prod_violation_lt`); a union
+bound over the choices of `d`. Uniqueness of the solutions and joint measurability of the
+consistency relation are supplied, unstated in the paper.
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

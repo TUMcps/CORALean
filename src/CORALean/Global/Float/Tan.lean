@@ -12,6 +12,16 @@ bounded where the cosine is certified positive, so both carry the hypothesis
 `0 < toReal (cosDown n x)`, which a caller discharges by evaluating `cosDown` (`ltStrict` against
 `zero` certifies it), as `le_expUp_of_le` discharges `expUp`'s range. No fallback is possible:
 the tangent is unbounded.
+
+## Inputs
+* `n` – number of halvings
+* `x` – float argument
+
+## Hypotheses
+* `hc` – the downward cosine bound is positive
+
+## Conclusion
+* the downward tangent bound is at most the tangent
 -/
 
 -- Authors:       Claude Opus 5.5

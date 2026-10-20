@@ -8,6 +8,15 @@ public import CORALean.Global.Float.Instances.IEEE.Operations.Basic
 # Rounding down never goes finer than the smallest subnormal
 
 `qmin_le_roundUp_exponent`'s counterpart: the shift is the same, only the direction differs.
+
+## Inputs
+* `d` – dyadic with the format's mantissa width
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rounded-down exponent is at least the smallest subnormal exponent
 -/
 
 -- Authors:       Claude Opus 5.5

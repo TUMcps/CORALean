@@ -16,15 +16,36 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 # The inclusion test (2) proves a box inside the range
 
 [1, Cor. 3.1]: for `f : x → ℝⁿ` continuous, continuously differentiable in `int x`, an interval
-matrix `J = [Jlo, Jhi]` enclosing `f'` there, `0 ∉ Jᵢᵢ` and `f(x₀) ∈ y` (`x₀` is the paper's
-`x̃`), the inclusion `x₀ + Γ(J, x - x₀, y - f(x₀)) ⊆ int x` (2), `gammaTest`, gives
-`y ⊆ f(x)`. The proof is the paper's, through [1, Thm. 3.1]
-(`Icc_subset_image_of_disjoint_boundary_singular`): (2) puts `x₀` in `int x`, and with `v = x₀`
-it makes `J` an H-matrix (`isHMatrix_of_gammaTest`), so every real matrix in `J` is regular,
-which is (ii); (i) is the mean-value theorem along the segment from `x₀` to a boundary point,
-a row at a time, which stays in `int x` until the end, and solves row `i` for `vᵢ`, which (2)
-puts in `(xloᵢ, xhiᵢ)`, contradicting `v ∈ ∂x`. The derivative is a strict one `f'` at the
-interior points, which a continuous one gives; `J` encloses it there.
+matrix `J = [Jlo, Jhi]` enclosing `f'` there, `0 ∉ Jᵢᵢ` and `f(x₀) ∈ y`, the inclusion
+`x₀ + Γ(J, x - x₀, y - f(x₀)) ⊆ int x` (2), `gammaTest`, gives `y ⊆ f(x)`. Through [1, Thm. 3.1]
+(`Icc_subset_image_of_disjoint_boundary_singular`): (2) puts `x₀` in `int x` and makes `J` an
+H-matrix (`isHMatrix_of_gammaTest`), so every real matrix in `J` is regular, which is (ii); (i) is
+the mean-value theorem along the segment from `x₀` to a boundary point, a row at a time, solving
+row `i` for `vᵢ`, which (2) puts in `(xloᵢ, xhiᵢ)`, contradicting `v ∈ ∂x`.
+
+## Inputs
+* `f` – map
+* `f'` – its derivative
+* `x₀` – expansion point
+* `xlo` – lower end of the domain box
+* `xhi` – upper end of the domain box
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+* `Jlo` – lower end of the Jacobian enclosure
+* `Jhi` – upper end of the Jacobian enclosure
+
+## Hypotheses
+* `hf` – the derivative is strict at interior points
+* `hcont` – the map is continuous on the domain box
+* `hJ₁` – the Jacobian enclosure contains the derivative at interior points
+* `hJ` – the enclosure's ends are ordered
+* `hdiag` – no diagonal enclosure contains zero
+* `hx₀` – the expansion point lies in the domain box
+* `hy` – the map's value at the expansion point lies in the target box
+* `h2` – the inclusion test holds
+
+## Conclusion
+* the target box lies in the image of the domain box
 
 ## References
 

@@ -14,6 +14,13 @@ The comparator is asked for nothing — not transitivity, not totality. That is
 what makes this usable where `Tuple.sort` is not: `Tuple.sort` needs a
 `LinearOrder`, and a floating-point scalar cannot lawfully have one, since
 distinct representations of the same value compare equal in both directions.
+
+## Inputs
+* `n` – number of indices
+* `r` – comparator
+
+## Output
+* the permutation naming the indices in the order the comparator puts them
 -/
 
 -- Authors:       Claude Opus 5

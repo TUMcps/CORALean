@@ -10,6 +10,15 @@ public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 
 `m / 10 ^ d / 2 = 5m / 10 ^ (d + 1)`, which is what
 `SoundFloatArithmetic.toReal_half` needs from `FixedPoint`.
+
+## Inputs
+* `x` – fixed-point value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the half denotes half the real value
 -/
 
 -- Authors:       Claude Opus 5.5

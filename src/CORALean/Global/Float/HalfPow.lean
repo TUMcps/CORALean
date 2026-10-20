@@ -9,6 +9,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 Halving is exact (`toReal_half`), so `halfPow k x` is `x / 2ᵏ` as a real, with no rounding: the
 way a power of two divides without a `divUp`.
+
+## Inputs
+* none
+
+## Output
+* the function halving a float `k` times
 -/
 
 -- Authors:       Claude Opus 5.5

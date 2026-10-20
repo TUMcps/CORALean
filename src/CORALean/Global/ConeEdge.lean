@@ -8,16 +8,27 @@ public import CORALean.Global.Tensor
 /-!
 # Where a linear form is positive on a pointed cone
 
-What [1, Thm. 2] needs and no facet enumeration supplies: if `w` pairs
-positively with some `z` of the cone `{y | ∀ j, a⁽ʲ⁾ ⬝ᵥ y ≥ 0}`, then it does so
-at a `y` that `N - 1` linearly independent constraints already hold — an edge of
-the cone, which is what a facet normal of a zonotope is.
+What [1, Thm. 2] needs and no facet enumeration supplies: if `w` pairs positively with some `z` of
+the cone `{y | ∀ j, a⁽ʲ⁾ ⬝ᵥ y ≥ 0}`, then it does so at a `y` at which `N - 1` linearly independent
+constraints already hold, an edge of the cone, which is what a facet normal of a zonotope is. The
+proof pivots: while fewer than `N - 1` independent constraints are active, a direction `u`
+annihilates all of them and `w`; `u` or `-u` leaves the cone, and walking that way to the first
+constraint that bites leaves `w ⬝ᵥ ·` positive and makes one more constraint active, independent of
+the others since `u` does not annihilate it.
 
-The proof pivots. While fewer than `N - 1` independent constraints are active,
-a direction `u` annihilates all of them and `w` besides; `u` or `-u` leaves the
-cone, only `0` annihilating every `a⁽ʲ⁾`, and walking that way to where the
-first constraint bites leaves `w ⬝ᵥ ·` positive and makes one more constraint
-active — independent of those already there, since `u` does not annihilate it.
+## Inputs
+* `n` – dimension of the space minus one
+* `a` – constraint vectors of the cone
+* `w` – linear form
+* `z` – point of the cone
+
+## Hypotheses
+* `hpt` – the cone is pointed
+* `hz` – the point satisfies every constraint
+* `hw` – the form is positive at the point
+
+## Conclusion
+* an edge point of the cone, cut out by independent constraints, has positive form value
 
 ## References
 

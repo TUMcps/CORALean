@@ -16,6 +16,17 @@ a centered Gaussian of variance `‖a‖²` (Mathlib's `stdGaussian` is Gaussian
 of a functional is its squared norm), so it is `‖a‖` times a standard normal; and
 `E|g|^k = 2 ∫₀^∞ x^k e^{-x²/2} / √(2π) dx = 2^{k/2} Γ((k+1)/2) / √π` by the Gamma integral.
 
+## Inputs
+* `E` – inner product space
+* `a` – fixed vector
+* `k` – moment order
+
+## Hypotheses
+* `hk` – the moment order is positive
+
+## Conclusion
+* the projection's absolute moment is the vector's norm to the order times the Gaussian constant
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

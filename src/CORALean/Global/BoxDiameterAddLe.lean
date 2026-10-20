@@ -15,6 +15,19 @@ the two summands' own diameters — the triangle inequality [1, Lemma 2]'s
 Appendix B proof takes for granted between a scaled error set and a step's
 own abstraction error.
 
+## Inputs
+* `X` – first summand set
+* `Y` – second summand set
+
+## Hypotheses
+* `hXne` – first summand nonempty
+* `hYne` – second summand nonempty
+* `hX` – first summand bounded
+* `hY` – second summand bounded
+
+## Conclusion
+* the box diameter of the sum is at most the sum of the box diameters
+
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive

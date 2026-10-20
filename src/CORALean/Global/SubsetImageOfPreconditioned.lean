@@ -13,6 +13,19 @@ public import Mathlib.Data.Real.Basic
 `y ⊆ range(f, x)`. The proof is the paper's: a `y ∈ y` has `C y = C f(x)` for some `x ∈ x`,
 and `C` is injective. The converse fails in general, which is why (3) is "more restrictive".
 
+## Inputs
+* `f` – map
+* `X` – domain
+* `Y` – target set
+* `C` – preconditioning matrix
+
+## Hypotheses
+* `hC` – the preconditioner is regular
+* `h` – the preconditioned target lies in the preconditioned range
+
+## Conclusion
+* the target set lies in the range of the map
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

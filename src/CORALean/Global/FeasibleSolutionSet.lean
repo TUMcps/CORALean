@@ -17,6 +17,17 @@ example; a scalar `γ` is the constant vector. The paper has no initial set: tha
 the example starts from a box `Θ₀`, and `θ_1 ∈ Θ₀` is how it enters. Indices run on `ℕ`, only `1 ≤
 k ≤ N` mattering.
 
+## Inputs
+* `Θ₀` – initial parameter set
+* `r` – regressor vectors
+* `y` – measurements
+* `σ` – error bound
+* `γ` – expansion per step
+* `N` – number of measurements
+
+## Output
+* the parameters consistent with the measurements and the rate bounds
+
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with

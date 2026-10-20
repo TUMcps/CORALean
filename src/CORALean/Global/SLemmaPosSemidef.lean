@@ -10,14 +10,28 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 # The S-lemma as a linear matrix inequality
 
 `s_lemma` with its certificate as a matrix: for symmetric `A`, `B` and Slater's condition,
-`g x ≤ 0 → f x ≥ 0` for every `x` iff
-`[[A, a], [aᵀ, α]] + δ [[B, b], [bᵀ, β]] ⪰ 0` for some `δ ≥ 0`, the homogenized form in which
-[1, Thm. 13] states its constraint (23). The blocks are indexed by `Fin n ⊕ Fin 1`.
+`g x ≤ 0 → f x ≥ 0` for every `x` iff `[[A, a], [aᵀ, α]] + δ [[B, b], [bᵀ, β]] ⪰ 0` for some
+`δ ≥ 0`, the homogenized form in which [1, Thm. 13] states its constraint (23). The blocks are
+indexed by `Fin n ⊕ Fin 1`. A symmetric `[[C, c], [cᵀ, γ]]` is positive semidefinite iff
+`xᵀCx + 2cᵀx + γ ≥ 0` for every `x`: at `(x, t)`, `t ≠ 0`, its form is `t²` times that quadratic at
+`x / t`, and at `t = 0` it is `xᵀCx`, which a negative value would make the quadratic negative
+along `s x` for large `s` (`exists_quad_neg`).
 
-A symmetric `[[C, c], [cᵀ, γ]]` is positive semidefinite iff `xᵀCx + 2cᵀx + γ ≥ 0` for every
-`x`: at `(x, t)`, `t ≠ 0`, its form is `t²` times that quadratic at `x / t`, and at `t = 0` it
-is `xᵀCx`, which a negative value would make the quadratic negative along `s x` for large `s`
-(`exists_quad_neg`).
+## Inputs
+* `A` – quadratic matrix of the objective
+* `B` – quadratic matrix of the constraint
+* `a` – linear vector of the objective
+* `b` – linear vector of the constraint
+* `α` – constant of the objective
+* `β` – constant of the constraint
+
+## Hypotheses
+* `hA` – the objective matrix is symmetric
+* `hB` – the constraint matrix is symmetric
+* `h₀` – some point makes the constraint strictly negative
+
+## Conclusion
+* the constraint implies a nonnegative objective exactly when the bordered matrix inequality holds
 
 ## References
 

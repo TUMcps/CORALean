@@ -13,6 +13,18 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 The image of a product of sets under `Fin.append` is the set of their stacked members, and stacking
 is additive: the sum of two such sets is the stack of the sums. What lets a Cartesian product of
 inflated sets (a nominal set plus an error box, on each side) be one inflated set.
+
+## Inputs
+* `A₁` – first set in the first block
+* `B₁` – second set in the first block
+* `A₂` – first set in the second block
+* `B₂` – second set in the second block
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum of two stacked products is the stacked product of the sums
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,16 @@ maximum at an extreme point, which is what is proved here. With `M = H⁻¹ G` t
 the same number at `α = sign(M_{k·})`; and `tr(Gᵀ Y) = tr(Mᵀ Hᵀ Y)`, which is at most that row sum
 once `Σₖ maxⱼ |(HᵀY)_{kj}| ≤ 1`, with equality at `Y = H⁻ᵀ e_k sign(M_{k·})ᵀ`. Dimension `n ≥ 1`.
 
+## Inputs
+* `G` – zonotope generator matrix
+* `H` – parallelotope generator matrix
+
+## Hypotheses
+* `hH` – the generator matrix is invertible
+
+## Conclusion
+* some dual maximizer has columns equal up to sign and the relaxation value equals the radius
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

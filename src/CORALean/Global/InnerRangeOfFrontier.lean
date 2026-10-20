@@ -14,6 +14,24 @@ public import Mathlib.Topology.Connected.Basic
 connected `y₁` meeting its interior stays inside it. Boxes `u` and `y₁` are the case the paper
 states; compact and preconnected is all that is used.
 
+## Inputs
+* `g` – map
+* `g'` – its derivative
+* `u` – compact domain
+* `y` – target set
+
+## Hypotheses
+* `hu` – the domain is compact
+* `hg` – the derivative is strict at interior points
+* `hsurj` – the derivative is onto at interior points
+* `hcont` – the map is continuous on the domain
+* `hy` – the target set is preconnected
+* `hi` – the target set misses the image of the domain's frontier
+* `hii` – some domain point maps into the target set
+
+## Conclusion
+* the target set lies in the image of the domain
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

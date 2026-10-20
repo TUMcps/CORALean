@@ -12,6 +12,20 @@ The deviation `Δ` of a run from a reference obeys `Δ(k+1) = A_k Δ(k) + B_k δ
 is what the linearization `A_k, B_k` leaves out. Unrolled, `Δ(k+1)` is the descending product
 `A_k ... A_0` of `Δ(0)`, plus, for each `j ≤ k`, `A_k ... A_{j+1}` applied to `B_j δ(j)` and to
 `L_j`: the `A{k}`, `B{k,j}` and `F{k,j}` of CORA's `computeGO_k`.
+
+## Inputs
+* `A` – state matrices
+* `B` – input matrices
+* `Δ` – deviation sequence
+* `δ` – input deviation sequence
+* `L` – remainder terms
+* `k` – step index
+
+## Hypotheses
+* `h` – the deviation obeys the recursion at every step
+
+## Conclusion
+* the next deviation is the start, inputs and remainders propagated by descending products
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,22 +12,22 @@ public import Mathlib.Data.Fintype.Prod
 /-!
 # Sequential thresholded least squares
 
-[1, Alg. 1], the paper's `Code 1` of Sec. 3.1: start from the least-squares solution `Θ \ Ẋ`,
-then `K = 10` times find the coefficients with `|ξ| < λ`, set them to zero and regress the
-dynamics of each column onto the remaining terms. `Θ(:,biginds) \ Ẋ(:,ind)` is the argument
-`solve ind S`, the regression onto the terms `S`, of which only the entries in `S` are read: a
-solver, not computed here. Written for any number of iterations `K`; `sindy 10` is the printed
-code.
+[1, Alg. 1], the paper's `Code 1` of Sec. 3.1: start from the least-squares solution `Θ \ Ẋ`, then
+`K = 10` times find the coefficients with `|ξ| < λ`, set them to zero and regress the dynamics of
+each column onto the remaining terms. `Θ(:,biginds) \ Ẋ(:,ind)` is the argument `solve ind S`, the
+regression onto the terms `S`, a solver not computed here. For `λ > 0` and any solver the iteration
+is monotone (a zero coefficient stays zero), so after at most `p · n + 1` iterations the iterate is
+a fixed point, [1, Sec. 3.1]'s "continued until the non-zero coefficients converge". There every
+coefficient is zero or at least `λ` in magnitude, the nonzero ones the regression onto the
+surviving terms. Nothing is claimed about *which* support results, or for `λ ≤ 0`.
 
-For `λ > 0` and any solver the iteration is monotone: a coefficient that is zero stays zero
-(the terms of `S` shrink), so after at most `p · n + 1` iterations (`p` terms, `n` columns) the
-iterate is a fixed point, which is what [1, Sec. 3.1] says as "continued until the non-zero
-coefficients converge". At a fixed point every coefficient is zero or at least `λ` in
-magnitude, and the nonzero ones are the regression onto the surviving terms; if `solve`
-satisfies the normal equations of its regression so does the fixed point, on its support.
-Nothing is claimed about *which* support results, about the number of iterations the paper
-calls small (`p · n + 1` is what is proved, `10` is what is printed), or for `λ ≤ 0`, where
-nothing is thresholded.
+## Inputs
+* `lam` – threshold
+* `solve` – regression onto a set of terms
+* `Ξ` – coefficient matrix
+
+## Output
+* the coefficient matrix after one thresholding and regression pass
 
 ## References
 

@@ -10,6 +10,13 @@ public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 Cross-multiplied to a common digit count `a.d + b.d`, the way two rationals
 with different denominators always add -- closed on fixed-point values, so
 this loses nothing. `AddUp`/`AddDown` round it back to `f` digits.
+
+## Inputs
+* `a` – first addend
+* `b` – second addend
+
+## Output
+* the exact sum at a common digit count
 -/
 
 -- Authors:       Claude Opus 5.5

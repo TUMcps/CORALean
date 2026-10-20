@@ -16,6 +16,19 @@ public import Mathlib.Tactic.Linarith
 propagate their bounds with. Each term `A_{ij} x_j = A⁺_{ij} x_j - A⁻_{ij} x_j`, both parts
 nonnegative.
 
+## Inputs
+* `A` – matrix
+* `x` – vector
+* `xl` – lower bound of the vector
+* `xu` – upper bound of the vector
+* `i` – row index
+
+## Hypotheses
+* `h` – every entry of the vector lies within its bounds
+
+## Conclusion
+* the row's image lies between the bounds from the positive and negative parts
+
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for

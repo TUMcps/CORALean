@@ -12,20 +12,30 @@ public import Mathlib.Topology.Instances.Matrix
 /-!
 # A dual certificate for the semidefinite relaxations of the containment radius
 
-The duality step of [1, Thm. 17] and [1, Thm. 19], which the paper takes from Kulmburg's "The
-Generalized Matrix Norm Problem" (its reference 22). Their relaxations minimize
-`½ (‖v‖_{s₁} + ‖w‖_{s₂})` over the `(v, w) ∈ ℝ^m × ℝ^l` with
-`[Diag(v), 0; 0, H Diag(w) Hᵀ] ≼ [0, Gᵀ; G, 0]` (Eq. 39, Eq. 42). If every such pair has
-objective above `t > 0` and `H` is onto, some `X ≽ 0` has `‖diag X₁₁‖_{s₁*} ≤ 1`,
-`‖diag(Hᵀ X₂₂ H)‖_{s₂*} ≤ 1` and `Σ G_{kj} X_{(n,k),(m,j)} ≥ t`.
+The duality step of [1, Thm. 17] and [1, Thm. 19], taken there from Kulmburg's "The Generalized
+Matrix Norm Problem". The relaxations minimize `½ (‖v‖_{s₁} + ‖w‖_{s₂})` over the `(v, w)` with
+`[Diag(v), 0; 0, H Diag(w) Hᵀ] ≼ [0, Gᵀ; G, 0]` (Eq. 39, Eq. 42). If every such pair has objective
+above `t > 0` and `H` is onto, some `X ≽ 0` has `‖diag X₁₁‖_{s₁*} ≤ 1`,
+`‖diag(Hᵀ X₂₂ H)‖_{s₂*} ≤ 1` and `Σ G_{kj} X_{(n,k),(m,j)} ≥ t`. Proved by separating the convex
+set of slack matrices at objective `≤ t` from the open cone of uniformly positive definite ones
+(`geometric_hahn_banach_open`); the separator `-f = ⟨W, ·⟩` gives `X = (t / a) J W J`.
 
-The matrices `[0, Gᵀ; G, 0] - [Diag(v), 0; 0, H Diag(w) Hᵀ]` at objective `≤ t` form a convex
-set missing the open cone of uniformly positive definite matrices, and a functional `f`
-separates the two (`geometric_hahn_banach_open`). On symmetric matrices `-f = ⟨W, ·⟩` with
-`W ≽ 0`, and `⟨[0, Gᵀ; G, 0], W⟩ ≤ Σ vⱼ Wⱼⱼ + Σ wᵢ (Hᵀ W₂₂ H)ᵢᵢ` when `‖v‖ + ‖w‖ ≤ 2t`; testing
-`±v`, `±w` bounds both diagonals by the dual norms. If `a = -Σ G_{kj} W_{(n,k),(m,j)} > 0`,
-`X = (t / a) J W J`, `J = diag(I, -I)`, is the certificate; otherwise both diagonals vanish, so
-`W = 0` (`H` onto), and `f` cannot separate.
+## Inputs
+* `s₁` – exponent of the first norm
+* `s₁'` – its conjugate exponent
+* `s₂` – exponent of the second norm
+* `s₂'` – its conjugate exponent
+* `G` – coupling matrix
+* `H` – generator matrix of the second block
+* `t` – objective level
+
+## Hypotheses
+* `hH` – the generator matrix is onto
+* `ht` – the level is positive
+* `hK` – every feasible pair has objective above the level
+
+## Conclusion
+* a positive semidefinite matrix with dual-norm-bounded diagonals pairs with the coupling to `t`
 
 ## References
 

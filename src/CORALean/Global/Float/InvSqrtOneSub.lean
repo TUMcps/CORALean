@@ -12,6 +12,13 @@ The factor the derivatives of `arcsin` and `arccos` carry. From above `1 / √(1
 up with the root rounded down, which needs that root positive (`div_le_divUp`'s one partial
 guarantee); from below, with the root rounded up, floored at zero. The hypothesis, the rounded
 root positive, is what puts `c` strictly inside `(-1, 1)`. `q` is the precision of the root.
+
+## Inputs
+* `q` – precision of the root
+* `c` – float argument
+
+## Output
+* a lower bound of the reciprocal root of one minus the argument squared
 -/
 
 -- Authors:       Claude Opus 5.5

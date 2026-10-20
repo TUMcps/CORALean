@@ -7,15 +7,38 @@ public import CORALean.Global.JacobiExistence
 /-!
 # The inclusion test for an inner box, with a closed inclusion
 
-[1, Cor. 3.1]'s test (5), `H ⊆ int(u₁)`, as [1, Alg. 3] and CORA's `aux_InnerGeneral` check it:
-`H ⊆ u₁`, the closed box. `H = ũ₁ + Diag⁻¹(J₁)(y₁ - f₁:ᵣ(ũ) - OffDiag(J₁)(u₁ - ũ₁) - J₂(u₂ - ũ₂))`
-is read over real matrices `J₁, J₂` in the interval ones and points of `y₁` and `u`, which any
-interval evaluation of `H` encloses. Then `y₁ ⊆ f₁:ᵣ(u)`.
+[1, Cor. 3.1]'s test (5), `H ⊆ int(u₁)`, as [1, Alg. 3] and CORA's `aux_InnerGeneral` check it: `H ⊆
+u₁`, the closed box, with `H = ũ₁ + Diag⁻¹(J₁)(y₁ - f₁:ᵣ(ũ) - OffDiag(J₁)(u₁ - ũ₁) - J₂(u₂ - ũ₂))`
+read over real matrices in the interval ones, as in `innerTest`. Then `y₁ ⊆ f₁:ᵣ(u)`.
+`Icc_subset_image_of_innerTest` proves the open version through [1, Thm. 3.1]; the closed one needs
+a fixed point instead: on the slice `v ↦ f₁:ᵣ(v, ũ₂)` the `J₂` term is `0`, so (5) is the Jacobi
+step of `exists_mem_Icc_eq_add_of_jacobi`, whose fixed point solves `f₁:ᵣ(v, ũ₂) = y` for each `y ∈
+y₁`. Neither (3) nor `f₁:ᵣ(ũ) ∈ y₁` is used; `f₁:ᵣ` is `C¹`.
 
-`Icc_subset_image_of_innerTest` proves the open version through [1, Thm. 3.1]; the closed one
-needs a fixed point instead. On the slice `v ↦ f₁:ᵣ(v, ũ₂)` the `J₂` term is `0`, so (5) there
-is the Jacobi step of `exists_mem_Icc_eq_add_of_jacobi`, whose fixed point solves
-`f₁:ᵣ(v, ũ₂) = y` for each `y ∈ y₁`. Neither (3) nor `f₁:ᵣ(ũ) ∈ y₁` is used; `f₁:ᵣ` is `C¹`.
+## Inputs
+* `g` – continuously differentiable map
+* `ũ` – expansion point
+* `lo₁` – lower end of the controlled box
+* `hi₁` – upper end of the controlled box
+* `lo₂` – lower end of the remaining box
+* `hi₂` – upper end of the remaining box
+* `J₁lo` – lower end of the first Jacobian block enclosure
+* `J₁hi` – upper end of the first Jacobian block enclosure
+* `J₂lo` – lower end of the second Jacobian block enclosure
+* `J₂hi` – upper end of the second Jacobian block enclosure
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+
+## Hypotheses
+* `hg` – the map is continuously differentiable
+* `hJ₁` – the first block enclosure contains the derivative
+* `hJ₂` – the second block enclosure contains the derivative
+* `hdiag` – no diagonal enclosure of the first block contains zero
+* `hũ` – the expansion point lies in the box
+* `h5` – the closed inclusion test holds
+
+## Conclusion
+* the target box lies in the image of the controlled box
 
 ## References
 

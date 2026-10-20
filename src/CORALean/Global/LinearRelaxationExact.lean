@@ -21,12 +21,25 @@ public import Mathlib.LinearAlgebra.Matrix.Trace
 [1, Thm. 16]: for `G ∈ ℝ^{n×m}`, `H ∈ ℝ^{n×l}` and `Y` a maximizer of the dual program (Eq. 33),
 `max tr(Gᵀ Y)` subject to `‖Hᵀ Y‖_{L⊤∞,q*} ≤ 1`, whose columns are equal up to sign (Eq. 34),
 `LR_q(G, H) = r(Z(G), E_q(H))`: the minimum of Eq. 29 and the maximum of Eq. 15 exist and agree.
-`H` need not be surjective: a maximizer forces `G`'s columns into the range of `H`, since
-otherwise a `Z` with `Hᵀ Z = 0` and `tr(Gᵀ Z) ≠ 0` makes the program unbounded.
-Strong duality of Eq. 32 is `lr_exists_dual`: the minimum `LR_q` is attained and some feasible
-`Y*` has `tr(Gᵀ Y*) ≥ LR_q`, so `LR_q ≤ tr(Gᵀ Y)` at the maximizer.
-With `Y = y σᵀ`, `tr(Gᵀ Y) = yᵀ G σ = (Hᵀ y)ᵀ β ≤ ‖β‖_q` for the minimal `β` with `H β = G σ`,
-by Hölder, so `LR_q ≤` the norm of `G σ` `≤ r ≤ LR_q`. `q* = q'` is the Hölder conjugate.
+`H` need not be surjective: a maximizer forces `G`'s columns into the range of `H`, since otherwise
+a `Z` with `Hᵀ Z = 0` and `tr(Gᵀ Z) ≠ 0` makes the program unbounded. By `lr_exists_dual`
+`LR_q ≤ tr(Gᵀ Y)` at the maximizer, and with `Y = y σᵀ`, `tr(Gᵀ Y) ≤ ‖β‖_q` by Hölder for the
+minimal `β` with `H β = G σ`, so `LR_q ≤` the norm of `G σ` `≤ r ≤ LR_q`.
+
+## Inputs
+* `q` – exponent of the coefficient norm
+* `q'` – its conjugate exponent
+* `G` – zonotope generator matrix
+* `H` – ellipsotope generator matrix
+* `Y` – dual maximizer
+
+## Hypotheses
+* `hY` – the maximizer is feasible
+* `hYmax` – the maximizer attains the dual maximum
+* `hcol` – the maximizer's columns are equal up to sign
+
+## Conclusion
+* the relaxation value and the containment radius both exist and agree
 
 ## References
 

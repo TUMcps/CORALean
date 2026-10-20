@@ -11,6 +11,12 @@ public import CORALean.Global.Float.Instances.Binary64.Binary64
 bit pattern read as an integer is monotone within each sign, so a step is an
 increment of `toBits` away from zero and a decrement toward it. Each rounded
 operation in the sibling files is the machine's, nudged one step out by this.
+
+## Inputs
+* `x` – machine double
+
+## Output
+* the next binary64 above the value
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -9,17 +9,18 @@ public import Mathlib.Tactic.Ring
 /-!
 # The entrywise product, bundled as a bilinear map
 
-`Entrywise` says which ambient types have coordinates; this is the product read
-in them. Bundled as `α →ₗ[ℝ] α →ₗ[ℝ] α` rather than left as a function, because
-every use is as an argument: `PolyZonotope.bilin` propagates *any* bilinear map
-through two sets sharing their factors, and the entrywise product is the one
-that gives a polynomial abstraction its order-`n` term.
+`Entrywise` says which ambient types have coordinates; this is the product read in them, bundled
+as `α →ₗ[ℝ] α →ₗ[ℝ] α` because every use is as an argument: `PolyZonotope.bilin` propagates *any*
+bilinear map through two sets sharing their factors, and the entrywise product gives a polynomial
+abstraction its order-`n` term. Stated over the class rather than `Vec`, so that `Mat ℝ n m` gets
+it too: `Mat`'s own `*` is matrix multiplication, so a matrix polynomial zonotope would otherwise
+need one written by hand, as a graph convolutional network does for `P_ij = Ã_ij ⬝ s_i ⬝ s_j`.
 
-Stated over the class and not over `Vec`, so that `Mat ℝ n m` gets it too. That
-matters: `Mat`'s own `*` is matrix multiplication, so a matrix polynomial
-zonotope has no entrywise product to inherit and would otherwise need one
-written by hand — which is exactly what a graph convolutional network needs for
-`P_ij = Ã_ij ⬝ s_i ⬝ s_j`.
+## Inputs
+* none
+
+## Output
+* the entrywise product as a bilinear map
 -/
 
 -- Authors:       Claude Opus 5

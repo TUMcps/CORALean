@@ -12,6 +12,14 @@ public import Mathlib.Data.Matrix.Mul
 entrywise: `|vᵀ M w| ≤ aᵀ P b`. CORA's `'lin'` Lagrange bound `0.5 * dz' * H_ * dz`
 (`priv_abstrerr_lin`) is this at `a = b = |dz|` and `P = max |H|`, and the
 polynomialization's cross terms are it at two different vectors.
+
+## Inputs
+* `a` – bound on the first vector's magnitudes
+* `P` – bound on the matrix's magnitudes
+* `b` – bound on the second vector's magnitudes
+
+## Output
+* the bilinear form of the bounds, each product and sum rounded up
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,18 @@ and `φ ≠ 0` for `λ ≠ 0`. With a known input matrix `X'` is replaced by `X'
 `Ã w = 0` the mode `Ũ w` the paper prescribes is no eigenvector of `Ā` in general; see
 `dmd_zeroMode_counterexample`. Real eigenpairs only: the paper's `λ`, `w` are complex.
 
+## Inputs
+* `X2` – successor snapshots
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+
+## Hypotheses
+* `hV` – the left singular vectors are orthonormal
+
+## Conclusion
+* the candidate projected onto the singular basis is the reduced-order matrix
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

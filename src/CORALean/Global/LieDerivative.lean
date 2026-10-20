@@ -11,16 +11,20 @@ public import Mathlib.Analysis.Calculus.ContDiff.Operations
 # Lie derivatives of the flow and of its Jacobian
 
 [1, Eq. 8]: the Taylor coefficients of a solution of `ż = f(z)` are the Lie derivatives
-`f⁽¹⁾ = f`, `f⁽ⁱ⁺¹⁾ = Df⁽ⁱ⁾ · f`, and those of the Jacobian `J` of the flow, which solves
-the variational equation `J̇ = Df(z)J` (10), are the Lie derivatives of `∇_z f(z, J) = Df(z)J`
-along the augmented field `F(z, J) = (f(z), Df(z)J)`. [1, Eq. 14] is the first Lie derivative
-along `F`, `H⁽²⁾ = DH · F`, the time derivative of `H` along a solution; [1, Sec. 3.3] shows
-`∇_z(f⁽ⁱ⁾) = (∇_z f)⁽ⁱ⁾`, the Jacobian and the Lie derivative commuting, by induction and
-the symmetry of second derivatives, which is why (17) may take the Lie derivatives of `f`.
+`f⁽¹⁾ = f`, `f⁽ⁱ⁺¹⁾ = Df⁽ⁱ⁾ · f`, and those of the Jacobian `J` of the flow, which solves the
+variational equation `J̇ = Df(z)J` (10), are the Lie derivatives of `∇_z f(z, J) = Df(z)J` along
+the augmented field `F(z, J) = (f(z), Df(z)J)`. [1, Eq. 14] is the first Lie derivative along `F`,
+`H⁽²⁾ = DH · F`; [1, Sec. 3.3] shows `∇_z(f⁽ⁱ⁾) = (∇_z f)⁽ⁱ⁾`, which is why (17) may take the Lie
+derivatives of `f`. Coordinate-free: `H⁽²⁾` is `DH(z, J)(f(z), Df(z)J)`, and `J` is one column `v`
+at a time. `f` is smooth, [1]'s "sufficiently smooth".
 
-Coordinate-free: `H⁽²⁾` is `DH(z, J)(f(z), Df(z)J)`, which (14) writes out in partial
-derivatives, and `J` is one column `v` at a time — (10) acts on columns independently.
-`f` is smooth, [1]'s "sufficiently smooth".
+## Inputs
+* `X` – state space
+* `V` – vector field
+* `g` – observable
+
+## Output
+* the Lie derivative of the observable along the field
 
 ## References
 

@@ -15,6 +15,15 @@ the point intervals `J₁ = 1`, `J₂ = 0` and `y₁ = [-1/2, 1/2]`, `H = y₁ �
 holds, while `(0, 1) ∈ ∂u` is mapped into `y₁`. The corollary itself holds
 (`Icc_subset_image_of_innerTest`, through the slice at `ũ₂`); this is the step.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* condition (5) holds while condition (i) fails at a boundary point
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

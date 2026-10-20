@@ -9,6 +9,13 @@ public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 # Addition, rounded up
 
 `Dyadic.exactAdd`, which loses nothing, then `roundUp` onto the grid of `fmt`.
+
+## Inputs
+* `a` – first addend
+* `b` – second addend
+
+## Output
+* the exact sum rounded up onto the format's grid
 -/
 
 -- Authors:       Claude Opus 5.5

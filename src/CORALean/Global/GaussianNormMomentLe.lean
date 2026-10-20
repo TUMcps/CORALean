@@ -16,6 +16,19 @@ constant of Eq. 31. `F^p = Σᵢ |⟨bᵢ, g⟩|^p` has expectation `γ_p^p Σ�
 (`integral_abs_inner_rpow_stdGaussian`), and Jensen's inequality for the convex `t ↦ t^{p/s}`
 moves the expectation of `F^s` inside. `F^s` is integrable, being at most `1 + F^p`.
 
+## Inputs
+* `l` – number of vectors
+* `b` – the vectors
+* `p` – norm exponent
+* `s` – moment order
+
+## Hypotheses
+* `hs` – the moment order is positive
+* `hsp` – the moment order is at most the norm exponent
+
+## Conclusion
+* the moment of the norm of the Gaussian image is integrable and bounded by the Gaussian constants
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

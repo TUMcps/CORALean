@@ -15,6 +15,17 @@ them, `Φᵀ Φ` is `(2w + 1) × (2w + 1)` of rank at most `v` and singular when
 solution of (4) is `A = Ẋ Φᵀ (Φ Φᵀ)⁻¹` when `Φ Φᵀ` is invertible: it solves the normal
 equations, so `leastSquares_le_of_normal_eq` applies.
 
+## Inputs
+* `Xd` – derivative snapshots
+* `Φ` – regressor snapshots
+* `B` – competing matrix
+
+## Hypotheses
+* `hΦ` – the Gram determinant is nonzero
+
+## Conclusion
+* the pseudo-inverse solution has squared error at most that of any competing matrix
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

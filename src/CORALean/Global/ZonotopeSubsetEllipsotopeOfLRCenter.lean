@@ -14,6 +14,21 @@ public import Mathlib.Data.Fin.SuccPred
 coefficient `(α, 1)` being in the unit box. The paper applies it to the reachable set of a
 sampled-data system and the terminal region `T`.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `G` – zonotope generator map
+* `c` – zonotope center
+* `d` – ellipsotope center
+* `H` – ellipsotope generator map
+* `X` – coefficient matrix
+
+## Hypotheses
+* `hGX` – the extended generators factor through the coefficient matrix
+* `hX` – the coefficient matrix has row-sum norm at most one
+
+## Conclusion
+* the shifted zonotope lies in the ellipsotope
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

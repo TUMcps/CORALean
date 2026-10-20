@@ -20,6 +20,12 @@ a high derivative, so it is a polynomial built by recursion from the differentia
 (`tanh' = 1 - tanh²`, `tan' = 1 + tan²`, `atan' = w`, `w' = -2x w²`, `asin' = v`, `v' = x v³`),
 and the bound is that recursion run on absolute values of its coefficients, evaluated at the
 magnitude.
+
+## Inputs
+* `q` – polynomial of the differential equation
+
+## Output
+* the function giving the polynomial that is each derivative order of a solution
 -/
 
 -- Authors:       Claude Opus 5.5

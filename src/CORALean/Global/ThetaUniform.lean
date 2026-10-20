@@ -12,6 +12,18 @@ public import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
 delivers, and what `[1, Thm. 4.2]` assumes of its samples. `vol` is any measure on the
 space; the theorem takes it to be a Haar measure.
 
+## Inputs
+* `Ω` – sample space
+* `E` – value space
+* `P` – probability measure
+* `v` – random variable
+* `vol` – volume measure
+* `K` – support set
+* `ϑ` – uniformity parameter
+
+## Output
+* the proposition that the variable is nearly uniform on the set
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

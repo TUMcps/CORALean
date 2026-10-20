@@ -10,6 +10,15 @@ public import Mathlib.Data.List.Basic
 MATLAB's `containers.Map` keyed by strings is kept as a list of pairs in key order; `map(k) = v`
 replaces the entry of key `k` and keeps the order. `replaceKey` does so for every pair with that
 key.
+
+## Inputs
+* `β` – value type
+* `l` – list of key-value pairs
+* `k` – key replaced
+* `v` – new value
+
+## Output
+* the list with the value of every pair of that key replaced
 -/
 
 -- Authors:       Claude Sonnet 5.5

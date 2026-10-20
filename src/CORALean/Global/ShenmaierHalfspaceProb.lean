@@ -19,6 +19,37 @@ So if `Ê ⊄ E`, the algorithm returns a value above `1 - ε` with probability 
 that `Ê ⊆ E`, chooses `ε` from the outcome and reads a statement about the samples as one
 about the sets, which is false (`shenmaierHalfspace_counterexample`).
 
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `d` – center of the outer ellipsotope
+* `r` – containment radius
+* `vol` – Haar measure
+* `Ω` – sample space
+* `P` – probability measure
+* `N` – number of samples
+* `v` – samples of the outer ellipsotope
+* `ϑ` – uniformity parameter
+* `z` – dual maximizers of the samples
+* `ε` – accuracy
+
+## Hypotheses
+* `hH` – the outer generator map is onto
+* `hr` – the radius is the greatest norm over the unit ball
+* `hN` – there is at least one sample
+* `hvm` – every sample is measurable
+* `hind` – the samples are independent
+* `hϑ` – the uniformity parameter is nonnegative
+* `hunif` – every sample is nearly uniform on the outer ellipsotope
+* `hz` – every dual maximizer is in the unit dual ball
+* `hzv` – every dual maximizer attains the norm at its sample
+* `hε` – the accuracy is positive
+* `hε1` – the accuracy is at most one
+
+## Conclusion
+* the algorithm's value reaches a fraction of the radius with the stated probability
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

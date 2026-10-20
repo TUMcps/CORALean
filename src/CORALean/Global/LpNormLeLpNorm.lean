@@ -11,6 +11,18 @@ public import Mathlib.Analysis.Normed.Lp.PiLp
 `B₂` rests on: `‖x‖_q ≤ ‖x‖_p` for `1 ≤ p ≤ q ≤ ∞`, `p` finite. Each coordinate is at most `‖x‖_p`,
 so `Σ|xᵢ|^q ≤ ‖x‖_p^{q-p} Σ|xᵢ|^p = ‖x‖_p^q`.
 
+## Inputs
+* `p` – smaller exponent
+* `q` – larger exponent
+* `x` – vector
+
+## Hypotheses
+* `hpq` – the exponents are ordered
+* `hp` – the smaller exponent is finite
+
+## Conclusion
+* the larger-exponent norm is at most the smaller-exponent norm
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

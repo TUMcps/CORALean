@@ -11,6 +11,13 @@ public import CORALean.Global.OdeList
 list of integer coefficients, lowest degree first: the computable form of `atanPoly`,
 `atanDom`, `asinPoly` and `asinDom` (`q = 1 ± X²`, `sⱼ = ∓2(j+1)`, `2j+1`). The theorem is that
 any polynomial sequence with this recursion evaluates as the list does.
+
+## Inputs
+* `q` – coefficient list of the factor
+* `s` – coefficients of the linear term
+
+## Output
+* the function giving the coefficient list of each recursion order
 -/
 
 -- Authors:       Claude Opus 5.5

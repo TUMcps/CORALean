@@ -9,15 +9,27 @@ public import CORALean.Global.DmdCandidateLeastSquares
 /-!
 # The dynamic mode decomposition with control fits consistent data and is least squares
 
-Known input matrix [1, Eq. 18]: `Ā = (X' - B Υ) Ṽ Σ̃⁻¹ Ũᵀ`, the candidate for the right-hand
-side `X' - B Υ` [1, Eq. 17]. Unknown input matrix: `Ḡ = X' Ṽ Σ̃⁻¹ Ũᵀ` for the SVD
-`Ω = Ũ Σ̃ Ṽᵀ` of the stacked snapshots [1, Eq. 26], `[Ā, B̄] = [X' Ṽ Σ̃⁻¹ Ũ₁ᵀ, X' Ṽ Σ̃⁻¹ Ũ₂ᵀ]`
-[1, Eq. 28] with
-`Ũ = [Ũ₁; Ũ₂]` split at the state rows. At the full rank of `Ω`, no truncation, both reproduce
-data that obeys the system, `Ā x_k + B̄ u_k = x_{k+1}`, and minimize the squared error of the
-fit; if `Ũ` is square (`r = n`, known `B`), `Ā` is `A`. With `Υ = 0` the formula of [1, Eq. 18]
-is that of [1, Eq. 7], as the paper remarks [1, Sec. III-B]. The paper truncates at `p` below
-the full rank, which is not covered.
+Known input matrix [1, Eq. 18]: `Ā = (X' - B Υ) Ṽ Σ̃⁻¹ Ũᵀ`, the candidate for the right-hand side
+`X' - B Υ` [1, Eq. 17]. Unknown input matrix: `Ḡ = X' Ṽ Σ̃⁻¹ Ũᵀ` for the SVD `Ω = Ũ Σ̃ Ṽᵀ` of the
+stacked snapshots [1, Eq. 26], `[Ā, B̄] = [X' Ṽ Σ̃⁻¹ Ũ₁ᵀ, X' Ṽ Σ̃⁻¹ Ũ₂ᵀ]` [1, Eq. 28] with
+`Ũ = [Ũ₁; Ũ₂]` split at the state rows. At the full rank of `Ω` both reproduce data that obeys the
+system, `Ā x_k + B̄ u_k = x_{k+1}`, and minimize the squared error of the fit; if `Ũ` is square,
+`Ā` is `A`. With `Υ = 0`, [1, Eq. 18] is [1, Eq. 7], as the paper remarks [1, Sec. III-B].
+Truncation at `p` below the full rank is not covered.
+
+## Inputs
+* `X2` – successor snapshots
+* `B` – input matrix
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `k` – rank
+
+## Hypotheses
+* none
+
+## Conclusion
+* with zero inputs the known-input candidate equals the plain candidate
 
 ## References
 

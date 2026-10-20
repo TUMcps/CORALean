@@ -12,6 +12,16 @@ public import Mathlib.Data.Fin.Tuple.Basic
 What `toRealMat` and `Matrix.mulVec` say together: negating a float matrix entrywise negates its
 products, since negation is exact, and a row of a stacked matrix reads as the row of the block it
 came from.
+
+## Inputs
+* `M` – float matrix
+* `x` – real vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* negating the float matrix negates its real product with the vector
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -16,6 +16,16 @@ an argument (a factorization, not a computation, and not unique); `X1` and `X2` 
 snapshots and their successors.
 The source is [1].
 
+## Inputs
+* `X2` – successor snapshots
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `k` – rank
+
+## Output
+* the rank-`k` candidate matrix
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

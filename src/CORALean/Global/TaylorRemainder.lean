@@ -14,6 +14,20 @@ mean-value point; what is added is reading its within-the-segment derivatives at
 global `iteratedDeriv`, which smoothness at `c` allows, and the case `x = c`, which it
 excludes. Global derivatives keep the statement usable for `log` and `sqrt`, smooth only on
 an open half-line.
+
+## Inputs
+* `g` – function of one variable
+* `N` – expansion order
+* `c` – expansion point
+* `x` – evaluation point
+* `D` – bound on the next derivative
+
+## Hypotheses
+* `hg` – the function is smooth to one order past the expansion order between the points
+* `hD` – the next derivative is bounded by the bound between the points
+
+## Conclusion
+* the Taylor remainder is at most the bound times the distance to the power, over the factorial
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,6 +16,20 @@ equals the form the paper works with,
 `Q_g = -E V |Y_g| sin(Ψ_g + δ - Θ) + V² |Y_g| sin(Ψ_g)`,
 by `cos(-α) = cos α` and `sin(-α) = -sin α`, as the paper says. `Y` stands for `|Y_g|`.
 
+## Inputs
+* `E` – internal voltage
+* `V` – bus voltage
+* `Y` – admittance magnitude
+* `Ψ` – admittance angle
+* `δ` – rotor angle
+* `Θ` – bus angle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the printed active and reactive power equal the rewritten forms
+
 ## References
 
 * [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the

@@ -12,18 +12,15 @@ public import CORALean.Global.ExistsSeparatedCardEq
 /-!
 # The reliability of an interval predictor model from `M`-dependent data
 
-[1, Thm. 4], corrected: for a strictly stationary sequence `x(t) = (ϕ(t), y(t))` with marginal `P`
-(Assumption 1) that is `M`-dependent in the sense of Bosq, which [1] cites (values at finitely
-many times `L` independent of those at times `R` when `R` is more than `M` after `L`), and Problem
-1′ as in [1, Thm. 3], `Prob{R(Î^A_{N,k}) ≥ 1 - ε} > 1 - β` with
-`β = C(N, d) Σ_{i=0}^k C(W, i) εⁱ(1 - ε)^{W-i}`, `W = ⌈(N - d(2M + 1))/(M + 1)⌉`. Printed with
-independence of pairs only (Def. 5), the theorem is false
-(`ipmReliabilityMDependent_counterexample`).
-The proof is that of [1, Thm. 3], with the other `N - d` points replaced by `W` of them more than
-`M` apart from each other and from the `d` determining ones (`exists_separated_card_eq`); each of
-those is independent of all the others kept (`indep_point_of_mDependent`), so their joint law is
-`law(x_H) ⊗ P^W` (`map_prod_pi_eq_of_indep`). If `W ≤ k` then `β = C(N, d)`, at least `2` unless
-`d = 0`, when the unique solution is consistent with every observation.
+[1, Thm. 4], corrected: for a strictly stationary sequence `x(t) = (ϕ(t), y(t))` with marginal `P`,
+`M`-dependent in the sense of Bosq, and Problem 1′ as in [1, Thm. 3], `Prob{R(Î^A_{N,k}) ≥ 1 - ε} >
+1 - β` with `β = C(N, d) Σ_{i=0}^k C(W, i) εⁱ(1 - ε)^{W-i}`, `W = ⌈(N - d(2M + 1))/(M + 1)⌉`.
+Printed with pairwise independence (Def. 5) it is false (`ipmReliabilityMDependent_counterexample`).
+The proof is that of [1, Thm. 3], with the other points replaced by `W` of them more than `M` apart
+from each other and from the `d` determining ones (`exists_separated_card_eq`), independent of the
+others kept (`indep_point_of_mDependent`), so their joint law is `law(x_H) ⊗ P^W`
+(`map_prod_pi_eq_of_indep`).
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

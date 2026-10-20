@@ -13,17 +13,21 @@ public import Mathlib.Topology.Instances.Matrix
 
 [1, Eq. 19]: for a symmetric `A ∈ ℝ^{m×m}`, `max ⟨A, U⟩` s.t. `U ≽ 0`, `Uᵢᵢ = 1`, and its dual
 `min 1ᵀλ` s.t. `diag(λ) - A ≽ 0` both attain their optima, and the optima agree. The paper cites
-convexity and constraint qualifications; here the dual is built by separation.
+convexity and constraint qualifications; here the dual is built by separation. Let `p` be the
+primal maximum, attained on the compact correlation matrices, and `ε > 0`. If no `diag(λ) - A`
+with `1ᵀλ = p + ε` were uniformly positive definite, the open cone of such matrices would miss
+that affine set and some `X ↦ -⟨W, X⟩` would separate them (`geometric_hahn_banach_open`); then
+`W / w` is primal feasible and the functional is negative on the affine set: Slater's condition
+through the open cone. The dual optimum is attained on a compact sublevel set.
 
-Weak duality is `⟨diag(λ) - A, U⟩ ≥ 0`. Let `p` be the primal maximum, attained on the compact
-correlation matrices (`|Uᵢⱼ| ≤ 1`), and `ε > 0`. If no `diag(λ) - A`, `1ᵀλ = p + ε`, were
-uniformly positive definite, that open convex cone would miss the affine set of them, and some
-`X ↦ -⟨W, X⟩` would separate the two (`geometric_hahn_banach_open`). Bounded above on the cone,
-`W ≽ 0`; bounded below on the affine set, `W` has one constant diagonal `w`, positive as a
-semidefinite matrix with zero diagonal is zero. Then `W / w` is primal feasible, `⟨A, W⟩ ≤ w p`,
-and the functional is at most `-wε < 0` on the affine set, below the level `≥ 0`: Slater's
-condition through the open cone. The dual optimum is attained on the compact
-`{λ | diag(λ) - A ≽ 0, 1ᵀλ ≤ p + 1}`.
+## Inputs
+* `A` – symmetric cost matrix
+
+## Hypotheses
+* `hA` – the matrix is symmetric
+
+## Conclusion
+* primal and dual optima are both attained and equal
 
 ## References
 

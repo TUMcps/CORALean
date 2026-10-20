@@ -15,6 +15,27 @@ set `Ā = S \ (A₁ ∪ A₂)` and the positive measure of one of the three; her
 complement is `μ`-null outright, which gives the same contradiction. `μ` is the reference measure,
 nonzero (`λ(S) = 1` in the paper).
 
+## Inputs
+* `μ` – reference measure
+* `f` – transition density
+* `A₁` – first closed set
+* `A₂` – second closed set
+
+## Hypotheses
+* `hμ` – the reference measure is nonzero
+* `hf` – the density is measurable
+* `hpos` – the density is positive
+* `h₁` – the first set is measurable
+* `h₂` – the second set is measurable
+* `hne₁` – the first set is nonempty
+* `hne₂` – the second set is nonempty
+* `hdisj` – the sets are disjoint
+* `hcl₁` – the first set cannot be left
+* `hcl₂` – the second set cannot be left
+
+## Conclusion
+* the assumptions are contradictory, so no two disjoint nonempty closed sets exist
+
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed

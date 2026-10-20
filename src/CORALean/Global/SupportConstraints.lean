@@ -14,6 +14,14 @@ removal lowers the optimal value, `w(P_l) < w(P)`. The problem is its value func
 optimal value of Problem 1 for each set `F ⊆ {1, …, N}` of constraints, as in [1, Alg. A*]
 (`w(F)`). They are listed in increasing order, the order of the paper's `sc_l(F)`, `l = 1, …,
 |sc(F)|`.
+
+## Inputs
+* `w` – value of a problem
+* `F` – set of constraints
+
+## Output
+* the list of constraints whose removal lowers the value, in increasing order
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

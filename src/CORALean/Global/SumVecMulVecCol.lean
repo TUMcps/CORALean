@@ -12,6 +12,15 @@ public import Mathlib.Data.Matrix.Basic
 
 `Σₖ mₖ mₖᵀ = M Mᵀ` over the columns `mₖ` of `M`: the generators `D`, `F` of a disturbance or
 noise zonotope give `Q_w = D Dᵀ`, `Q_v = F Fᵀ` in the observer papers' covariation form.
+
+## Inputs
+* `M` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum of the outer products of the columns is the matrix times its transpose
 -/
 
 -- Authors:       Claude Opus 5.5

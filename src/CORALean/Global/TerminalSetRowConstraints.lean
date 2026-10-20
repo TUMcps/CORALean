@@ -15,6 +15,16 @@ one iff `‖ζⱼ‖₁ ≤ sⱼ` for every `j` at `q = ∞` (Eq. 55), iff `Σ�
 (Eq. 56); and `‖ζⱼ‖₁ ≤ sⱼ / √m` for every `j`, the linear constraint that replaces the convex one,
 implies Eq. 56 (Eq. 57).
 
+## Inputs
+* `s` – row scalings
+* `Z'` – scaled matrix
+
+## Hypotheses
+* `hs` – the scalings are positive
+
+## Conclusion
+* the scaled matrix has row-sum norm at most one exactly when each row's 1-norm is within its scale
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

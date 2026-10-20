@@ -14,6 +14,16 @@ public import Mathlib.Data.Real.Basic
 point of `S` per summand where the left takes one point for all. Equality fails as soon as
 `S` has two points and two summands. Any set, any matrices.
 
+## Inputs
+* `A` – family of matrices
+* `S` – set of vectors
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image under the summed matrix lies in the sum of the images
+
 ## References
 
 * [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In

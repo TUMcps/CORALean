@@ -8,15 +8,34 @@ public import CORALean.Global.RobustRangeVec
 /-!
 # The product of the mean-value AE extensions is inside the robust range
 
-[1, Remark 1]: `Thm. 3` with the disturbance inputs `I_A` outside the domain of `π`, so that
-they are universal in every component, gives an under-approximation of the robust range. The
-paper writes `π : {1, …, m} → ({1, …, n} \ I_A)`, whose codomain takes the input set `I_A`
-out of the set of components; it is read as `π` defined on the inputs `{1, …, m} \ I_A`,
-which is what "the disturbance part of the input components will always be quantified
-universally" says. Here `π : Fin m → Fin n` is only used off `IA`.
+[1, Remark 1]: `Thm. 3` with the disturbance inputs `I_A` outside the domain of `π`, so that they
+are universal in every component, gives an under-approximation of the robust range. The paper
+writes `π : {1, …, m} → ({1, …, n} \ I_A)`, whose codomain takes the input set `I_A` out of the set
+of components; it is read as `π` defined on the inputs `{1, …, m} \ I_A`, as "the disturbance part
+of the input components will always be quantified universally" says. Here `π : Fin m → Fin n` is
+only used off `IA`. The hypotheses are those of `Thm. 3`
+([`UnderApproxRangeBox.lean`](UnderApproxRangeBox.lean)), with the inputs `j ∈ IA` in no `π⁻¹(i)`.
 
-The hypotheses are those of `Thm. 3` ([`UnderApproxRangeBox.lean`](UnderApproxRangeBox.lean)),
-with the inputs `j ∈ IA` in no `π⁻¹(i)`.
+## Inputs
+* `f` – function from inputs to components
+* `IA` – disturbance inputs
+* `π` – assignment of control inputs to components
+* `lo` – lower corner of the input box
+* `hi` – upper corner of the input box
+* `f0lo` – lower bounds on the center values
+* `f0hi` – upper bounds on the center values
+* `dwhi` – upper bounds on the partials in the disturbance inputs
+* `dulo` – lower bounds on the partials in the control inputs
+
+## Hypotheses
+* `hlh` – the input box is nonempty
+* `hf` – every component is continuously differentiable
+* `hf0` – the center values lie within their bounds
+* `hw` – the disturbance partials are bounded above on the path sets
+* `hu` – the control partials are bounded below
+
+## Conclusion
+* the product of the inner intervals lies in the robust range
 
 ## References
 

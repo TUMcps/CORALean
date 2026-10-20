@@ -15,6 +15,14 @@ public import Mathlib.Tactic.Ring
 `u₁ ↦ (u₁, ũ₂)` on which an inner-range test of `f : ℝᵐ → ℝⁿ` reduces to a square one: the
 test picks the `n` columns `ind` of the Jacobian and holds the other coordinates at the
 midpoint.
+
+## Inputs
+* `xc` – base point
+* `ind` – indices of the replaced coordinates
+* `v` – new values
+
+## Output
+* the base point with the selected coordinates replaced
 -/
 
 -- Authors:       Claude Opus 5.5

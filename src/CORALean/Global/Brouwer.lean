@@ -15,6 +15,21 @@ normed space into itself has a fixed point in `K`.
 `toEuclidean` carries `K` to an inner product space, where the nearest-point projection onto
 `K` is continuous (it does not expand distances) and fixes `K`; `f` after it, rescaled into
 the unit ball, is `exists_fixedPoint_closedBall`'s case, and its fixed point lies in `K`.
+
+## Inputs
+* `F` – finite-dimensional real normed space
+* `K` – compact convex set
+* `f` – self-map of the set
+
+## Hypotheses
+* `hK` – the set is compact
+* `hconv` – the set is convex
+* `hne` – the set is nonempty
+* `hf` – `f` is continuous on the set
+* `hfK` – `f` maps the set into itself
+
+## Conclusion
+* `f` has a fixed point in the set
 -/
 
 -- Authors:       Claude Opus 5.5

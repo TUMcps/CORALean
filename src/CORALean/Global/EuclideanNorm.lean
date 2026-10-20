@@ -9,20 +9,23 @@ public import Mathlib.Tactic.Positivity
 /-!
 # The Euclidean norm of a vector
 
-`Vec ℝ n` is `Fin n → ℝ`, and Mathlib's `Pi` instance gives that type the
-*supremum* norm, so `‖·‖` on a vector is not the norm an ellipsoid is described
-by. `‖·‖₂` is a bare function rather than a second norm instance, so the type
-keeps the metric it has and `dist` goes on meaning what it means elsewhere.
+`Vec ℝ n` is `Fin n → ℝ`, and Mathlib's `Pi` instance gives it the *supremum* norm, so `‖·‖` on a
+vector is not the norm an ellipsoid is described by. `‖·‖₂` is a bare function rather than a
+second norm instance, so the type keeps its metric and `dist` goes on meaning what it means
+elsewhere. `toEuclidean` is the other half: `EuclideanSpace ℝ (Fin n)` is a different type carrying
+`‖·‖₂` as its norm, reached by a continuous *linear* equivalence, so a statement wanting Mathlib's
+Euclidean API converts at the point of use; `norm_toEuclidean` joins the two norms. Here:
+Cauchy–Schwarz, homogeneity, the triangle inequality, compactness and convexity of the closed unit
+ball, and the finite-sum triangle inequality.
 
-`toEuclidean` is the other half of that arrangement: `EuclideanSpace ℝ (Fin n)`
-is a different type carrying `‖·‖₂` as its own norm, and a continuous *linear*
-equivalence reaches it, so a statement wanting Mathlib's Euclidean API converts
-at the point of use instead of being restated there. `norm_toEuclidean` is the
-one lemma joining the two norms.
+## Inputs
+* none
 
-What an ellipsoid needs — Cauchy–Schwarz, homogeneity, the triangle inequality,
-and that the closed unit ball is convex and compact — and the finite-sum
-triangle inequality a Hausdorff bound asks of it.
+## Hypotheses
+* none
+
+## Conclusion
+* the Euclidean unit ball is compact
 -/
 
 -- Authors:       Claude Opus 5

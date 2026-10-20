@@ -14,6 +14,12 @@ then `divUp`. Made for a tuning loop's guesses, where a horizon `t_f - t_i`
 held exactly in ℚ has to become a candidate step: nothing proves the result
 dominates `q`, and nothing needs to, since a caller reads the step it chose
 back through `ToRat` rather than trusting this.
+
+## Inputs
+* `q` – rational
+
+## Output
+* a scalar from the numerator rounded up over the denominator rounded down
 -/
 
 -- Authors:       Claude Opus 5.5

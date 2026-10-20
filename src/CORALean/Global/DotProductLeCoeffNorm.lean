@@ -13,6 +13,19 @@ The easy half of the dual form Eq. 21 of [1, Thm. 15 (accuracy)], [1, Thm. 17] a
 `‖x‖_{E_q(H)} = min_{H β = x} ‖β‖_q` (`coeffNorm`). With `β` a minimizer,
 `zᵀ x = zᵀ H β = (Hᵀ z)ᵀ β ≤ ‖Hᵀ z‖_{q*} ‖β‖_q` by Hölder.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `q'` – its conjugate exponent
+* `H` – coefficient matrix
+* `x` – point in the range of the matrix
+* `z` – functional vector
+
+## Hypotheses
+* `hx` – the point is attained by some coefficient vector
+
+## Conclusion
+* the pairing is at most the ellipsotope norm times the dual norm of the pulled-back functional
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

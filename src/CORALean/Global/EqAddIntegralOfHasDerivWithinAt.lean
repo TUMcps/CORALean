@@ -11,6 +11,22 @@ A function with the derivative `g t` within a convex `T ∋ 0` at every point of
 integrable from `0` to `t`, is `x 0` plus the integral of `g` from `0` to `t`: the fundamental
 theorem of calculus, one-sided inside `T`. It is the bridge from a classical solution, a
 derivative at every point, to a Carathéodory one, the integral equation.
+
+## Inputs
+* `T` – set of times
+* `x` – function with a derivative on the set
+* `g` – its derivative
+* `t` – end time
+
+## Hypotheses
+* `hTconv` – the set is convex
+* `h0T` – zero belongs to the set
+* `hd` – `g t` is the derivative of `x` within the set at each point
+* `ht` – the end time belongs to the set
+* `hint` – `g` is integrable from zero to the end time
+
+## Conclusion
+* `x t` is `x 0` plus the integral of `g` from zero to `t`
 -/
 
 -- Authors:       Claude Opus 5.5

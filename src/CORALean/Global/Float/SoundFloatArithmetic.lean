@@ -12,22 +12,14 @@ public import Mathlib.Data.Matrix.Diagonal
 /-!
 # Sound floating-point arithmetic
 
-What the layer assumes of its scalar: a real interpretation `toReal`,
-`FloatOps` rounding in the direction its name claims, and `le` agreeing with
-`toReal` in one direction only. No format is fixed, so the proofs hold for
-binary64, for any other precision, and for ℝ itself.
-
-Not IEEE 754 — rounding *to nearest* bounds nothing in a stated direction. How
-the direction is achieved is left open: a hardware rounding mode and nearest
-plus one ulp outward both discharge these obligations.
-
-`toReal` is total into ℝ, so no instance has NaN or an infinity. Overflow is
-assumed away rather than modelled, and an implementation owes a range argument;
-that is the one gap between these axioms and a machine.
-
-`RealImage` lifts the reading to an ambient type, so that a representation is
-indexed by the type it stores, as the exact `Interval α` is, not by a dimension:
-`Interval (Mat 𝕋 m n)` then denotes an interval matrix with no second type.
+What the layer assumes of its scalar: a real interpretation `toReal`, `FloatOps` rounding in the
+direction its name claims, and `le` agreeing with `toReal` in one direction only. No format is
+fixed, so the proofs hold for binary64, for any other precision, and for ℝ itself. Not IEEE 754:
+rounding *to nearest* bounds nothing in a stated direction; how the direction is achieved is left
+open. `toReal` is total into ℝ, so no instance has NaN or an infinity; overflow is assumed away
+rather than modelled, and an implementation owes a range argument, the one gap between these axioms
+and a machine. `RealImage` lifts the reading to an ambient type, so that a representation is indexed
+by the type it stores.
 -/
 
 -- Authors:       Claude Opus 5

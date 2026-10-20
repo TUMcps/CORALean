@@ -13,16 +13,21 @@ public import Mathlib.Data.Matrix.Mul
 # The inner range of a flow component in Kaucher arithmetic
 
 [1, Alg. 1, Step 3], (18): `]z[ = [z̃] + [J] * ([z̄₀, z̲₀] - z̃₀)` in Kaucher arithmetic, with
-`[z̃] ∋ z(t, z̃₀)` and `[J] ∋ ∂z(t, ·)/∂z₀` on the initial box; if a component comes out
-improper, its proper counterpart is in the range of that component of the flow. This is
-[1, Thm. 1] (the generalized mean-value extension of Goldsztejn et al.) at the flow,
-with an enclosure `[z̃]` for the center where the theorem has the point `f(x̃)`. Steps 1, 2
-and 4, the Taylor-model enclosures, are hypotheses here: `φ` is the flow at time `t`.
+`[z̃] ∋ z(t, z̃₀)` and `[J] ∋ ∂z(t, ·)/∂z₀` on the initial box; if a component comes out improper,
+its proper counterpart is in the range of that component of the flow. This is [1, Thm. 1] at the
+flow, with an enclosure `[z̃]` for the center where the theorem has the point `f(x̃)`. Steps 1, 2
+and 4, the Taylor-model enclosures, are hypotheses here. The multiplication is the three cases
+[1, Sec. 2.3] lists for a proper factor and one in `dual Z`; the Kaucher sum is endpoint-wise. The
+guarantee is per component: the box of all components is not inside the reachable set in general.
 
-The multiplication is the three cases [1, Sec. 2.3] lists for a proper factor and one in
-`dual Z`, the Kaucher sum is endpoint-wise. The guarantee is per component, `pro ]z[ᵢ`
-inside the `i`-th projection of the reachable set: the box of all components is not
-inside it in general (the paper's page).
+## Inputs
+* `a` – lower end of the proper factor
+* `b` – upper end of the proper factor
+* `d₁` – first end of the dual factor
+* `d₂` – second end of the dual factor
+
+## Output
+* the Kaucher product of the proper interval with the dual-zero interval
 
 ## References
 

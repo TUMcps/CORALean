@@ -12,20 +12,22 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 # Sine and cosine rounded in either direction
 
 `sinDown`/`sinUp` and `cosDown`/`cosUp` enclose `Real.sin` and `Real.cos` at a float, out of
-`FloatOps` alone, at every argument and for every precision `n`.
+`FloatOps` alone, at every argument and precision `n`. Argument reduction is by halving, as for
+`expUp`: at the exact `y = a / 2ⁿ` both are enclosed by Mathlib's Taylor bounds for `|y| ≤ 1`
+(`|sin y - (y - y³/6)| ≤ |y|⁵/100`, `1 - y²/2 ≤ cos y ≤ 1 - y²/2 + 5y⁴/96`), and the `n` doublings
+back are interval arithmetic on the pair, every bound clamped to `[-1, 1]`. Nothing is assumed of
+the argument: where `le` (certifying `true` only) cannot place `y` in `[-1, 1]` or decide its
+sign, the seed and the result are the trivial `[-1, 1]`, sound and as coarse as it says.
 
-Argument reduction is by halving, as for `expUp`: `y = a / 2ⁿ` is exact, and at `y` both
-functions are enclosed by Mathlib's Taylor bounds for `|y| ≤ 1`,
-`|sin y - (y - y³/6)| ≤ |y|⁵/100` and `1 - y²/2 ≤ cos y ≤ 1 - y²/2 + 5y⁴/96`, the constants
-rounded to `1/64` and `1/16`, which `half` reaches exactly. The `n` doublings back are interval
-arithmetic on the pair, `sin 2θ = 2 sin θ cos θ` and `cos 2θ = 1 - 2 sin²θ = 2 cos²θ - 1`, the
-tighter of the two cosine forms kept, and every bound clamped to `[-1, 1]`.
+## Inputs
+* `n` – number of halvings
+* `a` – float argument
 
-Nothing is assumed of the argument. Where the halved argument is not certified to lie in
-`[-1, 1]` (by `le`, which certifies `true` only), the seed is the trivial `[-1, 1]`, and so is
-the result: sound, and as coarse as it says. The sign of `y` is likewise decided by `le`, an
-undecided sign giving `[-1, 1]` for the sine. A larger `n` buys range (`|a| ≤ 2ⁿ`) and seed
-accuracy; each doubling at most doubles the width, so beyond `|a|/2ⁿ ≈ 2⁻¹²` it buys nothing.
+## Hypotheses
+* none
+
+## Conclusion
+* the downward sine bound is at most the sine
 -/
 
 -- Authors:       Claude Opus 5.5

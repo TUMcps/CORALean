@@ -9,18 +9,18 @@ public import CORALean.Global.Tensor
 /-!
 # The `n`-dimensional cross product
 
-[1, Def. 2]'s `nX`: the vector orthogonal to `n - 1` given vectors, built from
-the alternating minors of the matrix holding them, one row dropped each time.
-It is what [1, Thm. 2] takes a facet normal to be.
+[1, Def. 2]'s `nX`: the vector orthogonal to `n - 1` given vectors, built from the alternating
+minors of the matrix holding them, one row dropped each time; what [1, Thm. 2] takes a facet
+normal to be. Written at `Mat ℝ (n + 1) n` rather than the printed `Mat ℝ n (n - 1)`: the same
+object with the ambient dimension named as a successor, so dropping a row lands in `Fin n` with no
+truncated subtraction and Laplace expansion applies to the square matrix unchanged. The printed
+sign `(-1)^(i + 1)` counts rows from one; `(-1)^i` is the same alternation at a zero-based index.
 
-Written at `Mat ℝ (n + 1) n` rather than the printed `Mat ℝ n (n - 1)`. The same
-object — `n` vectors spanning a facet of an `n + 1`-dimensional set — with the
-ambient dimension named as a successor, so that dropping a row lands in `Fin n`
-with no truncated subtraction and Laplace expansion along a column applies to
-the square matrix unchanged.
+## Inputs
+* `H` – matrix holding the given vectors as columns
 
-The printed sign `(-1)^(i + 1)` counts rows from one; `(-1)^i` is that same
-alternation read at a zero-based index.
+## Output
+* the vector of alternating minors, orthogonal to the columns
 
 ## References
 

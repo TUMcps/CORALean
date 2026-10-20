@@ -10,6 +10,12 @@ public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 At or below `f` digits already, padding with zeros is exact, the same as
 `roundDown`. Past `f`, the ceiling is the floor of the negation: negate,
 divide, negate back.
+
+## Inputs
+* `x` – fixed-point value
+
+## Output
+* the value ceiled to the format's digit count
 -/
 
 -- Authors:       Claude Opus 5.5

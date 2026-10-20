@@ -14,6 +14,22 @@ time of `R` is more than `M` after every time of `L`. Then `x(j)` is independent
 at any finite set `S` of times more than `M` from `j`: split `S` at `j` into `L` and `R`; `x_L` is
 independent of `(x(j), x_R)` and `(x_L, x(j))` of `x_R`, so `x(j)` is independent of `(x_L, x_R)`
 (`indep_mid_of_indep`), which determines `x_S`.
+
+## Inputs
+* `μ` – probability measure
+* `x` – sequence of random variables
+* `M` – dependence lag
+* `j` – time of the point
+* `S` – finite set of times
+
+## Hypotheses
+* `hx` – every variable is measurable
+* `hM` – the sequence is dependent only within the lag
+* `hS` – every time of the set is more than the lag from the point
+
+## Conclusion
+* the point's variable is independent of the variables at the set's times
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

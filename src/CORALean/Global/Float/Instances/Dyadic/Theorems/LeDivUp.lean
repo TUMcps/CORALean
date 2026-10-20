@@ -16,6 +16,16 @@ quotient is rounded while it is still two integers, since afterwards it is a
 rational nothing on the grid equals. The upward direction is the downward
 one, `quotDown_le_div`, at a negated dividend; the grid rounding on top,
 `le_roundUp`, only moves the bound further out.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Hypotheses
+* `hb` – the divisor is positive
+
+## Conclusion
+* the real quotient is at most the upward quotient
 -/
 
 -- Authors:       Claude Opus 5

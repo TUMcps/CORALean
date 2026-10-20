@@ -16,6 +16,20 @@ is invertible. Completing the square: with `Δ = Λ - Λ*`, the bracket is the o
 `Δ S Δᵀ = Σₖ (Δ sₖ)(Δ sₖ)ᵀ`, whose trace against `W` is `Σₖ (Δ sₖ)ᵀ W (Δ sₖ) ≥ 0`. This is the
 step behind the Kalman gains of the zonotopic observers, which the papers take by setting a
 matrix derivative to zero; no derivative is needed, and `W` drops out of the minimizer.
+
+## Inputs
+* `W` – weight matrix
+* `s` – vectors of the Gram matrix
+* `L` – target matrix
+* `Λs` – gain solving the normal equation
+* `Λ` – competing gain
+
+## Hypotheses
+* `hW` – the weight gives nonnegative quadratic forms
+* `hΛs` – the first gain solves the normal equation
+
+## Conclusion
+* the weighted trace at the solving gain is at most that at any competing gain
 -/
 
 -- Authors:       Claude Opus 5.5

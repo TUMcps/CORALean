@@ -18,6 +18,15 @@ no eigenvector of `Ā = X' Ṽ Σ̃⁻¹ Ũᵀ`: for `X = [1, 0]ᵀ` and `X' = [
 `X' Ṽ Σ̃⁻¹ w`, is an eigenvector for `0` whenever it is nonzero (`dmd_mode_vec`).
 [1, Eq. 24] repeats the case `λ = 0` for the modes with known `B`, and at `B = 0` it is this one.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* data with next states `A X` need not satisfy `X = A X'`
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

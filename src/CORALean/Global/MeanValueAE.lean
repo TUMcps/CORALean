@@ -9,16 +9,29 @@ public import Mathlib.Analysis.Convex.Topology
 /-!
 # Mean-value AE extensions of a real-valued function
 
-[1, Thm. 1]: for `f : ℝᵐ → ℝ` on the box `x` with center `c` and radius `r`,
-`f(c) ∈ [f̲₀, f̄₀]` and `|∂ᵢf| ∈ [∇̲ᵢ, ∇̄ᵢ]` on the path set `{(c₁, …, cᵢ₋₁, xᵢ, …, x_m)}`,
-`range(f, x) ⊆ [f̲₀, f̄₀] + ⟨∇̄, r⟩[-1, 1]` (1) and
-`[f̄₀ - ⟨∇̲, r⟩, f̲₀ + ⟨∇̲, r⟩] ⊆ range(f, x)` (2).
+[1, Thm. 1]: for `f : ℝᵐ → ℝ` on the box `x` with center `c` and radius `r`, `f(c) ∈ [f̲₀, f̄₀]`
+and `|∂ᵢf| ∈ [∇̲ᵢ, ∇̄ᵢ]` on the path sets, `range(f, x) ⊆ [f̲₀, f̄₀] + ⟨∇̄, r⟩[-1, 1]` (1) and
+`[f̄₀ - ⟨∇̲, r⟩, f̲₀ + ⟨∇̲, r⟩] ⊆ range(f, x)` (2). The printed proof of (2) takes the corners
+`x̲`, `x̄` when `∇̲ ≠ 0`; that holds for `m = 1`, but for `m ≥ 2` the partials may have different
+signs (`f(x) = x₁ - x₂`) and the corners do not reach `f(c) ± ⟨∇̲, r⟩`. Here each coordinate moves
+the way its own partial points, and an intermediate value argument over the connected box closes
+the interval (`exists_ge_add_sum_of_abs_partial_ge`).
 
-The printed proof of (2) says `∇̲ ≠ 0` means `f` is strictly increasing or decreasing on
-the box, and takes the corners `x̲`, `x̄`. That holds for `m = 1`; for `m ≥ 2` the partials
-may have different signs (`f(x) = x₁ - x₂`), and the corners do not reach `f(c) ± ⟨∇̲, r⟩`.
-Here each coordinate moves the way its own partial points, and an intermediate value
-argument over the connected box closes the interval (`exists_ge_add_sum_of_abs_partial_ge`).
+## Inputs
+* `f` – function on the box
+* `lo` – lower corner of the box
+* `hi` – upper corner of the box
+* `f0lo` – lower bound on the value at the center
+* `f0hi` – upper bound on the value at the center
+* `dhi` – upper bounds on the partial derivatives
+
+## Hypotheses
+* `hf` – the function is differentiable
+* `hf0` – the value at the center lies within its bounds
+* `hd` – the partials are bounded by the upper bounds on the path sets
+
+## Conclusion
+* the range lies in the center interval widened by the partial bounds times the radii
 
 ## References
 

@@ -10,6 +10,16 @@ public import CORALean.Global.Float.Instances.Flint.Operations.Basic
 
 `Dyadic.le_iff` at the same pairs picks the smaller side, as it does for
 `Dyadic.minimum`.
+
+## Inputs
+* `a` – first value
+* `b` – second value
+
+## Hypotheses
+* none
+
+## Conclusion
+* the minimum denotes the smaller of the two real values
 -/
 
 -- Authors:       Claude Opus 5.5

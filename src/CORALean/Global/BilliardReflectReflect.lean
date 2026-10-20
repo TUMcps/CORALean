@@ -12,6 +12,16 @@ the local half of the reversibility `[1, Thm. 1]` uses ("reversibility of a bill
 due to the reflection law"), the half a theorem of reals can state without a measure on
 directions. The density symmetry the proof of `[1, Thm. 1]` builds on it is not covered.
 
+## Inputs
+* `s` – wall normal
+* `d` – incoming direction
+
+## Hypotheses
+* `hs` – the normal has unit length
+
+## Conclusion
+* reflecting twice returns the incoming direction
+
 ## References
 
 * [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control

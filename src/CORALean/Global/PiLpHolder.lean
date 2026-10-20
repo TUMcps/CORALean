@@ -12,6 +12,19 @@ public import Mathlib.Analysis.Normed.Lp.PiLp
 [1, Thm. 15 (accuracy)], [1, Thm. 17] and [1, Thm. 19]; the open range is
 `Real.inner_le_Lp_mul_Lq`.
 
+## Inputs
+* `k` – dimension
+* `q` – exponent
+* `q'` – its conjugate exponent
+* `a` – first vector
+* `b` – second vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the sum of products is at most the product of the dual norms
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

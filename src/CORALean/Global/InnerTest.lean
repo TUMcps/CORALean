@@ -16,6 +16,23 @@ every real `J₁, J₂` in the interval matrices and every point of `y₁` and `
 value of the expression lies in the open box. An interval evaluation of `H` encloses all of
 them, so the paper's test implies this one. The domain is `ℝʳ × ℝᵐ⁻ʳ`, the split (3) assumes.
 
+## Inputs
+* `g` – map
+* `ũ` – expansion point
+* `lo₁` – lower end of the controlled box
+* `hi₁` – upper end of the controlled box
+* `lo₂` – lower end of the remaining box
+* `hi₂` – upper end of the remaining box
+* `J₁lo` – lower end of the first Jacobian block enclosure
+* `J₁hi` – upper end of the first Jacobian block enclosure
+* `J₂lo` – lower end of the second Jacobian block enclosure
+* `J₂hi` – upper end of the second Jacobian block enclosure
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+
+## Output
+* the proposition that every real instance of the expression lies in the open controlled box
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

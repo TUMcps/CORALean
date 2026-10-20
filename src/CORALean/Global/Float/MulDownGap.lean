@@ -13,6 +13,16 @@ against a vector `δ` in the unit box the whole row is off by at most the gaps s
 row read at `m + diag(r) δ` splits into the row at `m`, the stored row at `δ` and that rounding.
 The float `HPolytope.rescaleCols` and `ConZonotope.rescale` pay exactly this, for the constraint
 rows and the generators.
+
+## Inputs
+* `a` – coefficient
+* `r` – scale factor
+
+## Hypotheses
+* none
+
+## Conclusion
+* the error of the downward product is at most the gap to the upward product
 -/
 
 -- Authors:       Claude Opus 5.5

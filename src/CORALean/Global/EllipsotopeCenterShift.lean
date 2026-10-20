@@ -16,6 +16,19 @@ over `α` of `‖G α + γ (c - d)‖` at `γ ∈ [-1, 1]`: the norm is convex i
 and `α ↦ -α` carries `γ = -1` to `γ = 1`. Stated as the two maxima being the same numbers, the
 circumbody's norm being any `coeffNorm` of a surjective map.
 
+## Inputs
+* `G` – generator map of the inner zonotope
+* `c` – center of the inner zonotope
+* `d` – center of the outer ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `r` – candidate radius
+
+## Hypotheses
+* `hH` – the outer generator map is onto
+
+## Conclusion
+* the radius is the maximum exactly when it is the one with the center difference as generator
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

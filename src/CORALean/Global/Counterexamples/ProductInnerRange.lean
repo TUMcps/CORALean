@@ -14,15 +14,23 @@ public import Mathlib.Data.Fintype.Fin
 /-!
 # Per-component inner ranges sharing an existential input are no inner box
 
-[1, Thm. 3] combines per-component AE extensions into a box inside the image only when
-each input is existential in exactly one component (`π` a map from inputs to outputs).
-For `f(x) = (x₀, x₀ + x₁/100)` on `[-1, 1]²` both components reach their intervals with
-`x₀` existential — `[-1, 1]` and `[-0.99, 0.99]`, [1, Thm. 2] with `x₁` universal — but
-the box of the two is not in the image: `(1, -0.99)` would need `x₁ = -199`. CORA's
-`priv_reachInnerParallelotope` (`aux_innerApprox`) picks the existential input per
-component independently and returns this box; `f` is the time-`1` flow of a linear
-system, and the Jacobian center has condition number over `100`, so CORA skips the
-preconditioning (read from the source, not run).
+[1, Thm. 3] combines per-component AE extensions into a box inside the image only when each input
+is existential in exactly one component. For `f(x) = (x₀, x₀ + x₁/100)` on `[-1, 1]²` both
+components reach their intervals with `x₀` existential, `[-1, 1]` and `[-0.99, 0.99]` ([1, Thm. 2]
+with `x₁` universal), but their box is not in the image: `(1, -0.99)` would need `x₁ = -199`.
+CORA's `priv_reachInnerParallelotope` (`aux_innerApprox`) picks the existential input per
+component independently and returns this box; `f` is the time-`1` flow of a linear system whose
+Jacobian center has condition number over `100`, so CORA skips the preconditioning (read from the
+source, not run).
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the box of the per-component ranges is not inside the image
 
 ## References
 

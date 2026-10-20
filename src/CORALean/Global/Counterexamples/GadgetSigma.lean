@@ -18,6 +18,15 @@ public import CORALean.Global.GadgetGA
 the printed `Z(H)` every radius halves, and the bound fails the more; it fails at the
 circumbody `Z(½H)` the proof uses as well.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the radii at two scalings differ by less than the printed slope bound allows
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

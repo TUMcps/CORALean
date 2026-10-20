@@ -9,6 +9,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 
 `Bᵏ` rounded up, by repeated `mulUp`. An upper bound on `xᵏ` for every `0 ≤ x ≤ B`, which
 is what a Lagrange remainder `|f - c|ᴺ⁺¹` needs.
+
+## Inputs
+* `B` – base
+
+## Output
+* the function giving the base raised to a power by repeated upward products
 -/
 
 -- Authors:       Claude Opus 5.5

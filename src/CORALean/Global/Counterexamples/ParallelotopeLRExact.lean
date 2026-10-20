@@ -16,6 +16,15 @@ and `Y = e₁ e₁ᵀ` attains it with columns `(1, 0)` and `(0, 0)`. The proof 
 extreme point of the constraint set, which shows that some maximizer satisfies (34)
 (`parallelotope_lr_exact`), not that every one does.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a maximizer of the dual program exists whose columns differ
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

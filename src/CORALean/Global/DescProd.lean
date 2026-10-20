@@ -13,6 +13,13 @@ CORA's `computeGO_k` multiplies the Jacobians `A_lin{k}, A_lin{k-1}, ...` in tha
 more factor for each earlier input. `descProd A hi d` is that product of `d` factors, from
 `A hi` down: `A hi * A (hi - 1) * ... * A (hi - d + 1)`, and `1` for `d = 0`. Indices are
 `0`-based, so CORA's `A_lin{k}` is `A (k - 1)`.
+
+## Inputs
+* `A` – matrix sequence
+* `hi` – index of the first factor
+
+## Output
+* the function giving the product of the first `d` factors, descending from the index
 -/
 
 -- Authors:       Claude Opus 5.5

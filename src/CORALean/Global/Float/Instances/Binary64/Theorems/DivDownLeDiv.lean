@@ -12,6 +12,16 @@ The dividend is what gets negated, so the divisor stays positive and the assumed
 bound applies unchanged — which is why `divDown` mirrors `a` and not `b`, and
 why this needs the same hypothesis on the divisor that `div_le_divUp` carries
 and no more.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Hypotheses
+* `hb` – the divisor is positive
+
+## Conclusion
+* the downward quotient is at most the real quotient
 -/
 
 -- Authors:       Claude Opus 5

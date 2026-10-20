@@ -17,6 +17,18 @@ The count of [1, Thm. 4]: among the times `0, …, N - 1`, given `d` of them `H`
 `H`. Removing the `M`-neighbourhoods of `H`, at most `d(2M + 1)` times, leaves at least
 `N - d(2M + 1)`; some residue class modulo `M + 1` holds at least a `1/(M + 1)` share of them
 (pigeonhole), and two times of one class are at least `M + 1` apart.
+
+## Inputs
+* `N` – number of times
+* `M` – separation
+* `H` – given times
+
+## Hypotheses
+* none
+
+## Conclusion
+* a set of the stated size exists whose times are separated from each other and from the given ones
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

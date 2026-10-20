@@ -12,6 +12,13 @@ CORA's `blkdiag(G₁, G₂)`: the first block's rows carry `G₁` on the first c
 the second block's rows `0` and then `G₂`. Entries are copied or `zero`, so nothing rounds.
 The columns, read as real vectors, are the two operands' columns padded with zeros on the other
 side, which is what a Cartesian product of generator representations needs.
+
+## Inputs
+* `A` – first generator matrix
+* `B` – second generator matrix
+
+## Output
+* the block-diagonal generator matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

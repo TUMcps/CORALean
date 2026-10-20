@@ -9,6 +9,19 @@ public import CORALean.Global.ReplaceKey
 
 `map(k) = v` changes the entry of key `k` and no other: reading `k` gives `v` if `k` was a key, and
 any other key still gives what it did.
+
+## Inputs
+* `β` – value type
+* `l` – list of pairs
+* `k` – key replaced
+* `v` – new value
+* `k'` – key looked up
+
+## Hypotheses
+* none
+
+## Conclusion
+* the lookup returns the new value at the replaced key and the old one elsewhere
 -/
 
 -- Authors:       Claude Sonnet 5.5

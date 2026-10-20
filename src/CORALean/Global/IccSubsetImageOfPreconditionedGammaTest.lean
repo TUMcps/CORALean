@@ -17,6 +17,35 @@ The proof is the paper's: the corollary for `C f` puts `z` in the range of `C f`
 (`Icc_subset_image_of_gammaTest`), and (3) (`subset_image_of_preconditioned_subset`) takes
 `C y ⊆ z` back to `y ⊆ range(f, x)`.
 
+## Inputs
+* `f` – map
+* `f'` – its derivative
+* `x₀` – expansion point
+* `xlo` – lower end of the domain box
+* `xhi` – upper end of the domain box
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+* `zlo` – lower end of the preconditioned box
+* `zhi` – upper end of the preconditioned box
+* `Jlo` – lower end of the Jacobian enclosure
+* `Jhi` – upper end of the Jacobian enclosure
+* `C` – preconditioning matrix
+
+## Hypotheses
+* `hC` – the preconditioner is regular
+* `hf` – the derivative is strict at interior points
+* `hcont` – the map is continuous on the domain box
+* `hJ₁` – the Jacobian enclosure contains the preconditioned derivative at interior points
+* `hJ` – the enclosure's ends are ordered
+* `hdiag` – no diagonal enclosure contains zero
+* `hx₀` – the expansion point lies in the domain box
+* `hz` – the preconditioner maps the target box into the preconditioned box
+* `hy` – the map's value at the expansion point lies in the target box
+* `h4` – the preconditioned inclusion test holds
+
+## Conclusion
+* the target box lies in the image of the domain box
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

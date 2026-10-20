@@ -10,6 +10,12 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 `sumUp` and `sumDown` over a `List` rather than a `Fin n`-indexed family: a Taylor model's
 terms are a list whose length an operation does not know in advance. Right-nested, as
 `sumUp` is, so each bound is one induction.
+
+## Inputs
+* none
+
+## Output
+* the right-nested upward sum of a list
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,23 @@ frequency deviation, where [1, Eq. 6] numbers the state as `ω` itself; only so 
 hold. Both lines of Eq. 1 are checked: `δ̇ = ω - ω_s` and
 `ω̇ = -(D/M)(ω - ω_s) + P_m/M - P_g/M`. `Y` stands for `|Y_g|`.
 
+## Inputs
+* `M` – machine inertia
+* `D` – damping
+* `P_m` – mechanical power
+* `E` – internal voltage
+* `V` – bus voltage
+* `Y` – admittance magnitude
+* `δ` – rotor angle
+* `ω` – rotor speed
+* `ω_s` – synchronous speed
+
+## Hypotheses
+* none
+
+## Conclusion
+* the generator model with constants inserted is the printed field
+
 ## References
 
 * [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the

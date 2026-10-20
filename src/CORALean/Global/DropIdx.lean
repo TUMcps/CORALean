@@ -7,19 +7,20 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # Every index but one
 
-`dropIdx r` enumerates `Fin n` without `r`, in order, and `sum_dropIdx` is the
-reason it exists: a sum over `Fin n` splits into the term at `r` and a sum over
-everything else, with no side condition to discharge and no `Finset.erase` to
-carry along afterwards.
+`dropIdx r` enumerates `Fin n` without `r`, in order, and `sum_dropIdx` is why it exists: a sum
+over `Fin n` splits into the term at `r` and a sum over everything else, with no side condition and
+no `Finset.erase`. `Fin.succAbove` does this only at `Fin (n + 1)`, and a count read off a
+structure field never has that shape; the two `Fin.cast`s are that difference alone. `insertIdx` is
+the converse (built from `Fin.insertNth`), and `forall_dropIdx_iff` is `sum_dropIdx`'s counterpart
+for a property: what extends a value known everywhere but `r` to one known everywhere.
 
-`Fin.succAbove` already does this, but only at `Fin (n + 1)`, and a count read
-off a structure field never has that shape. The two `Fin.cast`s here are that
-difference and nothing else: `r : Fin n` already forces `n - 1 + 1 = n`.
+## Inputs
+* `n` – number of indices
+* `r` – index left out
+* `i` – position among the remaining indices
 
-`insertIdx` is `dropIdx`'s converse — built from `Fin.insertNth` the same way — and
-`forall_dropIdx_iff` is `sum_dropIdx`'s counterpart for a property rather than a sum:
-what a construction needs to extend a value known everywhere but `r` back to one
-known everywhere.
+## Output
+* the index at that position among those other than `r`
 -/
 
 -- Authors:       Claude Opus 5

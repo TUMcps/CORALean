@@ -17,6 +17,12 @@ component `ẋ_i = Θ(xᵀ) ξ_i` [1, Eq. 8]. The discrete-time form `X₂ = Θ(
 is the same statement for `x_{k+1}`. For `Θ(x) = x` it is `X₂ᵀ = Ξᵀ X₁ᵀ` and has the same
 least-squares cost, the dynamic mode decomposition of `Ξᵀ` [1, Eq. 14].
 
+## Inputs
+* `f` – snapshot function
+
+## Output
+* the snapshots as the rows of a matrix
+
 ## References
 
 * [1] S. L. Brunton, J. L. Proctor and J. N. Kutz. "Discovering governing equations from data by

@@ -14,6 +14,14 @@ written as the `p`-product of `ℝᵐ` (itself with the `p`-norm) and `ℝ`: the
 `(‖α'‖_pᵖ + |α_{m+1}|ᵖ)^{1/p}`, and the maximum at `p = ∞`. A coefficient `(α', s)` goes to
 `(A α', -L s)`.
 
+## Inputs
+* `p` – norm exponent
+* `A` – matrix to be reduced
+* `L` – weight of the last coefficient
+
+## Output
+* the linear generator map of the inbody
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

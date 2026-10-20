@@ -14,6 +14,18 @@ point of `T` short of its greatest one, the right derivative `g t`; so `g` agree
 unconditionally measurable right derivative of `x` off at most one point, which is null. This
 is what lets a classical solution, whose derivative exists everywhere, be read as a
 Carathéodory one, whose integrand must be measurable.
+
+## Inputs
+* `T` – convex set of times
+* `x` – function with a derivative on `T`
+* `g` – its derivative
+
+## Hypotheses
+* `hTconv` – `T` is convex
+* `hd` – `g t` is the derivative of `x` within `T` at each point of `T`
+
+## Conclusion
+* `g` is almost everywhere strongly measurable on `T`
 -/
 
 -- Authors:       Claude Opus 5.5

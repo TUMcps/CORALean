@@ -13,18 +13,22 @@ public import Mathlib.Topology.Algebra.Order.Field
 # The region-of-attraction criterion without limits
 
 [1, Sec. 3.1.2] verifies a region of attraction by `∃ t > 0 : R(t) ⊆ S` for `R(0) = D`, with
-`D = {[x(0); y(0)] | ∀ u(·) : lim_{t→∞} γ(t, x(0), y(0), u(·)) ∈ S}` (`regionOfAttraction`), and
-names limit cycles among what an invariant `S` lets it cover. A solution circling inside `S` has
-no limit, so the criterion does not place its initial state in `D` as printed. The harmonic
-oscillator `ẋ₁ = x₂`, `ẋ₂ = -x₁`, no input, is a counterexample: its solutions are the rotations
-`γ(t, x) = (x₁ cos t + x₂ sin t, -x₁ sin t + x₂ cos t)`, the closed unit disc `S` is robust
-positively invariant, `R(1) ⊆ S` for `R(0) = S`, and from `(1, 0) ∈ S` the solution
-`(cos t, -sin t)` does not converge, so `S ⊄ D`. The conclusion lists that `γ` solves the system
-from `x` and is time-invariant, the assumptions of [1, Sec. 3.1].
+`D = {[x(0); y(0)] | ∀ u(·) : lim_{t→∞} γ(t, x(0), y(0), u(·)) ∈ S}` (`regionOfAttraction`). A
+solution circling inside `S` has no limit, so the criterion does not place its initial state in
+`D` as printed. The harmonic oscillator `ẋ₁ = x₂`, `ẋ₂ = -x₁`, no input, is a counterexample: the
+closed unit disc `S` is robust positively invariant, `R(1) ⊆ S` for `R(0) = S`, and from `(1, 0)`
+the solution `(cos t, -sin t)` does not converge, so `S ⊄ D`. What the criterion does give is that
+every solution from `R(0)` is in `S` from `t` on (`RobustInvariant.mem_of_reach_subset`), and
+`R(0) ⊆ D` where the limits exist (`subset_regionOfAttraction_of_reach_subset`).
 
-What the criterion does give is that every solution from `R(0)` is in `S` from `t` on
-(`RobustInvariant.mem_of_reach_subset`), and `R(0) ⊆ D` where the limits exist
-(`subset_regionOfAttraction_of_reach_subset`).
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the invariant unit disc is not contained in the region of attraction as printed
 
 ## References
 

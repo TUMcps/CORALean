@@ -9,15 +9,23 @@ public import Mathlib.Geometry.Manifold.PartitionOfUnity
 /-!
 # Brouwer's fixed-point theorem on the closed unit ball
 
-A continuous self-map of the closed unit ball of a finite-dimensional real inner product
-space has a fixed point.
-
-First for a `C¹` map `g` without one: the point where the ray from `g x` through `x` leaves
-the ball, `x + σ(x)(x - g x)` with `σ` the larger root of a quadratic, is a `C¹` retraction
-of an open neighbourhood of the ball onto the sphere, which `no_contDiff_retraction_closedBall`
-rules out. Then for a continuous `f`: a smooth map uniformly within `η` of `f` (Mathlib's
-smooth partitions of unity), shrunk by `1 + η` to map the ball into itself, has a fixed point,
+A continuous self-map of the closed unit ball of a finite-dimensional real inner product space has
+a fixed point. First for a `C¹` map `g` without one: the point where the ray from `g x` through `x`
+leaves the ball is a `C¹` retraction of a neighbourhood of the ball onto the sphere, which
+`no_contDiff_retraction_closedBall` rules out. Then for a continuous `f`: a smooth map uniformly
+within `η` of `f` (Mathlib's smooth partitions of unity), shrunk by `1 + η`, has a fixed point,
 and if `f` moved every point by at least `ε` it could not for `η = ε / 4`.
+
+## Inputs
+* `E` – finite-dimensional real inner product space
+* `f` – self-map of the unit ball
+
+## Hypotheses
+* `hf` – `f` is continuous
+* `hfB'` – `f` maps the closed unit ball into itself
+
+## Conclusion
+* `f` has a fixed point in the closed unit ball
 -/
 
 -- Authors:       Claude Opus 5.5

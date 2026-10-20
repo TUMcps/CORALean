@@ -14,6 +14,13 @@ economy SVD `X = V S Wᵀ` of full rank `r`, so `dmdCandidate X' V s W r` is `X'
 truncates the SVD at a rank `r` below the full one, which is no pseudo-inverse of `X`; only
 the full-rank case is here.
 
+## Inputs
+* `X` – matrix
+* `P` – candidate pseudo-inverse
+
+## Output
+* the proposition that the candidate satisfies the four Penrose conditions
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

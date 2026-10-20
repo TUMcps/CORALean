@@ -9,6 +9,17 @@ public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
 
 Past the bit length of `m`, `|n| * 2 ^ g` exceeds `|m|`, so `m ≤ n * 2 ^ g` is `0 < n`; below
 it, `leShl` compares directly.
+
+## Inputs
+* `m` – integer mantissa
+* `n` – integer factor
+* `g` – shift
+
+## Hypotheses
+* none
+
+## Conclusion
+* the shifted comparison is true exactly when the inequality holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

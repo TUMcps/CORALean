@@ -10,6 +10,15 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 
 The scale is positive, so the sign is the mantissa's. Both `quotDown_le_div`
 and `le_quotUp` need the divisor's mantissa positive, to divide by it.
+
+## Inputs
+* `b` – dyadic
+
+## Hypotheses
+* `hb` – the dyadic is positive
+
+## Conclusion
+* the mantissa is positive
 -/
 
 -- Authors:       Claude Opus 5

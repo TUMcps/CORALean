@@ -10,6 +10,15 @@ public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 
 `arccos' = -arcsin'` on all of `ℝ` (both are `∓1 / √(1 - x²)`, with the junk value `0` outside
 `(-1, 1)`), so from the first derivative on `arccos⁽ᵏ⁾ = -arcsin⁽ᵏ⁾`.
+
+## Inputs
+* `j` – derivative order minus one
+
+## Hypotheses
+* none
+
+## Conclusion
+* the derivative of arccos is the negated derivative of arcsin
 -/
 
 -- Authors:       Claude Opus 5.5

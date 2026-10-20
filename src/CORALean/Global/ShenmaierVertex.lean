@@ -14,6 +14,21 @@ closed form is `[1, Eq. 21]`), `r_{Svs,i} = ‖G zᵢ + c - d‖_{E_q(H)}` (line
 (line 4), then `False` above `1` and `P_S(1 - r_Svs)` at `ϑ = 0` otherwise; `none` is
 `False`. Any norms on the coefficients.
 
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `d` – center of the outer ellipsotope
+* `n` – dimension
+* `N` – number of samples
+* `z` – unit-ball points of the samples
+
+## Hypotheses
+* `hN` – there is at least one sample
+
+## Output
+* none when containment is refuted, otherwise the probability bound
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

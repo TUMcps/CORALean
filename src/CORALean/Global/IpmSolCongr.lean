@@ -11,6 +11,27 @@ public import Mathlib.Data.Real.Basic
 A step of [1, Thm. 3] and [1, Thm. 4]: when Problem 1′ with the constraints `H` has a unique
 solution `Î_H` for all data, data agreeing on `H` give the same `Î_H`, as they give the same
 problem. The proof's `Î_H` is so a function of the `d` data it is computed from.
+
+## Inputs
+* `E` – parameter space
+* `Φ` – regressor space
+* `Y` – output space
+* `N` – number of data points
+* `𝒬` – set of candidate predictors
+* `μQ` – cost of a candidate
+* `I` – predictor family
+* `sol` – solution map
+* `H` – subset of constraints
+* `x` – first data set
+* `x'` – second data set
+
+## Hypotheses
+* `hsol` – the subset has a unique optimal solution for all data
+* `hxx` – the data sets agree on the subset
+
+## Conclusion
+* both data sets give the same solution
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

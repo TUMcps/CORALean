@@ -14,6 +14,15 @@ The cube is the supremum-norm ball, and over it `bᵀ x` peaks at `r · sign(b)`
 `r ‖b‖₁`; so the cube fits iff `r ‖b‖₁ ≤ 1`. "Largest" needs `b ≠ 0`, which the printed
 statement leaves out: at `b = 0` every cube fits.
 
+## Inputs
+* `b` – normal vector of the halfspace
+
+## Hypotheses
+* none
+
+## Conclusion
+* a cube fits iff its radius times the normal's 1-norm is at most one
+
 ## References
 
 * [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment

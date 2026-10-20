@@ -19,6 +19,15 @@ combinations, which is the lower bound; a preimage of that norm spreads `h` over
 proportion to their slack `μ - |yᵢ|`. This closed form is what [1, Lemma 25], [1, Lemma 27]
 and [1, Prop. 28] are read from here; `½H` is onto, so the norm is defined everywhere.
 
+## Inputs
+* none
+
+## Hypotheses
+* `hn` – the dimension is at least one
+
+## Conclusion
+* half the gadget matrix is onto and its coefficient norm has a closed form
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

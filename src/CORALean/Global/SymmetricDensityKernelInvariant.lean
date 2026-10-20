@@ -15,6 +15,19 @@ homogeneous in `μ`, so `λ = V / V(S)` is stationary as well. The proof is Fubi
 printed; here it goes through Mathlib's `Kernel.IsReversible`, whose detailed balance is that
 interchange.
 
+## Inputs
+* `μ` – reference measure
+* `κ` – Markov kernel of the chain
+* `f` – transition density
+
+## Hypotheses
+* `hf` – the density is measurable
+* `hκ` – the kernel has this density with respect to the measure
+* `hsymm` – the density is symmetric
+
+## Conclusion
+* the reference measure is invariant for the kernel
+
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed

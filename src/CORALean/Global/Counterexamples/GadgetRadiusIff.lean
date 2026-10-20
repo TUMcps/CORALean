@@ -17,6 +17,15 @@ Eq. 72 and [1, Prop. 28]'s proof). At `Z(H)` the radius is half of that at `Z(½
 inbody, `|a|, |s| ≤ 1`, is `H β` for `β₁ = (a/2 - s/4, -s/4)`, `β₂ = (-a/2 - s/4, -s/4)`, of
 supremum norm at most `3/4`; so `r ≤ 3/4 < 1`.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the operator norm is one while the radius to the printed circumbody is at most three quarters
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

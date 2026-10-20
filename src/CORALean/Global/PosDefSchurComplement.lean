@@ -15,6 +15,18 @@ form a solver certifies to the quadratic form a proof needs. Mathlib has the sem
 equivalence (`Matrix.PosDef.fromBlocks₂₂`); the strict half is the quadratic form of the
 block matrix at `(x, -D⁻¹ Bᵀ x)`, which is `xᵀ (A - B D⁻¹ Bᵀ) x` by
 `Matrix.schur_complement_eq₂₂` and nonzero with `x`.
+
+## Inputs
+* `A` – upper left block
+* `B` – off-diagonal block
+* `D` – lower right block
+
+## Hypotheses
+* `hD` – the lower right block is positive definite
+* `h` – the block matrix is positive definite
+
+## Conclusion
+* the Schur complement is positive definite
 -/
 
 -- Authors:       Claude Opus 5.5

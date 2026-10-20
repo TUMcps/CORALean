@@ -10,6 +10,16 @@ public import Mathlib.Data.Real.Basic
 # A linear functional on matrices, entry by entry
 
 `f M = Σ M_{kj} f(E_{kj})`, with `E_{kj}` the matrix unit.
+
+## Inputs
+* `f` – linear functional on matrices
+* `M` – matrix
+
+## Hypotheses
+* none
+
+## Conclusion
+* the functional's value is the entrywise sum weighted by its values on matrix units
 -/
 
 -- Authors:       Claude Opus 5.5

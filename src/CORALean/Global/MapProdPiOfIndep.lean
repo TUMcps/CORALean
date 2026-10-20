@@ -12,6 +12,29 @@ independent of a σ-algebra `m_j` in which `Z` and the other samples are measura
 law `law(Z) ⊗ Pⁱ`. On a rectangle `a × ∏_j s_j` the measure of `{Z ∈ a} ∩ ⋂_j {y_j ∈ s_j}` splits
 off one sample at a time; rectangles of a measurable set and a box generate the product
 σ-algebra (`Measure.prod_eq_generateFrom`).
+
+## Inputs
+* `Ω` – sample space
+* `β` – type of the block
+* `Δ` – type of the samples
+* `ι` – index type of the samples
+* `μ` – probability measure
+* `P` – law of each sample
+* `Z` – random element
+* `y` – samples
+* `m` – sigma-algebras of the other variables
+
+## Hypotheses
+* `hZ` – the random element is measurable
+* `hy` – every sample is measurable
+* `hyP` – every sample has the common law
+* `hZm` – the random element is measurable for each sigma-algebra
+* `hym` – the other samples are measurable for each sigma-algebra
+* `hind` – each sample is independent of its sigma-algebra
+
+## Conclusion
+* the joint law is the product of the element's law and the samples' common law
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

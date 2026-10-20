@@ -17,6 +17,15 @@ level `2` and `optimalDiscard` returns `none` for `k = 2 < N - d = 3`, though th
 `{1, 2}` have the least possible value, `0`. The printed theorem takes it for granted that every
 problem of the tree has a support constraint; `optimalDiscard_le` makes it a hypothesis.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* on four constraints the algorithm returns nothing although a least-value set exists
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

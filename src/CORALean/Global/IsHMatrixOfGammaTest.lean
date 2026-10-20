@@ -16,6 +16,26 @@ extremes; both images lie in the open interval `(xloᵢ, xhiᵢ)`, whose width t
 `Σ_{j≠i} |Jᵢⱼ| widⱼ < |Jᵢᵢ| widᵢ`. The interval matrix `J` enters only through its mignitudes
 (`min |Jlo|, |Jhi|`) and magnitudes (`max`), and needs `0 ∉ Jᵢᵢ`.
 
+## Inputs
+* `f` – map
+* `x₀` – expansion point
+* `xlo` – lower end of the domain box
+* `xhi` – upper end of the domain box
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+* `Jlo` – lower end of the Jacobian enclosure
+* `Jhi` – upper end of the Jacobian enclosure
+
+## Hypotheses
+* `hJ` – the enclosure's ends are ordered
+* `hdiag` – no diagonal enclosure contains zero
+* `hx₀` – the expansion point lies in the domain box
+* `hy` – the map's value at the expansion point lies in the target box
+* `h` – the inclusion test holds
+
+## Conclusion
+* the Jacobian enclosure is an H-matrix
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

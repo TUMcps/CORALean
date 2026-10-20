@@ -13,6 +13,15 @@ public import Mathlib.Data.Real.Basic
 regression `y = ϑᵀϕ + e` with `ϑ` in the ellipsoid `E_{c,P} = {ϑ | (ϑ - c)ᵀP⁻¹(ϑ - c) ≤ 1}`,
 `P` symmetric positive definite, and `|e| ≤ γ`.
 
+## Inputs
+* `c` – center of the parameter ellipsoid
+* `P` – shape matrix of the ellipsoid
+* `γ` – noise bound
+* `ϕ` – regressor
+
+## Output
+* the set of outputs the ellipsoid predictor allows at the regressor
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

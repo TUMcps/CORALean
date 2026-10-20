@@ -10,15 +10,22 @@ public import Mathlib.Analysis.SpecialFunctions.Arcosh
 /-!
 # `arsinh` and `arcosh` rounded in either direction
 
-Both are a logarithm of a root, `arsinh x = log (x + √(1 + x²))` and
-`arcosh x = log (x + √(x² - 1))`, so both are `logUp`/`logDown` over `sqrtUp`/`sqrtDown`.
-`k` is both the number of bisection steps of the logarithm and of Newton steps of the root, `p`
-is `logDown`'s range exponent.
+Both are a logarithm of a root, `arsinh x = log (x + √(1 + x²))` and `arcosh x = log (x + √(x² -
+1))`, so both are `logUp`/`logDown` over `sqrtUp`/`sqrtDown`. `k` is the number of bisection steps
+of the logarithm and of Newton steps of the root, `p` is `logDown`'s range exponent. Upward, `x +
+√(1 + x²)` is positive at every `x`, so `asinhUp` needs no side condition, and `acoshUp` only `1 ≤
+x`. Downward, `logDown` wants an argument in `[1, 2ᵖ/2]`: the argument is floored at `1`, which the
+true one exceeds, and the range is a hypothesis on `x`. Below zero `arsinh` is odd, so the lower
+bound there is the upper one at `-x`, negated.
 
-Upward, `x + √(1 + x²)` is positive at every `x`, so `asinhUp` needs no side condition, and
-`acoshUp` only `1 ≤ x`. Downward, `logDown` wants an argument in `[1, 2ᵖ/2]`: the argument is
-floored at `1`, which the true one exceeds, and the range is a hypothesis on `x`. Below zero
-`arsinh` is odd, so the lower bound there is the upper one at `-x`, negated.
+## Inputs
+* `x` – real argument
+
+## Hypotheses
+* none
+
+## Conclusion
+* the argument plus the root of one plus its square is positive
 -/
 
 -- Authors:       Claude Sonnet 5.5

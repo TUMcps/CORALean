@@ -16,6 +16,18 @@ of the coefficient space where the paper prints `n`. A point `y` of `B₂` is
 `m^{1/q-1/2} M (m^{1/2-1/q} Mᵀ y)` with `‖Mᵀ y‖_q ≤ m^{1/q-1/2} ‖Mᵀ y‖₂`, and
 `‖M β‖₂ ≤ ‖β‖₂ ≤ ‖β‖_q`.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `M` – matrix with orthonormal rows
+
+## Hypotheses
+* `hq` – the exponent is at most two
+* `hq1` – the exponent is finite
+* `hM` – the rows are orthonormal
+
+## Conclusion
+* the ellipsotope lies between the Euclidean ball and its dimension-scaled version
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

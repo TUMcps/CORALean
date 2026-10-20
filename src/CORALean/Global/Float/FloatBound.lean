@@ -8,18 +8,13 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Bounds whose value is machine-representable
 
-A `SupportBound` holds a real number, which an algorithm cannot store. A
-`FloatBound` holds a float and says the set stays under what that float denotes,
-so an operation may keep it in a representation's field.
-
-Everything composes the same way, one rounding mode throughout: upward wherever
-two bounds are combined, since a bound only stays sound by growing. The
-composition rules are `Composition`'s with `+` replaced by `addUp` and `max` by
-`maximum`, and each one is that rule followed by the rounding axiom.
-
-Read as a `SupportBound` this is the same object, so a float bound may be handed
-to anything stated over ℝ; the converse needs a float large enough, which is
-`raise`.
+A `SupportBound` holds a real number, which an algorithm cannot store. A `FloatBound` holds a float
+and says the set stays under what that float denotes, so an operation may keep it in a
+representation's field. Everything composes the same way, one rounding mode throughout: upward
+wherever two bounds are combined, since a bound only stays sound by growing. The composition rules
+are `Composition`'s with `+` replaced by `addUp` and `max` by `maximum`, each followed by the
+rounding axiom. Read as a `SupportBound` this is the same object, so a float bound may be handed to
+anything stated over ℝ; the converse needs a float large enough, which is `raise`.
 -/
 
 -- Authors:       Claude Opus 5.5

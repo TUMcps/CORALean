@@ -16,6 +16,16 @@ public import Mathlib.Data.Int.ConditionallyCompleteOrder
 there is the whole fact, read back at `f` digits by `div_le_div_iff₀`. A
 positive divisor is what the direction depends on, `mantissa_pos` reading it
 off `toReal b`.
+
+## Inputs
+* `a` – dividend
+* `b` – divisor
+
+## Hypotheses
+* `hb` – the divisor is positive
+
+## Conclusion
+* the downward quotient is at most the real quotient
 -/
 
 -- Authors:       Claude Opus 5.5

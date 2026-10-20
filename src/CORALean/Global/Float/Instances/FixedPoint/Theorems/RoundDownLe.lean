@@ -14,6 +14,15 @@ public import Mathlib.Data.Int.ConditionallyCompleteOrder
 At or below `f` digits, `roundDown` only pads with zeros -- exact, so
 `toReal_align` gives equality. Past `f`, `Int.ediv_mul_le` is floor division's
 own fact -- it never overshoots -- read back at `f` digits by `div_le_div_iff₀`.
+
+## Inputs
+* `x` – fixed-point value
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding down does not increase the value
 -/
 
 -- Authors:       Claude Opus 5.5

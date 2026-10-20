@@ -14,6 +14,17 @@ meets; `M` and `D` are free. At Table 1's `M = 1/(15π)`, `D = 0.04`, `|Y_g| = 5
 CORA's `models/Cora/infiniteBus.m`, `[x₂; 15π(1 - 5 sin x₁ - 0.04 x₂)]`, which cites [1].
 `Y` stands for `|Y_g|`.
 
+## Inputs
+* `M` – machine inertia
+* `D` – damping
+* `Y` – admittance magnitude
+
+## Hypotheses
+* `hY` – the admittance magnitude is at least one
+
+## Conclusion
+* the field vanishes at the arcsine equilibrium with zero frequency deviation
+
 ## References
 
 * [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the

@@ -16,6 +16,19 @@ paper's: the image is compact, so a frontier point is `f(x)`; at an interior `x`
 interior of the image. Stated for a strict derivative `g'` at the interior points, which a
 continuous one gives.
 
+## Inputs
+* `f` – continuous map
+* `f'` – its derivative
+* `K` – compact domain
+
+## Hypotheses
+* `hK` – the domain is compact
+* `hf` – the derivative is strict at interior points
+* `hcont` – the map is continuous on the domain
+
+## Conclusion
+* the frontier of the image lies in the images of the boundary and of the singular interior points
+
 ## References
 
 * [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued

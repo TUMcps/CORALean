@@ -14,6 +14,16 @@ since `A diag(u)` is strictly diagonally dominant and Lévy–Desplanques
 (`det_ne_zero_of_sum_row_lt_diag`, [1, Thm. 4.6]) applies. The interval matrix enters
 through bounds on `|A|`: its mignitudes below on the diagonal, magnitudes above off it.
 
+## Inputs
+* `mig` – matrix of mignitudes
+* `mag` – matrix of magnitudes
+
+## Hypotheses
+* `h` – every row's off-diagonal magnitudes sum below the diagonal mignitude
+
+## Conclusion
+* the interval matrix is an H-matrix
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

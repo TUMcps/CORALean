@@ -12,6 +12,15 @@ public import Mathlib.Tactic.Positivity
 The scale `10 ^ d` is positive, so the sign is the mantissa's. Both
 `divDown_le_div` and `le_divUp` need the divisor's mantissa positive, to
 divide by it.
+
+## Inputs
+* `b` – fixed-point value
+
+## Hypotheses
+* `hb` – the value is positive
+
+## Conclusion
+* the mantissa is positive
 -/
 
 -- Authors:       Claude Opus 5.5

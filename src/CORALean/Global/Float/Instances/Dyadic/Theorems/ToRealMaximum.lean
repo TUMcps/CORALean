@@ -11,6 +11,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
 `le_iff` picks the larger side directly, which is what lets `maximum` absorb
 a sign without widening anything. What `SoundFloatArithmetic.toReal_maximum`
 needs from `Dyadic`.
+
+## Inputs
+* `a` – first dyadic
+* `b` – second dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* the maximum denotes the larger of the two real values
 -/
 
 -- Authors:       Claude Opus 5

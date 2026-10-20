@@ -9,17 +9,23 @@ public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 /-!
 # Carathéodory's theorem, over a fixed index
 
-A point of the convex hull of `T` in a space of dimension `d` is a convex
-combination of `d + 1` points of `T`, and so — padding the rest with weight
-zero — of `a` of them for any `a` past that. Mathlib states the theorem as a
-union over affinely independent finsets, a bound on the *cardinality* of a
-subset. A closed-form set representation cannot index by a finset whose size
-depends on the point: it needs one block of factors per summand, fixed in
-advance, and `Fin a` is that.
+A point of the convex hull of `T` in a space of dimension `d` is a convex combination of `d + 1`
+points of `T`, and so, padding with weight zero, of `a` of them for any `a` past that. Mathlib
+states it as a union over affinely independent finsets, a bound on the cardinality of a subset; a
+closed-form set representation needs one block of factors per summand, fixed in advance, and
+`Fin a` is that. Here rather than under `ContSet/`: nothing in it names a representation, on a par
+with `Global/Radstrom.lean`.
 
-Here rather than under `ContSet/`, because nothing in it names a representation
-or a `construct` — it is a statement about a finite-dimensional real space, on
-a par with `Global/Radstrom.lean`.
+## Inputs
+* `E` – finite-dimensional real space
+* `a` – number of points combined
+* `T` – set
+
+## Hypotheses
+* `ha` – `a` is at least the dimension plus one
+
+## Conclusion
+* the convex hull is the set of convex combinations of `a` points of `T`
 -/
 
 -- Authors:       Claude Opus 5

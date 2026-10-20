@@ -8,16 +8,12 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 /-!
 # Block-diagonal matrices
 
-Two square matrices laid out along the diagonal of one, the zero block given
-explicitly so that a float scalar, which has no `Zero` instance, can use it too.
-Written once over the entry type: at `ℝ` and zero it is Mathlib's
-`fromBlocks M 0 0 N` read through `finSumFinEquiv`, and `posSemidef_blockDiag_iff`
-says what a linear matrix inequality needs of it, that a block-diagonal matrix is
-positive semidefinite exactly when each block is.
-
-The linearity laws are what let a sum of block-diagonal matrices be read as the
-block-diagonal matrix of the sums, which is how `SpectraShadow.plus` keeps its
-linear matrix inequality exact.
+Two square matrices laid out along the diagonal of one, the zero block given explicitly so that a
+float scalar, which has no `Zero` instance, can use it too. Written once over the entry type: at `ℝ`
+and zero it is Mathlib's `fromBlocks M 0 0 N` read through `finSumFinEquiv`, and
+`posSemidef_blockDiag_iff` says that a block-diagonal matrix is positive semidefinite exactly when
+each block is. The linearity laws let a sum of block-diagonal matrices be read as the block-diagonal
+matrix of the sums, which is how `SpectraShadow.plus` keeps its linear matrix inequality exact.
 -/
 
 -- Authors:       Claude Opus 5.5

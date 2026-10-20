@@ -12,21 +12,25 @@ public import Mathlib.Analysis.Real.Pi.Bounds
 /-!
 # `arctan`, `arcsin` and `arccos` rounded in either direction
 
-All three are an arctangent of a half angle, so all three are one bisection:
+All three are one bisection of an arctangent of a half angle: `arctan y = 2 arctan (y / (1 + √(1 +
+y²)))`, `arcsin x = 2 arctan (x / (1 + √(1 - x²)))`, `arccos x = 2 arcsin √((1 - x)/2)`, the
+half-angle formula `tan (t/2) = sin t / (1 + cos t)`. The inner argument `z` lies in `[-1, 1]`, so
+`arctan z` is bisected there: a midpoint `m` has `cos m > 0`, so `m ≤ arctan z` is `sin m ≤ z cos
+m`, which `sinUp`/`cosDown`/`cosUp` certify. A step certifying neither keeps the bracket, so the
+result is sound for any fuel. `arcsin` and `arccos` clamp their argument to `[-1, 1]` first
+(`Real.arcsin_projIcc`), so all six are total. `n` is the number of halvings of the sine and cosine,
+`k` the number of bisection and Newton steps.
 
-* `arctan y = 2 arctan (y / (1 + √(1 + y²)))`,
-* `arcsin x = 2 arctan (x / (1 + √(1 - x²)))` on `[-1, 1]`,
-* `arccos x = 2 arcsin √((1 - x)/2)` on `[-1, 1]`,
+## Inputs
+* `n` – number of halvings
+* `k` – number of bisection steps
+* `y` – float argument
 
-each the half-angle formula `tan (t/2) = sin t / (1 + cos t)` at `t = arctan y`, `arcsin x`
-or `arccos x`. The inner argument `z` lies in `[-1, 1]`, so `arctan z ∈ [-π/4, π/4] ⊂ [-1, 1]`,
-and that bracket is bisected: a midpoint `m ∈ [-1, 1]` has `cos m > 0`, so `m ≤ arctan z` is
-`sin m ≤ z cos m`, which `sinUp`/`cosDown`/`cosUp` certify, and `arctan z ≤ m` the converse. A
-step that certifies neither keeps the bracket, so the result is sound for any fuel. Nothing needs
-`π`. The inner arguments are quotients by `1 + √· ≥ 1`, between the numerator over the two bounds
-on the denominator. `arcsin` and `arccos` clamp their argument to `[-1, 1]` first, as
-`Real.arcsin` does (`Real.arcsin_projIcc`), so all six are total. `n` is the number of halvings
-of the sine and cosine, `k` the number of bisection and Newton steps.
+## Hypotheses
+* none
+
+## Conclusion
+* the downward arctangent is at most the arctangent
 -/
 
 -- Authors:       Claude Opus 5.5

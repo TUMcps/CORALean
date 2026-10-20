@@ -9,15 +9,22 @@ public import Mathlib.Analysis.SpecialFunctions.Artanh
 # `artanh` rounded in either direction
 
 `artanh x = ½ log ((1 + x)/(1 - x))` on `(-1, 1)`, so `atanhUp`/`atanhDown` are `half` of
-`logUp`/`logDown` of a ratio rounded the same way. `p` is `logDown`'s range exponent and `k` the
-number of bisection steps.
+`logUp`/`logDown` of a ratio rounded the same way; `p` is `logDown`'s range exponent and `k` the
+number of bisection steps. Upward, the divisor `1 - x` is rounded down and has to be proved
+positive, and the argument exceeds `-1`: both are hypotheses. `logDown` only accepts an argument of
+at least `1`, which the ratio is for `0 ≤ x`, so there the lower bound is `logDown` of the ratio
+floored at `1`; below zero `artanh` is odd and the lower bound is the upper one at `-x`, negated.
+`le zero x` answers only `true` reliably, so the odd branch also covers an `x` of undecided sign.
 
-Upward, the divisor `1 - x` is rounded down and has to be proved positive, and the argument
-exceeds `-1`: both are hypotheses. `logDown` only accepts an argument of at least `1`, which the
-ratio is for `0 ≤ x`, so the lower bound there is `logDown` of the ratio floored at `1`, with
-`logDown`'s range a hypothesis; below zero `artanh` is odd and the lower bound is the upper one at
-`-x`, negated. `le zero x` answers only `true` reliably, so the odd branch also covers an `x`
-whose sign it could not decide, which costs nothing.
+## Inputs
+* `x` – real argument
+
+## Hypotheses
+* `h1` – the argument exceeds minus one
+* `h2` – the argument is below one
+
+## Conclusion
+* `artanh` is an odd function
 -/
 
 -- Authors:       Claude Sonnet 5.5

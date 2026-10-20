@@ -9,22 +9,20 @@ public import Mathlib.Tactic.Linarith
 /-!
 # How a bound travels across set operations
 
-A direction sees a Minkowski sum as a sum of extents, a union as the larger of
-two, a linear image as the direction pulled back through the map, and a convex
-hull as no further than the points it was taken of. So one bound per operand is
-enough, and a representation that can answer `SupportBound` for itself can be
-enclosed after any of these without knowing how the result is described.
+A direction sees a Minkowski sum as a sum of extents, a union as the larger of two, a linear image
+as the direction pulled back through the map, and a convex hull as no further than the points it was
+taken of. So one bound per operand is enough, and a representation that can answer `SupportBound`
+for itself can be enclosed after any of these without knowing how the result is described. What does
+*not* travel is an enclosure, and `exists_outer_without_supportBound` is that: every operation class
+guarantees exactly `exact ⊆ computed`, and a bound crosses an inclusion the other way, so a bound on
+`construct (plus s t)` never comes from bounds on the operands. `SupportWitness` travels the same
+way, `union`'s `max` now chosen by a case split.
 
-This is what makes the hard polytope operations definable: the enclosure is a
-list of directions, and its right-hand side is assembled here.
+## Inputs
+* `u` – support bound of the set
 
-What does *not* travel is an enclosure, and `exists_outer_without_supportBound`
-is that: every operation class guarantees exactly `exact ⊆ computed`, and a
-bound crosses an inclusion the other way, so a bound on `construct (plus s t)`
-comes from the representation and never from bounds on the two operands.
-
-`SupportWitness` travels the same way, `union`'s `max` now chosen by a case
-split, since only one of the two points attains it.
+## Output
+* the same support bound for the set's convex hull
 -/
 
 -- Authors:       Claude Opus 5

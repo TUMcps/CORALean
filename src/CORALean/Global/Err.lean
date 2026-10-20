@@ -9,20 +9,20 @@ public import Mathlib.Algebra.Order.Group.Pointwise.CompleteLattice
 /-!
 # `err(S) := rad(box(S))`, the Euclidean radius of the smallest ball at the origin enclosing `S`
 
-[1]'s eq. (11): `err(S) := rad(box(S))`, with `rad` "the radius of the smallest hypersphere
-centered at the origin and enclosing a set" and `box(S)` "the tightest axis-aligned interval
-outer-approximation of `S`" (Sec. II-A, Notation) — a *hypersphere* is Euclidean by construction,
-matching [1, Def. 5]'s own `‖·‖₂` for the Hausdorff distance `err` bounds via eq. (12). This is the
-ORIGIN-centered reading, not `Interval.radius`'s own-center one (which would instead be
-`‖boxDiameter S / 2‖₂` and gives a different number whenever `box(S)` is not centered at `0`):
-`box(S)`'s farthest corner has magnitude `max |inf_i S| |sup_i S|` per coordinate, matching CDC'20
-`Prop. 1`'s `hausdorffDist₂_add_le_box_radius`, already in this tree, read off a bare `Set` rather
-than a fixed `Interval`.
+[1]'s eq. (11): `err(S) := rad(box(S))`, with `rad` "the radius of the smallest hypersphere centered
+at the origin and enclosing a set" and `box(S)` "the tightest axis-aligned interval
+outer-approximation of `S`" (Sec. II-A): Euclidean by construction, matching [1, Def. 5]'s `‖·‖₂`
+for the Hausdorff distance `err` bounds via eq. (12). The ORIGIN-centered reading, not
+`Interval.radius`'s own-center one (`‖boxDiameter S / 2‖₂`, a different number when `box(S)` is not
+centered at `0`): `box(S)`'s farthest corner has magnitude `max |inf_i S| |sup_i S|` per coordinate,
+as CDC'20 `Prop. 1`'s `hausdorffDist₂_add_le_box_radius`. `err_le_sqrt_mul_norm_boxDiameter` and
+`norm_boxDiameter_le_two_mul_err` bridge `err` to `boxDiameter`'s bounds for a caller with `0 ∈ S`.
 
-`err_le_sqrt_mul_norm_boxDiameter` and `norm_boxDiameter_le_two_mul_err` bridge `err` to
-`boxDiameter`'s own, more developed `add_le`/`mulVec_image_le` bounds, so a caller with `0 ∈ S` (the
-case every error term of [1] is in) gets `err`'s behaviour on a sum or a linear image at a loose but
-sound constant, rather than a second proof of the same `sSup`/`sInf` sandwiching.
+## Inputs
+* `S` – set of vectors
+
+## Output
+* the Euclidean radius of the smallest origin-centered ball enclosing the box of the set
 
 ## References
 

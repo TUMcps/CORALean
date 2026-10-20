@@ -17,6 +17,12 @@ snapshot exactly when `X' = A X + B Υ` [1, Eq. 16], equivalently `X' - B Υ = A
 [1, Eq. 17], and when `X' = [A B] Ω` for the stacked `Ω = [X; Υ]` [1, Eq. 25]. The matrix
 `[A B]` is `dmdcStack A B`, taken apart by `dmdcBlocks`.
 
+## Inputs
+* `f` – snapshot function
+
+## Output
+* the snapshots as columns of a matrix
+
 ## References
 
 * [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".

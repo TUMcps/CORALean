@@ -15,6 +15,19 @@ public import Mathlib.Algebra.Module.Pi
 In one dimension a hyperplane `{x | f x = c}` with `f ≠ 0` is a single point. So a set holding two
 different points is none. Used by the `representsa_(S, 'hyperplane')` counterexamples of the classes
 whose test is `n == 1`.
+
+## Inputs
+* `S` – set of points of the line
+* `x` – first point
+* `y` – second point
+
+## Hypotheses
+* `hx` – the first point is in the set
+* `hy` – the second point is in the set
+* `hxy` – the two points are different
+
+## Conclusion
+* the set is no hyperplane
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,20 @@ Problem 1 becomes a linear program: the predictor `I_{c,r,γ}` is consistent wit
 `cᵀϕ(t) - r‖ϕ(t)‖ - γ ≤ y(t) ≤ cᵀϕ(t) + r‖ϕ(t)‖ + γ` for every `t`, which with the data fixed is
 linear in `(c, r, γ)`, and `r, γ ≥ 0`. By [1, Eq. 6] (`ipmBall_eq`).
 
+## Inputs
+* `c` – center of the parameter ball
+* `r` – radius of the parameter ball
+* `γ` – noise bound
+* `ϕ` – regressor data
+* `y` – observed outputs
+
+## Hypotheses
+* `hr` – the radius is nonnegative
+* `hγ` – the noise bound is nonnegative
+
+## Conclusion
+* every observation lies in the predictor exactly when the linear bounds hold
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

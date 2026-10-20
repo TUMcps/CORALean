@@ -8,6 +8,18 @@ public import CORALean.Global.ReplaceKey
 # Replacing a key keeps the keys
 
 `map(k) = v` on a list of pairs changes a value and no key.
+
+## Inputs
+* `β` – value type
+* `l` – list of pairs
+* `k` – key replaced
+* `v` – new value
+
+## Hypotheses
+* none
+
+## Conclusion
+* replacing a key's value keeps the list of keys
 -/
 
 -- Authors:       Claude Sonnet 5.5

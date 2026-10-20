@@ -12,6 +12,17 @@ public import Mathlib.Tactic.Linarith
 threshold `s₀ = max 1 ((|b| + |c| + 1) / (-a))`. The S-lemma reads its homogenized forms at
 `t = 0` through this: a quadratic in `x` that is non-negative everywhere has a non-negative
 leading form.
+
+## Inputs
+* `a` – leading coefficient
+* `b` – linear coefficient
+* `c` – constant coefficient
+
+## Hypotheses
+* `ha` – the leading coefficient is negative
+
+## Conclusion
+* the quadratic is negative from some threshold on
 -/
 
 -- Authors:       Claude Opus 5.5

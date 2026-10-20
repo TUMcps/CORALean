@@ -13,19 +13,29 @@ public import Mathlib.Analysis.InnerProductSpace.PiL2
 
 [1, Thm. 15 (accuracy)]: for `H` surjective and `q ∈ (1, ∞]`,
 `LR_q(G, H) ≤ (γ_{q*} √m / γ₁) r(Z(G), E_q(H))` (the second inequality of Eq. 30), `γ_k` the
-constant of Eq. 31 (`gaussMomentRoot`); so `LR_q > γ_{q*} √m / γ₁` gives a point of `Z(G)`
-outside `E_q(H)`. `LR_q` is the minimum of Eq. 29 and `r` the maximum over the cube of the
-ellipsotope norm `coeffNorm H`, as in `lr_isLeast_radius_le`. At `q = 1` the constant `γ_∞` of
-Eq. 31 is not a number, so `q* = q'` is finite here.
+constant of Eq. 31 (`gaussMomentRoot`); so `LR_q > γ_{q*} √m / γ₁` gives a point of `Z(G)` outside
+`E_q(H)`. `LR_q` is the minimum of Eq. 29 and `r` the maximum over the cube of `coeffNorm H`, as in
+`lr_isLeast_radius_le`; `q* = q'` is finite here. The paper cites Thm. 5.9 of its reference 22;
+here its Gaussian rounding is written out: a dual certificate `Y` (`lr_exists_dual`) taken at
+`z = Y g`, `g` a standard Gaussian vector, in `‖Gᵀ z‖₁ ≤ r ‖Hᵀ z‖_{q*}`
+(`dotProduct_le_coeffNorm_mul_norm`), and `gaussian_rounding_le` turns it into the bound.
 
-The paper's proof cites Thm. 5.9 of its reference 22; the argument here is its Gaussian
-rounding, written out. A dual certificate `Y` with `‖Hᵀ Y‖_{L⊤∞,q*} ≤ 1` and
-`tr(Gᵀ Y) ≥ LR_q` exists (`lr_exists_dual`). For every `z`, `‖Gᵀ z‖₁ = zᵀ G σ ≤ r ‖Hᵀ z‖_{q*}`
-with `σ` the signs of `Gᵀ z` (`dotProduct_le_coeffNorm_mul_norm`, the dual form Eq. 21). At
-`z = Y g`, `g` a standard Gaussian vector in `ℝ^m`, the rows `aₖ` of `Gᵀ Y` and `bᵢ` of `Hᵀ Y`
-give `Σₖ |⟨aₖ, g⟩| ≤ r ‖(⟨bᵢ, g⟩)ᵢ‖_{q*}`, and `gaussian_rounding_le` turns it into
-`γ₁ Σₖ ‖aₖ‖ ≤ r γ_{q*} (Σᵢ ‖bᵢ‖^{q*})^{1/q*}`. On the left `tr(Gᵀ Y) ≤ Σₖ ‖aₖ‖`; on the right
-`‖bᵢ‖ ≤ √m maxⱼ |(Hᵀ Y)ᵢⱼ|`, so the root is at most `√m ‖Hᵀ Y‖_{L⊤∞,q*} ≤ √m`.
+## Inputs
+* `q` – exponent of the coefficient norm
+* `q'` – its conjugate exponent
+* `G` – zonotope generator matrix
+* `H` – ellipsotope generator matrix
+* `LR` – relaxation value
+* `r` – containment radius
+
+## Hypotheses
+* `hq'` – the conjugate exponent is finite
+* `hH` – the ellipsotope generator matrix is onto
+* `hLR` – the relaxation value is the least feasible one
+* `hr` – the radius is the greatest norm over the cube
+
+## Conclusion
+* the relaxation value is at most a Gaussian constant times the radius, else a cube point is outside
 
 ## References
 

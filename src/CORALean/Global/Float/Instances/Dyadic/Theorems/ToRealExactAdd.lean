@@ -13,6 +13,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
 exponent by `two_zpow_align`. What
 `SoundFloatArithmetic.add_le_addUp`/`addDown_le_add` compose with the
 rounding step to get.
+
+## Inputs
+* `a` – first addend
+* `b` – second addend
+
+## Hypotheses
+* none
+
+## Conclusion
+* the exact sum denotes the real sum
 -/
 
 -- Authors:       Claude Opus 5

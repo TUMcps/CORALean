@@ -10,6 +10,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealAlign
 
 Aligned to the common exponent by `toReal_align`, both numbers are a mantissa times one
 positive scale, so comparing them is comparing integers.
+
+## Inputs
+* `a` – left dyadic
+* `b` – right dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* the aligned comparison is true exactly when the real order holds
 -/
 
 -- Authors:       Claude Sonnet 5.5

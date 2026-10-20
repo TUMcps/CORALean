@@ -17,6 +17,18 @@ If (4) has a unique minimizer, `N = 2w + 1 ≥ v`: with fewer columns than rows 
 `z` with `zᵀ Φ = 0`, and adding `z` to a row of `A` changes nothing of `A Φ`. And `2w + 1 ≥ v` is
 `w ≥ ⌈(v - 1)/2⌉`. Uniqueness is what the sentence says; any `N` gives some least-squares fit.
 
+## Inputs
+* `Xd` – derivative snapshots
+* `Φ` – regressor snapshots
+* `A` – minimizing matrix
+
+## Hypotheses
+* `hn` – there is at least one output
+* `huniq` – the minimizer is unique
+
+## Conclusion
+* there are at least as many data points as templates, and the window bound is equivalent
+
 ## References
 
 * [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of

@@ -10,15 +10,31 @@ public import Mathlib.Order.Interval.Set.Pi
 /-!
 # A box missing the image of the boundary and of the singular points is in the range
 
-[1, Thm. 3.1]: for `f : x → ℝⁿ` continuous on the box `x`, continuously differentiable in
-`int x`, and a box `y`: (i) `y ∩ f(∂x) = ∅`, (ii) `y ∩ f(Σ) = ∅` with
-`Σ = {x ∈ int x | det f'(x) = 0}`, (iii) `f(x₀) ∈ y` for some `x₀ ∈ x` (the paper's `x̃`, which
-has no Lean identifier) give `y ⊆ f(x)`. The proof is the paper's: by [1, Lemma A.2]
-(`frontier_image_subset_image_frontier_union_singular`) the box `y` misses the frontier of
-`f(x)`, so it holds `f(x₀)` in the interior of the image; a point of `y` outside the image would
-join it to `f(x₀)` by a path in `y` (the box is convex), which meets the frontier by
-[1, Lemma A.1] (`path_meets_frontier`). The derivative is a strict one `f'` at the interior
-points, which a continuous one gives.
+[1, Thm. 3.1]: for `f : x → ℝⁿ` continuous on the box `x`, continuously differentiable in `int x`,
+and a box `y`: (i) `y ∩ f(∂x) = ∅`, (ii) `y ∩ f(Σ) = ∅` with `Σ = {x ∈ int x | det f'(x) = 0}`,
+(iii) `f(x₀) ∈ y` for some `x₀ ∈ x` give `y ⊆ f(x)`. The proof is the paper's: by [1, Lemma A.2]
+(`frontier_image_subset_image_frontier_union_singular`) the box `y` misses the frontier of `f(x)`,
+so it holds `f(x₀)` in the interior of the image; a point of `y` outside the image would join it
+to `f(x₀)` by a path in `y`, which meets the frontier by [1, Lemma A.1] (`path_meets_frontier`).
+The derivative is a strict one `f'` at the interior points.
+
+## Inputs
+* `f` – map
+* `f'` – its derivative
+* `xlo` – lower end of the domain box
+* `xhi` – upper end of the domain box
+* `ylo` – lower end of the target box
+* `yhi` – upper end of the target box
+
+## Hypotheses
+* `hf` – the derivative is strict at interior points
+* `hcont` – the map is continuous on the domain box
+* `hi` – the target box misses the image of the frontier
+* `hii` – the target box misses the image of the singular points
+* `hiii` – some domain point maps into the target box
+
+## Conclusion
+* the target box lies in the image of the domain box
 
 ## References
 

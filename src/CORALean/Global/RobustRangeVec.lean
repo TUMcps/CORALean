@@ -14,6 +14,15 @@ control in `x_E`, `I_A ⊆ {1, …, m}` the disturbance inputs and `I_E` the oth
 inputs are one vector `x` of the box `[lo, hi]`, `IA` says which of its coordinates are the
 disturbances, and `x` realizes `z` against `w` when it agrees with `w` on `IA`.
 
+## Inputs
+* `f` – vector-valued function of the inputs
+* `IA` – disturbance coordinates
+* `lo` – lower corner of the input box
+* `hi` – upper corner of the input box
+
+## Output
+* the values reached for every disturbance with some control
+
 ## References
 
 * [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to

@@ -12,6 +12,12 @@ each returned as its first element and the rest, so a piece is never empty. Ever
 `l` is in some piece (`exists_mem_chunks`). [1, Sec. 3.2]'s Step 3 unites the contracted boxes
 `μ` at a time this way.
 
+## Inputs
+* `μ` – largest piece size
+
+## Output
+* the list cut into consecutive pieces, each its first element and the rest
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear

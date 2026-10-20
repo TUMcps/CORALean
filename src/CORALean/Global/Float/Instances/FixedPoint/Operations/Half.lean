@@ -7,15 +7,17 @@ public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 /-!
 # Halving
 
-Exact, at one more digit: `⟨m, d⟩ ↦ ⟨5m, d + 1⟩`, since `m / 10 ^ d / 2 = 5m /
-10 ^ (d + 1)`. `FloatOps.half` has to stay exact, so the interface leaves no
-other way to halve a decimal mantissa without inventing a digit `10` does not
-already have.
+Exact, at one more digit: `⟨m, d⟩ ↦ ⟨5m, d + 1⟩`, since `m / 10 ^ d / 2 = 5m / 10 ^ (d + 1)`.
+`FloatOps.half` has to stay exact, so the interface leaves no other way to halve a decimal
+mantissa without inventing a digit `10` does not already have. Digits only grow this way, so
+repeated halving adds one digit per call (`half^[k] x` sits at `x.d + k`) and the next
+`addUp`/`mulDown`/`divUp`/... applied to the result rounds it back to `f`.
 
-Digits only grow this way -- every other rounded operation below cuts back to
-`f` -- so repeated halving adds one digit per call (`half^[k] x` sits at
-`x.d + k`) and the next `addUp`/`mulDown`/`divUp`/... applied to the result
-rounds it back to `f`.
+## Inputs
+* `x` – fixed-point value
+
+## Output
+* the exact half, at one more digit
 -/
 
 -- Authors:       Claude Opus 5.5

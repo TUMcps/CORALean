@@ -11,20 +11,14 @@ public import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
 /-!
 # What "the hardware is trusted" says
 
-One property with ten conjuncts: everything `SoundFloatArithmetic` asks of a
-scalar, stated about `Float`'s own operations and about the decoding `toReal`
-defines. `Axioms` assumes this once, and that assumption is the only one in the
-library.
-
-Bundled rather than left as ten separate assumptions so that the trust is a
-single object: one name in every `#print axioms` that reaches `Float`, one place
-that says what is being trusted and on which runs, and one thing to discharge
-should a verified model of binary64 ever arrive — at which point this backend
-becomes axiom-free with nothing else changing.
-
-The price is resolution. `addDown_le_add` named the two assumptions it actually
-used; now it names the bundle, as everything else does. Its proof still names
-them.
+One property with ten conjuncts: everything `SoundFloatArithmetic` asks of a scalar, stated about
+`Float`'s own operations and about the decoding `toReal` defines. `Axioms` assumes this once, the
+only assumption in the library. Bundled rather than left as ten separate assumptions so that the
+trust is a single object: one name in every `#print axioms` that reaches `Float`, one place that
+says what is trusted and on which runs, and one thing to discharge should a verified model of
+binary64 ever arrive, at which point this backend becomes axiom-free with nothing else changing. The
+price is resolution: `addDown_le_add` now names the bundle, as everything else does, though its
+proof still names the assumptions it uses.
 -/
 
 -- Authors:       Claude Sonnet 5

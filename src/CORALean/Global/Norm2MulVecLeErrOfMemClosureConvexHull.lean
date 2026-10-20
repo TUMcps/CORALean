@@ -17,6 +17,18 @@ convex slab that holds `S`, so it holds the hull. For a matrix `M`, every `y` in
 hull of `T` then has `‖My‖₂ ≤ err(MT)`. This is how an error bound stated with `err` survives an
 enclosure that only holds up to convex combination, as in [1, Prop. 3] and [1, Prop. 11].
 
+## Inputs
+* `M` – matrix
+* `T` – bounded set
+* `y` – point of the closed convex hull
+
+## Hypotheses
+* `hT` – the set is bounded
+* `hy` – the point lies in the closed convex hull of the set
+
+## Conclusion
+* the Euclidean norm of the matrix image is at most the radius of the image set
+
 ## References
 
 * [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear

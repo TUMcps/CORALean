@@ -17,6 +17,29 @@ picked columns of `C Df`, followed by the injectivity of `C`. At `m = n` and `in
 is [1, Cor. 2.1] with the closed inclusion and a preconditioner; for `m > n` it is [1, Cor. 3.1]
 on the slice at `ũ₂`, the argument of `Icc_subset_image_of_innerTest_closed`.
 
+## Inputs
+* `f` – smooth map
+* `Df` – its Jacobian matrix
+* `xc` – base point
+* `ind` – indices of the selected coordinates
+* `C` – preconditioning matrix
+* `lo` – lower end of the slice box
+* `hi` – upper end of the slice box
+* `Jlo` – lower end of the Jacobian enclosure
+* `Jhi` – upper end of the Jacobian enclosure
+* `y` – target value
+
+## Hypotheses
+* `hf` – the map is continuously differentiable
+* `hDf` – the matrix is its derivative everywhere
+* `hC` – the preconditioner is injective
+* `hxc` – the base point's selected coordinates lie in the box
+* `hJ` – the enclosure contains the preconditioned columns on the slice
+* `hstep` – every Jacobi step for a matrix in the enclosure lands in the box
+
+## Conclusion
+* some point of the box has its slice image equal to the target
+
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of

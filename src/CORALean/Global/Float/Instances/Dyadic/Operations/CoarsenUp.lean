@@ -13,6 +13,13 @@ such exponents) the Lean runtime aborts on that power. `coarsenUp e d` rounds `d
 of exponent `e` (no change when `d.exponent ≥ e` already) by a bit shift, which is cheap whatever
 the gap. For an operand far below the other, this is exactly the nudge past the larger one that
 a directed sum needs: one unit at `e`, or nothing. The ceiling is the floor of the negation.
+
+## Inputs
+* `e` – exponent of the target grid
+* `d` – dyadic
+
+## Output
+* the dyadic rounded up to the grid of that exponent
 -/
 
 -- Authors:       Claude Sonnet 5.5

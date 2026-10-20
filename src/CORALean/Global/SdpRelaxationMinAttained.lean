@@ -16,6 +16,18 @@ works, since `2 zᵀ G α = 2 (Hᵀ z)ᵀ (R G α) ≥ -‖Hᵀ z‖² - c ‖α
 closed, and the objective is a continuous function bounding every entry, so its sublevel set
 at that pair is compact and the minimum is attained there.
 
+## Inputs
+* `s₁` – exponent of the first diagonal norm
+* `s₂` – exponent of the second diagonal norm
+* `G` – coupling matrix
+* `H` – generator matrix of the second block
+
+## Hypotheses
+* `hH` – the generator matrix is onto
+
+## Conclusion
+* the relaxation's minimum over feasible pairs is attained
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

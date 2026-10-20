@@ -10,21 +10,38 @@ public import Mathlib.Analysis.Calculus.ContDiff.Basic
 /-!
 # Boxes inside the range of a vector-valued function from mean-value AE extensions
 
-[1, Thm. 3]: for `f : ℝᵐ → ℝⁿ` and `π : {1, …, m} → {1, …, n}`, the product of the
-mean-value AE extensions of [1, Thm. 2] of the components, component `i` having the inputs
-`π⁻¹(i)` existential and every other input universal, is inside `range(f, x)`. [1, Remark 1]
-leaves some inputs out of `π`, the disturbances: they stay universal and the product is inside
-the robust range. Both are the case of this file's theorem, which solves `f(x) = z` for the
-inputs in the image of `π` and leaves the others at any value `w`. `f` is `C¹`, the standing
-assumption of [1]; the hypotheses are `Thm. 2`'s for each component.
+[1, Thm. 3]: for `f : ℝᵐ → ℝⁿ` and `π : {1, …, m} → {1, …, n}`, the product of the mean-value AE
+extensions of [1, Thm. 2] of the components, component `i` having the inputs `π⁻¹(i)` existential
+and every other input universal, is inside `range(f, x)`. [1, Remark 1] leaves some inputs out of
+`π`, the disturbances: they stay universal and the product is inside the robust range. Both are
+the case of this file's theorem, which solves `f(x) = z` for the inputs in the image of `π`. The
+proof is [1]'s Brouwer argument with the continuous selections replaced by one the hypotheses give
+directly: where `∇̲ⱼ > 0` the inputs of `π⁻¹(i)` lie on a segment from a corner to the opposite one
+(`exists_coord_ends_gain`), and a fixed point of `τ ↦ clamp(τ + z - f(x(τ)))` solves `f(x(τ)) = z`.
 
-The proof is [1]'s Brouwer argument with Goldsztejn's continuous selections replaced by one the
-hypotheses give directly. Where `∇̲ⱼ > 0`, `∂ⱼfᵢ` has one sign on the box, so the inputs of
-`π⁻¹(i)` lie on a segment from a corner to the opposite one (`exists_coord_ends_gain`), and
-`fᵢ` is at most the lower end of the interval at one end and at least the upper end at the
-other, whatever the other inputs are. A fixed point of `τ ↦ clamp(τ + z - f(x(τ)))` on
-`[0, 1]ⁿ`, one parameter per component, solves `f(x(τ)) = z`: a clamp at `τᵢ = 1` would need
-`fᵢ < zᵢ` where `fᵢ ≥ zᵢ`, and at `τᵢ = 0` the reverse.
+## Inputs
+* `f` – function from inputs to components
+* `π` – assignment of inputs to components, none for disturbances
+* `lo` – lower corner of the input box
+* `hi` – upper corner of the input box
+* `f0lo` – lower bounds on the center values
+* `f0hi` – upper bounds on the center values
+* `dwhi` – upper bounds on the partials of the uncontrolled inputs
+* `dulo` – lower bounds on the partials of the controlled inputs
+* `z` – target point in the product of inner intervals
+* `w` – prescribed value of the disturbance inputs
+
+## Hypotheses
+* `hlh` – the input box is nonempty
+* `hf` – every component is continuously differentiable
+* `hf0` – the center values lie within their bounds
+* `hw` – the uncontrolled partials are bounded above on the path sets
+* `hu` – the controlled partials are bounded below
+* `hz` – the target lies in the product of the inner intervals
+* `hw'` – the prescribed disturbance lies in the box
+
+## Conclusion
+* a box point with the prescribed disturbance maps to the target
 
 ## References
 

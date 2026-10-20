@@ -18,6 +18,23 @@ uniqueness. By Helly's theorem: below the level `c = max_l w(F - l) < w(F)`, the
 the `Z_t` have no common point, so some `d + 1` of them have none; a family missing the sublevel
 set holds `ẑ_F`, and one missing a support constraint `l` holds `ẑ_{F - l}`, so those `d + 1` are
 the sublevel set and every support constraint. The proof of [1, Thm. 3] rests on it.
+
+## Inputs
+* `Θ` – domain of the objective
+* `f` – objective function
+* `Z` – constraint sets
+* `sol` – solution map on constraint subsets
+* `F` – constraint subset
+
+## Hypotheses
+* `hf` – the objective is convex on the domain
+* `hZ` – every constraint set is convex
+* `hF` – the solution is feasible and optimal for the subset
+* `hFl` – each solution with one constraint removed is feasible for the rest
+
+## Conclusion
+* the number of support constraints is at most the dimension
+
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and

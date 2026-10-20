@@ -10,6 +10,17 @@ public import CORALean.Global.DmdStack
 `dmdBlocks (dmdStack A B c) = (A, B, c)`.
 The source is [1].
 
+## Inputs
+* `A` – state matrix
+* `B` – input matrix
+* `c` – offset vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the blocks of the stacked matrix are the original blocks
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

@@ -19,6 +19,12 @@ ellipsotope-in-zonotope containment. Written as a map `ℝⁿ × ℝⁿ → ℝ�
 `β = (β₁, β₂)` goes to `(β₁ - β₂, 1ᵀβ₁ + 1ᵀβ₂)`, the first `n` rows and the last one. Product
 norms are maxima, so the supremum norm of `(β₁, β₂)` is that of `β ∈ ℝ^{2n}`.
 
+## Inputs
+* `n` – dimension
+
+## Output
+* the linear generator map of the circumbody
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

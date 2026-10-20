@@ -7,11 +7,25 @@ public import Mathlib.Analysis.SpecificLimits.Basic
 /-!
 # The ultimate bound of a contracting recurrence
 
-[1, Prop. 1]: if the W-radius satisfies `ℓ_{k+1} ≤ γ ℓ_k + ε` Eq. 17 of [1, Thm. 3] with `γ ∈ (0,
-1)`, it is ultimately bounded by `ε / (1 - γ)` Eq. 25 of [1, Prop. 1]. The paper takes `k → ∞` in
-Eq. 17 to get `ℓ_∞ ≤ γ ℓ_∞ + ε`, which assumes the limit exists; it need not, and is not needed.
-Unrolling gives `ℓ_k ≤ γᵏ ℓ_0 + ε / (1 - γ)` at every `k`, and so, for every `δ > 0`, eventually
-`ℓ_k ≤ ε / (1 - γ) + δ`: the bound for the limit superior. `0 ≤ γ < 1` and `ε ≥ 0` are used.
+[1, Prop. 1]: if the W-radius satisfies `ℓ_{k+1} ≤ γ ℓ_k + ε` Eq. 17 of [1, Thm. 3] with
+`γ ∈ (0, 1)`, it is ultimately bounded by `ε / (1 - γ)` Eq. 25 of [1, Prop. 1]. The paper takes
+`k → ∞` in Eq. 17 to get `ℓ_∞ ≤ γ ℓ_∞ + ε`, which assumes the limit exists; it need not, and is not
+needed. Unrolling gives `ℓ_k ≤ γᵏ ℓ_0 + ε / (1 - γ)` at every `k`, and so, for every `δ > 0`,
+eventually `ℓ_k ≤ ε / (1 - γ) + δ`: the bound for the limit superior.
+
+## Inputs
+* `ℓ` – radius sequence
+* `γ` – contraction factor
+* `ε` – additive error
+
+## Hypotheses
+* `hγ0` – the factor is nonnegative
+* `hγ1` – the factor is below one
+* `hε` – the error is nonnegative
+* `h` – each radius is at most the factor times the previous one plus the error
+
+## Conclusion
+* every radius obeys the unrolled bound and is eventually within any margin of the ultimate bound
 
 ## References
 

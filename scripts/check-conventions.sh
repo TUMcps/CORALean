@@ -110,7 +110,6 @@ ZEROCOST_LIST=scripts/zero-cost-allowlist.txt
 # one (a module cannot import a non-module). The list only shrinks: an entry
 # that is a module now, or is gone, is reported as stale.
 NONMODULE_LIST=scripts/non-module-allowlist.txt
-PROSE_LIST=scripts/prose-cap-allowlist.txt
 
 # Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α`, `EReal × EReal`, and structures with sibling fields named
 # `…Inf`/`…Sup`, `…Lo`/`…Hi` or `lo…`/`hi…` (CONTRIBUTING, "Bounds of one quantity"): the lower
@@ -235,7 +234,6 @@ if [ -n "$STAGED" ]; then
   ALLOWLIST=$repo/$ALLOWLIST
   ZEROCOST_LIST=$repo/$ZEROCOST_LIST
   NONMODULE_LIST=$repo/$NONMODULE_LIST
-  PROSE_LIST=$repo/$PROSE_LIST
   PAIR_LIST=$repo/$PAIR_LIST
   CLASS_LIST=$repo/$CLASS_LIST
   OPS_THEOREM_LIST=$repo/$OPS_THEOREM_LIST
@@ -280,7 +278,6 @@ out=$(awk \
   -v BENCH_DIR="$BENCH_DIR" \
   -v LAKE_ROOTS="$lake_roots" \
   -v NONMOD="$NONMODULE_LIST" \
-  -v PROSELIST="$PROSE_LIST" \
   -v PAIRLIST="$PAIR_LIST" \
   -v ZEROLIST="$ZEROCOST_LIST" \
   -v CEXLIST="$cexlist" \
@@ -361,21 +358,6 @@ BEGIN {
     nonmodLine[p] = nmFNR
   }
   close(NONMOD)
-
-  # The prose-cap list (#251): `<path>` per line, `#` comments and blank lines ignored. A content
-  # file whose module-docstring prose is over the cap and that is listed here is let through; the
-  # list only shrinks, and an entry whose file is within the cap (or gone) is reported as stale.
-  while ((getline pline < PROSELIST) > 0) {
-    prFNR++
-    line = pline
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    if (line in proseAllow)
-      say(PROSELIST ":" prFNR ": duplicate entry `" line "` (first at line " proseLine[line] ")")
-    proseAllow[line] = 1
-    proseLine[line] = prFNR
-  }
-  close(PROSELIST)
 
   # The pair list: `<path>  <reason>` per line, as the non-module list above.
   while ((getline pline < PAIRLIST) > 0) {
@@ -632,8 +614,7 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   } else {
     cap = collector ? MAX_COLLECTOR_DOC : MAX_MODULE_DOC
     if (f ~ /\/Counterexamples\// && nh1 > 1) cap = MAX_MODULE_DOC * nh1
-    if (docLen > cap && (f in proseAllow)) proseHit[f] = 1
-    else if (docLen > cap)
+    if (docLen > cap)
       say(f ":" docLine ": module docstring is " docLen " lines, over " cap \
           " — keep what is non-obvious about this file and drop the rest")
   }
@@ -1379,12 +1360,6 @@ END {
       say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — no such file")
     else if (!(p in pairSeen))
       say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — the file spells no such pair now;" \
-          " the list only shrinks")
-  for (p in proseAllow)
-    if (!(p in seenFile))
-      say(PROSELIST ":" proseLine[p] ": stale entry `" p "` — no such file")
-    else if (!(p in proseHit))
-      say(PROSELIST ":" proseLine[p] ": stale entry `" p "` — the prose is within the cap now;" \
           " the list only shrinks")
   for (p in nonmodOK) {
     if (p ~ /^src\/CORALean\/Examples\//)

@@ -11,6 +11,12 @@ At or below `f` digits already, padding with zeros is exact -- there is
 nothing to round. Past `f`, integer `/` on ℤ is floor division, so shifting
 the mantissa right by the excess digits rounds toward `-∞`, exactly CORA's
 "cut off" made sound.
+
+## Inputs
+* `x` – fixed-point value
+
+## Output
+* the value floored to the format's digit count
 -/
 
 -- Authors:       Claude Opus 5.5

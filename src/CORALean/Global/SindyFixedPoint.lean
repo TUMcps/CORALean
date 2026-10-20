@@ -8,15 +8,26 @@ public import CORALean.Global.SindyThreshold
 # What a fixed point of sequential thresholded least squares is
 
 For a fixed point `Ξ` of a pass of [1, Alg. 1], the paper's `Code 1`: every coefficient is either
-zero, if it is below `λ` in magnitude, or what the regression onto the surviving terms of its
-column gives. So every nonzero coefficient is at least `λ`, and if the regression returns a
-solution of its normal equations, `Θᵀ (Ẋ - Θ Ξ)` vanishes at every surviving term: the
-fixed point is a least-squares fit onto its support, as the paper describes it, but not
-necessarily the best one among all supports. And if the data come from a sparse `Ξ*` whose
-nonzero coefficients are all at least `λ`, and the regression returns `Ξ*` whenever it is given
-terms that include the support of the column (which an exact fit onto linearly independent
-terms does), `Code 1` returns `Ξ*` after any number of passes: the structure the paper's
-examples recover, from exact data.
+zero, if below `λ` in magnitude, or what the regression onto the surviving terms of its column
+gives. So every nonzero coefficient is at least `λ`, and if the regression returns a solution of
+its normal equations, `Θᵀ (Ẋ - Θ Ξ)` vanishes at every surviving term: a least-squares fit onto
+its support, but not necessarily the best one among all supports. If the data come from a sparse
+`Ξ*` whose nonzero coefficients are all at least `λ`, and the regression returns `Ξ*` whenever
+given terms that include the support of the column (as an exact fit onto linearly independent
+terms does), `Code 1` returns `Ξ*` after any number of passes.
+
+## Inputs
+* `lam` – threshold
+* `solve` – regression onto a set of terms
+* `Ξ` – coefficient matrix
+* `j` – term index
+* `c` – column index
+
+## Hypotheses
+* `hfix` – the matrix is unchanged by a pass
+
+## Conclusion
+* each coefficient is zero below the threshold, else the regression onto the surviving terms
 
 ## References
 

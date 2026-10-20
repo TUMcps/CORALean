@@ -12,6 +12,23 @@ is in `B_p`, so `c + G zᵢ` is a point of `Ê`, and a value above `1` puts it o
 (`coeffNorm_le_iff`). The second half — `P_Svs` as a probability that `Ê ⊆ E` — is not
 formalized; see the paper's page.
 
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `H` – generator map of the outer ellipsotope
+* `d` – center of the outer ellipsotope
+* `n` – dimension
+* `N` – number of samples
+* `z` – unit-ball points of the samples
+
+## Hypotheses
+* `hN` – there is at least one sample
+* `hz` – every point is in the unit ball
+* `h` – the algorithm returns none
+
+## Conclusion
+* the inner ellipsotope is not contained in the outer one
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

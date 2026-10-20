@@ -14,6 +14,24 @@ The weak half of [1, Thm. 17] and [1, Thm. 19]. A pair `(v, w)` with
 `0 ≤ -2 zᵀ G α - Σ vⱼ αⱼ² - Σ wᵢ (Hᵀ z)ᵢ²`; Hölder's inequality then gives
 `2 zᵀ G α ≤ ‖v‖_{s₁} ‖(αⱼ²)ⱼ‖_{s₁*} + ‖w‖_{s₂} ‖((Hᵀ z)ᵢ²)ᵢ‖_{s₂*}` for any Hölder pairs.
 
+## Inputs
+* `s₁` – exponent of the first diagonal norm
+* `s₁'` – its conjugate exponent
+* `s₂` – exponent of the second diagonal norm
+* `s₂'` – its conjugate exponent
+* `G` – coupling matrix
+* `H` – generator matrix of the second block
+* `v` – first diagonal
+* `w` – second diagonal
+* `α` – coefficient vector
+* `z` – dual vector
+
+## Hypotheses
+* `hK` – the matrix inequality holds for the diagonals
+
+## Conclusion
+* twice the bilinear form is bounded by Hölder products of the diagonals with the squares
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

@@ -7,22 +7,28 @@ public import Mathlib.Analysis.Normed.Order.Lattice
 /-!
 # A minimax inequality over two compact sets
 
-[1, Lemma 3.1]. The paper's shared codomain "compact interval `I ⊂ Rⁿ`" would
-make `f`, `g` vector-valued, with no order for `min`/`max` to run in; [1,
-Thm. 3.2] applies this lemma at `f = ‖x_B - x‖₂`, a scalar, so `I ⊂ Rⁿ` is a
-misprint for `I ⊂ R`, recorded on the paper's page. `I` is dropped: boundedness
-comes from continuity on a compact domain regardless, and nothing here uses the
-linear structure of `Rⁿ` either, so `C1`, `C2` sit in a bare topological space.
-The inequality is one line from the hypothesis, once `x* ∈ C1` attaining
-`max_{x∈C1} min_{y∈C2} f(x,y)` is known to exist — needing `x ↦ min_{y∈C2}
-f(x,y)` continuous, a fragment of Berge's maximum theorem.
-`IsCompact.continuous_sInf` is Mathlib's closed form, for `f` continuous on all
-of `γ × β`; `aux_continuousOn_sInf_image` reaches that from continuity on
-`C1 ×ˢ C2` alone, by restricting both variables to subtypes. Stated with
-`sSup`/`sInf` over images, mirroring `max`/`min` directly; the witnesses are
-recovered from it by whoever needs them. `C1` carries `Nonempty`, needed for
-its `sSup` to be attained; `C2` does not, `min_{y∈C2} f(x,y) ≤ g(x)` holding
-equally of the paper's minimum or an empty `sInf`'s junk `0`.
+[1, Lemma 3.1]. The paper's shared codomain "compact interval `I ⊂ Rⁿ`" would make `f`, `g`
+vector-valued, with no order for `min`/`max`; [1, Thm. 3.2] applies the lemma at `f = ‖x_B - x‖₂`, a
+scalar, so `I ⊂ Rⁿ` is a misprint for `I ⊂ R`. `I` is dropped: boundedness comes from continuity on
+a compact domain, and nothing uses the linear structure of `Rⁿ`, so `C1`, `C2` sit in a bare
+topological space. The inequality is one line once `x* ∈ C1` attaining `max_{x∈C1} min_{y∈C2}
+f(x,y)` exists, which needs `x ↦ min_{y∈C2} f(x,y)` continuous, a fragment of Berge's maximum
+theorem (`IsCompact.continuous_sInf`, reached from continuity on `C1 ×ˢ C2` alone by
+`aux_continuousOn_sInf_image`). `C1` carries `Nonempty` for its `sSup` to be attained, `C2` not.
+
+## Inputs
+* none
+
+## Hypotheses
+* `hC1` – the first set is compact
+* `hC1ne` – the first set is nonempty
+* `hC2` – the second set is compact
+* `hf` – the function is continuous on the product
+* `hg` – the bound function is continuous on the first set
+* `hle` – the inner minimum is bounded pointwise by the bound function
+
+## Conclusion
+* the maximum of the inner minima is at most the maximum of the bound function
 
 ## References
 

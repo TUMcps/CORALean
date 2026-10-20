@@ -12,6 +12,13 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 CORA's `[eye(nx) zeros(nx, ny)]` and `[zeros(ny, nx) eye(ny)]` of `computeGO_k`: the
 matrices that pick the first `nx` and the last `ny` entries of a stacked vector `L = [L_x; L_y]`.
+
+## Inputs
+* `n` – length of the first block
+* `r` – length of the second block
+
+## Output
+* the matrix picking the first block of a stacked vector
 -/
 
 -- Authors:       Claude Opus 5.5

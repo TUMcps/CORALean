@@ -14,6 +14,18 @@ The dual form of the ellipsotope norm that [1, Thm. 17] and [1, Thm. 19] bound t
 column: `LR_q(x, H)` is the minimum of `‖β‖_q` over `H β = x`, and the dual certificate is a
 vector `z` with `‖Hᵀ z‖_{q*} ≤ 1` and `zᵀ x ≥ LR_q(x, H)`.
 
+## Inputs
+* `q` – exponent of the coefficient norm
+* `q'` – conjugate exponent
+* `H` – coefficient matrix
+* `x` – point in the range of the matrix
+
+## Hypotheses
+* `hx` – the point is attained by some coefficient vector
+
+## Conclusion
+* a dual vector of unit dual norm bounds the point's coefficient norm by its pairing with the point
+
 ## References
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for

@@ -14,6 +14,24 @@ lower ranks, nor that the fit is the least-squares one when the data is not cons
 The source is [1]; without input it is the claim of [2, Eq. 7] that `X' Ṽ Σ̃⁻¹ Ũᵀ` recovers `A`
 from the snapshots of `x_{k+1} = A x_k`.
 
+## Inputs
+* `X1` – snapshots
+* `X2` – their successors
+* `V` – left singular vectors
+* `s` – singular values
+* `W` – right singular vectors
+* `G` – map producing the successors
+
+## Hypotheses
+* `hX1` – the snapshots have this economy SVD
+* `hV` – the left singular vectors are orthonormal
+* `hW` – the right singular vectors are orthonormal
+* `hs` – the singular values are nonzero
+* `hG` – the successors are the map applied to the snapshots
+
+## Conclusion
+* the full-rank candidate reproduces the successors from the snapshots
+
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`

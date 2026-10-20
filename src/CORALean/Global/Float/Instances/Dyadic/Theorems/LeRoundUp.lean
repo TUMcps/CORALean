@@ -13,6 +13,15 @@ public import Mathlib.Analysis.Normed.Ring.Lemmas
 `roundUp` is `roundDown` applied to the negated mantissa, so the ceiling case
 is the floor case's fact, `Int.ediv_mul_le`, read back through the same
 negation.
+
+## Inputs
+* `d` – dyadic
+
+## Hypotheses
+* none
+
+## Conclusion
+* rounding up does not decrease the value
 -/
 
 -- Authors:       Claude Opus 5

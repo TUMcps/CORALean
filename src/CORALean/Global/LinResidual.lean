@@ -11,6 +11,16 @@ For `g : ℝⁿ × ℝᵐ → ℝᵖ` linearized at `(xs, us)`, `L(x, u)` with
 `g(x, u) = g(xs, us) + A (x - xs) + B (u - us) + L(x, u)`, `A` and `B` the Jacobians at
 `(xs, us)`. The linearization error of CORA's abstraction, defined here as the residual itself:
 it says nothing about how small, or enclosed, that residual is.
+
+## Inputs
+* `g` – map
+* `xs` – linearization state
+* `us` – linearization input
+* `x` – state
+* `u` – input vector
+
+## Output
+* the map's value minus its first-order approximation at the linearization point
 -/
 
 -- Authors:       Claude Opus 5.5

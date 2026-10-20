@@ -21,6 +21,15 @@ The theorem says that when `r_Shs ≤ 1`, `P_Shs` "is a lower bound on the proba
 measure on the samples. `[1, Thm. 4.2]` holds at a fixed `ε`; choosing `ε = 1 - r_Shs`
 after the fact, and reading the samples' probability as the sets', is not valid.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a positive probability bound is returned although the estimate is not contained
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the

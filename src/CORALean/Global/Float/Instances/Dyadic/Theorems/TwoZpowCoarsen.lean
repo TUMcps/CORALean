@@ -10,6 +10,16 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
 
 `two_zpow_align` at the shift `(e - exponent).toNat` and the exponent `max exponent e` that
 `coarsenUp` and `coarsenDown` use.
+
+## Inputs
+* `d` – dyadic
+* `e` – target exponent
+
+## Hypotheses
+* none
+
+## Conclusion
+* the alignment power times the dyadic's own power is the power at the larger exponent
 -/
 
 -- Authors:       Claude Sonnet 5.5

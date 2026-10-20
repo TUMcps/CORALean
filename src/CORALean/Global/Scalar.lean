@@ -8,16 +8,13 @@ public import Mathlib.Data.Real.Basic
 /-!
 # The scalar a layer computes in
 
-`Scalar 𝕋` is a type whose matrices and vectors denote real ones: ℝ itself, or a
-machine scalar read entrywise. It is all the exact layer needs to know about the
-arithmetic an implementation runs, which is what lets one guarantee cover both.
-
-`toRealVec` is not `toRealMat` at a single column: a vector `Vec 𝕋 n` is a
-function `Fin n → 𝕋`, not a `Matrix`, so reading it needs its own field.
-
+`Scalar 𝕋` is a type whose matrices and vectors denote real ones: ℝ itself, or a machine scalar read
+entrywise. It is all the exact layer needs to know about the arithmetic an implementation runs,
+which is what lets one guarantee cover both. `toRealVec` is not `toRealMat` at a single column: a
+vector `Vec 𝕋 n` is a function `Fin n → 𝕋`, not a `Matrix`, so reading it needs its own field.
 `toReal` reads one entry, and the two entrywise laws say `toRealMat` and `toRealVec` are that
-reading applied to every entry. So a matrix built by placing existing entries, `0` and `1`
-(see `ExactScalar`) reads back as the real matrix of those entries, at any scalar, rounded or not.
+reading applied to every entry, so a matrix built by placing existing entries, `0` and `1` (see
+`ExactScalar`), reads back as the real matrix of those entries, at any scalar.
 -/
 
 -- Authors:       Claude Opus 5

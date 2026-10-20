@@ -10,21 +10,23 @@ public import Mathlib.Data.Real.Basic
 /-!
 # Reading one block of a concatenated vector
 
-`Fin.append` builds a vector out of two; these read the halves back, as linear
-maps rather than as functions, so that a constraint on one half becomes a
-constraint on the whole by `comap` and no sum has to be split.
+`Fin.append` builds a vector out of two; these read the halves back as linear maps, so that a
+constraint on one half becomes a constraint on the whole by `comap` (used by a constrained
+zonotope's `plus` and its multiplication by an interval matrix). `blockLast` is the same for a
+block of one, landing in the scalar. `blockPadLeft` and `blockPadRight` go the other way, putting
+a vector into one half and zero into the other; their summed images are a Cartesian product
+inside one `Vec`.
 
-That is what lets an operation which concatenates coefficient vectors — a
-constrained zonotope's `plus`, or its multiplication by an interval matrix —
-state its constraints by composing polytopes instead of assembling matrix rows.
+## Inputs
+* `m` – length of the first part
+* `u` – first part
+* `w` – appended one-entry part
 
-`blockLast` is the same for a block of one, landing in the scalar rather than in
-a vector, which is the form a single appended parameter is read in.
+## Hypotheses
+* none
 
-`blockPadLeft` and `blockPadRight` go the other way, putting a vector into one
-half and zero into the other. A set's image under the two, summed, is its
-Cartesian product with the other half's set, which is how a product of sets is
-taken inside one `Vec` rather than in a pair type.
+## Conclusion
+* the last block of the appended vector is the entry of the appended part
 -/
 
 -- Authors:       Claude Opus 5

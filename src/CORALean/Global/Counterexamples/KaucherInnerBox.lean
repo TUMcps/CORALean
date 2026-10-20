@@ -20,6 +20,15 @@ and the box of the components is not inside the set. For the time-`1` flow
 reached. CORA's `priv_reachInnerProjection` stores that box as its inner approximation
 (read from the source, not run).
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* both components are the unit interval but their box is not in the reachable set
+
 ## References
 
 * [1] E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear

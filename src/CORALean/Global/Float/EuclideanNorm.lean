@@ -8,22 +8,26 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # A Euclidean norm bounded from above, with no square root
 
-`FloatOps` has no square root, and an ellipsoid's support function is
-`⟨d, q⟩ + ‖Gᵀd‖₂`, so this is where the float layer meets one — and it needs no
-new scalar operation.
+`FloatOps` has no square root, and an ellipsoid's support function is `⟨d, q⟩ + ‖Gᵀd‖₂`; this is
+where the float layer meets one, with no new scalar operation. An upper bound on `√x` is any `s`
+with `x ≤ s²`, a multiplication the scalar has in both rounding directions. So the layer needs a
+*check*, not a root: an unverified routine proposes `s`, `sqSumUp` bounds the squared length
+upward, `mulDown s s` bounds `s²` downward, and the inequality between them is the proof
+(`LinProg`'s certificate pattern at a scalar: a wrong candidate yields no bound rather than a
+wrong one). The sign of the candidate is never examined: `absolute` is exact, so the bound is
+`|s|`. Nothing here is specific to an ellipsoid, which is why it sits in `Global`.
 
-An upper bound on `√x` is any `s` with `x ≤ s²`, and `s²` is a multiplication,
-which the scalar has in both rounding directions. So what the layer needs is not
-a square root but a *check*: an unverified routine proposes `s`, `sqSumUp` bounds
-the squared length upward, `mulDown s s` bounds `s²` downward, and the inequality
-between them is the proof. That is `LinProg`'s certificate pattern at a scalar —
-a wrong candidate yields no bound rather than a wrong one.
+## Inputs
+* `v` – real vector
+* `m` – float bounds on its magnitudes
+* `s` – proposed length
 
-The sign of the candidate is never examined. `absolute` is exact, so the bound
-is `|s|`, and a routine that returned the negative root still certifies.
+## Hypotheses
+* `hm` – the float bounds cover the vector's entries
+* `hs` – the proposed length squared, rounded down, covers the squared length bound
 
-Nothing here is specific to an ellipsoid; it is what the layer can say about
-`‖·‖₂` at all, which is why it sits in `Global`.
+## Conclusion
+* the Euclidean norm of the vector is at most the magnitude of the proposed length
 -/
 
 -- Authors:       Claude Opus 5

@@ -11,15 +11,28 @@ public import Mathlib.LinearAlgebra.Matrix.Notation
 # The printed (13) is infeasible and the printed (16) unsound
 
 [1, Eq. 13] asks `xₖₗ ⟨aₖₗ⟩ > ∑ᵢ ∑ⱼ xᵢⱼ (1 - xᵢₗ) |aᵢₗ|` for every `k, l`: at an `xₖₗ = 0` the left
-side is `0` and the right a sum of non-negative terms, so no `x` with a zero entry is
-feasible, and with two or more columns the row constraint forces one
-(`subLp13_infeasible`). (14) is the intended implication `xₖₗ = 1 → …`, and
-`det_submatrix_ne_zero_of_lp14` proves it sound.
+side is `0` and the right a sum of non-negative terms, so no `x` with a zero entry is feasible, and
+with two or more columns the row constraint forces one (`subLp13_infeasible`). (14) is the intended
+implication `xₖₗ = 1 → …`, and `det_submatrix_ne_zero_of_lp14` proves it sound.
 
-[1, Eq. 16] is (15) with `+μ` for `-μ`: at `xₖₗ = 1` it allows the column sum to reach
-`⟨aₖₗ⟩ + μ`, no longer strict. For the all-ones `2 × 2` matrix, `x = I`, `μ = 1/100` and the
-paper's `M = ∑ aᵢⱼ = 4`, every constraint of (16) holds and the picked matrix is singular
-(`subLp16_counterexample`).
+[1, Eq. 16] is (15) with `+μ` for `-μ`: at `xₖₗ = 1` the column sum may reach `⟨aₖₗ⟩ + μ`, no
+longer strict. For the all-ones `2 × 2` matrix, `x = I`, `μ = 1/100` and `M = ∑ aᵢⱼ = 4`, every
+constraint of (16) holds and the picked matrix is singular (`subLp16_counterexample`).
+
+## Inputs
+* `mig` – matrix of minimal magnitudes
+* `mag` – matrix of maximal magnitudes
+* `x` – selection matrix
+
+## Hypotheses
+* `hn` – there is at least one row
+* `hm` – there are at least two columns
+* `hmag` – the maximal magnitudes are nonnegative
+* `hbin` – the selection is binary
+* `hrow` – at most one pick per row
+
+## Conclusion
+* constraint (13) fails for every such selection
 
 ## References
 

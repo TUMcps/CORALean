@@ -7,21 +7,20 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 /-!
 # Native binary64: what a `Float` denotes
 
-Lean's `Float` is IEEE 754 binary64 compiled to a machine double, and opaque in
-the logic: nothing about `Float.add` is provable, which is why the obligations
-`SoundFloatArithmetic` states are assumed in `Axioms` rather than proved.
+Lean's `Float` is IEEE 754 binary64 compiled to a machine double, opaque in the logic: nothing
+about `Float.add` is provable, so the obligations `SoundFloatArithmetic` states are assumed in
+`Axioms`. The real interpretation is not assumed: a finite binary64 is `m · 2 ^ e` with both
+integers read off the 64 bits, so `toReal` is a *definition* here, as at `Dyadic`, and it is
+`Dyadic 53`'s. The decoding is the standard one: sign bit, an 11-bit exponent field biased by 1023,
+and 52 stored significand bits whose leading one is implicit unless that field is zero. The same
+formula is applied at `0x7FF`, where the pattern is an infinity or a NaN and the dyadic returned
+is no value of the machine; `Axioms` is where that costs something.
 
-The real interpretation is not assumed. A finite binary64 is `m · 2 ^ e` with
-both integers read off the 64 bits, so `toReal` is a *definition* here exactly
-as it is at `Dyadic`, and it is `Dyadic 53`'s — the significand carries 53 bits
-once the implicit leading one is counted.
+## Inputs
+* `x` – machine double
 
-The decoding is the standard one: sign bit, an 11-bit exponent field biased by
-1023, and 52 stored significand bits whose leading one is implicit unless that
-field is zero. The same formula is applied when the field is `0x7FF`, where the
-bit pattern is an infinity or a NaN and the dyadic it returns (`2 ^ 1024`, `1.5 * 2 ^ 1024`) is no
-value of the machine;
-`Axioms` is where that costs something.
+## Output
+* the real number the double denotes
 -/
 
 -- Authors:       Claude Opus 5

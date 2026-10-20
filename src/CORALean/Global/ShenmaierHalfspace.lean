@@ -15,6 +15,20 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 `P_S(1 - r_Shs)` (`[1, Thm. 4.2, Eq. 18]`) otherwise. `none` is the listing's `False`. The
 dual norm is the operator norm of `z ∘ G`, any norm on the coefficients.
 
+## Inputs
+* `G` – generator map of the inner ellipsotope
+* `c` – center of the inner ellipsotope
+* `d` – center of the outer ellipsotope
+* `N` – number of samples
+* `z` – dual maximizers of the samples
+* `ϑ` – uniformity parameter
+
+## Hypotheses
+* `hN` – there is at least one sample
+
+## Output
+* none when containment is refuted, otherwise the probability bound
+
 ## References
 
 * [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the
