@@ -354,7 +354,7 @@ def tikz(data):
     # raised so that the title of (b), drawn 2mm into its axis, shares the baseline of (a)'s
     right = f"at={{({xb}\\linewidth,2mm+0.5ex)}}, anchor=north west"
     p_results = panel("results", results, RESULTS, "0.55cm", "", "resultlegend",
-                      title="(b) Formalized paper statements", ylabels=False, at=right,
+                      title="(b) Formalized paper theorems", ylabels=False, at=right,
                       width=f"{wb:.2f}cm", width_cm=wb, xmax=f"{rmax}", legend_columns=3,
                       bar=11, bare=True, font="\\scriptsize",
                       title_at=f"at={{(0.5,1)}}, xshift={TAIL / 2:g}cm, yshift=-2mm")
@@ -543,7 +543,7 @@ breakdown per class.
 def svg(data):
     methods, theorems, results, _ = overview_entries(data)
     panels = [("(a) CORA functions", methods, COVERAGE),
-              ("(b) Formalized paper statements", results, RESULTS), ("(c) Lean theorems", theorems, THEOREMS)]
+              ("(b) Formalized paper theorems", results, RESULTS), ("(c) Lean theorems", theorems, THEOREMS)]
     left, width, row_h = 150, 520, 20
     h = 30 + sum(row_h * len(es) + 60 for _, es, _ in panels)
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{left + width + 80}" height="{h}" '

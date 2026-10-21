@@ -103,7 +103,7 @@
     xticklabels={},
     tick style={draw=none},
     yticklabel style={font=\scriptsize},
-    title={(b) Formalized paper statements},
+    title={(b) Formalized paper theorems},
     title style={at={(0.5,1)}, xshift=0.392724cm, yshift=-2mm, anchor=south, font=\footnotesize},
     xmax=1303,
     legend columns=3, legend to name=resultlegend,
