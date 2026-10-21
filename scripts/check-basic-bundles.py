@@ -304,7 +304,7 @@ def cora_bug_files():
     global _BUGS
     if _BUGS is None:
         text = CORA_BUGS_TEX.read_text(encoding="utf-8") if CORA_BUGS_TEX.exists() else ""
-        _BUGS = set(re.findall(r"coraleanrepo/([^}]*\.lean)", text))
+        _BUGS = set(re.findall(r"coraleanrepo(?:/| )([^}]*\.lean)", text))
     return _BUGS
 
 

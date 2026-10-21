@@ -15,7 +15,9 @@ from the representation (21), whose printed proof needs the error set's convexit
 `R_aff`'s, (21) itself from a linearization's abstraction-error certificate, so that `Prop. 1`
 holds for a linearized step, and `Remark 1`'s counterexample, as is the closed form of the
 constant-input solution (12). `Prop. 2` is false, for a nonconvex initial set, which it admits,
-and for a convex one (a box, under a linear shear) alike. `Alg. 1` is written line by line
+and for a convex one (a box, under a linear shear) alike, and holds with the hull replaced by
+the chords of single initial states, the Minkowski differences taken at each time, a union over
+every time and so no computable set. `Alg. 1` is written line by line
 over exact sets; its time-point sets are inner approximations, step by step, and its output, the
 union of the time-interval sets, is not, by `Prop. 2`'s convex counterexample run through the
 algorithm. The rest is restated from the conservative-linearization papers
@@ -39,7 +41,7 @@ the method is built on.
 | `Lemma 1` | For A ⊂ ℝⁿ nonempty, convex, compact, B centrally symmetric around c, φ: A → B continuous and S = {a + φ(a) \| a ∈ A}: A ⊖ B ⊆ S - 2c (19). | [`MinkowskiDiffSubsetOfContinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuous.lean) — `minkowskiDiff_subset_of_continuous`, in any finite-dimensional real normed space, the symmetry as `b ∈ B → 2c - b ∈ B`, by Brouwer's theorem as the paper argues | `correct` |
 | `Remark 1` | Continuity of φ cannot be dropped: A = B = [-1, 1] gives A ⊖ B = {0}, and φ = sign (sign 0 = 1) gives S = [-2, -1) ∪ [1, 2]. | [`MinkowskiDiffNotSubsetOfDiscontinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffNotSubsetOfDiscontinuous.lean) — all three sets as stated, and 0 ∉ S | `correct` |
 | `Prop. 1` | (Time-point reachable set) For X₀ compact, nonempty and R̂_err centrally symmetric, R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c ⊆ R(Δt), c = cen(R̂_err) (20). | [`MinkowskiDiffAddSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffAddSubsetReachSetExact.lean), [`MinkowskiDiffSubsetOfContinuousOfConvex.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuousOfConvex.lean) — `NonlinearSys.minkowskiDiff_add_subset_reachSetExact`: e^{AΔt} = `M` invertible, R_con = `v`, R̂_err a convex compact set as (13) makes it; the proof's representation (21) is the hypothesis `herr` (restated from [18], like (14)), the solutions and the field's Lipschitz constant along them (the paper's standing assumption) are hypotheses, and Grönwall gives the continuity of `z` the proof invokes; `minkowskiDiff_subset_of_continuous_of_convex` is `Lemma 1` with `B`, not `A`, convex. [`SubMemInputSolution.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/SubMemInputSolution.lean), [`MinkowskiDiffInputSolutionSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffInputSolutionSubsetReachSetExact.lean) — (21) derived from a linearization: `NonlinearSys.IsTrajectory.sub_mem_inputSolution` for a run that stays in the region of an `AbstractionError` certificate `L`, with R̂_err = `inputSolution Δt η L` (13), and with it `NonlinearSys.minkowskiDiff_inputSolution_subset_reachSetExact`, the proposition for a linearized step, the confinement still a hypothesis | `proof-gap` — the proof applies `Lemma 1` with A = R_aff(Δt) = e^{AΔt}X₀ + R_con, which is not convex for the merely compact X₀ the proposition allows; the statement holds because R̂_err is (Findings) |
-| `Prop. 2` | (Time-interval reachable set) For a compact, non-empty X₀ and E = C ⊕ R̂_err (22) centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | [`ConvexHullTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeInterval.lean), [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean) — **Counterexample:** `convexHull_timeInterval_counterexample`: for `ẋ = (0, 1)`, where R̂_err and C vanish, and two squares as X₀, (23) holds a point no run reaches; `convexHull_timeInterval_convex_counterexample`: the same for the shear `ẋ = (x₂, 0)`, where R̂_err and C vanish as well (`A² = 0`), from the box X₀ = [-1/10, 1/10] × [-1, 1] | `false` — false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes, so convexity does not repair it; see Findings |
+| `Prop. 2` | (Time-interval reachable set) For a compact, non-empty X₀ and E = C ⊕ R̂_err (22) centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | [`ConvexHullTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeInterval.lean), [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean) — **Counterexample:** `convexHull_timeInterval_counterexample`: for `ẋ = (0, 1)`, where R̂_err and C vanish, and two squares as X₀, (23) holds a point no run reaches; `convexHull_timeInterval_convex_counterexample`: the same for the shear `ẋ = (x₂, 0)`, where R̂_err and C vanish as well (`A² = 0`), from the box X₀ = [-1/10, 1/10] × [-1, 1]; [`MinkowskiDiffChordSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffChordSubsetReachSetExact.lean) — the repair: `NonlinearSys.minkowskiDiff_chord_subset_reachSetExact`, ⋃_{t∈[0,Δt]} ((chords(t) ⊖ C) ⊖ R̂_err) + 2c ⊆ R(τ₀), chords(t) = {x₀ + (t/Δt)(e^{AΔt}x₀ + R_con - x₀) \| x₀ ∈ X₀}, each slice `Prop. 1` at time t with (1 - t/Δt)I + (t/Δt)e^{AΔt} invertible, the solutions' representation by chord plus E a hypothesis as (21) is for `Prop. 1`; [`NotMemMinkowskiDiffChordShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/NotMemMinkowskiDiffChordShear.lean) — `NonlinearSys.not_mem_minkowskiDiff_chord_shear`: the repaired set of the shear no longer holds (1/2, 0) | `false` — false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes; true with the hull replaced by the chords of single initial states, the Minkowski differences taken at each t, but that union over every t is no computable set (Findings) |
 | `Def. 2` | (Support function) ρ(S, ℓ) := max_{s∈S} ℓᵀs. | n/a — restated from Le Guernic and Girard 2010 [21, Def. 1] | `restated` |
 | `Def. 3` | (Polytope) P = {s \| Hs ≤ d} = ⟨H, d⟩_H. | n/a — restated from Ziegler [22, Sec. 1.1] | `restated` |
 | `Eq. 24` | P ⊖ S = ⟨H, d̃⟩_H, d̃⁽ʲ⁾ = d⁽ʲ⁾ - ρ(S, H⁽ʲ,·⁾ᵀ). | n/a — restated from Kolmanovsky and Gilbert 1998 [23, Thm. 2.2] | `restated` |
@@ -76,16 +78,30 @@ hull holds others. For `ẋ = w` with `A = 0` the remainder and the curvature er
 **`Prop. 2` — false for a convex `X₀` too.** `Alg. 1` passes only polytopes and constrained
 zonotopes, so a convex X₀, and convexity does not repair (23): the hull holds points that lie on
 no chord `[x(0), R_aff(x(0))]` whenever the flow shears the set, as a linear flow already does.
-For the shear `ẋ = (x₂, 0)`, `A = [0 1; 0 0]`, `A² = 0`: the linearization is exact, so
-R̂_err = 0 (13); `F(Δt)` is a sum of `Aⁱ`, `i ≥ 2`, and `E(Δt)` of `|A|ⁱ`, `i > η`, so `F = 0`,
-and the constant input `w = f(x*) - Ax*` is `0`, so `C = 0` (17); hence `c = 0` and (23) is
-`conv(X₀ ∪ e^{AΔt}X₀) ⊆ R([0, Δt])`. For `X₀ = [-1/10, 1/10] × [-1, 1]` and `Δt = 1`,
+For the shear `ẋ = (x₂, 0)`, `A = [0 1; 0 0]`, `A² = 0`, so `e^{A} = I + A`: the linearization
+is exact, so `D²f ≡ 0`, L̂ = 0 (9) and R̂_err = 0 (13); for a Taylor order `η ≥ 1`, `E(Δt)` of
+[16, (19)] is `e^{|A|Δt} - Σ_{i≤η} (|A|Δt)ⁱ/i! = 0`, `|A| = A`, and `F(Δt)` of [16, (18)] a sum of
+`Aⁱ`, `i ≥ 2`, and `E`, so `F = 0`; the constant input `w = f(x*) - Ax*` is `0`, so `C = 0` (17)
+though `G ≠ 0`; hence `c = 0` and (23) is `conv(X₀ ∪ e^{AΔt}X₀) ⊆ R([0, Δt])`. At `η = 0`,
+`E = |A|Δt` and `C = [-1, 1] × {0}`, wider than the box below and its shear, so both Minkowski
+differences are empty and (23) holds. For `X₀ = [-1/10, 1/10] × [-1, 1]` and `Δt = 1`,
 `e^{A}x₀ = (x₀₁ + x₀₂, x₀₂)`, and `(1/2, 0)`, the midpoint of `(0, -1) ∈ X₀` and
 `e^{A}(0, 1) = (1, 1)`, is in the hull; a run through it starts on `x₂ = 0`, where `ẋ = 0`, so
 its first coordinate is in `[-1/10, 1/10]` (`convexHull_timeInterval_convex_counterexample`).
-The convex correction is therefore no correction, and the row stays `false`: what `Lemma 1`
-gives, for each fixed `t` and a convex X₀, is the shrunk image of the convex
-`((1 - t/Δt)I + (t/Δt)e^{AΔt})X₀ + (t/Δt)R_con` (where that matrix is invertible), and the union of these over `t` is not the hull. CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
+Convexity is therefore no correction. What `Lemma 1` gives, for each fixed `t` and a convex X₀, is
+the shrunk image of the convex chord slice `((1 - t/Δt)I + (t/Δt)e^{AΔt})X₀ + (t/Δt)R_con` (where
+that matrix is invertible), and the union of these over `t` is not the hull. That is the repair,
+proved, but it is no computable set, so the row stays `false`: `⋃_{t∈[0,Δt]} ((slice(t) ⊖ C) ⊖ R̂_err) + 2c ⊆ R(τ₀)`, each slice being
+`Prop. 1` at time `t` with that matrix, `⊖ C`, `⊖ R̂_err` and the `2c` shift all slice-wise, given
+that every solution lies within `E = C ⊕ R̂_err` of its chord, the representation the printed
+proof writes (`NonlinearSys.minkowskiDiff_chord_subset_reachSetExact`). For the shear the slices
+are `(I + tA)X₀ = R(t)`, so the repaired set is `R([0, 1])` and drops `(1/2, 0)`
+(`NonlinearSys.not_mem_minkowskiDiff_chord_shear`). Two candidates stay open. `⊖` of the whole
+chord union (the dependent `linComb`), nonconvex, is larger than the union of slice differences,
+and Brouwer's theorem, the proof's tool, gives it only slice by slice. The convex
+`conv(·) ⊖ C ⊖ R̂_err ⊖ B_μ`, `μ = √γ‖(e^{AΔt} - I)G‖₂`, rests on [16, (20)], which cites [15,
+Prop. 1], whose statement is an outer Hausdorff bound; the inner inclusion appears only inside
+its proof, unproved (see [Wetzlinger et al. 2023](../2023/wetzlinger-fully-automated-verification.md)). CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
 [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean)
 
 **`Alg. 1` — the output is `Prop. 2`'s.** The listing ensures that R̂(τ) = ⋃_k R̂(τ_k) (line
@@ -96,8 +112,12 @@ by (23). The convex counterexample to `Prop. 2` is an input of the algorithm: fo
 `w = 0` and `A = [0 1; 0 0]`, line 6 `C = 0`, the remainder loop stops at its first pass with
 `L̂ = 0`, so `R̂_err = 0` and `c = 0`, and line 16 is `conv(X₀, e^{A}X₀)`, holding `(1/2, 0)`,
 which no run reaches at any `t ∈ [0, 1]` (`NonlinearSys.innerMinkDiff_timeInterval_counterexample`,
-the subroutines entering only through what (6), (9), (13), (17) and the center give there).
+for every `η ≥ 1`: (9), (13) and (17), with `F`, `G`, `E` of [16, (18), (19), (26)], are the
+printed formulas and their values are derived; the center, the box, the Jacobian (6) and the
+interval operations of lines 9-13 enter as hypotheses).
 No correction is known that keeps line 16's hull, so the row is `false`, not `underspecified`.
+`Prop. 2`'s repair does not change this: it is a union over every `t ∈ [0, Δt]`, no set line 16
+can compute; a finite union of its slices is computable and sound, but covers only the chosen times.
 The time-point sets are sound: by induction over the steps, every R̂(t_k) lies in R(t_k)
 (`NonlinearSys.innerMinkDiffLoop_subset_reachSetExact`), a step from R̂(t_k) reaching only states
 some run reaches, since runs under the constant input concatenate
