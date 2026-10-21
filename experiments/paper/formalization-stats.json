@@ -14,42 +14,42 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 99,
-    "papers_with_findings": 89,
-    "in_scope": 1292,
-    "formalized": 1219,
+    "papers": 100,
+    "papers_with_findings": 90,
+    "in_scope": 1303,
+    "formalized": 1230,
     "not_formalized": 73,
-    "out_of_scope": 1142,
+    "out_of_scope": 1164,
     "out_of_scope_by_reason": {
-      "restated": 430,
+      "restated": 438,
       "mathlib": 24,
-      "not-a-claim": 581,
+      "not-a-claim": 595,
       "done-differently": 12,
       "not-covered": 95
     },
     "by_class": {
-      "correct": 813,
-      "underspecified": 254,
+      "correct": 816,
+      "underspecified": 260,
       "proof-gap": 35,
-      "fixed": 106,
+      "fixed": 108,
       "false": 11
     },
     "claims": {
-      "in_scope": 487,
-      "formalized": 455,
+      "in_scope": 491,
+      "formalized": 459,
       "correct": 271,
-      "underspecified": 93,
+      "underspecified": 97,
       "proof-gap": 35,
       "fixed": 49,
       "false": 7
     },
     "definitions": {
-      "in_scope": 805,
-      "formalized": 764,
-      "correct": 542,
-      "underspecified": 161,
+      "in_scope": 812,
+      "formalized": 771,
+      "correct": 545,
+      "underspecified": 163,
       "proof-gap": 0,
-      "fixed": 57,
+      "fixed": 59,
       "false": 4
     }
   },
@@ -6298,6 +6298,90 @@
       ]
     },
     {
+      "page": "2026/koller-iclr-latent-space.md",
+      "label": "Koller 2026",
+      "year": 2026,
+      "title": "Out of the Shadows: Exploring a Latent Space for Neural Network Verification",
+      "in_scope": 11,
+      "formalized": 11,
+      "not_formalized": 0,
+      "out_of_scope": 22,
+      "out_of_scope_by_reason": {
+        "restated": 8,
+        "mathlib": 0,
+        "not-a-claim": 14,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 3,
+        "underspecified": 6,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 4,
+        "formalized": 4,
+        "correct": 0,
+        "underspecified": 4,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 7,
+        "formalized": 7,
+        "correct": 3,
+        "underspecified": 2,
+        "proof-gap": 0,
+        "fixed": 2,
+        "false": 0
+      },
+      "findings": [
+        {
+          "result": "Sec. 3",
+          "class": "underspecified",
+          "reason": "the factors are shared only when each approximation error bounds `ϕ(t) - m t` at every point of the neuron's input range, which Prop. 1's `L_k(H) ⊆ enclose(L_k, H)` does not say; the formalization asks for it, and the hypercube grows by one factor per neuron rather than staying the same; see Findings"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "underspecified",
+          "reason": "the proof's \"the first `q₀` factors of the output `y` are the factors of the input `x`\" is not implied by `Y` enclosing `Φ(X)`, nor by Prop. 1's set-level enclosure; it needs the approximation errors pointwise, which the formalization assumes; see Findings"
+        },
+        {
+          "result": "Eq. 9",
+          "class": "fixed",
+          "reason": "the printed sign maximizes `A(i,·) y` over `Y`, the vertex farthest from the halfspace `A(i,·) y ≤ b(i)`: for `Y = [-1, 1]` and `U = {y ≤ 0}`, `Y ∩ U = [-1, 0]` and the printed `ỹ = 1 ∉ U`; CORA takes `-sign`; see Findings"
+        },
+        {
+          "result": "Alg. 1",
+          "class": "underspecified",
+          "reason": "an `Alg.` row, read as simplified pseudocode (references/README.md): line 10 has the sign of `Eq. 9` and one `β̃_i` indexed by the loop counter `i`, line 11 reads `Φ(x)` for `Φ(x̃_i)`, line 15 applies Prop. 2, stated for a zonotope, to the constrained sets of line 16, which App. D stores as their bounds, and the loop has no budget; see Findings"
+        },
+        {
+          "result": "Prop. 3",
+          "class": "underspecified",
+          "reason": "the notation leaves `A⁻` open: \"defined analogously\" to `A⁺` with `A⁻ ∈ ℝ_{≥0}` reads `½(|A| - A)`, under which `C̲(i,j)` has the wrong sign on `C⁻`; the proof's last step, `min C(i,·) Σ_{∖{j}} β̃ = C⁺(i,·) Σ_{∖{j}} β̲₀ + C⁻(i,·) Σ_{∖{j}} β̄₀`, needs `C⁻ = ½(C - |C|) ≤ 0`, which the formalization takes; see Findings"
+        },
+        {
+          "result": "Eq. 13",
+          "class": "fixed",
+          "reason": "with `G⁻ = ½(G - |G|)`, the reading under which `Prop. 3` holds, the printed `-G⁻` adds `|G⁻|` on the wrong side: for `Z = ⟨0, [-1]⟩_Z` and the exact bounds `[-1, 1]` the printed interval runs from `1` to `-1` and misses `0 ∈ Z`; under the other reading `Eq. 13` holds and `Prop. 3` fails; see Findings"
+        },
+        {
+          "result": "Prop. 4",
+          "class": "underspecified",
+          "reason": "\"with respect to `κ`, `p`, `q` and `ξ`\" leaves the widths and the constants open: the proof's `O(κ q³)` is Koller et al. 2025, Prop. 16's `O(n_max² q κ)` with `n_max ≤ q`, which needs every width, `n₀` and `n_κ` included, at most `q`; the proof counts one candidate and one check of `Φ`, where Sec. 4 (and CORA) try one per row of `A`, `p` evaluations at `O(κ q²)` each, inside `O(κ q³)` only for `p ≤ q`; and the constants depend on the per-neuron costs, the split's rows and the passes of Prop. 3; see Findings"
+        },
+        {
+          "result": "Cor. 1",
+          "class": "underspecified",
+          "reason": "as at `Prop. 2`, from which it follows: the approximation errors pointwise; `X` is only \"an input set\" in the statement and a zonotope in Prop. 2; see Findings"
+        }
+      ]
+    },
+    {
       "page": "2026/luetzow-tac-reachset-conformant-identification.md",
       "label": "Luetzow 2026",
       "year": 2026,
@@ -6535,24 +6619,24 @@
         "methods": 50,
         "proved": 2,
         "float": 31,
-        "bound": 5,
+        "bound": 6,
         "not_yet": 0,
-        "out_of_scope": 12,
+        "out_of_scope": 11,
         "needs_float": 2,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
           "solver-dependent": 0,
           "io/conversion-to-matlab-objects": 0,
-          "matlab-runtime": 5,
+          "matlab-runtime": 4,
           "deprecated": 1
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 20,
-          "underspecified": 4,
+          "correct": 22,
+          "underspecified": 5,
           "proof-gap": 1,
-          "fixed": 1,
+          "fixed": 2,
           "false": 0
         }
       },
@@ -6927,10 +7011,10 @@
         },
         "cora_issues": 16,
         "findings": {
-          "correct": 150,
+          "correct": 151,
           "underspecified": 48,
           "proof-gap": 4,
-          "fixed": 16,
+          "fixed": 17,
           "false": 1
         }
       },
@@ -7532,12 +7616,12 @@
         "group": "nn",
         "class": "neuralNetwork",
         "methods": 61,
-        "proved": 7,
-        "float": 13,
+        "proved": 8,
+        "float": 12,
         "bound": 0,
         "not_yet": 0,
         "out_of_scope": 41,
-        "needs_float": 7,
+        "needs_float": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 4,
           "random/sampling": 2,
@@ -7549,7 +7633,7 @@
         "cora_issues": 2,
         "findings": {
           "correct": 70,
-          "underspecified": 9,
+          "underspecified": 14,
           "proof-gap": 2,
           "fixed": 2,
           "false": 0
@@ -8479,9 +8563,9 @@
         "methods": 908,
         "proved": 39,
         "float": 575,
-        "bound": 41,
+        "bound": 42,
         "not_yet": 6,
-        "out_of_scope": 247,
+        "out_of_scope": 246,
         "needs_float": 39,
         "cora_issues": 102,
         "out_of_scope_by_reason": {
@@ -8489,14 +8573,14 @@
           "random/sampling": 37,
           "solver-dependent": 7,
           "io/conversion-to-matlab-objects": 8,
-          "matlab-runtime": 130,
+          "matlab-runtime": 129,
           "deprecated": 14
         },
         "findings": {
-          "correct": 414,
-          "underspecified": 124,
+          "correct": 417,
+          "underspecified": 125,
           "proof-gap": 8,
-          "fixed": 48,
+          "fixed": 50,
           "false": 5
         }
       },
@@ -8552,12 +8636,12 @@
       },
       "neuralNetworks": {
         "methods": 104,
-        "proved": 7,
-        "float": 52,
+        "proved": 8,
+        "float": 51,
         "bound": 0,
         "not_yet": 0,
         "out_of_scope": 45,
-        "needs_float": 7,
+        "needs_float": 8,
         "cora_issues": 12,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
@@ -8569,7 +8653,7 @@
         },
         "findings": {
           "correct": 70,
-          "underspecified": 9,
+          "underspecified": 14,
           "proof-gap": 2,
           "fixed": 2,
           "false": 0
@@ -8628,26 +8712,26 @@
     },
     "totals": {
       "methods": 1696,
-      "proved": 278,
-      "float": 764,
-      "bound": 46,
+      "proved": 279,
+      "float": 763,
+      "bound": 47,
       "not_yet": 80,
-      "out_of_scope": 528,
-      "needs_float": 278,
+      "out_of_scope": 527,
+      "needs_float": 279,
       "cora_issues": 174,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
         "random/sampling": 51,
         "solver-dependent": 23,
         "io/conversion-to-matlab-objects": 76,
-        "matlab-runtime": 235,
+        "matlab-runtime": 234,
         "deprecated": 14
       },
       "findings": {
-        "correct": 729,
-        "underspecified": 223,
+        "correct": 732,
+        "underspecified": 229,
         "proof-gap": 31,
-        "fixed": 89,
+        "fixed": 91,
         "false": 10
       }
     },
@@ -8668,11 +8752,11 @@
       }
     },
     "theorems": {
-      "paper": 1842,
+      "paper": 1859,
       "float": 1969,
-      "helper": 1790,
-      "lemma": 3403,
-      "total": 9004,
+      "helper": 1792,
+      "lemma": 3404,
+      "total": 9024,
       "examples": 129
     }
   }

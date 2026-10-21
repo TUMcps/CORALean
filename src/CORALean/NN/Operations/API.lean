@@ -81,6 +81,9 @@ public import CORALean.NN.Operations.CatMaxSegments
 public import CORALean.NN.Operations.CatMaxPool
 public import CORALean.NN.Operations.IntervalChainFwdFloat
 public import CORALean.NN.Operations.IntervalChainBackpropFloat
+public import CORALean.NN.Operations.EncloseUnsafeInputs
+public import CORALean.NN.Operations.UnsafeInputConstraints
+public import CORALean.NN.Operations.Verify
 
 /-!
 # What a network does, collected

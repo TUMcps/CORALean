@@ -87,6 +87,11 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCenterMem
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCenterIffOfEqZero
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstrainConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinBoundsInterEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinBoundsOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinIterOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IntervalOfFactorBoundsOuter
 
 /-!
 # What `ConZonotope` guarantees

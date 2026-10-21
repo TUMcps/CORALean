@@ -61,6 +61,10 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Stack
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
+public import CORALean.ContSet.ConZonotope.Real.Operations.Constrain
+public import CORALean.ContSet.ConZonotope.Real.Operations.FourierMotzkinBounds
+public import CORALean.ContSet.ConZonotope.Real.Operations.FourierMotzkinIter
+public import CORALean.ContSet.ConZonotope.Real.Operations.IntervalOfFactorBounds
 
 /-!
 # What `ConZonotope` computes

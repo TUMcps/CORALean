@@ -29,6 +29,8 @@ public import CORALean.NN.Definitions.CatDomain
 public import CORALean.NN.Definitions.SetBasedLoss
 public import CORALean.NN.Definitions.IntervalChainFloat
 public import CORALean.NN.Definitions.IntervalChainFloatSound
+public import CORALean.NN.Definitions.IsRelaxationOf
+public import CORALean.NN.Definitions.VerifyResult
 
 /-!
 # What a network means, collected

@@ -156,7 +156,7 @@ Rulings on borderline cases:
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 | 0 |
 | [capsule](contSet/capsule.md) | contSet | 39 | 1 | 25 | 3 | 0 | 10 | 9 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 30 | 6 | 1 | 8 | 4 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 31 | 5 | 0 | 12 | 6 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 31 | 6 | 0 | 11 | 6 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 0 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 33 | 2 | 0 | 12 | 8 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 0 | 7 | 0 |
@@ -193,7 +193,7 @@ Rulings on borderline cases:
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 0 | 1 | 6 | 3 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 0 | 7 | 1 |
 | [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 4 | 10 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 0 | 41 | 2 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 8 | 12 | 0 | 0 | 41 | 2 |
 | [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 |
 | [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 4 | 0 | 0 | 0 | 0 | 0 |
 | [finiteSignal](specification/finiteSignal.md) | specification | 10 | 9 | 0 | 0 | 0 | 1 | 0 |

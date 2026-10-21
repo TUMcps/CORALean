@@ -5,6 +5,7 @@ public import CORALean.ContSet.ConZonotope.Real.Counterexamples.IsFullDimCora
 public import CORALean.ContSet.ConZonotope.Real.Counterexamples.PartialSolveRZero
 public import CORALean.ContSet.ConZonotope.Real.Counterexamples.RepresentsaHyperplaneCora
 public import CORALean.ContSet.ConZonotope.Real.Counterexamples.SupportFuncUpperCora
+public import CORALean.ContSet.ConZonotope.Real.Counterexamples.IntervalOfFactorBoundsPrinted
 
 /-!
 # Counterexamples of `ConZonotope.Real`, collected
