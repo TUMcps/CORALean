@@ -22,7 +22,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.SmulPowMemInputTermZonoFloat
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryNormDriftLe
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryNormLe
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalOuter
@@ -32,7 +32,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryToLinParam
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryTimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryDiscretizeEnclosureFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryDiscretizeEnclosureFloatMemReach
@@ -50,15 +50,15 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsMeasu
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEq
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsMemExpIntervalEnclosure
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimePointOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalOuterVarying
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEqOfMeasurable
-public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalStepOuterInputSolution
-public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepFloatOuterInputSolution
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalOuterVaryingInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalFloatOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalFloatOuterInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalZonoOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryTimeIntervalZonoOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalStepIntervalOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoFloatOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalIntervalOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalZonoFloatOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.MemDependentLowOrder
 public import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
@@ -70,7 +70,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryMemInputSet
 /-!
 # What `LinParamSys` gives, collected
 
-`TimeIntervalStepOuter`/`ConstTrajectoryTimeIntervalOuter`: what the step encloses, and where a
+`TimeIntervalOuter`/`ConstTrajectoryTimeIntervalOuter`: what the step encloses, and where a
 constant-parameter run then is at every time of the step. `ConstTrajectoryToLinearSys` is what
 the second rests on — with one matrix fixed, the closed form of a `LinearSys` run applies
 unchanged. `InputSolutionOuter` is the other half of a step, `ConstTrajectoryStepOuter` puts the
@@ -78,7 +78,7 @@ two together at its end, and `InputReachSubsetInputSolution` with
 `ConstTrajectoryInputSolutionTimeIntervalOuter` extend that half to every time of the step once
 `0 ∈ U`; `…TimeIntervalOuterInputSolution` is the whole step.
 
-`TrajectoryTimeIntervalStepOuter`/`…TimePointOuter` are CORA's own `'varParam'` step, input-free,
+`TrajectoryTimeIntervalOuter`/`…TimePointOuter` are CORA's own `'varParam'` step, input-free,
 through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` with an input,
 `…FloatOuter` at the float step; or `TrajectoryToLinearSys` pays the drift as input,
 `TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall. The `…Split` pair drops `0 ∈ U` by

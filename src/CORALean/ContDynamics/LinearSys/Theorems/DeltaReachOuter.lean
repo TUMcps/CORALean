@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.DeltaReach
 /-!
 # `deltaReach` contains every difference the step can span
 
-`timeIntervalStep_outer_at`'s statement about the *difference* rather than the state: at every `t`
+`timeInterval_outer_at`'s statement about the *difference* rather than the state: at every `t`
 of `[0, r]`, `e^{At}x₀ - x₀` is in the set, and at `t = 0` that is the origin, which is what makes
 the anchored segment right. The split is the same one and by the same lemma: `e^{At} - I` is the
 straight line from `0` to `e^{Ar} - I` at weight `t/r`, plus `e^{At} - I - (t/r)(e^{Ar} - I)`, the

@@ -26,8 +26,8 @@ src/CORALean/ContDynamics/LinParamSys/Theorems/ReachOrderFloatSpec.lean
 src/CORALean/ContDynamics/LinParamSys/Theorems/ReachStepkFloatOuter.lean
 src/CORALean/ContDynamics/LinParamSys/Theorems/SmulPowMemInputTermZonoFloat.lean
 src/CORALean/ContDynamics/LinParamSys/Theorems/SquaringsFloatSpec.lean
-src/CORALean/ContDynamics/LinParamSys/Theorems/TimeIntervalStepFloatOuter.lean
-src/CORALean/ContDynamics/LinParamSys/Theorems/TimeIntervalStepZonoFloatOuter.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/TimeIntervalFloatOuter.lean
+src/CORALean/ContDynamics/LinParamSys/Theorems/TimeIntervalZonoFloatOuter.lean
 src/CORALean/ContDynamics/LinParamSys/Theorems/IsTrajectoryToLinParam.lean
 src/CORALean/ContDynamics/LinParamSysDT/LinParamSysDT.lean
 src/CORALean/ContDynamics/LinParamSysDT/Theorems/HoldsOfCheck.lean
@@ -279,7 +279,7 @@ src/CORALean/ContDynamics/LinearSys/Theorems/SampleTimeFloatMem.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/SquaringsFloatSpec.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/StepSubset.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterInputSolution.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalStepFloatOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalFloatOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepErrorBoxSubsetFloat.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepErrorNonneg.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepFloatOuter.lean

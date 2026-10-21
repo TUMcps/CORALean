@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.ContDynamics.Reach.Operations.Steps
@@ -14,7 +14,7 @@ public import CORALean.Global.Float.ToRat
 # Reachability of a set-valued-matrix system in floats, window by window
 
 The homogeneous windows `reachStepk` over the horizon, computed in `𝕋`, as [1, Alg. 1] reads at a
-constant parameter, `U = {0}`: the first window `H^R(τ_0)` by `timeIntervalStepFloat`,
+constant parameter, `U = {0}`: the first window `H^R(τ_0)` by `timeIntervalFloat`,
 reduced to order `ρ` as `LinearSys.reachWrappingFreeFloat` reduces it, and window
 `k` by `reachStepkFloat`, `[e^{[A] t_k}]` applied to the first — never a power of
 `[e^{[A]Δt}]`, so no window pays for the ones before it. `N = (tFinal - tStart) / Δt`
@@ -63,7 +63,7 @@ def LinParamSys.reachFloat (sys : LinParamSys ℐ[𝕋] n)
   let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let HRτ₀ := Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀) ρ  -- H^R(τ_0), to order ρ
+  let HRτ₀ := Reduce.reduce (sys.timeIntervalFloat Δt η' X₀) ρ  -- H^R(τ_0), to order ρ
   (List.range N).mapM (sys.reachStepkFloat Δt η' HRτ₀)              -- H^R(τ_k), every k < N
 
 end CORALean

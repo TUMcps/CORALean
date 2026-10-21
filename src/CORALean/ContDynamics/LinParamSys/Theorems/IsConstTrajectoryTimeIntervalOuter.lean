@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 `LinearSys.IsCanonicalTrajectory.timeInterval_outer` at `'constParam'`: the closed form splits the
 run into what the initial set carries and what the inputs contributed, and `toLinearSys` is what
 lets that closed form be used — one matrix is fixed over the step, so `variation_of_constants`
-applies unchanged. The initial part is the box's `timeIntervalStep`, which knows no member. The
+applies unchanged. The initial part is the box's `timeInterval`, which knows no member. The
 input part is a set the caller supplies; `timeInterval_outer_inputSolution` discharges `hUd` with
 `sys.inputSolution`. Integrability is not a hypothesis — `InputIntegrable` derives it from `U`
 being bounded.
@@ -78,14 +78,14 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer {sys : LinPara
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hU : Bornology.IsBounded (construct U))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Ud) := by -- --- PROOF ---
+    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys
   have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
-  exact sys.timeIntervalStep_outer hr hε R₀ traj.param ht0 htr
+  exact sys.timeInterval_outer hr hε R₀ traj.param ht0 htr
     (Set.mem_image_of_mem _ traj.init)
 
 end CORALean

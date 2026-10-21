@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalOuter
 
 @[expose] public section
 
@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 
 `LinearSys.reachStepkWrappingFree_outer` at a member `A` of `sys.A`: at `t ∈ τ_k`,
 `e^{At} x₀ = e^{A t_k} (e^{A(t - t_k)} x₀)`; the inner point is in `H^R(τ_0)`
-(`timeIntervalStep_outer`, at the same member) and `e^{A t_k}` is in
+(`timeInterval_outer`, at the same member) and `e^{A t_k}` is in
 `expEnclosure` (`exp_mem_expEnclosure`), so `mtimes_outer` puts the product in
 the window's set.
 
@@ -68,7 +68,7 @@ theorem LinParamSys.reachStepk_outer (sys : LinParamSys ℐ n) {Δt : ℝ} (hΔt
       ⊆ construct (sys.reachStepk Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `τ = t - t_k ∈ [0, Δt]`, so `H^R(τ_0)` holds `e^{Aτ} x₀`
-  have hτ := sys.timeIntervalStep_outer hΔt hε X₀ hA (sub_nonneg.mpr hkt) htk
+  have hτ := sys.timeInterval_outer hΔt hε X₀ hA (sub_nonneg.mpr hkt) htk
     (Set.mem_image_of_mem _ hx₀)
   -- `e^{At} = e^{A t_k} e^{Aτ}`, both powers of the same member
   have hc : Commute (((k : ℝ) * Δt) • A) ((t - k * Δt) • A) :=

@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 `deltaReach` computed in `𝕋`, CORA's `aux_deltaReach` at a zonotope:
 `enclose(0, ([e^{AΔt}] - I) R) ⊕ [F] R`, every difference `x(t) - x(0)` of the homogeneous flow
-over `t ∈ [0, Δt]`. `timeIntervalStepFloat` with the segment anchored at the origin and the far
+over `t ∈ [0, Δt]`. `timeIntervalFloat` with the segment anchored at the origin and the far
 end shifted, the same interval matrices, the same correction matrix `[F]` covering the
 interpolation error. At a zonotope the origin end is the generator-free zonotope at `0`, CORA's
 own `zonotope.origin(n)` in the branch it takes for one; the `0 · D` the real layer writes keeps

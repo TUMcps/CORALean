@@ -16,7 +16,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 the last may overshoot `tFinal`, which an outer enclosure may, and never fewer than one, so
 `tFinal = tStart` still keeps `X₀`. The times are real: the ceiling is part of what
 `reachWrappingFree_outer` says, and `ℝ` has no `ToRat` for `Reach.steps`. `η` is the Taylor order
-asked for, raised to `reachOrder Δt + 2` where that is higher: `timeIntervalStep_outer` holds only
+asked for, raised to `reachOrder Δt + 2` where that is higher: `timeInterval_outer` holds only
 at an order admissible for `Δt` and `sys.A`, so `reachWrappingFree_outer` asks for no side
 condition on `η` at all.
 

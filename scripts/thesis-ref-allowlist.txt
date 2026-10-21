@@ -114,12 +114,12 @@ src/CORALean/ContDynamics/LinearSys/Theorems/PropagateInputReach.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/ReachBoxFloatOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/ReachBoxOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/ReachOuterWindows.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterAt.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterConvexCompact.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterSplit.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalReachSetExactEqUnion.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalReachSetExactSubsetSetLinCombSum.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalStepOuterSetLinComb.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterSetLinComb.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/WithInputReachOuter.lean
@@ -143,7 +143,7 @@ src/CORALean/ContSet/Zonotope/Real/Theorems/MtimesIntervalMatSymmBox.lean
 src/CORALean/Examples/ExactSecondOrderExp.lean
 
 # Althoff 2010, Alg. 3: the split-input step of a location; no paper we hold states it.
-src/CORALean/HybridDynamics/Operations/TimeIntervalStepSplitFloat.lean
+src/CORALean/HybridDynamics/Operations/TimeIntervalSplitFloat.lean
 
 # CORA's header cites Netzer's habilitation thesis, which the entry says is not cited here: no
 # numbered result of it is used.

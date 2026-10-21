@@ -4,18 +4,18 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionM
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.HybridDynamics.Operations.InputSet
-public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+public import CORALean.HybridDynamics.Operations.TimeInterval
 
 @[expose] public section
 
 /-!
-# `Location.timeIntervalStepSplit`
+# `Location.timeIntervalSplit`
 
 The stay enclosure with the input contribution computed rather than named, at a location whose
 combined input set `ℓ.inputSet = B U ⊕ c ⊕ E W` need not hold the origin. `Recenter` takes it
 apart into a center and a remainder around zero, as CORA's `canonicalForm` does: the center
 travels as a constant through `expIntegral` and `constCorrectionMatrix`, and `inputSolution` sees
-only the remainder. The set is that of `timeIntervalStep ⊞ inputSolution ℓ.inputSet` where
+only the remainder. The set is that of `timeInterval ⊞ inputSolution ℓ.inputSet` where
 `0 ∈ ℓ.inputSet` already; this is `TimeIntervalOuterSplit`'s form, which a location can supply.
 
 ## Inputs
@@ -51,9 +51,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- The stay enclosure over `X₀`, the input contribution split into the center
 of `ℓ.inputSet` and the remainder around zero. -/
-noncomputable def Location.timeIntervalStepSplit [∀ n, OfPoint (S n) (Vec ℝ n)]
+noncomputable def Location.timeIntervalSplit [∀ n, OfPoint (S n) (Vec ℝ n)]
     [∀ n, Recenter (S n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
-  Plus.plus (ℓ.timeIntervalStep r η X₀)
+  Plus.plus (ℓ.timeInterval r η X₀)
     (Plus.plus
       (Plus.plus
         (Mtimes.mtimes (𝕄 := Mat ℝ)

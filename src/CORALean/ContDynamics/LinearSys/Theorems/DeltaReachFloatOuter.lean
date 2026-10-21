@@ -20,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 `e^{As} x - x = (s/Δt)(e^{AΔt} - I) x + (e^{As} - I - (s/Δt)(e^{AΔt} - I)) x`. The
 first term is on the segment from the origin to `([e^{AΔt}] - I) R`, once
 `e^{AΔt} - I` is in `[e^{AΔt}] - I`; the second is in `[F] R` by
-`MatExp.expDiff_mem_intervalCorrectionMatrix`, as in `timeIntervalStepFloat_outer`.
+`MatExp.expDiff_mem_intervalCorrectionMatrix`, as in `timeIntervalFloat_outer`.
 
 ## Inputs
 * `sys` – linear system

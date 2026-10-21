@@ -7,15 +7,15 @@ public import CORALean.ContSet.Interval.Real.Instances
 @[expose] public section
 
 /-!
-# `timeIntervalStep`'s content one step before the representation lifts
+# `timeInterval`'s content one step before the representation lifts
 
-`timeIntervalStep_outer`, the wrapping-effect-free construction of [1, Alg. 1],
+`timeInterval_outer`, the wrapping-effect-free construction of [1, Alg. 1],
 ends on two representation calls: `LinComb.linComb_outer` turns the straight
 line from `X₀` to its image into a hull, `Plus.plus_outer` turns the sum of
-that hull and the curvature term into `timeIntervalStep`. Held back, the
+that hull and the curvature term into `timeInterval`. Held back, the
 straight line is a genuine `Set.linComb` between `construct X₀` and its exact
 image, and only the curvature term still needs `Mtimes`, which has no
-set-level form to fall back to. `timeIntervalStep_outer` is this composed with
+set-level form to fall back to. `timeInterval_outer` is this composed with
 those two lifts.
 
 ## Inputs
@@ -64,8 +64,8 @@ variable [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every image of the initial set under the flow, at every time of the step,
-inside the exact sum `timeIntervalStep_outer` only reaches after two lifts. -/
-theorem LinearSys.timeIntervalStep_outer_setLinComb (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
+inside the exact sum `timeInterval_outer` only reaches after two lifts. -/
+theorem LinearSys.timeInterval_outer_setLinComb (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
     {m : ℕ} (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀

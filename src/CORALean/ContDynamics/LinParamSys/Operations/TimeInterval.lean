@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # One step of the homogeneous flow at a set-valued system matrix, as a set
 
-`LinearSys.timeIntervalStep` with both matrices replaced by the sets that hold them: `e^{Ar}` by
+`LinearSys.timeInterval` with both matrices replaced by the sets that hold them: `e^{Ar}` by
 `expIntervalEnclosure` of the box `r • sys.A`, and `F` by `intervalCorrectionMatrix`. Neither is
 computed at a member — a member is what a `IsConstTrajectory` fixes and an implementation never
 sees. At `ℐ`, not at any matrix representation: both enclosures are interval matrices. `𝕄𝒵`
@@ -52,7 +52,7 @@ variable [Mtimes ℐ S]
 
 /-- CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step, with `A` ranging over
 `sys.A` rather than fixed. -/
-noncomputable def LinParamSys.timeIntervalStep (sys : LinParamSys ℐ n) (r : ℝ) (η : ℕ)
+noncomputable def LinParamSys.timeInterval (sys : LinParamSys ℐ n) (r : ℝ) (η : ℕ)
     (X₀ : S n) : S n :=
   LinComb.linComb X₀ (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.expIntervalEnclosure (Interval.smul r sys.A) η) X₀) ⊞

@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope

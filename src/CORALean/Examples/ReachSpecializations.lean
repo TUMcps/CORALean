@@ -68,7 +68,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep (S := 𝒵) r (m + 2) R₀)
+    x t ∈ construct (Plus.plus (sys.timeInterval (S := 𝒵) r (m + 2) R₀)
       (sys.inputSolution (S := 𝒵) r (m + 2) U)) :=
   traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
 
@@ -81,7 +81,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec 
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus
-      (sys.timeIntervalStep (S := ℐ𝒱) r (m + 2) R₀)
+      (sys.timeInterval (S := ℐ𝒱) r (m + 2) R₀)
       (sys.inputSolution (S := ℐ𝒱) r (m + 2) U)) :=
   traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
 

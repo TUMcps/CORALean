@@ -8,7 +8,7 @@ public import Mathlib.Analysis.Matrix.Normed
 /-!
 # An order admissible for a window and its matrix
 
-`⌈‖r • toRealMat sys.A‖⌉₊`, no search: `timeIntervalStep_outer`'s side
+`⌈‖r • toRealMat sys.A‖⌉₊`, no search: `timeInterval_outer`'s side
 condition at order `η` needs `‖r • A‖` under `η + 2`, and every `η` from this
 order plus `2` up clears it outright, `reachOrder_admissible` its proof. Read
 for `reach`'s floor on `η` and no further, so no tightness is claimed — a caller
@@ -48,7 +48,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An order admissible for the window `r` at `sys.A` once `2` is added: every
-`timeIntervalStep r η` with `η` at or above that is enclosing. -/
+`timeInterval r η` with `η` at or above that is enclosing. -/
 noncomputable def LinearSys.reachOrder (sys : LinearSys 𝕋 n) (r : ℝ) : ℕ :=
   ⌈‖r • toRealMat sys.A‖⌉₊
 

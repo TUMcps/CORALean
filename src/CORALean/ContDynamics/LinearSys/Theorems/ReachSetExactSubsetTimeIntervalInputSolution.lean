@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSol
 `timeInterval_outer_inputSolution` restated on `reachSetExact`, and the form the
 two-step split is for: no trajectory, no input signal and no index appears
 anywhere in it. The reachable set at every time of the step lies in
-`timeIntervalStep ⊞ inputSolution`, and what is left are properties of `U`,
+`timeInterval ⊞ inputSolution`, and what is left are properties of `U`,
 which a representation answers for.
 
 That is what `reachSetExact` buys over the sampled statements: between `kΔt` and
@@ -82,7 +82,7 @@ theorem LinearSys.reachSetExact_subset_timeInterval_inputSolution (sys : LinearS
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    sys.reachSetExact T R₀ U t ⊆ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
+    sys.reachSetExact T R₀ U t ⊆ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.timeInterval_outer_inputSolution hr hT hε ht0 htr hconv hclosed hbdd

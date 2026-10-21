@@ -40,7 +40,7 @@ to cite, now narrowed to the equation inside it. The same construction is Prop. 
 These name the paper as a whole. A locator would put each in a row above.
 
 * [`DiscretizeEnclosureFloat.lean`](../../src/CORALean/ContDynamics/LinParamSys/Operations/DiscretizeEnclosureFloat.lean)
-* [`TimeIntervalStepFloat.lean`](../../src/CORALean/ContDynamics/LinParamSys/Operations/TimeIntervalStepFloat.lean)
+* [`TimeIntervalFloat.lean`](../../src/CORALean/ContDynamics/LinParamSys/Operations/TimeIntervalFloat.lean)
 
 ## Findings
 

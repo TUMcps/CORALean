@@ -11,7 +11,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 # The state differences a step spans
 
 CORA's `aux_deltaReach`: the set of state *differences* `x(t) - x(0)` over a step, not of states.
-It is `timeIntervalStep` with the segment anchored at the origin and the far end shifted,
+It is `timeInterval` with the segment anchored at the origin and the far end shifted,
 `CH(0, (e^{Ar} - I)X₀) ⊕ F X₀`, the same correction matrix covering the interpolation error. The
 origin end is written `0 · ((e^{Ar} - I)X₀)` and not a constructed zero set, which is CORA's own
 `zeros(n)*Rhom_tp_delta` "to retain dependencies": at a polynomial zonotope a zero *image* keeps

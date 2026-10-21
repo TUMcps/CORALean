@@ -1,11 +1,11 @@
 module
 
-public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+public import CORALean.HybridDynamics.Operations.TimeInterval
 
 @[expose] public section
 
 /-!
-# `Location.timeIntervalStepInv`
+# `Location.timeIntervalInv`
 
 The stay enclosure cut by the invariant. `Intersection.intersection` intersects with `ℓ.inv`
 after `Plus.plus` has added the input contribution `Ud`, not before: the invariant holds of the two
@@ -46,9 +46,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The stay enclosure over `X₀` and `Ud`, cut down to the location's invariant. -/
-noncomputable def Location.timeIntervalStepInv [∀ n, Intersection (S n) (Vec ℝ n)]
+noncomputable def Location.timeIntervalInv [∀ n, Intersection (S n) (Vec ℝ n)]
     (ℓ : Location S S L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ Ud : S n) : S n :=
-  Intersection.intersection (Plus.plus (ℓ.timeIntervalStep r η X₀) Ud) ℓ.inv
+  Intersection.intersection (Plus.plus (ℓ.timeInterval r η X₀) Ud) ℓ.inv
 
 end CORALean
 

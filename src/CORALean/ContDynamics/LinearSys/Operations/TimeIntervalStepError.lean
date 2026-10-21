@@ -8,7 +8,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 @[expose] public section
 
 /-!
-# How far `timeIntervalStep` reaches past the states the step actually visits
+# How far `timeInterval` reaches past the states the step actually visits
 
 `timeIntervalStepError`, the counterpart [1] tunes for over a whole step, is
 dominated by `‖e^{rA} - I‖`, *first* order in the step: a `linComb` between a
@@ -51,7 +51,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- How far `timeIntervalStep` reaches past the states the step actually visits:
+/-- How far `timeInterval` reaches past the states the step actually visits:
 the hull over the step, and the correction matrix it is widened by. -/
 noncomputable def LinearSys.timeIntervalStepError (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ : Zonotope (Vec ℝ n)) : ℝ :=

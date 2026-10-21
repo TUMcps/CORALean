@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalInnerInner
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 
 @[expose] public section
@@ -54,10 +54,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- Some step is short enough that its enclosure minus a ball of the caller's
 own radius `ε` is already inside the states the flow visits over it. -/
-theorem LinearSys.exists_timeIntervalStepInner_inner (sys : LinearSys 𝕋 n)
+theorem LinearSys.exists_timeIntervalInner_inner (sys : LinearSys 𝕋 n)
     (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ sys.timeIntervalStepError r η X₀ < ε ∧
-      minkowskiDiff (sys.timeIntervalStep (S := 𝒵) r η X₀).construct
+      minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).construct
           (Metric.closedBall (0 : Vec ℝ n) ε)
         ⊆ ⋃ t ∈ Set.Icc (0:ℝ) r,
             (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.construct := by -- --- PROOF ---
@@ -66,7 +66,7 @@ theorem LinearSys.exists_timeIntervalStepInner_inner (sys : LinearSys 𝕋 n)
   -- the true error is under the tolerance, so its ball is inside the one taken off
   refine subset_trans (minkowskiDiff_mono subset_rfl
     (Metric.closedBall_subset_closedBall herr.le)) ?_
-  exact sys.timeIntervalStepInner_inner hr η hside X₀
+  exact sys.timeIntervalInner_inner hr η hside X₀
 
 end CORALean
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Instances
 public import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
+public import CORALean.HybridDynamics.Operations.TimeIntervalInvFloat
 public import CORALean.HybridDynamics.Theorems.FlowOuterFloat
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
@@ -77,7 +77,7 @@ theorem Location.IsTrajectory.timeIntervalInvFloat_outer
       (Scalar.toRealMat ℓ.dynamics.B *ᵥ u s + Scalar.toRealVec ℓ.dynamics.c +
         Scalar.toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
-    x t ∈ construct (ℓ.timeIntervalStepInvFloat r η R₀ Ud) :=
+    x t ∈ construct (ℓ.timeIntervalInvFloat r η R₀ Ud) :=
   Interval.zonotope_contains _ (ℓ.inv.contractBox_outer _
     ⟨Zonotope.interval_contains _ (traj.timeIntervalFloat_outer h₀ hr hη ht0 htτ htr hUd),
       traj.invariant t ⟨ht0, htτ⟩⟩)

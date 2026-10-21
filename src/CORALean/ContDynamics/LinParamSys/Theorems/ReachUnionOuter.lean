@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryMemInputSet
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
@@ -166,7 +166,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
     · -- `e^{[A]t_k}` of a point of `(H^R ⊕ P̃^R)(τ_0)`
       refine Mtimes.mtimes_outer _ _ (Set.mem_biUnion (sys.exp_mem_expEnclosure _ (m + 2)
         traj.param) (Set.mem_image_of_mem _ (Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_))))
-      · exact sys.timeIntervalStep_outer hΔt hε params.X₀ traj.param hτ0 htk
+      · exact sys.timeInterval_outer hΔt hε params.X₀ traj.param hτ0 htk
           (Set.mem_image_of_mem _ traj.init)
       · exact sys.expIntegral_mem_constInputSolution hΔt (m + 2) hε traj.param uc hτ0 htk
     · -- `P̃(t_k)`, at every step by `constPropagate`

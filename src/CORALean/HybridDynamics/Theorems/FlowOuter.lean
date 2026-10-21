@@ -2,7 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryTimeIntervalOuter
-public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+public import CORALean.HybridDynamics.Operations.TimeInterval
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
 @[expose] public section
@@ -13,8 +13,8 @@ public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 What `Location` holding `LinearSys` dynamics buys: the enclosure of a whole stay is `LinearSys`'s
 over one step, applied on the location's own clock; `hT` is `subset_rfl` here. The invariant does
 not appear: it can only shrink the enclosure, by intersecting with `ℓ.inv`, which
-`TimeIntervalInvOuter` restates. `0 < τ` rather than `0 ≤ τ`, since `timeIntervalStep` divides by
-the step length. Stated through `Location.timeIntervalStep` rather than the dynamics' own, since
+`TimeIntervalInvOuter` restates. `0 < τ` rather than `0 ≤ τ`, since `timeInterval` divides by
+the step length. Stated through `Location.timeInterval` rather than the dynamics' own, since
 `ℓ.dynamics` drops `S`.
 
 ## Inputs
@@ -78,7 +78,7 @@ theorem Location.IsTrajectory.timeInterval_outer [∀ n, OfPoint (S n) (Vec ℝ 
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
+    x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀) Ud) :=
   (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer hτ
     subset_rfl hε ht0 htτ hU hUd
 

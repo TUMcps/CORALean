@@ -125,7 +125,7 @@ error box I' of each reduced linear layer:
 unreduced enclose  [   1.999999761,    4.020833970 ] [   0.499999880,    1.833333612 ]
 reduced Y          [   1.958333134,    4.062500477 ] [   0.333333253,    2.000000239 ]
 
-== LinParamSys.timeIntervalStepFloat at Dyadic 24 ==
+== LinParamSys.timeIntervalFloat at Dyadic 24 ==
 
 A  in [ -1  1 ; 0  -2 ] +- 1/16 entrywise, constParam and varParam alike
 R0 = [0.875, 1.125] x [-0.125, 0.125],  U = [-0.015625, 0.015625]^2

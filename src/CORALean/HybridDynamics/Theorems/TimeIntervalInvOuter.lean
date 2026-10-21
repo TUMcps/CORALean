@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
+public import CORALean.HybridDynamics.Operations.TimeIntervalInv
 public import CORALean.HybridDynamics.Theorems.FlowOuter
 
 @[expose] public section
@@ -8,10 +8,10 @@ public import CORALean.HybridDynamics.Theorems.FlowOuter
 /-!
 # A stay is enclosed by the invariant-cut time-interval step
 
-`timeInterval_outer` restated against `timeIntervalStepInv`: the invariant holds of every state of
+`timeInterval_outer` restated against `timeIntervalInv`: the invariant holds of every state of
 the stay, `x t ∈ construct ℓ.inv`, so `Intersection.intersection_outer` cuts the enclosure
 `timeInterval_outer` gives down to it. The cut lands on the sum with `Ud`, not on
-`timeIntervalStep` alone: the invariant is a fact about `x t`. This is the first half of
+`timeInterval` alone: the invariant is a fact about `x t`. This is the first half of
 [1, Alg. 1], `jumpIntersection` and its theorems the second. `Intersection.intersection` is
 homogeneous, so a location's invariant is asked to be in the state's own family,
 `Location S S L 𝕋 n` (#39).
@@ -83,7 +83,7 @@ theorem Location.IsTrajectory.timeIntervalInv_outer [∀ n, OfPoint (S n) (Vec �
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
-    x t ∈ construct (ℓ.timeIntervalStepInv τ (m + 2) R₀ Ud) :=
+    x t ∈ construct (ℓ.timeIntervalInv τ (m + 2) R₀ Ud) :=
   Intersection.intersection_outer _ _ ⟨traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd,
     traj.invariant t ⟨ht0, htτ⟩⟩
 

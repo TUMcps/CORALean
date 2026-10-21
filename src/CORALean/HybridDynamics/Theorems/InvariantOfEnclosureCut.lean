@@ -13,7 +13,7 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 for `FlowOuterInputSolution`, so `0 ∈ ℓ.inputSet` is gone; and `hflow`'s containment is asked only
 of the part of the enclosure still inside `ℓ.inv`, so a dwell time long enough to leave the
 location need not be absorbed by `R`. The cut is `∩ construct (HA.loc ℓ).inv` on sets rather than
-`Location.timeIntervalStepInv`, which would need `Intersection` and shut out `Zonotope`; `hjump`
+`Location.timeIntervalInv`, which would need `Intersection` and shut out `Zonotope`; `hjump`
 names `Rg` for the same reason. Both cuts being set inclusions lets the invariant and the guard sit
 in their own representation `G`; `Examples.BouncingBall` runs it at a zonotope state (#39).
 
@@ -63,7 +63,7 @@ theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec �
     (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n)
     (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,
       ‖τ • toRealMat (HA.loc ℓ).dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 ∧
-      construct ((HA.loc ℓ).timeIntervalStepSplit τ (m + 2) (R ℓ))
+      construct ((HA.loc ℓ).timeIntervalSplit τ (m + 2) (R ℓ))
         ∩ construct (HA.loc ℓ).inv ⊆ construct (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition G L 𝕋 n), e ∈ (HA.loc ℓ).trans → ∃ Rg : S n,
       construct (R ℓ) ∩ construct e.guard ⊆ construct Rg ∧

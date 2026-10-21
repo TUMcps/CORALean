@@ -1,17 +1,17 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.HybridDynamics.Definitions.Location
 
 @[expose] public section
 
 /-!
-# `Location.timeIntervalStepFloat`
+# `Location.timeIntervalFloat`
 
-`Location.timeIntervalStep` computed in `𝕋`: a location whose states are float
+`Location.timeInterval` computed in `𝕋`: a location whose states are float
 zonotopes encloses a stay of length up to `r` by its dynamics'
-`timeIntervalStepFloat`. The input's contribution is named by the caller, as
-for the exact step; `timeIntervalStepSplitFloat` computes it.
+`timeIntervalFloat`. The input's contribution is named by the caller, as
+for the exact step; `timeIntervalSplitFloat` computes it.
 
 ## Inputs
 * `ℓ` – float location
@@ -42,10 +42,10 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The enclosure of a stay of length up to `r`, at Taylor order `η`. -/
-def Location.timeIntervalStepFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
+def Location.timeIntervalFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (r : 𝕋) (η : ℕ)
     (X₀ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  ℓ.dynamics.timeIntervalStepFloat r η X₀
+  ℓ.dynamics.timeIntervalFloat r η X₀
 
 end CORALean
 

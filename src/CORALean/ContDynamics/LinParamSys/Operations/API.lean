@@ -17,11 +17,11 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinParamSys.Operations.ToLinParam
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
@@ -30,12 +30,12 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatChecked
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalZono
 public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
@@ -46,7 +46,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 # What a continuous-time linear system with a set-valued matrix computes
 
 Two enclosures of what happens inside a step, at every matrix the system's set
-holds at once: `InputSolution` for what the input adds, `TimeIntervalStep` for
+holds at once: `InputSolution` for what the input adds, `TimeInterval` for
 where the homogeneous flow goes. `InputTerm` and `InputTaylorSum` are the exact
 orders the first is built from. `ReachOrder`/`ReachUnion` are `Instances`', over windows,
 `ReachUnion` forming `B U ⊕ c` (`InputSet`) from CORA's `params.U` and `ReachStepkInput`

@@ -15,7 +15,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one, exactly
 `LinearSys.WithInput.reach`'s count. No `box()` on the accumulated input set, as there.
 `X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor order asked for, raised to
-`reachOrder Δt + 2` where that is higher: `timeIntervalStep`, `inputSolution` and
+`reachOrder Δt + 2` where that is higher: `timeInterval`, `inputSolution` and
 `constInputSolution` all hold only at an order admissible for `Δt` and `sys.A`. The times are
 real, as in `LinearSys.reachWrappingFree`.
 

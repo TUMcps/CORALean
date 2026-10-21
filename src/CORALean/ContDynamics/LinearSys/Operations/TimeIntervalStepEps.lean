@@ -1,19 +1,19 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 
 @[expose] public section
 
 /-!
 # A step stated against an admissible error rather than an order
 
-`timeIntervalStep` with its truncation order chosen instead of given: the caller says how much
+`timeInterval` with its truncation order chosen instead of given: the caller says how much
 remainder it will tolerate and `expRemainderOrder` names the least order meeting it. What that
 buys is in `timeIntervalStepEps_outer`: the side condition `‖rA‖/(η+2) < 1` a caller of
-`timeIntervalStep` has to discharge is discharged by the selector, so `0 < ε` is all that is left.
+`timeInterval` has to discharge is discharged by the selector, so `0 < ε` is all that is left.
 **`ε` is one term of the enclosure's error and not all of it.** [1] tunes the step too.
-`timeIntervalStep_subset_reach_add_error` measures how far `construct` of the result exceeds what
+`timeInterval_subset_reach_add_error` measures how far `construct` of the result exceeds what
 the flow visits, and `ε` reaches only the second-order part of that: over a whole step the convex
 hull costs a first-order excess no order touches.
 
@@ -56,11 +56,11 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `timeIntervalStep` at the least order whose exponential remainder stays
+/-- `timeInterval` at the least order whose exponential remainder stays
 under `ε`. -/
 noncomputable def LinearSys.timeIntervalStepEps
     (sys : LinearSys 𝕋 n) (r ε : ℝ) (X₀ : S n) : S n :=
-  sys.timeIntervalStep r (MatExp.expRemainderOrder (r • toRealMat sys.A) ε) X₀
+  sys.timeInterval r (MatExp.expRemainderOrder (r • toRealMat sys.A) ε) X₀
 
 end CORALean
 

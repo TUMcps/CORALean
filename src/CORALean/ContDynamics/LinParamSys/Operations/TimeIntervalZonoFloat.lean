@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 /-!
 # One step of the homogeneous flow at a float matrix zonotope, as a float zonotope
 
-`LinParamSys.timeIntervalStepZono` computed in `𝕋`, CORA's `initReach` with `obj.A` a
+`LinParamSys.timeIntervalZono` computed in `𝕋`, CORA's `initReach` with `obj.A` a
 `matZonotope`: `linComb(R, e^{[A]Δt} R) ⊕ F R`, the exponential kept as a matrix
 zonotope (`expMatZonoEnclosure` at `Δt • A`, `matSmul` at the point range `[Δt, Δt]`),
 and the correction `F` the boxed powers give (`matZonoCorrectionMatrix`). `Δt` is a
@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `linComb(R, e^{[A]Δt} R) ⊕ F R` over every `A` in the matrix zonotope `sys.A`, at
 Taylor order `η`. -/
-def LinParamSys.timeIntervalStepZonoFloat
+def LinParamSys.timeIntervalZonoFloat
     (sys : LinParamSys 𝕄𝒵[𝕋] n) (Δt : 𝕋) (η : ℕ)
     (R : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let Ar := Zonotope.matSmul Δt Δt sys.A                                -- A * stepSize

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -14,7 +14,7 @@ public import Mathlib.Topology.Instances.Matrix
 # `reachBox`: [1, Alg. 2], the wrapping-free reachable set with `box()`
 
 [1, Alg. 2], "Compute `R([0, t_f])`", for `ẋ = Ax + u`, `u ∈ U ∋ 0`, on zonotopes, one `let` per
-printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰` (`timeIntervalStep`),
+printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰` (`timeInterval`),
 `V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolution`, [1, Thm. 3.1]), `P^R_0 = box(V₀)`,
 `R₀ = H^R_0 + P^R_0`, and then, `N` times, `H^R_k = e^{Ar}H^R_{k-1}`, `V_k = e^{Ar}V_{k-1}`,
 `P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The result is the list `R₀, …, R_N`,
@@ -62,7 +62,7 @@ noncomputable def LinearSys.reachBox (sys : LinearSys 𝕋 n) (X₀ U : Zonotope
     (η N : ℕ) : List (Zonotope (Vec ℝ n)) :=
   let eAr := exp (r • toRealMat sys.A)                             -- e^{Ar}
   -- 1. H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰
-  let H₀ := sys.timeIntervalStep (S := 𝒵) r η X₀
+  let H₀ := sys.timeInterval (S := 𝒵) r η X₀
   -- 2. V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U
   let V₀ := sys.inputSolution (S := 𝒵) r η U
   -- 3. P^R_0 = box(V₀)

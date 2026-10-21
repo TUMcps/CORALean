@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
 public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
@@ -8,9 +8,9 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 @[expose] public section
 
 /-!
-# `timeIntervalStep` contains the flow of every matrix the set holds
+# `timeInterval` contains the flow of every matrix the set holds
 
-`LinearSys.timeIntervalStep_outer_at` at a matrix drawn from `construct sys.A` instead of the one
+`LinearSys.timeInterval_outer_at` at a matrix drawn from `construct sys.A` instead of the one
 a point system stores: the straight line from `X₀` to its image is a `linComb` at weight `1 - t/r`
 as before, and the interpolation error is what the box's correction matrix spans. The image is
 taken at `e^{tA}` for one member `A`, which is `'constParam'`: a time-varying reading needs
@@ -61,12 +61,12 @@ variable [Mtimes ℐ S]
 
 /-- Every image of the initial set under the flow of every member, at every time
 of the step. -/
-theorem LinParamSys.timeIntervalStep_outer (sys : LinParamSys ℐ n) {r : ℝ} (hr : 0 < r)
+theorem LinParamSys.timeInterval_outer (sys : LinParamSys ℐ n) {r : ℝ} (hr : 0 < r)
     {m : ℕ} (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (X₀ : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by -- --- PROOF ---
+      ⊆ construct (sys.timeInterval r (m + 2) X₀) := by -- --- PROOF ---
   rintro y ⟨x₀, hx₀, rfl⟩
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr

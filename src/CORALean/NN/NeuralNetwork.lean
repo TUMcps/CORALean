@@ -32,7 +32,7 @@ open ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type 1 where
+inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : (n m : ℕ) → Type 1 where
   | output {n : ℕ} : NeuralNetwork S n n
   | layer {n m k : ℕ} {L : ℕ → ℕ → Type} [inst : Enclose L S] (curr : L n m)
       (tail : NeuralNetwork S m k) : NeuralNetwork S n k

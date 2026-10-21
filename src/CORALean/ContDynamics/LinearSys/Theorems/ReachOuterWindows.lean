@@ -26,7 +26,7 @@ point matrix with no input.
 * `options` – step options
 
 ## Hypotheses
-* `htFinal` – horizon positive
+* `htFinal` – start time before final time
 * `hΔt` – step length positive
 * `hη` – order at least two
 * `hε` – scaled norm small enough for the Taylor order
@@ -67,12 +67,13 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal - tStart]`,
 is in one of `reach`'s windows. -/
 theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S n) ℝ}
-    {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
+    {options : LinearSys.ReachStepOptions ℝ} (htFinal : params.tStart < params.tFinal)
     (hΔt : 0 < options.Δt) (hη : 2 ≤ options.η)
     (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1) : -- --- CONCL ---
     sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reach params options) := by -- --- PROOF ---
   unfold LinearSys.reach
+  have htFinal := sub_pos.mpr htFinal
   obtain ⟨X₀, tStart, tF⟩ := params
   obtain ⟨Δt, η⟩ := options
   dsimp only at *

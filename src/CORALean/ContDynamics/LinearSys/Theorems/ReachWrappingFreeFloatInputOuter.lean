@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubse
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -187,17 +187,17 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     hΔt.le hk0 hbdd hd'
   -- the free motion and the constant's share in the first window, carried to `t_k`
   have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
-      ∈ ContSet.construct (Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀
+      ∈ ContSet.construct (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
         ⊞ sys.inputSolutionFloat Δt η' seg) ρ) :=
     Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add
-      (sys.timeIntervalStepFloat_outer hΔt hadm X₀ traj.init hτ.1 hτ.2)
+      (sys.timeIntervalFloat_outer hΔt hadm X₀ traj.init hτ.1 hτ.2)
       (sys.inputReach_subset_inputSolutionFloat hΔt hadm seg
         (sys.inputReach_mono (S := 𝒵[𝕋]) (CompactSet.isBounded_construct seg)
           h0seg hτ.1 hτ.2
           (hconst hũseg hτ.1)))))
   have hk' : k < N := by simp [hHlen] at hk; omega
   have hwin := sys.reachStepkWrappingFreeFloat_outer hadm.1
-    (Plus.plus_outer (Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀
+    (Plus.plus_outer (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
       ⊞ sys.inputSolutionFloat Δt η' seg) ρ) (sys.inputSolutionFloat Δt η' Ũ)
       (Set.add_mem_add hfirst (hPU hp))) _ (hHget k (by rw [hHlen]; exact hk'))
   simp only [List.getElem_range] at hwin

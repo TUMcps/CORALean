@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
@@ -67,9 +67,9 @@ noncomputable def LinearSys.timePointStepInner (sys : LinearSys 𝕋 n) (r : ℝ
 
 /-- The same over the whole step: the enclosure of the step minus the ball its
 own error is bounded by. -/
-noncomputable def LinearSys.timeIntervalStepInner (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
+noncomputable def LinearSys.timeIntervalInner (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ : Zonotope (Vec ℝ n)) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.timeIntervalStep (S := 𝒵) r η X₀).construct
+  minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).construct
     (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀))
 
 end CORALean

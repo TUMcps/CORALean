@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryTimeIntervalOuter
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
@@ -64,7 +64,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x t ∈ construct (Plus.plus
-      (sys.timeIntervalStep r (m + 2) R₀)
+      (sys.timeInterval r (m + 2) R₀)
       (Plus.plus
         (Plus.plus
           (Mtimes.mtimes (𝕄 := Mat ℝ)

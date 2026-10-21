@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 # One step of the flow, at its end rather than over it
 
 CORA's `Rhom_tp ⊕ Rpar`: the initial set carried by `e^{Ar}` exactly, and what the input
-contributes over the step. The counterpart of `timeIntervalStep`, which covers the whole of
+contributes over the step. The counterpart of `timeInterval`, which covers the whole of
 `[0, r]` and pays a convex hull for it; here nothing is interpolated, so the only enclosure is
 `inputSolution`'s. This is the step `discretize` hands `LinearSysDT`, the same two operands, named
 once so that a guarantee about one step can be stated without a discretization around it:

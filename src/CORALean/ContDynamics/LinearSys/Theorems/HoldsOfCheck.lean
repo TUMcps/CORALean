@@ -64,7 +64,8 @@ theorem LinearSys.holds_of_check [Contains ContSet (SetUnion (S n))]
     (spec : Specification ContSet) :
     spec.check (sys.reach params options) →
     (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (construct params.X₀))) :=
-  fun h => spec.holds_of_outer (sys.reach_outer htFinal hΔt hη hε) (spec.check_sound _ h)
+  fun h => spec.holds_of_outer (sys.reach_outer (sub_pos.mp htFinal) hΔt hη hε)
+    (spec.check_sound _ h)
 
 end CORALean
 

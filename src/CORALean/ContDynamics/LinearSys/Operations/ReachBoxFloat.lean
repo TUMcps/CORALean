@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Zonotope.Float.Instances
@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `reachBoxFloat`: [1, Alg. 2], the wrapping-free reachable set with `box()`, in floats
 
 `reachBox` computed in `𝕋`, one `let` per printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰`
-(`timeIntervalStepFloat`), `V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolutionFloat`),
+(`timeIntervalFloat`), `V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolutionFloat`),
 `P^R_0 = box(V₀)`, `R₀ = H^R_0 + P^R_0`, and then, `N` times, `H^R_k = [e^{Ar}]H^R_{k-1}`,
 `V_k = [e^{Ar}]V_{k-1}`, `P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The step
 `e^{Ar}` is the float interval matrix `expIntervalFloat r r η` and a product with it is
@@ -65,7 +65,7 @@ def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec �
   let η' ← sys.reachOrderFloat r r η                               -- η, raised until admissible
   let eAr := sys.expIntervalFloat r r η'                           -- [e^{Ar}]
   -- 1. H^R_0 = CH(X⁰, e^{Ar}X⁰) + FX⁰
-  let H₀ := sys.timeIntervalStepFloat r η' X₀
+  let H₀ := sys.timeIntervalFloat r η' X₀
   -- 2. V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E·r·U
   let V₀ := sys.inputSolutionFloat r η' U
   -- 3. P^R_0 = box(V₀)

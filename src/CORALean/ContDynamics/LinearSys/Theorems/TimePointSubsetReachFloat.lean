@@ -17,7 +17,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 `Real.Zonotope.mtimes_exact` makes `timePoint`'s own step exact, so a point of `timePoint (k + 1)`'s
 set is `e^{AΔt} x` for some `x` of `timePoint k`'s, and `ih` puts that `x` in `Rtp[k]`;
 `timePointStepFloat_outer` and `Reduce.reduce_outer` carry it into `Rtp[k + 1]`. Time points only: a
-window's nominal `timeIntervalStep` widens by a correction matrix at the *nominal* `sys.A`, while
+window's nominal `timeInterval` widens by a correction matrix at the *nominal* `sys.A`, while
 `reachFloat`'s window widens by one at the *interval* enclosure of it, and the two error terms are
 not compared here.
 

@@ -107,11 +107,11 @@ public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
 public import CORALean.ContDynamics.LinearSys.Operations.StepErrorBox
 public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalWitness
 public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
@@ -180,13 +180,13 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
 # What a continuous-time linear system computes
 
 Sampling in `Discretize`, and then three enclosures of what happens inside a
-step: `InputSolution` for what the input adds, `TimeIntervalStep` for where the
+step: `InputSolution` for what the input adds, `TimeInterval` for where the
 homogeneous flow goes, `DeltaReach` for how far it has moved from where it
 started. `StepInput` and `InputReach` are the exact quantities
 those two are measured against; `StepInputConst` is `StepInput` at one held
 vector rather than a whole signal.
 
-`TimeIntervalStepEps` is `TimeIntervalStep` with its truncation order chosen
+`TimeIntervalStepEps` is `TimeInterval` with its truncation order chosen
 from an admissible error, one knob of adaptive tuning and not the algorithm.
 `DiscretizeEnclosure` is `Discretize` again, its matrix only enclosed: `e^{AΔt}`
 is transcendental, so where the exponential itself cannot be computed the

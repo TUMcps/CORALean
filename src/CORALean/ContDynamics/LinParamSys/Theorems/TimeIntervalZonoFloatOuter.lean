@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalZonoFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 /-!
 # The float matrix-zonotope step holds the flow of every member at every time
 
-`LinParamSys.timeIntervalStepZono_outer` in `𝕋`: `e^{As} x` splits into a point of
+`LinParamSys.timeIntervalZono_outer` in `𝕋`: `e^{As} x` splits into a point of
 the segment from `x` to `e^{AΔt} x`, which `linComb` holds once `e^{AΔt}` is in the
 float exponential of `Δt • [A]` (`matSmul_outer` puts `Δt • A` there), and the
 interpolation error, which `F` holds. Both orders' smallness conditions are float
@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.timeIntervalStepZonoFloat_outer
+theorem LinParamSys.timeIntervalZonoFloat_outer
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {Δt : 𝕋} {m : ℕ}
     (hΔt : 0 < toReal Δt)
     (hεe : toReal (MatExp.normUpperBound (Zonotope.matSmul Δt Δt sys.A).matInterval)
@@ -68,7 +68,7 @@ theorem LinParamSys.timeIntervalStepZonoFloat_outer
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
     (R : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n}
     (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- CONCL ---
-    exp (s • A) *ᵥ x ∈ (sys.timeIntervalStepZonoFloat Δt (m + 2) R).construct := by -- --- PROOF ---
+    exp (s • A) *ᵥ x ∈ (sys.timeIntervalZonoFloat Δt (m + 2) R).construct := by -- --- PROOF ---
   set r := toReal Δt
   have hl0 : 0 ≤ s / r := div_nonneg hs0 hΔt.le
   have hl1 : s / r ≤ 1 := (div_le_one hΔt).mpr hs

@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 @[expose] public section
 
 /-!
-# How far `timeIntervalStep` reaches past the run, in floats
+# How far `timeInterval` reaches past the run, in floats
 
 `timeIntervalStepError`, the `ε_H` of [1, Alg. 2] (eq. (21)) with the hull term, rounded up
 in `𝕋`: `Σⱼ|X₀|ⱼ (‖e^{rA} - I‖ + 2(e^x - 1 - x + E(rA, η)))` at `x = r‖A‖`. The hull term

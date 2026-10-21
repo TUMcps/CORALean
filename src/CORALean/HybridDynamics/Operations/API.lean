@@ -8,12 +8,12 @@ public import CORALean.HybridDynamics.Operations.JumpOfPoint
 public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
 public import CORALean.HybridDynamics.Operations.InputSet
 public import CORALean.HybridDynamics.Operations.InputSetFloat
-public import CORALean.HybridDynamics.Operations.TimeIntervalStep
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
+public import CORALean.HybridDynamics.Operations.TimeInterval
+public import CORALean.HybridDynamics.Operations.TimeIntervalInv
+public import CORALean.HybridDynamics.Operations.TimeIntervalSplit
+public import CORALean.HybridDynamics.Operations.TimeIntervalFloat
+public import CORALean.HybridDynamics.Operations.TimeIntervalSplitFloat
+public import CORALean.HybridDynamics.Operations.TimeIntervalInvFloat
 public import CORALean.HybridDynamics.Operations.GuardIntersectFloat
 public import CORALean.HybridDynamics.Operations.JumpFloat
 public import CORALean.HybridDynamics.Operations.LocationReachFloat
@@ -82,20 +82,20 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetSecondOrderBound
 `Jump` propagates the reset over a set already cut to the guard; `JumpIntersection` cuts it
 there itself, at a representation with an `Intersection` instance. The flow
 enclosure is `LinearSys`'s, named again so that a statement about it reads its representation off
-the location; `TimeIntervalStepInv` cuts it to the invariant the same way, and
-`TimeIntervalStepSplit` computes its input contribution without asking the
+the location; `TimeIntervalInv` cuts it to the invariant the same way, and
+`TimeIntervalSplit` computes its input contribution without asking the
 location's input set to hold the origin; `…Float` are the two at float zonotopes.
 
 `JumpOfPoint`/`JumpIntersectionOfPoint` are the same pair at `OfPoint`, the weaker class
 the offset actually needs — what lets `ConPolyZono`, having no `OfInterval`
 instance, jump at all (#38).
 
-`Jump`, `JumpOfPoint` and both `TimeIntervalStep`s read nothing of the guard or
+`Jump`, `JumpOfPoint` and both `TimeInterval`s read nothing of the guard or
 the invariant, so they leave that representation free. The three that call
 `Intersection.intersection` cannot: `Intersection` is homogeneous, so they ask for it in `S` (#39).
 
 At float zonotopes, which have no `Intersection` and no `Real.OfInterval`: the
-cuts go through a box, `TimeIntervalStepInvFloat` to the invariant and
+cuts go through a box, `TimeIntervalInvFloat` to the invariant and
 `GuardIntersectFloat` to a guard; `JumpFloat` resets; `LocationReachFloat` is a
 stay's time-interval sets, and `ReachFloat` the automaton's, CORA's `reach`. `ReachGuard` is a
 stay's sets up to leaving the invariant and their enclosure at a guard, its operators passed in.

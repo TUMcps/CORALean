@@ -171,11 +171,11 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
     abel
   -- the first window holds the free motion and the constant's share at `s`
   have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
-      ∈ construct (Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀
+      ∈ construct (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
         ⊞ sys.constInputSolutionFloat Δt η' uc) ρ) :=
-    Reduce.reduce_outer _ ρ (Plus.plus_outer (sys.timeIntervalStepFloat Δt η' X₀)
+    Reduce.reduce_outer _ ρ (Plus.plus_outer (sys.timeIntervalFloat Δt η' X₀)
       (sys.constInputSolutionFloat Δt η' uc) (Set.add_mem_add
-        (sys.timeIntervalStepFloat_outer hΔt hadm X₀ traj.param traj.init hτ0 htk)
+        (sys.timeIntervalFloat_outer hΔt hadm X₀ traj.param traj.init hτ0 htk)
         (sys.expIntegral_mem_constInputSolutionFloat hΔt hadm traj.param uc hτ0 htk)))
   have hHτ := sys.reachStepkFloat_outer hadm.1 traj.param hfirst _ hH
   have hPc := sys.expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k

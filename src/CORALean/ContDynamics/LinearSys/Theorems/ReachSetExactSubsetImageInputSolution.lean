@@ -11,11 +11,11 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 # The time-point reachable set inside an exact sum, not a representation
 
 `reachSetExact_subset_timeInterval_inputSolution` encloses `reachSetExact T R₀ U t` in
-`construct (Plus.plus (timeIntervalStep ...) (inputSolution ...))`, paying for
+`construct (Plus.plus (timeInterval ...) (inputSolution ...))`, paying for
 the whole step's wrapping effect even at `t = r`, the step's end. What a
 trajectory gives there instead: `variation_of_constants` splits `x r` into
 `e^{Ar} x 0`, exact, and the input's integral, inside `inputReach`, which
-`inputReach_subset_inputSolution` [1, Thm. 1] encloses — no `timeIntervalStep`,
+`inputReach_subset_inputSolution` [1, Thm. 1] encloses — no `timeInterval`,
 no hull, and `+` the genuine Minkowski sum, exactly what `LinearSys.timePointBound`
 needs.
 

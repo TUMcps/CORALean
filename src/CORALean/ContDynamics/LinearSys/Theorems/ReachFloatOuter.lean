@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatTimePointOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 
 @[expose] public section
 
@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOute
 
 At `t = k Δt + s`, `s ∈ [0, Δt]`, the flow is `e^{As} (e^{A k Δt} x₀)`: the inner
 point is in `R_k` by `reachFloat_timePoint_outer`, and window `k` is the
-run's time-interval step from `R_k`, which `timeIntervalStepFloat_outer` covers.
+run's time-interval step from `R_k`, which `timeIntervalFloat_outer` covers.
 Nothing is asked of `η`, nor of `Δt`: the correction matrix needs it positive,
 which `Reach.steps` checked before the run took a step, and `N` steps of it
 span `[tStart, tFinal]` exactly.
@@ -83,7 +83,7 @@ theorem LinearSys.reachFloat_outer (sys : LinearSys 𝕋 n)
     exact congrArg (· *ᵥ x₀) h
   rw [hexp, List.getElem_map, List.getElem_take]
   -- window `k` is the run's time-interval step from `R_k`, its matrices bound once
-  exact sys.timeIntervalStepFloat_outer hΔt hadm _ (htp k (by simpa using hkp) x₀ hx₀) hs0 hs
+  exact sys.timeIntervalFloat_outer hΔt hadm _ (htp k (by simpa using hkp) x₀ hx₀) hs0 hs
 
 end CORALean
 
