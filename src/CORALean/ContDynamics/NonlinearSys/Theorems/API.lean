@@ -91,6 +91,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrStepFloatOu
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffChordSubsetReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Theorems.NotMemMinkowskiDiffChordShear
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CancelRedundantCovers

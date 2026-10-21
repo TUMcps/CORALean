@@ -24,7 +24,7 @@ table. Four columns:
   (`Definitions/`, `Operations/`), not a counterexample file (as above, or declaring a named
   counterexample) and not named `Not*`. A `false` row has no fix.
 
-A cell without a file is `---`. Links go to `\\coraleanrepo/<path>`, a macro the table
+A cell without a file is `---`. Links go to `\\coraleanrepo <path>`, a macro the table
 `\\providecommand`s as the repository's `main`, so the paper can point it at a tag.
 
 Problems reported: a `false`/`fixed` row without a description, a description that matches no
@@ -40,7 +40,7 @@ import json
 import re
 from pathlib import Path, PurePosixPath
 
-REPO_URL = "https://gitlab.lrz.de/cps/CORALean/-/blob/main"
+REPO_URL = "https://github.com/TUMcps/CORALean/tree/main/"
 CLASSES = ("false", "fixed")
 CEX_NAME = re.compile(r"^Not(?=[A-Z])")
 NOT_A_FIX = re.compile(r"Not(?=[A-Z])")
@@ -144,7 +144,7 @@ def link(cr, path, text):
     if path is None:
         return "---"
     rel = PurePosixPath(path.relative_to(cr.ROOT).as_posix())
-    return f"\\href{{\\coraleanrepo/{rel}}}{{[{text}]}}"
+    return f"\\href{{\\coraleanrepo {rel}}}{{[{text}]}}"
 
 
 def table(cr):
@@ -196,7 +196,7 @@ def table(cr):
                 counts["no_fix"].append(where)
         mark = "\\textsuperscript{\\dag}" if row["class"] == "false" else ""
         ref = (f"\\errorcite[{cite_label(label)}]{{{key or 'MISSING'}}}{mark}"
-               f" \\href{{\\coraleanrepo/references/{page}.md}}{{[Audit]}}")
+               f" \\href{{\\coraleanrepo references/{page}.md}}{{[Audit]}}")
         body[row["class"]].append(f"{ref} & {latex(entry.get('description', ''))} & "
                                   f"{link(cr, cex, 'Cex')} & {link(cr, fix, 'Fix')} \\\\")
     for page, entries in descs.items():

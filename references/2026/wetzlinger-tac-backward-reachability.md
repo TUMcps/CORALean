@@ -189,3 +189,9 @@ absorb. The one place an off-by-one could hide is line 12, which uses `Z̲_U(t_k
 the pre-update field for exactly that reason. v1 numbered this `Alg. 2`; the authors' version
 changes nothing in it but the explicit parenthesisation of the chained `⊖` and its equation
 references; unlike `Alg. 2`, it had nothing to correct.
+
+## Cited without a result
+
+These name the paper as a whole. A locator would put each in a row above.
+
+* [`InnerMinkDiffTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/InnerMinkDiffTimeInterval.lean)

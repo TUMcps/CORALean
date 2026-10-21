@@ -132,7 +132,7 @@ key and entry) in the same change. The paper needs `\usepackage{array,longtable,
 if the paper loads it: the other order makes pdflatex loop at the end of the table),
 `\input{appendix-errors}` where the table goes, and `appendix-errors` in `\bibliography{...}`;
 the links point at `\coraleanrepo`, which the table `\providecommand`s as the repository's
-`main` branch, so defining it first (`\newcommand{\coraleanrepo}{.../-/blob/<tag>}`) pins them.
+`main` branch, so defining it first (`\newcommand{\coraleanrepo}{.../tree/<tag>/}`) pins them.
 
 **The CORA bugs table** (`appendix-cora-bugs.tex`, label `tab:cora-bugs`) lists every CORA method
 whose coverage row (`references/coverage/**/*.md`) has a `cora-issue —` note, the rule of

@@ -2,7 +2,7 @@
 
 A Lean 4 formalization of [CORA](https://cora.in.tum.de), the Continuous Reachability Analyzer. 
 
-Paper reference: `TBA`
+Paper reference: CORALean: A Lean 4 Formalization of CORA. Tobias Ladner, Matthias Althoff. `TBD`. 2026.
 
 ## Formalizing CORA in Lean 4
 

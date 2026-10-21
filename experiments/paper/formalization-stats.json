@@ -5830,7 +5830,7 @@
         {
           "result": "Prop. 2",
           "class": "false",
-          "reason": "false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes, so convexity does not repair it; see Findings"
+          "reason": "false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes; true with the hull replaced by the chords of single initial states, the Minkowski differences taken at each t, but that union over every t is no computable set (Findings)"
         },
         {
           "result": "Alg. 1",
@@ -8668,11 +8668,11 @@
       }
     },
     "theorems": {
-      "paper": 1840,
+      "paper": 1842,
       "float": 1969,
-      "helper": 1783,
+      "helper": 1790,
       "lemma": 3403,
-      "total": 8995,
+      "total": 9004,
       "examples": 129
     }
   }

@@ -25,7 +25,7 @@ class, then method. Four columns:
 The files a row links are those of its third column and of its note (the note carries the full
 text of what CORA gets wrong and the Lean files that witness it). A `cex` or `fix` override is a file's name (or its path when two linked files share
 the name) and must be one of them. A cell without a file is `---`. Links go to
-`\\coraleanrepo/<path>`, a macro the table `\\providecommand`s as the repository's `main`.
+`\\coraleanrepo <path>`, a macro the table `\\providecommand`s as the repository's `main`.
 
 Problems reported: a `cora-issue` row without an entry, an entry that matches no such row, a
 `kind` that is neither `unsound` nor `other`, a description over ten words, a `cex`/`fix` that is
@@ -39,7 +39,7 @@ import json
 import re
 from pathlib import Path, PurePosixPath
 
-REPO_URL = "https://gitlab.lrz.de/cps/CORALean/-/blob/main"
+REPO_URL = "https://github.com/TUMcps/CORALean/tree/main/"
 CEX_NAME = re.compile(r"Not(?:Inner|Outer|Sound|Mem)")
 
 
@@ -108,7 +108,7 @@ def link(cr, path, text):
     if path is None:
         return "---"
     rel = PurePosixPath(path.relative_to(cr.ROOT).as_posix())
-    return f"\\href{{\\coraleanrepo/{rel}}}{{[{text}]}}"
+    return f"\\href{{\\coraleanrepo {rel}}}{{[{text}]}}"
 
 
 def table(cr):
@@ -179,7 +179,7 @@ def table(cr):
         mark = "\\textsuperscript{*}" if kind == "unsound" else ""
         # a break point after the slash and each underscore, so a long name does not overfull
         name = latex(f"{row['cls']}/{row['method']}").replace("/", "/\\allowbreak{}").replace("\\_", "\\_\\allowbreak{}")
-        page = f"\\coraleanrepo/references/coverage/{key}.md"
+        page = f"\\coraleanrepo references/coverage/{key}.md"
         body.append(f"\\href{{{page}}}{{\\texttt{{{name}}}}}{mark} & {latex(desc)} & "
                     f"{link(cr, cex, 'Cex')} & {link(cr, fix, 'Fix')} \\\\")
     order = {g: i for i, g in enumerate(cr.CORA_GROUPS)}
