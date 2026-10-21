@@ -8754,9 +8754,9 @@
     "theorems": {
       "paper": 1859,
       "float": 1969,
-      "helper": 1786,
+      "helper": 1791,
       "lemma": 3410,
-      "total": 9024,
+      "total": 9029,
       "examples": 129
     }
   }
