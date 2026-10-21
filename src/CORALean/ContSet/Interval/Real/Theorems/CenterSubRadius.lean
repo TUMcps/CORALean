@@ -23,7 +23,7 @@ The center minus the half-width is the lower bound: the split `center ± radius`
 ## References
 
 * [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
-      Proc. of the 3rd International Workshop on Applied Verification for Continuous and Hybrid
+      Proc. of the 3rd International Workshop on Applied Verification of Continuous and Hybrid
       Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 

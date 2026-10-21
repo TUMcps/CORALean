@@ -27,7 +27,7 @@ columns span `{x₃ = 0}`, which misses `e₃`, a column of `V̄`. MATLAB's `qr`
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
       Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
-      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      Verification of Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
       vol. 103, pp. 163-181, 2024.
 -/
 

@@ -23,7 +23,7 @@ every point of the second, `m₁ m₂` points. CORA converts both factors to hal
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
       Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
-      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      Verification of Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
       vol. 103, pp. 163-181, 2024.
 -/
 

@@ -24,7 +24,7 @@ may still be in `m₁`, so the set of admissible `t₂` is open at its lower end
 ## References
 
 * [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for
-      Reachability Analysis of Hybrid Automata". In Formal Modeling and Analysis of Timed
+      Reachability Analysis of Hybrid Automata". In Formal Modelling and Analysis of Timed
       Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 -/
 

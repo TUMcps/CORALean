@@ -26,7 +26,7 @@ of [1, Eq. 30] is `{0}`, and the union `∅ ∪ {0}` of [1, Eq. 37] is not insid
 
 * [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
       Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
-      Verification for Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
+      Verification of Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
       vol. 103, pp. 163-181, 2024.
 -/
 
