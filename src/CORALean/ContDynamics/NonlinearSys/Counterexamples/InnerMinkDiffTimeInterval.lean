@@ -2,11 +2,11 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ExpSmulShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerAbstrErrShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerCurvatureErrorShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerLagrangeRemainderShear
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryHasDerivWithinAt
-public import CORALean.Specification.STL.Operations.DepCurvatureF
-public import CORALean.Specification.STL.Operations.DepCurvatureG
-public import Mathlib.Analysis.Calculus.FDeriv.Const
-public import Mathlib.Analysis.Calculus.FDeriv.Linear
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.Calculus.MeanValue
@@ -56,9 +56,6 @@ differences are empty and the claim holds. `curv`, `err`, `lagr` are (17), (13),
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
   Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
   8:2033-2038, 2024.
-* [2] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-  Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 71(1):352-367,
-  2026.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -76,135 +73,6 @@ open ContSet Matrix NormedSpace Pointwise Set
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {n : ℕ}
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- (17): the curvature error `C = F box(X₀) ⊕ G w` at the shifted box `B`, `F`, `G` of
-[2, (19), (28)] (its authors' version; [1] cites arXiv v2, which numbers (19), (20), (28) as
-(18), (19), (26)). -/
-noncomputable def NonlinearSys.aux_curvature (η : ℕ) (Δt : ℝ) (A : Mat ℝ n n)
-    (B : Set (Vec ℝ n)) (w : Vec ℝ n) : Set (Vec ℝ n) :=
-  -- [2, (19)] F
-  let F := STL.depCurvatureF A Δt η
-  -- [2, (28)] G
-  let G := STL.depCurvatureG A Δt η
-  -- (17) C = F box(X₀) ⊕ G w
-  (⋃ M ∈ F.construct, (fun x => M *ᵥ x) '' B) + ⋃ N ∈ G.construct, {N *ᵥ w}
-
-/-- (13): the abstraction error `R̂_err(L) = ⊕_{j=0}^η A^jΔt^{j+1}/(j+1)! L ⊕ E(Δt)ΔtL`, `E` the
-remainder of [2, (20)]. -/
-noncomputable def NonlinearSys.aux_abstrErr (η : ℕ) (Δt : ℝ) (A : Mat ℝ n n)
-    (L : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  -- [2, (20)] E = [-E(Δt,η), E(Δt,η)]
-  let E := Real.MatExp.expRemainderInterval A Δt η
-  -- (13) ⊕_{j=0}^η A^j Δt^{j+1}/(j+1)! L ⊕ E(Δt) Δt L
-  (∑ j ∈ Finset.range (η + 1), (fun l => ((Δt ^ (j + 1) / (j + 1).factorial) • A ^ j) *ᵥ l) '' L)
-    + ⋃ M ∈ E, (fun l => (Δt • M) *ᵥ l) '' L
-
-/-- (9): the Lagrange remainder of `f` at `x*` over `X`, `[-l̂, l̂]` with
-`l̂⁽ⁱ⁾ = ½ max|x - x*|ᵀ max D²f⁽ⁱ⁾ max|x - x*|`. -/
-noncomputable def NonlinearSys.aux_lagrangeRemainder (f : Vec ℝ n → Vec ℝ n) (xstar : Vec ℝ n)
-    (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  -- (9) max_{x∈X} |x - x*|
-  let γ : Vec ℝ n := fun j => ⨆ x ∈ X, |x j - xstar j|
-  -- (9) max_{ζ∈X} D²f⁽ⁱ⁾(ζ)
-  let H : Fin n → Mat ℝ n n := fun i j k =>
-    ⨆ ζ ∈ X, |fderiv ℝ (fderiv ℝ f) ζ (Pi.single j 1) (Pi.single k 1) i|
-  -- (9) l̂⁽ⁱ⁾ = ½ γᵀ H⁽ⁱ⁾ γ
-  let l : Vec ℝ n := fun i => γ ⬝ᵥ (H i *ᵥ γ) / 2
-  -- (9) L̂ = [-l̂, l̂]
-  Icc (-l) l
-
-/-- `A⁽ⁱ⁾ = 0` for `i ≥ 2`. -/
-theorem NonlinearSys.aux_shear_pow {i : ℕ} (hi : 2 ≤ i) : (!![0, 1; 0, 0] : Mat ℝ 2 2) ^ i = 0 :=
-  pow_eq_zero_of_le hi (by
-    ext j k; fin_cases j <;> fin_cases k <;> simp [sq, Matrix.mul_apply, Fin.sum_univ_two])
-
-/-- `e^{AΔt} = I + AΔt`. -/
-theorem NonlinearSys.aux_shear_exp (Δt : ℝ) : -- --- CONCL ---
-    exp (Δt • (!![0, 1; 0, 0] : Mat ℝ 2 2)) = 1 + Δt • !![0, 1; 0, 0] := by -- --- PROOF ---
-  rw [exp_eq_tsum ℝ]
-  show ∑' i : ℕ, ((i.factorial : ℝ)⁻¹) • (Δt • (!![0, 1; 0, 0] : Mat ℝ 2 2)) ^ i = _
-  rw [tsum_eq_sum (s := Finset.range 2) fun b hb => by
-    rw [smul_pow, NonlinearSys.aux_shear_pow (by simp at hb; omega), smul_zero, smul_zero]]
-  simp [Finset.sum_range_succ]
-
-/-- [2, (20)]: `E(Δt, η) = e^{|A|Δt} - Σ_{i≤η} (|A|Δt)ⁱ/i! = 0` for `η ≥ 1`, as `|A| = A`. -/
-theorem NonlinearSys.aux_shear_expRemainderMat (Δt : ℝ) {η : ℕ} (hη : 1 ≤ η) : -- --- CONCL ---
-    Real.MatExp.expRemainderMat !![0, 1; 0, 0] Δt η = 0 := by -- --- PROOF ---
-  have habs : Real.MatExp.absMat (!![0, 1; 0, 0] : Mat ℝ 2 2) = !![0, 1; 0, 0] := by
-    ext i j; fin_cases i <;> fin_cases j <;> simp [Real.MatExp.absMat]
-  have htay : Real.MatExp.expTaylor (Δt • (!![0, 1; 0, 0] : Mat ℝ 2 2)) η =
-      1 + Δt • !![0, 1; 0, 0] := by
-    obtain ⟨k, rfl⟩ : ∃ k, η = k + 1 := ⟨η - 1, by omega⟩
-    rw [Real.MatExp.expTaylor, Finset.sum_range_succ', Finset.sum_range_succ',
-      Finset.sum_eq_zero fun i _ => by
-        rw [smul_pow, NonlinearSys.aux_shear_pow (by omega), smul_zero, smul_zero]]
-    simp [add_comm]
-  rw [Real.MatExp.expRemainderMat, habs, NonlinearSys.aux_shear_exp, htay, sub_self]
-
-/-- [2, (19)]: `F = ⊕_{i=2}^η […] Aⁱ/i! ⊕ E = {0}` for `η ≥ 1`. -/
-theorem NonlinearSys.aux_shear_depCurvatureF (Δt : ℝ) {η : ℕ} (hη : 1 ≤ η) : -- --- CONCL ---
-    (STL.depCurvatureF !![0, 1; 0, 0] Δt η).construct = {0} := by -- --- PROOF ---
-  have hT : ∀ i j k, Real.MatExp.corrTerm !![0, 1; 0, 0] Δt (i + 2) j k = 0 := fun i j k => by
-    simp [Real.MatExp.corrTerm, NonlinearSys.aux_shear_pow (i := i + 2) (by omega)]
-  ext M
-  simp only [Real.Interval.construct, STL.depCurvatureF, hT,
-    NonlinearSys.aux_shear_expRemainderMat Δt hη, min_self, max_self, Finset.sum_const_zero,
-    Matrix.zero_apply, sub_zero, add_zero, mem_setOf_eq, mem_singleton_iff, Entrywise.entry_mat]
-  constructor
-  · intro h; ext j k; exact le_antisymm (h (j, k)).2 (h (j, k)).1
-  · rintro rfl p; simp
-
-/-- (17): `C = F box(X₀) ⊕ G w = {0}` for `η ≥ 1`, `w = 0` and a nonempty box, though `G ≠ 0`. -/
-theorem NonlinearSys.aux_shear_curvature (Δt : ℝ) {η : ℕ} (hη : 1 ≤ η) {B : Set (Vec ℝ 2)}
-    (hB : B.Nonempty) : -- --- CONCL ---
-    NonlinearSys.aux_curvature η Δt !![0, 1; 0, 0] B 0 = {0} := by -- --- PROOF ---
-  have hG : (0 : Mat ℝ 2 2) ∈ (STL.depCurvatureG !![0, 1; 0, 0] Δt η).construct := fun p => by
-    simp only [STL.depCurvatureG, NonlinearSys.aux_shear_expRemainderMat Δt hη,
-      Entrywise.entry_mat, Matrix.zero_apply, mul_zero, sub_zero, add_zero]
-    exact ⟨Finset.sum_nonpos fun _ _ => min_le_right _ _,
-      Finset.sum_nonneg fun _ _ => le_max_right _ _⟩
-  have h1 : (⋃ M ∈ (STL.depCurvatureF !![0, 1; 0, 0] Δt η).construct,
-      (fun x => M *ᵥ x) '' B) = {0} := by
-    rw [NonlinearSys.aux_shear_depCurvatureF Δt hη]; simp [hB.image_const]
-  have h2 : (⋃ N ∈ (STL.depCurvatureG !![0, 1; 0, 0] Δt η).construct,
-      ({N *ᵥ (0 : Vec ℝ 2)} : Set _)) = {0} := by
-    simp only [Matrix.mulVec_zero]
-    exact Set.biUnion_const ⟨0, hG⟩ _
-  simp only [NonlinearSys.aux_curvature, h1, h2, Set.singleton_add_singleton, add_zero]
-
-/-- (13): `R̂_err(0) = {0}` for `η ≥ 1`. -/
-theorem NonlinearSys.aux_shear_abstrErr (Δt : ℝ) {η : ℕ} (hη : 1 ≤ η) : -- --- CONCL ---
-    NonlinearSys.aux_abstrErr η Δt !![0, 1; 0, 0] {0} = {0} := by -- --- PROOF ---
-  have h0 : (0 : Mat ℝ 2 2) ∈ Real.MatExp.expRemainderInterval !![0, 1; 0, 0] Δt η :=
-    fun j k => by simp [NonlinearSys.aux_shear_expRemainderMat Δt hη]
-  have h1 : ∀ M : Mat ℝ 2 2, (fun l => M *ᵥ l) '' ({0} : Set (Vec ℝ 2)) = 0 := fun M => by
-    rw [Set.image_singleton, Matrix.mulVec_zero, Set.singleton_zero]
-  simp only [NonlinearSys.aux_abstrErr, h1, Finset.sum_const_zero, zero_add]
-  rw [← Set.singleton_zero]
-  exact Set.biUnion_const ⟨0, h0⟩ _
-
-/-- (9): `L = [0, 0]` for the linear `f(x) = (x₂, 0)`, as `D²f ≡ 0`. -/
-theorem NonlinearSys.aux_shear_lagrangeRemainder (xstar : Vec ℝ 2)
-    (X : Set (Vec ℝ 2)) : -- --- CONCL ---
-    NonlinearSys.aux_lagrangeRemainder (fun x : Vec ℝ 2 => (![x 1, 0] : Vec ℝ 2)) xstar X =
-      {0} := by -- --- PROOF ---
-  let L : Vec ℝ 2 →L[ℝ] Vec ℝ 2 := LinearMap.toContinuousLinearMap (Matrix.toLin' !![0, 1; 0, 0])
-  have hf : (fun x : Vec ℝ 2 => (![x 1, 0] : Vec ℝ 2)) = ⇑L := by
-    funext y; ext i; fin_cases i <;> simp [L, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
-  have hD : fderiv ℝ (fderiv ℝ ⇑L) = 0 := by
-    rw [show fderiv ℝ ⇑L = fun _ => L from funext fun _ => L.fderiv]
-    funext y; exact fderiv_const_apply L
-  simp only [NonlinearSys.aux_lagrangeRemainder, hf, hD, Pi.zero_apply, _root_.zero_apply,
-    abs_zero, Real.iSup_const_zero]
-  have hl : (fun i : Fin 2 => (fun j => ⨆ y ∈ X, |y j - xstar j|) ⬝ᵥ
-      ((fun _ _ => (0 : ℝ)) *ᵥ fun j => ⨆ y ∈ X, |y j - xstar j|) / 2) = 0 := by
-    ext i; simp [Matrix.mulVec, dotProduct]
-  rw [hl, neg_zero, Set.Icc_self]
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -216,9 +84,9 @@ theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
     (hfuel : 0 < fuel) (U : Set (Vec ℝ 1))
     (hcen : ops.cen (Icc ![-1 / 10, -1] ![1 / 10, 1]) = 0) (hcen0 : ops.cen {0} = 0)
     (hbox : Icc ![-1 / 10, -1] ![1 / 10, 1] ⊆ ops.box (Icc ![-1 / 10, -1] ![1 / 10, 1]))
-    (hjac : ∀ x, ops.jac x = !![0, 1; 0, 0]) (hcurv : ops.curv = NonlinearSys.aux_curvature η)
-    (herr : ops.err = NonlinearSys.aux_abstrErr η)
-    (hlagr : ops.lagr = NonlinearSys.aux_lagrangeRemainder fun x => ![x 1, 0])
+    (hjac : ∀ x, ops.jac x = !![0, 1; 0, 0]) (hcurv : ops.curv = NonlinearSys.innerCurvatureError η)
+    (herr : ops.err = NonlinearSys.innerAbstrErr η)
+    (hlagr : ops.lagr = NonlinearSys.innerLagrangeRemainder fun x => ![x 1, 0])
     (hzero : ops.zero = {0}) (hsmul : ∀ μ L, ops.smul μ L = μ • L)
     (hsub : ∀ L L', ops.sub L L' = true ↔ L ⊆ L') : -- --- CONCL ---
     let sys : NonlinearSys 2 1 := ⟨fun x _ => ![x 1, 0], 2, fun x _ => x⟩
@@ -241,14 +109,14 @@ theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
   have hB : (ops.box X₀).Nonempty :=
     (nonempty_Icc.mpr fun i => by fin_cases i <;> norm_num).mono hbox
   have hC : ops.curv 1 A (ops.box X₀) 0 = {0} := by
-    rw [hcurv]; exact NonlinearSys.aux_shear_curvature 1 hη hB
+    rw [hcurv]; exact NonlinearSys.innerCurvatureError_shear 1 hη hB
   have hL : ∀ x D, ops.lagr x D = {0} := fun x D => by
-    rw [hlagr]; exact NonlinearSys.aux_shear_lagrangeRemainder x D
-  have hE : ops.err 1 A {0} = {0} := by rw [herr]; exact NonlinearSys.aux_shear_abstrErr 1 hη
+    rw [hlagr]; exact NonlinearSys.innerLagrangeRemainder_shear x D
+  have hE : ops.err 1 A {0} = {0} := by rw [herr]; exact NonlinearSys.innerAbstrErr_shear 1 hη
   have hs : ops.smul (11 / 10) {0} = {0} := by rw [hsmul, Set.smul_set_singleton, smul_zero]
   have hss : ops.sub {0} {0} = true := (hsub _ _).mpr subset_rfl
   -- `e^{A} = I + A`, as `A² = 0`
-  have hexp : exp ((1 : ℝ) • A) = 1 + A := by rw [NonlinearSys.aux_shear_exp, one_smul]
+  have hexp : exp ((1 : ℝ) • A) = 1 + A := by rw [NonlinearSys.exp_smul_shear, one_smul]
   -- what one step computes
   have hrun : NonlinearSys.innerMinkDiff ops (fun x => sys.f x 0) X₀ 1 1 (k + 1) =
       some (∅ ∪ convexHull ℝ (X₀ ∪ (fun x => exp ((1 : ℝ) • A) *ᵥ x) '' X₀)) := by

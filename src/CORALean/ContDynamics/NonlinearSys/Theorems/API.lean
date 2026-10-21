@@ -93,6 +93,12 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffChordSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.NotMemMinkowskiDiffChordShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ShearPowEqZero
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ExpSmulShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ExpRemainderMatShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerCurvatureErrorShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerAbstrErrShear
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerLagrangeRemainderShear
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CancelRedundantCovers

@@ -301,6 +301,9 @@ NonlinearSys.abstrReach  spec: the `Set` a run's windows denote, a union for the
 NonlinearSys.adaptRun  real-layer: [Wetzlinger et al. 2022]'s adaptive loop at real tuning and a real `lin` callback; runs in floats as `NonlinearSys.FloatHessModel.adaptRunFloat` (`Encloses.adaptRunFloat_outer`)
 NonlinearSys.adaptStep  real-layer: [Wetzlinger et al. 2022, Alg. 2] at real tuning and a real `lin` callback; runs in floats as `NonlinearSys.FloatHessModel.adaptStepFloat` (`Encloses.adaptStepFloat_outer`)
 NonlinearSys.centerAbstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…IsRun` it unions
+NonlinearSys.innerAbstrErr  real-layer: [Wetzlinger et al. L-CSS 2024, (13)] over exact sets, the image sum of `Set`s at the real exponential remainder; no float counterpart, as for `NonlinearSys.innerMinkDiff`
+NonlinearSys.innerCurvatureError  real-layer: [Wetzlinger et al. L-CSS 2024, (17)] over exact sets, the images of a `Set` under the real interval matrices `F`, `G`; no float counterpart, as for `NonlinearSys.innerMinkDiff`
+NonlinearSys.innerLagrangeRemainder  real-layer: [Wetzlinger et al. L-CSS 2024, (9)] over exact sets, suprema over a `Set` of the real second derivative; no float counterpart, as for `NonlinearSys.innerMinkDiff`
 NonlinearSys.innerMinkDiff  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] over exact sets, the Minkowski difference and convex hull of `Set`s at the real exponential; no float counterpart, which would need the paper's polytopes, constrained zonotopes and linear programs
 NonlinearSys.innerMinkDiffLoop  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 2-17 over exact sets, the steps of `innerMinkDiffStep`; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.innerMinkDiffStep  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 3-16 over exact sets at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`

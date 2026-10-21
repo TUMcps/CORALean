@@ -194,4 +194,8 @@ references; unlike `Alg. 2`, it had nothing to correct.
 
 These name the paper as a whole. A locator would put each in a row above.
 
-* [`InnerMinkDiffTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/InnerMinkDiffTimeInterval.lean)
+* [`InnerAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerAbstrErr.lean)
+* [`InnerCurvatureError.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerCurvatureError.lean)
+* [`ExpRemainderMatShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ExpRemainderMatShear.lean)
+* [`InnerAbstrErrShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerAbstrErrShear.lean)
+* [`InnerCurvatureErrorShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerCurvatureErrorShear.lean)

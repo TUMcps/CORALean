@@ -72,6 +72,9 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffRemaind
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffLoop
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerCurvatureError
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerAbstrErr
+public import CORALean.ContDynamics.NonlinearSys.Operations.InnerLagrangeRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
 
