@@ -1,6 +1,6 @@
 # Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata
 
-S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata". In Formal Modeling and Analysis of Timed Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
+S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata". In Formal Modelling and Analysis of Timed Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
 
 **Source:** https://stanleybak.com/papers/bak2017formats.pdf (the author's version on Stanley Bak's page, "DISTRIBUTION A. Approved for public release", 18 pages including the references, read in full; text extracted with `pypdf`). It carries the correction of the scaling function's footnote 4 ("an earlier version had this incorrectly stated"). Volume and pages from the published record (the Springer chapter, doi:10.1007/978-3-319-65765-3_8, was not reachable). CORA cites it in `hybridDynamics/@location/guardIntersect_pancake.m` and `guardIntersect.m` ("Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata"), without a result number.  
 **Inventory:** confirmed (against the author's version: Definitions 1-9, Assumptions 1-4, Lemmas 1-2, Corollary 1 and Theorem 1, each with its own counter; Sec. 3.1-3.3 are constructions)
