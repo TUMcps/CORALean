@@ -81,7 +81,7 @@ theorem HybridAutomaton.invariant_of_enclosure [∀ n, Intersection (S n) (Vec �
       Convex ℝ (construct (aux_remainder (HA.loc ℓ) τ m)) ∧
       IsClosed (construct (aux_remainder (HA.loc ℓ) τ m)) ∧
       Bornology.IsBounded (construct (aux_remainder (HA.loc ℓ) τ m)) ∧
-      construct (Plus.plus ((HA.loc ℓ).timeIntervalStep τ (m + 2) (R ℓ))
+      construct (Plus.plus ((HA.loc ℓ).timeInterval τ (m + 2) (R ℓ))
         ((HA.loc ℓ).dynamics.inputSolution τ (m + 2) (HA.loc ℓ).inputSet)) ⊆ construct (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans →
       construct (e.jumpIntersection (R ℓ)) ⊆ construct (R e.target)) :

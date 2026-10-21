@@ -1,14 +1,14 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.HybridDynamics.Definitions.Location
 
 @[expose] public section
 
 /-!
-# `Location.timeIntervalStep`
+# `Location.timeInterval`
 
-`LinearSys.timeIntervalStep` on the location's own dynamics, and nothing more —
+`LinearSys.timeInterval` on the location's own dynamics, and nothing more —
 no new computation, only a name that carries the representation.
 
 That is the whole point of it: `ℓ.dynamics : LinearSys 𝕋 n` drops `S`, so a use
@@ -47,9 +47,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The enclosure of a stay of length `r`, at Taylor order `η`. -/
-noncomputable def Location.timeIntervalStep (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ)
+noncomputable def Location.timeInterval (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ : S n) : S n :=
-  ℓ.dynamics.timeIntervalStep r η X₀
+  ℓ.dynamics.timeInterval r η X₀
 
 end CORALean
 

@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -81,7 +81,7 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
   if 0 < ToRat.toRat Δt ∧ 2 ≤ η ∧ ToRat.toRat nrm / ((η : ℚ) + 2) ≤ 1 / 2  -- admissible
       ∧ ToRat.isNaN Δt = false ∧ ToRat.isNaN nrm = false then              -- not read from a NaN
     -- 6. HR([0,Δt_i])
-    let HR₀ := sys.timeIntervalStepFloat Δt η X₀
+    let HR₀ := sys.timeIntervalFloat Δt η X₀
     let PuR := sys.inputSolutionFloat Δt η seg                      -- P̃^R([0,Δt_i]), from [0, ũ]
     let Pu := sys.inputSolutionFloat Δt η ũ                         -- P̃(Δt_i)
     -- 6. PR([0,Δt_i])

@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -30,7 +30,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 the same induction, with `e^{Ar}` in the float interval matrix `[e^{Ar}]`
 (`exp_mem_expIntervalFloat`, `Mtimes.mtimes_outer`) and each sum and box an enclosure
 (`Plus.plus_outer`, `Zonotope.interval_contains`, `Interval.zonotope_contains`). The base case is
-`timeIntervalStepFloat_outer` and `inputReach_subset_inputSolutionFloat`, once
+`timeIntervalFloat_outer` and `inputReach_subset_inputSolutionFloat`, once
 `inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `reachSetExact`.
 
 ## Inputs
@@ -98,7 +98,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
   set ρ := toReal r with hρ
   set E := exp (ρ • A)
   set eAr := sys.expIntervalFloat r r η'
-  set H₀ := sys.timeIntervalStepFloat r η' X₀
+  set H₀ := sys.timeIntervalFloat r η' X₀
   set V₀ := sys.inputSolutionFloat r η' U
   set step : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)
       → Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
@@ -135,7 +135,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
   have hh : ∀ τ ∈ Set.Icc (0:ℝ) ρ, (fun x => exp (τ • A) *ᵥ x) '' X₀.construct
       ⊆ H₀.construct := by
     rintro τ hτ _ ⟨x, hx, rfl⟩
-    exact sys.timeIntervalStepFloat_outer hr hadm X₀ hx hτ.1 hτ.2
+    exact sys.timeIntervalFloat_outer hr hadm X₀ hx hτ.1 hτ.2
   -- and `V₀` the input's reach, once `inputReach U τ ⊆ inputReach U r`
   have hi : ∀ τ ∈ Set.Icc (0:ℝ) ρ, sys.inputReach (S := 𝒵[𝕋]) U τ ⊆
     V₀.construct :=

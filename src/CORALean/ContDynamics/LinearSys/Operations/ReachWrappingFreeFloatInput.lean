@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -75,7 +75,7 @@ def LinearSys.reachWrappingFreeFloatInput (sys : LinearSys 𝕋 n)
   let Pu := sys.inputSolutionFloat Δt η' ũ                          -- P̃(Δt)
   let PuR := sys.inputSolutionFloat Δt η' (LinComb.linComb O ũ)     -- P̃^R(τ_0), from [0, ũ]
   let PU := sys.inputSolutionFloat Δt η' Ũ                          -- P^R(Δt)
-  let Rτ₀ := Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀ ⊞ PuR) ρ   -- (H^R ⊕ P̃^R)(τ_0)
+  let Rτ₀ := Reduce.reduce (sys.timeIntervalFloat Δt η' X₀ ⊞ PuR) ρ   -- (H^R ⊕ P̃^R)(τ_0)
   let Hτ ← (List.range N).mapM                                      -- [e^{A t_k}](Rτ₀ ⊕ P^R(Δt))
     (sys.reachStepkWrappingFreeFloat Δt η' (Rτ₀ ⊞ PU))
   let Pτ ← (List.range N).mapM                                      -- [e^{A t_k}](P̃ ⊕ P^R)(Δt)

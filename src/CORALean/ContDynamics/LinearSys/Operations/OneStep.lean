@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.StepSets
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 
 @[expose] public section
 
@@ -17,7 +17,7 @@ per CORA variable: `PU` is `inputSolution` at `U`; `Pu` is the same series at th
 which is CORA's `particularSolution_constant`; `C_input = G u` with `G` the constant input's
 correction matrix; `Htp = e^{AΔt} X ⊕ Pu`; `C_state = F X`; `Hti = CH(X, Htp) ⊕ C_state`.
 
-`linComb` is taken where CORA says `enclose` (convex hull), as in `timeIntervalStep`. CORA's
+`linComb` is taken where CORA says `enclose` (convex hull), as in `timeInterval`. CORA's
 block decomposition (`blocks`, default one block) is not carried.
 
 ## Inputs

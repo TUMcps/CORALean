@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Theorems.Basic
@@ -83,7 +83,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_convexCompact
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus
-      (sys.timeIntervalStep r (m + 2) R₀) (sys.inputSolution r (m + 2) U)) :=
+      (sys.timeInterval r (m + 2) R₀) (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer_inputSolution hr hT hε ht0 htr
     (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
     (CompactSet.isBounded_construct U)

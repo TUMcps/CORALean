@@ -65,7 +65,7 @@ noncomputable def LinParamSys.aux_reachStepkInput (sys : LinParamSys ℐ n)
   let uc := Recenter.center V                                     -- ũ, the constant
   let U₀ := Recenter.recenter V                                    -- Ũ = V - ũ, holding 0
   let tk := (k : ℝ) * Δt                                           -- t_k = k Δt
-  let HRτ₀ := sys.timeIntervalStep Δt η X₀                         -- H^R(τ_0)
+  let HRτ₀ := sys.timeInterval Δt η X₀                         -- H^R(τ_0)
   let PcRτ₀ : S n := sys.constInputSolution Δt η uc                -- P̃^R(τ_0), ũ over τ_0
   let eAtk := sys.expEnclosure tk η                                -- e^{[A]t_k}
   let Pctk : S n := sys.constPropagate Δt η uc k                   -- P̃(t_k)

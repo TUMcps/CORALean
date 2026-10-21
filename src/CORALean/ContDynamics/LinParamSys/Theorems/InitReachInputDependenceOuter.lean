@@ -18,7 +18,7 @@ For every parameter `p ∈ [-1, 1]ᵏ` shared by the system matrix and the const
 `x(t) = e^{A(p) t} x₀ + ∫₀ᵗ e^{A(p)(t-s)} (B u(p) + c) ds`, `B` any member of `sys.B`, lies in the
 time-interval set, and `x(r)` in the time-point set: the part `B_c u(p) + c` is
 `dependentHomSol_outer`, the deviation `(B - B_c) u(p)` is `inputSolutionZono_outer`. The
-time-interval argument is `timeIntervalStep_outer`'s with an input: the state's curvature lies in
+time-interval argument is `timeInterval_outer`'s with an input: the state's curvature lies in
 `F Rinit` and the input's in `inputF (B Uconst ⊕ c)`. The last is where CORA's
 `inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its center.
 

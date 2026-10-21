@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 
 @[expose] public section
 
@@ -11,13 +11,14 @@ CORA's `standard` scheme, its default: the time-point set `R(t_{k+1}) = e^{AΔt}
 R(t_k)` carried forward one sample at a time, `R(t_0) = X₀`. `reachStepk`
 encloses each window `[k Δt, (k + 1) Δt]` from the pair of time points
 `timePoint k` and `timePoint (k + 1)`'s implicit next one, which is what makes
-the scheme's `timeIntervalStep` recursion read `[1, Alg. 4]`'s own, rather than
+the scheme's `timeInterval` recursion read `[1, Alg. 4]`'s own, rather than
 `reachStepkWrappingFree`'s carrying the wrapped window itself forward.
 
 ## Inputs
 * `sys` – linear system
 * `Δt` – step length
 * `X₀` – initial set
+* `k` – number of steps
 
 ## Output
 * time-point set after a given number of steps
@@ -52,8 +53,9 @@ variable [Mtimes (Mat ℝ) S]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The time-point set at `k Δt`: `R(t_0) = X₀`, `R(t_{k+1}) = e^{AΔt} R(t_k)`. -/
-noncomputable def LinearSys.timePoint (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n) : ℕ → S n
-  | 0     => X₀
+noncomputable def LinearSys.timePoint (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n) (k : ℕ) : S n :=
+  match k with
+  | 0 => X₀
   | k + 1 => Mtimes.mtimes (exp (Δt • toRealMat sys.A)) (sys.timePoint Δt X₀ k)
 
 end CORALean

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalZono
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # The step at a matrix zonotope holds every member's flow at every time of the step
 
-`LinParamSys.timeIntervalStep_outer` at `𝕄𝒵`: `e^{tA} x₀` splits into a point of
+`LinParamSys.timeInterval_outer` at `𝕄𝒵`: `e^{tA} x₀` splits into a point of
 the segment from `x₀` to `e^{rA} x₀`, which `linComb` holds once `e^{rA}` is in the
 matrix-zonotope exponential of `r • A` (`exp_mem_expMatZonoEnclosure`, `r • A` a
 member of the scaled zonotope), and the interpolation error, which the
@@ -64,7 +64,7 @@ variable [Mtimes 𝕄𝒵 S] [Mtimes ℐ S]
 
 /-- Every image of the initial set under the flow of every member of the matrix
 zonotope, at every time of the step. -/
-theorem LinParamSys.timeIntervalStepZono_outer (sys : LinParamSys 𝕄𝒵 n) {r : ℝ} (hr : 0 < r)
+theorem LinParamSys.timeIntervalZono_outer (sys : LinParamSys 𝕄𝒵 n) {r : ℝ} (hr : 0 < r)
     {m : ℕ}
     (hεe : ‖(Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ n n) r) sys.A).interval.absMax‖
       / (((m + 2 : ℕ) : ℝ) + 2) < 1)
@@ -72,7 +72,7 @@ theorem LinParamSys.timeIntervalStepZono_outer (sys : LinParamSys 𝕄𝒵 n) {r
     (X₀ : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeIntervalStepZono r (m + 2) X₀) := by -- --- PROOF ---
+      ⊆ construct (sys.timeIntervalZono r (m + 2) X₀) := by -- --- PROOF ---
   rintro y ⟨x₀, hx₀, rfl⟩
   -- the flow is the straight line plus what the curvature adds
   have hdecomp : exp (t • A) *ᵥ x₀

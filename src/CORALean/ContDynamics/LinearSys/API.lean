@@ -22,7 +22,7 @@ form of a trajectory and what `reach` then guarantees in `Theorems`.
 
 Reachability holds at the sample times, by sampling into `LinearSysDT`, or, once
 `e^{AΔt}` is only enclosed rather than computed, into `LinParamSysDT`. Between
-the sample times it is `reach`, `Instances`' `Reach`: one `timeIntervalStep` window
+the sample times it is `reach`, `Instances`' `Reach`: one `timeInterval` window
 per `Δt`, carried by `e^{A t_k}`, plus at `WithInput` the input accumulated so far.
 
 A trajectory is Carathéodory — the integral equation — so `reachSetExact` *is*

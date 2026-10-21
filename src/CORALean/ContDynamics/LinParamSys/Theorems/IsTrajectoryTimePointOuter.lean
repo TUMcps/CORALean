@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsMemEx
 exponential enclosure over `t` times the initial set holds the run's state at
 `t`. CORA's `'varParam'` homogeneous solution at a time point, the mapping matrix
 of `priv_mappingMatrix` applied to the initial set; the same set
-`LinParamSys.timeIntervalStep` starts from at `'constParam'`.
+`LinParamSys.timeInterval` starts from at `'constParam'`.
 
 ## Inputs
 * `sys` – system

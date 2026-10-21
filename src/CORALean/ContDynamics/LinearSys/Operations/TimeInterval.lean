@@ -52,7 +52,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its
 ends. -/
-noncomputable def LinearSys.timeIntervalStep
+noncomputable def LinearSys.timeInterval
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
   LinComb.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀) ⊞
     Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀

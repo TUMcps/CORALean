@@ -2,7 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
-public import CORALean.HybridDynamics.Operations.TimeIntervalStep
+public import CORALean.HybridDynamics.Operations.TimeInterval
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
 @[expose] public section
@@ -88,7 +88,7 @@ theorem Location.IsTrajectory.timeInterval_outer_inputSolution
       (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet)))
     (h0 : (0 : Vec ℝ n) ∈ construct ℓ.inputSet) {t : ℝ} (ht0 : 0 ≤ t)
     (htτ : t ≤ τ) :
-    x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀)
+    x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀)
       (ℓ.dynamics.inputSolution τ (m + 2) ℓ.inputSet)) :=
   (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer_inputSolution hτ subset_rfl hε ht0 htτ
     hconv hclosed hbdd hRconv hRclosed hRbdd h0

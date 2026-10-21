@@ -6,11 +6,11 @@ public import Mathlib.Tactic.Positivity
 @[expose] public section
 
 /-!
-# `reachOrder` clears `timeIntervalStep_outer`'s side condition
+# `reachOrder` clears `timeInterval_outer`'s side condition
 
 `Nat.le_ceil` puts `‖r • A‖` at or under `reachOrder r`, so any order `η` at or
 above `reachOrder r + 2` puts it strictly under `η + 2`, the denominator
-`timeIntervalStep_outer` divides by. `reach` raises its `η` to exactly such one.
+`timeInterval_outer` divides by. `reach` raises its `η` to exactly such one.
 
 ## Inputs
 * `sys` – linear system

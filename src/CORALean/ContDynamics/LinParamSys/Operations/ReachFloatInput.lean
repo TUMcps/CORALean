@@ -84,7 +84,7 @@ def LinParamSys.reachFloatInput (sys : LinParamSys ℐ[𝕋] n) (c : Vec 𝕋 n)
   let V := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B params.U    -- V = B U ⊕ c, in the
     ⊞ Zonotope.point c                                              -- state space
   let uc := ScalarCenter.centerVec (S := 𝒵[𝕋]) V                    -- ũ, the constant
-  let HRτ₀ := sys.timeIntervalStepFloat Δt η' X₀                    -- H^R(τ_0)
+  let HRτ₀ := sys.timeIntervalFloat Δt η' X₀                    -- H^R(τ_0)
   let PcRτ₀ := sys.constInputSolutionFloat Δt η' uc                 -- P̃^R(τ_0), ũ over τ_0
   let Rτ₀ := Reduce.reduce (HRτ₀ ⊞ PcRτ₀) ρ                         -- (H^R ⊕ P̃^R)(τ_0), to order ρ
   (List.range N).mapM (sys.aux_reachStepkFloatInput V ρ Δt η' Rτ₀)      -- R(τ_k), every k < N

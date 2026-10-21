@@ -131,7 +131,7 @@ theorem NonlinearSys.IsTrajectory.relinTimeInterval_outer {sys : NonlinearSys n 
   have hbeta : (i : ℝ) * Δt + s = t := by rw [hs_def]; ring
   have key := hlin.timeInterval_outer_inputSolution hΔt subset_rfl (m := q) (hε i hi) hs0 hsΔt
     (hconv i hi) (hclosed i hi) (hbdd i hi) (hRconv i hi) (hRclosed i hi) (hRbdd i hi) (h0 i hi)
-  show x t ∈ construct (Plus.plus ((NonlinearSys.linearize (steps i).A).timeIntervalStep Δt
+  show x t ∈ construct (Plus.plus ((NonlinearSys.linearize (steps i).A).timeInterval Δt
     (q + 2) (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud)) (Ud i))
   rw [← hbeta]
   exact key

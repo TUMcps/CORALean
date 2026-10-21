@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalStepOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalOuterVarying
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.Zonotope.Real.Instances
@@ -13,8 +13,9 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 What `'varParam'` gets at `𝕄𝒵`: a run drawing a fresh member of the matrix zonotope at every
 instant draws one of its box too (`Zonotope.interval_contains`), so it is an input-free run of
-the interval system, and the box's own step holds it (`IsTrajectory.timeIntervalStep_outer`). Not
-the matrix-zonotope step `timeIntervalStepZono`, which only
+the interval system, and the box's own step holds it
+(`IsTrajectory.timeInterval_outer_varying`). Not
+the matrix-zonotope step `timeIntervalZono`, which only
 `IsConstTrajectory.timeIntervalZono_outer` reaches: the Peano–Baker averaging would carry over
 but is not done here.
 
@@ -69,20 +70,20 @@ variable [Mtimes ℐ S]
 
 /-- An input-free `'varParam'` run at a matrix zonotope is, at every time of the
 step, in the time-interval step of the zonotope's box. -/
-theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStep_interval_outer {sys : LinParamSys 𝕄𝒵 n}
+theorem LinParamSys.IsCanonicalTrajectory.timeInterval_interval_outer {sys : LinParamSys 𝕄𝒵 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 r, u s = 0) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     x t ∈ construct
-      ((LinParamSys.canonical sys.A.interval : LinParamSys ℐ n).timeIntervalStep r (m + 2)
+      ((LinParamSys.canonical sys.A.interval : LinParamSys ℐ n).timeInterval r (m + 2)
         R₀) := by -- --- PROOF ---
   have trajI : (LinParamSys.canonical sys.A.interval : LinParamSys ℐ n).IsCanonicalTrajectory T R₀ U
       x u A :=
     ⟨traj.init, traj.input, fun s hs => Zonotope.interval_contains _ (traj.param s hs),
       traj.meas, traj.measParam, traj.cont, traj.flow⟩
-  exact trajI.timeIntervalStep_outer hr hT hu hε ht0 htr
+  exact trajI.timeInterval_outer_varying hr hT hu hε ht0 htr
 
 end CORALean
 

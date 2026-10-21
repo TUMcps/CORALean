@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEq
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
@@ -12,8 +12,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerS
 /-!
 # An input-free time-varying run stays in the float step
 
-`LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer` at the float step: a fresh member of
-the float box at every instant, and still `timeIntervalStepFloat`, the set the float
+`LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying` at the float step: a fresh member of
+the float box at every instant, and still `timeIntervalFloat`, the set the float
 `'constParam'` step computes. The run is a run of the box's nominal real system, so it solves
 the integral equation at a measurable member (`IsTrajectory.exists_integral_eq`); its
 Peano–Baker expansion misses little (`MatExp.norm_sub_peanoBakerSum_le`), and the float core
@@ -69,7 +69,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- An input-free `'varParam'` run over a float box is, at every time of the step,
 in the float time-interval step of the initial set. -/
-theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStepFloat_outer
+theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
@@ -77,7 +77,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStepFloat_outer
     (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hu : ∀ s ∈ Set.Ico 0 (toReal Δt), u s = 0)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal Δt) : -- --- CONCL ---
-    x t ∈ (sys.timeIntervalStepFloat Δt η R₀).construct := by -- --- PROOF ---
+    x t ∈ (sys.timeIntervalFloat Δt η R₀).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr
   -- the same run, read at the box's nominal real system

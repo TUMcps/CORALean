@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # One step of the homogeneous flow at every member, as a float zonotope
 
-`LinParamSys.timeIntervalStep` computed in `𝕋`: `R(τ) = linComb(R, [e^{AΔt}] R) ⊕ [F] R`,
+`LinParamSys.timeInterval` computed in `𝕋`: `R(τ) = linComb(R, [e^{AΔt}] R) ⊕ [F] R`,
 both matrices float interval enclosures over the whole box `sys.A` —
 `expIntervalFloat` at the point range `[Δt, Δt]`, and
 `MatExp.intervalCorrectionMatrix` at `sys.A` itself. `Δt` is a float and its own
@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `linComb(R, [e^{AΔt}] R) ⊕ [F] R` over every `A ∈ sys.A`, at Taylor order `η`,
 as the loop of [1] computes it. -/
-def LinParamSys.timeIntervalStepFloat (sys : LinParamSys ℐ[𝕋] n)
+def LinParamSys.timeIntervalFloat (sys : LinParamSys ℐ[𝕋] n)
     (Δt : 𝕋) (η : ℕ) (R : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
   let F := MatExp.intervalCorrectionMatrix sys.A Δt η                       -- [F]

@@ -1,10 +1,10 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+public import CORALean.HybridDynamics.Operations.TimeIntervalFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
 @[expose] public section
@@ -14,7 +14,7 @@ public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
 `timeInterval_outer` with the float step in place of the exact one: the
 variation of constants splits `x t` into the free motion, which
-`timeIntervalStepFloat_outer` places in the float step at an order admissible
+`timeIntervalFloat_outer` places in the float step at an order admissible
 for `[r, r]`, and the input's contribution, which the caller's `Ud` holds. The
 stay need not last `r`: any `t ≤ r` it reaches is covered.
 
@@ -78,7 +78,7 @@ theorem Location.IsTrajectory.timeIntervalFloat_outer
       (Scalar.toRealMat ℓ.dynamics.B *ᵥ u s + Scalar.toRealVec ℓ.dynamics.c +
         Scalar.toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (ℓ.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
+    x t ∈ construct (Plus.plus (ℓ.timeIntervalFloat r η R₀) Ud) := by -- --- PROOF ---
   have ltraj := traj.linearSys h₀ traj.inputSetFloat_mem
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 τ := Set.Icc_subset_Icc le_rfl htτ
   -- the variation of constants, from `0` to `t`
@@ -87,7 +87,7 @@ theorem Location.IsTrajectory.timeIntervalFloat_outer
   rw [sub_zero] at hvoc
   rw [hvoc]
   exact Plus.plus_outer _ _ (Set.add_mem_add
-    (ℓ.dynamics.timeIntervalStepFloat_outer hr hη R₀ h₀ ht0 htr) hUd)
+    (ℓ.dynamics.timeIntervalFloat_outer hr hη R₀ h₀ ht0 htr) hUd)
 
 end CORALean
 

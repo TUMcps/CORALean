@@ -3,10 +3,10 @@ module
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
+public import CORALean.HybridDynamics.Operations.TimeIntervalSplitFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -20,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 `timeInterval_outer_split` in floats. `sub_mem_inputReach_recenter` takes `x t`
 apart into its free motion, the constant `ũ`'s contribution `∫₀ᵗ e^{Aσ}dσ ũ`
-and one `Ũ`-input's contribution. The first is in `timeIntervalStepFloat`. The
+and one `Ũ`-input's contribution. The first is in `timeIntervalFloat`. The
 second is an admissible input of `[0, ũ]` held over `[0, t]`, and the third an
 admissible input of `Ũ`; both segments hold the origin, so `inputReach_mono`
 lifts each from `t` to `r`, where `inputReach_subset_inputSolutionFloat` places
@@ -80,7 +80,7 @@ theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
     {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
     (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
     (htr : t ≤ toReal r) : -- --- CONCL ---
-    x t ∈ construct (ℓ.timeIntervalStepSplitFloat r η R₀) := by -- --- PROOF ---
+    x t ∈ construct (ℓ.timeIntervalSplitFloat r η R₀) := by -- --- PROOF ---
   set A := Scalar.toRealMat ℓ.dynamics.A with hA
   set ũ := Recenter.center ℓ.inputSetFloat with hũ
   -- `x t` less its free motion and the constant's share is one `Ũ`-input's share
@@ -117,7 +117,7 @@ theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
     (Recenter.recenter ℓ.inputSetFloat)
     (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
       (Recenter.zero_mem_recenter ℓ.inputSetFloat) ht0 htr hrest)
-  have hH := ℓ.dynamics.timeIntervalStepFloat_outer hr hη R₀ h₀ ht0 htr
+  have hH := ℓ.dynamics.timeIntervalFloat_outer hr hη R₀ h₀ ht0 htr
   have hx : x t = (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ)
       + (x t - (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ)) := by abel
   rw [hx]

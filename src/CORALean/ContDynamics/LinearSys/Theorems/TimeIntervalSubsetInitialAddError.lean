@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrectionMatrixLe
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 public import CORALean.ContSet.Zonotope.Real.Instances
@@ -15,7 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # What the step encloses beyond the initial set it starts from
 
-`timeIntervalStep_outer` run backwards, and sharper than `timeIntervalStep_subset_reach_add_error`:
+`timeInterval_outer` run backwards, and sharper than `timeInterval_subset_reach_add_error`:
 the exact point the enclosure is measured against is the state at `t = 0`, so the set on the right
 is `X₀` itself, a zonotope, hence convex and compact, rather than the union over the step, which
 need not be convex. That is what an inner approximation of the step needs. The hull gap is the
@@ -171,12 +171,12 @@ theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The reverse of `timeIntervalStep_outer`, against the set the step starts
+/-- The reverse of `timeInterval_outer`, against the set the step starts
 from: what it computes stays inside `X₀` widened by `timeIntervalStepError`. -/
-theorem LinearSys.timeIntervalStep_subset_initial_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
+theorem LinearSys.timeInterval_subset_initial_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.timeIntervalStep (S := 𝒵) r η X₀).construct
+    (sys.timeInterval (S := 𝒵) r η X₀).construct
       ⊆ X₀.construct
         + Metric.closedBall (0 : Vec ℝ n)
             (sys.timeIntervalStepError r η X₀) := by -- --- PROOF ---
@@ -245,7 +245,7 @@ theorem LinearSys.timeIntervalStep_subset_initial_add_error (sys : LinearSys �
     rwa [Metric.mem_closedBall, dist_zero_right] at hmem
   -- the step splits exactly into the hull and the correction
   intro y hy
-  rw [show sys.timeIntervalStep (S := 𝒵) r η X₀
+  rw [show sys.timeInterval (S := 𝒵) r η X₀
       = (Zonotope.linComb X₀ (Zonotope.mtimes M X₀)).plus
           (Zonotope.mtimesIntervalMat (MatExp.correctionMatrix A r η) X₀) from rfl,
     ← Zonotope.plus_exact] at hy

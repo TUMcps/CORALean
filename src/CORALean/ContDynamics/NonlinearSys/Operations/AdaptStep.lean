@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptInit
@@ -90,7 +90,7 @@ noncomputable def NonlinearSys.aux_adaptLinPass (sys : NonlinearSys n m) (U : S 
   let Ulin := linInput sys.f AB.1 AB.2 zs.1 zs.2 U                -- 5. w ⊞ B(U ⊖ u✱)
     (OfPoint.ofPoint (0 : Vec ℝ n))
   (AB.1, lsys.timePointStep Δt ηlin R Ulin,                       -- 6. linReachAdaptive, eq. (10)
-    lsys.timeIntervalStep Δt ηlin R ⊞ lsys.inputSolution Δt ηlin Ulin)  -- 6. eq. (12)
+    lsys.timeInterval Δt ηlin R ⊞ lsys.inputSolution Δt ηlin Ulin)  -- 6. eq. (12)
 
 /-- [1, Alg. 2] line 13: the abstraction order of the next step, from the two
 error radii of eq. (46) and the two diameter vectors of eq. (47). -/

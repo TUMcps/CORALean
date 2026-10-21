@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEqOfMeasurable
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
@@ -121,7 +121,7 @@ theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Ma
 
 /-- A `'varParam'` run with an input is, at every time of the step, in the
 box's own time-interval step of the initial set plus its input solution. -/
-theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer_inputSolution
+theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying_inputSolution
     {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
@@ -134,7 +134,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer_inputSolution
       Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
     (hTclosed : ∀ k ≤ m + 2,
       IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U))) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
+    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   set η := m + 2 with hη
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq_of_measurable hr.le hT

@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetInitialAddError
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
@@ -18,11 +18,11 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 /-!
 # The whole-step inner approximation lands in the exact tube
 
-`timeIntervalStepInner_inner` at the reachable set over `[0, r]`, for any input set `U`. The inner
-approximation lies in `X₀` itself (`timeIntervalStep_subset_initial_add_error` measures against
+`timeIntervalInner_inner` at the reachable set over `[0, r]`, for any input set `U`. The inner
+approximation lies in `X₀` itself (`timeInterval_subset_initial_add_error` measures against
 `X₀`), and every point of `X₀` is the state at `t = 0` of a Carathéodory run on `[0, r]`: hold the
 input at `U`'s center and take `closedForm`, which `closedForm_flow` makes a `IsTrajectory`.
-`timeIntervalStep` carries no input, so `U` enters only through that witness; a zonotope is never
+`timeInterval` carries no input, so `U` enters only through that witness; a zonotope is never
 empty, so no hypothesis on `U` is needed.
 
 ## Inputs
@@ -63,12 +63,12 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The step's enclosure minus its own error ball is *contained in* the states
 the system visits over `[0, r]`, under inputs in any `U`. -/
-theorem LinearSys.timeIntervalStepInner_subset_timeIntervalReachSetExact
+theorem LinearSys.timeIntervalInner_subset_timeIntervalReachSetExact
     (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    sys.timeIntervalStepInner r η X₀
+    sys.timeIntervalInner r η X₀
       ⊆ sys.timeIntervalReachSetExact (S := 𝒵) (Set.Icc 0 r) X₀ U r := by -- --- PROOF ---
-  have hOuter := sys.timeIntervalStep_subset_initial_add_error hr η hε X₀
+  have hOuter := sys.timeInterval_subset_initial_add_error hr η hε X₀
   -- the error ball holds a point because it encloses the step's own center
   have hEne : (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀)).Nonempty := by
     obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_construct _)

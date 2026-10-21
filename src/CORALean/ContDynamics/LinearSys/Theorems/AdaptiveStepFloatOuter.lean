@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -189,9 +189,9 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
       (sys.inputReach_mono (S := 𝒵[𝕋])
         (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
         (hconst hũseg hτ0))
-    have hcore := Plus.plus_outer (sys.timeIntervalStepFloat Δt η X₀)
+    have hcore := Plus.plus_outer (sys.timeIntervalFloat Δt η X₀)
       (sys.inputSolutionFloat Δt η seg) (Set.add_mem_add
-        (sys.timeIntervalStepFloat_outer hΔr hadm X₀ traj.init hτ0 hτΔ) hc)
+        (sys.timeIntervalFloat_outer hΔr hadm X₀ traj.init hτ0 hτΔ) hc)
     -- `e^{At}` splits at `t_i`, so `x t` regroups as the window's summands
     have hexp : exp (t • A) = exp (ti • A) * exp (τ • A) := by
       rw [show t = ti + τ by ring, add_smul]

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalZonoOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `IsConstTrajectory.timeInterval_outer` at `𝕄𝒵`: the one matrix fixed over the step
 makes the run a `LinearSys` one (`toLinearSys`), whose closed form splits it into
-the flow of the initial state, which `timeIntervalStepZono_outer` holds, and what
+the flow of the initial state, which `timeIntervalZono_outer` holds, and what
 the inputs contributed, which `Vd` has to hold.
 
 ## Inputs
@@ -78,14 +78,14 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeIntervalZono_outer {sys : Lin
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) (hU : Bornology.IsBounded (construct U))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) : -- --- CONCL ---
     x t ∈ construct
-      (Plus.plus (sys.timeIntervalStepZono r (m + 2) R₀) Ud) := by -- --- PROOF ---
+      (Plus.plus (sys.timeIntervalZono r (m + 2) R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys
   have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
-  exact sys.timeIntervalStepZono_outer hr hεe hεF R₀ traj.param ht0 htr
+  exact sys.timeIntervalZono_outer hr hεe hεF R₀ traj.param ht0 htr
     (Set.mem_image_of_mem _ traj.init)
 
 end CORALean

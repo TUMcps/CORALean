@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- An order admissible for the window `r` at every matrix `sys.A` holds, `m`
-in `timeIntervalStep r (m + 2)`'s own naming. -/
+in `timeInterval r (m + 2)`'s own naming. -/
 noncomputable def LinParamSys.reachOrder (sys : LinParamSys ℐ n) (r : ℝ) : ℕ :=
   ⌈‖(Interval.smul r sys.A).absMax‖⌉₊
 

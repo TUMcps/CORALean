@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeInterval
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 # The homogeneous part of one window of `reachUnion`, over `τ_k = [t_k, t_k + Δt]`
 
 `LinearSys.reachStepkWrappingFree` at a set of matrices: `H^R(τ_k) = e^{A t_k} H^R(τ_0)`, with
-`H^R(τ_0)` the step `timeIntervalStep` and `e^{A t_k}` the interval matrix `expEnclosure` of the
+`H^R(τ_0)` the step `timeInterval` and `e^{A t_k}` the interval matrix `expEnclosure` of the
 box `t_k • sys.A`, applied by one `Mtimes ℐ`. Taken from the first window rather than from the
 previous one, as in the point case. The matrix a run fixes is the same in every window; the
 windows here each enclose their own time range at every member independently — sound, since a
@@ -51,7 +51,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 noncomputable def LinParamSys.reachStepk (sys : LinParamSys ℐ n) (Δt : ℝ) (η : ℕ) (X₀ : S n)
     (k : ℕ) : S n :=
   let tk := (k : ℝ) * Δt                                        -- t_k = k Δt
-  let HRτ₀ := sys.timeIntervalStep Δt η X₀                      -- H^R(τ_0), τ_0 = [0, Δt]
+  let HRτ₀ := sys.timeInterval Δt η X₀                      -- H^R(τ_0), τ_0 = [0, Δt]
   let eAtk := sys.expEnclosure tk η                             -- e^{[A] t_k}
   Mtimes.mtimes (𝕄 := ℐ) eAtk HRτ₀                             -- H^R(τ_k) = e^{[A] t_k} H^R(τ_0)
 

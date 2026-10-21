@@ -3,15 +3,15 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.HybridDynamics.Operations.InputSetFloat
-public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
+public import CORALean.HybridDynamics.Operations.TimeIntervalFloat
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 
 /-!
-# `Location.timeIntervalStepSplitFloat`
+# `Location.timeIntervalSplitFloat`
 
-`Location.timeIntervalStepSplit` computed in `𝕋`, its input contribution split
+`Location.timeIntervalSplit` computed in `𝕋`, its input contribution split
 as `reachFloatInput` splits it: `ℓ.inputSetFloat = ũ ⊕ Ũ` by `Recenter`, `ũ` the stored
 center. The constant's contribution `∫₀ᵗ e^{Aσ}dσ ũ` is an admissible input of
 `[0, ũ]`, so `inputSolutionFloat` at that segment holds it at every `t ≤ r`,
@@ -54,7 +54,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 
 /-- The enclosure of a stay of length up to `r` from `X₀`, at Taylor order `η`,
 the combined input `ℓ.inputSetFloat` split at its center, [1, Alg. 3]. -/
-def Location.timeIntervalStepSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
+def Location.timeIntervalSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (r : 𝕋) (η : ℕ)
     (X₀ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   -- 1. `{ũ}`, the stored center of the combined input set
@@ -64,7 +64,7 @@ def Location.timeIntervalStepSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
   -- 3. `{0}`
   let O := (Interval.point fun _ => zero).zonotope
   -- 4. `H^R(τ_0)`, the homogeneous solution
-  let HR := ℓ.timeIntervalStepFloat r η X₀
+  let HR := ℓ.timeIntervalFloat r η X₀
   -- 5. `P̃^R(τ_0)`, the constant's share, from the segment `[0, ũ]`
   let PuR := ℓ.dynamics.inputSolutionFloat r η (LinComb.linComb O ũ)
   -- 6. `P^R(r)`, the share of `Ũ`

@@ -64,7 +64,7 @@ theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n)
     le_trans (Nat.le_add_left 2 (sys.reachOrder options.Δt)) (le_max_right _ _)
   have hε := sys.reachOrder_admissible options.Δt
     (le_max_right options.η (sys.reachOrder options.Δt + 2))
-  exact sys.reach_outer (options := ⟨options.Δt, _⟩) htFinal hΔt hη hε
+  exact sys.reach_outer (options := ⟨options.Δt, _⟩) (sub_pos.mp htFinal) hΔt hη hε
 
 end CORALean
 

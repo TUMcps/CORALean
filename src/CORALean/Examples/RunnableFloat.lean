@@ -64,11 +64,11 @@ import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
-import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
 import CORALean.HybridDynamics.Operations.CheckFlowFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
-import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
+import CORALean.HybridDynamics.Operations.TimeIntervalSplitFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
@@ -506,8 +506,8 @@ def minkDiffStretchInnerRun : Zonotope (Vec D 2) :=
 `[0, r]` from `Z` by the float step and by the split float step. -/
 def ctLoc : Location 𝒵[D] 𝒵[D] Unit D 2 :=
     ⟨Z, ctSys, Z, Zonotope.point fun _ => d 0 0, []⟩
-def locStepRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepFloat stepR 4 Z
-def locSplitRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
+def locStepRun : Zonotope (Vec D 2) := ctLoc.timeIntervalFloat stepR 4 Z
+def locSplitRun : Zonotope (Vec D 2) := ctLoc.timeIntervalSplitFloat stepR 4 Z
 
 /-- The guard hyperplane `x₁ = 9/8` of unit normal `e₁`: the cut of `Z` along `e₂` and the
 Girard and Le Guernic bundle over the identity basis, and the reach sets of `ctLoc` that
@@ -540,7 +540,7 @@ def lpA : Interval (Mat D 2 2) :=
     !![d (-31) (-5), d (-127) (-5); d 129 (-5), d (-31) (-5)]⟩
 def lpSys : LinParamSys ℐ[D] 2 := LinParamSys.canonical lpA
 def lpOrderRun : Option ℕ := lpSys.reachOrderFloat stepR stepR 2
-def lpStepRun : Zonotope (Vec D 2) := lpSys.timeIntervalStepFloat stepR 4 Z
+def lpStepRun : Zonotope (Vec D 2) := lpSys.timeIntervalFloat stepR 4 Z
 def lpInputRun : Zonotope (Vec D 2) := lpSys.inputSolutionFloat stepR 4 Z
 def lpReachRun : Zonotope (Vec D 2) :=
   (lpSys.discretizeEnclosureFloat stepR 4).reach (S := 𝒵[D])

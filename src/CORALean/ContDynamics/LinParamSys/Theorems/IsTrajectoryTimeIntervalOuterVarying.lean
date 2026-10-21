@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEq
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfIntegral
 
@@ -9,14 +9,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalC
 /-!
 # An input-free time-varying run stays in the box's step, unwidened
 
-`LinParamSys.timeIntervalStep_outer` at `'varParam'`: a fresh `A t ∈ sys.A` at every instant, and
+`LinParamSys.timeInterval_outer` at `'varParam'`: a fresh `A t ∈ sys.A` at every instant, and
 still the same set — `CH(X₀, e^{[A]r} X₀) ⊕ F X₀` with the box's exponential enclosure and
 correction matrix, CORA's `initReach` for `linParamSys`, `expmIndMixed` and `priv_tie`. Nothing
 is frozen and no drift is paid as input. The run solves the integral equation at a measurable
 member of the box (`IsTrajectory.exists_integral_eq`), and the Peano–Baker expansion of that
 equation puts it on the interpolation from its start to a member of the enclosure plus a member
 of `F` applied to its start (`MatExp.exists_mem_intervalCorrectionMatrix_of_integral`).
-Input-free only; with an input, `…TimeIntervalStepOuterInputSolution`.
+Input-free only; with an input, `…TimeIntervalOuterInputSolution`.
 
 ## Inputs
 * `sys` – system
@@ -69,13 +69,13 @@ variable [Mtimes ℐ S]
 
 /-- An input-free `'varParam'` run is, at every time of the step, in the box's
 own time-interval step of the initial set. -/
-theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
+theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying {sys : LinParamSys ℐ n}
+    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 r, u s = 0) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    x t ∈ construct (sys.timeIntervalStep r (m + 2) R₀) := by -- --- PROOF ---
+    x t ∈ construct (sys.timeInterval r (m + 2) R₀) := by -- --- PROOF ---
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq hr.le hT hu
   have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
   obtain ⟨Φ, hΦ, F, hF, heq⟩ :=

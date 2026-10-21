@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 /-!
 # Where a constant-parameter run is at the end of a step
 
-The two halves of a step put together: `timeIntervalStep` for what the initial set carries and
+The two halves of a step put together: `timeInterval` for what the initial set carries and
 `inputSolution` for what the inputs contributed, both computed from the matrix set alone. Nothing
 is assumed of the run beyond the trajectory itself — the measurability the input solution wants
 is `aestronglyMeasurable_input_reflected`. `inputSolution_outer` is proved at `r`, so this is the
@@ -81,7 +81,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.step_outer {sys : LinParamSys ℐ
       (MatExp.intervalInputRemainder sys.A r (m + 2)) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r (m + 2)) U))) : -- --- CONCL ---
-    x r ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
+    x r ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   have lin := traj.toLinearSys
   -- the input's own domain is the step reflected, which is where `hu` is read

@@ -129,8 +129,8 @@ LinParamSys.reachInstance  real-layer: the `Reach` instance over `reachUnion`; r
 LinParamSys.reachOrder  real-layer: an admissible order by `⌈‖[A]r‖⌉`; runs in floats as `LinParamSys.reachOrderFloat`
 LinParamSys.reachStepk  real-layer: one window at `ℐ`; runs in floats as `LinParamSys.reachStepkFloat` (`reachStepkFloat_outer`)
 LinParamSys.reachUnion  real-layer: the windows with inputs `params.U` in input coordinates at `ℐ`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
-LinParamSys.timeIntervalStep  real-layer: one step at the real interval-matrix family `ℐ`; runs in floats as `LinParamSys.timeIntervalStepFloat` (`timeIntervalStepFloat_outer`)
-LinParamSys.timeIntervalStepZono  real-layer: one step at the real matrix-zonotope family `𝕄𝒵`; runs in floats as `LinParamSys.timeIntervalStepZonoFloat` (`timeIntervalStepZonoFloat_outer`)
+LinParamSys.timeInterval  real-layer: one step at the real interval-matrix family `ℐ`; runs in floats as `LinParamSys.timeIntervalFloat` (`timeIntervalFloat_outer`)
+LinParamSys.timeIntervalZono  real-layer: one step at the real matrix-zonotope family `𝕄𝒵`; runs in floats as `LinParamSys.timeIntervalZonoFloat` (`timeIntervalZonoFloat_outer`)
 LinearSys.adaptTimeStep  real-layer: a tuning selector, CDC'20 `Alg. 2`, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepFloat`, and `adaptiveStepFloat_outer` holds for whatever it picks
 LinearSys.adaptTimeStepOrder  real-layer: a tuning selector, Alg. 2's order sweep, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepOrderFloat`, measuring `ε_H`, `ε_P` by `errOp` of the float sets, and `adaptiveStepFloat_outer` holds for whatever it picks
 LinearSys.adaptTimeStepSearch  real-layer: a tuning selector, Alg. 2's step sweep, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepSearchFloat`, and `adaptiveStepFloat_outer` holds for whatever it picks
@@ -192,9 +192,9 @@ LinearSys.supportLower  real-layer: HSCC'23 `Alg. 1` lines 1-4, 6-10, 14-16 (low
 LinearSys.supportUpper  real-layer: HSCC'23 `Alg. 1` lines 1-5, 7-13 (upper bounds) at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ` over a support-function oracle; proved over ℝ and never run, no float counterpart
 LinearSys.verifySearch  real-layer: HSCC'23 `Alg. 3` line 1 and the search loop at the real exponential and over support-function and support-vector oracles; proved sound over ℝ and never run, no float counterpart
 LinearSys.verifySearchLoop  real-layer: HSCC'23 `Alg. 3` lines 3, 7-9 and 14-25 over support-function and support-vector oracles, the bounds of `Alg. 1` at the real exponential; proved sound over ℝ and never run, no float counterpart
-LinearSys.timeIntervalStep  real-layer: one window at the real exponential; runs in floats as `LinearSys.timeIntervalStepFloat`
+LinearSys.timeInterval  real-layer: one window at the real exponential; runs in floats as `LinearSys.timeIntervalFloat`
 LinearSys.timeIntervalStepCurvatureError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timeIntervalStepCurvatureErrorFloat` (`timeIntervalStepCurvatureError_le_float`)
-LinearSys.timeIntervalStepEps  real-layer: `timeIntervalStep` at the exact `MatExp.expRemainderOrder`; runs in floats as `LinearSys.timeIntervalStepEpsFloat`, the order by the computable `MatExp.tuneOrder` (`timeIntervalStepEpsFloat_outer`)
+LinearSys.timeIntervalStepEps  real-layer: `timeInterval` at the exact `MatExp.expRemainderOrder`; runs in floats as `LinearSys.timeIntervalStepEpsFloat`, the order by the computable `MatExp.tuneOrder` (`timeIntervalStepEpsFloat_outer`)
 LinearSys.timeIntervalStepError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timeIntervalStepErrorFloat` (`timeIntervalStepError_le_float`)
 LinearSys.timePoint  spec: the exact time-point sets `e^{A k Δt} X₀`; `LinearSys.timePoint_subset_reachFloat` encloses them in `reachFloat`'s
 LinearSys.timePointStep  real-layer: `e^{Ar} X₀ ⊕ inputSolution`; runs in floats as `LinearSys.timePointStepInputFloat`, `[e^{Ar}] X₀ ⊞ inputSolutionFloat`, and composed in `reachFloatInput`
@@ -234,9 +234,9 @@ LinearSysDT.reachErrorReduced  spec: what a run owes/what an inner approximation
 LinearSysDT.reachErrorReducedOrders  spec: what a run owes/what an inner approximation is, a real-valued guarantee object; `minkowskiDiff` computes nothing
 LinearSysDT.reachInnerRep  real-layer: an operation over the exact zonotope layer, noncomputable because its `reduce` is; the float run's counterpart goes through `Float.Zonotope.minkDiffRep`
 Location.guardTransitionLevelSet  real-layer: [Kochdumper HSCC'20, Sec. 3.2]'s procedure, whose Step 1 compares real range bounds; the steps are operator arguments with no float instances yet
-Location.timeIntervalStep  real-layer: a location's stay at the real `LinearSys.timeIntervalStep`; runs in floats as `Location.timeIntervalStepFloat` (`timeIntervalFloat_outer`)
-Location.timeIntervalStepInv  real-layer: the stay at the real exponential, cut to the invariant by a homogeneous `Intersection`; runs in floats as `Location.timeIntervalStepInvFloat` (`timeIntervalInvFloat_outer`), cut through a box
-Location.timeIntervalStepSplit  real-layer: the split stay at the real exponential; runs in floats as `Location.timeIntervalStepSplitFloat` (`timeIntervalSplitFloat_outer`)
+Location.timeInterval  real-layer: a location's stay at the real `LinearSys.timeInterval`; runs in floats as `Location.timeIntervalFloat` (`timeIntervalFloat_outer`)
+Location.timeIntervalInv  real-layer: the stay at the real exponential, cut to the invariant by a homogeneous `Intersection`; runs in floats as `Location.timeIntervalInvFloat` (`timeIntervalInvFloat_outer`), cut through a box
+Location.timeIntervalSplit  real-layer: the split stay at the real exponential; runs in floats as `Location.timeIntervalSplitFloat` (`timeIntervalSplitFloat_outer`)
 MatExp.adaptiveIntegral  real-layer: `Asum + Δt[-W,W]` of `errorSolution_adaptive` at a real matrix; runs in floats as `Float.MatExp.adaptiveIntegral` (`adaptiveIntegral_outer_refines`)
 MatExp.adaptiveRemainder  real-layer: `Δt[-W,W]` of `errorSolution_adaptive` at the real `e^{|A|Δt}`; enclosed in floats by `Float.MatExp.intervalInputRemainder` (`adaptiveRemainder_subset_intervalInputRemainder`)
 MatExp.affineDynamicsError  real-layer: `2 err(C) + √γ ‖G⁻‖₂`, a tuning quantity of TAC'23 `Alg. 2`, at the real `curvatureEnclosure` and `genOpNorm₂`; runs in floats as `LinearSys.affineDynamicsErrorFloat`, with `err` bounded above by `Zonotope.errUp` (`err_le_errUp`) and `genOpNorm₂` by `genOpNormUp` (`genOpNorm₂_genMinus_le`)

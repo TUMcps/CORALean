@@ -87,7 +87,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x t ∈ construct (Plus.plus
-      (sys.timeIntervalStep r (m + 2) R₀)
+      (sys.timeInterval r (m + 2) R₀)
       (Plus.plus
         (Plus.plus
           (sys.inputSolution r (m + 2) (LinComb.linComb

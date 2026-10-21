@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.ContSet.Theorems.Basic
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 `IsConstTrajectory.timeInterval_outer` with the float step: the closed form at the
 frozen member splits `x t` into its free motion, which
-`timeIntervalStepFloat_outer` places in the float step, and the input's
+`timeIntervalFloat_outer` places in the float step, and the input's
 contribution, which the caller's `Ud` holds.
 
 ## Inputs
@@ -71,7 +71,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeIntervalFloat_outer
     (hT : Set.Icc 0 (toReal r) ⊆ T) (hη : sys.OrderAdmissibleFloat r r η) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ toReal r)
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
+    x t ∈ construct (Plus.plus (sys.timeIntervalFloat r η R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys
   have hvoc := lin.variation_of_constants hTt le_rfl ht0
@@ -79,7 +79,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeIntervalFloat_outer
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)
-  exact sys.timeIntervalStepFloat_outer hr hη R₀ traj.param traj.init ht0 htr
+  exact sys.timeIntervalFloat_outer hr hη R₀ traj.param traj.init ht0 htr
 
 end CORALean
 

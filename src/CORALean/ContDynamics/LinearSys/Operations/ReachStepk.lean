@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 
 CORA's `standard` scheme, its default, and [1, Alg. 4]'s recursion at a point matrix with no input
 and no order reduction: the recursion runs over the time-point sets `timePoint`,
-`R(t_{k+1}) = e^{AΔt} R(t_k)`, and the window `τ_k = [k Δt, (k + 1) Δt]` is `timeIntervalStep` run
+`R(t_{k+1}) = e^{AΔt} R(t_k)`, and the window `τ_k = [k Δt, (k + 1) Δt]` is `timeInterval` run
 once, from `R(t_k)` directly, rather than carried step by step the way `timePoint` itself is.
 Where `mtimes` only encloses, this keeps a window's own overapproximation out of every later one,
 the wrapping effect `reachStepkWrappingFree` avoids the same way, by applying `e^{A t_k}` to the
@@ -56,11 +56,11 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The window `τ_k = [k Δt, (k + 1) Δt]` at Taylor order `η`: `timeIntervalStep`
+/-- The window `τ_k = [k Δt, (k + 1) Δt]` at Taylor order `η`: `timeInterval`
 run once, from the time-point set `timePoint Δt X₀ k`. -/
 noncomputable def LinearSys.reachStepk (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ : S n)
     (k : ℕ) : S n :=
-  sys.timeIntervalStep Δt η (sys.timePoint Δt X₀ k)
+  sys.timeInterval Δt η (sys.timePoint Δt X₀ k)
 
 end CORALean
 

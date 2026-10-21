@@ -6,7 +6,7 @@ public import Mathlib.Algebra.Order.Ring.Star
 @[expose] public section
 
 /-!
-# `reachOrder` clears `timeIntervalStep_outer`'s side condition
+# `reachOrder` clears `timeInterval_outer`'s side condition
 
 `LinearSys.reachOrder_admissible`'s argument, `Nat.le_ceil` putting the bound
 at or under `reachOrder r`, strictly under the denominator once `4` is added.

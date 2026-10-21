@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOute
 # `reachWrappingFreeFloat` holds the exact flow over every window
 
 At `t = t_k + s`, `s ∈ [0, Δt]`, the flow is `e^{A t_k} e^{As} x₀`:
-`timeIntervalStepFloat_outer` puts `e^{As} x₀` in the first window,
+`timeIntervalFloat_outer` puts `e^{As} x₀` in the first window,
 `Reduce.reduce_outer` keeps it there, and `reachStepkWrappingFreeFloat_outer` carries it to
 window `k`. Nothing is asked of `η`: the order the run used is the one
 `reachOrderFloat_spec` certifies. `Δt > 0`, the one thing the correction matrix
@@ -73,8 +73,8 @@ theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun k hk x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
   -- `e^{As} x₀` is in the first window, reduced or not
-  have hτ₀ := Reduce.reduce_outer (sys.timeIntervalStepFloat Δt η' X₀) ρ
-    (sys.timeIntervalStepFloat_outer hΔt hadm X₀ hx₀ hs0 hs)
+  have hτ₀ := Reduce.reduce_outer (sys.timeIntervalFloat Δt η' X₀) ρ
+    (sys.timeIntervalFloat_outer hΔt hadm X₀ hx₀ hs0 hs)
   have hwin := hget k hk
   simp only [List.getElem_range] at hwin
   -- `e^{A (t_k + s)} = e^{A t_k} e^{As}`, both powers of the same matrix

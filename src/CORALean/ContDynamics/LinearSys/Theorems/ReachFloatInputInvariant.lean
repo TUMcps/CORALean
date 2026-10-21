@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputStepInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
@@ -21,7 +21,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 By induction on the pass, `reachFloatInputStep_invariant` the step. The start:
 `H(t_1) = [e^{AΔt}] X₀ ⊕ P̃(Δt)`; `H(τ_0)` is the homogeneous time-interval step
-`timeIntervalStepFloat_outer` covers plus `P̃^R(τ_0)`, which holds
+`timeIntervalFloat_outer` covers plus `P̃^R(τ_0)`, which holds
 `∫₀^τ e^{Aσ}dσ ũ` as the constant input `ũ` over `[0, τ]` with values in
 `[0, ũ] ∋ 0` (`inputReach_mono`); and `P^R(t_1)` and the propagated one-step
 set are both `P^R(Δt)`, by `inputReach_subset_inputSolutionFloat`.
@@ -137,8 +137,8 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
       have hc := sys.inputReach_subset_inputSolutionFloat hΔt hadm seg
         (sys.inputReach_mono (CompactSet.isBounded_construct seg) h0seg hτ.1 hτ.2
           (hconst hũseg hτ.1))
-      exact Plus.plus_outer (sys.timeIntervalStepFloat Δt η' X₀) (sys.inputSolutionFloat Δt η' seg)
-        (Set.add_mem_add (sys.timeIntervalStepFloat_outer hΔt hadm X₀ hx₀ hτ.1 hτ.2) hc)
+      exact Plus.plus_outer (sys.timeIntervalFloat Δt η' X₀) (sys.inputSolutionFloat Δt η' seg)
+        (Set.add_mem_add (sys.timeIntervalFloat_outer hΔt hadm X₀ hx₀ hτ.1 hτ.2) hc)
     · -- `P^R(t_1)`
       rw [h1]
       exact sys.inputReach_subset_inputSolutionFloat hΔt hadm _

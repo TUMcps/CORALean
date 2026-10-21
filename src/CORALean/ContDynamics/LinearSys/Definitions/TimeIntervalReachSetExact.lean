@@ -11,7 +11,7 @@ The definition is [1, Def. 3.2]: the union of `LinearSys.reachSetExact` at every
 `[0, r]`. `timeIntervalReachSetExact_eq_iUnion` is that union, read back off this definition.
 Written the same way `reachSetExact` is, an existential over a trajectory, rather than as a
 literal `Set.iUnion`: a caller already holding a trajectory and a time reaches either with
-the same pair. `[0, r]` only, as `timeIntervalStep` and the whole-step theorems it is the
+the same pair. `[0, r]` only, as `timeInterval` and the whole-step theorems it is the
 exact counterpart of, rather than an arbitrary sub-interval of `T`.
 
 ## Inputs

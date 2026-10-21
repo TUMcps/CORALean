@@ -61,7 +61,7 @@ example (ℓ : Location 𝒵 ℋ𝒫 Unit ℝ 2) {τ : ℝ} {x : ℝ → Vec ℝ
     (hUd : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
+    x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀) Ud) :=
   traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd
 
 /-- The whole point of the separation: a zonotope reachable set, a halfspace

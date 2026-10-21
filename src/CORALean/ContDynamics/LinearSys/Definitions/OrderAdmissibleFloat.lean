@@ -15,7 +15,7 @@ The float remainder `MatExp.expRemainderBound` is sound once `nrm / (η + 2) ≤
 `MatExp.normUpperBound` reads off the interval matrix `[tLo, tHi] · A`. The geometric series of the
 remainder bound needs `nrm / (η + 2) < 1`, [1, Eq. 3.2–3.3] and the sentence after Eq. 3.3, which
 no paper states as a condition; the float layer asks `≤ 1/2`, its geometric factor being the fixed
-constant `2`, where the exact layer's `timeIntervalStep_outer` asks `< 1`. At least `2`, from no
+constant `2`, where the exact layer's `timeInterval_outer` asks `< 1`. At least `2`, from no
 paper: as `MatExp.intervalCorrectionMatrix`'s guarantee needs.
 
 ## Inputs

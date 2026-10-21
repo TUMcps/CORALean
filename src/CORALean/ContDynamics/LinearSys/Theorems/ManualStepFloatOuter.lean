@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -29,7 +29,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 Lines 5-11 of [1, Alg. 1] at a positive `Δt` and an admissible `η`. A run at
 `t = t_k + τ` is `e^{Aτ} h + Γ(τ) ũ + d`, with `h = e^{At_k} x₀ + Γ(t_k) ũ ∈ H(t_k)` and
-`d` the `Ũ`-input's share by `t`: the first summand is in `timeIntervalStepFloat`'s step
+`d` the `Ũ`-input's share by `t`: the first summand is in `timeIntervalFloat`'s step
 from `H(t_k)`, the second in the segment's input solution, and `d`, `Ũ` holding `0`, is
 also a share by `t_{k+1}` (`inputReach_mono`), which `P̂^U(t_{k+1})` holds. That last claim,
 and those on `H` and `P^u`, are the invariant one step on, split at `t_k`.
@@ -199,7 +199,7 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
       (CompactSet.isBounded_construct Ũ)
       (Recenter.zero_mem_recenter V) ht0 ht.2 hd
     -- the free motion and the constant over `[0, τ]` from `H(t_k)`
-    have hcore := sys.timeIntervalStepFloat_outer hΔt hη s.H (hH (x 0) traj.init) hτ0 hτΔ
+    have hcore := sys.timeIntervalFloat_outer hΔt hη s.H (hH (x 0) traj.init) hτ0 hτΔ
     have hc := sys.inputReach_subset_inputSolutionFloat hΔt hη seg
       (sys.inputReach_mono (S := 𝒵[𝕋])
         (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ

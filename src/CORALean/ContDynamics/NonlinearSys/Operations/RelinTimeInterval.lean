@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 
 @[expose] public section
@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 # Step `i` of the re-linearization loop, over its whole interval
 
 `relinReach` reaches the state at `iΔt` only; this is the set it is in at every
-time of step `i`: `LinearSys.timeIntervalStep` of the linearized system at
+time of step `i`: `LinearSys.timeInterval` of the linearized system at
 `(steps i).A`, applied to what `relinReach` reaches at the step's start, plus
 step `i`'s own input enclosure — the shape `IsTrajectory.timeInterval_outer`
 proves, not one invented ahead of it.
@@ -68,7 +68,7 @@ enclosure. -/
 noncomputable def NonlinearSys.relinTimeInterval (sys : NonlinearSys n m) {U : S m} (o : ℕ)
     (ho : 0 < o) (Δt : ℝ) (η : ℕ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) (i : ℕ) :
     S n :=
-  ((NonlinearSys.linearize (steps i).A).timeIntervalStep Δt η
+  ((NonlinearSys.linearize (steps i).A).timeInterval Δt η
     (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud)) ⊞ Ud i
 
 end CORALean

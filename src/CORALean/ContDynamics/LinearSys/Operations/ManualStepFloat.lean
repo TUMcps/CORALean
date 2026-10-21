@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -20,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 squaring at their float brackets, so `H(t_{k+1})` is reached from `X₀` directly, as line 7 does.
 `P^u(t_{k+1})`, a point in [1], is kept as a box. One departure, the float layer's: lines 8-9's
 `comb(H(t_k), H(t_{k+1})) ⊕ F H(t_k) ⊕ G ũ` is taken as
-`comb(H(t_k), [e^{AΔt}] H(t_k)) ⊕ [F] H(t_k)` (`timeIntervalStepFloat`) plus the input solution of
+`comb(H(t_k), [e^{AΔt}] H(t_k)) ⊕ [F] H(t_k)` (`timeIntervalFloat`) plus the input solution of
 the segment `[0, ũ]`: the float layer has no `G`. `η` must be admissible for the float
 enclosures; `manualReachFloat` raises it until it is.
 
@@ -96,7 +96,7 @@ def LinearSys.manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
   -- 7. H(t_{k+1})
   let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope
   -- 8.-9. Ĥ(τ_k)
-  let Hτk := sys.timeIntervalStepFloat Δt η s.H ⊞ PuτΔt
+  let Hτk := sys.timeIntervalFloat Δt η s.H ⊞ PuτΔt
   -- 10. P̂^U(t_{k+1})
   let PUk1 := Reduce.reduce (s.PU ⊞ Φtk PUΔt) ρ
   -- 11. R̂(τ_k)

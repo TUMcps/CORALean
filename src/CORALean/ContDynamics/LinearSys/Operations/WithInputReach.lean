@@ -16,7 +16,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 `LinearSys.reachWrappingFree`'s count. No `box()` on the accumulated input set: that bounds a
 zonotope's order and is a reduction, which an enclosure need not make. `X₀ = params.X₀`,
 `Δt = options.Δt`, `η = options.η`, the Taylor order asked for, raised to `reachOrder Δt + 2` where
-that is higher, as in `LinearSys.reachWrappingFree`: `timeIntervalStep_outer` and `inputSolution`'s
+that is higher, as in `LinearSys.reachWrappingFree`: `timeInterval_outer` and `inputSolution`'s
 enclosure both hold only at an order admissible for `Δt` and `sys.A`. The times are real, as there.
 
 ## Inputs

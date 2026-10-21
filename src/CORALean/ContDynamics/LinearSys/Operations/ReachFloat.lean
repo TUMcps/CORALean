@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.Global.Float.ToRat
@@ -15,7 +15,7 @@ public import CORALean.Global.Float.ToRat
 [1, Alg. 4] at a point matrix, no input, in `𝕋`, CORA's `linAlg = 'standard'`: `X₀ = params.X₀`,
 `Δt`, `η`, `ρ` the `options`', `N = (tFinal - tStart) / Δt` by `Reach.steps`, `none` unless a
 natural number. Time-point sets `R_0 = X₀, …, R_N` by `timePointStepFloat` and Girard's reduction
-to order `ρ`, window `k < N` by `timeIntervalStepFloat` from `R_k`, not reduced. The error box is
+to order `ρ`, window `k < N` by `timeIntervalFloat` from `R_k`, not reduced. The error box is
 never folded into a generator: `mtimesIntervalMat` multiplies it by the interval matrix every
 step and `reduce` keeps it, so the box holds rounding alone and wraps (it grows with the matrix's
 norm step after step), the effect `reachWrappingFreeFloat` avoids. The two matrices are computed

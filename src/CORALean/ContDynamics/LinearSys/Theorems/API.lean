@@ -54,7 +54,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetEx
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalInnerInner
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepInnerInner
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
@@ -197,21 +197,21 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.SuperlinearDecreaseTimePointStepRemainderError
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerSubsetTimeIntervalReachSetExact
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepTunedOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalInnerInner
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalInnerSubsetTimeIntervalReachSetExact
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSetLinComb
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetAddError
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetInitialAddError
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalTunedOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner
@@ -318,7 +318,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
 # What `LinearSys` guarantees
 
 The closed form of a trajectory, then the three enclosures built on it: `reach`
-at the sample times, `timeIntervalStep` over a whole step, and `deltaReach` over
+at the sample times, `timeInterval` over a whole step, and `deltaReach` over
 the differences that step spans, where CORA's polynomialization measures its
 abstraction error; the rest are the input-integral facts they use.
 

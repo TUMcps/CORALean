@@ -1,13 +1,13 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 
 @[expose] public section
 
 /-!
 # One window of `reachWrappingFree`: the set over `τ_k = [t_k, t_k + Δt]`
 
-`R(τ_k) = e^{A t_k} R(τ_0)`: the first window is `timeIntervalStep`, and every
+`R(τ_k) = e^{A t_k} R(τ_0)`: the first window is `timeInterval`, and every
 later one is that same set carried forward by the exact flow to `t_k = k Δt`.
 The map is taken at `t_k` itself rather than composed `k` times from `e^{AΔt}`,
 so a representation that `mtimes` only encloses pays for it once per window,
@@ -53,7 +53,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 noncomputable def LinearSys.reachStepkWrappingFree (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ : S n)
     (k : ℕ) : S n :=
   let tk := (k : ℝ) * Δt                                        -- t_k = k Δt
-  let Rτ₀ := sys.timeIntervalStep Δt η X₀                       -- R(τ_0), τ_0 = [0, Δt]
+  let Rτ₀ := sys.timeInterval Δt η X₀                       -- R(τ_0), τ_0 = [0, Δt]
   let eAtk := exp (tk • toRealMat sys.A)                        -- e^{A t_k}
   Mtimes.mtimes eAtk Rτ₀                                        -- R(τ_k) = e^{A t_k} R(τ_0)
 

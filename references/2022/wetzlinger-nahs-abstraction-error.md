@@ -209,7 +209,7 @@ no `Ỹ Z̃⁻¹` elimination and the loop no `R_y(t_{k+1})` — which is the sp
 states directly under its `Alg. 1`; the full differential-algebraic form would need a system type,
 that elimination and the Newton–Raphson solve of (6), none of which the tree has. One further
 departure: (12) puts the particular solution inside the convex hull, while
-`LinearSys.timeIntervalStep` computes `conv(R, e^{AΔt}R) ⊕ F R` and the particular solution is
+`LinearSys.timeInterval` computes `conv(R, e^{AΔt}R) ⊕ F R` and the particular solution is
 added outside it, as CORA does. That encloses (12) whenever `P(τ_k)` is convex and holds the
 origin — which is what (12)'s own `0 ∈ U` gives — but nothing here proves it; it is recorded, not
 discharged.

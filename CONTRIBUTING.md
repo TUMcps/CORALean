@@ -215,7 +215,7 @@ A Lean namespace cannot be split. `sys.reach` resolves to
 `CORALean.LinearSysDT.reach` and looks nowhere else, so a type takes its whole
 namespace with it. Where one of its theorems is then about a particular
 representation — `LinearSysDT.reach_order_le` at a zonotope,
-`LinearSys.timeIntervalStep` at the exact interval matrices — the representation
+`LinearSys.timeInterval` at the exact interval matrices — the representation
 is named with its layer, `Real.Zonotope`, rather than left to the enclosing
 namespace to supply; a file that needs the scoped family notation `𝒵` or `ℐ`
 says `open CORALean.Real` and that line is the record of which layer it works at.

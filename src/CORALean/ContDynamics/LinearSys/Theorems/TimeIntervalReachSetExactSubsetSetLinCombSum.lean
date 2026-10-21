@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactEqUnion
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSetLinComb
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 @[expose] public section
@@ -11,12 +11,12 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 # The time-interval reachable set inside an exact sum, not a representation
 
 `timeIntervalReachSetExact_subset_inputSolution` encloses [1, Def. 3.2]'s `R̂(τ_k)` with
-`construct (Plus.plus (timeIntervalStep ...) (inputSolution ...))`: an operation whose only
+`construct (Plus.plus (timeInterval ...) (inputSolution ...))`: an operation whose only
 guarantee is `⊆`, so a bound on it cannot be assembled from bounds on the two operands
 (`exists_outer_without_supportBound`). This is the same content one step earlier, where `+` is the
 genuine Minkowski sum and `Set.linComb` the genuine hull, everything `LinearSys.timeIntervalBound`
-needs. Built the same way, off `timeIntervalStep_outer_setLinComb` in place of
-`timeIntervalStep_outer` and no further lift at the top.
+needs. Built the same way, off `timeInterval_outer_setLinComb` in place of
+`timeInterval_outer` and no further lift at the top.
 
 ## Inputs
 * `sys` – linear system
@@ -98,7 +98,7 @@ theorem LinearSys.timeIntervalReachSetExact_subset_setLinComb_sum (sys : LinearS
   rw [sub_zero] at hvoc
   rw [hvoc]
   exact Set.add_mem_add
-    (sys.timeIntervalStep_outer_setLinComb hr hε R₀ ht.1 ht.2 (Set.mem_image_of_mem _ traj.init))
+    (sys.timeInterval_outer_setLinComb hr hε R₀ ht.1 ht.2 (Set.mem_image_of_mem _ traj.init))
     (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd hRconv hRclosed
       hRbdd h0 ht.1 ht.2)
 

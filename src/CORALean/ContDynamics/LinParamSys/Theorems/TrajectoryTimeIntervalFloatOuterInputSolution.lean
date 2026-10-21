@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
-public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEqOfMeasurable
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
@@ -17,8 +17,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 /-!
 # A time-varying run with an input stays in the float step and input solution
 
-`IsTrajectory.timeIntervalStep_outer_inputSolution` at the float layer, with the sets the float
-`'constParam'` step computes: `timeIntervalStepFloat` and `inputSolutionFloat`. The run is one of
+`IsTrajectory.timeInterval_outer_varying_inputSolution` at the float layer, with the sets the float
+`'constParam'` step computes: `timeIntervalFloat` and `inputSolutionFloat`. The run is one of
 the box's nominal real system, so its Peano–Baker expansion is the real one; the homogeneous half
 goes through the float core (`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`). The
 input's `k`-th term lies in `t^{k+1}/(k+1)!` times the closed convex hull of the real `matPow` of
@@ -127,7 +127,7 @@ theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n)
 
 /-- A `'varParam'` run over a float box with an input is, at every time of
 the step, in the float time-interval step plus the float input solution. -/
-theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStepFloat_outer_inputSolution
+theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
@@ -135,7 +135,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStepFloat_outer_inputSolut
     (hT : Set.Icc 0 (toReal Δt) ⊆ T)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
     (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalStepFloat Δt η R₀)
+    x t ∈ construct (Plus.plus (sys.timeIntervalFloat Δt η R₀)
       (sys.inputSolutionFloat Δt η U)) := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr

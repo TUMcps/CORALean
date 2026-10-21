@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 # One window of `reachWrappingFree` holds the homogeneous flow over the whole window
 
 At a time `t ∈ [t_k, t_k + Δt]`, `e^{At} = e^{A t_k} e^{Aτ}` with
-`τ = t - t_k ∈ [0, Δt]`: `timeIntervalStep_outer_at` puts `e^{Aτ} x₀` in `R(τ_0)`,
+`τ = t - t_k ∈ [0, Δt]`: `timeInterval_outer_at` puts `e^{Aτ} x₀` in `R(τ_0)`,
 and `mtimes_outer` carries it to `R(τ_k) = e^{A t_k} R(τ_0)`. The window-level
 fact both `LinearSys.reachWrappingFree_outer` and `LinearSys.WithInput.reach_outer` are
 assembled from.
@@ -65,7 +65,7 @@ theorem LinearSys.reachStepkWrappingFree_outer (sys : LinearSys 𝕋 n) {Δt : �
       ⊆ construct (sys.reachStepkWrappingFree Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `τ = t - t_k ∈ [0, Δt]`, so `R(τ_0)` holds `e^{Aτ} x₀`
-  have hτ := sys.timeIntervalStep_outer_at hΔt hε X₀ (sub_nonneg.mpr hkt) htk
+  have hτ := sys.timeInterval_outer_at hΔt hε X₀ (sub_nonneg.mpr hkt) htk
     (Set.mem_image_of_mem _ hx₀)
   -- `e^{At} = e^{A t_k} e^{Aτ}`, both powers of the same matrix
   have hc : Commute (((k : ℝ) * Δt) • toRealMat sys.A) ((t - k * Δt) • toRealMat sys.A) :=

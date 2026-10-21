@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepFloatOuter
+public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalFloatOuter
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 
 @[expose] public section
@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 
 `LinearSys.reachWrappingFreeFloat_outer` at a member `A ∈ sys.A`, fixed over the
 whole flow: `e^{A(t_k + s)} x₀ = e^{A t_k}(e^{As} x₀)`, the inner factor in the
-first window by `timeIntervalStepFloat_outer` and the outer one carried by
+first window by `timeIntervalFloat_outer` and the outer one carried by
 `reachStepkFloat_outer`. The member is the same in both, which is the
 constant-parameter reading; a `IsConstTrajectory` with no input is such a flow.
 
@@ -71,8 +71,8 @@ theorem LinParamSys.reachFloat_outer (sys : LinParamSys ℐ[𝕋] n)
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun k hk A hA x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
   -- `e^{As} x₀` is in the first window, reduced or not
-  have hτ₀ := Reduce.reduce_outer (sys.timeIntervalStepFloat Δt η' X₀) ρ
-    (sys.timeIntervalStepFloat_outer hΔt hadm X₀ hA hx₀ hs0 hs)
+  have hτ₀ := Reduce.reduce_outer (sys.timeIntervalFloat Δt η' X₀) ρ
+    (sys.timeIntervalFloat_outer hΔt hadm X₀ hA hx₀ hs0 hs)
   have hwin := hget k hk
   simp only [List.getElem_range] at hwin
   -- `e^{A (t_k + s)} = e^{A t_k} e^{As}`, both powers of the same member

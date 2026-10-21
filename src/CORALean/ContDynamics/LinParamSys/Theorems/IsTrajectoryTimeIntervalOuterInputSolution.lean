@@ -96,7 +96,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution {sys 
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r (m + 2)) V)))
     (h0 : (0 : Vec ℝ n) ∈ construct V) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
+    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) V)) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the frozen matrix names the point system where `inputReach` lives

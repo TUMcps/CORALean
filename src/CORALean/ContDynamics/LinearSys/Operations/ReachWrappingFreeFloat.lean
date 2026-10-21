@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.Global.Float.ToRat
@@ -14,7 +14,7 @@ public import CORALean.Global.Float.ToRat
 # Wrapping-free reachability in floats: `R(τ_k) = [e^{A t_k}] R(τ_0)`
 
 [1, Alg. 1] without an input, computed in `𝕋`, CORA's `linAlg = 'wrapping-free'`, at `params` and
-`options` read as `reachFloat` reads them: the first window is `timeIntervalStepFloat`, reduced by
+`options` read as `reachFloat` reads them: the first window is `timeIntervalFloat`, reduced by
 Girard's rule to order `ρ`, and window `k < N` is that one set carried by an enclosure of
 `e^{A t_k}` taken at `t_k` directly (`reachStepkWrappingFreeFloat`), so no window's error
 compounds into the next one's. `η` is raised with `reachOrderFloat` to the first order from
@@ -64,7 +64,7 @@ def LinearSys.reachWrappingFreeFloat (sys : LinearSys 𝕋 n)
   let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let Rτ₀ := Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀) ρ   -- R(τ_0), to order ρ
+  let Rτ₀ := Reduce.reduce (sys.timeIntervalFloat Δt η' X₀) ρ   -- R(τ_0), to order ρ
   (List.range N).mapM (sys.reachStepkWrappingFreeFloat Δt η' Rτ₀)     -- R(τ_k) = [e^{A t_k}] R(τ_0)
 
 end CORALean

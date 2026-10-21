@@ -54,7 +54,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution {sys : 
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
+    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer hr hT hε ht0 htr hbdd
     (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 
 @[expose] public section
@@ -11,9 +11,9 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 
 At `t ∈ τ_k = [k Δt, (k + 1) Δt]`, `e^{At} = e^{A(t - kΔt)} e^{A k Δt}`: the
 inner point `e^{A k Δt} x₀` is in `timePoint Δt X₀ k` by `timePoint_outer`, and
-`timeIntervalStep_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set, puts
+`timeInterval_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set, puts
 `e^{As} (e^{A k Δt} x₀) = e^{At} x₀` in `reachStepk Δt η X₀ k =
-timeIntervalStep Δt η (timePoint Δt X₀ k)`. The statement is
+timeInterval Δt η (timePoint Δt X₀ k)`. The statement is
 `reachStepkWrappingFree_outer`'s, word for word.
 
 ## Inputs
@@ -70,8 +70,8 @@ theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `e^{A k Δt} x₀` is in `timePoint Δt X₀ k`
   have hpoint := sys.timePoint_outer Δt X₀ k (Set.mem_image_of_mem _ hx₀)
-  -- `timeIntervalStep_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set
-  have hstep := sys.timeIntervalStep_outer_at hΔt hε (sys.timePoint Δt X₀ k)
+  -- `timeInterval_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set
+  have hstep := sys.timeInterval_outer_at hΔt hε (sys.timePoint Δt X₀ k)
     (t := t - k * Δt) (by linarith) htk (Set.mem_image_of_mem _ hpoint)
   -- `e^{At} = e^{A(t - kΔt)} e^{A k Δt}`, both powers of the same matrix
   have hc : Commute ((t - (k : ℝ) * Δt) • toRealMat sys.A) (((k : ℝ) * Δt) • toRealMat sys.A) :=
@@ -84,9 +84,9 @@ theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     rw [← add_smul, hkey] at h
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
-  -- `reachStepk Δt (m + 2) X₀ k` is `timeIntervalStep Δt (m + 2) (timePoint Δt X₀ k)`
+  -- `reachStepk Δt (m + 2) X₀ k` is `timeInterval Δt (m + 2) (timePoint Δt X₀ k)`
   show exp (t • toRealMat sys.A) *ᵥ x₀
-    ∈ construct (sys.timeIntervalStep Δt (m + 2) (sys.timePoint Δt X₀ k))
+    ∈ construct (sys.timeInterval Δt (m + 2) (sys.timePoint Δt X₀ k))
   rw [hexp]
   exact hstep
 
