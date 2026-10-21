@@ -56,7 +56,7 @@
 <rect x="150" y="170" width="12" height="12" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="180">not yet</text>
 <text x="150" y="188" font-size="10" fill="#888">+n: out of scope, not in the bar</text>
-<text x="150" y="200" font-weight="bold">(b) Formalized paper statements</text>
+<text x="150" y="200" font-weight="bold">(b) Formalized paper theorems</text>
 <text x="142" y="219" text-anchor="end">Paper results</text>
 <rect x="150.0" y="208" width="325.6" height="14" fill="rgb(120,197,127)"/>
 <text x="312.8" y="219" text-anchor="middle" font-size="9" fill="#000">816</text>
