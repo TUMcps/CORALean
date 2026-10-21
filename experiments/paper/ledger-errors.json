@@ -472,5 +472,15 @@
       "description": "strict $>$ for every row: an unselected row reads $0>0$, so the program is infeasible for two or more halfspaces",
       "fix": "MilpCorrectedIff.lean"
     }
+  },
+  "2026/koller-iclr-latent-space": {
+    "Eq. 9": {
+      "description": "the falsification vertex $\\mathrm{sign}(A_{(i,\\cdot)} G_y)$ maximizes the row, the farthest from the unsafe halfspace; $-\\mathrm{sign}$",
+      "fix": "ZonotackFactorsIsLeast.lean"
+    },
+    "Eq. 13": {
+      "description": "signs on $G^-$ fit $G^- \\ge 0$, while Prop. 3 needs $G^- \\le 0$; the printed interval can be empty",
+      "fix": "IntervalOfFactorBoundsOuter.lean"
+    }
   }
 }

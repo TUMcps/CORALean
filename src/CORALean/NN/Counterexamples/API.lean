@@ -3,6 +3,7 @@ module
 public import CORALean.NN.Counterexamples.MinSuffExplanation
 public import CORALean.NN.Counterexamples.SetBasedLossGradient
 public import CORALean.NN.Counterexamples.SmoothNetworkCora
+public import CORALean.NN.Counterexamples.EncloseUnsafeInputs
 
 /-!
 # Counterexamples of `NN`, collected

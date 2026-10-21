@@ -204,6 +204,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsMaiga
 public import CORALean.ContSet.Zonotope.Real.Operations.Mpower
 public import CORALean.ContSet.Zonotope.Real.Operations.Powers
 public import CORALean.ContSet.Zonotope.Real.Operations.Vertices
+public import CORALean.ContSet.Zonotope.Real.Operations.ZonotackFactors
 
 /-!
 # What `Zonotope` computes

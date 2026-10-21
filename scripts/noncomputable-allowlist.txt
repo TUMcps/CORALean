@@ -317,6 +317,9 @@ NonlinearSys.WithSteps.reachUnion  real-layer: the `Reach` union at supplied cer
 NonlinearSysDT.reachCost  cost: an asserted running cost under `Complexity/Time/`, never meant to compute
 Schedule.refineWorst  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 Schedule.refineWorstNeurons  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
+SetBasedNet.encloseUnsafeInputs  real-layer: an ℝ-only part of NN (the zonotope verification of a set-based network over ℝ), with no scalar-generic form yet
+SetBasedNet.unsafeInputConstraints  real-layer: an ℝ-only part of NN (the zonotope verification of a set-based network over ℝ), with no scalar-generic form yet
+SetBasedNet.verify  real-layer: an ℝ-only part of NN (the zonotope verification of a set-based network over ℝ), with no scalar-generic form yet
 abstrErr  real-layer: [Kochdumper 2020, Alg. 2]'s error over `Real.PolyZonotope` at real `D`, `E`; the float step's counterpart is `NonlinearSys.FloatHessModel.abstrErrPolyFloat` (`Encloses.abstrErrPolyFloat_outer`)
 abstrErrLin  real-layer: the Hessian box of [Althoff 2010, Prop. 3.7] at a real `H`; runs in floats as `NonlinearSys.FloatHessModel.hessRemainder` (`Encloses.hessRemainder_abstractionError`)
 abstrSolInf  spec: the exact `Set` the abstraction error sums to, defined by a `HasSum`

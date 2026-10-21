@@ -32,6 +32,7 @@ public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCoraSegmentCrash
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitFirstGenCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.VerticesMatZonotopeCora
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.SignBoundaryPoint
 
 /-!
 # Counterexamples of `Zonotope.Real`, collected

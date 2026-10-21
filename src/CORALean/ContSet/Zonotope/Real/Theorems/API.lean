@@ -420,6 +420,9 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PowersOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.VecRepresentsa
 public import CORALean.ContSet.Zonotope.Real.Theorems.VecVolumeEqOfHEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.VecVolumeEqZero
+public import CORALean.ContSet.Zonotope.Real.Theorems.InterIneqsEqEmptyOfRow
+public import CORALean.ContSet.Zonotope.Real.Theorems.NegSumAbsLeSumMul
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotackFactorsIsLeast
 
 /-!
 # What `Zonotope` guarantees

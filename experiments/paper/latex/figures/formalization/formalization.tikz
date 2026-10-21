@@ -39,14 +39,14 @@
 \addlegendentry{looser bound only}
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
-\begin{scope}\clip([yshift=-5.5pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:666.268,0) -- ([yshift=5.5pt]axis cs:666.268,0) [sharp corners] -- ([yshift=5.5pt]axis cs:0,0) -- cycle;
+\begin{scope}\clip([yshift=-5.5pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:667.268,0) -- ([yshift=5.5pt]axis cs:667.268,0) [sharp corners] -- ([yshift=5.5pt]axis cs:0,0) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:575,0);
 \fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:575,0) rectangle ([yshift=5.5pt]axis cs:614,0);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:614,0) rectangle ([yshift=5.5pt]axis cs:655,0);
-\fill[white] ([yshift=-5.5pt]axis cs:655,0) rectangle ([yshift=5.5pt]axis cs:666.268,0);
+\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:614,0) rectangle ([yshift=5.5pt]axis cs:656,0);
+\fill[white] ([yshift=-5.5pt]axis cs:656,0) rectangle ([yshift=5.5pt]axis cs:667.268,0);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:666.268,0) -- ([yshift=5.5pt]axis cs:666.268,0) [sharp corners] -- ([yshift=5.5pt]axis cs:0,0) -- cycle;
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:666.268,0) {\hspace{0em}\textcolor{black!40}{+247}};
+\draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:667.268,0) -- ([yshift=5.5pt]axis cs:667.268,0) [sharp corners] -- ([yshift=5.5pt]axis cs:0,0) -- cycle;
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:667.268,0) {\hspace{0em}\textcolor{black!40}{+246}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:106.268,1) -- ([yshift=5.5pt]axis cs:106.268,1) [sharp corners] -- ([yshift=5.5pt]axis cs:0,1) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,1) rectangle ([yshift=5.5pt]axis cs:72,1);
 \fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:72,1) rectangle ([yshift=5.5pt]axis cs:95,1);
@@ -61,12 +61,12 @@
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:61.5352,2) -- ([yshift=5.5pt]axis cs:61.5352,2) [sharp corners] -- ([yshift=5.5pt]axis cs:0,2) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:61.5352,2) {\hspace{0em}\textcolor{black!40}{+44}};
-\begin{scope}\clip([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:63.2676,3) -- ([yshift=5.5pt]axis cs:63.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
-\fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,3) rectangle ([yshift=5.5pt]axis cs:52,3);
-\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:52,3) rectangle ([yshift=5.5pt]axis cs:63.2676,3);
+\begin{scope}\clip([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:62.2676,3) -- ([yshift=5.5pt]axis cs:62.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
+\fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,3) rectangle ([yshift=5.5pt]axis cs:51,3);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:51,3) rectangle ([yshift=5.5pt]axis cs:62.2676,3);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:63.2676,3) -- ([yshift=5.5pt]axis cs:63.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:63.2676,3) {\hspace{0em}\textcolor{black!40}{+45}};
+\draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:62.2676,3) -- ([yshift=5.5pt]axis cs:62.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:62.2676,3) {\hspace{0em}\textcolor{black!40}{+45}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:189,4) -- ([yshift=5.5pt]axis cs:189,4) [sharp corners] -- ([yshift=5.5pt]axis cs:0,4) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,4) rectangle ([yshift=5.5pt]axis cs:20,4);
 \fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:20,4) rectangle ([yshift=5.5pt]axis cs:168,4);
@@ -105,7 +105,7 @@
     yticklabel style={font=\scriptsize},
     title={(b) Formalized paper statements},
     title style={at={(0.5,1)}, xshift=0.392724cm, yshift=-2mm, anchor=south, font=\footnotesize},
-    xmax=1292,
+    xmax=1303,
     legend columns=3, legend to name=resultlegend,
     legend style={legend cell align=left, align=left, draw=white!15!black, rounded corners, font=\scriptsize, inner sep=1.5pt, /tikz/every even column/.append style={column sep=0.5ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.2pt, rounded corners=1pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
@@ -122,21 +122,21 @@
 \addlegendentry{false}
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
-\begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1293.26,0);
-\fill[CORAcolorSafe] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:813,0);
-\fill[CORAcolorUnknown] ([yshift=-5.5pt]axis cs:813,0) rectangle ([yshift=5.5pt]axis cs:848,0);
-\fill[CORAcolorHighlight1] ([yshift=-5.5pt]axis cs:848,0) rectangle ([yshift=5.5pt]axis cs:1102,0);
-\fill[CORAcolorUnsafe] ([yshift=-5.5pt]axis cs:1102,0) rectangle ([yshift=5.5pt]axis cs:1208,0);
-\fill[CORAcolorDarkRed] ([yshift=-5.5pt]axis cs:1208,0) rectangle ([yshift=5.5pt]axis cs:1220.26,0);
-\fill[white] ([yshift=-5.5pt]axis cs:1220.26,0) rectangle ([yshift=5.5pt]axis cs:1293.26,0);
+\begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1304.36,0);
+\fill[CORAcolorSafe] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:816,0);
+\fill[CORAcolorUnknown] ([yshift=-5.5pt]axis cs:816,0) rectangle ([yshift=5.5pt]axis cs:851,0);
+\fill[CORAcolorHighlight1] ([yshift=-5.5pt]axis cs:851,0) rectangle ([yshift=5.5pt]axis cs:1111,0);
+\fill[CORAcolorUnsafe] ([yshift=-5.5pt]axis cs:1111,0) rectangle ([yshift=5.5pt]axis cs:1219,0);
+\fill[CORAcolorDarkRed] ([yshift=-5.5pt]axis cs:1219,0) rectangle ([yshift=5.5pt]axis cs:1231.36,0);
+\fill[white] ([yshift=-5.5pt]axis cs:1231.36,0) rectangle ([yshift=5.5pt]axis cs:1304.36,0);
 \end{scope}
-\draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1293.26,0);
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:1293.26,0) {\hspace{0em}\textcolor{black!40}{+1142}};
+\draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1304.36,0);
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:1304.36,0) {\hspace{0em}\textcolor{black!40}{+1164}};
 \end{axis}
-\begin{axis}[at={(results.south west)}, anchor=south west, height=0.55cm, width=4.22cm, xmin=0, xmax=1292, enlarge y limits={abs=0.7}, hide axis, clip=false]
+\begin{axis}[at={(results.south west)}, anchor=south west, height=0.55cm, width=4.22cm, xmin=0, xmax=1303, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:406.5,0) {813};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:975,0) {254};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:408,0) {816};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:981,0) {260};
 \end{axis}
 
 \begin{axis}[name=theorems,
@@ -155,7 +155,7 @@
     yticklabel style={font=\scriptsize},
     title={(c) Lean theorems},
     title style={at={(0.5,1)}, yshift=-2mm, anchor=south, font=\footnotesize},
-    xmax=9004,
+    xmax=9024,
     legend columns=2, legend to name=theoremlegend,
     legend style={legend cell align=left, align=left, draw=white!15!black, rounded corners, font=\scriptsize, inner sep=1.5pt, /tikz/every even column/.append style={column sep=0.5ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.2pt, rounded corners=1pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
@@ -168,20 +168,20 @@
 \addlegendentry{float refinements}
 \addlegendimage{fill=CORAcolorPurple}
 \addlegendentry{proof helpers}
-\begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:9004,0);
-\fill[CORAcolorBlue] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1842,0);
-\fill[CORAcolorBlue!66.67!CORAcolorPurple] ([yshift=-5.5pt]axis cs:1842,0) rectangle ([yshift=5.5pt]axis cs:5245,0);
-\fill[CORAcolorBlue!33.33!CORAcolorPurple] ([yshift=-5.5pt]axis cs:5245,0) rectangle ([yshift=5.5pt]axis cs:7214,0);
-\fill[CORAcolorPurple] ([yshift=-5.5pt]axis cs:7214,0) rectangle ([yshift=5.5pt]axis cs:9004,0);
+\begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:9024,0);
+\fill[CORAcolorBlue] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1859,0);
+\fill[CORAcolorBlue!66.67!CORAcolorPurple] ([yshift=-5.5pt]axis cs:1859,0) rectangle ([yshift=5.5pt]axis cs:5263,0);
+\fill[CORAcolorBlue!33.33!CORAcolorPurple] ([yshift=-5.5pt]axis cs:5263,0) rectangle ([yshift=5.5pt]axis cs:7232,0);
+\fill[CORAcolorPurple] ([yshift=-5.5pt]axis cs:7232,0) rectangle ([yshift=5.5pt]axis cs:9024,0);
 \end{scope}
-\draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:9004,0);
+\draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:9024,0);
 \end{axis}
-\begin{axis}[at={(theorems.south west)}, anchor=south west, height=0.55cm, width=5.00cm, xmin=0, xmax=9004, enlarge y limits={abs=0.7}, hide axis, clip=false]
+\begin{axis}[at={(theorems.south west)}, anchor=south west, height=0.55cm, width=5.00cm, xmin=0, xmax=9024, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:921,0) {1842};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3543.5,0) {3403};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:6229.5,0) {1969};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:8109,0) {1790};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:929.5,0) {1859};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3561,0) {3404};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:6247.5,0) {1969};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:8128,0) {1792};
 \end{axis}
 
 \node[anchor=north, inner sep=0pt] at ([xshift=-1.275cm, yshift=-0.6cm]methods.south) {\ref*{coveragelegend}};

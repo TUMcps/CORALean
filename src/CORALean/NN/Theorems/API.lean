@@ -118,6 +118,11 @@ public import CORALean.NN.Theorems.ReluDerEnclosureEncloses
 public import CORALean.NN.Theorems.ScalarEnclosesVecMem
 public import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
 public import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
+public import CORALean.NN.Theorems.EncloseUnsafeInputsOuter
+public import CORALean.NN.Theorems.EncloseUnsafeInputsSound
+public import CORALean.NN.Theorems.ForwardLatent
+public import CORALean.NN.Theorems.LeForwardH
+public import CORALean.NN.Theorems.VerifySound
 
 /-!
 # What a network's enclosure guarantees, collected
