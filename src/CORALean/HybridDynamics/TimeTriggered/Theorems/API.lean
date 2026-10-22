@@ -5,13 +5,10 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.IsExecFlowTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FinalConversionContOverapprox
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FinalConversionNotErrorLt
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsSplit
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzPieceEq
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionConstOfZero
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionLocal
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionClockLe
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionEqOrbit

@@ -1,6 +1,11 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 public import CORALean.NN.Graph.Operations.EvalLayers
@@ -17,7 +22,7 @@ point of the feature set, is a point of `gcnActSteps`. The invariant carried thr
 one factor vector `a` reaching `P` and `H` together, which is what keeps an edge identified across
 steps: a convolution is the product at `a` (`gcnShared_point`), an activation enclosure adds
 coefficients `β` for its new independent generators (`ActLayer.Sound`), and `dependent` makes them
-the factors after the old ones (`dependent_point`) while `P` is padded by as many, so it
+the factors after the old ones (`aux_dependent_point`) while `P` is padded by as many, so it
 still reads `a`. Induction on the number of steps, the widths and weights generalized.
 
 ## Inputs
@@ -52,6 +57,30 @@ variable {N : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+/-- The point of `dependent` at `(a, b)` is the old point at `a` plus the weighted independent
+generators. -/
+theorem PolyZonotope.aux_dependent_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ)
+    (b : Fin pZ.q → ℝ) : -- --- CONCL ---
+    pZ.dependent.point (Fin.append a b) = pZ.point a + ∑ j, b j • pZ.GI j := by -- --- PROOF ---
+  show pZ.c + ∑ i : Fin (pZ.h + pZ.q), PolyZonotope.monomial
+      (PolyZonotope.plusE pZ.E (PolyZonotope.identE pZ.q)) (Fin.append a b) i
+        • Fin.append pZ.G pZ.GI i = pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
+          + ∑ j, b j • pZ.GI j
+  rw [Fin.sum_univ_add, add_assoc]
+  congr 2
+  · exact Finset.sum_congr rfl fun i _ => by
+      rw [PolyZonotope.monomial_plusE_left, Fin.append_left]
+      simp only [Fin.append_left]
+  · exact Finset.sum_congr rfl fun j _ => by
+      rw [PolyZonotope.monomial_plusE_right, Fin.append_right, PolyZonotope.monomial_identE]
+      simp only [Fin.append_right]
+
+end
+
 
 /-- Appending after a cast of the first block is casting the append. -/
 theorem aux_append_cast {m m' n : ℕ} (e : m' = m) (a : Fin m → ℝ) (β : Fin n → ℝ)
@@ -105,7 +134,7 @@ theorem GNN.evalLayers_mem_gcnActSteps (L : ℕ) : -- --- CONCL ---
               rw [hpe]) k)) = (Pstar * state * W 0).map (σ 0) := by
         refine Eq.trans (congrArg (fun f => (((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent
           ).point f) (aux_append_cast hpe a β _)) ?_
-        rw [PolyZonotope.dependent_point]
+        rw [PolyZonotope.aux_dependent_point]
         exact hact.symm
       exact hpt
 

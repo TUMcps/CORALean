@@ -4,8 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
 public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactConvex
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 
 @[expose] public section
 

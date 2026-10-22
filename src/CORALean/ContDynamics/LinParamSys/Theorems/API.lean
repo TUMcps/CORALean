@@ -21,7 +21,6 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionZonoOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.SmulPowMemInputTermZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryNormDriftLe
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryNormLe
@@ -41,14 +40,12 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatInputOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
-public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatCheckedEqSome
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsMeasurableParam
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEq
-public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsMemExpIntervalEnclosure
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimePointOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeIntervalOuterVarying
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEqOfMeasurable

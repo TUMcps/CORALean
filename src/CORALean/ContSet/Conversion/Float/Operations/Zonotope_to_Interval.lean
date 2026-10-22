@@ -39,6 +39,8 @@ def Zonotope.interval (Z : Zonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
   inf := fun i => addDown (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.inf i)
   sup := fun i => addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.sup i)
 
+/-- The box of a zonotope of matrices: the center plus and minus the sum of the absolute generators,
+widened by the error box. -/
 def Zonotope.matInterval {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) : Interval (Mat 𝕋 m n) :=
   let r : Mat 𝕋 m n := fun i j => sumUp fun k => absolute (Z.G k i j)   -- Σ |G_k|
   ⟨fun i j => addDown (subDown (Z.c i j) (r i j)) (Z.I_error.inf i j),

@@ -25,6 +25,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- `w` lists the entries analyzed on a way from node `i` down to a leaf of the tree given by
+`children`. -/
 inductive ReachSetAnalyzer.Branch (children : ℕ → List ℕ) : ℕ → List ℕ → Prop
   | leaf (i : ℕ) : children i = [] → Branch children i (if i ≠ 0 then [i] else [])
   | node (i j : ℕ) (w : List ℕ) : j ∈ children i → Branch children j w →

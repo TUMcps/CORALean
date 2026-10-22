@@ -6,7 +6,6 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.CellIndicesCellSegme
 public import CORALean.DiscrDynamics.GridPartition.Theorems.CellIntervalsCover
 public import CORALean.DiscrDynamics.GridPartition.Theorems.CellPolytopesExact
 public import CORALean.DiscrDynamics.GridPartition.Theorems.CellSegmentsCellIndices
-public import CORALean.DiscrDynamics.GridPartition.Theorems.CellSubsetIntervals
 public import CORALean.DiscrDynamics.GridPartition.Theorems.CellZonotopesExact
 public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCellsExact
 public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCellsOfVolumeLe
@@ -26,7 +25,6 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.OfDividersIntervals
 public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalCellWidth
 public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalIntervals
 public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalWellFormed
-public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iI2s
 public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iMem
 public import CORALean.DiscrDynamics.GridPartition.Theorems.ZeroMemIntersectingCells
 

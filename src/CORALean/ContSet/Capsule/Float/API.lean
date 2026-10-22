@@ -3,8 +3,6 @@ module
 public import CORALean.ContSet.Capsule.Float.Operations.PiStep
 public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
 public import CORALean.ContSet.Capsule.Float.Operations.Vertices
-public import CORALean.ContSet.Capsule.Float.Theorems.PiStepMem
-public import CORALean.ContSet.Capsule.Float.Theorems.ArcBoxMem
 public import CORALean.ContSet.Capsule.Float.Theorems.VerticesOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.VerticesPoint
 public import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint

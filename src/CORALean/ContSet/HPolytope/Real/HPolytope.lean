@@ -40,6 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A polytope given by halfspaces: inequalities `A x ≤ b` and equalities `Ae x = be`. -/
 structure HPolytope (α : Type) [AddCommGroup α] [Module ℝ α] where
   m : ℕ
   A : Fin m → (α →ₗ[ℝ] ℝ)
@@ -48,6 +49,8 @@ structure HPolytope (α : Type) [AddCommGroup α] [Module ℝ α] where
   Ae : Fin me → (α →ₗ[ℝ] ℝ)
   be : Fin me → ℝ
 
+/-- The set a halfspace description denotes: the points satisfying all inequalities and all
+equalities. -/
 def HPolytope.construct (P : HPolytope α) : Set α :=
   {x | (∀ i, P.A i x ≤ P.b i) ∧ ∀ i, P.Ae i x = P.be i}
 

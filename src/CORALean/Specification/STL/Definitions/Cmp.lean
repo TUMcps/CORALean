@@ -24,6 +24,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The comparison operators of an STL predicate: `<`, `≤`, `>`, `≥`. -/
 inductive STL.Cmp
   | lt
   | le

@@ -49,8 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The discrete-time system a step of `Δt` leaves behind, `e^{AΔt}` enclosed in
 floats over every `A ∈ sys.A` at Taylor order `η`, as the loop of [1] uses it. -/
 def LinParamSys.discretizeEnclosureFloat
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) (Δt : 𝕋) (η : ℕ) :
-    LinParamSysDT (fun m n => Interval (Mat 𝕋 m n)) n :=
+    (sys : LinParamSys ℐ[𝕋] n) (Δt : 𝕋) (η : ℕ) :
+    LinParamSysDT ℐ[𝕋] n :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                         -- [e^{AΔt}]
   .canonical eAΔt                                                   -- x_{k+1} ∈ [e^{AΔt}] x_k + u_k
 

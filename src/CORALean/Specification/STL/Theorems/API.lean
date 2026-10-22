@@ -2,17 +2,13 @@ module
 
 public import CORALean.Specification.STL.Theorems.BlocksDisjoint
 public import CORALean.Specification.STL.Theorems.BranchHoldsMerge
-public import CORALean.Specification.STL.Theorems.BranchHoldsShift
 public import CORALean.Specification.STL.Theorems.CNFSatAppend
 public import CORALean.Specification.STL.Theorems.CNFSatNext
 public import CORALean.Specification.STL.Theorems.CNFSatOr
 public import CORALean.Specification.STL.Theorems.CNFSatToFormula
 public import CORALean.Specification.STL.Theorems.CNFSatUpsilon
 public import CORALean.Specification.STL.Theorems.CNFUpsilonSoundComplete
-public import CORALean.Specification.STL.Theorems.ClauseHoldsInsert
 public import CORALean.Specification.STL.Theorems.ClauseHoldsMerge
-public import CORALean.Specification.STL.Theorems.ClauseNodupInsert
-public import CORALean.Specification.STL.Theorems.ClauseNodupMerge
 public import CORALean.Specification.STL.Theorems.CompSound
 public import CORALean.Specification.STL.Theorems.ExistsNnf
 public import CORALean.Specification.STL.Theorems.FinOpenNextEquiv
@@ -58,7 +54,6 @@ public import CORALean.Specification.STL.Theorems.STLSatBigAnd
 public import CORALean.Specification.STL.Theorems.STLSatBigOr
 public import CORALean.Specification.STL.Theorems.SampNodupToCNF
 public import CORALean.Specification.STL.Theorems.SampSatToCNF
-public import CORALean.Specification.STL.Theorems.SampToFormulaScale
 public import CORALean.Specification.STL.Theorems.SatAnd
 public import CORALean.Specification.STL.Theorems.SatNext
 public import CORALean.Specification.STL.Theorems.SatOfPform
@@ -124,11 +119,9 @@ public import CORALean.Specification.STL.Theorems.SatNot
 public import CORALean.Specification.STL.Theorems.SatUntil
 public import CORALean.Specification.STL.Theorems.TreeExistsConstraintsOfIsLinearPredicate
 public import CORALean.Specification.STL.Theorems.TreeIsClauseOfMemGetClausesCnf
-public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfLoop
-public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfRewrite
+public import CORALean.Specification.STL.Theorems.TreeIsCnfConjunctiveNormalForm
 public import CORALean.Specification.STL.Theorems.TreeIsCubeOfMemGetClausesDnf
-public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfLoop
-public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfRewrite
+public import CORALean.Specification.STL.Theorems.TreeIsDnfDisjunctiveNormalForm
 public import CORALean.Specification.STL.Theorems.TreeIsNextCombinedCombineNext
 public import CORALean.Specification.STL.Theorems.TreeIsPredicateOfIsLinearPredicate
 public import CORALean.Specification.STL.Theorems.TreeLinearMapApplyEqSum
@@ -137,8 +130,6 @@ public import CORALean.Specification.STL.Theorems.TreeMaximumTimeFromOfNotTempor
 public import CORALean.Specification.STL.Theorems.TreeMemAssignIdentifiersFrom
 public import CORALean.Specification.STL.Theorems.TreeMinimumTimeFromAdd
 public import CORALean.Specification.STL.Theorems.TreeMinimumTimeFromOfNotTemporal
-public import CORALean.Specification.STL.Theorems.TreeSatCnfLoop
-public import CORALean.Specification.STL.Theorems.TreeSatCnfRewrite
 public import CORALean.Specification.STL.Theorems.TreeSatCombineNext
 public import CORALean.Specification.STL.Theorems.TreeSatCompare
 public import CORALean.Specification.STL.Theorems.TreeSatCongrGetVariables
@@ -149,9 +140,7 @@ public import CORALean.Specification.STL.Theorems.TreeSatConjoin
 public import CORALean.Specification.STL.Theorems.TreeSatConjunctiveNormalForm
 public import CORALean.Specification.STL.Theorems.TreeSatDesugar
 public import CORALean.Specification.STL.Theorems.TreeSatDisjunctiveNormalForm
-public import CORALean.Specification.STL.Theorems.TreeSatDnfLoop
-public import CORALean.Specification.STL.Theorems.TreeSatDnfRewrite
-public import CORALean.Specification.STL.Theorems.TreeSatEliminateTrueFalseWith
+public import CORALean.Specification.STL.Theorems.TreeSatEliminateTrueFalse
 public import CORALean.Specification.STL.Theorems.TreeSatGetClausesCnf
 public import CORALean.Specification.STL.Theorems.TreeSatGetClausesDnf
 public import CORALean.Specification.STL.Theorems.TreeSatHalfspace2set

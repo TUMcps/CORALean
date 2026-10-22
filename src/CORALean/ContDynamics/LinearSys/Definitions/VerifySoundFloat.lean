@@ -38,6 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- What the float verification algorithm needs of the functions passed in: the same enclosure and
+distance-sign properties as `VerifySound`, read through the float-to-real map. -/
 structure LinearSys.VerifySoundFloat (Reach : Set (Vec ℝ n)) (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
     (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
     (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋) : Prop where

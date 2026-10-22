@@ -26,7 +26,6 @@ public import CORALean.ContSet.Taylm.Real.Operations.Exp
 public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
 public import CORALean.ContSet.Taylm.Real.Operations.GoLowerBound
 public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
-public import CORALean.ContSet.Taylm.Real.Operations.Hessian
 public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
 public import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
 public import CORALean.ContSet.Taylm.Real.Operations.Intrinsic

@@ -72,6 +72,8 @@ structure Outcome where
   out : Bool := false
   literalFalse : Bool := false
 
+/-- Adds one sample's outcome to the tally: the sample count, the out-of-range and literally false
+counts, the failures by kind, and the first failure message. -/
 def Stat.add (s : Stat) (o : Outcome) : Stat :=
   let count k := (o.fails.filter (·.1 == k)).length
   { s with
@@ -86,6 +88,7 @@ def Stat.add (s : Stat) (o : Outcome) : Stat :=
       | none, (k, msg) :: _ => some s!"[{k}] {msg}"
       | f, _ => f }
 
+/-- The number of failures in a tally: unsound, loose, range and value. -/
 def Stat.failures (s : Stat) : Nat := s.unsound + s.loose + s.range + s.value
 
 /-- A directed operation at `a` `b` against the model: `lo`, `hi` are the soft-float's round-down

@@ -32,6 +32,8 @@ open ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A neural network: the empty chain, or a layer of any `Enclose` kind in front of a network, the
+dimensions chaining. -/
 inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : (n m : ℕ) → Type 1 where
   | output {n : ℕ} : NeuralNetwork S n n
   | layer {n m k : ℕ} {L : ℕ → ℕ → Type} [inst : Enclose L S] (curr : L n m)

@@ -3,7 +3,8 @@ module
 public import CORALean.Global.Cost
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpGreedyCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.RelaxWidthMultiCostMono
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDiffCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 
 @[expose] public section
@@ -42,12 +43,20 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- Monotone in the factor count. -/
+theorem PolyZonotope.aux_relaxWidthMultiCost_mono {p p' : ℕ} (h : p ≤ p') :
+    PolyZonotope.aux_relaxWidthMultiCost p ≤ PolyZonotope.aux_relaxWidthMultiCost p' := by
+  simp only [PolyZonotope.aux_relaxWidthMultiCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul]
+  have := Nat.mul_le_mul_right PolyZonotope.eDiffCost.ops h
+  omega
+
+
 /-- The merge is monotone in the factor count and the kept and independent counts. -/
 theorem PolyZonotope.aux_relaxExpMultiCost_mono {p p' d d' q q' : ℕ} (n : ℕ) (h : p ≤ p')
     (hd : d ≤ d') (hq : q ≤ q') :
     PolyZonotope.aux_relaxExpMultiCost n p d q ≤
       PolyZonotope.aux_relaxExpMultiCost n p' d' q' := by
-  have := Cost.le_iff.mp (PolyZonotope.relaxWidthMultiCost_mono h)
+  have := Cost.le_iff.mp (PolyZonotope.aux_relaxWidthMultiCost_mono h)
   simp only [PolyZonotope.aux_relaxExpMultiCost, Cost.le_iff, Cost.ops_add] at this ⊢
   have g : n * (d + q + 3) + p * (d + 1) ≤ n * (d' + q' + 3) + p' * (d' + 1) := by gcongr
   omega

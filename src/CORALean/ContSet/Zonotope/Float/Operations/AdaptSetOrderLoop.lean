@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

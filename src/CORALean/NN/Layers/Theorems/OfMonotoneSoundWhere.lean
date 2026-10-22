@@ -45,12 +45,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 the box's left end, the upper one at its right. -/
 theorem Relaxation.ofMonotone_soundWhere {E : Enclosure 𝕋} {P : 𝕋 → 𝕋 → Prop}
     (hσ : ∀ l u, P l u → Monotone σ)
-    (hlo : ∀ l u, P l u → toReal (E.lo l) ≤ σ (toReal l))
-    (hhi : ∀ l u, P l u → σ (toReal u) ≤ toReal (E.hi u)) : -- --- CONCL ---
+    (hlo : ∀ l u, P l u → toReal (E.enclose l).inf ≤ σ (toReal l))
+    (hhi : ∀ l u, P l u → σ (toReal u) ≤ toReal (E.enclose u).sup) : -- --- CONCL ---
     (Relaxation.ofMonotone E).SoundWhere σ P := by -- --- PROOF ---
   refine ⟨fun {l u t} hP hl hu => ?_⟩
-  have hlo' : toReal (E.lo l) ≤ σ t := le_trans (hlo l u hP) (hσ l u hP hl)
-  have hhi' : σ t ≤ toReal (E.hi u) := le_trans (hσ l u hP hu) (hhi l u hP)
+  have hlo' : toReal (E.enclose l).inf ≤ σ t := le_trans (hlo l u hP) (hσ l u hP hl)
+  have hhi' : σ t ≤ toReal (E.enclose u).sup := le_trans (hσ l u hP hu) (hhi l u hP)
   have h := abs_sub_le_spread (c := E.mid l u) hlo' hhi'
   show |σ t - (toReal (FloatOps.zero : 𝕋) * t + toReal (E.mid l u))| ≤ _
   rw [toReal_zero, zero_mul, zero_add]

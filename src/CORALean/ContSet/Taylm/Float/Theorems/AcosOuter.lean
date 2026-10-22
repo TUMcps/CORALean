@@ -5,7 +5,8 @@ public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
 public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinCoefMem
 public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
-public import CORALean.Global.IteratedDerivArccos
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 
 @[expose] public section
 
@@ -13,7 +14,7 @@ public import CORALean.Global.IteratedDerivArccos
 # `Taylm.acos` encloses `arccos ∘ f`
 
 `Taylm.taylor_outer` at `arccos`: the zeroth coefficient between `acosDown` and `acosUp`, the others
-the negations of `Taylm.arcsinCoef_mem` (`arccos⁽ᵏ⁾ = -arcsin⁽ᵏ⁾`, `iteratedDeriv_arccos_succ`),
+the negations of `Taylm.arcsinCoef_mem` (`arccos⁽ᵏ⁾ = -arcsin⁽ᵏ⁾`, `aux_iteratedDeriv_arccos_succ`),
 the derivative bound `Taylm.arcsinBound_ge`, the same in magnitude. The hypotheses are the rounded
 root `√(1 - c²)` positive at the center and `√(1 - m²)` at the magnitude `Taylm.magUp`, which put
 the range inside `(-1, 1)`.
@@ -48,6 +49,16 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Derivatives of `arccos` are those of `arcsin`, negated. -/
+theorem _root_.CORALean.aux_iteratedDeriv_arccos_succ (j : ℕ) :
+    iteratedDeriv (j + 1) Real.arccos = -iteratedDeriv (j + 1) Real.arcsin := by
+  rw [iteratedDeriv_succ', iteratedDeriv_succ', Real.deriv_arccos, Real.deriv_arcsin]
+  funext x
+  simp
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.acos_outer (p q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
@@ -65,11 +76,11 @@ theorem Taylm.acos_outer (p q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} 
   · rcases k with _ | j
     · exact ⟨by simpa using acosDown_le p q T.constCoef, by simpa using le_acosUp p q T.constCoef⟩
     · have hk := Taylm.arcsinCoef_mem q T.constCoef hc j
-      rw [iteratedDeriv_arccos_succ, Pi.neg_apply, neg_div, toReal_neg, toReal_neg]
+      rw [aux_iteratedDeriv_arccos_succ, Pi.neg_apply, neg_div, toReal_neg, toReal_neg]
       exact ⟨neg_le_neg hk.2, neg_le_neg hk.1⟩
   · have := abs_lt.1 (lt_of_le_of_lt (T.abs_le_magUp hξ) hM1)
     exact Real.contDiffAt_arccos (by linarith [this.1]) (by linarith [this.2])
-  · rw [iteratedDeriv_arccos_succ, Pi.neg_apply, abs_neg]
+  · rw [aux_iteratedDeriv_arccos_succ, Pi.neg_apply, abs_neg]
     exact Taylm.arcsinBound_ge q T.magUp hm _ (T.abs_le_magUp hξ)
 
 end CORALean.Float

@@ -4,7 +4,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.Theorems.IdentityMatMulVec
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
 
@@ -46,6 +46,20 @@ open Matrix FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The identity matrix leaves entry `i` of a vector unchanged. -/
+theorem aux_identityMat_mulVec (x : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
+    (toRealMat (identityMat 𝕋 n) *ᵥ x) i = x i := by -- --- PROOF ---
+  show ∑ j, toReal (if i = j then (one : 𝕋) else zero) * x j = x i
+  rw [Finset.sum_eq_single i]
+  · rw [if_pos rfl, toReal_one, one_mul]
+  · intro j _ hj
+    rw [if_neg (Ne.symm hj), toReal_zero, zero_mul]
+  · intro hc
+    exact absurd (Finset.mem_univ i) hc
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the two row blocks are exactly the two ends of the box, so nothing rounds
@@ -57,7 +71,7 @@ theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (HPolytope.errFree_of_origin rfl rfl rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   constructor
   · rintro ⟨hup, hlo⟩ j
-    have h₁ : x j ≤ toReal (I.sup j) := by rw [← identityMat_mulVec (𝕋 := 𝕋) x j]; exact hup j
+    have h₁ : x j ≤ toReal (I.sup j) := by rw [← aux_identityMat_mulVec (𝕋 := 𝕋) x j]; exact hup j
     have h₂ : -(x j) ≤ toReal (neg (I.inf j)) := by
       rw [← negIdentityMat_mulVec (𝕋 := 𝕋) x j]; exact hlo j
     rw [toReal_neg] at h₂
@@ -68,7 +82,7 @@ theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     have hlo : ∀ j, toReal (I.inf j) ≤ x j := fun j => (h j).1
     have hhi : ∀ j, x j ≤ toReal (I.sup j) := fun j => (h j).2
     refine ⟨fun j => ?_, fun j => ?_⟩
-    · rw [identityMat_mulVec]
+    · rw [aux_identityMat_mulVec]
       exact hhi j
     · rw [negIdentityMat_mulVec, Pi.neg_apply, toReal_neg']
       linarith [hlo j]

@@ -33,6 +33,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zoo: an optional Taylor model and an optional interval, each an enclosure of the same
+function; the zoo denotes their intersection. -/
 structure Zoo (n : ℕ) where
   taylm : Option (Taylm n)
   ivl : Option (Interval (Vec ℝ 1))

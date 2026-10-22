@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
-public import CORALean.Specification.Theorems.Violation
+public import CORALean.Specification.Specification
 public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.Global.SupportFunction.SupportFunction
 `verifyHalfspace` settles `unsafe` at some round `r'`, step `k`, direction `i` with an actual
 lower bound past the offset: `SupportWitness.mem` hands back a point of `S r' k` — hence of
 `R`, by `hsub` — whose value in direction `i` already exceeds `d i`, outside the halfspace
-polytope, so `Specification.not_holds_safeSet_of_mem` refutes `Holds` for `R` outright.
+polytope, so `Specification.aux_not_holds_safeSet_of_mem` refutes `Holds` for `R` outright.
 
 ## Inputs
 * `ℓ` – directions
@@ -51,6 +51,19 @@ namespace CORALean
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {α : Type}
+
+/-- A point of `X` outside `S` refutes the safe-set specification for `X`. -/
+theorem Specification.aux_not_holds_safeSet_of_mem {S X : Set α} {x : α} (hx : x ∈ X) (hS : x ∉ S) :
+    ¬ (Specification.safeSet S).Holds X :=
+  fun h => hS (h hx)
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `[1, Alg. 2]`: once `verifyHalfspace` settles `unsafe`, `R` — anything some round's steps
@@ -64,7 +77,7 @@ theorem not_holds_safeSet_of_verifyHalfspace_violated {ℓ : ι → α →ₗ[�
     ¬ (Specification.safeSet {x | ∀ i, ℓ i x ≤ d i}).Holds R := by -- --- PROOF ---
   obtain ⟨r', hr', k, i, hlt⟩ := exists_round_of_verifyHalfspace_eq_violated h
   obtain ⟨x, hxS, hxle⟩ := (w r' k i).mem
-  refine Specification.not_holds_safeSet_of_mem (hsub r' k hxS) fun hmem => ?_
+  refine Specification.aux_not_holds_safeSet_of_mem (hsub r' k hxS) fun hmem => ?_
   exact absurd (hmem i) (not_le.mpr (lt_of_lt_of_le hlt hxle))
 
 end CORALean

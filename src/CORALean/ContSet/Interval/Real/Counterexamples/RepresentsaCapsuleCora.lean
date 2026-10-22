@@ -136,9 +136,11 @@ theorem Interval.aux_r_zero (r s0 s1 : ℝ) (hr : 0 ≤ r) (h : s0 ^ 2 + s1 ^ 2 
   have : r ^ 2 = 0 := le_antisymm (by linarith) (sq_nonneg r)
   exact pow_eq_zero_iff (two_ne_zero) |>.mp this
 
+/-- Two real numbers whose squares sum to at most `0` are both `0`. -/
 theorem Interval.aux_sq_zero (a b : ℝ) (h : a ^ 2 + b ^ 2 ≤ 0 ^ 2) : a = 0 ∧ b = 0 := by
   constructor <;> nlinarith [sq_nonneg a, sq_nonneg b]
 
+/-- No two generator directions satisfy `d0 * g0 = 1`, `d1 * g0 = 0` and `d1 * g1 = 1` together. -/
 theorem Interval.aux_lines (g0 g1 d0 d1 : ℝ) (h1 : d0 * g0 = 1) (h2 : d1 * g0 = 0)
     (h3 : d1 * g1 = 1) : False := by
   have hg : g0 ≠ 0 := fun hz => by rw [hz] at h1; simp at h1

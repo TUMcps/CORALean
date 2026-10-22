@@ -41,6 +41,48 @@ namespace CORALean
 open Polynomial
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The value at `y` is bounded by the dominating polynomial at `|y|`. -/
+theorem CoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : CoeffDom P A) (y : ℝ) : -- --- CONCL ---
+    |P.eval y| ≤ A.eval |y| := by -- --- PROOF ---
+  have hdeg : P.natDegree ≤ A.natDegree := by
+    rw [natDegree_le_iff_coeff_eq_zero]
+    intro j hj
+    -- `A.coeff j = 0` for `j > A.natDegree`, hence `|P.coeff j| ≤ 0`
+    have hA : A.coeff j = 0 := coeff_eq_zero_of_natDegree_lt hj
+    exact abs_nonpos_iff.1 (hA ▸ h j)
+  rw [eval_eq_sum_range' (n := A.natDegree + 1) (by omega),
+    eval_eq_sum_range' (n := A.natDegree + 1) (by omega)]
+  refine le_trans (Finset.abs_sum_le_sum_abs _ _) (Finset.sum_le_sum fun j _ => ?_)
+  rw [abs_mul, abs_pow]
+  exact mul_le_mul (h j) (le_refl _) (by positivity) (h.nonneg j)
+
+
+/-- A dominating polynomial dominates itself. -/
+theorem CoeffDom.aux_self_of_dom {P A : ℝ[X]} (h : CoeffDom P A) : CoeffDom A A := fun j => by
+  rw [abs_of_nonneg (h.nonneg j)]
+
+
+/-- Dominance is closed under a nonnegative scalar. -/
+theorem CoeffDom.aux_smul_nat {P A : ℝ[X]} (h : CoeffDom P A) (m : ℝ) (hm : 0 ≤ m) :
+    CoeffDom (C m * P) (C m * A) := fun j => by
+  rw [coeff_C_mul, coeff_C_mul, abs_mul, abs_of_nonneg hm]
+  exact mul_le_mul_of_nonneg_left (h j) hm
+
+
+/-- Dominance is closed under the factor `X`. -/
+theorem CoeffDom.aux_X_mul {P A : ℝ[X]} (h : CoeffDom P A) : CoeffDom (X * P) (X * A) :=
+  (show CoeffDom X X from fun j => by
+    rw [coeff_X]; split_ifs <;> simp).mul h
+
+
+/-- Polynomials dominated coefficientwise. -/
+theorem CoeffDom.aux_abs_eval_le {P A : ℝ[X]} (h : CoeffDom P A) {y m : ℝ} (hy : |y| ≤ m) :
+    |P.eval y| ≤ A.eval m :=
+  le_trans (h.aux_of_abs_le y) (h.aux_self_of_dom.eval_mono (abs_nonneg _) hy)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The polynomial in `g` that is the `k`-th derivative of a `g` with `g' = q(g)`. -/
@@ -70,6 +112,7 @@ noncomputable def asinDom : ℕ → ℝ[X]
 
 
 -- the recursion on absolute coefficients dominates the recursion
+/-- Domination of coefficients carries over to the ODE polynomials of `q` and `Q`. -/
 theorem odePoly_dom {q Q : ℝ[X]} (h : CoeffDom q Q) (k : ℕ) :
     CoeffDom (odePoly q k) (odePoly Q k) := by
   induction k with
@@ -77,38 +120,44 @@ theorem odePoly_dom {q Q : ℝ[X]} (h : CoeffDom q Q) (k : ℕ) :
   | succ k ih => exact ih.derivative.mul h
 
 -- the constant `1` dominates itself
+/-- The polynomial `1` dominates itself. -/
 theorem one_dom : CoeffDom (1 : ℝ[X]) 1 := fun j => by
   rw [coeff_one]; split_ifs <;> simp
 
 -- `1 - X²` is dominated by `1 + X²`
+/-- `1 + X²` dominates `1 - X²` coefficientwise. -/
 theorem one_sub_sq_dom : CoeffDom (1 - X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => by
   simp only [coeff_sub, coeff_add, coeff_one, coeff_X_pow]
   split_ifs <;> simp_all
 
 -- `1 + X²` dominates itself
+/-- `1 + X²` dominates itself. -/
 theorem one_add_sq_dom : CoeffDom (1 + X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => by
   simp only [coeff_add, coeff_one, coeff_X_pow]
   split_ifs <;> simp_all
 
 -- `atanDom` dominates `atanPoly`
+/-- `atanDom j` dominates `atanPoly j` coefficientwise. -/
 theorem atanPoly_dom (j : ℕ) : -- --- CONCL ---
     CoeffDom (atanPoly j) (atanDom j) := by -- --- PROOF ---
   induction j with
   | zero => exact one_dom
   | succ j ih =>
     rw [atanPoly, atanDom, sub_eq_add_neg]
-    exact (ih.derivative.mul one_add_sq_dom).add ((ih.X_mul.smul_nat _ (by positivity)).neg)
+    exact (ih.derivative.mul one_add_sq_dom).add ((ih.aux_X_mul.aux_smul_nat _ (by positivity)).neg)
 
 -- `asinDom` dominates `asinPoly`
+/-- The derivative polynomial of arcsine is dominated coefficientwise by `asinDom`. -/
 theorem asinPoly_dom (j : ℕ) : -- --- CONCL ---
     CoeffDom (asinPoly j) (asinDom j) := by -- --- PROOF ---
   induction j with
   | zero => exact one_dom
   | succ j ih =>
     rw [asinPoly, asinDom]
-    exact (ih.derivative.mul one_sub_sq_dom).add (ih.X_mul.smul_nat _ (by positivity))
+    exact (ih.derivative.mul one_sub_sq_dom).add (ih.aux_X_mul.aux_smul_nat _ (by positivity))
 
 -- each derivative of `sin` is `sin` shifted by a quarter period
+/-- The `k`-th derivative of sine is sine shifted by `k` quarter periods. -/
 theorem iteratedDeriv_sin_eq (k : ℕ) : -- --- CONCL ---
     iteratedDeriv k Real.sin = fun x => Real.sin (x + k * (Real.pi / 2)) := by -- --- PROOF ---
   induction k with
@@ -125,6 +174,7 @@ theorem iteratedDeriv_sin_eq (k : ℕ) : -- --- CONCL ---
     ring
 
 -- each derivative of `cos` is `cos` shifted by a quarter period
+/-- The `k`-th derivative of cosine is cosine shifted by `k` quarter periods. -/
 theorem iteratedDeriv_cos_eq (k : ℕ) : -- --- CONCL ---
     iteratedDeriv k Real.cos = fun x => Real.cos (x + k * (Real.pi / 2)) := by -- --- PROOF ---
   induction k with
@@ -142,6 +192,8 @@ theorem iteratedDeriv_cos_eq (k : ℕ) : -- --- CONCL ---
     ring_nf
 
 -- the derivatives of `sinh` and `cosh` alternate between the two
+/-- The `k`-th derivatives of `sinh` and `cosh` are `sinh` and `cosh` in the same or in the swapped
+order. -/
 theorem iteratedDeriv_sinh_cosh (k : ℕ) : -- --- CONCL ---
     (iteratedDeriv k Real.sinh = Real.sinh ∧ iteratedDeriv k Real.cosh = Real.cosh) ∨
     (iteratedDeriv k Real.sinh = Real.cosh ∧
@@ -155,6 +207,7 @@ theorem iteratedDeriv_sinh_cosh (k : ℕ) : -- --- CONCL ---
     · rw [h1, h2, Real.deriv_sinh, Real.deriv_cosh]; left; exact ⟨rfl, rfl⟩
 
 -- `|sinh| ≤ cosh`, from `cosh ± sinh = exp (±x)`
+/-- `|sinh x|` is at most `cosh x`. -/
 theorem abs_sinh_le_cosh (x : ℝ) : |Real.sinh x| ≤ Real.cosh x := by
   have h1 := Real.cosh_sub_sinh x
   have h2 := Real.cosh_add_sinh x
@@ -162,6 +215,7 @@ theorem abs_sinh_le_cosh (x : ℝ) : |Real.sinh x| ≤ Real.cosh x := by
   constructor <;> nlinarith [Real.exp_pos x, Real.exp_pos (-x)]
 
 -- `tanh' = 1 - tanh²`, from the quotient `sinh / cosh`
+/-- `tanh` has derivative `1 - tanh² x`. -/
 theorem hasDerivAt_tanh (x : ℝ) : -- --- CONCL ---
     HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x := by -- --- PROOF ---
   have h := (Real.hasDerivAt_sinh x).div (Real.hasDerivAt_cosh x)
@@ -176,6 +230,7 @@ theorem hasDerivAt_tanh (x : ℝ) : -- --- CONCL ---
   field_simp
 
 -- `tanh` is smooth, being a quotient by `cosh`, which is positive
+/-- `tanh` is smooth. -/
 theorem contDiff_tanh {k : WithTop ℕ∞} : ContDiff ℝ k Real.tanh := by
   have e : Real.tanh = fun x => Real.sinh x / Real.cosh x :=
     funext Real.tanh_eq_sinh_div_cosh
@@ -183,6 +238,8 @@ theorem contDiff_tanh {k : WithTop ℕ∞} : ContDiff ℝ k Real.tanh := by
   exact Real.contDiff_sinh.div Real.contDiff_cosh fun x => (Real.cosh_pos x).ne'
 
 -- where `g' = q(g)`, the `k`-th derivative is `odePoly q k` at `g`
+/-- If `g' = q(g)` on an open set, the `k`-th derivative of `g` is the `k`-th ODE polynomial of `q`
+evaluated at `g`. -/
 theorem iteratedDeriv_of_ode {g : ℝ → ℝ} {U : Set ℝ} (hU : IsOpen U) {q : ℝ[X]}
     (hg : ∀ x ∈ U, HasDerivAt g (q.eval (g x)) x) (k : ℕ) : -- --- CONCL ---
     ∀ x ∈ U, iteratedDeriv k g x = (odePoly q k).eval (g x) := by -- --- PROOF ---
@@ -200,16 +257,18 @@ theorem iteratedDeriv_of_ode {g : ℝ → ℝ} {U : Set ℝ} (hU : IsOpen U) {q 
     rw [h2.deriv, odePoly, eval_mul]
 
 -- `tanh⁽ᵏ⁾` is at most `odePoly (1 + X²) k` at one
+/-- The `k`-th derivative of `tanh` is bounded by the `k`-th ODE polynomial of `1 + X²` at `1`. -/
 theorem abs_iteratedDeriv_tanh_le (k : ℕ) (x : ℝ) : -- --- CONCL ---
     |iteratedDeriv k Real.tanh x| ≤ (odePoly (1 + X ^ 2) k).eval 1 := by -- --- PROOF ---
   have h := iteratedDeriv_of_ode (g := Real.tanh) (U := Set.univ) isOpen_univ
     (q := 1 - X ^ 2) (fun x _ => by simpa using hasDerivAt_tanh x) k x trivial
   rw [h]
-  refine (odePoly_dom one_sub_sq_dom k).abs_eval_le ?_
+  refine (odePoly_dom one_sub_sq_dom k).aux_abs_eval_le ?_
   rw [Real.tanh_eq_sinh_div_cosh, abs_div, abs_of_pos (Real.cosh_pos x)]
   exact (div_le_one (Real.cosh_pos x)).2 (abs_sinh_le_cosh x)
 
 -- `|tan x| ≤ tan m` for `|x| ≤ m < π/2`, by monotonicity and oddness
+/-- `|tan x|` is at most `tan m` for `|x| ≤ m < π/2`. -/
 theorem abs_tan_le {x m : ℝ} (hx : |x| ≤ m) (hm : m < Real.pi / 2) : -- --- CONCL ---
     |Real.tan x| ≤ Real.tan m := by -- --- PROOF ---
   have hm0 : 0 ≤ m := le_trans (abs_nonneg x) hx
@@ -224,6 +283,8 @@ theorem abs_tan_le {x m : ℝ} (hx : |x| ≤ m) (hm : m < Real.pi / 2) : -- --- 
     exact hmono _ _ (by linarith) (by linarith) hm
 
 -- `tan⁽ᵏ⁾` is at most `odePoly (1 + X²) k` at `tan m`
+/-- The `k`-th derivative of `tan` on `|x| ≤ m < π/2` is bounded by the `k`-th ODE polynomial of `1
++ X²` at `tan m`. -/
 theorem abs_iteratedDeriv_tan_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m)
     (hm : m < Real.pi / 2) : -- --- CONCL ---
     |iteratedDeriv k Real.tan x| ≤ (odePoly (1 + X ^ 2) k).eval (Real.tan m) := by -- --- PROOF ---
@@ -234,10 +295,11 @@ theorem abs_iteratedDeriv_tan_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m)
       have hc : Real.cos y ≠ 0 := (Real.cos_pos_of_mem_Ioo hy).ne'
       simpa [one_div, ← Real.inv_one_add_tan_sq hc] using Real.hasDerivAt_tan hc) k x hxm
   rw [h]
-  refine (odePoly_dom one_add_sq_dom k).abs_eval_le ?_
+  refine (odePoly_dom one_add_sq_dom k).aux_abs_eval_le ?_
   exact abs_tan_le hx hm
 
 -- derivatives of `(1 + x²)⁻¹` are `atanPoly j` times a power of it
+/-- The `j`-th derivative of `1/(1 + x²)` is a polynomial times a power of `1/(1 + x²)`. -/
 theorem iteratedDeriv_inv_one_add_sq (j : ℕ) : -- --- CONCL ---
     iteratedDeriv j (fun x : ℝ => (1 + x ^ 2)⁻¹)
       = fun x => (atanPoly j).eval x * ((1 + x ^ 2)⁻¹) ^ (j + 1) := by -- --- PROOF ---
@@ -264,6 +326,7 @@ theorem iteratedDeriv_inv_one_add_sq (j : ℕ) : -- --- CONCL ---
     linear_combination (-(eval x (derivative (atanPoly j)) * w ^ (j + 1))) * hq
 
 -- the same for `atan⁽ʲ⁺¹⁾`, one derivative further
+/-- The `(j+1)`-th derivative of arctangent is `atanPoly j` times a power of `1/(1 + x²)`. -/
 theorem iteratedDeriv_atan (j : ℕ) (x : ℝ) :
     iteratedDeriv (j + 1) Real.arctan x
       = (atanPoly j).eval x * ((1 + x ^ 2)⁻¹) ^ (j + 1) := by
@@ -272,10 +335,11 @@ theorem iteratedDeriv_atan (j : ℕ) (x : ℝ) :
   exact congrFun (iteratedDeriv_inv_one_add_sq j) x
 
 -- the power is at most one, the polynomial is bounded by `atanDom`
+/-- The `(j+1)`-th derivative of arctangent on `|x| ≤ m` is bounded by `atanDom j` at `m`. -/
 theorem abs_iteratedDeriv_atan_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) : -- --- CONCL ---
     |iteratedDeriv (j + 1) Real.arctan x| ≤ (atanDom j).eval m := by -- --- PROOF ---
   rw [iteratedDeriv_atan, abs_mul, abs_pow]
-  have h := (atanPoly_dom j).abs_eval_le hx
+  have h := (atanPoly_dom j).aux_abs_eval_le hx
   have hw : |(1 + x ^ 2)⁻¹| ≤ 1 := by
     rw [abs_of_pos (by positivity)]
     exact inv_le_one_of_one_le₀ (by nlinarith [sq_nonneg x])
@@ -284,6 +348,7 @@ theorem abs_iteratedDeriv_atan_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) : -- --
     _ = _ := mul_one _
 
 -- `((1 - x²)^(1/2))⁻¹` has derivative `x` times its cube
+/-- On `(-1, 1)` the derivative of `1/√(1 - y²)` is `x` times the cube of `1/√(1 - x²)`. -/
 theorem hasDerivAt_inv_sqrt {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) : -- --- CONCL ---
     HasDerivAt (fun y : ℝ => (√(1 - y ^ 2))⁻¹) (x * ((√(1 - x ^ 2))⁻¹) ^ 3) x := by -- --- PROOF ---
   have h1 : 0 < 1 - x ^ 2 := by nlinarith [hx.1, hx.2]
@@ -295,6 +360,8 @@ theorem hasDerivAt_inv_sqrt {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) : -- ---
   field_simp
 
 -- its `j`-th derivative on `(-1, 1)` is `asinPoly j` times a power of it
+/-- On `(-1, 1)` the `j`-th derivative of `1/√(1 - y²)` is `asinPoly j` times a power of `1/√(1 -
+x²)`. -/
 theorem iteratedDeriv_inv_sqrt (j : ℕ) : -- --- CONCL ---
     ∀ x ∈ Set.Ioo (-1 : ℝ) 1, iteratedDeriv j (fun y : ℝ => (√(1 - y ^ 2))⁻¹) x
       = (asinPoly j).eval x * ((√(1 - x ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---
@@ -322,6 +389,8 @@ theorem iteratedDeriv_inv_sqrt (j : ℕ) : -- --- CONCL ---
     linear_combination (-(eval x (derivative (asinPoly j)) * v ^ (2 * j + 1))) * hq
 
 -- bounded on `|x| ≤ m < 1` by `asinDom` and the power at `m`
+/-- The `j`-th derivative of `1/√(1 - y²)` on `|x| ≤ m < 1` is bounded by `asinDom j` at `m` times a
+power of `1/√(1 - m²)`. -/
 theorem abs_iteratedDeriv_inv_sqrt_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m)
     (hm : m < 1) : -- --- CONCL ---
     |iteratedDeriv j (fun y : ℝ => (√(1 - y ^ 2))⁻¹) x|
@@ -329,7 +398,7 @@ theorem abs_iteratedDeriv_inv_sqrt_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m)
   have hxm : x ∈ Set.Ioo (-1 : ℝ) 1 := by
     rw [abs_le] at hx; constructor <;> linarith [hx.1, hx.2]
   rw [iteratedDeriv_inv_sqrt j x hxm, abs_mul, abs_pow]
-  have h := (asinPoly_dom j).abs_eval_le hx
+  have h := (asinPoly_dom j).aux_abs_eval_le hx
   have hx2 : x ^ 2 ≤ m ^ 2 := by
     rw [← sq_abs x]; exact pow_le_pow_left₀ (abs_nonneg x) hx 2
   have hm2 : 0 < 1 - m ^ 2 := by nlinarith [abs_nonneg x]
@@ -340,6 +409,8 @@ theorem abs_iteratedDeriv_inv_sqrt_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m)
     (le_trans (abs_nonneg _) h)
 
 -- `asin⁽ʲ⁺¹⁾` is the `j`-th derivative of that function
+/-- The `(j+1)`-th derivative of arcsine on `|x| ≤ m < 1` has the bound of `1/√(1 - y²)`'s `j`-th
+derivative. -/
 theorem abs_iteratedDeriv_asin_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m < 1) :
     |iteratedDeriv (j + 1) Real.arcsin x|
       ≤ (asinDom j).eval m * ((√(1 - m ^ 2))⁻¹) ^ (2 * j + 1) := by
@@ -347,25 +418,19 @@ theorem abs_iteratedDeriv_asin_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m
   simp only [one_div]
   exact abs_iteratedDeriv_inv_sqrt_le j hx hm
 
--- `acos⁽ʲ⁺¹⁾` is its negation, the same magnitude
-theorem abs_iteratedDeriv_acos_le (j : ℕ) {x m : ℝ} (hx : |x| ≤ m) (hm : m < 1) : -- --- CONCL ---
-    |iteratedDeriv (j + 1) Real.arccos x|
-      ≤ (asinDom j).eval m * ((√(1 - m ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---
-  rw [iteratedDeriv_succ', Real.deriv_arccos]
-  simp only [one_div]
-  rw [show (fun x : ℝ => -(√(1 - x ^ 2))⁻¹) = -(fun x : ℝ => (√(1 - x ^ 2))⁻¹) from rfl,
-    iteratedDeriv_neg, abs_neg]
-  exact abs_iteratedDeriv_inv_sqrt_le j hx hm
 
 -- every derivative of `sin` is at most one
+/-- Every derivative of sine is at most `1` in absolute value. -/
 theorem abs_iteratedDeriv_sin_le (k : ℕ) (x : ℝ) : |iteratedDeriv k Real.sin x| ≤ 1 := by
   rw [iteratedDeriv_sin_eq]; exact Real.abs_sin_le_one _
 
 -- every derivative of `cos` is at most one
+/-- Every derivative of cosine is at most `1` in absolute value. -/
 theorem abs_iteratedDeriv_cos_le (k : ℕ) (x : ℝ) : |iteratedDeriv k Real.cos x| ≤ 1 := by
   rw [iteratedDeriv_cos_eq]; exact Real.abs_cos_le_one _
 
 -- every derivative of `sinh` is at most `cosh m` on `|x| ≤ m`
+/-- Every derivative of `sinh` on `|x| ≤ m` is at most `cosh m` in absolute value. -/
 theorem abs_iteratedDeriv_sinh_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m) :
     |iteratedDeriv k Real.sinh x| ≤ Real.cosh m := by
   have hc : Real.cosh x ≤ Real.cosh m := Real.cosh_le_cosh.2 (hx.trans (le_abs_self m))
@@ -374,6 +439,7 @@ theorem abs_iteratedDeriv_sinh_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m) :
   · rw [abs_of_pos (Real.cosh_pos x)]; exact hc
 
 -- every derivative of `cosh` is at most `cosh m` on `|x| ≤ m`
+/-- Every derivative of `cosh` on `|x| ≤ m` is at most `cosh m` in absolute value. -/
 theorem abs_iteratedDeriv_cosh_le (k : ℕ) {x m : ℝ} (hx : |x| ≤ m) :
     |iteratedDeriv k Real.cosh x| ≤ Real.cosh m := by
   have hc : Real.cosh x ≤ Real.cosh m := Real.cosh_le_cosh.2 (hx.trans (le_abs_self m))

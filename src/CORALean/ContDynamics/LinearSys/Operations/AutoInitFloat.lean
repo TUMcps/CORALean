@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- Lines 1-2, before the first iteration. -/
 def LinearSys.autoInitFloat (X₀ : Zonotope (Vec 𝕋 n)) (tend : 𝕋) : LinearSys.AutoStateFloat 𝕋 n :=
-  { t := 0, tLo := zero, tHi := zero                                -- 1. t₀ ← 0
+  { t := 0, tEnc := ⟨zero, zero⟩                              -- 1. t₀ ← 0
     Δt := tend                                                      -- 1. Δt₋₁ ← t_end
     H := X₀                                                         -- 1. H(t₀) ← X₀
     Pu := Interval.point fun _ => zero                              -- 2. P^u(t₀) ← 0

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombOuter

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.DiscrDynamics.GridPartition.Operations.IntersectingCells
-public import CORALean.ContSet.Conversion.Real.Definitions.IntervalOuter
+public import CORALean.ContSet.Conversion.Real.Interfaces
 
 @[expose] public section
 

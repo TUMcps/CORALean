@@ -39,6 +39,8 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A signal temporal logic formula: an atomic predicate, negation, disjunction, until, and the
+open-interval finally and globally of the sampled-time rewriting. -/
 inductive STL.Formula (X : Type)
   | atom (p : X → Prop)
   | not (φ : Formula X)

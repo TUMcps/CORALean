@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 def Relaxation.ofMonotone (E : Enclosure 𝕋) : Relaxation 𝕋 where
   slope _ _ := zero
   offset := E.mid
-  error l u := maximum (subUp (E.hi u) (E.mid l u)) (subUp (E.mid l u) (E.lo l))
+  error l u := maximum (subUp (E.enclose u).sup (E.mid l u)) (subUp (E.mid l u) (E.enclose l).inf)
 
 end CORALean
 

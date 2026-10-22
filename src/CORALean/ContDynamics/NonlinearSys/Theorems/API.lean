@@ -30,7 +30,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorGetSubset
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorOfQuadRemainder
-public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PancakeIsTrajectory
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
@@ -64,7 +63,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunAtFloatOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepAtFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
@@ -72,7 +70,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatCheckedEqSome

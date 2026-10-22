@@ -26,6 +26,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The fields of an `stlInterval` as CORA stores them: lower and upper bound, where the upper may
+be `NaN`, and the closedness flags. -/
 structure STLInterval.Fields where
   lower : EReal
   upper : Option EReal

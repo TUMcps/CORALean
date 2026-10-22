@@ -3,8 +3,14 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalWFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermHiFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermLoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VertexSign
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
@@ -49,6 +55,117 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+/-- `γ(a)` lies in `quadTerm t a`. -/
+theorem MatExp.aux_quadTerm_mem (t a : 𝕋) : -- --- CONCL ---
+    toReal (MatExp.quadTerm t a).inf ≤ Real.MatExp.quadTerm (toReal t) (toReal a)
+      ∧ Real.MatExp.quadTerm (toReal t) (toReal a) ≤
+        toReal (MatExp.quadTerm t a).sup := by -- --- PROOF ---
+  have hm1 := mulDown_le_mul a t
+  have hm2 := mul_le_mulUp a t
+  have hsq := Interval.mul_between_corners hm1 hm2 hm1 hm2
+  have hγ : Real.MatExp.quadTerm (toReal t) (toReal a)
+      = toReal a * toReal t + (toReal a * toReal t) * (toReal a * toReal t) / 2 := by
+    simp only [Real.MatExp.quadTerm]; ring
+  rw [hγ]
+  simp only [MatExp.quadTerm]
+  constructor
+  · refine le_trans (addDown_le_add _ _) ?_
+    rw [toReal_half]
+    linarith [hsq.1]
+  · refine le_trans ?_ (add_le_addUp _ _)
+    rw [toReal_half]
+    linarith [hsq.2]
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+/-- `γ x + 1/2 = (x t + 1)² / 2`. -/
+theorem aux_quadTerm_ge (t x : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTerm t x := by
+  have : (0:ℝ) ≤ (x * t + 1) ^ 2 := sq_nonneg _
+  simp only [Real.MatExp.quadTerm]
+  nlinarith
+
+
+/-- `-1/2` is below the exact lower bound, whichever branch it takes. -/
+theorem aux_quadTermLo_ge (t a b : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTermLo t a b := by
+  rw [Real.MatExp.quadTermLo]
+  split
+  · exact le_rfl
+  · exact le_min (aux_quadTerm_ge t a) (aux_quadTerm_ge t b)
+
+
+/-- A positive `t + c t²` puts `c` right of the vertex, so the vertex test fails. -/
+theorem aux_not_straddle_left {t a b : ℝ} (h : 0 < t + a * t ^ 2) :
+    ¬ (a ≤ -1 / t ∧ -1 / t ≤ b) := by
+  rintro ⟨ha, -⟩
+  rw [Real.MatExp.vertex_sign] at h
+  nlinarith [sq_nonneg t]
+
+
+/-- A negative `t + c t²` puts `c` left of the vertex. -/
+theorem aux_not_straddle_right {t a b : ℝ} (h : t + b * t ^ 2 < 0) :
+    ¬ (a ≤ -1 / t ∧ -1 / t ≤ b) := by
+  rintro ⟨-, hb⟩
+  rw [Real.MatExp.vertex_sign] at h
+  nlinarith [sq_nonneg t]
+
+
+/-- The float `quadTermLo` is at most the exact one. -/
+theorem MatExp.aux_quadTermLo_le (t a b : 𝕋) : -- --- CONCL ---
+    toReal (MatExp.quadTermLo t a b)
+      ≤ Real.MatExp.quadTermLo (toReal t) (toReal a) (toReal b) := by -- --- PROOF ---
+  -- `a t²` and `b t²` are bracketed by the corner hull of the directed `t²`
+  have hsq := Interval.mul_between_corners (le_refl (toReal a)) (le_refl (toReal a))
+    (mulDown_le_mul t t) (mul_le_mulUp t t)
+  have hsq' := Interval.mul_between_corners (le_refl (toReal b)) (le_refl (toReal b))
+    (mulDown_le_mul t t) (mul_le_mulUp t t)
+  simp only [MatExp.quadTermLo]
+  split
+  · -- certified off the vertex: the exact `if` takes its `min` branch
+    rename_i hc
+    rw [Real.MatExp.quadTermLo]
+    have hnot : ¬ (toReal a ≤ -1 / toReal t ∧ -1 / toReal t ≤ toReal b) := by
+      rcases Bool.or_eq_true_iff.mp hc with h | h
+      · have h1 := toReal_lt_of_ltStrict h
+        rw [toReal_zero] at h1
+        refine aux_not_straddle_left ?_
+        have := addDown_le_add t (Interval.mulLo a a (mulDown t t) (mulUp t t))
+        nlinarith [hsq.1]
+      · have h1 := toReal_lt_of_ltStrict h
+        rw [toReal_zero] at h1
+        refine aux_not_straddle_right ?_
+        have := add_le_addUp t (Interval.mulHi b b (mulDown t t) (mulUp t t))
+        nlinarith [hsq'.2]
+    -- the `min` of the endpoint lower bounds undercuts the exact `min`
+    rw [if_neg hnot, toReal_minimum]
+    exact min_le_min (MatExp.aux_quadTerm_mem t a).1 (MatExp.aux_quadTerm_mem t b).1
+  · -- not certified: `-1/2` is under `γ` everywhere, so under either exact branch
+    rw [toReal_neg, toReal_half, toReal_one]
+    have := aux_quadTermLo_ge (toReal t) (toReal a) (toReal b)
+    linarith
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+/-- The float `quadTermHi` is at least the exact one. -/
+theorem MatExp.aux_quadTermHi_ge (t a b : 𝕋) :
+    Real.MatExp.quadTermHi (toReal t) (toReal a) (toReal b) ≤
+      toReal (MatExp.quadTermHi t a b) := by
+  rw [MatExp.quadTermHi, toReal_maximum, Real.MatExp.quadTermHi]
+  exact max_le_max (MatExp.aux_quadTerm_mem t a).2 (MatExp.aux_quadTerm_mem t b).2
+
+end
+
+
 /-- A sum with two indices zeroed is the sum over the rest. -/
 theorem aux_sum_ite_excl (g : Fin n → ℝ) (i j : Fin n) :
     ∑ k, (if k = i ∨ k = j then 0 else g k)
@@ -77,7 +194,8 @@ theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Mat ℝ n 
     subst h
     simp only [reduceIte]
     have hb := Real.MatExp.quadTerm_between (t := toReal t) (hm i i).1 (hm i i).2
-    exact ⟨le_trans (MatExp.quadTermLo_le t _ _) hb.1, le_trans hb.2 (MatExp.quadTermHi_ge t _ _)⟩
+    exact ⟨le_trans (MatExp.aux_quadTermLo_le t _ _) hb.1, le_trans hb.2 (MatExp.aux_quadTermHi_ge t
+      _ _)⟩
   · simp only [if_neg h]
     exact Interval.mul_between_corners (hm i j).1 (hm i j).2 hf hf'
 

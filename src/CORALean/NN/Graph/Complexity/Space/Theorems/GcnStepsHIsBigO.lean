@@ -10,7 +10,8 @@ public import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Analysis.Asymptotics.Defs
 public import Mathlib.Tactic.Positivity
 public import CORALean.NN.Graph.Complexity.Space.Theorems.MessagePassingEnclosureHLe
-public import CORALean.NN.Graph.Complexity.Space.Theorems.GcnStepsHLe
+public import CORALean.NN.Graph.Complexity.Space.Theorems.MessagePassingEnclosureP
+public import CORALean.NN.Graph.Complexity.Space.Theorems.MessagePassingEnclosureHIsBigO
 
 @[expose] public section
 
@@ -58,6 +59,30 @@ variable {N F m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- `L` message-passing steps at one uncertain graph multiply the generator
+count by at most `P.h + 2` each. -/
+theorem GNN.aux_gcnSteps_h_le (P : PolyZonotope (Mat ℝ N N)) (L : ℕ) : -- --- CONCL ---
+    ∀ (W : Fin L → Mat ℝ F F) (H : PolyZonotope (Mat ℝ N F)) (hp : P.p = H.p),
+      (GNN.gcnSteps P L W H hp).h + 1 ≤ (P.h + 2) ^ L * (H.h + 1) := by -- --- PROOF ---
+  induction L with
+  | zero =>
+    -- no step at all: the chain is its own input
+    intro _ H _
+    show H.h + 1 ≤ (P.h + 2) ^ 0 * (H.h + 1)
+    simp
+  | succ L ih =>
+    intro W H hp
+    -- the step's own count, with the `+1` folded into the base of the power
+    have hstep : (GNN.gcnShared (W 0) P H hp).h + 1 ≤ (P.h + 2) * (H.h + 1) := by
+      rw [GNN.gcnShared_h]
+      nlinarith
+    have hih := ih (fun i => W i.succ) (GNN.gcnShared (W 0) P H hp) rfl
+    calc (GNN.gcnSteps P (L + 1) W H hp).h + 1
+        ≤ (P.h + 2) ^ L * ((GNN.gcnShared (W 0) P H hp).h + 1) := hih
+      _ ≤ (P.h + 2) ^ L * ((P.h + 2) * (H.h + 1)) := Nat.mul_le_mul (le_refl _) hstep
+      _ = (P.h + 2) ^ (L + 1) * (H.h + 1) := by ring
+
+
 /-- The chain's count against the cubic in `m`, before any cast: the constant
 collects the node count and the input set, the growth is the power of `m`. -/
 theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
@@ -78,7 +103,7 @@ theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
   have hP : ((GNN.messagePassingEnclosure R A U).padBack X.p).h
       = (GNN.messagePassingEnclosure R A U).h := rfl
   have hH : (X.padFront (GNN.messagePassingEnclosure R A U).p).h = X.h := rfl
-  have hchain := GNN.gcnSteps_h_le ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
+  have hchain := GNN.aux_gcnSteps_h_le ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
     (X.padFront (GNN.messagePassingEnclosure R A U).p) rfl
   rw [hP, hH] at hchain
   calc (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack X.p) L W

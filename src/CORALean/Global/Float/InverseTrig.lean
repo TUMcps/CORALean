@@ -391,12 +391,14 @@ theorem atanDown_le (n k : ℕ) (y : 𝕋) : toReal (atanDown n k y) ≤ Real.ar
   exact twice_lower (quot_mem hd.1 hd.2.1 hd.2.2).1
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_add _) (Real.sqrt_nonneg _)) n k
 
+/-- `atanUp` is an upper bound of `arctan`. -/
 theorem le_atanUp (n k : ℕ) (y : 𝕋) : Real.arctan (toReal y) ≤ toReal (atanUp n k y) := by
   have hd := atanDen_mem k y
   rw [arctan_eq_two_mul]
   exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_add _) (Real.sqrt_nonneg _)) n k
 
+/-- `asinDown` is a lower bound of `arcsin`. -/
 theorem asinDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (asinDown n k x) ≤ Real.arcsin (toReal x) := by -- --- PROOF ---
   have hc := clampOne_mem x
@@ -405,6 +407,7 @@ theorem asinDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
   exact twice_lower (quot_mem hd.1 hd.2.1 hd.2.2).1
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
 
+/-- `asinUp` is an upper bound of `arcsin`. -/
 theorem le_asinUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arcsin (toReal x) ≤ toReal (asinUp n k x) := by -- --- PROOF ---
   have hc := clampOne_mem x
@@ -413,6 +416,7 @@ theorem le_asinUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
   exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
 
+/-- `acosDown` is a lower bound of `arccos`. -/
 theorem acosDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (acosDown n k x) ≤ Real.arccos (toReal x) := by -- --- PROOF ---
   have hc := clampOne_mem x
@@ -430,6 +434,7 @@ theorem acosDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
   simp only [acosDown]
   linarith
 
+/-- `acosUp` is an upper bound of `arccos`. -/
 theorem le_acosUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arccos (toReal x) ≤ toReal (acosUp n k x) := by -- --- PROOF ---
   have hc := clampOne_mem x

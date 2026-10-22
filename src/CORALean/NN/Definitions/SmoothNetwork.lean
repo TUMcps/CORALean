@@ -29,6 +29,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A network of the layers CORA's `nonlinearSysDT` accepts: linear, elementwise affine, `tanh`,
+`relu` and `sigmoid`. -/
 inductive SmoothNetwork : ℕ → ℕ → Type where
   | output {n : ℕ} : SmoothNetwork n n
   | linear {n m k : ℕ} (W : Mat ℝ m n) (b : Vec ℝ m) (rest : SmoothNetwork m k) :

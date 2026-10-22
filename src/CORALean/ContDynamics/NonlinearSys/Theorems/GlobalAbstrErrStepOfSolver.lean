@@ -2,8 +2,10 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
-public import CORALean.Global.BoxDiameterMulVecImageLe
-public import CORALean.Global.BoxDiameterAddLe
+public import Mathlib.Analysis.Matrix.Normed
+public import CORALean.Global.BoxDiameter
+public import Mathlib.Analysis.Normed.Group.Pointwise
+public import Mathlib.Tactic.Positivity
 
 @[expose] public section
 
@@ -70,6 +72,144 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Two points of a bounded `S` never differ, at any one coordinate, by more
+than `S`'s own box diameter there. -/
+theorem aux_abs_sub_le_boxDiameter {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
+    {x y : Vec ℝ n} (hx : x ∈ S) (hy : y ∈ S) (i : Fin n) : -- --- CONCL ---
+    |x i - y i| ≤ boxDiameter S i := by -- --- PROOF ---
+  rw [abs_sub_le_iff]
+  refine ⟨?_, ?_⟩
+  · have h1 : x i ≤ sSup ((fun z : Vec ℝ n => z i) '' S) :=
+      le_csSup (bddAbove_eval_image hS i) ⟨x, hx, rfl⟩
+    have h2 : sInf ((fun z : Vec ℝ n => z i) '' S) ≤ y i :=
+      csInf_le (bddBelow_eval_image hS i) ⟨y, hy, rfl⟩
+    rw [boxDiameter]; linarith
+  · have h1 : y i ≤ sSup ((fun z : Vec ℝ n => z i) '' S) :=
+      le_csSup (bddAbove_eval_image hS i) ⟨y, hy, rfl⟩
+    have h2 : sInf ((fun z : Vec ℝ n => z i) '' S) ≤ x i :=
+      csInf_le (bddBelow_eval_image hS i) ⟨x, hx, rfl⟩
+    rw [boxDiameter]; linarith
+
+
+section
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+/-- Applying `M` scales a box diameter by at most `M`'s own operator norm. -/
+theorem aux_boxDiameter_mulVec_image_le {M : Mat ℝ n n} {S : Set (Vec ℝ n)} (hne : S.Nonempty)
+    (hS : Bornology.IsBounded S) : -- --- CONCL ---
+    ‖boxDiameter ((M *ᵥ ·) '' S)‖ ≤ ‖M‖ * ‖boxDiameter S‖ := by -- --- PROOF ---
+  -- bound the widest column-`i` gap between two points of `S`, then sandwich `sSup`/`sInf`
+  have hcoord : ∀ i : Fin n, boxDiameter ((M *ᵥ ·) '' S) i ≤ ‖M‖ * ‖boxDiameter S‖ := by
+    intro i
+    have himg : (fun x : Vec ℝ n => x i) '' ((M *ᵥ ·) '' S)
+        = (fun x : Vec ℝ n => (M *ᵥ x) i) '' S := by
+      rw [Set.image_image]
+    have hkey : ∀ x ∈ S, ∀ y ∈ S, (M *ᵥ x) i - (M *ᵥ y) i ≤ ‖M‖ * ‖boxDiameter S‖ := by
+      intro x hx y hy
+      -- `x - y` never exceeds `S`'s own diameter, and `M` scales it by at most `‖M‖`
+      have hxy : ‖x - y‖ ≤ ‖boxDiameter S‖ := by
+        rw [pi_norm_le_iff_of_nonneg (norm_nonneg (boxDiameter S))]
+        intro j
+        rw [Real.norm_eq_abs]
+        exact (aux_abs_sub_le_boxDiameter hS hx hy j).trans
+          ((le_abs_self _).trans (norm_le_pi_norm (boxDiameter S) j))
+      have hsub : (M *ᵥ x) i - (M *ᵥ y) i = (M *ᵥ (x - y)) i := by
+        rw [Matrix.mulVec_sub]; rfl
+      calc (M *ᵥ x) i - (M *ᵥ y) i = (M *ᵥ (x - y)) i := hsub
+        _ ≤ |(M *ᵥ (x - y)) i| := le_abs_self _
+        _ = ‖(M *ᵥ (x - y)) i‖ := (Real.norm_eq_abs _).symm
+        _ ≤ ‖M *ᵥ (x - y)‖ := norm_le_pi_norm _ i
+        _ ≤ ‖M‖ * ‖x - y‖ := Matrix.linfty_opNorm_mulVec M (x - y)
+        _ ≤ ‖M‖ * ‖boxDiameter S‖ := mul_le_mul_of_nonneg_left hxy (norm_nonneg M)
+    -- sandwich `sSup` between `sInf` and the bound `hkey` gives every pair
+    have hsup : sSup ((fun x : Vec ℝ n => (M *ᵥ x) i) '' S)
+        ≤ sInf ((fun x : Vec ℝ n => (M *ᵥ x) i) '' S) + ‖M‖ * ‖boxDiameter S‖ := by
+      refine csSup_le (hne.image (fun x : Vec ℝ n => (M *ᵥ x) i)) ?_
+      rintro _ ⟨x, hx, rfl⟩
+      have h : (M *ᵥ x) i - ‖M‖ * ‖boxDiameter S‖
+          ≤ sInf ((fun y : Vec ℝ n => (M *ᵥ y) i) '' S) := by
+        refine le_csInf (hne.image (fun y : Vec ℝ n => (M *ᵥ y) i)) ?_
+        rintro _ ⟨y, hy, rfl⟩
+        linarith [hkey x hx y hy]
+      linarith
+    rw [boxDiameter, himg]; linarith
+  -- `(M *ᵥ ·) '' S` is bounded, which is what `boxDiameter`'s own `sSup`/`sInf` need
+  have hb : Bornology.IsBounded ((M *ᵥ ·) '' S) := by
+    obtain ⟨C, hC⟩ := hS.exists_norm_le
+    apply Bornology.IsBounded.subset (Metric.isBounded_closedBall (x := (0 : Vec ℝ n))
+      (r := ‖M‖ * C))
+    rintro _ ⟨x, hx, rfl⟩
+    simp only [Metric.mem_closedBall, dist_zero_right]
+    exact (Matrix.linfty_opNorm_mulVec M x).trans (mul_le_mul_of_nonneg_left (hC x hx)
+      (norm_nonneg M))
+  -- and its box diameter is nonnegative, so its norm reads off each coordinate directly
+  have hnn : ∀ i : Fin n, 0 ≤ boxDiameter ((M *ᵥ ·) '' S) i := fun i => by
+    have h1 : sInf ((fun z : Vec ℝ n => z i) '' ((M *ᵥ ·) '' S))
+        ≤ sSup ((fun z : Vec ℝ n => z i) '' ((M *ᵥ ·) '' S)) :=
+      csInf_le_csSup ((hne.image (M *ᵥ ·)).image (fun z : Vec ℝ n => z i))
+        (bddBelow_eval_image hb i) (bddAbove_eval_image hb i)
+    rw [boxDiameter]; linarith
+  rw [pi_norm_le_iff_of_nonneg (by positivity : (0:ℝ) ≤ ‖M‖ * ‖boxDiameter S‖)]
+  intro i
+  rw [Real.norm_eq_abs, abs_of_nonneg (hnn i)]
+  exact hcoord i
+
+end
+
+
+/-- A Minkowski sum's box diameter is at most the sum of its summands' own. -/
+theorem aux_boxDiameter_add_le {X Y : Set (Vec ℝ n)} (hXne : X.Nonempty) (hYne : Y.Nonempty)
+    (hX : Bornology.IsBounded X) (hY : Bornology.IsBounded Y) : -- --- CONCL ---
+    ‖boxDiameter (X + Y)‖ ≤ ‖boxDiameter X‖ + ‖boxDiameter Y‖ := by -- --- PROOF ---
+  have hne : (X + Y).Nonempty := hXne.add hYne
+  -- read `X + Y`'s coordinate `i` as a sum-of-projections image over `X ×ˢ Y`
+  have hcoord : ∀ i : Fin n, boxDiameter (X + Y) i ≤ ‖boxDiameter X‖ + ‖boxDiameter Y‖ := by
+    intro i
+    have himg : (fun z : Vec ℝ n => z i) '' (X + Y)
+        = (fun p : Vec ℝ n × Vec ℝ n => p.1 i + p.2 i) '' (X ×ˢ Y) := by
+      ext v; constructor
+      · rintro ⟨_, ⟨a, ha, b, hb, rfl⟩, rfl⟩; exact ⟨(a, b), ⟨ha, hb⟩, rfl⟩
+      · rintro ⟨⟨a, b⟩, ⟨ha, hb⟩, rfl⟩; exact ⟨a + b, ⟨a, ha, b, hb, rfl⟩, rfl⟩
+    -- each summand's own gap is under its own diameter, and the two gaps add
+    have hkey : ∀ a ∈ X, ∀ b ∈ Y, ∀ a' ∈ X, ∀ b' ∈ Y,
+        (a i + b i) - (a' i + b' i) ≤ ‖boxDiameter X‖ + ‖boxDiameter Y‖ := by
+      intro a ha b hb a' ha' b' hb'
+      have h1 : a i - a' i ≤ ‖boxDiameter X‖ :=
+        (le_abs_self _).trans ((aux_abs_sub_le_boxDiameter hX ha ha' i).trans
+          ((le_abs_self _).trans (norm_le_pi_norm (boxDiameter X) i)))
+      have h2 : b i - b' i ≤ ‖boxDiameter Y‖ :=
+        (le_abs_self _).trans ((aux_abs_sub_le_boxDiameter hY hb hb' i).trans
+          ((le_abs_self _).trans (norm_le_pi_norm (boxDiameter Y) i)))
+      linarith
+    -- sandwich `sSup` between `sInf` and the bound, exactly as `hkey` allows
+    have hprodne : (X ×ˢ Y).Nonempty := hXne.prod hYne
+    have hsup : sSup ((fun z : Vec ℝ n => z i) '' (X + Y))
+        ≤ sInf ((fun z : Vec ℝ n => z i) '' (X + Y)) + (‖boxDiameter X‖ + ‖boxDiameter Y‖) := by
+      rw [himg]
+      refine csSup_le (hprodne.image _) ?_
+      rintro _ ⟨⟨a, b⟩, ⟨ha, hb⟩, rfl⟩
+      have h : (a i + b i) - (‖boxDiameter X‖ + ‖boxDiameter Y‖)
+          ≤ sInf ((fun p : Vec ℝ n × Vec ℝ n => p.1 i + p.2 i) '' (X ×ˢ Y)) := by
+        refine le_csInf (hprodne.image _) ?_
+        rintro _ ⟨⟨a', b'⟩, ⟨ha', hb'⟩, rfl⟩
+        linarith [hkey a ha b hb a' ha' b' hb']
+      linarith
+    rw [boxDiameter]; linarith
+  -- `X + Y` is bounded, so its box diameter is nonnegative and its norm reads off coordinates
+  have hb : Bornology.IsBounded (X + Y) := hX.add hY
+  have hnn : ∀ i : Fin n, 0 ≤ boxDiameter (X + Y) i := fun i => by
+    have h1 : sInf ((fun z : Vec ℝ n => z i) '' (X + Y))
+        ≤ sSup ((fun z : Vec ℝ n => z i) '' (X + Y)) :=
+      csInf_le_csSup (hne.image _) (bddBelow_eval_image hb i) (bddAbove_eval_image hb i)
+    rw [boxDiameter]; linarith
+  rw [pi_norm_le_iff_of_nonneg
+    (by positivity : (0:ℝ) ≤ ‖boxDiameter X‖ + ‖boxDiameter Y‖)]
+  intro i
+  rw [Real.norm_eq_abs, abs_of_nonneg (hnn i)]
+  exact hcoord i
+
 
 /-- `R` stays `R̂`'s own run widened by an explicit, well-behaved error set: (B.1)-(B.2)'s
 content once the shared `P k` reassociates away, tracked forward instead of read off `⊖`. -/
@@ -142,9 +282,9 @@ theorem globalAbstrErr_succ_le_of_solver {A : Mat ℝ n n} {Δt tEnd : ℝ} (hΔ
     hEcpt.image (Matrix.mulVecLin M).continuous_of_finiteDimensional
   have hbd1 : ‖boxDiameter (M.mulVec '' E + Rabs k)‖
       ≤ ‖boxDiameter (M.mulVec '' E)‖ + ‖boxDiameter (Rabs k)‖ :=
-    boxDiameter_add_le (hEne.image _) (hRabsNe k hk) hMEcpt.isBounded (hRabsCpt k hk).isBounded
+    aux_boxDiameter_add_le (hEne.image _) (hRabsNe k hk) hMEcpt.isBounded (hRabsCpt k hk).isBounded
   have hbd2 : ‖boxDiameter (M.mulVec '' E)‖ ≤ ‖M‖ * ‖boxDiameter E‖ :=
-    boxDiameter_mulVec_image_le hEne hEcpt.isBounded
+    aux_boxDiameter_mulVec_image_le hEne hEcpt.isBounded
   have hbound : localAbstrErr E' ≤ ‖M‖ * localAbstrErr E + localAbstrErr (Rabs k) := by
     rw [hE'def]
     unfold localAbstrErr at *

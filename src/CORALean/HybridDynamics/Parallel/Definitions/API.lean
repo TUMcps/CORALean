@@ -1,6 +1,7 @@
 module
 
-public import CORALean.Global.ExactScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
 public import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
 public import CORALean.HybridDynamics.Parallel.Definitions.ReachSetExact
@@ -21,7 +22,7 @@ public import CORALean.HybridDynamics.Parallel.Definitions.IsSyncRun
 caller fills; `ReachSetExact` names what a `IsRun` quantifies over. `FlowLaw` is what a product's
 flow must do to a stack for a parallel run to be a product run, `FlowLawConverse` the other way, and
 `FeedthroughFree` CORA's check against algebraic loops, under which `mergeFlowsLinearSys` has
-both. `ExactScalar` (`Global/ExactScalar`) is the exact `0` and `1` that assembling a matrix out of
+both. `ExactScalar` (`Global/Interfaces`) is the exact `0` and `1` that assembling a matrix out of
 the components' asks of the scalar; `StateBound` and `SelfBindFree` are where that assembly,
 `mergeFlows`, is `mergeFlowsLinearSys`. `LiftingExact` and `GlobalsDistinct` are the conditions
 of the converse of `IsRun.toProduct`. `SyncLabels`, `SyncLifting` and `IsSyncRun` are

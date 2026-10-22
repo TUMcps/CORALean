@@ -38,8 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `expDown` below, `expUp` above, at reduction depth `k`. -/
 def expEnclosure (k : ℕ) : Enclosure 𝕋 where
-  lo a := expDown k a
-  hi a := expUp k a
+  enclose a := ⟨expDown k a, expUp k a⟩
 
 end CORALean
 

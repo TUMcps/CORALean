@@ -48,6 +48,8 @@ def PolyZonotope.corner (pZ : PolyZonotope α) (σ : Fin (pZ.p + pZ.q) → Bool)
         (fun k => if σ (Fin.castAdd pZ.q k) then (1:ℝ) else -1) i • pZ.G i
     + ∑ j, (if σ (Fin.natAdd pZ.p j) then (1:ℝ) else -1) • pZ.GI j
 
+/-- The hull of a polynomial zonotope's corners, one per sign pattern of its dependent and
+independent factors. -/
 noncomputable def PolyZonotope.vPolytopeCorners (pZ : PolyZonotope α) : VPolytope α where
   k := 2 ^ (pZ.p + pZ.q)
   V := fun v => pZ.corner (signEquiv (pZ.p + pZ.q) v)

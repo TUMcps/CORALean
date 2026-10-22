@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.OptEmpty.OptEmpty
 
 @[expose] public section

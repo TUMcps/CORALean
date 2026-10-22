@@ -107,6 +107,8 @@ private theorem exists_mulVec_eq_of_residual (G : Mat ℝ q n) (H : Mat ℝ n q)
     _ = (∑ k, |H j k|) * (ε / (1 - κ)) := (Finset.sum_mul _ _ _).symm
 
 
+/-- A gain returned by `rightInvGain` is nonnegative and bounds a solution: every right-hand side
+with entries at most `ε` is hit by some `β` with entries at most `γ ε`. -/
 theorem Zonotope.rightInvGain_solve {G : Mat 𝕋 q n} {H : Mat 𝕋 n q} {γ : 𝕋}
     (hγ : Zonotope.rightInvGain G H = some γ) : -- --- CONCL ---
     0 ≤ toReal γ ∧ ∀ (d : Vec ℝ q) {ε : ℝ}, 0 ≤ ε → (∀ i, |d i| ≤ ε) →

@@ -5,6 +5,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.HybridDynamics.Definitions.Location
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Float.Instances
 
 @[expose] public section
 
@@ -46,7 +47,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The box hull of the time-interval sets `Rs` cut to the invariant and to `guard`,
 or `none` when no cut can meet the guard. -/
 def Location.guardIntersectFloat
-    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (ℓ : Location 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     (guard : HPolytope 𝕋 (Vec 𝕋 n)) (Rs : List (Zonotope (Vec 𝕋 n))) : Option
     (Interval (Vec 𝕋 n)) :=
   let cut := Rs.map fun R => guard.contractBox (ℓ.inv.contractBox R.interval)  -- R ∩ inv ∩ guard

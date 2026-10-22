@@ -39,10 +39,12 @@ def listSumUp : List 𝕋 → 𝕋
   | [] => zero
   | a :: l => addUp a (listSumUp l)
 
+/-- The sum of a list, every addition rounded down. -/
 def listSumDown : List 𝕋 → 𝕋
   | [] => zero
   | a :: l => addDown a (listSumDown l)
 
+/-- `listSumUp` is an upper bound of the real sum of the list. -/
 theorem sum_le_listSumUp [SoundFloatArithmetic 𝕋] (l : List 𝕋) : -- --- CONCL ---
     (l.map toReal).sum ≤ toReal (listSumUp l) := by -- --- PROOF ---
   induction l with
@@ -51,6 +53,7 @@ theorem sum_le_listSumUp [SoundFloatArithmetic 𝕋] (l : List 𝕋) : -- --- CO
     simp only [List.map_cons, List.sum_cons, listSumUp]
     exact le_trans (by linarith) (add_le_addUp _ _)
 
+/-- `listSumDown` is a lower bound of the real sum of the list. -/
 theorem listSumDown_le [SoundFloatArithmetic 𝕋] (l : List 𝕋) : -- --- CONCL ---
     toReal (listSumDown l) ≤ (l.map toReal).sum := by -- --- PROOF ---
   induction l with

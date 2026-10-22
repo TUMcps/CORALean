@@ -9,7 +9,7 @@ public import CORALean.ContSet.Polygon.Real.Theorems.Basic
 # `polygon(S)` is `S`
 
 The polygon built from the vertices of a set with exact vertices denotes the set: an equality,
-because the vertex hull is the set (`ExactVertices.vertices_exact`).
+because the vertex hull is the set (`Real.ExactVertices.vertices_exact`).
 
 Source: [1].
 
@@ -39,7 +39,7 @@ namespace CORALean
 
 open ContSet Real
 
-variable {S : Type} [ContSet S (Vec ℝ 2)] [ExactVertices S (Vec ℝ 2)]
+variable {S : Type} [ContSet S (Vec ℝ 2)] [Real.ExactVertices S (Vec ℝ 2)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -47,7 +47,7 @@ variable {S : Type} [ContSet S (Vec ℝ 2)] [ExactVertices S (Vec ℝ 2)]
 theorem ContSet.construct_polygon (s : S) : construct (ContSet.polygon s) = construct s := by
   unfold ContSet.polygon
   rw [Polygon.construct_ofPieces]
-  simpa using ExactVertices.vertices_exact s
+  simpa using Real.ExactVertices.vertices_exact s
 
 end CORALean
 

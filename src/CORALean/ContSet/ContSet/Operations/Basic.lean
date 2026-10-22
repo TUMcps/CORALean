@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.ContSet.Operations.Minus
-public import CORALean.Global.NegScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

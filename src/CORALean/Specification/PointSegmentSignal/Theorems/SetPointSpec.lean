@@ -18,7 +18,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.ListLtOfMemTake
 public import CORALean.Specification.PointSegmentSignal.Theorems.ListLeOfMemTakeSucc
 public import CORALean.Specification.PointSegmentSignal.Theorems.ListLeOfMemDrop
-public import CORALean.Specification.PointSegmentSignal.Theorems.IsNewPointOkIff
+public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.SuffixAt
 public import Mathlib.Data.List.GetD
 

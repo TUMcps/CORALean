@@ -7,7 +7,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
 public import CORALean.Global.Float.RatUp
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

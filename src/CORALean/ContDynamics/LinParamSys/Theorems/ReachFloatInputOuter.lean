@@ -4,7 +4,8 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryCanonical
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
-public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
@@ -26,7 +27,7 @@ point system `⟨A⟩`'s run (`toLinearSys`): at `t` it is at `e^{At} x(0) + ∫
 With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ` plus one admissible `Ũ`-input's
 contribution, and with `t = t_k + s` both the free motion and the constant's part are `e^{A t_k}`
 of their values at `s` (`expIntegral_add_mulVec`). At `s ∈ [0, Δt]` those are in `H^R(τ_0)` and
-`P̃^R(τ_0)`, `P̃(t_k)` is `expIntegral_mem_constPropagateFloat`, and `0 ∈ Ũ` is `Recenter`'s.
+`P̃^R(τ_0)`, `P̃(t_k)` is `aux_expIntegral_mem_constPropagateFloat`, and `0 ∈ Ũ` is `Recenter`'s.
 
 ## Inputs
 * `sys` – system
@@ -57,6 +58,55 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open FloatOps
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- What the constant `ũ` contributes by `t_k = k Δt`, at any member `A` of `sys.A`, lies in
+`constPropagateFloat Δt η ρ ũ k`, at an order admissible for `Δt`. -/
+theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
+    (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
+    (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) : -- --- CONCL ---
+    Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt) *ᵥ Scalar.toRealVec uc
+      ∈ (sys.constPropagateFloat Δt η ρ uc k).construct := by -- --- PROOF ---
+  induction k with
+  | zero =>
+    -- nothing has been contributed by `t_0 = 0`, and `{0}` holds that
+    have hz : Real.MatExp.expIntegral A (((0 : ℕ) : ℝ) * toReal Δt) = 0 := by
+      simp [Real.MatExp.expIntegral]
+    rw [hz, Matrix.zero_mulVec]
+    have h0 := OfScalarPoint.mem_ofVec (S := 𝒵[𝕋])
+      (fun _ : Fin n => (zero : 𝕋))
+    rwa [show Scalar.toRealVec (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
+      funext fun _ => toReal_zero] at h0
+  | succ k ih =>
+    -- the value by `t_{k+1}` comes apart at `Δt`
+    have hrec := Real.MatExp.expIntegral_add_mulVec A (Scalar.toRealVec uc)
+      (a := (k : ℝ) * toReal Δt) (b := toReal Δt) (by positivity) hΔt.le
+    have htk : ((k + 1 : ℕ) : ℝ) * toReal Δt = (k : ℝ) * toReal Δt + toReal Δt := by
+      push_cast; ring
+    rw [htk, hrec]
+    -- the earlier part, carried across one window by `[e^{[A]Δt}]`
+    have h1 : exp (toReal Δt • A) *ᵥ (Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt)
+        *ᵥ Scalar.toRealVec uc) ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+          (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η)
+          (sys.constPropagateFloat Δt η ρ uc k)) :=
+      Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) _ _
+        (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA (le_refl _) (le_refl _))
+          (Set.mem_image_of_mem _ ih))
+    -- the new window's part
+    have h2 := sys.expIntegral_mem_constInputSolutionFloat hΔt hη hA uc hΔt.le le_rfl
+    exact Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add h1 h2))
+
+end
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -178,7 +228,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
         (sys.timeIntervalFloat_outer hΔt hadm X₀ traj.param traj.init hτ0 htk)
         (sys.expIntegral_mem_constInputSolutionFloat hΔt hadm traj.param uc hτ0 htk)))
   have hHτ := sys.reachStepkFloat_outer hadm.1 traj.param hfirst _ hH
-  have hPc := sys.expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k
+  have hPc := sys.aux_expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k
   have hPR : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ)) ∈ PRtk.construct :=
     sys.inputReach_subset_particularSolutionFloat hΔt hadm traj.param
     (Recenter.zero_mem_recenter V) ht0 htk1 _ hP

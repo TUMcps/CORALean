@@ -42,6 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A constrained zonotope over floats: center `c`, `h` generators `G`, the halfspace constraint `P`
+on the coefficients, and the error box `I_error` that rounding has cost. -/
 structure ConZonotope (𝕋 α : Type) where
   h : ℕ
   c : α
@@ -54,6 +56,8 @@ protected abbrev ConZonotope.nominal {α β : Type} [RealImage α β] [SoundFloa
     (cZ : ConZonotope 𝕋 α) : CORALean.Real.ConZonotope β :=
   ⟨cZ.h, RealImage.realImage cZ.c, fun j => RealImage.realImage (cZ.G j), cZ.P.nominal⟩
 
+/-- A float constrained zonotope inflates the real one its stored floats describe, the `nominal`
+one. -/
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConZonotope 𝕋 α) (CORALean.Real.ConZonotope β) α β where
   nominal := ConZonotope.nominal

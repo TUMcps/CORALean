@@ -21,6 +21,8 @@ namespace CORALean.Bench
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- One run's inputs apart from the number type: the instance, the step size as a string, the
+algorithm, the Taylor order and the zonotope order. -/
 structure RandJob where
   inst : RandInstance
   dt : String

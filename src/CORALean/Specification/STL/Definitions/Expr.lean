@@ -29,6 +29,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An arithmetic expression over the state: a variable, a number, and sums, differences, products
+and integer powers. -/
 inductive STL.Expr (n : ℕ)
   | var (i : Fin n)
   | num (c : ℝ)

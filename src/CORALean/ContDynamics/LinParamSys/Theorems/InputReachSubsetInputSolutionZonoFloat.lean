@@ -3,7 +3,10 @@ module
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
-public import CORALean.ContDynamics.LinParamSys.Theorems.SmulPowMemInputTermZonoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
@@ -21,7 +24,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalCont
 [1, Thm. 1] in floats, by way of the exact theorem at the frozen member, as
 `inputReach_subset_inputSolutionFloat` takes it: `inputReach_subset_inputSolution` at plain
 sets gives the member's orders `0 … η` and its remainder. Orders `0` and `1` then sit in
-`inputTermZonoFloat` (`smul_pow_mem_inputTermZonoFloat`), orders from `2` in the interval
+`inputTermZonoFloat` (`aux_smul_pow_mem_inputTermZonoFloat`), orders from `2` in the interval
 terms at `sys.A.matInterval`, and the remainder in `intervalInputRemainder` there; the
 exact sum is regrouped as the float one is, Minkowski sums being associative.
 
@@ -69,6 +72,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A member's order-`i` input matrix lies in `inputTermZonoFloat`. -/
+theorem LinParamSys.aux_smul_pow_mem_inputTermZonoFloat
+    (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (i : ℕ) : -- --- CONCL ---
+    (toReal r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • A ^ i
+      ∈ (sys.inputTermZonoFloat r i).construct := by -- --- PROOF ---
+  show _ ∈ (Zonotope.matSmul _ _ (sys.A.matPow i)).materialiseMat.construct
+  rw [Zonotope.materialiseMat_eq]
+  exact Zonotope.matSmul_outer (MatExp.taylorCoeffBounds_mem hr (i + 1)).1
+    (MatExp.taylorCoeffBounds_mem hr (i + 1)).2 _ (Zonotope.matPow_outer sys.A hA i)
+
 
 /-- The Minkowski sum of plain sets, exactly. -/
 @[reducible] def aux_zonoSetPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
@@ -121,7 +136,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset_zono
         (S := 𝒵[𝕋])
         (sys.inputTermZonoFloat r i) V) :=
     fun i => LinParamSys.aux_image_subset_mtimes
-      (sys.smul_pow_mem_inputTermZonoFloat hr hA i) V
+      (sys.aux_smul_pow_mem_inputTermZonoFloat hr hA i) V
   -- every later order, through the interval matrix the zonotope encloses
   have hI : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
       V.construct

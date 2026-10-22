@@ -2,11 +2,10 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
 public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
-public import CORALean.ContSet.Zonotope.Float.Theorems.EntryDeviationBound
-public import CORALean.ContSet.Zonotope.Float.Theorems.ErrBoundLe
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Zonotope.Float.Theorems.MulResidualBound
-public import CORALean.ContSet.Zonotope.Float.Theorems.PointBetween
+public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
 
 @[expose] public section
@@ -48,6 +47,69 @@ open Matrix Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `pointLo` and `pointHi` bracket `c + G β`. -/
+theorem Zonotope.aux_point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec 𝕋 Z.h)
+    (i : Fin n) : -- --- CONCL ---
+    toReal (Z.pointLo β i) ≤ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
+      ∧ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
+        ≤ toReal (Z.pointHi β i) := by -- --- PROOF ---
+  have h1 := addDown_le_add (Z.c i) (dotDown (fun j => Z.G j i) β)
+  have h2 := add_le_addUp (Z.c i) (dotUp (fun j => Z.G j i) β)
+  have h3 := dotDown_le (fun j => Z.G j i) β
+  have h4 := le_dotUp (fun j => Z.G j i) β
+  exact ⟨by simp only [Zonotope.pointLo]; linarith, by simp only [Zonotope.pointHi]; linarith⟩
+
+
+/-- `aux_mulResidual` bounds `|A - G Γ|`. -/
+theorem Zonotope.aux_mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h) (Γ : Mat 𝕋 h m)
+    (i : Fin n) (j : Fin m) : -- --- CONCL ---
+    |(toRealMat A - toRealMat G * toRealMat Γ) i j|
+      ≤ toReal (Zonotope.aux_mulResidual A G Γ i j) := by -- --- PROOF ---
+  have hd := dotDown_le (fun l => G i l) fun l => Γ l j
+  have hu := le_dotUp (fun l => G i l) fun l => Γ l j
+  have hprod : (toRealMat G * toRealMat Γ) i j = ∑ l, toReal (G i l) * toReal (Γ l j) := rfl
+  have h1 := subDown_le_sub (A i j) (dotUp (fun l => G i l) fun l => Γ l j)
+  have h2 := sub_le_subUp (A i j) (dotDown (fun l => G i l) fun l => Γ l j)
+  rw [Matrix.sub_apply, hprod]
+  simp only [Zonotope.aux_mulResidual, toReal_maximum, toReal_absolute]
+  have hA : toRealMat A i j = toReal (A i j) := rfl
+  rw [hA]
+  exact abs_le_max_abs_abs (by linarith) (by linarith)
+
+
+/-- `aux_errBound` bounds every member of a float box. -/
+theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n} (he : e ∈ E.construct)
+    (i : Fin n) : -- --- CONCL ---
+    |e i| ≤ toReal (Zonotope.aux_errBound E i) := by -- --- PROOF ---
+  have h1 : toReal (E.inf i) ≤ e i := (he i).1
+  have h2 : e i ≤ toReal (E.sup i) := (he i).2
+  simp only [Zonotope.aux_errBound, toReal_maximum, toReal_absolute]
+  have a1 := neg_abs_le (toReal (E.inf i))
+  have a2 := le_abs_self (toReal (E.sup i))
+  have m1 := le_max_left |toReal (E.inf i)| |toReal (E.sup i)|
+  have m2 := le_max_right |toReal (E.inf i)| |toReal (E.sup i)|
+  exact abs_le.mpr ⟨by linarith, by linarith⟩
+
+
+/-- `aux_entryDeviation` bounds `|x - e - y|`. -/
+theorem Zonotope.aux_entryDeviation_bound (x e lo hi : Vec 𝕋 n) {y : ℝ} (i : Fin n)
+    (hlo : toReal (lo i) ≤ y) (hhi : y ≤ toReal (hi i)) : -- --- CONCL ---
+    |toReal (x i) - toReal (e i) - y|
+      ≤ toReal (Zonotope.aux_entryDeviation x e lo hi i) := by -- --- PROOF ---
+  have a1 := sub_le_subUp (x i) (e i)
+  have a2 := sub_le_subUp (subUp (x i) (e i)) (lo i)
+  have b1 := subDown_le_sub (x i) (e i)
+  have b2 := sub_le_subUp (hi i) (subDown (x i) (e i))
+  simp only [Zonotope.aux_entryDeviation, toReal_maximum]
+  have m1 := le_max_left (toReal (subUp (subUp (x i) (e i)) (lo i)))
+    (toReal (subUp (hi i) (subDown (x i) (e i))))
+  have m2 := le_max_right (toReal (subUp (subUp (x i) (e i)) (lo i)))
+    (toReal (subUp (hi i) (subDown (x i) (e i))))
+  exact abs_le.mpr ⟨by linarith, by linarith⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z₂.h n}
@@ -71,28 +133,28 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
           - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
       + |e₁ i| ≤ toReal (Zonotope.ballB H (Z₂.stDelta Z₁ H)) := by
     intro i
-    have a1 := Zonotope.entryDeviation_bound Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
+    have a1 := Zonotope.aux_entryDeviation_bound Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
       (Z₂.pointHi (Z₂.stBeta Z₁ H)) i
-      (Zonotope.point_between Z₂ (Z₂.stBeta Z₁ H) i).1
-      (Zonotope.point_between Z₂ (Z₂.stBeta Z₁ H) i).2
+      (Zonotope.aux_point_between Z₂ (Z₂.stBeta Z₁ H) i).1
+      (Zonotope.aux_point_between Z₂ (Z₂.stBeta Z₁ H) i).2
     have a2 : ∑ j, |(toRealMat (fun i j => Z₁.G j i)
           - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
-        ≤ toReal (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i)
+        ≤ toReal (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i)
           (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j) :=
-      le_trans (Finset.sum_le_sum fun j _ => Zonotope.mulResidual_bound _ _ _ i j)
+      le_trans (Finset.sum_le_sum fun j _ => Zonotope.aux_mulResidual_bound _ _ _ i j)
         (sum_le_sumUp _)
-    have a3 := Zonotope.abs_le_errBound Z₁.I_error he₁ i
+    have a3 := Zonotope.aux_abs_le_errBound Z₁.I_error he₁ i
     -- the three terms, rounded up, add to at most `B`
     have a4 := toReal_le_of_le (hres i)
     simp only [Zonotope.aux_stLeftover] at a4
-    have a5 := add_le_addUp (addUp (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf
+    have a5 := add_le_addUp (addUp (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-      (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+      (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
         (Z₂.stGamma Z₁ H) i j))
-      (Zonotope.errBound Z₁.I_error i)
-    have a6 := add_le_addUp (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf
+      (Zonotope.aux_errBound Z₁.I_error i)
+    have a6 := add_le_addUp (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-      (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+      (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
         (Z₂.stGamma Z₁ H) i j)
     have a7 : (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i
         = ∑ j, toReal (Z₂.G j i) * toReal (Z₂.stBeta Z₁ H j) := rfl

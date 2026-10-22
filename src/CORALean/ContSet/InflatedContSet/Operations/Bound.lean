@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Interval.Float.Operations.OfBounds
 
 @[expose] public section

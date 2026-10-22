@@ -26,7 +26,7 @@ public import CORALean.NN.Layers.Theorems.OfMonotoneSound
 public import CORALean.NN.Layers.Theorems.PadToSound
 public import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
 public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
-public import CORALean.NN.Layers.Theorems.SigmoidCurvatureRelaxationSound
+public import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
 public import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
 public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationSound
 public import CORALean.NN.Layers.Theorems.SquareRelaxationSound
@@ -176,19 +176,6 @@ and `Real.sqrt` is monotone. -/
 theorem rootRelaxation_sound (p : ℕ) : (rootRelaxation (𝕋 := 𝕋) p).Sound Real.sqrt :=
   Relaxation.ofMonotone_sound (fun _ _ h => Real.sqrt_le_sqrt h)
     ⟨fun a => sqrtDown_le p a, fun a => le_sqrtUp p a⟩
-
-
--- ================================  `sigmoidRelaxation_sound`  ================================= --
--- Authors:       Claude Opus 5.5
--- Written:       03-September-2026
--- Last update:   23-September-2026
--- Reviewed:      ---
-
-/-- Both halves are sound at the sound enclosure, so the tighter is too. -/
-theorem sigmoidRelaxation_sound (k : ℕ) :
-    (sigmoidRelaxation (𝕋 := 𝕋) k).Sound Real.sigmoid :=
-  Relaxation.tighter_sound (sigmoidCurvatureRelaxation_sound (sigmoidEnclosure_sound k))
-    (Relaxation.ofMonotone_sound Real.sigmoid_mono (sigmoidEnclosure_sound k))
 
 
 -- ==================================  `tanhRelaxation_sound`  ================================== --

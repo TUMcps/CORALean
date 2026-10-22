@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -45,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The first `s < 128` with `[tLo/2^s, tHi/2^s] · sys.A` no larger in norm than
 `[Δt, Δt] · sys.A` and admissible at order `η`. -/
-def LinParamSys.squaringsFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.squaringsFloat (sys : LinParamSys ℐ[𝕋] n)
     (Δt tLo tHi : 𝕋) (η : ℕ) : Option ℕ :=
   let nrmΔt := MatExp.normUpperBound (Interval.smul Δt Δt sys.A)   -- ≥ ‖Δt A‖, every A ∈ sys.A
   (List.range 128).find? fun s =>

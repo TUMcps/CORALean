@@ -27,6 +27,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A three-valued signal built from two Boolean signals: when the property can be true and when it
+can be false. -/
 structure FiniteKleeneSignalBuilder where
   possiblyTrueSignal : FiniteSignal ℝ Bool
   possiblyFalseSignal : FiniteSignal ℝ Bool

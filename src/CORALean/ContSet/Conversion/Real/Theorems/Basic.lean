@@ -38,9 +38,12 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
-public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
-public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Extreme
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Tactic.Positivity
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds

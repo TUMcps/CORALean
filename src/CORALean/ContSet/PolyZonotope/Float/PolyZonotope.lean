@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.PolyZonotope.Real.Instances
 
 @[expose] public section
@@ -41,6 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A sparse polynomial zonotope over floats: center `c`, `h` dependent generators `G` with exponent
+matrix `E` over `p` factors, `q` independent generators `GI`, and the error box `I_error`. -/
 structure PolyZonotope (α : Type) where
   /-- The dependent factors, shared across all of `G`. -/
   p : ℕ
@@ -60,6 +62,8 @@ protected abbrev PolyZonotope.nominal {α β : Type} [RealImage α β] (pZ : Pol
   ⟨pZ.p, pZ.h, pZ.q, RealImage.realImage pZ.c, fun l => RealImage.realImage (pZ.G l), pZ.E,
     fun j => RealImage.realImage (pZ.GI j)⟩
 
+/-- A float polynomial zonotope inflates the real one its stored floats describe, the `nominal` one.
+-/
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
     InflatedContSet (PolyZonotope α) (CORALean.Real.PolyZonotope β) α β where
   nominal := PolyZonotope.nominal

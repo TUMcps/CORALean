@@ -30,6 +30,8 @@ namespace CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A network of interval layers for backpropagation: the identity, a linear layer, or an
+elementwise activation given with its derivative. -/
 inductive IntervalChain : ℕ → ℕ → Type where
   | nil {n : ℕ} : IntervalChain n n
   | linear {n m k : ℕ} (W : Mat ℝ m n) (b : Vec ℝ m) (rest : IntervalChain m k) :

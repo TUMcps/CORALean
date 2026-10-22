@@ -1,6 +1,10 @@
 module
 
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerGain
+public import CORALean.ContSet.Zonotope.Real.Operations.LuenbergerUpdate
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
 public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropLuenberger
 
 @[expose] public section
 
@@ -8,9 +12,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionPropStep
 # `Zonotope.diffusionProp`
 
 [1, Alg. 2], the distributed set-propagation diffusion observer: every node starts at `Z₀`, and at
-each instant `k = 1, 2, …` the nodes run Steps 1-2 (`diffusionPropStep`) with the noise `Q_k`, the
-radii `r_k` and the outputs `ȳ_k` of that instant. The value at `k` is `Ẑ_{v,k}`, and at `0` it is
-`Z₀`; the instant-`k` data are the arguments at `k`, those at `0` unused.
+each instant `k = 1, 2, …` the nodes run Steps 1-2 (`diffusionPropStep`) with the noise `Q_k`,
+the radii `r_k` and the outputs `ȳ_k` of that instant. The value at `k` is `Ẑ_{v,k}`, and at `0` it
+is `Z₀`; the instant-`k` data are the arguments at `k`, those at `0` unused.
 
 ## Inputs
 * `F` – dynamics matrix
@@ -45,6 +49,13 @@ namespace CORALean.Real
 open Matrix
 
 variable {n nq N : ℕ} {p m : Fin N → ℕ}
+
+
+section
+variable {n nq N : ℕ} {p : Fin N → ℕ}
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -43,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The first order from `max η 2` the float remainder bound at `[tLo, tHi] · sys.A`
 admits, or `none` if none of the next `4096` does. -/
-def LinParamSys.reachOrderFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.reachOrderFloat (sys : LinParamSys ℐ[𝕋] n)
     (tLo tHi : 𝕋) (η : ℕ) : Option ℕ :=
   let nrm := MatExp.normUpperBound (Interval.smul tLo tHi sys.A)    -- ≥ ‖t A‖, every A ∈ sys.A
   MatExp.admissibleOrder nrm (max η 2) 4096                          -- η + 2 ≥ 2 nrm, from max η 2

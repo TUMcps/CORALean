@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section

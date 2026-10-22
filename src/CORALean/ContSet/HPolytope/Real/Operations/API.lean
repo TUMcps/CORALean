@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
-public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.BoundOfDual
@@ -31,9 +30,6 @@ public import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
 public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
 public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
-public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
-public import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
-public import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
 public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.Stack
@@ -51,8 +47,6 @@ public import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
 public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
-public import CORALean.ContSet.HPolytope.Real.Operations.MoveToEq
-public import CORALean.ContSet.HPolytope.Real.Operations.AtoAeState
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
 public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCenter

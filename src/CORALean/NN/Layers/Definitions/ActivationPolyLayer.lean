@@ -26,6 +26,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a polynomial activation layer: a polynomial relaxation of degree `deg` per
+neuron, and a proof that all enclose one activation. -/
 structure ActivationPolyLayer (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
     (n m : ℕ) where
   deg : ℕ

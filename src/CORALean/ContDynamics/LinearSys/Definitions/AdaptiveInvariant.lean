@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The state `s` of a run under inputs in `V` holds what it owes at `t_i`. -/
 def LinearSys.AdaptiveInvariant (sys : LinearSys 𝕋 n) (V : Float.Zonotope (Vec 𝕋 n))
     (s : LinearSys.AdaptiveState 𝕋 n) : Prop :=
-  0 ≤ s.t ∧ toReal s.tLo ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tHi ∧
+  0 ≤ s.t ∧ toReal s.tEnc.inf ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tEnc.sup ∧
     ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recenter.recenter V) s.t,
       MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V + y ∈ s.P.construct
 

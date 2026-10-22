@@ -42,6 +42,7 @@ noncomputable def Example.diamond : Zonotope (Vec ℝ 2) := ⟨2, ![(1:ℝ)/2, 1
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Example.boxBundle : ZonoBundle (Vec ℝ 2) := ⟨1, fun _ => Example.box⟩
+/-- The bundle of the diamond alone. -/
 noncomputable def Example.diamondBundle : ZonoBundle (Vec ℝ 2) := ⟨1, fun _ => Example.diamond⟩
 
 -- anonymous, since their content is that they elaborate at this bundle

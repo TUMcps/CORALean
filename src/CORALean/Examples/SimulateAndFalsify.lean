@@ -43,7 +43,9 @@ def SAF.sys : LinearSysDT ℝ 2 := LinearSysDT.canonical !![1, 1; 0, 1]
 /-- Position `0`, speed `1`. -/
 def SAF.x0 : Vec ℝ 2 := ![0, 1]
 
+/-- The initial set, the point `x0`. -/
 def SAF.R0 : Interval (Vec ℝ 2) := Interval.point SAF.x0
+/-- The input set, the point `0`. -/
 def SAF.U : Interval (Vec ℝ 2) := Interval.point (0 : Vec ℝ 2)
 
 /-- Safe: the position at most `3`. `x0` satisfies it. -/

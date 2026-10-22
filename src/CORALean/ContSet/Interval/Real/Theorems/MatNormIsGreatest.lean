@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.MatNorm
 public import CORALean.ContSet.Interval.Real.Theorems.AbsCenterAddRadius
-public import CORALean.ContSet.Interval.Real.Theorems.ExistsMemAbsEqAbsMax
+public import CORALean.ContSet.Interval.Real.Operations.AbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 public import CORALean.ContSet.Interval.Real.Theorems.NormTypeEvalMono
 
 @[expose] public section
@@ -39,6 +40,25 @@ namespace CORALean.Real
 variable {m n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The corner of larger magnitude in every entry has the absolute values `absMax`. -/
+theorem Interval.aux_exists_mem_abs_eq_absMax (A : Interval (Mat ℝ m n))
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
+    ∃ M ∈ A.construct, ∀ i j, |M i j| = A.absMax i j := by -- --- PROOF ---
+  classical
+  refine ⟨Matrix.of fun p q => if |A.inf p q| ≤ |A.sup p q| then A.sup p q else A.inf p q,
+    Interval.mem_mat_iff.mpr fun p q => ?_, fun i j => ?_⟩
+  · simp only [Matrix.of_apply]
+    split_ifs
+    · exact ⟨hA p q, le_rfl⟩
+    · exact ⟨le_rfl, hA p q⟩
+  · simp only [Matrix.of_apply, Interval.absMax]
+    split_ifs with h
+    · rw [max_eq_right h]
+    · rw [max_eq_left (not_le.mp h).le]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The maximum of the norm of `type` over a nonempty box is `matNorm`, and is attained. -/
@@ -52,7 +72,7 @@ theorem Interval.matNorm_isGreatest (p : Interval.NormType) (A : Interval (Mat �
     abs_of_nonneg (le_max_of_le_left (abs_nonneg _))
   rw [hmax]
   refine ⟨?_, ?_⟩
-  · obtain ⟨M, hM, hMa⟩ := Interval.exists_mem_abs_eq_absMax A hA
+  · obtain ⟨M, hM, hMa⟩ := Interval.aux_exists_mem_abs_eq_absMax A hA
     refine ⟨M, hM, le_antisymm (p.eval_mono fun i j => ?_) (p.eval_mono fun i j => ?_)⟩
     · rw [hMa, hnn]
     · rw [hMa, hnn]

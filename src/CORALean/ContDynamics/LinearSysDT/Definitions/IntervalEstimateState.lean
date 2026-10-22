@@ -36,6 +36,8 @@ open CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The state of the reachability-based interval estimator: the point estimate `x`, the estimate set
+`Sx`, the disturbance and noise intervals `Sw`, `Sv`, and their zonotope parts `Dw`, `Dv`. -/
 structure LinearSysDT.IntervalEstimateState (n : ℕ) where
   x : Vec ℝ n
   Sx : Zonotope (Vec ℝ n)

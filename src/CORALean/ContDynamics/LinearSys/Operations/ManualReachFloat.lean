@@ -3,14 +3,20 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
-public import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.SquaringsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Point
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 
@@ -57,9 +63,73 @@ open CORALean.Float FloatOps
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+/-- Lines 5-11: one iteration of [1, Alg. 1] from `X₀` under inputs in `V`, the next state
+and `R̂(τ_k)`, or `none` where no squaring count fits `[e^{At_k}]` or `[e^{At_{k+1}}]`. -/
+def LinearSys.aux_manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
+    (η ρ : ℕ) (s : LinearSys.ManualStateFloat 𝕋 n) :
+    Option (LinearSys.ManualStateFloat 𝕋 n × Zonotope (Vec 𝕋 n)) := do
+  -- 1. {ũ}, V's stored center
+  let ũ := (Interval.point V.c).zonotope
+  -- 1. U₀ = V - ũ, holding 0
+  let Ũ := Recenter.recenter V
+  let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
+  -- 3. P^u(Δt), eq. (19)
+  let PuΔt := sys.inputSolutionFloat Δt η ũ
+  -- 3. P̂^U(Δt), eq. (20)
+  let PUΔt := sys.inputSolutionFloat Δt η Ũ
+  let PuτΔt := sys.inputSolutionFloat Δt η seg                      -- P^u(τ), every τ ≤ Δt
+  -- 5. t_{k+1}
+  let tk1 := s.t + ToRat.toRat Δt
+  -- 5. a float below t_{k+1}
+  let tLo1 := addDown s.tEnc.inf Δt
+  -- 5. a float above t_{k+1}
+  let tHi1 := addUp s.tEnc.sup Δt
+  let sq ← sys.squaringsFloat Δt s.tEnc.inf s.tEnc.sup η                    -- t_k / 2^sq within Δt
+  -- 6. [e^{A t_k}] ·
+  let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋])
+    (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq)
+  -- 6. P^u(t_{k+1}), a box
+  let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval
+  let sq1 ← sys.squaringsFloat Δt tLo1 tHi1 η                       -- t_{k+1} / 2^sq1 within Δt
+  -- 7. [e^{A t_{k+1}}] ·
+  let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋])
+    (sys.expSquaringFloat tLo1 tHi1 η sq1)
+  -- 7. H(t_{k+1})
+  let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope
+  -- 8.-9. Ĥ(τ_k)
+  let Hτk := sys.timeIntervalFloat Δt η s.H ⊞ PuτΔt
+  -- 10. P̂^U(t_{k+1})
+  let PUk1 := Reduce.reduce (s.PU ⊞ Φtk PUΔt) ρ
+  -- 11. R̂(τ_k)
+  let Rτk := Hτk ⊞ PUk1
+  pure ({ t := tk1, tEnc := ⟨tLo1, tHi1⟩, H := Hk1, Pu := Puk1, PU := PUk1 }, Rτk)
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+/-- Lines 4-11: the windows `R̂(τ_k), …, R̂(τ_{k+K-1})` of `K` iterations from `s`. -/
+def LinearSys.aux_manualRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
+    (η ρ : ℕ) : ℕ → LinearSys.ManualStateFloat 𝕋 n → Option (List (Zonotope (Vec 𝕋 n)))
+  | 0, _ => some []
+  | K + 1, s => do
+    let (s', Rτk) ← sys.aux_manualStepFloat X₀ V Δt η ρ s               -- 5.-11. one iteration
+    let Rs ← sys.aux_manualRunFloat X₀ V Δt η ρ K s'                     -- 4. the rest of the loop
+    pure (Rτk :: Rs)
+
+end
+
+
 /-- Lines 1-2, before the first iteration. -/
 def LinearSys.aux_manualInitFloat (X₀ : Zonotope (Vec 𝕋 n)) : LinearSys.ManualStateFloat 𝕋 n :=
-  { t := 0, tLo := zero, tHi := zero                                -- 1. t₀ ← 0
+  { t := 0, tEnc := ⟨zero, zero⟩                              -- 1. t₀ ← 0
     H := X₀                                                         -- 2. H(t₀) ← X₀
     Pu := Interval.point fun _ => zero                              -- 2. P^u(t₀) ← 0
     PU := (Interval.point fun _ => zero).zonotope }                 -- 2. P̂^U(t₀) ← 0
@@ -80,7 +150,7 @@ def LinearSys.manualReachFloat (sys : LinearSys 𝕋 n)
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
   -- 1.-11. the loop over the time steps, from the initial state
-  sys.manualRunFloat X₀ V Δt η' ρ N (LinearSys.aux_manualInitFloat X₀)
+  sys.aux_manualRunFloat X₀ V Δt η' ρ N (LinearSys.aux_manualInitFloat X₀)
 
 end CORALean
 

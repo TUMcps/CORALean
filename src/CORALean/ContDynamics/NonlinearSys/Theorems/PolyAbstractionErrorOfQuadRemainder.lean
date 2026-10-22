@@ -1,7 +1,9 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
-public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
+public import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
+public import Mathlib.Tactic.Abel
 
 @[expose] public section
 
@@ -50,6 +52,29 @@ open Matrix Real.PolyZonotope
 variable {n m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n : ℕ}
+
+/-- The value at `a` is the second-order term at the state `a` names. -/
+theorem aux_precompStatError_point (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n)
+    (pZ : Real.PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
+    (precompStatError Q xs pZ).point a = quadEval Q (pZ.point a - xs) := by -- --- PROOF ---
+  -- the shifted set has `pZ`'s monomials and generators, so only the center moves
+  have hshift : ({ pZ with c := pZ.c - xs } : Real.PolyZonotope (Vec ℝ n)).point a
+      = pZ.point a - xs := by
+    show pZ.c - xs + ∑ i, Real.PolyZonotope.monomial pZ.E a i • pZ.G i
+        = pZ.c + ∑ i, Real.PolyZonotope.monomial pZ.E a i • pZ.G i - xs
+    abel
+  have h := Real.PolyZonotope.quadMapDep_point Q
+    ({ pZ with c := pZ.c - xs } : Real.PolyZonotope _) a
+  rw [hshift] at h
+  exact h
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The second-order term, plus whatever `W` covers, is a certificate over
@@ -64,7 +89,7 @@ theorem PolyAbstractionError.of_quadRemainder {f : Vec ℝ n → Vec ℝ m → V
     PolyAbstractionError f A B xs us pZ Ba U (precompStatError Q xs pZ) rfl W where
   encloses a ha u hu := by
     -- `Fin.cast rfl` is the identity, so the certificate reads at `a` itself
-    rw [precompStatError_point]
+    rw [aux_precompStatError_point]
     exact hW a ha u hu
 
 end CORALean

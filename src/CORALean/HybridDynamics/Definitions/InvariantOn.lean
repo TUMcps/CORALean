@@ -34,6 +34,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A set per location and jump count that flows and jumps cannot leave: flowing keeps the count,
+jumping raises it by one. -/
 structure HybridAutomaton.InvariantOn (HA : HybridAutomaton S G L 𝕋 n) (R : ℕ → L → S n) :
     Prop where
   flow {k : ℕ} {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)

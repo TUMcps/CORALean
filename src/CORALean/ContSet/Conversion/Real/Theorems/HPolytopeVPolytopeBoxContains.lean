@@ -2,8 +2,11 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
-public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
-public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
+public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
+public import Mathlib.Analysis.Convex.Extreme
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Tactic.Positivity
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.SpectraShadow.Real.Instances
 
 @[expose] public section
@@ -35,6 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A spectrahedral shadow over floats: the points `c + Σ βᵢ Gᵢ` over coefficients `β` with `A₀ + Σ
+βᵢ Aᵢ` positive semidefinite, and the error box `I_error`. -/
 structure SpectraShadow (𝕋 α : Type) where
   /-- The size of the matrices in the inequality. -/
   k : ℕ
@@ -52,6 +54,8 @@ protected abbrev SpectraShadow.nominal {α β : Type} [RealImage α β] [SoundFl
   ⟨S.k, S.m, toRealMat S.A₀, fun i => toRealMat (S.A i), RealImage.realImage S.c,
     fun j => RealImage.realImage (S.G j)⟩
 
+/-- A float spectrahedral shadow inflates the real one its stored floats describe, the `nominal`
+one. -/
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (SpectraShadow 𝕋 α) (CORALean.Real.SpectraShadow β) α β where
   nominal := SpectraShadow.nominal

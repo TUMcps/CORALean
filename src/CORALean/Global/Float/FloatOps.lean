@@ -1,19 +1,18 @@
 module
 
+public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Tensor
 
 @[expose] public section
 
 /-!
-# Floating-point operations
+# Operations derived from the floating-point operations
 
-The arithmetic a machine float offers, with no claim about what it computes: two rounding directions
-per operation, and the exact operations that need none. `SoundFloatArithmetic` is what says the
-directions are honest. Kept separate from that class so the layer stays executable (a real
-interpretation is noncomputable, and so is everything reached through a class carrying one):
-definitions assume this class alone, theorems both. The folds recurse so that proofs about them are
-one induction, and run as loops because `@[csimp]` swaps in a `Fin.foldr` version, which the
-compiler accepts only with the proof of equality beside it, so the trusted base is untouched.
+What `FloatOps` (in `Interfaces.lean`) gives without further assumption: directed subtraction, sums
+and repeated addition, the extrema folds, the strict margin, dot products and matrix products. The
+folds recurse so that proofs about them are one induction, and run as loops because `@[csimp]` swaps
+in a `Fin.foldr` version, which the compiler accepts only with the proof of equality beside it, so
+the trusted base is untouched.
 -/
 
 -- Authors:       Claude Opus 5
@@ -24,58 +23,14 @@ compiler accepts only with the proof of equality beside it, so the trusted base 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
--- Import guards (CONTRIBUTING, "Import guards and layering"): what must stay out of the closure.
-
--- Measure theory, whose import closure is larger than this whole layer.
-assert_not_exists MeasureTheory.Measure
--- Probability, which sits on top of measure theory.
-assert_not_exists ProbabilityTheory.IndepFun
--- Determinants and the spectral theory built on them.
-assert_not_exists Matrix.det
--- The analytic special functions; exact enclosures of them belong higher up.
-assert_not_exists Real.exp
--- Calculus, which only the dynamics layers need.
-assert_not_exists HasDerivAt
--- Inner-product geometry; the sup norm is what this layer uses.
-assert_not_exists InnerProductSpace
--- The abstract set class sits above this file.
-assert_not_imported CORALean.ContSet.ContSet.Interfaces
--- A concrete representation sits above this file.
-assert_not_imported CORALean.ContSet.Interval.Real.Interval
-
 namespace CORALean.Float
-
-
--- ========================================  MAIN TYPE  ========================================= --
-
-class FloatOps (𝕋 : Type) where
-  zero : 𝕋
-  /-- Every format has it exactly, and a constraint matrix cannot name a
-  coordinate without it. -/
-  one : 𝕋
-  /-- Sign is a bit, so negation needs no direction. -/
-  neg : 𝕋 → 𝕋
-  addUp : 𝕋 → 𝕋 → 𝕋
-  addDown : 𝕋 → 𝕋 → 𝕋
-  mulUp : 𝕋 → 𝕋 → 𝕋
-  mulDown : 𝕋 → 𝕋 → 𝕋
-  /-- Constrained only for a positive divisor, which costs nothing: `neg` is
-  exact, so a caller dividing by a negative `b` negates both arguments. -/
-  divUp : 𝕋 → 𝕋 → 𝕋
-  divDown : 𝕋 → 𝕋 → 𝕋
-  /-- Exact, like `neg`: choosing between two floats invents no digits. -/
-  minimum : 𝕋 → 𝕋 → 𝕋
-  maximum : 𝕋 → 𝕋 → 𝕋
-  /-- `SoundFloatArithmetic` constrains a `true` answer only: that is what a
-  generator ranking spends, and what lets a caller elsewhere discharge a bound
-  hypothesis it already suspects holds. -/
-  le : 𝕋 → 𝕋 → Bool
-  /-- Exact in a binary format, where halving only moves the exponent. -/
-  half : 𝕋 → 𝕋
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- ======================================  MAIN INSTANCE  ======================================= --
 
 /-- A float negates itself, exactly. Low priority, so that a scalar with a `Neg` of its own
 (`ℝ`) keeps it; the vectors and matrices of floats negate entrywise through `Pi.instNeg`. -/
@@ -86,7 +41,9 @@ instance (priority := low) : Neg 𝕋 := ⟨neg⟩
 Derived, not assumed: negation is exact, so a directed difference is a directed
 sum. -/
 
+/-- The difference `a - b` rounded up. -/
 def subUp (a b : 𝕋) : 𝕋 := addUp a (neg b)
+/-- The difference `a - b` rounded down. -/
 def subDown (a b : 𝕋) : 𝕋 := addDown a (neg b)
 
 /-! ## Summation
@@ -95,10 +52,12 @@ def subDown (a b : 𝕋) : 𝕋 := addDown a (neg b)
 go through `Finset.sum`. Right-nested, matching `Fin.sum_univ_succ`, so the
 bounds are one induction. -/
 
+/-- The sum of `f 0, …, f (n-1)`, nested to the right, every addition rounded up. -/
 def sumUp : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
   | _ + 1, f => addUp (f 0) (sumUp fun i => f i.succ)
 
+/-- The sum of `f 0, …, f (n-1)`, nested to the right, every addition rounded down. -/
 def sumDown : {n : ℕ} → (Fin n → 𝕋) → 𝕋
   | 0, _ => zero
   | _ + 1, f => addDown (f 0) (sumDown fun i => f i.succ)
@@ -107,8 +66,10 @@ def sumDown : {n : ℕ} → (Fin n → 𝕋) → 𝕋
 not merely an equal one: the bracketing is the definition's. -/
 def sumUpImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc => addUp (f i) acc) zero
 
+/-- `sumDown` as a right fold, which compiles to a loop. -/
 def sumDownImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc => addDown (f i) acc) zero
 
+/-- The recursive `sumUp` is replaced by the fold `sumUpImpl` in compiled code. -/
 @[csimp] theorem sumUp_eq_impl : -- --- CONCL ---
     @sumUp = @sumUpImpl := by -- --- PROOF ---
   funext 𝕋 _ n
@@ -120,6 +81,7 @@ def sumDownImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc 
     rw [sumUpImpl, Fin.foldr_succ, ← sumUpImpl, ← congrFun ih fun i => f i.succ]
     rfl
 
+/-- The recursive `sumDown` is replaced by the fold `sumDownImpl` in compiled code. -/
 @[csimp] theorem sumDown_eq_impl : -- --- CONCL ---
     @sumDown = @sumDownImpl := by -- --- PROOF ---
   funext 𝕋 _ n
@@ -135,10 +97,12 @@ def sumDownImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := Fin.foldr n (fun i acc 
 A count of copies, one fold per direction. The count comes from an exponent
 matrix, which is over ℕ in both layers, so only the additions round. -/
 
+/-- `k` times `a` by repeated addition rounded down. -/
 def nsmulDown : ℕ → 𝕋 → 𝕋
   | 0, _ => zero
   | k + 1, a => addDown a (nsmulDown k a)
 
+/-- `k` times `a` by repeated addition rounded up. -/
 def nsmulUp : ℕ → 𝕋 → 𝕋
   | 0, _ => zero
   | k + 1, a => addUp a (nsmulUp k a)
@@ -158,6 +122,7 @@ def maximumOverImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 :=
   | 0, _ => zero
   | k + 1, f => Fin.foldr k (fun i acc => maximum (f i.castSucc) acc) (f (Fin.last k))
 
+/-- The recursive `maximumOver` is replaced by the fold `maximumOverImpl` in compiled code. -/
 @[csimp] theorem maximumOver_eq_impl : -- --- CONCL ---
     @maximumOver = @maximumOverImpl := by -- --- PROOF ---
   funext 𝕋 _ n
@@ -188,6 +153,7 @@ of `a` raised by a positive margin, rounded up, so a `true` still certifies `<`.
 /-- `2⁻⁶⁴`, exactly: `one` halved, and `half` rounds nothing. -/
 def strictMargin : 𝕋 := half^[64] one
 
+/-- A strict comparison: `a` plus the strict margin, rounded up, is at most `b`. -/
 def ltStrict (a b : 𝕋) : Bool := le (addUp a strictMargin) b
 
 /-! ## Dot products
@@ -195,7 +161,9 @@ def ltStrict (a b : 𝕋) : Bool := le (addUp a strictMargin) b
 Products and sum rounded the same way. Every matrix operation in the layer is
 built from these two. -/
 
+/-- The dot product with every product and sum rounded down. -/
 def dotDown {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumDown fun k => mulDown (a k) (b k)
+/-- The dot product with every product and sum rounded up. -/
 def dotUp {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumUp fun k => mulUp (a k) (b k)
 
 /-- Row sums of absolute values, rounded up: the half-width of the hull of a
@@ -212,11 +180,15 @@ def diagonalBlock {n : ℕ} (v : Vec 𝕋 n) : Mat 𝕋 n n := fun i l => if i =
 Each entry is a dot product. Both directions are kept: the stored value is the
 lower one, the gap to the upper what a caller is charged. -/
 
+/-- The matrix-vector product with every entry rounded down. -/
 def mulVecDown {m n : ℕ} (M : Mat 𝕋 m n) (v : Vec 𝕋 n) : Vec 𝕋 m := fun i => dotDown (M i) v
+/-- The matrix-vector product with every entry rounded up. -/
 def mulVecUp {m n : ℕ} (M : Mat 𝕋 m n) (v : Vec 𝕋 n) : Vec 𝕋 m := fun i => dotUp (M i) v
 
+/-- The matrix product with every entry rounded down. -/
 def matMulDown {m n k : ℕ} (M₁ : Mat 𝕋 m n) (M₂ : Mat 𝕋 n k) : Mat 𝕋 m k :=
   fun i j => dotDown (M₁ i) (fun l => M₂ l j)
+/-- The matrix product with every entry rounded up. -/
 def matMulUp {m n k : ℕ} (M₁ : Mat 𝕋 m n) (M₂ : Mat 𝕋 n k) : Mat 𝕋 m k :=
   fun i j => dotUp (M₁ i) (fun l => M₂ l j)
 

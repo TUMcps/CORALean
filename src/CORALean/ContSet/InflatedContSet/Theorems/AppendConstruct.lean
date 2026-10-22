@@ -1,8 +1,11 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
-public import CORALean.Global.AppendProdAdd
+public import CORALean.Global.Tensor
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 @[expose] public section
 
@@ -46,6 +49,33 @@ variable [InflatedContSet S₁ N₁ (Vec 𝕋 n₁) (Vec ℝ n₁)] [InflatedCon
   [InflatedContSet T N (Vec 𝕋 (n₁ + n₂)) (Vec ℝ (n₁ + n₂))]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n₁ n₂ : ℕ}
+
+/-- Appending sums coordinatewise. -/
+theorem _root_.CORALean.aux_append_image_prod_add (A₁ B₁ : Set (Vec ℝ n₁))
+    (A₂ B₂ : Set (Vec ℝ n₂)) : -- --- CONCL ---
+    (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) '' (A₁ ×ˢ A₂) +
+        (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) '' (B₁ ×ˢ B₂) =
+      (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
+        ((A₁ + B₁) ×ˢ (A₂ + B₂)) := by -- --- PROOF ---
+  ext z
+  constructor
+  · rintro ⟨_, ⟨⟨a₁, a₂⟩, ⟨ha₁, ha₂⟩, rfl⟩, _, ⟨⟨b₁, b₂⟩, ⟨hb₁, hb₂⟩, rfl⟩, rfl⟩
+    refine ⟨(a₁ + b₁, a₂ + b₂), ⟨⟨a₁, ha₁, b₁, hb₁, rfl⟩, ⟨a₂, ha₂, b₂, hb₂, rfl⟩⟩, ?_⟩
+    funext i
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp
+  · rintro ⟨⟨_, _⟩, ⟨⟨a₁, ha₁, b₁, hb₁, rfl⟩, ⟨a₂, ha₂, b₂, hb₂, rfl⟩⟩, rfl⟩
+    refine ⟨Fin.append a₁ a₂, ⟨(a₁, a₂), ⟨ha₁, ha₂⟩, rfl⟩, Fin.append b₁ b₂,
+      ⟨(b₁, b₂), ⟨hb₁, hb₂⟩, rfl⟩, ?_⟩
+    funext i
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem append_construct {s₁ : S₁} {s₂ : S₂} {t : T}
@@ -56,7 +86,7 @@ theorem append_construct {s₁ : S₁} {s₂ : S₂} {t : T}
       (construct s₁ ×ˢ construct s₂) := by -- --- PROOF ---
   show nominalSet t + (I_error t).construct = _ '' ((nominalSet s₁ + (I_error s₁).construct) ×ˢ
     (nominalSet s₂ + (I_error s₂).construct))
-  rw [hnominal, herror, Interval.append_construct, append_image_prod_add]
+  rw [hnominal, herror, Interval.append_construct, aux_append_image_prod_add]
 
 end CORALean.Float.InflatedContSet
 

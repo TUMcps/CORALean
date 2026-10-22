@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Pow
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 @[expose] public section
 

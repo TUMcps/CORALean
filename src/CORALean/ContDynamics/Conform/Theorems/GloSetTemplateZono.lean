@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.Conform.Definitions.Glo
 public import CORALean.ContDynamics.Conform.Theorems.ImageTemplateZono
-public import CORALean.ContDynamics.Conform.Theorems.SingletonAddTemplateZono
+public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
 public import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
 public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
 
@@ -59,6 +59,21 @@ open Matrix Pointwise
 variable {n p q k : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A translated stretched template. -/
+theorem Conform.aux_singleton_add_templateZono {m : ℕ} {ι : Type} [Fintype ι] (d c : Vec ℝ m)
+    (G : ι → Vec ℝ m) (α : ι → ℝ) : -- --- CONCL ---
+    {d} + Conform.templateZono c G α = Conform.templateZono (d + c) G α := by -- --- PROOF ---
+  rw [Set.singleton_add]
+  ext y
+  constructor
+  · rintro ⟨_, ⟨β, hβ, rfl⟩, rfl⟩
+    exact ⟨β, hβ, by dsimp only; abel⟩
+  · rintro ⟨β, hβ, rfl⟩
+    exact ⟨_, ⟨β, hβ, rfl⟩, by dsimp only; abel⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 1]: `Ȳ` with center (16a) and generators (16b)-(16c). -/
@@ -73,12 +88,12 @@ theorem Conform.gloSet_templateZono {ιx ιu : Type} [Fintype ιx] [Fintype ιu]
   unfold Conform.gloSet
   have hx : -cx + (cx + dx) = dx := by abel
   have hu : -cu + (cu + du) = du := by abel
-  rw [Conform.singleton_add_templateZono (-cx), hx, Conform.image_templateZono]
+  rw [Conform.aux_singleton_add_templateZono (-cx), hx, Conform.image_templateZono]
   have hsum : ∀ i : Fin (k + 1), (fun v => Db i *ᵥ v) '' ({-cu} + Conform.templateZono (cu + du)
       Gu αu) = Conform.templateZono (Db i *ᵥ du) (fun j => Db i *ᵥ Gu j) αu := fun i => by
-    rw [Conform.singleton_add_templateZono, hu, Conform.image_templateZono]
+    rw [Conform.aux_singleton_add_templateZono, hu, Conform.image_templateZono]
   simp only [hsum]
-  rw [Conform.sum_templateZono, Conform.singleton_add_templateZono, Conform.templateZono_add]
+  rw [Conform.sum_templateZono, Conform.aux_singleton_add_templateZono, Conform.templateZono_add]
 
 end CORALean
 

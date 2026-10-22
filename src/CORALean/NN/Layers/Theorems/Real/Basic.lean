@@ -56,19 +56,6 @@ theorem enclosure_exact_sound (σ : ℝ → ℝ) : (Enclosure.exact σ).Sound σ
   ⟨fun _ => le_rfl, fun _ => le_rfl⟩
 
 
--- =====================================  `evalPoly_coeff`  ===================================== --
--- Authors:       Claude Opus 5.5
--- Written:       05-September-2026
--- Last update:   23-September-2026
--- Reviewed:      ---
-
-/-- ℝ-only, as `evalPoly` is: coefficients indexed by degree, up to the natural degree. -/
-theorem evalPoly_coeff (p : Polynomial ℝ) (t : ℝ) :
-    evalPoly (fun i : Fin (p.natDegree + 1) => p.coeff (i : ℕ)) t = Polynomial.eval t p := by
-  rw [Polynomial.eval_eq_sum_range]
-  exact Fin.sum_univ_eq_sum_range (fun i => p.coeff i * t ^ i) (p.natDegree + 1)
-
-
 -- ======================================  `exp_sum_pos`  ======================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
@@ -118,18 +105,6 @@ theorem le_windowMax {k : ℕ} (f : Fin (k + 1) → ℝ) (l : Fin (k + 1)) : f l
   Finset.le_sup' f (Finset.mem_univ l)
 
 
--- ===============================  `scaleRounding_exact_sound`  ================================ --
--- Authors:       Claude Opus 5.5
--- Written:       23-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- ℝ-only, as `ScaleRounding.exact` is: only ℝ stores `r · x` exactly. Both directions are the
-product itself. -/
-theorem scaleRounding_exact_sound (r : ℝ) : (ScaleRounding.exact r).Sound r :=
-  ⟨fun _ => le_rfl, fun _ => le_rfl⟩
-
-
 -- ======================================  `sigmoid_pos`  ======================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
@@ -155,19 +130,6 @@ theorem le_sigmoidDerivHi {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) :
     (le_of_lt (sigmoid_pos _)) (le_of_lt (sigmoid_pos _))
 
 
--- =====================================  `sigmoid_lt_one`  ===================================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-September-2026
--- Last update:   23-September-2026
--- Reviewed:      ---
-
-/-- `sigmoid_pos` read at the mirrored argument. -/
-theorem sigmoid_lt_one (t : ℝ) : sigmoid t < 1 := by
-  have h := sigmoid_pos (-t)
-  rw [sigmoid_neg] at h
-  linarith
-
-
 -- =====================================  `softmax_nonneg`  ===================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
@@ -177,19 +139,6 @@ theorem sigmoid_lt_one (t : ℝ) : sigmoid t < 1 := by
 /-- A positive numerator over a positive denominator. -/
 theorem softmax_nonneg (x : Vec ℝ n) (i : Fin n) : 0 ≤ softmax x i :=
   div_nonneg (Real.exp_pos (x i)).le (exp_sum_pos x i).le
-
-
--- ===================================  `softmax_sum_eq_one`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-September-2026
--- Last update:   23-September-2026
--- Reviewed:      ---
-
-/-- The constraint the enclosure is built to keep, and a fact a specification may use directly. -/
-theorem softmax_sum_eq_one (x : Vec ℝ n) (i : Fin n) : ∑ j, softmax x j = 1 := by
-  show ∑ j, Real.exp (x j) / (∑ k, Real.exp (x k)) = 1
-  rw [← Finset.sum_div]
-  exact div_self (ne_of_gt (exp_sum_pos x i))
 
 
 -- ======================================  `windowMax_le`  ====================================== --

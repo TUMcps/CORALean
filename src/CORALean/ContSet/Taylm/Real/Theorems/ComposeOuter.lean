@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Compose
-public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons

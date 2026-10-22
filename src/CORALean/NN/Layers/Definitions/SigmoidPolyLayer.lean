@@ -26,6 +26,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a polynomial sigmoid layer: per neuron a fit of degree `deg` over a grid of `N +
+1` points with its spacing, and the number `k` of terms enclosing `exp`. -/
 structure SigmoidPolyLayer (𝕋 : Type) (n m : ℕ) where
   k : ℕ
   deg : ℕ

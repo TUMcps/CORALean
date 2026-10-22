@@ -50,4 +50,3 @@ src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_Interval.lean  cycle
 src/CORALean/ContSet/Conversion/Real/Operations/Interval_to_Zonotope.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/Ellipsoid_to_Zonotope` → `Basic`
 src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_VPolytope.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/HPolytope_to_VPolytope` → `Basic`
 src/CORALean/ContSet/Conversion/Real/Operations/Ellipsoid_to_Interval.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/Ellipsoid_to_Zonotope` → `Basic`
-src/CORALean/ContSet/Conversion/Float/Theorems/ConPolyZonoConZonotopeContains.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Float/Theorems/PolyZonotopeConZonotopeContains` → `Basic`

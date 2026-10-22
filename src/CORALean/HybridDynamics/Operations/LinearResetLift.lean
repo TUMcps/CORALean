@@ -1,6 +1,7 @@
 module
 
-public import CORALean.Global.ExactScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import Mathlib.Data.List.FinRange
 
 @[expose] public section

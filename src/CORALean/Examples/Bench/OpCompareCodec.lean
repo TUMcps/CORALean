@@ -62,8 +62,10 @@ hex field, in or out, uses. -/
 def uint64ToHex (u : UInt64) : String :=
   String.ofList ((List.range 16).map fun i => aux_hexChar ((u >>> (60 - 4 * i).toUInt64) &&& 0xF))
 
+/-- The `Float` a 16-digit hex bit pattern denotes, or an error if it does not parse. -/
 def hexToFloat (s : String) : Except String Float := (parseHex64 s).map Float.ofBits
 
+/-- The 16 hex digits of a `Float`'s bit pattern. -/
 def floatToHex (x : Float) : String := uint64ToHex x.toBits
 
 /-- `x` at `IEEE .binary64`, exactly -- `Binary64.toDyadic`'s own `(mantissa, exponent)`,
@@ -96,9 +98,11 @@ def ieee64ToBits (x : IEEE IEEEFormat.binary64) : Except String UInt64 :=
       -- subnormal: the fixed exponent `-1074`, no implicit leading bit
       pure ((sign <<< 63) ||| (m * 2 ^ (x.exponent + 1074).toNat : Nat).toUInt64)
 
+/-- The 16 hex digits of the bit pattern of a binary64 value. -/
 def ieee64ToHex (x : IEEE IEEEFormat.binary64) : Except String String :=
   (ieee64ToBits x).map uint64ToHex
 
+/-- The 16 hex digits of the bit pattern of a `Float`, through the exact conversion to binary64. -/
 def floatToIeeeHex (x : Float) : Except String String := ieee64ToHex (floatToIEEE64 x)
 
 /-- `hex → Float → IEEE .binary64 → hex`, checked on every token of `hexes`: the regression for

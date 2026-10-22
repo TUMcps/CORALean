@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.IsRunOnToIsRun
-public import CORALean.HybridDynamics.Theorems.IsRunUntilToIsRunOn
+public import CORALean.HybridDynamics.Definitions.IsRunUntil
 
 @[expose] public section
 
@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.Theorems.IsRunUntilToIsRunOn
 
 `IsRun` carries no clock, and `IsRunUntil` adds nothing but one: every run lasts
 some finite time `T` — the sum of its dwell times — and takes some number `k`
-of jumps, and is then a `IsRunUntil T k`; conversely `IsRunUntil.toIsRunOn` forgets
+of jumps, and is then a `IsRunUntil T k`; conversely `IsRunUntil.aux_toIsRunOn` forgets
 both. So `IsRunUntil T k` is exactly a `IsRun` together with a duration of at most
 `T` and `k` jumps, and a guarantee stated over it, `reachFloat_outer`, speaks of
 the runs the automaton defines.
@@ -47,6 +47,14 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- A run of bounded duration is a run. -/
+theorem HybridAutomaton.IsRunUntil.aux_toIsRunOn {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ} {k : ℕ}
+    {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRunUntil T k ℓ x ℓ' y) : HA.IsRunOn k ℓ x ℓ' y := by
+  induction run with
+  | flow h => exact .flow h
+  | jump h _ hmem hguard _ ih => exact .jump h hmem hguard ih
+
+
 /-- A budget some run fits is not negative, its first stay being no longer. -/
 theorem aux_runUntil_nonneg {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ} {k : ℕ} {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.IsRunUntil T k ℓ x ℓ' y) : 0 ≤ T := by
@@ -70,7 +78,7 @@ theorem HybridAutomaton.isRun_iff_exists_isRunUntil {HA : HybridAutomaton S G L 
       refine ⟨τ + T, k + 1, .jump h (by linarith [aux_runUntil_nonneg rest]) hmem hguard ?_⟩
       rwa [add_sub_cancel_left]
   · rintro ⟨T, k, run⟩
-    exact run.toIsRunOn.toIsRun
+    exact run.aux_toIsRunOn.toIsRun
 
 end CORALean
 

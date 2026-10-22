@@ -51,6 +51,7 @@ noncomputable def levelEmpty : CORALean.Real.LevelSet 1 where
 /-- `levelEmpty` with its function dropped. -/
 def levelEmptyOps : CORALean.Real.LevelSet 1 := ⟨1, fun _ => 0, ![.le]⟩
 
+/-- The stored bounds `[1, 2]` of the single row. -/
 def O : Fin 1 → Interval D := ![⟨d 1 0, d 2 0⟩]
 
 #eval LevelSet.representsa_emptySet (𝕋 := D) levelEmptyOps O  -- true

@@ -11,14 +11,11 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSingleOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.DependentExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.EmptyExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ExactPlusOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetPointOuter
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionDepOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsequalSound
@@ -45,11 +42,9 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitDepFactorOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SupportBoundLe
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionUpperHolds
 
 /-!
 # What `ConPolyZono` guarantees

@@ -5,7 +5,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.Bilin
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.BilinP
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.CompactHLe
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.DependentP
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.EvalPolyH
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.EvalPolySortHLe
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.LinCombP
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.MapP

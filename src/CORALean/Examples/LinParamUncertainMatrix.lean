@@ -61,14 +61,18 @@ theorem Example.nominal_mem_sysZ : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ constru
 every step, `x(k) = 0.9ᵏ · (1, 1)`. -/
 def Example.lpX0 : Vec ℝ 2 := ![1, 1]
 
+/-- The initial set, the point `lpX0` as a zonotope. -/
 def Example.lpR0 : Zonotope (Vec ℝ 2) := Zonotope.ofPoint Example.lpX0
+/-- The input set, the point `0` as a zonotope. -/
 def Example.lpU : Zonotope (Vec ℝ 2) := Zonotope.ofPoint (0 : Vec ℝ 2)
 
 /-- The nominal run: the contraction applied `k` times. -/
 def Example.lpX (k : ℕ) : Vec ℝ 2 := (0.9 : ℝ) ^ k • Example.lpX0
 
+/-- The nominal run starts at the initial state. -/
 theorem Example.lpX_zero : Example.lpX 0 = Example.lpX0 := by simp [Example.lpX]
 
+/-- One step of the nominal run applies the contraction `0.9 · I`. -/
 theorem Example.lpX_succ (k : ℕ) :
     Example.lpX (k + 1) = ((0.9 : ℝ) • (1 : Mat ℝ 2 2)) *ᵥ Example.lpX k + 0 := by
   simp [Example.lpX, pow_succ, mul_smul, Matrix.smul_mulVec, smul_comm (0.9 : ℝ)]

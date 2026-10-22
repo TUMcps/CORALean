@@ -1,9 +1,8 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.ContSet.Definitions.ExactVertices
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
+public import CORALean.ContSet.VPolytope.Real.Interfaces
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.OptEmpty.OptEmpty

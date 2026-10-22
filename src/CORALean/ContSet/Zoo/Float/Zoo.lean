@@ -32,6 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zoo over floats: an optional Taylor model and an optional interval, each an enclosure of the
+same function. -/
 structure Zoo (𝕋 : Type) (n : ℕ) where
   taylm : Option (Taylm 𝕋 n)
   ivl : Option (Interval (Vec 𝕋 1))

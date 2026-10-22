@@ -6,6 +6,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
 public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Magnitude
+public import CORALean.ContSet.Zonotope.Float.Instances
 
 @[expose] public section
 
@@ -59,7 +60,7 @@ def ZonoBundle.encloseTight (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (hk₁ : 0 <
   let box := fun H : Mat 𝕋 n n =>                       -- interval.enclosePoints(H V)
     ((zB₁.mtimes H).intervalAll hk₁).or ((zB₂.mtimes H).intervalAll hk₂)
   { k := r + 1
-    Z := Fin.snoc (α := fun _ => Zonotope (Vec 𝕋 n))
+    Z := Fin.snoc (α := fun _ => 𝒵[𝕋] n)
       (fun i =>
         let H := Zonotope.basisInverse (W i)            -- pinv(W{i}), a candidate
         ZonoBundle.parallelotope (W i) H (box H) m)     -- W{i} * zonotope(box)

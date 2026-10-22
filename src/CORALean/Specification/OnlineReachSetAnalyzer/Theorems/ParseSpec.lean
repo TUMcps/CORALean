@@ -1,8 +1,12 @@
 module
 
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Parse
-public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ExtTrans
-public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ParseNewSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.Basic
+public import CORALean.Specification.OnlineAnalyzerNode.Theorems.MkSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ParseNew
+public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Ext
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.UpdateNodeSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.NodesInv
 
 @[expose] public section
 
@@ -38,6 +42,130 @@ variable {S : ℕ → Type} {d : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+variable {A : Type}
+
+/-- The invariant survives a change of edges. -/
+theorem OnlineReachSetAnalyzer.aux_nodesInv_of_ext (dp : Bool)
+    (nodes nodes' : List (OnlineAnalyzerNode A)) (hl : nodes'.length = nodes.length)
+    (he : OnlineReachSetAnalyzer.Ext nodes nodes')
+    (h : OnlineReachSetAnalyzer.NodesInv dp nodes) : -- --- CONCL ---
+    OnlineReachSetAnalyzer.NodesInv dp nodes' := by -- --- PROOF ---
+  refine ⟨fun j hj => ?_, fun n hn => ?_⟩
+  -- the index of a node is unchanged
+  · rw [← (he.2 j (by omega) hj).1]
+    exact h.1 j (by omega)
+  -- and so is the rest
+  · obtain ⟨j, hj, rfl⟩ := List.mem_iff_getElem.mp hn
+    have hs := he.2 j (by omega) hj
+    obtain ⟨hd, hp⟩ := h.2 nodes[j] (List.getElem_mem _)
+    refine ⟨hs.2.2.2.symm.trans hd, ?_⟩
+    rw [← hs.2.2.1]
+    exact hp
+
+end
+
+
+section
+variable {A : Type}
+
+/-- Updating a node keeps the list. -/
+theorem OnlineReachSetAnalyzer.aux_ext_updateNode (nodes : List (OnlineAnalyzerNode A)) (i : ℕ)
+    (f : OnlineAnalyzerNode A → Option (OnlineAnalyzerNode A))
+    (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.Same n n') : -- --- CONCL ---
+    ∀ nodes' ∈ OnlineReachSetAnalyzer.updateNode nodes i f,
+      OnlineReachSetAnalyzer.Ext nodes nodes' ∧ nodes'.length = nodes.length := by -- --- PROOF ---
+  intro nodes' (h : OnlineReachSetAnalyzer.updateNode nodes i f = some nodes')
+  obtain ⟨-, n, n', hn, hfn, rfl⟩ := (OnlineReachSetAnalyzer.updateNode_eq_some_iff _ _ _ _).mp h
+  refine ⟨⟨by simp, fun j hj hj' => ?_⟩, by simp⟩
+  -- the updated position is `Same`, every other one is equal
+  rw [List.getElem_set]
+  by_cases hji : i - 1 = j
+  · rw [if_pos hji]
+    have : nodes[j] = n := by subst hji; exact (List.getElem?_eq_some_iff.mp hn).2
+    rw [this]
+    exact hf n (List.mem_of_getElem? hn) n' hfn
+  · rw [if_neg hji]
+    exact OnlineReachSetAnalyzer.same_refl _
+
+end
+
+
+section
+variable {A : Type}
+
+/-- `Ext` is transitive. -/
+theorem OnlineReachSetAnalyzer.aux_ext_trans {a b c : List (OnlineAnalyzerNode A)}
+    (h1 : OnlineReachSetAnalyzer.Ext a b) (h2 : OnlineReachSetAnalyzer.Ext b c) :
+    OnlineReachSetAnalyzer.Ext a c :=
+  ⟨h1.1.trans h2.1, fun j h h' => OnlineReachSetAnalyzer.same_trans
+    (h1.2 j h (lt_of_lt_of_le h h1.1)) (h2.2 j (lt_of_lt_of_le h h1.1) h')⟩
+
+end
+
+
+section
+variable {A : Type}
+
+/-- The invariant survives a new node. -/
+theorem OnlineReachSetAnalyzer.aux_nodesInv_append (dp : Bool) (nodes : List (OnlineAnalyzerNode A))
+    (node : OnlineAnalyzerNode A) (h : OnlineReachSetAnalyzer.NodesInv dp nodes)
+    (hidx : node.idx = nodes.length + 1) (hd : node.dropPropagated = dp)
+    (hp : node.parents.head?.isSome = true) : -- --- CONCL ---
+    OnlineReachSetAnalyzer.NodesInv dp (nodes ++ [node]) := by -- --- PROOF ---
+  refine ⟨fun j hj => ?_, fun n hn => ?_⟩
+  -- the positions of the old nodes and of the new one
+  · by_cases hjl : j < nodes.length
+    · rw [List.getElem_append_left hjl]
+      exact h.1 j hjl
+    · have : j = nodes.length := by simp at hj; omega
+      subst this
+      simpa [List.getElem_append_right] using hidx
+  -- every node, old or new
+  · rcases List.mem_append.mp hn with hn | hn
+    · exact h.2 n hn
+    · obtain rfl : n = node := by simpa using hn
+      exact ⟨hd, hp⟩
+
+end
+
+
+/-- What a new subformula adds. -/
+theorem OnlineReachSetAnalyzer.aux_parseNew_spec (dp : Bool)
+    (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (parent : ℕ)
+    (st : OnlineReachSetAnalyzer.ParseState S d)
+    (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes) : -- --- CONCL ---
+    ∀ st' ∈ OnlineReachSetAnalyzer.parseNew dp φ parent st,
+      OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
+        OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
+        ∃ node, st'.nodes[st.nodes.length]? = some node ∧ node.kind = φ.kind ∧
+          node.parents = [parent] := by -- --- PROOF ---
+  intro st' (h : OnlineReachSetAnalyzer.parseNew dp φ parent st = some st')
+  unfold OnlineReachSetAnalyzer.parseNew at h
+  obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
+  obtain ⟨node, hnode, rfl⟩ := Option.map_eq_some_iff.mp h
+  -- the parent gets a child: same nodes, up to edges
+  have hext : OnlineReachSetAnalyzer.Ext st.nodes nodes1 ∧ nodes1.length = st.nodes.length := by
+    by_cases hp : parent ≠ 0
+    · rw [if_pos hp] at h1
+      exact OnlineReachSetAnalyzer.aux_ext_updateNode _ _ _ (fun n _ n' hn' =>
+        by obtain rfl := Option.some.inj hn'; exact ⟨rfl, rfl, rfl, rfl⟩) _ h1
+    · rw [if_neg hp] at h1
+      obtain rfl := Option.some.inj h1
+      exact ⟨OnlineReachSetAnalyzer.ext_refl _, rfl⟩
+  have hinv1 := OnlineReachSetAnalyzer.aux_nodesInv_of_ext dp _ _ hext.2 hext.1 hinv
+  -- the node made by the constructor
+  obtain ⟨-, hmk⟩ := OnlineAnalyzerNode.mk?_spec φ.kind (st.nodes.length + 1) [parent] dp
+    φ.interval? φ.ap?
+  obtain ⟨hk, hidx, hpar, -, hdp, -⟩ := hmk node hnode
+  refine ⟨?_, OnlineReachSetAnalyzer.aux_ext_trans hext.1 (OnlineReachSetAnalyzer.ext_append _
+    node),
+    node, ?_, hk, hpar⟩
+  · refine OnlineReachSetAnalyzer.aux_nodesInv_append dp nodes1 node hinv1 (by rw [hidx, hext.2])
+      hdp (by simp [hpar])
+  · simp [hext.2]
+
+
 /-- The branch of a subformula that already has a node: two edges are added. -/
 theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState S d) (c parent : ℕ)
     (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes)
@@ -51,18 +179,18 @@ theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState S 
   obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
   obtain ⟨nodes2, h2, rfl⟩ := Option.map_eq_some_iff.mp h
   -- a parent is added: the first one stays
-  obtain ⟨e1, l1⟩ := OnlineReachSetAnalyzer.ext_updateNode _ _ _ (fun n hn n' hn' => by
+  obtain ⟨e1, l1⟩ := OnlineReachSetAnalyzer.aux_ext_updateNode _ _ _ (fun n hn n' hn' => by
     obtain rfl := Option.some.inj hn'
     obtain ⟨-, hp⟩ := hinv.2 n hn
     exact ⟨rfl, rfl, by
       cases hps : n.parents <;> simp_all [OnlineAnalyzerNode.addParent], rfl⟩) _ h1
-  have hinv1 := OnlineReachSetAnalyzer.nodesInv_of_ext dp _ _ l1 e1 hinv
+  have hinv1 := OnlineReachSetAnalyzer.aux_nodesInv_of_ext dp _ _ l1 e1 hinv
   -- a child is added
-  obtain ⟨e2, l2⟩ := OnlineReachSetAnalyzer.ext_updateNode _ _ _ (fun n hn n' hn' => by
+  obtain ⟨e2, l2⟩ := OnlineReachSetAnalyzer.aux_ext_updateNode _ _ _ (fun n hn n' hn' => by
     obtain rfl := Option.some.inj hn'
     exact ⟨rfl, rfl, rfl, rfl⟩) _ h2
-  refine ⟨OnlineReachSetAnalyzer.nodesInv_of_ext dp _ _ l2 e2 hinv1,
-    OnlineReachSetAnalyzer.ext_trans e1 e2, ?_⟩
+  refine ⟨OnlineReachSetAnalyzer.aux_nodesInv_of_ext dp _ _ l2 e2 hinv1,
+    OnlineReachSetAnalyzer.aux_ext_trans e1 e2, ?_⟩
   -- the node that was updated is in the list
   obtain ⟨-, n, n', hn, -⟩ := (OnlineReachSetAnalyzer.updateNode_eq_some_iff _ _ _ _).mp h1
   intro hnil
@@ -112,9 +240,9 @@ theorem aux_parse_chain (dp : Bool) (st st1 st2 st' : OnlineReachSetAnalyzer.Par
     OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
       (st.nodes = [] → ∃ root, st'.nodes[0]? = some root ∧ root.kind = k ∧
         root.parents.head? = some parent) :=
-  ⟨hi3, OnlineReachSetAnalyzer.ext_trans he1 (OnlineReachSetAnalyzer.ext_trans he2 he3),
+  ⟨hi3, OnlineReachSetAnalyzer.aux_ext_trans he1 (OnlineReachSetAnalyzer.aux_ext_trans he2 he3),
     fun hnil => aux_parse_root st st1 st' parent k hnode hnil
-      (OnlineReachSetAnalyzer.ext_trans he2 he3)⟩
+      (OnlineReachSetAnalyzer.aux_ext_trans he2 he3)⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -139,7 +267,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node with no operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain rfl := Option.some.inj h
       exact aux_parse_leaf dp st st1 parent _ hi1 he1 hnode
@@ -152,7 +280,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node with no operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain rfl := Option.some.inj h
       exact aux_parse_leaf dp st st1 parent _ hi1 he1 hnode
@@ -165,7 +293,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node with no operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain rfl := Option.some.inj h
       exact aux_parse_leaf dp st st1 parent _ hi1 he1 hnode
@@ -178,10 +306,10 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its operand
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨hi2, he2, -⟩ := ih _ _ _ hi1 h
-      exact ⟨hi2, OnlineReachSetAnalyzer.ext_trans he1 he2, fun hnil =>
+      exact ⟨hi2, OnlineReachSetAnalyzer.aux_ext_trans he1 he2, fun hnil =>
         aux_parse_root st st1 _ parent _ hnode hnil he2⟩
   | and a b iha ihb =>
     intro parent st st' hinv h
@@ -192,7 +320,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its two operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨st2, h2, h3⟩ := Option.bind_eq_some_iff.mp h
       obtain ⟨hi2, he2, -⟩ := iha _ _ _ hi1 h2
@@ -207,7 +335,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its two operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨st2, h2, h3⟩ := Option.bind_eq_some_iff.mp h
       obtain ⟨hi2, he2, -⟩ := iha _ _ _ hi1 h2
@@ -222,7 +350,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its two operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.aux_parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨st2, h2, h3⟩ := Option.bind_eq_some_iff.mp h
       obtain ⟨hi2, he2, -⟩ := iha _ _ _ hi1 h2

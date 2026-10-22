@@ -92,14 +92,14 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
     (η : ℕ) (s : LinearSys.MaxBackReachStateFloat 𝕋 n) :
     Option (LinearSys.MaxBackReachStateFloat 𝕋 n) := do
   -- 7. t_{k+1} ← t_k + Δt
-  let tk1Lo := addDown s.tLo Δt
-  let tk1Hi := addUp s.tHi Δt
-  let ηk ← sys.reachOrderFloat s.tLo s.tHi η                        -- the orders, raised until
+  let tk1Lo := addDown s.tEnc.inf Δt
+  let tk1Hi := addUp s.tEnc.sup Δt
+  let ηk ← sys.reachOrderFloat s.tEnc.inf s.tEnc.sup η             -- the orders, raised until
   let ηk1 ← sys.reachOrderFloat tk1Lo tk1Hi η                       -- admissible at each bracket
   let ηn ← sys.reachOrderFloat (neg tk1Hi) (neg tk1Lo) η
   let η' ← sys.reachOrderFloat Δt Δt η
   -- 7. [e^{A t_k}]
-  let Φk := sys.expIntervalFloat s.tLo s.tHi ηk
+  let Φk := sys.expIntervalFloat s.tEnc.inf s.tEnc.sup ηk
   let Ψ := sys.expIntervalFloat tk1Lo tk1Hi ηk1                     -- [e^{A t_{k+1}}]
   let Φn := sys.expIntervalFloat (neg tk1Hi) (neg tk1Lo) ηn         -- [e^{-A t_{k+1}}]
   let I := MatExp.adaptiveIntegral (Interval.point sys.A) Δt η'     -- [∫₀^Δt e^{As}ds]
@@ -116,7 +116,7 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
     (S := 𝒵[𝕋]) Φk
     (sys.inputSolutionFloat Δt η' W₀)
   -- 10. Ẑ_W(τ_k)
-  let ZW := ZW₀ ⊞ Zw s.tLo s.tHi
+  let ZW := ZW₀ ⊞ Zw s.tEnc.inf s.tEnc.sup
   let Z₀ := Bx.zonotope                                             -- the conversion box
   let ζ : Vec 𝕋 n := fun k =>                                       -- |z| for a point of the hull
     addUp (absolute (Z₀.c k)) (radius (fun i j => Z₀.G j i) k)
@@ -132,8 +132,7 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
   -- 11. conv(CZ(…), CZ(…))
   let H := C₁.linCombSameCenter C₂
   if C₁.zeroFeasible && C₂.zeroFeasible then
-    pure { tLo := tk1Lo
-           tHi := tk1Hi
+    pure { tEnc := ⟨tk1Lo, tk1Hi⟩
            ZU := ZU
            UErr := UErr
            ZW₀ := ZW₀

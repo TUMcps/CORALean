@@ -8,10 +8,6 @@ CONTRIBUTING, "Algorithms read like the paper": a `def` whose own docstring cite
 a `-- <n>. …` line comment that says what the step does in the paper's words. This check sees
 only the form: a docstring citing an algorithm, a body of at least `MIN_LINES` lines, and no
 `-- <n>.` comment in it. Whether the steps are the paper's is for the reviewer.
-
-Existing definitions that do not read like the paper yet are listed in
-`scripts/algorithm-steps-pending.txt`, one `<path>::<name>  pending: <reason>` per line. The list
-only shrinks: an entry whose definition now carries its step comments, or is gone, is stale.
 """
 import re
 import sys
@@ -19,7 +15,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
-PENDING = ROOT / "scripts" / "algorithm-steps-pending.txt"
 
 MIN_LINES = 3  # a one- or two-line definition has no steps to number
 CITES = re.compile(r"\bAlg\.|\bAlgorithm\b")
@@ -59,25 +54,14 @@ def findings(path):
 
 
 def main():
-    pending = {}
-    for n, line in enumerate(PENDING.read_text(encoding="utf-8").split("\n"), 1):
-        if line.strip() and not line.startswith("#"):
-            pending[line.split("  ", 1)[0].strip()] = n
-    msgs, seen = [], set()
+    msgs = []
     for path in sorted(SRC.rglob("*.lean")):
         rel = path.relative_to(ROOT).as_posix()
         for ln, name in findings(path):
-            key = f"{rel}::{name}"
-            seen.add(key)
-            if key not in pending:
-                msgs.append(f"{rel}:{ln}: `{name}` cites an algorithm in its docstring and has no"
-                            f" `-- <n>.` step comment — write one named `let` per printed step"
-                            f" under such a comment (CONTRIBUTING, \"Algorithms read like the"
-                            f" paper\")")
-    for key, n in pending.items():
-        if key not in seen:
-            msgs.append(f"scripts/algorithm-steps-pending.txt:{n}: stale entry `{key}` — it"
-                        f" carries its step comments now, or is gone; delete the line")
+            msgs.append(f"{rel}:{ln}: `{name}` cites an algorithm in its docstring and has no"
+                        f" `-- <n>.` step comment — write one named `let` per printed step"
+                        f" under such a comment (CONTRIBUTING, \"Algorithms read like the"
+                        f" paper\")")
     for m in msgs:
         print(m)
     return 1 if msgs else 0

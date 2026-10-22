@@ -67,6 +67,30 @@ def tanhDown (p : ℕ) (x : 𝕋) : 𝕋 :=
 variable [SoundFloatArithmetic 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open Exp
+
+/-- Non-negativity survives the squarings, each clamped at zero. -/
+private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u) : -- --- CONCL ---
+    0 ≤ toReal (squareDownIter n u) := by -- --- PROOF ---
+  induction n generalizing u with
+  | zero => rw [squareDownIter]; exact hu
+  | succ k ih =>
+    rw [squareDownIter]
+    refine ih ?_
+    rw [toReal_maximum, toReal_zero]
+    exact le_max_left _ _
+
+/-- What makes the reciprocals above it total: a lower bound on an exponential
+is never negative, so `1 + expDown a` is never below one. -/
+theorem aux_expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
+  squareDownIter_nonneg n (seedDown_nonneg _)
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The hyperbolic tangent through the exponential: `tanh x = 1 - 2/((eˣ)² + 1)`. -/
@@ -77,6 +101,7 @@ private theorem tanh_eq_one_sub (x : ℝ) :
   field_simp
   ring
 
+/-- `sinhUp` is an upper bound of `sinh` for `x ≤ 2^p / 2`. -/
 theorem sinhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.sinh (toReal x) ≤ toReal (sinhUp p x) := by -- --- PROOF ---
   have h1 := le_expUp p x hx
@@ -86,6 +111,7 @@ theorem sinhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CO
   rw [sinhUp, toReal_half, Real.sinh_eq]
   linarith
 
+/-- `sinhDown` is a lower bound of `sinh` for `-x ≤ 2^p / 2`. -/
 theorem sinhDown_le (p : ℕ) (x : 𝕋) (hx : -toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (sinhDown p x) ≤ Real.sinh (toReal x) := by -- --- PROOF ---
   have h1 := expDown_le p x
@@ -95,6 +121,7 @@ theorem sinhDown_le (p : ℕ) (x : 𝕋) (hx : -toReal x ≤ 2 ^ p / 2) : -- ---
   rw [sinhDown, toReal_half, Real.sinh_eq]
   linarith
 
+/-- `coshUp` is an upper bound of `cosh` for `|x| ≤ 2^p / 2`. -/
 theorem coshUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2)
     (hnx : -toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.cosh (toReal x) ≤ toReal (coshUp p x) := by -- --- PROOF ---
@@ -105,6 +132,7 @@ theorem coshUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2)
   rw [coshUp, toReal_half, Real.cosh_eq]
   linarith
 
+/-- `coshDown` is a lower bound of `cosh`. -/
 theorem coshDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (coshDown p x) ≤ Real.cosh (toReal x) := by -- --- PROOF ---
   have h1 := expDown_le p x
@@ -114,6 +142,7 @@ theorem coshDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
   rw [coshDown, toReal_half, Real.cosh_eq]
   linarith
 
+/-- `tanhUp` is an upper bound of `tanh` for `x ≤ 2^p / 2`. -/
 theorem tanhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.tanh (toReal x) ≤ toReal (tanhUp p x) := by -- --- PROOF ---
   have hu := Real.exp_pos (toReal x)
@@ -140,10 +169,11 @@ theorem tanhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CO
   rw [tanhUp, tanh_eq_one_sub]
   linarith
 
+/-- `tanhDown` is a lower bound of `tanh`. -/
 theorem tanhDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (tanhDown p x) ≤ Real.tanh (toReal x) := by -- --- PROOF ---
   have hu := Real.exp_pos (toReal x)
-  have h0 := expDown_nonneg p x
+  have h0 := aux_expDown_nonneg p x
   have h1 := expDown_le p x
   have h2 := mulDown_le_mul (expDown p x) (expDown p x)
   -- `E` is the square of a lower bound, so below `(eˣ)²`

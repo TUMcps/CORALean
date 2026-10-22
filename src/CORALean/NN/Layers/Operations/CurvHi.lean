@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The upper end of `σ t - lam t` over the box, rounded up. -/
 def Relaxation.curvHi (E : Enclosure 𝕋) (hi lam : 𝕋 → 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 :=
-  addUp (subUp (E.hi l) (mulDown (lam l u) l))
+  addUp (subUp (E.enclose l).sup (mulDown (lam l u) l))
     (mulUp (subUp (hi l u) (lam l u)) (subUp u l))
 
 end CORALean

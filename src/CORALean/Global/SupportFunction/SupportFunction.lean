@@ -33,6 +33,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {S T : Set α} {c : α �
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An upper bound `val` on the linear objective `c` over the set `S`. -/
 structure SupportBound (S : Set α) (c : α →ₗ[ℝ] ℝ) where
   val : ℝ
   le : ∀ x ∈ S, c x ≤ val
@@ -50,6 +51,7 @@ def SupportBound.raise (u : SupportBound S c) {v : ℝ} (h : u.val ≤ v) : Supp
 def SupportBound.ofEmpty (v : ℝ) : SupportBound (∅ : Set α) c :=
   ⟨v, fun _ h => h.elim⟩
 
+/-- A point of `S` whose objective value is at least `val`: a lower bound of the supremum. -/
 structure SupportWitness (S : Set α) (c : α →ₗ[ℝ] ℝ) where
   val : ℝ
   mem : ∃ x ∈ S, val ≤ c x

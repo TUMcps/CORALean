@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.VPolytope.Real.Interfaces
 public import CORALean.ContSet.VPolytope.Real.Operations.API
 public import CORALean.ContSet.VPolytope.Real.Theorems.API
 public import CORALean.ContSet.VPolytope.Real.Counterexamples.API

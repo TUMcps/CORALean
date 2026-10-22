@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The two ends of `softplus β`, at a stored sharpness. -/
 def softplusEnclosure (β : 𝕋) (k nl kl : ℕ) : Enclosure 𝕋 where
-  lo a := divDown (logDown nl kl (onePlusExpDown k (mulDown β a))) β
-  hi a := divUp (logUp nl kl (addUp one (expUp k (mulUp β a)))) β
+  enclose a := ⟨divDown (logDown nl kl (onePlusExpDown k (mulDown β a))) β,
+    divUp (logUp nl kl (addUp one (expUp k (mulUp β a)))) β⟩
 
 end CORALean
 

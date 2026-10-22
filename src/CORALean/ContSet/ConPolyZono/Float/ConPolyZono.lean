@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Instances
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
@@ -43,6 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A constrained polynomial zonotope over floats: the real data with a float level set `cons` for
+the constraint, each row carrying its slack, and the error box `I_error`. -/
 structure ConPolyZono (𝕋 α : Type) [FloatOps 𝕋] where
   /-- The dependent factors, shared by the generators and the constraints. -/
   p : ℕ
@@ -77,6 +79,8 @@ protected abbrev ConPolyZono.nominal {α β : Type} [RealImage α β] [SoundFloa
     (cPZ : ConPolyZono 𝕋 α) : CORALean.Real.ConPolyZono β :=
   CORALean.Real.ConPolyZono.relax cPZ.nominalCore (toRealVec cPZ.cons.b_error)
 
+/-- A float constrained polynomial zonotope inflates the real one its stored floats describe, the
+`nominal` one. -/
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConPolyZono 𝕋 α) (CORALean.Real.ConPolyZono β) α β where
   nominal := ConPolyZono.nominal

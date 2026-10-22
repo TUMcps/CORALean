@@ -1,8 +1,0 @@
-# Definitions whose docstring cites a paper's algorithm and whose body does not yet carry the
-# algorithm's steps as `-- <n>. …` comments (CONTRIBUTING, "Algorithms read like the paper").
-#
-# `scripts/check-algorithm-steps.py` refuses any other such definition. An entry says the
-# definition is waiting to be rewritten as one named `let` per printed step; the list only
-# shrinks, and an entry whose definition carries its steps now, or is gone, is reported as stale.
-#
-# One line per definition: `<path>::<name>  pending: <reason>`.

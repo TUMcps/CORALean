@@ -41,7 +41,6 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunAtFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
@@ -49,7 +48,6 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolyFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.HessRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachRunFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloatChecked

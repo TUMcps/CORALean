@@ -3,7 +3,8 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
+public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.Global.DropIdx
 
 @[expose] public section
 
@@ -51,6 +52,42 @@ namespace CORALean.Real
 open Matrix
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A zero generator column `j` and a zero constraint row `r` can be dropped from `ofMat`. -/
+theorem ConZonotope.aux_mem_ofMat_drop_iff {α : Type} [AddCommGroup α] [Module ℝ α] {q h : ℕ}
+    (c : α) (G : Fin h → α) (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h)
+    (hG : G j = 0) (hA : ∀ i, A i j = 0) (hr : ∀ l, A r l = 0) (hb : b r = 0)
+    (x : α) : -- --- CONCL ---
+    x ∈ (ConZonotope.ofMat c G A b).construct ↔
+      x ∈ (ConZonotope.ofMat c (G ∘ dropIdx j)
+        (fun i k => A (dropIdx r i) (dropIdx j k)) (b ∘ dropIdx r)).construct := by -- --- PROOF ---
+  rw [ConZonotope.mem_ofMat_iff, ConZonotope.mem_ofMat_iff]
+  constructor
+  · rintro ⟨β, hβ, hAβ, hx⟩
+    refine ⟨β ∘ dropIdx j, fun k => hβ _, fun i => ?_, ?_⟩
+    · -- row `dropIdx r i`, with the zero term at `j` split off
+      have := hAβ (dropIdx r i)
+      rw [Matrix.mulVec_apply_eq_sum, sum_dropIdx j (fun l => A (dropIdx r i) l * β l),
+        hA, zero_mul, zero_add] at this
+      simpa [Matrix.mulVec_apply_eq_sum] using this
+    · rw [hx, sum_dropIdx j (fun l => β l • G l), hG, smul_zero, zero_add]
+      rfl
+  · rintro ⟨β', hβ', hAβ', hx⟩
+    -- extend `β'` by zero at `j`
+    refine ⟨insertIdx j 0 β', ?_, ?_, ?_⟩
+    · rw [forall_dropIdx_iff j]
+      exact ⟨by simp, fun k => by simpa using hβ' k⟩
+    · rw [forall_dropIdx_iff r]
+      refine ⟨by simp [Matrix.mulVec_apply_eq_sum, hr, hb], fun k => ?_⟩
+      have := hAβ' k
+      rw [Matrix.mulVec_apply_eq_sum,
+        sum_dropIdx j (fun l => A (dropIdx r k) l * insertIdx j 0 β' l)]
+      simpa [Matrix.mulVec_apply_eq_sum] using this
+    · rw [hx, sum_dropIdx j (fun l => insertIdx j 0 β' l • G l)]
+      simp [hG]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 4.2]: dropping the zero column and row of the partial-solve `Z̃` is `eliminate`. -/
@@ -63,7 +100,7 @@ theorem ConZonotope.partialSolve_eq_eliminate {n q h : ℕ} (c : Vec ℝ n)
   obtain ⟨hr, hb⟩ := ConZonotope.partialSolve_zero_row A b r j hAj
   ext x
   unfold ConZonotope.partialSolve ConZonotope.constraintReduce
-  rw [ConZonotope.mem_ofMat_drop_iff _ _ _ _ r j hG hA hr hb]
+  rw [ConZonotope.aux_mem_ofMat_drop_iff _ _ _ _ r j hG hA hr hb]
   unfold ConZonotope.eliminate
   -- the dropped system is `eliminate`'s, entry for entry
   have hc : c + ConZonotope.partialSolveΛG G A r j *ᵥ b = c + b r • ((A r j)⁻¹ • G j) := by

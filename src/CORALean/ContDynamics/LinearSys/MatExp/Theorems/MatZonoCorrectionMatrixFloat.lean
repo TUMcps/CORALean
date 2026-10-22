@@ -4,7 +4,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
@@ -17,7 +23,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalCont
 `expDiff_mem_intervalCorrectionMatrix` with the orders taken from the matrix
 zonotope: `Real.MatExp.expDiff_mem_correctionMatrix` at the member `M` bounds each
 entry by sums of `min/max (corrTerm, 0)` widened by `E(r M)`;
-`corrTerm_mem_matZonoCorrTerm` puts each order inside the float term, and the
+`aux_corrTerm_mem_matZonoCorrTerm` puts each order inside the float term, and the
 member lies in the zonotope's box (`matInterval_contains`), which is where the
 remainder is taken. `hε` asks `1/2`, as the float remainder bound does.
 
@@ -57,6 +63,43 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Every member's correction term lies in the float matrix-zonotope term. -/
+theorem MatExp.aux_corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
+    (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {A : Mat ℝ n n} (hA : A ∈ M.construct)
+    (j k : Fin n) : -- --- CONCL ---
+    toReal ((MatExp.matZonoCorrTerm M r i).inf j k) ≤ Real.MatExp.corrTerm A (toReal r) i j k
+      ∧ Real.MatExp.corrTerm A (toReal r) i j k
+        ≤ toReal ((MatExp.matZonoCorrTerm M r i).sup j k) := by -- --- PROOF ---
+  obtain ⟨-, hhi⟩ := MatExp.taylorCoeffBounds_mem hr i
+  set ρ := toReal r ^ i / (Nat.factorial i : ℝ)
+  have hρ : 0 ≤ ρ := by positivity
+  have hκ := MatExp.corrCoeffLow_le (𝕋 := 𝕋) hi
+  -- `corrCoeff i ≤ 0`: the bound `corrCoeff_le_sub` at `s = 0`
+  have hc0 : Real.MatExp.corrCoeff i ≤ 0 := by
+    have h := Real.MatExp.corrCoeff_le_sub hi (le_refl (0:ℝ))
+    rwa [zero_pow (by omega : i ≠ 0), sub_zero] at h
+  have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) i) (MatExp.taylorCoeffBounds r i).sup)
+      ≤ Real.MatExp.corrCoeff i * ρ :=
+    le_trans (mulDown_le_mul _ _) (le_trans
+      (mul_le_mul_of_nonpos_left hhi (le_trans hκ hc0))
+      (mul_le_mul_of_nonneg_right hκ hρ))
+  have hhi' : Real.MatExp.corrCoeff i * ρ ≤ toReal (zero : 𝕋) := by
+    rw [toReal_zero]; exact mul_nonpos_of_nonpos_of_nonneg hc0 hρ
+  -- the member's power, in the power's box
+  have hpow : A ^ i ∈ (M.matPow i).matInterval.construct :=
+    Zonotope.matInterval_contains _ (Zonotope.matPow_outer M hA i)
+  have hmem := Real.Interval.mem_mat_iff.mp (Interval.smul_outer hlo hhi' _ hpow) j k
+  simp only [Interval.nominal, RealImage.realImage, toRealMat, Matrix.smul_apply,
+    smul_eq_mul] at hmem
+  have heq : Real.MatExp.corrTerm A (toReal r) i j k
+      = Real.MatExp.corrCoeff i * ρ * (A ^ i) j k := by
+    rw [Real.MatExp.corrTerm]; ring
+  rw [heq, MatExp.matZonoCorrTerm, Interval.materialiseMat_eq]
+  exact hmem
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
@@ -79,7 +122,7 @@ theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : Zonotope (Mat 𝕋 n n))
   obtain ⟨h1, h2⟩ := hX j k
   simp only [Real.MatExp.correctionMatrix, show m + 2 - 1 = m + 1 from rfl] at h1 h2
   have hterm := fun i : ℕ =>
-    MatExp.corrTerm_mem_matZonoCorrTerm Z hr.le (i := i + 2) (by omega) hM j k
+    MatExp.aux_corrTerm_mem_matZonoCorrTerm Z hr.le (i := i + 2) (by omega) hM j k
   -- the stored orders, rounded and summed, bracket the exact sums
   have hlo : toReal (sumDown fun i : Fin (m + 1) =>
         minimum ((MatExp.matZonoCorrTerm Z r (i + 2)).inf j k) zero)

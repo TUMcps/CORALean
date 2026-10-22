@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.ContSet.HPolytope.Real.Operations.Rows

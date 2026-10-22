@@ -33,6 +33,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A three-valued signal: a Boolean signal overridden by a Boolean signal of the unknown times. -/
 structure KleeneSignal (T : Type) where
   signal : PointSegmentSignal T
   isUnknown : PointSegmentSignal T

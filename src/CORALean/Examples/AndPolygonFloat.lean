@@ -65,6 +65,7 @@ def PQ : Polygon D := Polygon.and P Q
 #eval PQ.sets.length                          -- 1 piece
 #eval PQ.sets.map fun V => boxF V.interval    -- its box, [1, 2]²
 
+/-- The float intersection of the square and the triangle contains their exact intersection. -/
 theorem PQ_outer : ContSet.construct P ∩ ContSet.construct Q ⊆ ContSet.construct PQ :=
   Polygon.and_outer P Q
 

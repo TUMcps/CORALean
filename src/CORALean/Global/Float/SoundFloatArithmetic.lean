@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.FloatOps
-public import CORALean.Global.Scalar
+public import CORALean.Global.Interfaces
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
@@ -10,16 +10,18 @@ public import Mathlib.Data.Matrix.Diagonal
 @[expose] public section
 
 /-!
-# Sound floating-point arithmetic
+# What sound floating-point arithmetic gives
 
-What the layer assumes of its scalar: a real interpretation `toReal`, `FloatOps` rounding in the
-direction its name claims, and `le` agreeing with `toReal` in one direction only. No format is
-fixed, so the proofs hold for binary64, for any other precision, and for ℝ itself. Not IEEE 754:
-rounding *to nearest* bounds nothing in a stated direction; how the direction is achieved is left
-open. `toReal` is total into ℝ, so no instance has NaN or an infinity; overflow is assumed away
-rather than modelled, and an implementation owes a range argument, the one gap between these axioms
-and a machine. `RealImage` lifts the reading to an ambient type, so that a representation is indexed
-by the type it stores.
+The consequences of `SoundFloatArithmetic` (in `Interfaces.lean`): the exact layer's `Scalar` at a
+float scalar, with `0`, `1` and negation exact (`ExactScalar`, `NegScalar`), the reading of a stored
+ambient type as a real one (`RealImage`) at vectors and matrices, and the bounds the derived
+operations inherit: a directed sum, product, extremum or dot product encloses the real one.
+
+## Inputs
+* `v` – vector of stored scalars
+
+## Output
+* the real vector it reads as, entry by entry
 -/
 
 -- Authors:       Claude Opus 5
@@ -32,41 +34,21 @@ by the type it stores.
 
 namespace CORALean.Float
 
-open FloatOps
-
-
--- ========================================  MAIN TYPE  ========================================= --
-
-class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
-  toReal : 𝕋 → ℝ
-  toReal_neg (a : 𝕋) : toReal (neg a) = -toReal a
-  toReal_zero : toReal (zero : 𝕋) = 0
-  toReal_one : toReal (one : 𝕋) = 1
-  add_le_addUp (a b : 𝕋) : toReal a + toReal b ≤ toReal (addUp a b)
-  addDown_le_add (a b : 𝕋) : toReal (addDown a b) ≤ toReal a + toReal b
-  mul_le_mulUp (a b : 𝕋) : toReal a * toReal b ≤ toReal (mulUp a b)
-  mulDown_le_mul (a b : 𝕋) : toReal (mulDown a b) ≤ toReal a * toReal b
-  /-- The one partial guarantee: a divisor of zero bounds nothing, and a
-  negative one is the caller's own negation away, `neg` being exact. -/
-  div_le_divUp (a b : 𝕋) (hb : 0 < toReal b) : toReal a / toReal b ≤ toReal (divUp a b)
-  divDown_le_div (a b : 𝕋) (hb : 0 < toReal b) : toReal (divDown a b) ≤ toReal a / toReal b
-  toReal_minimum (a b : 𝕋) : toReal (minimum a b) = min (toReal a) (toReal b)
-  toReal_maximum (a b : 𝕋) : toReal (maximum a b) = max (toReal a) (toReal b)
-  /-- One direction only, see the module docstring for why. -/
-  toReal_le_of_le {a b : 𝕋} (h : le a b = true) : toReal a ≤ toReal b
-  toReal_half (a : 𝕋) : toReal (half a) = toReal a / 2
-
-open SoundFloatArithmetic
+open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
-/-- `toReal_neg`, for the `-a` that a float vector or matrix negates its entries with. -/
-theorem toReal_neg' (a : 𝕋) : toReal (-a) = -toReal a := toReal_neg a
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-! ## Reading arrays -/
 
 def toRealVec (v : Vec 𝕋 n) : Vec ℝ n := fun i => toReal (v i)
+/-- A float matrix read entrywise as a real matrix. -/
 def toRealMat (M : Mat 𝕋 m n) : Mat ℝ m n := fun i j => toReal (M i j)
+
+/-- `toReal_neg`, for the `-a` that a float vector or matrix negates its entries with. -/
+theorem toReal_neg' (a : 𝕋) : toReal (-a) = -toReal a := toReal_neg a
 
 /-- Negating a float vector entrywise reads as negating the real vector. Stated at `Fin n → 𝕋`
 rather than `Vec 𝕋 n` so that `simp` indexes it. -/
@@ -86,13 +68,22 @@ instance : Scalar 𝕋 where
   toRealMat_apply _ _ _ := rfl
   toRealVec_apply _ _ := rfl
 
-/-- The real ambient type a stored one denotes, and the reading: a vector of `𝕋`
-reads as a vector of ℝ, a matrix as a matrix. -/
-class RealImage (α : Type) (β : outParam Type) where
-  realImage : α → β
+/-- The float scalar's own `0` and `1`, which are exact in every format: `Dyadic p`,
+`NearestDyadic p`, the IEEE formats and `Float` all go through this one instance. -/
+instance : ExactScalar 𝕋 where
+  zero := FloatOps.zero
+  one := FloatOps.one
+  toReal_zero := SoundFloatArithmetic.toReal_zero
+  toReal_one := SoundFloatArithmetic.toReal_one
 
+/-- The float scalar's own `neg`, exact in every format. -/
+instance : NegScalar 𝕋 where
+  toReal_neg := SoundFloatArithmetic.toReal_neg
+
+/-- A float vector denotes the real vector of its entries. -/
 instance : RealImage (Vec 𝕋 n) (Vec ℝ n) := ⟨toRealVec⟩
 
+/-- A float matrix denotes the real matrix of its entries. -/
 instance : RealImage (Mat 𝕋 m n) (Mat ℝ m n) := ⟨toRealMat⟩
 
 /-- The reading at `Vec`, by name, for a proof that unfolds a generic `nominal`. -/
@@ -103,6 +94,7 @@ theorem realImage_mat (M : Mat 𝕋 m n) : RealImage.realImage M = toRealMat M :
 
 /-! ## What the derived operations inherit -/
 
+/-- The strict margin is positive as a real. -/
 theorem toReal_strictMargin_pos : -- --- CONCL ---
     0 < toReal (strictMargin : 𝕋) := by -- --- PROOF ---
   have h : ∀ k : ℕ, 0 < toReal (half^[k] (one : 𝕋)) := by
@@ -117,6 +109,7 @@ theorem toReal_lt_of_ltStrict {a b : 𝕋} (h : ltStrict a b = true) : toReal a 
   lt_of_lt_of_le (lt_add_of_pos_right _ toReal_strictMargin_pos)
     (le_trans (add_le_addUp a strictMargin) (toReal_le_of_le h))
 
+/-- `absolute` reads as the absolute value. -/
 theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
   rw [absolute, toReal_maximum, toReal_neg]
   exact (abs_eq_max_neg).symm
@@ -129,10 +122,12 @@ theorem toReal_diagonalBlock (v : Vec 𝕋 n) (i l : Fin n) :
     rfl
   · rw [diagonalBlock, if_neg hil, Matrix.diagonal_apply_ne _ hil, toReal_zero]
 
+/-- `subUp` is an upper bound of the real difference. -/
 theorem sub_le_subUp (a b : 𝕋) : toReal a - toReal b ≤ toReal (subUp a b) := by
   rw [sub_eq_add_neg, ← toReal_neg b, subUp]
   exact add_le_addUp a (neg b)
 
+/-- `subDown` is a lower bound of the real difference. -/
 theorem subDown_le_sub (a b : 𝕋) : toReal (subDown a b) ≤ toReal a - toReal b := by
   rw [sub_eq_add_neg, ← toReal_neg b, subDown]
   exact addDown_le_add a (neg b)
@@ -180,6 +175,7 @@ theorem sum_le_sumUp (f : Fin n → 𝕋) : -- --- CONCL ---
     rw [Fin.sum_univ_succ, sumUp]
     exact le_trans (add_le_add (le_refl _) (ih _)) (add_le_addUp _ _)
 
+/-- `sumDown` is a lower bound of the real sum. -/
 theorem sumDown_le_sum (f : Fin n → 𝕋) : -- --- CONCL ---
     toReal (sumDown f) ≤ ∑ i, toReal (f i) := by -- --- PROOF ---
   induction n with
@@ -197,6 +193,7 @@ theorem le_nsmulUp (k : ℕ) (a : 𝕋) : -- --- CONCL ---
     rw [nsmulUp, Nat.cast_add, Nat.cast_one, add_mul, one_mul]
     exact le_trans (by linarith) (add_le_addUp a (nsmulUp k a))
 
+/-- `nsmulDown k a` is a lower bound of `k · a`. -/
 theorem nsmulDown_le (k : ℕ) (a : 𝕋) : -- --- CONCL ---
     toReal (nsmulDown k a) ≤ (k : ℝ) * toReal a := by -- --- PROOF ---
   induction k with
@@ -210,10 +207,12 @@ theorem dotDown_le (a b : Vec 𝕋 n) :
     toReal (dotDown a b) ≤ ∑ k, toReal (a k) * toReal (b k) :=
   le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun _ _ => mulDown_le_mul _ _)
 
+/-- `dotUp` is an upper bound of the real dot product. -/
 theorem le_dotUp (a b : Vec 𝕋 n) :
     ∑ k, toReal (a k) * toReal (b k) ≤ toReal (dotUp a b) :=
   le_trans (Finset.sum_le_sum fun _ _ => mul_le_mulUp _ _) (sum_le_sumUp _)
 
+/-- The sum of the absolute entries of row `i` is at most `radius d i`. -/
 theorem sum_abs_le_radius {d : Mat 𝕋 n h} (i : Fin n) :
     ∑ j, |toReal (d i j)| ≤ toReal (radius d i) :=
   calc ∑ j, |toReal (d i j)|

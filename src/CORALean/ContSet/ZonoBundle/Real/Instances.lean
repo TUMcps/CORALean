@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus

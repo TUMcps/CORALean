@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefOfPos
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefZero
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefNecessary
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
+public import Mathlib.Analysis.Matrix.Order
 
 @[expose] public section
 
@@ -42,6 +43,49 @@ variable {N : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- The arrowhead matrix at `s > 0`. -/
+theorem aux_arrowMat_posSemidef_of_pos {s t : ℝ} {w : Vec ℝ N} (hs : 0 < s)
+    (ht : w ⬝ᵥ w ≤ s * t) : -- --- CONCL ---
+    (arrowMat s t w).PosSemidef := by -- --- PROOF ---
+  refine PosSemidef.of_dotProduct_mulVec_nonneg (arrowMat_isHermitian s t w) fun x => ?_
+  rw [star_trivial, arrowMat_quadForm]
+  set a := x 0
+  set y : Vec ℝ N := fun i => x i.succ
+  -- the square `‖s y + a w‖²`
+  have h := dotProduct_self_star_nonneg (s • y + a • w)
+  simp only [star_trivial, dotProduct_add, add_dotProduct, smul_dotProduct, dotProduct_smul,
+    smul_eq_mul] at h
+  rw [dotProduct_comm y w] at h
+  -- `s` times the form is that square plus `a² (s t - ‖w‖²)`
+  have key : 0 ≤ s * (t * a ^ 2 + 2 * a * (w ⬝ᵥ y) + s * (y ⬝ᵥ y)) := by
+    nlinarith [sq_nonneg a, mul_le_mul_of_nonneg_left ht (sq_nonneg a)]
+  exact (mul_nonneg_iff_of_pos_left hs).1 key
+
+
+/-- What a positive semidefinite arrowhead matrix needs. -/
+theorem aux_arrowMat_posSemidef_necessary {s t : ℝ} {w : Vec ℝ N} (hN : 0 < N)
+    (h : (arrowMat s t w).PosSemidef) : -- --- CONCL ---
+    0 ≤ s ∧ (s = 0 → w = 0) := by -- --- PROOF ---
+  have hQ := fun x => h.dotProduct_mulVec_nonneg x
+  simp only [star_trivial] at hQ
+  -- the form at `(0, e₀)` is `s`
+  have hs : 0 ≤ s := by
+    have := hQ (Fin.cons 0 (Pi.single ⟨0, hN⟩ 1))
+    rw [arrowMat_quadForm] at this
+    simpa using this
+  refine ⟨hs, fun hs0 => ?_⟩
+  funext i
+  by_contra hwi
+  have hwi' : w i ≠ 0 := hwi
+  -- a test vector with `a = 1` and `y = b eᵢ`
+  have := hQ (Fin.cons 1 (Pi.single i (-(t + 1) / (2 * w i))))
+  rw [arrowMat_quadForm] at this
+  simp [hs0] at this
+  field_simp at this
+  linarith
+
+
+/-- The arrowhead matrix of a sum is the sum of the arrowhead matrices. -/
 theorem aux_arrowMat_add (s s' t t' : ℝ) (w w' : Vec ℝ N) :
     arrowMat (s + s') (t + t') (w + w') = arrowMat s t w + arrowMat s' t' w' := by
   ext p q
@@ -49,12 +93,14 @@ theorem aux_arrowMat_add (s s' t t' : ℝ) (w w' : Vec ℝ N) :
     simp [arrowMat]
   · split_ifs <;> ring
 
+/-- The arrowhead matrix of a scaled triple is the scaled arrowhead matrix. -/
 theorem aux_arrowMat_smul (r s t : ℝ) (w : Vec ℝ N) :
     arrowMat (r * s) (r * t) (r • w) = r • arrowMat s t w := by
   ext p q
   refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
     simp [arrowMat]
 
+/-- The arrowhead matrix of the zero triple is zero. -/
 theorem aux_arrowMat_zero : arrowMat 0 0 (0 : Vec ℝ N) = 0 := by
   ext p q
   refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
@@ -159,7 +205,7 @@ theorem SpectraShadow.cone_construct (hN : 0 < N) (T : SpectraShadow (Vec ℝ N)
     rw [hz]
     obtain ⟨hA, hArrow⟩ := (posSemidef_blockDiag_iff _ _).1 hb2
     -- `s ≥ 0`, and the point is `0` at `s = 0`
-    obtain ⟨hs, hs0⟩ := arrowMat_posSemidef_necessary hN hArrow
+    obtain ⟨hs, hs0⟩ := aux_arrowMat_posSemidef_necessary hN hArrow
     rcases hs.eq_or_lt with h | h
     · exact Or.inl (hs0 h.symm)
     -- at `s > 0` the point is `s x` for `x` in the shadow at the coefficients `β / s`
@@ -196,7 +242,7 @@ theorem SpectraShadow.cone_construct (hN : 0 < N) (T : SpectraShadow (Vec ℝ N)
         have : (blockDiag 0 (s • T.A₀ + ∑ j, (s * γ j) • T.A j)
             (arrowMat s ((z ⬝ᵥ z) / s) (s • T.c + ∑ j, (s * γ j) • T.G j))).PosSemidef := by
           rw [hz]
-          refine (posSemidef_blockDiag_iff _ _).2 ⟨?_, arrowMat_posSemidef_of_pos hs ?_⟩
+          refine (posSemidef_blockDiag_iff _ _).2 ⟨?_, aux_arrowMat_posSemidef_of_pos hs ?_⟩
           · have := hγ.smul hs.le
             convert this using 1
             simp only [smul_add, Finset.smul_sum, smul_smul]

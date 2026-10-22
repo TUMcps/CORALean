@@ -9,9 +9,7 @@ the semantics defines and no algorithm computes, and so ends in `Exact`, as
 `LinearSys.reachExact` does. A computed set is a representation (`Zonotope`, `Interval`, ...)
 named by its algorithm and never a bare `Set`.
 
-`scripts/exact-name-allowlist.txt` lists justified exceptions, `<name>  <reason>` per line, `#`
-comments and blank lines ignored. An entry that matches no declaration any more is reported as
-stale, so the list only shrinks. Prints findings and exits 1 on any.
+Prints findings and exits 1 on any.
 
 `--root DIR` reads another tree (used to test the rule on a mutated copy).
 """
@@ -23,7 +21,6 @@ ROOT = Path(__file__).resolve().parent.parent
 args = sys.argv[1:]
 if "--root" in args:
     ROOT = Path(args[args.index("--root") + 1]).resolve()
-LIST = ROOT / "scripts/exact-name-allowlist.txt"
 
 DECL = re.compile(
     r"^(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|nonrec|partial|unsafe)\s+)*"
@@ -81,14 +78,7 @@ def set_decls(path):
 
 
 def main():
-    allow, alines = {}, {}
-    if LIST.exists():
-        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
-            if l.strip() and not l.startswith("#"):
-                key = l.split()[0]
-                allow[key] = True
-                alines[key] = no
-    findings, used = [], set()
+    findings = []
     for scope in SCOPES:
         for p in sorted((ROOT / scope).rglob("*.lean")):
             if "Definitions" not in p.relative_to(ROOT).parts:
@@ -97,17 +87,9 @@ def main():
                 last = name.split(".")[-1]
                 if not REACH.search(last) or last.endswith("Exact"):
                     continue
-                if name in allow:
-                    used.add(name)
-                    continue
                 findings.append(
                     f"{p.relative_to(ROOT)}:{ln}: `{name}` is a `Set` of reachable states —"
-                    " the true set ends in `Exact` (`LinearSys.reachExact`); rename it, or list a"
-                    " justified exception in scripts/exact-name-allowlist.txt")
-    for k in sorted(allow):
-        if k not in used:
-            findings.append(f"scripts/exact-name-allowlist.txt:{alines[k]}: stale entry `{k}` —"
-                            " no such declaration; the list only shrinks")
+                    " the true set ends in `Exact` (`LinearSys.reachExact`); rename it")
     for f in findings:
         print(f)
     sys.exit(1 if findings else 0)

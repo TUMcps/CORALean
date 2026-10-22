@@ -80,7 +80,6 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachExcessFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
-public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
@@ -89,7 +88,6 @@ public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptive
 public import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionOrder
-public import CORALean.ContDynamics.LinearSys.Operations.EntryIsFloat
 public import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
@@ -130,15 +128,12 @@ public import CORALean.ContDynamics.LinearSys.Operations.Verify
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
-public import CORALean.ContDynamics.LinearSys.Operations.VerifyRunFloat
-public import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.MaximumFold
 public import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
-public import CORALean.ContDynamics.LinearSys.Operations.DeltaReachFloat
 public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
@@ -152,8 +147,6 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatC
 public import CORALean.ContDynamics.LinearSys.Operations.ReachTimePointWrappingFreeFloatChecked
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputChecked
 public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloatChecked
-public import CORALean.ContDynamics.LinearSys.Operations.ManualStepFloat
-public import CORALean.ContDynamics.LinearSys.Operations.ManualRunFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureErrorFloat

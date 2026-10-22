@@ -36,6 +36,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A location: its invariant `inv`, its linear dynamics, the input and disturbance sets `U` and
+`W`, and its outgoing transitions. -/
 structure Location (S G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   inv : G n
   dynamics : LinearSys 𝕋 n

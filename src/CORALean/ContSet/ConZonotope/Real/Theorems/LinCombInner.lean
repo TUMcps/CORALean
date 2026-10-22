@@ -3,8 +3,9 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
-public import CORALean.ContSet.HPolytope.Real.Operations.AbsLeOfUnitBoxRows
-public import CORALean.ContSet.HPolytope.Real.Operations.RowsOfMemHalfScaledComap
+public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
 
 @[expose] public section
 
@@ -46,6 +47,48 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Module ℝ γ]
+
+/-- The weighted rows a scaled membership gives back. -/
+theorem HPolytope.aux_rows_of_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ}
+    {P : HPolytope α} {x : γ} {w : ℝ} (hw : (t x + 1) / 2 = w)
+    (hx : x ∈ ((P.comap f).halfScaled t).construct) :
+    (∀ i, P.A i (f x) ≤ w * P.b i) ∧ ∀ i, P.Ae i (f x) = w * P.be i := by
+  obtain ⟨hle, heq⟩ := HPolytope.mem_halfScaled_iff.mp hx
+  rw [hw] at hle heq
+  exact ⟨hle, heq⟩
+
+end
+
+
+section
+variable {n : ℕ}
+
+/-- The box read at a weight. -/
+theorem HPolytope.aux_abs_le_of_unitBox_rows {u : Vec ℝ n} {w : ℝ} (hw : 0 ≤ w)
+    (h : ∀ i, (HPolytope.unitBox n).A i u ≤ w * (HPolytope.unitBox n).b i)
+    (j : Fin n) : -- --- CONCL ---
+    |u j| ≤ w := by -- --- PROOF ---
+  refine le_of_forall_pos_le_add fun ε hε => ?_
+  have hpos : (0:ℝ) < w + ε := by linarith
+  -- at any weight above `w` the point rescales into the box itself
+  have hmem : (w + ε)⁻¹ • u ∈ (HPolytope.unitBox n).construct := by
+    refine ⟨fun i => ?_, fun i => i.elim0⟩
+    rw [map_smul, smul_eq_mul]
+    have hrow : (HPolytope.unitBox n).A i u ≤ w * 1 := h i
+    have hb : (HPolytope.unitBox n).b i = 1 := rfl
+    rw [hb]
+    rw [inv_mul_le_iff₀ hpos]
+    linarith
+  have hj := (HPolytope.mem_unitBox_iff.mp hmem) j
+  rw [Pi.smul_apply, smul_eq_mul, abs_mul, abs_of_pos (inv_pos.mpr hpos)] at hj
+  rw [inv_mul_le_iff₀ hpos] at hj
+  linarith
+
+end
+
+
 /-- A weighted coefficient block is a point of the set, weighted: `w⁻¹` where
 there is something to divide by, and the origin where there is not. -/
 theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonempty) {w : ℝ}
@@ -58,7 +101,7 @@ theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonem
     refine ⟨y, hy, ?_⟩
     have hbox : ∀ j, |u j| ≤ w := by
       intro j
-      refine HPolytope.abs_le_of_unitBox_rows hw (fun i => ?_) j
+      refine HPolytope.aux_abs_le_of_unitBox_rows hw (fun i => ?_) j
       have hA : cZ.domain.A (Fin.castAdd cZ.P.m i) = (HPolytope.unitBox cZ.h).A i := by
         show Fin.append (HPolytope.unitBox cZ.h).A cZ.P.A (Fin.castAdd cZ.P.m i) = _
         rw [Fin.append_left]
@@ -97,8 +140,8 @@ theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.c
   have hl1 : lam ≤ 1 := by rw [hlam]; linarith [habs.2]
   -- the two blocks, each against the weight its side of the combination carries
   obtain ⟨hrow₁, hrow₂⟩ := HPolytope.mem_intersection_iff.mp hP
-  obtain ⟨hA₁, hAe₁⟩ := HPolytope.rows_of_mem_halfScaled_comap (w := lam) rfl hrow₁
-  obtain ⟨hA₂, hAe₂⟩ := HPolytope.rows_of_mem_halfScaled_comap (w := 1 - lam)
+  obtain ⟨hA₁, hAe₁⟩ := HPolytope.aux_rows_of_mem_halfScaled_comap (w := lam) rfl hrow₁
+  obtain ⟨hA₂, hAe₂⟩ := HPolytope.aux_rows_of_mem_halfScaled_comap (w := 1 - lam)
     (show (-(β (Fin.natAdd (cZ₁.h + cZ₂.h) 0)) + 1) / 2 = 1 - lam by rw [hlam]; ring) hrow₂
   obtain ⟨y₁, hy₁mem, hy₁⟩ := ConZonotope.aux_smul_mem cZ₁ h₁ hl0
     (u := fun j => β (Fin.castAdd 1 (Fin.castAdd cZ₂.h j))) hA₁ hAe₁

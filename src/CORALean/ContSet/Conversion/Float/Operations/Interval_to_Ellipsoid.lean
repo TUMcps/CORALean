@@ -40,6 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Interval.ellipsoidG (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n n :=
   diagonalBlock fun i => mulUp σ (I.radiusFrom i)
 
+/-- The ellipsoid of a box, with the radius scaled by `σ`: the center is the box's center and the
+shape matrix is the square of the diagonal generator, with no error. -/
 def Interval.ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
   Q := diagonalBlock fun i => mulUp (I.ellipsoidG σ i i) (I.ellipsoidG σ i i)
   q := I.center

@@ -31,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An online reach set analyzer: the nodes of the syntax tree of an STL formula, its leaves, how
+many observations were made, and which nodes have propagated. -/
 structure OnlineReachSetAnalyzer (S : ℕ → Type) (d : ℕ) where
   propagationFrequency : ℕ
   nodes : List (OnlineAnalyzerNode (AtomicProposition S d))

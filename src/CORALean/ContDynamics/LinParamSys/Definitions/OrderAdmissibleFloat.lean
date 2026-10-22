@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -43,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `η` is at least `2` and the float remainder bound at `[tLo, tHi] · sys.A`
 is sound at it. -/
-def LinParamSys.OrderAdmissibleFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.OrderAdmissibleFloat (sys : LinParamSys ℐ[𝕋] n)
     (tLo tHi : 𝕋) (η : ℕ) : Prop :=
   2 ≤ η ∧ toReal (MatExp.normUpperBound (Interval.smul tLo tHi sys.A)) / ((η : ℝ) + 2) ≤ 1 / 2
 

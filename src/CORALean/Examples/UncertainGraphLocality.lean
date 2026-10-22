@@ -46,16 +46,21 @@ def Example.uglA : Mat ℝ 5 5 := GNN.edgeMat (0, 1) + GNN.edgeMat (1, 2) + GNN.
 
 -- The graph's one uncertain edge, `1 -- 3`, and one admissible weight for it.
 
+/-- The uncertain edge `1 -- 3`. -/
 def Example.uglU : Fin 1 → Fin 5 × Fin 5 := fun _ => (1, 3)
 
+/-- The admissible weight `0.5` of the uncertain edge. -/
 def Example.uglLam : Fin 1 → ℝ := fun _ => 0.5
 
+/-- The two layers' weights, `2` and `0.5`. -/
 def Example.uglW : Fin 2 → Mat ℝ 1 1 := ![!![(2 : ℝ)], !![(0.5 : ℝ)]]
 
+/-- The node features `1, ..., 5`, one per node. -/
 def Example.uglX : Mat ℝ 5 1 := !![(1 : ℝ); 2; 3; 4; 5]
 
 -- `κ`, sized against `adjMax`'s `3`-ball: every node but the isolated `4`.
 
+/-- The nodes `0 ... 3` of the ball, embedded in the five nodes. -/
 def Example.uglKappa : Fin 4 → Fin 5 := Fin.castLE (by omega)
 
 /-- `A`'s entries are `0` or `1`, a sum of `edgeMat`'s own nonnegativity. -/

@@ -1,5 +1,6 @@
 import CORALean.ContSet.Zonotope.Float.Zonotope
-import CORALean.Global.Float.ToRat
+import CORALean.Global.Float.Interfaces
+import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Examples.Bench.RandVerifyOutZono
 
 /-!

@@ -2,6 +2,14 @@ module
 
 public import CORALean.NN.Layers.Operations.SoftmaxRawUpper
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
+public import CORALean.NN.Layers.Operations.Basic
+public import CORALean.NN.Layers.Theorems.SumIteZero
+public import CORALean.NN.Layers.Theorems.ToRealIteZero
+public import CORALean.NN.Layers.Operations.SoftmaxRawLower
+public import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
+public import CORALean.NN.Layers.Theorems.Real.Basic
+public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+public import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
 public import CORALean.NN.Layers.Theorems.SumOffDownLe
 
 @[expose] public section

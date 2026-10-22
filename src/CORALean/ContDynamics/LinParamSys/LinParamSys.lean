@@ -42,6 +42,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A linear system `ẋ = A x + B u + c` whose matrices `A` and `B` are sets of the matrix family
+`𝕄`, as CORA's `linParamSys`. -/
 structure LinParamSys (𝕄 : ℕ → ℕ → Type) (n : ℕ) where
   A : 𝕄 n n
   m : ℕ

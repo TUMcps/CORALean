@@ -7,7 +7,8 @@ import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
-import CORALean.Global.Float.ToRat
+import CORALean.Global.Float.Interfaces
+import CORALean.Global.Float.SoundFloatArithmetic
 
 /-!
 # The round-to-nearest scalars as float models, UNSOUNDLY

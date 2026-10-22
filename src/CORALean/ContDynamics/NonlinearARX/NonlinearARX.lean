@@ -38,6 +38,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A nonlinear ARX model: the output at step `k` is `f` of the last `p` outputs and the current and
+last `p` inputs; `dt` is the sampling time. -/
 structure NonlinearARX (dy du p : ℕ) where
   f : Vec ℝ (p * dy) → Vec ℝ ((p + 1) * du) → Vec ℝ dy
   dt : ℝ
@@ -54,6 +56,8 @@ def NonlinearARX.pastOut (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ 
 def NonlinearARX.pastIn (p : ℕ) (u : ℕ → Vec ℝ du) (k : ℕ) : Vec ℝ ((p + 1) * du) :=
   fun r => u (k - (finProdFinEquiv.symm r).1) (finProdFinEquiv.symm r).2
 
+/-- A run of the model: the initial output window lies in `Y₀`, every input lies in `U`, and from
+step `p` on each output is `f` of the past outputs and inputs. -/
 structure NonlinearARX.IsTrajectory (sys : NonlinearARX dy du p) (Y₀ : S (p * dy)) (U : S du)
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) : Prop where
   init : NonlinearARX.stack p y 0 ∈ construct Y₀

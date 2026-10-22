@@ -28,6 +28,8 @@ variable (𝕋 : Type) [FloatOps 𝕋]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A network of interval layers with float weights and biases; an activation is stored as interval
+enclosures of its value and its derivative. -/
 inductive IntervalChain : ℕ → ℕ → Type where
   | nil {n : ℕ} : IntervalChain n n
   | linear {n m k : ℕ} (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (rest : IntervalChain m k) :

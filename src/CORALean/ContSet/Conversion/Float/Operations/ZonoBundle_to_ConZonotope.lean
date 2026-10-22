@@ -40,6 +40,8 @@ def ZonoBundle.interFrom (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : {k : ℕ} →
   | 0, _ => cZ
   | _ + 1, Z => ZonoBundle.interFrom (cZ.intersection (Z 0).conZonotope) fun i => Z i.succ
 
+/-- The constrained zonotope of the `i`-th component of a zonotope bundle: the one of that
+component's zonotope. -/
 def ZonoBundle.conZonotope (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   (zB.zonotope i).conZonotope
 

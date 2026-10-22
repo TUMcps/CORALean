@@ -45,6 +45,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A constrained polynomial zonotope: center `c`, dependent generators `G` with exponent matrix
+`E`, independent generators `GI`, and equality constraints `cons` on the dependent factors. -/
 structure ConPolyZono (α : Type) where
   /-- The dependent factors, shared by the generators and the constraints. -/
   p : ℕ
@@ -63,6 +65,9 @@ structure ConPolyZono (α : Type) where
   /-- The factors range over the constraint's domain, the unit box, as in [1]. -/
   cons_dom : cons.dom = Interval.unit p
 
+/-- The set a constrained polynomial zonotope denotes: the points `c` plus the monomial-weighted
+dependent generators and the independent generators with coefficients in `[-1, 1]`, over the factors
+satisfying the constraint. -/
 def ConPolyZono.construct (cPZ : ConPolyZono α) : Set α :=
   {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ j, |β j| ≤ 1) ∧ a ∈ cPZ.cons.construct
         ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, β j • cPZ.GI j}

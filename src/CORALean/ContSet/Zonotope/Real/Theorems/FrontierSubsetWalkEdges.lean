@@ -3,8 +3,8 @@ module
 public import CORALean.ContSet.Zonotope.Real.Theorems.SectionEqIccWalkEdges
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearWalkEdges
-public import CORALean.ContSet.Zonotope.Real.Theorems.ShearHalfPlane
-public import CORALean.ContSet.Zonotope.Real.Theorems.ShearCross
+public import CORALean.ContSet.Zonotope.Real.Operations.Shear
+public import Mathlib.Tactic.Ring
 public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import Mathlib.Analysis.Normed.Group.Basic
 public import Mathlib.Topology.MetricSpace.Pseudo.Pi
@@ -52,6 +52,30 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- The shear keeps the generators in the upper half-plane. -/
+theorem Zonotope.aux_shear_half_plane (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
+    (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (j : Fin Z.h) : -- --- CONCL ---
+    0 ≤ (Z.shear κ).G j 1 ∧ (0 < (Z.shear κ).G j 1 ∨ 0 ≤ (Z.shear κ).G j 0) := by -- --- PROOF ---
+  obtain ⟨h0, h1⟩ := hH j
+  refine ⟨h0, ?_⟩
+  simp only [Zonotope.shear, Matrix.cons_val_zero, Matrix.cons_val_one]
+  rcases h0.eq_or_lt with hy | hy
+  · -- on the x-axis the shear is the identity
+    right
+    have hx : 0 ≤ Z.G j 0 := h1.resolve_left (by rw [← hy]; exact lt_irrefl 0)
+    rw [← hy]
+    linarith
+  · exact Or.inl hy
+
+
+/-- The shear keeps the cross product of the generators. -/
+theorem Zonotope.aux_shear_cross (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (i j : Fin Z.h) :
+    (Z.shear κ).G i 0 * (Z.shear κ).G j 1 - (Z.shear κ).G i 1 * (Z.shear κ).G j 0
+      = Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0 := by
+  simp only [Zonotope.shear, Matrix.cons_val_zero, Matrix.cons_val_one]
+  ring
+
+
 /-- A point of the zonogon off the walk edges has a stretch of every non-horizontal line in it. -/
 theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
@@ -65,10 +89,10 @@ theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     convert hq using 1
     ext k; fin_cases k <;> simp
   -- the sheared zonogon is sorted too, so the section theorem applies to it
-  have hsh1 := fun j => Z.shear_half_plane κ h1 j
+  have hsh1 := fun j => Z.aux_shear_half_plane κ h1 j
   have hsh2 : ∀ i j : Fin (Z.shear κ).h, i < j →
       0 ≤ (Z.shear κ).G i 0 * (Z.shear κ).G j 1 - (Z.shear κ).G i 1 * (Z.shear κ).G j 0 :=
-    fun i j hij => (Z.shear_cross κ i j).symm ▸ h2 i j hij
+    fun i j hij => (Z.aux_shear_cross κ i j).symm ▸ h2 i j hij
   obtain ⟨yl, yh, hyl, hyh, hS⟩ := (Z.shear κ).section_eq_Icc_walkEdges hh hsh1 hsh2
     (q 0 - κ * q 1) ⟨q 1, hqs⟩
   -- `q` is neither end, since it is on no edge

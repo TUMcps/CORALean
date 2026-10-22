@@ -48,16 +48,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem sigmoidDerivLo_le {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) (l u : 𝕋) (x : ℝ)
     (hl : toReal l ≤ x) (hu : x ≤ toReal u) : -- --- CONCL ---
     toReal (sigmoidDerivLo E l u) ≤ Real.sigmoidDeriv x := by -- --- PROOF ---
-  have h₁ : toReal (maximum zero (E.lo l)) ≤ Real.sigmoid x := by
+  have h₁ : toReal (maximum zero (E.enclose l).inf) ≤ Real.sigmoid x := by
     rw [toReal_maximum, toReal_zero]
     exact max_le (le_of_lt (Real.sigmoid_pos x)) (le_trans (hE.lo_le l) (Real.sigmoid_mono hl))
-  have h₂ : toReal (maximum zero (E.lo (neg u))) ≤ Real.sigmoid (-x) := by
+  have h₂ : toReal (maximum zero ((E.enclose (neg u)).inf)) ≤ Real.sigmoid (-x) := by
     rw [toReal_maximum, toReal_zero]
     refine max_le (le_of_lt (Real.sigmoid_pos _)) (le_trans (hE.lo_le (neg u)) ?_)
     rw [toReal_neg]
     exact Real.sigmoid_mono (neg_le_neg hu)
   -- both factors are non-negative lower bounds, which is what makes the product one
-  have h₀ : 0 ≤ toReal (maximum zero (E.lo (neg u))) := by
+  have h₀ : 0 ≤ toReal (maximum zero ((E.enclose (neg u)).inf)) := by
     rw [toReal_maximum, toReal_zero]
     exact le_max_left _ _
   rw [sigmoidDerivLo, Real.sigmoidDeriv]

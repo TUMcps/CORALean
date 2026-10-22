@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
-public import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 
@@ -38,6 +39,16 @@ open Pointwise Matrix FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A certified zero row is the zero functional. -/
+theorem HPolytope.aux_isZeroVec_dot {v : Vec 𝕋 n} (h : HPolytope.isZeroVec v = true) (x : Vec ℝ n) :
+    ∑ j, toReal (v j) * x j = 0 := by
+  refine Finset.sum_eq_zero fun j _ => ?_
+  have hj := List.all_eq_true.mp h j (List.mem_finRange j)
+  rw [HPolytope.toReal_eq_of_eqScalar hj, toReal_zero, zero_mul]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
@@ -45,9 +56,9 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
   unfold HPolytope.dropZeros
   -- a certified zero row has the value `0` at every point
   have hzA : ∀ i, HPolytope.isZeroVec (Q.A i) = true → ∀ x : Vec ℝ n,
-      (toRealMat Q.A *ᵥ x) i = 0 := fun i h x => HPolytope.isZeroVec_dot h x
+      (toRealMat Q.A *ᵥ x) i = 0 := fun i h x => HPolytope.aux_isZeroVec_dot h x
   have hzE : ∀ r, HPolytope.isZeroVec (Q.Ae r) = true → ∀ x : Vec ℝ n,
-      (toRealMat Q.Ae *ᵥ x) r = 0 := fun r h x => HPolytope.isZeroVec_dot h x
+      (toRealMat Q.Ae *ᵥ x) r = 0 := fun r h x => HPolytope.aux_isZeroVec_dot h x
   split_ifs with h
   · -- infeasible: the nominal part is empty, so both sets are
     have hN : Q.nominal.construct = ∅ := by

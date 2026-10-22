@@ -51,6 +51,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A box between the lower bound `inf` and the upper bound `sup`. -/
 structure Interval (α : Type) where
   inf : α
   sup : α

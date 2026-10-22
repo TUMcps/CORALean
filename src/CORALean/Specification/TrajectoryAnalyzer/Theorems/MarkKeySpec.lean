@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.LookupReplaceKey
-public import CORALean.Global.MapFstReplaceKey
+public import CORALean.Global.ReplaceKey
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.OrIndicatorSpec
 public import CORALean.Specification.TrajectoryAnalyzer.Definitions.SignalsRepresent
 public import CORALean.Specification.TrajectoryAnalyzer.Operations.MarkKey
@@ -48,6 +48,20 @@ open FiniteKleeneSignalBuilder
 variable {S : ℕ → Type} {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Replacing a key keeps the keys. -/
+theorem aux_map_fst_replaceKey {β : Type} (l : List (String × β)) (k : String)
+    (v : β) : -- --- CONCL ---
+    (replaceKey l k v).map Prod.fst = l.map Prod.fst := by -- --- PROOF ---
+  induction l with
+  | nil => rfl
+  | cons p l ih =>
+    simp only [replaceKey, List.map_cons] at ih ⊢
+    rw [ih]
+    by_cases h : p.1 = k <;> simp [h]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TrajectoryAnalyzer.markKey_spec (aps : List (String × AtomicProposition S n)) (dur : ℝ)
@@ -65,7 +79,7 @@ theorem TrajectoryAnalyzer.markKey_spec (aps : List (String × AtomicProposition
   rw [hd] at hs' hd' hat'
   obtain ⟨ind, hind, hc⟩ := Option.bind_eq_some_iff.mp hs'
   refine ⟨replaceKey sigs p.1 s', by simp [TrajectoryAnalyzer.markKey, hlk, hind, hc], hnd,
-    (map_fst_replaceKey sigs p.1 s').trans hkeys, fun q hq => ?_⟩
+    (aux_map_fst_replaceKey sigs p.1 s').trans hkeys, fun q hq => ?_⟩
   -- the other signals are unchanged
   obtain ⟨sq, hlq, hvq, hdq, hatq⟩ := hall q hq
   by_cases hqk : q.1 = p.1

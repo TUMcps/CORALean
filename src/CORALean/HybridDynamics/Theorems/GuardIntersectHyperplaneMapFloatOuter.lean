@@ -5,16 +5,27 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloa
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
 public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
 public import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
-public import CORALean.HybridDynamics.Theorems.HitJacobianMemHitJacobianFloat
+public import CORALean.HybridDynamics.Definitions.HitJacobian
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.HybridDynamics.Theorems.HitPointAddEq
-public import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
+public import CORALean.HybridDynamics.Definitions.HitPoint
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
-public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
+public import CORALean.HybridDynamics.Definitions.SdcInput
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBoundsFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
-public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
+public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.HalfspaceRangeMem
+public import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMatZonoOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
@@ -32,20 +43,21 @@ public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeCon
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
+public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
 
 @[expose] public section
 
 /-!
 # The float hyperplane map holds every guard hit of a run from `R₀`
 
-`Location.guardIntersectHyperplaneMapFloat_outer`: a run of the location from `x(0) ∈ R₀` that is
-on the hyperplane `nᵀx = d` at a time `t ≤ tmax` is, at `t`, in the set the float guard mapping
+`Location.guardIntersectHyperplaneMapFloat_outer`: a run of the location from `x(0) ∈ R₀` that is on
+the hyperplane `nᵀx = d` at a time `t ≤ tmax` is, at `t`, in the set the float guard mapping
 returns, for `η ≥ 1` Taylor terms; the exact layer's `guardIntersectHyperplaneMap_outer`, with the
 floats read as reals. The chain is the exact layer's, each real quantity in the float set that
-encloses it (`GuardMap.abstractionErrorFloat_outer`, `GuardMap.sdcInput_mem_sdcInputFloat`,
-`GuardMap.hitPoint_mem_hitPointFloat`, `GuardMap.hitJacobian_mem_hitJacobianFloat`,
-`GuardMap.hitHessianMatZonoFloat_mem`, `ContSet.projectOnHyperplaneIntervalFloat_outer`); the hit
-is `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e`, projected onto the hyperplane.
+encloses it (`abstractionErrorFloat_outer`, `aux_sdcInput_mem_sdcInputFloat`,
+`aux_hitPoint_mem_hitPointFloat`, `aux_hitJacobian_mem_hitJacobianFloat`,
+`hitHessianMatZonoFloat_mem`, `projectOnHyperplaneIntervalFloat_outer`); the hit is
+`y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e`, projected onto the hyperplane.
 
 ## Inputs
 * `ℓ` – location
@@ -104,6 +116,362 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+namespace Float
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+open FloatOps SoundFloatArithmetic
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
+
+/-- A sum of members is a member of the float interval-matrix sum. -/
+theorem Interval.aux_sum_mem_sumTermsMat (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
+    (N : ℕ) (h : ∀ k, k < N → M k ∈ (f k).construct) : -- --- CONCL ---
+    ∑ k ∈ Finset.range N, M k ∈ (Interval.sumTermsMat f N).construct := by -- --- PROOF ---
+  induction N with
+  | zero =>
+    -- the empty sum is `0`, the stored point `0` read as reals
+    rw [Finset.sum_range_zero, Interval.sumTermsMat]
+    refine Interval.mem_mat_iff.mpr fun i j => ?_
+    show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
+    rw [toReal_zero]
+    exact ⟨le_rfl, le_rfl⟩
+  | succ N ih =>
+    -- one more term, held by `matPlus`
+    rw [Finset.sum_range_succ, Interval.sumTermsMat, Interval.materialiseMat_eq]
+    exact Interval.matPlus_outer _ _ (ih fun k hk => h k (Nat.lt_succ_of_lt hk))
+      (h N (Nat.lt_succ_self N))
+
+end
+end Float
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- [1, Prop. 1]: `b` is in the box, for `t ≥ 0`. -/
+theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) {t : 𝕋} (η : ℕ)
+    (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) : -- --- CONCL ---
+    GuardMap.sdcInput (toRealMat A) (toRealVec uc) (toReal t) η (toRealVec x₀)
+      ∈ (GuardMap.aux_sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
+  -- `tᵖ/q!` between the corner products
+  have hcoef : ∀ p q : ℕ, toReal (Interval.mulLo (powDown t p) (powUp t p)
+      (MatExp.invFactorialBounds q).inf (MatExp.invFactorialBounds q).sup)
+        ≤ toReal t ^ p / q.factorial
+      ∧ toReal t ^ p / q.factorial ≤ toReal (Interval.mulHi (powDown t p) (powUp t p)
+        (MatExp.invFactorialBounds q).inf (MatExp.invFactorialBounds q).sup) := fun p q => by
+    rw [div_eq_mul_inv]
+    exact Interval.mul_between_corners (powDown_le ht le_rfl p) (le_powUp ht le_rfl p)
+      (MatExp.invFactorialBounds_mem q).1 (MatExp.invFactorialBounds_mem q).2
+  have hpow : ∀ i, toRealMat A ^ i ∈ (Interval.matPow (Interval.point A) i).construct := fun i =>
+    Interval.matPow_outer _ (Interval.mem_point A) i
+  -- `Θ`, reindexed by `i = k + 2`
+  have hΘ : (∑ i ∈ Finset.Ico 2 (η + 1), (toReal t ^ (i - 1) / (i.factorial : ℝ)) •
+      toRealMat A ^ i) ∈ (Interval.sumTermsMat (fun k => Interval.smul
+        (Interval.mulLo (powDown t (k + 1)) (powUp t (k + 1))
+          (MatExp.invFactorialBounds (k + 2)).inf
+          (MatExp.invFactorialBounds (k + 2)).sup)
+        (Interval.mulHi (powDown t (k + 1)) (powUp t (k + 1))
+          (MatExp.invFactorialBounds (k + 2)).inf
+          (MatExp.invFactorialBounds (k + 2)).sup)
+        (Interval.matPow (Interval.point A) (k + 2))) (η - 1)).construct := by
+    rw [Finset.sum_Ico_eq_sum_range, show η + 1 - 2 = η - 1 by omega]
+    refine Interval.aux_sum_mem_sumTermsMat _ _ _ fun k _ => ?_
+    rw [show 2 + k = k + 2 by ring, show k + 2 - 1 = k + 1 by omega]
+    exact Interval.smul_outer (hcoef (k + 1) (k + 2)).1 (hcoef (k + 1) (k + 2)).2 _ (hpow (k + 2))
+  -- `Γ*`, term by term
+  have hΓ : (∑ i ∈ Finset.range (η + 1), (toReal t ^ i / ((i + 1).factorial : ℝ)) •
+      toRealMat A ^ i) ∈ (Interval.sumTermsMat (fun k => Interval.smul
+        (Interval.mulLo (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).inf
+          (MatExp.invFactorialBounds (k + 1)).sup)
+        (Interval.mulHi (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).inf
+          (MatExp.invFactorialBounds (k + 1)).sup)
+        (Interval.matPow (Interval.point A) k)) (η + 1)).construct :=
+    Interval.aux_sum_mem_sumTermsMat _ _ _ fun k _ =>
+      Interval.smul_outer (hcoef k (k + 1)).1 (hcoef k (k + 1)).2 _ (hpow k)
+  -- the products with `x₀` and `u_c`, and their sum
+  exact Interval.plus_outer _ _ (Set.add_mem_add
+    (Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hΘ ⟨_, Interval.mem_point x₀, rfl⟩))
+    (Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hΓ ⟨_, Interval.mem_point uc, rfl⟩)))
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- `y_h(x₀)` is in the box `aux_hitPointFloat` returns, and `Λ ≠ 0`. -/
+theorem GuardMap.aux_hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
+    (x₀ : Vec 𝕋 n) : -- --- CONCL ---
+    ∀ K ∈ GuardMap.aux_hitPointFloat A b nv d x₀,
+      toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
+        GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
+          ∈ K.construct := by -- --- PROOF ---
+  intro K (hK : GuardMap.aux_hitPointFloat A b nv d x₀ = some K)
+  simp only [GuardMap.aux_hitPointFloat] at hK
+  split_ifs at hK with hc
+  obtain rfl := Option.some.inj hK
+  set yr : Vec ℝ n := toRealMat A *ᵥ toRealVec x₀ + toRealVec b with hyr
+  set Λ : ℝ := toRealVec nv ⬝ᵥ yr with hΛ
+  set num : ℝ := toReal d - toRealVec nv ⬝ᵥ toRealVec x₀ with hnum
+  -- `Ax₀ + b`, entry by entry
+  have hy : ∀ i, toReal (addDown (dotDown (A i) x₀) (b i)) ≤ yr i ∧
+      yr i ≤ toReal (addUp (dotUp (A i) x₀) (b i)) := fun i => by
+    have h1 := dotDown_le (A i) x₀
+    have h2 := le_dotUp (A i) x₀
+    have h3 := addDown_le_add (dotDown (A i) x₀) (b i)
+    have h4 := add_le_addUp (dotUp (A i) x₀) (b i)
+    have e : yr i = ∑ k, toReal (A i k) * toReal (x₀ k) + toReal (b i) := rfl
+    rw [e]
+    constructor <;> linarith
+  -- `Λ = nᵀy`, a sum of corner products
+  have hΛb : toReal (sumDown fun i => Interval.mulLo (nv i) (nv i)
+      (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i))) ≤ Λ ∧
+      Λ ≤ toReal (sumUp fun i => Interval.mulHi (nv i) (nv i)
+        (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i))) := by
+    have hm := fun i => Interval.mul_between_corners (le_refl (toReal (nv i)))
+      (le_refl (toReal (nv i))) (hy i).1 (hy i).2
+    exact ⟨(sumDown_le_sum _).trans (Finset.sum_le_sum fun i _ => (hm i).1),
+      (Finset.sum_le_sum fun i _ => (hm i).2).trans (sum_le_sumUp _)⟩
+  set ΛLo := sumDown fun i => Interval.mulLo (nv i) (nv i)
+    (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i)) with hΛLo
+  set ΛHi := sumUp fun i => Interval.mulHi (nv i) (nv i)
+    (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i)) with hΛHi
+  -- `Λ ≠ 0`: the certificate puts its box on one side of `0`
+  have hΛ0 : Λ ≠ 0 := by
+    rcases Bool.or_eq_true_iff.mp hc with h | h
+    · have := toReal_lt_of_ltStrict h
+      rw [toReal_zero] at this
+      exact (lt_of_lt_of_le this hΛb.1).ne'
+    · have := toReal_lt_of_ltStrict h
+      rw [toReal_zero] at this
+      exact (lt_of_le_of_lt hΛb.2 this).ne
+  refine ⟨hΛ0, fun i => ?_⟩
+  -- `1/Λ` in the reciprocal box, `num` in its brackets, so `num/Λ` between the corners
+  set Λinv := (⟨fun _ => ΛLo, fun _ => ΛHi⟩ : Interval (Vec 𝕋 1)).recip with hΛinv
+  have hinv : toReal (Λinv.inf 0) ≤ Λ⁻¹ ∧ Λ⁻¹ ≤ toReal (Λinv.sup 0) :=
+    Interval.recip_outer (⟨fun _ => ΛLo, fun _ => ΛHi⟩ : Interval (Vec 𝕋 1))
+      (fun _ => Bool.or_eq_true_iff.mp hc) ⟨fun _ : Fin 1 => Λ, fun _ => hΛb, rfl⟩ 0
+  have hn1 := subDown_le_sub d (dotUp nv x₀)
+  have hn2 := sub_le_subUp d (dotDown nv x₀)
+  have hd1 := le_dotUp nv x₀
+  have hd2 := dotDown_le nv x₀
+  have hnum' : toReal (subDown d (dotUp nv x₀)) ≤ num ∧ num ≤ toReal (subUp d (dotDown nv x₀)) := by
+    have e : toRealVec nv ⬝ᵥ toRealVec x₀ = ∑ k, toReal (nv k) * toReal (x₀ k) := rfl
+    rw [hnum, e]
+    constructor <;> linarith
+  have hτ := Interval.mul_between_corners hnum'.1 hnum'.2 hinv.1 hinv.2
+  -- `(num/Λ) yᵢ` between the corners, then the directed sums with `x₀ᵢ`
+  set τLo := Interval.mulLo (subDown d (dotUp nv x₀)) (subUp d (dotDown nv x₀))
+    (Λinv.inf 0) (Λinv.sup 0)
+  set τHi := Interval.mulHi (subDown d (dotUp nv x₀)) (subUp d (dotDown nv x₀))
+    (Λinv.inf 0) (Λinv.sup 0)
+  have hτy := Interval.mul_between_corners hτ.1 hτ.2 (hy i).1 (hy i).2
+  have ha1 := addDown_le_add (x₀ i) (Interval.mulLo τLo τHi (addDown (dotDown (A i) x₀) (b i))
+    (addUp (dotUp (A i) x₀) (b i)))
+  have ha2 := add_le_addUp (x₀ i) (Interval.mulHi τLo τHi (addDown (dotDown (A i) x₀) (b i))
+    (addUp (dotUp (A i) x₀) (b i)))
+  -- `y_h(x₀)ᵢ = x₀ᵢ + (num/Λ) yᵢ`
+  have e : GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
+      (toRealVec x₀) i = toReal (x₀ i) + num * Λ⁻¹ * yr i := by
+    simp only [GuardMap.hitPoint, Pi.add_apply, Pi.smul_apply, smul_eq_mul, div_eq_mul_inv]
+    rfl
+  show toReal (addDown (x₀ i) (Interval.mulLo τLo τHi (addDown (dotDown (A i) x₀) (b i))
+      (addUp (dotUp (A i) x₀) (b i)))) ≤ GuardMap.hitPoint (toRealMat A) (toRealVec b)
+      (toRealVec nv) (toReal d) (toRealVec x₀) i ∧ GuardMap.hitPoint (toRealMat A) (toRealVec b)
+      (toRealVec nv) (toReal d) (toRealVec x₀) i ≤ toReal (addUp (x₀ i)
+        (Interval.mulHi τLo τHi (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i))))
+  rw [e]
+  constructor <;> linarith [hτy.1, hτy.2]
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- `L(x₀)` is in the interval matrix `aux_hitJacobianFloat` returns. -/
+theorem GuardMap.aux_hitJacobian_mem_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
+    (x₀ : Vec 𝕋 n) : -- --- CONCL ---
+    ∀ L ∈ GuardMap.aux_hitJacobianFloat A b nv d x₀,
+      GuardMap.hitJacobian (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
+        ∈ L.construct := by -- --- PROOF ---
+  intro L (hL : GuardMap.aux_hitJacobianFloat A b nv d x₀ = some L)
+  simp only [GuardMap.aux_hitJacobianFloat] at hL
+  split_ifs at hL with hc
+  obtain rfl := Option.some.inj hL
+  set yr : Vec ℝ n := toRealMat A *ᵥ toRealVec x₀ + toRealVec b with hyr
+  set Λ : ℝ := toRealVec nv ⬝ᵥ yr with hΛ
+  set num : ℝ := toReal d - toRealVec nv ⬝ᵥ toRealVec x₀ with hnum
+  set Υ : Vec ℝ n := toRealVec nv ᵥ* toRealMat A with hΥ
+  -- `Ax₀ + b`, entry by entry
+  have hy : ∀ i, toReal (addDown (dotDown (A i) x₀) (b i)) ≤ yr i ∧
+      yr i ≤ toReal (addUp (dotUp (A i) x₀) (b i)) := fun i => by
+    have h1 := dotDown_le (A i) x₀
+    have h2 := le_dotUp (A i) x₀
+    have h3 := addDown_le_add (dotDown (A i) x₀) (b i)
+    have h4 := add_le_addUp (dotUp (A i) x₀) (b i)
+    have e : yr i = ∑ k, toReal (A i k) * toReal (x₀ k) + toReal (b i) := rfl
+    rw [e]
+    constructor <;> linarith
+  set ΛLo := sumDown fun i => Interval.mulLo (nv i) (nv i)
+    (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i)) with hΛLo
+  set ΛHi := sumUp fun i => Interval.mulHi (nv i) (nv i)
+    (addDown (dotDown (A i) x₀) (b i)) (addUp (dotUp (A i) x₀) (b i)) with hΛHi
+  -- `Λ = nᵀy`, a sum of corner products
+  have hΛb : toReal ΛLo ≤ Λ ∧ Λ ≤ toReal ΛHi := by
+    have hm := fun i => Interval.mul_between_corners (le_refl (toReal (nv i)))
+      (le_refl (toReal (nv i))) (hy i).1 (hy i).2
+    exact ⟨(sumDown_le_sum _).trans (Finset.sum_le_sum fun i _ => (hm i).1),
+      (Finset.sum_le_sum fun i _ => (hm i).2).trans (sum_le_sumUp _)⟩
+  -- `1/Λ` and `1/Λ²` in their boxes
+  set Λinv := (⟨fun _ => ΛLo, fun _ => ΛHi⟩ : Interval (Vec 𝕋 1)).recip with hΛinv
+  have hinv : toReal (Λinv.inf 0) ≤ Λ⁻¹ ∧ Λ⁻¹ ≤ toReal (Λinv.sup 0) :=
+    Interval.recip_outer (⟨fun _ => ΛLo, fun _ => ΛHi⟩ : Interval (Vec 𝕋 1))
+      (fun _ => Bool.or_eq_true_iff.mp hc) ⟨fun _ : Fin 1 => Λ, fun _ => hΛb, rfl⟩ 0
+  have hinv2 := Interval.mul_between_corners hinv.1 hinv.2 hinv.1 hinv.2
+  -- `num = d − nᵀx₀`, and `num/Λ`
+  have hnum' : toReal (subDown d (dotUp nv x₀)) ≤ num ∧ num ≤ toReal (subUp d (dotDown nv x₀)) := by
+    have hn1 := subDown_le_sub d (dotUp nv x₀)
+    have hn2 := sub_le_subUp d (dotDown nv x₀)
+    have hd1 := le_dotUp nv x₀
+    have hd2 := dotDown_le nv x₀
+    have e : toRealVec nv ⬝ᵥ toRealVec x₀ = ∑ k, toReal (nv k) * toReal (x₀ k) := rfl
+    rw [hnum, e]
+    constructor <;> linarith
+  have hτ := Interval.mul_between_corners hnum'.1 hnum'.2 hinv.1 hinv.2
+  -- `Υ = nᵀA` and `Θ = −nΛ − num Υ`, entry by entry
+  have hΥb : ∀ l, toReal (dotDown nv fun j => A j l) ≤ Υ l ∧
+      Υ l ≤ toReal (dotUp nv fun j => A j l) := fun l =>
+    ⟨dotDown_le nv fun j => A j l, le_dotUp nv fun j => A j l⟩
+  have hΘ : ∀ l, toReal (subDown (neg (Interval.mulHi ΛLo ΛHi (nv l) (nv l)))
+      (Interval.mulHi (subDown d (dotUp nv x₀)) (subUp d (dotDown nv x₀))
+        (dotDown nv fun j => A j l) (dotUp nv fun j => A j l))) ≤ -(Λ * toReal (nv l)) - num * Υ l ∧
+      -(Λ * toReal (nv l)) - num * Υ l ≤ toReal (subUp (neg (Interval.mulLo ΛLo ΛHi (nv l) (nv l)))
+      (Interval.mulLo (subDown d (dotUp nv x₀)) (subUp d (dotDown nv x₀))
+        (dotDown nv fun j => A j l) (dotUp nv fun j => A j l))) := fun l => by
+    have h1 := Interval.mul_between_corners hΛb.1 hΛb.2 (le_refl (toReal (nv l)))
+      (le_refl (toReal (nv l)))
+    have h2 := Interval.mul_between_corners hnum'.1 hnum'.2 (hΥb l).1 (hΥb l).2
+    -- the two directed differences
+    have h3 := subDown_le_sub (neg (Interval.mulHi ΛLo ΛHi (nv l) (nv l)))
+      (Interval.mulHi (subDown d (dotUp nv x₀)) (subUp d (dotDown nv x₀))
+        (dotDown nv fun j => A j l) (dotUp nv fun j => A j l))
+    have h4 := sub_le_subUp (neg (Interval.mulLo ΛLo ΛHi (nv l) (nv l)))
+      (Interval.mulLo (subDown d (dotUp nv x₀)) (subUp d (dotDown nv x₀))
+        (dotDown nv fun j => A j l) (dotUp nv fun j => A j l))
+    rw [toReal_neg] at h3 h4
+    constructor <;> linarith [h1.1, h1.2, h2.1, h2.2]
+  refine Interval.mem_mat_iff.mpr fun i l => ?_
+  dsimp only
+  -- the three terms of `L_il`
+  have hδ : toReal (if i = l then (one : 𝕋) else zero) = (1 : Mat ℝ n n) i l := by
+    by_cases h : i = l <;> simp [h, toReal_one, toReal_zero, Matrix.one_apply]
+  have ht1 := Interval.mul_between_corners (le_refl (toReal (A i l))) (le_refl (toReal (A i l)))
+    hτ.1 hτ.2
+  have hyΘ := Interval.mul_between_corners (hy i).1 (hy i).2 (hΘ l).1 (hΘ l).2
+  have ht2 := Interval.mul_between_corners hyΘ.1 hyΘ.2 hinv2.1 hinv2.2
+  have e : GuardMap.hitJacobian (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
+      (toRealVec x₀) i l = (1 : Mat ℝ n n) i l + toReal (A i l) * (num * Λ⁻¹)
+        + yr i * (-(Λ * toReal (nv l)) - num * Υ l) * (Λ⁻¹ * Λ⁻¹) := by
+    simp only [GuardMap.hitJacobian, Matrix.of_apply]
+    change (1 : Mat ℝ n n) i l + toReal (A i l) / Λ * num
+        + yr i * (-(Λ * toReal (nv l)) - num * Υ l) / Λ ^ 2 = _
+    rw [div_eq_mul_inv, div_eq_mul_inv, pow_two, mul_inv]
+    ring
+  rw [e]
+  -- each end: two directed sums of the bracketed terms
+  constructor
+  · refine le_trans (addDown_le_add _ _) ?_
+    refine le_trans (add_le_add (addDown_le_add _ _) ht2.1) ?_
+    rw [hδ]
+    linarith [ht1.1]
+  · refine le_trans ?_ (add_le_addUp _ _)
+    refine le_trans ?_ (add_le_add (add_le_addUp _ _) ht2.2)
+    rw [hδ]
+    linarith [ht1.2]
+
+end
+
+
+namespace Float
+section
+open FloatOps SoundFloatArithmetic
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- `nᵀx − d` of a point of a float zonotope lies in `halfspaceRange`. -/
+theorem Zonotope.aux_halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (Vec 𝕋 n)}
+    {x : Vec ℝ n}
+    (hx : x ∈ Z.construct) : -- --- CONCL ---
+    toReal (Z.halfspaceRange nv d).inf ≤ toRealVec nv ⬝ᵥ x - toReal d ∧
+      toRealVec nv ⬝ᵥ x - toReal d ≤ toReal (Z.halfspaceRange nv d).sup := by -- --- PROOF ---
+  obtain ⟨a, ha, e, he, rfl⟩ := hx
+  obtain ⟨β, hβ, ha⟩ := Zonotope.mem_nominalSet_iff.mp ha
+  show toReal _ ≤ toRealVec nv ⬝ᵥ (a + e) - toReal d ∧ toRealVec nv ⬝ᵥ (a + e) - toReal d ≤ _
+  -- the generators' part, `|∑ⱼ βⱼ nᵀgⱼ| ≤ ρ`
+  set s : Fin Z.h → ℝ := fun j => ∑ k, toReal (nv k) * toReal (Z.G j k) with hs
+  have hsj : ∀ j, |s j| ≤ toReal (maximum (dotUp nv (Z.G j)) (neg (dotDown nv (Z.G j)))) :=
+    fun j => by
+      rw [toReal_maximum, toReal_neg]
+      have h1 := dotDown_le nv (Z.G j)
+      have h2 := le_dotUp nv (Z.G j)
+      have h3 := le_max_right (toReal (dotUp nv (Z.G j))) (-toReal (dotDown nv (Z.G j)))
+      exact abs_le.mpr ⟨by linarith, le_trans h2 (le_max_left _ _)⟩
+  have hgen : |∑ j, β j * s j| ≤ toReal (sumUp fun j =>
+      maximum (dotUp nv (Z.G j)) (neg (dotDown nv (Z.G j)))) :=
+    (Finset.abs_sum_le_sum_abs _ _).trans ((Finset.sum_le_sum fun j _ => by
+      rw [abs_mul]
+      exact (mul_le_of_le_one_left (abs_nonneg _) (hβ j)).trans (hsj j)).trans (sum_le_sumUp _))
+  -- the box's part, term by term between the corners
+  have hbox : ∀ i, toReal (Interval.mulLo (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i))
+      ≤ toReal (nv i) * e i ∧ toReal (nv i) * e i
+        ≤ toReal (Interval.mulHi (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i)) := fun i =>
+    Interval.mul_between_corners le_rfl le_rfl (he i).1 (he i).2
+  have hbLo := (Finset.sum_le_sum fun i _ => (hbox i).1).trans' (sumDown_le_sum _)
+  have hbHi := (Finset.sum_le_sum fun i _ => (hbox i).2).trans (sum_le_sumUp _)
+  -- `nᵀ(a + e) − d = (nᵀc − d) + ∑ⱼ βⱼ sⱼ + ∑ᵢ nᵢeᵢ`
+  have hsplit : toRealVec nv ⬝ᵥ (a + e) - toReal d = (∑ k, toReal (nv k) * toReal (Z.c k)
+      - toReal d) + ∑ j, β j * s j + ∑ i, toReal (nv i) * e i := by
+    simp only [dotProduct, Pi.add_apply, mul_add, Finset.sum_add_distrib, ha, toRealVec, hs,
+      Finset.mul_sum]
+    -- the generators' double sum, regrouped by generator
+    rw [Finset.sum_comm (f := fun x y => toReal (nv x) * (toReal (Z.G y x) * β y))]
+    have : ∀ x y, toReal (nv x) * (toReal (Z.G y x) * β y) = β y * (toReal (nv x) *
+        toReal (Z.G y x)) := fun _ _ => by ring
+    simp only [this]
+    ring
+  rw [hsplit]
+  -- every rounding of the two ends, then the bounds add up
+  have hcLo := dotDown_le nv Z.c
+  have hcHi := le_dotUp nv Z.c
+  have h1 := subDown_le_sub (dotDown nv Z.c) d
+  have h2 := sub_le_subUp (dotUp nv Z.c) d
+  set ρ := sumUp fun j => maximum (dotUp nv (Z.G j)) (neg (dotDown nv (Z.G j)))
+  have h3 := subDown_le_sub (subDown (dotDown nv Z.c) d) ρ
+  have h4 := add_le_addUp (subUp (dotUp nv Z.c) d) ρ
+  have h5 := addDown_le_add (subDown (subDown (dotDown nv Z.c) d) ρ)
+    (sumDown fun i => Interval.mulLo (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i))
+  have h6 := add_le_addUp (addUp (subUp (dotUp nv Z.c) d) ρ)
+    (sumUp fun i => Interval.mulHi (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i))
+  -- the generators contribute at most `ρ`, so both ends of the range stay inside the sums
+  have hg := abs_le.mp hgen
+  simp only [Zonotope.halfspaceRange]
+  constructor <;> linarith [hg.1, hg.2]
+
+end
+end Float
+
+
+section
+open Float FloatOps SoundFloatArithmetic Pointwise
+open scoped CORALean.Float
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ[𝕋] S]
+variable [OfInterval S 𝕋]
+
+
+end
+
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
@@ -225,8 +593,8 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
       (toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec R0red.c + toRealVec b))⁻¹ - toReal τc|
         ≤ toReal τg)
     {k : Interval (Vec 𝕋 n)} {Lk : Interval (Mat 𝕋 n n)}
-    (hk : GuardMap.hitPointFloat A b nv d R0red.c = some k)
-    (hL : GuardMap.hitJacobianFloat A b nv d R0red.c = some Lk) : -- --- CONCL ---
+    (hk : GuardMap.aux_hitPointFloat A b nv d R0red.c = some k)
+    (hL : GuardMap.aux_hitJacobianFloat A b nv d R0red.c = some Lk) : -- --- CONCL ---
     -- `k ⊕ L R₀_ ⊕ [φ̲/2, φ̄/2] R_quad`, as the guard mapping builds it
     GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) x₀ ∈
       ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R₀.recenter)).plus
@@ -318,12 +686,12 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
   -- assemble `k + Lν + ½φq`
   rw [hexp]
   refine Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.plus_outer _ _ (Set.add_mem_add
-    (Interval.zonotope_contains _ (GuardMap.hitPoint_mem_hitPointFloat A b nv d R0red.c _ hk).2)
+    (Interval.zonotope_contains _ (GuardMap.aux_hitPoint_mem_hitPointFloat A b nv d R0red.c _ hk).2)
     ?_)) ?_)
   · have hν' : ν = x₀ - toRealVec R₀.c := by rw [hν, hξdef, hcen]
     rw [hν']
     exact Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion
-      (GuardMap.hitJacobian_mem_hitJacobianFloat A b nv d R0red.c _ hL)
+      (GuardMap.aux_hitJacobian_mem_hitJacobianFloat A b nv d R0red.c _ hL)
       ⟨_, Zonotope.sub_center_mem_recenter hx₀, rfl⟩)
   · rw [smul_smul]
     refine aux_hpMapF_smul_mem ?_ ?_ hqmem
@@ -350,7 +718,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
   have htm0 : 0 ≤ toReal tmax := ht.1.trans htmax
   have hth : 0 ≤ toReal (half tmax) := by rw [toReal_half]; linarith
   obtain ⟨bI, hbI⟩ : ∃ v,
-      v = GuardMap.sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c (half tmax) η R₀.c := ⟨_, rfl⟩
+      v = GuardMap.aux_sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c (half tmax) η R₀.c := ⟨_, rfl⟩
   set br := toRealVec bI.inf with hbr
   obtain ⟨R0red, hR0red⟩ : ∃ Z', Z' = R₀.reduceGirard guardOrder := ⟨_, rfl⟩
   have hcen : R0red.c = R₀.c := by
@@ -391,7 +759,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     rw [hcen] at he
     obtain ⟨btrue, hbtrue⟩ : ∃ v, v = GuardMap.sdcInput (toRealMat ℓ.dynamics.A)
         (toRealVec ℓ.inputSetFloat.c) (toReal (half tmax)) η (toRealVec R₀.c) := ⟨_, rfl⟩
-    have hbmem := GuardMap.sdcInput_mem_sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c η R₀.c hth
+    have hbmem := GuardMap.aux_sdcInput_mem_sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c η R₀.c hth
     rw [← hbI] at hbmem
     rw [← hbtrue] at hbmem he
     -- `e`, the error to the constant flow of `b̲`, splits into the two parts
@@ -433,7 +801,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
           toReal (((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).halfspaceRange
             nv zero).sup :=
       fun Z' y hy => by
-        have h := Zonotope.halfspaceRange_mem nv zero (hflow Z' y hy)
+        have h := Zonotope.aux_halfspaceRange_mem nv zero (hflow Z' y hy)
         rw [toReal_zero, sub_zero] at h
         exact h
     have hden := hrange R₀ x₀ h₀
@@ -474,7 +842,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     have hdξ : toReal ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf
         ≤ nr ⬝ᵥ toRealVec R0red.c - toReal d ∧ nr ⬝ᵥ toRealVec R0red.c - toReal d
         ≤ toReal ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup :=
-      Zonotope.halfspaceRange_mem nv d hξS
+      Zonotope.aux_halfspaceRange_mem nv d hξS
     have hinvξ := aux_hpMapF_recip hcΛ (hΛS _ hξS).1 (hΛS _ hξS).2
     have hτ := Interval.mul_between_corners (y := toReal d - nr ⬝ᵥ toRealVec R0red.c)
       (a := neg ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup)
@@ -489,7 +857,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
       · exact (lt_of_le_of_lt (hΛS y hy).2 h).ne
     have hφS := fun y hy => aux_hpMapF_sq hcΛ hcm (hΛS y hy).1 (hΛS y hy).2
     -- `res2` holds `(−nᵀe/Λ(x₀))(Ax₀ + b) + e`
-    have hnum := Zonotope.halfspaceRange_mem (-nv) zero he'
+    have hnum := Zonotope.aux_halfspaceRange_mem (-nv) zero he'
     have hneg : toRealVec (-nv) = -nr := toRealVec_neg _
     rw [hneg, toReal_zero, sub_zero, neg_dotProduct] at hnum
     have hinv0 := aux_hpMapF_recip hcden hden.1 hden.2

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloat
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Zonotope.Float.Instances
 
 @[expose] public section
 
@@ -55,7 +56,7 @@ open Matrix ContSet
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (fun m n => Zonotope (Mat 𝕋 m n)) S]
+variable [Mtimes 𝕄𝒵[𝕋] S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

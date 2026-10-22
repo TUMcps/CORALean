@@ -43,6 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def Taylm.allTerms (T : Fin m → Taylm 𝕋 n) : List (Fin m × (𝕋 × (Fin n → ℕ))) :=
   (List.finRange m).flatMap fun i => (T i).terms.map fun a => (i, a)
 
+/-- The polynomial zonotope of an array of Taylor models: one dependent generator per term, the
+remainder interval folded into the error box. -/
 def Taylm.polyZonotope (T : Fin m → Taylm 𝕋 n) : PolyZonotope (Vec 𝕋 m) where
   p := n
   h := (Taylm.allTerms T).length

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSetLinComb
 

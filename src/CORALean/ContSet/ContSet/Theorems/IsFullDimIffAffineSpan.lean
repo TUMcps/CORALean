@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Definitions.IsFullDim
 public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
 

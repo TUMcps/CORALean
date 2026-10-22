@@ -5,7 +5,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.Slab
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
@@ -45,6 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A halfspace description over floats: inequality rows `A x ≤ b` and equality rows `Ae x = be`,
+each with its slack, and the error box `I_error` that rounding has cost. -/
 structure HPolytope (𝕋 α : Type) where
   m : ℕ
   A : Fin m → α
@@ -67,6 +69,8 @@ def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 
     (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be - |toRealVec P.be_error|)
       (toRealVec P.be + |toRealVec P.be_error|))
 
+/-- A float halfspace description inflates the real polytope its stored floats describe, the
+`nominal` one. -/
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (HPolytope 𝕋 (Vec 𝕋 n)) (CORALean.Real.HPolytope (Vec ℝ n))
       (Vec 𝕋 n) (Vec ℝ n) where

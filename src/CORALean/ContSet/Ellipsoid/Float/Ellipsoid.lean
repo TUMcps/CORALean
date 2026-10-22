@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Instances
 public import CORALean.ContSet.Ellipsoid.Real.Definitions.Unchecked
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 
 @[expose] public section
 
@@ -42,6 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An ellipsoid over floats: shape matrix `Q` and center `q`, with the error box `I_error` that
+rounding has cost. -/
 structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   /-- The shape matrix, CORA's `Q`. -/
   Q : Mat 𝕋 n n
@@ -50,6 +52,7 @@ structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   /-- The error box, the paper's `𝓘_error`. -/
   I_error : Interval (Vec 𝕋 n)
 
+/-- A float ellipsoid inflates the real ellipsoid its stored floats describe, the `nominal` one. -/
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (Ellipsoid 𝕋 n) (CORALean.Real.Ellipsoid.Unchecked n)
       (Vec 𝕋 n) (Vec ℝ n) where

@@ -1,8 +1,10 @@
 module
 
 public import CORALean.Specification.Definitions.VerifyAnswer
-public import CORALean.Specification.Operations.DiffPoint
+public import CORALean.Specification.Specification
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Analysis.Convex.Hull
+public import CORALean.Specification.Operations.DiffPoint
 
 @[expose] public section
 

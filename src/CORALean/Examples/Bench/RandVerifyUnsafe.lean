@@ -1,5 +1,6 @@
 import CORALean.Examples.Bench.RandVerifyRatExact
-import CORALean.Global.Float.ToRat
+import CORALean.Global.Float.Interfaces
+import CORALean.Global.Float.SoundFloatArithmetic
 
 /-!
 # `randverify`: an unsafe box rounded outward into a number type

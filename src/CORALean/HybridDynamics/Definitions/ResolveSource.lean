@@ -27,6 +27,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- Where an input of a component comes from: a global input, or an output of another component. -/
 inductive ResolveSource (k : ℕ) (p : Fin k → ℕ) (g : ℕ) : Type where
   | global (a : Fin g) : ResolveSource k p g
   | output (c : Fin k) (l : Fin (p c)) : ResolveSource k p g

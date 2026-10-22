@@ -38,6 +38,29 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {α : Type} [AddCommGroup α] [Module ℝ α] {m me : ℕ}
+
+/-- Farkas: weights that cancel the objective but not the right-hand side leave
+no feasible point at all. -/
+theorem _root_.CORALean.aux_eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
+    {Ae : Fin me → (α →ₗ[ℝ] ℝ)} {be : Fin me → ℝ}
+    (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
+    (h0 : ∀ x : α, (∑ i, y i * A i x) + ∑ i, z i * Ae i x = 0)
+    (hneg : (∑ i, y i * b i) + ∑ i, z i * be i < 0) : -- --- CONCL ---
+    Feasible A b Ae be = ∅ := by -- --- PROOF ---
+  ext x
+  simp only [Set.mem_empty_iff_false, iff_false]
+  rintro ⟨hle, heq⟩
+  have h := le_dual_bound A b Ae be y z hy hle heq
+  rw [h0 x] at h
+  linarith
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Weights that cancel the objective but not the right-hand side prove the
@@ -49,7 +72,7 @@ theorem HPolytope.construct_eq_empty_of_dual (P : HPolytope α)
     (hneg : (∑ i, y i * P.b i) + ∑ i, z i * P.be i < 0) : -- --- CONCL ---
     P.construct = ∅ := by -- --- PROOF ---
   rw [P.construct_eq_feasible]
-  exact eq_empty_of_dual y z hy h0 hneg
+  exact aux_eq_empty_of_dual y z hy h0 hneg
 
 end CORALean.Real
 

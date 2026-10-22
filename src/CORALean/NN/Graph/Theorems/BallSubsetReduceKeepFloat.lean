@@ -1,7 +1,7 @@
 module
 
-public import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
-public import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
+public import CORALean.NN.Graph.Operations.Ball
+public import CORALean.NN.Graph.Operations.BallFloat
 public import CORALean.NN.Graph.Operations.ReduceKeepFloat
 
 @[expose] public section
@@ -45,6 +45,25 @@ namespace CORALean.Float
 variable {N : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+theorem GNN.aux_ball_subset_ballFloat (A : Mat ℝ N N) (E : Fin N → Fin N → Bool)
+    (hE : ∀ i j, A i j ≠ 0 → E i j = true) (v : Fin N) (r : ℕ) : -- --- CONCL ---
+    Real.GNN.ball A v r ⊆ GNN.ballFloat E v r := by -- --- PROOF ---
+  induction r with
+  | zero => exact subset_refl _
+  | succ r ih =>
+      intro j hj
+      obtain ⟨_, i, hi, hij⟩ := Finset.mem_filter.mp hj
+      exact Finset.mem_filter.mpr ⟨Finset.mem_univ j, i, ih hi, hij.imp id (hE i j)⟩
+
+
+theorem GNN.aux_ballFloat_subset_succ (E : Fin N → Fin N → Bool) (v : Fin N) (r : ℕ) :
+    GNN.ballFloat E v r ⊆ GNN.ballFloat E v (r + 1) := by
+  intro j hj
+  exact Finset.mem_filter.mpr ⟨Finset.mem_univ j, j, hj, Or.inl rfl⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.ball_subset_reduceKeepFloat (A : Mat ℝ N N) (E : Fin N → Fin N → Bool)
@@ -54,8 +73,8 @@ theorem GNN.ball_subset_reduceKeepFloat (A : Mat ℝ N N) (E : Fin N → Fin N �
   split_ifs with h
   · obtain ⟨_, rfl⟩ := h
     simp [Real.GNN.ball]
-  · exact (GNN.ball_subset_ballFloat A E hE v (L - k)).trans
-      (GNN.ballFloat_subset_succ E v (L - k))
+  · exact (GNN.aux_ball_subset_ballFloat A E hE v (L - k)).trans
+      (GNN.aux_ballFloat_subset_succ E v (L - k))
 
 end CORALean.Float
 

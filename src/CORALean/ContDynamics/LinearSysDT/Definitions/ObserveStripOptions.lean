@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Scalar
+public import CORALean.Global.Interfaces
 
 @[expose] public section
 
@@ -35,6 +35,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The options of the strip-based observer: whether the strips are intersected one after the other,
+the gain as a function of the zonotope, and the zonotope order `ρ`. -/
 structure LinearSysDT.ObserveStripOptions (𝕋 Z : Type) (n p : ℕ) where
   sequential : Bool
   gain : Z → Mat 𝕋 n p

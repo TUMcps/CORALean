@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Scalar
+public import CORALean.Global.Interfaces
 
 @[expose] public section
 

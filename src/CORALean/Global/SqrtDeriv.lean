@@ -36,6 +36,7 @@ def sqrtDeriv : ℕ → ℤ
   | 0 => 1
   | k + 1 => sqrtDeriv k * (1 - 2 * (k : ℤ))
 
+/-- The falling factorial of `1/2` of length `k` is `sqrtDeriv k` over `2^k`. -/
 theorem eval_descPochhammer_half (k : ℕ) : -- --- CONCL ---
     (descPochhammer ℝ k).eval (1 / 2) = (sqrtDeriv k : ℝ) / 2 ^ k := by -- --- PROOF ---
   induction k with

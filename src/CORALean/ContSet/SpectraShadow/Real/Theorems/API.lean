@@ -15,7 +15,6 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsIffVertices
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointZeroIff
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleMem
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleSum
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
@@ -25,7 +24,6 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqOfComplementary
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqTopOfUnbounded
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncNeTopIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceLmiMul
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
@@ -37,9 +35,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.OrExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefOfPos
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefZero
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatPosSemidefNecessary
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PolytopeInner

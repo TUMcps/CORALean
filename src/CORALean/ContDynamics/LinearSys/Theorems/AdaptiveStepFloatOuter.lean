@@ -93,7 +93,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
   simp only [Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨rfl, rfl⟩ := h
   set A := Scalar.toRealMat sys.A with hA
-  set eAt := sys.expSquaringFloat s.tLo s.tHi (max options.ηmax 2) sq with heAt
+  set eAt := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup (max options.ηmax 2) sq with heAt
   set ũ := Recenter.center V with hũ
   set Ũ := Recenter.recenter V with hŨ
   set seg := LinComb.linComb (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope

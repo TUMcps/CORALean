@@ -30,7 +30,6 @@ public import CORALean.ContSet.Taylm.Float.Operations.Hyperbolic
 public import CORALean.ContSet.Taylm.Float.Operations.RangeBound
 public import CORALean.ContSet.Taylm.Float.Operations.Sinh
 public import CORALean.ContSet.Taylm.Float.Operations.Cosh
-public import CORALean.ContSet.Taylm.Float.Operations.LogCoef
 public import CORALean.ContSet.Taylm.Float.Operations.TrigCoef
 public import CORALean.ContSet.Taylm.Float.Operations.UnitRemainder
 public import CORALean.ContSet.Taylm.Float.Operations.Sin

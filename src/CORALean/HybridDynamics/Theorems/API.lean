@@ -19,7 +19,6 @@ public import CORALean.HybridDynamics.Theorems.InvariantOnOfInvariant
 public import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
 public import CORALean.HybridDynamics.Theorems.JumpOuter
 public import CORALean.HybridDynamics.Theorems.JumpOuterConZonotope
-public import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
 public import CORALean.HybridDynamics.Theorems.JumpFloatOuter
 public import CORALean.HybridDynamics.Theorems.JumpFloatOuterConZonotope
 public import CORALean.HybridDynamics.Theorems.JumpIntersectionOfPointOuter
@@ -42,7 +41,6 @@ public import CORALean.HybridDynamics.Theorems.IsRunOnOuter
 public import CORALean.HybridDynamics.Theorems.IsRunOnToIsRun
 public import CORALean.HybridDynamics.Theorems.IsRunOuter
 public import CORALean.HybridDynamics.Theorems.IsRunUntilMono
-public import CORALean.HybridDynamics.Theorems.IsRunUntilToIsRunOn
 public import CORALean.HybridDynamics.Theorems.TimeIntervalInvOuter
 public import CORALean.HybridDynamics.Theorems.TimeIntervalInvFloatOuter
 public import CORALean.HybridDynamics.Theorems.IsTrajectoryMemIccRight
@@ -111,10 +109,7 @@ public import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectPancakeOuter
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
-public import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
-public import CORALean.HybridDynamics.Theorems.HitJacobianMemHitJacobianFloat
 public import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
-public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapFloatOuter
 public import CORALean.HybridDynamics.Theorems.TrajectoryErrorFloatOuter
 public import CORALean.HybridDynamics.Theorems.IsTrajectoryOfHasDerivWithinAt

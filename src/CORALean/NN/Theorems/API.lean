@@ -42,7 +42,6 @@ public import CORALean.NN.Theorems.IntervalChainFwdFloatOuter
 public import CORALean.NN.Theorems.IntervalChainBackpropFloatOuter
 public import CORALean.NN.Theorems.IsMinSuffExplanationGreedyAbstractExplanation
 public import CORALean.NN.Theorems.IsMinSuffExplanationGreedyMinimalExplanation
-public import CORALean.NN.Theorems.LinearLipschitz
 public import CORALean.NN.Theorems.LinearSigmoidConverges
 public import CORALean.NN.Theorems.MemSafeSet
 public import CORALean.NN.Theorems.MergeBucketCardMono
@@ -75,7 +74,6 @@ public import CORALean.NN.Theorems.SensitivityOfMatrix
 public import CORALean.NN.Theorems.SensitivitySigmoid
 public import CORALean.NN.Theorems.SensitivityTanh
 public import CORALean.NN.Theorems.SigmoidLipschitz
-public import CORALean.NN.Theorems.SigmoidRefinementConverges
 public import CORALean.NN.Theorems.EnclosesCongr
 public import CORALean.NN.Theorems.EnclosesEval
 public import CORALean.NN.Theorems.EnclosesHoldsAllOfEnclose

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
-public import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.NN.Definitions.MergeBucket
 public import CORALean.NN.Theorems.Real.MergeBucketWidth
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
@@ -54,6 +54,29 @@ namespace CORALean
 open Matrix
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+namespace Real
+section
+variable {n m : ℕ}
+
+/-- `Interval.mtimes`'s width, row by row. -/
+theorem Interval.aux_mtimes_width (M : Mat ℝ m n) (I : Interval (Vec ℝ n))
+    (i : Fin m) : -- --- CONCL ---
+    (Interval.mtimes M I).sup i - (Interval.mtimes M I).inf i
+      = ∑ k, |M i k| * |I.sup k - I.inf k| := by -- --- PROOF ---
+  show (∑ k, max (M i k * I.inf k) (M i k * I.sup k))
+      - ∑ k, min (M i k * I.inf k) (M i k * I.sup k)
+      = ∑ k, |M i k| * |I.sup k - I.inf k|
+  rw [← Finset.sum_sub_distrib]
+  -- each summand is `max - min` of the two endpoint products, an absolute difference
+  refine Finset.sum_congr rfl fun k _ => ?_
+  rw [max_sub_min_eq_abs, ← mul_sub, abs_mul]
+
+end
+end Real
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The bucket-error box `EB` `neuronMerging_sandwich_outer` adds is no wider than `2δ` per unit
@@ -64,7 +87,7 @@ theorem mergeError_width_le {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ
       ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩
     EB.sup i - EB.inf i ≤ (∑ k, |W i ((mergeSplit Y y δ).right k)|) * (2 * δ) := by -- --- PROOF ---
   intro EB
-  rw [show EB = _ from rfl, Real.Interval.mtimes_width, Finset.sum_mul]
+  rw [show EB = _ from rfl, Real.Interval.aux_mtimes_width, Finset.sum_mul]
   -- each column's width is at most `2δ`, its index lying in the bucket
   refine Finset.sum_le_sum fun k _ => mul_le_mul_of_nonneg_left ?_ (abs_nonneg _)
   have hbucket : mergeBucket Y y δ ((mergeSplit Y y δ).right k) :=

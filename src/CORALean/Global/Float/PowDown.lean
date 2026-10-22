@@ -38,6 +38,7 @@ def powDown (B : 𝕋) : ℕ → 𝕋
   | 0 => one
   | k + 1 => mulDown (powDown B k) B
 
+/-- `powDown B k` is below `x ^ k` for every `x ≥ B ≥ 0`. -/
 theorem powDown_le [SoundFloatArithmetic 𝕋] {B : 𝕋} {x : ℝ} (hB0 : 0 ≤ toReal B)
     (hB : toReal B ≤ x) : -- --- CONCL ---
     ∀ k : ℕ, toReal (powDown B k) ≤ x ^ k := by -- --- PROOF ---

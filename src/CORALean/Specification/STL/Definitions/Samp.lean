@@ -31,6 +31,8 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A sampled-time formula: a literal, negation, conjunction, disjunction, next, and finally or
+globally over one sampling period. -/
 inductive STL.Samp (X : Type)
   | lit (ϱ : Pform X)
   | not (s : Samp X)

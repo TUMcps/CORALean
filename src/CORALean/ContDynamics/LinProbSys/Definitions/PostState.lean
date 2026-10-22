@@ -34,6 +34,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The state `post` hands to its next step: the homogeneous and the particular deterministic part,
+the probabilistic part, and the deterministic auxiliary input set. -/
 structure LinProbSys.PostState (n : ℕ) where
   Rhom : Zonotope (Vec ℝ n)
   Rpar_det : Interval (Vec ℝ n)

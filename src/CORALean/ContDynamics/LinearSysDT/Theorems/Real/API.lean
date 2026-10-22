@@ -14,7 +14,6 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerReducedI
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerReducedSubsetReachInner
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachInnerRepInner
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachOrdersStepClosedBallOfReduceBoxOrder
-public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachStepSubsetClosedBall
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetClosedBall
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetExactAddError
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetExactAddErrorReduced

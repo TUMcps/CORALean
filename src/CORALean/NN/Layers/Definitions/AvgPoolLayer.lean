@@ -25,6 +25,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of an average pooling layer: the window stencil `tap` and the reciprocal `winv` of
+the window size. -/
 structure AvgPoolLayer (𝕋 : Type) (n m : ℕ) where
   k : ℕ
   winv : 𝕋

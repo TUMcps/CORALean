@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 `AutoStateFloat`: what one iteration of [1, Alg. 2] hands the next when it runs in `𝕋`. `t_k`
 is kept exactly in ℚ, the sum of the steps read back through `ToRat`, and as a float bracket
-`[tLo, tHi]` for the enclosures of `e^{A t_k}`; the two accumulated errors `ε^a_k` and `ε^r_k`
+`tEnc` for the enclosures of `e^{A t_k}`; the two accumulated errors `ε^a_k` and `ε^r_k`
 are exact ℚ too. `P^u(t_k)`, a point in [1], is a box here, the float enclosure of a point.
 
 ## References
@@ -39,10 +39,8 @@ open CORALean.Float
 structure LinearSys.AutoStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   /-- `t_k`, line 4, relative to `tStart`. -/
   t : ℚ
-  /-- A float below `t_k`. -/
-  tLo : 𝕋
-  /-- A float above `t_k`. -/
-  tHi : 𝕋
+  /-- A bracket of floats around `t_k`. -/
+  tEnc : Interval 𝕋
   /-- `Δt_{k-1}`, the step line 5 doubles. -/
   Δt : 𝕋
   /-- `H(t_k)`, lines 1 and 26. -/

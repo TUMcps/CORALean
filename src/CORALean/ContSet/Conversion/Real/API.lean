@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Definitions.API
+public import CORALean.ContSet.Conversion.Real.Interfaces
 public import CORALean.ContSet.Conversion.Real.Operations.API
 public import CORALean.ContSet.Conversion.Real.Theorems.API
 public import CORALean.ContSet.Conversion.Real.Instances

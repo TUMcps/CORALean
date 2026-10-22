@@ -48,6 +48,19 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+universe v
+variable {α α' κ M : Type*} {β : κ → Type*} {βₗ βᵣ : Type v}
+
+/-- Every surviving index fails the predicate that cut out the bucket. -/
+theorem _root_.CORALean.Partition.aux_ofPred_left {n : ℕ} (p : Fin n → Prop) [DecidablePred p]
+    (l : Fin (Fintype.card {i : Fin n // ¬ p i})) :
+    ¬ p ((Partition.ofPred p).left l) :=
+  (Partition.finSubtypeEquiv (fun i => ¬ p i) l).property
+
+end
+
+
 /-- `Fin.sum_univ_add` at `boxOut`'s independent generator count, through the projection. -/
 theorem PolyZonotope.aux_sum_univ_boxOut_q {pZ : PolyZonotope (Vec ℝ n)} {removed : Fin pZ.h → Prop}
     {taken : Fin pZ.q → Prop} [DecidablePred removed] [DecidablePred taken]
@@ -95,7 +108,7 @@ theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec ℝ n)) (removed : Fin
       = ∑ l, |pZ.G (part.right l) k| := fun k => by
     rw [part.sum_split₂ fun i => if removed i then |pZ.G i k| else 0]
     have h1 : ∀ l, (if removed (part.left l) then |pZ.G (part.left l) k| else 0) = 0 :=
-      fun l => if_neg (Partition.ofPred_left removed l)
+      fun l => if_neg (Partition.aux_ofPred_left removed l)
     have h2 : ∀ l, (if removed (part.right l) then |pZ.G (part.right l) k| else 0)
         = |pZ.G (part.right l) k| := fun l => if_pos (Partition.ofPred_right removed l)
     simp only [h1, h2, Finset.sum_const_zero, zero_add]

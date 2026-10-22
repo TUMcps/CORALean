@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Specification.FourValuedSTL.Theorems.Basic
 public import CORALean.Specification.FourValuedSTL.Theorems.ExistsExtension
 public import CORALean.Specification.FourValuedSTL.Theorems.HatSpec
 public import CORALean.Specification.FourValuedSTL.Theorems.KleeneSatIsValid

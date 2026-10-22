@@ -2,7 +2,12 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MaterialiseEq
@@ -47,6 +52,88 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
+
+theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) : -- --- CONCL ---
+    toRealMat (arrowMat s t w)
+      = Real.arrowMat (toReal s) (toReal t) (toRealVec w) := by -- --- PROOF ---
+  -- each of the four cases of an entry
+  ext p q
+  refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
+    simp [toRealMat, arrowMat, Real.arrowMat, toRealVec]
+  split_ifs <;> simp [toReal_zero]
+
+
+theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
+    InflatedContSet.nominal T.cone
+      = Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding) := by -- --- PROOF ---
+  -- the six fields: the sizes agree, the matrices, center and generators entry by entry
+  unfold SpectraShadow.cone Real.SpectraShadow.cone
+  show Real.SpectraShadow.mk _ _ _ _ _ _ = Real.SpectraShadow.mk _ _ _ _ _ _
+  congr 1
+  · exact SpectraShadow.toRealMat_const_zero
+  -- the family of matrices, by the layer of the index
+  · funext i
+    induction i using Fin.addCases with
+    | left p =>
+      induction p using Fin.addCases with
+      -- the layer of `s`
+      | left a =>
+        simp only [Fin.append_left]
+        simp [SpectraShadow.toRealMat_blockDiag, aux_toRealMat_arrowMat, toReal_one, toReal_zero,
+          InflatedContSet.nominal, RealImage.realImage]
+      | right j =>
+        simp only [Fin.append_left, Fin.append_right]
+        simp [SpectraShadow.toRealMat_blockDiag, aux_toRealMat_arrowMat, toReal_zero,
+          InflatedContSet.nominal]
+        rfl
+    -- the layer of the auxiliary variable `t`
+    | right q =>
+      simp only [Fin.append_right]
+      erw [Fin.append_right]
+      have h0 : toRealVec (fun _ : Fin N => (zero : 𝕋)) = 0 := by
+        funext i; simp [toRealVec, toReal_zero]
+      simp [SpectraShadow.toRealMat_blockDiag, aux_toRealMat_arrowMat, toReal_zero, toReal_one,
+        SpectraShadow.toRealMat_const_zero, h0]
+  · funext i
+    simp [RealImage.realImage, toRealVec, toReal_zero]
+  -- the generators
+  · funext j i
+    induction j using Fin.addCases with
+    | left p =>
+      induction p using Fin.addCases with
+      | left a => simp [InflatedContSet.nominal]
+      | right k => simp [InflatedContSet.nominal]
+    | right q =>
+      erw [Fin.append_right]
+      simp [RealImage.realImage, toRealVec, toReal_zero]
+
+
+/-- The float cone encloses the perspective cone. -/
+theorem SpectraShadow.aux_cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
+    {z : Vec ℝ N | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ T.construct, z = s • x}
+      ⊆ T.cone.construct := by -- --- PROOF ---
+  -- the point is in the nominal part, by the exact layer's description of the cone
+  intro z hz
+  have hnom : z ∈ InflatedContSet.nominalSet T.cone := by
+    change z ∈ ContSet.construct (InflatedContSet.nominal T.cone)
+    rw [SpectraShadow.aux_nominal_cone]
+    change z ∈ (Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding)).construct
+    rw [Real.SpectraShadow.cone_construct hN]
+    rcases hz with rfl | ⟨s, hs, x, hx, rfl⟩
+    · exact Or.inl rfl
+    · exact Or.inr ⟨s, hs, x, T.absorbRounding_nominal hx, rfl⟩
+  have hE : T.cone.I_error.construct = {0} := Interval.origin_exact N
+  refine ⟨z, hnom, 0, ?_, add_zero z⟩
+  rw [show T.cone.I_error = Interval.origin N from rfl] at hE
+  exact (by
+    rw [InflatedContSet.I_error]
+    exact hE ▸ rfl : (0 : Vec ℝ N) ∈ (InflatedContSet.I_error T.cone).construct)
+
+end
+
 
 theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ))
@@ -109,12 +196,12 @@ theorem SpectraShadow.convHull_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n
   have hcone : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.construct →
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
         ∈ (S.cartProd SpectraShadow.singletonOne).cone.construct := fun S x hx =>
-    SpectraShadow.cone_outer (Nat.succ_pos n) _
+    SpectraShadow.aux_cone_outer (Nat.succ_pos n) _
       (Or.inr ⟨1, one_pos, _, happ S x hx, (one_smul _ _).symm⟩)
   -- the origin is in every cone
   have h0 : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)), (0 : Vec ℝ (n + 1))
       ∈ (S.cartProd SpectraShadow.singletonOne).cone.construct := fun S =>
-    SpectraShadow.cone_outer (Nat.succ_pos n) _ (Or.inl rfl)
+    SpectraShadow.aux_cone_outer (Nat.succ_pos n) _ (Or.inl rfl)
   -- a point at height one of a sum of cones is in the hyperplane and projects to `x`
   have hfin : ∀ (A : SpectraShadow 𝕋 (Vec 𝕋 (n + 1))) (x : Vec ℝ n),
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1)) ∈ A.construct →

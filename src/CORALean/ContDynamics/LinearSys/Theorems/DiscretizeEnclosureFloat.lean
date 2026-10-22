@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section

@@ -26,6 +26,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a linear layer `W h + b` with an additive error box `E`. -/
 structure LinearWithErrorLayer (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
     (n m : ℕ) where
   W : Mat 𝕋 m n

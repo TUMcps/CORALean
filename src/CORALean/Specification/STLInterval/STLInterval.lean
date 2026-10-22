@@ -34,6 +34,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A time interval with open or closed ends, or the empty one; a nonempty one has a lower bound of
+at least zero and its lower bound below its upper, or equal with both ends closed. -/
 inductive STLInterval
   | empty
   | nonempty (lower upper : EReal) (leftClosed rightClosed : Bool)

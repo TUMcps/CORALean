@@ -15,8 +15,7 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalConZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
-public import CORALean.ContSet.Conversion.Real.Definitions.IntervalOuter
-public import CORALean.ContSet.Conversion.Real.Definitions.OfInterval
+public import CORALean.ContSet.Conversion.Real.Interfaces
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Tensor
+public import CORALean.Global.Interfaces
 public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
 public import Mathlib.Data.Fintype.Basic
 public import Mathlib.Data.Real.Basic
@@ -9,14 +9,12 @@ public import Mathlib.Tactic.Linarith
 @[expose] public section
 
 /-!
-# Ambient types that have coordinates
+# What `Entrywise` gives
 
-Which ambient types can be read coordinate by coordinate, and what an index then
-is: `Fin n` for a vector, `Fin m × Fin n` for a matrix. An axis-aligned box, a
-generator ranking and an entrywise bound all need this.
-
-`entry` is linear and injective, which is what makes an entrywise definition the
-operation on the space itself rather than merely one that agrees with it.
+The class `Entrywise` (in `Interfaces.lean`) reads an ambient type coordinate by coordinate: `Fin n`
+for a vector, `Fin m × Fin n` for a matrix. Here its consequences: `entry` is injective, additive
+and compatible with sums, which is what makes an entrywise definition the operation on the space
+itself rather than merely one that agrees with it, and the instances at `Vec` and `Mat`.
 -/
 
 -- Authors:       Claude Opus 5
@@ -27,39 +25,10 @@ operation on the space itself rather than merely one that agrees with it.
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
--- Import guards (CONTRIBUTING, "Import guards and layering"): what must stay out of the closure.
-
--- Measure theory, whose import closure is larger than this whole layer.
-assert_not_exists MeasureTheory.Measure
--- Probability, which sits on top of measure theory.
-assert_not_exists ProbabilityTheory.IndepFun
--- Determinants and the spectral theory built on them.
-assert_not_exists Matrix.det
--- The analytic special functions; exact enclosures of them belong higher up.
-assert_not_exists Real.exp
--- Calculus, which only the dynamics layers need.
-assert_not_exists HasDerivAt
--- Inner-product geometry; the sup norm is what this layer uses.
-assert_not_exists InnerProductSpace
--- The abstract set class sits above this file.
-assert_not_imported CORALean.ContSet.ContSet.Interfaces
--- A concrete representation sits above this file.
-assert_not_imported CORALean.ContSet.Interval.Real.Interval
-
 namespace CORALean
 
 
--- ========================================  MAIN TYPE  ========================================= --
-
-class Entrywise (α : Type) (ι : outParam Type) [AddCommGroup α] [Module ℝ α] where
-  entry : α → ι → ℝ
-  /-- The point with the given coordinates; `Interval.linComb` builds bounds
-  this way. -/
-  ofEntry : (ι → ℝ) → α
-  entry_ofEntry (f : ι → ℝ) (i : ι) : entry (ofEntry f) i = f i
-  ofEntry_entry (a : α) : ofEntry (entry a) = a
-  entry_add (a b : α) (i : ι) : entry (a + b) i = entry a i + entry b i
-  entry_smul (c : ℝ) (a : α) (i : ι) : entry (c • a) i = c * entry a i
+-- =======================================  MAIN THEOREM  ======================================= --
 
 namespace Entrywise
 
@@ -72,6 +41,7 @@ theorem entry_injective : Function.Injective (entry : α → ι → ℝ) := by
   intro a b h
   rw [← ofEntry_entry a, ← ofEntry_entry b, h]
 
+/-- The entries of zero are zero. -/
 @[simp] theorem entry_zero (i : ι) : entry (0 : α) i = 0 := by
   have h := entry_add (0 : α) 0 i
   rw [add_zero] at h
@@ -83,9 +53,11 @@ theorem entry_injective : Function.Injective (entry : α → ι → ℝ) := by
   rw [add_neg_cancel, entry_zero] at h
   linarith
 
+/-- The entries of a difference are the differences of the entries. -/
 theorem entry_sub (a b : α) (i : ι) : entry (a - b) i = entry a i - entry b i := by
   rw [sub_eq_add_neg, entry_add, entry_neg, sub_eq_add_neg]
 
+/-- Two elements with equal entries are equal. -/
 theorem ext {a b : α} (h : ∀ i, entry a i = entry b i) : a = b :=
   entry_injective (funext h)
 
@@ -95,6 +67,7 @@ def entryHom (i : ι) : α →+ ℝ where
   map_zero' := entry_zero i
   map_add' a b := entry_add a b i
 
+/-- The entries of a finite sum are the sums of the entries. -/
 theorem entry_sum {κ : Type} (s : Finset κ) (f : κ → α) (i : ι) :
     entry (∑ x ∈ s, f x) i = ∑ x ∈ s, entry (f x) i :=
   map_sum (entryHom i) f s
@@ -141,6 +114,7 @@ instance {m n : ℕ} : Entrywise (Mat ℝ m n) (Fin m × Fin n) where
   entry_add _ _ _ := rfl
   entry_smul _ _ _ := rfl
 
+/-- The entry of a real matrix at `(i, j)` is its coefficient. -/
 @[simp] theorem Entrywise.entry_mat {m n : ℕ} (A : Mat ℝ m n) (p : Fin m × Fin n) :
     Entrywise.entry A p = A p.1 p.2 := rfl
 

@@ -44,6 +44,8 @@ def VPolytope.simplex (𝕋 : Type) [FloatOps 𝕋] (k : ℕ) : HPolytope 𝕋 (
     (HPolytope.eqs (fun (_ : Fin 1) (_ : Fin k) => one) fun _ => one)
 
 -- the vertices become the generators and the simplex their coefficient domain
+/-- The constrained zonotope of a hull: the vertices as generators around the origin, with the
+coefficients constrained to the simplex. -/
 def VPolytope.conZonotope (P : VPolytope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) where
   h := P.k
   c := fun _ => zero

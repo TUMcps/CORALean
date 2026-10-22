@@ -31,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- One disjunct of a sampled-time clause: a shift `j`, a propositional formula, and the lists of
+formulas under finally and under globally. -/
 structure STL.Branch (X : Type) where
   j : ℕ
   ϱ : Pform X

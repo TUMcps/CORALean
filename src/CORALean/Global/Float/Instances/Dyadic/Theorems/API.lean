@@ -5,12 +5,10 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.CoarsenDownLe
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
-public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeAlignedIff
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeCoarsenUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
-public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeShlIff
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealAlign

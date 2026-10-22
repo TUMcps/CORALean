@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
-public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfAbsLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsCorner
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsAbs
@@ -16,7 +15,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsPairCoeffSumLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
 public import CORALean.ContSet.Zonotope.Real.Theorems.AlignedWithOfSmul
-public import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
@@ -105,7 +103,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterZeroMem
-public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAntitone
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxErrorEqZero
@@ -241,7 +238,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PRadiusLtOfLmi
 public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullUnionSubsetLinComb
-public import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfOneParamPolyContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalZonotopeSubset
@@ -321,20 +317,14 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.GoffinSeparatorSpec
 public import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleNotSubset
 public import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleProb
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShenmaierVertexProb
-public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropLuenbergerOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionPropStepOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionStripStepOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionTimeUpdateOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.DiffusionUpdateOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripDev
 public import CORALean.ContSet.Zonotope.Real.Theorems.PredictDev
 public import CORALean.ContSet.Zonotope.Real.Theorems.BisectInvStep
 public import CORALean.ContSet.Zonotope.Real.Theorems.BisectLowIsLeast
 public import CORALean.ContSet.Zonotope.Real.Theorems.BoundIntersect2DBisectSpec
 public import CORALean.ContSet.Zonotope.Real.Theorems.BoundIntersect2DScanSpec
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentralSymmMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullWalk
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
@@ -345,7 +335,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossEqNormMulSin
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfHorizontal
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossPosOfArgLt
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
 public import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
@@ -370,8 +359,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.FrontierSubsetWalkEdges
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearWalkEdges
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShearComb
-public import CORALean.ContSet.Zonotope.Real.Theorems.ShearCross
-public import CORALean.ContSet.Zonotope.Real.Theorems.ShearHalfPlane
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipCompl
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipSucc
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetFrontier

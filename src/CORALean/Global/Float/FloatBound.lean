@@ -36,11 +36,13 @@ variable {S T : Set α} {c : α →ₗ[ℝ] ℝ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A float `val` that bounds the linear form `c` from above on the set `S`. -/
 structure FloatBound (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
     {α : Type} [AddCommGroup α] [Module ℝ α] (S : Set α) (c : α →ₗ[ℝ] ℝ) where
   val : 𝕋
   le : ∀ x ∈ S, c x ≤ toReal val
 
+/-- The real bound the float bound denotes. -/
 def FloatBound.toSupportBound (u : FloatBound 𝕋 S c) : SupportBound S c :=
   ⟨toReal u.val, u.le⟩
 
@@ -61,6 +63,7 @@ def FloatBound.ofExistsBound (v : 𝕋) (h : ∃ u : SupportBound S c, u.val ≤
 def FloatBound.mono (h : S ⊆ T) (u : FloatBound 𝕋 T c) : FloatBound 𝕋 S c :=
   ⟨u.val, fun x hx => u.le x (h hx)⟩
 
+/-- A float bound raised to any float at least as large. -/
 def FloatBound.raise (u : FloatBound 𝕋 S c) {v : 𝕋} (h : toReal u.val ≤ toReal v) :
     FloatBound 𝕋 S c :=
   ⟨v, fun x hx => le_trans (u.le x hx) h⟩
@@ -75,6 +78,7 @@ def FloatBound.add (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
     rw [map_add]
     exact le_trans (add_le_add (u.le x hx) (v.le y hy)) (add_le_addUp _ _)
 
+/-- The larger of two float bounds bounds the union of their sets. -/
 def FloatBound.union (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
     FloatBound 𝕋 (S ∪ T) c where
   val := maximum u.val v.val
@@ -100,6 +104,7 @@ def FloatBound.addDir {d : α →ₗ[ℝ] ℝ} (u : FloatBound 𝕋 S c) (v : Fl
     show c x + d x ≤ toReal (addUp u.val v.val)
     exact le_trans (add_le_add (u.le x hx) (v.le x hx)) (add_le_addUp _ _)
 
+/-- A float bound on a set bounds the same linear form on its convex hull. -/
 def FloatBound.convexHull (u : FloatBound 𝕋 S c) : FloatBound 𝕋 (convexHull ℝ S) c where
   val := u.val
   le := u.toSupportBound.convexHull.le

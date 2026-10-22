@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.EntryIsFloatSound
 
 @[expose] public section
 
@@ -40,6 +39,21 @@ open CORALean.Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+/-- A `true` from the entry test is a proof. -/
+theorem LinearSys.aux_entryIsFloat_sound {a x : 𝕋} (h : LinearSys.aux_entryIsFloat a x = true) :
+    toReal x = toReal a := by
+  unfold LinearSys.aux_entryIsFloat at h
+  rw [Bool.and_eq_true] at h
+  exact le_antisymm (toReal_le_of_le h.2) (toReal_le_of_le h.1)
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One-sided: `true` gives the real system in canonical form. -/
@@ -53,15 +67,15 @@ theorem LinearSys.isCanonicalFormFloat_sound {sys : LinearSys 𝕋 n}
   refine ⟨hm, hs, ?_, ?_, ?_, ?_, ?_⟩
   -- each entry test reads its float as the value it was compared with
   · funext i
-    exact (LinearSys.entryIsFloat_sound (hc i)).trans toReal_zero
+    exact (LinearSys.aux_entryIsFloat_sound (hc i)).trans toReal_zero
   · funext i
-    exact (LinearSys.entryIsFloat_sound (hk i)).trans toReal_zero
+    exact (LinearSys.aux_entryIsFloat_sound (hk i)).trans toReal_zero
   · funext i j
-    exact (LinearSys.entryIsFloat_sound (hE i j)).trans toReal_zero
+    exact (LinearSys.aux_entryIsFloat_sound (hE i j)).trans toReal_zero
   · funext i j
-    exact (LinearSys.entryIsFloat_sound (hD i j)).trans toReal_zero
+    exact (LinearSys.aux_entryIsFloat_sound (hD i j)).trans toReal_zero
   · intro i j
-    have := LinearSys.entryIsFloat_sound (hB i j)
+    have := LinearSys.aux_entryIsFloat_sound (hB i j)
     by_cases hij : (i : ℕ) = (j : ℕ)
     · rw [if_pos hij] at this ⊢
       exact this.trans toReal_one

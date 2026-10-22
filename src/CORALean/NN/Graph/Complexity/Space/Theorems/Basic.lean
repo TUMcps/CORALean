@@ -53,17 +53,6 @@ theorem GNN.gcn_q (P : Mat ℝ N N) (W : Mat ℝ F₁ F₂) (pZ : PolyZonotope (
     (GNN.gcn P W pZ).q = pZ.q := rfl
 
 
--- ====================================  `GNN.gcnShared_q`  ===================================== --
--- Authors:       Claude Opus 5
--- Written:       12-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The `q` count of `gcnShared`'s result. -/
-theorem GNN.gcnShared_q (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
-    (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) : (GNN.gcnShared W P H hp).q = 0 := rfl
-
-
 -- ===================================  `GNN.gcnUncertain_h`  =================================== --
 -- Authors:       Claude Opus 5
 -- Written:       12-September-2026
@@ -105,18 +94,6 @@ open Matrix
 variable {N m : ℕ}
 
 
--- =============================  `GNN.messagePassingEnclosure_h`  ============================== --
--- Authors:       Claude Opus 5
--- Written:       12-September-2026
--- Last update:   13-October-2026
--- Reviewed:      ---
-
-/-- The `h` count of `messagePassingEnclosure`'s result. -/
-theorem GNN.messagePassingEnclosure_h (R : Relaxation ℝ) (A : Mat ℝ N N)
-    (U : Fin m → Fin N × Fin N) : (GNN.messagePassingEnclosure R A U).h
-      = ((m + N + 1) * (m + N + 1) + 1) * (m + N + 1) := rfl
-
-
 -- =============================  `GNN.messagePassingEnclosure_q`  ============================== --
 -- Authors:       Claude Opus 5
 -- Written:       12-September-2026
@@ -126,34 +103,6 @@ theorem GNN.messagePassingEnclosure_h (R : Relaxation ℝ) (A : Mat ℝ N N)
 /-- The `q` count of `messagePassingEnclosure`'s result. -/
 theorem GNN.messagePassingEnclosure_q (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : (GNN.messagePassingEnclosure R A U).q = 0 := rfl
-
-end
-
-section
-
-open Matrix
-
-variable {N F : ℕ}
-
-
--- =====================================  `GNN.sumPool_h`  ====================================== --
--- Authors:       Claude Opus 5
--- Written:       12-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The `h` count of `sumPool`'s result. -/
-theorem GNN.sumPool_h (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).h = pZ.h := rfl
-
-
--- =====================================  `GNN.sumPool_q`  ====================================== --
--- Authors:       Claude Opus 5
--- Written:       12-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The `q` count of `sumPool`'s result. -/
-theorem GNN.sumPool_q (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).q = pZ.q := rfl
 
 end
 

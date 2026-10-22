@@ -2,8 +2,10 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepOnExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapDepExact
 
 @[expose] public section
 

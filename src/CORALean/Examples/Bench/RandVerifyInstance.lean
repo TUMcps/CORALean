@@ -25,6 +25,8 @@ open Lean (Json)
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- One verification instance as the input file states it: system matrices, initial and input boxes,
+horizon, unsafe sets, and the rest of the file echoed unread. -/
 structure RandInstance where
   name : String
   A : Array (Array ℚ)

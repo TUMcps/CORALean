@@ -35,6 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A halfspace predicate: a linear functional bounded by `b`, strictly or not. -/
 structure STL.Halfspace (α : Type) [AddCommGroup α] [Module ℝ α] where
   f : α →ₗ[ℝ] ℝ
   b : ℝ

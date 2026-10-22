@@ -40,6 +40,7 @@ structure SetUnion (S : Type) where
 def SetUnion.construct [ContSet S α] (u : SetUnion S) : Set α :=
   ⋃ s ∈ u.sets, ContSet.construct s
 
+/-- A set union denotes `SetUnion.construct`, the points some member contains. -/
 instance [ContSet S α] : ContSet (SetUnion S) α := ⟨SetUnion.construct⟩
 
 end CORALean

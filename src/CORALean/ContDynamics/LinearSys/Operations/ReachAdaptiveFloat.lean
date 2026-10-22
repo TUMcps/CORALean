@@ -1,10 +1,11 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
-public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
 
 @[expose] public section
 
@@ -48,6 +49,13 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
 
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
+
+
+end
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 1]: the steps covering `[tStart, tFinal]`, each with its window
@@ -62,7 +70,7 @@ def LinearSys.reachAdaptiveFloat (sys : LinearSys 𝕋 n)
   -- 1.-3. initialize
   let s₀ : LinearSys.AdaptiveState 𝕋 n :=
     -- 1. t ← 0
-    { t := 0, tLo := zero, tHi := zero,
+    { t := 0, tEnc := ⟨zero, zero⟩,
       -- 2. Δt₋₁ ← t_f μ
       Δt := mulDown (ratUp tf) options.μ,
       -- 3. ε_P ← 0, ε_S ← 0

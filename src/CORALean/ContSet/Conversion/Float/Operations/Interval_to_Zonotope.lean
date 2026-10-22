@@ -38,6 +38,8 @@ def Interval.radiusFrom (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => maximum (subUp (I.sup i) (I.center i)) (subUp (I.center i) (I.inf i))
 
 -- the stored center, and one diagonal generator per coordinate
+/-- The zonotope of a box: its center, and one generator per coordinate along the diagonal with the
+box's radius. -/
 def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := n
   c := I.center

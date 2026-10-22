@@ -8,7 +8,8 @@ public import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.ExpScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.SinScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.CosScaled
-public import CORALean.ContSet.Taylm.Real.Theorems.TaylorMaxOrder
+public import CORALean.ContSet.Taylm.Real.Operations.Taylor
+public import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
 
 @[expose] public section
 
@@ -58,6 +59,27 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A nonempty sum of models of one order has that order. -/
+theorem Taylm.aux_sum_maxOrder {m N : ℕ} (T : Fin (m + 1) → Taylm n)
+    (hT : ∀ i, (T i).maxOrder = N) : -- --- CONCL ---
+    (Taylm.sum T).maxOrder = N := by -- --- PROOF ---
+  induction m with
+  | zero => simp [Taylm.sum, Taylm.plus, hT 0]
+  | succ m ih =>
+    have := ih (fun i => T i.succ) fun i => hT _
+    simp only [Taylm.sum, Taylm.plus] at this ⊢
+    rw [this, hT 0, max_self]
+
+
+/-- An elementary function keeps the model's order. -/
+theorem Taylm.aux_taylor_maxOrder (T : Taylm n) (g : ℝ → ℝ) (c D : ℝ) :
+    (T.taylor g c D).maxOrder = T.maxOrder := by
+  simp only [Taylm.taylor, Taylm.compose, Taylm.plus]
+  rw [Taylm.aux_sum_maxOrder _ fun k => ?_]
+  · exact Nat.max_zero _
+  · simp [Taylm.smul, Taylm.pow_maxOrder, Taylm.minus, Taylm.plus, Taylm.uminus, Taylm.const]
+
 
 /-- A constant is scaled by its magnitude. -/
 theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
@@ -117,13 +139,13 @@ theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C :
     rcases hfr.1 with rfl | rfl | rfl <;>
       simp only [Taylm.intrinsic, Option.some.injEq] at hs <;> subst hs
     -- each keeps the order, and its `_scaled` theorem gives the constant
-    · refine ⟨by simp [Taylm.exp, Taylm.taylor_maxOrder, oA], ?_⟩
+    · refine ⟨by simp [Taylm.exp, Taylm.aux_taylor_maxOrder, oA], ?_⟩
       have := Taylm.exp_scaled h0 h1 sA
       rwa [oA] at this
-    · refine ⟨by simp [Taylm.sin, Taylm.taylor_maxOrder, oA], ?_⟩
+    · refine ⟨by simp [Taylm.sin, Taylm.aux_taylor_maxOrder, oA], ?_⟩
       have := Taylm.sin_scaled h0 h1 sA
       rwa [oA] at this
-    · refine ⟨by simp [Taylm.cos, Taylm.taylor_maxOrder, oA], ?_⟩
+    · refine ⟨by simp [Taylm.cos, Taylm.aux_taylor_maxOrder, oA], ?_⟩
       have := Taylm.cos_scaled h0 h1 sA
       rwa [oA] at this
 

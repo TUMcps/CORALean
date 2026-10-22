@@ -10,7 +10,11 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetSplitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
@@ -29,13 +33,13 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 # One `Alg. 2` iteration keeps its invariant and its window holds every run
 
 From a state holding `AutoInvariantFloat`, `autoStepFloat` returns one holding it `Δt_k` later, and
-a window `R̂(τ_k)` holding every run over `[t_k, t_{k+1}]`. The step asks nothing of the tuning:
-`autoStepFloat` checks the pair `(Δt_k, η_k)` it returns, so a step that ran is one at an admissible
-pair. The free motion and the constant input's share, from `H(t_k)`, are in the affine window
-(`affineWindowFloat_outer`, lines 27-28). The `Ũ`-input's share by `t_{k+1}` comes apart at `t_k`
-(`inputReach_separation_subset`), its newest step is in `bPU_0 ⊕ bPU_∞`
-(`inputReach_subset_split_float`), and `e^{At_k}` carries the halves to `P̂^U_0` and into the box of
-`P̂^U_∞` (lines 17-18). The window's `P̂^U(t_{k+1})` reduces `P̂^U_0` and keeps `P̂^U_∞` (line 23).
+a window `R̂(τ_k)` holding every run over `[t_k, t_{k+1}]`. `autoStepFloat` checks the pair
+`(Δt_k, η_k)` it returns, so the tuning is no hypothesis. The free motion and the constant input's
+share from `H(t_k)` are in the affine window (`affineWindowFloat_outer`, lines 27-28). The
+`Ũ`-input's share by `t_{k+1}` comes apart at `t_k` (`inputReach_separation_subset`), its newest
+step is in `bPU_0 ⊕ bPU_∞` (`aux_inputReach_subset_split_float`), and `e^{At_k}` carries the halves
+to `P̂^U_0` and into the box of `P̂^U_∞` (lines 17-18). The window's `P̂^U(t_{k+1})` reduces
+`P̂^U_0` and keeps `P̂^U_∞` (line 23).
 
 ## Inputs
 * `sys` – linear system
@@ -73,6 +77,173 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open ContSet
+open scoped CORALean.Real
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- The Minkowski sum of plain sets, exactly. -/
+@[reducible] def aux_setPlusTail (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+  ⟨fun a b => a + b, fun _ _ => le_rfl⟩
+
+
+/-- A plain matrix's image of a plain set, exactly. -/
+@[reducible] def aux_setMtimesTail : Mtimes (Mat ℝ) 𝒮 where
+  mtimes M s := (M *ᵥ ·) '' s
+  mtimes_outer M s := by
+    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    exact le_rfl
+
+end
+
+
+section
+open ContSet
+open scoped CORALean.Real
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+attribute [local instance] aux_setPlusTail aux_setMtimesTail
+
+/-- At `r ≥ 0`, every order count `i`: the exact tail at plain sets is in the float tail. -/
+theorem LinearSys.aux_inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
+    (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+    ∀ i,
+    construct (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.construct i)
+      ⊆ (sys.inputTaylorSumTailFloat r U i).construct := by -- --- PROOF ---
+  -- a matrix in a float box maps `U` into the float product
+  have hprod : ∀ {B : Interval (Mat 𝕋 n n)} {M : Mat ℝ n n}, M ∈ B.construct →
+      (M *ᵥ ·) '' U.construct
+        ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) B U) :=
+    fun {B} {_} hM => (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' U.construct) hM).trans
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) B U)
+  have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' U.construct
+      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
+        (MatExp.intervalInputTerm (Interval.point sys.A) r i) U) :=
+    fun i => hprod (MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i)
+  -- the tail, term by term, by strong induction on the order
+  intro i
+  induction i using Nat.strong_induction_on with
+  | _ i ih =>
+    match i, ih with
+    | 0, _ =>
+      exact hprod (Interval.mem_mat_iff.mpr fun _ _ => by simp [Interval.point, toReal_zero])
+    | 1, _ => exact hterm 1
+    | i + 2, ih =>
+      exact (Set.add_subset_add (ih (i + 1) (by omega)) (hterm (i + 2))).trans
+        (Plus.plus_outer (sys.inputTaylorSumTailFloat r U (i + 1)) _)
+
+end
+
+
+section
+open ContSet
+open scoped CORALean.Real
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- The Minkowski sum of plain sets, exactly. -/
+@[reducible] def aux_setPlusSplit (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+  ⟨fun a b => a + b, fun _ _ => le_rfl⟩
+
+
+/-- A plain matrix's image of a plain set, exactly. -/
+@[reducible] def aux_setMtimesSplit : Mtimes (Mat ℝ) 𝒮 where
+  mtimes M s := (M *ᵥ ·) '' s
+  mtimes_outer M s := by
+    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    exact le_rfl
+
+
+/-- An interval matrix's images of a plain set, closed and convexified. -/
+@[reducible] noncomputable def aux_setMtimesIntervalSplit :
+    Mtimes ℐ 𝒮 where
+  mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
+  mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
+
+end
+
+
+section
+open ContSet
+open scoped CORALean.Real
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+attribute [local instance] aux_setPlusSplit aux_setMtimesSplit aux_setMtimesIntervalSplit
+
+/-- From order `1` on, the exact sum is order `0` and the exact tail. -/
+theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (r : ℝ)
+    (U : Set (Vec ℝ n)) (m : ℕ) : -- --- CONCL ---
+    sys.inputTaylorSum (S := 𝒮) r U (m + 1)
+      = (sys.inputTerm r 0 *ᵥ ·) '' U
+        + sys.inputTaylorSumTail (S := 𝒮) r U (m + 1) := by -- --- PROOF ---
+  induction m with
+  | zero => rfl
+  | succ m ih =>
+    show sys.inputTaylorSum (S := 𝒮) r U (m + 1)
+        + (sys.inputTerm r (m + 2) *ᵥ ·) '' U
+      = (sys.inputTerm r 0 *ᵥ ·) '' U
+        + (sys.inputTaylorSumTail (S := 𝒮) r U (m + 1)
+          + (sys.inputTerm r (m + 2) *ᵥ ·) '' U)
+    rw [ih, add_assoc]
+
+
+/-- The input's share over a step lies in `bPU_0 ⊕ bPU_∞`. -/
+theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
+    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+    sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)
+      ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+          (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V).construct
+        + (sys.inputTaylorSumTailFloat Δt V η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
+          (𝕄 := ℐ[𝕋]) (MatExp.intervalInputRemainder
+            (Interval.point sys.A) Δt η) V).construct := by -- --- PROOF ---
+  have hε : ‖toReal Δt • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by
+    have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) Δt
+      (Interval.mem_point sys.A)
+    have hpos : (0:ℝ) < (η : ℝ) + 2 := by positivity
+    calc ‖toReal Δt • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2)
+        ≤ toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A)))
+          / ((η : ℝ) + 2) := div_le_div_of_nonneg_right hnorm hpos.le
+      _ ≤ 1 / 2 := hη.2
+      _ < 1 := by norm_num
+  -- the exact theorem at plain sets, its remainder inside the float product
+  have hrem := sys.inputRemainder_subset_float hΔt.le hη V
+  have hexact := sys.inputReach_subset_inputSolution (S := 𝒮) hΔt η hε
+    (U := V.construct) (ConvexSet.convex_construct V) (CompactSet.isClosed_construct V)
+    (CompactSet.isBounded_construct V) (convex_convexHull ℝ _).closure isClosed_closure
+    ((CompactSet.isBounded_construct _).subset hrem)
+  -- order `0`'s matrix is in its float box, so its image is in the float product
+  have hterm0 : (sys.inputTerm (toReal Δt) 0 *ᵥ ·) '' V.construct
+      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
+        (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V) :=
+    (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
+      (MatExp.smul_pow_mem_intervalInputTerm _ hΔt.le (Interval.mem_point sys.A) 0)).trans
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+        (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V)
+  -- from order `1` on, the exact sum is order `0` and the exact tail, and the float sets hold both
+  obtain ⟨m, rfl⟩ : ∃ m, η = m + 1 := ⟨η - 1, by have := hη.1; omega⟩
+  refine hexact.trans ?_
+  unfold LinearSys.inputSolution
+  show sys.inputTaylorSum (S := 𝒮) (toReal Δt) V.construct (m + 1) + _ ⊆ _
+  rw [sys.aux_inputTaylorSum_eq_term_add_tail, add_assoc]
+  exact Set.add_subset_add hterm0 ((Set.add_subset_add
+    (sys.aux_inputTaylorSumTail_subset_float hΔt.le V (m + 1)) hrem).trans
+    (Plus.plus_outer (sys.inputTaylorSumTailFloat Δt V (m + 1)) _))
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An iteration from a state holding the invariant reaches one holding it later in time, and
@@ -99,7 +270,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   simp only [Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨rfl, rfl⟩ := h
   set A := Scalar.toRealMat sys.A with hA
-  set eAtk := sys.expSquaringFloat s.tLo s.tHi (max ηmax 2) sq with heAtk
+  set eAtk := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup (max ηmax 2) sq with heAtk
   set ũ := Recenter.center V with hũ
   set Ũ := Recenter.recenter V with hŨ
   set tk : ℝ := (s.t : ℝ) with htk
@@ -126,7 +297,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       → exp ((toReal Δt + tk) • A) *ᵥ z
         ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋])
-          (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) Z) :=
+          (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
@@ -142,7 +313,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   have hPuΔ := sys.inputReach_subset_inputSolutionFloat hΔr hadm _ (hconst hpt hΔr.le)
-  have hsplit := sys.inputReach_subset_split_float hΔr hadm Ũ
+  have hsplit := sys.aux_inputReach_subset_split_float hΔr hadm Ũ
   -- the `Ũ`-input's share by `t_k + Δt`, in the two halves of eq. (27)
   have hPU' : ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ (toReal Δt + tk),
       y ∈ (s.PU0 ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
@@ -179,7 +350,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       + Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ ∈
         (Mtimes.mtimes (S := 𝒵[𝕋])
         (𝕄 := ℐ[𝕋])
-        (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) X₀
+        (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) X₀
         ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋]) eAtk
           (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).zonotope
@@ -190,9 +361,9 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   refine ⟨⟨?_, ?_, ?_, ?_, ?_, ?_⟩, ?_, ?_⟩
   · have : (0 : ℝ) ≤ ((s.t + ToRat.toRat Δt : ℚ) : ℝ) := by rw [ht']; linarith
     exact_mod_cast this
-  · show toReal (addDown s.tLo Δt) ≤ _
+  · show toReal (addDown s.tEnc.inf Δt) ≤ _
     rw [ht']; exact (addDown_le_add _ _).trans (by linarith)
-  · show _ ≤ toReal (addUp s.tHi Δt)
+  · show _ ≤ toReal (addUp s.tEnc.sup Δt)
     rw [ht']; exact le_trans (by linarith) (add_le_addUp _ _)
   · intro x₀ hx₀
     rw [ht']
@@ -223,7 +394,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
         + Real.MatExp.expIntegral A (toReal Δt) *ᵥ ũ ∈
           (Mtimes.mtimes (S := 𝒵[𝕋])
           (𝕄 := ℐ[𝕋])
-          (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) X₀
+          (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) X₀
           ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
             (S := 𝒵[𝕋]) eAtk
             (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).zonotope

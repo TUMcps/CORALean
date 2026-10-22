@@ -59,6 +59,7 @@ private theorem HPolytope.recipUp_pos (a : 𝕋) : -- --- CONCL ---
     exact one_pos
 
 
+/-- Normalizing the constraints keeps every point of the polytope that lies in the domain box. -/
 theorem HPolytope.normalizeConstraints_outer (P : HPolytope 𝕋 (Vec 𝕋 n))
     (dom : Interval (Vec 𝕋 n)) :
     P.construct ∩ dom.construct ⊆ (P.normalizeConstraints dom).construct ∩ dom.construct :=

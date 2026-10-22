@@ -21,13 +21,14 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraSh
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeZonotopeContains
-public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeConZonotopeInnerOfSubset
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalContainsVPolytope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalEllipsoidContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalVPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeConZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeConPolyZonoContains
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeIntervalContains
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeContains
@@ -99,6 +100,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 variable [SoundFloatArithmetic 𝕋]
 
 
+-- ============================  `ConPolyZono.conZonotope_contains`  ============================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `ConPolyZono.conZonotope_contains`: its `conZonotope` contains it. -/
+theorem ConPolyZono.conZonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    cPZ.construct ⊆ cPZ.conZonotope.construct :=
+  subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.conZonotope_contains
+
+
 -- =============================  `ConPolyZono.zonotope_contains`  ============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
@@ -109,27 +122,6 @@ variable [SoundFloatArithmetic 𝕋]
 theorem ConPolyZono.zonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ⊆ cPZ.zonotope.construct :=
   subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.zonotope_contains
-
-end
-
-
-section
-
-open Matrix FloatOps SoundFloatArithmetic InflatedContSet
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-
--- ===========================  `HPolytope.conZonotopeInner_subset`  ============================ --
--- Authors:       Claude Opus 5.5
--- Written:       10-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Inside `P`, whatever box the conversion is taken at. -/
-theorem HPolytope.conZonotopeInner_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Bx : Interval (Vec 𝕋 n)) :
-    (P.conZonotopeInner Bx).construct ⊆ P.construct :=
-  P.conZonotopeInnerOf_subset Bx.zonotope
 
 end
 

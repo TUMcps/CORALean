@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
-public import CORALean.Global.DescProdState
+public import CORALean.Global.DescProd
+public import Mathlib.Tactic.Abel
 public import CORALean.Global.LinResidual
-public import CORALean.Global.StackSelectMulVec
+public import CORALean.Global.StackSelect
 
 @[expose] public section
 
@@ -46,6 +47,62 @@ open Matrix
 variable {n m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n r : ℕ}
+
+/-- The selection matrices pick their block. -/
+theorem aux_stackFst_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
+    stackFst n r *ᵥ (Fin.append a b : Vec ℝ (n + r)) = a := by -- --- PROOF ---
+  funext i
+  -- split the sum over `Fin (n + r)` into its two halves
+  simp only [Matrix.mulVec, dotProduct, stackFst, Matrix.of_apply, Fin.sum_univ_add,
+    Fin.append_left, Fin.append_right, Fin.val_castAdd, Fin.val_natAdd]
+  simp [Fin.val_inj]
+  -- the second half lies above `n`, the diagonal below it
+  exact Finset.sum_eq_zero fun x _ => by rw [if_neg (by have := i.isLt; omega)]
+
+end
+
+
+/-- A recursion `Δ(k+1) = A_k Δ(k) + B_k δ(k) + L_k` in closed form. -/
+theorem aux_descProd_state (A : ℕ → Mat ℝ n n) (B : ℕ → Mat ℝ n m) (Δ : ℕ → Vec ℝ n)
+    (δ : ℕ → Vec ℝ m) (L : ℕ → Vec ℝ n)
+    (h : ∀ k, Δ (k + 1) = A k *ᵥ Δ k + B k *ᵥ δ k + L k) (k : ℕ) : -- --- CONCL ---
+    Δ (k + 1) = descProd A k (k + 1) *ᵥ Δ 0
+      + ∑ j ∈ Finset.range (k + 1), (descProd A k (k - j) * B j) *ᵥ δ j
+      + ∑ j ∈ Finset.range (k + 1), descProd A k (k - j) *ᵥ L j := by -- --- PROOF ---
+  induction k with
+  | zero =>
+    -- one step: the products are `A 0` and the empty product
+    simp [h 0, descProd]
+  | succ k ih =>
+    -- the next step multiplies every term of the previous one by `A (k+1)`
+    have hp : ∀ j ∈ Finset.range (k + 1),
+        descProd A (k + 1) (k + 1 - j) = A (k + 1) * descProd A k (k - j) := fun j hj => by
+      have : k + 1 - j = (k - j) + 1 := by have := Finset.mem_range.1 hj; omega
+      rw [this]; simp [descProd]
+    -- the two sums over `range (k+2)`: the last term, and `A (k+1)` times the rest
+    have hB : ∑ j ∈ Finset.range (k + 2), (descProd A (k + 1) (k + 1 - j) * B j) *ᵥ δ j
+        = A (k + 1) *ᵥ ∑ j ∈ Finset.range (k + 1), (descProd A k (k - j) * B j) *ᵥ δ j
+          + B (k + 1) *ᵥ δ (k + 1) := by
+      rw [Finset.sum_range_succ, Matrix.mulVec_sum]
+      simp only [Nat.sub_self, descProd, Matrix.one_mul, Matrix.mulVec_mulVec]
+      rw [Finset.sum_congr rfl fun j hj => by rw [hp j hj, Matrix.mul_assoc]]
+    have hL : ∑ j ∈ Finset.range (k + 2), descProd A (k + 1) (k + 1 - j) *ᵥ L j
+        = A (k + 1) *ᵥ ∑ j ∈ Finset.range (k + 1), descProd A k (k - j) *ᵥ L j
+          + L (k + 1) := by
+      rw [Finset.sum_range_succ, Matrix.mulVec_sum]
+      simp only [Nat.sub_self, descProd, Matrix.one_mulVec, Matrix.mulVec_mulVec]
+      rw [Finset.sum_congr rfl fun j hj => by rw [hp j hj]]
+    have h0 : descProd A (k + 1) (k + 2) = A (k + 1) * descProd A k (k + 1) := by
+      simp [descProd]
+    rw [h (k + 1), ih, hB, hL, h0]
+    simp only [Matrix.mulVec_add, Matrix.mulVec_mulVec]
+    abel
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.computeGO_state (sys : NonlinearSysDT n m)
@@ -62,7 +119,7 @@ theorem NonlinearSysDT.computeGO_state (sys : NonlinearSysDT n m)
               (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
               : Vec ℝ (n + sys.q)) := by -- --- PROOF ---
   -- the recursion of the deviation, with the residual as its error
-  have h := descProd_state
+  have h := aux_descProd_state
     (fun k => jacobianMat (fun x => sys.f x (u_ref k)) (sys.refState x0 u_ref k))
     (fun k => jacobianMat (fun u => sys.f (sys.refState x0 u_ref k) u) (u_ref k))
     (fun k => x k - sys.refState x0 u_ref k) (fun k => u k - u_ref k)
@@ -79,7 +136,7 @@ theorem NonlinearSysDT.computeGO_state (sys : NonlinearSysDT n m)
   · -- the error terms: the selection matrix picks `L_x`
     refine Finset.sum_congr rfl fun j hj => ?_
     rw [if_pos (Nat.lt_succ_iff.1 (Finset.mem_range.1 hj)), ← Matrix.mulVec_mulVec,
-      stackFst_mulVec]
+      aux_stackFst_mulVec]
 
 end CORALean
 

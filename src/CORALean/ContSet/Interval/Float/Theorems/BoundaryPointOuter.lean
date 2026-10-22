@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
 public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioBounds
-public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioAtMem
+public import CORALean.ContSet.Interval.Float.Operations.BoundaryRatioAt
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
 
@@ -45,6 +45,43 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `Interval.boundaryRatioAt` brackets the coordinate's ratio. -/
+theorem Interval.aux_boundaryRatioAt_mem {I : Interval (Vec 𝕋 n)} {dir start : Vec 𝕋 n}
+    {i : Fin n} : -- --- CONCL ---
+    ∀ x ∈ Interval.boundaryRatioAt I dir start i,
+      (0 < toReal (dir i) ∧
+          toReal x.inf ≤ (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ∧
+          (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ≤ toReal x.sup) ∨
+        (toReal (dir i) < 0 ∧
+          toReal x.inf ≤ (toReal (start i) - toReal (I.inf i)) / -toReal (dir i) ∧
+          (toReal
+              (start i) - toReal (I.inf i)) / -toReal (dir i) ≤ toReal x.sup) := by -- --- PROOF ---
+  intro x (hx : Interval.boundaryRatioAt I dir start i = some x)
+  unfold Interval.boundaryRatioAt at hx
+  split_ifs at hx with h1 h2
+  · -- positive direction
+    cases Option.some.inj hx
+    have hd : 0 < toReal (dir i) := by simpa [toReal_zero] using toReal_lt_of_ltStrict h1
+    left
+    refine ⟨hd, le_trans (divDown_le_div _ _ hd) ?_, le_trans ?_ (div_le_divUp _ _ hd)⟩
+    · exact div_le_div_of_nonneg_right (subDown_le_sub _ _) hd.le
+    · exact div_le_div_of_nonneg_right (sub_le_subUp _ _) hd.le
+  · -- negative direction
+    cases Option.some.inj hx
+    have hd : toReal (dir i) < 0 := by simpa [toReal_zero] using toReal_lt_of_ltStrict h2
+    have hnd : 0 < toReal (neg (dir i)) := by rw [toReal_neg]; linarith
+    right
+    refine ⟨hd, ?_, ?_⟩
+    · have := le_trans (divDown_le_div (subDown (start i) (I.inf i)) (neg (dir i)) hnd)
+        (div_le_div_of_nonneg_right (subDown_le_sub (start i) (I.inf i)) hnd.le)
+      rwa [toReal_neg] at this
+    · have := le_trans (div_le_div_of_nonneg_right (sub_le_subUp (start i) (I.inf i)) hnd.le)
+        (div_le_divUp _ _ hnd)
+      rwa [toReal_neg] at this
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -93,7 +130,7 @@ theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Ve
     obtain ⟨x, hx⟩ := hrat i hc
     have h1 := (hlow i x hx).1
     have hm0 : 0 ≤ max 0 (toReal a.inf) := le_max_left _ _
-    rcases Interval.boundaryRatioAt_mem _ hx with ⟨hd, hx1, -⟩ | ⟨hd, hx1, -⟩
+    rcases Interval.aux_boundaryRatioAt_mem _ hx with ⟨hd, hx1, -⟩ | ⟨hd, hx1, -⟩
     · -- positive direction
       have h2 : toReal a.inf * toReal (dir i) ≤ toReal (I.sup i) - toReal (start i) :=
         (le_div_iff₀ hd).1 (le_trans h1 hx1)
@@ -117,7 +154,7 @@ theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Ve
     have hgi := hG.1 i
     have hgi' : toReal (I.inf i) ≤ g * toReal (dir i) + toReal (start i) ∧
         g * toReal (dir i) + toReal (start i) ≤ toReal (I.sup i) := hgi
-    rcases Interval.boundaryRatioAt_mem _ hx with ⟨hd, -, hx2⟩ | ⟨hd, -, hx2⟩
+    rcases Interval.aux_boundaryRatioAt_mem _ hx with ⟨hd, -, hx2⟩ | ⟨hd, -, hx2⟩
     · have : g ≤ (toReal (I.sup i) - toReal (start i)) / toReal (dir i) :=
         (le_div_iff₀ hd).2 (by linarith [hgi'.2])
       linarith

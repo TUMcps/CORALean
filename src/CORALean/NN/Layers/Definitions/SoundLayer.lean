@@ -28,6 +28,8 @@ open ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A layer with its kind forgotten: its function, its propagation on sets, and the guarantee that
+the propagation encloses the image. -/
 structure SoundLayer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
   eval : Erased (Vec ℝ n → Vec ℝ m)
   enclose : S n → S m

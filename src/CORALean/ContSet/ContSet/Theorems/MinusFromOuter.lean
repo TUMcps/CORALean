@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.ContSet.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.UminusOuter
-public import CORALean.Global.NegScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

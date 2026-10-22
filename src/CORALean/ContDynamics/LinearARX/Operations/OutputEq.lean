@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.LinearARX
-public import CORALean.Global.ExactScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContDynamics.OutputEq.OutputEq
 
 @[expose] public section

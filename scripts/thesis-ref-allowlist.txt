@@ -118,7 +118,6 @@ src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterAt.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterConvexCompact.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterSplit.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalReachSetExactEqUnion.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalReachSetExactSubsetSetLinCombSum.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterSetLinComb.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepOuter.lean

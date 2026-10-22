@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
-public import CORALean.ContSet.ConZonotope.Float.Theorems.SeparatesAlongSound
+public import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
 
 @[expose] public section
 
@@ -39,13 +39,34 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `ConZonotope.aux_separatesAlong` is sound when `true`. -/
+theorem ConZonotope.aux_separatesAlong_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)} {a : Vec 𝕋 n}
+    (h : ConZonotope.aux_separatesAlong cZ₁ cZ₂ a = true) : -- --- CONCL ---
+    Disjoint cZ₁.construct cZ₂.construct := by -- --- PROOF ---
+  rw [Set.disjoint_left]
+  intro x hx₁ hx₂
+  have hlt := toReal_lt_of_ltStrict h
+  rw [toReal_neg] at hlt
+  have h₁ := cZ₁.boundDot_le (c := rowLin (fun (_ : Fin 1) => a) 0) a (fun _ => rfl) x hx₁
+  have h₂ := cZ₂.boundDot_le (c := rowLin (fun (_ : Fin 1) j => neg (a j)) 0)
+    (-a) (fun _ => rfl) x hx₂
+  have hneg : rowLin (fun (_ : Fin 1) j => neg (a j)) 0 x
+      = -rowLin (fun (_ : Fin 1) => a) 0 x := by
+    show ∑ j, toReal (neg (a j)) * x j = -∑ j, toReal (a j) * x j
+    simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib]
+  rw [hneg] at h₂
+  linarith
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.isDisjointLP_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)}
     (h : cZ₁.isDisjointLP cZ₂ = true) : Disjoint cZ₁.construct cZ₂.construct := by
   rcases Bool.or_eq_true_iff.mp h with h | h
-  · exact ConZonotope.separatesAlong_sound h
-  · exact ConZonotope.separatesAlong_sound h
+  · exact ConZonotope.aux_separatesAlong_sound h
+  · exact ConZonotope.aux_separatesAlong_sound h
 
 end CORALean.Float
 

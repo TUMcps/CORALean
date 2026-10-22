@@ -57,6 +57,7 @@ matrix whose columns are the `G j` — Mathlib's operator norm between `Euclidea
 noncomputable def genOpNorm₂ (G : Fin h → Vec ℝ n) : ℝ :=
   ‖(Matrix.of fun i j => G j i : Mat ℝ n h)‖
 
+/-- The induced Euclidean norm of a generator family is nonnegative. -/
 theorem genOpNorm₂_nonneg (G : Fin h → Vec ℝ n) : 0 ≤ genOpNorm₂ G := norm_nonneg _
 
 /-- The Cauchy–Schwarz bound `genOpNorm₂` exists for: a linear combination of the generators

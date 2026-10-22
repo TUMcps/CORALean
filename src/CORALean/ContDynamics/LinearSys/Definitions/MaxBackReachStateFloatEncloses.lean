@@ -43,9 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 structure LinearSys.MaxBackReachStateFloat.Encloses (s : LinearSys.MaxBackReachStateFloat 𝕋 n)
     (sr : LinearSys.MaxBackReachState n) : Prop where
   /-- The bracket holds `t_k` from below. -/
-  tLo_le : toReal s.tLo ≤ sr.t
+  tEnc_inf_le : toReal s.tEnc.inf ≤ sr.t
   /-- And from above. -/
-  le_tHi : sr.t ≤ toReal s.tHi
+  le_tEnc_sup : sr.t ≤ toReal s.tEnc.sup
   /-- The error box of `Z̲_U` holds `0`, which the box lemmas ask of an operand. -/
   zero_mem : (0 : Vec ℝ n) ∈ s.ZU.I_error.construct
   /-- Every point of the float `Z̲_U` is a point of the exact one plus an error within `UErr`. -/

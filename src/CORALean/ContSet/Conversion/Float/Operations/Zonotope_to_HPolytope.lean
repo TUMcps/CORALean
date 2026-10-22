@@ -88,10 +88,14 @@ def Zonotope.nominalBoundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[�
       show c (InflatedContSet.nominal Z).c + ∑ j, |c ((InflatedContSet.nominal Z).G j)| ≤ _
       linarith)
 
+/-- A bound on the linear form `a` over the zonotope: the bound on its nominal part and the bound on
+the error box, combined. -/
 def Zonotope.boundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) : FloatBound 𝕋 Z.construct c :=
   InflatedContSet.boundOfParts (Z.nominalBoundDot a hc) (Z.I_error.boundDot a hc)
 
+/-- The halfspace description of a zonotope along the directions `Aq`: one bounding halfspace per
+row. -/
 def Zonotope.hPolytope (Z : Zonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.ofBounds Aq fun i => Z.boundDot (Aq i) fun _ => rfl
 

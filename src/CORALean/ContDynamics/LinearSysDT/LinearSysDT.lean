@@ -42,6 +42,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A discrete-time linear system `x⁺ = A x + B u + c + E w` with output `y = C x + D u + k + F v`,
+as CORA's `linearSysDT`: all matrices stored, the dimensions `m q r s` and the sampling time `dt` as
+fields. -/
 structure LinearSysDT (𝕋 : Type) (n : ℕ) where
   m : ℕ
   q : ℕ

@@ -40,6 +40,9 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- What the verification algorithm needs of the functions passed in: the reachable-set
+approximations enclose or lie inside `Reach`, and the sign of each distance decides containment in,
+or disjointness from, a polytope. -/
 structure LinearSys.VerifySound (Reach : Set (Vec ℝ n)) (reachFn : ℝ → Zonotope (Vec ℝ n))
     (innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n))
     (distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ)

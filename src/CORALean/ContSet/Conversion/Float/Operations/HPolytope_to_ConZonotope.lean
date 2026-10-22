@@ -74,6 +74,9 @@ def HPolytope.conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec
   else ⟨Z.h, Z.c, Z.G, P.absorbRounding.onCoefficients Z, Z.I_error⟩
 
 -- with certificates in hand: a box from the bounds, a zonotope from the box, these rows on it
+/-- The constrained zonotope of a halfspace description, built from the bounds `up` and `lo` on each
+coordinate: the box they span as a zonotope, with the polytope's rows as the coefficient constraint.
+-/
 def HPolytope.conZonotope {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 (Vec 𝕋 n) :=

@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Graph.Operations.FloatGcn
 public import CORALean.NN.Graph.Operations.GcnLin
-public import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
 public import CORALean.NN.Graph.Theorems.GcnLinApply
 
@@ -50,6 +50,23 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F₁ F₂ : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open Matrix
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
+
+/-- `aux_leftMat` reads back as `H ↦ P H`. -/
+theorem GNN.aux_leftMat_mulVec (P : Mat 𝕋 N N) (H : Mat ℝ N F) :
+    toRealMat (GNN.aux_leftMat P F) *ᵥ GNN.flatten H = GNN.flatten (toRealMat P * H) := by
+  funext r
+  simp only [Matrix.mulVec, dotProduct, GNN.flatten, toRealMat, GNN.aux_leftMat, Matrix.mul_apply]
+  rw [← finProdFinEquiv.sum_comp, Fintype.sum_prod_type]
+  simp [apply_ite toReal, toReal_zero, Equiv.symm_apply_apply]
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.gcn_outer (P : Mat 𝕋 N N) (W : Mat 𝕋 F₁ F₂) (pZ : PolyZonotope (Vec 𝕋 (N * F₁)))
@@ -57,10 +74,10 @@ theorem GNN.gcn_outer (P : Mat 𝕋 N N) (W : Mat 𝕋 F₁ F₂) (pZ : PolyZono
     GNN.flatten (Real.GNN.gcnLin (toRealMat P) (toRealMat W) H)
       ∈ (GNN.gcn P W pZ).construct := by -- --- PROOF ---
   have h1 := PolyZonotope.mtimes_outer (GNN.rightMat N W) pZ ⟨_, hH, rfl⟩
-  have h2 := PolyZonotope.mtimes_outer (GNN.leftMat P F₂) _ ⟨_, h1, rfl⟩
+  have h2 := PolyZonotope.mtimes_outer (GNN.aux_leftMat P F₂) _ ⟨_, h1, rfl⟩
   rw [Real.GNN.gcnLin_apply]
   unfold GNN.gcn
-  simpa [GNN.rightMat_mulVec, GNN.leftMat_mulVec, Matrix.mul_assoc] using h2
+  simpa [GNN.rightMat_mulVec, GNN.aux_leftMat_mulVec, Matrix.mul_assoc] using h2
 
 end CORALean.Float
 

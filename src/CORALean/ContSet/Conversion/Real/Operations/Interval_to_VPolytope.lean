@@ -42,6 +42,7 @@ variable {n : ℕ}
 def Interval.corner (I : Interval (Vec ℝ n)) (σ : Fin n → Bool) : Vec ℝ n :=
   fun j => if σ j then I.sup j else I.inf j
 
+/-- The hull of a box's `2ⁿ` corners. -/
 noncomputable def Interval.vPolytope (I : Interval (Vec ℝ n)) : VPolytope (Vec ℝ n) where
   k := 2 ^ n
   V := fun l => I.corner (signEquiv n l)

@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `1/√(max x 1)` from below and above, with `p` Newton steps. -/
 def invSqrtRootEnclosure (p : ℕ) : Enclosure 𝕋 where
-  lo a := divDown one (sqrtUp p (maximum a one))
-  hi a := divUp one (maximum one (sqrtDown p (maximum a one)))
+  enclose a := ⟨divDown one (sqrtUp p (maximum a one)),
+    divUp one (maximum one (sqrtDown p (maximum a one)))⟩
 
 end CORALean
 

@@ -12,7 +12,8 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

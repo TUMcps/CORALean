@@ -23,6 +23,8 @@ open CORALean CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The instance's system in the number type `𝕋`: matrices, the initial zonotope, the input box and
+the step size; `x0Enclosed` marks an initial set that only encloses the file's box. -/
 structure RandSystem (𝕋 : Type) where
   A : Mat 𝕋 5 5
   B : Mat 𝕋 5 2

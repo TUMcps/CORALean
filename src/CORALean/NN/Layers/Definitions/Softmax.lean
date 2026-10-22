@@ -47,9 +47,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S]
 noncomputable def softmax (x : Vec ℝ n) : Vec ℝ n :=
   fun i => Real.exp (x i) / ∑ j, Real.exp (x j)
 
+/-- The lower bound of softmax output `i`: the output with input `i` at its smallest and every other
+input at its largest. -/
 noncomputable def softmaxRawLower (I : Interval (Vec ℝ n)) (i : Fin n) : ℝ :=
   (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (I.sup j - I.inf i))⁻¹
 
+/-- The upper bound of softmax output `i`: the output with input `i` at its largest and every other
+input at its smallest. -/
 noncomputable def softmaxRawUpper (I : Interval (Vec ℝ n)) (i : Fin n) : ℝ :=
   (1 + ∑ j ∈ Finset.univ.erase i, Real.exp (I.inf j - I.sup i))⁻¹
 

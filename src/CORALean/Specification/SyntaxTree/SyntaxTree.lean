@@ -72,6 +72,8 @@ inductive SyntaxTree.Binary
   | minus
   | times
 
+/-- A syntax tree of a function of `n` variables for forward-backward contraction: variables, unary
+and binary operators, each node carrying the interval enclosing its value. -/
 inductive SyntaxTree (n : ℕ)
   | var (id : Fin n) (value : SyntaxTree.Dom)
   | unary (operator : SyntaxTree.Unary) (value : SyntaxTree.Dom)

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.MtimesExact

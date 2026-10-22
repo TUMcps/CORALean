@@ -2,7 +2,8 @@ module
 
 public import Mathlib.Data.List.Nodup
 public import CORALean.Specification.STL.Operations.SampToCNF
-public import CORALean.Specification.STL.Theorems.ClauseNodupMerge
+public import CORALean.Specification.STL.Operations.ClauseMerge
+public import CORALean.Specification.STL.Operations.ClauseInsert
 
 @[expose] public section
 
@@ -41,6 +42,53 @@ namespace CORALean
 variable {X : Type}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A power of `insert b cl` is `b`'s or one of `cl`'s. -/
+theorem STL.Clause.aux_mem_map_j_insert (b : STL.Branch X) (cl : STL.Clause X) (x : ℕ)
+    (h : x ∈ (STL.Clause.insert b cl).map STL.Branch.j) : -- --- CONCL ---
+    x = b.j ∨ x ∈ cl.map STL.Branch.j := by -- --- PROOF ---
+  induction cl with
+  | nil => simpa [STL.Clause.insert] using h
+  | cons b' rest ih =>
+    by_cases hj : b'.j = b.j
+    · simp only [STL.Clause.insert, hj, if_true, List.map_cons, List.mem_cons,
+        STL.Branch.merge] at h ⊢
+      exact h.elim Or.inl fun h => Or.inr (Or.inr h)
+    · simp only [STL.Clause.insert, hj, if_false, List.map_cons, List.mem_cons] at h ⊢
+      rcases h with h | h
+      · exact Or.inr (Or.inl h)
+      · rcases ih h with h | h
+        · exact Or.inl h
+        · exact Or.inr (Or.inr h)
+
+
+/-- Inserting keeps the powers distinct. -/
+theorem STL.Clause.aux_nodup_insert (b : STL.Branch X) (cl : STL.Clause X)
+    (h : (cl.map STL.Branch.j).Nodup) : -- --- CONCL ---
+    ((STL.Clause.insert b cl).map STL.Branch.j).Nodup := by -- --- PROOF ---
+  induction cl with
+  | nil => simp [STL.Clause.insert]
+  | cons b' rest ih =>
+    rw [List.map_cons, List.nodup_cons] at h
+    by_cases hj : b'.j = b.j
+    · simpa [STL.Clause.insert, hj, STL.Branch.merge] using h
+    · -- the head's power differs from `b`'s and is not among the rest's
+      simp only [STL.Clause.insert, hj, if_false, List.map_cons, List.nodup_cons]
+      refine ⟨fun hm => ?_, ih h.2⟩
+      rcases STL.Clause.aux_mem_map_j_insert b rest _ hm with e | e
+      · exact hj e
+      · exact h.1 e
+
+
+/-- Merging two clauses keeps the powers distinct. -/
+theorem STL.Clause.aux_nodup_merge (cl₁ cl₂ : STL.Clause X) (h : (cl₁.map STL.Branch.j).Nodup) :
+    ((STL.Clause.merge cl₁ cl₂).map STL.Branch.j).Nodup := by
+  induction cl₂ with
+  | nil => simpa [STL.Clause.merge] using h
+  | cons b rest ih => exact STL.Clause.aux_nodup_insert b _ ih
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Samp.nodup_toCNF (s : STL.Samp X) (pos : Bool) : -- --- CONCL ---
@@ -50,7 +98,7 @@ theorem STL.Samp.nodup_toCNF (s : STL.Samp X) (pos : Bool) : -- --- CONCL ---
       ∀ clause ∈ a.or b, (clause.map STL.Branch.j).Nodup := by
     intro a b ha clause h
     obtain ⟨cl₁, h₁, cl₂, h₂, rfl⟩ := by simpa [STL.CNF.or] using h
-    exact STL.Clause.nodup_merge cl₁ cl₂ (ha cl₁ h₁)
+    exact STL.Clause.aux_nodup_merge cl₁ cl₂ (ha cl₁ h₁)
   induction s generalizing pos with
   | lit ϱ => cases pos <;> simp [STL.Samp.toCNF]
   | not s ih => exact ih (!pos)

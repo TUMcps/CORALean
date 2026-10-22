@@ -5,7 +5,8 @@ public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
 public import CORALean.HybridDynamics.TimeTriggered.Operations.DirectConversion
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsSplit
+public import Mathlib.Analysis.Calculus.Deriv.Shift
+public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
 
 @[expose] public section
@@ -59,6 +60,29 @@ printed proof passes over: an execution of `H` still in `m₁` after `t₁` is n
 namespace CORALean
 
 variable {X : Type} [NormedAddCommGroup X] [InnerProductSpace ℝ X]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {M X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
+
+/-- A continuous successor over `t` is one over `s` followed by one over `t - s` ([1, Def. 4]). -/
+theorem DiffInclAutomaton.aux_flows_split {H : DiffInclAutomaton M X} {m : M} {x x' : X}
+    {t s : ℝ} (h : H.Flows m x t x') (hs : 0 < s) (hst : s < t) : -- --- CONCL ---
+    ∃ y, H.Flows m x s y ∧ H.Flows m y (t - s) x' := by -- --- PROOF ---
+  obtain ⟨_, g, hd, h0, ht, hg⟩ := h
+  refine ⟨g s, ⟨hs, g, hd.mono (Set.Icc_subset_Icc le_rfl hst.le), h0, rfl, fun δ hδ => ?_⟩,
+    ⟨by linarith, fun δ => g (s + δ), ?_, by simp, by simpa using ht, fun δ hδ => ?_⟩⟩
+  · exact hg δ ⟨hδ.1, hδ.2.trans hst⟩
+  · -- the shifted piece is the composite of `g` with `δ ↦ s + δ`
+    refine hd.comp ((differentiable_id.const_add s).differentiableOn) fun δ hδ => ⟨?_, ?_⟩
+    · linarith [hδ.1]
+    · linarith [hδ.2]
+  · have h1 := hg (s + δ) ⟨by linarith [hδ.1], by linarith [hδ.2]⟩
+    exact ⟨h1.1, by rw [deriv_comp_const_add]; exact h1.2⟩
+
+end
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -129,7 +153,7 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
     intro m x x' t s hf hs hst
     rcases hst.eq_or_lt with rfl | hlt
     · exact ⟨x', hf, Or.inl ⟨rfl, rfl⟩⟩
-    · obtain ⟨y, h1, h2⟩ := DiffInclAutomaton.flows_split hf hs hlt
+    · obtain ⟨y, h1, h2⟩ := DiffInclAutomaton.aux_flows_split hf hs hlt
       exact ⟨y, h1, Or.inr ⟨hlt, h2⟩⟩
   -- the same state at another duration or timer
   have cast : ∀ {k : Fin 3} {d d' τ τ' : ℝ} {x : X}, Ht.IsExec d k (x, τ) → d = d' → τ = τ' →

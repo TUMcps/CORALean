@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
 public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
-public import CORALean.ContSet.ConZonotope.Float.Theorems.CenterBetween
+public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
 
@@ -43,6 +43,22 @@ open Matrix Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `ConZonotope.centerLo` and `centerHi` bracket `c + G β₀`. -/
+theorem ConZonotope.aux_center_between (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h)
+    (i : Fin n) : -- --- CONCL ---
+    toReal (cZ.centerLo β₀ i) ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)
+      ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j)
+        ≤ toReal (cZ.centerHi β₀ i) := by -- --- PROOF ---
+  have h1 := addDown_le_add (cZ.c i) (dotDown (fun j => cZ.G j i) β₀)
+  have h2 := add_le_addUp (cZ.c i) (dotUp (fun j => cZ.G j i) β₀)
+  have h3 := dotDown_le (fun j => cZ.G j i) β₀
+  have h4 := le_dotUp (fun j => cZ.G j i) β₀
+  exact ⟨by simp only [ConZonotope.centerLo]; linarith,
+    by simp only [ConZonotope.centerHi]; linarith⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.containsPoint_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n}
@@ -56,8 +72,8 @@ theorem ConZonotope.containsPoint_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H 
     ConZonotope.box_subset hc _ fun i =>
       le_trans (Zonotope.deviation_bound p cZ.I_error.inf (cZ.centerLo β₀) (cZ.centerHi β₀)
         (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))
-        (fun i => (ConZonotope.center_between cZ β₀ i).1)
-        (fun i => (ConZonotope.center_between cZ β₀ i).2) i) hdev
+        (fun i => (ConZonotope.aux_center_between cZ β₀ i).1)
+        (fun i => (ConZonotope.aux_center_between cZ β₀ i).2) i) hdev
   have hsum : toRealVec p = (fun i => toReal (p i) - toReal (cZ.I_error.inf i))
       + fun i => toReal (cZ.I_error.inf i) := by
     funext i

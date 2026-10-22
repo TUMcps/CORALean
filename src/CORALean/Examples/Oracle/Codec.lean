@@ -65,6 +65,7 @@ inductive ExactScalar where
   | decNeg (m : Int) (d : Nat)  -- `m * 10 ^ (-d)`, `d > 0`, `m` not a multiple of `10`
 deriving Repr
 
+/-- Whether a wire scalar is zero. -/
 def ExactScalar.isZero : ExactScalar → Bool
   | .dy d => ExactDyadic.isZero d
   | .decNeg m _ => m = 0

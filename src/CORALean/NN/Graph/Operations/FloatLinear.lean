@@ -2,8 +2,10 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Instances
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
-public import CORALean.NN.Graph.Operations.FloatBiasPoint
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Origin
+public import CORALean.NN.Graph.Operations.Flatten
 public import CORALean.NN.Graph.Operations.FloatRightMat
+public import CORALean.NN.Graph.Operations.FloatBiasPoint
 
 @[expose] public section
 
@@ -34,6 +36,14 @@ error box.
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {N F₁ F₂ : ℕ}
+
+
+section
+open FloatOps
+variable {𝕋 : Type} [FloatOps 𝕋] {F : ℕ}
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

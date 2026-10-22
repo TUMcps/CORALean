@@ -51,7 +51,6 @@ public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecOrthogonal
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConPolyZonoContains
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConPolyZonoExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
-public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsOfPinned
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsVPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeEllipsoidContains
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
@@ -72,7 +71,6 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalContainsVPolytop
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalEllipsoidContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalLevelSetExact
-public import CORALean.ContSet.Conversion.Real.Theorems.IntervalMemHPolytopeIff
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalPolyZonotopeMono
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalPolyZonotopeNormLe
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalSpectraShadowContains
@@ -92,7 +90,6 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalEven
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalEvenInfLeSup
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalInfLeSup
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeTaylmExact
-public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeVPolytopeCornersContainsOfBinary
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeVPolytopeSplitContains
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonoBundleContains
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains

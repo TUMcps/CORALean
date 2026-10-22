@@ -6,8 +6,6 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.Exhaustive
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ExhaustiveSearchCostOpsLe
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ForwardCostLe
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ImageEnclosureCostLe
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.MtimesIntervalMatCostMono
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ReduceByBasisCostMono
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ReduceCombastelCostMono
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ReduceGirardCostMono
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.ReducePCACostMono

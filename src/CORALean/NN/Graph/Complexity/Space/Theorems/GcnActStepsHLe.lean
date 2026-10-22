@@ -49,6 +49,18 @@ open Matrix
 variable {N : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {N F₁ F₂ : ℕ}
+
+/-- The `q` count of `gcnShared`'s result. -/
+theorem GNN.aux_gcnShared_q (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
+    (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) : (GNN.gcnShared W P H hp).q = 0 := rfl
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1 (generators)], the graph layers: `L` steps leave at most `(P.h + 2)^L (h₀ + 1 + L ν)`
@@ -70,7 +82,7 @@ theorem GNN.gcnActSteps_h_le (ν : ℕ) (L : ℕ) : -- --- CONCL ---
     -- one step: convolve, enclose the activation, make its generators dependent
     have hstep : A.dependent.h + 1 ≤ (P.h + 2) * (H.h + 1) + ν := by
       have h1 := hadd 0 (Nat.succ_pos L) (GNN.gcnShared (W 0) P H hp)
-      rw [GNN.gcnShared_h, GNN.gcnShared_q] at h1
+      rw [GNN.gcnShared_h, GNN.aux_gcnShared_q] at h1
       show A.h + A.q + 1 ≤ _
       nlinarith
     have hih := ih (fun s => c (s + 1)) (fun s => W (s + 1)) (fun s => acts (s + 1))

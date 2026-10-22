@@ -36,6 +36,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A parallel hybrid automaton: `k` component automata, and for each input of each component
+whether it is a global input or the output of another component. -/
 structure ParallelHybridAutomaton (S G : ℕ → Type) (k : ℕ) (L : Fin k → Type) (𝕋 : Type)
     (n : Fin k → ℕ) (m : ℕ) where
   comp : ∀ i, HybridAutomaton S G (L i) 𝕋 (n i)
@@ -68,6 +70,9 @@ def ParallelHybridAutomaton.boundInput (P : ParallelHybridAutomaton S G k L 𝕋
       toRealVec (P.sys ℓ c).k) s
 
 -- One shared dwell time; the input set constrains only the global inputs, as CORA's `bindsInputs`.
+/-- A stay of all components over one dwell time: the global inputs lie in the input sets, each
+component follows its location's linear dynamics inside its invariant, and its inputs are the bound
+ones. -/
 structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (ℓ : ∀ i, L i) (τ : ℝ) (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
@@ -92,6 +97,8 @@ structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
   bound (i : Fin k) (j : Fin (P.sys ℓ i).m) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
     u i t j = P.boundInput ℓ (fun c => x c t) (fun c => u c t) (g t) i j
 
+/-- The runs of a parallel automaton: a joint stay, or a stay after which one component takes a
+transition while the others stand still. -/
 inductive ParallelHybridAutomaton.IsRun [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m) :
     (∀ i, L i) → (∀ i, Vec ℝ (n i)) → (∀ i, L i) → (∀ i, Vec ℝ (n i)) → Prop where

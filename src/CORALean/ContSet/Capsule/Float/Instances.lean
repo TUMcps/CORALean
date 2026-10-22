@@ -5,8 +5,7 @@ public import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
 public import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 
 @[expose] public section

@@ -3,11 +3,8 @@ module
 public import CORALean.Specification.STL.Operations.Basic
 public import CORALean.Specification.STL.Operations.TreeConjunctiveNormalForm
 public import CORALean.Specification.STL.Operations.TreeDisjunctiveNormalForm
-public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfLoop
-public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfLoop
 public import CORALean.Specification.STL.Theorems.TreeMemAssignIdentifiersFrom
 public import CORALean.Specification.STL.Theorems.TreeSatCompare
-public import CORALean.Specification.STL.Theorems.TreeSatEliminateTrueFalseWith
 public import CORALean.Specification.STL.Theorems.TreeSatNnfWith
 
 @[expose] public section
@@ -85,40 +82,6 @@ theorem STL.Expr.eval_power (e : STL.Expr n) (k : ℤ) (x : Fin n → ℝ) :
 theorem STL.Expr.eval_times (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
     (STL.Expr.times e₁ e₂).eval x = e₁.eval x * e₂.eval x := by
   cases e₁ <;> cases e₂ <;> simp [STL.Expr.times, STL.Expr.eval, mul_comm]
-
-
--- ==========================  `STL.Tree.isCnf_conjunctiveNormalForm`  ========================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       14-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The result of `conjunctiveNormalForm(obj)` is a conjunction of clauses. -/
-theorem STL.Tree.isCnf_conjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool) :
-    (φ.conjunctiveNormalForm nnf).IsCnf := STL.Tree.isCnf_cnfLoop _
-
-
--- ==========================  `STL.Tree.isDnf_disjunctiveNormalForm`  ========================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       14-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The result of `disjunctiveNormalForm(obj)` is a disjunction of cubes. -/
-theorem STL.Tree.isDnf_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool) :
-    (φ.disjunctiveNormalForm nnf).IsDnf := STL.Tree.isDnf_dnfLoop _
-
-
--- ============================  `STL.Tree.sat_eliminateTrueFalse`  ============================= --
--- Authors:       Claude Sonnet 5.5
--- Written:       14-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `eliminateTrueFalse` keeps the meaning of a formula with non-empty intervals. -/
-theorem STL.Tree.sat_eliminateTrueFalse (φ : STL.Tree n) (hφ : φ.WellFormed)
-    (ξ : ℝ≥0 → Fin n → ℝ) : φ.eliminateTrueFalse.Sat ξ ↔ φ.Sat ξ :=
-  STL.Tree.sat_eliminateTrueFalseWith _ (fun _ _ _ _ => Iff.rfl) φ hφ ξ
 
 
 -- ====================================  `STL.Tree.sat_ge`  ===================================== --

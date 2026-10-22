@@ -38,6 +38,8 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The formulas of signal temporal logic with the strict until: true, atoms, negation, conjunction
+and until over an interval. -/
 inductive FourValuedSTL.Formula (X : Type)
   | tt
   | atom (a : X → Prop)

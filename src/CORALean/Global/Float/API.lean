@@ -3,7 +3,7 @@ module
 public import CORALean.Global.Float.FloatOps
 public import CORALean.Global.Float.GenOpNorm
 public import CORALean.Global.Float.SoundFloatArithmetic
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Float.NoNaN
 public import CORALean.Global.Float.EuclideanNorm
 public import CORALean.Global.Float.Exp

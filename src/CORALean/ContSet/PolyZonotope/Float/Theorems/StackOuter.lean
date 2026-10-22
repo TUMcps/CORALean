@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Stack
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
+public import CORALean.ContSet.PolyZonotope.Float.Operations.BlockPadRight
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
+public import CORALean.Global.Block
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
 
@@ -12,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
 # `PolyZonotope.stack` over-approximates the stack of the two sets
 
 The padded sets denote the exact layer's padded nominal sets (`nominal_blockPadLeft`,
-`nominal_blockPadRight`), so the exact `stack` of the two nominal sets, plus the two error boxes
+`aux_nominal_blockPadRight`), so the exact `stack` of the two nominal sets, plus the two error boxes
 padded the same way, is `exactPlus_outer` at the padded pair: the factors the two sets share stay
 shared, and only the center sum rounds. Outer, not exact.
 
@@ -43,6 +45,40 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n n₁ n₂ 
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- The right-padded set denotes the padded nominal set. -/
+theorem PolyZonotope.aux_nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope (Vec 𝕋
+    n)) : -- --- CONCL ---
+    nominal (pZ.blockPadRight n₁) =
+      Real.PolyZonotope.map (CORALean.blockPadRight n₁ n) (nominal pZ) := by -- --- PROOF ---
+  -- the same fields, entry by entry
+  show (⟨_, _, _, _, _, _, _⟩ : Real.PolyZonotope (Vec ℝ (n₁ + n))) = ⟨_, _, _, _, _, _, _⟩
+  congr 1
+  · funext j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,
+        toReal_zero]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
+      rfl
+  -- each generator of either block, padded as the center is
+  · funext l j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,
+        toReal_zero]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
+      rfl
+  · funext l j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,
+        toReal_zero]
+    · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
+      rfl
+
+end
+
 
 /-- A box point padded below by zero is a point of the padded box. -/
 theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₂ : ℕ) : -- --- CONCL ---
@@ -99,7 +135,7 @@ theorem PolyZonotope.stack_outer (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ :
     subst hB
     rfl
   rw [key _ _ (PolyZonotope.nominal_blockPadLeft n₂ pZ₁)
-    (PolyZonotope.nominal_blockPadRight n₁ pZ₂) hp] at h
+    (PolyZonotope.aux_nominal_blockPadRight n₁ pZ₂) hp] at h
   exact subset_trans (Set.add_subset_add_left (Set.add_subset_add
     (PolyZonotope.aux_padLeft_err pZ₁ n₂) (PolyZonotope.aux_padRight_err pZ₂ n₁))) h
 

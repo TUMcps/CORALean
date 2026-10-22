@@ -23,7 +23,6 @@ public import CORALean.ContSet.Polygon.Float.Operations.Volume
 public import CORALean.ContSet.Polygon.Float.Operations.Triangulation
 public import CORALean.ContSet.Polygon.Float.Operations.QuadMap
 public import CORALean.ContSet.Polygon.Float.Operations.QuadMapMixed
-public import CORALean.ContSet.Polygon.Float.Operations.SubtractPiece
 public import CORALean.ContSet.Polygon.Float.Operations.Subtract
 public import CORALean.ContSet.Polygon.Float.Operations.Mldivide
 public import CORALean.ContSet.Polygon.Float.Operations.InnerHRep

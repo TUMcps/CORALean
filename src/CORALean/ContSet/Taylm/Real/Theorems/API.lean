@@ -23,7 +23,6 @@ public import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.CosScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.CosyGoLe
-public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
 public import CORALean.ContSet.Taylm.Real.Theorems.DetOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeCosyGo
@@ -35,12 +34,9 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ExpScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.GlobalMinLe
 public import CORALean.ContSet.Taylm.Real.Theorems.GoLowerBoundLe
-public import CORALean.ContSet.Taylm.Real.Theorems.GoodBoxHalve
 public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxCover
-public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxSub
 public import CORALean.ContSet.Taylm.Real.Theorems.IntegralPolyOf
 public import CORALean.ContSet.Taylm.Real.Theorems.IntrinsicEncloses
-public import CORALean.ContSet.Taylm.Real.Theorems.InvCoef
 public import CORALean.ContSet.Taylm.Real.Theorems.InvOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.InvRemSEq
 public import CORALean.ContSet.Taylm.Real.Theorems.InvSqrtOuter
@@ -71,7 +67,6 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqLinAddHigher
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfQuadTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
 public import CORALean.ContSet.Taylm.Real.Theorems.PowBoundsMem
@@ -105,10 +100,8 @@ public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SumScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.TanOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.TanhOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.TaylorMaxOrder
 public import CORALean.ContSet.Taylm.Real.Theorems.TaylorOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
-public import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter

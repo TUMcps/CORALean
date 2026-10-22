@@ -35,6 +35,7 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A propositional formula: an atomic predicate, negation or disjunction. -/
 inductive Pform (X : Type)
   | atom (p : X → Prop)
   | not (ϱ : Pform X)

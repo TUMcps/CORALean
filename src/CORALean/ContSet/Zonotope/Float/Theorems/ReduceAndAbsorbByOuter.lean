@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
-public import CORALean.ContSet.Zonotope.Float.Theorems.AbsAbsorbedLeRadius
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsSubMidLeErrorRadius
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid
@@ -51,6 +51,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- What the absorbed generators contribute, so what the block must cover. -/
+theorem Zonotope.aux_abs_absorbed_le_radius (Z : Zonotope (Vec 𝕋 n))
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h}
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
+    |∑ l, toReal (Z.G (part.right l) i) * β (part.right l)|
+      ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) := by -- --- PROOF ---
+  exact abs_sum_le_radius (d := fun i l => Z.G (part.right l) i)
+    (fun _ _ => le_refl _) (fun l => hβ (part.right l)) i
+
+
 /-- The merged block covers the absorbed generators and the box together. -/
 theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h} {e : Vec ℝ n}
@@ -60,7 +70,7 @@ theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope (Vec 𝕋 n))
       ≤ toReal
           (addUp (radius (fun i l => Z.G (part.right l) i) i)
             (Z.errorRadius i)) := by -- --- PROOF ---
-  have hgen := Zonotope.abs_absorbed_le_radius Z part hβ i
+  have hgen := Zonotope.aux_abs_absorbed_le_radius Z part hβ i
   have hbox := Zonotope.abs_sub_mid_le_errorRadius Z he i
   have hsum := add_le_addUp (radius (fun i l => Z.G (part.right l) i) i) (Z.errorRadius i)
   exact le_trans (abs_add_le _ _) (by linarith)

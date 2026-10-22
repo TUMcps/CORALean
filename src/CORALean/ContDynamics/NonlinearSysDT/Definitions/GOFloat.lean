@@ -29,6 +29,8 @@ open CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The general output model parameters of a nonlinear discrete-time system, with the reference
+trajectory and the matrices as intervals over `𝕋`. -/
 structure NonlinearSysDT.GOFloat (𝕋 : Type) (n m r : ℕ) where
   x : ℕ → Interval (Vec 𝕋 n)
   y : ℕ → Interval (Vec 𝕋 r)

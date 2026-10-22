@@ -1,7 +1,10 @@
 module
 
 public import CORALean.Specification.FiniteSignal.Operations.Until
-public import CORALean.Specification.FiniteSignal.Theorems.AtIsSome
+public import CORALean.Specification.FiniteSignal.Theorems.AtEqValueAt
+public import CORALean.Specification.FiniteSignal.Theorems.Basic
+public import CORALean.Specification.FiniteSignal.Theorems.PairsOfValid
+public import CORALean.Specification.FiniteSignal.Theorems.ValueAtConsOfGe
 public import CORALean.Specification.FiniteSignal.Theorems.AtSpec
 public import CORALean.Specification.FiniteSignal.Theorems.CombineSpec
 public import CORALean.Specification.FiniteSignal.Theorems.IndicatorSpec
@@ -47,17 +50,37 @@ namespace CORALean
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- A nonempty list of breakpoints holds a value everywhere. -/
+theorem aux_valueAt_isSome {T V : Type} [LinearOrder T] : ∀ (L : List (T × V)) (t : T), L ≠ [] →
+    ∃ v, FiniteSignal.valueAt L t = some v
+  | [], _, h => absurd rfl h
+  | [p], t, _ => ⟨p.2, FiniteSignal.valueAt_singleton p t⟩
+  | p :: x :: rest, t, _ => by
+    by_cases ht : t < p.1
+    · exact ⟨p.2, FiniteSignal.valueAt_cons_of_lt p _ t ht⟩
+    · rw [FiniteSignal.valueAt_cons_of_ge p _ t ht (by simp)]
+      exact aux_valueAt_isSome (x :: rest) t (by simp)
+
+
+/-- A signal has a value in its range. -/
+theorem FiniteSignal.aux_at?_isSome {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
+    (hs : s.IsValid) (t : T) (h0 : 0 ≤ t) (h1 : t ≤ s.duration) : ∃ v, s.at? t = some v := by
+  obtain ⟨b, v, rest, hq, -, -, -⟩ := FiniteSignal.pairs_of_valid s hs
+  rw [FiniteSignal.at?_eq_valueAt s hs.2.1 t, if_pos ⟨h0, h1⟩, hq]
+  exact aux_valueAt_isSome _ t (by simp)
+
+
 /-- The loop of `until`: every pair of runs adds the times of its piece to the true times. -/
 theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
-    ∀ (prs : List ((ℝ × ℝ) × (ℝ × ℝ))) (sig : FiniteSignal ℝ Bool), sig.IsValid →
+    ∀ (prs : List (Real.Interval ℝ × Real.Interval ℝ)) (sig : FiniteSignal ℝ Bool), sig.IsValid →
       sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧
         r.IsValid ∧ r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
           (v = true ↔ (sig.at? t = some true ∨ ∃ LR ∈ prs, ∃ lo hi,
-            FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 = some (lo, hi) ∧ lo < hi ∧
+            FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
               (0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi))))
   | [], sig, hs, hd => by
     refine ⟨sig, rfl, hs, hd, fun t ht0 ht1 => ?_⟩
-    obtain ⟨v, hv⟩ := FiniteSignal.at?_isSome sig hs t ht0 (hd ▸ ht1)
+    obtain ⟨v, hv⟩ := FiniteSignal.aux_at?_isSome sig hs t ht0 (hd ▸ ht1)
     exact ⟨v, hv, by simp [hv]⟩
   | LR :: rest, sig, hs, hd => by
     -- pairs of runs after `LR`, with the signal after it
@@ -66,7 +89,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
         ∃ r, (LR :: rest).foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧ r.IsValid ∧
           r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
             (v = true ↔ (sig'.at? t = some true ∨ ∃ LR' ∈ rest, ∃ lo hi,
-              FiniteSignal.aux_untilPiece eps p q LR'.1 LR'.2 = some (lo, hi) ∧ lo < hi ∧
+              FiniteSignal.aux_untilPiece eps p q LR'.1 LR'.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
                 (0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi)))) := fun sig' hv hdd hstep => by
       obtain ⟨r, hr1, hr2, hr3, hr4⟩ := aux_until_fold eps p q dur h0 rest sig' hv hdd
       refine ⟨r, ?_, hr2, hr3, hr4⟩
@@ -95,7 +118,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, ?_⟩
         -- the value of `sig'` at `t`
-        obtain ⟨x, hx⟩ := FiniteSignal.at?_isSome sig hs t ht0 (hd ▸ ht1)
+        obtain ⟨x, hx⟩ := FiniteSignal.aux_at?_isSome sig hs t ht0 (hd ▸ ht1)
         have hy := hind4 t ht0 ht1
         have hok : t < sig.duration ∧ t < ind.duration ∨
             sig.duration = ind.duration ∧ t = sig.duration := by
@@ -127,7 +150,7 @@ theorem FiniteSignal.until?_spec (eps : ℝ) (lsig rsig : FiniteSignal ℝ Bool)
       r.duration = lsig.duration ∧ ∀ t : ℝ, 0 ≤ t → t ≤ lsig.duration →
         (r.at? t = some true ↔ ∃ L ∈ lsig.findIntervals (fun v => decide (true ≤ v)),
           ∃ R ∈ rsig.findIntervals (fun v => decide (true ≤ v)), ∃ lo hi,
-            FiniteSignal.aux_untilPiece eps p q L R = some (lo, hi) ∧ lo < hi ∧
+            FiniteSignal.aux_untilPiece eps p q L R = some ⟨lo, hi⟩ ∧ lo < hi ∧
               (0 < hi ∧ lo < lsig.duration ∧ lo ≤ t ∧
                 (t < hi ∨ lsig.duration ≤ hi))) := by -- --- PROOF ---
   -- the duration is nonnegative, and the signals have the same one

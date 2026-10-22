@@ -18,6 +18,7 @@ namespace CORALean.Bench
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The reach algorithm `randverify` runs: CORA's standard one, or the wrapping-free one. -/
 inductive RandAlg where
   | standard
   | wrappingFree
@@ -28,6 +29,7 @@ def RandAlg.name : RandAlg → String
   | .standard => "standard"
   | .wrappingFree => "wrappingfree"
 
+/-- The algorithm named on the command line, `standard` or `wrappingfree`. -/
 def RandAlg.ofString? : String → Option RandAlg
   | "standard" => some .standard
   | "wrappingfree" => some .wrappingFree

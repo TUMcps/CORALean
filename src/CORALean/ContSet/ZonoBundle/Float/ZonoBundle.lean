@@ -40,6 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zonotope bundle over floats: `k` zonotopes, denoting their intersection. -/
 structure ZonoBundle (α : Type) where
   k : ℕ
   Z : Fin k → Zonotope α

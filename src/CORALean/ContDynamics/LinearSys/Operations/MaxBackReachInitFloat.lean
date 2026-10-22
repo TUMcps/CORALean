@@ -67,8 +67,7 @@ def LinearSys.maxBackReachInitFloat (sys : LinearSys 𝕋 n) (U W₀ : Zonotope 
   let ZU := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 2. Z̲_U(t₀)
     (S := 𝒵[𝕋]) I U
   let ZW₀ := sys.inputSolutionFloat t₀ η' W₀                        -- 2. Ẑ_{W₀}(t₀)
-  pure { tLo := t₀                                                  -- 1. τ = [t₀, t_end]
-         tHi := t₀
+  pure { tEnc := ⟨t₀, t₀⟩                                          -- 1. τ = [t₀, t_end]
          ZU := ZU
          UErr := (Zonotope.mtimesIntervalMatBox I U).magnitude      -- what ZU lies outside by
          ZW₀ := ZW₀

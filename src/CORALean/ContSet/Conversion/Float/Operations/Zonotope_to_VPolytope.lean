@@ -46,12 +46,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Zonotope.signed (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h → Bool) (i : Fin n) (j : Fin Z.h) : 𝕋 :=
   if σ j then Z.G j i else neg (Z.G j i)
 
+/-- The lower rounded coordinate `i` of the corner of the zonotope picked by the sign pattern `l`.
+-/
 def Zonotope.cornerLo (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
   addDown (Z.c i) (sumDown (Z.signed (signEquiv Z.h l) i))
 
+/-- The upper rounded coordinate `i` of the corner of the zonotope picked by the sign pattern `l`.
+-/
 def Zonotope.cornerHi (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h)) (i : Fin n) : 𝕋 :=
   addUp (Z.c i) (sumUp (Z.signed (signEquiv Z.h l) i))
 
+/-- The hull of a zonotope's corners, stored as the rounded-down corners, with the gap to the
+rounded-up corners and the zonotope's error added to the error box. -/
 def Zonotope.vPolytope (Z : Zonotope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := 2 ^ Z.h
   V := Z.cornerLo

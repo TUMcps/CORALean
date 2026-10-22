@@ -28,6 +28,8 @@ open CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The general output model parameters of a discrete-time linear system, as interval matrices over
+`𝕋`. -/
 structure LinearSysDT.GOFloat (𝕋 : Type) (n r nk : ℕ) where
   A : Fin nk → Interval (Mat 𝕋 n n)
   B : Fin nk → Fin nk → Interval (Mat 𝕋 n n)

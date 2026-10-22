@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionLocal
+public import Mathlib.Analysis.ODE.ExistUnique
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionLo
 
 [1, Def. 2] asks every flow to be Lipschitz, which gives the solutions the paper uses without
 saying so: through every point, on `[0, T]` for every `T`. The window of
-`lipschitzSolutionLocal` has the same length at every point, so a solution on `(-h, T)` is
+`aux_lipschitzSolutionLocal` has the same length at every point, so a solution on `(-h, T)` is
 extended to `(-h, T + h/2)` by a local one centered at `T - h/2`, which equals it on the overlap
 by uniqueness.
 
@@ -49,6 +49,57 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open Metric
+
+/-- A solution of `ẋ = f(x)` through `y` on `(-h, h)`, `h = 1 / (2K + 2)`, [1, Def. 2]. -/
+theorem aux_lipschitzSolutionLocal {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f)
+    (y : E) : -- --- CONCL ---
+    ∃ α : ℝ → E, α 0 = y ∧ ∀ u ∈ Ioo (-(1 / (2 * (K : ℝ) + 2))) (1 / (2 * (K : ℝ) + 2)),
+      HasDerivAt α (f (α u)) u := by -- --- PROOF ---
+  -- the window `h`, the ball radius `R` and the bound `L` on the ball
+  set h : ℝ := 1 / (2 * (K : ℝ) + 2) with hh
+  have hK : (0 : ℝ) ≤ K := K.2
+  have hhpos : 0 < h := by positivity
+  have hKh : (K : ℝ) * h ≤ 1 / 2 := by
+    rw [hh, mul_one_div, div_le_div_iff₀ (by positivity) (by norm_num)]
+    nlinarith
+  set R : ℝ := 2 * h * ‖f y‖ + 1 with hR
+  have hRpos : 0 < R := by positivity
+  set L : ℝ := ‖f y‖ + K * R with hL
+  have hmem : (0 : ℝ) ∈ Icc (-h) h := ⟨by linarith, hhpos.le⟩
+  have hLnn : 0 ≤ L := by positivity
+  have hpl : IsPicardLindelof (fun (_ : ℝ) => f) (⟨0, hmem⟩ : Icc (-h) h) y
+      ⟨R, hRpos.le⟩ 0 ⟨L, hLnn⟩ K := by
+    refine ⟨fun _ _ => hf.lipschitzOnWith, fun _ _ => continuousOn_const, ?_, ?_⟩
+    · intro _ _ x hx
+      -- on the ball `f` is within `K R` of `f y`
+      have h1 : ‖f x - f y‖ ≤ K * R := by
+        have := hf.dist_le_mul x y
+        rw [dist_eq_norm, dist_eq_norm] at this
+        have hd : ‖x - y‖ ≤ R := by
+          have := mem_closedBall.1 hx
+          rwa [dist_eq_norm] at this
+        calc ‖f x - f y‖ ≤ K * ‖x - y‖ := this
+          _ ≤ K * R := mul_le_mul_of_nonneg_left hd hK
+      calc ‖f x‖ = ‖(f x - f y) + f y‖ := by rw [sub_add_cancel]
+        _ ≤ ‖f x - f y‖ + ‖f y‖ := norm_add_le _ _
+        _ ≤ L := by simp only [hL]; linarith
+    · -- the time window times the bound fits in the radius, as `K h ≤ 1/2`
+      show (L : ℝ) * max (h - 0) (0 - -h) ≤ R - 0
+      have hmax : max (h - 0) (0 - -h) = h := by simp
+      rw [hmax]
+      have : L * h = h * ‖f y‖ + K * h * R := by simp only [hL]; ring
+      have h2 : K * h * R ≤ 1 / 2 * R := mul_le_mul_of_nonneg_right hKh hRpos.le
+      nlinarith [norm_nonneg (f y)]
+  -- Picard-Lindelöf gives the solution on `[-h, h]`, two-sided inside
+  obtain ⟨α, hα0, hα⟩ := hpl.exists_eq_forall_mem_Icc_hasDerivWithinAt₀
+  refine ⟨α, hα0, fun u hu => ?_⟩
+  exact (hα u ⟨hu.1.le, hu.2.le⟩).hasDerivAt (Icc_mem_nhds hu.1 hu.2)
+
+end
+
 
 omit [CompleteSpace E] in
 /-- Extending a solution on `(-h, T)` by `h/2` to the right, `h / 2 ≤ T`. -/
@@ -111,7 +162,7 @@ theorem lipschitzSolution {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (
     | zero =>
       -- the base case is one local window
       intro y
-      obtain ⟨α, h0, hα⟩ := lipschitzSolutionLocal hf y
+      obtain ⟨α, h0, hα⟩ := aux_lipschitzSolutionLocal hf y
       exact ⟨α, h0, fun u hu => hα u ⟨by simpa [hh] using hu.1, by simpa [hh] using hu.2⟩⟩
     | succ n ih =>
       -- the step glues a local window centered inside the solution so far
@@ -119,7 +170,7 @@ theorem lipschitzSolution {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (
       obtain ⟨γ, hγ0, hγ⟩ := ih y
       obtain ⟨γ', hγ'0, hγ'⟩ := aux_extend hf hpos (T := h + n * (h / 2))
         (by have : (0 : ℝ) ≤ n * (h / 2) := by positivity
-            linarith) (fun z => lipschitzSolutionLocal hf z) hγ
+            linarith) (fun z => aux_lipschitzSolutionLocal hf z) hγ
       refine ⟨γ', by rw [hγ'0 0 le_rfl, hγ0], fun u hu => hγ' u ⟨hu.1, ?_⟩⟩
       have := hu.2
       push_cast at this

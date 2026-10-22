@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 public import Mathlib.Analysis.InnerProductSpace.Basic
 

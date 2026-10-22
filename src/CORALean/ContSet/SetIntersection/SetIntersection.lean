@@ -39,6 +39,7 @@ structure SetIntersection (S : Type) where
 def SetIntersection.construct [ContSet S α] (I : SetIntersection S) : Set α :=
   ⋂ s ∈ I.sets, ContSet.construct s
 
+/-- A set intersection denotes `SetIntersection.construct`, the points every member contains. -/
 instance [ContSet S α] : ContSet (SetIntersection S) α := ⟨SetIntersection.construct⟩
 
 end CORALean

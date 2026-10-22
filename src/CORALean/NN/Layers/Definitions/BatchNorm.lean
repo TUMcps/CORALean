@@ -37,6 +37,8 @@ namespace CORALean.Real
 
 noncomputable def batchNormScale (gamma var eps : ℝ) : ℝ := gamma / Real.sqrt (var + eps)
 
+/-- The folded shift of batch normalization: the offset `beta` less the folded scale times the mean.
+-/
 noncomputable def batchNormShift (gamma beta mean var eps : ℝ) : ℝ :=
   beta - batchNormScale gamma var eps * mean
 

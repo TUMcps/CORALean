@@ -66,11 +66,14 @@ def box : Interval (Vec D 2) := ⟨![d 1 (-1), d (-1) (-2)], ![d 3 (-1), d 1 (-2
 
 /-- The two coordinate functions as models over `t ∈ [-1, 1]²`, truncation order 3. -/
 def X : Taylm D 2 := (box.taylm 3) 0
+/-- The Taylor model of the second coordinate. -/
 def Y : Taylm D 2 := (box.taylm 3) 1
 
 /-- `x · y`, `x · y + x`, `exp (x · y)`. -/
 def XY : Taylm D 2 := X.times Y
+/-- The Taylor model of `x · y + x`. -/
 def S : Taylm D 2 := XY.plus X
+/-- The Taylor model of `exp (x · y)`. -/
 def E : Taylm D 2 := XY.exp 53
 
 #eval X.bounds.inf |> show'    -- the range of `x`
@@ -108,6 +111,7 @@ theorem XY_encloses : XY.Encloses fun t =>
     (toReal (box.zonotope.c 1) + ∑ j, toReal (box.zonotope.G j 1) * t j) :=
   Taylm.times_outer (taylm_encloses 0) (taylm_encloses 1)
 
+/-- The Taylor model of the sum encloses the sum of the two coordinate functions. -/
 theorem S_encloses : S.Encloses fun t =>
     (toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j) *
     (toReal (box.zonotope.c 1) + ∑ j, toReal (box.zonotope.G j 1) * t j) +

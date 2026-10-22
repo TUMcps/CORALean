@@ -35,11 +35,20 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The continuous image of a closed ball that is compact where it is stated,
+`EuclideanSpace ℝ (Fin n)` being finite-dimensional. -/
+theorem _root_.CORALean.aux_isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
+  rw [unitBall₂_eq_image]
+  exact (isCompact_closedBall _ _).image toEuclidean.symm.continuous
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isCompact_construct (E : Ellipsoid n) : IsCompact E.construct := by
   rw [E.construct_eq_image]
-  exact isCompact_unitBall₂.image E.continuous_affine
+  exact aux_isCompact_unitBall₂.image E.continuous_affine
 
 end CORALean.Real
 

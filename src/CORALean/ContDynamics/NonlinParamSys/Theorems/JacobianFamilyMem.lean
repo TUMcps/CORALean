@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
 public import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
-public import CORALean.Global.JacobianMatParam
+public import CORALean.Global.Jacobian
+public import Mathlib.Analysis.Calculus.FDeriv.Add
+public import Mathlib.Analysis.Calculus.FDeriv.Mul
 
 @[expose] public section
 
@@ -44,6 +46,38 @@ open CORALean.Real Matrix
 variable {k n q : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The Jacobian of a map affine in a parameter. -/
+theorem aux_jacobianMat_sub (g h : Vec ℝ k → Vec ℝ n) (x : Vec ℝ k) (hg : DifferentiableAt ℝ g x)
+    (hh : DifferentiableAt ℝ h x) : -- --- CONCL ---
+    jacobianMat (fun z => g z - h z) x = jacobianMat g x - jacobianMat h x := by -- --- PROOF ---
+  have h : HasFDerivAt (fun z => g z - h z) (fderiv ℝ g x - fderiv ℝ h x) x :=
+    hg.hasFDerivAt.sub hh.hasFDerivAt
+  unfold jacobianMat
+  rw [h.fderiv]
+  simp
+
+
+/-- The Jacobian of a map affine in the parameter `p` is the Jacobian of `g0` plus the `p`-weighted
+Jacobians of the `gi`, where all are differentiable. -/
+theorem aux_jacobianMat_param (g0 : Vec ℝ k → Vec ℝ n) (gi : Fin q → Vec ℝ k → Vec ℝ n)
+    (p : Vec ℝ q) (x : Vec ℝ k) (h0 : DifferentiableAt ℝ g0 x)
+    (hi : ∀ i, DifferentiableAt ℝ (gi i) x) : -- --- CONCL ---
+    jacobianMat (fun z => g0 z + ∑ i, p i • gi i z) x
+      = jacobianMat g0 x + ∑ i, p i • jacobianMat (gi i) x := by -- --- PROOF ---
+  -- the derivative of the sum is the sum of the derivatives, scaled
+  have h : HasFDerivAt (fun z => g0 z + ∑ i, p i • gi i z)
+      (fderiv ℝ g0 x + ∑ i, p i • fderiv ℝ (gi i) x) x := by
+    refine h0.hasFDerivAt.add ?_
+    have := HasFDerivAt.sum (u := Finset.univ) (A := fun i => fun z => p i • gi i z)
+      (A' := fun i => p i • fderiv ℝ (gi i) x) (fun i _ => (hi i).hasFDerivAt.const_smul (p i))
+    simpa using this
+  unfold jacobianMat
+  rw [h.fderiv]
+  simp
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec ℝ n)
@@ -63,8 +97,8 @@ theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec �
       = fun w => F w 0 + ∑ i, p i • (F w (Pi.single i 1) - F w 0) := funext fun w => hAff w p
   have hdi : ∀ i, DifferentiableAt ℝ (fun w => F w (Pi.single i 1) - F w 0) z :=
     fun i => (hd _).sub (hd 0)
-  rw [hmap, jacobianMat_param _ _ p z (hd 0) hdi]
-  simp only [jacobianMat_sub _ _ z (hd _) (hd 0)]
+  rw [hmap, aux_jacobianMat_param _ _ p z (hd 0) hdi]
+  simp only [aux_jacobianMat_sub _ _ z (hd _) (hd 0)]
   -- split each parameter into the center's part and the generator's
   have hsum : ∀ i, p i • (jacobianMat (fun w => F w (Pi.single i 1)) z
         - jacobianMat (fun w => F w 0) z)

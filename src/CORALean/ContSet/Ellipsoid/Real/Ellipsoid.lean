@@ -43,6 +43,7 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An ellipsoid with positive semidefinite shape matrix `Q` and center `q`. -/
 structure Ellipsoid (n : ℕ) where
   /-- The shape matrix. -/
   Q : Mat ℝ n n

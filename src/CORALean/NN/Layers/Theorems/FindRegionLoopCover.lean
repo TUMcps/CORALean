@@ -1,8 +1,6 @@
 module
 
 public import CORALean.NN.Layers.Operations.FindRegionLoop
-public import CORALean.NN.Layers.Theorems.FindRegionLeftFits
-public import CORALean.NN.Layers.Theorems.FindRegionRightFits
 
 @[expose] public section
 
@@ -44,6 +42,74 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
+
+/-- The relaxation's region on `[l, u]` fits, given its error is at most the tolerance's. -/
+theorem RegionPoly.aux_ofRelaxation_fits {σ : ℝ → ℝ} {m : ℕ} {R : PolyRelaxation 𝕋 m}
+    (hR : R.Sound σ) {tol l u : 𝕋} (h : toReal (R.error l u) ≤ toReal tol) :
+    (RegionPoly.aux_ofRelaxation R l u).Fits σ tol l u :=
+  ⟨rfl, rfl, fun _ ht => hR.sound (ht.1 l rfl) (ht.2 u rfl), h⟩
+
+end
+
+
+/-- The loop's result fits `[l, u]` if the fit it starts from does. -/
+theorem aux_lowerRegionOrder_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
+    (hF : ∀ o, (F o).Sound σ) (tol l u : 𝕋) : -- --- CONCL ---
+    ∀ (k : ℕ) (cur : RegionPoly 𝕋), cur.Fits σ tol l u →
+      (aux_lowerRegionOrder F tol l u k cur).Fits σ tol l u := by -- --- PROOF ---
+  intro k
+  induction k with
+  | zero => exact fun _ h => h
+  | succ k ih =>
+      intro cur hcur
+      unfold aux_lowerRegionOrder
+      split_ifs with h
+      · exact ih _ (RegionPoly.aux_ofRelaxation_fits (hF k)
+          (le_of_lt (toReal_lt_of_ltStrict h)))
+      · exact hcur
+
+
+/-- A returned left region fits `[l, u']`. -/
+theorem aux_findRegionLeft_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
+    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol l : 𝕋) : -- --- CONCL ---
+    ∀ (fuel : ℕ) (ui : 𝕋) (r : RegionPoly 𝕋) (u' : 𝕋),
+      aux_findRegionLeft F order tol l fuel ui = some ⟨r, u'⟩ → r.Fits σ tol l u'
+        := by -- --- PROOF ---
+  intro fuel
+  induction fuel with
+  | zero => intro _ _ _ h; simp [aux_findRegionLeft] at h
+  | succ fuel ih =>
+      intro ui r u' h
+      unfold aux_findRegionLeft at h
+      dsimp only at h
+      split_ifs at h with hle hlt
+      · obtain ⟨rfl, rfl⟩ := RegionPoly.Found.mk.inj (Option.some.inj h)
+        exact aux_lowerRegionOrder_fits hF tol l ui order _
+          (RegionPoly.aux_ofRelaxation_fits (hF order) (SoundFloatArithmetic.toReal_le_of_le hle))
+      · exact ih _ r u' h
+
+
+/-- A returned right region fits `[l', u]`. -/
+theorem aux_findRegionRight_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
+    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol u : 𝕋) : -- --- CONCL ---
+    ∀ (fuel : ℕ) (li : 𝕋) (r : RegionPoly 𝕋) (l' : 𝕋),
+      aux_findRegionRight F order tol u fuel li = some ⟨r, l'⟩ →
+        r.Fits σ tol l' u := by -- --- PROOF ---
+  intro fuel
+  induction fuel with
+  | zero => intro _ _ _ h; simp [aux_findRegionRight] at h
+  | succ fuel ih =>
+      intro li r l' h
+      unfold aux_findRegionRight at h
+      dsimp only at h
+      split_ifs at h with hle hlt
+      · obtain ⟨rfl, rfl⟩ := RegionPoly.Found.mk.inj (Option.some.inj h)
+        exact RegionPoly.aux_ofRelaxation_fits (hF order) (SoundFloatArithmetic.toReal_le_of_le hle)
+      · exact ih _ r l' h
+
 
 /-- A region `[l, b]` found next to the covered part `t ≤ l` extends it to `t ≤ b`. -/
 theorem aux_cover_left {σ : ℝ → ℝ} {tol b l u : 𝕋} {r : RegionPoly 𝕋}
@@ -132,13 +198,13 @@ theorem findRegionLoop_cover {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxatio
         by_cases ht : t ≤ toReal l
         exacts [Or.inl ht, Or.inr (hul.trans (not_le.mp ht).le)]
       · -- a left region `[l, l']` extends the covered part to `l'`
-        cases hL : findRegionLeft F order tol l (fuel + 1) u with
+        cases hL : aux_findRegionLeft F order tol l (fuel + 1) u with
         | none => rw [hL] at h; simp at h
         | some p =>
             obtain ⟨rL, l'⟩ := p
             rw [hL] at h
             dsimp only at h
-            have hfL := findRegionLeft_fits hF order tol l _ _ _ _ hL
+            have hfL := aux_findRegionLeft_fits hF order tol l _ _ _ _ hL
             have haccL : ∀ r ∈ rL :: acc, r.Encloses σ ∧ toReal r.err ≤ toReal tol := by
               intro r hr
               rcases List.mem_cons.mp hr with rfl | hr
@@ -153,13 +219,13 @@ theorem findRegionLoop_cover {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxatio
               by_cases ht : t ≤ toReal l'
               exacts [Or.inl ht, Or.inr (hul.trans (not_le.mp ht).le)]
             · -- the right region `[u', u]` extends it to `u'`, and `ih` runs on the rest
-              cases hR : findRegionRight F order tol u (fuel + 1) l' with
+              cases hR : aux_findRegionRight F order tol u (fuel + 1) l' with
               | none => rw [hR] at h; simp at h
               | some q =>
                   obtain ⟨rR, u'⟩ := q
                   rw [hR] at h
                   dsimp only at h
-                  have hfR := findRegionRight_fits hF order tol u _ _ _ _ hR
+                  have hfR := aux_findRegionRight_fits hF order tol u _ _ _ _ hR
                   have haccR : ∀ r ∈ rR :: rL :: acc,
                       r.Encloses σ ∧ toReal r.err ≤ toReal tol := by
                     intro r hr

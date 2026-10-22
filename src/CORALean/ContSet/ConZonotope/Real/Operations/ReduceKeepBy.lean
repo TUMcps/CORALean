@@ -1,9 +1,14 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
-public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepEmbed
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepSlack
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 public import CORALean.Global.Block
+public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
 
 @[expose] public section
 
@@ -38,6 +43,14 @@ rows. Here every row is projected on its own (`keepRows`); the two are not compa
 namespace CORALean.Real
 
 variable {n q r : ℕ}
+
+
+section
+open Matrix
+variable {h q r : ℕ}
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

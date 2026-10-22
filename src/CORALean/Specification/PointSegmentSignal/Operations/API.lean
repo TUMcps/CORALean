@@ -15,11 +15,9 @@ public import CORALean.Specification.PointSegmentSignal.Operations.FindLast
 public import CORALean.Specification.PointSegmentSignal.Operations.Indicator
 public import CORALean.Specification.PointSegmentSignal.Operations.IndicatorBounds
 public import CORALean.Specification.PointSegmentSignal.Operations.IntervalUntil
-public import CORALean.Specification.PointSegmentSignal.Operations.IsNewPointOk
 public import CORALean.Specification.PointSegmentSignal.Operations.RelevantStart
 public import CORALean.Specification.PointSegmentSignal.Operations.RelevantStop
 public import CORALean.Specification.PointSegmentSignal.Operations.Set
-public import CORALean.Specification.PointSegmentSignal.Operations.SetBounds
 public import CORALean.Specification.PointSegmentSignal.Operations.SetPoint
 public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtValIdx
 public import CORALean.Specification.PointSegmentSignal.Operations.TimeOrInf

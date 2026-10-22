@@ -33,6 +33,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The answer of a verification run: safe, violated, or neither found before the fuel ran out. -/
 inductive VerifyAnswer
   | safe
   | violated

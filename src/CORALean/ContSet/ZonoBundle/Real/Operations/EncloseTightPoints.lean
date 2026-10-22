@@ -6,6 +6,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsStursberg
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Zonotope.Real.Instances
 
 @[expose] public section
 
@@ -49,7 +50,7 @@ variable {n r N : ℕ}
 noncomputable def ZonoBundle.encloseTightPoints [NeZero N] (V : Fin N → Vec ℝ n)
     (W : Fin r → Mat ℝ n n) (U : Mat ℝ n n) : ZonoBundle (Vec ℝ n) where
   k := r + 1
-  Z := Fin.snoc (α := fun _ => Zonotope (Vec ℝ n))
+  Z := Fin.snoc (α := fun _ => 𝒵 n)
     (fun i =>
       let V_W := fun j => (W i)⁻¹ *ᵥ V j                  -- pinv(W{i}) * V
       let I := Interval.enclosePoints V_W                  -- interval.enclosePoints(...)

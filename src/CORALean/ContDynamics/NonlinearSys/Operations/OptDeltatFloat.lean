@@ -5,7 +5,8 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGainFloat
 public import CORALean.Global.Float.FloatOps
 public import CORALean.Global.Float.Log
 public import CORALean.Global.Float.PowUp
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

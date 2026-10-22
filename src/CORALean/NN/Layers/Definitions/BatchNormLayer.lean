@@ -25,6 +25,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a batch normalization layer: a folded scale and shift per channel, and the
+channel of each coordinate. -/
 structure BatchNormLayer (𝕋 : Type) (n m : ℕ) where
   c : ℕ
   chan : Fin n → Fin c

@@ -37,6 +37,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A Taylor model: a list of terms (coefficient, exponents), a remainder interval, and the order
+`maxOrder` that `times` truncates to. -/
 structure Taylm (n : ℕ) where
   terms : List (ℝ × (Fin n → ℕ))
   /-- The remainder, read through `inf` and `sup`. -/
@@ -44,6 +46,7 @@ structure Taylm (n : ℕ) where
   /-- The order `times` truncates to, CORA's `max_order`. -/
   maxOrder : ℕ
 
+/-- The monomial with exponent vector `e` at the point `t`. -/
 def Taylm.monomial (e : Fin n → ℕ) (t : Vec ℝ n) : ℝ := ∏ k, t k ^ e k
 
 /-- A term list evaluated, stated over the list so an operation can name the value of a
@@ -51,6 +54,7 @@ list it is still assembling. -/
 def Taylm.polyOf (L : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n) : ℝ :=
   (L.map fun a => a.1 * Taylm.monomial a.2 t).sum
 
+/-- The polynomial part of a Taylor model at `t`: the sum of its terms. -/
 def Taylm.poly (T : Taylm n) (t : Vec ℝ n) : ℝ := Taylm.polyOf T.terms t
 
 /-- The functional semantics: `f` minus the polynomial stays in the remainder on the box. -/

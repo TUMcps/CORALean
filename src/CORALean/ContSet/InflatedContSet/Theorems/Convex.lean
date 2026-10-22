@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 
 @[expose] public section

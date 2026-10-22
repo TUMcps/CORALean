@@ -42,6 +42,8 @@ abbrev OrderPattern (n : ℕ) := Fin n → ℕ
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A layer with its exact function and, for every order pattern, an enclosure of its image of a
+set. -/
 structure RefinableLayer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
   eval : Vec ℝ n → Vec ℝ m
   enclose : OrderPattern n → S n → S m

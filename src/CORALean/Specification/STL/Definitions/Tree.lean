@@ -35,6 +35,8 @@ variable {n : ℕ} {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- CORA's `stl` syntax tree: true, false, comparison of two expressions, negation, conjunction,
+disjunction, until, release, finally, globally and next, with closed time bounds. -/
 inductive STL.Tree (n : ℕ)
   | tt
   | ff

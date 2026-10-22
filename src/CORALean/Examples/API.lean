@@ -74,6 +74,7 @@ import CORALean.Examples.RunnableFloat
 import CORALean.Examples.SetIntersectionFloat
 import CORALean.Examples.SimulateAndFalsify
 import CORALean.Examples.EnclosesCompression
+import CORALean.Examples.Interfaces
 import CORALean.Examples.TaylmFloat
 import CORALean.Examples.UncertainGraphLocality
 import CORALean.Examples.VerifyBySplitting

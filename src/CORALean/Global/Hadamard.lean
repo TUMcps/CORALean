@@ -73,6 +73,7 @@ def Entrywise.hadamardLin : α →ₗ[ℝ] α →ₗ[ℝ] α where
       Entrywise.entry_hadamard, Entrywise.entry_smul]
     ring
 
+/-- The bundled Hadamard map applied to `a` and `b` is their entrywise product. -/
 @[simp] theorem Entrywise.hadamardLin_apply (a b : α) :
     (Entrywise.hadamardLin a) b = Entrywise.hadamard a b := rfl
 

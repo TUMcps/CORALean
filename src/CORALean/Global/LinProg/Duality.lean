@@ -22,16 +22,16 @@ certificate of infeasibility.
 * `b` – inequality right-hand sides
 * `Ae` – equality constraint functionals
 * `be` – equality right-hand sides
+* `c` – objective functional
 * `y` – weights of the inequalities
 * `z` – weights of the equalities
 
 ## Hypotheses
 * `hy` – the inequality weights are nonnegative
-* `h0` – the weighted functionals cancel
-* `hneg` – the weighted right-hand sides are negative
+* `hc` – the objective is the weighted sum of the constraint functionals
 
-## Conclusion
-* the feasible set is empty
+## Output
+* a bound on the objective over the feasible set, the weighted right-hand sides
 -/
 
 -- Authors:       Claude Opus 5
@@ -62,6 +62,9 @@ theorem le_dual_bound (A : Fin m → (α →ₗ[ℝ] ℝ)) (b : Fin m → ℝ)
   refine add_le_add (Finset.sum_le_sum fun i _ => mul_le_mul_of_nonneg_left (hle i) (hy i)) ?_
   exact le_of_eq (Finset.sum_congr rfl fun i _ => by rw [heq i])
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
 /-- The dual solution `(y, z)` bounds every objective it assembles. The
 hypothesis is the dual feasibility `c = yᵀA + zᵀAe`, stated pointwise because a
 functional is determined by what it does. -/
@@ -75,23 +78,6 @@ def SupportBound.ofDual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
     rw [hc x]
     exact le_dual_bound A b Ae be y z hy hx.1 hx.2
 
-
--- =======================================  MAIN THEOREM  ======================================= --
-
-/-- Farkas: weights that cancel the objective but not the right-hand side leave
-no feasible point at all. -/
-theorem eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
-    {Ae : Fin me → (α →ₗ[ℝ] ℝ)} {be : Fin me → ℝ}
-    (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
-    (h0 : ∀ x : α, (∑ i, y i * A i x) + ∑ i, z i * Ae i x = 0)
-    (hneg : (∑ i, y i * b i) + ∑ i, z i * be i < 0) : -- --- CONCL ---
-    Feasible A b Ae be = ∅ := by -- --- PROOF ---
-  ext x
-  simp only [Set.mem_empty_iff_false, iff_false]
-  rintro ⟨hle, heq⟩
-  have h := le_dual_bound A b Ae be y z hy hle heq
-  rw [h0 x] at h
-  linarith
 
 end CORALean
 

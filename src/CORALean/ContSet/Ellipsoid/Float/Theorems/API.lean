@@ -34,7 +34,6 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalDominated
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalQEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.PdCheckSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter

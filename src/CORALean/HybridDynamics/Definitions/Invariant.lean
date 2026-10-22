@@ -34,6 +34,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A set per location that flows and jumps cannot leave: a flow starting in the set stays in it,
+and a jump from the set lands in the target location's set. -/
 structure HybridAutomaton.Invariant (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n) : Prop where
   flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)
     (h₀ : x 0 ∈ construct (R ℓ)) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :

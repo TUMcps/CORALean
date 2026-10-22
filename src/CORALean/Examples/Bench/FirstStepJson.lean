@@ -1,6 +1,7 @@
 import CORALean.ContSet.Zonotope.Float.Zonotope
 import CORALean.Examples.Bench.FirstStepRat
-import CORALean.Global.Float.ToRat
+import CORALean.Global.Float.Interfaces
+import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Examples.Bench.NumberType
 import Lean.Data.Json
 

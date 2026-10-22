@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
+public import Mathlib.Data.Finset.Sort
 
 @[expose] public section
 
@@ -41,6 +42,14 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The kept columns of a merge, indexed by a plain count and in order. -/
+noncomputable def PolyZonotope.aux_mergeIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
+    (j : Fin (PolyZonotope.mergeKeep E).card) : Fin h :=
+  (PolyZonotope.mergeKeep E).orderIsoOfFin rfl j
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal exponent columns added together, one column per class kept. -/
@@ -50,8 +59,8 @@ noncomputable def PolyZonotope.merge (pZ : PolyZonotope α) : PolyZonotope α wh
   q := pZ.q
   c := pZ.c
   G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep pZ.E) pZ.G
-                  (PolyZonotope.mergeIdx pZ.E j)
-  E := fun k j => pZ.E k (PolyZonotope.mergeIdx pZ.E j)
+                  (PolyZonotope.aux_mergeIdx pZ.E j)
+  E := fun k j => pZ.E k (PolyZonotope.aux_mergeIdx pZ.E j)
   GI := pZ.GI
 
 end CORALean.Real

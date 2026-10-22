@@ -1,6 +1,8 @@
 module
 
-public import CORALean.Specification.PointSegmentSignal.Operations.SetBounds
+public import CORALean.Specification.PointSegmentSignal.Operations.AtIdx
+public import CORALean.Specification.PointSegmentSignal.Operations.Basic
+public import CORALean.Specification.PointSegmentSignal.Operations.SetPoint
 public import CORALean.Specification.STLInterval.Operations.Basic
 
 @[expose] public section
@@ -9,7 +11,7 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 # Setting the value in an interval
 
 `set(obj,interval,value)` of `pointSegmentSignal.m` for a time type `ℝ` and an `stlInterval`: the
-interval's bounds and closedness flags are read off (`lowerBound`, `upperBound`) and `setBounds`
+interval's bounds and closedness flags are read off (`lowerBound`, `upperBound`) and `aux_setBounds`
 does the work.
 
 Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
@@ -35,12 +37,50 @@ stamps over `𝕋`, rounded outward) is not yet written.
 namespace CORALean
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `aux_isNewPointOk(obj,i,p,vals)`. -/
+def PointSegmentSignal.aux_isNewPointOk {T : Type} [LinearOrder T] [Zero T]
+  (s : PointSegmentSignal T)
+    (i : ℕ) (p : T) (vals : List Bool) : Bool :=
+  if s.timePoints.getD (i - 1) 0 = p then
+    p = 0 ∨ vals.getD 0 false ≠ vals.getD 1 false ∨ vals.getD 0 false ≠ s.precIntervalValue i
+  else vals.any (fun v => v ≠ s.succIntervalValue i)
+
+
+/-- `sig = set(obj,stlInterval(lb,ub,lc,rc),value)`. -/
+def PointSegmentSignal.aux_setBounds {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+    (lb : T) (ub : WithTop T) (lc rc : Bool) (value : Bool) : PointSegmentSignal T :=
+  if STLInterval.emptyBounds lb ub lc rc then s
+  else if (lb : WithTop T) = ub then s.setPoint lb value
+  else
+    -- 1. [before,i] = priv_atIdx(obj,lb) and [afterPoint,j] = priv_atIdx(obj,ub)
+    let before := (s.atIdx lb).1
+    let i := (s.atIdx lb).2
+    let afterPoint := (s.atIdx ub).1
+    let j := (s.atIdx ub).2
+    let after := s.succIntervalValue j
+    -- 2. the point and interval values at the two ends of the new interval
+    let lVal := if lc then [value, value] else [before, value]
+    let rVal := if rc then [value, after] else [afterPoint, after]
+    -- 3. new points at the ends, where they are needed
+    let addL := s.aux_isNewPointOk i lb lVal
+    let addR := rVal.any (fun v => v ≠ value) ∧ ub ≠ ⊤
+    let newPoints := (if addL then [lb] else []) ++ (if addR then [ub.untopD 0] else [])
+    let newValues := (if addL then lVal else []) ++ (if addR then rVal else [])
+    -- 4. an old point at lb is replaced
+    let i' := if s.timePoints.getD (i - 1) 0 = lb then i - 1 else i
+    -- 5. keep the points before and after, drop those inside
+    ⟨s.timePoints.take i' ++ newPoints ++ s.timePoints.drop j,
+      s.values.take (2 * i') ++ newValues ++ s.values.drop (2 * j)⟩
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = set(obj,interval,value)`. -/
 noncomputable def PointSegmentSignal.set (s : PointSegmentSignal ℝ) (I : STLInterval)
     (value : Bool) : PointSegmentSignal ℝ :=
-  s.setBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed value
+  s.aux_setBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed value
 
 end CORALean
 

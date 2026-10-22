@@ -2,9 +2,11 @@ module
 
 public import CORALean.NN.Graph.Operations.FloatLinear
 public import CORALean.NN.Graph.Operations.Linear
-public import CORALean.NN.Graph.Theorems.FloatBiasPointMem
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemConstruct
+public import CORALean.NN.Graph.Operations.Basic
 public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
+public import CORALean.NN.Graph.Theorems.FloatBiasPointMem
 
 @[expose] public section
 
@@ -42,6 +44,13 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F₁ F₂ : ℕ}
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
+
+
+end
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

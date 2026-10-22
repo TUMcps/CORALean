@@ -33,8 +33,6 @@ public import CORALean.ContDynamics.Conform.Theorems.ReachOutExactSucc
 public import CORALean.ContDynamics.Conform.Theorems.ReachSetOfExactGlo
 public import CORALean.ContDynamics.Conform.Theorems.ReachSetOfExactSubset
 public import CORALean.ContDynamics.Conform.Theorems.SearchOutliersOptimal
-public import CORALean.ContDynamics.Conform.Theorems.SingletonAddTemplateZono
-public import CORALean.ContDynamics.Conform.Theorems.StateAddDev
 public import CORALean.ContDynamics.Conform.Theorems.SumTemplateZono
 public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
 public import CORALean.ContDynamics.Conform.Theorems.UnderApproxStepNe

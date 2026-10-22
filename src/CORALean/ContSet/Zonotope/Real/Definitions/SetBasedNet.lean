@@ -34,6 +34,9 @@ namespace CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A feed-forward network as set-based training propagates it, from input width `n` to output width
+`k`: the identity, a linear layer `W h + b`, or an elementwise activation given by its slope and
+approximation errors, followed by the rest. -/
 inductive SetBasedNet : ℕ → ℕ → Type
   | output {n : ℕ} : SetBasedNet n n
   | linear {n m k : ℕ} (W : Mat ℝ m n) (b : Vec ℝ m) (tail : SetBasedNet m k) : SetBasedNet n k

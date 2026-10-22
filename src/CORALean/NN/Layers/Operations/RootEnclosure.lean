@@ -37,8 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `sqrtDown` below, `sqrtUp` above, with `p` Newton steps. -/
 def rootEnclosure (p : ℕ) : Enclosure 𝕋 where
-  lo a := sqrtDown p a
-  hi a := sqrtUp p a
+  enclose a := ⟨sqrtDown p a, sqrtUp p a⟩
 
 end CORALean
 

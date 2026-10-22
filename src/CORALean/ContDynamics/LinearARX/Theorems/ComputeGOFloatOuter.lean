@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.Operations.ComputeGOFloat
-public import CORALean.ContDynamics.LinearARX.Theorems.SumRangeFloatMem
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
@@ -47,6 +47,30 @@ open CORALean.Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
+
+/-- The interval sum holds the real sum. -/
+theorem LinearARX.aux_sumRangeFloat_mem (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
+    (h : ∀ t, M t ∈ (f t).construct) (k : ℕ) : -- --- CONCL ---
+    ∑ t ∈ Finset.range k, M t ∈ (LinearARX.aux_sumRangeFloat f k).construct := by -- --- PROOF ---
+  induction k with
+  | zero =>
+    -- the empty sum is the zero matrix, stored exactly
+    have hz : toRealMat (show Mat 𝕋 m n from fun _ _ => zero) = 0 := by
+      funext i l
+      simp [toRealMat, toReal_zero]
+    rw [Finset.sum_range_zero, ← hz]
+    exact Interval.mem_point _
+  | succ k ih =>
+    rw [Finset.sum_range_succ]
+    exact Interval.matPlus_outer _ _ ih (h k)
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ)
@@ -67,7 +91,7 @@ theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ)
     (Interval.mem_point sys.toLinearSysDT.A)
   refine ⟨Interval.matMul_outer _ _ (Interval.mem_point sys.outputEq.C) (hA k.val), ?_⟩
   -- the sum over steps, each term the sum over lags
-  refine LinearARX.sumRangeFloat_mem _ _ (fun t => ?_) k.val
+  refine LinearARX.aux_sumRangeFloat_mem _ _ (fun t => ?_) k.val
   -- the sum over the lags, as a sum over an index range
   have hlag : (∑ j : Fin (p + 1), if t + p - j.val = i.val then
       toRealMat sys.outputEq.C * toRealMat sys.toLinearSysDT.A ^ (k.val - 1 - t)
@@ -85,7 +109,7 @@ theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ)
       toRealMat sys.outputEq.C * toRealMat sys.toLinearSysDT.A ^ (k.val - 1 - t)
         * toRealMat (sys.inputMat j) else 0) ∈ _
   rw [hlag]
-  refine LinearARX.sumRangeFloat_mem _ _ (fun j => ?_) (p + 1)
+  refine LinearARX.aux_sumRangeFloat_mem _ _ (fun j => ?_) (p + 1)
   -- one term: the product, or zero
   by_cases hj : j < p + 1
   · simp only [dif_pos hj]

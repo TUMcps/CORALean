@@ -25,6 +25,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a sigmoid layer: the number `k` of terms enclosing `exp`. -/
 structure SigmoidLayer (𝕋 : Type) (n m : ℕ) where
   k : ℕ
   dim : n = m

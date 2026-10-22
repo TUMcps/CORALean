@@ -2,9 +2,10 @@ module
 
 public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.MaxPool
-public import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
-public import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
-public import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.Tensor
+public import CORALean.NN.Layers.Theorems.Real.Basic
+public import Mathlib.Tactic.Linarith
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
@@ -19,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # What the max pooling layer encloses
 
 Each window's maximum over ℝ, `Real.windowMax`: the pivot's value is carried by the selection
-matrix, and what it misses lies in `[0, gap]` by `maxPool_bounds` at the rounded-up gap.
+matrix, and what it misses lies in `[0, gap]` by `aux_maxPool_bounds` at the rounded-up gap.
 
 ## Inputs
 * `tap` – input index of every window position
@@ -52,6 +53,63 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n m k : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+namespace Real
+section
+variable {n : ℕ}
+
+/-- The window's maximum above its pivot, for *any* `g` bounding the other taps' reach. -/
+theorem aux_maxPool_bounds {k : ℕ} (t : Fin (k + 1) → Fin n) (p : Fin (k + 1))
+    (lo hi x : Vec ℝ n) (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) {g : ℝ} (hg0 : 0 ≤ g)
+    (hg : ∀ l, l ≠ p → hi (t l) - lo (t p) ≤ g) : -- --- CONCL ---
+    0 ≤ windowMax (fun l => x (t l)) - x (t p) ∧
+      windowMax (fun l => x (t l)) - x (t p) ≤ g := by -- --- PROOF ---
+  refine ⟨by linarith [le_windowMax (fun l => x (t l)) p], ?_⟩
+  have h : windowMax (fun l => x (t l)) ≤ x (t p) + g := by
+    refine windowMax_le fun l => ?_
+    by_cases hl : l = p
+    · rw [hl]
+      linarith
+    · linarith [(hx (t l)).2, (hx (t p)).1, hg l hl]
+  linarith
+
+end
+end Real
+
+
+section
+open Float.SoundFloatArithmetic
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
+
+/-- A pooled window's gap is nonnegative. -/
+theorem aux_maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
+    (I : Interval (Vec 𝕋 n)) (j : Fin m) : 0 ≤ toReal (aux_maxPoolGapUp tap p I j) := by
+  have h := le_maximumOver
+    (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) (p j)
+  rw [if_pos rfl, toReal_zero] at h
+  exact h
+
+end
+
+
+section
+open Float.SoundFloatArithmetic
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
+
+/-- A pooled window's gap bounds every other tap's reach. -/
+theorem aux_le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
+    (I : Interval (Vec 𝕋 n)) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
+    toReal (I.sup (tap j l)) - toReal (I.inf (tap j (p j)))
+      ≤ toReal (aux_maxPoolGapUp tap p I j) := by
+  have h := le_maximumOver
+    (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) l
+  rw [if_neg hl] at h
+  exact le_trans (sub_le_subUp _ _) h
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
@@ -77,10 +135,10 @@ theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
     ring
   -- the window's bound, at the rounded-up gap it was stated for
   have hmem : d ∈ Interval.construct
-      (⟨fun _ => zero, maxPoolGapUp tap p I⟩ : Interval (Vec 𝕋 m)) := by
+      (⟨fun _ => zero, aux_maxPoolGapUp tap p I⟩ : Interval (Vec 𝕋 m)) := by
     intro j
-    have h := Real.maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
-      (maxPoolGapUp_nonneg tap p I j) fun l hl => le_maxPoolGapUp tap p I j hl
+    have h := Real.aux_maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
+      (aux_maxPoolGapUp_nonneg tap p I j) fun l hl => aux_le_maxPoolGapUp tap p I j hl
     have hz : toReal (zero : 𝕋) ≤ d j := by
       rw [toReal_zero]
       exact h.1

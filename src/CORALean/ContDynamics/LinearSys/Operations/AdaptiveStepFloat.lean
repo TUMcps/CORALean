@@ -70,8 +70,8 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
   let Ũ := Recenter.recenter V                                      -- Ũ = V - ũ, holding 0
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
   let ηe := max options.ηmax 2                                      -- [e^{At_i}]'s order
-  let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                   -- t_i / 2^sq within Δt_{i-1}
-  let eAt := sys.expSquaringFloat s.tLo s.tHi ηe sq                 -- [e^{A t_i}]
+  let sq ← sys.squaringsFloat s.Δt s.tEnc.inf s.tEnc.sup ηe        -- t_i / 2^sq within Δt_{i-1}
+  let eAt := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup ηe sq                 -- [e^{A t_i}]
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_i}] ·
     (S := 𝒵[𝕋]) eAt
   -- 5. Alg. 2
@@ -100,7 +100,7 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
     let t' := s.t + ToRat.toRat Δt
     some ({ tStart := t₀ + s.t, tEnd := t₀ + min t' tf, Δt := Δt, η := η,
             ρ := Φset, R := R, εH := εH, εP := εP, εS := εS },
-          { t := t', tLo := addDown s.tLo Δt, tHi := addUp s.tHi Δt, Δt := Δt,
+          { t := t', tEnc := ⟨addDown s.tEnc.inf Δt, addUp s.tEnc.sup Δt⟩, Δt := Δt,
             εP := εP, εS := εS, P := PRred })
   else none
 

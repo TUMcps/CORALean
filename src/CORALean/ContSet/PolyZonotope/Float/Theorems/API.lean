@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsDroppedLeDropRadius
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsHessianOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsNominal
@@ -9,7 +8,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemConstruct
@@ -39,8 +37,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.IsequalSound
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
@@ -69,7 +65,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.PartZonotopeOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PolygonOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
@@ -88,7 +83,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpGreedyOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMidOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpMultiOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RelaxExpOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdExact
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaEmptySetSound
@@ -103,12 +97,8 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.StackOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsGClose
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPolyRel
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPowRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumMask
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumOuter
@@ -118,7 +108,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemAbsorbRoundingErr
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestIndepGenCover
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover

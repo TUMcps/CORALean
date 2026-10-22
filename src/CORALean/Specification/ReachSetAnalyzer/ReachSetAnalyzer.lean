@@ -30,6 +30,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A reach set analyzer: named atomic propositions, for each a builder of the three-valued signal
+of its truth, and masks restricting the signals. -/
 structure ReachSetAnalyzer (S : ℕ → Type) (n : ℕ) where
   aps : List (String × AtomicProposition S n)
   sigBuilder : List (String × FiniteKleeneSignalBuilder)

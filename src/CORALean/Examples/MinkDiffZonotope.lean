@@ -33,12 +33,14 @@ namespace CORALean.Real
 /-- `[-1, 1]` and `[-0.2, 0.2]`, one generator each. -/
 def MDiff.Z1 : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(1:ℝ)]⟩
 
+/-- The zonotope `[-0.2, 0.2]` with one generator. -/
 def MDiff.Z2 : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(0.2:ℝ)]⟩
 
 /-- The subtrahend's generator written in the minuend's own, which is the
 candidate `minkDiffRep` checks — here it passes both halves of that check. -/
 def MDiff.M : Fin MDiff.Z1.h → Fin MDiff.Z2.h → ℝ := fun _ _ => 0.2
 
+/-- `minkDiffRep` accepts the candidate `M` and returns a zonotope. -/
 theorem MDiff.certified : -- --- CONCL ---
     (MDiff.Z1.minkDiffRep MDiff.Z2 MDiff.M).isSome := by -- --- PROOF ---
   rw [Zonotope.minkDiffRep, if_pos]

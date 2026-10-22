@@ -113,6 +113,7 @@ theorem model_encloses : -- --- CONCL ---
 
 /-- `x ∈ [3/4, 5/4]`, and `u ∈ [-1/16, 1/16]`. -/
 def X₀ : Zonotope (Vec D 1) := ⟨1, ![d 1 0], !![d 1 (-2)], zbox 1⟩
+/-- The input set `u ∈ [-1/16, 1/16]`. -/
 def U₀ : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-4)], zbox 1⟩
 
 /-- Eight steps of `1/8`, Taylor order at least `4`, zonotope order `10`. The reduced model is
@@ -122,6 +123,7 @@ def run : Option (List (Zonotope (Vec D 1))) :=
   model.reachFloat { X₀ := X₀, U := U₀, tFinal := 1 }
     { Δt := d 1 (-3), η := 4, ρ := 10 }
 
+/-- The computable run is the run of the model with the reduced model passed in. -/
 theorem run_eq : NonlinDASys.reachFloat daeRed model { X₀ := X₀, U := U₀, tFinal := 1 }
     { Δt := d 1 (-3), η := 4, ρ := 10 } = run := rfl
 

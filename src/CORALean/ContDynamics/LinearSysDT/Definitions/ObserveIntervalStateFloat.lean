@@ -39,6 +39,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The interval observer's state over floats: the estimate is an interval; the estimate set, the
+combined disturbance-and-noise interval and the zonotope `D` are as in the real state. -/
 structure LinearSysDT.ObserveIntervalStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   x : Interval (Vec 𝕋 n)
   Rx : Zonotope (Vec 𝕋 n)

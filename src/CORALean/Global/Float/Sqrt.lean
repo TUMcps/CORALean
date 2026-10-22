@@ -92,11 +92,13 @@ private theorem sqrt_le_newton {a s : ℝ} (ha : 0 ≤ a) (hs : 0 < s) : -- --- 
   rw [h2, div_div, le_div_iff₀ (by positivity)]
   linarith
 
+/-- The square root of `max 0 x` is the square root of `x`. -/
 private theorem sqrt_max_zero (x : ℝ) : Real.sqrt (max 0 x) = Real.sqrt x := by
   rcases le_total 0 x with h | h
   · rw [max_eq_right h]
   · rw [max_eq_left h, Real.sqrt_zero, Real.sqrt_eq_zero_of_nonpos h]
 
+/-- One Newton step keeps a float above the real square root. -/
 private theorem sqrtStep_ge {a s : 𝕋} (ha : 0 ≤ toReal a)
     (h : Real.sqrt (toReal a) ≤ toReal s) : -- --- CONCL ---
     Real.sqrt (toReal a) ≤ toReal (sqrtStep a s) := by -- --- PROOF ---
@@ -113,6 +115,7 @@ private theorem sqrtStep_ge {a s : 𝕋} (ha : 0 ≤ toReal a)
     exact le_min h (by linarith)
   · exact h
 
+/-- Every Newton iterate stays above the real square root once the start is. -/
 private theorem sqrtIter_ge {a : 𝕋} (ha : 0 ≤ toReal a) :
     ∀ (k : ℕ) (s : 𝕋), Real.sqrt (toReal a) ≤ toReal s →
       Real.sqrt (toReal a) ≤ toReal (sqrtIter a k s) := by
@@ -121,6 +124,7 @@ private theorem sqrtIter_ge {a : 𝕋} (ha : 0 ≤ toReal a) :
   | zero => exact fun s h => h
   | succ k ih => exact fun s h => ih _ (sqrtStep_ge ha h)
 
+/-- `max 0 a` is nonnegative as a real. -/
 private theorem toReal_maximum_zero_nonneg (a : 𝕋) : 0 ≤ toReal (maximum zero a) := by
   rw [toReal_maximum, toReal_zero]
   exact le_max_left _ _
@@ -159,6 +163,7 @@ theorem sqrtDown_le (p : ℕ) (a : 𝕋) : -- --- CONCL ---
     nlinarith
   · rw [toReal_zero]; exact Real.sqrt_nonneg _
 
+/-- `sqrtUp` is nonnegative. -/
 theorem sqrtUp_nonneg (p : ℕ) (a : 𝕋) : 0 ≤ toReal (sqrtUp p a) :=
   le_trans (Real.sqrt_nonneg _) (le_sqrtUp p a)
 

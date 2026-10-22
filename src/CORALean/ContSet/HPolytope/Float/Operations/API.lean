@@ -42,7 +42,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Operations.SetRhs
 public import CORALean.ContSet.HPolytope.Float.Operations.RescaleCols
 public import CORALean.ContSet.HPolytope.Float.Operations.KeepCols
@@ -52,13 +51,11 @@ public import CORALean.ContSet.HPolytope.Float.Operations.IneqsContainBall
 public import CORALean.ContSet.HPolytope.Float.Operations.IneqMargin
 public import CORALean.ContSet.HPolytope.Float.Operations.EqsWithin
 public import CORALean.ContSet.HPolytope.Float.Operations.Translate
-public import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
 public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 public import CORALean.ContSet.HPolytope.Float.Operations.CartProd
 public import CORALean.ContSet.HPolytope.Float.Operations.Origin
 public import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecLiftCols
 public import CORALean.ContSet.HPolytope.Float.Operations.Lift
 public import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
 public import CORALean.ContSet.HPolytope.Float.Operations.RowScale
@@ -66,8 +63,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
 public import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
 public import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
 public import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
-public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
-public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
 public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
 public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
 public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
@@ -78,7 +73,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.CompactZeros
 public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
 public import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
 public import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
-public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
 public import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
 public import CORALean.ContSet.HPolytope.Float.Operations.CompactAtoAe
 public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint

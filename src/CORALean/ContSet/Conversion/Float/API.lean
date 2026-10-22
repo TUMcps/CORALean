@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Definitions.API
+public import CORALean.ContSet.Conversion.Float.Interfaces
 public import CORALean.ContSet.Conversion.Float.Operations.API
 public import CORALean.ContSet.Conversion.Float.Theorems.API
 public import CORALean.ContSet.Conversion.Float.Instances

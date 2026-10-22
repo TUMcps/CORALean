@@ -6,7 +6,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 public import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
 
@@ -48,6 +47,20 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- The same monomial read against an extended factor vector: the extension
+gives the dropped factors a value, and no monomial looks at it. -/
+theorem PolyZonotope.aux_monomial_factorExtend {p h : ℕ} (E : Fin p → Fin h → ℕ)
+    (a : Fin (PolyZonotope.usedFactors E).card → ℝ) (i : Fin h) : -- --- CONCL ---
+    PolyZonotope.monomial E (PolyZonotope.factorExtend E a) i
+      = PolyZonotope.monomial (fun k i => E (PolyZonotope.factorIdx E k) i)
+        a i := by -- --- PROOF ---
+  have hmon := PolyZonotope.monomial_factorIdx E (PolyZonotope.factorExtend E a) i
+  have hext : (fun k => PolyZonotope.factorExtend E a (PolyZonotope.factorIdx E k)) = a :=
+    funext fun k => PolyZonotope.factorExtend_factorIdx E a k
+  rw [hext] at hmon
+  exact hmon.symm
+
+
 /-- The same sum read against the kept factors alone. -/
 theorem PolyZonotope.aux_sum_compactFactors (pZ : PolyZonotope α)
     (a : Fin pZ.p → ℝ) : -- --- CONCL ---
@@ -74,7 +87,7 @@ theorem PolyZonotope.aux_sum_compactFactors_extend (pZ : PolyZonotope α)
       = ∑ i : Fin pZ.h,
           PolyZonotope.monomial (fun k i => pZ.E (PolyZonotope.factorIdx pZ.E k) i) a i
             • pZ.G i
-  exact Finset.sum_congr rfl fun i _ => by rw [PolyZonotope.monomial_factorExtend]
+  exact Finset.sum_congr rfl fun i _ => by rw [PolyZonotope.aux_monomial_factorExtend]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

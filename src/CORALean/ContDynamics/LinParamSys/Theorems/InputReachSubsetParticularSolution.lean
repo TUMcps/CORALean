@@ -6,8 +6,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSo
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 

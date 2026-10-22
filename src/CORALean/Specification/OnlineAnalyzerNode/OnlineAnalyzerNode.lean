@@ -31,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The kinds of node of the syntax tree: true, false, atomic proposition, negation, disjunction,
+conjunction and until. -/
 inductive OnlineAnalyzerNode.Kind
   | true
   | false
@@ -41,6 +43,8 @@ inductive OnlineAnalyzerNode.Kind
   | until
   deriving DecidableEq
 
+/-- A node of the syntax tree of an STL formula in the online analysis: its kind, the four-valued
+signal known for its subformula, its parents and children, interval and atomic proposition. -/
 structure OnlineAnalyzerNode (A : Type) where
   kind : OnlineAnalyzerNode.Kind
   signal : FourValuedSignal ℝ

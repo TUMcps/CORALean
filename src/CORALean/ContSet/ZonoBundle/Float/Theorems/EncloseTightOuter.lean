@@ -87,10 +87,10 @@ theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (h
   rw [ZonoBundle.construct_eq_iInter]
   refine Set.mem_iInter.mpr fun i => ?_
   refine Fin.lastCases ?_ (fun i => ?_) i
-  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => Zonotope (Vec 𝕋 n)) _ _ (Fin.last r))
+  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => 𝒵[𝕋] n) _ _ (Fin.last r))
     rw [Fin.snoc_last]
     exact ZonoBundle.parallelotope_contains _ _ _ _ (hbox _) hm
-  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => Zonotope (Vec 𝕋 n)) _ _ (Fin.castSucc i))
+  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => 𝒵[𝕋] n) _ _ (Fin.castSucc i))
     rw [Fin.snoc_castSucc]
     exact ZonoBundle.parallelotope_contains _ _ _ _ (hbox _) hm
 

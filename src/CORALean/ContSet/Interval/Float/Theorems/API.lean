@@ -18,14 +18,12 @@ public import CORALean.ContSet.Interval.Float.Theorems.AtanhOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.Interval.Float.Theorems.BoundaryPointOuter
-public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioAtMem
 public import CORALean.ContSet.Interval.Float.Theorems.BoundaryRatioBounds
 public import CORALean.ContSet.Interval.Float.Theorems.CenterGe
 public import CORALean.ContSet.Interval.Float.Theorems.CenterLoLe
 public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 public import CORALean.ContSet.Interval.Float.Theorems.CosOuter
 public import CORALean.ContSet.Interval.Float.Theorems.CoshOuter
-public import CORALean.ContSet.Interval.Float.Theorems.DescProdOuter
 public import CORALean.ContSet.Interval.Float.Theorems.DiagExact
 public import CORALean.ContSet.Interval.Float.Theorems.DiagVecExact
 public import CORALean.ContSet.Interval.Float.Theorems.DiracEqZeroOfOff
@@ -50,7 +48,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.LogOuter
 public import CORALean.ContSet.Interval.Float.Theorems.LtSound
 public import CORALean.ContSet.Interval.Float.Theorems.MaskExact
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MatMulSubset
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
@@ -90,7 +87,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
-public import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
 public import CORALean.ContSet.Interval.Float.Theorems.RoundOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SignOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
@@ -107,7 +103,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.Sum1Outer
 public import CORALean.ContSet.Interval.Float.Theorems.Sum1OuterImage
 public import CORALean.ContSet.Interval.Float.Theorems.Sum2Outer
 public import CORALean.ContSet.Interval.Float.Theorems.Sum2OuterImage
-public import CORALean.ContSet.Interval.Float.Theorems.SumTermsMatMem
 public import CORALean.ContSet.Interval.Float.Theorems.TanOuter
 public import CORALean.ContSet.Interval.Float.Theorems.TanhOuter
 public import CORALean.ContSet.Interval.Float.Theorems.TransposeExact

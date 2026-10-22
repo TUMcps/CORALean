@@ -13,7 +13,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 public import CORALean.ContSet.Interval.Real.Theorems.LeSubset
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Real.Theorems.OrOuter
-public import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.Data.Real.Sign
 public import Mathlib.Tactic.Linarith
@@ -144,19 +143,6 @@ theorem Interval.project_outer (I : Interval (Vec ℝ n)) (dims : Fin m → Fin 
 theorem Interval.representsa_emptySet_iff (I : Interval α) :
     I.representsa_emptySet ↔ I.construct = ∅ :=
   Interval.not_isNonempty_iff I
-
-
--- =============================  `Interval.supportBound_attained`  ============================= --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `Interval.supportBoundEntrywise_attained` at the ambient type `Vec ℝ n`. -/
-theorem Interval.supportBound_attained {n : ℕ} (I : Interval (Vec ℝ n))
-    (c : Vec ℝ n →ₗ[ℝ] ℝ) (hI : I.IsNonempty) :
-    ∃ x ∈ I.construct, c x = (I.supportBound c).val :=
-  Interval.supportBoundEntrywise_attained I c hI
 
 
 -- ============================  `Interval.supremum_mem_construct`  ============================= --

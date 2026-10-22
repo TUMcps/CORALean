@@ -1,7 +1,6 @@
 module
 
 public import CORALean.DiscrDynamics.GridPartition.Theorems.I2sMem
-public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iI2s
 public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iMem
 public import CORALean.DiscrDynamics.GridPartition.Theorems.I2sS2i
 public import CORALean.DiscrDynamics.GridPartition.Operations.Basic

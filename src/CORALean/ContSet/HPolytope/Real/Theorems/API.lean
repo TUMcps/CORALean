@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
-public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 public import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
@@ -74,8 +73,6 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.DropTrivialEqsExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.ColWeightEqZeroIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactZerosExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactAlignedIneqExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
-public import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactAtoAeExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCenterMem

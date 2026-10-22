@@ -33,6 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A probabilistic zonotope over floats: the zonotope `Z` and the covariance `cov` as an interval
+matrix. -/
 structure ProbZonotope (𝕋 : Type) (n : ℕ) where
   Z : Zonotope (Vec 𝕋 n)
   cov : Interval (Mat 𝕋 n n)

@@ -20,7 +20,6 @@ public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 public import CORALean.ContSet.Interval.Real.Operations.Reindex
 public import CORALean.ContSet.Interval.Real.Operations.SplitAt
 public import CORALean.ContSet.Interval.Real.Operations.SupportBound
-public import CORALean.ContSet.Interval.Real.Operations.SupportBoundEntrywise
 public import CORALean.ContSet.Interval.Real.Operations.Or
 public import CORALean.ContSet.Interval.Real.Operations.Abs
 public import CORALean.ContSet.Interval.Real.Operations.Exp

@@ -2,14 +2,14 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Instances
 public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
-public import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
+public import CORALean.HybridDynamics.Theorems.JumpOuter
 
 @[expose] public section
 
 /-!
 # `Transition.jumpIntersectionOfPoint` contains the states that leave through the transition
 
-`jumpOfPoint_outer` at `hinter := Intersection.intersection_outer R e.guard`, exactly as
+`aux_jumpOfPoint_outer` at `hinter := Intersection.intersection_outer R e.guard`, exactly as
 `jumpIntersection_outer` reads `jump_outer` — the interface's guarantee is the
 inclusion asked for, so no caller-supplied enclosure is needed here either.
 
@@ -47,6 +47,26 @@ variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [∀ n, OfPoint (S n)
 variable {L : Type} {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+
+/-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
+the guard; the reset image then lands in `aux_jumpOfPoint Rg`. -/
+theorem Transition.aux_jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
+    (hinter : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
+    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) : -- --- CONCL ---
+    e.reset z ∈ construct (e.aux_jumpOfPoint Rg) := by -- --- PROOF ---
+  show toRealMat e.W *ᵥ z + toRealVec e.w ∈ construct (e.aux_jumpOfPoint Rg)
+  exact plus_outer _ _ (Set.add_mem_add
+    (mtimes_outer e.W Rg
+      (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hinter ⟨hz, hguard⟩))))
+    (mem_ofPoint (toRealVec e.w)))
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `R` encloses the state at the moment of the jump; the reset image then
@@ -56,7 +76,7 @@ theorem Transition.jumpIntersectionOfPoint_outer [∀ n, Intersection (S n) (Vec
     (e : Transition S L 𝕋 n) {R : S n} {z : Vec ℝ n} (hz : z ∈ construct R)
     (hguard : z ∈ construct e.guard) :
     e.reset z ∈ construct (e.jumpIntersectionOfPoint R) :=
-  e.jumpOfPoint_outer (Intersection.intersection_outer R e.guard) hz hguard
+  e.aux_jumpOfPoint_outer (Intersection.intersection_outer R e.guard) hz hguard
 
 /-- Anonymous, its content being that it elaborates (#38): `Real.ConPolyZono` has no
 `Real.OfInterval` instance, yet this typechecks, and its `Intersection` is exact, so the

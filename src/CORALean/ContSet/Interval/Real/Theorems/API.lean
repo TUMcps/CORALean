@@ -38,9 +38,8 @@ public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 public import CORALean.ContSet.Interval.Real.Theorems.MtimesIsNonempty
-public import CORALean.ContSet.Interval.Real.Theorems.SupportBoundEntrywiseAttained
+public import CORALean.ContSet.Interval.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Interval.Real.Theorems.MtimesWidth
 public import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
 public import CORALean.ContSet.Interval.Real.Theorems.HausdorffDist2AddLeBoxRadius
@@ -54,7 +53,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.OriginExact
 public import CORALean.ContSet.Interval.Real.Theorems.AbsExact
 public import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
 public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
-public import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
 public import CORALean.ContSet.Interval.Real.Theorems.ExpExact
 public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 public import CORALean.ContSet.Interval.Real.Theorems.AntitoneImageExact
@@ -92,7 +90,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
 public import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
 public import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
 public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
-public import CORALean.ContSet.Interval.Real.Theorems.SupSubCenter
 public import CORALean.ContSet.Interval.Real.Theorems.Radius2IsLeast
 public import CORALean.ContSet.Interval.Real.Theorems.IsequalIff
 public import CORALean.ContSet.Interval.Real.Theorems.TransposeExact
@@ -183,7 +180,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExactSquareOuter
 public import CORALean.ContSet.Interval.Real.Theorems.ExactSquareEntryExact
 public import CORALean.ContSet.Interval.Real.Theorems.AbsMaxIsGreatest
 public import CORALean.ContSet.Interval.Real.Theorems.PowersOuter
-public import CORALean.ContSet.Interval.Real.Theorems.ExistsMemAbsEqAbsMax
 public import CORALean.ContSet.Interval.Real.Theorems.AbsCenterAddRadius
 public import CORALean.ContSet.Interval.Real.Theorems.NormTypeEvalMono
 public import CORALean.ContSet.Interval.Real.Theorems.MatNormIsGreatest

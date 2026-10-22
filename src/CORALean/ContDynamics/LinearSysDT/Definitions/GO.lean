@@ -31,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The parameters of a general output model of a discrete-time linear system: `A`, `B`, `C`, `D`
+indexed by the `nk` time steps. -/
 structure LinearSysDT.GO (n r nk : ℕ) where
   A : Fin nk → Mat ℝ n n
   B : Fin nk → Fin nk → Mat ℝ n n

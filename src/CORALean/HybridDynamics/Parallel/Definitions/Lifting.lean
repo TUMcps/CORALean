@@ -35,6 +35,9 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- What a caller owes to lift the components' sets into the product space: the invariant, the
+guards, the input set and the disturbance set, each as a set containing what the components' sets
+put together. -/
 structure ParallelHybridAutomaton.Lifting (S G : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (n : Fin k → ℕ) (m : ℕ) where
   inv : (∀ i, G (n i)) → G (∑ i, n i)

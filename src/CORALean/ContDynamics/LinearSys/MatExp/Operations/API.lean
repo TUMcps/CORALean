@@ -45,7 +45,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialUpFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinus
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.GenMinusFloat
