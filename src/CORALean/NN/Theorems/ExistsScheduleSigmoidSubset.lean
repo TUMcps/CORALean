@@ -1,6 +1,12 @@
 module
 
-public import CORALean.NN.Theorems.SigmoidRefinementConverges
+public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Definitions.SigmoidNetworks
+public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Operations.Sigmoid
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
+public import CORALean.NN.Theorems.EncloseAtInflate
 
 @[expose] public section
 
@@ -40,6 +46,14 @@ namespace CORALean
 open Pointwise ContSet
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The network statement, at a network that exists. -/
+theorem aux_sigmoidRefinableNetwork_convergent (n : ℕ) :
+    (Real.sigmoidRefinableNetwork n).Convergent :=
+  ⟨Real.Layer.activationPolySigmoid_convergent n, ⟨1, LipschitzWith.id⟩, trivial⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem exists_schedule_sigmoid_subset {n : ℕ} (X : Real.PolyZonotope (Vec ℝ n)) {ε : ℝ}
@@ -47,7 +61,7 @@ theorem exists_schedule_sigmoid_subset {n : ℕ} (X : Real.PolyZonotope (Vec ℝ
       construct ((Real.sigmoidRefinableNetwork n).encloseAt sch X)
         ⊆ (Real.sigmoidRefinableNetwork n).image (construct X) + Metric.closedBall 0 ε :=
   (Real.sigmoidRefinableNetwork n).exists_schedule_encloseAt_subset
-    (sigmoidRefinableNetwork_convergent n) X ε hε
+    (aux_sigmoidRefinableNetwork_convergent n) X ε hε
 
 end CORALean
 

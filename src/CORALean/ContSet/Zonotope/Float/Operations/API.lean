@@ -64,9 +64,6 @@ public import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
 public import CORALean.ContSet.Zonotope.Float.Operations.Abs
 public import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
 public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
-public import CORALean.ContSet.Zonotope.Float.Operations.MethCResidual
-public import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
-public import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
 public import CORALean.ContSet.Zonotope.Float.Operations.BallB
 public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
@@ -78,9 +75,6 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvGain
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
 public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDimWith
-public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
-public import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
-public import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
 public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
 public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAligned

@@ -118,6 +118,7 @@ def wrapFreeF : Option (List (Zonotope (Vec Float 2))) :=
   sysF.reachWrappingFreeFloat { X₀ := X₀F, tFinal := 1 / 8 }
     { Δt := ΔtF, η := 4, ρ := 10 }
 
+/-- The one-step-at-a-time reach of the `Float` system over the same time and step. -/
 def recursiveF : Option (List (Zonotope (Vec Float 2)) × List (Zonotope (Vec Float 2))) :=
   sysF.reachFloat { X₀ := X₀F, tFinal := 1 / 8 }
     { Δt := ΔtF, η := 4, ρ := 10 }

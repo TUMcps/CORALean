@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
 public import CORALean.ContSet.InflatedContSet.Theorems.API
 

@@ -56,6 +56,7 @@ noncomputable def toPolyL : List ℤ → ℝ[X]
   | [] => 0
   | a :: l => C (a : ℝ) + X * toPolyL l
 
+/-- The polynomial of a sum of coefficient lists is the sum of the polynomials. -/
 theorem toPolyL_add (a b : List ℤ) : -- --- CONCL ---
     toPolyL (addL a b) = toPolyL a + toPolyL b := by -- --- PROOF ---
   induction a generalizing b with
@@ -65,12 +66,14 @@ theorem toPolyL_add (a b : List ℤ) : -- --- CONCL ---
     | nil => simp [addL, toPolyL]
     | cons b m => simp only [addL, toPolyL, ih]; push_cast; simp only [map_add]; ring
 
+/-- The polynomial of a scaled coefficient list is the scaled polynomial. -/
 theorem toPolyL_smul (c : ℤ) (l : List ℤ) :
     toPolyL (l.map (c * ·)) = C (c : ℝ) * toPolyL l := by
   induction l with
   | nil => simp [toPolyL]
   | cons a l ih => simp only [List.map, toPolyL, ih]; push_cast; simp only [map_mul]; ring
 
+/-- The polynomial of a product of coefficient lists is the product of the polynomials. -/
 theorem toPolyL_mul (q l : List ℤ) : -- --- CONCL ---
     toPolyL (mulL q l) = toPolyL q * toPolyL l := by -- --- PROOF ---
   induction q with
@@ -80,6 +83,7 @@ theorem toPolyL_mul (q l : List ℤ) : -- --- CONCL ---
     simp only [Int.cast_zero, map_zero, zero_add]
     ring
 
+/-- The polynomial of the list derivative is the derivative of the polynomial. -/
 theorem toPolyL_der (l : List ℤ) : -- --- CONCL ---
     derivative (toPolyL l) = toPolyL (derL l) := by -- --- PROOF ---
   induction l with
@@ -90,16 +94,20 @@ theorem toPolyL_der (l : List ℤ) : -- --- CONCL ---
     simp only [Int.cast_zero, map_zero, zero_add]
     ring
 
+/-- Evaluating the polynomial of a coefficient list gives the list's evaluation. -/
 theorem eval_toPolyL (l : List ℤ) (x : ℝ) :
     (toPolyL l).eval x = evalL l x := by
   induction l with
   | nil => simp [toPolyL, evalL]
   | cons a l ih => simp [toPolyL, evalL, ih]
 
+/-- The `k`-th derivative polynomial of `q` as an integer coefficient list: `X`, then repeated
+derivative times `q`. -/
 def odeL (q : List ℤ) : ℕ → List ℤ
   | 0 => [0, 1]
   | k + 1 => mulL (derL (odeL q k)) q
 
+/-- The list form `odeL` evaluates like the polynomial `odePoly`. -/
 theorem eval_odePoly_odeL {q : List ℤ} {Q : ℝ[X]} (hQ : ∀ x, Q.eval x = evalL q x) (k : ℕ)
     (x : ℝ) : -- --- CONCL ---
     (odePoly Q k).eval x = evalL (odeL q k) x := by -- --- PROOF ---

@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Discretize
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 
 @[expose] public section
 

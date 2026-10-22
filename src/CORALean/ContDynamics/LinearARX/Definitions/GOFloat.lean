@@ -28,6 +28,7 @@ open CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The output parameters of a linear ARX general output model, as interval matrices over `𝕋`. -/
 structure LinearARX.GOFloat (𝕋 : Type) (dy du p nk : ℕ) where
   C : Fin nk → Interval (Mat 𝕋 dy (p * dy))
   D : Fin nk → Fin nk → Interval (Mat 𝕋 dy du)

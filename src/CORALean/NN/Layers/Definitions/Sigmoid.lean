@@ -35,6 +35,7 @@ namespace CORALean.Real
 
 noncomputable def sigmoid (t : ℝ) : ℝ := (1 + Real.exp (-t))⁻¹
 
+/-- The derivative of the logistic function, as the product `σ t · σ (-t)`. -/
 noncomputable def sigmoidDeriv (t : ℝ) : ℝ := sigmoid t * sigmoid (-t)
 
 end CORALean.Real

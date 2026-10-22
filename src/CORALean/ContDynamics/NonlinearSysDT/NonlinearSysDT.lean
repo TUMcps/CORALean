@@ -36,12 +36,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A discrete-time nonlinear system `x⁺ = f(x, u)` with output `g` of dimension `q` and sampling
+time `dt`, as CORA's `nonlinearSysDT`. -/
 structure NonlinearSysDT (n m : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ n
   q : ℕ
   g : Vec ℝ n → Vec ℝ m → Vec ℝ q
   dt : ℝ
 
+/-- A run of the system: the initial state lies in `R₀`, the inputs in `U`, and every step and
+output follows `f` and `g`. -/
 structure NonlinearSysDT.IsTrajectory (sys : NonlinearSysDT n m) (R₀ : S n) (U : S m)
     (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m) (y : ℕ → Vec ℝ sys.q) : Prop where
   init : x 0 ∈ construct R₀

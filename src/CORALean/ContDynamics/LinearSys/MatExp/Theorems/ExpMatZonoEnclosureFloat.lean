@@ -8,7 +8,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
 public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
-public import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusIntervalOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
 
@@ -56,6 +57,22 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
+
+/-- `Zonotope.matPlusInterval` over-approximates the sum. -/
+theorem Zonotope.aux_matPlusInterval_outer (Z : Zonotope (Mat 𝕋 m n)) (I : Interval (Mat 𝕋 m n)) :
+    Z.construct + I.construct ⊆ (Zonotope.matPlusInterval Z I).construct := by
+  rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, x, hx, rfl⟩
+  refine ⟨a, ha, e + x, Interval.matPlus_outer _ _ he hx, ?_⟩
+  show a + (e + x) = a + e + x
+  abel
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : ℕ)
@@ -77,7 +94,7 @@ theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : �
   have hrem : exp A - Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoRemainder n
       (MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η)).construct :=
     MatExp.mem_expMatZonoRemainder fun i j => le_trans (Real.abs_entry_le_norm _ i j) htail
-  have hmem := Zonotope.matPlusInterval_outer _ _
+  have hmem := Zonotope.aux_matPlusInterval_outer _ _
     (Set.add_mem_add (MatExp.expTaylor_mem_expMatZonoTaylor M hA η) hrem)
   have heq : Real.MatExp.expTaylor A η + (exp A - Real.MatExp.expTaylor A η) = exp A := by abel
   rw [heq] at hmem

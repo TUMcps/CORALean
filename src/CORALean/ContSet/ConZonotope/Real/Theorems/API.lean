@@ -34,7 +34,6 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftZeroIff
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.NonemptyIffIsLeast

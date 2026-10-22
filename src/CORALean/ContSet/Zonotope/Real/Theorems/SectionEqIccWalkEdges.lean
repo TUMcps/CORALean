@@ -5,7 +5,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesCentralSymm
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentralSymmMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Tactic.Module
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
@@ -52,6 +53,20 @@ namespace CORALean.Real
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+/-- A zonotope is centrally symmetric. -/
+theorem Zonotope.aux_central_symm_mem_construct (Z : Zonotope α) {x : α} (hx : x ∈ Z.construct) :
+    (2 : ℝ) • Z.c - x ∈ Z.construct := by
+  obtain ⟨β, hβ, rfl⟩ := hx
+  refine ⟨fun j => -β j, fun j => by simpa using hβ j, ?_⟩
+  simp only [neg_smul, Finset.sum_neg_distrib]
+  module
+
+end
+
 
 /-- The lowest point of a nonempty section is on a walk edge. -/
 theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
@@ -107,7 +122,7 @@ theorem Zonotope.section_eq_Icc_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z
   -- the section at the reflected abscissa, through the center
   have hrefl : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.construct →
       (![2 * Z.c 0 - γ, 2 * Z.c 1 - y] : Vec ℝ 2) ∈ Z.construct := fun y hy => by
-    have := Z.central_symm_mem_construct hy
+    have := Z.aux_central_symm_mem_construct hy
     convert this using 1
     ext k; fin_cases k <;> simp
   obtain ⟨y₀, hy₀⟩ := hne

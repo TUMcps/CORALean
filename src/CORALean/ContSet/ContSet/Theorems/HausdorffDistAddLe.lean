@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import Mathlib.Topology.MetricSpace.HausdorffDistance
 
 @[expose] public section

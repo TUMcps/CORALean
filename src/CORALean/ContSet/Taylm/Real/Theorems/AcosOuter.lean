@@ -44,6 +44,26 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open Polynomial
+
+-- `acos⁽ʲ⁺¹⁾` is its negation, the same magnitude
+/-- The `(j+1)`-th derivative of arccosine on `|x| ≤ m < 1` has the same bound as arcsine's. -/
+theorem _root_.CORALean.aux_abs_iteratedDeriv_acos_le (j : ℕ) {x m : ℝ}
+    (hx : |x| ≤ m) (hm : m < 1) : -- --- CONCL ---
+    |iteratedDeriv (j + 1) Real.arccos x|
+      ≤ (asinDom j).eval m * ((√(1 - m ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---
+  rw [iteratedDeriv_succ', Real.deriv_arccos]
+  simp only [one_div]
+  rw [show (fun x : ℝ => -(√(1 - x ^ 2))⁻¹) = -(fun x : ℝ => (√(1 - x ^ 2))⁻¹) from rfl,
+    iteratedDeriv_neg, abs_neg]
+  exact abs_iteratedDeriv_inv_sqrt_le j hx hm
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.acos_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
@@ -53,7 +73,7 @@ theorem Taylm.acos_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f
   · have hm := lt_of_le_of_lt (T.abs_le_mag hξ) hdom
     rw [abs_lt] at hm
     exact Real.contDiffAt_arccos (by linarith [hm.1]) (by linarith [hm.2])
-  · exact abs_iteratedDeriv_acos_le _ (T.abs_le_mag hξ) hdom
+  · exact aux_abs_iteratedDeriv_acos_le _ (T.abs_le_mag hξ) hdom
 
 end CORALean.Real
 

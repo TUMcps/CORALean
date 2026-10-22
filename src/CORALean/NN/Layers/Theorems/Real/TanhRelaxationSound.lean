@@ -35,11 +35,24 @@ soundness transported along the conjugation identity.
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n : ℕ}
+
+/-- ℝ-only, as `ScaleRounding.exact` is: only ℝ stores `r · x` exactly. Both directions are the
+product itself. -/
+theorem aux_scaleRounding_exact_sound (r : ℝ) : (ScaleRounding.exact r).Sound r :=
+  ⟨fun _ => le_rfl, fun _ => le_rfl⟩
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem tanhRelaxation_sound : tanhRelaxation.Sound Real.tanh :=
-  Relaxation.ofAffineConj_sound sigmoidRelaxation_sound (scaleRounding_exact_sound 2)
-    (scaleRounding_exact_sound 2) (by norm_num) (by norm_num)
+  Relaxation.ofAffineConj_sound sigmoidRelaxation_sound (aux_scaleRounding_exact_sound 2)
+    (aux_scaleRounding_exact_sound 2) (by norm_num) (by norm_num)
     (fun t => by
       show Real.tanh t = 2 * sigmoid (2 * t) + -1
       rw [tanh_eq_sigmoid]; ring)

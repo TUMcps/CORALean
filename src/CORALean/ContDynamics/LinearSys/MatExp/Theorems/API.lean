@@ -55,7 +55,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainde
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylor
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoTaylorFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
@@ -72,7 +71,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialDownFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialMulPowLe
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FactorialUpFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.GenMinusFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.GenOpNorm2GenMinusFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
@@ -80,10 +78,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpTail2
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2AffineDynamicsLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HausdorffDist2ParticularSolutionLe
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
@@ -115,9 +111,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowSubEq
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowUpFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermBetween
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermHiFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermLoFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScalarTermLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
@@ -151,11 +144,9 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalIntegrable
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerTermMemMatPow
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerSumLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemExpIntervalEnclosureOfIntegral
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfIntegral
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsPeanoBakerExpansion
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralMemSmulOfMemSmul
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PeanoBakerInputTermMem
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RescaledPeanoBakerTermMemMatPow
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalCorrectionMatrixOfRemainder
@@ -171,10 +162,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorMemExpmOn
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMemExpmOneParam
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InputOneParamContains
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveRemainderSubsetIntervalInputRemainder
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ParticularCoeffSumMemFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveIntegralOuterRefines
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VertexSign
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DetExpSmul
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCorrectionMatrix
@@ -182,7 +171,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMulVecImageSubs
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccEqImage
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccSubsetImageAdd
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowEntryLePowEntry
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExponentialRemainderOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DependentTermsOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FoldlPlusMem

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFloat
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -42,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.reachOrderFloat_spec {sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n}
+theorem LinParamSys.reachOrderFloat_spec {sys : LinParamSys ℐ[𝕋] n}
     {tLo tHi : 𝕋} {η : ℕ} :
     ∀ η' ∈ sys.reachOrderFloat tLo tHi η,
       sys.OrderAdmissibleFloat tLo tHi η' ∧ η ≤ η' := by

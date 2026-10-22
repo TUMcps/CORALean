@@ -30,6 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A float interval chain stands for a real one: the layers agree, the float weights read as the
+real ones, and each stored enclosure encloses the real activation and its derivative. -/
 inductive IntervalChain.Sound :
     ∀ {n k : ℕ}, IntervalChain 𝕋 n k → Real.IntervalChain n k → Prop where
   | nil {n : ℕ} : Sound (.nil : IntervalChain 𝕋 n n) .nil

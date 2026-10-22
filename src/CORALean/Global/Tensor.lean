@@ -49,7 +49,7 @@ assert_not_exists Real.exp
 -- Calculus, which only the dynamics layers need.
 assert_not_exists HasDerivAt
 -- The scalar interface sits above this file.
-assert_not_imported CORALean.Global.Scalar
+assert_not_imported CORALean.Global.Interfaces
 -- The entrywise layer sits above this file.
 assert_not_imported CORALean.Global.Entrywise
 -- The abstract set class sits above this file.

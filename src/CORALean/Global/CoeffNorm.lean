@@ -53,9 +53,11 @@ variable {E V : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [AddCommGroup V
 /-- `min {‖α‖ | G α = x}`, `0` where nothing maps to `x`. -/
 noncomputable def coeffNorm (G : E →ₗ[ℝ] V) (x : V) : ℝ := sInf (norm '' {α | G α = x})
 
+/-- The coefficient norm is nonnegative. -/
 theorem coeffNorm_nonneg (G : E →ₗ[ℝ] V) (x : V) : 0 ≤ coeffNorm G x :=
   Real.sInf_nonneg (by rintro _ ⟨α, -, rfl⟩; exact norm_nonneg α)
 
+/-- The coefficient norm of `G α` is at most the norm of `α`. -/
 theorem coeffNorm_le (G : E →ₗ[ℝ] V) (α : E) : coeffNorm G (G α) ≤ ‖α‖ :=
   csInf_le ⟨0, by rintro _ ⟨_, -, rfl⟩; exact norm_nonneg _⟩ ⟨α, rfl, rfl⟩
 
@@ -89,6 +91,8 @@ theorem exists_coeffNorm_eq [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x :
   refine ⟨α, hαx, le_antisymm ?_ (hαx ▸ coeffNorm_le G α)⟩
   exact le_csInf ⟨_, α₀, hα₀, rfl⟩ (by rintro _ ⟨β, hβ, rfl⟩; exact hall β hβ)
 
+/-- A point in the range has coefficient norm at most `r` exactly when some coefficient vector of
+norm at most `r` reaches it. -/
 theorem coeffNorm_le_iff [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V} (hx : ∃ α, G α = x)
     {r : ℝ} : -- --- CONCL ---
     coeffNorm G x ≤ r ↔ ∃ α, G α = x ∧ ‖α‖ ≤ r := by -- --- PROOF ---
@@ -99,9 +103,11 @@ theorem coeffNorm_le_iff [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V}
   · rintro ⟨α, rfl, hα⟩
     exact (coeffNorm_le G α).trans hα
 
+/-- The coefficient norm of zero is zero. -/
 theorem coeffNorm_zero (G : E →ₗ[ℝ] V) : coeffNorm G 0 = 0 :=
   le_antisymm (by simpa using coeffNorm_le G 0) (coeffNorm_nonneg G 0)
 
+/-- The coefficient norm is subadditive on points of the range of `G`. -/
 theorem coeffNorm_add_le [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x y : V}
     (hx : ∃ α, G α = x) (hy : ∃ α, G α = y) :
     coeffNorm G (x + y) ≤ coeffNorm G x + coeffNorm G y := by
@@ -110,6 +116,7 @@ theorem coeffNorm_add_le [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x y : 
   rw [← hα, ← hβ, ← map_add]
   exact (coeffNorm_le G _).trans (norm_add_le α β)
 
+/-- The coefficient norm of a point in the range scales with `|a|` under scaling by `a`. -/
 theorem coeffNorm_smul [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V} (hx : ∃ α, G α = x)
     (a : ℝ) : -- --- CONCL ---
     coeffNorm G (a • x) = |a| * coeffNorm G x := by -- --- PROOF ---
@@ -134,6 +141,7 @@ theorem coeffNorm_smul [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V} (
           mul_le_mul_of_nonneg_left hle hpos.le
       _ = coeffNorm G (G (a • α)) := by field_simp
 
+/-- A point in the range has coefficient norm zero only if it is zero. -/
 theorem coeffNorm_eq_zero_iff [FiniteDimensional ℝ E] (G : E →ₗ[ℝ] V) {x : V}
     (hx : ∃ α, G α = x) : -- --- CONCL ---
     coeffNorm G x = 0 ↔ x = 0 := by -- --- PROOF ---

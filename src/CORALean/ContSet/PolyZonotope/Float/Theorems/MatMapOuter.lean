@@ -3,11 +3,13 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import Mathlib.Data.Matrix.Mul
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MatMapOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMulDownClose
 
 @[expose] public section
 
@@ -59,13 +61,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+variable {α β : Type} [RealImage α β]
+
+/-- The extended generators read back are the nominal set's. -/
+theorem PolyZonotope.aux_realImage_extGens (pZ : PolyZonotope α) (l : Fin (pZ.h + 1)) :
+    RealImage.realImage (PolyZonotope.aux_extGens pZ l)
+      = Real.PolyZonotope.extG (PolyZonotope.nominal pZ) l := by
+  -- generator zero is the center, the rest the dependent generators
+  cases l using Fin.cases <;> rfl
+
+end
+
+
 /-- A point of the nominal set lies in the box of all its generators, the center included. -/
 theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n k))
     {a : Fin pZ.p → ℝ} (ha : ∀ i, |a i| ≤ 1) {β : Fin pZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (PolyZonotope.nominal pZ).point a + ∑ j, β j • (PolyZonotope.nominal pZ).GI j
       ∈ (PolyZonotope.matGeneratorError
-          (Fin.append (PolyZonotope.extGens pZ) pZ.GI)).construct := by -- --- PROOF ---
+          (Fin.append (PolyZonotope.aux_extGens pZ) pZ.GI)).construct := by -- --- PROOF ---
   -- the coefficients: the extended monomials, then `β`
   have ht : ∀ s, |Fin.append (Real.PolyZonotope.extM (PolyZonotope.nominal pZ) a) β s| ≤ 1 := by
     intro s
@@ -75,8 +90,8 @@ theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n 
     · rw [Fin.append_right]
       exact hβ j
   have h := PolyZonotope.mem_matGeneratorError
-    (G := Fin.append (PolyZonotope.extGens pZ) pZ.GI)
-    (Δ := fun s => toRealMat (Fin.append (PolyZonotope.extGens pZ) pZ.GI s))
+    (G := Fin.append (PolyZonotope.aux_extGens pZ) pZ.GI)
+    (Δ := fun s => toRealMat (Fin.append (PolyZonotope.aux_extGens pZ) pZ.GI s))
     (fun _ _ _ => le_refl _) ht
   -- the point is the extended sum, then the independent one
   convert h using 1
@@ -84,7 +99,7 @@ theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n 
   simp only [Fin.append_left, Fin.append_right]
   congr 1
   exact Finset.sum_congr rfl fun l _ => by
-    rw [← PolyZonotope.realImage_extGens]
+    rw [← PolyZonotope.aux_realImage_extGens]
     rfl
 
 /-- The exact `matMap` of the nominal sets: each point is a point of the float result's nominal
@@ -107,10 +122,10 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
   -- the exact pairs, read as products of the stored generators read back
   have hG : ∀ l, Real.PolyZonotope.bilinG matMulBilin (PolyZonotope.nominal pZ₁)
       (PolyZonotope.nominal pZ₂) l
-        = toRealMat (PolyZonotope.extGens pZ₁ (finProdFinEquiv.symm l).1)
-          * toRealMat (PolyZonotope.extGens pZ₂ (finProdFinEquiv.symm l).2) := fun l => by
+        = toRealMat (PolyZonotope.aux_extGens pZ₁ (finProdFinEquiv.symm l).1)
+          * toRealMat (PolyZonotope.aux_extGens pZ₂ (finProdFinEquiv.symm l).2) := fun l => by
     show matMulBilin (Real.PolyZonotope.extG _ _) (Real.PolyZonotope.extG _ _) = _
-    rw [← PolyZonotope.realImage_extGens, ← PolyZonotope.realImage_extGens]
+    rw [← PolyZonotope.aux_realImage_extGens, ← PolyZonotope.aux_realImage_extGens]
     rfl
   have hGI : ∀ t, ∃ (A : Mat 𝕋 n k) (B : Mat 𝕋 k m),
       Real.PolyZonotope.bilinGI matMulBilin (PolyZonotope.nominal pZ₁)
@@ -122,9 +137,9 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     refine Fin.addCases (fun t => ?_) (fun t => ?_) t
     · refine Fin.addCases (fun t => ?_) (fun t => ?_) t
       · refine ⟨pZ₁.GI (finProdFinEquiv.symm t).1,
-          PolyZonotope.extGens pZ₂ (finProdFinEquiv.symm t).2, ?_, ?_, ?_⟩
+          PolyZonotope.aux_extGens pZ₂ (finProdFinEquiv.symm t).2, ?_, ?_, ?_⟩
         · simp only [Real.PolyZonotope.bilinGI, Fin.append_left]
-          rw [← PolyZonotope.realImage_extGens]
+          rw [← PolyZonotope.aux_realImage_extGens]
           rfl
         all_goals simp only [PolyZonotope.aux_pairGI, Fin.append_left]
       -- the middle block reads no extended generator
@@ -132,10 +147,10 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
         · simp only [Real.PolyZonotope.bilinGI, Fin.append_left, Fin.append_right]
           rfl
         all_goals simp only [PolyZonotope.aux_pairGI, Fin.append_left, Fin.append_right]
-    · refine ⟨PolyZonotope.extGens pZ₁ (finProdFinEquiv.symm t).1,
+    · refine ⟨PolyZonotope.aux_extGens pZ₁ (finProdFinEquiv.symm t).1,
         pZ₂.GI (finProdFinEquiv.symm t).2, ?_, ?_, ?_⟩
       · simp only [Real.PolyZonotope.bilinGI, Fin.append_right]
-        rw [← PolyZonotope.realImage_extGens]
+        rw [← PolyZonotope.aux_realImage_extGens]
         rfl
       all_goals simp only [PolyZonotope.aux_pairGI, Fin.append_right]
   -- the float result's nominal point at the same factors and coefficients

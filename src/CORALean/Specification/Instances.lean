@@ -4,7 +4,7 @@ public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.Capsule.Float.Instances
 public import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.Conversion.Float.Instances
-public import CORALean.ContSet.ContSet.Definitions.FullDimTest
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.HPolytope.Float.Instances

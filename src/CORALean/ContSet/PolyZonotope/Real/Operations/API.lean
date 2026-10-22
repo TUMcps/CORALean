@@ -52,7 +52,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MulE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
@@ -74,14 +73,10 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
 public import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorExtend
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeIdx
-public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMergeKeep
-public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMemMerge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
@@ -94,7 +89,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PowSort
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
-public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortFactorCount
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DropRadius
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch

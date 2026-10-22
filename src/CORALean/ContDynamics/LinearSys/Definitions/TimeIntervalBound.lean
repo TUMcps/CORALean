@@ -1,6 +1,9 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactSubsetSetLinCombSum
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactEqUnion
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSetLinComb
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.Global.SupportFunction.Composition
 
@@ -9,11 +12,12 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # A support bound over a whole step, not a time point
 
-[1, Alg. 1 (upper bounds)]'s line 13: `ρ(R̂(τ_k), ℓ) ← max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} +
-ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term: `SupportBound.setLinComb` for the `max`,
-`SupportBound.image` for the direction pulled back through `e^{Ar}`, `SupportBound.add` for
-the `+`s, `SupportBound.mono` to cross `timeIntervalReachSetExact_subset_setLinComb_sum`.
-The three bounds are hypotheses: any representation that answers `SupportBound` on `R₀`, on the
+[1, Alg. 1 (upper bounds)]'s line 13:
+`ρ(R̂(τ_k), ℓ) ← max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} + ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for
+term: `SupportBound.setLinComb` for the `max`, `SupportBound.image` for the direction pulled back
+through `e^{Ar}`, `SupportBound.add` for the `+`s, `SupportBound.mono` to cross the step's exact
+enclosure by the hull of segments plus the sums, proved in place from variation of constants. The
+three bounds are hypotheses: any representation that answers `SupportBound` on `R₀`, on the
 correction term and on the particular solution may be handed in.
 
 ## Inputs
@@ -96,8 +100,20 @@ noncomputable def LinearSys.timeIntervalBound (sys : LinearSys 𝕋 n) {T : Set 
     SupportBound (sys.timeIntervalReachSetExact T R₀ U r) c :=
   (((b₀ c).setLinComb (SupportBound.image (mulVecLin (exp (r • toRealMat sys.A)))
       (b₀ (c.comp (mulVecLin (exp (r • toRealMat sys.A))))))).add (bC c)).add (bP c) |>.mono
-    (sys.timeIntervalReachSetExact_subset_setLinComb_sum R₀ U hr hT hε hconv hclosed hbdd hRconv
-      hRclosed hRbdd h0)
+    (by
+      -- the interval's reach set is the union over the times of the step
+      rw [sys.timeIntervalReachSetExact_eq_iUnion]
+      refine Set.iUnion₂_subset fun t ht => ?_
+      rintro _ ⟨x, u, traj, rfl⟩
+      -- a trajectory is the initial state's flow plus the input's, by variation of constants
+      have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 ht.2⟩
+      have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hbdd
+      rw [sub_zero] at hvoc
+      rw [hvoc]
+      exact Set.add_mem_add
+        (sys.timeInterval_outer_setLinComb hr hε R₀ ht.1 ht.2 (Set.mem_image_of_mem _ traj.init))
+        (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd hRconv hRclosed
+          hRbdd h0 ht.1 ht.2))
 
 end CORALean
 

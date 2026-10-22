@@ -22,6 +22,7 @@ namespace CORALean.Bench
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zonotope in the plane with integer center and generators over the common denominator `den`. -/
 structure RandOutZono where
   den : ℕ
   c : ℤ × ℤ

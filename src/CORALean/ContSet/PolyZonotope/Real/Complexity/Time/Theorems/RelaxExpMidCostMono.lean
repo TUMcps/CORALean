@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.RelaxDriftCostMono
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpMidCost
 
 @[expose] public section
@@ -40,13 +41,30 @@ Monotone in the factor count.
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Monotone in the factor count. -/
+theorem PolyZonotope.aux_eDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
+    PolyZonotope.aux_eDriftCost p ≤ PolyZonotope.aux_eDriftCost p' := by
+  simp only [PolyZonotope.aux_eDriftCost, Cost.le_iff, Cost.ops_add]
+  omega
+
+
+/-- Monotone in the factor count. -/
+theorem PolyZonotope.aux_relaxDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
+    PolyZonotope.aux_relaxDriftCost p ≤ PolyZonotope.aux_relaxDriftCost p' := by
+  have := PolyZonotope.aux_eDriftCost_mono h
+  simp only [PolyZonotope.aux_relaxDriftCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢
+  omega
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Monotone in the factor and independent counts, and in the kept dependent count. -/
 theorem PolyZonotope.relaxExpMidCost_mono {p p' d d' q q' : ℕ} (n : ℕ) (h : p ≤ p')
     (hd : d ≤ d') (hq : q ≤ q') :
     PolyZonotope.relaxExpMidCost n p d q ≤ PolyZonotope.relaxExpMidCost n p' d' q' := by
-  have := PolyZonotope.relaxDriftCost_mono h
+  have := PolyZonotope.aux_relaxDriftCost_mono h
   simp only [PolyZonotope.relaxExpMidCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢
   have g : n * (d + q + 3) + p * (d + 1) ≤ n * (d' + q' + 3) + p' * (d' + 1) := by gcongr
   omega

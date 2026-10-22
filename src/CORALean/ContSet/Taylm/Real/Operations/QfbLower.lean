@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Operations.Minus
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import Mathlib.Data.Matrix.Mul
 public import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
 
 @[expose] public section

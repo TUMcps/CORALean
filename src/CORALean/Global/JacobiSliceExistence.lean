@@ -63,6 +63,12 @@ variable {m n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- At the selected coordinates of `xc` itself, the slice is `xc`. -/
+theorem aux_jacobiSlice_self (xc : Fin m → ℝ) (ind : Fin n → Fin m) :
+    jacobiSlice xc ind (fun i => xc (ind i)) = xc := by
+  simp [jacobiSlice]
+
+
 /-- The selection matrix of `ind` applied to a unit vector is the unit vector at `ind j`. -/
 theorem aux_select_mulVec_single {ind : Fin n → Fin m} (j : Fin n) : -- --- CONCL ---
     (Matrix.of fun k i => if ind i = k then (1 : ℝ) else 0) *ᵥ Pi.single j 1
@@ -123,7 +129,7 @@ theorem exists_jacobiSlice_eq_of_jacobi {f : (Fin m → ℝ) → (Fin n → ℝ)
   obtain ⟨v, hv, hFv⟩ := exists_mem_Icc_eq_add_of_jacobi hF hxc (Jlo := Jlo) (Jhi := Jhi)
     (fun v hv i j => by rw [hFd]; exact hJ v hv i j) (C *ᵥ (y - f xc)) hstep
   refine ⟨v, hv, hC ?_⟩
-  have e : F (fun i => xc (ind i)) = C *ᵥ f xc := by simp only [F, jacobiSlice_self]
+  have e : F (fun i => xc (ind i)) = C *ᵥ f xc := by simp only [F, aux_jacobiSlice_self]
   rw [e, ← Matrix.mulVec_add, add_sub_cancel] at hFv
   exact hFv
 

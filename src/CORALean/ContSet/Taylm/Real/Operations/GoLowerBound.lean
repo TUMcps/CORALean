@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
 public import CORALean.ContSet.Taylm.Real.Operations.Ldb
 public import CORALean.ContSet.Taylm.Real.Operations.QfbLower
-public import CORALean.ContSet.Taylm.Real.Operations.Hessian
 public import Mathlib.LinearAlgebra.Matrix.PosDef
 
 @[expose] public section
@@ -35,6 +34,15 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The Hessian of the terms at `0`, as CORA's `optLinQuad` reads it: twice the coefficient of `xₖ²`
+on the diagonal, the coefficient of `xₖxₗ` off it. The `H` of [1, Sec. 3]. -/
+noncomputable def Taylm.aux_hessian (L : List (ℝ × (Fin n → ℕ))) : Mat ℝ n n := fun k l =>
+  ((L.filter fun a => decide (a.2 = Pi.single k 1 + Pi.single l 1)).map Prod.fst).sum *
+    (if k = l then 2 else 1)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 open Classical in
@@ -48,7 +56,7 @@ noncomputable def Taylm.goLowerBound (T : Taylm n) (ε : ℝ) (fuel : ℕ) (B : 
   -- LDB
   let lLDB := TB.ldb ε fuel
   -- QFB at the box's center, where the quadratic part is positive semidefinite
-  let H := Taylm.hessian TB.terms
+  let H := Taylm.aux_hessian TB.terms
   let lQFB := if H.PosSemidef then TB.qfbLower H 0 else lTM
   max (max lIN lTM) (max lLDB lQFB)
 

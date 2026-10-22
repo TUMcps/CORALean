@@ -3,7 +3,10 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
+public import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 public import CORALean.ContSet.OptEmpty.Theorems.Basic
 
 @[expose] public section
@@ -46,6 +49,34 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open Pointwise
+
+/-- `Ellipsoid.ofPoint` is exactly the point. -/
+theorem Ellipsoid.aux_ofPoint_exact (p : Vec 𝕋 n) : -- --- CONCL ---
+    (Ellipsoid.ofPoint p).construct = {toRealVec p} := by -- --- PROOF ---
+  have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=
+    funext fun _ => funext fun _ => toReal_zero
+  have h : (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid
+      = Real.Ellipsoid.ofPoint (toRealVec p) := by
+    show Real.Ellipsoid.ofShape (toRealMat (fun _ _ : Fin n => (zero : 𝕋))) (toRealVec p) = _
+    rw [hQ, Real.Ellipsoid.ofShape_eq .zero]
+    rfl
+  have hN : InflatedContSet.nominalSet (Ellipsoid.ofPoint p) = {toRealVec p} := by
+    show (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid.construct = _
+    rw [h]
+    exact Set.ext fun x =>
+      (Real.Ellipsoid.mem_ofPoint_iff (toRealVec p) x).trans Set.mem_singleton_iff.symm
+  have hE : (Ellipsoid.ofPoint p).I_error.construct = {0} := Interval.origin_exact n
+  show InflatedContSet.nominalSet (Ellipsoid.ofPoint p) + (Ellipsoid.ofPoint p).I_error.construct =
+      _
+  rw [hN, hE, Set.singleton_add_singleton, add_zero]
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p w : Vec 𝕋 n)
@@ -56,7 +87,7 @@ theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p w : Vec 𝕋 n)
       ⊆ ContSet.construct (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by
     rw [OptEmpty.construct_of]
     change _ ⊆ (Ellipsoid.ofPoint p).construct
-    rw [Ellipsoid.ofPoint_exact]
+    rw [Ellipsoid.aux_ofPoint_exact]
     exact Set.inter_subset_right
   unfold Ellipsoid.andPoint
   split_ifs with h₁ h₂

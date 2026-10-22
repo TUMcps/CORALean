@@ -33,6 +33,8 @@ variable {G : ℕ → Type} {𝕋 : Type} {k : ℕ} {n : Fin k → ℕ} {L : Fin
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The synchronization labels of a parallel automaton: the label of each transition, the components
+in which a label occurs, and the list of all labels. -/
 structure ParallelHybridAutomaton.SyncLabels (G : ℕ → Type) (L : Fin k → Type) (𝕋 : Type)
     (n : Fin k → ℕ) (Λ : Type) where
   label : ∀ i, Transition G (L i) 𝕋 (n i) → Option Λ

@@ -38,6 +38,7 @@ variable {n₁ n₂ : ℕ}
 def appendLinear (n₁ n₂ : ℕ) : (Vec ℝ n₁ × Vec ℝ n₂) →ₗ[ℝ] Vec ℝ (n₁ + n₂) :=
   (blockPadLeft n₁ n₂).coprod (blockPadRight n₁ n₂)
 
+/-- The appended linear map sends a pair to the concatenation of its two vectors. -/
 theorem appendLinear_apply (p : Vec ℝ n₁ × Vec ℝ n₂) :
     appendLinear n₁ n₂ p = Fin.append p.1 p.2 := by
   funext j

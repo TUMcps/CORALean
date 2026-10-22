@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
+public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
 
 @[expose] public section
 
@@ -35,15 +35,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- `[aⱼ, bⱼ] = -[aᵢ, bᵢ]` and `[aᵢ, bᵢ] = -[aⱼ, bⱼ]`, each certified. -/
+def HPolytope.aux_isInvertedPair (Q : HPolytope 𝕋 (Vec 𝕋 n)) (i j : Fin Q.m) : Bool :=
+  HPolytope.eqVec (Q.A j) (-(Q.A i)) && HPolytope.eqScalar (Q.b j) (neg (Q.b i)) &&
+    HPolytope.eqVec (Q.A i) (-(Q.A j)) && HPolytope.eqScalar (Q.b i) (neg (Q.b j)) &&
+    (HPolytope.eqScalar (Q.b_error i) zero && HPolytope.eqScalar (Q.b_error j) zero)
+
+
 /-- The rows with no inverted partner. -/
 def HPolytope.aux_keptRows (Q : HPolytope 𝕋 (Vec 𝕋 n)) : List (Fin Q.m) :=
   (List.finRange Q.m).filter fun i =>
-    !(List.finRange Q.m).any fun j => HPolytope.isInvertedPair Q i j
+    !(List.finRange Q.m).any fun j => HPolytope.aux_isInvertedPair Q i j
 
 /-- The rows with an inverted partner of no smaller index. -/
 def HPolytope.aux_leadRows (Q : HPolytope 𝕋 (Vec 𝕋 n)) : List (Fin Q.m) :=
   (List.finRange Q.m).filter fun i =>
-    (List.finRange Q.m).any fun j => HPolytope.isInvertedPair Q i j && decide (i ≤ j)
+    (List.finRange Q.m).any fun j => HPolytope.aux_isInvertedPair Q i j && decide (i ≤ j)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

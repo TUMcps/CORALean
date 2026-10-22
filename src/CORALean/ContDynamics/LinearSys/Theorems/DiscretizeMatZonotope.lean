@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
 public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
 

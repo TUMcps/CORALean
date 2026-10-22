@@ -30,6 +30,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The output parameters of a general output model of a linear ARX system: one `C` per output and
+one `D` per input and output pair, for `nk` inputs. -/
 structure LinearARX.GO (dy du p nk : ℕ) where
   C : Fin nk → Mat ℝ dy (p * dy)
   D : Fin nk → Fin nk → Mat ℝ dy du

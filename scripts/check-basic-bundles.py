@@ -45,7 +45,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 EXCEPTIONS = ROOT / "scripts" / "basic-bundle-exceptions.txt"
-NONMODULE = ROOT / "scripts" / "non-module-allowlist.txt"
 # The CORA-bug appendix links the counterexample and the fix of each bug by file; those files
 # keep their own (see `scripts/cora-bugs-table.py`, which writes it from `cora-bugs.json`).
 CORA_BUGS_TEX = ROOT / "experiments" / "paper" / "latex" / "appendix-cora-bugs.tex"
@@ -56,18 +55,12 @@ BASIC = "Basic.lean"
 
 def set_root(root):
     """Point every path above at another checkout (the conversion runs on an archive)."""
-    global ROOT, SRC, EXCEPTIONS, NONMODULE, CORA_BUGS_TEX, _NONMOD, _BUGS
+    global ROOT, SRC, EXCEPTIONS, CORA_BUGS_TEX, _BUGS
     ROOT = Path(root).resolve()
     SRC = ROOT / "src"
     EXCEPTIONS = ROOT / "scripts" / "basic-bundle-exceptions.txt"
-    NONMODULE = ROOT / "scripts" / "non-module-allowlist.txt"
     CORA_BUGS_TEX = ROOT / "experiments" / "paper" / "latex" / "appendix-cora-bugs.tex"
-    _NONMOD = _BUGS = None
-
-# `Basic.lean` files still closing and reopening a namespace, because another branch is editing
-# them; the entry goes once that branch has merged and the file is converted (a stale entry is
-# reported).
-REOPEN_PENDING = {"src/CORALean/HybridDynamics/Operations/Basic.lean"}
+    _BUGS = None
 
 BEGIN = "-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --"
 END = "-- ---------------------------------------  END OF CODE  ---------------------------------------- --"
@@ -288,16 +281,7 @@ def class_root(d):
     return any((d / x).is_dir() for x in ("Operations", "Theorems", "Definitions"))
 
 
-_NONMOD = None
 _BUGS = None
-
-
-def nonmodule_files():
-    global _NONMOD
-    if _NONMOD is None:
-        _NONMOD = {l.split()[0] for l in NONMODULE.read_text(encoding="utf-8").splitlines()
-                   if l.strip() and not l.lstrip().startswith("#")}
-    return _NONMOD
 
 
 def cora_bug_files():
@@ -323,8 +307,6 @@ def excluded(lf):
         return "CORA model the library imports (COUNTEREXAMPLE_EXCEPTIONS)"
     if rel in cora_bug_files():
         return "linked from the CORA-bug appendix"
-    if rel in nonmodule_files():
-        return "non-module"
     if any(l.startswith("## References") for l in lf.module_doc):
         return "cites a paper"
     if ("Float" in p.stem and "Float" not in Path(rel).parts[:-1] and lf.region is not None
@@ -587,9 +569,7 @@ def groups(lf, secs, say):
                     cur.inherited = list(frame[0])
                 elif x.word == "namespace" and last_end is not None:
                     name = text.split()[1] if len(text.split()) > 1 else None
-                    if name == last_end and lf.rel in REOPEN_PENDING:
-                        lf.reopen_pending = True
-                    elif name == last_end:
+                    if name == last_end:
                         say(i, f"`end {last_end}` directly followed by `namespace {name}`: the"
                                " namespace stays open, each set of `variable`s in a nested"
                                " `section` … `end`")
@@ -781,7 +761,7 @@ def read_exceptions(say=None):
 def check_basic(lf, say):
     rel, lines = lf.rel, lf.lines
     where = lambda i: f"{rel}:{i + 1}"
-    if rel.startswith("src/CORALean/Examples/") or rel in nonmodule_files():
+    if rel.startswith("src/CORALean/Examples/"):
         say(f"{rel}:1: a `Basic.lean` is a module, outside `Examples/`")
     if lf.begin < 0 or lf.end < 0:
         say(f"{rel}:1: a `Basic.lean` frames its sections with `BEGIN CODE` and `END OF CODE`")
@@ -796,11 +776,7 @@ def check_basic(lf, say):
     if not secs:
         say(f"{rel}:1: a `Basic.lean` with no sections — delete it")
         return
-    lf.reopen_pending = False
     grps = groups(lf, secs, lambda i, msg: say(f"{where(i)}: {msg}"))
-    if rel in REOPEN_PENDING and not lf.reopen_pending:
-        say(f"{rel}:1: stale `REOPEN_PENDING` entry in scripts/check-basic-bundles.py — the file"
-            " no longer closes and reopens a namespace; remove the entry")
     first = min(g.start for g in grps)
     for i in range(lf.begin + 1, first):
         if lines[i].strip() and not MARKER.match(lines[i]):

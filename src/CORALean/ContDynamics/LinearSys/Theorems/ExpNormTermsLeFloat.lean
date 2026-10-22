@@ -4,7 +4,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.ExpLeExpNormUpFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 @[expose] public section
@@ -49,6 +50,28 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `e^{nrm} ≤ expNormUpFloat r η`, `nrm` the float bound on `‖r A‖`, at an admissible `η`. -/
+theorem LinearSys.aux_exp_le_expNormUpFloat (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
+    (hη : sys.OrderAdmissibleFloat r r η) : -- --- CONCL ---
+    Real.exp (toReal (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))))
+      ≤ toReal (sys.expNormUpFloat r η) := by -- --- PROOF ---
+  refine le_expUp _ _ ?_
+  have h2 : (0 : ℝ) < (η : ℝ) + 2 := by positivity
+  have hle : toReal (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A)))
+      ≤ ((η : ℝ) + 2) / 2 := by
+    have := hη.2
+    rw [div_le_iff₀ h2] at this
+    linarith
+  have hlt : ((η + 2 : ℕ) : ℝ) < 2 ^ (Nat.log2 (η + 2) + 1) := by
+    exact_mod_cast Nat.lt_log2_self
+  have hmono : (2 : ℝ) ^ (Nat.log2 (η + 2) + 1) ≤ 2 ^ (Nat.log2 (η + 2) + 5) :=
+    pow_le_pow_right₀ (by norm_num) (by omega)
+  push_cast at hlt
+  linarith
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- At `r ≥ 0` and an admissible `η`: `r‖A‖ ≤ nrm`, `e^{r‖A‖} - 1` and `e^{r‖A‖} - 1 - r‖A‖`
@@ -74,7 +97,7 @@ theorem LinearSys.expNormTerms_le_float (sys : LinearSys 𝕋 n) {r : 𝕋} {η 
   have hnorm : ‖toReal r • A‖ = x := by rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg hr]
   have hxa : x ≤ a := hnorm ▸ MatExp.norm_smul_le_normUpperBound _ r (Interval.mem_point sys.A)
   have hx0 : 0 ≤ x := mul_nonneg hr (norm_nonneg _)
-  have hE := sys.exp_le_expNormUpFloat hη
+  have hE := sys.aux_exp_le_expNormUpFloat hη
   rw [← hnrm, ← ha] at hE
   -- `e^a - e^x ≥ a - x` for `0 ≤ x ≤ a`, which is what makes both terms monotone
   have hexa : Real.exp x ≤ Real.exp a := Real.exp_le_exp.mpr hxa

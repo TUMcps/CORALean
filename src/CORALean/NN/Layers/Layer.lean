@@ -36,6 +36,8 @@ open ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A layer as what it computes on a set: a propagation from sets of dimension `n` to sets of
+dimension `m`. -/
 structure Layer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
   enclose : S n → S m
 

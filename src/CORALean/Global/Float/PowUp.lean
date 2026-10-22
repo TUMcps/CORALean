@@ -38,6 +38,7 @@ def powUp (B : 𝕋) : ℕ → 𝕋
   | 0 => one
   | k + 1 => mulUp (powUp B k) B
 
+/-- `powUp B k` is above `x ^ k` for every `0 ≤ x ≤ B`. -/
 theorem le_powUp [SoundFloatArithmetic 𝕋] {B : 𝕋} {x : ℝ} (hx : 0 ≤ x)
     (hB : x ≤ toReal B) : -- --- CONCL ---
     ∀ k : ℕ, x ^ k ≤ toReal (powUp B k) := by -- --- PROOF ---

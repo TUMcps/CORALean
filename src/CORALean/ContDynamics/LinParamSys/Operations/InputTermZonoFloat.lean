@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBound
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
 public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+public import CORALean.ContSet.Zonotope.Float.Instances
 
 @[expose] public section
 
@@ -48,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Aᵢ r^{i+1}/(i+1)!` over the system's whole float matrix zonotope, for `r ≥ 0`. -/
-def LinParamSys.inputTermZonoFloat (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n)
+def LinParamSys.inputTermZonoFloat (sys : LinParamSys 𝕄𝒵[𝕋] n)
     (r : 𝕋) (i : ℕ) : Zonotope (Mat 𝕋 n n) :=
   let c := MatExp.taylorCoeffBounds r (i + 1)                  -- r^{i+1}/(i+1)! ∈ [c.1, c.2]
   (Zonotope.matSmul c.inf c.sup (sys.A.matPow i)).materialiseMat    -- · Aᵢ

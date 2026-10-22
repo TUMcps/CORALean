@@ -1,7 +1,10 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepIdem
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
+public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 
 @[expose] public section
 
@@ -33,6 +36,32 @@ namespace CORALean.Float
 variable {p h : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The least index of a class is the least index of its own class, which makes
+a non-representative's fibre empty. The two finsets are named rather than left
+to unification, `rep` unfolding to a `min'` over a filter. -/
+theorem PolyZonotope.aux_rep_idem (E : Fin p → Fin h → ℕ) (i : Fin h) : -- --- CONCL ---
+    Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i)
+      = Real.PolyZonotope.rep E i := by -- --- PROOF ---
+  have hcol : Real.PolyZonotope.col E (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))
+      = Real.PolyZonotope.col E i := by
+    rw [Real.PolyZonotope.col_rep, Real.PolyZonotope.col_rep]
+  have h₁ : Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i)
+      ≤ Real.PolyZonotope.rep E i :=
+    Finset.min'_le
+      (Finset.univ.filter fun i' => Real.PolyZonotope.col E i'
+        = Real.PolyZonotope.col E (Real.PolyZonotope.rep E i))
+      (Real.PolyZonotope.rep E i) (Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩)
+  have h₂ : Real.PolyZonotope.rep E i
+      ≤ Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i) :=
+    Finset.min'_le
+      (Finset.univ.filter fun i' => Real.PolyZonotope.col E i' = Real.PolyZonotope.col E i)
+      (Real.PolyZonotope.rep E (Real.PolyZonotope.rep E i))
+      (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hcol⟩)
+  exact le_antisymm h₁ h₂
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.fiber_eq_zero_of_notMem (E : Fin p → Fin h → ℕ) (Gr : Fin h → ℝ)
@@ -43,7 +72,7 @@ theorem PolyZonotope.fiber_eq_zero_of_notMem (E : Fin p → Fin h → ℕ) (Gr :
   exfalso
   have hrl : Real.PolyZonotope.rep E l = j := (Finset.mem_filter.mp hl).2
   refine hj (Finset.mem_filter.mpr ⟨Finset.mem_univ _, ?_⟩)
-  rw [← hrl, PolyZonotope.rep_idem]
+  rw [← hrl, PolyZonotope.aux_rep_idem]
 
 end CORALean.Float
 

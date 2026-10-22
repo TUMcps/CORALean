@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.Global.ExactScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

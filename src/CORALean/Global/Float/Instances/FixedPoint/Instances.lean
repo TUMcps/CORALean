@@ -12,7 +12,8 @@ public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactMul
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealHalf
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMinimum
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

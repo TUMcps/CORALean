@@ -10,11 +10,9 @@ public import CORALean.ContSet.Conversion.Float.Theorems.CapsulePolyZonotopeCont
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleSpectraShadowContains
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleVPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleZonotopeContains
-public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoConZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoEllipsoidContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
-public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeSatisfiesConPolyZono
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeSpectraShadowContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeVPolytopeBoxContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeZonoBundleContains
@@ -24,10 +22,8 @@ public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidIntervalContai
 public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidSpectraShadowExact
 public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidZonotopeContains
-public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeAbsNominalConZonotopeInnerOfLe
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeConPolyZonoContains
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeConZonotopeContains
-public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeConZonotopeInnerOfSubset
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeEllipsoidContains
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeLevelSetExact
@@ -38,7 +34,6 @@ public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeRowSplit
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeSpectraShadowContains
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeVPolytopeBoxContains
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeZonoBundleContains
-public import CORALean.ContSet.Conversion.Float.Theorems.IdentityMatMulVec
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalCapsuleAlongContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalCapsuleContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalContainsVPolytope
@@ -46,7 +41,6 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalEllipsoidContai
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalReaches
-public import CORALean.ContSet.Conversion.Float.Theorems.IntervalSubsetNominalEllipsoid
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalSubsetNominalZonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalTaylmContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalVPolytopeContains

@@ -1,7 +1,9 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
-public import CORALean.ContSet.Taylm.Real.Theorems.HalveBoxSub
+public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
+public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 
@@ -42,6 +44,34 @@ over `X` is at most the cutoff, [1, Sec. 4].
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The halves of a proper box are proper boxes inside it. -/
+theorem Taylm.aux_halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).inf ≤ (B k).sup)
+    (β : Fin n) : -- --- CONCL ---
+    (∀ k, ((Taylm.halveBox B β).1 k).inf ≤ ((Taylm.halveBox B β).1 k).sup) ∧
+      (∀ k, ((Taylm.halveBox B β).2 k).inf ≤ ((Taylm.halveBox B β).2 k).sup) ∧
+      (∀ t, Taylm.InBox (Taylm.halveBox B β).1 t → Taylm.InBox B t) ∧
+      (∀ t, Taylm.InBox (Taylm.halveBox B β).2 t → Taylm.InBox B t) := by -- --- PROOF ---
+  have hm := hB β
+  refine ⟨fun k => ?_, fun k => ?_, fun t ht k => ?_, fun t ht k => ?_⟩
+  -- coordinate `β` is halved, the others are kept
+  · simp only [Taylm.halveBox, Function.update_apply]; split_ifs with hk
+    · subst hk; simp only; linarith
+    · exact hB k
+  · simp only [Taylm.halveBox, Function.update_apply]; split_ifs with hk
+    · subst hk; simp only; linarith
+    · exact hB k
+  · have := ht k
+    simp only [Taylm.halveBox, Function.update_apply] at this; split_ifs at this with hk
+    · subst hk; exact ⟨this.1, by linarith [this.2]⟩
+    · exact this
+  · have := ht k
+    simp only [Taylm.halveBox, Function.update_apply] at this; split_ifs at this with hk
+    · subst hk; exact ⟨by linarith [this.1], this.2⟩
+    · exact this
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -87,7 +117,7 @@ theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Inter
             · simp at h; subst h; exact hBp
           -- bisected: the halves are proper and inside the box
           · rename_i β _
-            obtain ⟨h1, h2, h3, h4⟩ := Taylm.halveBox_sub hBp.1 β
+            obtain ⟨h1, h2, h3, h4⟩ := Taylm.aux_halveBox_sub hBp.1 β
             refine ih _ (fun B' hB' => ?_) hcut
             rcases List.mem_append.1 hB' with h | h
             · exact hl B' (by simp [h])

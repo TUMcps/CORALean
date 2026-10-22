@@ -44,10 +44,11 @@ theorem Relaxation.ofAntitone_sound {E : Enclosure 𝕋} (hσ : Antitone σ)
     (hE : E.Sound σ) : -- --- CONCL ---
     (Relaxation.ofAntitone E).Sound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
-  have hlo : toReal (E.lo u) ≤ σ t := le_trans (hE.lo_le u) (hσ hu)
-  have hhi : σ t ≤ toReal (E.hi l) := le_trans (hσ hl) (hE.le_hi l)
-  have h := abs_sub_le_spread (c := half (addUp (E.lo u) (E.hi l))) hlo hhi
-  show |σ t - (toReal (FloatOps.zero : 𝕋) * t + toReal (half (addUp (E.lo u) (E.hi l))))| ≤ _
+  have hlo : toReal (E.enclose u).inf ≤ σ t := le_trans (hE.lo_le u) (hσ hu)
+  have hhi : σ t ≤ toReal (E.enclose l).sup := le_trans (hσ hl) (hE.le_hi l)
+  have h := abs_sub_le_spread (c := half (addUp (E.enclose u).inf (E.enclose l).sup)) hlo hhi
+  show |σ t - (toReal (FloatOps.zero : 𝕋) * t +
+    toReal (half (addUp (E.enclose u).inf (E.enclose l).sup)))| ≤ _
   rw [toReal_zero, zero_mul, zero_add]
   exact h
 

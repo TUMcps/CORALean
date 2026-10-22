@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Specification.Operations.VerifyConvex
-public import CORALean.Specification.Theorems.DiffPointMemSub
 
 @[expose] public section
 
@@ -47,6 +46,15 @@ open scoped Classical Pointwise
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Both witness points lie in their own sets, so the difference lies in `O - U`. -/
+theorem aux_diffPoint_mem_sub (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
+    (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (d : α →ₗ[ℝ] ℝ) :
+    diffPoint wO wU d ∈ O - U :=
+  Set.sub_mem_sub (wO d).mem.choose_spec.1 (wU (-d)).mem.choose_spec.1
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The loop's invariant: the accumulated points stay inside `O - U`, a
@@ -81,7 +89,7 @@ theorem verifyConvexFold_inv (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
           (fun _ => ⟨ℓ i, hsep⟩)
       · rw [if_neg hsep]
         set V' := insert (diffPoint wO wU (ℓ i)) V with hV'def
-        have hV' : V' ⊆ O - U := Set.insert_subset (diffPoint_mem_sub wO wU (ℓ i)) hV
+        have hV' : V' ⊆ O - U := Set.insert_subset (aux_diffPoint_mem_sub wO wU (ℓ i)) hV
         by_cases hhull : (0 : α) ∈ convexHull ℝ V'
         · -- the new point brings the origin into the hull: `violated`
           rw [if_pos hhull]

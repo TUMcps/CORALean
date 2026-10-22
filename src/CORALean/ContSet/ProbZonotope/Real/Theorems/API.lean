@@ -27,10 +27,6 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsLeCorner
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsNotMem
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.IntervalProb
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.SupIsLUB
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.SqrtMulVecMemZonotope
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.MemZonotopeOfQuadLt
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.MaxAnti
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.LeAddSumOfLevels
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidOuter
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidNotGeProb
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExp

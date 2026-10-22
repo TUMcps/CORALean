@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Scalar
+public import CORALean.Global.Interfaces
 public import Mathlib.LinearAlgebra.Matrix.ToLin
 
 @[expose] public section
@@ -64,6 +64,7 @@ open Matrix Pointwise Scalar
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A representation of sets of `α`: `construct` is the set it denotes. -/
 class ContSet (S : Type) (α : outParam Type) where
   construct : S → Set α
 

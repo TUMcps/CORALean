@@ -58,6 +58,7 @@ inductive Rn where
   | fin (bits : UInt64)
   | inf
 
+/-- The nearest binary64 of a soft-float result: its bit pattern, or `inf` past the finite range. -/
 def Rn.ofSoft (x : IEEE IEEEFormat.binary64) : Rn :=
   match bitsOf x with
   | some b => .fin b

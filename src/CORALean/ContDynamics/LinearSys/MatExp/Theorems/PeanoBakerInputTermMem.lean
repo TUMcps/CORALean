@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousPeanoBakerInputTerm
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralMemSmulOfMemSmul
+public import CORALean.Global.Tensor
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntegralPowDivFactorialMul
 public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
@@ -18,7 +19,7 @@ and the integrand is a product of `k` members and an input. The hull is the poin
 `N` in a box and `v ∈ U` is not convex, and an average of such products need not be one; its
 closed convex hull is, and a member of `B` maps the hull of order `k` into that of order
 `k + 1`, being linear and continuous. So the induction runs on the hull, and
-`integral_mem_smul_of_mem_smul` carries it through each integral.
+`aux_integral_mem_smul_of_mem_smul` carries it through each integral.
 
 ## Inputs
 * `B` – interval matrix
@@ -55,6 +56,37 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A weighted integral of points of a closed convex set is the total weight
+times a point of it. -/
+theorem aux_integral_mem_smul_of_mem_smul {K : Set (Vec ℝ n)} (hK : Convex ℝ K)
+    (hKc : IsClosed K) {f : ℝ → Vec ℝ n} {w : ℝ → ℝ} {s : ℝ} (hs : 0 ≤ s)
+    (hf : IntervalIntegrable f volume 0 s) (hw : IntervalIntegrable w volume 0 s)
+    (hw0 : ∀ σ ∈ Set.Icc 0 s, 0 ≤ w σ) (hfK : ∀ σ ∈ Set.Icc 0 s, f σ ∈ w σ • K)
+    (hW : 0 < ∫ σ in (0:ℝ)..s, w σ) : -- --- CONCL ---
+    (∫ σ in (0:ℝ)..s, f σ) ∈ (∫ σ in (0:ℝ)..s, w σ) • K := by -- --- PROOF ---
+  set W := ∫ σ in (0:ℝ)..s, w σ with hWdef
+  refine ⟨W⁻¹ • ∫ σ in (0:ℝ)..s, f σ, ?_, by
+    show W • (W⁻¹ • _) = _; rw [smul_smul, mul_inv_cancel₀ hW.ne', one_smul]⟩
+  by_contra hout
+  -- a functional cutting the average off from `K`
+  obtain ⟨ℓ, a, hKa, hay⟩ := geometric_hahn_banach_closed_point hK hKc hout
+  have hpt : ∀ σ ∈ Set.Icc 0 s, ℓ (f σ) ≤ w σ * a := by
+    intro σ hσ
+    obtain ⟨k, hk, hkf⟩ := hfK σ hσ
+    rw [← hkf, map_smul, smul_eq_mul]
+    exact mul_le_mul_of_nonneg_left (hKa k hk).le (hw0 σ hσ)
+  -- integrated, the functional stays under the weight times the cut
+  have hint : ℓ (∫ σ in (0:ℝ)..s, f σ) ≤ W * a := by
+    rw [← ℓ.intervalIntegral_comp_comm hf, hWdef, ← intervalIntegral.integral_mul_const]
+    exact intervalIntegral.integral_mono_on hs
+      ⟨ℓ.integrable_comp hf.1, ℓ.integrable_comp hf.2⟩ (hw.mul_const a) hpt
+  rw [map_smul, smul_eq_mul] at hay
+  have : a < W⁻¹ * (W * a) := lt_of_lt_of_le hay
+    (mul_le_mul_of_nonneg_left hint (inv_nonneg.mpr hW.le))
+  rw [← mul_assoc, inv_mul_cancel₀ hW.ne', one_mul] at this
+  exact lt_irrefl a this
+
 
 /-- A member of `B` maps the hull of order `k` into the hull of order `k + 1`. -/
 theorem aux_mulVec_mem_hull {B : Interval (Mat ℝ n n)} {U : Set (Vec ℝ n)} {M : Mat ℝ n n}
@@ -114,7 +146,7 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
     rcases hs.1.eq_or_lt with h0 | hpos
     · exact hzero 0 s hs h0.symm
     -- the input itself is in the hull of order `0`, at weight one
-    have h := integral_mem_smul_of_mem_smul (hcv 0) isClosed_closure hs.1 (hu 0 s)
+    have h := aux_integral_mem_smul_of_mem_smul (hcv 0) isClosed_closure hs.1 (hu 0 s)
       ((hw 0).mono_set (hsub s hs))
       (fun σ _ => by positivity) (fun σ hσ => by
         have hm : u σ ∈ closure (convexHull ℝ
@@ -129,7 +161,7 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
     rcases hs.1.eq_or_lt with h0 | hpos
     · exact hzero (k + 1) s hs h0.symm
     -- each integrand is the scaled hull of order `k` mapped by a member of `B`
-    have h := integral_mem_smul_of_mem_smul (hcv (k + 1)) isClosed_closure hs.1
+    have h := aux_integral_mem_smul_of_mem_smul (hcv (k + 1)) isClosed_closure hs.1
       (MatExp.intervalIntegrable_mulVec hA
         (MatExp.continuous_peanoBakerInputTerm hA hu k).continuousOn)
       ((hw (k + 1)).mono_set (hsub s hs))

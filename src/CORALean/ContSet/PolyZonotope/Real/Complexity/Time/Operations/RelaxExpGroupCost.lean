@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxWidthGroupCost
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDiffCost
 
 @[expose] public section
 
@@ -39,12 +40,19 @@ The result is the center, the `d` kept dependent generators with their exponent 
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- What `PolyZonotope.relaxWidthGroup` costs at `p` factors: `p` calls of `eDiff`, `p` additions
+and one write. -/
+def PolyZonotope.aux_relaxWidthGroupCost (p : ℕ) : Cost := p • PolyZonotope.eDiffCost + ⟨p + 1⟩
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `PolyZonotope.relaxExpGroup` costs at `Vec ℝ n`, `p` factors, `d` kept and `k` merged
 generators, over `q` independent ones, and `n * (1 + d + q + k) + p * d` writes for the result. -/
 def PolyZonotope.relaxExpGroupCost (n p d q k : ℕ) : Cost :=
-  ⟨n * (k + 1) + d + k * n⟩ + k • PolyZonotope.relaxWidthGroupCost p +
+  ⟨n * (k + 1) + d + k * n⟩ + k • PolyZonotope.aux_relaxWidthGroupCost p +
     ⟨n * (1 + d + q + k) + p * d⟩
 
 end CORALean.Real

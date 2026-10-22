@@ -43,29 +43,30 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The bounds of `bint = ((lint(i) & rint(j)) - int) & lint(i)`, `none` if it is empty. -/
-noncomputable def FiniteSignal.aux_untilPiece (eps p : ℝ) (q : EReal) (L R : ℝ × ℝ) :
-    Option (ℝ × ℝ) :=
+noncomputable def FiniteSignal.aux_untilPiece (eps p : ℝ) (q : EReal) (L R : Real.Interval ℝ) :
+    Option (Real.Interval ℝ) :=
   -- lint(i) & rint(j)
-  let lb := Max.max L.1 R.1
-  let ub := Min.min L.2 R.2
+  let lb := Max.max L.inf R.inf
+  let ub := Min.min L.sup R.sup
   if ¬ lb - ub ≤ eps then none
   else
     -- (lint(i) & rint(j)) - int
     let n1 : EReal := (Min.min lb ub : ℝ) - q
     let n2 : EReal := (Max.max lb ub : ℝ) - p
     -- & lint(i)
-    let lb' : EReal := Max.max n1 L.1
-    let ub' : EReal := Min.min n2 L.2
+    let lb' : EReal := Max.max n1 L.inf
+    let ub' : EReal := Min.min n2 L.sup
     if ¬ lb' - ub' ≤ eps then none
-    else some ((Min.min lb' ub').toReal, (Max.max lb' ub').toReal)
+    else some ⟨(Min.min lb' ub').toReal, (Max.max lb' ub').toReal⟩
 
 /-- The loop body for the runs `LR = (lint(i), rint(j))`. -/
 noncomputable def FiniteSignal.aux_untilStep (eps p : ℝ) (q : EReal) (dur : ℝ)
-    (sig : FiniteSignal ℝ Bool) (LR : (ℝ × ℝ) × (ℝ × ℝ)) : Option (FiniteSignal ℝ Bool) :=
+    (sig : FiniteSignal ℝ Bool) (LR : Real.Interval ℝ × Real.Interval ℝ) :
+    Option (FiniteSignal ℝ Bool) :=
   match FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 with
   | none => some sig
   -- if ~representsa_(bint,'emptySet',eps) && volume(bint) > 0
-  | some (lo, hi) =>
+  | some ⟨lo, hi⟩ =>
     if lo < hi then
       -- sig = sig | finiteSignal.indicator(dur,bint,up)
       (FiniteSignal.indicator? dur lo hi true).bind fun ind =>

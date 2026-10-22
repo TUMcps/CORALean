@@ -40,6 +40,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A linear ARX model: the output at step `k` is a combination of the last `p` outputs through
+`Abar` and of the current and last `p` inputs through `Bbar`; `dt` is the sampling time. -/
 structure LinearARX (𝕋 : Type) (dy du p : ℕ) where
   Abar : Fin p → Mat 𝕋 dy dy
   Bbar : Fin (p + 1) → Mat 𝕋 dy du
@@ -49,6 +51,8 @@ structure LinearARX (𝕋 : Type) (dy du p : ℕ) where
 def LinearARX.stack (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ (p * dy) :=
   fun r => y (k + (finProdFinEquiv.symm r).1) (finProdFinEquiv.symm r).2
 
+/-- A run of the model: the initial output window lies in `Y₀`, every input lies in `U`, and from
+step `p` on each output follows the ARX equation. -/
 structure LinearARX.IsTrajectory (sys : LinearARX 𝕋 dy du p) (Y₀ : S (p * dy)) (U : S du)
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) : Prop where
   init : LinearARX.stack p y 0 ∈ construct Y₀

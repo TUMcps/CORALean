@@ -65,6 +65,8 @@ theorem BHI.R_ne : BHI.R 0 false ≠ BHI.R 1 false := by
 
 -- `flow` reads off the location's fixed invariant; `jump`, the identity reset.
 
+/-- The family `R` is an invariant of the automaton: flow stays in the fixed location invariant,
+jumps keep the identity reset. -/
 theorem BHI.hinv : BHI.HA.InvariantOn BHI.R where
   flow {k ℓ τ x u w} h h₀ {t} ht := by
     intro i

@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section

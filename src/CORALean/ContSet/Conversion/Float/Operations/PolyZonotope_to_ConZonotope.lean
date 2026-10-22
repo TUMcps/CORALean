@@ -40,6 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.conZonotope (pZ : PolyZonotope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   pZ.zonotope.conZonotope
 
+/-- The constrained zonotope of a constrained polynomial zonotope: the one of its polynomial
+zonotope. -/
 def ConPolyZono.conZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   cPZ.polyZonotope.conZonotope
 

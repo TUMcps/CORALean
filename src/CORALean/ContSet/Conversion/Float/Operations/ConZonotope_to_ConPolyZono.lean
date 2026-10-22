@@ -55,6 +55,9 @@ def ConZonotope.conB (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 (
    Fin.append (fun k => addUp (cZ.P.b k) (absolute (cZ.P.b_error k)))
      fun k => addUp (cZ.P.be k) (absolute (cZ.P.be_error k))⟩
 
+/-- The constrained polynomial zonotope of a constrained zonotope: its generators are the dependent
+generators with the identity as exponents, and the constraint is the rows `conA` held to the
+enclosures `conB`. -/
 def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cZ.h
   h := cZ.h

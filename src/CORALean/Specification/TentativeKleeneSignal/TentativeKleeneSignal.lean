@@ -29,6 +29,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- What an observation of a signal leaves possible: a Boolean signal of the times it can be true
+and one of the times it can be false. -/
 structure TentativeKleeneSignal (T : Type) where
   canBeTrue : PointSegmentSignal T
   canBeFalse : PointSegmentSignal T

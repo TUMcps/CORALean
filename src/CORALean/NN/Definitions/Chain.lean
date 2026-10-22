@@ -28,6 +28,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- One function per layer of a network, the dimensions chaining. -/
 inductive Chain : ℕ → ℕ → Type where
   | nil {n : ℕ} : Chain n n
   | cons {n m k : ℕ} (f : Vec ℝ n → Vec ℝ m) (rest : Chain m k) : Chain n k

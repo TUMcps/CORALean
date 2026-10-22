@@ -173,6 +173,7 @@ theorem cosRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x)
   · exact midpoint_form Real.abs_cos_sub_cos_le
       (fun z => ⟨Real.neg_one_le_cos z, Real.cos_le_one z⟩) (cosDown_le n _) (le_cosUp n _) h1 h2
 
+/-- `sinRange` contains `sin x` for every `x` in the float range. -/
 theorem sinRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x)
     (h2 : x ≤ toReal u) : -- --- CONCL ---
     toReal (sinRange n l u).inf ≤ Real.sin x ∧

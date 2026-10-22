@@ -34,6 +34,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A piecewise-constant Boolean signal on `[0, ∞)`: strictly increasing time points, each with the
+value at the point and on the open interval up to the next. -/
 structure PointSegmentSignal (T : Type) where
   timePoints : List T
   values : List Bool

@@ -30,6 +30,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The data of an existential sum representation of a spectrahedral shadow: size-`k` matrices `B₀`,
+`B` per coordinate and `C` per each of `q` existential variables. -/
 structure SpectraShadow.ESumRep (n : ℕ) where
   k : ℕ
   q : ℕ

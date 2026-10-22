@@ -59,6 +59,7 @@ def hull (Z : Zonotope (Vec D 2)) : (Float × Float) × (Float × Float) :=
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def square : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+/-- The diamond `|x| + |y| ≤ 3/2` as a zonotope. -/
 def diamond : Zonotope (Vec D 2) :=
     ⟨2, ![d 0 0, d 0 0], ![![d 3 (-2), d 3 (-2)], ![d 3 (-2), d (-3) (-2)]], box0⟩
 
@@ -67,12 +68,16 @@ def I : SetIntersection (Zonotope (Vec D 2)) := ⟨[square, diamond]⟩
 
 /-- A segment `[-1/2, 1/2] × {0}`, intersected with the square. -/
 def segment : Zonotope (Vec D 2) := ⟨1, ![d 0 0, d 0 0], ![![d 1 (-1), d 0 0]], box0⟩
+/-- The segment intersected with the square. -/
 def J : SetIntersection (Zonotope (Vec D 2)) := ⟨[segment, square]⟩
 
+/-- The branch-wise sum of the two intersections: every pair of members. -/
 def sum : SetIntersection (Zonotope (Vec D 2)) := Plus.plus I J
+/-- The image of the first intersection under the identity matrix, member by member. -/
 def image : SetIntersection (Zonotope (Vec D 2)) :=
   Mtimes.mtimes (S := fun n => SetIntersection (Zonotope (Vec D n))) (𝕄 := Mat D)
     (identityMat D 2) I
+/-- The first intersection reduced to order `1`, member by member. -/
 def small : SetIntersection (Zonotope (Vec D 2)) := Reduce.reduce I 1
 
 #eval sum.sets.length      -- 4 branches: every pair

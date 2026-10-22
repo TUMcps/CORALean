@@ -45,8 +45,10 @@ open Matrix
 def Example.bleA : Mat ℝ 4 4 :=
   !![(0:ℝ), 1, 0, 0; 1, 0, 1, 0; 0, 1, 0, 1; 0, 0, 1, 0]
 
+/-- The two layers' weights, `2` and `0.5`. -/
 def Example.bleW : Fin 2 → Mat ℝ 1 1 := ![!![(2:ℝ)], !![(0.5:ℝ)]]
 
+/-- The node features `1, 2, 3, 4`, one per node. -/
 def Example.bleX : Mat ℝ 4 1 := !![(1:ℝ); 2; 3; 4]
 
 /-- Node `0`'s two-step output on the path graph, restated on `ballEnum`'s own

@@ -30,6 +30,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A chain of refinable layers, the dimensions chaining. -/
 inductive RefinableNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type where
   | nil {n : ℕ} : RefinableNetwork S n n
   | cons {n m k : ℕ} (L : RefinableLayer S n m) (rest : RefinableNetwork S m k) :

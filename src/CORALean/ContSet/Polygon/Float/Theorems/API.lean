@@ -16,7 +16,6 @@ public import CORALean.ContSet.Polygon.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.SplitIntoConvexSetsUnion
 public import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.Polygon.Float.Theorems.ContainsPointSound
-public import CORALean.ContSet.Polygon.Float.Theorems.InTriangleSound
 public import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
 public import CORALean.ContSet.Polygon.Float.Theorems.IsequalPiecesSound
 public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
@@ -28,7 +27,6 @@ public import CORALean.ContSet.Polygon.Float.Theorems.CenterMem
 public import CORALean.ContSet.Polygon.Float.Theorems.TriangulationExact
 public import CORALean.ContSet.Polygon.Float.Theorems.QuadMapOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.QuadMapMixedOuter
-public import CORALean.ContSet.Polygon.Float.Theorems.SubtractPieceOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.SubtractOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.MldivideOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner

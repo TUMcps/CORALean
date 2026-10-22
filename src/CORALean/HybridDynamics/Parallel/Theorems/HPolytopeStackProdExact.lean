@@ -1,10 +1,11 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdA
-public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
+public import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
-public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
+public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
 
 @[expose] public section
 
@@ -37,6 +38,16 @@ namespace CORALean.Real
 variable {k : ℕ} {n : Fin k → ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `HPolytope.stackProd`'s rows at a pair. -/
+theorem HPolytope.aux_stackProd_be (gs : ∀ i, HPolytope (Vec ℝ (n i))) (i : Fin k)
+    (s : Fin (gs i).me) :
+    (HPolytope.stackProd gs).be (finSigmaFinEquiv ⟨i, s⟩) =
+      (gs i).be s :=
+  congrArg (fun p : (Σ i, Fin (gs i).me) => (gs p.1).be p.2) (Equiv.symm_apply_apply _ _)
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.stackProd_exact (gs : ∀ i, HPolytope (Vec ℝ (n i))) : -- --- CONCL ---
@@ -50,7 +61,7 @@ theorem HPolytope.stackProd_exact (gs : ∀ i, HPolytope (Vec ℝ (n i))) : -- -
       rw [HPolytope.stackProd_A, HPolytope.stackProd_b] at h
       exact h
     · have h := h2 (finSigmaFinEquiv ⟨i, s⟩)
-      rw [HPolytope.stackProd_Ae, HPolytope.stackProd_be] at h
+      rw [HPolytope.stackProd_Ae, HPolytope.aux_stackProd_be] at h
       exact h
   · intro h
     refine ⟨fun r => ?_, fun r => ?_⟩
@@ -58,7 +69,7 @@ theorem HPolytope.stackProd_exact (gs : ∀ i, HPolytope (Vec ℝ (n i))) : -- -
       rw [HPolytope.stackProd_A, HPolytope.stackProd_b]
       exact (h i).1 s
     · obtain ⟨⟨i, s⟩, rfl⟩ := finSigmaFinEquiv.surjective r
-      rw [HPolytope.stackProd_Ae, HPolytope.stackProd_be]
+      rw [HPolytope.stackProd_Ae, HPolytope.aux_stackProd_be]
       exact (h i).2 s
 
 end CORALean.Real

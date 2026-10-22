@@ -35,6 +35,8 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A lifting that loses nothing: the lifted sets contain only what the components' sets put
+together. -/
 structure ParallelHybridAutomaton.Lifting.Exact
     (lift : ParallelHybridAutomaton.Lifting S G n m) : Prop where
   inv_inv (gs : ∀ i, G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : stack x ∈ construct (lift.inv gs)) :

@@ -2,20 +2,21 @@ module
 
 public import Mathlib.Topology.Order.IntermediateValue
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzPieceEq
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
 
 @[expose] public section
 
 /-!
 # An execution of the original automaton follows two solutions
 
-An execution of `spaceTriggered` of duration `d` ends, in `m₁`, at a solution of `ẋ = f₁(x)` from
-an initial state at time `d` that stays in `a·x ≤ b`, and in `m₂` at a solution of `ẋ = f₂(x)` from
-the guard point `z(τ)` reached by such a solution at the time `τ` of the transition, [1, Def. 6].
-The chain of continuous successors of an execution is replaced by the solutions, which are unique
-(`lipschitzPiece_eq`): the statement is for every solution from the initial state, so the next piece
-is a shifted one. The invariant `a·x ≤ b` is read on `(0, t)` by [1, Def. 4], and holds on `[0, t]`
-by continuity. [1, Cor. 1] builds its execution of `H_final` from it.
+An execution of `spaceTriggered` of duration `d` ends, in `m₁`, at a solution of `ẋ = f₁(x)` from an
+initial state at time `d` that stays in `a·x ≤ b`, and in `m₂` at a solution of `ẋ = f₂(x)` from the
+guard point `z(τ)` reached by such a solution at the time `τ` of the transition, [1, Def. 6]. The
+chain of continuous successors of an execution is replaced by the solutions, which are unique
+(`aux_lipschitzPiece_eq`): the statement is for every solution from the initial state, so the next
+piece is a shifted one. The invariant `a·x ≤ b` is read on `(0, t)` by [1, Def. 4], and holds on
+`[0, t]` by continuity. [1, Cor. 1] builds its execution of `H_final` from it.
 
 ## Inputs
 * `I` – initial states
@@ -61,6 +62,22 @@ variable {X : Type} [NormedAddCommGroup X] [InnerProductSpace ℝ X]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
+
+/-- A piece `g` with `ġ = f(g)` on `(0, t)` equals a solution `w` of `ẋ = f(x)` it starts with. -/
+theorem aux_lipschitzPiece_eq {f : X → X} {K : ℝ≥0} (hf : LipschitzWith K f) {g w : ℝ → X} {t : ℝ}
+    (ht : 0 < t) (hgd : DifferentiableOn ℝ g (Icc 0 t))
+    (hgder : ∀ u ∈ Ioo 0 t, deriv g u = f (g u)) (hw : ∀ u ∈ Icc 0 t, HasDerivAt w (f (w u)) u)
+    (h0 : g 0 = w 0) : ∀ u ∈ Icc 0 t, g u = w u :=
+  ODE_solution_unique (v := fun _ => f) (a := 0) (b := t) (fun _ => hf) hgd.continuousOn
+    (hasDerivWithinAt_Ici_of_deriv_eq hf.continuous ht hgd hgder)
+    (fun u hu => (hw u hu).continuousAt.continuousWithinAt)
+    (fun u hu => (hw u ⟨hu.1, hu.2.le⟩).hasDerivWithinAt) h0
+
+end
+
 
 /-- A bound that holds on `(0, t)` holds on `[0, t]` for a continuous function. -/
 theorem aux_le_of_Ioo {h : ℝ → ℝ} {t b : ℝ} (ht : 0 < t) (hc : ContinuousOn h (Icc 0 t))
@@ -134,7 +151,7 @@ theorem DiffInclAutomaton.spaceTriggered_isExec_orbit {I : Set X} {f₁ f₂ : X
       refine ⟨fun _ => ⟨x₀, hx₀, fun z hz0 hzd => ?_⟩, fun h01 => by simp at h01⟩
       obtain ⟨hzx, hzle⟩ := hz z hz0 fun u hu => hzd u ⟨hu.1, hu.2.trans (by linarith)⟩
       -- the piece agrees with `z` shifted to start at `d`
-      have hshift : ∀ u ∈ Icc 0 t, g u = z (d + u) := lipschitzPiece_eq hf₁ ht hgd hder
+      have hshift : ∀ u ∈ Icc 0 t, g u = z (d + u) := aux_lipschitzPiece_eq hf₁ ht hgd hder
         (fun u hu => by
           have := (hzd (d + u) ⟨by linarith [ih.1, hu.1], by linarith [hu.2]⟩).comp_const_add d u
           simpa using this) (by simp [hg0, hzx])
@@ -157,7 +174,7 @@ theorem DiffInclAutomaton.spaceTriggered_isExec_orbit {I : Set X} {f₁ f₂ : X
         hwd u ⟨hu.1, hu.2.trans (by linarith)⟩
       refine ⟨?_, hga, hle, hex⟩
       -- the piece agrees with `w` shifted to start at `d - τ`
-      have hshift := lipschitzPiece_eq hf₂ ht hgd hder
+      have hshift := aux_lipschitzPiece_eq hf₂ ht hgd hder
         (w := fun u => w (d - τ + u)) (fun u hu => by
           have := (hwd (d - τ + u) ⟨by linarith [hu.1, hτd], by linarith [hu.2]⟩).comp_const_add
             (d - τ) u

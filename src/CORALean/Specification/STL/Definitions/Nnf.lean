@@ -32,6 +32,8 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A signal temporal logic formula in negation normal form: literals, conjunction, disjunction,
+until and release with natural-number bounds. -/
 inductive STL.Nnf (X : Type)
   | lit (ϱ : Pform X)
   | and (φ ψ : Nnf X)

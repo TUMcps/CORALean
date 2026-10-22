@@ -43,11 +43,15 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A nonlinear system `ẋ = f(x, u, p)` with an uncertain parameter `p`, as CORA's `nonlinParamSys`;
+the output `g` has dimension `r`. -/
 structure NonlinParamSys (n m q : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ q → Vec ℝ n
   r : ℕ
   g : Vec ℝ n → Vec ℝ m → Vec ℝ q → Vec ℝ r
 
+/-- A Carathéodory run on `T` in which the parameter may change at every instant: inputs lie in `U`,
+the parameter in `P`, the state integrates `f`, and the output follows `g`. -/
 structure NonlinParamSys.IsTrajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
     (R₀ : S n) (U : S m) (P : S q) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)
     (p : ℝ → Vec ℝ q) (y : ℝ → Vec ℝ sys.r) : Prop where

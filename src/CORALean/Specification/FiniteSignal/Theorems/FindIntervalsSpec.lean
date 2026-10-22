@@ -47,12 +47,14 @@ together with the part `[st,a]` of the run already begun. -/
 theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) :
     ∀ (rest : List (T × V)) (b : T) (v : V) (a st : T),
       (((b, v) :: rest).map Prod.fst).Pairwise (· < ·) → a ≤ b → (cond v = true → st ≤ a) →
-      (∀ I ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest), I.1 ≤ I.2) ∧
-      (FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest)).Pairwise (fun I J => I.2 < J.1)
+      (∀ I ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest), I.inf ≤ I.sup) ∧
+      (FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest)).Pairwise
+        (fun I J => I.sup < J.inf)
         ∧
       (∀ I ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest),
-        (cond v = true ∧ st ≤ I.1) ∨ b ≤ I.1) ∧
-      ∀ x, (∃ I ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest), I.1 ≤ x ∧ x ≤ I.2) ↔
+        (cond v = true ∧ st ≤ I.inf) ∨ b ≤ I.inf) ∧
+      ∀ x, (∃ I ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: rest),
+          I.inf ≤ x ∧ x ≤ I.sup) ↔
         ((cond v = true ∧ st ≤ x ∧ x ≤ a) ∨ ∃ c ∈ FiniteSignal.cellsFrom a ((b, v) :: rest),
           cond c.2 = true ∧ c.1.1 ≤ x ∧ x ≤ c.1.2)
   | [], b, v, a, st, _, hab, hst => by
@@ -111,12 +113,12 @@ theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) 
             · exact Or.inr ⟨c, hc, h⟩
     · -- a falling edge
       have hout : FiniteSignal.aux_findIntervalsLoop cond st ((b, v) :: (b', v') :: rest') =
-          [(st, b)] ++ FiniteSignal.aux_findIntervalsLoop cond st ((b', v') :: rest') := by
+          [⟨st, b⟩] ++ FiniteSignal.aux_findIntervalsLoop cond st ((b', v') :: rest') := by
         simp [FiniteSignal.aux_findIntervalsLoop, hv, hv']
       have hsa := hst hv
       obtain ⟨i1, i2, i3, i4⟩ := aux_findIntervals_loop cond rest' b' v' b st hs' hbb'.le
         (by simp [hv'])
-      have hge : ∀ J ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b', v') :: rest'), b' ≤ J.1 :=
+      have hge : ∀ J ∈ FiniteSignal.aux_findIntervalsLoop cond st ((b', v') :: rest'), b' ≤ J.inf :=
         by
         intro J hJ
         rcases i3 J hJ with h | h
@@ -145,9 +147,9 @@ theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) 
             · simp [hv'] at h
             · exact Or.inr ⟨c, List.mem_cons_of_mem _ hc, h⟩
         · rintro (⟨-, h1, h2⟩ | ⟨c, hc, h⟩)
-          · exact ⟨(st, b), Or.inl rfl, h1, h2.trans hab⟩
+          · exact ⟨⟨st, b⟩, Or.inl rfl, h1, h2.trans hab⟩
           · rcases List.mem_cons.mp hc with rfl | hc
-            · exact ⟨(st, b), Or.inl rfl, hsa.trans h.2.1, h.2.2⟩
+            · exact ⟨⟨st, b⟩, Or.inl rfl, hsa.trans h.2.1, h.2.2⟩
             · obtain ⟨I, hI, h'⟩ := (i4 x).mpr (Or.inr ⟨c, hc, h⟩)
               exact ⟨I, Or.inr hI, h'⟩
     · -- a rising edge
@@ -193,9 +195,9 @@ theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) 
 
 theorem FiniteSignal.findIntervals_spec {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
     (hs : s.IsValid) (cond : V → Bool) : -- --- CONCL ---
-    (∀ I ∈ s.findIntervals cond, I.1 ≤ I.2) ∧
-      (s.findIntervals cond).Pairwise (fun I J => I.2 < J.1) ∧
-      ∀ x, (∃ I ∈ s.findIntervals cond, I.1 ≤ x ∧ x ≤ I.2) ↔
+    (∀ I ∈ s.findIntervals cond, I.inf ≤ I.sup) ∧
+      (s.findIntervals cond).Pairwise (fun I J => I.sup < J.inf) ∧
+      ∀ x, (∃ I ∈ s.findIntervals cond, I.inf ≤ x ∧ x ≤ I.sup) ↔
         ∃ c ∈ s.cells, cond c.2 = true ∧ c.1.1 ≤ x ∧ x ≤ c.1.2 := by -- --- PROOF ---
   obtain ⟨b, v, rest, hq, hmap, -, hb0⟩ := FiniteSignal.pairs_of_valid s hs
   have hsorted : (((b, v) :: rest).map Prod.fst).Pairwise (· < ·) := hq ▸ hmap ▸ hs.2.2.1

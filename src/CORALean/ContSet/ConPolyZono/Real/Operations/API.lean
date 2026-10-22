@@ -45,15 +45,12 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnionWithSel
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionCrossCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
@@ -61,7 +58,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SumConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Project

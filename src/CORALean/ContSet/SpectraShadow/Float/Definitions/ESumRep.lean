@@ -31,6 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The data of an existential sum representation of a spectrahedral shadow over floats: size-`k`
+matrices `B₀`, `B` per coordinate and `C` per each of `q` existential variables. -/
 structure SpectraShadow.ESumRep (𝕋 : Type) (n : ℕ) where
   k : ℕ
   q : ℕ

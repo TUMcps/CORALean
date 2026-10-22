@@ -2,9 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 @[expose] public section
 

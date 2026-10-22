@@ -10,8 +10,11 @@ public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox
+public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
+public import CORALean.Global.JacobiSlice
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
 
@@ -23,7 +26,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
 Where `innerStep` returns `t` with `u1_ + t ⊆ U1_ ⊆ U1` and `u1_ ∈ U1_`, every point of `Y` is
 the dependent point at some factor vector of `X`: every real Jacobi step of
 `exists_jacobiSlice_eq_of_jacobi` lies in `u1_ + t`, the Jacobian on the slice in
-`C·jacobianBox` (`jacobianBox_outer`, `matMul_outer`), `C(y - f(x_))` in `b` (a hypothesis), the
+`C·jacobianBox` (`aux_jacobianBox_outer`, `matMul_outer`), `C(y - f(x_))` in `b` (a hypothesis), the
 step's interval operations outward (`recip_outer`, `times_outer`, `mtimesIntervalMat_outer`), and
 `J₂(U2_ - u2_) ∋ 0`; the slice lies in `X` because `U1_ ⊆ U1` and `x_` is in `X` off `ind`.
 
@@ -66,6 +69,86 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+open Matrix
+variable {m n : ℕ}
+
+/-- A selected coordinate reads `v`. -/
+theorem _root_.CORALean.aux_jacobiSlice_apply_ind (xc : Fin m → ℝ) {ind : Fin n → Fin m}
+    (hind : Function.Injective ind) (v : Fin n → ℝ) (i : Fin n) :
+    jacobiSlice xc ind v (ind i) = v i := by
+  simp only [jacobiSlice, Pi.add_apply, mulVec, dotProduct, of_apply, Pi.sub_apply]
+  rw [Finset.sum_eq_single i (fun j _ hj => by rw [if_neg (fun h => hj (hind h)), zero_mul])
+    (fun h => absurd (Finset.mem_univ i) h), if_pos rfl, one_mul]
+  ring
+
+
+/-- A coordinate not selected reads `xc`. -/
+theorem _root_.CORALean.aux_jacobiSlice_apply_of_ne (xc : Fin m → ℝ) {ind : Fin n → Fin m}
+    (v : Fin n → ℝ)
+    {k : Fin m} (hk : ∀ i, ind i ≠ k) : jacobiSlice xc ind v k = xc k := by
+  simp [jacobiSlice, mulVec, dotProduct, hk]
+
+end
+
+
+/-- `jacobianBox` encloses the Jacobian. -/
+theorem PolyZonotope.aux_jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p))
+    {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) : -- --- CONCL ---
+    Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a ∈
+      (PolyZonotope.jacobianBox pZ X).construct := by -- --- PROOF ---
+  rw [PolyZonotope.jacobianBox, Interval.materialiseMat_eq]
+  refine Interval.mem_mat_iff.mpr fun i k => ?_
+  -- the lowered monomials, and the exact coefficients between their roundings
+  have hm := PolyZonotope.monoBox_outer
+    (fun k' l => if k' = k then pZ.E k l - 1 else pZ.E k' l) X ha
+  have hC : (fun i l => (pZ.E k l : ℝ) * toReal (pZ.G l i)) ∈
+      (⟨fun i l => nsmulDown (pZ.E k l) (pZ.G l i), fun i l => nsmulUp (pZ.E k l) (pZ.G l i)⟩ :
+        Interval (Mat 𝕋 n pZ.h)).construct :=
+    Interval.mem_mat_iff.mpr fun i l => ⟨nsmulDown_le _ _, le_nsmulUp _ _⟩
+  have h := Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hC ⟨_, hm, rfl⟩) i
+  -- the column's point is that product, coordinate `i`
+  have e : Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a i k
+      = Matrix.mulVec (fun i l => (pZ.E k l : ℝ) * toReal (pZ.G l i))
+        (fun l => Real.PolyZonotope.monomial
+          (fun k' l => if k' = k then pZ.E k l - 1 else pZ.E k' l) a l) i := by
+    simp [Real.PolyZonotope.jacobianMat, Real.PolyZonotope.jacobian, Real.PolyZonotope.point,
+      Matrix.mulVec, dotProduct, Finset.sum_apply, mul_comm]
+    rfl
+  rw [e]
+  exact h
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
+
+/-- The slice through a point lies in `aux_sliceBox`. -/
+theorem PolyZonotope.aux_jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p)) {ind : Fin n → Fin p}
+    (hind : Function.Injective ind) (U : Interval (Vec 𝕋 n)) {xc : Vec ℝ p} {v : Vec ℝ n}
+    (hv : v ∈ U.construct)
+    (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k))
+    : -- --- CONCL ---
+    jacobiSlice xc ind v ∈ (PolyZonotope.aux_sliceBox X₀ ind U).construct := by -- --- PROOF ---
+  intro k
+  show toReal ((PolyZonotope.aux_sliceBox X₀ ind U).inf k) ≤ jacobiSlice xc ind v k ∧
+    jacobiSlice xc ind v k ≤ toReal ((PolyZonotope.aux_sliceBox X₀ ind U).sup k)
+  simp only [PolyZonotope.aux_sliceBox]
+  cases h : (List.finRange n).find? fun i => decide (ind i = k) with
+  | some i =>
+    -- `k` is `ind i`, where the slice reads `v`
+    have hik : ind i = k := of_decide_eq_true (List.find?_some (p := fun i => decide (ind i = k)) h)
+    rw [← hik, aux_jacobiSlice_apply_ind xc hind v i]
+    exact hv i
+  | none =>
+    -- no coordinate of `U` sits at `k`, so the slice reads `xc`
+    have hk : ∀ i, ind i ≠ k := fun i hi =>
+      absurd (decide_eq_true hi) (List.find?_eq_none.mp h i (List.mem_finRange i))
+    rw [aux_jacobiSlice_apply_of_ne xc v hk]
+    exact hxc k hk
+
+end
+
+
 /-- The dependent point map is a polynomial, so `C¹`. -/
 theorem PolyZonotope.aux_contDiff_point (pZ : CORALean.Real.PolyZonotope (Vec ℝ n)) :
     ContDiff ℝ 1 pZ.point := by
@@ -100,12 +183,12 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
   cases h
   simp only [Interval.materialiseMat_eq, Interval.materialise_eq] at hD hcand
   set CJ := Interval.matMul (Interval.point C) (PolyZonotope.jacobianBox pZ
-    (PolyZonotope.sliceBox X₀ ind U))
+    (PolyZonotope.aux_sliceBox X₀ ind U))
   -- the Jacobian on the slice lies in `C·jacobianBox`
-  have hCJ : ∀ z ∈ (PolyZonotope.sliceBox X₀ ind U).construct,
+  have hCJ : ∀ z ∈ (PolyZonotope.aux_sliceBox X₀ ind U).construct,
       toRealMat C * Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) z ∈
         CJ.construct := fun z hz =>
-    Interval.matMul_outer _ _ (Interval.mem_point C) (PolyZonotope.jacobianBox_outer pZ _ hz)
+    Interval.matMul_outer _ _ (Interval.mem_point C) (PolyZonotope.aux_jacobianBox_outer pZ _ hz)
   intro y hy
   have hsel : ∀ k, (List.finRange n).any (fun i => decide (ind i = k)) = false →
       ∀ i, ind i ≠ k := fun k hk i hi =>
@@ -120,7 +203,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
         (jacobiSlice (toRealVec xc) ind v)) i (ind j) ∈
           Set.Icc (toReal (CJ.inf i (ind j))) (toReal (CJ.sup i (ind j))) := by
     intro v hv i j
-    have hz := PolyZonotope.jacobiSlice_mem_sliceBox X₀ ind.injective U
+    have hz := PolyZonotope.aux_jacobiSlice_mem_sliceBox X₀ ind.injective U
       (fun i => ⟨hv.1 i, hv.2 i⟩) fun k hk => (hxc k hk).2
     exact Interval.mem_mat_iff.mp (hCJ _ hz) i (ind j)
   refine Exists.elim (exists_jacobiSlice_eq_of_jacobi
@@ -135,9 +218,9 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
       jacobiSlice (toRealVec xc) ind v k ≤ toReal (X.sup k)
     by_cases hk : ∃ i, ind i = k
     · obtain ⟨i, rfl⟩ := hk
-      rw [jacobiSlice_apply_ind _ ind.injective]
+      rw [aux_jacobiSlice_apply_ind _ ind.injective]
       exact hU (fun i => ⟨hv.1 i, hv.2 i⟩) i
-    · rw [jacobiSlice_apply_of_ne _ _ fun i hi => hk ⟨i, hi⟩]
+    · rw [aux_jacobiSlice_apply_of_ne _ _ fun i hi => hk ⟨i, hi⟩]
       exact (hxc k fun i hi => hk ⟨i, hi⟩).1
   · intro A hA v hv i
     have hvU : v ∈ U.construct := fun i => ⟨hv.1 i, hv.2 i⟩
@@ -172,7 +255,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
       simpa only [Bool.or_eq_true] using h) ⟨_, hdiag, rfl⟩
     have ht₁ := Interval.times_outer _ _ ⟨_, hrec, _, hr, rfl⟩
     -- `J₂(U2_ - u2_)` holds `0`: a real matrix in `J₂` times the zero vector
-    have hz := PolyZonotope.jacobiSlice_mem_sliceBox X₀ ind.injective U hvU
+    have hz := PolyZonotope.aux_jacobiSlice_mem_sliceBox X₀ ind.injective U hvU
       fun k hk => (hxc k hk).2
     -- the matrix: `C Df` on the slice off `u₁`, `0` on it
     have hJ2 : (fun i k => if (List.finRange n).any (fun i => decide (ind i = k)) then 0

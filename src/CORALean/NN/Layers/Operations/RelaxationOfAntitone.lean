@@ -40,9 +40,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Antitonicity and nothing else: the function's range over the box, at slope zero. -/
 def Relaxation.ofAntitone (E : Enclosure 𝕋) : Relaxation 𝕋 where
   slope _ _ := zero
-  offset l u := half (addUp (E.lo u) (E.hi l))
-  error l u := maximum (subUp (E.hi l) (half (addUp (E.lo u) (E.hi l))))
-    (subUp (half (addUp (E.lo u) (E.hi l))) (E.lo u))
+  offset l u := half (addUp (E.enclose u).inf (E.enclose l).sup)
+  error l u := maximum (subUp (E.enclose l).sup (half (addUp (E.enclose u).inf (E.enclose l).sup)))
+    (subUp (half (addUp (E.enclose u).inf (E.enclose l).sup)) (E.enclose u).inf)
 
 end CORALean
 

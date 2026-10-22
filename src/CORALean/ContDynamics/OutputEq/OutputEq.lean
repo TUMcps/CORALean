@@ -34,6 +34,8 @@ variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An affine output equation `y = C x + D u + k` with `r` outputs over a state of dimension `n` and
+an input of dimension `m`. -/
 structure OutputEq (𝕋 : Type) (n m r : ℕ) where
   C : Mat 𝕋 r n
   D : Mat 𝕋 r m

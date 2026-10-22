@@ -1,9 +1,17 @@
 module
 
 public import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
-public import CORALean.NN.Layers.Theorems.CoarseBounds
+public import CORALean.NN.Layers.Operations.CoarseHi
+public import CORALean.NN.Layers.Operations.CoarseLo
+public import CORALean.NN.Layers.Operations.SampleDevUp
+public import CORALean.NN.Layers.Theorems.EvalPolyDownLe
+public import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
+public import CORALean.NN.Layers.Theorems.SampleBoundsOfCover
+public import CORALean.NN.Layers.Operations.SampleDevLo
+public import CORALean.NN.Layers.Theorems.LeEvalPolyUp
 public import CORALean.NN.Layers.Theorems.OfBracketSound
 public import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
+public import CORALean.NN.Layers.Theorems.SampleDevLoLe
 
 @[expose] public section
 
@@ -44,6 +52,57 @@ open Float Float.FloatOps Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ σ' : ℝ → ℝ} {m N : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ} {m : ℕ}
+
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ} {m : ℕ}
+
+/-- A sampled deviation's upper bound. -/
+theorem aux_le_sampleDevUp {E : Enclosure 𝕋} (hE : E.Sound σ) (c : Fin (m + 1) → 𝕋)
+    (x : 𝕋) : -- --- CONCL ---
+    σ (toReal x) - Real.evalPoly (fun k => toReal (c k)) (toReal x)
+      ≤ toReal (sampleDevUp E c x) := by -- --- PROOF ---
+  have h1 := sub_le_subUp (E.enclose x).sup (evalPolyDown c x)
+  have h2 := hE.le_hi x
+  have h3 := evalPolyDown_le c x
+  rw [sampleDevUp]
+  linarith
+
+end
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ σ' : ℝ → ℝ} {m : ℕ}
+
+/-- The fallback bracket is sound outright. -/
+theorem aux_coarse_bounds {E : Enclosure 𝕋} {c : Fin (m + 1) → 𝕋} {M l u : 𝕋} {t : ℝ}
+    (hE : E.Sound σ) (hd : ∀ x, HasDerivAt σ (σ' x) x)
+    (hM : ∀ x, toReal l ≤ x → x ≤ toReal u →
+      |σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x| ≤ toReal M)
+    (hl : toReal l ≤ t) (hu : t ≤ toReal u) : -- --- CONCL ---
+    toReal (coarseLo E c M l u) ≤ σ t - Real.evalPoly (fun k => toReal (c k)) t
+      ∧ σ t - Real.evalPoly (fun k => toReal (c k)) t
+        ≤ toReal (coarseHi E c M l u) := by -- --- PROOF ---
+  have hg : ∀ x, HasDerivAt (fun y => σ y - Real.evalPoly (fun k => toReal (c k)) y)
+      (σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x) x :=
+    fun x => (hd x).sub (Real.hasDerivAt_evalPoly _ x)
+  -- the whole width bounds every distance to the left end, rounded up
+  have hw := sub_le_subUp u l
+  exact sample_bounds_of_cover (g := fun y => σ y - Real.evalPoly (fun k => toReal (c k)) y)
+    (t := t) (p := fun _ : Fin 1 => l) hg hM (fun _ => ⟨le_rfl, hl.trans hu⟩)
+    (fun y hy hy' => ⟨0, by rw [abs_le]; exact ⟨by linarith, by linarith⟩⟩)
+    (fun _ => sampleDevLo_le hE c l) (fun _ => aux_le_sampleDevUp hE c l) hl hu
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyRelaxation.ofSampling_sound {E : Enclosure 𝕋} {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋}
@@ -64,9 +123,9 @@ theorem PolyRelaxation.ofSampling_sound {E : Enclosure 𝕋} {c : 𝕋 → 𝕋 
           (g := fun y => σ y - Real.evalPoly (fun k => toReal (c l u k)) y)
           (t := t) hg (fun x hx hx' => hM l u x hx hx') hchk
           (fun i => sampleDevLo_le hE (c l u) (p l u i))
-          (fun i => le_sampleDevUp hE (c l u) (p l u i)) hl hu
+          (fun i => aux_le_sampleDevUp hE (c l u) (p l u i)) hl hu
       · rw [fitLo, fitHi, if_neg hchk, if_neg hchk]
-        exact coarse_bounds hE hd (fun x hx hx' => hM l u x hx hx') hl hu
+        exact aux_coarse_bounds hE hd (fun x hx hx' => hM l u x hx hx') hl hu
 
 end CORALean
 

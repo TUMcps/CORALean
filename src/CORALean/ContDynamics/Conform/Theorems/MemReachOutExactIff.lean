@@ -2,7 +2,10 @@ module
 
 public import CORALean.ContDynamics.Conform.Definitions.DevSet
 public import CORALean.ContDynamics.Conform.Definitions.ReachOutExact
-public import CORALean.ContDynamics.Conform.Theorems.StateAddDev
+public import CORALean.ContDynamics.Conform.Definitions.State
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Abel
 
 @[expose] public section
 
@@ -59,13 +62,33 @@ variable {n p q : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- The run from `x0 + x̃` is the nominal run from `x0` plus the deviation. -/
+theorem Conform.Plant.aux_state_add_dev (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
+    (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) : -- --- CONCL ---
+    sys.state (x0 + xt) u w k = sys.state x0 u 0 k
+      + ((sys.A ^ k) *ᵥ xt + ∑ i : Fin k, (sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i)) := by -- --- PROOF ---
+  induction k with
+  | zero => simp [Conform.Plant.state]
+  | succ k ih =>
+    simp only [Conform.Plant.state, ih, Pi.zero_apply, add_zero, mulVec_add, mulVec_mulVec,
+      mulVec_sum]
+    -- the new disturbance is the `i = 0` term, the old ones move up one power
+    rw [Fin.sum_univ_succ]
+    simp only [Fin.val_zero, pow_zero, one_mulVec, Fin.val_succ, pow_succ']
+    have hidx : ∑ i : Fin k, (sys.A * sys.A ^ (i : ℕ)) *ᵥ w (k + 1 - 1 - ((i : ℕ) + 1))
+        = ∑ i : Fin k, (sys.A * sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i) :=
+      Finset.sum_congr rfl fun i _ => by rw [show k + 1 - 1 - ((i : ℕ) + 1) = k - 1 - i by omega]
+    rw [hidx, show k + 1 - 1 - 0 = k by omega]
+    abel
+
+
 /-- The output of the run from `x0 + x̃`, the nominal output subtracted. -/
 theorem aux_output_sub_nominal (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
     (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     sys.output (x0 + xt) u w k - sys.nominal x0 u k
       = (sys.C * sys.A ^ k) *ᵥ xt
         + ∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i) := by -- --- PROOF ---
-  simp only [Conform.Plant.output, Conform.Plant.nominal, sys.state_add_dev, mulVec_add,
+  simp only [Conform.Plant.output, Conform.Plant.nominal, sys.aux_state_add_dev, mulVec_add,
     mulVec_sum, ← mulVec_mulVec]
   abel
 

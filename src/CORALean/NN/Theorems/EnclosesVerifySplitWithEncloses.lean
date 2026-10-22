@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Operations.VerifySplitWith
 public import CORALean.NN.Theorems.EnclosesHoldsOfEnclose
-public import CORALean.Specification.Theorems.HoldsUnion
+public import CORALean.Specification.Specification
 
 @[expose] public section
 
@@ -13,8 +13,8 @@ The splitter owes no proof beyond `hcov`, the checker no completeness beyond `hc
 only that this budget and this `splitter` did not establish the specification, never that it fails.
 Induction on `d`, generalising `X`: `d = 0` is `holds_of_enclose`; `d + 1` case-splits the `||`, the
 left disjunct the same base case, the right combining both halves, verified at depth `d` by the
-induction hypothesis, through `hcov X` and the binary `Specification.holds_union`. At `Interval`,
-`Interval.splitAt` supplies `splitter` and `Interval.splitAt_cover` supplies `hcov`.
+induction hypothesis, through `hcov X` and the binary `Specification.aux_holds_union`. At
+`Interval`, `Interval.splitAt` supplies `splitter` and `Interval.splitAt_cover` supplies `hcov`.
 
 ## Inputs
 * `nn` – network
@@ -51,6 +51,24 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X Y : Set α}
+
+/-- A specification holds of a union when it holds of each part. -/
+theorem Specification.aux_holds_union (spec : Specification ContSet) (hX : spec.Holds X)
+    (hY : spec.Holds Y) : -- --- CONCL ---
+    spec.Holds (X ∪ Y) := by -- --- PROOF ---
+  obtain ⟨s, k⟩ := spec
+  cases k
+  · exact Set.union_subset hX hY
+  · exact hX.union_left hY
+  · exact Set.union_subset hX hY
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `hverify` at depth `d` gives the specification on the exact image, never a
@@ -76,7 +94,7 @@ theorem NeuralNetwork.Encloses.verifySplitWith_sound {nn : NeuralNetwork S n m}
               Set.image_mono (hcov X)
           _ = f '' construct (splitter X).1 ∪ f '' construct (splitter X).2 :=
               Set.image_union ..
-      exact spec.holds_of_outer hsub (spec.holds_union (ih _ h.1) (ih _ h.2))
+      exact spec.holds_of_outer hsub (spec.aux_holds_union (ih _ h.1) (ih _ h.2))
 
 end CORALean
 

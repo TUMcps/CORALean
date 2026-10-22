@@ -2,7 +2,10 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNominal
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 @[expose] public section
 
@@ -10,7 +13,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.TieInterOuter
 # `SpectraShadow.inter` contains the intersection
 
 Each shadow lies in its absorbed nominal shadow (`absorbRounding_nominal`), and the tied shadow
-contains the intersection of the two nominal shadows (`tieInter_outer`).
+contains the intersection of the two nominal shadows (`aux_tieInter_outer`).
 
 ## Inputs
 * `S₁` – spectrahedral shadow
@@ -38,12 +41,76 @@ open SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open FloatOps InflatedContSet
+
+/-- `SpectraShadow.aux_tieInter` contains the intersection of the nominal shadows. -/
+theorem SpectraShadow.aux_tieInter_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
+    nominalSet S₁ ∩ nominalSet S₂ ⊆ (S₁.aux_tieInter S₂).construct := by -- --- PROOF ---
+  rintro x ⟨h₁, h₂⟩
+  obtain ⟨β₁, hP₁, hx₁⟩ := SpectraShadow.mem_nominalSet_iff.mp h₁
+  obtain ⟨β₂, hP₂, hx₂⟩ := SpectraShadow.mem_nominalSet_iff.mp h₂
+  have hd : ∀ {b : ℕ} (w : Vec 𝕋 b),
+      toRealMat (diagonalBlock w) = Matrix.diagonal (toRealVec w) := by
+    intro b w
+    ext i l
+    simp [toRealMat, toReal_diagonalBlock]
+  have hunit : ∀ i r : Fin n, toReal (if r = i then (one : 𝕋) else zero) = if r = i then 1 else 0 :=
+    fun i r => by split_ifs <;> simp [toReal_one, toReal_zero]
+  -- the box is the origin, so the nominal point is the point
+  refine ⟨x, ?_, 0, ?_, add_zero x⟩
+  swap
+  · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+    rw [Interval.origin_exact]
+    rfl
+  refine SpectraShadow.mem_nominalSet_iff.mpr ⟨Fin.append (Fin.append β₁ β₂) x, ?_, fun r => ?_⟩
+  · -- the inequality is the two old ones beside the ties' diagonal
+    show (toRealMat (blockDiag zero (blockDiag zero S₁.A₀ S₂.A₀) _)
+      + ∑ l : Fin ((S₁.m + S₂.m) + n),
+        (Fin.append (Fin.append β₁ β₂) x : Fin ((S₁.m + S₂.m) + n) → ℝ) l
+          • toRealMat (blockDiag zero _ (diagonalBlock _))).PosSemidef
+    simp only [SpectraShadow.toRealMat_blockDiag, hd]
+    rw [SpectraShadow.lmi_blockDiag_diagonal]
+    refine (posSemidef_blockDiag_iff _ _).mpr ⟨?_, Matrix.posSemidef_diagonal_iff.mpr fun r => ?_⟩
+    · -- the old variables carry the old matrices, block by block
+      rw [Fin.sum_univ_add, Fin.sum_univ_add]
+      simp only [Fin.append_left, Fin.append_right, SpectraShadow.toRealMat_blockDiag,
+        SpectraShadow.toRealMat_const_zero, smul_zero, Finset.sum_const_zero, add_zero]
+      simp only [← blockDiag_smul, ← blockDiag_sum, ← blockDiag_add, smul_zero,
+        Finset.sum_const_zero, add_zero, zero_add]
+      exact (posSemidef_blockDiag_iff _ _).mpr ⟨hP₁, hP₂⟩
+    · -- every tie entry is zero at the common point
+      rw [Fin.sum_univ_add, Fin.sum_univ_add]
+      refine Fin.addCases (fun r₁ => ?_) (fun r₁ => ?_) r <;>
+        refine Fin.addCases (fun r' => ?_) (fun r' => ?_) r₁ <;>
+        have e₁ := hx₁ r' <;> have e₂ := hx₂ r' <;>
+        have s₁ : ∑ j, β₁ j * toReal (S₁.G j r') = ∑ j, toReal (S₁.G j r') * β₁ j :=
+          Finset.sum_congr rfl fun _ _ => mul_comm _ _ <;>
+        have s₂ : ∑ j, β₂ j * toReal (S₂.G j r') = ∑ j, toReal (S₂.G j r') * β₂ j :=
+          Finset.sum_congr rfl fun _ _ => mul_comm _ _ <;>
+        simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, toRealVec,
+          Fin.append_left, Fin.append_right] <;>
+        simp [toReal_zero, toReal_neg', hunit, Finset.sum_neg_distrib] <;>
+        linarith
+  · -- the point is the tied variable
+    show x r = toReal (zero : 𝕋) + ∑ l : Fin ((S₁.m + S₂.m) + n),
+      toReal (Fin.append (fun (_ : Fin (S₁.m + S₂.m)) (_ : Fin n) => (zero : 𝕋))
+        (fun (i r' : Fin n) => if r' = i then (one : 𝕋) else zero) l r)
+        * (Fin.append (Fin.append β₁ β₂) x : Fin ((S₁.m + S₂.m) + n) → ℝ) l
+    rw [Fin.sum_univ_add]
+    simp [Fin.append_left, Fin.append_right, hunit, toReal_zero]
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.inter_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     S₁.construct ∩ S₂.construct ⊆ (S₁.inter S₂).construct :=
   subset_trans (Set.inter_subset_inter S₁.absorbRounding_nominal S₂.absorbRounding_nominal)
-    (SpectraShadow.tieInter_outer _ _)
+    (SpectraShadow.aux_tieInter_outer _ _)
 
 end CORALean.Float
 

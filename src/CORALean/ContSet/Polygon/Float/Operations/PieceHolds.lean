@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Operations.InTriangle
+public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
 public import CORALean.ContSet.VPolytope.Float.VPolytope
+public import CORALean.ContSet.Polygon.Float.Operations.InTriangle
 
 @[expose] public section
 
@@ -32,6 +33,13 @@ certain; a point on an edge or too close to one for the rounding answers `false`
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+section
+open FloatOps
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
-public import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.Global.Entrywise
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
@@ -9,6 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
 
 @[expose] public section
 
@@ -46,6 +47,13 @@ variable {n q r : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {h q r : ℕ}
+
+
+end
+
 
 /-- The restatement `Fin.sum_univ_add` needs: the generator count is not
 syntactically `q + n` until `reduceKeepBy` unfolds. -/

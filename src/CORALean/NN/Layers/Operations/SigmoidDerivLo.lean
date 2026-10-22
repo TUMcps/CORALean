@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `σ l · σ(-u)` from below, each factor floored at zero. -/
 def sigmoidDerivLo (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
-  mulDown (maximum zero (E.lo l)) (maximum zero (E.lo (neg u)))
+  mulDown (maximum zero (E.enclose l).inf) (maximum zero ((E.enclose (neg u)).inf))
 
 end CORALean
 

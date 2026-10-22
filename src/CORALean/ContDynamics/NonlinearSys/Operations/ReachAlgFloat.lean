@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 public import CORALean.ContDynamics.Reach.Operations.Steps
 
 @[expose] public section
@@ -9,10 +9,10 @@ public import CORALean.ContDynamics.Reach.Operations.Steps
 # Nonlinear reachability in floats: CORA's `nonlinearSys/reach` at `alg = 'lin'` or `'poly'`
 
 `ẋ = f(x, u)`, `u(t) ∈ U` arbitrary in time, from `X₀`, computed in `𝕋` from a `FloatHessModel`:
-`N = (tFinal - tStart) / Δt` steps of `linReachFloat` (`linReachRunFloat`), each returning its set
-over the whole step. `N` is read as `FloatModel.reachFloat` reads it, and `none` is returned where
-it is no natural number or a step fails. The guarantee `reachAlgFloat_outer` is against the real
-system's runs through `FloatHessModel.Encloses`, with no certificate and no confinement asked.
+`N = (tFinal - tStart) / Δt` steps of `linReachFloat` (`aux_linReachRunFloat`), each returning its
+set over the whole step. `N` is read as `FloatModel.reachFloat` reads it, and `none` is returned
+where it is no natural number or a step fails. The guarantee `reachAlgFloat_outer` is against the
+real system's runs through `FloatHessModel.Encloses`, with no certificate and no confinement asked.
 
 ## Inputs
 * `fm` – float Hessian model
@@ -44,6 +44,20 @@ open CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `R(τ_0), …, R(τ_{k-1})` of `k` steps abstracted by `alg` from `R`, or `none` if
+one of them fails. -/
+def NonlinearSys.FloatHessModel.aux_linReachRunFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
+    (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
+    ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n)))
+  | 0, _ => some []
+  | k + 1, R => do
+    let step ← fm.linReachFloat alg U options R                    -- (R(τ), R(t + Δt))
+    let rest ← fm.aux_linReachRunFloat alg U options k step.2          -- the steps after it
+    pure (step.1 :: rest)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The windows `R(τ_0), …, R(τ_{N-1})` of `ẋ = f(x, u)` from `X₀` under inputs in
@@ -57,7 +71,7 @@ def NonlinearSys.FloatHessModel.reachAlgFloat (fm : NonlinearSys.FloatHessModel 
   -- 2. the loop runs while `t_k < t_end`: `N = (tFinal - tStart) / Δt` iterations
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt)  -- (tFinal - tStart) / Δt ∈ ℕ
   -- 3.-17. the iterations; 18. their `R(τ_k)`, `⋃_{k < N} R(τ_k)`
-  fm.linReachRunFloat alg params.U options N X₀                     -- ⋃_{k < N} R(τ_k)
+  fm.aux_linReachRunFloat alg params.U options N X₀                     -- ⋃_{k < N} R(τ_k)
 
 end CORALean
 

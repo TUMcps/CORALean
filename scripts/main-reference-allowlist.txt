@@ -10,7 +10,6 @@ src/CORALean/ContSet/Capsule/Float/Capsule.lean
 src/CORALean/ContSet/Capsule/Real/Capsule.lean
 src/CORALean/ContSet/EmptySet/Real/EmptySet.lean
 src/CORALean/ContSet/Fullspace/Real/Fullspace.lean
-src/CORALean/ContSet/InflatedContSet/InflatedContSet.lean
 src/CORALean/ContSet/Interval/Float/Interval.lean
 src/CORALean/ContSet/Interval/Real/Interval.lean
 src/CORALean/ContSet/OptEmpty/OptEmpty.lean

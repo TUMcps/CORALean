@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.Round
-public import CORALean.ContSet.Interval.Float.Theorems.RoundAwayIntCast
+public import CORALean.ContSet.Interval.Real.Operations.RoundAway
 public import CORALean.ContSet.Interval.Real.Operations.Round
 
 @[expose] public section
@@ -39,6 +39,25 @@ open SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `aux_roundAwayInt` is `roundAway`. -/
+theorem aux_roundAwayInt_cast (q : ℚ) : -- --- CONCL ---
+    ((aux_roundAwayInt q : ℤ) : ℝ) = CORALean.Real.roundAway (q : ℝ) := by -- --- PROOF ---
+  unfold aux_roundAwayInt CORALean.Real.roundAway
+  by_cases h : 0 ≤ q
+  · have h' : (0 : ℝ) ≤ q := by exact_mod_cast h
+    rw [if_pos h, if_pos h']
+    have := Rat.floor_cast (α := ℝ) (q + 1 / 2)
+    push_cast at this
+    rw [← this]
+  · have h' : ¬ (0 : ℝ) ≤ q := by exact_mod_cast h
+    rw [if_neg h, if_neg h']
+    have := Rat.floor_cast (α := ℝ) (-q + 1 / 2)
+    push_cast at this ⊢
+    rw [← this]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
@@ -46,13 +65,13 @@ theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
   intro x hx i
   have h := hx i
   have hl : CORALean.Real.roundAway (toReal (I.inf i)) =
-      ((roundAwayInt (ToRat.toRat (I.inf i)) : ℤ) : ℝ) := by
-    rw [roundAwayInt_cast, ToRat.toReal_toRat]
+      ((aux_roundAwayInt (ToRat.toRat (I.inf i)) : ℤ) : ℝ) := by
+    rw [aux_roundAwayInt_cast, ToRat.toReal_toRat]
   have hu : CORALean.Real.roundAway (toReal (I.sup i)) =
-      ((roundAwayInt (ToRat.toRat (I.sup i)) : ℤ) : ℝ) := by
-    rw [roundAwayInt_cast, ToRat.toReal_toRat]
-  have h1 := (intDown_le_intUp (𝕋 := 𝕋) (roundAwayInt (ToRat.toRat (I.inf i)))).1
-  have h2 := (intDown_le_intUp (𝕋 := 𝕋) (roundAwayInt (ToRat.toRat (I.sup i)))).2
+      ((aux_roundAwayInt (ToRat.toRat (I.sup i)) : ℤ) : ℝ) := by
+    rw [aux_roundAwayInt_cast, ToRat.toReal_toRat]
+  have h1 := (intDown_le_intUp (𝕋 := 𝕋) (aux_roundAwayInt (ToRat.toRat (I.inf i)))).1
+  have h2 := (intDown_le_intUp (𝕋 := 𝕋) (aux_roundAwayInt (ToRat.toRat (I.sup i)))).2
   refine ⟨?_, ?_⟩
   · exact le_trans h1 (hl ▸ h.1)
   · exact le_trans (hu ▸ h.2) h2

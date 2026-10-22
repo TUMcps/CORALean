@@ -12,10 +12,6 @@ under a `MAIN THEOREM` banner. Not rejected, because they are not an operation's
 * a lookup (`l[i]? = some a`, `.head?`, `.find?`, `.get?`, ...), which names an element;
 * a verdict, `= some true` / `= some false`, which names no object.
 
-`scripts/option-hyp-allowlist.txt` lists the theorems that could not be converted, one
-`<path>::<name>  <reason>` per line (`#` comments and blank lines ignored). An entry that matches
-no flagged theorem any more is reported as stale, so the list only shrinks.
-
 Prints one finding per line and exits 1 on any. `--root DIR` reads another tree (used to test the
 rule on a mutated copy).
 """
@@ -27,7 +23,6 @@ ROOT = Path(__file__).resolve().parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()
-LIST = ROOT / "scripts" / "option-hyp-allowlist.txt"
 
 OPEN, CLOSE = "([{⟨⦃", ")]}⟩⦄"
 MAIN = re.compile(r"^-- =+\s+MAIN THEOREM\s+=+ --$")
@@ -84,14 +79,7 @@ def option_hyp(b):
 
 
 def main():
-    allow, alines = {}, {}
-    if LIST.exists():
-        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
-            if l.strip() and not l.startswith("#"):
-                key = l.split()[0]
-                allow[key] = True
-                alines[key] = no
-    findings, used = [], set()
+    findings = []
     for p in sorted((ROOT / "src").rglob("*.lean")):
         lines = p.read_text(encoding="utf-8").split("\n")
         for i, l in enumerate(lines):
@@ -115,19 +103,10 @@ def main():
                 hit = option_hyp(b)
                 if not hit:
                     continue
-                key = f"{rel}::{name}"
-                if key in allow:
-                    used.add(key)
-                    break
                 findings.append(
                     f"{rel}:{j + 1}: `{name}` takes `({hit[0]} : {hit[1]} = some …)` — state the claim "
-                    f"as `∀ x ∈ {hit[1]}, …` (Option membership) instead, or list the theorem in "
-                    "scripts/option-hyp-allowlist.txt with the reason")
+                    f"as `∀ x ∈ {hit[1]}, …` (Option membership) instead")
                 break
-    for k in sorted(allow):
-        if k not in used:
-            findings.append(f"scripts/option-hyp-allowlist.txt:{alines[k]}: stale entry `{k}` — no "
-                            "such flagged theorem; the list only shrinks")
     for f in findings:
         print(f)
     sys.exit(1 if findings else 0)

@@ -760,10 +760,12 @@ def sys : LinearSysDT D 2 := LinearSysDT.canonical (!![d 15 (-4), d (-1) (-3); d
 def reachRun : Zonotope (Vec D 2) := sys.reach (S := 𝒵[D]) ⟨Z, Z, 0, 5⟩
     ⟨2, by decide⟩
 
+/-- A network of a linear layer followed by a ReLU layer. -/
 def net : NeuralNetwork 𝒵[D] 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer D 2 2) .output)
 
+/-- The zonotope enclosure of `net` on `Z`. -/
 def encloseRun : Zonotope (Vec D 2) := net.enclose Z
 
 /-- Linear, sigmoid, activation at `Real.sigmoid`, linear, and `net` nested as one layer:
@@ -776,6 +778,7 @@ def mixedNet : NeuralNetwork 𝒵[D] 2 2 :=
         (.layer (Enclose.pack (S := 𝒵[D]) net)
           (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
 
+/-- The zonotope enclosure of `mixedNet` on `Z`. -/
 def mixedEncloseRun : Zonotope (Vec D 2) := mixedNet.enclose Z
 
 /-- `net` at the interval hull representation: the stretch `propagateBounds` pushes bounds
@@ -796,6 +799,7 @@ def regionFit : (o : ℕ) → PolyRelaxation D o := fun o =>
 
 /-- Stored polynomials of the two infinite ends of `[-4, 4]`. -/
 def regionStart : RegionPoly D := ⟨none, some (d (-4) 0), 0, fun _ => d 0 0, d 1 (-1)⟩
+/-- The stored polynomial of the right end of `[-4, 4]`. -/
 def regionEnd : RegionPoly D := ⟨some (d 4 0), none, 0, fun _ => d 1 0, d 1 (-1)⟩
 
 /-- Order `1`, tolerance `1/16`, fuel `64`. -/
@@ -810,6 +814,7 @@ def findRegionPolysRun : Option (List (RegionPoly D)) :=
 network drives both inputs, so the external input set is a point set of dimension `0`. -/
 def nnContrSys : NeurNetContrSys (LinearSys D 2) 𝒵[D] 2 :=
   NeurNetContrSys.ofFull ctSys net (2 * Scalar.toReal stepR)
+/-- The reach of the closed loop over two control periods, as the set at the end. -/
 def nnContrReachRun : Zonotope (Vec D 2) :=
   nnContrSys.reachFloat (Zonotope.point fun i => i.elim0) ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
 /-- The same loop's set at every period boundary `0, 1, 2`, at an order `reachOrderFloat` finds. -/
@@ -912,6 +917,7 @@ open SoundFloatArithmetic
 
 /-- The real square's enclosure over `[a, b]`, crude at a sign change but sound. -/
 def sqLo (a b : D) : D := Float.Interval.mulLo a b a b
+/-- The upper end of the square's enclosure over `[a, b]`. -/
 def sqHi (a b : D) : D := Float.Interval.mulHi a b a b
 
 /-- Interval extensions of the field and of its slopes, in `D`. -/
@@ -1046,6 +1052,7 @@ second-order expansion exact for the cubic term. -/
 
 /-- `[-2b, -2a]` for `y ∈ [a, b]`, `-2y` boxed. -/
 def vdpNegTwoLo (b : D) : D := subDown (neg b) b
+/-- `-2a` rounded up, the upper end of `[-2b, -2a]`. -/
 def vdpNegTwoHi (a : D) : D := subUp (neg a) a
 
 /-- `vdpModel` with the Hessian boxes of both components. -/
@@ -1226,8 +1233,8 @@ depth-ignoring enclosure fails the build. -/
 /-- `(lo, hi)` mantissas at exponent `-24` when both ends have that exponent. -/
 def sigmoidOneEnds (k : ℕ) : Option (ℤ × ℤ) :=
   let E : Enclosure D := sigmoidEnclosure k
-  let lo := E.lo ⟨1, 0⟩
-  let hi := E.hi ⟨1, 0⟩
+  let lo := (E.enclose ⟨1, 0⟩).inf
+  let hi := (E.enclose ⟨1, 0⟩).sup
   if lo.exponent = -24 ∧ hi.exponent = -24 then some (lo.mantissa, hi.mantissa) else none
 
 /-- Width at depth `k` below `bound` mantissa units (`2⁻²⁴` each), and `σ 1` bracketed
@@ -1261,6 +1268,7 @@ def halfAbove (t : ℤ) : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d (-1) 0 else d 0 0, fun _ => d (-t) 0, 0, fun i => i.elim0,
     fun i => i.elim0, fun _ => FloatOps.zero, fun _ => FloatOps.zero, Interval.origin _⟩
 
+/-- `true`: the network's output set lies in the safe box. -/
 def checkSafe : Bool := safeBox.check encloseRun
 
 /-- `true`: the output never reaches `x₀ ≥ 10`. -/
@@ -1296,13 +1304,16 @@ example : safeBox.check (net.enclose Z) →
 Three coordinates on `[0, 1/4]`: the normalization alone gives `1 - 2 ru`, the raw lower bound
 `(1 + 2 exp (1/4))⁻¹`, both at `k = 10`. -/
 
+/-- The input box `[0, 1/4]` on each of three coordinates. -/
 def softmaxIn : Interval (Vec D 3) := ⟨fun _ => d 0 0, fun _ => d 1 (-2)⟩
 
 /-- The lower bound `softmaxBox` had before the raw lower bound. -/
 def softmaxNormLower : D :=
   maximum zero (subDown one (sumOffUp (0 : Fin 3) fun j => softmaxRawUpper 10 softmaxIn j))
 
+/-- The raw lower bound of softmax's first coordinate at `k = 10`. -/
 def softmaxRawLowerRun : D := softmaxRawLower 10 softmaxIn 0
+/-- The box `softmaxBox` computes at `k = 10`. -/
 def softmaxBoxRun : Interval (Vec D 3) := softmaxBox 10 softmaxIn
 
 #eval softmaxNormLower
@@ -1314,6 +1325,7 @@ def softmaxBoxRun : Interval (Vec D 3) := softmaxBox 10 softmaxIn
 The thesis's `Alg. 2` for `ctSys` from `Z` under the re-centered input `lpInputSet`, at step
 `2⁻⁵`, Taylor order `4` and `3` further windows after the first, NaN-gated. -/
 
+/-- The wrapping-free reach with `box()` of the control system from `Z`, NaN-gated. -/
 def reachBoxRun : Option (List (Zonotope (Vec D 2))) :=
   ctSys.reachBoxFloatChecked Z lpInputSet stepR 4 3
 
@@ -1324,17 +1336,22 @@ conversion box that box's own, the input and the disturbance the same small box 
 step `2⁻⁵`, Taylor order `4` and `t₀ = 0`: the state before the first iteration, after it, and
 after two. -/
 
+/-- The small zonotope used as input and as disturbance set of the backward reach. -/
 def backW : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 (-8), d 0 0; d 0 0, d 1 (-8)]
   I_error := zbox 2
 
+/-- The conversion box of the backward reach: the box of `Z`. -/
 def backBx : Interval (Vec D 2) := Z.interval
+/-- The state of the maximal backward reachable set before the first iteration. -/
 def backInitRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
   ctSys.maxBackReachInitFloat backW backW (d 0 0) 4
+/-- The state of the maximal backward reachable set after one iteration. -/
 def backStepRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
   backInitRun.bind (ctSys.maxBackReachStepFloat backBx H H backW backW (fun _ _ => backW) stepR 4)
+/-- The state of the maximal backward reachable set after two iterations. -/
 def backRunRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
   ctSys.maxBackReachRunFloat backBx H H backW backW (fun _ _ => backW) (d 0 0) stepR 4 2
 
@@ -1344,16 +1361,26 @@ A triangle, a segment and a point as one-piece polygons: the vertex triangulatio
 (all `3 ^ 3` vertex triples), the quadratic map `x ↦ (xᵀ x, xᵀ x)` of the segment, the mixed map of
 the segment and the point, and the polygon an ellipsoid's certified support points span. -/
 
+/-- The triangle with corners `(0, 0)`, `(1, 0)`, `(0, 1)`. -/
 def polyTri : VPolytope (Vec D 2) :=
     ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], zbox 2⟩
+/-- The segment from `(0, 0)` to `(1, 0)`. -/
 def polySeg : VPolytope (Vec D 2) := ⟨2, ![![d 0 0, d 0 0], ![d 1 0, d 0 0]], zbox 2⟩
+/-- The triangle as a one-piece polygon. -/
 def polyP : Polygon D := Polygon.ofPieces [polyTri]
+/-- The segment as a one-piece polygon. -/
 def polyS : Polygon D := Polygon.ofPieces [polySeg]
+/-- The point `(1, 0)` as a one-piece polygon. -/
 def polyPt : Polygon D := Polygon.ofPieces [⟨1, ![![d 1 0, d 0 0]], zbox 2⟩]
+/-- The identity matrix for both quadratic-map components. -/
 def polyQ : Fin 2 → Mat D 2 2 := fun _ => identityMat D 2
+/-- The vertex triangulation of the triangle. -/
 def polyTriangulation : Polygon D := Polygon.triangulation polyP
+/-- The quadratic map of the segment. -/
 def polyQuadMap : Polygon D := polyS.quadMap polyQ 0 fun _ _ => false
+/-- The mixed quadratic map of the segment and the point. -/
 def polyQuadMapMixed : Polygon D := polyS.quadMapMixed polyPt polyQ 0 fun _ _ => false
+/-- The polygon spanned by an ellipsoid's certified support points along the four axes. -/
 def E_polygon : Polygon D :=
   E.polygon [![d 1 2, d 0 0], ![d 0 0, d 1 2], ![d (-1) 2, d 0 0], ![d 0 0, d (-1) 2]]
 
@@ -1363,8 +1390,11 @@ def E_polygon : Polygon D :=
 `Q₁ = 4 I` against `Q₂ = I`: the eigenvalue bound `1/4` certifies the direction `(1, 0)` good
 (`sqrt(4)/sqrt(1) = 2` is below `1/λ = 4`). -/
 
+/-- The ellipsoid `4 I` centered at the origin. -/
 def goodE₁ : Ellipsoid D 2 := ⟨!![d 1 2, d 0 0; d 0 0, d 1 2], ![d 0 0, d 0 0], zbox 2⟩
+/-- The unit ellipsoid centered at the origin. -/
 def goodE₂ : Ellipsoid D 2 := ⟨!![d 1 0, d 0 0; d 0 0, d 1 0], ![d 0 0, d 0 0], zbox 2⟩
+/-- Whether the direction `(1, 0)` is certified good for `goodE₁` against `goodE₂`. -/
 def isGoodDirRun : Bool := goodE₁.isGoodDir goodE₂ ![d 1 0, d 0 0] (d 1 (-2))
 
 /-! ## `ConZonotope.reduceLift`, constraints kept
@@ -1374,6 +1404,8 @@ order `1`: the lifted zonotope `[G; Aₑ]` has three rows and keeps no generator
 boxed into `3`, the equality row read back off the box, the inequality row left with the kept
 generators and their slack. -/
 
+/-- A constrained zonotope of four generators in the plane with one inequality and one equality on
+the coefficients. -/
 def cZ_eqs : ConZonotope D (Vec D 2) where
   h := 4
   c := ![d 1 0, d 0 0]
@@ -1384,6 +1416,7 @@ def cZ_eqs : ConZonotope D (Vec D 2) where
          I_error := Interval.origin 4 }
   I_error := zbox 2
 
+/-- The constrained zonotope reduced to order `1` by lifting, constraints kept. -/
 def cZ_reduceLift : ConZonotope D (Vec D 2) := cZ_eqs.reduceLift 1
 
 /-! ## Components with a worked example of their own
@@ -1394,7 +1427,9 @@ a `Taylm` product and sum, the certified `eqBool`, and a nonlinear ARX model sim
 `NonlinearARXFloat`). `NonlinDASys.reachFloat` is the ordinary run of its float model
 (`vdpReach` above) and needs the real-valued reduced model, so it is run in `NonlinDASysFloat`. -/
 
+/-- The intersection of `Z` and `Z_plus` by `and_`. -/
 def zAnd : Zonotope (Vec D 2) := Z.and_ Z_plus
+/-- The intersection of the triangle polygon with itself. -/
 def polyAnd : Polygon D := Polygon.and polyP polyP
 /-- The triangle minus the point `(1, 0)`: its edge halfspaces, shifted to the translate. -/
 def polyMinkDiff : SetUnion (HPolytope D (Vec D 2)) := Polygon.minkDiff polyP polyPt
@@ -1404,6 +1439,7 @@ def polySubtract : Polygon D :=
   let sq := fun lo hi : ℤ => (⟨4, ![![d lo 0, d lo 0], ![d hi 0, d lo 0], ![d hi 0, d hi 0],
     ![d lo 0, d hi 0]], zbox 2⟩ : VPolytope (Vec D 2))
   Polygon.subtract (Polygon.ofPieces [sq 0 3]) (Polygon.ofPieces [sq 1 2])
+/-- The sum of a two-member intersection and a one-member intersection, branch-wise. -/
 def interSum : SetIntersection (Zonotope (Vec D 2)) :=
   Plus.plus (⟨[Z, Z_plus]⟩ : SetIntersection (Zonotope (Vec D 2))) ⟨[Z]⟩
 
@@ -1415,10 +1451,15 @@ def lsContainsRun : Bool :=
 /-- `x · x` and `x · x + x` for the variable `x ∈ [1/2, 3/2]`, order `3`, as ranges (`exp` is run
 at `Dyadic 53` in `TaylmFloat`). -/
 def tlmI : Interval (Vec D 1) := ⟨![d 1 (-1)], ![d 3 (-1)]⟩
+/-- The variable `x` over the box as a Taylor model of order `3`. -/
 def tlmX : Taylm D 1 := (tlmI.taylm 3) 0
+/-- The Taylor model of `x · x`. -/
 def tlmSq : Taylm D 1 := tlmX.times tlmX
+/-- The Taylor model of `x · x + x`. -/
 def tlmSum : Taylm D 1 := tlmSq.plus tlmX
+/-- The range of `x · x` as a box. -/
 def tlmSqBox : Interval D := ⟨tlmSq.bounds.inf, tlmSq.bounds.sup⟩
+/-- The range of `x · x + x` as a box. -/
 def tlmSumBox : Interval D := ⟨tlmSum.bounds.inf, tlmSum.bounds.sup⟩
 
 /-- `exp (x · x)` at the reduction depth `53`, far above the mantissa width `24`: `expUp`
@@ -1426,13 +1467,16 @@ returns an exponent about `2 ^ 32`, which `addUp` and `le` take without forming 
 The range is sound and astronomically wide, so it prints as infinite. -/
 def tlmExpDeep : Taylm D 1 := tlmSq.exp 53
 
+/-- Whether `Z` and `Z_plus` are certified equal. -/
 def eqBoolRun : Bool := ContSet.eqBool Z Z_plus
+/-- Whether `Z` is certified equal to itself. -/
 def eqBoolSelf : Bool := ContSet.eqBool Z Z
 
 /-- `y(k) = y(k-1)/2 + u(k)`, one lag, as an interval extension of its field. -/
 def arxModel : NonlinearARX.FloatModel D 1 1 1 where
   f Y V := ⟨![addDown (half (Y.inf 0)) (V.inf 0)], ![addUp (half (Y.sup 0)) (V.sup 0)]⟩
 
+/-- The boxes of the ARX model simulated from `y = 1` under the constant input `1/16`. -/
 def arxBoxes : ℕ → Interval (Vec D (1 * 1)) :=
   NonlinearSysDT.simulateBoxFloat arxModel.toNonlinearSysDTFloat ![d 1 0]
     (NonlinearARX.feed 1 fun _ => (![d 1 (-4)] : Vec D 1))
@@ -1443,6 +1487,7 @@ boxes down to six bisections; the point `(3/8, 1/4)`, the value at the factors `
 from which the test starts; and the box of radius `1/64` around it, from a box of radius
 `1/32` around those factors. The approximate inverse is `Zonotope.basisInverse`. -/
 
+/-- A polynomial zonotope with two factors, three dependent and one independent generator. -/
 def pZinner : PolyZonotope (Vec D 2) where
   p := 2
   h := 3
@@ -1453,22 +1498,28 @@ def pZinner : PolyZonotope (Vec D 2) where
   GI := ![![d 1 (-1), d 0 0]]
   I_error := zbox 2
 -- the inner boxes, the point and the box
+/-- The inner boxes of `pZinner` after six bisections. -/
 def pZ_innerApprox : List (Zonotope (Vec D 2)) :=
   PolyZonotope.innerApprox pZinner (d 1 (-3)) (fun M => Zonotope.basisInverse M) 20 6
+/-- Whether the point `(3/8, 1/4)` is approximately inside `pZinner`. -/
 def pZ_containsPointApprox : Bool :=
   PolyZonotope.containsPointApprox pZinner ![d 3 (-3), d 1 (-2)] ![d 0 0, d 1 (-3), d 3 (-2)]
     (fun M => Zonotope.basisInverse M) 20
+/-- A small polynomial zonotope around the point `(3/8, 1/4)`. -/
 def pZinnerS : PolyZonotope (Vec D 2) :=
   ⟨0, 0, 2, ![d 3 (-3), d 1 (-2)], Fin.elim0, Fin.elim0, ![![d 1 (-6), d 0 0], ![d 0 0, d 1 (-6)]],
     zbox 2⟩
+/-- Whether `pZinnerS` is approximately inside `pZinner`. -/
 def pZ_containsSetApprox : Bool :=
   PolyZonotope.containsSetApprox pZinner pZinnerS
     (fun _ => ⟨![d (-1) (-5), d 3 (-5), d 23 (-5)], ![d 1 (-5), d 5 (-5), d 25 (-5)]⟩)
     (fun M => Zonotope.basisInverse M) 20 3
 -- the point set test along the four axes: `(8, 0)`, beyond every enclosure, is excluded
+/-- Whether the point `(3/8, 1/4)` is in `pZinner`, by the point-set test along the four axes. -/
 def pZ_containsPointSet : Bool :=
   PolyZonotope.containsPointSet pZinner ![![d 3 (-3), d 1 (-2)]] 2 10 fun _ =>
     ⟨4, ![![d 1 0, d 0 0], ![d (-1) 0, d 0 0], ![d 0 0, d 1 0], ![d 0 0, d (-1) 0]]⟩
+/-- Whether the point set containing `(8, 0)` is in `pZinner`; it is not. -/
 def pZ_containsPointSetOut : Bool :=
   PolyZonotope.containsPointSet pZinner ![![d 3 (-3), d 1 (-2)], ![d 8 0, d 0 0]] 2 10 fun _ =>
     ⟨4, ![![d 1 0, d 0 0], ![d (-1) 0, d 0 0], ![d 0 0, d 1 0], ![d 0 0, d (-1) 0]]⟩
@@ -1479,8 +1530,10 @@ def pZ_containsPointSetOut : Bool :=
 The triangle `(1,1), (3,1), (1,3)`: its box is the hull of its vertices, `[1, 3]²`, not that hull
 joined with the origin. -/
 
+/-- The triangle `(1,1), (3,1), (1,3)` as vertices. -/
 def polyOffOrigin : VPolytope (Vec D 2) :=
   ⟨3, ![![d 1 0, d 1 0], ![d 3 0, d 1 0], ![d 1 0, d 3 0]], zbox 2⟩
+/-- The box of the vertex list, the hull of its vertices. -/
 def polyOffOriginBox : Interval (Vec D 2) := polyOffOrigin.interval
 
 end CORALean.RunnableFloat

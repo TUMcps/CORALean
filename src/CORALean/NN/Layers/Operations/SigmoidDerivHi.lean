@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `σ u · σ(-l)` from above. -/
 def sigmoidDerivHi (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
-  mulUp (E.hi u) (E.hi (neg l))
+  mulUp (E.enclose u).sup ((E.enclose (neg l)).sup)
 
 end CORALean
 

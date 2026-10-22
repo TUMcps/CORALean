@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -42,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `[e^{At}]` for every `A ∈ sys.A` and `t ∈ [tLo, tHi]`: the order-`η` enclosure at
 `[tLo, tHi]/2^s`, squared `s` times. -/
-def LinParamSys.expSquaringFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.expSquaringFloat (sys : LinParamSys ℐ[𝕋] n)
     (tLo tHi : 𝕋) (η s : ℕ) : Interval (Mat 𝕋 n n) :=
   let B := sys.expIntervalFloat (half^[s] tLo) (half^[s] tHi) η          -- [e^{A t/2^s}]
   (fun P => (Interval.matMul P P).materialiseMat)^[s] B                  -- squared s times

@@ -50,6 +50,8 @@ def PolyZonotope.zonotope (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 
   G := Fin.append pZ.G pZ.GI
   I_error := pZ.I_error
 
+/-- The zonotope of a constrained polynomial zonotope: the one of its polynomial zonotope, ignoring
+the constraint. -/
 def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   cPZ.polyZonotope.zonotope
 

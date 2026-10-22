@@ -12,11 +12,9 @@ public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBou
 public import CORALean.Specification.STLInterval.Theorems.RawSetAdd
 public import CORALean.Specification.STLInterval.Theorems.RawSetBoundsNe
 public import CORALean.Specification.STLInterval.Theorems.RawSetClamp
-public import CORALean.Specification.STLInterval.Theorems.RawSetInter
 public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
 public import CORALean.Specification.STLInterval.Theorems.RawSetLowerReach
 public import CORALean.Specification.STLInterval.Theorems.RawSetMinkDiff
-public import CORALean.Specification.STLInterval.Theorems.RawSetNeg
 public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOf
 public import CORALean.Specification.STLInterval.Theorems.RawSetOrdConnected
 public import CORALean.Specification.STLInterval.Theorems.RawSetSub
@@ -44,7 +42,6 @@ public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 public import CORALean.Specification.STLInterval.Theorems.SetStlIntervalBounds
 public import CORALean.Specification.STLInterval.Theorems.SetToLeft
 public import CORALean.Specification.STLInterval.Theorems.SetToRight
-public import CORALean.Specification.STLInterval.Theorems.SetUntilNoZero
 public import CORALean.Specification.STLInterval.Theorems.SupremumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.SupremumValue
 public import CORALean.Specification.STLInterval.Theorems.WithinTolZero

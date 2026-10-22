@@ -41,9 +41,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 def invSqrtOneSubLo (q : ℕ) (c : 𝕋) : 𝕋 :=
   maximum zero (divDown one (sqrtUp q (subUp one (mulDown c c))))
 
+/-- The upper bound of `1/√(1 - c²)`: the root rounded down, the quotient rounded up. -/
 def invSqrtOneSubHi (q : ℕ) (c : 𝕋) : 𝕋 :=
   divUp one (sqrtDown q (subDown one (mulUp c c)))
 
+/-- When the rounded-down root is positive, `|c| < 1` and `invSqrtOneSubLo`, `invSqrtOneSubHi`
+enclose `1/√(1 - c²)`. -/
 theorem invSqrtOneSub_mem [SoundFloatArithmetic 𝕋] (q : ℕ) (c : 𝕋)
     (h : 0 < toReal (sqrtDown q (subDown one (mulUp c c)))) : -- --- CONCL ---
     toReal c ^ 2 < 1 ∧ 0 ≤ toReal (invSqrtOneSubLo q c) ∧

@@ -63,6 +63,8 @@ def aux_foldRow {n : ℕ} (dops : DtypeOps 𝕋) (Zp : Zonotope (Vec 𝕋 n)) (i
   let r := FloatOps.maximum (FloatOps.neg (Zp.I_error.inf i)) (Zp.I_error.sup i)
   if aux_isZeroT dops r then none else some (i, r)
 
+/-- Handles `enclosure`: a zonotope enclosing `Z` whose error box is folded into extra generators,
+so the error is exactly `[0, 0]`. -/
 def handleEnclosure (dops : DtypeOps 𝕋) (req : Json) :
     Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")

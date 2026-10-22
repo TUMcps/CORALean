@@ -74,6 +74,7 @@ private theorem sqrt_pos_arg {x : ℝ} : 0 < x + Real.sqrt (1 + x ^ 2) := by
   rw [← neg_lt_iff_pos_add']
   exact Real.lt_sqrt_of_sq_lt (by simp)
 
+/-- `asinhUp` is an upper bound of `arsinh`. -/
 theorem le_asinhUp (p k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arsinh (toReal x) ≤ toReal (asinhUp p k x) := by -- --- PROOF ---
   have hs := le_sqrtUp k (addUp one (mulUp x x))
@@ -91,6 +92,7 @@ theorem le_asinhUp (p k : ℕ) (x : 𝕋) : -- --- CONCL ---
   refine le_trans (Real.log_le_log hT hC) ?_
   exact le_logUp p k _ (lt_of_lt_of_le hT hC)
 
+/-- `asinhDown` is a lower bound of `arsinh`, with `2x + 1 ≤ 2^p / 2` for `x ≥ 0`. -/
 theorem asinhDown_le (p k : ℕ) (x : 𝕋)
     (hx : 0 ≤ toReal x → 2 * toReal x + 1 ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (asinhDown p k x) ≤ Real.arsinh (toReal x) := by -- --- PROOF ---
@@ -129,6 +131,7 @@ theorem asinhDown_le (p k : ℕ) (x : 𝕋)
     rw [Real.arsinh_neg] at this
     linarith [this]
 
+/-- `acoshUp` is an upper bound of `arcosh` for `x ≥ 1`. -/
 theorem le_acoshUp (p k : ℕ) (x : 𝕋) (hx : 1 ≤ toReal x) : -- --- CONCL ---
     Real.arcosh (toReal x) ≤ toReal (acoshUp p k x) := by -- --- PROOF ---
   have hs := le_sqrtUp k (subUp (mulUp x x) one)
@@ -146,6 +149,7 @@ theorem le_acoshUp (p k : ℕ) (x : 𝕋) (hx : 1 ≤ toReal x) : -- --- CONCL -
   refine le_trans (Real.log_le_log hT hC) ?_
   exact le_logUp p k _ (lt_of_lt_of_le hT hC)
 
+/-- `acoshDown` is a lower bound of `arcosh` for `x ≥ 1` and `2x ≤ 2^p / 2`. -/
 theorem acoshDown_le (p k : ℕ) (x : 𝕋) (h1 : 1 ≤ toReal x)
     (hx : 2 * toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (acoshDown p k x) ≤ Real.arcosh (toReal x) := by -- --- PROOF ---

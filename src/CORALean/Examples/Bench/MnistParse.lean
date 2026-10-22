@@ -181,6 +181,7 @@ structure MnistImage where
   label : Nat
   pixels : Array Nat
 
+/-- Reads a pixel byte: a natural number below `256`, else an error naming the field. -/
 def aux_parsePixel (s : String) : Except String ℕ :=
   match s.toNat? with
   | some n => if n < 256 then pure n else throw s!"pixel `{n}` is not a byte"

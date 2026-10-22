@@ -27,6 +27,7 @@ structure Rng where
   s : UInt64
 
 
+/-- The next 64 random bits and the advanced state. -/
 def Rng.next (g : Rng) : UInt64 × Rng :=
   let s := g.s + 0x9E3779B97F4A7C15
   let z := (s ^^^ (s >>> 30)) * 0xBF58476D1CE4E5B9
@@ -43,8 +44,10 @@ def mkBits (sign : Bool) (e : Nat) (frac : UInt64) : UInt64 :=
   let s : UInt64 := if sign then 1 else 0
   (s <<< 63) ||| ((e.toUInt64 &&& 0x7FF) <<< 52) ||| (frac &&& 0xFFFFFFFFFFFFF)
 
+/-- The biased exponent field of a bit pattern. -/
 def expOf (b : UInt64) : Nat := ((b >>> 52) &&& 0x7FF).toNat
 
+/-- An exponent limited to the finite normal range `1 ... 2046`. -/
 def clampExp (e : Int) : Nat := (max 1 (min 2046 e)).toNat
 
 /-- Whether the bits are a finite binary64. -/

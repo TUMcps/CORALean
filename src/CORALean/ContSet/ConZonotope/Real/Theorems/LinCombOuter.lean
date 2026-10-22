@@ -4,7 +4,8 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
 public import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
-public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledComap
+public import CORALean.ContSet.HPolytope.Real.Operations.Comap
+public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
 
 @[expose] public section
 
@@ -38,6 +39,27 @@ nonnegative weight, which is the whole argument.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Module ℝ γ]
+
+/-- A weighted point meets the weighted constraints. -/
+theorem HPolytope.aux_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ} {P : HPolytope α}
+    {x : γ} {w : ℝ} {y : α} (hw : (t x + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct)
+    (hf : f x = w • y) : -- --- CONCL ---
+    x ∈ ((P.comap f).halfScaled t).construct := by -- --- PROOF ---
+  refine HPolytope.mem_halfScaled_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
+  -- the rows of the preimage are `P`'s own, read at the block
+  · show P.A i (f x) ≤ (t x + 1) / 2 * P.b i
+    rw [hf, hw, map_smul, smul_eq_mul]
+    exact mul_le_mul_of_nonneg_left (hy.1 i) hw0
+  · show P.Ae i (f x) = (t x + 1) / 2 * P.be i
+    rw [hf, hw, map_smul, smul_eq_mul, hy.2 i]
+
+end
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -77,8 +99,8 @@ theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) : -- --- CONCL 
       constructor <;> linarith
   -- each block answers to its own constraints at the weight the parameter names
   · exact HPolytope.mem_intersection_iff.mpr
-      ⟨HPolytope.mem_halfScaled_comap hpar hl0 hd₁ hf₁,
-        HPolytope.mem_halfScaled_comap hpar' hm0 hd₂ hf₂⟩
+      ⟨HPolytope.aux_mem_halfScaled_comap hpar hl0 hd₁ hf₁,
+        HPolytope.aux_mem_halfScaled_comap hpar' hm0 hd₂ hf₂⟩
   -- the value: each block gives back its own weighted sum, the fresh generator the centers
   · have hs₁ : (∑ j, (lam * β₁ j) • cZ₁.G j) = lam • ∑ j, β₁ j • cZ₁.G j := by
       rw [Finset.smul_sum]

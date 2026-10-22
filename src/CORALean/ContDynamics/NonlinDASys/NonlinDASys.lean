@@ -40,12 +40,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A nonlinear differential-algebraic system, as CORA's `nonlinDASys`: dynamics `f`, algebraic
+constraint `g = 0` fixing the algebraic variables, and output `h` of dimension `q`. -/
 structure NonlinDASys (n p m : ℕ) where
   f : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ n
   g : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ p
   q : ℕ
   h : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ q
 
+/-- A Carathéodory run on `T`: the initial state lies in `R₀`, the inputs in `U`, the state
+integrates `f`, the constraint `g = 0` holds at every instant, and the output follows `h`. -/
 structure NonlinDASys.IsTrajectory (sys : NonlinDASys n p m) (T : Set ℝ) (R₀ : S n)
     (U : S m) (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) (z : ℝ → Vec ℝ sys.q) :
     Prop where

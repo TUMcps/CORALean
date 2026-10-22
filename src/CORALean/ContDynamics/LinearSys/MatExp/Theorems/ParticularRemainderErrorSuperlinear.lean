@@ -10,13 +10,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SuperlinearDecreas
 # `Thm. 2`: `ε_P` of eq. (22) decreases superlinearly
 
 [1, Thm. 2]: `∀φ∈(0,1): ε_P([t_i,t_i+φΔt_i]) ≤ φ ε_P([t_i,t_i+Δt_i])`, with
-`ε_P = err(e^{At_i} E(Δt_i,η_i) Δt_i U)` of eq. (22), at the `i`-th step and at `err` itself.
-[1]'s proof, followed: it suffices that `PR^+([t_i,t_i+φΔt_i]) ⊆ φ PR^+([t_i,t_i+Δt_i])`, and
-`Lemma 1` (`superlinearDecrease_expRemainderMat`) writes a member `M` of `E(φΔt,η)` as `φ M'`
-with `M'` in `E(Δt,η)`; then `e^{At_i} M (φΔt u) = φ · e^{At_i} (φM') (Δt u)`, and `φM'` is
-still in `E(Δt,η)`, the interval matrix being symmetric about `0` and `φ ≤ 1`. `err` is monotone
-and scales with a non-negative factor (`err_mono`, `err_smul_of_nonneg`). `U` bounded makes `err`
-the enclosing radius rather than a junk value.
+`ε_P = err(e^{At_i} E(Δt_i,η_i) Δt_i U)` of eq. (22), at the `i`-th step and at `err` itself. [1]'s
+proof, followed: it suffices that `PR^+([t_i,t_i+φΔt_i]) ⊆ φ PR^+([t_i,t_i+Δt_i])`, and `Lemma 1`
+(`superlinearDecrease_expRemainderMat`) writes a member `M` of `E(φΔt,η)` as `φ M'` with `M'` in
+`E(Δt,η)`; then `e^{At_i} M (φΔt u) = φ · e^{At_i} (φM') (Δt u)`, and `φM'` is still in `E(Δt,η)`,
+the interval matrix being symmetric about `0` and `φ ≤ 1`. `err` is monotone and scales with a
+non-negative factor (`err_mono`, `aux_err_smul_of_nonneg`). `U` bounded makes `err` the enclosing
+radius rather than a junk value.
 
 ## Inputs
 * `A` – system matrix
@@ -57,6 +57,29 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `err` scales with a non-negative factor: the box of `c • S` is `c` times `S`'s, both
+endpoints scaling with it, and so is its farthest corner — what a superlinear-decrease argument
+uses to take a factor `φ` out of an error term. -/
+theorem _root_.CORALean.aux_err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ
+    n)) : -- --- CONCL ---
+    err (c • S) = c * err S := by -- --- PROOF ---
+  have himg : ∀ i : Fin n, (fun x : Vec ℝ n => x i) '' (c • S)
+      = c • ((fun x : Vec ℝ n => x i) '' S) := by
+    intro i
+    rw [← Set.image_smul, ← Set.image_smul, Set.image_image, Set.image_image]
+    rfl
+  -- each coordinate's endpoints scale by `c`, and so does the larger of their magnitudes
+  have hvec : (fun i => max |sSup ((fun x : Vec ℝ n => x i) '' (c • S))|
+        |sInf ((fun x : Vec ℝ n => x i) '' (c • S))|)
+      = c • fun i => max |sSup ((fun x : Vec ℝ n => x i) '' S)|
+        |sInf ((fun x : Vec ℝ n => x i) '' S)| := by
+    funext i
+    rw [himg, Real.sSup_smul_of_nonneg hc, Real.sInf_smul_of_nonneg hc, Pi.smul_apply,
+      smul_eq_mul, smul_eq_mul, smul_eq_mul, abs_mul, abs_mul, abs_of_nonneg hc,
+      mul_max_of_nonneg _ _ hc]
+  rw [err, hvec, norm₂_smul, abs_of_nonneg hc, err]
+
 
 /-- `E_abs(Δt,η)` is entrywise non-negative at every step `Δt ≥ 0`, every term of its series
 being so. -/
@@ -111,7 +134,7 @@ theorem MatExp.particularRemainderError_superlinear (A : Mat ℝ n n) (ti : ℝ)
         ≤ err (φ • MatExp.particularRemainderSet A ti U Δt η) :=
           err_mono hne ((MatExp.isBounded_particularRemainderSet A ti hU Δt η).smul₀ φ)
             (aux_particularRemainderSet_subset A ti U η hΔt hφ)
-      _ = φ * MatExp.particularRemainderError A ti U Δt η := err_smul_of_nonneg hφ.1.le _
+      _ = φ * MatExp.particularRemainderError A ti U Δt η := aux_err_smul_of_nonneg hφ.1.le _
 
 end CORALean.Real
 

@@ -43,6 +43,8 @@ def HPolytope.stackedRows (P : HPolytope (Vec ℝ n)) : Fin (P.m + P.me + P.me) 
 def HPolytope.stackedBounds (P : HPolytope (Vec ℝ n)) : Fin (P.m + P.me + P.me) → ℝ :=
   Fin.append (Fin.append P.b P.be) fun i => -(P.be i)
 
+/-- The spectrahedral shadow of a polytope: the inequality and the doubled equality rows as a
+diagonal linear matrix inequality over the coordinates. -/
 def HPolytope.spectraShadow (P : HPolytope (Vec ℝ n)) : SpectraShadow (Vec ℝ n) where
   k := P.m + P.me + P.me
   m := n

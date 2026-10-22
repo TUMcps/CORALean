@@ -31,6 +31,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A capsule with center `c`, generator `g` and radius `r`: the points within `r` of the segment `c
+± g`. -/
 structure Capsule (n : ℕ) where
   c : Vec ℝ n
   g : Vec ℝ n

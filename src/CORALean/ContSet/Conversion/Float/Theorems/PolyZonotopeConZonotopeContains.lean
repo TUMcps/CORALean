@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeContains
-public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConZonotope

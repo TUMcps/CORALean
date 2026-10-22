@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
-public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyStep
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
 
 @[expose] public section
 
@@ -9,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyStep
 # `Alg. 3`'s loop: `false` is sound
 
 Lines 2-27 of [1, Alg. 3]. `verifyRun` returning `some false` means its last iteration passed the
-falsified test and not the verified one, which `not_verifySpec_of_verifyStep` turns into a
+falsified test and not the verified one, which `aux_not_verifySpec_of_verifyStep` turns into a
 violation.
 
 ## Inputs
@@ -53,6 +54,30 @@ open CORALean.Real
 variable {n r w : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+theorem LinearSys.aux_not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
+    {reachFn : ℝ → Zonotope (Vec ℝ n)}
+    {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
+    {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ}
+    {le : ℝ → ℝ → Bool} (h : LinearSys.VerifySound Reach reachFn innerApprox distG distF le)
+    (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n)) (εmax : ℝ)
+    (hfalse :
+      0 < (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νGin ∨
+      (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νFin ≤ 0)
+    : -- --- CONCL ---
+    ¬ LinearSys.VerifySpec G F Reach := by -- --- PROOF ---
+  rintro ⟨hGspec, hFspec⟩
+  simp only [LinearSys.verifyStep] at hfalse
+  rcases hfalse with hG | hF
+  · -- some `distG` is positive, so the inner approximation leaves that safe set
+    obtain ⟨j, -, hj⟩ := (Finset.lt_sup'_iff _).1 hG
+    exact h.distG_pos _ _ hj ((h.inner _ _).trans (hGspec j))
+  · -- some `distF` is nonpositive, so the inner approximation meets that unsafe set
+    obtain ⟨j, -, hj⟩ := (Finset.inf'_le_iff _).1 hF
+    exact h.distF_nonpos _ _ hj ((hFspec j).mono_left (h.inner _ _))
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.not_verifySpec_of_verifyRun
@@ -78,7 +103,7 @@ theorem LinearSys.not_verifySpec_of_verifyRun
       rw [hv] at hcond
       simp only [Bool.false_or, Bool.or_eq_true, Bool.not_eq_true', ← Bool.not_eq_true,
         h.le_iff, not_le] at hcond
-      exact LinearSys.not_verifySpec_of_verifyStep h G F εmax hcond
+      exact LinearSys.aux_not_verifySpec_of_verifyStep h G F εmax hcond
     · -- no verdict yet: the answer comes from the next iteration
       exact ih _ hrun
 

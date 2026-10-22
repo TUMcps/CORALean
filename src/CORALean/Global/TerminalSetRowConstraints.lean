@@ -77,6 +77,8 @@ theorem rowSumNorm_infty_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
     rw [abs_of_nonneg (hnn j), div_le_one (hs j)]
     exact h j
 
+/-- The `2`-norm of the rows' absolute sums of `Diag(s)⁻¹ Z'` is at most one exactly when the
+squared row sums over `s²` add to at most one. -/
 theorem rowSumNorm_two_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
     (Z' : Matrix (Fin m) (Fin n) ℝ) : -- --- CONCL ---
     ‖WithLp.toLp 2 (fun j => ∑ i, |(Matrix.diagonal (fun j => (s j)⁻¹) * Z') j i|)‖ ≤ 1 ↔
@@ -91,6 +93,7 @@ theorem rowSumNorm_two_le_one_iff (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
   simp only [aux_rowSum_diagonal_inv_mul s hs Z']
   rw [← sq_le_one_iff₀ (norm_nonneg _), hsq]
 
+/-- If every row sum is at most `s j / √m`, the squared row sums over `s²` add to at most one. -/
 theorem rowSumNorm_two_le_one_of_le (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
     (Z' : Matrix (Fin m) (Fin n) ℝ) (h : ∀ j, ∑ i, |Z' j i| ≤ s j / Real.sqrt m) : -- --- CONCL ---
     ∑ j, (∑ i, |Z' j i|) ^ 2 / s j ^ 2 ≤ 1 := by -- --- PROOF ---

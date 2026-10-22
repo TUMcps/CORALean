@@ -111,7 +111,7 @@ private theorem toReal_halfIter (n : ℕ) (a : 𝕋) : -- --- CONCL ---
     ring
 
 /-- The `maximum zero` in the seed is what keeps the squarings monotone. -/
-private theorem seedDown_nonneg (a : 𝕋) : 0 ≤ toReal (seedDown a) := by
+theorem seedDown_nonneg (a : 𝕋) : 0 ≤ toReal (seedDown a) := by
   rw [seedDown, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
@@ -137,16 +137,6 @@ private theorem le_seedUp {a : 𝕋} (ha : toReal a ≤ 1 / 2) : -- --- CONCL --
   rw [toReal_one] at h1
   linarith [exp_le_quadratic ha]
 
-/-- Non-negativity survives the squarings, each clamped at zero. -/
-private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u) : -- --- CONCL ---
-    0 ≤ toReal (squareDownIter n u) := by -- --- PROOF ---
-  induction n generalizing u with
-  | zero => rw [squareDownIter]; exact hu
-  | succ k ih =>
-    rw [squareDownIter]
-    refine ih ?_
-    rw [toReal_maximum, toReal_zero]
-    exact le_max_left _ _
 
 /-- `n` downward squarings lift a bound at `s` to one at `2ⁿ s`. -/
 private theorem squareDownIter_le (n : ℕ) {u : 𝕋} {s : ℝ} (hu : 0 ≤ toReal u)
@@ -189,10 +179,6 @@ private theorem le_squareUpIter (n : ℕ) {u : 𝕋} {s : ℝ}
     rw [squareUpIter]
     exact hstep
 
-/-- What makes the reciprocals above it total: a lower bound on an exponential
-is never negative, so `1 + expDown a` is never below one. -/
-theorem expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
-  squareDownIter_nonneg n (seedDown_nonneg _)
 
 /-- The lower enclosure: seed at `a / 2ⁿ`, then square back. -/
 theorem expDown_le (n : ℕ) (a : 𝕋) : -- --- CONCL ---

@@ -230,6 +230,7 @@ precision this harness runs at (`255 < 2^11`), so nothing is checked. -/
 def pixelLo (instUnchecked : ExactDyadic → 𝕋) (k : ℕ) : 𝕋 :=
   divDown (instUnchecked ⟨(k : ℤ), 0⟩) (instUnchecked ⟨255, 0⟩)
 
+/-- `k / 255` rounded up in `𝕋`: the upper end of a pixel's box. -/
 def pixelHi (instUnchecked : ExactDyadic → 𝕋) (k : ℕ) : 𝕋 :=
   divUp (instUnchecked ⟨(k : ℤ), 0⟩) (instUnchecked ⟨255, 0⟩)
 

@@ -40,9 +40,12 @@ box needs. -/
 def identityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
   fun i j => if i = j then one else zero
 
+/-- The negated identity matrix, the constraint matrix of the lower bounds. -/
 def negIdentityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
   fun i j => if i = j then neg one else zero
 
+/-- The halfspace description of a box: an upper bound `x ≤ sup` and a lower bound `-x ≤ -inf` per
+coordinate. -/
 def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   (HPolytope.ineqs (identityMat 𝕋 n) I.sup).stackRows
     (HPolytope.ineqs (negIdentityMat 𝕋 n) (-I.inf))

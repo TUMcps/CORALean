@@ -31,6 +31,7 @@ open ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The kind of a specification: a safe set, an unsafe set, or an invariant. -/
 inductive Specification.Kind
   | safeSet
   | unsafeSet
@@ -51,8 +52,10 @@ def Specification.Holds (spec : Specification ContSet) (X : Set α) : Prop :=
   | .unsafeSet => Disjoint X (construct spec.set)
   | .invariant => X ⊆ construct spec.set
 
+/-- The specification that every point lies in the set `s`. -/
 def Specification.safeSet (s : ContSet) : Specification ContSet := ⟨s, .safeSet⟩
 
+/-- The specification that no point lies in the set `s`. -/
 def Specification.unsafeSet (s : ContSet) : Specification ContSet := ⟨s, .unsafeSet⟩
 
 /-- CORA's `'invariant'` type: checked as `contains(set, S)`, the same test as

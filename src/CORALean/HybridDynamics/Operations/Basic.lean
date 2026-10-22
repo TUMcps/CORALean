@@ -22,6 +22,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+section
 -- The number of globally bound inputs, CORA's `numGlobalInputs = nnz(idxGlobalInput)`.
 variable {N g k : ℕ} {n m p : Fin k → ℕ}
 
@@ -63,11 +64,9 @@ def NonlinearReset.globalColumns (inputBinds : ∀ i, Fin (m i) → ResolveSourc
 def scatter {n N : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) : Fin N → ℝ :=
   fun a => ∑ r, if σ r = a then v r else 0
 
-end CORALean
+end
 
-
-namespace CORALean
-
+section
 variable {G : ℕ → Type} {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -81,6 +80,8 @@ variable {G : ℕ → Type} {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 `linearReset` is a `nonlinearReset` with a function that happens to be affine. -/
 noncomputable def Transition.toNonlinearReset (e : Transition G L 𝕋 n) : NonlinearReset n 0 n where
   f := fun x _ => e.reset x
+
+end
 
 end CORALean
 

@@ -42,10 +42,13 @@ def BReachE.sys : LinearSysDT ℝ 1 := LinearSysDT.canonical !![(2:ℝ)]
 `∀` reading asks for `A Ainv = 1`. At a square matrix the same one serves. -/
 def BReachE.Ainv : Mat ℝ 1 1 := !![(0.5:ℝ)]
 
+/-- The target set, the box `[-1, 1]` on the line. -/
 def BReachE.T : Interval (Vec ℝ 1) := ⟨![(-1:ℝ)], ![(1:ℝ)]⟩
 
+/-- The input set, the box `[-0.2, 0.2]` on the line. -/
 def BReachE.U : Interval (Vec ℝ 1) := ⟨![(-0.2:ℝ)], ![(0.2:ℝ)]⟩
 
+/-- The left inverse `Ainv` times the doubling matrix is the identity. -/
 theorem BReachE.hA : -- --- CONCL ---
     toRealMat BReachE.Ainv * toRealMat BReachE.sys.A = 1 := by -- --- PROOF ---
   ext i j

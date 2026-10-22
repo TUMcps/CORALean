@@ -25,6 +25,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a convolutional layer: a kernel per channel, a bias, and the stencil giving the
+input each output reads at each kernel entry. -/
 structure ConvLayer (𝕋 : Type) (n m : ℕ) where
   c : ℕ
   k : ℕ

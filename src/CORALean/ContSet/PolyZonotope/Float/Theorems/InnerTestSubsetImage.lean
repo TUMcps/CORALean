@@ -6,8 +6,13 @@ public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerStepSubsetImage
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
+public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.MulVecInjectiveOfResidual
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PointBoxOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjective
 
 @[expose] public section
 
@@ -17,7 +22,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.PrecondRegularInjecti
 When `innerTest` returns `true`, every point of `Y` is the dependent point at some factor vector
 of `X`. The loop's answer is `true` only at a pass whose `innerStep` was accepted with
 `u1_ ∈ U1_ ⊆ U1`, which `innerStep_subset_image` turns into the inclusion; what that needs of the
-set-up is that `C` is injective (`precondRegular_injective`), that `x_` lies in `X` and `X_` off
+set-up is that `C` is injective (`aux_precondRegular_injective`), that `x_` lies in `X` and `X_` off
 `ind`, and that `b` holds `C(y - f(x_))` (`pointBox_outer`, `mtimes_outer`, `minus_outer`).
 
 ## Inputs
@@ -50,6 +55,29 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `aux_precondRegular` certifies an injective preconditioner. -/
+theorem PolyZonotope.aux_precondRegular_injective {M C : Mat 𝕋 n n}
+    (h : PolyZonotope.aux_precondRegular M C = true) : -- --- CONCL ---
+    Function.Injective (toRealMat C).mulVec := by -- --- PROOF ---
+  refine mulVec_injective_of_residual (toRealMat M) (toRealMat C) fun i => ?_
+  have hi := List.all_eq_true.mp h i (List.mem_finRange i)
+  refine lt_of_le_of_lt ?_ (lt_of_lt_of_eq (toReal_lt_of_ltStrict hi) (toReal_one (𝕋 := 𝕋)))
+  refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
+  -- the entry of `M C` between its roundings, and `1ᵢⱼ` read exactly
+  have hlo : toReal (matMulDown M C i j) ≤ (toRealMat M * toRealMat C) i j := dotDown_le _ _
+  have hhi : (toRealMat M * toRealMat C) i j ≤ toReal (matMulUp M C i j) := le_dotUp _ _
+  have hδ : toReal (if i = j then (one : 𝕋) else zero) = (1 : Matrix (Fin n) (Fin n) ℝ) i j := by
+    by_cases hij : i = j
+    · rw [if_pos hij, hij, Matrix.one_apply_eq, toReal_one]
+    · rw [if_neg hij, Matrix.one_apply_ne hij, toReal_zero]
+  rw [toReal_maximum, toReal_absolute, toReal_absolute, Matrix.sub_apply]
+  refine abs_le_max_abs_abs ?_ ?_
+  · exact le_trans (subDown_le_sub _ _) (by rw [hδ]; linarith)
+  · exact le_trans (by rw [hδ]; linarith) (sub_le_subUp _ _)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -102,7 +130,7 @@ theorem PolyZonotope.innerTest_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
       rename_i hguard <;> split at hst <;> (try cases hst) <;> rename_i t ht <;>
       split at hst <;> (try cases hst) <;>
       exact PolyZonotope.innerStep_subset_image pZ X X₀ Y ind C
-        (PolyZonotope.precondRegular_injective hC) _ hxc _ hb U
+        (PolyZonotope.aux_precondRegular_injective hC) _ hxc _ hb U
         (Interval.le_subset hguard.2) (Option.some.inj hst) _ ht (by assumption)
 
 end CORALean.Float

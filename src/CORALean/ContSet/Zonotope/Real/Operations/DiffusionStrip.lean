@@ -1,6 +1,14 @@
 module
 
+public import CORALean.ContSet.Zonotope.Real.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Real.Operations.StripGain
+public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Algebra.BigOperators.Fin
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionUpdate
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionTimeUpdate
 public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripStep
+public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripMeasurement
 
 @[expose] public section
 
@@ -8,8 +16,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.DiffusionStripStep
 # `Zonotope.diffusionStrip`
 
 [1, Alg. 1], the distributed strip-based diffusion observer: every node starts at `Z₀`, and at each
-instant `k` the nodes run Steps 1-3 (`diffusionStripStep`) with the noise `Q_k`, the radii `r_k` and
-the outputs `ȳ_k` of that instant. The value at `k` is the predicted set the instant-`k`
+instant `k` the nodes run Steps 1-3 (`diffusionStripStep`) with the noise `Q_k`, the radii `r_k`
+and the outputs `ȳ_k` of that instant. The value at `k` is the predicted set the instant-`k`
 measurement update starts from, `Ẑ_{s,k-1}` in the notation of [1]; at `0` it is `Z₀`.
 
 ## Inputs
@@ -45,6 +53,20 @@ namespace CORALean.Real
 open Matrix
 
 variable {n nq N : ℕ} {p m : Fin N → ℕ}
+
+
+section
+variable {n nq : ℕ}
+
+
+end
+
+
+section
+variable {n N : ℕ} {p : Fin N → ℕ}
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

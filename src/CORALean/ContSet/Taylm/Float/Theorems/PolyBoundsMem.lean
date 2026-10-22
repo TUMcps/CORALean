@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
-public import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
+public import CORALean.ContSet.Taylm.Float.Operations.TermBounds
+public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
@@ -40,6 +41,16 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The float term range reads as the exact one. -/
+theorem Taylm.aux_toReal_termBounds (a : 𝕋 × (Fin n → ℕ)) :
+    (⟨toReal (Taylm.termBounds a).inf, toReal (Taylm.termBounds a).sup⟩ : Real.Interval ℝ)
+      = Real.Taylm.termBounds (toReal a.1, a.2) := by
+  unfold Taylm.termBounds Real.Taylm.termBounds
+  split_ifs <;> simp [toReal_minimum, toReal_maximum, toReal_zero, toReal_neg, toReal_absolute]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.polyBounds_mem (L : List (𝕋 × (Fin n → ℕ))) {t : Vec ℝ n}
@@ -54,13 +65,13 @@ theorem Taylm.polyBounds_mem (L : List (𝕋 × (Fin n → ℕ))) {t : Vec ℝ n
     simp only [Real.Taylm.polyBounds, List.map_map]
     congr 1
     exact List.map_congr_left fun a _ => by
-      simp only [Function.comp_apply, ← Taylm.toReal_termBounds a]
+      simp only [Function.comp_apply, ← Taylm.aux_toReal_termBounds a]
   have e2 : (Real.Taylm.polyBounds (L.map fun a => (toReal a.1, a.2))).sup
       = ((L.map fun a => (Taylm.termBounds a).sup).map toReal).sum := by
     simp only [Real.Taylm.polyBounds, List.map_map]
     congr 1
     exact List.map_congr_left fun a _ => by
-      simp only [Function.comp_apply, ← Taylm.toReal_termBounds a]
+      simp only [Function.comp_apply, ← Taylm.aux_toReal_termBounds a]
   rw [e1, e2] at hr
   exact ⟨le_trans (listSumDown_le _) hr.1, le_trans hr.2 (sum_le_listSumUp _)⟩
 

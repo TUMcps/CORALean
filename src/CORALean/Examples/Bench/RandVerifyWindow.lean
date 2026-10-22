@@ -23,6 +23,8 @@ namespace CORALean.Bench
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A window's support along its candidate normals: the exact integer data, with a floating-point
+approximation used only to pick a normal. -/
 structure RandWindow where
   den : ℕ
   /-- `(n₁, n₂, den · ρ_Y(n), den · 2^k, ‖n‖₂ / 2^k)` per candidate normal, `2^k` near `‖n‖₂`:

@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.InvTight
 public import CORALean.ContSet.Taylm.Real.Theorems.InvSubSumEq
-public import CORALean.ContSet.Taylm.Real.Theorems.InvCoef
+public import Mathlib.Analysis.Calculus.Deriv.ZPow
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 public import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 
@@ -46,6 +47,17 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The Taylor coefficients of `1/x`. -/
+theorem Taylm.aux_inv_coef (c : ℝ) (k : ℕ) :
+    iteratedDeriv k (fun x : ℝ => x⁻¹) c / (k.factorial : ℝ) = (-1) ^ k / c ^ (k + 1) := by
+  rw [iteratedDeriv_eq_iterate, show (fun x : ℝ => x⁻¹) = Inv.inv from rfl, iter_deriv_inv]
+  have hf : (k.factorial : ℝ) ≠ 0 := by positivity
+  rw [show (-1 - (k : ℤ)) = -((k + 1 : ℕ) : ℤ) by push_cast; ring, zpow_neg, zpow_natCast]
+  field_simp
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.invTight_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
@@ -84,7 +96,7 @@ theorem Taylm.invTight_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Enclos
       have := le_max_right |T.bounds.inf - c| |T.bounds.sup - c|
       simp only [r, Taylm.reach]; linarith [hb.2]
   -- the exact remainder, and its magnitude
-  simp only [Taylm.inv_coef, div_mul_eq_mul_div]
+  simp only [Taylm.aux_inv_coef, div_mul_eq_mul_div]
   rw [Taylm.inv_sub_sum_eq (c := T.constCoef) hc0 hf0, abs_div, abs_mul, abs_mul, abs_pow, abs_neg,
     abs_one, one_pow, one_mul, abs_pow, abs_pow]
   have hr0 : 0 ≤ r := le_trans (abs_nonneg _) hy

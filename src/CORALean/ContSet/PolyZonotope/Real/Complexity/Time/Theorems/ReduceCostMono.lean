@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.CompactCostMono
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+public import CORALean.Global.Cost
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.ReduceGirardCostMono
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.ReduceCost
@@ -40,13 +41,22 @@ bound on the cost.
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Monotone in both generator counts, so a bound on the operand's size gives a
+bound on the cost. -/
+theorem PolyZonotope.aux_compactCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h') (hq : q ≤ q') :
+    PolyZonotope.aux_compactCost n p h q ≤ PolyZonotope.aux_compactCost n p h' q' := by
+  cost_mono [PolyZonotope.aux_compactCost]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost. -/
 theorem PolyZonotope.reduceCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h') (hq : q ≤ q') :
     PolyZonotope.reduceCost n p h q ≤ PolyZonotope.reduceCost n p h' q' :=
-  Cost.add_le_add (PolyZonotope.compactCost_mono n p hh hq)
+  Cost.add_le_add (PolyZonotope.aux_compactCost_mono n p hh hq)
     (PolyZonotope.reduceGirardCost_mono n p hh hq)
 
 end CORALean.Real

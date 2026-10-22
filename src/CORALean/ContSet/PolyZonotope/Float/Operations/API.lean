@@ -113,8 +113,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
 public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTerms
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTermsHessian
-public import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SliceBox
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerSpecial
@@ -137,7 +135,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsXprod
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Subs
-public import CORALean.ContSet.PolyZonotope.Float.Operations.ExtGens
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGen

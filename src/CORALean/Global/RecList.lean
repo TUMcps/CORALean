@@ -39,6 +39,8 @@ def recL (q : List ℤ) (s : ℕ → ℤ) : ℕ → List ℤ
   | 0 => [1]
   | j + 1 => addL (mulL (derL (recL q s j)) q) ((0 :: recL q s j).map (s j * ·))
 
+/-- The integer coefficient list `recL q s j` evaluates like the polynomial of the recursion `P₀ =
+1`, `Pⱼ₊₁ = Pⱼ' · Q + sⱼ · X · Pⱼ`. -/
 theorem eval_recL {q : List ℤ} {Q : ℝ[X]} (hQ : ∀ x, Q.eval x = evalL q x) (s : ℕ → ℤ)
     (P : ℕ → ℝ[X]) (h0 : P 0 = 1)
     (hs : ∀ j, P (j + 1) = derivative (P j) * Q + C ((s j : ℤ) : ℝ) * (X * P j)) (j : ℕ)

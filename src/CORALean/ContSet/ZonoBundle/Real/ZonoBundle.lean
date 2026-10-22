@@ -40,6 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zonotope bundle: `k` zonotopes, denoting their intersection; `k = 0` is the whole space. -/
 structure ZonoBundle (α : Type) where
   k : ℕ
   Z : Fin k → Zonotope α

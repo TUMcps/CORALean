@@ -24,6 +24,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A reachable set together with the time interval it is reachable in. -/
 structure ReachSetAnalyzer.TimedSet (S : ℕ → Type) (n : ℕ) where
   set : S n
   /-- The time interval `interval(lo,hi)`, read through `inf` and `sup`. -/

@@ -8,7 +8,8 @@ public import CORALean.Global.Float.FloatOps
 # What one verification iteration computes, in floats
 
 [1, Alg. 3]'s four aggregated distances, lines 6-17, as stored `𝕋` values: `ν̂_G`/`ν̌_G` over the
-safe sets and `ν̂_F`/`ν̌_F` over the unsafe ones.
+safe sets and `ν̂_F`/`ν̌_F` over the unsafe ones, and the accuracy `ε_max` that line 25 hands the
+next iteration.
 
 ## References
 
@@ -30,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The values one iteration of the verification algorithm produces, as floats: the worst distances
+of the outer and inner approximation to the safe and the unsafe sets, and the next accuracy. -/
 structure LinearSys.VerifyIterFloat (𝕋 : Type) where
   /-- `ν̂_G`, lines 6-8: the outer approximation's worst distance to leaving a safe set. -/
   νGout : 𝕋
@@ -39,6 +42,8 @@ structure LinearSys.VerifyIterFloat (𝕋 : Type) where
   νFout : 𝕋
   /-- `ν̌_F`, lines 12, 15-16: the inner approximation's. -/
   νFin : 𝕋
+  /-- `ε_max`, line 25: the accuracy of the next iteration. -/
+  εmax : 𝕋
 
 end CORALean
 

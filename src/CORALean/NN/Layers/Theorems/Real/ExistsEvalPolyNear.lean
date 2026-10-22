@@ -36,6 +36,20 @@ everywhere on the box.
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n : ℕ}
+
+/-- ℝ-only, as `evalPoly` is: coefficients indexed by degree, up to the natural degree. -/
+theorem aux_evalPoly_coeff (p : Polynomial ℝ) (t : ℝ) :
+    evalPoly (fun i : Fin (p.natDegree + 1) => p.coeff (i : ℕ)) t = Polynomial.eval t p := by
+  rw [Polynomial.eval_eq_sum_range]
+  exact Fin.sum_univ_eq_sum_range (fun i => p.coeff i * t ^ i) (p.natDegree + 1)
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem exists_evalPoly_near {σ : ℝ → ℝ} {l u ε : ℝ} (hcont : ContinuousOn σ (Set.Icc l u))
@@ -43,7 +57,7 @@ theorem exists_evalPoly_near {σ : ℝ → ℝ} {l u ε : ℝ} (hcont : Continuo
     ∃ (n : ℕ) (c : Fin (n + 1) → ℝ), ∀ x, l ≤ x → x ≤ u → |σ x - evalPoly c x| ≤ ε := by
   obtain ⟨p, hp⟩ := exists_polynomial_near_of_continuousOn l u σ hcont ε hε
   refine ⟨p.natDegree, fun i => p.coeff (i : ℕ), fun x hx hx' => ?_⟩
-  rw [evalPoly_coeff p x, abs_sub_comm]
+  rw [aux_evalPoly_coeff p x, abs_sub_comm]
   exact le_of_lt (hp x ⟨hx, hx'⟩)
 
 end CORALean.Real

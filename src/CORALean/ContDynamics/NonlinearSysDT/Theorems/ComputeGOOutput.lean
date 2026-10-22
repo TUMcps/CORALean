@@ -47,6 +47,25 @@ variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n r : ℕ}
+
+/-- The second selection matrix applied to a stacked vector gives its second block. -/
+theorem aux_stackSnd_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
+    stackSnd n r *ᵥ (Fin.append a b : Vec ℝ (n + r)) = b := by -- --- PROOF ---
+  funext i
+  simp only [Matrix.mulVec, dotProduct, stackSnd, Matrix.of_apply, Fin.sum_univ_add,
+    Fin.append_left, Fin.append_right, Fin.val_castAdd, Fin.val_natAdd]
+  simp only [ite_mul, one_mul, zero_mul, Nat.add_left_cancel_iff, Fin.val_inj,
+    Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  -- the first half lies below `n`, the diagonal above it
+  rw [Finset.sum_eq_zero (fun x _ => by rw [if_neg (by omega)]), zero_add]
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
@@ -75,7 +94,7 @@ theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
     have hC : (sys.computeGO x0 u_ref).C 0
         = jacobianMat (fun x => sys.g x (u_ref 0)) x0 := by
       simp [NonlinearSysDT.computeGO, descProd, NonlinearSysDT.refState]
-    rw [hD, hE, hC, stackSnd_mulVec]
+    rw [hD, hE, hC, aux_stackSnd_mulVec]
     simp only [linResidual, NonlinearSysDT.computeGO, NonlinearSysDT.refState]
     abel
   | succ k =>
@@ -122,7 +141,7 @@ theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
       rw [Matrix.mulVec_sum]
       exact Finset.sum_congr rfl fun j hj => by rw [hE j hj, Matrix.mulVec_mulVec]
     rw [Finset.sum_range_succ _ (k + 1), Finset.sum_range_succ _ (k + 1), hC, sD, sE, hD', hE',
-      stackSnd_mulVec]
+      aux_stackSnd_mulVec]
     -- the output deviation is the Jacobians applied to those of state and input, plus `L_y`
     have hy : sys.g (x (k + 1)) (u (k + 1)) - (sys.computeGO x0 u_ref).y (k + 1)
         = jacobianMat (fun x => sys.g x (u_ref (k + 1)))

@@ -19,13 +19,13 @@ Cauchy–Schwarz, homogeneity, the triangle inequality, compactness and convexit
 ball, and the finite-sum triangle inequality.
 
 ## Inputs
-* none
+* `x` – vector
 
 ## Hypotheses
 * none
 
 ## Conclusion
-* the Euclidean unit ball is compact
+* the Euclidean norm of the vector is at most the sum of its magnitudes
 -/
 
 -- Authors:       Claude Opus 5
@@ -149,18 +149,8 @@ theorem unitBall₂_eq_image :
   rw [Set.mem_preimage, Metric.mem_closedBall, dist_zero_right, norm_toEuclidean]
   exact Iff.rfl
 
-theorem convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
-  rw [unitBall₂_eq_image]
-  exact (convex_closedBall _ _).linear_image toEuclidean.symm.toLinearEquiv.toLinearMap
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
-
-/-- The continuous image of a closed ball that is compact where it is stated,
-`EuclideanSpace ℝ (Fin n)` being finite-dimensional. -/
-theorem isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
-  rw [unitBall₂_eq_image]
-  exact (isCompact_closedBall _ _).image toEuclidean.symm.continuous
 
 /-- The Euclidean norm never exceeds the sum of magnitudes: the square of the latter has every
 cross term the former drops, all of them nonnegative. -/

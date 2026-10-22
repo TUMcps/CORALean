@@ -4,7 +4,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFl
 public import CORALean.ContDynamics.LinearSys.Operations.AffineDynamicsErrorFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

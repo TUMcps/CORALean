@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.VPolytope.Real.Instances
 public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 
@@ -39,6 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A hull of `k` vertices `V` over floats, with the error box `I_error`. -/
 structure VPolytope (α : Type) where
   k : ℕ
   V : Fin k → α
@@ -49,6 +50,8 @@ protected abbrev VPolytope.nominal {α β : Type} [RealImage α β] (P : VPolyto
     CORALean.Real.VPolytope β :=
   ⟨P.k, fun l => RealImage.realImage (P.V l)⟩
 
+/-- A float vertex description inflates the real one its stored floats describe, the `nominal` one.
+-/
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
     InflatedContSet (VPolytope α) (CORALean.Real.VPolytope β) α β where
   nominal := VPolytope.nominal

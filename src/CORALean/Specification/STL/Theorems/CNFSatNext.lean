@@ -2,7 +2,8 @@ module
 
 public import CORALean.Specification.STL.Operations.CNFNext
 public import CORALean.Specification.STL.Theorems.CNFSatToFormula
-public import CORALean.Specification.STL.Theorems.BranchHoldsShift
+public import CORALean.Specification.STL.Definitions.BranchHolds
+public import CORALean.Specification.STL.Theorems.ShiftShift
 
 @[expose] public section
 
@@ -44,13 +45,24 @@ open scoped NNReal
 variable {X : Type}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A raised power reads the shifted trace. -/
+theorem STL.Branch.aux_holds_shift (c : ℝ≥0) (b : STL.Branch X) (ξ : ℝ≥0 → X) :
+    ({ b with j := b.j + 1 } : STL.Branch X).Holds c ξ ↔ b.Holds c (Time.shift ξ c) := by
+  -- the argument `t + (j + 1) c` is `t + j c + c`
+  have e₀ : ((b.j + 1 : ℕ) : ℝ≥0) * c = b.j * c + c := by push_cast; ring
+  unfold STL.Branch.Holds
+  simp only [Time.shift, e₀, add_assoc]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.CNF.sat_next (c : ℝ≥0) (a : STL.CNF X) (ξ : ℝ≥0 → X) :
     (a.next.toFormula c).Sat ξ ↔ (a.toFormula c).Sat (Time.shift ξ c) := by
   rw [STL.CNF.sat_toFormula, STL.CNF.sat_toFormula]
   simp only [STL.CNF.next, List.mem_map, forall_exists_index, and_imp,
-    forall_apply_eq_imp_iff₂, exists_exists_and_eq_and, STL.Branch.holds_shift]
+    forall_apply_eq_imp_iff₂, exists_exists_and_eq_and, STL.Branch.aux_holds_shift]
 
 
 end CORALean

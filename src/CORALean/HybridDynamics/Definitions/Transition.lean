@@ -33,6 +33,8 @@ variable {G : ℕ → Type} {L : Type} {𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A transition: the guard that must hold to take it, the affine reset `x ↦ W x + w`, and the
+target location. -/
 structure Transition (G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   guard : G n
   W : Mat 𝕋 n n

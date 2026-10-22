@@ -184,9 +184,10 @@ representation instantiates, `ContDynamics/Interfaces.lean` every class a system
 what a representation or a system provides is the other. A generic algorithm or theorem is
 written over the interface alone — the closed loops in `NeurNetContrSys/` are over any
 `ContDynamics` — and a concrete one at the instance. `check-conventions.sh` refuses a `class`
-anywhere else, but in a file `scripts/class-allowlist.txt` names with its reason: a base file of
-`Global/`, below every interface, or a class whose law needs what the guarded
-`ContSet/ContSet/Interfaces.lean` keeps out of its closure.
+anywhere else. The base classes sit in `Global/Interfaces.lean` and `Global/Float/Interfaces.lean`,
+below every other interface; the ones whose law needs what the guarded
+`ContSet/ContSet/Interfaces.lean` keeps out of its closure sit in the `Interfaces.lean` of the
+directory that owns them (`ContSet/ContSet/Definitions/`, `VPolytope/Real/`, `Conversion/`).
 
 The remaining directory names — `ContSet`, `Interval`, `Operations` — are
 organizational and appear in no namespace, so a path never contradicts a
@@ -236,8 +237,7 @@ algorithm computes, ends in `Exact`, whatever it is the set of: `LinearSys.reach
 representation named by its algorithm, never a bare `Set`. `check-conventions.sh` runs
 `scripts/check-exact-names.py`, which rejects a `Set`-valued definition in a `Definitions/`
 directory of `ContDynamics/` or `HybridDynamics/` whose name says reach set, output, state,
-window or locations and does not end in `Exact`, unless `scripts/exact-name-allowlist.txt` lists
-it with a reason; the list only shrinks.
+window or locations and does not end in `Exact`.
 
 ### A component is its own representation's
 
@@ -304,13 +304,10 @@ for it on top.
 
 ### Bounds of one quantity
 
-The lower and the upper bound of one quantity are an `Interval` (`Interval ℝ`, `Interval 𝕋`, a box
-`Interval (Vec ℝ n)`), read through `inf` and `sup`, never a pair `ℝ × ℝ` read with `.1`/`.2`; a pair
-stays where its two components are two quantities (a value and its error, a sine and a cosine, a
-state and an input), and `check-conventions.sh` asks for a reason in `scripts/pair-allowlist.txt`
-for each file that spells one. The same holds for a structure with sibling fields named
-`…Inf`/`…Sup`, `…Lo`/`…Hi` or `lo…`/`hi…` (`remInf`/`remSup`): those are one `Interval` field, and the
-check asks for the same reason in the same list.
+Two bounds of one quantity are an `Interval` (`Interval ℝ`, `Interval 𝕋`, a box
+`Interval (Vec ℝ n)`), read through `inf` and `sup`, not a pair `ℝ × ℝ` read with `.1`/`.2`, nor two
+sibling fields `…Inf`/`…Sup` or `lo…`/`hi…`. A pair is fine where it makes sense: a product domain,
+a point, values returned together. This is a recommendation, not a checked rule.
 
 A pair of two different quantities is not read with `.1`/`.2` either. Where it is a domain
 concept, it is a small structure with the paper's or CORA's names for its fields (`LinearSys.StepSets`
@@ -325,7 +322,7 @@ overkill, such as the two halves of a split, it is read through `.fst` and `.snd
 | `s₁ ⊞ s₂` | `plus`, and deliberately not `+`: it is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂` |
 | `𝒵`, `ℐ`, `𝕄𝒵`, `ℐ𝒱`, `𝒫𝒵`, `𝒵ℬ`, `𝒱𝒫`, … | the zonotope and interval-matrix families, for pinning `(S := 𝒵)` where the elaborator cannot read a family off one member |
 | `𝒵[𝕋]`, `ℐ[𝕋]`, … | the same families in the float layer, scoped in `CORALean.Float`; the scalar is an argument because a notation cannot capture a section variable such as `𝕋` |
-| `𝒮` | the family of sets of real vectors, `fun n => Set (Vec ℝ n)`, in `Global/Scalar.lean`, the lowest file with ℝ in scope |
+| `𝒮` | the family of sets of real vectors, `fun n => Set (Vec ℝ n)`, in `Global/Interfaces.lean`, the lowest file with ℝ in scope |
 
 A family is written with its notation, never as `fun k => Zonotope (Vec 𝕋 k)`;
 `check-conventions.sh` rejects the long form outside the notation definitions.
@@ -410,7 +407,7 @@ named in the script is an `axiom` — the second holding `nearestUnsound` alone
 and imported from nowhere outside `Examples/Bench/`, the third holding
 `trustedFlint` alone — that every `maxHeartbeats` bump
 carries a reason, that a `def` under `Complexity/Time/` is named for the cost it asserts and is
-not `0` unless `scripts/zero-cost-allowlist.txt` says what the operation neither computes nor writes,
+not `0`,
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
@@ -425,7 +422,7 @@ is not spelled out three times in one declaration (`scripts/check-repeated-subte
 "Name what repeats"), that a discrete-time class (`<X>DT`) has the fields of its continuous twin
 `<X>` (`scripts/check-dt-twins.py`; a difference such as `dt` is listed with its reason in
 `scripts/dt-twin-allowlist.txt`), that a public theorem that exactly one other file reads is
-that file's `private` lemma unless something outward-facing names it
+that file's `aux_` lemma unless something outward-facing names it
 (`scripts/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
 `noncomputable` stays where it is legitimate — see below.
 
@@ -732,20 +729,30 @@ asks for it, and the files not yet brought up to it are listed in
 ### A theorem used once is a lemma of its user
 
 A public `theorem` that exactly one other file reads, and that nothing outward-facing points
-at, is an auxiliary lemma of that file: it goes there as a `private` one (and an `rfl` lemma
-used once is inlined at its use, and deleted). `scripts/check-single-use.py` reports it. A file
-counts as a user when the last component of the theorem's name occurs in its code, whatever the
-namespace or the dot notation in front, so the count errs towards "more users". The theorem is
-outward-facing, and stays public, when
+at, is an auxiliary lemma of that file: it goes there as an `aux_` one, under its `AUXILIARY`
+banner (and an `rfl` lemma used once is inlined at its use, and deleted).
+`scripts/check-single-use.py` reports it. A file counts as a user when the last component of the
+theorem's name occurs in its code, whatever the namespace or the dot notation in front, so the
+count errs towards "more users"; a declaration's own name is no use of a twin of the same name,
+and a file that declares a name of its own with that last component reads the theorem only where
+it spells it qualified or as a field of a value (`h.foo`). The theorem stays public when
 
+* its own file reads it too, or two declarations of the user's `Basic.lean` do (a bundle holds one
+  declaration per section, so no lemma);
+* it reads an `aux_` step of its operation, which no other file may read (the theorem is a
+  satellite of that operation, "`aux_`" below);
+* its file carries a review stamp (`-- Reviewed:` with a reviewer's name and date, not `---`): folding
+  it would drop the review, so a reviewed file keeps its own file;
 * a page of `references/` or the paper sources under `experiments/paper/` name it or link the
   file that declares it (a ledger row is a promise about it);
 * another file's comment or docstring mentions it;
 * one of its users is an `Examples/` file or an `Instances.lean`, where a theorem is the
-  guarantee an instance or a demonstration shows;
-* it carries an attribute (`@[simp]`, ...), which reads it without naming it; or
-* `scripts/single-use-allowlist.txt` lists it, with the reason, as `<path>::<name>  <reason>`.
-  An entry that no longer matches is reported as stale, so the list only shrinks.
+  guarantee an instance or a demonstration shows; or
+* it carries an attribute (`@[simp]`, ...), which reads it without naming it.
+
+There is no list of exceptions. Where the one user is a single small declaration of a
+`Basic.lean`, which holds no lemma, that declaration gets a file of its own and the theorem
+becomes its `aux_` lemma.
 
 A theorem with no other user at all is not reported: that is a guarantee nobody builds on yet,
 which a ledger row or a `Counterexamples/` folder may well want.
@@ -936,8 +943,7 @@ alphabetically earlier one only if that one possibly uses a section in between.
 **What stays a file of its own**, whatever its size: a main-type file, `API.lean`,
 `Instances.lean`, anything in a `Counterexamples/` folder (a CORA model or a
 refutation), a CORA model the library imports (`COUNTEREXAMPLE_EXCEPTIONS` in
-`check-conventions.sh`), every file the CORA-bug appendix links, anything under `Examples/` or on
-`scripts/non-module-allowlist.txt`, a file whose module docstring has a
+`check-conventions.sh`), every file the CORA-bug appendix links, anything under `Examples/`, a file whose module docstring has a
 `## References` block — its citation is what `references/` links to, and a section
 has no docstring to keep it in — and a file whose name says `Float` where neither
 its directory nor its declaration does, since the file name is what marks it as
@@ -1001,15 +1007,17 @@ A step keeps its **own file** (the D exceptions) when
 * a float twin calls it from the real layer: its one reader is a `Float/` file and the step is not
   under `Float/`;
 * it belongs to another directory than its reader (a `Capsule/Float/Operations/` function that a
-  `LinearSys` algorithm calls): it is that directory's public operation; or
-* it has theorems of its own, or any other reader (an example, a `Counterexamples/` file).
+  `LinearSys` algorithm calls): it is that directory's public operation;
+* it has theorems of its own, or any other reader (an example, a `Counterexamples/` file);
+* its file carries a review stamp (`-- Reviewed:` with a reviewer's name and date, not `---`); or
+* a page of `references/` or the paper sources under `experiments/paper/` link the file (a results
+  row is a promise about it).
 
 `scripts/check-steps.py` reports every other `Operations/` definition with exactly one
-`Operations/` reader (and no reader but that reader's satellites). Steps not folded yet are
-listed in `scripts/step-file-allowlist.txt` with the root of their cluster; the list only
-shrinks. The single-use check treats an algorithm and its satellites as one unit: a theorem whose
-one reader is in its own unit is left alone. `check-conventions.sh` accepts an `aux_` name in a
-satellite theorem file when the algorithm's file declares it.
+`Operations/` reader (and no reader but that reader's satellites). The single-use check treats
+an algorithm and its satellites as one unit: a theorem whose one reader is in its own unit is left
+alone. `check-conventions.sh` accepts an `aux_` name in a satellite theorem file when the
+algorithm's file declares it.
 
 Never on an `instance`. Type class search reaches an instance from every file
 that imports it and never names it, so no file can claim nothing else uses one.
@@ -1240,8 +1248,7 @@ about the result go in the claim as arrows, in front of it. The proof starts wit
 directly in the claim. `check-conventions.sh` runs `scripts/check-option-hyps.py`, which rejects a
 binder `(h… : <call> = some …)` in the signature of the theorem under a `MAIN THEOREM` banner,
 except a lookup (`l[i]? = some a`, `.head?`, `.find?`) and a verdict (`= some true`,
-`= some false`), which name no result. `scripts/option-hyp-allowlist.txt` lists the theorems that
-could not be converted; it only shrinks.
+`= some false`), which name no result.
 
 ## The two layers
 
@@ -1251,7 +1258,7 @@ float operation pays its rounding into an interval error box via
 `InflatedContSet`.
 
 `𝕋` is the scalar a layer computes in — ℝ in `Real`, a machine scalar in `Float`.
-`Global.Scalar` reads a matrix of it as a real one, which is how a guarantee
+`Scalar` (`Global/Interfaces.lean`) reads a matrix of it as a real one, which is how a guarantee
 stated once covers both layers. Outside `ContSet/` the two layers are one
 definition: `Global/Float/Instances/Real` instantiates the scalar interface at ℝ
 with every rounding exact, so a generic algorithm at `𝕋 := ℝ` *is* the exact
@@ -1558,8 +1565,6 @@ algorithm, so its body reads as the printed one does: one named `let` per printe
 paper's own symbols, each under a `-- <n>. …` line comment that says what the step does in the
 paper's words (`Taylm.rangeBound` is the model). `scripts/check-algorithm-steps.py` sees the
 form — a citing docstring, a body of three lines or more, no `-- <n>.` comment — and refuses it.
-The definitions that predate the rule are listed in `scripts/algorithm-steps-pending.txt` as
-`pending`; the list only shrinks.
 
 ### Lengths, which `check-conventions.sh` enforces
 
@@ -1599,6 +1604,20 @@ variables a `variable` line supplies; an anonymous binder `(_ : T)` is listed as
 needed to understand it, in its own `/--` docstring. `Basic.lean` bundles and the other summary
 and collector files (`API.lean`, `Instances.lean`, `Interfaces.lean`, `MAIN TYPE` and
 `MAIN INSTANCE` files) are exempt.
+
+### Every declaration is documented in words once (#257)
+
+The main declaration is documented by the module docstring's sections above, so a `/--` on it is
+optional. Every other `def`, `abbrev`, `theorem`, `lemma`, `structure`, `class`, `inductive` and
+`instance` under a `MAIN THEOREM`, `MAIN DEFINITION`, `MAIN TYPE` or `MAIN INSTANCE` banner has its
+own `/--` docstring: every declaration in the files exempt from the sections (`Basic.lean`,
+`API.lean`, `Instances.lean`, `Interfaces.lean`, and files with only `MAIN TYPE` or
+`MAIN INSTANCE` banners), and the second and later declarations under a banner in the other files.
+Attributes (`@[simp]`) between the docstring and the declaration are fine. Structure fields and
+`aux_` declarations in `AUXILIARY` sections are not covered. The docstring says in words, in one to
+three lines, what the declaration is or states, without copying the formula; an abbreviated name
+(`stBeta`) says where it comes from (CORA's `'approx:st'`, Sadraddini and Tedrake's β).
+`check-conventions.sh` reports each missing docstring; the rule has no allowlist.
 
 For a definition (`Zonotope.reduceGirard (Z : Zonotope (Vec ℝ n)) (o : ℕ)`):
 
@@ -1719,8 +1738,7 @@ helper is public, under a name that does not clash.
 A file stays a non-module only when its proofs unfold a definition that core or
 Mathlib does not expose (`Nat.fold`, a list sort by `rfl`), or when it imports
 such a file, since a module cannot import a non-module (the reverse is fine).
-Those files are listed with a reason in `scripts/non-module-allowlist.txt`,
-which only shrinks; everything under `Examples/` stays non-module too, since
+Today no file is one; everything under `Examples/` stays non-module, since
 `#eval` in a module needs `meta import`. `check-conventions.sh` checks the
 header lines and refuses any other file that is not a module.
 

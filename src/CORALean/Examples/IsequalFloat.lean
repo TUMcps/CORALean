@@ -51,6 +51,7 @@ def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- A zonotope with generators `(2, 0)`, `(0, 1)` and the same one with `2` written `1 · 2¹`. -/
 def Z₁ : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+/-- The same zonotope as `Z₁`, with the generator `2` written `1 · 2¹`. -/
 def Z₂ : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 1, d 0 0], ![d 0 0, d 1 0]], box0⟩
 
 /-- The same generators in the other order: the same set, but not certified equal. -/
@@ -62,6 +63,7 @@ def Z₃ : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 0 0, d 1 0], ![d 2
 
 /-- Two boxes in one dimension: `[0, 1]` and `[0, 2]`. -/
 def I₁ : Interval (Vec D 1) := ⟨![d 0 0], ![d 1 0]⟩
+/-- The box `[0, 2]`, a different box from `I₁`. -/
 def I₂ : Interval (Vec D 1) := ⟨![d 0 0], ![d 1 1]⟩
 
 #eval ContSet.eqBool I₁ I₁   -- true

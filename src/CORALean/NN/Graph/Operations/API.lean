@@ -48,11 +48,9 @@ public import CORALean.NN.Graph.Operations.Alg1Graph
 public import CORALean.NN.Graph.Operations.Flatten
 public import CORALean.NN.Graph.Operations.FloatBiasPoint
 public import CORALean.NN.Graph.Operations.FloatGcn
-public import CORALean.NN.Graph.Operations.FloatLeftMat
 public import CORALean.NN.Graph.Operations.FloatLinear
 public import CORALean.NN.Graph.Operations.FloatRightMat
 public import CORALean.NN.Graph.Operations.FloatSumPool
-public import CORALean.NN.Graph.Operations.FloatSumPoolMat
 public import CORALean.NN.Graph.Operations.SupportFloat
 public import CORALean.NN.Graph.Operations.BallFloat
 public import CORALean.NN.Graph.Operations.ReduceKeepFloat

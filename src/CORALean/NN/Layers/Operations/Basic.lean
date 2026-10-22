@@ -302,8 +302,7 @@ def softplusRelaxation (β : 𝕋) (k nl kl : ℕ) : Relaxation 𝕋 :=
 
 `a·a` rounded each way: `x²` at a stored value. -/
 def squareEnclosure : Enclosure 𝕋 where
-  lo a := mulDown a a
-  hi a := mulUp a a
+  enclose a := ⟨mulDown a a, mulUp a a⟩
 
 end
 

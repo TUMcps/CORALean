@@ -1,9 +1,11 @@
 module
 
 public import Mathlib.Data.Finset.Sort
-public import CORALean.NN.Graph.Operations.ReduceKeepFloat
+public import Mathlib.Data.Fintype.Basic
 public import CORALean.NN.Graph.Operations.ReducedStepsFloat
 public import CORALean.NN.Graph.Operations.SupportFloat
+public import CORALean.NN.Graph.Operations.ReduceKeepFloat
+public import CORALean.NN.Graph.Operations.BallFloat
 
 @[expose] public section
 
@@ -11,8 +13,8 @@ public import CORALean.NN.Graph.Operations.SupportFloat
 # `reduceGNNForNode`, at float
 The `L`-step chain on the nodes node `v` needs, as `GNN.reduceGNNForNode`, now running: the edge
 test is `GNN.support A` of the stored float adjacency matrix, the kept sets are
-`GNN.reduceKeepFloat`, enumerated in increasing order by `Finset.orderEmbOfFin`, and the steps are
-`GNN.reducedStepsFloat` from `X` restricted to the first set. `P` is the stored message-passing
+`GNN.reduceKeepFloat`, enumerated in increasing order by `Finset.orderEmbOfFin`, and the steps
+are `GNN.reducedStepsFloat` from `X` restricted to the first set. `P` is the stored message-passing
 matrix, which CORA's `updateMessagePassing` restricts and does not recompute [1, §4.3].
 
 ## Inputs
@@ -44,6 +46,20 @@ matrix, which CORA's `updateMessagePassing` restricts and does not recompute [1,
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] {N F : ℕ}
+
+
+section
+variable {N : ℕ}
+
+
+end
+
+
+section
+variable {N : ℕ}
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

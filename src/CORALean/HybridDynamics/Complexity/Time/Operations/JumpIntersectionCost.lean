@@ -4,7 +4,9 @@ public import CORALean.Global.Cost
 public import CORALean.HybridDynamics.Operations.Jump
 public import CORALean.HybridDynamics.Operations.JumpIntersection
 public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
-public import CORALean.HybridDynamics.Operations.JumpOfPoint
+public import CORALean.ContSet.ConPolyZono.Real.Instances
+public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.HybridDynamics.Definitions.Transition
 
 @[expose] public section
 

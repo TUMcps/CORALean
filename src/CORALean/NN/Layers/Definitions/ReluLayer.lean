@@ -25,6 +25,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a ReLU layer: the slope rule `lam`. -/
 structure ReluLayer (𝕋 : Type) (n m : ℕ) where
   lam : 𝕋 → 𝕋 → 𝕋
   dim : n = m

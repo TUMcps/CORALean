@@ -39,6 +39,14 @@ open Matrix
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The Euclidean norm of a vector. -/
+theorem _root_.CORALean.aux_convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
+  rw [unitBall₂_eq_image]
+  exact (convex_closedBall _ _).linear_image toEuclidean.symm.toLinearEquiv.toLinearMap
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.convex_construct (E : Ellipsoid n) : -- --- CONCL ---
@@ -47,7 +55,7 @@ theorem Ellipsoid.convex_construct (E : Ellipsoid n) : -- --- CONCL ---
       = (fun z : Vec ℝ n => E.q + z) '' (Matrix.mulVecLin E.G '' unitBall₂ n) := by
     simp only [Set.image_image, Matrix.mulVecLin_apply]
   rw [E.construct_eq_image, himg]
-  exact (convex_unitBall₂.linear_image (Matrix.mulVecLin E.G)).translate E.q
+  exact (aux_convex_unitBall₂.linear_image (Matrix.mulVecLin E.G)).translate E.q
 
 end CORALean.Real
 

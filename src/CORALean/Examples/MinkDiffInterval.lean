@@ -30,8 +30,10 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def MDiff.I1 : Interval (Vec ℝ 1) := ⟨![(-1:ℝ)], ![(1:ℝ)]⟩
+/-- The box `[-0.2, 0.2]`. -/
 def MDiff.I2 : Interval (Vec ℝ 1) := ⟨![(-0.2:ℝ)], ![(0.2:ℝ)]⟩
 
+/-- The box `[-0.2, 0.2]` is nonempty. -/
 theorem MDiff.I2_nonempty : MDiff.I2.IsNonempty := by
   intro i
   fin_cases i

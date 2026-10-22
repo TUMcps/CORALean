@@ -119,7 +119,8 @@ theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : I
     obtain ⟨sk, hsk, hstep⟩ := Option.bind_eq_some_iff.mp h
     obtain ⟨ηr, hη₀, hη, hsr⟩ := ih _ hsk
     exact ⟨ηr, hη₀, hη, sys.maxBackReachStepFloat_encloses Bx P₁ P₂ ρ P₁r P₂r Ur W₀r
-      Zwr _ hsr hΔt hU0 hU hWE hW₀r (hZw _ _ _ hsr.tLo_le hsr.le_tHi) hP₁ hP₂ hP₁0 hP₂0 hker₁
+      Zwr _ hsr hΔt hU0 hU hWE hW₀r (hZw _ _ _ hsr.tEnc_inf_le hsr.le_tEnc_sup) hP₁ hP₂ hP₁0 hP₂0
+        hker₁
       hker₂ hkerr₁ hkerr₂ _ hη _ hstep⟩
 
 end CORALean

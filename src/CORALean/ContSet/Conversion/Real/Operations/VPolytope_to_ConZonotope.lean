@@ -39,6 +39,8 @@ def VPolytope.simplex (k : ℕ) : HPolytope (Vec ℝ k) where
   Ae := fun _ => ∑ j, LinearMap.proj j
   be := fun _ => 1
 
+/-- The constrained zonotope of a hull: the vertices as generators around the origin, with the
+coefficients constrained to the simplex. -/
 def VPolytope.conZonotope (P : VPolytope α) : ConZonotope α where
   h := P.k
   c := 0

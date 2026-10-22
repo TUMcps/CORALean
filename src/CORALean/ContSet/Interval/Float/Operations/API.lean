@@ -69,7 +69,6 @@ public import CORALean.ContSet.Interval.Float.Operations.PowLo
 public import CORALean.ContSet.Interval.Float.Operations.Power
 public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
-public import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
 public import CORALean.ContSet.Interval.Float.Operations.Round
 public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
 public import CORALean.ContSet.Interval.Float.Operations.Submatrix

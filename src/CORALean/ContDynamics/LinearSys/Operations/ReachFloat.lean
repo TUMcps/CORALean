@@ -5,7 +5,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.ContDynamics.Reach.Operations.Steps
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

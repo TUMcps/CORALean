@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Tensor
 
 @[expose] public section
@@ -29,12 +29,7 @@ unchecked call, then `checkNoNaN`.
 namespace CORALean.Float
 
 
--- ========================================  MAIN TYPE  ========================================= --
-
-/-- The scalars of type `𝕋` a value of type `α` stores, every one of them: a set is
-reported only if none of these is a NaN. -/
-class Floats (𝕋 : Type) (α : Type) where
-  floats : α → List 𝕋
+-- ======================================  MAIN INSTANCE  ======================================= --
 
 namespace Floats
 
@@ -49,6 +44,7 @@ instance {𝕋 β : Type} {n : ℕ} [Floats 𝕋 β] : Floats 𝕋 (Fin n → β
 instance {𝕋 : Type} {n m : ℕ} : Floats 𝕋 (Mat 𝕋 n m) :=
   ⟨fun M => (List.ofFn fun i => floats (𝕋 := 𝕋) (fun j => M i j)).flatten⟩
 
+/-- The floats of a pair are those of both components. -/
 instance {𝕋 α β : Type} [Floats 𝕋 α] [Floats 𝕋 β] : Floats 𝕋 (α × β) :=
   ⟨fun p => floats p.1 ++ floats p.2⟩
 
@@ -57,8 +53,10 @@ of its second: the label carries none. Tried only where `Floats 𝕋 L` has no i
 instance (priority := low) {𝕋 L α : Type} [Floats 𝕋 α] : Floats 𝕋 (L × α) :=
   ⟨fun p => floats p.2⟩
 
+/-- The floats of a list are those of its elements. -/
 instance {𝕋 α : Type} [Floats 𝕋 α] : Floats 𝕋 (List α) := ⟨fun l => (l.map floats).flatten⟩
 
+/-- The floats of an array are those of its elements. -/
 instance {𝕋 α : Type} [Floats 𝕋 α] : Floats 𝕋 (Array α) := ⟨fun a => floats a.toList⟩
 
 end Floats
@@ -76,6 +74,7 @@ def ifNoNaN (x : α) : Option α := if noNaN (𝕋 := 𝕋) x then some x else n
 def checkNoNaN (r : Option α) : Option α := r.bind (ifNoNaN (𝕋 := 𝕋))
 
 
+/-- If `ifNoNaN x` is `some y`, then `y` is `x` and `x` holds no NaN. -/
 theorem ifNoNaN_eq_some {x y : α} (h : ifNoNaN (𝕋 := 𝕋) x = some y) :
     y = x ∧ noNaN (𝕋 := 𝕋) x = true := by
   unfold ifNoNaN at h

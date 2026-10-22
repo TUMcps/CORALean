@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -41,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[e^{At}]` for every `A ∈ sys.A` and `t ∈ [tLo, tHi]`, at Taylor order `η`. -/
-def LinParamSys.expIntervalFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.expIntervalFloat (sys : LinParamSys ℐ[𝕋] n)
     (tLo tHi : 𝕋) (η : ℕ) : Interval (Mat 𝕋 n n) :=
   let At := Interval.smul tLo tHi sys.A                         -- [t A], t ∈ [tLo, tHi]
   (MatExp.expIntervalEnclosure At η).materialiseMat              -- [e^{tA}]

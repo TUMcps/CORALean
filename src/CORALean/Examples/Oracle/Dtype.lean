@@ -99,6 +99,8 @@ def ieeeRoundPair (fmt : IEEEFormat) (d : ExactDyadic) : IEEE fmt × IEEE fmt :=
   (IEEE.roundDown (fmt := fmt) xg, IEEE.roundUp (fmt := fmt) xg)
 
 -- `value`, then its own rounding error `d - value`, both checked past `IEEE.overflows`.
+/-- Rounds an exact scalar into an IEEE format by `mode`, returning the kept value and its rounding
+error; fails on a decimal scalar and on overflow. -/
 def ieeeRoundToScalar (fmt : IEEEFormat) (mode : String) : ExactScalar →
     Except String (IEEE fmt × IEEE fmt × IEEE fmt)
   | .decNeg m d => throw (aux_decNegRefused "roundTo" m d)
@@ -116,6 +118,8 @@ def ieeeRoundToScalar (fmt : IEEEFormat) (mode : String) : ExactScalar →
         ({fmt.p} bits, emax {fmt.emax})"
     pure (value, errDown, errUp)
 
+/-- The dtype operations of an IEEE format: exact reading of fields, rounding to a scalar, and
+printing a normalised `m*2^e`. -/
 def ieeeDtypeOps (label : String) (fmt : IEEEFormat) : DtypeOps (IEEE fmt) where
   label := label
   readExact field
@@ -125,6 +129,8 @@ def ieeeDtypeOps (label : String) (fmt : IEEEFormat) : DtypeOps (IEEE fmt) where
   showExact x := showExactDyadic ⟨x.mantissa, x.exponent⟩
 
 -- `Dyadic p`'s own counterpart: unbounded exponent, so no overflow check is ever needed.
+/-- Rounds an exact scalar into a `p`-bit dyadic by `mode`, returning the kept value and its
+rounding error; fails on a decimal scalar. -/
 def dyadicRoundToScalar (p : Nat) (mode : String) : ExactScalar →
     Except String (DyP p × DyP p × DyP p)
   | .decNeg m d => throw (aux_decNegRefused "roundTo" m d)
@@ -137,6 +143,8 @@ def dyadicRoundToScalar (p : Nat) (mode : String) : ExactScalar →
     let errG : DyP p := ⟨err.mantissa, err.exponent⟩
     pure (value, CORALean.Float.Dyadic.roundDown errG, CORALean.Float.Dyadic.roundUp errG)
 
+/-- The dtype operations of a `p`-bit dyadic: exact reading of fields, rounding to a scalar, and
+printing a normalised `m*2^e`. -/
 def dyadicDtypeOps (label : String) (p : Nat) : DtypeOps (DyP p) where
   label := label
   readExact field
@@ -155,6 +163,8 @@ def aux_toFixedPointExact (f : Nat) : ExactScalar → Except String (FixedPoint 
     let xExact ← d.toFixedPoint "x" d0
     pure ⟨xExact.m, xExact.d⟩
 
+/-- Rounds an exact scalar onto the `f`-digit fixed-point grid by `mode`, returning the kept value
+and its rounding error. -/
 def fixedPointRoundToScalar (f : Nat) (mode : String) (v : ExactScalar) :
     Except String (FixedPoint f × FixedPoint f × FixedPoint f) := do
   -- `xg` off `f`'s own grid but exact; `down`/`up` are `FixedPoint.roundDown`/`roundUp` of it
@@ -168,6 +178,8 @@ def fixedPointRoundToScalar (f : Nat) (mode : String) (v : ExactScalar) :
   let errG : FixedPoint f := ⟨em, d1⟩
   pure (value, FixedPoint.roundDown errG, FixedPoint.roundUp errG)
 
+/-- The dtype operations of the `f`-digit fixed-point type: reading decimal fields that fit `f`
+digits, rounding to a scalar, and printing a fixed-point value. -/
 def fixedPointDtypeOps (label : String) (f : Nat) : DtypeOps (FixedPoint f) where
   label := label
   readExact field

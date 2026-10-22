@@ -15,8 +15,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.Global.Float.Instances.Real.Instances
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
-public import CORALean.ContSet.Conversion.Float.Definitions.IntervalOuter
-public import CORALean.ContSet.Conversion.Float.Definitions.OfInterval
+public import CORALean.ContSet.Conversion.Float.Interfaces
 
 @[expose] public section
 

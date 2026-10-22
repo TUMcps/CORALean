@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.StarSet.Real.Instances
 public import CORALean.ContSet.HPolytope.Float.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Instances
@@ -60,6 +60,7 @@ protected abbrev StarSet.nominal [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (s 
     CORALean.Real.StarSet ℋ𝒫 n :=
   ⟨s.m, fun i => toReal (s.c i), fun i k => toReal (s.G i k), s.dom.nominal, s.pred.nominal⟩
 
+/-- A float star set inflates the real one its stored floats describe, the `nominal` one. -/
 instance [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (StarSet 𝕋 n) (CORALean.Real.StarSet ℋ𝒫 n)
       (Vec 𝕋 n) (Vec ℝ n) where

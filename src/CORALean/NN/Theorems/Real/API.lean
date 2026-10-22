@@ -6,7 +6,6 @@ public import CORALean.NN.Theorems.Real.LinearConvergent
 public import CORALean.NN.Theorems.Real.LinearExact
 public import CORALean.NN.Theorems.Real.LinearWithErrorZero
 public import CORALean.NN.Theorems.Real.MergeBucketWidth
-public import CORALean.NN.Theorems.Real.Basic
 public import CORALean.NN.Theorems.Real.ReduceOnTheFlyReducesAt
 
 /-!

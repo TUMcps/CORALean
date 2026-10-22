@@ -25,6 +25,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a max pooling layer: the window stencil and the rule choosing which entry of each
+window the layer follows. -/
 structure MaxPoolLayer (𝕋 : Type) (n m : ℕ) where
   k : ℕ
   tap : Fin m → Fin (k + 1) → Fin n

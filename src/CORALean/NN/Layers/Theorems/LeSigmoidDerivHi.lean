@@ -48,8 +48,9 @@ theorem le_sigmoidDerivHi {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) (l u 
     (hl : toReal l ≤ x) (hu : x ≤ toReal u) : -- --- CONCL ---
     Real.sigmoidDeriv x ≤ toReal (sigmoidDerivHi E l u) := by -- --- PROOF ---
   -- upward the sign needs no floor: an upper bound on a positive value is positive
-  have h₁ : Real.sigmoid x ≤ toReal (E.hi u) := le_trans (Real.sigmoid_mono hu) (hE.le_hi u)
-  have h₂ : Real.sigmoid (-x) ≤ toReal (E.hi (neg l)) := by
+  have h₁ : Real.sigmoid x ≤ toReal (E.enclose u).sup :=
+    le_trans (Real.sigmoid_mono hu) (hE.le_hi u)
+  have h₂ : Real.sigmoid (-x) ≤ toReal ((E.enclose (neg l)).sup) := by
     refine le_trans ?_ (hE.le_hi (neg l))
     rw [toReal_neg]
     exact Real.sigmoid_mono (neg_le_neg hl)

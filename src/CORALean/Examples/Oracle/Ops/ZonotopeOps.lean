@@ -47,6 +47,7 @@ def handleMtimes (dops : DtypeOps 𝕋) (req : Json) : Except String (List (Stri
   pure [("Z", printZonotope dops.showExact
     (Mtimes.mtimes (S := 𝒵[𝕋]) M dz.Z))]
 
+/-- Handles `mtimesInterval`: the zonotope `Z` multiplied by an interval matrix. -/
 def handleMtimesInterval (dops : DtypeOps 𝕋) (req : Json) :
     Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
@@ -55,6 +56,7 @@ def handleMtimesInterval (dops : DtypeOps 𝕋) (req : Json) :
     (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       IM dz.Z))]
 
+/-- Handles `plus`: the Minkowski sum of `Z` and `Z2`. -/
 def handlePlus (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let Z2 ← parseZonotopeFixed dops.readExact dz.n (← field req "Z2")
@@ -66,11 +68,13 @@ def handlePlusBox (dops : DtypeOps 𝕋) (req : Json) : Except String (List (Str
   let I ← parseIntervalVecFixed dops.readExact dz.n (← field req "I")
   pure [("Z", printZonotope dops.showExact { dz.Z with I_error := Plus.plus dz.Z.I_error I })]
 
+/-- Handles `linComb`: the linear combination of `Z` and `Z2`. -/
 def handleLinComb (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let Z2 ← parseZonotopeFixed dops.readExact dz.n (← field req "Z2")
   pure [("Z", printZonotope dops.showExact (LinComb.linComb dz.Z Z2))]
 
+/-- Handles `reduce`: reduces `Z` to the given order by the Girard or the Combastel method. -/
 def handleReduce (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let order ← natField req "order"

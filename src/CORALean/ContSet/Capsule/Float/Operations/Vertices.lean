@@ -1,10 +1,18 @@
 module
 
-public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
-public import CORALean.ContSet.Capsule.Float.Operations.PiStep
+public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Operations.Cos
+public import CORALean.ContSet.Interval.Float.Operations.Sin
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.Global.Float.IntRound
+public import CORALean.Global.Float.InverseTrig
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.Interval.Float.Operations.Atan2
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
+public import CORALean.ContSet.Capsule.Float.Operations.PiStep
 
 @[expose] public section
 

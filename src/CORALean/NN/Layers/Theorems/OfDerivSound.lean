@@ -77,10 +77,10 @@ theorem Relaxation.ofDeriv_sound {E : Enclosure 𝕋} {lo hi lam : 𝕋 → 𝕋
       le_trans (mul_le_mul_of_nonpos_left hwidth hfac0)
         (mul_le_mul_of_nonneg_right hfac (by linarith))
     have hprod := mulDown_le_mul (subDown (lo l u) (lam l u)) (subUp u l)
-    have hint := subDown_le_sub (E.lo l) (mulUp (lam l u) l)
+    have hint := subDown_le_sub (E.enclose l).inf (mulUp (lam l u) l)
     have hmul := mul_le_mulUp (lam l u) l
     have hend := hE.lo_le l
-    have hsum := addDown_le_add (subDown (E.lo l) (mulUp (lam l u) l))
+    have hsum := addDown_le_add (subDown (E.enclose l).inf (mulUp (lam l u) l))
       (mulDown (subDown (lo l u) (lam l u)) (subUp u l))
     rw [Relaxation.curvLo]
     linarith
@@ -95,10 +95,10 @@ theorem Relaxation.ofDeriv_sound {E : Enclosure 𝕋} {lo hi lam : 𝕋 → 𝕋
       le_trans (mul_le_mul_of_nonneg_right hfac (by linarith))
         (mul_le_mul_of_nonneg_left hwidth hfac0)
     have hprod := mul_le_mulUp (subUp (hi l u) (lam l u)) (subUp u l)
-    have hint := sub_le_subUp (E.hi l) (mulDown (lam l u) l)
+    have hint := sub_le_subUp (E.enclose l).sup (mulDown (lam l u) l)
     have hmul := mulDown_le_mul (lam l u) l
     have hend := hE.le_hi l
-    have hsum := add_le_addUp (subUp (E.hi l) (mulDown (lam l u) l))
+    have hsum := add_le_addUp (subUp (E.enclose l).sup (mulDown (lam l u) l))
       (mulUp (subUp (hi l u) (lam l u)) (subUp u l))
     rw [Relaxation.curvHi]
     linarith

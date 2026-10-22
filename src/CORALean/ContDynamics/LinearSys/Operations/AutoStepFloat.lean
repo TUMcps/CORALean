@@ -76,8 +76,8 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
   -- 3. U₀ = V - ũ, holding 0
   let U₀ := Recenter.recenter V
   let ηe := max ηmax 2                                                 -- [e^{At_k}]'s order
-  let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                      -- t_k / 2^sq within Δt_{k-1}
-  let eAtk := sys.expSquaringFloat s.tLo s.tHi ηe sq                   -- [e^{A t_k}]
+  let sq ← sys.squaringsFloat s.Δt s.tEnc.inf s.tEnc.sup ηe        -- t_k / 2^sq within Δt_{k-1}
+  let eAtk := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup ηe sq                   -- [e^{A t_k}]
   let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_k}] ·
     (S := 𝒵[𝕋]) eAtk
   -- 5.-15. Δt_k, η_k
@@ -89,9 +89,9 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
     -- 7. t_{k+1}
     let tk1 := s.t + ToRat.toRat Δtk
     -- 7. a float below t_{k+1}
-    let tLo1 := addDown s.tLo Δtk
+    let tLo1 := addDown s.tEnc.inf Δtk
     -- 7. a float above t_{k+1}
-    let tHi1 := addUp s.tHi Δtk
+    let tHi1 := addUp s.tEnc.sup Δtk
     let sq1 ← sys.squaringsFloat Δtk tLo1 tHi1 ηk                      -- t_{k+1} / 2^sq1 in Δt_k
     let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_{k+1}}] ·
       (S := 𝒵[𝕋])
@@ -138,7 +138,7 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
     let εr1 := s.εr + Δεr
     -- 30. R̂(τ_k)
     let Rτk := Hτk ⊞ PUk1
-    pure ({ t := tk1, tLo := tLo1, tHi := tHi1, Δt := Δtk, H := Hk1, Pu := Puk1, PU0 := PU01,
+    pure ({ t := tk1, tEnc := ⟨tLo1, tHi1⟩, Δt := Δtk, H := Hk1, Pu := Puk1, PU0 := PU01,
             PUinf := PUinf1, εa := εa1, εr := εr1 }, Rτk)
   else none
 

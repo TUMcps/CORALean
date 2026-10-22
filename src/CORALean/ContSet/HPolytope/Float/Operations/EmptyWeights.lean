@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.Global.Float.RatUp
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.LinProg.Simplex
 
 @[expose] public section

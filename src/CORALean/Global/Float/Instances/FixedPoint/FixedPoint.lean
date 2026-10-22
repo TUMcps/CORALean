@@ -36,6 +36,7 @@ structure FixedPoint (f : ℕ) where
   m : ℤ
   d : ℕ
 
+/-- The real number a fixed-point value denotes: its mantissa over `10` to its digit count. -/
 def FixedPoint.toReal {f : ℕ} (x : FixedPoint f) : ℝ := (((x.m : ℚ) / 10 ^ x.d : ℚ) : ℝ)
 
 end CORALean.Float

@@ -19,7 +19,6 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 public import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
 public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
 public import CORALean.ContSet.ConZonotope.Float.Operations.IsDisjointLP
 public import CORALean.ContSet.ConZonotope.Float.Operations.CartProd
 public import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV

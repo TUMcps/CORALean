@@ -12,7 +12,6 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.Plus
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Project
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
 public import CORALean.ContSet.SpectraShadow.Float.Operations.AbsorbRounding
-public import CORALean.ContSet.SpectraShadow.Float.Operations.TieInter
 public import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Base
 public import CORALean.ContSet.SpectraShadow.Float.Operations.DualBound

@@ -45,6 +45,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A constrained zonotope: center `c` and `h` generators `G`, with the coefficients restricted to
+the polytope `P`. -/
 structure ConZonotope (α : Type) where
   h : ℕ
   c : α
@@ -52,6 +54,8 @@ structure ConZonotope (α : Type) where
   /-- What the coefficients must satisfy beyond `|βⱼ| ≤ 1`. -/
   P : HPolytope (Vec ℝ h)
 
+/-- The set a constrained zonotope denotes: the points `c` plus the generators weighted by
+coefficients in `[-1, 1]` that lie in `P`. -/
 def ConZonotope.construct (cZ : ConZonotope α) : Set α :=
   {x | ∃ β : Fin cZ.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct
         ∧ x = cZ.c + ∑ j, β j • cZ.G j}

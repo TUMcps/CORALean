@@ -46,6 +46,8 @@ def Zonotope.ellipsoidShape (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Interval (
   let G : Mat 𝕋 n Z.h := fun i j => Z.G j i
   Interval.smul (mulDown σ σ) (mulUp σ σ) (Interval.matMul (Interval.point G) (Interval.point Gᵀ))
 
+/-- The ellipsoid of a zonotope, with the shape scaled by `σ`: the zonotope's center and error box,
+and the inflated shape matrix from its generators. -/
 def Zonotope.ellipsoid (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
   Q := Ellipsoid.inflate (Z.ellipsoidShape σ)
   q := Z.c

@@ -31,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A reachset temporal logic formula over leaves `L`: a leaf, conjunction, disjunction, or a next
+with a time shift. -/
 inductive Rtl (L : Type)
   | all (lhs : L)
   | and (lhs rhs : Rtl L)

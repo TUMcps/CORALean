@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderStep
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvSumPos
+public import CORALean.ContSet.Ellipsoid.Real.Operations.HalderInvSum
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
 
 @[expose] public section
@@ -44,13 +44,23 @@ variable {ι : Type*} [Fintype ι]
 variable {lam : ι → ℝ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `∑ᵢ 1/(1+βλᵢ)` is positive at `β ≥ 0` when every `λᵢ` is. [1, Eq. 26] -/
+theorem Ellipsoid.aux_halderInvSum_pos [Nonempty ι] (hlam : ∀ i, 0 < lam i) {β : ℝ} (hβ : 0 ≤ β) :
+    0 < Ellipsoid.halderInvSum lam β := by
+  refine Finset.sum_pos (fun i _ => ?_) Finset.univ_nonempty
+  have := hlam i
+  exact one_div_pos.2 (by positivity)
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `g` maps `[0, ∞)` into `(0, ∞)`, as [1, Eq. 26] has it on the cone `ℝ₊`. -/
 theorem Ellipsoid.halderStep_pos [Nonempty ι] (hlam : ∀ i, 0 < lam i) {β : ℝ} (hβ : 0 ≤ β) :
     0 < Ellipsoid.halderStep lam β :=
   Real.sqrt_pos.2
-    (div_pos (Ellipsoid.halderInvSum_pos hlam hβ) (Ellipsoid.halderLamSum_pos hlam hβ))
+    (div_pos (Ellipsoid.aux_halderInvSum_pos hlam hβ) (Ellipsoid.halderLamSum_pos hlam hβ))
 
 end CORALean.Real
 

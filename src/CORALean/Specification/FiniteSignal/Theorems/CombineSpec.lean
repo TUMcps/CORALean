@@ -5,7 +5,8 @@ public import CORALean.Specification.FiniteSignal.Operations.Combine
 public import CORALean.Specification.FiniteSignal.Theorems.AtEqValueAt
 public import CORALean.Specification.FiniteSignal.Theorems.Basic
 public import CORALean.Specification.FiniteSignal.Theorems.ValueAtConsOfGe
-public import CORALean.Specification.FiniteSignal.Theorems.CombineLoopStep
+public import CORALean.Specification.FiniteSignal.Operations.CombineLoop
+public import Mathlib.Order.Basic
 public import CORALean.Specification.FiniteSignal.Theorems.MkEqSomeIff
 public import CORALean.Specification.FiniteSignal.Theorems.TimeLeDuration
 
@@ -49,6 +50,41 @@ namespace CORALean
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- One step of the combination loop. -/
+theorem FiniteSignal.aux_combineLoop_step {T V W : Type} [LinearOrder T] [DecidableEq W]
+    (op : V → V → W) (l r : T × V) (ls rs : List (T × V)) (hls : ∀ y ∈ ls, l.1 < y.1)
+    (hrs : ∀ y ∈ rs, r.1 < y.1) : -- --- CONCL ---
+    ∃ (t₀ : T) (ls' rs' : List (T × V)),
+      FiniteSignal.combineLoop op (l :: ls) (r :: rs) = FiniteSignal.combineEmit op t₀
+        (op l.2 r.2) ls' rs' (FiniteSignal.combineLoop op ls' rs') ∧
+      (∀ y ∈ ls', t₀ < y.1) ∧ (∀ y ∈ rs', t₀ < y.1) ∧ t₀ = min l.1 r.1 ∧
+      ((ls' = ls ∧ t₀ = l.1) ∨ (ls' = l :: ls ∧ t₀ < l.1)) ∧
+      ((rs' = rs ∧ t₀ = r.1) ∨ (rs' = r :: rs ∧ t₀ < r.1)) := by -- --- PROOF ---
+  by_cases h1 : l.1 < r.1
+  · -- the left signal makes progress
+    refine ⟨l.1, ls, r :: rs, ?_, hls, ?_, (min_eq_left h1.le).symm, Or.inl ⟨rfl, rfl⟩,
+      Or.inr ⟨rfl, h1⟩⟩
+    · rw [FiniteSignal.combineLoop, if_pos h1]
+    · intro y hy
+      rcases List.mem_cons.mp hy with rfl | hy
+      · exact h1
+      · exact h1.trans (hrs y hy)
+  · by_cases h2 : l.1 = r.1
+    · -- both signals make progress
+      refine ⟨l.1, ls, rs, ?_, hls, fun y hy => h2 ▸ hrs y hy, (min_eq_left h2.le).symm,
+        Or.inl ⟨rfl, rfl⟩, Or.inl ⟨rfl, h2⟩⟩
+      rw [FiniteSignal.combineLoop, if_neg h1, if_pos h2]
+    · -- the right signal makes progress
+      have h3 : r.1 < l.1 := lt_of_le_of_ne (not_lt.mp h1) (Ne.symm h2)
+      refine ⟨r.1, l :: ls, rs, ?_, ?_, hrs, (min_eq_right h3.le).symm, Or.inr ⟨rfl, h3⟩,
+        Or.inl ⟨rfl, rfl⟩⟩
+      · rw [FiniteSignal.combineLoop, if_neg h1, if_neg h2]
+      · intro y hy
+        rcases List.mem_cons.mp hy with rfl | hy
+        · exact h3
+        · exact h3.trans (hls y hy)
+
 
 /-- `e` is the last of the times `l`: one of them, and no time exceeds it. -/
 def aux_IsLast {T : Type} [LinearOrder T] (e : T) (l : List T) : Prop := e ∈ l ∧ ∀ x ∈ l, x ≤ e
@@ -164,7 +200,7 @@ theorem aux_combineLoop_props {T V W : Type} [LinearOrder T] [DecidableEq W] (op
   have hls : ∀ y ∈ ls, l.1 < y.1 := fun y hy => hL'.1 y.1 (List.mem_map_of_mem hy)
   have hrs : ∀ y ∈ rs, r.1 < y.1 := fun y hy => hR'.1 y.1 (List.mem_map_of_mem hy)
   obtain ⟨t₀, ls', rs', hE, hB1, hB2, hmin, hA1, hA2⟩ :=
-    FiniteSignal.combineLoop_step op l r ls rs hls hrs
+    FiniteSignal.aux_combineLoop_step op l r ls rs hls hrs
   rw [hE]
   have ht1 : t₀ ≤ l.1 := hmin ▸ min_le_left _ _
   have ht2 : t₀ ≤ r.1 := hmin ▸ min_le_right _ _

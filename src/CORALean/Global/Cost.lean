@@ -38,19 +38,27 @@ structure Cost where
 
 namespace Cost
 
+/-- The cost of no operations. -/
 instance : Zero Cost := ⟨⟨0⟩⟩
+/-- Costs add by their operation counts. -/
 instance : Add Cost := ⟨fun a b => ⟨a.ops + b.ops⟩⟩
+/-- A cost repeated `k` times. -/
 instance : SMul ℕ Cost := ⟨fun k a => ⟨k * a.ops⟩⟩
 
 -- `ops` is the whole content of a `Cost`, so the order lifts through it.
+/-- Costs are ordered by their operation counts. -/
 instance : Preorder Cost := Preorder.lift Cost.ops
 
+/-- The zero cost counts no operations. -/
 @[simp] theorem ops_zero : (0 : Cost).ops = 0 := rfl
 
+/-- The operation count of a sum of costs is the sum of the counts. -/
 @[simp] theorem ops_add (a b : Cost) : (a + b).ops = a.ops + b.ops := rfl
 
+/-- The operation count of a repeated cost is `k` times its count. -/
 @[simp] theorem ops_smul (k : ℕ) (a : Cost) : (k • a).ops = k * a.ops := rfl
 
+/-- A cost is at most another exactly when its operation count is. -/
 @[simp] theorem le_iff {a b : Cost} : a ≤ b ↔ a.ops ≤ b.ops := Iff.rfl
 
 /-- Running one after the other costs at most the sum of what bounds each. -/
@@ -71,11 +79,6 @@ size bound the cost of sorting it. -/
 theorem sort_mono {k k' : ℕ} (h : k ≤ k') : sort k ≤ sort k' :=
   Nat.mul_le_mul h (Nat.succ_le_succ (Nat.log_mono_right h))
 
-/-- The sort is at most `k * (k + 1)`, since `Nat.log 2 k ≤ k`. A caller reading
-an asymptotic bound off a cost goes through this rather than the definition, so
-tightening the model again stops at this file. -/
-theorem sort_le_mul_succ (k : ℕ) : (sort k).ops ≤ k * (k + 1) :=
-  Nat.mul_le_mul_left _ (Nat.succ_le_succ (Nat.log_le_self 2 k))
 
 /-- Closes a goal `f x ≤ f y` between costs by unfolding the named definitions to their `ops`
 and comparing term by term, so each monotonicity theorem is one line. -/

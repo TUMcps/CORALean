@@ -40,11 +40,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zonotope: center `c` and `h` generators `G`. -/
 structure Zonotope (α : Type) where
   h : ℕ
   c : α
   G : Fin h → α
 
+/-- The set a zonotope denotes: the center plus the generators weighted by coefficients in `[-1,
+1]`. -/
 def Zonotope.construct (Z : Zonotope α) : Set α :=
   {x | ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ x = Z.c + ∑ j, β j • Z.G j}
 

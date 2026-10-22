@@ -41,6 +41,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A sparse polynomial zonotope: center `c`, `h` dependent generators `G` with exponent matrix `E`
+over `p` factors, and `q` independent generators `GI`. -/
 structure PolyZonotope (α : Type) where
   /-- The dependent factors, shared across all of `G`. -/
   p : ℕ
@@ -59,6 +61,8 @@ the matrix it is still assembling. -/
 def PolyZonotope.monomial {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (i : Fin h) : ℝ := ∏ k, a k ^ E k i
 
+/-- The set a polynomial zonotope denotes: the center plus the monomial-weighted dependent
+generators and the independent generators, with every factor and coefficient in `[-1, 1]`. -/
 def PolyZonotope.construct (pZ : PolyZonotope α) : Set α :=
   {x | ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ x = pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, β j • pZ.GI j}

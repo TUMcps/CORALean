@@ -44,8 +44,8 @@ theorem Relaxation.ofMonotone_sound {E : Enclosure 𝕋} (hσ : Monotone σ)
     (hE : E.Sound σ) : -- --- CONCL ---
     (Relaxation.ofMonotone E).Sound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
-  have hlo : toReal (E.lo l) ≤ σ t := le_trans (hE.lo_le l) (hσ hl)
-  have hhi : σ t ≤ toReal (E.hi u) := le_trans (hσ hu) (hE.le_hi u)
+  have hlo : toReal (E.enclose l).inf ≤ σ t := le_trans (hE.lo_le l) (hσ hl)
+  have hhi : σ t ≤ toReal (E.enclose u).sup := le_trans (hσ hu) (hE.le_hi u)
   have h := abs_sub_le_spread (c := E.mid l u) hlo hhi
   show |σ t - (toReal (FloatOps.zero : 𝕋) * t + toReal (E.mid l u))| ≤ _
   rw [toReal_zero, zero_mul, zero_add]

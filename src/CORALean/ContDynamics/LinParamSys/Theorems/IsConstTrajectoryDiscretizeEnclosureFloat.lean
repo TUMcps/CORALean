@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLine
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Interval.Float.Instances
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 

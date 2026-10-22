@@ -54,6 +54,7 @@ noncomputable def arxSys : NonlinearARX 1 1 2 where
 
 /-- The square's enclosure over `[a, b]`. -/
 def sqLo (a b : D) : D := Interval.mulLo a b a b
+/-- The upper end of the square's enclosure over `[a, b]`. -/
 def sqHi (a b : D) : D := Interval.mulHi a b a b
 
 /-- An interval extension of `f_ARX`. -/

@@ -2,9 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInputSolutionTimeIntervalOuterSplit
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryTimeIntervalOuter
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 
 @[expose] public section

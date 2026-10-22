@@ -5,7 +5,6 @@ public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
 public import CORALean.ContSet.VPolytope.Real.Operations.Point
 public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
-public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionHIsCompact
 public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 public import CORALean.ContSet.VPolytope.Real.Operations.Map

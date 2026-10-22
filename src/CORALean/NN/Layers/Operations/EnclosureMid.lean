@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The offset such a relaxation stores, the midpoint of the enclosure's ends. -/
-def Enclosure.mid (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 := half (addUp (E.lo l) (E.hi u))
+def Enclosure.mid (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
+  half (addUp (E.enclose l).inf (E.enclose u).sup)
 
 end CORALean
 

@@ -42,6 +42,7 @@ def divFact (q : Interval 𝕋) : ℕ → Interval 𝕋
   | k + 1 => ⟨divDown (divFact q k).inf (nsmulUp (k + 1) one),
       divUp (divFact q k).sup (maximum one (nsmulDown (k + 1) one))⟩
 
+/-- For a nonnegative `a` in the enclosure `q`, the enclosure `divFact q k` contains `a / k!`. -/
 theorem divFact_mem [SoundFloatArithmetic 𝕋] (q : Interval 𝕋) {a : ℝ} (ha0 : 0 ≤ a)
     (ha : toReal q.inf ≤ a ∧ a ≤ toReal q.sup) : -- --- CONCL ---
     ∀ k : ℕ, toReal (divFact q k).inf ≤ a / (k.factorial : ℝ) ∧

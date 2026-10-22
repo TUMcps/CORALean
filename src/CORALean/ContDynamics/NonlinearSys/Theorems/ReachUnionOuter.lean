@@ -5,8 +5,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactConfinementOfSubset
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeIntervalHorizon
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.SetUnion.Theorems.Basic
 

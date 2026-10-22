@@ -1,7 +1,9 @@
 module
 
-public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
+public import CORALean.ContDynamics.LinearARX.Operations.Basic
+public import CORALean.ContDynamics.LinearARX.Operations.InputSet
 public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
+public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
 
 @[expose] public section
 
@@ -41,6 +43,22 @@ open ContSet Scalar Plus Reduce Mtimes
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+
+
+section
+open Matrix
+omit [ExactScalar 𝕋] [∀ n, Plus (S n) (Vec ℝ n)] in
+
+
+end
+
+
+section
+open Matrix
+omit [ExactScalar 𝕋] in
+
+
+end
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

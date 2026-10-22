@@ -39,6 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 def Zonotope.corner (Z : Zonotope α) (σ : Fin Z.h → Bool) : α :=
   Z.c + ∑ j, (if σ j then (1:ℝ) else -1) • Z.G j
 
+/-- The hull of a zonotope's `2^h` corners, one per sign pattern of its coefficients. -/
 noncomputable def Zonotope.vPolytope (Z : Zonotope α) : VPolytope α where
   k := 2 ^ Z.h
   V := fun l => Z.corner (signEquiv Z.h l)

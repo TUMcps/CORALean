@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.Instances.Real.Instances
 
 @[expose] public section
@@ -34,16 +35,15 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- A machine enclosure at a stored value, which is what a slope-zero relaxation needs. -/
 structure Enclosure (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] where
-  lo : 𝕋 → 𝕋
-  hi : 𝕋 → 𝕋
+  enclose : 𝕋 → Float.Interval 𝕋
 
 /-- That the two ends bracket `σ` at every stored value. -/
 structure Enclosure.Sound (E : Enclosure 𝕋) (σ : ℝ → ℝ) : Prop where
-  lo_le (a : 𝕋) : toReal (E.lo a) ≤ σ (toReal a)
-  le_hi (a : 𝕋) : σ (toReal a) ≤ toReal (E.hi a)
+  lo_le (a : 𝕋) : toReal (E.enclose a).inf ≤ σ (toReal a)
+  le_hi (a : 𝕋) : σ (toReal a) ≤ toReal (E.enclose a).sup
 
 /-- `σ` itself at both ends, which only ℝ stores. -/
-noncomputable def Enclosure.exact (σ : ℝ → ℝ) : Enclosure ℝ := ⟨σ, σ⟩
+noncomputable def Enclosure.exact (σ : ℝ → ℝ) : Enclosure ℝ := ⟨fun a => ⟨σ a, σ a⟩⟩
 
 end CORALean
 

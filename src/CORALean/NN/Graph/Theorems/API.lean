@@ -72,16 +72,11 @@ public import CORALean.NN.Graph.Theorems.Alg1NodeSound
 public import CORALean.NN.Graph.Theorems.Alg1GraphSound
 public import CORALean.NN.Graph.Theorems.FloatBiasPointMem
 public import CORALean.NN.Graph.Theorems.FloatGcnOuter
-public import CORALean.NN.Graph.Theorems.FloatLeftMatMulVec
 public import CORALean.NN.Graph.Theorems.FloatLinearOuter
 public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
-public import CORALean.NN.Graph.Theorems.FloatSumPoolMatMulVec
 public import CORALean.NN.Graph.Theorems.FloatSumPoolOuter
-public import CORALean.NN.Graph.Theorems.SupportFloatOfNeZero
 public import CORALean.NN.Graph.Theorems.ReducedStepsFloatOuter
 public import CORALean.NN.Graph.Theorems.ReduceGNNForNodeFloatOuter
-public import CORALean.NN.Graph.Theorems.BallSubsetBallFloat
-public import CORALean.NN.Graph.Theorems.BallFloatSubsetSucc
 public import CORALean.NN.Graph.Theorems.BallSubsetReduceKeepFloat
 
 /-!

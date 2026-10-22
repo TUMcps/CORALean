@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.AutoInitFloat
+public import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
 
 @[expose] public section

@@ -3,7 +3,8 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsExpRemainderBoundLt
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundAntitoneSucc
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
+public import Mathlib.Tactic.Positivity
 
 @[expose] public section
 
@@ -49,6 +50,49 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+section
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+/-- One more order never costs precision: raising `η` never raises the bound,
+given the side condition the lower order already needs. -/
+theorem MatExp.aux_expRemainderBound_antitone_succ {x : Mat ℝ n n} (η : ℕ)
+    (hx : ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
+    MatExp.expRemainderBound x (η + 1) ≤ MatExp.expRemainderBound x η := by -- --- PROOF ---
+  have hnn : (0 : ℝ) ≤ ‖x‖ := norm_nonneg _
+  have h2pos : (0 : ℝ) < (η : ℝ) + 2 := by positivity
+  have hterm1_nn : (0 : ℝ) ≤ ‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ) := by positivity
+  have hfact : (Nat.factorial (η + 1 + 1) : ℝ) = ((η : ℝ) + 2) * (Nat.factorial (η + 1) : ℝ) := by
+    rw [Nat.factorial_succ]
+    push_cast
+    ring
+  have heq : ‖x‖ ^ (η + 1 + 1) / (Nat.factorial (η + 1 + 1) : ℝ)
+      = (‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)) * (‖x‖ / ((η : ℝ) + 2)) := by
+    rw [hfact, pow_succ]
+    field_simp
+  -- the leading term shrinks by a factor of at most `1`, the side condition's own bound
+  have hterm1 : ‖x‖ ^ (η + 1 + 1) / (Nat.factorial (η + 1 + 1) : ℝ)
+      ≤ ‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ) := by
+    rw [heq]
+    calc (‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)) * (‖x‖ / ((η : ℝ) + 2))
+        ≤ (‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ)) * 1 :=
+          mul_le_mul_of_nonneg_left hx.le hterm1_nn
+      _ = ‖x‖ ^ (η + 1) / (Nat.factorial (η + 1) : ℝ) := mul_one _
+  have hfrac_mono : ‖x‖ / ((η : ℝ) + 1 + 2) ≤ ‖x‖ / ((η : ℝ) + 2) := by
+    apply div_le_div_of_nonneg_left hnn h2pos
+    linarith
+  have hd1 : (0 : ℝ) < 1 - ‖x‖ / ((η : ℝ) + 2) := by linarith
+  have hd2 : (0 : ℝ) < 1 - ‖x‖ / ((η : ℝ) + 1 + 2) := by linarith
+  have hterm2 : (1 - ‖x‖ / ((η : ℝ) + 1 + 2))⁻¹ ≤ (1 - ‖x‖ / ((η : ℝ) + 2))⁻¹ :=
+    inv_anti₀ hd1 (by linarith)
+  have hterm2_nn : (0 : ℝ) ≤ (1 - ‖x‖ / ((η : ℝ) + 1 + 2))⁻¹ := inv_nonneg.mpr hd2.le
+  simp only [MatExp.expRemainderBound]
+  push_cast
+  exact mul_le_mul hterm1 hterm2 hterm2_nn hterm1_nn
+
+end
+
+
 /-- One more order keeps both halves: the bound falls, and the side condition
 only has a larger denominator to divide by. -/
 theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
@@ -65,7 +109,7 @@ theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
       apply div_le_div_of_nonneg_left hnn hpos
       linarith
     linarith
-  exact ⟨lt_of_le_of_lt (MatExp.expRemainderBound_antitone_succ η hs) hb, hs'⟩
+  exact ⟨lt_of_le_of_lt (MatExp.aux_expRemainderBound_antitone_succ η hs) hb, hs'⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

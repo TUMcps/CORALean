@@ -31,6 +31,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A nonlinear reset: the function from the pre-jump state and an input to the post-jump state. -/
 structure NonlinearReset (n m p : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ p
 

@@ -36,6 +36,8 @@ variable {n m : ℕ}
 def Taylm.allTerms (T : Fin m → Taylm n) : List (Fin m × (ℝ × (Fin n → ℕ))) :=
   (List.finRange m).flatMap fun i => (T i).terms.map fun a => (i, a)
 
+/-- The polynomial zonotope of an array of Taylor models: one dependent generator per term, and the
+remainder interval as the center and the independent generators. -/
 noncomputable def Taylm.polyZonotope (T : Fin m → Taylm n) : PolyZonotope (Vec ℝ m) where
   p := n
   h := (Taylm.allTerms T).length

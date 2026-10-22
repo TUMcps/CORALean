@@ -53,6 +53,8 @@ noncomputable def sigmoidDerivHi (l u : ℝ) : ℝ := sigmoid u * sigmoid (-l)
 noncomputable def sigmoidSlope (l u : ℝ) : ℝ :=
   max (sigmoidDerivLo l u) (min (sigmoidDerivHi l u) ((sigmoid u - sigmoid l) / (u - l)))
 
+/-- The sigmoid relaxation from the exact derivative bracket and the clamped secant slope, with the
+exact sigmoid at the box's ends. -/
 noncomputable def sigmoidCurvatureRelaxation : Relaxation ℝ :=
   Relaxation.ofDeriv (Enclosure.exact sigmoid) sigmoidDerivLo sigmoidDerivHi sigmoidSlope
 

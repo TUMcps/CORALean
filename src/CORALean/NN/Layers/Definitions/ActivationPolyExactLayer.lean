@@ -29,12 +29,16 @@ namespace CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of the exact polynomial activation layer: a polynomial relaxation per neuron over ℝ,
+and a proof that all enclose one activation. -/
 structure ActivationPolyLayer (n m : ℕ) where
   deg : ℕ
   P : LayerRelaxation ℝ n deg
   sound : ∃ σ : ℝ → ℝ, ∀ i, (P i).Sound σ
   dim : n = m
 
+/-- The exact polynomial activation layer is an `Enclose` kind at polynomial zonotopes;
+noncomputable, as it propagates over ℝ. -/
 noncomputable instance : Enclose ActivationPolyLayer 𝒫𝒵 where
   eval := fun {n m} l => match n, m, l with
     | _, _, ⟨_, _, hP, rfl⟩ => Erased.mk fun x i => hP.choose (x i)

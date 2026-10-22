@@ -32,6 +32,9 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The runs of a parallel automaton with synchronization labels: an unlabeled transition is taken
+alone, a labeled one together with the same-labeled transition of every participant, all guards
+holding at the end of the same stay. -/
 inductive ParallelHybridAutomaton.IsSyncRun [DecidableEq Λ] [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) :

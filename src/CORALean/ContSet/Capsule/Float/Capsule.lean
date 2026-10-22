@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Real.Instances
 public import CORALean.Global.Float.SoundFloatArithmetic
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 
 @[expose] public section
 
@@ -34,6 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A capsule over floats: the points within radius `r` of the segment `c ± g`, with the error box
+`I_error` that rounding has cost. -/
 structure Capsule (𝕋 : Type) (n : ℕ) where
   /-- The center, CORA's `c`. -/
   c : Vec 𝕋 n
@@ -48,6 +50,7 @@ structure Capsule (𝕋 : Type) (n : ℕ) where
 def Capsule.nominal [SoundFloatArithmetic 𝕋] (C : Capsule 𝕋 n) : CORALean.Real.Capsule n :=
   ⟨toRealVec C.c, toRealVec C.g, toReal C.r⟩
 
+/-- A float capsule inflates the real capsule its stored floats describe, the `nominal` one. -/
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (Capsule 𝕋 n) (CORALean.Real.Capsule n) (Vec 𝕋 n) (Vec ℝ n) where
   nominal := Capsule.nominal

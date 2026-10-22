@@ -1,6 +1,10 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 
 @[expose] public section
 

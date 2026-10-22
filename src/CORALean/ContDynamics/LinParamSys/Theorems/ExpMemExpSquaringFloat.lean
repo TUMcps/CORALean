@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -66,7 +67,7 @@ theorem LinParamSys.aux_toReal_half_iterate (a : 𝕋) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.exp_mem_expSquaringFloat
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {tLo tHi : 𝕋} {η s : ℕ}
+    (sys : LinParamSys ℐ[𝕋] n) {tLo tHi : 𝕋} {η s : ℕ}
     (hη : sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) {t : ℝ} (htLo : toReal tLo ≤ t)
     (htHi : t ≤ toReal tHi) : -- --- CONCL ---

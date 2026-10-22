@@ -42,6 +42,7 @@ def OptEmpty.construct [ContSet S α] : OptEmpty S → Set α
   | .empty => ∅
   | .of s => ContSet.construct s
 
+/-- An `OptEmpty` denotes `OptEmpty.construct`. -/
 instance [ContSet S α] : ContSet (OptEmpty S) α := ⟨OptEmpty.construct⟩
 
 end CORALean

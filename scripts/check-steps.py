@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A step of exactly one algorithm is an `aux_` declaration of that algorithm's file (#227).
 
-    python3 scripts/check-steps.py [--root DIR] [--write-allowlist]
+    python3 scripts/check-steps.py [--root DIR]
 
 An `Operations/` definition that exactly one other `Operations/` file reads, and that besides
 that user is read only by the user's satellite theorem files (`scripts/satellites.py`), is a
@@ -11,6 +11,9 @@ step of that one algorithm: it belongs in the user's file as an `aux_` declarati
 * its docstring cites its own algorithm (`Alg.` / `Algorithm`, and not just lines of one: `l. 3-5`,
   `Lines 6-10`): the paper prints it as an algorithm of its own;
 * two algorithms read it (that is more than one user, and not flagged);
+* its file carries a review stamp (`-- Reviewed:` followed by a reviewer's name and date, not `---`):
+  folding it would drop the review;
+* a `references/` page, or the paper sources, link the file (a results row is a promise about it);
 * it is an operation of another directory than its reader (`ContSet/Capsule/Float/Operations/…`
   read by a `LinearSys` algorithm): that directory's own public operation;
 * another operation file declares the same last name, so that the text count cannot tell whose
@@ -20,14 +23,10 @@ step of that one algorithm: it belongs in the user's file as an `aux_` declarati
 
 A file that something else reads too (its own theorem file, an example, a second algorithm) is
 not a step. A user in a `Basic.lean` cannot hold it as `aux_`, so that is not flagged either.
-`scripts/step-file-allowlist.txt` lists the offenders not migrated yet, one line
-`<path>  cluster <root file>` (the algorithm file the chain of steps ends in); an entry that is
-no longer flagged is reported as stale, so the list only shrinks.
 
 Prints one finding per line and exits 1 on any; 2 when the sources cannot be read.
 `--root DIR` reads another tree (used to test the rule on a mutated copy).
-`--write-allowlist` prints the current offenders in the allowlist's format; `--users` prints each
-offender with the one file that reads it.
+`--users` prints each offender with the one file that reads it.
 """
 import re
 import sys
@@ -44,10 +43,10 @@ if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()
     args = args[2:]
 SRC = ROOT / "src"
-ALLOW = ROOT / "scripts" / "step-file-allowlist.txt"
 
 split_code, components = satellites.split_code, satellites.components
 
+REVIEWED = re.compile(r"^-- Reviewed:\s+(?!---\s*$)\S")
 CITES = re.compile(r"\bAlg\.|\bAlgorithm\b")
 # A docstring that names lines of an algorithm (`[1, Alg. 1, l. 3-5]`, `Lines 6-10`) describes a
 # piece of that algorithm, not an algorithm of its own.
@@ -83,9 +82,18 @@ def main():
     paths = sorted(SRC.rglob("*.lean"))
     rel = {p: p.relative_to(ROOT).as_posix() for p in paths}
     code_files, defs = {}, []
+    reviewed = set()
+    outside = ""
+    for base in (ROOT / "references", ROOT / "experiments" / "paper"):
+        if base.is_dir():
+            for q in sorted(base.rglob("*")):
+                if q.suffix in (".md", ".tex", ".json", ".txt") and q.is_file():
+                    outside += q.read_text(encoding="utf-8", errors="replace") + "\n"
     for p in paths:
         lines = p.read_text(encoding="utf-8").split("\n")
         code = split_code(lines)
+        if any(REVIEWED.match(l) for l in lines):
+            reviewed.add(rel[p])
         for tok in components("\n".join(code)):
             code_files.setdefault(tok, set()).add(rel[p])
         r = rel[p]
@@ -102,8 +110,8 @@ def main():
         homes.setdefault(name.split(".")[-1], set()).add(path)
     flagged = {}
     for path, ln, name, cites in defs:
-        if cites:
-            continue
+        if cites or path in reviewed or path in outside:
+            continue  # its own algorithm, a reviewed file, or a file a results row links
         last = name.split(".")[-1]
         if len(homes[last]) > 1:
             continue  # the same name in two files: the count cannot tell the readers apart
@@ -122,33 +130,6 @@ def main():
             continue  # an operation of another representation or class: a public API there
         flagged[path] = (ln, name, user)
 
-    def root_of(path):
-        seen = {path}
-        while flagged.get(path) and flagged[path][2] in flagged and flagged[path][2] not in seen:
-            path = flagged[path][2]
-            seen.add(path)
-        return flagged[path][2] if path in flagged else path
-
-    allow, allow_line = {}, {}
-    if ALLOW.exists():
-        for no, l in enumerate(ALLOW.read_text(encoding="utf-8").splitlines(), 1):
-            if not l.strip() or l.startswith("#"):
-                continue
-            key, _, reason = l.partition("  ")
-            key = key.strip()
-            if not reason.strip():
-                print(f"{ALLOW.relative_to(ROOT)}:{no}: entry `{key}` carries no cluster root")
-                continue
-            if key in allow:
-                print(f"{ALLOW.relative_to(ROOT)}:{no}: duplicate entry `{key}`")
-            allow[key] = reason.strip()
-            allow_line[key] = no
-
-    if args[:1] == ["--write-allowlist"]:
-        for path in sorted(flagged):
-            print(f"{path}  cluster {root_of(path)}")
-        return 0
-
     if args[:1] == ["--users"]:
         for path, (_, _, user) in sorted(flagged.items()):
             print(f"{path} {user}")
@@ -156,17 +137,9 @@ def main():
 
     findings = []
     for path, (ln, name, user) in sorted(flagged.items()):
-        if path in allow:
-            continue
         findings.append(
             f"{path}:{ln}: `{name}` is a step of one algorithm, `{user}` — make it an `aux_` "
-            f"declaration there (CONTRIBUTING, \"A step of one algorithm is `aux_`\"), or list "
-            f"`{path}` in scripts/step-file-allowlist.txt")
-    for key, no in sorted(allow_line.items(), key=lambda kv: kv[1]):
-        if key not in flagged:
-            findings.append(
-                f"{ALLOW.relative_to(ROOT)}:{no}: stale entry `{key}` — the file is gone, has "
-                f"other users, or is no longer a step of one algorithm; delete the line")
+            f"declaration there (CONTRIBUTING, \"A step of one algorithm is `aux_`\")")
     for f in findings:
         print(f)
     return 1 if findings else 0

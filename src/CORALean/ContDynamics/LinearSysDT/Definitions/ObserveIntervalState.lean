@@ -38,6 +38,8 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The state of the interval observer: the point estimate `x`, the estimate set `Rx`, the combined
+disturbance-and-noise interval `Rwv`, and the zonotope `D`. -/
 structure LinearSysDT.ObserveIntervalState (n : ℕ) where
   x : Vec ℝ n
   Rx : Zonotope (Vec ℝ n)

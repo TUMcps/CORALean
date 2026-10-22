@@ -3,7 +3,8 @@ module
 public import CORALean.NN.Layers.Definitions.ActivationPoly
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.DependentP
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.Basic
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.EvalPolyH
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
+public import Mathlib.Algebra.Ring.GeomSum
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.PlusP
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
@@ -58,6 +59,30 @@ open Pointwise ContSet Plus
 variable {σ : ℝ → ℝ} {m n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n : ℕ}
+
+/-- The exact count: `pZ.h + 1` times the geometric sum of `coeffs.length` of its
+own powers, `mul_h`'s step for step. -/
+theorem PolyZonotope.aux_evalPoly_h (pZ : PolyZonotope (Vec ℝ n))
+    (coeffs : List (Vec ℝ n)) : -- --- CONCL ---
+    (pZ.evalPoly coeffs).h
+      = (pZ.h + 1) * ∑ i ∈ Finset.range coeffs.length, (pZ.h + 1) ^ i := by -- --- PROOF ---
+  induction coeffs with
+  | nil =>
+    show (0 : ℕ) = (pZ.h + 1) * ∑ i ∈ Finset.range 0, (pZ.h + 1) ^ i
+    simp
+  | cons a0 rest ih =>
+    have hstep : (pZ.evalPoly (a0 :: rest)).h
+        = (PolyZonotope.mul (pZ.evalPoly rest) pZ (PolyZonotope.evalPolyP pZ rest).2).h := rfl
+    rw [hstep, PolyZonotope.mul_h, ih, List.length_cons, geom_sum_succ]
+    ring
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPoly_enclose_h (P : LayerRelaxation ℝ n m)
@@ -72,7 +97,7 @@ theorem Layer.activationPoly_enclose_h (P : LayerRelaxation ℝ n m)
   have hlen :
       (P.coeffList (⟨s.interval.inf, s.interval.sup⟩ : Float.Interval (Vec ℝ n))).length = m + 1 :=
     List.length_ofFn
-  rw [PolyZonotope.plus_h, PolyZonotope.evalPoly_h, PolyZonotope.dependent_h, hlen,
+  rw [PolyZonotope.plus_h, PolyZonotope.aux_evalPoly_h, PolyZonotope.dependent_h, hlen,
     Interval.polyZonotope_h]
 
 end CORALean.Real

@@ -96,34 +96,6 @@ BENCH_DIR=src/CORALean/Examples/Bench/
 # does, because the whole point of the float layer is that it runs.
 ALLOWLIST=scripts/noncomputable-allowlist.txt
 
-# A `...Cost` under `Complexity/Time/` that is `0` says the operation writes nothing and computes
-# nothing (CONTRIBUTING, "Complexity"): under `Global/Cost.lean`'s model every scalar of a result
-# is a write, so building an object is never free. An operation that really does neither names
-# itself in this list, `<qualified name>  <reason>` per line. The list only shrinks: an entry
-# whose definition is no longer a zero cost is reported as stale.
-ZEROCOST_LIST=scripts/zero-cost-allowlist.txt
-
-# Every file under `src/` is a Lean `module` (CONTRIBUTING, "The module
-# header") except the worked examples under `Examples/`, whose `#eval`s would
-# need `meta import`, and the files listed here with a reason: proofs that
-# unfold a definition Mathlib or core does not expose, and the files that import
-# one (a module cannot import a non-module). The list only shrinks: an entry
-# that is a module now, or is gone, is reported as stale.
-NONMODULE_LIST=scripts/non-module-allowlist.txt
-
-# Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α`, `EReal × EReal`, and structures with sibling fields named
-# `…Inf`/`…Sup`, `…Lo`/`…Hi` or `lo…`/`hi…` (CONTRIBUTING, "Bounds of one quantity"): the lower
-# and the upper bound of one quantity are an `Interval`, so a file that still spells such a
-# pair names why in this list, `<path>  <reason>` per line. `Examples/` is exempt: it is
-# input and output, where a pair is a datum. The list only shrinks, as the one above.
-PAIR_LIST=scripts/pair-allowlist.txt
-
-# Interfaces (#177): a `class` is declared only in a file named `Interfaces.lean`, which is what a
-# class root's `Instances.lean` instantiates, so the interfaces a directory offers are one file to
-# read. A file that declares one elsewhere names why in this list, `<path>  <reason>` per line.
-# The list only shrinks: an entry whose file declares no class any more is reported as stale.
-CLASS_LIST=scripts/class-allowlist.txt
-
 # `Operations/` holds definitions, never theorems (#198), the mirror of the rule that keeps
 # definitions out of `Theorems/`: a theorem in an `Operations/` file is a guarantee about the
 # operation, which is a `Theorems/` file's to state, or a general fact, which is a global lemma's
@@ -183,9 +155,8 @@ src/CORALean/Global/Float/TrigRange.lean | ContSet/Interval | the sine and cosin
 # guard on purpose.
 GUARDED_FILES="
 src/CORALean/Global/Tensor.lean | 8
-src/CORALean/Global/Entrywise.lean | 8
-src/CORALean/Global/Scalar.lean | 8
-src/CORALean/Global/Float/FloatOps.lean | 8
+src/CORALean/Global/Interfaces.lean | 9
+src/CORALean/Global/Float/Interfaces.lean | 8
 src/CORALean/ContSet/ContSet/Interfaces.lean | 10
 src/CORALean/ContSet/Interval/Real/Interval.lean | 8
 "
@@ -232,12 +203,7 @@ if [ -n "$STAGED" ]; then
     exit 0
   fi
   ALLOWLIST=$repo/$ALLOWLIST
-  ZEROCOST_LIST=$repo/$ZEROCOST_LIST
-  NONMODULE_LIST=$repo/$NONMODULE_LIST
-  PAIR_LIST=$repo/$PAIR_LIST
-  CLASS_LIST=$repo/$CLASS_LIST
   OPS_THEOREM_LIST=$repo/$OPS_THEOREM_LIST
-  FAMILY_LONG_FORM_OK=$repo/${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
   stage=$(mktemp -d)
   printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
   cd "$stage"
@@ -277,9 +243,6 @@ out=$(awk \
   -v FLINT_AXIOM="$FLINT_AXIOM" \
   -v BENCH_DIR="$BENCH_DIR" \
   -v LAKE_ROOTS="$lake_roots" \
-  -v NONMOD="$NONMODULE_LIST" \
-  -v PAIRLIST="$PAIR_LIST" \
-  -v ZEROLIST="$ZEROCOST_LIST" \
   -v CEXLIST="$cexlist" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v PYTHON="$PYTHON" \
@@ -323,58 +286,6 @@ BEGIN {
     allowLine[name] = allowFNR
   }
   close(ALLOWLIST)
-
-  # The zero-cost list: `<qualified name>  <reason>` per line, as the allowlist above.
-  while ((getline zline < ZEROLIST) > 0) {
-    zeroFNR++
-    line = zline
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    zn = line; sub(/[ \t].*$/, "", zn)
-    zr = line; sub(/^[^ \t]+[ \t]*/, "", zr)
-    if (zn in zeroOK)
-      say(ZEROLIST ":" zeroFNR ": duplicate entry `" zn "` (first at line " zeroLine[zn] ")")
-    if (zr == "")
-      say(ZEROLIST ":" zeroFNR ": `" zn "` carries no reason — say what the operation neither" \
-          " computes nor writes")
-    zeroOK[zn] = 1
-    zeroLine[zn] = zeroFNR
-  }
-  close(ZEROLIST)
-
-  # The non-module list: `<path>  <reason>` per line, as the allowlist above.
-  while ((getline nline < NONMOD) > 0) {
-    nmFNR++
-    line = nline
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    p = line; sub(/[ \t].*$/, "", p)
-    r = line; sub(/^[^ \t]+[ \t]*/, "", r)
-    if (p in nonmodOK)
-      say(NONMOD ":" nmFNR ": duplicate entry `" p "` (first at line " nonmodLine[p] ")")
-    if (r == "")
-      say(NONMOD ":" nmFNR ": `" p "` carries no reason — say why it cannot be a module")
-    nonmodOK[p] = 1
-    nonmodLine[p] = nmFNR
-  }
-  close(NONMOD)
-
-  # The pair list: `<path>  <reason>` per line, as the non-module list above.
-  while ((getline pline < PAIRLIST) > 0) {
-    pairFNR++
-    line = pline
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    p = line; sub(/[ \t].*$/, "", p)
-    r = line; sub(/^[^ \t]+[ \t]*/, "", r)
-    if (p in pairOK)
-      say(PAIRLIST ":" pairFNR ": duplicate entry `" p "` (first at line " pairLine[p] ")")
-    if (r == "")
-      say(PAIRLIST ":" pairFNR ": `" p "` carries no reason — say why its pair is not an interval")
-    pairOK[p] = 1
-    pairLine[p] = pairFNR
-  }
-  close(PAIRLIST)
 
   # The counterexample exceptions: `<path> | <reason>` per line.
   while ((getline cline < CEXLIST) > 0) {
@@ -694,9 +605,9 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   } else {
     if (exposeCount > 0)
       say(f ":" exposeFNR ": `@[expose] public section` in a file that is not a `module`")
-    if (f !~ /^src\/CORALean\/Examples\// && !(f in nonmodOK))
+    if (f !~ /^src\/CORALean\/Examples\//)
       say(f ":1: not a module — a file opens with `module` (CONTRIBUTING, \"The module" \
-          " header\"); only `Examples/` and the files in " NONMOD " stay non-module")
+          " header\"); only `Examples/` stays non-module")
   }
 
   # Every `[N]` cited is defined and every one defined is cited, so a reference
@@ -833,7 +744,6 @@ FNR == 1 {
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
   npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0; nh1 = 0; cexWord = 0; cexNeg = 0; cexDecl = ""; sigOpen = 0
   beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
-  inStruct = 0; split("", sField)
   beginFNR = 0; endFNR = 0
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
   pendingMain = 0; pendingMainLabel = ""; pendingMainFNR = 0; pendingMainIsInstances = 0
@@ -901,24 +811,6 @@ FNR == 1 {
   } else if (raw ~ /^-- [-=]/) {
     say(FILENAME ":" FNR ": looks like a section marker but does not match the" \
         " canonical form — check the width and the fill either side of the label")
-  }
-
-  # No asserted cost is `0` (CONTRIBUTING, "Complexity"): the result of an operation is written
-  # scalar by scalar, so a `def ... : Cost := 0` under `Complexity/Time/` needs a reason in the
-  # zero-cost list. The body may sit on the next line.
-  if (FILENAME ~ /\/Complexity\/Time\// && raw !~ /^[ \t]*--/) {
-    zname = ""
-    if (raw ~ /^(noncomputable )?def [^ ]+.*Cost :=[ \t]*(0|⟨0⟩)[ \t]*$/) zname = raw
-    else if (zheadFNR > 0 && FNR == zheadFNR + 1 && raw ~ /^[ \t]+(0|⟨0⟩)[ \t]*$/) zname = zhead
-    zheadFNR = 0
-    if (raw ~ /^(noncomputable )?def [^ ]+.*Cost :=[ \t]*$/) { zhead = raw; zheadFNR = FNR }
-    if (zname != "") {
-      sub(/^(noncomputable )?def /, "", zname); sub(/[ \t([{:].*$/, "", zname)
-      if (zname in zeroOK) zeroUsed[zname] = 1
-      else say(FILENAME ":" FNR ": `" zname "` is a cost of `0`, but an operation that builds" \
-               " a result writes it; count the writes, or list the name in " ZEROLIST \
-               " with the reason it writes nothing")
-    }
   }
 
   # An import cannot be wrapped, so the `public `/`meta ` a module adds to one
@@ -1098,47 +990,6 @@ FNR == 1 {
 
   if (code ~ /(^|[^A-Za-z0-9_'"'"'.])sorry([^A-Za-z0-9_'"'"']|$)/)
     say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
-  # A pair of one scalar twice: the bounds of one quantity belong in an `Interval`.
-  if (FILENAME !~ /^src\/CORALean\/Examples\// &&
-      (index(code, "ℝ × ℝ") || index(code, "𝕋 × 𝕋") || index(code, "α × α") ||
-       index(code, "EReal × EReal"))) {
-    pairSeen[FILENAME] = 1
-    if (!(FILENAME in pairOK) && !(FILENAME in pairWarned)) {
-      pairWarned[FILENAME] = 1
-      say(FILENAME ":" FNR ": a pair `ℝ × ℝ`/`𝕋 × 𝕋`/`α × α`/`EReal × EReal` — bounds of one quantity are an" \
-          " `Interval`; if this pair is two quantities, list the file in " PAIRLIST " with the reason")
-    }
-  }
-  # Sibling fields that are the two bounds of one quantity (`remInf`/`remSup`, `tLo`/`tHi`,
-  # `loX`/`hiX`): the same rule as the pair above, spelt as two fields. Listed files carry the
-  # same entry in PAIR_LIST.
-  if (FILENAME !~ /^src\/CORALean\/Examples\// && code ~ /^(structure|class)[ \t]/ &&
-      code !~ /^class[ \t]+inductive/) {
-    inStruct = 1; split("", sField)
-  } else if (inStruct && code ~ /^[^ \t]/) {
-    inStruct = 0
-  } else if (inStruct && code ~ /^  [A-Za-z_][^:=()\[\]{}]*:/ && code !~ /^  [A-Za-z_][^:]*:=/) {
-    fl = code; sub(/^[ \t]+/, "", fl); sub(/[ \t]*:.*$/, "", fl)
-    nfl = split(fl, fnames, /[ \t]+/)
-    for (fi = 1; fi <= nfl; fi++) {
-      fn = fnames[fi]; sField[fn] = 1; fp = ""
-      if (fn ~ /^.+Inf$/) fp = substr(fn, 1, length(fn) - 3) "Sup"
-      else if (fn ~ /^.+Sup$/) fp = substr(fn, 1, length(fn) - 3) "Inf"
-      else if (fn ~ /^.+Lo$/) fp = substr(fn, 1, length(fn) - 2) "Hi"
-      else if (fn ~ /^.+Hi$/) fp = substr(fn, 1, length(fn) - 2) "Lo"
-      else if (fn ~ /^lo($|[A-Z])/) fp = "hi" substr(fn, 3)
-      else if (fn ~ /^hi($|[A-Z])/) fp = "lo" substr(fn, 3)
-      if (fp != "" && (fp in sField)) {
-        pairSeen[FILENAME] = 1
-        if (!(FILENAME in pairOK) && !(FILENAME in pairWarned)) {
-          pairWarned[FILENAME] = 1
-          say(FILENAME ":" FNR ": the fields `" fn "` and `" fp "` are the two bounds of one quantity —" \
-              " hold them as one `Interval` field; if they are two quantities, list the file in " \
-              PAIRLIST " with the reason")
-        }
-      }
-    }
-  }
   # A guarantee about an `Option` result is stated at `… = some R` (CONTRIBUTING,
   # "Verification"): a `match` arm `| none => True` closing a statement is a
   # proof about a run that returned nothing, which reads as a passed check.
@@ -1347,29 +1198,10 @@ END {
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
           "` — no longer matches any `noncomputable` declaration the rules do not already allow")
-  for (zn in zeroOK)
-    if (!(zn in zeroUsed))
-      say(ZEROLIST ":" zeroLine[zn] ": stale entry `" zn "` — no longer a `Cost` of `0` under" \
-          " `Complexity/Time/`; the list only shrinks")
   for (p in cexOK)
     if (!(p in cexUsed))
       say("scripts/check-conventions.sh: stale COUNTEREXAMPLE_EXCEPTIONS entry `" p \
           "` — the file is gone or no longer asks to live in `Counterexamples/`")
-  for (p in pairOK)
-    if (!(p in seenFile))
-      say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — no such file")
-    else if (!(p in pairSeen))
-      say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — the file spells no such pair now;" \
-          " the list only shrinks")
-  for (p in nonmodOK) {
-    if (p ~ /^src\/CORALean\/Examples\//)
-      say(NONMOD ":" nonmodLine[p] ": `" p "` is under `Examples/`, which needs no entry")
-    else if (!(p in seenFile))
-      say(NONMOD ":" nonmodLine[p] ": stale entry `" p "` — no such file")
-    else if (p in seenModule)
-      say(NONMOD ":" nonmodLine[p] ": stale entry `" p "` — it is a module now; the list" \
-          " only shrinks")
-  }
 }
 ')
 report "$out"
@@ -1861,17 +1693,11 @@ fi
 
 # A set family is written with its notation, never as the lambda it abbreviates:
 # `(S := 𝒵[𝕋])`, not `(S := fun k => Zonotope (Vec 𝕋 k))` (CONTRIBUTING, "Notation").
-# The long form is allowed in the notation definitions themselves and where the
-# notation is out of reach because the file does not import the representation's
-# `Instances.lean` (imports are not added for a notation); a file listed here
-# says so by name, and the list only shrinks.
-FAMILY_LONG_FORM_OK=${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
+# The long form is allowed in the notation definitions themselves only.
 out=$(printf '%s\n' "$files" | xargs grep -nE \
   'fun [^=]+ => ((CORALean\.)?(Real|Float)\.)?(Zonotope|Interval|ZonoBundle|VPolytope|PolyZonotope|HPolytope|ConZonotope|ConPolyZono) \((Vec|Mat) |fun [a-z]+ => Set \(Vec (ℝ|Real) ' |
   grep -v 'notation "' |
-  awk -F: -v LIST="$FAMILY_LONG_FORM_OK" '
-    BEGIN { while ((getline f < LIST) > 0) if (f !~ /^#/ && f != "") { split(f, w, " "); ok[w[1]] = 1 } }
-    !($1 in ok) { print $1 ":" $2 ": a set family written as a lambda — use its notation (`𝒵[𝕋]`, `ℐ`, `𝒮`, …)" }')
+  awk -F: '{ print $1 ":" $2 ": a set family written as a lambda — use its notation (`𝒵[𝕋]`, `ℐ`, `𝒮`, …)" }')
 report "$out"
 
 # A declaration of at most five code lines is a section of its directory's
@@ -1914,15 +1740,15 @@ report "$out"
 # as a statement (`Is…`/`Has…`, or an entry of scripts/prop-name-allowlist.txt, #196), and a
 # float main type without an `I_error` box, an `absorbRounding` and its `absorbRounding_outer`
 # (scripts/absorb-rounding-allowlist.txt, #185), and a definition of the true reachable `Set`
-# whose name does not end in `Exact` (scripts/exact-name-allowlist.txt, #224), and a main
+# whose name does not end in `Exact` (#224), and a main
 # theorem that takes `(h : f … = some E)` instead of quantifying `∀ E ∈ f …`
-# (scripts/option-hyp-allowlist.txt, #212), and a `## References` entry that names a thesis
+# (#212), and a `## References` entry that names a thesis
 # instead of the paper (scripts/thesis-ref-allowlist.txt), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
 # instead of through the component's operations (scripts/component-reuse-allowlist.txt, #174), and
 # a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt),
 # and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
-# `aux_` step (scripts/step-file-allowlist.txt, #227).
+# `aux_` step (#227).
 # Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
@@ -1944,21 +1770,31 @@ if [ -z "$STAGED" ]; then
   done
 fi
 
-# Every declaration in a section under a `MAIN THEOREM`, `MAIN DEFINITION`, `MAIN TYPE` or
-# `MAIN INSTANCE` banner carries a `/--` docstring, which is what a reader meets first: a
-# main declaration without one makes the reader work out what it states or computes from the
-# signature. Attributes (`@[simp]`) between the docstring and the declaration are fine.
-# Files not yet brought up to this are listed in `scripts/main-docstring-allowlist.txt`, one
-# path per line; the list only shrinks, and an entry whose file has no such declaration left
-# is reported as stale.
-# Read from `$repo`: `--staged` runs inside a checkout of the staged files alone.
-out=$(awk -v LIST=scripts/main-docstring-allowlist.txt -v PATHLIST="$repo/scripts/main-docstring-allowlist.txt" \
-    -v STALE="${STAGED:-}" '
-BEGIN {
-  while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++n }
-  close(PATHLIST)
+# Every declaration is documented in words once (#257). A content file's MAIN declaration (the
+# first declaration under its `MAIN THEOREM` / `MAIN DEFINITION` banner, the one
+# `scripts/check-io-doc.py` reads) is documented by the module docstring's #251 sections, so a
+# `/--` on it is optional. Every OTHER declaration (`def`, `abbrev`, `theorem`, `lemma`,
+# `structure`, `class`, `inductive`, `instance`) under a `MAIN THEOREM` / `MAIN DEFINITION` /
+# `MAIN TYPE` / `MAIN INSTANCE` banner needs its own `/--` docstring: every declaration in the
+# files exempt from #251 (`Basic.lean`, `API.lean`, `Instances.lean`, `Interfaces.lean`, and files
+# with only `MAIN TYPE` / `MAIN INSTANCE` banners) and the second and later declarations under a
+# banner in the other files. Attributes between the docstring and the declaration are fine;
+# structure fields and `aux_` declarations in AUXILIARY sections are not covered. An abbreviated
+# name says in its docstring where it comes from. There is no allowlist and no exception path.
+out=$(awk '
+function flush(   i) {
+  for (i = 1; i <= nd; i++)
+    if (!dd[i] && !(hasTD && i == mainidx))
+      print prev ":" dl[i] ": a declaration under a `MAIN` banner without a `/--` docstring — say in" \
+            " words what it states or computes"
+  nd = 0
 }
-FNR == 1 { inb = 0; sect = 0; doc = 0; isdoc = 0; seen[FILENAME] = 1 }
+FNR == 1 {
+  flush(); prev = FILENAME; inb = 0; sect = 0; doc = 0; isdoc = 0; hasTD = 0; mainidx = 0
+  seenTD = 0; wantmain = 0
+  n = split(FILENAME, parts, "/"); base = parts[n]
+  exempt = (base == "Basic.lean" || base == "API.lean" || base == "Instances.lean" || base == "Interfaces.lean")
+}
 {
   s = $0
   if (inb) { if (s ~ /-\//) { inb = 0; if (isdoc) doc = 1 }; next }
@@ -1967,24 +1803,22 @@ FNR == 1 { inb = 0; sect = 0; doc = 0; isdoc = 0; seen[FILENAME] = 1 }
     if (s !~ /-\//) inb = 1; else if (isdoc) doc = 1
     next
   }
-  if (s ~ /^-- [-=]+  .*  [-=]+ --$/) { sect = (s ~ /MAIN (THEOREM|DEFINITION|TYPE|INSTANCE)/); doc = 0; next }
+  if (s ~ /^-- [-=]+  .*  [-=]+ --$/) {
+    sect = (s ~ /MAIN (THEOREM|DEFINITION|TYPE|INSTANCE)/); doc = 0
+    if (s ~ /MAIN (THEOREM|DEFINITION)/ && !seenTD && !exempt) { seenTD = 1; hasTD = 1; wantmain = 1 }
+    next
+  }
   if (s ~ /^[ \t]*--/ || s ~ /^[ \t]*$/) next
   if (s ~ /^@\[[^]]*\][ \t]*$/) next
-  if (sect && s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|scoped)[ \t]+)*(theorem|lemma|def|abbrev|structure|inductive|instance)[ \t]/ && !doc) {
-    if (FILENAME in allow) hit[FILENAME] = 1
-    else
-      print FILENAME ":" FNR ": a main declaration without a `/--` docstring — say in words what it" \
-            " states or computes"
+  if (sect && s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|scoped|unsafe)[ \t]+)*(theorem|lemma|def|abbrev|structure|class|inductive|instance)[ \t]/) {
+    nd++; dl[nd] = FNR; dd[nd] = doc
+    if (wantmain) { mainidx = nd; wantmain = 0 }
   }
   doc = 0
 }
-END {
-  if (STALE != "") exit
-  for (f in allow)
-    if (!(f in seen)) print LIST ":" aln[f] ": stale entry `" f "` — no such file"
-    else if (!(f in hit)) print LIST ":" aln[f] ": stale entry `" f "` — no undocumented main declaration; the list only shrinks"
-}' $files | sort)
+END { flush() }' $files | sort)
 report "$out"
+
 
 # A system class states what it denotes where it is declared (#215): the main file
 # `ContDynamics/<C>/<C>.lean` declares `<C>.IsTrajectory`, the runs of the system, as
@@ -2347,11 +2181,9 @@ fi
 
 
 # Interfaces (#177): a `class` declaration — `class`, `class inductive`, `class abbrev`, with any
-# attributes and modifiers — only in an `Interfaces.lean`, or in a file `CLASS_LIST` names with a
-# reason. Comments are stripped as in the per-file pass, so a docstring line starting with the
-# word is not a declaration.
-out=$(awk -v LIST="$list" -v CLASSLIST="$CLASS_LIST" \
-  -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" '
+# attributes and modifiers — only in an `Interfaces.lean`. Comments are stripped as in the
+# per-file pass, so a docstring line starting with the word is not a declaration.
+out=$(awk -v LIST="$list" '
 function strip(line,   out, i, c, n) {
   out = ""; i = 1; n = length(line)
   while (i <= n) {
@@ -2365,46 +2197,21 @@ function strip(line,   out, i, c, n) {
   return out
 }
 BEGIN {
-  while ((getline cl < CLASSLIST) > 0) {
-    clFNR++
-    line = cl
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    p = line; sub(/[ \t].*$/, "", p)
-    r = line; sub(/^[^ \t]+[ \t]*/, "", r)
-    if (p in classOK)
-      print CLASSLIST ":" clFNR ": duplicate entry `" p "` (first at line " classLine[p] ")"
-    if (r == "")
-      print CLASSLIST ":" clFNR ": `" p "` carries no reason — say why its class is not in an" \
-            " `Interfaces.lean`"
-    if (p ~ /\/Interfaces\.lean$/)
-      print CLASSLIST ":" clFNR ": `" p "` is an `Interfaces.lean`, which needs no entry"
-    classOK[p] = 1; classLine[p] = clFNR
-  }
-  close(CLASSLIST)
   while ((getline f < LIST) > 0) {
     if (f == "") continue
-    seen[f] = 1; depth = 0; ln = 0
+    depth = 0; ln = 0
     while ((getline raw < f) > 0) {
       ln++
       code = strip(raw)
       if (code !~ /^(@\[[^]]*\][ \t]*)*((private|protected|noncomputable|scoped)[ \t]+)*class[ \t]/)
         continue
-      hasClass[f] = 1
-      if (f ~ /\/Interfaces\.lean$/ || (f in classOK)) continue
+      if (f ~ /\/Interfaces\.lean$/) continue
       name = code; sub(/^.*class[ \t]+((inductive|abbrev)[ \t]+)?/, "", name); sub(/[ \t(:{\[].*$/, "", name)
       print f ":" ln ": class `" name "` declared outside an `Interfaces.lean` — move it to the" \
-            " directory'"'"'s `Interfaces.lean`, or list the file in " CLASSLIST " with the reason"
+            " directory'"'"'s `Interfaces.lean`"
     }
     close(f)
   }
-  if (!STALE) exit
-  for (p in classOK)
-    if (!(p in seen))
-      print CLASSLIST ":" classLine[p] ": stale entry `" p "` — no such file"
-    else if (!(p in hasClass))
-      print CLASSLIST ":" classLine[p] ": stale entry `" p "` — the file declares no class now;" \
-            " the list only shrinks"
 }' | sort)
 report "$out"
 

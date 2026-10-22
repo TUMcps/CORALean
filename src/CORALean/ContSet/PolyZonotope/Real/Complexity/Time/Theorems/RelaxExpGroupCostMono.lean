@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.RelaxWidthGroupCostMono
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDiffCost
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpGroupCost
 
 @[expose] public section
@@ -41,6 +42,16 @@ Monotone in the factor and merged counts.
 namespace CORALean.Real
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Monotone in the factor count. -/
+theorem PolyZonotope.aux_relaxWidthGroupCost_mono {p p' : ℕ} (h : p ≤ p') :
+    PolyZonotope.aux_relaxWidthGroupCost p ≤ PolyZonotope.aux_relaxWidthGroupCost p' := by
+  simp only [PolyZonotope.aux_relaxWidthGroupCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul]
+  have := Nat.mul_le_mul_right PolyZonotope.eDiffCost.ops h
+  omega
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Monotone in the factor, independent and merged counts. -/
@@ -48,7 +59,7 @@ theorem PolyZonotope.relaxExpGroupCost_mono {p p' q q' k k' : ℕ} (n d : ℕ) (
     (hq : q ≤ q') (hk : k ≤ k') : -- --- CONCL ---
     PolyZonotope.relaxExpGroupCost n p d q k ≤
       PolyZonotope.relaxExpGroupCost n p' d q' k' := by -- --- PROOF ---
-  have a := PolyZonotope.relaxWidthGroupCost_mono hp
+  have a := PolyZonotope.aux_relaxWidthGroupCost_mono hp
   simp only [PolyZonotope.relaxExpGroupCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul] at a ⊢
   have e := Nat.mul_le_mul hk a
   have f : n * (k + 1) + d + k * n ≤ n * (k' + 1) + d + k' * n := by

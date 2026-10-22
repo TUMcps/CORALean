@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.AutoRun
-public import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
+public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 
 @[expose] public section
 
@@ -62,6 +62,35 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+namespace Real
+section
+variable {n : ℕ}
+
+/-- [1, Alg. 2] lines 19-22: the order the sweep settles on costs a `Δε^r_k(ρ_k)` inside
+eq. (35)'s admissible share, that being the check line 22 stops on. -/
+theorem Zonotope.aux_autoTuneSetOrder_le {le : ℝ → ℝ → Bool}
+    (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
+    (Z : Zonotope (Vec ℝ n)) {εrτ : ℝ} : -- --- CONCL ---
+    ∀ (k ρ ρ' : ℕ), Zonotope.autoTuneSetOrder le Z εrτ ρ k = some ρ' →
+      Z.reduceBoxError ρ' ≤ εrτ := by -- --- PROOF ---
+  intro k
+  induction k with
+  | zero => intro ρ ρ' h; rw [Zonotope.autoTuneSetOrder] at h; exact absurd h (by simp)
+  | succ k ih =>
+    intro ρ ρ' h
+    rw [Zonotope.autoTuneSetOrder] at h
+    split at h
+    -- line 22 cleared this candidate, so the value reported is the one checked
+    · rename_i hchk
+      rw [Option.some.injEq] at h
+      subst h
+      exact hle _ _ hchk
+    · exact ih _ _ h
+
+end
+end Real
+
 
 /-- Lines 9-15: the order the sweep reports is one line 15 checked, so `Δε^a_k` is inside
 the share `ε^{a,τ}_k` it was measured against. -/
@@ -137,7 +166,7 @@ theorem aux_autoStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     · exact absurd h (by simp)
     -- lines 19-22 reported an order, so line 29's `Δε^r_k` is the one line 22 cleared
     · rename_i ρk hρ
-      have hεr := Zonotope.autoTuneSetOrder_le hle _ _ 0 ρk hρ
+      have hεr := Zonotope.aux_autoTuneSetOrder_le hle _ _ 0 ρk hρ
       rw [Option.some.injEq] at h
       subst h
       exact ⟨by dsimp only; linarith, hΔtk, by dsimp only; linarith, by dsimp only; linarith⟩

@@ -32,6 +32,8 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A lifting that can also conjoin guards: `guardAll` is a set of the product space containing
+every stack whose blocks meet the given component guards. -/
 structure ParallelHybridAutomaton.SyncLifting (S G : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (n : Fin k → ℕ) (m : ℕ) extends
     ParallelHybridAutomaton.Lifting S G n m where

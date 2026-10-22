@@ -42,14 +42,17 @@ def BReach.sys : LinearSysDT ℝ 1 := LinearSysDT.canonical !![(2:ℝ)]
 computed: `A⁻¹` is no set operation. -/
 def BReach.Ainv : Mat ℝ 1 1 := !![(0.5:ℝ)]
 
+/-- The target set, the zonotope `[-1, 1]` on the line. -/
 def BReach.T : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(1:ℝ)]⟩
 
+/-- The input set, the zonotope `[-0.2, 0.2]` on the line. -/
 def BReach.U : Zonotope (Vec ℝ 1) := ⟨1, ![(0:ℝ)], fun _ => ![(0.2:ℝ)]⟩
 
 /-- Each input generator in the target's own, which is what `minkDiffRep`
 checks: `0.2 = 0.2 · 1`, at every pair it is handed. -/
 def BReach.M (Z₁ Z₂ : Zonotope (Vec ℝ 1)) : Fin Z₁.h → Fin Z₂.h → ℝ := fun _ _ => 0.2
 
+/-- The doubling matrix times the right inverse `Ainv` is the identity. -/
 theorem BReach.hA : -- --- CONCL ---
     BReach.sys.A * BReach.Ainv = 1 := by -- --- PROOF ---
   ext i j
@@ -64,6 +67,7 @@ noncomputable def BReach.D : Zonotope (Vec ℝ 1) :=
   { h := BReach.T.h, c := BReach.T.c - BReach.U.c,
     G := fun i => (1 - ∑ j : Fin BReach.U.h, |BReach.M BReach.T BReach.U i j|) • BReach.T.G i }
 
+/-- `minkDiffRep` accepts the generator representation `M` and returns the difference `D`. -/
 theorem BReach.step : -- --- CONCL ---
     BReach.T.minkDiffRep BReach.U (BReach.M BReach.T BReach.U) =
     some BReach.D := by -- --- PROOF ---

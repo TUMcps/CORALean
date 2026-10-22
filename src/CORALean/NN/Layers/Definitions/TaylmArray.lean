@@ -30,9 +30,12 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A column of Taylor models over the same `d` variables, one per neuron. -/
 structure TaylmArray (𝕋 : Type) (d m : ℕ) where
   taylm : Fin m → Float.Taylm 𝕋 d
 
+/-- An array of Taylor models denotes the range of the column, so that the shared variables stay
+shared. -/
 noncomputable instance (m : ℕ) : ContSet (TaylmArray 𝕋 d m) (Vec ℝ m) where
   construct T := Float.Taylm.construct T.taylm
 

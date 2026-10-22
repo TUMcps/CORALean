@@ -85,6 +85,7 @@ theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- ---
   simp only [tanDown, toReal_minimum]
   exact min_le_min (divDown_le_div _ _ hc) (divDown_le_div _ _ hcu)
 
+/-- `tanUp` is an upper bound of `tan` where `cosDown` is positive. -/
 theorem le_tanUp (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
     Real.tan (toReal x) ≤ toReal (tanUp n x) := by -- --- PROOF ---
   have h1 := cosDown_le n x

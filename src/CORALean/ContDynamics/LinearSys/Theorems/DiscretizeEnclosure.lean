@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Interval.Real.Instances
 
 @[expose] public section

@@ -5,7 +5,10 @@ public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.KleeneSignal.Operations.Combine
 public import CORALean.Specification.KleeneSignal.Theorems.CombineSpec
-public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalEqSome
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
+public import CORALean.Specification.KleeneSignal.Operations.Basic
+public import CORALean.Specification.KleeneSignal.Theorems.Basic
+public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueEqFalseOfAt
 public import Mathlib.Data.Fin.VecNotation
 
 @[expose] public section
@@ -52,6 +55,20 @@ exactly where `mn` and `mx` differ and `mn`'s value elsewhere.
 namespace CORALean
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- With nothing unknown, `toBoolSignal` is the Boolean part. -/
+theorem KleeneSignal.aux_toBoolSignal?_eq_some (s : KleeneSignal ℝ) (hs : s.IsValid)
+    (h : ∀ t : ℝ, 0 ≤ t → s.at t ≠ Kleene.uu) : -- --- CONCL ---
+    s.toBoolSignal? = some s.signal := by -- --- PROOF ---
+  -- nowhere unknown means the unknown part is `false` everywhere
+  have hfalse : ∀ t : ℝ, 0 ≤ t → s.isUnknown.at t = false := fun t ht => by
+    by_contra hne
+    exact h t ht ((KleeneSignal.at_eq_uu_iff s t).2 (by simpa using hne))
+  simp [KleeneSignal.toBoolSignal?,
+    PointSegmentSignal.anyTrue_eq_false_of_at s.isUnknown hs.2 hfalse]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The signal built from `mn` and `mx` is inconclusive where they differ. -/
@@ -73,7 +90,7 @@ theorem FourValuedSignal.minMax_spec (mn mx K : KleeneSignal ℝ) (hmn : mn.IsVa
   have hnu : ∀ t : ℝ, 0 ≤ t → K.at t ≠ Kleene.uu := fun t ht hu => by
     rw [h t ht] at hu
     by_cases hd : mn.at t = mx.at t <;> simp [Kleene.fromBool, hd] at hu
-  have hsome := KleeneSignal.toBoolSignal?_eq_some _ hv hnu
+  have hsome := KleeneSignal.aux_toBoolSignal?_eq_some _ hv hnu
   refine ⟨_, hsome, ⟨hmn, hv.1⟩, fun t ht => ?_⟩
   -- the Boolean part of the difference says where `mn` and `mx` differ
   have hk : K.signal.at t = decide (mn.at t ≠ mx.at t) := by

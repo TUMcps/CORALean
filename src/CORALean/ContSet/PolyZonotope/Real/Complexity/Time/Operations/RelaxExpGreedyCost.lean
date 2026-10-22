@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxWidthMultiCost
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDiffCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 
@@ -42,10 +43,15 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- What `PolyZonotope.relaxWidthMulti` costs at `p` factors: `p` calls of `eDiff`, `p` additions
+and one write. -/
+def PolyZonotope.aux_relaxWidthMultiCost (p : ℕ) : Cost := p • PolyZonotope.eDiffCost + ⟨p + 1⟩
+
+
 /-- What `PolyZonotope.relaxExpMulti` costs at `Vec ℝ n` over `p` factors, keeping `d` dependent
 generators with `q` independent ones, and `n * (d + q + 3) + p * (d + 1)` writes for the result. -/
 def PolyZonotope.aux_relaxExpMultiCost (n p d q : ℕ) : Cost :=
-  ⟨2 * n⟩ + PolyZonotope.relaxWidthMultiCost p + ⟨n * (d + q + 3) + p * (d + 1)⟩
+  ⟨2 * n⟩ + PolyZonotope.aux_relaxWidthMultiCost p + ⟨n * (d + q + 3) + p * (d + 1)⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

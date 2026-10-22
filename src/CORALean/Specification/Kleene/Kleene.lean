@@ -34,6 +34,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The three truth values false, unknown and true. -/
 inductive Kleene
   | ff
   | uu

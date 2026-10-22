@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The secant, clamped into the derivative bracket. -/
 def sigmoidSlope (E : Enclosure 𝕋) (l u : 𝕋) : 𝕋 :=
   maximum (sigmoidDerivLo E l u)
-    (minimum (sigmoidDerivHi E l u) (divUp (subUp (E.hi u) (E.lo l)) (subDown u l)))
+    (minimum (sigmoidDerivHi E l u)
+      (divUp (subUp (E.enclose u).sup (E.enclose l).inf) (subDown u l)))
 
 end CORALean
 

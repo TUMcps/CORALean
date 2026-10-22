@@ -70,6 +70,7 @@ def dtypes : DtypeSet where
 
 end CORALean.Bench.OracleUnsound
 
+/-- The executable: runs the oracle protocol with the unguaranteed round-to-nearest dtype. -/
 def main : IO Unit := CORALean.Oracle.run CORALean.Bench.OracleUnsound.dtypes
 
 

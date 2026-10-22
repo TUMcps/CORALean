@@ -246,6 +246,9 @@ def runPrecision (t : Array Stat) (p : ℕ) (n : Nat) (seed : UInt64) : Array St
     t := runPair t p a b
   pure t
 
+/-- The `flintcheck` executable: samples the directed operations of FLINT per precision against
+exact rationals, prints a tally, and exits `0` without a violation, `1` with one, `2` on bad
+arguments. -/
 def main (args : List String) : IO UInt32 := do
   match parseArgs args (defaultSeed, defaultN) with
   | .error e => IO.eprintln e; pure 2
@@ -276,6 +279,7 @@ def main (args : List String) : IO UInt32 := do
 
 end CORALean.FlintCheck
 
+/-- The entry point of the executable. -/
 def main := CORALean.FlintCheck.main
 
 

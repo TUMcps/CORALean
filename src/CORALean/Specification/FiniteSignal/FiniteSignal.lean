@@ -26,6 +26,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A piecewise-constant signal on a finite horizon: strictly increasing times, each with the value
+held up to it. -/
 structure FiniteSignal (T V : Type) where
   time : List T
   value : List V

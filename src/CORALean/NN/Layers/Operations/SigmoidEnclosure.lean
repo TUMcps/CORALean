@@ -41,8 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Both ends from `expDown`: `1 - 1/(1 + eᵗ)` below, `1/(1 + e⁻ᵗ)` above. -/
 def sigmoidEnclosure (k : ℕ) : Enclosure 𝕋 where
-  lo a := subDown one (divUp one (onePlusExpDown k a))
-  hi a := divUp one (onePlusExpDown k (neg a))
+  enclose a := ⟨subDown one (divUp one (onePlusExpDown k a)), divUp one (onePlusExpDown k (neg a))⟩
 
 end CORALean
 

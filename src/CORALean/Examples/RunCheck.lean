@@ -1,3 +1,4 @@
+import CORALean.Examples.Interfaces
 import CORALean.Examples.RunnableFloat
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.ContSet.Zonotope.Float.Instances
@@ -35,10 +36,6 @@ end. Run `lake exe runcheck` or `lake env lean --run src/CORALean/Examples/RunCh
 namespace CORALean.RunCheck
 
 open CORALean CORALean.Float FloatOps
-
-/-- Reads a scalar as a native `Float`, for printing and the NaN test. -/
-class ToF (𝕋 : Type) where
-  toF : 𝕋 → Float
 
 instance : ToF (Dyadic 24) := ⟨RunnableFloat.vdpF⟩
 instance : ToF Float := ⟨id⟩
@@ -149,10 +146,10 @@ def ofMaxState {n : ℕ} (o : Option (LinearSys.MaxBackReachStateFloat 𝕋 n)) 
   match o with
   | none => ⟨"none", [], true⟩
   | some s =>
-    ⟨s!"t=[{sc s.tLo}, {sc s.tHi}] ZU: " ++ (ofZono s.ZU).text ++ " UErr=" ++ vecS s.UErr
+    ⟨s!"t=[{sc s.tEnc.inf}, {sc s.tEnc.sup}] ZU: " ++ (ofZono s.ZU).text ++ " UErr=" ++ vecS s.UErr
         ++ " ZW: " ++ (ofZono s.ZW).text ++ " RH: " ++ (ofCZ s.RH).text ++ " RU: "
         ++ (ofZono s.RU).text,
-      ToF.toF s.tLo :: ToF.toF s.tHi :: zonoF s.ZU ++ vecF s.UErr ++ zonoF s.ZW
+      ToF.toF s.tEnc.inf :: ToF.toF s.tEnc.sup :: zonoF s.ZU ++ vecF s.UErr ++ zonoF s.ZW
         ++ (ofCZ s.RH).vals ++ zonoF s.RU, false⟩
 
 def ofBundles {n : ℕ} (L : List (ZonoBundle (Vec 𝕋 n))) : Out :=

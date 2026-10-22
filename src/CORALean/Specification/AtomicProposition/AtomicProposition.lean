@@ -28,6 +28,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An atomic proposition: a set of `k`-dimensional states, the coordinates of the ambient space it
+constrains, and the locations it is restricted to (empty: all). -/
 structure AtomicProposition (S : ℕ → Type) (n : ℕ) where
   k : ℕ
   set : S k

@@ -55,12 +55,16 @@ noncomputable def Example.sysD : LinParamSysDT ℐ 1 := Example.sys.discretizeEn
 /-- The one matrix the enclosure is sound about: `exp (Δt • sys.A)` itself. -/
 noncomputable def Example.A0 : Mat ℝ 1 1 := exp ((1:ℝ) • toRealMat Example.sys.A)
 
+/-- The exact matrix exponential lies in the interval matrix of the discretized system. -/
 theorem Example.A0_mem : Example.A0 ∈ construct Example.sysD.A :=
   MatExp.exp_mem_expEnclosure _ 0 Example.hε
 
+/-- The initial state `1`. -/
 def Example.x0 : Vec ℝ 1 := ![1]
 
+/-- The initial set, the point `x₀`. -/
 def Example.R0 : Interval (Vec ℝ 1) := Interval.point Example.x0
+/-- The input set, the point `0`. -/
 def Example.U : Interval (Vec ℝ 1) := Interval.point (0 : Vec ℝ 1)
 
 /-- The run at the true exponential, `x(k) = (e^{-Δt})ᵏ x₀`: the decay itself. -/

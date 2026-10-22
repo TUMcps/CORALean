@@ -32,6 +32,8 @@ universe v
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A partition of the index type `α` into parts `β k`: every index of `α` is one index of one part.
+-/
 structure Partition (α : Type*) {κ : Type*} (β : κ → Type*) where
   index : (Σ k, β k) ≃ α
 
@@ -46,12 +48,14 @@ abbrev Partition₂ (α : Type*) (β γ : Type v) := Partition α (Pair β γ)
 scoped notation:50 "Split " α:max " into " β:max => CORALean.Partition α β
 scoped notation:50 "Split " α:max " into " β:max " ⊕ " γ:max => CORALean.Partition₂ α β γ
 
+/-- The two-part family is finite where both parts are. -/
 instance {β γ : Type v} [Fintype β] [Fintype γ] : (b : Bool) → Fintype (Pair β γ b)
   | true => inferInstanceAs (Fintype β)
   | false => inferInstanceAs (Fintype γ)
 
 variable {α α' κ M : Type*} {β : κ → Type*} {βₗ βᵣ : Type v}
 
+/-- The tagged two-part family is equivalent to the sum type. -/
 def Pair.equivSum (β γ : Type v) : (Σ b, Pair β γ b) ≃ β ⊕ γ where
   toFun := fun ⟨b, x⟩ => match b, x with
     | true, x => Sum.inl x
@@ -90,10 +94,13 @@ def Partition.ofPred {n : ℕ} (p : Fin n → Prop) [DecidablePred p] :
         (Partition.finSubtypeEquiv p))).trans
     ((Equiv.sumComm {i : Fin n // ¬ p i} {i : Fin n // p i}).trans (Equiv.sumCompl p))
 
+/-- The index of `α` at index `l` of part `k`. -/
 def Partition.on (P : Split α into β) (k : κ) (l : β k) : α := P.index ⟨k, l⟩
 
+/-- The index of `α` at index `l` of the left part. -/
 def Partition.left (P : Split α into βₗ ⊕ βᵣ) (l : βₗ) : α := P.on true l
 
+/-- The index of `α` at index `l` of the right part. -/
 def Partition.right (P : Split α into βₗ ⊕ βᵣ) (l : βᵣ) : α := P.on false l
 
 /-- Every bucket index satisfies the predicate it was cut out by. -/
@@ -102,18 +109,16 @@ theorem Partition.ofPred_right {n : ℕ} (p : Fin n → Prop) [DecidablePred p]
     p ((Partition.ofPred p).right l) :=
   (Partition.finSubtypeEquiv p l).property
 
-/-- Every surviving index fails the predicate that cut out the bucket. -/
-theorem Partition.ofPred_left {n : ℕ} (p : Fin n → Prop) [DecidablePred p]
-    (l : Fin (Fintype.card {i : Fin n // ¬ p i})) :
-    ¬ p ((Partition.ofPred p).left l) :=
-  (Partition.finSubtypeEquiv (fun i => ¬ p i) l).property
 
+/-- A sum over the whole index type is the sum over the parts, each over its own indices. -/
 theorem Partition.sum_split [AddCommMonoid M] [Fintype α] [Fintype κ] [∀ k, Fintype (β k)]
     (P : Split α into β) (f : α → M) :
     ∑ j, f j = ∑ k, ∑ l, f (P.on k l) := by
   rw [← Equiv.sum_comp P.index f, ← Finset.univ_sigma_univ, Finset.sum_sigma]
   rfl
 
+/-- A sum over the whole index type is the sum over the left part plus the sum over the right part.
+-/
 theorem Partition.sum_split₂ [AddCommMonoid M] [Fintype α] [Fintype βₗ] [Fintype βᵣ]
     (P : Split α into βₗ ⊕ βᵣ) (f : α → M) :
     ∑ j, f j = ∑ l, f (P.left l) + ∑ l, f (P.right l) := by

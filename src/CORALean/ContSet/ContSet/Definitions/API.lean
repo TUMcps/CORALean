@@ -1,15 +1,12 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
-public import CORALean.ContSet.ContSet.Definitions.FullDimTest
 public import CORALean.ContSet.ContSet.Definitions.IsFullDim
 public import CORALean.ContSet.ContSet.Definitions.SupportFunc
 public import CORALean.ContSet.ContSet.Definitions.DimReduce
 public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
 public import CORALean.ContSet.ContSet.Definitions.IsBoundIntersect2D
-public import CORALean.ContSet.ContSet.Definitions.ExactVertices
 
 /-!
 # What the set interface asks of a representation, without computing anything

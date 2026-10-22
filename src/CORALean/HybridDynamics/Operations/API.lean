@@ -4,7 +4,6 @@ public import CORALean.HybridDynamics.Operations.CalcBasisBox
 public import CORALean.HybridDynamics.Operations.HitHessianMatZono
 public import CORALean.HybridDynamics.Operations.Jump
 public import CORALean.HybridDynamics.Operations.JumpIntersection
-public import CORALean.HybridDynamics.Operations.JumpOfPoint
 public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
 public import CORALean.HybridDynamics.Operations.InputSet
 public import CORALean.HybridDynamics.Operations.InputSetFloat
@@ -65,10 +64,7 @@ public import CORALean.HybridDynamics.Operations.AbstractionError
 public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
 public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
 public import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
-public import CORALean.HybridDynamics.Operations.HitPointFloat
-public import CORALean.HybridDynamics.Operations.HitJacobianFloat
 public import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
-public import CORALean.HybridDynamics.Operations.SdcInputFloat
 public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
 public import CORALean.HybridDynamics.Operations.TrajectoryErrorFloat
 public import CORALean.HybridDynamics.Operations.MatlabLinspace

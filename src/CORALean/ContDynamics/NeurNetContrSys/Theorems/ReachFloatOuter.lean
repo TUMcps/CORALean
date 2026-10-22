@@ -1,6 +1,15 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatHorizon
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
+public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Operations.StepInput
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AugmentFlow
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithTimePointOuter
@@ -17,7 +26,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 `reach_outer` in floats: `reachWith_timePoint_outer` with the float product (`cartProd_exact`)
 and projection (`project_outer`), a period read as a run of the augmented system — its float
 matrices reading as the real ones (`toRealMat_augmentFloat`, `augment_flow`) — handed to
-`discretizeEnclosureFloat_mem_reach_horizon` for `N` steps. The control period is `N` times the
+`aux_discretizeEnclosureFloat_mem_reach_horizon` for `N` steps. The control period is `N` times the
 real time `toReal Δt` the float step denotes.
 
 ## Inputs
@@ -62,6 +71,91 @@ open CORALean.Float SoundFloatArithmetic
 open Matrix ContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open NormedSpace
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+open Scalar MeasureTheory
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+
+/-- Translating by `c` carries `Icc (a-c) (b-c)` onto `Icc a b` and preserves
+Lebesgue measure. -/
+theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
+    (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
+    AEStronglyMeasurable (fun σ => f (c + σ))
+      (volume.restrict (Set.Icc (a - c) (b - c))) := by -- --- PROOF ---
+  have hpre : (fun σ : ℝ => c + σ) ⁻¹' Set.Icc a b = Set.Icc (a - c) (b - c) := by
+    ext σ
+    simp only [Set.mem_preimage, Set.mem_Icc]
+    constructor <;> exact fun h => ⟨by linarith [h.1, h.2], by linarith [h.1, h.2]⟩
+  have hmp : MeasurePreserving (fun σ : ℝ => c + σ)
+      (volume.restrict (Set.Icc (a - c) (b - c))) (volume.restrict (Set.Icc a b)) := by
+    rw [← hpre]
+    exact (measurePreserving_add_left volume c).restrict_preimage measurableSet_Icc
+  exact hf.comp_measurePreserving hmp
+
+
+/-- Step `k`'s input contribution lies in `inputReach U Δt`, the domain covering
+that step alone. -/
+theorem LinearSys.IsCanonicalTrajectory.aux_stepInput_mem_inputReach {sys : LinearSys 𝕋 n}
+    {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u) (k : ℕ)
+    (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- CONCL ---
+    sys.stepInput u Δt k ∈ sys.inputReach U Δt := by -- --- PROOF ---
+  rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT
+  refine ⟨fun σ => u ((k : ℝ) * Δt + σ), fun σ hσ => traj.input _ (hT ⟨?_, ?_⟩), ?_,
+    sys.stepInput_eq_shifted u Δt k⟩
+  · linarith [hσ.1]
+  · linarith [hσ.2]
+  -- measurable on the step, then translated back to `[0, Δt]`
+  have h := aux_aestronglyMeasurable_shift (c := (k : ℝ) * Δt)
+    (traj.aestronglyMeasurable_input hT)
+  simpa using h
+
+end
+
+
+section
+open NormedSpace
+attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
+  Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+/-- Every sample `x (k Δt)`, `k ≤ K`, of a run on `[0, K Δt]` lies in the float-sampled
+system's `reach` under the float input solution of `U`. -/
+theorem LinearSys.IsCanonicalTrajectory.aux_discretizeEnclosureFloat_mem_reach_horizon
+    {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
+    (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)
+    (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    {o : ℕ} (ho : 0 < o) : -- --- CONCL ---
+    ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct
+    ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
+      ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+  -- the exact sampling, every step's input inside the float input solution
+  have hdt := traj.discretize_horizon (Ud := sys.inputSolutionFloat Δt η U) hΔt.le hT
+    (CompactSet.isBounded_construct U) fun j hj =>
+      sys.inputReach_subset_inputSolutionFloat hΔt hη U
+        (traj.aux_stepInput_mem_inputReach j (step_subset_horizon hΔt.le hT hj))
+  -- the same run, its matrix only enclosed
+  have hon : (sys.discretizeEnclosureFloat Δt η).IsCanonicalTrajectoryOn (S := 𝒵[𝕋]) R₀
+    (sys.inputSolutionFloat Δt η U) K
+      (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) :=
+    { init := hdt.init
+      input := hdt.input
+      step := fun j hj => ⟨exp (toReal Δt • Scalar.toRealMat sys.A),
+        sys.exp_mem_expIntervalFloat hη le_rfl le_rfl, by
+          simpa [LinearSys.discretize] using hdt.step j hj⟩ }
+  exact fun k hk => (sys.discretizeEnclosureFloat Δt η).reach_outer_on
+    (S := 𝒵[𝕋]) ho R₀ _ hon k hk
+
+end
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -112,7 +206,7 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 
       rw [hA, hB, hc]
       exact hflow t ht⟩
   rw [hdt]
-  exact hcl.discretizeEnclosureFloat_mem_reach_horizon
+  exact hcl.aux_discretizeEnclosureFloat_mem_reach_horizon
     (K := N) hΔt (Set.Icc_subset_Icc_right hdt.ge) hη ho N le_rfl
 
 end CORALean

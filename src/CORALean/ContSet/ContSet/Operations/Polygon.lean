@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ExactVertices
+public import CORALean.ContSet.VPolytope.Real.Interfaces
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 
 @[expose] public section
@@ -39,14 +39,14 @@ namespace CORALean
 
 open ContSet Real
 
-variable {S : Type} [ContSet S (Vec ℝ 2)] [ExactVertices S (Vec ℝ 2)]
+variable {S : Type} [ContSet S (Vec ℝ 2)] [Real.ExactVertices S (Vec ℝ 2)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `polygon(S)`: the polygon whose one convex piece is the vertex polytope of `S`. -/
 def ContSet.polygon (s : S) : Polygon :=
-  let V := ExactVertices.vertices s                      -- vertices(S)
+  let V := Real.ExactVertices.vertices s                      -- vertices(S)
   Polygon.ofPieces [V]                                   -- polygon(V)
 
 end CORALean

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Intrinsic
-public import CORALean.ContSet.Taylm.Float.Theorems.ToRealLeOfBelowPow
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.LogOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SinOuter
@@ -53,6 +53,24 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- What `belowPow` certifies. -/
+theorem Taylm.aux_toReal_le_of_belowPow {p : ℕ} {x : 𝕋}
+    (h : Taylm.belowPow p x = true) : -- --- CONCL ---
+    toReal x ≤ 2 ^ p / 2 := by -- --- PROOF ---
+  have hit : ∀ k : ℕ, toReal (half^[k] x) = toReal x / 2 ^ k := by
+    intro k
+    induction k with
+    | zero => simp
+    | succ k ih => rw [Function.iterate_succ_apply', toReal_half, ih, pow_succ, div_div]
+  have := toReal_le_of_le h
+  rw [hit, toReal_half, toReal_one] at this
+  have h2 : (0 : ℝ) < 2 ^ p := by positivity
+  rw [div_le_iff₀ h2] at this
+  linarith
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.intrinsic_encloses (p q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
@@ -71,13 +89,13 @@ theorem Taylm.intrinsic_encloses (p q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n
     split_ifs at hU with hb
     exact hu hU (hE hb)
   cases k <;> simp only [Taylm.intrinsic, reduceCtorEq] at hk
-  · exact hg hk fun hc => Taylm.exp_outer p h (Taylm.toReal_le_of_belowPow hc)
+  · exact hg hk fun hc => Taylm.exp_outer p h (Taylm.aux_toReal_le_of_belowPow hc)
   · exact hg hk fun hc => Taylm.log_outer q s h (by
       have := toReal_lt_of_ltStrict hc; rwa [toReal_zero] at this)
   · exact hu hk (Taylm.sin_outer p h)
   · exact hu hk (Taylm.cos_outer p h)
-  · exact hg hk fun hc => Taylm.sinh_outer p h (Taylm.toReal_le_of_belowPow hc)
-  · exact hg hk fun hc => Taylm.cosh_outer p h (Taylm.toReal_le_of_belowPow hc)
+  · exact hg hk fun hc => Taylm.sinh_outer p h (Taylm.aux_toReal_le_of_belowPow hc)
+  · exact hg hk fun hc => Taylm.cosh_outer p h (Taylm.aux_toReal_le_of_belowPow hc)
 
 end CORALean.Float
 

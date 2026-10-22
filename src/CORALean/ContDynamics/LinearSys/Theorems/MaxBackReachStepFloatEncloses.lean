@@ -10,7 +10,21 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
 public import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
-public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCenterSubset
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCenter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
+public import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.Global.Float.ToRealMatMulVec
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
@@ -33,7 +47,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeAbsNominalConZonotopeInnerOfLe
+public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotopeInner
 public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
@@ -117,6 +132,268 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+namespace Float
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : ℕ}
+
+/-- What a point of `halfScaledRight` says about its second block. -/
+theorem HPolytope.aux_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {z : Vec ℝ n₁}
+    {y : Vec ℝ n₂} {t : ℝ}
+    (h : Fin.append (Fin.append z y) (fun _ : Fin 1 => t)
+      ∈ (HPolytope.halfScaledRight n₁ P).construct) : -- --- CONCL ---
+    (∀ i, (toRealMat P.A *ᵥ y) i ≤ (1 - t) / 2 * toReal (P.b i) + |toReal (P.b_error i)|) ∧
+      ∀ i, |(toRealMat P.Ae *ᵥ y) i - (1 - t) / 2 * toReal (P.be i)|
+        ≤ |toReal (P.be_error i)| := by -- --- PROOF ---
+  have hneg : toRealMat (fun i => -P.Ae i) = -toRealMat P.Ae := toRealMat_neg P.Ae
+  -- the three row groups of the weighted polytope, each with its slack
+  rw [HPolytope.halfScaledRight, HPolytope.mem_stackRows_iff,
+    HPolytope.mem_stackRows_nominal_iff] at h
+  obtain ⟨h1, h2, h3⟩ := h
+  have h1 := (HPolytope.mem_nominal_iff.mp h1).1
+  have h2 := (HPolytope.mem_nominal_iff.mp h2).1
+  have h3 := (HPolytope.mem_nominal_iff.mp h3).1
+  -- each read on the block it came from
+  refine ⟨fun i => ?_, fun i => ?_⟩
+  · have : (toRealMat (fun i => Fin.append (Fin.append (fun _ : Fin n₁ => FloatOps.zero) (P.A i))
+        fun _ : Fin 1 => half (P.b i)) *ᵥ _) i
+          ≤ toReal (half (P.b i)) + |toReal (P.b_error i)| := h1 i
+    rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padRight, blockRight_append] at this
+    simp only [toReal_half] at this
+    linarith
+  · have h2' : (toRealMat (fun i =>
+        Fin.append (Fin.append (fun _ : Fin n₁ => FloatOps.zero) (P.Ae i))
+          fun _ : Fin 1 => half (P.be i)) *ᵥ _) i
+          ≤ toReal (half (P.be i)) + |toReal (P.be_error i)| := h2 i
+    -- the equality's lower edge, read through its negated row
+    have h3' : (toRealMat (fun i =>
+        Fin.append (Fin.append (fun _ : Fin n₁ => FloatOps.zero) (-(P.Ae i)))
+          fun _ : Fin 1 => half (neg (P.be i))) *ᵥ _) i
+          ≤ toReal (half (neg (P.be i))) + |toReal (P.be_error i)| := h3 i
+    rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padRight, blockRight_append] at h2'
+    rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padRight, blockRight_append, hneg,
+      Matrix.neg_mulVec] at h3'
+    simp only [Pi.neg_apply, toReal_neg, toReal_half] at h2' h3'
+    rw [abs_le]
+    constructor <;> linarith
+
+
+/-- What a point of `halfScaledLeft` says about its first block. -/
+theorem HPolytope.aux_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁}
+    {z : Vec ℝ n₂} {t : ℝ}
+    (h : Fin.append (Fin.append y z) (fun _ : Fin 1 => t)
+      ∈ (P.halfScaledLeft n₂).construct) : -- --- CONCL ---
+    (∀ i, (toRealMat P.A *ᵥ y) i ≤ (t + 1) / 2 * toReal (P.b i) + |toReal (P.b_error i)|) ∧
+      ∀ i, |(toRealMat P.Ae *ᵥ y) i - (t + 1) / 2 * toReal (P.be i)|
+        ≤ |toReal (P.be_error i)| := by -- --- PROOF ---
+  have hneg : toRealMat (fun i => -P.Ae i) = -toRealMat P.Ae := toRealMat_neg P.Ae
+  -- the three row groups of the weighted polytope, each with its slack
+  rw [HPolytope.halfScaledLeft, HPolytope.mem_stackRows_iff,
+    HPolytope.mem_stackRows_nominal_iff] at h
+  obtain ⟨h1, h2, h3⟩ := h
+  have h1 := (HPolytope.mem_nominal_iff.mp h1).1
+  have h2 := (HPolytope.mem_nominal_iff.mp h2).1
+  have h3 := (HPolytope.mem_nominal_iff.mp h3).1
+  -- each read on the block it came from
+  refine ⟨fun i => ?_, fun i => ?_⟩
+  · have : (toRealMat (fun i => Fin.append (Fin.append (P.A i) fun _ : Fin n₂ => FloatOps.zero)
+        fun _ : Fin 1 => neg (half (P.b i))) *ᵥ _) i
+          ≤ toReal (half (P.b i)) + |toReal (P.b_error i)| := h1 i
+    rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padLeft, blockLeft_append] at this
+    simp only [toReal_neg, toReal_half] at this
+    linarith
+  · have h2' : (toRealMat (fun i =>
+        Fin.append (Fin.append (P.Ae i) fun _ : Fin n₂ => FloatOps.zero)
+          fun _ : Fin 1 => neg (half (P.be i))) *ᵥ _) i
+          ≤ toReal (half (P.be i)) + |toReal (P.be_error i)| := h2 i
+    -- the equality's lower edge, read through its negated row
+    have h3' : (toRealMat (fun i =>
+        Fin.append (Fin.append (-(P.Ae i)) fun _ : Fin n₂ => FloatOps.zero)
+          fun _ : Fin 1 => neg (half (neg (P.be i)))) *ᵥ _) i
+          ≤ toReal (half (neg (P.be i))) + |toReal (P.be_error i)| := h3 i
+    rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padLeft, blockLeft_append] at h2'
+    rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padLeft, blockLeft_append, hneg,
+      Matrix.neg_mulVec] at h3'
+    simp only [Pi.neg_apply, toReal_neg, toReal_half] at h2' h3'
+    rw [abs_le]
+    constructor <;> linarith
+
+end
+end Float
+
+
+namespace Float
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- A block meeting a polytope's rows and the unit box's at weight `lam` is `lam` times a
+coefficient vector of the polytope inside the unit box, the polytope being nonempty there. -/
+theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
+    (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct) {γ : Vec ℝ k} {lam : ℝ}
+    {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.stackRows (HPolytope.unitBox 𝕋 k))
+    (hl0 : 0 ≤ lam)
+    (hA : ∀ i, (toRealMat Q.A *ᵥ γ) i ≤ lam * toReal (Q.b i))
+    (hE : ∀ i, (toRealMat Q.Ae *ᵥ γ) i = lam * toReal (Q.be i)) : -- --- CONCL ---
+    ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct ∧ lam • β = γ := by -- --- PROOF ---
+  obtain rfl | hpos := hl0.eq_or_lt
+  · -- zero weight: the unit-box rows pin the block to the origin
+    obtain ⟨β, hβ, hP⟩ := hne
+    refine ⟨β, hβ, hP, funext fun j => ?_⟩
+    -- the two unit-box rows of coordinate `j`, at weight zero, bound it by `0` both ways
+    subst hQ
+    have hup := hA (Fin.natAdd P.m (Fin.castAdd k j))
+    have hlo := hA (Fin.natAdd P.m (Fin.natAdd k j))
+    simp only [HPolytope.stackRows, toRealMat_append_mulVec_natAdd, Fin.append_right,
+      HPolytope.unitBox, HPolytope.mulVec_append_left, HPolytope.mulVec_single,
+      toReal_one, toReal_neg, one_mul, neg_mul, zero_mul] at hup hlo
+    simp only [Pi.smul_apply, zero_smul]
+    linarith
+  · -- positive weight: divide through, the rows then holding as stated
+    refine ⟨lam⁻¹ • γ, ?_⟩
+    -- the divided vector meets the rows at weight one, and the unit box
+    have hmem : lam⁻¹ • γ ∈ Q.nominal.construct := by
+      refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
+      · -- the inequality rows scale by `lam⁻¹`
+        rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
+        refine le_add_of_le_of_nonneg ?_ (abs_nonneg _)
+        calc lam⁻¹ * (toRealMat Q.A *ᵥ γ) i
+            ≤ lam⁻¹ * (lam * toReal (Q.b i)) :=
+              mul_le_mul_of_nonneg_left (hA i) (inv_nonneg.mpr hl0)
+          _ = _ := by field_simp
+      · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul, hE i]
+        refine le_trans (le_of_eq ?_) (abs_nonneg _)
+        rw [abs_eq_zero, sub_eq_zero]
+        field_simp
+    rw [hQ] at hmem
+    obtain ⟨hP, hbox⟩ := HPolytope.mem_stackRows_nominal_iff.mp hmem
+    exact ⟨HPolytope.mem_unitBox_iff.mp ((HPolytope.mem_nominal_of_origin rfl).mpr hbox), hP,
+      by rw [smul_smul, mul_inv_cancel₀ hpos.ne',
+      one_smul]⟩
+
+
+/-- `linCombSameCenter` is no larger than the hull. -/
+theorem ConZonotope.aux_linCombSameCenter_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (hc : cZ₂.c = cZ₁.c) (hs₁ : cZ₁.P.IsSlackFree) (hs₂ : cZ₂.P.IsSlackFree)
+    (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) : -- --- CONCL ---
+    nominalSet (cZ₁.linCombSameCenter cZ₂) ⊆
+      Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---
+  intro x hx
+  -- the nominal point, at its coefficients
+  obtain ⟨β, hβ, hP, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hx
+  -- the coefficient vector in its three blocks
+  set γ₁ : Vec ℝ cZ₁.h := fun j => β (Fin.castAdd 1 (Fin.castAdd cZ₂.h j)) with hγ₁
+  set γ₂ : Vec ℝ cZ₂.h := fun j => β (Fin.castAdd 1 (Fin.natAdd cZ₁.h j)) with hγ₂
+  set ν : ℝ := β (Fin.natAdd (cZ₁.h + cZ₂.h) 0) with hν
+  have hβeq : β = Fin.append (Fin.append γ₁ γ₂) fun _ : Fin 1 => ν := by
+    funext j
+    refine Fin.addCases (fun j' => ?_) (fun j' => ?_) j
+    · refine Fin.addCases (fun j'' => ?_) (fun j'' => ?_) j'
+      · simp [hγ₁]
+      · simp [hγ₂]
+    · have : j' = 0 := Subsingleton.elim _ _
+      subst this
+      simp [hν]
+  -- the three row groups of the hull's coefficient polytope
+  have hP' : β ∈ (((cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft
+      cZ₂.h).stackRows (HPolytope.halfScaledRight cZ₁.h
+        (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)))).nominal.construct := hP
+  obtain ⟨hL, hR⟩ := HPolytope.mem_stackRows_nominal_iff.mp hP'
+  rw [hβeq] at hL hR
+  replace hL := (HPolytope.mem_nominal_of_origin rfl).mpr hL
+  replace hR := (HPolytope.mem_nominal_of_origin rfl).mpr hR
+  obtain ⟨hA₁, hE₁⟩ := HPolytope.aux_mem_halfScaledLeft hL
+  obtain ⟨hA₂, hE₂⟩ := HPolytope.aux_mem_halfScaledRight hR
+  -- a slack-free block stays slack-free with its unit box stacked on, so the rows read exactly
+  have hstack : ∀ {k : ℕ} (Q : HPolytope 𝕋 (Vec 𝕋 k)), Q.IsSlackFree →
+      (Q.stackRows (HPolytope.unitBox 𝕋 k)).IsSlackFree := fun Q hs =>
+    ⟨fun i => Fin.addCases (fun i => by simpa [HPolytope.stackRows] using hs.1 i)
+      (fun i => by simp [HPolytope.stackRows, HPolytope.unitBox, toReal_zero]) i,
+     fun i => Fin.addCases (fun i => by simpa [HPolytope.stackRows] using hs.2 i)
+      (fun i => i.elim0) i⟩
+  obtain ⟨hb₁, he₁⟩ := hstack cZ₁.P hs₁
+  obtain ⟨hb₂, he₂⟩ := hstack cZ₂.P hs₂
+  simp only [hb₁, hb₂, he₁, he₂, abs_zero, add_zero, abs_nonpos_iff, sub_eq_zero]
+    at hA₁ hE₁ hA₂ hE₂
+  -- the weight, and the second block's
+  have hν1 : |ν| ≤ 1 := by
+    have := hβ (Fin.natAdd (cZ₁.h + cZ₂.h) 0)
+    exact this
+  obtain ⟨hνl, hνu⟩ := abs_le.mp hν1
+  set lam : ℝ := (ν + 1) / 2 with hlam
+  have hl0 : 0 ≤ lam := by rw [hlam]; linarith
+  have hl1 : lam ≤ 1 := by rw [hlam]; linarith
+  have hw : (1 - ν) / 2 = 1 - lam := by rw [hlam]; ring
+  rw [hw] at hA₂ hE₂
+  -- each block is its weight times a coefficient vector of its own set
+  obtain ⟨β₁, hβ₁, hP₁, hγ₁eq⟩ := ConZonotope.aux_blockCoeff cZ₁.P
+    (by obtain ⟨y, hy⟩ := hne₁
+        obtain ⟨b, hb, hbP, -⟩ := ConZonotope.mem_nominalSet_iff.mp hy
+        exact ⟨b, hb, hbP⟩) rfl hl0 hA₁ hE₁
+  obtain ⟨β₂, hβ₂, hP₂, hγ₂eq⟩ := ConZonotope.aux_blockCoeff cZ₂.P
+    (by obtain ⟨y, hy⟩ := hne₂
+        obtain ⟨b, hb, hbP, -⟩ := ConZonotope.mem_nominalSet_iff.mp hy
+        exact ⟨b, hb, hbP⟩) rfl (by linarith) hA₂ hE₂
+  refine ⟨fun i => toReal (cZ₁.c i) + ∑ j, toReal (cZ₁.G j i) * β₁ j,
+    ConZonotope.mem_nominalSet_iff.mpr ⟨β₁, hβ₁, hP₁, fun _ => rfl⟩,
+    fun i => toReal (cZ₂.c i) + ∑ j, toReal (cZ₂.G j i) * β₂ j,
+    ConZonotope.mem_nominalSet_iff.mpr ⟨β₂, hβ₂, hP₂, fun _ => rfl⟩, lam, ⟨hl0, hl1⟩, ?_⟩
+  funext i
+  have hxi := hval i
+  -- the value of the stored hull at the coefficients, in three blocks
+  change x i = toReal (cZ₁.c i) + ∑ j : Fin (cZ₁.h + cZ₂.h + 1),
+    toReal (Fin.append (Fin.append cZ₁.G cZ₂.G) (fun _ : Fin 1 => fun _ => (zero : 𝕋)) j i)
+      * β j at hxi
+  rw [hβeq, Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_one] at hxi
+  simp only [Fin.append_left, Fin.append_right, toReal_zero, zero_mul, add_zero] at hxi
+  -- the blocks, as their weights times the coefficients of their own sets
+  have e₁ : ∑ j, toReal (cZ₁.G j i) * γ₁ j = lam * ∑ j, toReal (cZ₁.G j i) * β₁ j := by
+    rw [Finset.mul_sum]
+    refine Finset.sum_congr rfl fun j _ => ?_
+    rw [← hγ₁eq]
+    simp only [Pi.smul_apply, smul_eq_mul]
+    ring
+  -- likewise the second block, with the weight `1 - lam`
+  have e₂ : ∑ j, toReal (cZ₂.G j i) * γ₂ j = (1 - lam) * ∑ j, toReal (cZ₂.G j i) * β₂ j := by
+    rw [Finset.mul_sum]
+    refine Finset.sum_congr rfl fun j _ => ?_
+    rw [← hγ₂eq]
+    simp only [Pi.smul_apply, smul_eq_mul]
+    ring
+  have hci : toReal (cZ₂.c i) = toReal (cZ₁.c i) := by rw [hc]
+  simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+  rw [hxi, e₁, e₂, hci]
+  ring
+
+end
+end Float
+
+
+namespace Float
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- A point of the tightened conversion reaches no further than `|c| + Σ|G|` of the zonotope it is
+taken at, whatever the polytope. -/
+theorem HPolytope.aux_abs_nominal_conZonotopeInnerOf_le (P : HPolytope 𝕋 (Vec 𝕋 n))
+    (Z : Zonotope (Vec 𝕋 n))
+    {y : Vec ℝ n} (hy : y ∈ nominalSet (P.conZonotopeInnerOf Z)) (k : Fin n) : -- --- CONCL ---
+    |y k| ≤
+      toReal (addUp (absolute (Z.c k)) (radius (fun i j => Z.G j i) k)) := by -- --- PROOF ---
+  obtain ⟨β, hβ, -, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hy
+  have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))
+    (fun _ _ => le_refl _) hβ k
+  have hup := add_le_addUp (absolute (Z.c k)) (radius (fun i j => Z.G j i) k)
+  rw [toReal_absolute] at hup
+  have hk : y k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j := hval k
+  rw [hk]
+  exact le_trans (abs_add_le _ _) (by linarith)
+
+end
+end Float
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
@@ -128,7 +405,8 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     (sr : LinearSys.MaxBackReachState n) (hs : s.Encloses sr) (hΔt : 0 < toReal Δt)
     (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
     (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
-    (hZw : construct (Zwr sr.t) ⊆ (Zw s.tLo s.tHi).construct) (hP₁ : P₁.construct ⊆ P₁r.construct)
+    (hZw : construct (Zwr sr.t) ⊆ (Zw s.tEnc.inf s.tEnc.sup).construct)
+    (hP₁ : P₁.construct ⊆ P₁r.construct)
     (hP₂ : P₂.construct ⊆ P₂r.construct) (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct)
     (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
@@ -162,13 +440,13 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
   have hW := sys.inputSolution_subset_inputSolutionFloat hΔt.le hadm' hWE hW₀r
   -- the brackets of `t_{k+1}`
   have h1lo : toReal tk1Lo ≤ sr.t + Δ := by
-    have := addDown_le_add s.tLo Δt
-    linarith [hs.tLo_le]
+    have := addDown_le_add s.tEnc.inf Δt
+    linarith [hs.tEnc_inf_le]
   have h1hi : sr.t + Δ ≤ toReal tk1Hi := by
-    have := add_le_addUp s.tHi Δt
-    linarith [hs.le_tHi]
+    have := add_le_addUp s.tEnc.sup Δt
+    linarith [hs.le_tEnc_sup]
   -- the matrices are in their interval matrices
-  have hΦk : Φk' ∈ Φk.construct := sys.exp_mem_expIntervalFloat hadmk hs.tLo_le hs.le_tHi
+  have hΦk : Φk' ∈ Φk.construct := sys.exp_mem_expIntervalFloat hadmk hs.tEnc_inf_le hs.le_tEnc_sup
   have hI : Ξ ∈ I.construct := sys.expIntegral_mem_adaptiveIntegralFloat hΔt.le hadm'
   have hM : Φk' * Ξ ∈ M.construct := Interval.matMul_outer _ _ hΦk hI
   have hT0 : (0 : Vec ℝ n) ∈ T.I_error.construct := by
@@ -272,12 +550,12 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       unfold HPolytope.onCoefficientsInner
       split <;> exact ⟨fun _ => toReal_zero, fun _ => toReal_zero⟩
     obtain ⟨y₁, hy₁, y₂, hy₂, lam, ⟨hl0, hl1⟩, hzeq⟩ :=
-      ConZonotope.linCombSameCenter_subset C₁ C₂ rfl (hsf _ _) (hsf _ _) hne₁ hne₂ hz
+      ConZonotope.aux_linCombSameCenter_subset C₁ C₂ rfl (hsf _ _) (hsf _ _) hne₁ hne₂ hz
     -- its points are within `ζ` of the origin
     have hζ₁ : ∀ k, |y₁ k| ≤ toReal (ζ k) := fun k =>
-      HPolytope.abs_nominal_conZonotopeInnerOf_le _ Bx.zonotope hy₁ k
+      HPolytope.aux_abs_nominal_conZonotopeInnerOf_le _ Bx.zonotope hy₁ k
     have hζ₂ : ∀ k, |y₂ k| ≤ toReal (ζ k) := fun k =>
-      HPolytope.abs_nominal_conZonotopeInnerOf_le _ Bx.zonotope hy₂ k
+      HPolytope.aux_abs_nominal_conZonotopeInnerOf_le _ Bx.zonotope hy₂ k
     have hζ : ∀ k, |z k| ≤ toReal (ζ k) := fun k => by
       rw [hzeq]
       simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]

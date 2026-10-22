@@ -34,6 +34,8 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A reachset temporal logic formula: a propositional formula, conjunction, disjunction, next,
+until and release. -/
 inductive RTL.Formula (X : Type)
   | A (ϱ : Pform X)
   | and (ψ₁ ψ₂ : Formula X)

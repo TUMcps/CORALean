@@ -69,6 +69,7 @@ private theorem artanh_neg_eq {x : ℝ} (h1 : -1 < x) (h2 : x < 1) : -- --- CONC
   rw [this, Real.log_inv]
   ring
 
+/-- `atanhUp` is an upper bound of `artanh` for `x > -1` when `1 - x` rounded down is positive. -/
 theorem le_atanhUp (p k : ℕ) (x : 𝕋) (h1 : -1 < toReal x)
     (h2 : 0 < toReal (subDown one x)) : -- --- CONCL ---
     Real.artanh (toReal x) ≤ toReal (atanhUp p k x) := by -- --- PROOF ---
@@ -89,6 +90,8 @@ theorem le_atanhUp (p k : ℕ) (x : 𝕋) (h1 : -1 < toReal x)
   have := Real.log_le_log hpos hr
   linarith
 
+/-- `atanhDown` is a lower bound of `artanh` for `x < 1`, with the ratio bound `2^p / 2` for `x ≥
+0`. -/
 theorem atanhDown_le (p k : ℕ) (x : 𝕋) (h1 : toReal x < 1)
     (h2 : 0 < toReal (subDown one (neg x)))
     (hx : 0 ≤ toReal x → (1 + toReal x) / (1 - toReal x) ≤ 2 ^ p / 2) : -- --- CONCL ---

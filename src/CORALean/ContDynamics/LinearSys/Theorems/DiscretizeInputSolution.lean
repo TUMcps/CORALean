@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 
 @[expose] public section
 
@@ -34,6 +34,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A step starting in forward time stays there. -/
+theorem aux_step_subset {T : Set ℝ} {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (k : ℕ) :
+    Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T :=
+  fun _ hs => hT (le_trans (mul_nonneg (Nat.cast_nonneg k) hΔt) hs.1)
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
@@ -53,7 +61,7 @@ theorem LinearSys.IsCanonicalTrajectory.discretize_inputSolution [Mtimes ℐ S]
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) :=
   traj.discretize hΔt.le hT hbdd
     (fun k => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
-      (step_subset hΔt.le hT k))
+      (aux_step_subset hΔt.le hT k))
 
 end CORALean
 

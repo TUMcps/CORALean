@@ -83,17 +83,21 @@ theorem blockDiag_ext {M M' : Mat ℝ (a + b) (a + b)}
 
 -- the linearity laws, each a case split on the four blocks
 
+/-- The block-diagonal matrix of two zero blocks is zero. -/
 theorem blockDiag_zero : blockDiag (0 : ℝ) (0 : Mat ℝ a a) (0 : Mat ℝ b b) = 0 :=
   blockDiag_ext (by simp) (by simp) (by simp) (by simp)
 
+/-- The block-diagonal matrix is additive in its two blocks. -/
 theorem blockDiag_add (M₁ M₂ : Mat ℝ a a) (N₁ N₂ : Mat ℝ b b) :
     blockDiag 0 (M₁ + M₂) (N₁ + N₂) = blockDiag 0 M₁ N₁ + blockDiag 0 M₂ N₂ :=
   blockDiag_ext (by simp) (by simp) (by simp) (by simp)
 
+/-- Scalar multiplication distributes over the two blocks of a block-diagonal matrix. -/
 theorem blockDiag_smul (t : ℝ) (M : Mat ℝ a a) (N : Mat ℝ b b) :
     blockDiag 0 (t • M) (t • N) = t • blockDiag 0 M N :=
   blockDiag_ext (by simp) (by simp) (by simp) (by simp)
 
+/-- The block-diagonal matrix of finite sums of blocks is the sum of the block-diagonal matrices. -/
 theorem blockDiag_sum {ι : Type} (s : Finset ι) (M : ι → Mat ℝ a a)
     (N : ι → Mat ℝ b b) : -- --- CONCL ---
     blockDiag 0 (∑ i ∈ s, M i) (∑ i ∈ s, N i)
@@ -134,6 +138,8 @@ theorem posSemidef_fromBlocks_zero_iff (M : Mat ℝ a a) (N : Mat ℝ b b) : -- 
     simp only [dotProduct, Fintype.sum_sum_type, Sum.elim_inl, Sum.elim_inr] at h1 h2 ⊢
     linarith
 
+/-- A real block-diagonal matrix with zero off-diagonal blocks is positive semidefinite exactly when
+both blocks are. -/
 theorem posSemidef_blockDiag_iff (M : Mat ℝ a a) (N : Mat ℝ b b) :
     (blockDiag 0 M N).PosSemidef ↔ M.PosSemidef ∧ N.PosSemidef := by
   rw [blockDiag_eq_submatrix, posSemidef_submatrix_equiv, posSemidef_fromBlocks_zero_iff]

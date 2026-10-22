@@ -11,6 +11,10 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
 
 @[expose] public section
 
@@ -49,6 +53,18 @@ open scoped Classical
 variable {n q₁ q₂ : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `VPolytope.intersectionH` is compact. -/
+theorem VPolytope.aux_intersectionH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
+    (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
+    IsCompact (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct := by
+  refine HPolytope.isCompact_of_contains (W := P₁.interval.vPolytope) fun x hx => ?_
+  have h := (HPolytope.mem_intersection_iff.mp hx).2
+  rw [Interval.hPolytope_exact] at h
+  exact Interval.vPolytope_contains _ h
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.intersection_outer (P₁ P₂ : VPolytope (Vec ℝ n))
@@ -67,7 +83,7 @@ theorem VPolytope.intersection_outer (P₁ P₂ : VPolytope (Vec ℝ n))
         = (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).vPolytope h := dif_pos h
     rw [he]
     exact subset_trans hsub
-      (HPolytope.vPolytope_contains _ (VPolytope.intersectionH_isCompact P₁ P₂ Aq₁ Aq₂) h)
+      (HPolytope.vPolytope_contains _ (VPolytope.aux_intersectionH_isCompact P₁ P₂ Aq₁ Aq₂) h)
   · have he : P₁.intersection P₂ Aq₁ Aq₂ = VPolytope.emptySet (Vec ℝ n) := dif_neg h
     rw [he, VPolytope.construct_emptySet]
     rw [Set.not_nonempty_iff_eq_empty.mp h] at hsub

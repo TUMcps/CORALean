@@ -29,6 +29,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- An STL formula as the online analyzer parses it, after desugaring: true, false, labeled atoms,
+negation, conjunction, disjunction and until. -/
 inductive OnlineReachSetAnalyzer.Formula (A : Type)
   | tt
   | ff

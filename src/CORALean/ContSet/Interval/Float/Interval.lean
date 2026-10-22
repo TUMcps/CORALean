@@ -33,10 +33,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A box between the stored lower bound `inf` and upper bound `sup`. -/
 structure Interval (α : Type) where
   inf : α
   sup : α
 
+/-- The exact interval the stored bounds describe, read through `RealImage`. -/
 def Interval.nominal {α β : Type} [RealImage α β] (I : Interval α) :
     CORALean.Real.Interval β :=
   ⟨RealImage.realImage I.inf, RealImage.realImage I.sup⟩

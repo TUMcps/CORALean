@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.Verify
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
 public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
 
 @[expose] public section

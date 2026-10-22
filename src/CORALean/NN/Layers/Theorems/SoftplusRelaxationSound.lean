@@ -3,7 +3,8 @@ module
 public import CORALean.NN.Layers.Definitions.IsSoftplusBox
 public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
-public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
+public import CORALean.NN.Layers.Definitions.Softplus
+public import Mathlib.Tactic.Positivity
 
 @[expose] public section
 
@@ -44,9 +45,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+namespace Real
+/-- Softplus is monotone. -/
+theorem aux_softplus_mono {β : ℝ} (hβ : 0 < β) : -- --- CONCL ---
+    Monotone (softplus β) := by -- --- PROOF ---
+  intro a b hab
+  have hpos : ∀ t, 0 < 1 + Real.exp (β * t) := fun t => by positivity
+  unfold softplus
+  refine div_le_div_of_nonneg_right (Real.log_le_log (hpos a) ?_) hβ.le
+  have : Real.exp (β * a) ≤ Real.exp (β * b) := Real.exp_le_exp.mpr (by nlinarith)
+  linarith
+end Real
+
+
 theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
     (h : IsSoftplusBox β k nl l u) : -- --- CONCL ---
-    toReal ((softplusEnclosure β k nl kl).lo l) ≤
+    toReal ((softplusEnclosure β k nl kl).enclose l).inf ≤
       Real.softplus (toReal β) (toReal l) := by -- --- PROOF ---
   obtain ⟨hβ, -, hD⟩ := h
   set D := onePlusExpDown k (mulDown β l) with hDdef
@@ -72,7 +86,7 @@ theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
 theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
     (h : IsSoftplusBox β k nl l u) : -- --- CONCL ---
     Real.softplus (toReal β) (toReal u) ≤
-      toReal ((softplusEnclosure β k nl kl).hi u) := by -- --- PROOF ---
+      toReal ((softplusEnclosure β k nl kl).enclose u).sup := by -- --- PROOF ---
   obtain ⟨hβ, hU, -⟩ := h
   set A := addUp one (expUp k (mulUp β u)) with hAdef
   -- `A` is at least `1 + exp (β u)`, which `expUp` covers, and `logUp` bounds its log from above
@@ -95,7 +109,7 @@ theorem softplusRelaxation_sound (β : 𝕋) (k nl kl : ℕ) :
     (softplusRelaxation β k nl kl).SoundWhere (Real.softplus (toReal β))
       (IsSoftplusBox β k nl) :=
   Relaxation.ofMonotone_soundWhere (E := softplusEnclosure β k nl kl)
-    (fun _ _ h => Real.softplus_mono h.1) (fun _ _ h => aux_softplus_lo_le h)
+    (fun _ _ h => Real.aux_softplus_mono h.1) (fun _ _ h => aux_softplus_lo_le h)
     fun _ _ h => aux_softplus_le_hi h
 
 end CORALean

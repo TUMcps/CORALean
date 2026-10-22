@@ -1,7 +1,8 @@
 module
 
 public import CORALean.NN.Layers.Operations.LeakyReluRelaxation
-public import CORALean.NN.Layers.Theorems.Real.LeakyReluBoundsOfSlope
+public import CORALean.NN.Layers.Definitions.LeakyRelu
+public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 
@@ -40,6 +41,34 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+namespace Real
+/-- Leaky ReLU between a line and the line raised. -/
+theorem aux_leakyRelu_bounds_of_slope {α m l u t : ℝ} (h0 : α ≤ m) (h1 : m ≤ 1)
+    (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
+    0 ≤ leakyRelu α t - m * t ∧
+      leakyRelu α t - m * t ≤
+        max (leakyRelu α l - m * l) (leakyRelu α u - m * u) := by -- --- PROOF ---
+  unfold leakyRelu
+  refine ⟨?_, ?_⟩
+  · rcases le_total 0 t with h | h
+    · have := le_max_right (α * t) t
+      nlinarith
+    · have := le_max_left (α * t) t
+      nlinarith
+  · have hp : α * t - m * t ≤ max (max (α * l) l - m * l) (max (α * u) u - m * u) := by
+      refine le_trans ?_ (le_max_left _ _)
+      have : α * l ≤ max (α * l) l := le_max_left _ _
+      nlinarith
+    have hq : t - m * t ≤ max (max (α * l) l - m * l) (max (α * u) u - m * u) := by
+      refine le_trans ?_ (le_max_right _ _)
+      have : u ≤ max (α * u) u := le_max_right _ _
+      nlinarith
+    rcases le_total (α * t) t with h | h
+    · rw [max_eq_right h]; linarith
+    · rw [max_eq_left h]; linarith
+end Real
+
+
 theorem aux_leakyReluEndUp_ge (α m a : 𝕋) : -- --- CONCL ---
     Real.leakyRelu (toReal α) (toReal a) - toReal m * toReal a ≤
       toReal (leakyReluEndUp α m a) := by -- --- PROOF ---
@@ -63,7 +92,7 @@ theorem leakyReluRelaxation_sound (α : 𝕋) (hα : toReal α ≤ 1) (lam : �
   have hm1 : toReal m ≤ 1 := by
     rw [hm, toReal_maximum, toReal_minimum, toReal_one]
     exact max_le hα (min_le_left _ _)
-  obtain ⟨hlow, hhigh⟩ := Real.leakyRelu_bounds_of_slope hm0 hm1 hl hu
+  obtain ⟨hlow, hhigh⟩ := Real.aux_leakyRelu_bounds_of_slope hm0 hm1 hl hu
   have hg : max (Real.leakyRelu (toReal α) (toReal l) - toReal m * toReal l)
       (Real.leakyRelu (toReal α) (toReal u) - toReal m * toReal u) ≤
       toReal (leakyReluGapUp α m l u) := by

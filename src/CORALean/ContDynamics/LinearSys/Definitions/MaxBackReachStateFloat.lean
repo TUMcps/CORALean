@@ -43,10 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- What one iteration of [1, Alg. 3] hands the next, in floats. -/
 structure LinearSys.MaxBackReachStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
-  /-- `t_k`, line 7: a lower end. -/
-  tLo : 𝕋
-  /-- `t_k`, line 7: an upper end. -/
-  tHi : 𝕋
+  /-- `t_k`, line 7: a bracket of floats. -/
+  tEnc : Interval 𝕋
   /-- `Z̲_U(t_k)`, line 8: within `UErr` of the exact set, in every coordinate. -/
   ZU : Zonotope (Vec 𝕋 n)
   /-- How far `ZU` lies outside the exact `Z̲_U(t_k)`, per coordinate. -/

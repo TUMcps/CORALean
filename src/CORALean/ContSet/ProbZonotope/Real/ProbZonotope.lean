@@ -39,6 +39,7 @@ variable {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A probabilistic zonotope: the zonotope `Z` and the covariance matrix `cov`. -/
 structure ProbZonotope (n : ℕ) where
   Z : Zonotope (Vec ℝ n)
   cov : Mat ℝ n n

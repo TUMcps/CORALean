@@ -25,6 +25,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a tanh layer: the number `k` of terms enclosing `exp`. -/
 structure TanhLayer (𝕋 : Type) (n m : ℕ) where
   k : ℕ
   dim : n = m

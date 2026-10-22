@@ -2,8 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOFloatOuter
 public import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOOutput
-public import CORALean.ContDynamics.LinearARX.Theorems.SumRangeFloatMem
-public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
 public import CORALean.ContDynamics.LinearARX.Theorems.Alg1EqReachWindowExact
 public import CORALean.ContDynamics.LinearARX.Theorems.Alg2EqReachWindowExact
 public import CORALean.ContDynamics.LinearARX.Theorems.Alg2NeReachWindowExact
@@ -21,9 +19,7 @@ public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowExactNeProd
 public import CORALean.ContDynamics.LinearARX.Theorems.SsReachEq
 public import CORALean.ContDynamics.LinearARX.Theorems.StackEqTvp
 public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
-public import CORALean.ContDynamics.LinearARX.Theorems.OutputEqMulVec
 public import CORALean.ContDynamics.LinearARX.Theorems.OutputOuter
-public import CORALean.ContDynamics.LinearARX.Theorems.OutputPowInputMat
 public import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
 public import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemSimulateBoxFloat

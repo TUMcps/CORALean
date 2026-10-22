@@ -38,6 +38,7 @@ def halfPow : ℕ → 𝕋 → 𝕋
   | 0, x => x
   | k + 1, x => half (halfPow k x)
 
+/-- Halving `k` times is division by `2^k` as a real. -/
 theorem toReal_halfPow [SoundFloatArithmetic 𝕋] (k : ℕ) (x : 𝕋) :
     toReal (halfPow k x) = toReal x / 2 ^ k := by
   induction k with

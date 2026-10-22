@@ -55,10 +55,12 @@ def insertIdx {n : ℕ} (r : Fin n) {M : Sort*} (a : M) (f : Fin (n - 1) → M) 
   fun l => Fin.insertNth (α := fun _ => M) (Fin.cast (Nat.succ_pred_eq_of_pos r.pos).symm r) a f
     (Fin.cast (Nat.succ_pred_eq_of_pos r.pos).symm l)
 
+/-- Inserting `a` at index `r` reads back `a` at `r`. -/
 @[simp] theorem insertIdx_self {n : ℕ} (r : Fin n) {M : Sort*} (a : M) (f : Fin (n - 1) → M) :
     insertIdx r a f r = a :=
   Fin.insertNth_apply_same (α := fun _ => M) _ a f
 
+/-- Inserting `a` at `r` reads back `f i` at the index `dropIdx r i`. -/
 @[simp] theorem insertIdx_dropIdx {n : ℕ} (r : Fin n) {M : Sort*} (a : M) (f : Fin (n - 1) → M)
     (i : Fin (n - 1)) : insertIdx r a f (dropIdx r i) = f i := by
   simp [insertIdx, dropIdx]

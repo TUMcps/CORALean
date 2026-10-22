@@ -31,6 +31,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The parameters of a general output model of a nonlinear discrete-time system: the reference
+trajectory `x`, `y` and the Jacobian-like families `A`..`F` along it. -/
 structure NonlinearSysDT.GO (n m r : ℕ) where
   x : ℕ → Vec ℝ n
   y : ℕ → Vec ℝ r

@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneConstruct
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.CartProdExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
@@ -10,6 +10,8 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ProjectExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
 public import Mathlib.Analysis.Convex.Hull
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneConstruct
 
 @[expose] public section
 

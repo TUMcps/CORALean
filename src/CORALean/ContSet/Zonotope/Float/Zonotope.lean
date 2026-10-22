@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.InflatedContSet.InflatedContSet
+public import CORALean.ContSet.InflatedContSet.Interfaces
 public import CORALean.ContSet.Zonotope.Real.Instances
 
 @[expose] public section
@@ -14,7 +14,7 @@ rounding has cost. `Zonotope α` is indexed by the ambient type it stores, as th
 `Zonotope α` and the float `Interval α` are, with generators a family rather than a matrix:
 `Zonotope (Mat 𝕋 m n)` is CORA's `matZonotope` [1, Eq. (8)], with no separate representation.
 `Zonotope (Vec 𝕋 n)` is the vector case, and an algorithm generic over the dimension takes the
-family `fun k => Zonotope (Vec 𝕋 k)`. A matrix operation whose vector namesake means something else
+family `𝒵[𝕋]`. A matrix operation whose vector namesake means something else
 carries a `mat` prefix, as `Zonotope.matInterval` does.
 
 ## References
@@ -43,6 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A zonotope over floats: center `c`, `h` generators `G`, and the error box `I_error` that
+rounding has cost. -/
 structure Zonotope (α : Type) where
   h : ℕ
   c : α
@@ -54,6 +56,7 @@ protected abbrev Zonotope.nominal {α β : Type} [RealImage α β] (Z : Zonotope
     CORALean.Real.Zonotope β :=
   ⟨Z.h, RealImage.realImage Z.c, fun j => RealImage.realImage (Z.G j)⟩
 
+/-- A float zonotope inflates the real zonotope its stored floats describe, the `nominal` one. -/
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
     InflatedContSet (Zonotope α) (CORALean.Real.Zonotope β) α β where
   nominal := Zonotope.nominal

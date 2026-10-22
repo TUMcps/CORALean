@@ -62,6 +62,8 @@ def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat �
   | "linearSysReach" => handleLinearSysReach dops req
   | o => throw s!"unknown op `{o}` -- one of {String.intercalate ", " opNames}"
 
+/-- The response to `ping`: the version, whether the tree is dirty, the dtypes and the ops served.
+-/
 def pingFields (dtypes : DtypeSet) (version : CoraleanVersion) : List (String × Json) :=
   [ ("version", Json.str version.version),
     ("dirty", Json.bool version.dirty),

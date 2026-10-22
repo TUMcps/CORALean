@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevLo
-public import CORALean.ContSet.HPolytope.Float.Operations.ScaleDevHi
+public import CORALean.ContSet.Interval.Float.Operations.MulLo
+public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.MulHi
 public import CORALean.ContSet.HPolytope.Float.Operations.SetRhs
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 
@@ -14,8 +15,8 @@ CORA's `priv_normalizeConstraints` on the stored floats, with the divisors given
 inequality row `i` and `sE i` for equality row `i`. Every entry of a scaled row is rounded down
 (`mulDown`), which names a slightly different halfspace, so the difference is absorbed on the
 right-hand side over a box `dom` of interest. A scaled row's exact bound is the scaled bound less
-the deviation `(s a - ã)ᵀ x`, between `scaleDevLo` and `scaleDevHi`; `setRhs` stores the lower
-end and pays the width into the row's slack (#218), so an equality stays an equality. The rows
+the deviation `(s a - ã)ᵀ x`, between `aux_scaleDevLo` and `aux_scaleDevHi`; `setRhs` stores the
+lower end and pays the width into the row's slack (#218), so an equality stays an equality. The rows
 only are read: the error box and the slacks are not, and `absorbRounding` brings a polytope with
 either to this form first.
 
@@ -44,6 +45,22 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]  {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The lower bound of `(s v - ṽ)ᵀ x` over `x ∈ dom`, for `ṽ = mulDown v s`. -/
+def HPolytope.aux_scaleDevLo (v : Vec 𝕋 n) (s : 𝕋) (dom : Interval (Vec 𝕋 n)) : 𝕋 :=
+  sumDown fun j =>
+    Interval.mulLo (subDown (mulDown (v j) s) (mulDown (v j) s))
+      (subUp (mulUp (v j) s) (mulDown (v j) s)) (dom.inf j) (dom.sup j)
+
+
+/-- The upper bound of `(s v - ṽ)ᵀ x` over `x ∈ dom`, for `ṽ = mulDown v s`. -/
+def HPolytope.aux_scaleDevHi (v : Vec 𝕋 n) (s : 𝕋) (dom : Interval (Vec 𝕋 n)) : 𝕋 :=
+  sumUp fun j =>
+    Interval.mulHi (subDown (mulDown (v j) s) (mulDown (v j) s))
+      (subUp (mulUp (v j) s) (mulDown (v j) s)) (dom.inf j) (dom.sup j)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Row `i` multiplied by `sA i` (`sE i`), the rounding in the rows' slacks. -/
@@ -62,10 +79,10 @@ def HPolytope.scaleRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (sA : Fin P.m → 𝕋
       I_error := Interval.origin n }
   -- each right-hand side: the scaled bound less the deviation, between its two ends
   Q.setRhs
-    (fun i => subDown (mulDown (P.b i) (sA i)) (HPolytope.scaleDevHi (P.A i) (sA i) dom))
-    (fun i => subUp (mulUp (P.b i) (sA i)) (HPolytope.scaleDevLo (P.A i) (sA i) dom))
-    (fun i => subDown (mulDown (P.be i) (sE i)) (HPolytope.scaleDevHi (P.Ae i) (sE i) dom))
-    (fun i => subUp (mulUp (P.be i) (sE i)) (HPolytope.scaleDevLo (P.Ae i) (sE i) dom))
+    (fun i => subDown (mulDown (P.b i) (sA i)) (HPolytope.aux_scaleDevHi (P.A i) (sA i) dom))
+    (fun i => subUp (mulUp (P.b i) (sA i)) (HPolytope.aux_scaleDevLo (P.A i) (sA i) dom))
+    (fun i => subDown (mulDown (P.be i) (sE i)) (HPolytope.aux_scaleDevHi (P.Ae i) (sE i) dom))
+    (fun i => subUp (mulUp (P.be i) (sE i)) (HPolytope.aux_scaleDevLo (P.Ae i) (sE i) dom))
 
 end CORALean.Float
 

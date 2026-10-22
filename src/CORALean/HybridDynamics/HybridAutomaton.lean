@@ -45,9 +45,13 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A hybrid automaton: a location for each index of `L`. -/
 structure HybridAutomaton (S G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   loc : L → Location S G L 𝕋 n
 
+/-- The runs of an automaton from a location and state to a location and state: a flow within a
+location, or a flow followed by a transition whose guard holds at its end and a run from the reset
+state. -/
 inductive HybridAutomaton.IsRun {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
@@ -61,6 +65,7 @@ inductive HybridAutomaton.IsRun {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec 
       HA.IsRun ℓ (x 0) ℓ' y
 
 -- `IsRun` with the jump count carried alongside, exact rather than a bound.
+/-- The runs of an automaton with their jump count: a flow takes none, a transition adds one. -/
 inductive HybridAutomaton.IsRunOn {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :

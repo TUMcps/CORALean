@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 /-- The deviation `σ - p` at one sample, from below. -/
 def sampleDevLo (E : Enclosure 𝕋) (c : Fin (m + 1) → 𝕋) (x : 𝕋) : 𝕋 :=
-  subDown (E.lo x) (evalPolyUp c x)
+  subDown (E.enclose x).inf (evalPolyUp c x)
 
 end CORALean
 

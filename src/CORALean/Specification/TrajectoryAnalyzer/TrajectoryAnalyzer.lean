@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Scalar
+public import CORALean.Global.Interfaces
 public import CORALean.Specification.AtomicProposition.AtomicProposition
 
 @[expose] public section
@@ -30,11 +30,13 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A simulation result: the time points, the states at each, and the location at each. -/
 structure TrajectoryAnalyzer.Trajectory (𝕋 : Type) (n : ℕ) where
   t : List ℝ
   x : ℕ → ℕ → Vec 𝕋 n
   loc : List ℕ
 
+/-- A trajectory analyzer: named atomic propositions and the trajectory they are tested on. -/
 structure TrajectoryAnalyzer (𝕋 : Type) (S : ℕ → Type) (n : ℕ) where
   aps : List (String × AtomicProposition S n)
   traj : TrajectoryAnalyzer.Trajectory 𝕋 n

@@ -13,13 +13,11 @@ public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdA
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
-public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdFloatExact
 public import CORALean.HybridDynamics.Parallel.Theorems.IsStayTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
 public import CORALean.HybridDynamics.Parallel.Theorems.IsRunToProductWith
-public import CORALean.HybridDynamics.Parallel.Theorems.IsStayOfTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.IsRunOfProductWith
 public import CORALean.HybridDynamics.Parallel.Theorems.IsRunOfProduct
 public import CORALean.HybridDynamics.Parallel.Theorems.ReachSetExactProductWithEq

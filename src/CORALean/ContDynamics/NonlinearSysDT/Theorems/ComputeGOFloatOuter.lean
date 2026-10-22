@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGO
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
-public import CORALean.ContSet.Interval.Float.Theorems.DescProdOuter
+public import CORALean.ContSet.Interval.Float.Operations.DescProd
+public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
+public import CORALean.Global.DescProd
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
@@ -48,6 +50,33 @@ namespace CORALean
 open CORALean.Float FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+namespace Float
+section
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+/-- `Interval.descProd` encloses the product of any matrices in the boxes. -/
+theorem Interval.aux_descProd_outer (A : ℕ → Interval (Mat 𝕋 n n)) {M : ℕ → Mat ℝ n n}
+    (hM : ∀ k, M k ∈ (A k).construct) (hi d : ℕ) : -- --- CONCL ---
+    CORALean.descProd M hi d ∈ (Interval.descProd A hi d).construct := by -- --- PROOF ---
+  induction d generalizing hi with
+  | zero =>
+    -- the empty product is the identity, `matPow`'s zeroth power
+    have h := Interval.matPow_outer (A hi) (hM hi) 0
+    rw [pow_zero] at h
+    exact h
+  | succ d ih =>
+    -- one more factor on the left
+    show M hi * CORALean.descProd M (hi - 1) d ∈
+      (Interval.matMul (A hi) (Interval.descProd A (hi - 1) d)).materialiseMat.construct
+    rw [Interval.materialiseMat_eq]
+    exact Interval.matMul_outer _ _ (hM hi) (ih (hi - 1))
+
+end
+end Float
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -121,7 +150,7 @@ theorem NonlinearSysDT.computeGOFloat_outer (sys : NonlinearSysDT n m)
         (Interval.point (u_ref i))).construct :=
     fun i => ho.jacU_mem _ _ _ (hx i) _ (hu i)
   -- so do their products, and every parameter is a product of these
-  have hP := Interval.descProd_outer _ hA
+  have hP := Interval.aux_descProd_outer _ hA
   simp only [G, F, NonlinearSysDT.computeGO, NonlinearSysDT.computeGOFloat]
   refine ⟨hx k, ho.f_mem _ _ _ (hx k) _ (hu k), Interval.matMul_outer _ _ (hA k) (hP _ _),
     ?_, ?_, Interval.matMul_outer _ _ (hC k) (hP _ _), ?_, ?_⟩

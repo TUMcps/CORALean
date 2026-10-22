@@ -31,6 +31,8 @@ variable {n p m : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A solution of the algebraic constraint as a function `h` of state and input: it satisfies the
+constraint `g x (h x u) u = 0`, and it is the only solution. -/
 structure NonlinDASys.ReducedModel (sys : NonlinDASys n p m) where
   h : Vec ℝ n → Vec ℝ m → Vec ℝ p
   sound (x : Vec ℝ n) (u : Vec ℝ m) : sys.g x (h x u) u = 0

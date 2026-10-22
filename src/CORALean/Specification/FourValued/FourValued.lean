@@ -34,6 +34,7 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The four truth values false, unknown, inconclusive and true. -/
 inductive FourValued
   | ff
   | uu

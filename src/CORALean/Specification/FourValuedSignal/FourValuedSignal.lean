@@ -33,6 +33,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A four-valued signal: a three-valued signal overridden by a Boolean signal of the inconclusive
+times. -/
 structure FourValuedSignal (T : Type) where
   signal : KleeneSignal T
   isInconclusive : PointSegmentSignal T

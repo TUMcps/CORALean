@@ -1,6 +1,7 @@
 module
 
-public import CORALean.Global.ExactScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.HybridDynamics.Parallel.Operations.SyncPick
 public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
 

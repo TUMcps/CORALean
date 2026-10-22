@@ -2,9 +2,15 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
-public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
+public import CORALean.ContDynamics.LinParamSys.LinParamSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
+public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
+public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
 
 @[expose] public section
 
@@ -45,6 +51,13 @@ namespace CORALean
 open CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+section
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+end
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

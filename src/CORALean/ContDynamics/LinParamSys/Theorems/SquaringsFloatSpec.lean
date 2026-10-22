@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.SquaringsFloat
 public import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Tactic.Positivity
+public import CORALean.ContSet.Interval.Float.Instances
 
 @[expose] public section
 
@@ -45,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.squaringsFloat_spec {sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n}
+theorem LinParamSys.squaringsFloat_spec {sys : LinParamSys ℐ[𝕋] n}
     {Δt tLo tHi : 𝕋} {η : ℕ} (h2 : 2 ≤ η) : -- --- CONCL ---
     ∀ s ∈ sys.squaringsFloat Δt tLo tHi η,
       sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η := by -- --- PROOF ---

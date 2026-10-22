@@ -36,6 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A Taylor model over floats: a list of terms (coefficient, exponents), a remainder interval, the
+error box `I_error`, and the order `maxOrder` that `times` truncates to. -/
 structure Taylm (𝕋 : Type) (n : ℕ) where
   terms : List (𝕋 × (Fin n → ℕ))
   /-- The remainder, read through `inf` and `sup`, as over ℝ. -/

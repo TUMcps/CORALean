@@ -4,7 +4,6 @@ public import CORALean.Specification.FourValuedSTL.Definitions.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.UntilSpec
 public import CORALean.Specification.STLInterval.Theorems.ZeroLeOfMemSet
 public import Mathlib.Data.NNReal.Defs
-public import CORALean.Specification.FourValuedSTL.Theorems.Basic
 
 @[expose] public section
 
@@ -54,6 +53,14 @@ namespace CORALean
 open scoped NNReal
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `⟦φ⟧_ξ(t) = ⊤` iff `φ` holds of `ξ` at `t`, [1, Sec. 2.5]. -/
+theorem FourValuedSTL.Formula.aux_satBool_eq_true_iff {X : Type} (φ : FourValuedSTL.Formula X)
+    (ξ : ℝ≥0 → X) (t : ℝ≥0) : φ.satBool ξ t = true ↔ φ.Sat ξ t := by
+  simp [FourValuedSTL.Formula.satBool]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValuedSTL.Formula X)
@@ -68,9 +75,9 @@ theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValued
   refine ⟨hv, fun t => ?_⟩
   -- the two Boolean values are equal iff the two conditions are equivalent
   have e₁ := fun t' => (iff_of_eq (congrArg (· = true) (h₁ t'))).trans
-    (FourValuedSTL.Formula.satBool_eq_true_iff φ₁ ξ t')
+    (FourValuedSTL.Formula.aux_satBool_eq_true_iff φ₁ ξ t')
   have e₂ := fun t' => (iff_of_eq (congrArg (· = true) (h₂ t'))).trans
-    (FourValuedSTL.Formula.satBool_eq_true_iff φ₂ ξ t')
+    (FourValuedSTL.Formula.aux_satBool_eq_true_iff φ₂ ξ t')
   have key : (l₁.until I l₂).at t = true ↔ (FourValuedSTL.Formula.until I φ₁ φ₂).Sat ξ t := by
     rw [h t t.2]
     simp only [FourValuedSTL.Formula.Sat]
@@ -84,7 +91,7 @@ theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValued
       refine ⟨t', hu, (e₂ t').2 hr, fun x hx1 hx2 => ?_⟩
       have hx0 : 0 ≤ x := by have := NNReal.coe_nonneg t; linarith
       exact (e₁ ⟨x, hx0⟩).2 (hl ⟨x, hx0⟩ (by exact_mod_cast hx1) (by exact_mod_cast hx2))
-  exact Bool.eq_iff_iff.2 (key.trans (FourValuedSTL.Formula.satBool_eq_true_iff _ ξ t).symm)
+  exact Bool.eq_iff_iff.2 (key.trans (FourValuedSTL.Formula.aux_satBool_eq_true_iff _ ξ t).symm)
 
 end CORALean
 

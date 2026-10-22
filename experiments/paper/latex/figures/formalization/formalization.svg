@@ -86,12 +86,12 @@
 <text x="142" y="299" text-anchor="end">Lean theorems</text>
 <rect x="150.0" y="288" width="107.1" height="14" fill="rgb(0,114,189)"/>
 <text x="203.5" y="299" text-anchor="middle" font-size="9" fill="#fff">1859</text>
-<rect x="257.1" y="288" width="196.4" height="14" fill="rgb(42,92,173)"/>
-<text x="355.3" y="299" text-anchor="middle" font-size="9" fill="#000">3410</text>
-<rect x="453.5" y="288" width="113.4" height="14" fill="rgb(84,69,158)"/>
-<text x="510.2" y="299" text-anchor="middle" font-size="9" fill="#000">1969</text>
-<rect x="566.9" y="288" width="103.1" height="14" fill="rgb(126,47,142)"/>
-<text x="618.4" y="299" text-anchor="middle" font-size="9" fill="#000">1791</text>
+<rect x="257.1" y="288" width="183.7" height="14" fill="rgb(42,92,173)"/>
+<text x="348.9" y="299" text-anchor="middle" font-size="9" fill="#000">3190</text>
+<rect x="440.8" y="288" width="114.1" height="14" fill="rgb(84,69,158)"/>
+<text x="497.9" y="299" text-anchor="middle" font-size="9" fill="#000">1981</text>
+<rect x="554.9" y="288" width="115.1" height="14" fill="rgb(126,47,142)"/>
+<text x="612.5" y="299" text-anchor="middle" font-size="9" fill="#000">1998</text>
 <rect x="150" y="288" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="314" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="324">paper theorems</text>

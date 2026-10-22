@@ -51,7 +51,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapExact
@@ -90,8 +89,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusPoint
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftExact
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ShiftPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PowSortPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortTailPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortExact
@@ -178,7 +175,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SquareExampleConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMonomial
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexInCone
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotConvex
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotPolytope
@@ -186,7 +182,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.UnionSubsetConvHull
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GreedyTargetSpec
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LeafNodeSpec
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxGreedyOuter
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubEvalExpand
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructInterConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.InnerScalingSubsetOfLt

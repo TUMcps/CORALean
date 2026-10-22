@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 `AdaptiveState`: what one iteration of [1, Alg. 1] hands the next when it runs
 in `𝕋`. The time `t_i` is kept twice: exactly in ℚ, the sum of the steps
-read back through `ToRat`, and as a float bracket `[tLo, tHi]` for the
+read back through `ToRat`, and as a float bracket `tEnc` for the
 enclosure of `e^{A t_i}`, rounded outward step by step.
 
 ## References
@@ -37,10 +37,8 @@ open CORALean.Float
 structure LinearSys.AdaptiveState (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   /-- `t_i`, line 10, relative to `tStart`. -/
   t : ℚ
-  /-- A float below `t_i`. -/
-  tLo : 𝕋
-  /-- A float above `t_i`. -/
-  tHi : 𝕋
+  /-- A bracket of floats around `t_i`. -/
+  tEnc : Interval 𝕋
   /-- `Δt_{i-1}`, the step `Alg. 2` enlarges at its own line 1. -/
   Δt : 𝕋
   /-- `ε_P([0,t_i])`, eq. (9). -/

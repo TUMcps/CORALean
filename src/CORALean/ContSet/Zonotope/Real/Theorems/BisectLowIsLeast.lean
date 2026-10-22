@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.BisectLow
 public import CORALean.ContSet.Zonotope.Real.Theorems.BisectInvStep
 public import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
-public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfHorizontal
+public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
@@ -52,6 +52,20 @@ namespace CORALean.Real
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A generator pointing along `σ` has a nonnegative cross product with one that does not. -/
+theorem Zonotope.aux_cross_nonneg_of_horizontal {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w : Vec ℝ 2}
+    (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0)) (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0))
+    (hux : 0 < σ * u 0) (hwx : σ * w 0 ≤ 0) : -- --- CONCL ---
+    0 ≤ σ * (u 0 * w 1 - u 1 * w 0) := by -- --- PROOF ---
+  rcases hwx.lt_or_eq with h | h
+  · have := Zonotope.cross_neg_of_horizontal hσ hw hu hux h
+    nlinarith
+  · have hσne : σ ≠ 0 := by rcases hσ with rfl | rfl <;> norm_num
+    have hw0 : w 0 = 0 := (mul_eq_zero.mp h).resolve_left hσne
+    rw [hw0]
+    nlinarith [mul_nonneg hux.le hw.1]
+
 
 /-- The passes keep the invariant and have shrunk `G` to at most one generator after `r` of them. -/
 theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
@@ -142,7 +156,7 @@ theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
           have hcG : c' ∉ ({a} : Finset (Fin Z.h)) := by simpa using hca
           by_cases hpos : 0 < σ * Z.G c' 0
           · exact hd a (Finset.mem_singleton_self a) c' hpos hcB hcG
-          · exact Zonotope.cross_nonneg_of_horizontal hσ (hH a) (hH c')
+          · exact Zonotope.aux_cross_nonneg_of_horizontal hσ (hH a) (hH c')
               (hGA a (Finset.mem_singleton_self a)) (not_lt.mp hpos))
         (hGA a (Finset.mem_singleton_self a)) hw
     obtain ⟨hzZ, hzmin⟩ := hE z hz

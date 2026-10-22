@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 /-- And from above, the other crossing. -/
 def sampleDevUp (E : Enclosure 𝕋) (c : Fin (m + 1) → 𝕋) (x : 𝕋) : 𝕋 :=
-  subUp (E.hi x) (evalPolyDown c x)
+  subUp (E.enclose x).sup (evalPolyDown c x)
 
 end CORALean
 

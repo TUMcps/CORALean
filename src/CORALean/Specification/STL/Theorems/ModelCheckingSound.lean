@@ -2,7 +2,9 @@ module
 
 public import CORALean.Specification.STL.Theorems.ExistsNnf
 public import CORALean.Specification.STL.Theorems.NnfExistsSampled
-public import CORALean.Specification.STL.Theorems.SampToFormulaScale
+public import CORALean.Specification.STL.Operations.FormulaScale
+public import CORALean.Specification.STL.Operations.SampToFormula
+public import CORALean.Specification.STL.Theorems.ScaleOfPform
 public import CORALean.Specification.STL.Theorems.SatScale
 public import CORALean.Specification.STL.Theorems.SampSatToCNF
 public import CORALean.Specification.STL.Theorems.SampNodupToCNF
@@ -54,6 +56,23 @@ open scoped NNReal
 variable {X : Type}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A sampled time formula at step 1 scales to step c. -/
+theorem STL.Samp.aux_toFormula_scale (c : ℝ≥0) (s : STL.Samp X) : -- --- CONCL ---
+    (s.toFormula 1).scale c = s.toFormula c := by -- --- PROOF ---
+  induction s with
+  | lit ϱ => exact STL.Formula.scale_ofPform c ϱ
+  | not s ih => simp only [STL.Samp.toFormula, STL.Formula.scale, ih]
+  | and s t ihs iht =>
+    simp only [STL.Samp.toFormula, STL.Formula.and, STL.Formula.scale, ihs, iht]
+  | or s t ihs iht => simp only [STL.Samp.toFormula, STL.Formula.scale, ihs, iht]
+  | next s ih =>
+    simp only [STL.Samp.toFormula, STL.Formula.next, STL.Formula.scale, STL.Formula.tt, ih, one_mul]
+  | fin ϱ => simp only [STL.Samp.toFormula, STL.Formula.scale, STL.Formula.scale_ofPform, one_mul]
+  | glob ϱ => simp only [STL.Samp.toFormula, STL.Formula.scale, STL.Formula.scale_ofPform, one_mul]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.model_checking_sound {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X) (hstl : φ.IsStl)
@@ -71,7 +90,7 @@ theorem STL.model_checking_sound {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X)
   -- the sampled time formula at step `c` implies `ϕ`: scale the one at step `1` that implies `n`
   have hφ : ∀ ξ, (s.toFormula c).Sat ξ → φ.Sat ξ := fun ξ h => by
     have h₁ : (s.toFormula 1).Sat (fun t => ξ (t * c)) := by
-      rw [← STL.Formula.sat_scale hc, STL.Samp.toFormula_scale]; exact h
+      rw [← STL.Formula.sat_scale hc, STL.Samp.aux_toFormula_scale]; exact h
     exact (hn ξ).1 ((STL.Formula.sat_scale hc _ ξ).2 (hs _ h₁))
   -- `Υ` is sound for the normal form, which is equivalent to `s`
   have hC := (STL.CNF.upsilon_sound_complete hc hne hT hT' (s.toCNF true)

@@ -114,6 +114,7 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
           ⟨fun i => le_add_of_le_of_nonneg (hcarry i (hle i)) (abs_nonneg _), fun i => i.elim0⟩,
         hval⟩) h0
 
+/-- The constrained zonotope built from bounds on each coordinate contains the polytope. -/
 theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : -- --- CONCL ---

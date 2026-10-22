@@ -3,7 +3,8 @@ import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 import CORALean.Examples.Bench.RandVerifyInstance
 import CORALean.Examples.Bench.RandVerifyRatExact
 import CORALean.Examples.Bench.RandVerifySystem
-import CORALean.Global.Float.ToRat
+import CORALean.Global.Float.Interfaces
+import CORALean.Global.Float.SoundFloatArithmetic
 
 /-!
 # `randverify`: reading the system into a number type, exactly

@@ -1,7 +1,8 @@
 module
 
 public import CORALean.NN.Theorems.MergeErrorWidthLeRow
-public import CORALean.NN.Theorems.Real.Basic
+public import CORALean.NN.Operations.MergeRowWeight
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section
 
@@ -49,6 +50,12 @@ namespace CORALean
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- ℝ-only, the weights being exact: a sum of absolute values. -/
+theorem aux_mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) :
+    0 ≤ mergeRowWeight W i :=
+  Finset.sum_nonneg fun k _ => abs_nonneg (W i k)
+
+
 /-- A row's share of a budget scaled by the sum of every row's weight, plus one,
 never exceeds the budget itself. -/
 theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε) : -- --- CONCL ---
@@ -75,7 +82,7 @@ theorem exists_mergeTolerance {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (hY
       EB.sup i - EB.inf i ≤ ε := by -- --- PROOF ---
   -- the `1` keeps the denominator positive even if every row weight is `0`
   have hSnonneg : (0:ℝ) ≤ ∑ j, mergeRowWeight W j :=
-    Finset.sum_nonneg fun j _ => mergeRowWeight_nonneg W j
+    Finset.sum_nonneg fun j _ => aux_mergeRowWeight_nonneg W j
   have hD : (0:ℝ) < 2 * (1 + ∑ j, mergeRowWeight W j) := by linarith
   refine ⟨ε / (2 * (1 + ∑ j, mergeRowWeight W j)), div_pos hε hD, fun y i => ?_⟩
   intro EB
@@ -84,7 +91,7 @@ theorem exists_mergeTolerance {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (hY
     (ε / (2 * (1 + ∑ j, mergeRowWeight W j))) hδnonneg hY W i
   -- a row's weight is at most the sum over every row, each of them nonnegative
   have hrow_le : mergeRowWeight W i ≤ ∑ j, mergeRowWeight W j :=
-    Finset.single_le_sum (fun j _ => mergeRowWeight_nonneg W j) (Finset.mem_univ i)
+    Finset.single_le_sum (fun j _ => aux_mergeRowWeight_nonneg W j) (Finset.mem_univ i)
   exact le_trans hbound (aux_scaled_le hSnonneg hrow_le hε)
 
 end CORALean

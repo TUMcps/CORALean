@@ -43,7 +43,7 @@ theorem sampleDevLo_le {E : Enclosure 𝕋} (hE : E.Sound σ) (c : Fin (m + 1) �
     (x : 𝕋) : -- --- CONCL ---
     toReal (sampleDevLo E c x)
       ≤ σ (toReal x) - Real.evalPoly (fun k => toReal (c k)) (toReal x) := by -- --- PROOF ---
-  have h1 := subDown_le_sub (E.lo x) (evalPolyUp c x)
+  have h1 := subDown_le_sub (E.enclose x).inf (evalPolyUp c x)
   have h2 := hE.lo_le x
   have h3 := le_evalPolyUp c x
   rw [sampleDevLo]

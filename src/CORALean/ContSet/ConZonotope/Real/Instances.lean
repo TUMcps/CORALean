@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex

@@ -28,9 +28,6 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
 public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.IsFullDimSound
-public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot
-public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairSymm
-public import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
 public import CORALean.ContSet.HPolytope.Float.Theorems.IsequalNominal
 public import CORALean.ContSet.HPolytope.Float.Theorems.LiftErrorBox
 public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
@@ -38,8 +35,6 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
 public import CORALean.ContSet.HPolytope.Float.Theorems.MinusOuter
@@ -58,7 +53,6 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
 public import CORALean.ContSet.HPolytope.Float.Theorems.RepresentsaFullspaceSound
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
-public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
 public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
 
 /-!

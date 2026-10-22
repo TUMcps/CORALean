@@ -25,6 +25,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The set types `representsa_` of an STL interval is asked about: empty set, STL interval, point
+and origin. -/
 inductive STLInterval.RepresentsaType
   | emptySet
   | stlInterval

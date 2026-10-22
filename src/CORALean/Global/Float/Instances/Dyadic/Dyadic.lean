@@ -30,10 +30,12 @@ namespace CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A dyadic number `mantissa · 2 ^ exponent`; the precision `p` is a phantom parameter. -/
 structure Dyadic (p : ℕ) where
   mantissa : ℤ
   exponent : ℤ
 
+/-- The real number a dyadic denotes. -/
 def Dyadic.toReal {p : ℕ} (d : Dyadic p) : ℝ :=
   (d.mantissa : ℝ) * ((2 ^ d.exponent : ℚ) : ℝ)
 

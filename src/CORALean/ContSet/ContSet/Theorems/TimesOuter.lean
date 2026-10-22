@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.ContSet.Operations.Times
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.Global.ExactScalar
+public import CORALean.Global.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

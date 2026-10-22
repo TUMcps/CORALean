@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLine
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosure
 public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
+public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 

@@ -3,7 +3,8 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.Global.Float.Sqrt
 public import CORALean.Global.Float.NoNaN
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

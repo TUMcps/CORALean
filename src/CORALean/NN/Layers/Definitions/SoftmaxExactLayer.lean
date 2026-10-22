@@ -29,9 +29,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of the exact softmax layer: only that the dimension is kept. -/
 structure SoftmaxLayer (n m : ℕ) : Type where
   dim : n = m
 
+/-- The exact softmax layer is an `Enclose` kind; noncomputable, as the box of `Real.exp` has no
+scalar evaluation. -/
 noncomputable instance : Enclose SoftmaxLayer S where
   eval := fun {n m} l => match n, m, l with
     | _, _, ⟨rfl⟩ => Erased.mk softmax

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
 public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
-public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 # A polynomial as constant, linear and higher part
 
 `P(s) = c + Σₖ Lₖ sₖ + P_{≥2}(s)`: every term has degree zero (a constant), one (a coordinate,
-`degree_eq_one`) or more. The split [1, Sec. 2] bounds the linear and the nonlinear part by.
+`aux_degree_eq_one`) or more. The split [1, Sec. 2] bounds the linear and the nonlinear part by.
 
 ## Inputs
 * `L` – terms of the polynomial
@@ -43,6 +43,30 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- An exponent of degree one is a unit vector. -/
+theorem Taylm.aux_degree_eq_one {e : Fin n → ℕ} (h : Taylm.degree e = 1) : -- --- CONCL ---
+    ∃ k, e = Pi.single k 1 := by -- --- PROOF ---
+  unfold Taylm.degree at h
+  obtain ⟨k, -, hk⟩ : ∃ k ∈ Finset.univ, e k ≠ 0 := by
+    by_contra hc
+    push Not at hc
+    rw [Finset.sum_eq_zero hc] at h
+    exact zero_ne_one h
+  have hrest : ∑ j ∈ Finset.univ.erase k, e j = 1 - e k := by
+    rw [← Finset.add_sum_erase _ _ (Finset.mem_univ k)] at h; omega
+  have hk1 : e k = 1 := by
+    have := Finset.sum_nonneg (s := Finset.univ.erase k) fun j _ => Nat.zero_le (e j)
+    rw [← Finset.add_sum_erase _ _ (Finset.mem_univ k)] at h; omega
+  refine ⟨k, funext fun j => ?_⟩
+  by_cases hj : j = k
+  · subst hj; simp [hk1]
+  · rw [Pi.single_eq_of_ne hj]
+    rw [hk1, Nat.sub_self] at hrest
+    exact (Finset.sum_eq_zero_iff.1 hrest) j (Finset.mem_erase.2 ⟨hj, Finset.mem_univ j⟩)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -82,7 +106,7 @@ theorem Taylm.polyOf_eq_lin_add_higher (L : List (ℝ × (Fin n → ℕ))) (s : 
         ring
       -- a linear term: its monomial is its variable
       · have h1 : Taylm.degree a.2 = 1 := by omega
-        obtain ⟨k, hk⟩ := Taylm.degree_eq_one h1
+        obtain ⟨k, hk⟩ := Taylm.aux_degree_eq_one h1
         have hsum : ∑ j, (if a.2 = Pi.single j 1 then a.1 else 0) * s j = a.1 * s k := by
           rw [Finset.sum_eq_single k]
           · simp [hk]

@@ -43,6 +43,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A nonlinear system `ẋ = f(x, u)` with output `g` of dimension `q`, as CORA's `nonlinearSys`. -/
 structure NonlinearSys (n m : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ n
   q : ℕ

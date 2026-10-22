@@ -10,7 +10,9 @@ public import CORALean.Specification.STLInterval.Theorems.SetAnd
 public import CORALean.Specification.STLInterval.Theorems.SetLeftClosure
 public import CORALean.Specification.STLInterval.Theorems.SetMinus
 public import CORALean.Specification.STLInterval.Theorems.SetRightClosure
-public import CORALean.Specification.STLInterval.Theorems.SetUntilNoZero
+public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Operations.Supremum
+public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 @[expose] public section
@@ -45,6 +47,53 @@ namespace CORALean
 open scoped Pointwise
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open Classical in
+/-- `untilIntNoZero` denotes the times of the until interval except `0`. -/
+theorem STLInterval.aux_set_untilNoZero (U U' : STLInterval)
+    (hU' : U' = if U.containsPoint 0 0 then
+      STLInterval.stlInterval 0 (U.supremum.value.getD 0) false U.supremum.closed le_rfl else U)
+    : -- --- CONCL ---
+    U'.set = U.set \ {0} := by -- --- PROOF ---
+  by_cases h : U.containsPoint 0 0
+  · -- `0` is in the interval, so the interval starts at `0`, closed
+    have h0 := (STLInterval.containsPoint_zero_iff U 0).1 h
+    rw [hU', if_pos h]
+    cases U with
+    | empty => exact absurd h0 (by simp [STLInterval.set])
+    | nonempty l u lc rc a b c hl =>
+      simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq, EReal.coe_zero] at h0
+      have hl0 : l = 0 := by
+        rcases h0.1 with h' | ⟨-, h'⟩
+        · exact absurd hl (not_le.2 h')
+        · exact h'
+      have hlc : lc = true := by
+        rcases h0.1 with h' | ⟨h', -⟩
+        · exact absurd hl (not_le.2 h')
+        · exact h'
+      -- the sets agree except at `0`
+      simp only [STLInterval.supremum, Option.getD_some]
+      rw [STLInterval.set_stlInterval]
+      ext t
+      simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq, Set.mem_sdiff,
+        Set.mem_singleton_iff, hl0, hlc]
+      constructor
+      · rintro ⟨h1 | ⟨h1, -⟩, h2⟩
+        · exact ⟨⟨Or.inl h1, h2⟩, fun e => by simp [e] at h1⟩
+        · exact absurd h1 (by simp)
+      · rintro ⟨⟨h1 | ⟨-, h1⟩, h2⟩, h3⟩
+        · exact ⟨Or.inl h1, h2⟩
+        · exact absurd (by exact_mod_cast h1.symm) h3
+  · -- `0` is not in the interval
+    have h0 : (0 : ℝ) ∉ U.set := fun h' => h ((STLInterval.containsPoint_zero_iff U 0).2 h')
+    rw [hU', if_neg h]
+    exact (Set.sdiff_singleton_eq_self h0).symm
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Classical in
@@ -57,7 +106,7 @@ theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval)
           t ∈ L.leftClosure.set ∧ t' - t ∈ U.set ∧ t' ≠ t) ∨
         (0 ∈ U.set ∧ ∃ R ∈ rhsInt, t ∈ R.set)) := by -- --- PROOF ---
   -- the until interval without zero
-  have hU'set := STLInterval.set_untilNoZero U _ rfl
+  have hU'set := STLInterval.aux_set_untilNoZero U _ rfl
   have h0U : U.containsPoint 0 0 ↔ (0 : ℝ) ∈ U.set := STLInterval.containsPoint_zero_iff U 0
   unfold PointSegmentSignal.intervalUntil
   dsimp only

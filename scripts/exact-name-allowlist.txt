@@ -1,5 +1,0 @@
-# Definitions of a `Set` of reachable states whose name does not end in `Exact` (#224).
-# `scripts/check-exact-names.py` refuses any other: the true reachable set, the one a trajectory
-# semantics defines and no algorithm computes, ends in `Exact` (`LinearSys.reachExact`). One name
-# per line, `<name>  <reason>`. An entry that no declaration carries any more is reported as
-# stale, so the list only shrinks. It is empty: the rename of #224 left no exception.

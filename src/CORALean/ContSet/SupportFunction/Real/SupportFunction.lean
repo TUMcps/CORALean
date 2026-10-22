@@ -32,6 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A support function: the extended-real supremum `h` of each linear functional over the set. -/
 structure SupportFunction (α : Type) [AddCommGroup α] [Module ℝ α] where
   h : (α →ₗ[ℝ] ℝ) → EReal
 

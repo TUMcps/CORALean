@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.StarSet.Real.StarSet
 public import Mathlib.Analysis.Convex.Basic

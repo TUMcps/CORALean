@@ -49,6 +49,12 @@ def RegionPoly.Encloses (σ : ℝ → ℝ) (r : RegionPoly 𝕋) : Prop :=
 def RegionPoly.Fits (σ : ℝ → ℝ) (tol l u : 𝕋) (r : RegionPoly 𝕋) : Prop :=
   r.lo = some l ∧ r.hi = some u ∧ r.Encloses σ ∧ toReal r.err ≤ toReal tol
 
+/-- An accepted region with the end of it the search stopped at, which is where the next one
+starts. -/
+structure RegionPoly.Found (𝕋 : Type) where
+  region : RegionPoly 𝕋
+  edge : 𝕋
+
 end CORALean
 
 

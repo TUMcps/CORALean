@@ -6,7 +6,8 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 public import CORALean.Global.Float.Exp
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section

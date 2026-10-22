@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Graph.Complexity.Space.Theorems.Alg1NodeEqGcnActSteps
 public import CORALean.NN.Graph.Complexity.Space.Theorems.Alg1NodeHLe
-public import CORALean.NN.Graph.Complexity.Space.Theorems.GcnActStepsQ
+public import CORALean.NN.Graph.Operations.GcnActSteps
 public import CORALean.NN.Graph.Complexity.Space.Theorems.Basic
 public import CORALean.NN.Graph.Complexity.Space.Theorems.TailEncloseCountLe
 public import CORALean.NN.Graph.Operations.Alg1Graph
@@ -62,6 +62,38 @@ open Matrix
 variable {N m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {N : ℕ}
+
+/-- With a first set free of independent generators, the chain's set is too. -/
+theorem GNN.aux_gcnActSteps_q (L : ℕ) : -- --- CONCL ---
+    ∀ (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
+      (P : PolyZonotope (Mat ℝ N N)) (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p),
+      H.q = 0 → (GNN.gcnActSteps L c W acts P H hp).q = 0 := by -- --- PROOF ---
+  induction L with
+  | zero => intro c W acts P H hp hq; exact hq
+  | succ L ih =>
+    intro c W acts P H hp hq
+    exact ih _ _ _ _ _ _ rfl
+
+end
+
+
+section
+variable {N F : ℕ}
+
+/-- The `h` count of `sumPool`'s result. -/
+theorem GNN.aux_sumPool_h (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).h = pZ.h := rfl
+
+
+/-- The `q` count of `sumPool`'s result. -/
+theorem GNN.aux_sumPool_q (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).q = pZ.q := rfl
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1 (generators)]: the generators of `Alg. 1`'s output, dependent and independent, number
@@ -78,7 +110,7 @@ theorem GNN.alg1Graph_count_le (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m
   -- the graph layers leave no independent generators, so the pooled set has `h` alone
   have hq : (GNN.alg1Node R A U L c W acts X).q = 0 := by
     rw [GNN.alg1Node_eq_gcnActSteps]
-    exact GNN.gcnActSteps_q L c W acts _ _ rfl rfl
+    exact GNN.aux_gcnActSteps_q L c W acts _ _ rfl rfl
   have hnode := GNN.alg1Node_h_le R A U hm L c W acts ν hadd X
   have htail := GNN.tailEnclose_count_le T (fun t => c (L + t)) f e hf
     (GNN.sumPool (GNN.alg1Node R A U L c W acts X))
@@ -86,7 +118,7 @@ theorem GNN.alg1Graph_count_le (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m
       (GNN.sumPool (GNN.alg1Node R A U L c W acts X))).h
     + (GNN.tailEnclose T (fun t => c (L + t)) f
       (GNN.sumPool (GNN.alg1Node R A U L c W acts X))).q + 1 ≤ _
-  simp only [GNN.sumPool_h, GNN.sumPool_q, hq] at htail
+  simp only [GNN.aux_sumPool_h, GNN.aux_sumPool_q, hq] at htail
   omega
 
 end CORALean.Real

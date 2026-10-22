@@ -43,6 +43,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A spectrahedral shadow: the points `c + Σ βᵢ Gᵢ` over coefficients `β` with `A₀ + Σ βᵢ Aᵢ`
+positive semidefinite. -/
 structure SpectraShadow (α : Type) where
   /-- The size of the matrices in the inequality. -/
   k : ℕ
@@ -53,6 +55,8 @@ structure SpectraShadow (α : Type) where
   c : α
   G : Fin m → α
 
+/-- The set a spectrahedral shadow denotes: the points `c + Σ βᵢ Gᵢ` over coefficients `β` that make
+`A₀ + Σ βᵢ Aᵢ` positive semidefinite. -/
 def SpectraShadow.construct (S : SpectraShadow α) : Set α :=
   {x | ∃ β : Fin S.m → ℝ, (S.A₀ + ∑ i, β i • S.A i).PosSemidef ∧ x = S.c + ∑ i, β i • S.G i}
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Mul
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MulGApply
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MulG
 
 @[expose] public section
 
@@ -53,7 +53,8 @@ theorem PolyZonotope.mulG_close (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : F
   have hexact : Real.PolyZonotope.mulG (nominal pZ₁) (nominal pZ₂) l i
       = toReal (PolyZonotope.extG pZ₁ i (finProdFinEquiv.symm l).1)
         * toReal (PolyZonotope.extG pZ₂ i (finProdFinEquiv.symm l).2) := by
-    simp only [Real.PolyZonotope.mulG_apply, PolyZonotope.toReal_extG]
+    simp only [Real.PolyZonotope.mulG, Real.PolyZonotope.bilinG, PolyZonotope.toReal_extG]
+    rfl
   -- the two directed products bracket the exact one, and `subUp` covers the gap
   have hlo := mulDown_le_mul (PolyZonotope.extG pZ₁ i (finProdFinEquiv.symm l).1)
     (PolyZonotope.extG pZ₂ i (finProdFinEquiv.symm l).2)

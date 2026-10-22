@@ -17,7 +17,6 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.MtimesMa
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ProjectCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.QuadMapCost
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceByBasisCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceByCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceCombastelCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceGirardCost

@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- The system a step of `Δt` leaves behind, its matrix the float enclosure of
 `e^{AΔt}` at Taylor order `η`, [1, Sec. 3.2]. -/
 def LinearSys.discretizeEnclosureFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) :
-    LinParamSysDT (fun m n => Interval (Mat 𝕋 m n)) n :=
+    LinParamSysDT ℐ[𝕋] n :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                         -- [e^{AΔt}]
   .canonical eAΔt                                                   -- x_{k+1} ∈ [e^{AΔt}] x_k + u_k
 

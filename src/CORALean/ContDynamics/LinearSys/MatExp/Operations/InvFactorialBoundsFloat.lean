@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialDownFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Operations.FactorialUpFloat
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
@@ -37,11 +37,18 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+def MatExp.aux_factorialUp : ℕ → 𝕋
+  | 0 => one
+  | k + 1 => mulUp (nsmulUp (k + 1) one) (MatExp.aux_factorialUp k)
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The interval `[lo, hi]` with `lo ≤ 1/k! ≤ hi`. -/
 def MatExp.invFactorialBounds (k : ℕ) : Interval 𝕋 :=
-  ⟨divDown one (MatExp.factorialUp k), divUp one (MatExp.factorialDown k)⟩
+  ⟨divDown one (MatExp.aux_factorialUp k), divUp one (MatExp.factorialDown k)⟩
 
 end CORALean.Float
 

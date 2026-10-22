@@ -17,7 +17,6 @@ public import CORALean.Specification.KleeneSignal.Theorems.SetSpec
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalAt
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalAtIff
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalEqNoneIff
-public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalEqSome
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalIsRefinedBy
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalSpec
 public import CORALean.Specification.KleeneSignal.Theorems.UntilBetweenRefinements

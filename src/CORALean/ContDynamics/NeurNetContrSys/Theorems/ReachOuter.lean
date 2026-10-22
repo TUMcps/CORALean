@@ -6,9 +6,8 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.CartProdOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AugmentFlow
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ProjectOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithTimePointOuter
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 @[expose] public section
 

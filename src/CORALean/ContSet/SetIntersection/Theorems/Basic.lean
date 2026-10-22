@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SetIntersection.SetIntersection
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Definitions.Interfaces
 
 @[expose] public section
 

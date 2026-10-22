@@ -36,7 +36,6 @@ public import CORALean.ContSet.Taylm.Float.Theorems.InvCoefMem
 public import CORALean.ContSet.Taylm.Float.Theorems.InvOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.LeListMax
 public import CORALean.ContSet.Taylm.Float.Theorems.ListMinLe
-public import CORALean.ContSet.Taylm.Float.Theorems.LogCoefMem
 public import CORALean.ContSet.Taylm.Float.Theorems.LogOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.MemBernsteinIdx
 public import CORALean.ContSet.Taylm.Float.Theorems.MmulOuter
@@ -47,7 +46,6 @@ public import CORALean.ContSet.Taylm.Float.Theorems.OptBnbMem
 public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoxBoundsMem
-public import CORALean.ContSet.Taylm.Float.Theorems.PolyOfReexpPairs
 public import CORALean.ContSet.Taylm.Float.Theorems.PowBoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.ProdBoundsMem
@@ -71,8 +69,6 @@ public import CORALean.ContSet.Taylm.Float.Theorems.TanOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TanhOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.ToRealLeOfBelowPow
-public import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
 public import CORALean.ContSet.Taylm.Float.Theorems.TrigCoefMem
 public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe

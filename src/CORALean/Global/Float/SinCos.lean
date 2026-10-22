@@ -381,12 +381,15 @@ private theorem sinCosBox_holds (n : ℕ) (a : 𝕋) : Holds (toReal a) (sinCosB
 theorem sinDown_le (n : ℕ) (a : 𝕋) : toReal (sinDown n a) ≤ Real.sin (toReal a) :=
   clampUnit_le (sinCosBox_holds n a).1 (Real.neg_one_le_sin _) (Real.sin_le_one _)
 
+/-- `sinUp` is an upper bound of `sin`. -/
 theorem le_sinUp (n : ℕ) (a : 𝕋) : Real.sin (toReal a) ≤ toReal (sinUp n a) :=
   le_clampUnit (sinCosBox_holds n a).2.1 (Real.neg_one_le_sin _) (Real.sin_le_one _)
 
+/-- `cosDown` is a lower bound of `cos`. -/
 theorem cosDown_le (n : ℕ) (a : 𝕋) : toReal (cosDown n a) ≤ Real.cos (toReal a) :=
   clampUnit_le (sinCosBox_holds n a).2.2.1 (Real.neg_one_le_cos _) (Real.cos_le_one _)
 
+/-- `cosUp` is an upper bound of `cos`. -/
 theorem le_cosUp (n : ℕ) (a : 𝕋) : Real.cos (toReal a) ≤ toReal (cosUp n a) :=
   le_clampUnit (sinCosBox_holds n a).2.2.2 (Real.neg_one_le_cos _) (Real.cos_le_one _)
 

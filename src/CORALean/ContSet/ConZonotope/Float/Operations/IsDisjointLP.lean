@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Float.Operations.SeparatesAlong
+public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
+public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
 
 @[expose] public section
 
@@ -12,9 +13,9 @@ Here that program is solved at ℚ for a *witness* only: the stacked coefficient
 both operands' boxes and constraints, `max -s` over `|(c₁ + G₁β₁) - (c₂ + G₂β₂)|ᵢ ≤ s`, whose dual
 weights on the `2n` gap rows combine into a direction `a` separating the nominal sets when `s > 0`.
 
-The verdict is `separatesAlong`'s at `a` and `-a`, with the error boxes paid by `boundDot`: `true`
-proves the sets disjoint whatever direction the simplex returned; `false` says nothing.
-A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, which costs tightness only.
+The verdict is `aux_separatesAlong`'s at `a` and `-a`, with the error boxes paid by `boundDot`:
+`true` proves the sets disjoint whatever direction the simplex returned; `false` says nothing. A NaN
+among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, which costs tightness only.
 
 ## Inputs
 * `cZ₁` – first constrained zonotope
@@ -40,6 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- `true` only when, in direction `a`, the first set's upper bound lies strictly
+below the second set's lower bound. -/
+def ConZonotope.aux_separatesAlong (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : Bool :=
+  ltStrict (cZ₁.boundDot (c := rowLin (fun (_ : Fin 1) => a) 0) a fun _ => rfl).val
+    (neg (cZ₂.boundDot (c := rowLin (fun (_ : Fin 1) j => neg (a j)) 0) (-a)
+      fun _ => rfl).val)
+
 
 /-- A vector over `Fin h`, placed at offset `off` of an index read as `ℕ`, zero
 elsewhere. -/
@@ -99,7 +108,7 @@ def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Ve
 bounds. Sound when `true`; `false` decides nothing. -/
 def ConZonotope.isDisjointLP (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   let a := ConZonotope.aux_separator cZ₁ cZ₂
-  ConZonotope.separatesAlong cZ₁ cZ₂ a || ConZonotope.separatesAlong cZ₁ cZ₂ (-a)
+  ConZonotope.aux_separatesAlong cZ₁ cZ₂ a || ConZonotope.aux_separatesAlong cZ₁ cZ₂ (-a)
 
 end CORALean.Float
 

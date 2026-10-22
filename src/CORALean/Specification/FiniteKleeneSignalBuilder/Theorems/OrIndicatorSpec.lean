@@ -3,7 +3,10 @@ module
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Definitions.Covers
 public import CORALean.Specification.FiniteSignal.Operations.Combine
 public import CORALean.Specification.FiniteSignal.Operations.Indicator
-public import CORALean.Specification.FiniteSignal.Theorems.AtIsSome
+public import CORALean.Specification.FiniteSignal.Theorems.AtEqValueAt
+public import CORALean.Specification.FiniteSignal.Theorems.Basic
+public import CORALean.Specification.FiniteSignal.Theorems.PairsOfValid
+public import CORALean.Specification.FiniteSignal.Theorems.ValueAtConsOfGe
 public import CORALean.Specification.FiniteSignal.Theorems.CombineSpec
 public import CORALean.Specification.FiniteSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.FiniteSignal.Theorems.TimeLeDuration

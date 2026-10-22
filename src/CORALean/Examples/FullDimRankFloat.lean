@@ -61,6 +61,7 @@ def zNear : Zonotope (Vec D 2) :=
 /-- A triangle and three collinear points, as vertices. -/
 def triangle : VPolytope (Vec D 2) :=
     ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩
+/-- Three collinear points as vertices. -/
 def segment : VPolytope (Vec D 2) := ⟨3, ![![d 0 0, d 0 0], ![d 1 0, d 1 0], ![d 2 0, d 2 0]], box0⟩
 
 #eval triangle.isFullDim   -- true

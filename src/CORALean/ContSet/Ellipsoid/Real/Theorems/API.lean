@@ -77,7 +77,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderDerivShape
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderDiagonalizable
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderEigenvalues
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvShape
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderInvSumPos
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetIsMinOn

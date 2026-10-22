@@ -1,6 +1,10 @@
 module
 
 public import CORALean.NN.Layers.Theorems.Real.Basic
+public import CORALean.NN.Layers.Operations.SoftmaxRawLower
+public import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
+public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
+public import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
 
 @[expose] public section
 
@@ -38,6 +42,15 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The constraint the enclosure is built to keep, and a fact a specification may use directly. -/
+theorem aux_softmax_sum_eq_one (x : Vec ℝ n) (i : Fin n) : ∑ j, softmax x j = 1 := by
+  show ∑ j, Real.exp (x j) / (∑ k, Real.exp (x k)) = 1
+  rw [← Finset.sum_div]
+  exact div_self (ne_of_gt (exp_sum_pos x i))
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem softmax_mem_tightened (x rl ru : Vec ℝ n)
@@ -46,7 +59,7 @@ theorem softmax_mem_tightened (x rl ru : Vec ℝ n)
       softmax x i ≤ min (ru i) (1 - ∑ j ∈ Finset.univ.erase i, rl j) := by -- --- PROOF ---
   have hsplit : softmax x i + ∑ j ∈ Finset.univ.erase i, softmax x j = 1 := by
     rw [Finset.add_sum_erase Finset.univ (softmax x) (Finset.mem_univ i)]
-    exact softmax_sum_eq_one x i
+    exact aux_softmax_sum_eq_one x i
   have hru : ∑ j ∈ Finset.univ.erase i, softmax x j ≤ ∑ j ∈ Finset.univ.erase i, ru j :=
     Finset.sum_le_sum fun j _ => hu j
   have hrl : ∑ j ∈ Finset.univ.erase i, rl j ≤ ∑ j ∈ Finset.univ.erase i, softmax x j :=

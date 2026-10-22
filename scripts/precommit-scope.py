@@ -46,7 +46,6 @@ PROJECTION = re.compile(
     r"|MAIN TYPE"                                    # ... and the main type of a representation
     r"|^## (?:Inputs|Hypotheses|Output|Conclusion)\s*$|^\* `"  # the inputs/outputs list (#251)
     r"|^module\s*$"                                  # the non-module list's stale entries
-    r"|ℝ × ℝ|𝕋 × 𝕋|α × α"                           # the pair list's stale entries
     r"|^assert_not_|^-- Import guards"               # the import guards
 )
 

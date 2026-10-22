@@ -1,7 +1,9 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrStepFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunAtFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 
 @[expose] public section
 

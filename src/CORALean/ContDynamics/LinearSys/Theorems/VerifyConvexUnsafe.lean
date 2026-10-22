@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
 public import CORALean.Specification.Theorems.Intersection
 public import CORALean.Specification.Operations.VerifyConvex
-public import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
+public import CORALean.Specification.Theorems.VerifyConvexFoldInv
 
 @[expose] public section
 
@@ -69,6 +69,26 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+open scoped Pointwise
+variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
+
+/-- An `unsafe` answer came from a finite set of accumulated `O - U` points
+whose hull already reaches the origin. -/
+theorem aux_exists_convexHull_of_verifyConvex_eq_unsafe (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
+    (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
+    (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ)
+    (h : verifyConvex bO bU wO wU ℓ fuel = .violated) :
+    ∃ V : Set α, V ⊆ O - U ∧ (0 : α) ∈ convexHull ℝ V :=
+  let inv := verifyConvexFold_inv bO bU wO wU ℓ (List.range fuel)
+    (Set.empty_subset _) (fun h => by cases h) (fun h => by cases h)
+  ⟨_, inv.1, inv.2.1 h⟩
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 3 (exits)]: a `violated` answer from `verifyConvex`, run at the
@@ -82,7 +102,7 @@ theorem LinearSys.not_holds_unsafeSet_of_verifyConvex_violated (sys : LinearSys 
     (wL : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness L d) (ℓ : ℕ → Vec ℝ n →ₗ[ℝ] ℝ) (fuel : ℕ)
     (h : verifyConvex bO bL wO wL ℓ fuel = .violated) :
     ¬ (Specification.unsafeSet L).Holds (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) :=
-  let ⟨_, hV, h0⟩ := exists_convexHull_of_verifyConvex_eq_unsafe bO bL wO wL ℓ fuel h
+  let ⟨_, hV, h0⟩ := aux_exists_convexHull_of_verifyConvex_eq_unsafe bO bL wO wL ℓ fuel h
   let hOconv : Convex ℝ (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) :=
     sys.reachSetExact_eq R₀ Uin ht hbdd ▸
       (hR₀.linear_image (mulVecLin (exp (t • toRealMat sys.A)))).add

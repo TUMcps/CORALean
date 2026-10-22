@@ -28,6 +28,8 @@ namespace CORALean
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The weights of a coordinatewise activation layer: a relaxation stored in the scalar and a proof
+that it encloses some activation `σ`. -/
 structure ActivationLayer (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
     (n m : ℕ) where
   R : Relaxation 𝕋

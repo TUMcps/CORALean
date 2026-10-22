@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDiffCost
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDriftCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 public import CORALean.Global.Cost
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.MapCost
@@ -16,7 +15,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Redu
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.RelaxExpGreedyCost
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Theorems.RelaxWidthMultiCostMono
+public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
 
 @[expose] public section
 
@@ -32,19 +31,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 namespace CORALean.Real
-
-
--- ==============================  `PolyZonotope.eDriftCost_mono`  ============================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       10-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Monotone in the factor count. -/
-theorem PolyZonotope.eDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
-    PolyZonotope.eDriftCost p ≤ PolyZonotope.eDriftCost p' := by
-  simp only [PolyZonotope.eDriftCost, Cost.le_iff, Cost.ops_add]
-  omega
 
 
 -- ============================  `PolyZonotope.quadMapDepCost_mono`  ============================ --

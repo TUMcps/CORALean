@@ -45,6 +45,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A continuous-time linear system, as CORA's `linearSys`: matrices `A B C D E F` and offsets `c`,
+`k`, with the input, output, disturbance and noise dimensions `m q r s` as fields. -/
 structure LinearSys (𝕋 : Type) (n : ℕ) where
   m : ℕ
   q : ℕ

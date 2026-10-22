@@ -2,7 +2,11 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
 public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
+public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 
@@ -43,6 +47,26 @@ open Matrix PolyZonotope
 variable {n k : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+section
+variable {n m : ℕ}
+
+/-- The map of a sum, expanded over pairs: `bilin_point` at `quadBilin`, whose
+point is the same sum with an empty center. -/
+theorem PolyZonotope.aux_quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n))
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
+    quadEval Q (∑ l, extM pZ a l • extG pZ l)
+      = ∑ l, monomial (quadMapE pZ) a l • quadMapG Q pZ l := by -- --- PROOF ---
+  -- the ascription is `bilin_point`'s statement with `quadMapDep`'s fields unfolded
+  have h : quadEval Q (pZ.c + ∑ i, monomial pZ.E a i • pZ.G i)
+      = (0 : Vec ℝ m) + ∑ l, monomial (quadMapE pZ) a l • quadMapG Q pZ l :=
+    (PolyZonotope.bilin_point (PolyZonotope.quadBilin Q) pZ pZ rfl a).symm
+  rw [PolyZonotope.sum_ext_eq_point pZ a, h, zero_add]
+
+end
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n))
@@ -54,7 +78,7 @@ theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZ
       quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i)
         = ∑ l, monomial (quadMapE cPZ.polyZonotope) a l • quadMapG Q cPZ.polyZonotope l := by
     intro a
-    have h := PolyZonotope.quadEval_sum_ext Q cPZ.polyZonotope a
+    have h := PolyZonotope.aux_quadEval_sum_ext Q cPZ.polyZonotope a
     rw [PolyZonotope.sum_ext_eq_point cPZ.polyZonotope a] at h
     exact h
   -- both directions are `hquad` at the same `a`, the independent block being empty
