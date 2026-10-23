@@ -10,7 +10,7 @@ One row per coverage row of `references/coverage/**/*.md` whose note has a `cora
 class, then method. Four columns:
 
 * the CORA function, `\\texttt{<class>/<method>}`, from the coverage file and the row's method
-  cell, linked to that coverage page; a row whose result is unsound is marked with an asterisk;
+  cell, linked to that coverage page; a row whose result is unsound is marked with a double dagger (`\\ddag`), next to the errors table's dagger; a rule separates the CORA groups;
 * a few words on what CORA gets wrong, from `experiments/paper/cora-bugs.json` (written by hand
   from the row's `cora-issue —` text; LaTeX-escaped here outside `$...$`), with the `kind` of the bug: `unsound` (the result can miss reachable states, is not
   the enclosure it claims to be, or is a wrong verdict a verification relies on) or `other` (too
@@ -176,7 +176,7 @@ def table(cr):
             counts["fix"] += 1
         else:
             counts["no_fix"].append(where)
-        mark = "\\textsuperscript{*}" if kind == "unsound" else ""
+        mark = "\\textsuperscript{\\ddag}" if kind == "unsound" else ""
         # a break point after the slash and each underscore, so a long name does not overfull
         name = latex(f"{row['cls']}/{row['method']}").replace("/", "/\\allowbreak{}").replace("\\_", "\\_\\allowbreak{}")
         page = f"\\coraleanrepo references/coverage/{key}.md"
@@ -185,7 +185,12 @@ def table(cr):
     order = {g: i for i, g in enumerate(cr.CORA_GROUPS)}
     keyed = sorted(zip(rows, body), key=lambda rb: (order[rb[0]["group"]], rb[0]["cls"].lower(),
                                                     rb[0]["method"].lower()))
-    body = [b for _, b in keyed]
+    # a rule between the CORA groups (contSet, contDynamics, ...), which the rows are sorted by
+    body = []
+    for i, (r, b) in enumerate(keyed):
+        if i and r["group"] != keyed[i - 1][0]["group"]:
+            body.append("\\midrule")
+        body.append(b)
     for key, entries in data.items():
         if key.startswith("_"):
             continue
