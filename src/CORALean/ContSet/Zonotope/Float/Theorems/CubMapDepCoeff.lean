@@ -59,17 +59,17 @@ theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zon
               (toRealVec Z.c + ∑ j, p j • toRealVec (Z.G j))
             = fun i => toReal ((Zonotope.cubMapDep T Z).c i)
               + ∑ l, toReal ((Zonotope.cubMapDep T Z).G l i) * γ l + e i := by -- --- PROOF ---
-  -- the exact layer's enclosure, on the read-back operand
+  -- the exact cubic map of the nominal part, and its enclosure on the read-back operand
+  set cm := Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
+    (nominal Z : Real.Zonotope (Vec ℝ n)) with hcm
   obtain ⟨γ, hγ, hlin, hx⟩ := Real.Zonotope.cubMap_coeff (fun i k => toRealMat (T i k))
     (nominal Z : Real.Zonotope (Vec ℝ n)) p hp
   -- the two shortfalls, in the box the stored zonotope carries
-  have hd₁ : (fun i => (Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-        (nominal Z : Real.Zonotope (Vec ℝ n))).c i - toReal (Zonotope.cubMapCDown T Z i))
+  have hd₁ : (fun i => cm.c i - toReal (Zonotope.cubMapCDown T Z i))
       ∈ (Interval.residual (Zonotope.cubMapCDown T Z) (Zonotope.cubMapCUp T Z)
         (Zonotope.cubMapCDown T Z)).construct :=
     Interval.sub_mem_residual fun i => Zonotope.cubMapC_between T Z i
-  have hd₂ : (fun i => ∑ l, ((Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-        (nominal Z : Real.Zonotope (Vec ℝ n))).G l i
+  have hd₂ : (fun i => ∑ l, (cm.G l i
           - toReal (Zonotope.cubMapGDown T Z i l)) * γ l)
       ∈ (Zonotope.generatorError (Zonotope.cubMapGDiff T Z)).construct :=
     Zonotope.mem_generatorError (fun i l => Zonotope.cubMapG_close T Z i l) hγ
@@ -81,20 +81,17 @@ theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zon
   simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul] at e
   show _ = toReal (Zonotope.cubMapCDown T Z i)
       + ∑ l, toReal (Zonotope.cubMapGDown T Z i l) * γ l
-      + ((Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-          (nominal Z : Real.Zonotope (Vec ℝ n))).c i - toReal (Zonotope.cubMapCDown T Z i)
-        + ∑ l, ((Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-          (nominal Z : Real.Zonotope (Vec ℝ n))).G l i
+      + (cm.c i - toReal (Zonotope.cubMapCDown T Z i)
+        + ∑ l, (cm.G l i
           - toReal (Zonotope.cubMapGDown T Z i l)) * γ l)
   -- the generator shortfalls split into the exact and the stored sum
-  have hsplit : ∑ l, ((Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-        (nominal Z : Real.Zonotope (Vec ℝ n))).G l i - toReal (Zonotope.cubMapGDown T Z i l)) * γ l
-      = ∑ l, γ l * (Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-        (nominal Z : Real.Zonotope (Vec ℝ n))).G l i
+  have hsplit : ∑ l, (cm.G l i - toReal (Zonotope.cubMapGDown T Z i l)) * γ l
+      = ∑ l, γ l * cm.G l i
         - ∑ l, toReal (Zonotope.cubMapGDown T Z i l) * γ l := by
     refine (Finset.sum_congr rfl fun l _ => ?_).trans (Finset.sum_sub_distrib _ _)
     ring
   rw [hsplit]
+  simp only [hcm]
   linarith [e]
 
 end CORALean.Float

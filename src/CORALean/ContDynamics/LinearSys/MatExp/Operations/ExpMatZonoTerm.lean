@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
 /-!
 # Matrix zonotopes: one order of the exponential's Taylor series
 
-`expMatZonoTerm`: order `i` of [1, Sec. 3.3.2]'s series as a matrix zonotope: the zonotope's
+`expMatZonoTerm`: order `i` of [1, Sec. 3.1]'s series as a matrix zonotope: the zonotope's
 `i`-th power scaled by `1/i!`.
 
 ## Inputs
@@ -20,8 +20,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MatPow
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

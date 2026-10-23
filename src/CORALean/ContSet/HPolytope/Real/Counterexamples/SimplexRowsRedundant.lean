@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.SimplexRows
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.Global.DropIdx
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Tactic.FinCases

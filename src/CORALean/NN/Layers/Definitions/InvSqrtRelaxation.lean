@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.InvSqrt
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.RelaxationOfAntitone
 public import CORALean.NN.Layers.Operations.RelaxationTighter
 

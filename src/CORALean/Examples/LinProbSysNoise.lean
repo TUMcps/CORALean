@@ -38,7 +38,7 @@ namespace CORALean.Examples.LinProbSysNoise
 open CORALean CORALean.Real Matrix
 
 /-- `ẋ = x + u + ξ`. -/
-noncomputable def linProbSys : LinProbSys 1 1 where
+def linProbSys : LinProbSys 1 1 where
   A := diagonal fun _ => 1
   B := 1
   C := 1
@@ -54,14 +54,15 @@ theorem noiseCovariance_closed (t : ℝ) : -- --- CONCL ---
   simp [linProbSys]
   ring_nf
 
-/-- A state at time `T = 1`: the origin zonotope with the covariance of the noise so far. -/
+/-- A state at time `T = 1`: the origin zonotope with the covariance of the noise so far.
+Noncomputable: the covariance is an integral. -/
 noncomputable def linProbState : LinProbSys.PostState 1 where
   Rhom := ⟨0, ![0], fun i => i.elim0⟩
   Rpar_det := ⟨![0], ![0]⟩
   Rpar_prob := ⟨⟨0, ![0], fun i => i.elim0⟩, noiseCovariance linProbSys.A linProbSys.C 1⟩
   RauxDet := ⟨0, ![0], fun i => i.elim0⟩
 
-/-- The input solution of one step, `Δt = 1`. -/
+/-- The input solution of one step, `Δt = 1`. Noncomputable: the covariance is an integral. -/
 noncomputable def linProbInput : ProbZonotope 1 :=
   ⟨⟨0, ![0], fun i => i.elim0⟩, noiseCovariance linProbSys.A linProbSys.C 1⟩
 

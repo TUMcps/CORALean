@@ -8,7 +8,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # Matrix zonotopes: the Taylor truncation
 
-`expMatZonoTaylor`: [1, Sec. 3.3.2]'s Taylor truncation as a matrix zonotope, `i = 0 … η`
+`expMatZonoTaylor`: [1, Sec. 3.1]'s Taylor truncation as a matrix zonotope, every order evaluated
+independently, `i = 0 … η`
 matching `MatExp.expTaylor`'s `Finset.range (η + 1)` exactly — `expIntervalTaylor`'s recursion
 at a zonotope, so that the correlations between a system matrix's entries survive the powers.
 
@@ -20,8 +21,9 @@ at a zonotope, so that the correlations between a system matrix's entries surviv
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

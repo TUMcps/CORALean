@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryTimeIntervalOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
 
 @[expose] public section
 
@@ -75,12 +76,10 @@ theorem LinParamSys.IsCanonicalConstTrajectory.step_outer {sys : LinParamSys ℐ
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) U))) : -- --- CONCL ---
+    (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
+    (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
+    (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r (m + 2)
+      U)) : -- --- CONCL ---
     x r ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   have lin := traj.toLinearSys

@@ -2,6 +2,7 @@ module
 
 public import CORALean.NN.Operations.EncloseUnsafeInputs
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Tactic.NormNum
 public import Mathlib.Tactic.Linarith
@@ -49,7 +50,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `ϕ(t) = -t` relaxed by slope `1` and errors `[0, 0]`. -/
-noncomputable def aux_N : SetBasedNet 1 1 :=
+def aux_N : SetBasedNet 1 1 :=
   .nonlinear (fun _ => 1) (fun _ => 0) (fun _ => 0) .output
 
 /-- `X = ⟨0, [1]⟩_Z = [-1, 1]`. -/

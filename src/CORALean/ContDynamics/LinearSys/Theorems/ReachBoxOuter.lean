@@ -19,15 +19,15 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 @[expose] public section
 
 /-!
-# [1, Alg. 2] encloses the reachable set on every time interval
+# [1, Alg. 1] encloses the reachable set on every time interval
 
 `reachBox`'s `R_k ⊇ R(t)` for every `t ∈ [kr, (k+1)r]` and `k ≤ N`, from a zonotope `X⁰` and an
-input zonotope `U ∋ 0`, at a Taylor order admissible for `r` and `A`: the claim of [1, Alg. 2] that
-it computes `R([0, t_f])` window by window. `R(t)` is `reachSetExact` on `[0, t]`. Three invariants,
-by induction on `k`, at every `τ ∈ [0, r]`: `e^{A(kr+τ)}X⁰ ⊆ H^R_k`, `e^{Akr} inputReach U τ ⊆ V_k`
-and `inputReach U (kr+τ) ⊆ P^R_k`. The first holds at `k = 0` by `reachStepkWrappingFree_outer`, the
-second by [1, Thm. 3.1] (`inputReach_subset_inputSolution`) once `inputReach U τ ⊆ inputReach U r`,
-which `0 ∈ U` gives ([1, Prop. 3.3], `inputReach_mono`); the third is the superposition
+input zonotope `U ∋ 0`, at a Taylor order admissible for `r` and `A`: the claim of [1, Alg. 1] that
+its `R_k` is `R([t_k, t_{k+1}])`. `R(t)` is `reachSetExact` on `[0, t]`. Three invariants, by
+induction on `k`, at every `τ ∈ [0, r]`: `e^{A(kr+τ)}X⁰ ⊆ H^R_k`, `e^{Akr} inputReach U τ ⊆ V_k` and
+`inputReach U (kr+τ) ⊆ P^R_k`. The first holds at `k = 0` by `reachStepkWrappingFree_outer`, the
+second by [2, Prop. 2] (`inputReach_subset_inputSolution`) once `inputReach U τ ⊆ inputReach U r`,
+which `0 ∈ U` gives (`inputReach_mono`); the third is [3, Prop. 4]'s separation
 (`inputReach_separation_eq`), the first summand inside `box(V_{k+1})`.
 
 ## Inputs
@@ -52,8 +52,15 @@ which `0 ∈ U` gives ([1, Prop. 3.3], `inputReach_mono`); the third is the supe
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+      Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control
+      Conference (CDC-ECC), pp. 6814-6821, 2011.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
+* [3] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -77,7 +84,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Alg. 2]: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`, `k ≤ N`. -/
+/-- [1, Alg. 1]: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`, `k ≤ N`. -/
 theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) {r : ℝ}
     (hr : 0 < r) {m : ℕ} (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (h0 : (0 : Vec ℝ n) ∈ U.construct)

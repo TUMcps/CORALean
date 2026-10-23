@@ -4,8 +4,8 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemUnionUpperIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.EvalUnionLower
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SumUnionE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsLeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsRight

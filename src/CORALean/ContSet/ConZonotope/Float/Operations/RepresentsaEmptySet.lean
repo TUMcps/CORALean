@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.BoundDotWeights
 public import CORALean.ContSet.HPolytope.Float.Operations.EmptyWeights
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 
@@ -43,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def ConZonotope.representsa_emptySet (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   let w := cZ.P.emptyWeights
   ltStrict (cZ.boundDotWeights
-    (c := rowLin (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋)) 0)
+    (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋))) 0)
     (fun _ => zero) (fun _ => rfl) w.1 w.2.1 w.2.2).val zero
 
 end CORALean.Float

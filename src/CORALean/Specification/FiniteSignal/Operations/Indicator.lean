@@ -2,7 +2,6 @@ module
 
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import CORALean.Specification.FiniteSignal.Operations.Mk
-public import Mathlib.Data.EReal.Operations
 
 @[expose] public section
 
@@ -11,11 +10,13 @@ public import Mathlib.Data.EReal.Operations
 
 `sig = indicator(dur,int,val)` of `indicator.m`: the signal of duration `dur` that is `val` on the
 interval `int` and false elsewhere, in one of five cases by how `int` lies in `[0,dur]`. `int` is
-given by its bounds `lo` and `hi` (extended reals). CORA throws for an empty or singleton interval
-and, in the constructor, for a negative `dur`; both are `none`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+given by its bounds `lo` and `hi`, time stamps like `dur`; an unbounded end behaves as a bound
+outside `[0,dur]`. CORA throws for an empty or singleton interval and, in the constructor, for a
+negative `dur`; both are `none`. Generic over the time type: at a float scalar the comparisons are
+exact (`TimeOrder`), so nothing rounds.
 
 ## Inputs
+* `T` – time type
 * `dur` – signal duration
 * `lo` – interval lower bound
 * `hi` – interval upper bound
@@ -39,20 +40,20 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = indicator(dur,int,val)`. -/
-noncomputable def FiniteSignal.indicator? (dur : ℝ) (lo hi : EReal) (val : Bool) :
-    Option (FiniteSignal ℝ Bool) :=
+def FiniteSignal.indicator? {T : Type} [TimeOrder T] [Zero T] (dur lo hi : T) (val : Bool) :
+    Option (FiniteSignal T Bool) :=
   -- interval must not be degenerate
   if hi ≤ lo then none
   -- default value or interval out of range
-  else if val = false ∨ hi ≤ 0 ∨ (dur : EReal) ≤ lo then FiniteSignal.mk? [dur] [false]
+  else if val = false ∨ hi ≤ 0 ∨ dur ≤ lo then FiniteSignal.mk? [dur] [false]
   -- interval completely covers range
-  else if lo ≤ 0 ∧ (dur : EReal) ≤ hi then FiniteSignal.mk? [dur] [val]
+  else if lo ≤ 0 ∧ dur ≤ hi then FiniteSignal.mk? [dur] [val]
   -- interval overlaps left range bound
-  else if lo ≤ 0 then FiniteSignal.mk? [hi.toReal, dur] [val, false]
+  else if lo ≤ 0 then FiniteSignal.mk? [hi, dur] [val, false]
   -- interval overlaps right range bound
-  else if (dur : EReal) ≤ hi then FiniteSignal.mk? [lo.toReal, dur] [false, val]
+  else if dur ≤ hi then FiniteSignal.mk? [lo, dur] [false, val]
   -- interval is contained in range
-  else FiniteSignal.mk? [lo.toReal, hi.toReal, dur] [false, val, false]
+  else FiniteSignal.mk? [lo, hi, dur] [false, val, false]
 
 end CORALean
 

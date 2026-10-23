@@ -12,9 +12,6 @@ public import CORALean.Specification.FourValuedSignal.Operations.FindIntervals
 `sig = merge(obj,other)` of `fourValuedSignal.m`: `obj`, with the intervals where `other` is `True`,
 `False` and `Unknown` set to those values in turn; where `other` is inconclusive `obj` stays.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `obj` – four-valued signal
 * `other` – signal whose known values override
@@ -33,11 +30,14 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = merge(obj,other)`. -/
-noncomputable def FourValuedSignal.merge (obj other : FourValuedSignal ℝ) : FourValuedSignal ℝ :=
+def FourValuedSignal.merge (obj other : FourValuedSignal 𝕋) : FourValuedSignal 𝕋 :=
   -- 1. sig = obj
   let sig := obj
   -- 2. the intervals where `other` is True, False and Unknown are set in turn

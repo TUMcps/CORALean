@@ -11,6 +11,7 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Parse
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ParseNew
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Propagate
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.PropagateRec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ToRealAnalyzer
 
 /-!
 # Online reach set analyzers, operations

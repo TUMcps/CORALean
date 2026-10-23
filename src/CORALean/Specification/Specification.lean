@@ -62,15 +62,6 @@ def Specification.unsafeSet (s : ContSet) : Specification ContSet := ⟨s, .unsa
 `safeSet` — see `check.m`'s numeric branch and `robustness.m`. -/
 def Specification.invariant (s : ContSet) : Specification ContSet := ⟨s, .invariant⟩
 
-/-- CORA's `'custom'`: a predicate on the whole set, proved hereditary under
-`⊆` (`mono`) and closed under the unions `holds_iUnion` needs
-(`iUnionClosed`) — which makes it exactly a safe set, per `holds_custom_iff`. -/
-def Specification.custom (p : Set α → Prop)
-    (_mono : ∀ {X O : Set α}, X ⊆ O → p O → p X)
-    (_iUnionClosed : ∀ {ι : Type} {X : ι → Set α}, (∀ i, p (X i)) → p (⋃ i, X i)) :
-    Specification (Set α) :=
-  Specification.safeSet (⋃ h : {S : Set α // p S}, h.1)
-
 /-- A requirement is normally several of these at once, all stored alike. -/
 def Specification.HoldsAll (specs : List (Specification ContSet)) (X : Set α) : Prop :=
   ∀ spec ∈ specs, spec.Holds X

@@ -64,7 +64,7 @@ theorem FourValuedSTL.Formula.aux_satBool_eq_true_iff {X : Type} (φ : FourValue
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValuedSTL.Formula X)
-    (I : STLInterval) (ξ : ℝ≥0 → X)
+    (I : STLInterval ℝ) (ξ : ℝ≥0 → X)
     (l₁ l₂ : PointSegmentSignal ℝ) (hl₁ : l₁.IsValid) (hl₂ : l₂.IsValid)
     (h₁ : ∀ t : ℝ≥0, l₁.at t = φ₁.satBool ξ t)
     (h₂ : ∀ t : ℝ≥0, l₂.at t = φ₂.satBool ξ t) : -- --- CONCL ---

@@ -12,8 +12,8 @@ public import CORALean.ContSet.Interval.Real.Interval
 both ends closed. The real-layer `Interval` has no infinite bound: `toReal` sends `±∞` to `0`, so
 the result is meant for a bounded interval; `stlInterval()` gives the empty box `sup < inf`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
-over `𝕋`, rounded outward) is not yet written.
+Over a float scalar the bounds are the stored ones and nothing rounds; `inf` is sent to `0` as
+`toReal` sends it.
 
 ## Inputs
 * none
@@ -32,12 +32,16 @@ over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.interval : STLInterval → Real.Interval (Vec ℝ 1)
-  | .empty => ⟨fun _ => 1, fun _ => 0⟩
-  | .nonempty l u _ _ _ _ _ _ => ⟨fun _ => l.toReal, fun _ => u.toReal⟩
+def STLInterval.interval : STLInterval 𝕋 → Real.Interval (Vec 𝕋 1)
+  | .empty => ⟨fun _ => one, fun _ => zero⟩
+  | .nonempty l u _ _ _ _ _ => ⟨fun _ => l, fun _ => u.untopD zero⟩
 
 end CORALean
 

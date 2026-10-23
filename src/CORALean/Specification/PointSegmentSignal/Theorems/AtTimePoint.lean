@@ -46,8 +46,8 @@ theorem PointSegmentSignal.at_timePoint {T : Type} [LinearOrder T] [Zero T]
     s.at a = s.pointValue (i + 1) := by
   have hlen := List.length_takeWhile_eq_of_pairwise_lt s.timePoints hs.2.2.2.1 a a i ha le_rfl
     (fun b hb => List.lt_of_pairwise_getElem_succ hs.2.2.2.1 ha hb)
-  simp only [PointSegmentSignal.at, hlen, Nat.add_sub_cancel, ha, if_true,
-    PointSegmentSignal.pointValue, show 2 * (i + 1) - 2 = 2 * i by omega]
+  simp only [PointSegmentSignal.at, hlen, Nat.add_sub_cancel, ha, TimeOrder.exists_mem_eqv_iff,
+    if_true, PointSegmentSignal.pointValue, show 2 * (i + 1) - 2 = 2 * i by omega]
 
 end CORALean
 

@@ -3,8 +3,8 @@ module
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds

@@ -106,6 +106,17 @@ theorem Zonotope.minnormOffset_nonneg (Z : Zonotope (Vec ℝ (n + 1))) (S : Fin 
   div_nonneg (Finset.sum_nonneg fun _ _ => abs_nonneg _) (Real.sqrt_nonneg _)
 
 
+-- =================================  `Zonotope.mtimes_eq_map`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
+theorem Zonotope.mtimes_eq_map (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
+    Zonotope.mtimes M Z = Z.map (Matrix.mulVecLin M) := rfl
+
+
 -- ================================  `Zonotope.norm₂_le_normUb`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026

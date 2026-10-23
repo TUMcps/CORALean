@@ -38,7 +38,7 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.representsa_point (T : Fin m → Taylm n) : Prop :=
+def Taylm.representsa_point (T : Fin m → Taylm n) : Prop :=
   let pZ := Taylm.polyZonotope T
   pZ.representsa_point
 

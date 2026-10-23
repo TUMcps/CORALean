@@ -1,4 +1,4 @@
-import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabIff
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
 import CORALean.HybridDynamics.Parallel.Theorems.ReachSetExactSubsetInvariant

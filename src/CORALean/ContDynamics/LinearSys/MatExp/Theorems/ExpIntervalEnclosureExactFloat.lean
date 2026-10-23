@@ -55,6 +55,8 @@ theorem MatExp.exp_mem_expIntervalEnclosureExact (A : Interval (Mat 𝕋 n n)) (
     : -- --- CONCL ---
     exp (toReal t • M) ∈
       (MatExp.expIntervalEnclosureExact A t κ).construct := by -- --- PROOF ---
+  -- the remainder bound that widens both ends
+  set ρ := MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul t t A)) κ with hρ
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hMB : toReal t • M ∈ (Interval.smul t t A).construct :=
     Interval.smul_outer (le_refl _) (le_refl _) A hM
@@ -62,15 +64,11 @@ theorem MatExp.exp_mem_expIntervalEnclosureExact (A : Interval (Mat 𝕋 n n)) (
   have hb := MatExp.abs_entry_exp_sub_expTaylor_le (Interval.smul t t A) κ hMB hε i j
   rw [abs_le] at hb
   constructor
-  · show toReal (subDown ((MatExp.expIntervalTaylorExact A t κ).inf i j)
-        (MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul t t A)) κ)) ≤ _
-    have hsd := subDown_le_sub ((MatExp.expIntervalTaylorExact A t κ).inf i j)
-      (MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul t t A)) κ)
+  · show toReal (subDown ((MatExp.expIntervalTaylorExact A t κ).inf i j) ρ) ≤ _
+    have hsd := subDown_le_sub ((MatExp.expIntervalTaylorExact A t κ).inf i j) ρ
     linarith [hsd, htay.1, hb.1]
-  · show _ ≤ toReal (addUp ((MatExp.expIntervalTaylorExact A t κ).sup i j)
-        (MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul t t A)) κ))
-    have hau := add_le_addUp ((MatExp.expIntervalTaylorExact A t κ).sup i j)
-      (MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul t t A)) κ)
+  · show _ ≤ toReal (addUp ((MatExp.expIntervalTaylorExact A t κ).sup i j) ρ)
+    have hau := add_le_addUp ((MatExp.expIntervalTaylorExact A t κ).sup i j) ρ
     linarith [hau, htay.2, hb.2]
 
 end CORALean.Float

@@ -15,7 +15,7 @@ now names.
 The typeset chapter is paywalled, so the rows below are read off the authors'
 own preprint, whose local §4.1 is the book's §4.4.1 — the section our tree used
 to cite, now narrowed to the equation inside it. The same construction is Prop. 3.5 of
-[Althoff's thesis](../2010/althoff-thesis.md).
+Althoff's thesis (2010).
 
 ## Results
 

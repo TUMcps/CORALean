@@ -15,9 +15,6 @@ signal is `match` (by default `True`). The inconclusive intervals are those of `
 others are found on the Kleene refinement that maps inconclusive to `False` for `True`, and to
 `True` for `False` and `Unknown`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `s` – four-valued signal
 * `match_` – value to find
@@ -36,12 +33,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `intervals = findIntervals(obj,match)`. -/
-noncomputable def FourValuedSignal.findIntervals (s : FourValuedSignal ℝ)
-    (match_ : FourValued := FourValued.tt) : List STLInterval :=
+def FourValuedSignal.findIntervals (s : FourValuedSignal 𝕋)
+    (match_ : FourValued := FourValued.tt) : List (STLInterval 𝕋) :=
   match match_ with
   | FourValued.ii => s.isInconclusive.findIntervals
   | FourValued.tt => (s.toKleeneSignal Kleene.ff).findIntervals Kleene.tt

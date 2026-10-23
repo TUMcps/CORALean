@@ -2,9 +2,9 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemPadVarsIff

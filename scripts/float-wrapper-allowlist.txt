@@ -14,4 +14,3 @@
 #   name:     a `Real.op (toReal… x)` read at what the floats denote, kept because the call sites
 #             are statements that would otherwise spell the conversion out each time.
 src/CORALean/ContSet/Interval/Float/Interval.lean::Interval.construct  class: the interval's set is its nominal's; dot notation `I.construct` and the `ContSet` instance read it
-src/CORALean/ContSet/HPolytope/Float/Operations/RowLin.lean::rowLin  name: the direction `boundDot` and `FloatBound` are stated against wherever it is a matrix row, about fifty statements, each of which would spell `Real.HPolytope.rowLin (toRealMat A) i` out

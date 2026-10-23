@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 # `LinearSys.oneStep`
 
 CORA's `oneStep(linsys, X, U, u, Δt, η)`: one step under a constant input `u` and a time-varying
-input set `U`, as the time-point set `Rtp` and the time-interval set `Rti` [1, Sec. 3.3]. One `let`
+input set `U`, as the time-point set `Rtp` and the time-interval set `Rti` [1, Eq. 4]. One `let`
 per CORA variable: `PU` is `inputSolution` at `U`; `Pu` is the same series at the singleton `{u}`,
 which is CORA's `particularSolution_constant`; `C_input = G u` with `G` the constant input's
 correction matrix; `Htp = e^{AΔt} X ⊕ Pu`; `C_state = F X`; `Hti = CH(X, Htp) ⊕ C_state`.
@@ -33,8 +33,8 @@ block decomposition (`blocks`, default one block) is not carried.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

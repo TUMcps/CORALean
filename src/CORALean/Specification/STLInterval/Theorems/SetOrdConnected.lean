@@ -36,13 +36,17 @@ unitary signal in the sense of [1, Sec. 2.3 (unitary)].
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.set_ordConnected (J : STLInterval) : J.set.OrdConnected := by
+theorem STLInterval.set_ordConnected (J : STLInterval 𝕋) : J.set.OrdConnected := by
   cases J with
   | empty => exact Set.ordConnected_empty
-  | nonempty l u lc rc a b c _ => exact STLInterval.rawSet_ordConnected l u lc rc
+  | nonempty l u lc rc b c _ => exact STLInterval.rawSet_ordConnected _ _ lc rc
 
 end CORALean
 

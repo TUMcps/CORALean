@@ -139,19 +139,19 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
   have hε' : ‖Δt • Scalar.toRealMat (LinearSys.canonical A_lin : LinearSys ℝ n).A‖ /
       (((q + 2 : ℕ) : ℝ) + 2) < 1 := by
     rw [Scalar.toRealMat_real]; exact hε
+  -- the remainder's product with the lifted input
+  set RM₂ : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
+    (MatExp.inputRemainder A_lin Δt (q + 2)) (U_lin.plus Verror) with hRM₂
   -- the time-varying input's interval-matrix images, and `{f0}`, are zonotopes too
-  have hRc := Zonotope.convex_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
-    (MatExp.inputRemainder A_lin Δt (q + 2)) (U_lin.plus Verror))
-  have hRk := Zonotope.isClosed_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
-    (MatExp.inputRemainder A_lin Δt (q + 2)) (U_lin.plus Verror))
-  have hRb := Zonotope.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
-    (MatExp.inputRemainder A_lin Δt (q + 2)) (U_lin.plus Verror))
-  have pRc := Zonotope.convex_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
-    (MatExp.inputRemainder A_lin Δt (q + 2)) (Zonotope.ofPoint f0))
-  have pRk := Zonotope.isClosed_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
-    (MatExp.inputRemainder A_lin Δt (q + 2)) (Zonotope.ofPoint f0))
-  have pRb := Zonotope.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
-    (MatExp.inputRemainder A_lin Δt (q + 2)) (Zonotope.ofPoint f0))
+  have hRc := Zonotope.convex_construct RM₂
+  have hRk := Zonotope.isClosed_construct RM₂
+  have hRb := Zonotope.isBounded_construct RM₂
+  -- the remainder's product with the point `f0`
+  set RM : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
+    (MatExp.inputRemainder A_lin Δt (q + 2)) (Zonotope.ofPoint f0) with hRM
+  have pRc := Zonotope.convex_construct RM
+  have pRk := Zonotope.isClosed_construct RM
+  have pRb := Zonotope.isBounded_construct RM
   -- moving a shifted set back by `x*`
   have hback : ∀ (Z : Zonotope (Vec ℝ n)) (v : Vec ℝ n), v - xs ∈ Z.construct →
       v ∈ (Z.plus (Zonotope.ofPoint xs)).construct := by

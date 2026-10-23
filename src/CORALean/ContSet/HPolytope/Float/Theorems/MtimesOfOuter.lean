@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.SubsetOfBounds
 
 @[expose] public section
 
@@ -42,7 +43,8 @@ variable {P : HPolytope 𝕋 (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mtimesOf_outer (M : Mat 𝕋 p n) (Aq : Mat 𝕋 q p)
-    (u : ∀ i, FloatBound 𝕋 P.construct ((rowLin Aq i).comp (mulVecLin (toRealMat M)))) :
+    (u : ∀ i, FloatBound 𝕋 P.construct ((Real.HPolytope.rowLin (toRealMat Aq) i).comp
+        (mulVecLin (toRealMat M)))) :
     (toRealMat M *ᵥ ·) '' P.construct ⊆ (HPolytope.mtimesOf M Aq u).construct :=
   HPolytope.subset_ofBounds _ _
 

@@ -50,7 +50,8 @@ theorem PointSegmentSignal.at_between {T : Type} [LinearOrder T] [Zero T]
     s.at t = s.succIntervalValue (i + 1) := by -- --- PROOF ---
   have hlen := List.length_takeWhile_eq_of_pairwise_lt s.timePoints hs.2.2.2.1 t a i ha h1.le h2
   have hne : s.timePoints[i]? ≠ some t := by rw [ha]; simpa using h1.ne
-  simp only [PointSegmentSignal.at, hlen, Nat.add_sub_cancel, hne, if_false,
+  simp only [PointSegmentSignal.at, hlen, Nat.add_sub_cancel, TimeOrder.exists_mem_eqv_iff, hne,
+    if_false,
     PointSegmentSignal.succIntervalValue, show 2 * (i + 1) - 1 = 2 * i + 1 by omega]
 
 end CORALean

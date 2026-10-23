@@ -27,14 +27,19 @@ public import CORALean.Specification.STLInterval.Definitions.WithinTol
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def STLInterval.containsPoint (tol : ℝ) : STLInterval → ℝ → Prop
+def STLInterval.containsPoint (tol : ℝ) : STLInterval 𝕋 → ℝ → Prop
   | .empty, _ => False
-  | .nonempty l u lc rc _ _ _ _, t =>
-    (l < t ∧ (t : EReal) < u) ∨ (lc = true ∧ withinTol tol l t) ∨
-      (rc = true ∧ withinTol tol u t)
+  | .nonempty l u lc rc _ _ _, t =>
+    (((toReal l : ℝ) : EReal) < t ∧ (t : EReal) < toEReal u) ∨
+      (lc = true ∧ withinTol tol (toReal l : ℝ) t) ∨
+      (rc = true ∧ withinTol tol (toEReal u) t)
 
 end CORALean
 

@@ -51,20 +51,20 @@ theorem Interval.zonotope_exact (I : Interval (Vec ℝ n))
     I.zonotope.construct = I.construct := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ (Interval.zonotope_contains I)
   rintro x ⟨β, hβ, rfl⟩ i
+  -- the generators' sum: only the diagonal reaches each coordinate
+  set Gs := ∑ j : Fin n, β j • (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)
+    with hGs
   -- only the diagonal generator reaches coordinate `i`, at a coefficient in `[-1, 1]`
-  have hsum : (∑ j : Fin n, β j •
-        (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i
+  have hsum : Gs i
       = β i * ((I.sup i - I.inf i) / 2) := by
-    rw [Finset.sum_apply, Finset.sum_eq_single i]
+    rw [hGs, Finset.sum_apply, Finset.sum_eq_single i]
     · simp
     · intro j _ hj
       simp only [Pi.smul_apply, smul_eq_mul, if_neg (Ne.symm hj), mul_zero]
     · intro hc
       exact absurd (Finset.mem_univ i) hc
-  change I.inf i ≤ (I.inf i + I.sup i) / 2 + (∑ j : Fin n, β j •
-      (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i
-    ∧ (I.inf i + I.sup i) / 2 + (∑ j : Fin n, β j •
-      (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i ≤ I.sup i
+  change I.inf i ≤ (I.inf i + I.sup i) / 2 + Gs i
+    ∧ (I.inf i + I.sup i) / 2 + Gs i ≤ I.sup i
   rw [hsum]
   have hw : 0 ≤ (I.sup i - I.inf i) / 2 := by linarith [hI i]
   have hb := abs_le.mp (hβ i)

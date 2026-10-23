@@ -9,17 +9,19 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSetLinCo
 # `timeInterval` contains the flow at every time in the step
 
 CORA's `HR([0,r]) = CH(X₀, e^{Ar}X₀) ⊕ F X₀`, and the guarantee that makes it usable: not just at
-the sample times, but at every `t` in `[0, r]`, one named time at a time. `timeInterval_outer`,
-the quantified statement through `reachExact`, is what a caller with no particular `t` in hand
-wants, and is proved from this one. The wrapping-effect-free construction of [1, Alg. 1], one step
-of it. `timeInterval_outer_setLinComb` is the whole argument, at the level of `Set`s; this is
-that composed with `LinComb.linComb_outer` and `Plus.plus_outer`. Homogeneous only: with a non-zero
-input a trajectory also picks up the input integral, which is `TrajectoryTimeIntervalOuter`.
+the sample times, but at every `t` in `[0, r]`, one named time at a time. `timeInterval_outer`, the
+quantified statement through `reachExact`, is what a caller with no particular `t` in hand wants,
+and is proved from this one. The first window of [1, Sec. V-B], at a single matrix, which every
+later window is an image of. `timeInterval_outer_setLinComb` is the whole argument, at the level of
+`Set`s; this is that composed with `LinComb.linComb_outer` and `Plus.plus_outer`. Homogeneous only:
+with a non-zero input a trajectory also picks up the input integral, which is
+`TrajectoryTimeIntervalOuter`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachS
 public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInputExact
 public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

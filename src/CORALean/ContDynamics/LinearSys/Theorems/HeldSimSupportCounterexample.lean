@@ -93,29 +93,33 @@ theorem aux_supportLower_Pu (sys : LinearSys 𝕋 n) (Δt : ℝ)
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [mulVec_mulVec, pow_succ']
 
+/-- The direction `ℓ` pulled back through `j` steps and the input integral, `d_j` of line 14. -/
+noncomputable def aux_supportDir (sys : LinearSys 𝕋 n) (Δt : ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (j : ℕ) :
+    Vec ℝ n →ₗ[ℝ] ℝ :=
+  (ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))).comp
+    (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt))
+
 /-- Line 14 in closed form: `ρ(P̌_U(t_k), ℓ) = ∑_{j<k} ρ(T U₀, d_j)`. -/
 theorem aux_supportLower_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
     (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρP
       = ∑ j ∈ Finset.range k,
-          (((ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))).comp
-              (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt)))
-            (νU ((ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))).comp
-              (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt))))
-          - ((ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))).comp
-              (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt))) c) := by -- --- PROOF ---
+          (aux_supportDir sys Δt ℓ j (νU (aux_supportDir sys Δt ℓ j))
+            - aux_supportDir sys Δt ℓ j c) := by -- --- PROOF ---
   induction k with
   | zero => rfl
   | succ k ih =>
+    -- the direction pulled back through the stored `d`
+    set D := ((sys.supportLower Δt ν₀ νU c ℓ k).d).comp
+      (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt)) with hD
     show (sys.supportLower Δt ν₀ νU c ℓ k).ρP
-      + ((((sys.supportLower Δt ν₀ νU c ℓ k).d).comp
-            (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt)))
-          (νU (((sys.supportLower Δt ν₀ νU c ℓ k).d).comp
-            (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt))))
-        - (((sys.supportLower Δt ν₀ νU c ℓ k).d).comp
-            (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt))) c) = _
-    rw [ih, aux_supportLower_d, Finset.sum_range_succ]
+      + (D
+          (νU D)
+        - D c) = _
+    rw [ih, Finset.sum_range_succ]
+    simp only [hD, aux_supportLower_d]
+    rfl
 
 /-- Lines 10 and 15 at any step, the first step included. -/
 theorem aux_supportLower_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ)
@@ -149,6 +153,7 @@ theorem LinearSys.heldSim_supportCounterexample (sys : LinearSys 𝕋 n) (Δt : 
     (νU ((ℓ.comp (mulVecLin (Φ ^ j))).comp (mulVecLin T)))
   rw [aux_supportLower_ρR, aux_supportLower_ρP, aux_supportLower_Pu, aux_supportLower_d,
     LinearSys.heldSim_eq, map_add, map_sum, map_sum, Finset.sum_sub_distrib]
+  unfold aux_supportDir
   -- the constant input's `ℓ(P_u(t_k))` is the `ũ` line 14 takes off, so the two cancel
   have hũ : ∑ j ∈ Finset.range k, ℓ (Φ ^ j *ᵥ (T *ᵥ c))
       = ∑ j ∈ Finset.range k, ((ℓ.comp (mulVecLin (Φ ^ j))).comp (mulVecLin T)) c := rfl

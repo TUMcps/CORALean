@@ -31,16 +31,19 @@ here `none`.
 
 namespace CORALean
 
-variable {S : ℕ → Type} {d : ℕ}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+  [TimeOrder 𝕋]
+    {S : ℕ → Type} {d : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 open Classical in
-/-- `parse(phi,parent)`. -/
+/-- `parse(phi,parent)`. Noncomputable: the cache lookup compares formulas classically, as the
+time scalar `𝕋` has no decidable equality. -/
 noncomputable def OnlineReachSetAnalyzer.parse (dropPropagated : Bool) :
-    OnlineReachSetAnalyzer.Formula (AtomicProposition S d) → ℕ →
-      OnlineReachSetAnalyzer.ParseState S d → Option (OnlineReachSetAnalyzer.ParseState S d)
+    OnlineReachSetAnalyzer.Formula 𝕋 (AtomicProposition S d) → ℕ →
+      OnlineReachSetAnalyzer.ParseState 𝕋 S d → Option (OnlineReachSetAnalyzer.ParseState 𝕋 S d)
   | φ, parent, st =>
     -- check cache
     match st.cache.find? (fun p => decide (p.1 = φ.key)) with

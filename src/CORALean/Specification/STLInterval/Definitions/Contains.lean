@@ -29,15 +29,21 @@ interval; `contains_` itself errors on an empty `S` over a nonempty container, `
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def STLInterval.contains_ (tol : ℝ) : STLInterval → STLInterval → Prop
+def STLInterval.contains_ (tol : ℝ) : STLInterval 𝕋 → STLInterval 𝕋 → Prop
   | .empty, S => S = .empty
   | .nonempty .., .empty => True
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
-    let upperIncluded := u₁ > u₂ ∨ (withinTol tol u₁ u₂ ∧ (rc₁ = true ∨ rc₂ = false))
-    let lowerIncluded := l₁ < l₂ ∨ (withinTol tol l₁ l₂ ∧ (lc₁ = true ∨ lc₂ = false))
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
+    let upperIncluded := toEReal u₁ > toEReal u₂ ∨
+      (withinTol tol (toEReal u₁) (toEReal u₂) ∧ (rc₁ = true ∨ rc₂ = false))
+    let lowerIncluded := ((toReal l₁ : ℝ) : EReal) < (toReal l₂ : ℝ) ∨
+      (withinTol tol (toReal l₁ : ℝ) (toReal l₂ : ℝ) ∧ (lc₁ = true ∨ lc₂ = false))
     lowerIncluded ∧ upperIncluded
 
 end CORALean

@@ -2,9 +2,10 @@ module
 
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import CORALean.Specification.STLInterval.Operations.Supremum
-public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 public import CORALean.Specification.STLInterval.Theorems.Basic
 public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
+public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 
 @[expose] public section
 
@@ -40,26 +41,33 @@ This is the right-closure `clr(I)` of [1, Sec. 2.1 (intervals)].
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `rightClosure` adds the supremum of `I` to its set of times. -/
-theorem STLInterval.set_rightClosure (I : STLInterval) : -- --- CONCL ---
+theorem STLInterval.set_rightClosure (I : STLInterval 𝕋) : -- --- CONCL ---
     I.rightClosure.set =
-      I.set ∪ {t : ℝ | I.supremum.value = some (t : EReal)} := by -- --- PROOF ---
+      I.set ∪ {t : ℝ | I.supremum.value.map STLInterval.toEReal =
+        some (t : EReal)} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.rightClosure, STLInterval.supremum, STLInterval.set]
-  | nonempty l u lc rc a b c _ =>
-    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
+  | nonempty l u lc rc b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of_fields b c
+    cases u with
     -- an unbounded upper end stays as it is, and `⊤` is no real time
-    by_cases hu : u = ⊤
-    · simp [STLInterval.rightClosure, STLInterval.supremum, hu, STLInterval.set]
+    | top =>
+      simp [STLInterval.rightClosure, STLInterval.supremum, STLInterval.set]
     -- otherwise the upper end is closed
-    · simp only [STLInterval.rightClosure, hu, if_false, STLInterval.supremum]
+    | coe y =>
+      simp only [STLInterval.rightClosure, STLInterval.supremum]
       rw [set_stlInterval]
       ext t
-      simp only [STLInterval.set, rawSet, Set.mem_union, Set.mem_setOf_eq, Option.some.injEq,
-        true_and]
+      simp only [STLInterval.set, rawSet, Set.mem_union, Set.mem_setOf_eq, Option.map_some,
+        STLInterval.toEReal_coe, Option.some.injEq, true_and] at hx ⊢
       constructor
       · rintro ⟨hl, h | h⟩
         · exact Or.inl ⟨hl, Or.inl h⟩

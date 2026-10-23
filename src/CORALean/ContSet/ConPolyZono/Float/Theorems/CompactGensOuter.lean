@@ -84,8 +84,11 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
   set fib : Fin n → Fin (PolyZonotope.repKeep cPZ.E).card → ℝ := fun i j =>
     Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E) (fun l => toReal (cPZ.G l i))
       (PolyZonotope.keepIdx cPZ.E j) with hfib
+  -- the merged columns against the monomials, at coordinate `i`
+  set ms : Fin n → ℝ := fun i =>
+    ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j with hms
   refine ⟨fun i => toReal (cPZ.c i)
-            + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j)
+            + (ms i)
             + ∑ j, toReal (cPZ.GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hsat, fun _ => rfl⟩,
           _, PolyZonotope.mem_generatorError_monomial
@@ -93,7 +96,7 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
             (cPZ.aux_compactGensGap) ha, ?_⟩
   funext i
   -- the stored merged columns and their errors recombine into the exact fibres
-  have hsum : (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j)
+  have hsum : (ms i)
       + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
           (fib i j - toReal (cPZ.mergedCol i j)) * mon j)
       = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, fib i j * mon j := by
@@ -101,7 +104,7 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
     exact Finset.sum_congr rfl fun j _ => by ring
   -- the goal spelled out, so `hsum` and `aux_merge` line up with it
   show toReal (cPZ.c i)
-        + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j)
+        + (ms i)
         + (∑ j, toReal (cPZ.GI j i) * β j)
       + ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
           (fib i j - toReal (cPZ.mergedCol i j)) * mon j

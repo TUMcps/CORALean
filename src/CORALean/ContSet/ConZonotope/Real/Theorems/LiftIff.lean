@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Lift
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 
 @[expose] public section

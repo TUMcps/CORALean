@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section

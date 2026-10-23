@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient

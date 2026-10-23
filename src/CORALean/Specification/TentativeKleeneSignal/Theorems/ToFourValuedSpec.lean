@@ -7,6 +7,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
 public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.ToFourValued
+public import CORALean.Specification.TentativeKleeneSignal.Operations.At
 
 @[expose] public section
 

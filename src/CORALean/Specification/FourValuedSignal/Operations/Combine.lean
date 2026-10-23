@@ -17,9 +17,6 @@ acting on four-valued values. Each output is its Kleene part and its inconclusiv
 value, converted back by `toBoolSignal()`, which throws on unknown; `none` there gives the Kleene
 part's signal).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `ι` – index type of the inputs
 * `κ` – index type of the outputs
@@ -40,15 +37,18 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sigs = fourValuedSignal.combine(op,varargin)`. -/
-noncomputable def FourValuedSignal.combine {ι κ : Type} [Fintype ι]
-    (op : (ι → FourValued) → κ → FourValued) (sig : ι → FourValuedSignal ℝ) :
-    κ → FourValuedSignal ℝ := fun i =>
+def FourValuedSignal.combine {ι κ : Type} [FinEnum ι]
+    (op : (ι → FourValued) → κ → FourValued) (sig : ι → FourValuedSignal 𝕋) :
+    κ → FourValuedSignal 𝕋 := fun i =>
   -- 1. c = [arr.signal,inconclusiveKleene], inconclusiveKleene = fromBoolSignal(s.isInconclusive)
-  let c : ι ⊕ ι → KleeneSignal ℝ := Sum.elim (fun k => (sig k).signal)
+  let c : ι ⊕ ι → KleeneSignal 𝕋 := Sum.elim (fun k => (sig k).signal)
     (fun k => KleeneSignal.fromBoolSignal (sig k).isInconclusive)
   -- 2. u2Op: join the parts of the inputs, apply `op`, split the outputs
   let u2Op : (ι ⊕ ι → Kleene) → κ × Bool → Kleene := fun args o =>

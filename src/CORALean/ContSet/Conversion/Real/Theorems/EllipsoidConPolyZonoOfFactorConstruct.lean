@@ -2,10 +2,10 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.Global.EuclideanNorm
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZono

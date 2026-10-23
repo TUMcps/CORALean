@@ -4,7 +4,8 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotopeInner
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
 public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
@@ -59,8 +60,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 exact eroded polytope. -/
 def LinearSys.maxBackReachCZFloat (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n))
     (ZW : Zonotope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  let ρ_ZW : ∀ j, FloatBound 𝕋 ZW.construct (rowLin P.A j) := fun j =>   -- ρ(Ẑ_W, H_(j,·)ᵀ)
-    let u := ZW.conZonotope.boundDot (c := rowLin P.A j) (P.A j) fun _ => rfl
+  let ρ_ZW : ∀ j, FloatBound 𝕋 ZW.construct (Real.HPolytope.rowLin (toRealMat P.A) j) := fun j =>
+       -- ρ(Ẑ_W, H_(j,·)ᵀ)
+    let u := ZW.conZonotope.boundDot (c := Real.HPolytope.rowLin (toRealMat P.A) j) (P.A j) fun _
+        => rfl
     ⟨u.val, fun x hx => u.le x (Zonotope.conZonotope_contains ZW hx)⟩
   -- 11. P ⊖ Ẑ_W(τ_k), (11)
   let P_ZW := P.minkDiffOf ZW.construct ρ_ZW

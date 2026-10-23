@@ -32,18 +32,6 @@ any (CORA gives `-Inf`, outside ℝ).
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-theorem Polygon.aux_le_foldr_max (l : List ℝ) (s : ℝ) {a : ℝ} (h : a ∈ l) : -- --- CONCL ---
-    a ≤ l.foldr max s := by -- --- PROOF ---
-  induction l with
-  | nil => exact absurd h (List.not_mem_nil)
-  | cons b l ih =>
-    rcases List.mem_cons.mp h with rfl | h
-    · exact le_max_left _ _
-    · exact le_trans (ih h) (le_max_right _ _)
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The largest value of `c` over the vertices, seeded with the first one; `0` if there are none. -/
@@ -51,10 +39,19 @@ noncomputable def Polygon.supportBound (P : Polygon) (c : Vec ℝ 2 →ₗ[ℝ] 
     SupportBound (ContSet.construct P) c where
   val := (P.vertices.map c).foldr max ((P.vertices.map c).headD 0)
   le x hx := by
+    -- nothing in a list exceeds its fold of `max`
+    have hfold : ∀ (l : List ℝ) (s : ℝ) {a : ℝ}, a ∈ l → a ≤ l.foldr max s := by
+      intro l s a h
+      induction l with
+      | nil => exact absurd h (List.not_mem_nil)
+      | cons b l ih =>
+        rcases List.mem_cons.mp h with rfl | h
+        · exact le_max_left _ _
+        · exact le_trans (ih h) (le_max_right _ _)
     -- the polygon lies in the hull of its vertices, and the half-space under the bound is convex
     have hhull : convexHull ℝ {v | v ∈ P.vertices} ⊆
         {y | c y ≤ (P.vertices.map c).foldr max ((P.vertices.map c).headD 0)} :=
-      convexHull_min (fun v hv => Polygon.aux_le_foldr_max _ _ (List.mem_map_of_mem hv))
+      convexHull_min (fun v hv => hfold _ _ (List.mem_map_of_mem hv))
         (convex_halfSpace_le c.isLinear _)
     exact hhull (Polygon.convexHull_vertices P ▸ subset_convexHull ℝ _ hx)
 

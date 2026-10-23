@@ -42,16 +42,16 @@ CORA throws if the builder rejects the interval (a degenerate one) or a key has 
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+variable {𝕋 T : Type} [Scalar 𝕋] [ExactScalar 𝕋] [TimeOrder T] [Zero T] {S : ℕ → Type}
+  {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The loop body of `analyzeTimeInterval` for the proposition `p = (k{i}, ap)`. -/
-noncomputable def ReachSetAnalyzer.analyzeKey (obj : ReachSetAnalyzer S n) (set : S n) (loc : ℕ)
-    (lo hi : ℝ) (p : String × AtomicProposition S n) : Option (ReachSetAnalyzer S n) :=
+def ReachSetAnalyzer.analyzeKey (obj : ReachSetAnalyzer T S n) (set : S n) (loc : ℕ)
+    (lo hi : T) (p : String × AtomicProposition S n) : Option (ReachSetAnalyzer T S n) :=
   -- get objects from map
   (obj.sigBuilder.lookup p.1).bind fun builder =>
     -- check mask

@@ -33,7 +33,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Both signals are valid and last equally long. -/
-def FiniteKleeneSignalBuilder.IsValid (b : FiniteKleeneSignalBuilder) : Prop :=
+def FiniteKleeneSignalBuilder.IsValid (b : FiniteKleeneSignalBuilder ℝ) : Prop :=
   b.possiblyTrueSignal.IsValid ∧ b.possiblyFalseSignal.IsValid ∧
     b.possiblyTrueSignal.duration = b.possiblyFalseSignal.duration
 

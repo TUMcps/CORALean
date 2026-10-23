@@ -19,7 +19,6 @@ inconclusive mapped to `False` is the Kleene part, and the value is inconclusive
 from that with inconclusive mapped to `True`; `none` is the `toBoolSignal()` error, which `at_and`
 shows does not occur. This is `Λ̃₁ ∧ Λ̃₂` of [1, Sec. 4.3 (operators)], the `⊔₂` of the
 conjunctions of `⌊Λ̃⌋` and `⌈Λ̃⌉`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
 ## Inputs
 * `ι` – index type of the operands
@@ -44,12 +43,15 @@ Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = fourValuedSignal.and_(varargin)`; `none` if `toBoolSignal()` throws. -/
-noncomputable def FourValuedSignal.and_ {ι : Type} [Fintype ι] (sigs : ι → FourValuedSignal ℝ) :
-    Option (FourValuedSignal ℝ) :=
+def FourValuedSignal.and_ {ι : Type} [FinEnum ι] (sigs : ι → FourValuedSignal 𝕋) :
+    Option (FourValuedSignal 𝕋) :=
   -- 1. minAnd of the refinements with inconclusive mapped to False
   let minRefinements := fun k => (sigs k).toKleeneSignal Kleene.ff
   let minAnd := KleeneSignal.and_ minRefinements

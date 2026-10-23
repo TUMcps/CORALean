@@ -45,9 +45,12 @@ theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) : 
   classical
   -- the underlying zonotopes, whose stack carries the generators
   let Zs : ∀ i, Zonotope (Vec ℝ (n i)) := fun i => ⟨(zs i).h, (zs i).c, (zs i).G⟩
+  -- the stacked point at the coefficients `β`
+  set pt := fun β : Fin (∑ i, (zs i).h) → ℝ =>
+    (ConZonotope.stackProd zs).c + ∑ p : Fin (∑ i, (zs i).h), β p • (ConZonotope.stackProd zs).G p
+      with hpt
   have hval : ∀ (β : Fin (∑ i, (zs i).h) → ℝ) (i : Fin k),
-      unstack ((ConZonotope.stackProd zs).c +
-        ∑ p : Fin (∑ i, (zs i).h), β p • (ConZonotope.stackProd zs).G p) i =
+      unstack (pt β) i =
         (zs i).c + ∑ j, β (finSigmaFinEquiv (n := fun i => (zs i).h) ⟨i, j⟩) • (zs i).G j :=
     fun β i => Zonotope.stackProd_value Zs β i
   ext z
@@ -79,14 +82,12 @@ theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) : 
     · -- both sides have the same blocks
       show z = (ConZonotope.stackProd zs).c +
         ∑ p : Fin (∑ i, (zs i).h), β p • (ConZonotope.stackProd zs).G p
-      have hu : unstack ((ConZonotope.stackProd zs).c +
-          ∑ p : Fin (∑ i, (zs i).h), β p • (ConZonotope.stackProd zs).G p) = unstack z := by
+      have hu : unstack (pt β) = unstack z := by
         funext i
         rw [hval β i, hz i]
         simp only [hβi]
       calc z = stack (unstack z) := (stack_unstack z).symm
-        _ = stack (unstack ((ConZonotope.stackProd zs).c +
-            ∑ p : Fin (∑ i, (zs i).h), β p • (ConZonotope.stackProd zs).G p)) := by rw [hu]
+        _ = stack (unstack (pt β)) := by rw [hu]
         _ = _ := stack_unstack _
 
 end CORALean.Real

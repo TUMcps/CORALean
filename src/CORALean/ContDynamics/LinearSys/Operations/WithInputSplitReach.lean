@@ -11,12 +11,12 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability with an input set anywhere, over `[tStart, tFinal]`
 
-[1, Alg. 3]: the windows `τ_0, …, τ_{N-1}`, one `WithInputSplit.reachStepk` each, collected as a
-`SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one, exactly
-`LinearSys.WithInput.reach`'s count. No `box()` on the accumulated input set, as there.
-`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor order asked for, raised to
-`reachOrder Δt + 2` where that is higher: `timeInterval`, `inputSolution` and
-`constInputSolution` all hold only at an order admissible for `Δt` and `sys.A`. The times are
+The windows `τ_0, …, τ_{N-1}`, one `WithInputSplit.reachStepk` each, [1, Eq. 4]'s split-input step
+at the first window carried forward, collected as a `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of
+them and never fewer than one, exactly `LinearSys.WithInput.reach`'s count. No `box()` on the
+accumulated input set, as there. `X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor
+order asked for, raised to `reachOrder Δt + 2` where that is higher: `timeInterval`, `inputSolution`
+and `constInputSolution` all hold only at an order admissible for `Δt` and `sys.A`. The times are
 real, as in `LinearSys.reachWrappingFree`.
 
 ## Inputs
@@ -29,8 +29,8 @@ real, as in `LinearSys.reachWrappingFree`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

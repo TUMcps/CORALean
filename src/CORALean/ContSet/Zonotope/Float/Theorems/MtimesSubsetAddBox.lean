@@ -106,10 +106,13 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
     have hh : x + (0 : Vec ℝ n) ∈ nominalSet Z + Z.I_error.construct :=
       Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩) h
     rwa [add_zero] at hh
+  -- the rounding gap of generator `j` at coordinate `i`
+  set gap : Fin m → Fin Z.h → ℝ := fun i j =>
+    toReal (matMulDown M (fun i j => Z.G j i) i j) - ∑ k, toReal (M i k) * toReal (Z.G j k) with
+      hgap
   -- the center and each generator's rounding gap, at the same coefficients
   set g : Vec ℝ m := fun i => (toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
-      + ∑ j, (toReal (matMulDown M (fun i j => Z.G j i) i j)
-        - ∑ k, toReal (M i k) * toReal (Z.G j k)) * β j
+      + ∑ j, (gap i j) * β j
     with hgdefeq
   -- the center's rounding gap, bounded in `𝕋` as `plusBox`'s is
   have hg1 : (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)) ∈
@@ -127,15 +130,13 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
           dotDown_le (M i) Z.c
         rw [toReal_zero]; linarith⟩
   -- each generator's rounding gap, scaled by the same coefficients `β`
-  have hg2 : (fun i => ∑ j, (toReal (matMulDown M (fun i j => Z.G j i) i j)
-      - ∑ k, toReal (M i k) * toReal (Z.G j k)) * β j) ∈
+  have hg2 : (fun i => ∑ j, (gap i j) * β j) ∈
       (Zonotope.generatorError (matMulDiff M (fun i j => Z.G j i))).construct :=
     Zonotope.mem_generatorError (fun i j => Zonotope.aux_matMulDown_sub_le M Z i j) hβ
   -- `g` and `mtimes`'s own error box, read back into `mtimesBox` by two more `⊆` steps
   have hgmem : g + y₂ ∈ (Zonotope.mtimesBox M Z).construct := by
     have hg12 : g = (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
-        + fun i => ∑ j, (toReal (matMulDown M (fun i j => Z.G j i) i j)
-            - ∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by
+        + fun i => ∑ j, (gap i j) * β j := by
       rw [hgdefeq]; rfl
     rw [hg12, add_assoc]
     exact Interval.plus_outer _ _
@@ -151,13 +152,11 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
     hy₁eq i
   show (toRealMat M *ᵥ x) i + (g i + y₂ i) = y₁ i + y₂ i
   have hgi : g i = (toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
-      + ∑ j, (toReal (matMulDown M (fun i j => Z.G j i) i j)
-        - ∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by
+      + ∑ j, (gap i j) * β j := by
     rw [hgdefeq]
   rw [himg, hgi, hy₁i]
   -- the stored generators' sum, less their gaps, is the exact one
-  have hsplit : ∑ j, (toReal (matMulDown M (fun i j => Z.G j i) i j)
-      - ∑ k, toReal (M i k) * toReal (Z.G j k)) * β j
+  have hsplit : ∑ j, (gap i j) * β j
       = ∑ j, toReal (matMulDown M (fun i j => Z.G j i) i j) * β j
         - ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j := by
     rw [← Finset.sum_sub_distrib]

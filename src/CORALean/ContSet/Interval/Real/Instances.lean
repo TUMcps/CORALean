@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter

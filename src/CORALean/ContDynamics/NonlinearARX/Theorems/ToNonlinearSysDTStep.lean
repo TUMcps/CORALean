@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 @[expose] public section
 
@@ -43,7 +44,7 @@ variable {dy du p : ℕ}
 /-- The past outputs at `k + p` are the window at `k`, blocks reversed. -/
 theorem NonlinearARX.aux_pastOut_rev (y : ℕ → Vec ℝ dy) (k : ℕ) :
     NonlinearARX.pastOut p y (k + p) = fun s => NonlinearARX.stack p y k
-      (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2)) := by
+      (NonlinearARX.revBlocks s) := by
   funext s
   simp only [NonlinearARX.pastOut, NonlinearARX.stack, Equiv.symm_apply_apply, Fin.val_rev]
   congr 1; omega
@@ -51,7 +52,7 @@ theorem NonlinearARX.aux_pastOut_rev (y : ℕ → Vec ℝ dy) (k : ℕ) :
 /-- The inputs at `k + p` are the input signal at `k`, blocks reversed. -/
 theorem NonlinearARX.aux_pastIn_rev (u : ℕ → Vec ℝ du) (k : ℕ) :
     NonlinearARX.pastIn p u (k + p) = fun s => NonlinearARX.feed p u k
-      (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2)) := by
+      (NonlinearARX.revBlocks s) := by
   funext s
   simp only [NonlinearARX.pastIn, NonlinearARX.feed, Equiv.symm_apply_apply, Fin.val_rev]
   congr 1; omega

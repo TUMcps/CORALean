@@ -42,7 +42,7 @@ theorem PointSegmentSignal.not_at {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (t : T) : -- --- CONCL ---
     s.not.at t = !(s.at t) := by -- --- PROOF ---
   obtain ⟨h1, h2, -⟩ := hs
-  simp only [PointSegmentSignal.at, PointSegmentSignal.not]
+  simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at, PointSegmentSignal.not]
   -- the index of the last point `≤ t` lies inside the arrays
   have hL : (s.timePoints.takeWhile (· ≤ t)).length ≤ s.timePoints.length :=
     (List.takeWhile_sublist _).length_le

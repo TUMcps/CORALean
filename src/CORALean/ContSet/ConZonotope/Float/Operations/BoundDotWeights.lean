@@ -66,62 +66,6 @@ def ConZonotope.aux_resDown (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n
     (addDown (neg (dotUp y fun k => cZ.P.A k j))
       (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
 
-theorem ConZonotope.aux_clamp_nonneg (w : 𝕋) :
-    0 ≤ toReal (ConZonotope.aux_clamp w) := by
-  rw [ConZonotope.aux_clamp, toReal_maximum, toReal_zero]
-  exact le_max_left _ _
-
-/-- A weighted sum of rows applied to `β`, read column by column. -/
-theorem ConZonotope.aux_sum_swap {p q : ℕ} (u : Fin p → ℝ) (M : Fin p → Fin q → ℝ)
-    (β : Fin q → ℝ) :
-    ∑ k, u k * ∑ j, M k j * β j = ∑ j, β j * ∑ k, u k * M k j := by
-  simp_rw [Finset.mul_sum]
-  rw [Finset.sum_comm]
-  exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
-
-/-- The upper and lower ends enclose the exact residual. -/
-theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
-    (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : -- --- CONCL ---
-    let r := (∑ i, toReal (a i) * toReal (cZ.G j i))
-      - (∑ k, toReal (y k) * toReal (cZ.P.A k j))
-      - (∑ k, toReal (zu k) * toReal (cZ.P.Ae k j))
-      + ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j)
-    toReal (ConZonotope.aux_resDown cZ a y zu zl j) ≤ r
-      ∧ r ≤ toReal (ConZonotope.aux_resUp cZ a y zu zl j) := by -- --- PROOF ---
-  intro r
-  -- each of the four products, enclosed by its rounded dot product
-  have h1 := le_dotUp a (cZ.G j)
-  have h2 := dotDown_le a (cZ.G j)
-  have h3 := le_dotUp y fun k => cZ.P.A k j
-  have h4 := dotDown_le y fun k => cZ.P.A k j
-  have h5 := le_dotUp zu fun k => cZ.P.Ae k j
-  have h6 := dotDown_le zu fun k => cZ.P.Ae k j
-  have h7 := le_dotUp zl fun k => cZ.P.Ae k j
-  have h8 := dotDown_le zl fun k => cZ.P.Ae k j
-  refine ⟨?_, ?_⟩
-  -- the lower end, its three additions rounded down
-  · have e1 := addDown_le_add (neg (dotUp zu fun k => cZ.P.Ae k j))
-      (dotDown zl fun k => cZ.P.Ae k j)
-    have e2 := addDown_le_add (neg (dotUp y fun k => cZ.P.A k j))
-      (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j))
-    have e3 := addDown_le_add (dotDown a (cZ.G j))
-      (addDown (neg (dotUp y fun k => cZ.P.A k j))
-        (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
-    rw [toReal_neg] at e1 e2
-    rw [ConZonotope.aux_resDown]
-    linarith
-  -- the upper end, its three additions rounded up
-  · have e1 := add_le_addUp (neg (dotDown zu fun k => cZ.P.Ae k j))
-      (dotUp zl fun k => cZ.P.Ae k j)
-    have e2 := add_le_addUp (neg (dotDown y fun k => cZ.P.A k j))
-      (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j))
-    have e3 := add_le_addUp (dotUp a (cZ.G j))
-      (addUp (neg (dotDown y fun k => cZ.P.A k j))
-        (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
-    rw [toReal_neg] at e1 e2
-    rw [ConZonotope.aux_resUp]
-    linarith
-
 /-- The coefficient program bounded at the given weights, each clamped at zero,
 the residual paid by the unit box. Sound for every weight vector. -/
 def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
@@ -140,12 +84,65 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
       (addUp (dotUp zl beL) (sumUp R))))
     le := by
       intro x hx
+      -- a clamped weight is nonnegative
+      have hclamp : ∀ w : 𝕋, 0 ≤ toReal (ConZonotope.aux_clamp w) := by
+        intro w
+        rw [ConZonotope.aux_clamp, toReal_maximum, toReal_zero]
+        exact le_max_left _ _
+      -- a weighted sum of rows applied to `β`, read column by column
+      have hswap : ∀ {p q : ℕ} (u : Fin p → ℝ) (M : Fin p → Fin q → ℝ) (β : Fin q → ℝ),
+          ∑ k, u k * ∑ j, M k j * β j = ∑ j, β j * ∑ k, u k * M k j := by
+        intro p q u M β
+        simp_rw [Finset.mul_sum]
+        rw [Finset.sum_comm]
+        exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
+      -- the upper and lower ends enclose the exact residual
+      have hres : ∀ (y : Vec 𝕋 cZ.P.m) (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h),
+        let r := (∑ i, toReal (a i) * toReal (cZ.G j i))
+          - (∑ k, toReal (y k) * toReal (cZ.P.A k j))
+          - (∑ k, toReal (zu k) * toReal (cZ.P.Ae k j))
+          + ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j)
+        toReal (ConZonotope.aux_resDown cZ a y zu zl j) ≤ r
+          ∧ r ≤ toReal (ConZonotope.aux_resUp cZ a y zu zl j) := by
+        intro y zu zl j r
+        -- each of the four products, enclosed by its rounded dot product
+        have h1 := le_dotUp a (cZ.G j)
+        have h2 := dotDown_le a (cZ.G j)
+        have h3 := le_dotUp y fun k => cZ.P.A k j
+        have h4 := dotDown_le y fun k => cZ.P.A k j
+        have h5 := le_dotUp zu fun k => cZ.P.Ae k j
+        have h6 := dotDown_le zu fun k => cZ.P.Ae k j
+        have h7 := le_dotUp zl fun k => cZ.P.Ae k j
+        have h8 := dotDown_le zl fun k => cZ.P.Ae k j
+        refine ⟨?_, ?_⟩
+        -- the lower end, its three additions rounded down
+        · have e1 := addDown_le_add (neg (dotUp zu fun k => cZ.P.Ae k j))
+            (dotDown zl fun k => cZ.P.Ae k j)
+          have e2 := addDown_le_add (neg (dotUp y fun k => cZ.P.A k j))
+            (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j))
+          have e3 := addDown_le_add (dotDown a (cZ.G j))
+            (addDown (neg (dotUp y fun k => cZ.P.A k j))
+              (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
+          rw [toReal_neg] at e1 e2
+          rw [ConZonotope.aux_resDown]
+          linarith
+        -- the upper end, its three additions rounded up
+        · have e1 := add_le_addUp (neg (dotDown zu fun k => cZ.P.Ae k j))
+            (dotUp zl fun k => cZ.P.Ae k j)
+          have e2 := add_le_addUp (neg (dotDown y fun k => cZ.P.A k j))
+            (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j))
+          have e3 := add_le_addUp (dotUp a (cZ.G j))
+            (addUp (neg (dotDown y fun k => cZ.P.A k j))
+              (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
+          rw [toReal_neg] at e1 e2
+          rw [ConZonotope.aux_resUp]
+          linarith
       obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp hx
       obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
       -- the clamped weights are admissible, whatever was proposed
-      have hy : ∀ k, 0 ≤ toReal (y k) := fun k => ConZonotope.aux_clamp_nonneg _
-      have hzu : ∀ k, 0 ≤ toReal (zu k) := fun k => ConZonotope.aux_clamp_nonneg _
-      have hzl : ∀ k, 0 ≤ toReal (zl k) := fun k => ConZonotope.aux_clamp_nonneg _
+      have hy : ∀ k, 0 ≤ toReal (y k) := fun k => hclamp _
+      have hzu : ∀ k, 0 ≤ toReal (zu k) := fun k => hclamp _
+      have hzl : ∀ k, 0 ≤ toReal (zl k) := fun k => hclamp _
       -- the rows' images of `β`, spelt as sums
       have hAβ : ∀ k, (toRealMat cZ.P.A *ᵥ β) k = ∑ j, toReal (cZ.P.A k j) * β j :=
         fun _ => rfl
@@ -160,7 +157,7 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
       have hcx : c x = (∑ i, toReal (a i) * toReal (cZ.c i)) + ∑ j, β j * D j := by
         rw [hc x]
         simp_rw [hxβ, mul_add, Finset.sum_add_distrib]
-        rw [ConZonotope.aux_sum_swap (fun i => toReal (a i)) (fun i j => toReal (cZ.G j i)) β]
+        rw [hswap (fun i => toReal (a i)) (fun i j => toReal (cZ.G j i)) β]
       -- the split of `βᵀD` into residual and rows
       have hsplit : ∑ j, β j * D j
           = (∑ j, β j * (D j - Y j - U j + L j)) + (∑ j, β j * Y j) + (∑ j, β j * U j)
@@ -184,20 +181,20 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
         linarith [(abs_le.mp (heq k)).1]
       -- the inequality block and the equality block's upper edge, weighted
       have hYb : ∑ j, β j * Y j ≤ toReal (dotUp y bS) := by
-        rw [hY, ← ConZonotope.aux_sum_swap (fun k => toReal (y k))
+        rw [hY, ← hswap (fun k => toReal (y k))
           (fun k j => toReal (cZ.P.A k j)) β]
         refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
         rw [← hAβ]
         exact mul_le_mul_of_nonneg_left (hbS k) (hy k)
       have hUb : ∑ j, β j * U j ≤ toReal (dotUp zu beU) := by
-        rw [hU, ← ConZonotope.aux_sum_swap (fun k => toReal (zu k))
+        rw [hU, ← hswap (fun k => toReal (zu k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
         refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
         rw [← hAeβ]
         exact mul_le_mul_of_nonneg_left (hbeU k) (hzu k)
       -- the lower edge of an equality row, read through its negated row
       have hLb : -toReal (dotUp zl beL) ≤ ∑ j, β j * L j := by
-        rw [hL, ← ConZonotope.aux_sum_swap (fun k => toReal (zl k))
+        rw [hL, ← hswap (fun k => toReal (zl k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
         have hd := neg_le_neg (le_dotUp zl beL)
         refine le_trans hd ?_
@@ -208,7 +205,7 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
       -- the box pays for the residual
       have hRb : ∑ j, β j * (D j - Y j - U j + L j) ≤ toReal (sumUp R) := by
         refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp R)
-        obtain ⟨hlo, hhi⟩ := ConZonotope.aux_res_encl cZ a y zu zl j
+        obtain ⟨hlo, hhi⟩ := hres y zu zl j
         have habs : |D j - Y j - U j + L j| ≤ toReal (R j) := by
           show _ ≤ toReal (maximum _ _)
           rw [toReal_maximum, toReal_neg]

@@ -10,7 +10,7 @@ public import Mathlib.Data.Matrix.Basic
 /-!
 # The second-order truncation is `I + W(t)`
 
-What ties [1, Lemma 3.1] to [1, Thm. 3.2]: orders zero to two of
+What ties [1, Lemma 1] to [1, Thm. 1]: orders zero to two of
 `expTaylor (t • M)` are `I` plus the `W(t)` of the lemma, so replacing those
 three orders by `expIntervalW` replaces exactly the part the lemma is about.
 
@@ -30,8 +30,9 @@ identity would have to be assembled from `smul` lemmas by hand.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

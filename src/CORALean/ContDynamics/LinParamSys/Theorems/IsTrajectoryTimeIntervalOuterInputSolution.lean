@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryTimeInterva
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
 
 @[expose] public section
 
@@ -89,12 +90,9 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution {sys 
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hconv : Convex ℝ (construct V)) (hclosed : IsClosed (construct V))
     (hbdd : Bornology.IsBounded (construct V))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) V)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) V)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r (m + 2)) V)))
+    (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r (m + 2) V))
+    (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r (m + 2) V))
+    (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r (m + 2) V))
     (h0 : (0 : Vec ℝ n) ∈ construct V) : -- --- CONCL ---
     x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) V)) := by -- --- PROOF ---

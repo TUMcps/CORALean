@@ -47,7 +47,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.set_spec (s : FourValuedSignal ℝ)
-    (hs : s.IsValid) (I : STLInterval) (value :
+    (hs : s.IsValid) (I : STLInterval ℝ) (value :
         FourValued) : -- --- CONCL ---
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧

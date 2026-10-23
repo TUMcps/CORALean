@@ -64,7 +64,8 @@ variable {n m : ℕ}
 
 open scoped Classical in
 /-- The first `k ≥ k₀` where `P` holds, tried within `fuel` rounds; `none` once
-`fuel` runs out with none accepted. -/
+`fuel` runs out with none accepted. Noncomputable: `P` is a statement about reals, decided
+classically. -/
 noncomputable def aux_search (P : ℕ → Prop) : ℕ → ℕ → Option {k // P k}
   | _, 0 => none
   | k, fuel + 1 => if h : P k then some ⟨k, h⟩ else aux_search P (k + 1) fuel

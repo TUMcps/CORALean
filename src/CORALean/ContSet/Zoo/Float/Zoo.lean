@@ -13,6 +13,13 @@ CORA's `zoo` with its two members over `𝕋`: an optional Taylor model (`taylm(
 optional interval, as in the exact layer's `Zoo`. A member encloses the function on the box `[-1,
 1]ⁿ` through its stored floats (`nominal`): the Taylor model as `Taylm.Encloses`, the interval as
 holding the function's value at every box point.
+The `zoo` class is described in [1].
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous and
+      Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

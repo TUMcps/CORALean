@@ -46,9 +46,10 @@ theorem FourValuedSignal.eq_not_complete : -- --- CONCL ---
   refine ⟨a, a.not, ha.1, FourValuedSignal.not_isValid _ ha.1, fun t ht => ?_, ?_⟩
   · rw [FourValuedSignal.at_not _ ha.1, ha.2 t ht]; rfl
   · have : a.signal.signal ≠ a.not.signal.signal := by
-      simp [a, FourValuedSignal.uniformSignal, FourValuedSignal.indicator, KleeneSignal.indicator,
-        PointSegmentSignal.indicator, PointSegmentSignal.indicatorBounds, STLInterval.emptyBounds,
-        STLInterval.lowerBound, STLInterval.upperBound, STLInterval.lowerClosed,
+      simp [TimeOrder.isEqvTop_iff_eq, a, FourValuedSignal.uniformSignal,
+        FourValuedSignal.indicator, KleeneSignal.indicator, PointSegmentSignal.indicator,
+        PointSegmentSignal.indicatorBounds, STLInterval.emptyBounds, STLInterval.lowerBound,
+         STLInterval.upperBound, STLInterval.lowerClosed,
         STLInterval.upperClosed, FourValuedSignal.not, KleeneSignal.not,
         PointSegmentSignal.not, FourValued.toKleene, Kleene.toBool]
     simp [FourValuedSignal.eq, KleeneSignal.eq, this]

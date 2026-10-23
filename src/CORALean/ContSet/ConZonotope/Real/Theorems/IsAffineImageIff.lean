@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
-public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope

@@ -44,7 +44,7 @@ theorem STLInterval.not_memBounds_of_emptyBounds {T : Type} [LinearOrder T] (lb 
     ¬ STLInterval.memBounds lb ub lc rc t := by -- --- PROOF ---
   -- an empty interval is one whose ends cross, or meet while one is open
   intro hm
-  simp only [STLInterval.emptyBounds] at h
+  simp only [TimeOrder.isEqvTop_iff_eq, STLInterval.emptyBounds] at h
   split_ifs at h with hc
   obtain ⟨h1, h3⟩ := hm
   have hlt : (lb : WithTop T) ≤ t := by

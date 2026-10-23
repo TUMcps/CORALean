@@ -115,7 +115,7 @@ theorem PointSegmentSignal.aux_relevantStop_spec {T : Type} [LinearOrder T] [Zer
   | top =>
     -- no upper end: all points are `≤ inf`, and the last value is the last interval value
     have hstop : s.relevantStop ⊤ rc = 2 * s.timePoints.length := by
-      simp only [PointSegmentSignal.relevantStop]
+      simp only [TimeOrder.isEqvTop_iff_eq, PointSegmentSignal.relevantStop]
       rw [List.takeWhile_eq_self_iff.2 (by simp)]
       simp
     have hn : 1 ≤ s.timePoints.length := List.length_pos_iff.2 hs.1
@@ -138,8 +138,8 @@ theorem PointSegmentSignal.aux_relevantStop_spec {T : Type} [LinearOrder T] [Zer
         (if rc = true then 2 * (s.timePoints.takeWhile (· ≤ u)).length - 1
           else 2 * (s.timePoints.takeWhile (· ≤ u)).length - 2)
         else 2 * (s.timePoints.takeWhile (· ≤ u)).length := by
-      simp only [PointSegmentSignal.relevantStop, WithTop.coe_le_coe, List.getD_eq_getElem?_getD,
-        ha2, Option.getD_some, WithTop.coe_inj]
+      simp only [TimeOrder.isEqvTop_iff_eq, PointSegmentSignal.relevantStop, WithTop.coe_le_coe,
+        List.getD_eq_getElem?_getD, ha2, Option.getD_some, WithTop.coe_inj]
     have hja : (s.timePoints.takeWhile (· ≤ u)).length - 1 < s.timePoints.length := by omega
     have ha2' : s.timePoints[(s.timePoints.takeWhile (· ≤ u)).length - 1] = a2 := by
       rw [List.getElem?_eq_getElem hja] at ha2; exact Option.some.inj ha2
@@ -258,7 +258,8 @@ theorem PointSegmentSignal.aux_relevantStart_spec {T : Type} [LinearOrder T] [Ze
   have hstart : s.relevantStart lb lc = if a1 = lb ∧ lc = true then
       2 * (s.timePoints.takeWhile (· ≤ lb)).length - 1
       else 2 * (s.timePoints.takeWhile (· ≤ lb)).length := by
-    simp only [PointSegmentSignal.relevantStart, List.getD_eq_getElem?_getD, ha1, Option.getD_some]
+    simp only [TimeOrder.eqv_iff_eq, PointSegmentSignal.relevantStart, List.getD_eq_getElem?_getD,
+      ha1, Option.getD_some]
   generalize (s.timePoints.takeWhile (· ≤ lb)).length = i at *
   -- the time point after those `≤ lb`, if there is one, is `> lb`
   have hnx : ∀ h : i - 1 + 1 < s.timePoints.length, lb < s.timePoints[i - 1 + 1] := fun h =>
@@ -327,6 +328,7 @@ theorem PointSegmentSignal.relevant_cells {T : Type} [LinearOrder T] [Zero T] [D
     fun h => by
       have : STLInterval.emptyBounds lb ub lc rc = true := by
         unfold STLInterval.emptyBounds
+        simp only [TimeOrder.isEqvTop_iff_eq]
         exact if_pos h
       rw [this] at hne
       exact absurd hne (by simp)

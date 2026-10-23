@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Float.FloatOps
 public import CORALean.NN.Layers.Operations.AllOver
+public import CORALean.NN.Layers.Theorems.AllOverEqImpl
 
 @[expose] public section
 

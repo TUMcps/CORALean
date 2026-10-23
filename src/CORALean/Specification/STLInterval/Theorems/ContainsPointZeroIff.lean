@@ -1,10 +1,11 @@
 module
 
 public import CORALean.Specification.STLInterval.Definitions.ContainsPoint
-public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
 public import CORALean.Specification.STLInterval.Theorems.Basic
-public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
 public import CORALean.Specification.STLInterval.Theorems.RawSetLowerOfGe
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
+public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
+public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
 
 @[expose] public section
 
@@ -34,16 +35,20 @@ At `tol = 0` the numeric branch of `contains_` is membership in the set of times
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `contains_` of a time `t` at `tol = 0` iff `t` is in the interval. -/
-theorem STLInterval.containsPoint_zero_iff (I : STLInterval) (t : ℝ) : -- --- CONCL ---
+theorem STLInterval.containsPoint_zero_iff (I : STLInterval 𝕋) (t : ℝ) : -- --- CONCL ---
     I.containsPoint 0 t ↔ t ∈ I.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.containsPoint, STLInterval.set]
-  | nonempty l u lc rc a b c _ =>
-    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
+  | nonempty l u lc rc b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of_fields b c
     simp only [STLInterval.containsPoint, withinTol_zero]
     show _ ↔ (_ ∧ _)
     constructor

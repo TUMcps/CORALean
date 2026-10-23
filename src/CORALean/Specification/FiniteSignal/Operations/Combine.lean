@@ -39,7 +39,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = combine(op,varargin)`. -/
-def FiniteSignal.combine? {T V W : Type} [LinearOrder T] [Zero T] [DecidableEq W]
+def FiniteSignal.combine? {T V W : Type} [TimeOrder T] [Zero T] [DecidableEq W]
     (op : V → V → W) (sigs : List (FiniteSignal T V)) : Option (FiniteSignal T W) :=
   match sigs with
   | [lhs, rhs] =>

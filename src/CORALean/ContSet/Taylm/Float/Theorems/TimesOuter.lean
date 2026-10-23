@@ -85,8 +85,9 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
     (fun p => mulDown p.1.1 p.2.1)
     (fun p => mulUp p.1.1 p.2.1) (fun p => (ex p).1) (fun p => p.1.2 + p.2.2)
     (fun p hp => hc p (List.mem_of_mem_filter hp)) ht)
-  have hD := Taylm.polyBounds_mem ((P.filter fun p => !pk p).map
-    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2)) ht
+  -- the products the cutoff keeps
+  set Q := (P.filter fun p => !pk p).map fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2) with hQ
+  have hD := Taylm.polyBounds_mem Q ht
   have hP₁ := Taylm.polyBounds_mem T₁.terms ht
   have hP₂ := Taylm.polyBounds_mem T₂.terms ht
   -- the cross terms, as at the exact layer
@@ -96,14 +97,12 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
   have m₁ := Interval.mul_between_corners hP₁.1 hP₁.2 hr₂.1 hr₂.2
   have m₂ := Interval.mul_between_corners hP₂.1 hP₂.2 hr₁.1 hr₁.2
   have m₃ := Interval.mul_between_corners hr₁.1 hr₁.2 hr₂.1 hr₂.2
-  simp only [List.map_map, Function.comp_def] at hD rK rD hsplit
+  simp only [Q, List.map_map, Function.comp_def] at hD rK rD hsplit
   -- the dropped terms' bound, widened by their rounding
-  have q₁ := subDown_le_sub (Taylm.polyBounds ((P.filter fun p => !pk p).map
-    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).inf
+  have q₁ := subDown_le_sub (Taylm.polyBounds Q).inf
     (listSumUp ((P.filter fun p => !pk p).map
       fun p => subUp (mulUp p.1.1 p.2.1) (mulDown p.1.1 p.2.1)))
-  have q₂ := add_le_addUp (Taylm.polyBounds ((P.filter fun p => !pk p).map
-    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).sup
+  have q₂ := add_le_addUp (Taylm.polyBounds Q).sup
     (listSumUp ((P.filter fun p => !pk p).map
       fun p => subUp (mulUp p.1.1 p.2.1) (mulDown p.1.1 p.2.1)))
   simp only [Taylm.times, Taylm.inflated, Taylm.absorbRounding, Real.Taylm.poly, List.map_map,
@@ -115,12 +114,12 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
       (le_trans (addDown_le_add _ _) (add_le_add (le_trans (addDown_le_add _ _)
         (add_le_add (le_trans (addDown_le_add _ _) (add_le_add (subDown_le_sub _ _) le_rfl))
           le_rfl)) le_rfl)) _) ?_
-    simp only [N, P, pk, ex] at *
+    simp only [N, P, pk, ex, Q] at *
     linarith [m₁.1, m₂.1, m₃.1, hD.1, rK.1, rD.1, q₁]
   · refine le_trans ?_ (add_le_add (le_trans (add_le_add (le_trans
       (add_le_add (le_trans (add_le_add (add_le_addUp _ _) le_rfl) (add_le_addUp _ _)) le_rfl)
         (add_le_addUp _ _)) le_rfl) (add_le_addUp _ _)) le_rfl)
-    simp only [N, P, pk, ex] at *
+    simp only [N, P, pk, ex, Q] at *
     linarith [m₁.2, m₂.2, m₃.2, hD.2, rK.2, rD.2, q₂]
 
 end CORALean.Float

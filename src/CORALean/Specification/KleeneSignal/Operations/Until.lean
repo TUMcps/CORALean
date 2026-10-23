@@ -45,7 +45,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = until(lhs,interval,rhs)`. -/
-noncomputable def KleeneSignal.until (lhs : KleeneSignal ℝ) (interval : STLInterval)
+noncomputable def KleeneSignal.until (lhs : KleeneSignal ℝ) (interval : STLInterval ℝ)
     (rhs : KleeneSignal ℝ) : KleeneSignal ℝ :=
   -- 1. minUntil of the refinements with unknown mapped to false
   let lhsMinRefinement := lhs.toBoolSignal false

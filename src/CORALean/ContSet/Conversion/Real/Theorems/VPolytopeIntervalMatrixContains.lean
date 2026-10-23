@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Interval
-public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
+public import CORALean.ContSet.VPolytope.Real.Theorems.LeOfForallLe
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 @[expose] public section

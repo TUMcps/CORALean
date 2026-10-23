@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -67,7 +68,7 @@ which `reachSetExact_confinement_of_subset` discharges from a check on the compu
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace Mtimes
+open Matrix ContSet Scalar NormedSpace Mtimes MatExp
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -89,12 +90,10 @@ theorem NonlinearSys.reachSetExact_subset_evalOn (sys : NonlinearSys n m)
     (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
     (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
     (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (hRconv : ∀ i < N, Convex ℝ (construct (mtimes (𝕄 := ℐ) (S := 𝒫𝒵)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
-    (hRclosed : ∀ i < N, IsClosed (construct (mtimes (𝕄 := ℐ) (S := 𝒫𝒵)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
-    (hRbdd : ∀ i < N, Bornology.IsBounded (construct (mtimes (𝕄 := ℐ) (S := 𝒫𝒵)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
+    (hRconv : ∀ i < N, Convex ℝ (inputRemainderSet (S := 𝒫𝒵) (steps i).A Δt η (steps i).linInput))
+    (hRclosed : ∀ i < N, IsClosed (inputRemainderSet (S := 𝒫𝒵) (steps i).A Δt η (steps i).linInput))
+    (hRbdd : ∀ i < N, Bornology.IsBounded (inputRemainderSet (S := 𝒫𝒵) (steps i).A Δt η (steps
+      i).linInput))
     (Ud : ℕ → 𝒫𝒵 n)
     (hUd : ∀ i < N, construct ((NonlinearSys.linearize (steps i).A).inputSolution
       (S := 𝒫𝒵) Δt η (steps i).linInput) ⊆ construct (Ud i))

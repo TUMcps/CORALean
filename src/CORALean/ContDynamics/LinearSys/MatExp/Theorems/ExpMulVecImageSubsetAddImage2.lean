@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCo
 # The image of a set under `e^{At}` lies in the set plus `ΔR`
 
 `[1, Eq. 6]`: `e^{At} Z ⊆ Z + M Z` for every `t ∈ [0, r]`, `Z` standing for `η(R(0), γ)`,
-with `M Z` the `ΔR` of [2]'s correction matrix.
+with `M Z` the `ΔR` of [2, Thm. 3]'s correction matrix.
 
 ## Inputs
 * `A` – system matrix
@@ -29,11 +29,12 @@ with `M Z` the `ΔR` of [2]'s correction matrix.
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems
-      using Enclosing Hulls of Probability Density Functions". In Proc. of the European Control
-      Conference (ECC), pp. 625-630, 2009.
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

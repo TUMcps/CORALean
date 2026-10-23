@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.Discretize
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -51,12 +52,9 @@ theorem LinearSys.IsCanonicalTrajectory.discretize_inputSolution [Mtimes ℐ S]
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) :
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U)) :
     (sys.discretize Δt).IsCanonicalTrajectory R₀ (sys.inputSolution Δt η U)
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) :=
   traj.discretize hΔt.le hT hbdd

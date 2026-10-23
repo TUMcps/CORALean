@@ -66,6 +66,15 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionRelaxSubset
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.EvalUnionLower
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullSingleConsIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.AbsFactorExtendLeOne
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialEqZeroOfNoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorExtendLeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorExtendRight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorIdxLeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorIdxRight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ProdUnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SumUnionE
 
 /-!
 # What `ConPolyZono` guarantees

@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSo
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
 
 @[expose] public section
 
@@ -87,12 +88,9 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U)))
+    (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U))
+    (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U))
+    (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U))
     -- `0 ∈ U` is what `inputReach_mono` needs, and the only extra hypothesis here
     (h0 : (0 : Vec ℝ n) ∈ construct U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---

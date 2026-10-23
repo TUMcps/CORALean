@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zoo.Real.Operations.Interval
 public import CORALean.ContSet.Zoo.Real.Theorems.EnclosesIff
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 

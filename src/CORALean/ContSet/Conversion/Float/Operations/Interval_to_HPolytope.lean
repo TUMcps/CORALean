@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.StackRows

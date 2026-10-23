@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.STLInterval.Instances
 public import CORALean.Specification.STLInterval.STLInterval
 
 @[expose] public section
@@ -34,17 +35,21 @@ open, and `lb > ub`, or `lb = ub` with an open end, gives the empty interval `st
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.stlInterval (lb ub : EReal) (lc rc : Bool) (hlb : 0 ≤ lb) :
-    STLInterval :=
+def STLInterval.stlInterval (lb : 𝕋) (ub : WithTop 𝕋) (lc rc : Bool) (hlb : 0 ≤ toReal lb) :
+    STLInterval 𝕋 :=
   -- 1. an infinite bound is open
-  let lc' := if lb = ⊥ ∨ lb = ⊤ then false else lc
-  let rc' := if ub = ⊥ ∨ ub = ⊤ then false else rc
+  let rc' := match ub with | none => false | some _ => rc
   -- 2. `lb > ub`, or `lb = ub` with an open end, is empty
-  if h : lb < ub ∨ (lb = ub ∧ lc' = true ∧ rc' = true) then
-    .nonempty lb ub lc' rc' (by grind) (by grind) h hlb
+  if h : STLInterval.toEReal (lb : WithTop 𝕋) < STLInterval.toEReal ub ∨
+      (STLInterval.toEReal (lb : WithTop 𝕋) = STLInterval.toEReal ub ∧ lc = true ∧ rc' = true) then
+    .nonempty lb ub lc rc' (fun hu => by subst hu; rfl) h hlb
   else .empty
 
 end CORALean

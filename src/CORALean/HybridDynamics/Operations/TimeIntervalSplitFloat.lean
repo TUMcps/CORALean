@@ -30,8 +30,8 @@ The location's combined input set `B U ⊕ c ⊕ E W` need not hold the origin.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -53,7 +53,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The enclosure of a stay of length up to `r` from `X₀`, at Taylor order `η`,
-the combined input `ℓ.inputSetFloat` split at its center, [1, Alg. 3]. -/
+the combined input `ℓ.inputSetFloat` split at its center, [1, Eq. 4]. -/
 def Location.timeIntervalSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (r : 𝕋) (η : ℕ)
     (X₀ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=

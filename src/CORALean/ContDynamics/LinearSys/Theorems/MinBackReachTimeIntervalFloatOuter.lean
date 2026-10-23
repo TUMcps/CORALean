@@ -5,6 +5,8 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachS
 public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -43,7 +43,7 @@ theorem FourValuedSignal.toKleeneSignal?_eq_none_iff (s : FourValuedSignal ℝ)
     s.toKleeneSignal? = none ↔ ∃ t : ℝ, 0 ≤ t ∧ s.at t = FourValued.ii := by -- --- PROOF ---
   -- the whole time axis is the interval `[0,inf)`
   have hne : STLInterval.emptyBounds (0 : ℝ) ⊤ true false = false := by
-    simp [STLInterval.emptyBounds]
+    simp [TimeOrder.isEqvTop_iff_eq, STLInterval.emptyBounds]
   have h := s.isInconclusive.anyTrue_spec hs.2 0 ⊤ true false id le_rfl hne
   unfold FourValuedSignal.toKleeneSignal?
   split_ifs with hc

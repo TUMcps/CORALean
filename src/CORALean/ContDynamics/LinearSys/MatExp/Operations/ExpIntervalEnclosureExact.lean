@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 /-!
 # Interval matrices: the exponential enclosed with an exact second order
 
-`expIntervalEnclosureExact`: `e^{At}_[κ]` of [1, Thm. 3.2]: the truncation
+`expIntervalEnclosureExact`: `⌈e^{At}_κ⌉` of [1, Thm. 1]: the truncation
 `expIntervalTaylorExact` widened by `E(t)`, the tail bound taken at `t • A`'s dominating
 matrix as `expIntervalEnclosure` takes it, so the two enclosures differ only where they
 should. The identity costs nothing, `W(t)` is `expIntervalW` and therefore exact, and only
@@ -26,8 +26,9 @@ sharper than `expIntervalEnclosure`, where every order is.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -45,7 +46,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `e^{At}_[κ]` of [1, Thm. 3.2]: that truncation widened by `E(t)`, the tail
+/-- `⌈e^{At}_κ⌉` of [1, Thm. 1]: that truncation widened by `E(t)`, the tail
 bound taken at `t • A`'s dominating matrix as `expIntervalEnclosure` takes it. -/
 noncomputable def MatExp.expIntervalEnclosureExact (A : Interval (Mat ℝ n n)) (t : ℝ)
     (κ : ℕ) : Interval (Mat ℝ n n) where

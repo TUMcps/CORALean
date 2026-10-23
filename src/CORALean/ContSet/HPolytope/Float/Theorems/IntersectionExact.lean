@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.ErrFreeOfIsErrFree
 
 @[expose] public section

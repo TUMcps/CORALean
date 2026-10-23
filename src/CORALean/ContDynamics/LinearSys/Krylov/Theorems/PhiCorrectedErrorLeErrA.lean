@@ -115,9 +115,11 @@ theorem Krylov.phi_corrected_error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m +
       (∑' k : ℕ, ((Nat.factorial (k + p) : ℝ)⁻¹) • (t • (σ • A)) ^ k) *ᵥ v -
         Vp *ᵥ ((∑' k : ℕ, ((Nat.factorial (k + p) : ℝ)⁻¹) • (t • (σ • Tp)) ^ k) *ᵥ
           Pi.single 0 1)
+    -- the leading term of the error, `τ γ (σ t)^(m+2) / (m + 2 + p)!`
+    let lead : ℝ → ℂ := fun t =>
+      (τ : ℂ) * γ * (σ * t) ^ (m + 2) / (Nat.factorial (m + 1 + 1 + p) : ℂ)
     -- (5.9a)
-    ((fun t : ℝ => L t - ((τ : ℂ) * γ * (σ * t) ^ (m + 2) /
-        (Nat.factorial (m + 1 + 1 + p) : ℂ)) • (A *ᵥ w)) =O[𝓝 0] fun t => t ^ (m + 3)) ∧
+    ((fun t : ℝ => L t - (lead t) • (A *ᵥ w)) =O[𝓝 0] fun t => t ^ (m + 3)) ∧
       -- (5.9b), and its asymptotic correctness
       ((∀ x : Fin n → ℂ, (star x ⬝ᵥ ((σ • A) *ᵥ x)).re ≤ 0) → ∀ t : ℝ, 0 ≤ t →
         ‖(WithLp.toLp 2 (L t) : EuclideanSpace ℂ (Fin n))‖ ≤
@@ -127,7 +129,7 @@ theorem Krylov.phi_corrected_error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m +
         ‖(WithLp.toLp 2 (A *ᵥ w) : EuclideanSpace ℂ (Fin n))‖ * τ * ‖γ‖ * t ^ (m + 2) /
           (Nat.factorial (m + 1 + 1 + p) : ℝ)) =O[𝓝[≥] 0]
             fun t => t ^ (m + 3)) := by -- --- PROOF ---
-  intro v γ Tp Vp L
+  intro v γ Tp Vp L lead
   obtain ⟨hKp, hHp, hγp, hvp⟩ := Krylov.correctedKrylov_identity A V T (τ : ℂ) w hH hK
   set e₁ : Fin (m + 2) → ℂ := Pi.single 0 1 with he₁
   set E := (EuclideanSpace.equiv (Fin n) ℂ).symm with hE
@@ -151,8 +153,7 @@ theorem Krylov.phi_corrected_error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m +
     rintro q rfl t
     exact Krylov.phi_error_eq_integral A Vp Tp σ v e₁ q t
   -- (5.9a): (4.4a) for the identity `AV⁺ = V⁺T⁺ + (Av_{m+1})e_{m+1}*`
-  have ha : (fun t : ℝ => L t - ((τ : ℂ) * γ * (σ * t) ^ (m + 2) /
-      (Nat.factorial (m + 1 + 1 + p) : ℂ)) • (A *ᵥ w)) =O[𝓝 0] fun t => t ^ (m + 3) := by
+  have ha : (fun t : ℝ => L t - (lead t) • (A *ᵥ w)) =O[𝓝 0] fun t => t ^ (m + 3) := by
     have h := Krylov.phi_error_sub_leading_isBigO A Vp Tp 1 σ (A *ᵥ w) hHp hKp p
     dsimp only at h
     rw [hγp, hvp] at h
@@ -228,7 +229,7 @@ theorem Krylov.phi_corrected_error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m +
             field_simp
   · -- asymptotic correctness, from (5.9a) as in `Prop. 3`
     set b : ℝ → Fin n → ℂ := fun t =>
-      ((τ : ℂ) * γ * (σ * t) ^ (m + 2) / (Nat.factorial (m + 1 + 1 + p) : ℂ)) • (A *ᵥ w)
+      (lead t) • (A *ᵥ w)
       with hb
     have h1 := ((E : (Fin n → ℂ) →L[ℂ] EuclideanSpace ℂ (Fin n)).isBigO_comp _ (𝓝 0)).trans ha
     have hb' : ∀ t : ℝ, 0 ≤ t →

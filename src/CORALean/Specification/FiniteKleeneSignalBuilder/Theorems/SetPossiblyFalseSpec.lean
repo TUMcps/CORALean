@@ -28,8 +28,8 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open FiniteKleeneSignalBuilder in
-theorem FiniteKleeneSignalBuilder.setPossiblyFalse?_spec (b : FiniteKleeneSignalBuilder)
-    (lo hi : EReal) : -- --- CONCL ---
+theorem FiniteKleeneSignalBuilder.setPossiblyFalse?_spec (b : FiniteKleeneSignalBuilder ℝ)
+    (lo hi : ℝ) : -- --- CONCL ---
     (hi ≤ lo → b.setPossiblyFalse? lo hi = none) ∧
     (lo < hi → ∀ (d : ℝ) (PT PF : ℝ → Prop), b.Represents d PT PF →
       ∃ b', b.setPossiblyFalse? lo hi = some b' ∧

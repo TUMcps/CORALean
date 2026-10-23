@@ -19,13 +19,12 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 /-!
 # `reach` with the input set split encloses every run, one window at a time
 
-[1, Alg. 3]'s soundness. A run is at `t ∈ τ_k` at
-`e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds`; with `u = ũ + (u - ũ)` the integral is
-`∫₀ᵗ e^{Aσ}dσ ũ` plus one admissible `Ũ`-input's contribution, and with
-`t = t_k + τ` both the free motion and the constant's part are `e^{A t_k}` of
-their values at `τ`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`).
-At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, and the `Ũ` part is
-in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recenter`'s.
+The soundness of the windows built from [1, Eq. 4]'s split step. A run is at `t ∈ τ_k` at
+`e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u(s) ds`; with `u = ũ + (u - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ` plus
+one admissible `Ũ`-input's contribution, and with `t = t_k + τ` both the free motion and the
+constant's part are `e^{A t_k}` of their values at `τ`, the constant's plus `P̃(t_k)`
+(`expIntegral_add_mulVec`). At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, and the `Ũ`
+part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recenter`'s.
 
 ## Inputs
 * `sys` – linear system with split input
@@ -40,8 +39,8 @@ in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recenter`'s.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

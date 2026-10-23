@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ApValueSpec
+public import CORALean.Specification.OnlineAnalyzerNode.Theorems.InitSignalMapTime
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.MkSpec
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetApSound
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetApSpec

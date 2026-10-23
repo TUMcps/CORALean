@@ -81,10 +81,10 @@ theorem aux_foldl_max {α V : Type} [LinearOrder V] (P : α → Prop) [Decidable
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.max_spec {V : Type} [LinearOrder V] [Zero V] (s : FiniteSignal ℝ V)
-    (hs : s.IsValid) (lo hi : EReal) (hlh : lo ≤ hi) (h0 : (0 : EReal) ≤ hi) : -- --- CONCL ---
-    0 ≤ s.max lo hi ∧ (∀ c ∈ s.cells, lo ≤ (c.1.2 : EReal) → (c.1.1 : EReal) ≤ hi →
+    (hs : s.IsValid) (lo hi : ℝ) (hlh : lo ≤ hi) (h0 : 0 ≤ hi) : -- --- CONCL ---
+    0 ≤ s.max lo hi ∧ (∀ c ∈ s.cells, lo ≤ c.1.2 → c.1.1 ≤ hi →
         c.2 ≤ s.max lo hi) ∧
-      (s.max lo hi = 0 ∨ ∃ c ∈ s.cells, lo ≤ (c.1.2 : EReal) ∧ (c.1.1 : EReal) ≤ hi ∧
+      (s.max lo hi = 0 ∨ ∃ c ∈ s.cells, lo ≤ c.1.2 ∧ c.1.1 ≤ hi ∧
         c.2 = s.max lo hi) := by -- --- PROOF ---
   obtain ⟨hne, hl, hp, -, hnn⟩ := hs
   -- the cells by index
@@ -103,13 +103,13 @@ theorem FiniteSignal.max_spec {V : Type} [LinearOrder V] [Zero V] (s : FiniteSig
     refine ⟨_, (FiniteSignal.mem_cellsFrom_iff _ 0 (s.time.zip s.value)).mpr ⟨m, hm2, rfl⟩,
       by simp, by simp, fun h => by simp [h], fun h => by simp [h]⟩
   -- the breakpoint where the interval begins
-  obtain ⟨t1, t2⟩ := List.takeWhile_getElem (fun t : ℝ => decide ((t : EReal) < lo)) s.time
-  have hk0n : (s.time.takeWhile (fun t : ℝ => decide ((t : EReal) < lo))).length ≤ s.time.length :=
+  obtain ⟨t1, t2⟩ := List.takeWhile_getElem (fun t : ℝ => decide (t < lo)) s.time
+  have hk0n : (s.time.takeWhile (fun t : ℝ => decide (t < lo))).length ≤ s.time.length :=
     (List.takeWhile_sublist _).length_le
-  set k0 := (s.time.takeWhile (fun t : ℝ => decide ((t : EReal) < lo))).length with hk0
-  have hbelow : ∀ m (hm : m < k0), ((s.time[m]'(by omega) : ℝ) : EReal) < lo := fun m hm => by
+  set k0 := (s.time.takeWhile (fun t : ℝ => decide (t < lo))).length with hk0
+  have hbelow : ∀ m (hm : m < k0), s.time[m]'(by omega) < lo := fun m hm => by
     simpa using t1 m (by omega)
-  have habove : ∀ hk : k0 < s.time.length, lo ≤ ((s.time[k0] : ℝ) : EReal) := fun hk => by
+  have habove : ∀ hk : k0 < s.time.length, lo ≤ s.time[k0] := fun hk => by
     have := t2 (by omega); simpa using this
   have hmono : ∀ a b (ha : a < s.time.length) (hb : b < s.time.length), a ≤ b →
       s.time[a] ≤ s.time[b] := fun a b ha hb hab => by
@@ -118,11 +118,11 @@ theorem FiniteSignal.max_spec {V : Type} [LinearOrder V] [Zero V] (s : FiniteSig
     · exact le_rfl
   -- the loop
   have hmax : s.max lo hi = (List.range' k0 (s.time.length - 1 - k0)).foldl (fun val j =>
-      if (s.time.getD j 0 : EReal) ≤ hi then Max.max val (s.value.getD (j + 1) 0) else val)
+      if s.time.getD j 0 ≤ hi then Max.max val (s.value.getD (j + 1) 0) else val)
       (match s.value[k0]? with | some v => Max.max 0 v | none => 0) := by
     unfold FiniteSignal.max FiniteSignal.length
     rfl
-  obtain ⟨r1, r2, r3⟩ := aux_foldl_max (fun j => (s.time.getD j 0 : EReal) ≤ hi)
+  obtain ⟨r1, r2, r3⟩ := aux_foldl_max (fun j => s.time.getD j 0 ≤ hi)
     (fun j => s.value.getD (j + 1) 0) (List.range' k0 (s.time.length - 1 - k0))
     (match s.value[k0]? with | some v => Max.max 0 v | none => 0)
   rw [← hmax] at r1 r2 r3
@@ -160,7 +160,7 @@ theorem FiniteSignal.max_spec {V : Type} [LinearOrder V] [Zero V] (s : FiniteSig
         have hj : m - 1 ∈ List.range' k0 (s.time.length - 1 - k0) := by
           -- rewrite and simplify
           rw [List.mem_range'_1]; omega
-        have hP : (s.time.getD (m - 1) 0 : EReal) ≤ hi := by
+        have hP : s.time.getD (m - 1) 0 ≤ hi := by
           rw [hget _ (by omega), ← e4 (by omega)]; exact hhi
         have := r2 (m - 1) hj hP
         rw [e2]

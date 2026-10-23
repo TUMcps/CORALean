@@ -93,7 +93,7 @@ theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec
     simpa using le_trans hle' (le_trans hμ (le_max_right 0 (toReal μ)))
   -- each difference keeps a point plus its subtrahend in the polytope
   have key : ∀ (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
-      (u : ∀ i, FloatBound 𝕋 T (rowLin P.A i)) (x : Vec ℝ n),
+      (u : ∀ i, FloatBound 𝕋 T (Real.HPolytope.rowLin (toRealMat P.A) i)) (x : Vec ℝ n),
       x ∈ (P.minkDiffOf T u).construct →
       (∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) → ∀ y ∈ T, x + y ∈ P.construct :=
     fun P T u x hx hk y hy => HPolytope.minkDiffOf_inner P T u hk hx y hy

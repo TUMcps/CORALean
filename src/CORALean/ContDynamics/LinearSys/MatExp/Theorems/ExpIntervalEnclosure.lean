@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 /-!
 # The matrix exponential lies in its interval enclosure
 
-[1, Sec. 3.3.1], entry by entry as `exp_mem_expEnclosure` does, with
+[1, Thm. 1], entry by entry as `exp_mem_expEnclosure` does, with
 `norm_le_absMax`/`expRemainderBound_mono` replacing the pointwise tail bound by
 a uniform one taken at `A.absMax`.
 
@@ -37,8 +37,9 @@ and `norm_le_absMax` is exactly what lets it imply the pointwise condition
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

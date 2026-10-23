@@ -12,14 +12,14 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # The input solution for varying inputs from the Krylov Taylor terms
 
-A correct form of [1, Thm. IV.2] for arbitrarily varying inputs in a convex, closed, bounded
-`U`: `R_p(δ) ⊆ ⊕_{j=1}^{η+1} {P Ṽ(u) H̃ʲ(u) e₁ | u ∈ U} δʲ/j! ⊕ R`, with Alg. 1 run `m + 1`
-passes on `C̃(u) = [A u; 0 0]`, `ṽ = [0ₙ; 1]`, and `η + 1 ≤ m`. The remainder `R` is not [1]'s
-Krylov one but the closed convex hull of `E(δ)·δ·U`, the remainder of Althoff's thesis
-[2, Thm. 3.1] (`inputReach_subset_inputSolution`). Below the Krylov order each Krylov term is
-`A^{j-1} U δʲ/j!` (`augment_arnoldi_pow`), so the convexity the merge (29) needs holds there.
-[1]'s own remainder for varying inputs is open: its proof sums `Cor. IV.1`'s error boxes,
-whose radii do not add up to `ε̃δ`.
+A correct form of [1, Thm. IV.2] for arbitrarily varying inputs in a convex, closed, bounded `U`:
+`R_p(δ) ⊆ ⊕_{j=1}^{η+1} {P Ṽ(u) H̃ʲ(u) e₁ | u ∈ U} δʲ/j! ⊕ R`, with Alg. 1 run `m + 1` passes on
+`C̃(u) = [A u; 0 0]`, `ṽ = [0ₙ; 1]`, and `η + 1 ≤ m`. The remainder `R` is not [1]'s Krylov one but
+the closed convex hull of `E(δ)·δ·U`, the remainder of [2, Prop. 2] in the corrected form
+`inputReach_subset_inputSolution` proves. Below the Krylov order each Krylov term is
+`A^{j-1} U δʲ/j!` (`augment_arnoldi_pow`), so the convexity the merge (29) needs holds there. [1]'s
+own remainder for varying inputs is open: its proof sums `Cor. IV.1`'s error boxes, whose radii do
+not add up to `ε̃δ`.
 
 ## Inputs
 * `A` – system matrix
@@ -41,10 +41,11 @@ whose radii do not add up to `ε̃δ`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
-  Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
+      Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -114,7 +115,8 @@ theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set 
         exact Finset.single_le_sum (f := fun i => ∑ j, (|I.inf i j| + |I.sup i j|))
           (fun i _ => by positivity) (Finset.mem_univ i)
 
-/-- Order `j` of the thesis' Taylor sum is the Krylov term `P Ṽ H̃^{j+1} e₁ δ^{j+1}/(j+1)!`. -/
+/-- Order `j` of [2, Prop. 2]'s corrected Taylor sum is the Krylov term
+`P Ṽ H̃^{j+1} e₁ δ^{j+1}/(j+1)!`. -/
 theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (δ : ℝ) (m : ℕ)
     {j : ℕ} (hj : j + 1 ≤ m) : -- --- CONCL ---
     ((LinearSys.canonical A : LinearSys ℝ n).inputTerm δ j *ᵥ ·) '' U
@@ -130,8 +132,8 @@ theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. IV.2]'s Taylor terms for varying inputs, below the Krylov order `η + 1 ≤ m`,
-with the thesis' remainder `E(δ)·δ·U` closed and convexified in place of [1]'s. -/
+/-- [1, Thm. IV.2]'s Taylor terms for varying inputs, below the Krylov order `η + 1 ≤ m`, with
+[2, Prop. 2]'s remainder `E(δ)·δ·U` closed and convexified in place of [1]'s. -/
 theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec ℝ n)}
     (hconv : Convex ℝ U) (hclosed : IsClosed U) (hbdd : Bornology.IsBounded U) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
@@ -144,7 +146,7 @@ theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec �
         + closure (convexHull ℝ
             (⋃ M ∈ (MatExp.inputRemainder A δ η).construct, (M *ᵥ ·) '' U)) := by -- --- PROOF ---
   have hR := Krylov.aux_isBounded_iUnion_image (MatExp.inputRemainder A δ η) hbdd
-  -- the thesis' enclosure, at plain sets
+  -- [2, Prop. 2]'s enclosure, corrected, at plain sets
   have hexact := (LinearSys.canonical A : LinearSys ℝ n).inputReach_subset_inputSolution
     (S := 𝒮) hδ η hε (U := U) hconv hclosed hbdd
     (convex_convexHull ℝ _).closure isClosed_closure (isBounded_convexHull.2 hR).closure

@@ -48,10 +48,10 @@ namespace CORALean
 
 theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmentSignal ℝ)
     (hs : s.IsValid) : -- --- CONCL ---
-    ∃ (ι : Type) (_ : Fintype ι) (u : ι → PointSegmentSignal ℝ) (J : ι → STLInterval),
+    ∃ (ι : Type) (_ : Fintype ι) (u : ι → PointSegmentSignal ℝ) (J : ι → STLInterval ℝ),
       (∀ i, (u i).IsValid ∧ (u i).IsUnitary (J i) ∧ (J i).set.Nonempty) ∧
       (∀ t : ℝ, 0 ≤ t → (s.at t = true ↔ ∃ i, (u i).at t = true)) ∧
-      ∀ (κ : Type) (_ : Fintype κ) (v : κ → PointSegmentSignal ℝ) (K : κ → STLInterval),
+      ∀ (κ : Type) (_ : Fintype κ) (v : κ → PointSegmentSignal ℝ) (K : κ → STLInterval ℝ),
         (∀ j, (v j).IsUnitary (K j)) →
         (∀ t : ℝ, 0 ≤ t → (s.at t = true ↔ ∃ j, (v j).at t = true)) →
           Fintype.card ι ≤ Fintype.card κ := by -- --- PROOF ---
@@ -65,7 +65,7 @@ theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmen
     simp only [F, Finset.mem_filter, List.mem_toFinset, List.mem_map] at hS
     obtain ⟨⟨I, hI, rfl⟩, hne⟩ := hS
     exact ⟨I, hI, rfl, hne⟩
-  haveI : Nonempty STLInterval := ⟨STLInterval.empty⟩
+  haveI : Nonempty (STLInterval ℝ) := ⟨STLInterval.empty⟩
   choose! J hJL hJS hJne using hF
   -- each member of `F` is a maximal run
   have hrun : ∀ S ∈ F, ∀ t : ℝ, 0 ≤ t → t ∈ S → s.at t = true := fun S hS t ht htS => by

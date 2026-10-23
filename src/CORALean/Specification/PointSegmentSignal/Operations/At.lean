@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.PointSegmentSignal
 public import Mathlib.Order.Basic
 
@@ -35,11 +36,11 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `obj.at(time)`. -/
-def PointSegmentSignal.at {T : Type} [LinearOrder T] (s : PointSegmentSignal T) (time : T) : Bool :=
+def PointSegmentSignal.at {T : Type} [TimeOrder T] (s : PointSegmentSignal T) (time : T) : Bool :=
   -- 1. i = find(obj.timePoints <= time,1,'last')
   let i := (s.timePoints.takeWhile (· ≤ time)).length - 1
   -- 2. the point value if timePoints(i) == time, else the following interval value
-  if s.timePoints[i]? = some time then s.values.getD (2 * i) false
+  if ∃ b ∈ s.timePoints[i]?, TimeOrder.Eqv b time then s.values.getD (2 * i) false
   else s.values.getD (2 * i + 1) false
 
 end CORALean

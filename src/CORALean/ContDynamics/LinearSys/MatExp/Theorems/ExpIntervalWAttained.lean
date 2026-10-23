@@ -11,14 +11,14 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # `expIntervalW` attains both of its bounds
 
-[1, Lemma 3.1], the half the word *exact* stands for: every entry's two bounds are values `W(t)`
+[1, Lemma 1], the half the word *exact* stands for: every entry's two bounds are values `W(t)`
 really takes on the box, so no smaller interval matrix encloses `W(t)` entrywise. With
-`expW_mem_expIntervalW` this is the lemma as [1] states it. The witness is built entry by entry,
-which the single-use rearrangement buys: the variables `A i j`, the two diagonal entries, and the
-`A i k`, `A k j` of the `k ≠ i, j` sum are pairwise distinct, so each may be sent to whichever
-corner its own term wants. The two diagonal entries enter through one factor `[L, H]`, so they
-move together (`aux_diag_choice`). Exactness is entrywise, not as a set: the image of the box
-under `W(t)` is generally no interval matrix, as [1, Remark 3.1] notes for the sibling result.
+`expW_mem_expIntervalW` this is [1, Lemma 1] as stated. The witness is built entry by entry, which
+the single-use rearrangement buys: the variables `A i j`, the two diagonal entries, and the `A i k`,
+`A k j` of the `k ≠ i, j` sum are pairwise distinct, so each may be sent to whichever corner its own
+term wants. The two diagonal entries enter through one factor `[L, H]`, so they move together
+(`aux_diag_choice`). Exactness is entrywise, not as a set: the image of the box under `W(t)` is
+generally no interval matrix.
 
 ## Inputs
 * `A` – interval matrix
@@ -35,8 +35,9 @@ under `W(t)` is generally no interval matrix, as [1, Remark 3.1] notes for the s
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -167,7 +168,7 @@ theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i : Fin n)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Each entry's two bounds are attained, so [1, Lemma 3.1] is exact and not
+/-- Each entry's two bounds are attained, so [1, Lemma 1] is exact and not
 merely sound. `t ≠ 0` and a non-empty box are what the witnesses need. -/
 theorem MatExp.expIntervalW_attained (A : Interval (Mat ℝ n n)) {t : ℝ} (ht : t ≠ 0)
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) : -- --- CONCL ---

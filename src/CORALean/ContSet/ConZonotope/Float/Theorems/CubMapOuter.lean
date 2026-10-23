@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AbsorbRoundingNominal
-public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemLiftNominalIff
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
 
 @[expose] public section
@@ -54,19 +54,19 @@ theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n)
   obtain ⟨γ, hγ, hlin, e, he, heq⟩ := Zonotope.cubMapDep_coeff T
     (⟨cZ.absorbRounding.h, cZ.absorbRounding.c, cZ.absorbRounding.G,
       cZ.absorbRounding.I_error⟩ : Zonotope (Vec 𝕋 n)) β hβ
+  -- the index map of the cubic generators of the absorbed zonotope
+  set cI := Real.Zonotope.cubIdx (cZ.absorbRounding.h + 1) (cZ.absorbRounding.h + 1)
+    (cZ.absorbRounding.h + 1) with hcI
   -- the lifted constraints read the linear block, which is `β`
   have hdims : Function.Injective fun j : Fin cZ.absorbRounding.h =>
-      (Real.Zonotope.cubIdx (cZ.absorbRounding.h + 1) (cZ.absorbRounding.h + 1)
-        (cZ.absorbRounding.h + 1)).symm ((0, 0), j.succ) :=
+      cI.symm ((0, 0), j.succ) :=
     fun a b hab => Fin.succ_injective _ (by simpa using hab)
   have hP' : γ ∈ ((cZ.cubMap T).P).nominal.construct := by
     show γ ∈ (cZ.absorbRounding.P.lift_ fun j : Fin cZ.absorbRounding.h =>
-      (Real.Zonotope.cubIdx (cZ.absorbRounding.h + 1) (cZ.absorbRounding.h + 1)
-        (cZ.absorbRounding.h + 1)).symm ((0, 0), j.succ)).nominal.construct
+      cI.symm ((0, 0), j.succ)).nominal.construct
     refine (HPolytope.mem_lift_nominal_iff cZ.absorbRounding.P hdims).mpr ?_
     show (fun j => γ _) ∈ cZ.absorbRounding.P.nominal.construct
-    have : (fun j : Fin cZ.absorbRounding.h => γ ((Real.Zonotope.cubIdx (cZ.absorbRounding.h + 1)
-        (cZ.absorbRounding.h + 1) (cZ.absorbRounding.h + 1)).symm
+    have : (fun j : Fin cZ.absorbRounding.h => γ (cI.symm
         ((0, 0), j.succ))) = β := funext hlin
     rw [this]
     exact hP

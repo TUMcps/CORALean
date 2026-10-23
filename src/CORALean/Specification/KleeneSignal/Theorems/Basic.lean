@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Basic
+public import CORALean.Specification.PointSegmentSignal.Theorems.AtMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
 
@@ -26,6 +27,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 namespace CORALean
+
+section
 
 
 -- ===============================  `KleeneSignal.at_eq_uu_iff`  ================================ --
@@ -90,6 +93,29 @@ theorem KleeneSignal.not_isValid {T : Type} [LinearOrder T] [Zero T] (s : Kleene
     (hs : s.IsValid) : s.not.IsValid :=
   ⟨PointSegmentSignal.not_isValid _ hs.1, hs.2⟩
 
+end
+
+
+section
+
+open Float SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
+
+-- ================================  `KleeneSignal.at_mapTime`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       23-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Over a float scalar, the signal read as reals has, at the real a float time denotes, the float
+value there. -/
+theorem KleeneSignal.at_mapTime (s : KleeneSignal 𝕋) (t : 𝕋) :
+    (s.mapTime toReal).at (toReal t) = s.at t := by
+  simp only [KleeneSignal.at, KleeneSignal.mapTime, PointSegmentSignal.at_mapTime]
+
+end
 
 end CORALean
 

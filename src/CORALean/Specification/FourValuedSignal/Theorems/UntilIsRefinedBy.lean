@@ -55,7 +55,7 @@ namespace CORALean
 
 theorem FourValuedSignal.until_isRefinedBy (l r : FourValuedSignal ℝ) (kl kr : KleeneSignal ℝ)
     (hl : l.IsValid) (hr : r.IsValid) (hkl : kl.IsValid) (hkr : kr.IsValid)
-    (h₁ : l.IsRefinedBy kl) (h₂ : r.IsRefinedBy kr) (U : STLInterval) : -- --- CONCL ---
+    (h₁ : l.IsRefinedBy kl) (h₂ : r.IsRefinedBy kr) (U : STLInterval ℝ) : -- --- CONCL ---
     ∃ s, l.until U r = some s ∧ s.IsValid ∧ s.IsRefinedBy (kl.until U kr) := by -- --- PROOF ---
   obtain ⟨s, hs, hvs, hc⟩ := FourValuedSignal.until_spec l r hl hr U
   refine ⟨s, hs, hvs, fun t ht => ?_⟩

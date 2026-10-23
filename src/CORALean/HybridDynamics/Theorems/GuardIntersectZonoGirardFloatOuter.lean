@@ -90,11 +90,13 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     simp [Scalar.toRealMat_apply]
   have hBB : ∀ y : Vec ℝ n, Scalar.toRealMat B *ᵥ (Scalar.toRealMat Bᵀ *ᵥ y) = y := fun y => by
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
+  -- the box around the cut of `R'`, from the Girard bounds along the basis
+  set boxOf : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R' =>
+    ⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ (-(Bᵀ k))),
+      fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ with hboxOf
   -- the state's coordinates lie in the cut of a set holding it
   have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.construct →
-      Scalar.toRealMat Bᵀ *ᵥ x ∈ (⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ
-          (-(Bᵀ k))),
-        fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n)).construct :=
+      Scalar.toRealMat Bᵀ *ᵥ x ∈ (boxOf R').construct :=
     fun R' hx' => by
     -- the coordinate `k` of `Bᵀ x` is `x·ℓ` for the column `ℓ` of `B`
     intro k
@@ -117,9 +119,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
       rw [hk]
       exact hu
   -- the state is in the joined interval
-  have h2 := hfold (Rs.map fun R' => (⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ
-          (-(Bᵀ k))),
-        fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n)))
+  have h2 := hfold (Rs.map fun R' => (boxOf R'))
     ⟨fun k => neg (Location.zonoGirardUpperFloat R₀ nv γ (-(Bᵀ k))),
         fun k => Location.zonoGirardUpperFloat R₀ nv γ (Bᵀ k)⟩
     (Scalar.toRealMat Bᵀ *ᵥ x) (by
@@ -129,9 +129,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
   generalize List.foldl Interval.or
     (⟨fun k => neg (Location.zonoGirardUpperFloat R₀ nv γ (-(Bᵀ k))),
         fun k => Location.zonoGirardUpperFloat R₀ nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n))
-    (Rs.map fun R' => (⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ
-          (-(Bᵀ k))),
-        fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n))) = box
+    (Rs.map fun R' => (boxOf R')) = box
     at h2 ⊢
   -- and back through the basis
   have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope

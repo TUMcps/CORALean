@@ -46,51 +46,6 @@ open FloatOps SoundFloatArithmetic InflatedContSet Matrix
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A functional given by a float vector is the dot product with it, so its
-`dualVec` is that vector read as reals. -/
-theorem Ellipsoid.aux_dualVec {c : Vec ℝ n →ₗ[ℝ] ℝ} {a : Vec 𝕋 n}
-    (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) : -- --- CONCL ---
-    Real.dualVec c = toRealVec a := by -- --- PROOF ---
-  funext i
-  rw [Real.dualVec, hc, Finset.sum_eq_single i]
-  · rw [if_pos rfl, mul_one]
-    rfl
-  · intro b _ hb
-    rw [if_neg (Ne.symm hb), mul_zero]
-  · intro h
-    exact absurd (Finset.mem_univ i) h
-
-/-- The exact bound's value covered by the stored float, which is where the
-candidate is spent. -/
-theorem Ellipsoid.aux_supportBound_le (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ}
-    {a : Vec 𝕋 n} (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) {s : 𝕋}
-    (hs : toReal (E.quadUp a) ≤ toReal (mulDown s s)) : -- --- CONCL ---
-    ((InflatedContSet.nominal E).ellipsoid.supportBound c).val
-      ≤ toReal (addUp (dotUp a E.q) (absolute s)) := by -- --- PROOF ---
-  have h₁ : c (InflatedContSet.nominal E).ellipsoid.q ≤ toReal (dotUp a E.q) := by
-    rw [hc, E.nominal_q]
-    exact le_dotUp a E.q
-  -- the nominal quadratic form is the stored one, or `0`
-  have hquad : Real.dualVec c ⬝ᵥ ((InflatedContSet.nominal E).ellipsoid.Q *ᵥ Real.dualVec c)
-      ≤ max 0 (toReal s * toReal s) := by
-    rw [Ellipsoid.aux_dualVec hc, Ellipsoid.nominal_Q_eq]
-    split_ifs
-    · exact le_trans (le_trans (E.quad_le_quadUp a) (le_trans hs (mulDown_le_mul s s)))
-        (le_max_right _ _)
-    · simp
-  have h₂ :
-      Real.sqrt (Real.dualVec c ⬝ᵥ ((InflatedContSet.nominal E).ellipsoid.Q *ᵥ Real.dualVec c))
-      ≤ toReal (absolute s) := by
-    rw [toReal_absolute, ← Real.sqrt_mul_self (abs_nonneg (toReal s)), abs_mul_abs_self]
-    refine le_trans (Real.sqrt_le_sqrt hquad) (Real.sqrt_le_sqrt ?_)
-    exact max_le (mul_self_nonneg _) le_rfl
-  have h₃ := add_le_addUp (dotUp a E.q) (absolute s)
-  show c (InflatedContSet.nominal E).ellipsoid.q + Real.sqrt _ ≤ _
-  linarith
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The nominal bound; `hs` is the whole of what the candidate owes, and it is
@@ -101,7 +56,38 @@ def Ellipsoid.nominalBoundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] 
     (hs : toReal (E.quadUp a) ≤ toReal (mulDown s s)) :
     FloatBound 𝕋 (nominalSet E) c :=
   FloatBound.ofExistsBound (addUp (dotUp a E.q) (absolute s))
-    ⟨(InflatedContSet.nominal E).ellipsoid.supportBound c, E.aux_supportBound_le hc hs⟩
+    ⟨(InflatedContSet.nominal E).ellipsoid.supportBound c, by
+      -- a functional given by a float vector has that vector, read as reals, as its `dualVec`
+      have hdual : Real.dualVec c = toRealVec a := by
+        funext i
+        rw [Real.dualVec, hc, Finset.sum_eq_single i]
+        · rw [if_pos rfl, mul_one]
+          rfl
+        · intro b _ hb
+          rw [if_neg (Ne.symm hb), mul_zero]
+        · intro h
+          exact absurd (Finset.mem_univ i) h
+      -- the exact bound's value is covered by the stored float, where the candidate is spent
+      have h₁ : c (InflatedContSet.nominal E).ellipsoid.q ≤ toReal (dotUp a E.q) := by
+        rw [hc, E.nominal_q]
+        exact le_dotUp a E.q
+      -- the nominal quadratic form is the stored one, or `0`
+      have hquad : Real.dualVec c ⬝ᵥ ((InflatedContSet.nominal E).ellipsoid.Q *ᵥ Real.dualVec c)
+          ≤ max 0 (toReal s * toReal s) := by
+        rw [hdual, Ellipsoid.nominal_Q_eq]
+        split_ifs
+        · exact le_trans (le_trans (E.quad_le_quadUp a) (le_trans hs (mulDown_le_mul s s)))
+            (le_max_right _ _)
+        · simp
+      have h₂ :
+          Real.sqrt (Real.dualVec c ⬝ᵥ ((InflatedContSet.nominal E).ellipsoid.Q *ᵥ Real.dualVec c))
+            ≤ toReal (absolute s) := by
+        rw [toReal_absolute, ← Real.sqrt_mul_self (abs_nonneg (toReal s)), abs_mul_abs_self]
+        refine le_trans (Real.sqrt_le_sqrt hquad) (Real.sqrt_le_sqrt ?_)
+        exact max_le (mul_self_nonneg _) le_rfl
+      have h₃ := add_le_addUp (dotUp a E.q) (absolute s)
+      show c (InflatedContSet.nominal E).ellipsoid.q + Real.sqrt _ ≤ _
+      linarith⟩
 
 end CORALean.Float
 

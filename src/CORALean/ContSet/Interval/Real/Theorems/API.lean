@@ -190,6 +190,8 @@ public import CORALean.ContSet.Interval.Real.Theorems.MatVolumeEq
 public import CORALean.ContSet.Interval.Real.Theorems.ConvexHullVertices
 public import CORALean.ContSet.Interval.Real.Theorems.VecConstruct
 public import CORALean.ContSet.Interval.Real.Theorems.VecRepresentsa
+public import CORALean.ContSet.Interval.Real.Theorems.IntersectionExact
+public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds
 
 /-!
 # What `Interval` guarantees

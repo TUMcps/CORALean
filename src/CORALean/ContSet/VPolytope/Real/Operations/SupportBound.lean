@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
+public import CORALean.ContSet.VPolytope.Real.Theorems.LeOfForallLe
 public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 

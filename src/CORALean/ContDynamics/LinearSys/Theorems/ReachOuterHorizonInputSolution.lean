@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -46,12 +47,10 @@ theorem LinearSys.IsCanonicalTrajectory.reach_outer_horizon_inputSolution [Mtime
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) {o : ℕ} (ho : 0 < o) :
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U)) {o : ℕ} (ho :
+      0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct
       ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_horizon hΔt.le hT hbdd

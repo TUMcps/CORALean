@@ -1,7 +1,7 @@
 import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.ContSet.HPolytope.Real.Instances
-import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabIff
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.HybridDynamics.Theorems.FlowOuter
 import CORALean.HybridDynamics.Theorems.HoldsOfRun

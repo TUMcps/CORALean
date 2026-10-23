@@ -12,10 +12,12 @@ public import CORALean.Specification.FiniteSignal.Operations.Indicator
 
 `setPossiblyTrue(obj,int)`: the indicator signal of the interval, true on it, is combined with the
 signal `possiblyTrueSignal` by `|`, which is `finiteSignal.combine(@or,...)`. The interval `int`
-is given by its bounds `lo` and `hi`, extended reals as `interval(lb,ub)` allows `inf`. CORA throws
-for an empty or singleton interval (in `indicator`); here `none`.
+is given by its bounds `lo` and `hi`, time stamps like the signal's; an unbounded end behaves as a
+bound outside the signal. CORA throws for an empty or singleton interval (in `indicator`); here
+`none`.
 
 ## Inputs
+* `T` – time type
 * `obj` – signal builder
 * `lo` – interval lower bound
 * `hi` – interval upper bound
@@ -38,8 +40,8 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `setPossiblyTrue(obj,int)`. -/
-noncomputable def FiniteKleeneSignalBuilder.setPossiblyTrue? (obj : FiniteKleeneSignalBuilder)
-    (lo hi : EReal) : Option FiniteKleeneSignalBuilder :=
+def FiniteKleeneSignalBuilder.setPossiblyTrue? {T : Type} [TimeOrder T] [Zero T]
+    (obj : FiniteKleeneSignalBuilder T) (lo hi : T) : Option (FiniteKleeneSignalBuilder T) :=
   -- obtain duration of signal
   let dur := obj.possiblyTrueSignal.duration
   -- construct indicator signal for given interval

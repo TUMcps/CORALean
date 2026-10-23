@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Interfaces
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import CORALean.Specification.FiniteSignal.Operations.CombineEmit
 public import Mathlib.Order.Basic
@@ -37,14 +38,14 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The breakpoints `(tim(k),val(k))` the loop produces from the breakpoints `lhs` and `rhs`. -/
-def FiniteSignal.combineLoop {T V W : Type} [LinearOrder T] [DecidableEq W] (op : V → V → W) :
+def FiniteSignal.combineLoop {T V W : Type} [TimeOrder T] [DecidableEq W] (op : V → V → W) :
     List (T × V) → List (T × V) → List (T × W)
   | l :: ls, r :: rs =>
     -- ltime < rtime: progress in left signal
     if l.1 < r.1 then FiniteSignal.combineEmit op l.1 (op l.2 r.2) ls (r :: rs)
       (FiniteSignal.combineLoop op ls (r :: rs))
     -- ltime = rtime: progress in both signals
-    else if l.1 = r.1 then FiniteSignal.combineEmit op l.1 (op l.2 r.2) ls rs
+    else if TimeOrder.Eqv l.1 r.1 then FiniteSignal.combineEmit op l.1 (op l.2 r.2) ls rs
       (FiniteSignal.combineLoop op ls rs)
     -- ltime > rtime: progress in right signal
     else FiniteSignal.combineEmit op r.1 (op l.2 r.2) (l :: ls) rs

@@ -107,7 +107,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
     · by_cases hlh : lo < hi
       · -- a piece of positive length: or-ed with its indicator
         obtain ⟨ind, hind1, hind2, hind3, hind4⟩ :=
-          FiniteSignal.indicator?_spec dur lo hi true h0 (EReal.coe_lt_coe_iff.mpr hlh)
+          FiniteSignal.indicator?_spec dur lo hi true h0 hlh
         obtain ⟨sig', hc1, hc2, hc3, hc4⟩ :=
           FiniteSignal.combine?_spec (fun x y => x || y) sig ind hs hind2
         -- the fact `hdd`

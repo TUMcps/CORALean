@@ -101,35 +101,33 @@ theorem STL.depReachAt_sum (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope 
     have e1 := STL.sumGen_plus (Zonotope.mtimes (exp (Δt • A)) si.H)
       (Zonotope.ofPoint ((MatExp.expIntegral A Δt) *ᵥ (B *ᵥ U.c))) α
     rw [STL.sumGen_ofPoint, add_zero, STL.sumGen_mtimes _ _ α] at e1
+    -- the input's contribution, mapped by `T`
+    set Tu := Zonotope.mtimes (MatExp.expIntegral A Δt)
+      (Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c)))) with hTu
     -- those of `P_c(t_{i+1})`: the old ones mapped, the `γ_u` of `T U₀` after them
     have e2 := STL.sumGen_plus (Zonotope.mtimes (exp (Δt • A)) si.Pc)
-      (Zonotope.mtimes (MatExp.expIntegral A Δt)
-        (Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c))))) (fun k => α (X₀.h + k))
+      Tu (fun k => α (X₀.h + k))
     have hP2 : (Zonotope.mtimes (exp (Δt • A)) si.Pc).h = i * U.h := hPc
     rw [STL.sumGen_mtimes _ _ (fun k => α (X₀.h + k)),
       STL.sumGen_mtimes _ _ (fun k => α (X₀.h + ((Zonotope.mtimes (exp (Δt • A)) si.Pc).h + k))),
       hU₀ (fun k => α (X₀.h + ((Zonotope.mtimes (exp (Δt • A)) si.Pc).h + k)))] at e2
     simp only [hP2] at e2
+    -- the stepped set plus the input's point
+    set st := (Zonotope.mtimes (exp (Δt • A)) si.H).plus
+      (Zonotope.ofPoint ((MatExp.expIntegral A Δt) *ᵥ (B *ᵥ U.c))) with hst
     -- the state after the pass in terms of the state before, over the stepped sets
-    have main : ((Zonotope.mtimes (exp (Δt • A)) si.H).plus
-          (Zonotope.ofPoint ((MatExp.expIntegral A Δt) *ᵥ (B *ᵥ U.c)))).c
-        + ∑ k : Fin ((Zonotope.mtimes (exp (Δt • A)) si.H).plus
-          (Zonotope.ofPoint ((MatExp.expIntegral A Δt) *ᵥ (B *ᵥ U.c)))).h,
-          α k • ((Zonotope.mtimes (exp (Δt • A)) si.H).plus
-          (Zonotope.ofPoint ((MatExp.expIntegral A Δt) *ᵥ (B *ᵥ U.c)))).G k
+    have main : st.c
+        + ∑ k : Fin st.h,
+          α k • st.G k
         -- the sum over `P_c(t_{i+1})`
-        + ∑ k : Fin ((Zonotope.mtimes (exp (Δt • A)) si.Pc).plus
-          (Zonotope.mtimes (MatExp.expIntegral A Δt)
-            (Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c)))))).h,
-          α (X₀.h + k) • ((Zonotope.mtimes (exp (Δt • A)) si.Pc).plus
-          (Zonotope.mtimes (MatExp.expIntegral A Δt)
-            (Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c)))))).G k
+        + ∑ k : Fin ((Zonotope.mtimes (exp (Δt • A)) si.Pc).plus Tu).h,
+          α (X₀.h + k) • ((Zonotope.mtimes (exp (Δt • A)) si.Pc).plus Tu).G k
         = exp (Δt • A) *ᵥ (si.H.c + ∑ k : Fin si.H.h, α k • si.H.G k
             + ∑ k : Fin si.Pc.h, α (X₀.h + k) • si.Pc.G k)
           + MatExp.expIntegral A Δt
             *ᵥ (B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + i * U.h + l) • U.G l)) := by
       rw [e1, e2]
-      simp only [Zonotope.plus, Zonotope.mtimes, Zonotope.ofPoint, Matrix.mulVec_add,
+      simp only [st, Zonotope.plus, Zonotope.mtimes, Zonotope.ofPoint, Matrix.mulVec_add,
         Matrix.mulVec_mulVec]
       simp only [add_assoc]
       abel

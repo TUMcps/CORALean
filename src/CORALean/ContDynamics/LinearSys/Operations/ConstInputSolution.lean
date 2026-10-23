@@ -10,10 +10,10 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # What a constant input contributes at every time of one step, as a set
 
-The constant half of [1, Alg. 3]'s split `U = ũ ⊕ Ũ`: over `[0, r]` the
+The constant half of [1, Eq. 4]'s split `U = ũ ⊕ Ũ`: over `[0, r]` the
 constant `ũ` contributes `∫₀ᵗ e^{Aσ}dσ ũ`, enclosed as the straight line to its
 value at `r`, `(t/r) ∫₀ʳ e^{Aσ}dσ ũ`, widened by the interpolation error
-`F̃ ũ` [1, Prop. 3.4]. The segment from the origin to `ũ` carries the line, so
+`F̃ ũ` [1, Sec. III-A]. The segment from the origin to `ũ` carries the line, so
 no matrix inverse and no subtraction appear — the arrangement
 `inputSolution_timeInterval_outer_split` proves inline, named here so a window
 other than the first can reuse it.
@@ -29,8 +29,8 @@ other than the first can reuse it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

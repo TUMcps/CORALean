@@ -53,7 +53,7 @@ theorem List.pairwise_matlabFind {α : Type} (p : α → Bool) (l : List α) :
 /-- The index `atIdx` returns counts the time points `≤ u`. -/
 theorem PointSegmentSignal.atIdx_snd {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
     (u : T) : (s.atIdx (u : WithTop T)).2 = (s.timePoints.takeWhile (· ≤ u)).length := by
-  simp [PointSegmentSignal.atIdx]
+  simp [TimeOrder.isEqvTop_iff_eq, PointSegmentSignal.atIdx]
 
 
 end CORALean

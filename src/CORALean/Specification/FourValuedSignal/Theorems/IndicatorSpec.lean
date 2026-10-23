@@ -40,7 +40,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.indicator_spec
-    (I : STLInterval) (val default : FourValued) : -- --- CONCL ---
+    (I : STLInterval ℝ) (val default : FourValued) : -- --- CONCL ---
     (FourValuedSignal.indicator I val default).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (FourValuedSignal.indicator I val default).at t = val) ∧
       (t ∉ I.set → (FourValuedSignal.indicator I val default).at t = default) := by -- --- PROOF ---

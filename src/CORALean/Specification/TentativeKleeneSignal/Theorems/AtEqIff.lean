@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.TentativeKleeneSignal.TentativeKleeneSignal
+public import CORALean.Specification.TentativeKleeneSignal.Operations.At
 
 @[expose] public section
 

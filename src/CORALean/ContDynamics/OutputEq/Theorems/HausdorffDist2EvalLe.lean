@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.OutputEq.OutputEq
+public import CORALean.ContDynamics.OutputEq.Operations.Eval
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 public import CORALean.Global.EuclideanHausdorffDist

@@ -53,14 +53,14 @@ theorem PointSegmentSignal.at_append_ge (A : List T) (r : T) (R : List T) (VA VR
   have h1 : (A ++ r :: R).takeWhile (· ≤ t) = A ++ (r :: R).takeWhile (· ≤ t) :=
     List.takeWhile_append_of_pos (by simpa using hA)
   have hL : 0 < ((r :: R).takeWhile (· ≤ t)).length := by simp [hr]
-  simp only [PointSegmentSignal.at, h1, List.length_append]
+  simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at, h1, List.length_append]
   have e : A.length + ((r :: R).takeWhile (· ≤ t)).length - 1 =
       A.length + (((r :: R).takeWhile (· ≤ t)).length - 1) := by omega
   rw [e, List.getElem?_append_right (by omega), Nat.add_sub_cancel_left,
     show 2 * (A.length + (((r :: R).takeWhile (· ≤ t)).length - 1)) =
       VA.length + 2 * (((r :: R).takeWhile (· ≤ t)).length - 1) by omega]
   rw [List.getD_append_right _ _ _ _ (by omega), List.getD_append_right _ _ _ _ (by omega)]
-  simp [Nat.add_assoc, Nat.add_sub_cancel_left]
+  simp [Nat.add_assoc]
 
 
 -- takeWhile facts (any list)

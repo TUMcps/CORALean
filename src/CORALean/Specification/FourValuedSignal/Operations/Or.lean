@@ -19,9 +19,6 @@ mapped to `False` is the Kleene part, and the value is inconclusive where it dif
 disjunction of the refinements with inconclusive mapped to `True`. `toBoolSignal()` throws if a
 value is unknown; `none` is that error, which `at_or` shows does not occur.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `ι` – index type of the operands
 * `sigs` – four-valued signals to disjoin
@@ -40,12 +37,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = fourValuedSignal.or_(varargin)`; `none` if `toBoolSignal()` throws. -/
-noncomputable def FourValuedSignal.or_ {ι : Type} [Fintype ι] (sigs : ι → FourValuedSignal ℝ) :
-    Option (FourValuedSignal ℝ) :=
+def FourValuedSignal.or_ {ι : Type} [FinEnum ι] (sigs : ι → FourValuedSignal 𝕋) :
+    Option (FourValuedSignal 𝕋) :=
   -- 1. minOr of the refinements with inconclusive mapped to False
   let minRefinements := fun k => (sigs k).toKleeneSignal Kleene.ff
   let minOr := KleeneSignal.or_ minRefinements

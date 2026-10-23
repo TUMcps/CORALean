@@ -11,13 +11,11 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 /-!
 # One window of `reach` with the input set split: the set over `τ_k`
 
-[1, Alg. 3]'s window, `U = ũ ⊕ Ũ` by `Recenter`. The first window's
-homogeneous set and the constant's contribution over it, `H^R(τ_0) ⊕ P̃^R(τ_0)`,
-carried to `τ_k` by `e^{A t_k}`; plus `P̃(t_k) = ∫₀^{t_k} e^{Aσ}dσ ũ`, a point,
-what the constant contributed before the window; plus `P^R(t_{k+1})` of `Ũ`,
-Alg. 2's accumulated set, one set for the whole window since `0 ∈ Ũ`.
-The paper subtracts `P̃(r)` from the first window and adds `P̃(t_{k+1})` back;
-adding `P̃(t_k)` alone is the same sum without the subtraction.
+The input set split as [1, Eq. 4] splits it, `U = ũ ⊕ Ũ` by `Recenter`. [1, Eq. 4]'s first
+window, the homogeneous set and the constant's contribution over it, `H^R(τ_0) ⊕ P̃^R(τ_0)`,
+carried to `τ_k` by `e^{A t_k}`; plus `P̃(t_k) = ∫₀^{t_k} e^{Aσ}dσ ũ`, a point, what the constant
+contributed before the window; plus `P^R(t_{k+1})` of `Ũ`, the accumulated set of
+`WithInput.reachStepk`, one set for the whole window since `0 ∈ Ũ`.
 
 ## Inputs
 * `sys` – linear system with split input
@@ -31,8 +29,8 @@ adding `P̃(t_k)` alone is the same sum without the subtraction.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -163,7 +163,8 @@ def tyvar(x, whole=None):
 
 
 DATA_HEADS = {"ℕ", "ℤ", "ℝ", "ℚ", "ℂ", "Bool", "Fin", "Type", "Type*", "Sort", "Prop", "String",
-              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋", "EReal", "Unit"}
+              "List", "Finset", "Set", "Vec", "Mat", "Option", "𝕋", "EReal", "Unit",
+              "T"}  # `T`: the time type of a signal, so `(lo hi : T)` is data
 
 
 def is_prop(name, typ):

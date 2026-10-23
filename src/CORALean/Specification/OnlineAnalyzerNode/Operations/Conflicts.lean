@@ -39,8 +39,8 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Whether some propagated interval conflicts with an observation from `lb` on. -/
-noncomputable def OnlineAnalyzerNode.conflicts (eps : ℝ) (lb : Option EReal) (lc : Bool) :
-    List STLInterval → Option Bool
+noncomputable def OnlineAnalyzerNode.conflicts (eps : ℝ) (lb : Option (WithTop ℝ)) (lc : Bool) :
+    List (STLInterval ℝ) → Option Bool
   | [] => some false
   | p :: rest =>
     match p.supremum.value, lb with
@@ -49,7 +49,9 @@ noncomputable def OnlineAnalyzerNode.conflicts (eps : ℝ) (lb : Option EReal) (
     | some _, none => none
     | some pUb, some lb' =>
       open Classical in
-      if pUb > lb' ∨ (STLInterval.withinTol eps pUb lb' ∧ p.supremum.closed = true ∧ lc = true)
+      if STLInterval.toEReal pUb > STLInterval.toEReal lb' ∨
+          (STLInterval.withinTol eps (STLInterval.toEReal pUb) (STLInterval.toEReal lb') ∧
+            p.supremum.closed = true ∧ lc = true)
       then some true else OnlineAnalyzerNode.conflicts eps lb lc rest
 
 end CORALean

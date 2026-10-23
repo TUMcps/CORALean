@@ -138,11 +138,14 @@ theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec 
           rw [hB i hi, sys.Btilde_add_of_lt k p (by omega)]
       · simp only [LinearARX.aux_alg2State, h1, if_neg hlt]
         rw [hB i hi, sys.Btilde_add_of_lt k p (by omega)]
-    -- `T_c2` before line 22: assigned in the first pass, carried after
-    have hmid : (if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
+    -- the second block's new share: the refreshed window's inputs at the first pass, else the old
+    set ph := if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
         ((sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
-        else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1)
+      else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1 with hph
+    -- `T_c2` before line 22: assigned in the first pass, carried after
+    have hmid : ph
         = ∑ i ∈ Finset.Ico k (k + p), (sys.Btilde (k + p) i *ᵥ ·) '' Uc := by
+      rw [hph]
       by_cases hm : m = 0
       · have hkp : k = p := by rw [hkdef, hm, zero_mul, add_zero]
         rw [if_pos (by omega), show k + p - p = k by omega,
@@ -155,10 +158,8 @@ theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec 
     · -- line 20, by Lemma 2
       have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.1 =
           (sys.aux_alg2State yinit Uc uv p m).2.1
-          + (if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
-            ((sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
-            else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1) := by
-        simp only [LinearARX.aux_alg2State, h1]
+          + ph := by
+        simp only [LinearARX.aux_alg2State, h1, hph]
       rw [e, hmid, hSc, ← Finset.sum_range_add_sum_Ico _ (by omega : k ≤ k + p)]
       congr 1
       refine Finset.sum_congr rfl fun i hi => ?_
@@ -170,11 +171,8 @@ theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec 
       rw [e, hTc1, LinearARX.aux_image_sum_set,
         sys.aux_shift_sum k k (k + p) (by omega) (fun _ => Uc)]
     · -- line 22, by Lemma 1 at `k + p`
-      have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.1 = (sys.Aext ^ p *ᵥ ·) ''
-          (if k + p = p + p then ∑ i ∈ Finset.Icc (k + p - p) (k + p + p - 1 - p),
-            ((sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.2.2 i *ᵥ ·) '' Uc
-            else (sys.aux_alg2State yinit Uc uv p m).2.2.2.1) := by
-        simp only [LinearARX.aux_alg2State, h1]
+      have e : (sys.aux_alg2State yinit Uc uv p (m + 1)).2.2.2.1 = (sys.Aext ^ p *ᵥ ·) '' ph := by
+        simp only [LinearARX.aux_alg2State, h1, hph]
       rw [e, hmid, LinearARX.aux_image_sum_set,
         sys.aux_shift_sum (k + p) k (k + p) (by omega) (fun _ => Uc)]
     · -- line 23, as line 13 of Alg. 1

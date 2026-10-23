@@ -1,8 +1,9 @@
 module
 
 public import CORALean.Specification.STLInterval.Definitions.Isequal
-public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
 public import CORALean.Specification.STLInterval.Theorems.SetInjective
+public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
 
 @[expose] public section
 
@@ -33,36 +34,45 @@ the empty case are compared as CORA compares them, and the set determines them.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `isequal` at `tol = 0` iff the sets of times agree. -/
-theorem STLInterval.isequal_zero_iff (I J : STLInterval) : -- --- CONCL ---
+theorem STLInterval.isequal_zero_iff (I J : STLInterval ℝ) : -- --- CONCL ---
     I.isequal 0 J ↔ I.set = J.set := by -- --- PROOF ---
   cases I with
   | empty =>
     -- the empty interval against empty or nonempty
     cases J with
     | empty => simp [STLInterval.isequal, STLInterval.set]
-    | nonempty l u lc rc a b c _ =>
+    | nonempty l u lc rc b c _ =>
       simp only [STLInterval.isequal, STLInterval.set]
       exact iff_of_false id (fun h => Set.nonempty_iff_ne_empty.1
-        (rawSet_nonempty_of _ _ _ _ a b c) h.symm)
-  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ _ =>
+        (rawSet_nonempty_of_fields b c) h.symm)
+  | nonempty l₁ u₁ lc₁ rc₁ b₁ c₁ _ =>
     -- a nonempty interval against empty, or against a nonempty one
     cases J with
     | empty =>
       simp only [STLInterval.isequal, STLInterval.set]
       exact iff_of_false id (fun h => Set.nonempty_iff_ne_empty.1
-        (rawSet_nonempty_of _ _ _ _ a₁ b₁ c₁) h)
-    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ _ =>
+        (rawSet_nonempty_of_fields b₁ c₁) h)
+    | nonempty l₂ u₂ lc₂ rc₂ b₂ c₂ _ =>
       simp only [STLInterval.isequal, withinTol_zero]
       constructor
-      · rintro ⟨rfl, rfl, rfl, rfl⟩; rfl
+      · -- equal bounds over ℝ are equal fields
+        rintro ⟨hl, hu, rfl, rfl⟩
+        simp only [toReal_real, EReal.coe_eq_coe_iff] at hl
+        subst hl
+        obtain rfl : u₁ = u₂ := by cases u₁ <;> cases u₂ <;> simp_all
+        rfl
       · intro h
-        have : STLInterval.nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ _ =
-            STLInterval.nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ _ := set_injective h
-        simpa only [STLInterval.nonempty.injEq] using this
+        have : STLInterval.nonempty l₁ u₁ lc₁ rc₁ b₁ c₁ _ =
+            STLInterval.nonempty l₂ u₂ lc₂ rc₂ b₂ c₂ _ := set_injective h
+        simp only [STLInterval.nonempty.injEq] at this
+        obtain ⟨rfl, rfl, rfl, rfl⟩ := this
+        exact ⟨rfl, rfl, rfl, rfl⟩
 
 end CORALean
 

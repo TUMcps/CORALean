@@ -44,10 +44,11 @@ theorem ConZonotope.representsa_emptySet_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 
   have hlt := toReal_lt_of_ltStrict h
   rw [toReal_zero] at hlt
   have hle := (cZ.boundDotWeights
-    (c := rowLin (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋)) 0)
+    (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋))) 0)
     (fun _ => zero) (fun _ => rfl) cZ.P.emptyWeights.1 cZ.P.emptyWeights.2.1
     cZ.P.emptyWeights.2.2).le x hx
-  have h0 : (rowLin (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋)) 0) x = 0 := by
+  have h0 : (Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => fun (_ : Fin n) => (zero : 𝕋)))
+      0) x = 0 := by
     refine (show _ = ∑ j, toReal (zero : 𝕋) * x j from rfl).trans ?_
     simp [toReal_zero]
   rw [h0] at hle

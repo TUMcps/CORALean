@@ -33,17 +33,17 @@ every child, as the comment ("use the current copy for last child") means.
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+variable {𝕋 T : Type} [Scalar 𝕋] [ExactScalar 𝕋] [TimeOrder T] [Zero T] {S : ℕ → Type}
+  {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `out = analyze(obj,R)`. -/
-noncomputable def ReachSetAnalyzer.analyze (obj : ReachSetAnalyzer S n)
-    (R : List (ReachSetAnalyzer.Entry S n)) :
-    Option (List (List (String × FiniteSignal ℝ Kleene))) :=
+def ReachSetAnalyzer.analyze (obj : ReachSetAnalyzer T S n)
+    (R : List (ReachSetAnalyzer.Entry T S n)) :
+    Option (List (List (String × FiniteSignal T Kleene))) :=
   ReachSetAnalyzer.analyzeTree (ReachSetAnalyzer.children R)
     (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) ReachSetAnalyzer.signals
     (R.length + 1) 0 obj

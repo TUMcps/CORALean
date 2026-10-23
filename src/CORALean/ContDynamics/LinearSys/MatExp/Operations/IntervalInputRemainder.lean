@@ -9,8 +9,8 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Interval matrices: the input remainder of a box
 
-`intervalInputRemainder`: the `E(r)·r` of [1] over a whole box: one width for every entry and
-every member, the tail bound being on a norm.
+`intervalInputRemainder`: the `E(r)·r` of [1, Prop. 2] over a whole box: one width for every entry
+and every member, the tail bound being on a norm.
 
 The tail is taken at a dominating matrix for the reason `ExpIntervalEnclosure`
 gives — checkable from the box alone, before a member is fixed — and at `r • A`,
@@ -27,8 +27,9 @@ constant correction's own tail all at once.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -46,7 +47,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `E(r)·r` of [1] over a whole box: one width for every entry and every
+/-- The `E(r)·r` of [1, Prop. 2] over a whole box: one width for every entry and every
 member, the tail bound being on a norm. -/
 noncomputable def MatExp.intervalInputRemainder (A : Interval (Mat ℝ n n)) (r : ℝ)
     (η : ℕ) : Interval (Mat ℝ n n) where

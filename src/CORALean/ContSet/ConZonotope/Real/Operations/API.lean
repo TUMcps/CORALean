@@ -2,14 +2,11 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Isequal
 public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
 public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Operations.Plus
 public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Real.Operations.Map
 public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
-public import CORALean.ContSet.ConZonotope.Real.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce

@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Polymax
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section

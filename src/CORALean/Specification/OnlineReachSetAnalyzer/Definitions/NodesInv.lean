@@ -35,7 +35,7 @@ variable {A : Type}
 
 /-- The invariant of the nodes made by `parse`. -/
 def OnlineReachSetAnalyzer.NodesInv (dropPropagated : Bool)
-    (nodes : List (OnlineAnalyzerNode A)) : Prop :=
+    (nodes : List (OnlineAnalyzerNode ℝ A)) : Prop :=
   (∀ (j : ℕ) (h : j < nodes.length), nodes[j].idx = j + 1) ∧
     ∀ n ∈ nodes, n.dropPropagated = dropPropagated ∧ n.parents.head?.isSome = true
 

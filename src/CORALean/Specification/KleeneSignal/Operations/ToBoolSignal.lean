@@ -13,9 +13,6 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Set
 where the signal is unknown set to `mapUnknownTo`. Without an argument CORA throws if some value is
 unknown; that call is `toBoolSignal?` (`none` for the error).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `s` – three-valued signal
 * `mapUnknownTo` – Boolean for unknown times
@@ -34,12 +31,14 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = toBoolSignal(obj,mapUnknownTo)`. -/
-noncomputable def KleeneSignal.toBoolSignal (s : KleeneSignal ℝ) (mapUnknownTo : Bool) :
-    PointSegmentSignal ℝ :=
+def KleeneSignal.toBoolSignal (s : KleeneSignal 𝕋) (mapUnknownTo : Bool) : PointSegmentSignal 𝕋 :=
   -- 1. intervals = obj.isUnknown.findIntervals()
   let intervals := s.isUnknown.findIntervals
   -- 2. sig = sig.set(intervals(i),mapUnknownTo) for each interval

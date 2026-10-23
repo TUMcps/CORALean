@@ -31,18 +31,24 @@ At `tol = 0` `representsa_(I,'origin')` holds iff `I` denotes `{0}`.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `representsa_ origin` at `tol = 0` iff the set of times is `{0}`. -/
-theorem STLInterval.representsa_origin_zero_iff (I : STLInterval) : -- --- CONCL ---
+theorem STLInterval.representsa_origin_zero_iff (I : STLInterval ℝ) : -- --- CONCL ---
     I.representsa_ 0 .origin ↔ I.set = {0} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]
-  | nonempty l u lc rc a b c z =>
-    simp only [STLInterval.representsa_, withinTol_zero, set_eq_singleton_iff a b c z]
-    simp only [EReal.coe_zero]
-    tauto
+  | nonempty l u lc rc b c z =>
+    simp only [STLInterval.representsa_, withinTol_zero, set_eq_singleton_iff b c z, toReal_real,
+      EReal.coe_eq_zero]
+    -- the upper bound reads as `0` exactly when it is the stored `0`
+    cases u with
+    | top => simp
+    | coe x => simp only [STLInterval.toEReal_coe, toReal_real, EReal.coe_eq_zero,
+        WithTop.coe_eq_coe]; tauto
 
 end CORALean
 

@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemFullspace
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 

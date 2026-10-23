@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.STLInterval.Theorems.Basic
 public import CORALean.Specification.STLInterval.Definitions.MemBounds
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
@@ -46,7 +47,7 @@ theorem STLInterval.mem_set_stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc 
     (hlb : 0 ≤ lb) (t : ℝ) :
     t ∈ (STLInterval.stlIntervalBounds lb ub lc rc).set ↔
       STLInterval.memBounds lb ub lc rc t := by
-  rw [STLInterval.stlIntervalBounds, dif_pos hlb, STLInterval.set_stlInterval]
+  rw [STLInterval.stlIntervalBounds, dif_pos (by simpa using hlb), STLInterval.set_stlInterval]
   induction ub using WithTop.recTopCoe with
   | top => simp [STLInterval.rawSet, STLInterval.memBounds, eq_comm]
   | coe u => simp [STLInterval.rawSet, STLInterval.memBounds, eq_comm]

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.VPolytope.Float.Operations.Origin
 public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Operations.Point
 
 @[expose] public section

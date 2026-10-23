@@ -14,6 +14,7 @@ public import CORALean.ContSet.Fullspace.Real.Operations.Not
 public import CORALean.ContSet.Fullspace.Real.Theorems.DisjointIff
 public import CORALean.ContSet.Fullspace.Real.Theorems.IsBoundedConstructIff
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructFullspace
 public import Mathlib.Analysis.Convex.Hull
 
 @[expose] public section

@@ -230,8 +230,10 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
   have h3u : x ^ 3 ≤ toReal (mulUp (mulUp t t) t) := by
     refine le_trans ?_ (mul_le_mulUp _ _)
     rw [pow_succ, sq]; exact mul_le_mul_of_nonneg_right (mul_le_mulUp t t) h0
-  have hd := divFact_mem ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t),
-    mulUp (mulUp t t) t⟩ (pow_nonneg h0 3) ⟨h3l, h3u⟩ 3
+  -- the interval from the lower cube to the upper cube
+  set q3 : Interval 𝕋 := ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t), mulUp (mulUp t t)
+    t⟩ with hq3
+  have hd := divFact_mem q3 (pow_nonneg h0 3) ⟨h3l, h3u⟩ 3
   -- `3! = 6`
   have h6 : ((Nat.factorial 3 : ℕ) : ℝ) = 6 := by norm_num [Nat.factorial]
   rw [h6] at hd
@@ -245,12 +247,10 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
   simp only [sinSeedNonneg]
   constructor
   · refine le_trans (subDown_le_sub _ _) ?_
-    have := subDown_le_sub t (divFact ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t),
-      mulUp (mulUp t t) t⟩ 3).sup
+    have := subDown_le_sub t (divFact q3 3).sup
     linarith [hd.2]
   · refine le_trans ?_ (add_le_addUp _ _)
-    have := sub_le_subUp t (divFact ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t),
-      mulUp (mulUp t t) t⟩ 3).inf
+    have := sub_le_subUp t (divFact q3 3).inf
     linarith [hd.1]
 
 /-- The cosine seed: `one_sub_sq_div_two_le_cos` below, `Real.cos_bound` above. -/

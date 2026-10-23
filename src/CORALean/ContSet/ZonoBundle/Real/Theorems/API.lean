@@ -50,6 +50,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeEqHPolytope
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLeMember
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytopeConvHull
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightVerticesNonempty
 
 /-!
 # What a zonotope bundle guarantees, collected

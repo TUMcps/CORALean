@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq

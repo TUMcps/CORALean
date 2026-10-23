@@ -17,7 +17,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 /-!
 # `oneStepFloat` holds the state at every time of the step
 
-`oneStep_timeInterval_outer` [1, Sec. 3.3] at the float sets: with `λ = t/Δt`, the state `x(t)` of a
+`oneStep_timeInterval_outer` [1, Eq. 4] at the float sets: with `λ = t/Δt`, the state `x(t)` of a
 run from `X` whose input is the constant `u` plus a signal in `U ∋ 0` is
 `(1-λ) x₀ + λ (e^{AΔt} x₀ + Γ(Δt) u)`, a point of the `linComb` of `X` and `Htp`, plus the state's
 interpolation error, in `[F] X` (`expDiff_mem_intervalCorrectionMatrix`), the constant's, in
@@ -53,8 +53,8 @@ hypotheses are gone, as in `oneStepFloat_timePoint_outer`; `0 ∈ U` stays.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

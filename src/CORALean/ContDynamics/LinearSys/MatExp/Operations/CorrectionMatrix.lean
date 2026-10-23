@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 /-!
 # The correction matrix
 
-`correctionMatrix`: the `F` of [1]: the orders up to `η` exactly, everything past `η` in the
+`correctionMatrix`: the `F` of [1, Thm. 3]: the orders up to `η` exactly, everything past `η` in the
 same remainder that bounds the exponential, and indexed from `2`, the constant and linear
 terms of the interpolation error cancelling.
 
@@ -22,8 +22,9 @@ terms of the interpolation error cancelling.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -41,7 +42,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `F` of [1]: the orders up to `η` exactly, everything past `η` in the same
+/-- The `F` of [1, Thm. 3]: the orders up to `η` exactly, everything past `η` in the same
 remainder that bounds the exponential, and indexed from `2`, the constant and
 linear terms of the interpolation error cancelling. -/
 noncomputable def MatExp.correctionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :

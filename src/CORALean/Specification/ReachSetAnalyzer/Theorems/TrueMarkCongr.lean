@@ -39,7 +39,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.marks_congr (obj obj0 : ReachSetAnalyzer S n)
+theorem ReachSetAnalyzer.marks_congr (obj obj0 : ReachSetAnalyzer ℝ S n)
     (ha : obj0.aps = obj.aps) (hm : obj0.masks = obj.masks) :
     obj0.TrueMark (𝕋 := 𝕋) = obj.TrueMark (𝕋 := 𝕋) ∧
       obj0.FalseMark (𝕋 := 𝕋) = obj.FalseMark (𝕋 := 𝕋) := by

@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
 /-!
 # Interval matrices: the Taylor truncation with an exact second order
 
-`expIntervalTaylorExact`: the truncation of [1, Thm. 3.2]: the identity and `W(t)` exactly,
+`expIntervalTaylorExact`: the truncation of [1, Thm. 1]: the identity and `W(t)` exactly,
 the rest by interval arithmetic.
 
 ## Inputs
@@ -21,8 +21,9 @@ the rest by interval arithmetic.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -40,7 +41,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The truncation of [1, Thm. 3.2]: the identity and `W(t)` exactly, the rest
+/-- The truncation of [1, Thm. 1]: the identity and `W(t)` exactly, the rest
 by interval arithmetic. -/
 noncomputable def MatExp.expIntervalTaylorExact (A : Interval (Mat ℝ n n)) (t : ℝ)
     (κ : ℕ) : Interval (Mat ℝ n n) :=

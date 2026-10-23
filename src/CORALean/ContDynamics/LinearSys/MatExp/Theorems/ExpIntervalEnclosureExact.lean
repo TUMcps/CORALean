@@ -14,7 +14,7 @@ public import Mathlib.Algebra.Order.Ring.Star
 /-!
 # The matrix exponential lies in the sharper interval enclosure
 
-[1, Thm. 3.2]. Entry by entry as `exp_mem_expIntervalEnclosure` does, and with
+[1, Thm. 1]. Entry by entry as `exp_mem_expIntervalEnclosure` does, and with
 the same tail bound: only the center differs, `expIntervalTaylorExact` having
 orders one and two exactly where the other has them by interval arithmetic.
 
@@ -39,8 +39,9 @@ needs.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -63,7 +64,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `e^{At}` of every member of the box sits in `e^{At}_[κ]`. -/
+/-- `e^{At}` of every member of the box sits in `⌈e^{At}_κ⌉`. -/
 theorem MatExp.exp_mem_expIntervalEnclosureExact (A : Interval (Mat ℝ n n)) (t : ℝ)
     {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ)
     (hε : ‖(Interval.smul t A).absMax‖ / ((κ : ℝ) + 2) < 1) : -- --- CONCL ---

@@ -185,6 +185,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxGreedyOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubEvalExpand
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructInterConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.InnerScalingSubsetOfLt
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsFactorExtendLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.FactorExtendFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesEqMap
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepCongr
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCompactKeep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumMonomialMerge
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.FiberSumEqZeroOfNotMem
 
 /-!
 # What `PolyZonotope` guarantees

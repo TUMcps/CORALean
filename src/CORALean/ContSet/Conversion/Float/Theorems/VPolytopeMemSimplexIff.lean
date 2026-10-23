@@ -6,7 +6,9 @@ public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConZonotope
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemEqsIff
 
 @[expose] public section
 

@@ -4,6 +4,7 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.Basic
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ForcePropagationSpec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.GetVerdictAp
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.GetVerdictConst
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.GetVerdictToRealAnalyzer
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.MkSpec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetSingleAp
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetSpec

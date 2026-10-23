@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenOuterSafe
 public import CORALean.ContSet.Interval.Real.Theorems.DivBetweenEndpoints
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints

@@ -51,6 +51,18 @@ def List.matlabFind {α : Type} (p : α → Bool) (l : List α) : List ℕ :=
 def PointSegmentSignal.length {T : Type} (s : PointSegmentSignal T) : ℕ := s.timePoints.length
 
 
+-- ===============================  `PointSegmentSignal.mapTime`  =============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       23-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The signal with every time point mapped by `f`, as a float signal is read by `toReal`. -/
+def PointSegmentSignal.mapTime {T T' : Type} (f : T → T') (s : PointSegmentSignal T) :
+    PointSegmentSignal T' :=
+  ⟨s.timePoints.map f, s.values⟩
+
+
 -- =================================  `PointSegmentSignal.not`  ================================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

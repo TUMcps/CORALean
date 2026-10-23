@@ -92,16 +92,18 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   have hmerged := Zonotope.aux_abs_merged_le_radius Z part hβ he
+  -- the merged generators' radius plus the stored error radius, rounded up
+  set rr : Fin n → 𝕋 := fun i => addUp (radius (fun i l => Z.G (part.right l) i) i) (Z.errorRadius
+    i) with hrr
   have hnonneg : ∀ i, (0:ℝ) ≤
-      toReal (addUp (radius (fun i l => Z.G (part.right l) i) i) (Z.errorRadius i)) :=
+      toReal (rr i) :=
     fun i => (abs_nonneg _).trans (hmerged i)
   -- the witness: kept coefficients, plus one per coordinate for the merged box
   refine ⟨fun i => toReal ((Z.reduceAndAbsorbBy part).c i)
             + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G j i)
                 * Fin.append (fun l => β (part.left l)) (fun i =>
                     Real.Zonotope.coefficient
-                      (toReal (addUp (radius (fun i l => Z.G (part.right l) i) i)
-                        (Z.errorRadius i)))
+                      (toReal (rr i))
                       ((∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
                         + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2))) j,
           Zonotope.mem_nominalSet_iff.mpr ⟨_, ?_, fun _ => rfl⟩,
@@ -118,8 +120,7 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
         + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G j i)
             * Fin.append (fun l => β (part.left l)) (fun i =>
                 Real.Zonotope.coefficient
-                  (toReal (addUp (radius (fun i l => Z.G (part.right l) i) i)
-                    (Z.errorRadius i)))
+                  (toReal (rr i))
                   ((∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
                     + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2))) j
         + (toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2

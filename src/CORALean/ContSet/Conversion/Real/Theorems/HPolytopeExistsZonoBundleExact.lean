@@ -4,7 +4,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonoBundleRowsExact
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
 public import CORALean.Global.Tensor
 public import Mathlib.LinearAlgebra.Matrix.DotProduct

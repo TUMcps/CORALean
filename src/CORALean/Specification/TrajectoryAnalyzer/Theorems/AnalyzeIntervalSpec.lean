@@ -98,7 +98,7 @@ theorem aux_analyzeInterval_loop (aps : List (String × AtomicProposition S n)) 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem TrajectoryAnalyzer.analyzeInterval_spec (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ)
+theorem TrajectoryAnalyzer.analyzeInterval_spec (obj : TrajectoryAnalyzer ℝ 𝕋 S n) (s : ℕ)
     (dur : ℝ) (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop)
     (h : TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs M) (l : ℕ)
     (hlh : obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) : -- --- CONCL ---

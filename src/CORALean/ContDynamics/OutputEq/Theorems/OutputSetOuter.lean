@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.OutputEq.Operations.Eval
 public import CORALean.ContDynamics.OutputEq.Operations.OutputSet
 
 @[expose] public section

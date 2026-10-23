@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
-public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
 
 @[expose] public section
 

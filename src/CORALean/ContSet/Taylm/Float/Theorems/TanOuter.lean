@@ -136,9 +136,11 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
     have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
     have hPow := le_powUp (abs_nonneg _) hB (N + 1)
+    -- the float bound of the derivative's polynomial
+    set TB := Interval.evalPolyCoeffs (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1)) with hTB
     -- the derivative bound below its rounding
     have hD : evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) ≤
-        toReal (Interval.evalPolyCoeffs (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup :=
+        toReal TB.sup :=
       (Interval.evalPolyCoeffs_mem (tanDown_le p m hcm) (le_tanUp p m hcm) _).2
     -- the bound is non-negative, being above an absolute value
     have hE : 0 ≤ evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) :=
@@ -152,13 +154,12 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
           / ((N + 1).factorial : ℝ)
         = evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) * |f t - toReal c| ^ (N + 1)
           * (1 / ((N + 1).factorial : ℝ)) := by ring
-      _ ≤ toReal (Interval.evalPolyCoeffs (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup
+      _ ≤ toReal TB.sup
             * toReal (powUp B (N + 1))
           * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul (mul_le_mul hD hPow hY (le_trans hE hD)) hF hFpos
         exact mul_nonneg (le_trans hE hD) (le_trans hY hPow)
-      _ ≤ toReal (mulUp (Interval.evalPolyCoeffs (tanDown p m) (tanUp p m)
-              (odeL [1, 0, 1] (N + 1))).sup (powUp B (N + 1)))
+      _ ≤ toReal (mulUp TB.sup (powUp B (N + 1)))
           * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul_of_nonneg_right (mul_le_mulUp _ _) (le_trans hFpos hF)
       _ ≤ _ := mul_le_mulUp _ _

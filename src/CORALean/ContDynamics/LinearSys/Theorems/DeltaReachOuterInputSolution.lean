@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryDeltaReachOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -50,12 +51,9 @@ theorem LinearSys.IsCanonicalTrajectory.deltaReach_outer_inputSolution {sys : Li
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t - x 0 ∈ construct (Plus.plus (sys.deltaReach r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) :=

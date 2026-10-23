@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetSpec
 public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
+public import CORALean.Specification.TentativeKleeneSignal.Operations.At
 
 @[expose] public section
 
@@ -37,7 +38,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.setInvalid_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) : -- --- CONCL ---
+    (I : STLInterval ℝ) : -- --- CONCL ---
     (s.setInvalid I).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.setInvalid I).at t = FourValued.ii) ∧
       (t ∉ I.set → (s.setInvalid I).at t = s.at t) := by -- --- PROOF ---

@@ -14,9 +14,6 @@ public import Mathlib.Data.Fin.VecNotation
 (unknown as false) is the Boolean part, and the value is unknown where it differs from that of the
 maximal refinements (unknown as true).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `ι` – index type of the operands
 * `sigs` – three-valued signals to disjoin
@@ -35,12 +32,14 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = kleeneSignal.or_(varargin)`. -/
-noncomputable def KleeneSignal.or_ {ι : Type} [Fintype ι] (sigs : ι → KleeneSignal ℝ) :
-    KleeneSignal ℝ :=
+def KleeneSignal.or_ {ι : Type} [FinEnum ι] (sigs : ι → KleeneSignal 𝕋) : KleeneSignal 𝕋 :=
   -- 1. minRefinements with unknown mapped to false, and their `@any`
   let minRefinements := fun k => (sigs k).toBoolSignal false
   let minOr := PointSegmentSignal.combine

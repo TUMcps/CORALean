@@ -116,10 +116,10 @@ theorem aux_posDef_14 : (diagonal ![(1 : ℝ), 4]).PosDef := by
   fin_cases i <;> simp
 
 /-- The first ellipse: semi-axes `2` and `1`. -/
-noncomputable def aux_E₁ : Ellipsoid 2 := ⟨diagonal ![4, 1], 0, aux_posDef_41.posSemidef⟩
+def aux_E₁ : Ellipsoid 2 := ⟨diagonal ![4, 1], 0, aux_posDef_41.posSemidef⟩
 
 /-- The second ellipse: semi-axes `1` and `2`. -/
-noncomputable def aux_E₂ : Ellipsoid 2 := ⟨diagonal ![1, 4], 0, aux_posDef_14.posSemidef⟩
+def aux_E₂ : Ellipsoid 2 := ⟨diagonal ![1, 4], 0, aux_posDef_14.posSemidef⟩
 
 /-- The first ellipse's support length. -/
 theorem aux_len₁ (d : Vec ℝ 2) :

@@ -41,21 +41,16 @@ noncomputable def ZonoBundle.vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB
   (zB.zonotope i).vPolytope
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The coefficient domain of `conZonotope(zB)` is nonempty when the bundle is. -/
-theorem ZonoBundle.aux_domain_nonempty (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) :
-    (zB.conZonotopeAll hk).domain.construct.Nonempty := by
-  obtain ⟨x, hx⟩ := hne
-  rw [← ZonoBundle.conZonotopeAll_exact zB hk] at hx
-  obtain ⟨β, hb, hP, -⟩ := hx
-  exact ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hb, hP⟩⟩
-
 /-- CORA's `vertices_` of a bundle: the vertices of `conZonotope(zB)`. -/
 noncomputable def ZonoBundle.vPolytopeAll (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
     (hne : zB.construct.Nonempty) : VPolytope (Vec ℝ n) :=
-  (zB.conZonotopeAll hk).vPolytope (zB.aux_domain_nonempty hk hne)
+  -- the coefficient domain of `conZonotope(zB)` is nonempty when the bundle is
+  have hdom : (zB.conZonotopeAll hk).domain.construct.Nonempty := by
+    obtain ⟨x, hx⟩ := hne
+    rw [← ZonoBundle.conZonotopeAll_exact zB hk] at hx
+    obtain ⟨β, hb, hP, -⟩ := hx
+    exact ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hb, hP⟩⟩
+  (zB.conZonotopeAll hk).vPolytope hdom
 
 end CORALean.Real
 

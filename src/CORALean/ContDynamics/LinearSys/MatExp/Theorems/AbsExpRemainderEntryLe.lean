@@ -90,12 +90,13 @@ theorem MatExp.abs_expRemainder_entry_le (A : Mat ℝ n n) {τ Δt : ℝ} (hτ :
     have h := (summable_nat_add_iff (η + 1)).mpr (summable_exp_smul B Δt)
     have hc := (Matrix.entryLinearMap ℝ ℝ j k).continuous_of_finiteDimensional
     exact (h.map (Matrix.entryLinearMap ℝ ℝ j k) hc)
-  -- order by order: `|Aⁱ| ≤ |A|ⁱ` and `τⁱ ≤ Δtⁱ`
-  have hdom : ∀ i : ℕ, |((((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * τ ^ (i + (η + 1)))
-      • A ^ (i + (η + 1))) j k)|
+  -- order by order: `|Aⁱ| ≤ |A|ⁱ` and `τⁱ ≤ Δtⁱ`, on entry `(j, k)` of the `i`-th term for `τ`
+  set f : ℕ → ℝ := fun i =>
+    (((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * τ ^ (i + (η + 1))) • A ^ (i + (η + 1))) j k with hf
+  have hdom : ∀ i : ℕ, |(f i)|
       ≤ (((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * Δt ^ (i + (η + 1)))
         • B ^ (i + (η + 1))) j k := fun i => by
-    simp only [Matrix.smul_apply, smul_eq_mul, abs_mul]
+    simp only [hf, Matrix.smul_apply, smul_eq_mul, abs_mul]
     have hf : (0:ℝ) ≤ (Nat.factorial (i + (η + 1)) : ℝ)⁻¹ := by positivity
     rw [abs_of_nonneg hf, abs_of_nonneg (pow_nonneg hτ _)]
     exact mul_le_mul (mul_le_mul_of_nonneg_left (pow_le_pow_left₀ hτ hτΔt _) hf)
@@ -105,12 +106,9 @@ theorem MatExp.abs_expRemainder_entry_le (A : Mat ℝ n n) {τ Δt : ℝ} (hτ :
   have hPsum := Summable.of_nonneg_of_le (fun _ => abs_nonneg _) hdom hEsum
   rw [MatExp.aux_expRemainder_entry_eq A τ η j k, MatExp.expRemainderMat, ← hB,
     MatExp.aux_expRemainder_entry_eq B Δt η j k]
-  calc |∑' i, ((((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * τ ^ (i + (η + 1)))
-          • A ^ (i + (η + 1))) j k)|
-      ≤ ∑' i, |((((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * τ ^ (i + (η + 1)))
-          • A ^ (i + (η + 1))) j k)| := by
-        have h := norm_tsum_le_tsum_norm (f := fun i => ((((Nat.factorial (i + (η + 1)) : ℝ)⁻¹
-          * τ ^ (i + (η + 1))) • A ^ (i + (η + 1))) j k)) (by
+  calc |∑' i, (f i)|
+      ≤ ∑' i, |(f i)| := by
+        have h := norm_tsum_le_tsum_norm (f := fun i => (f i)) (by
             simpa only [Real.norm_eq_abs] using hPsum)
         simpa only [Real.norm_eq_abs] using h
     _ ≤ _ := hPsum.tsum_le_tsum hdom hEsum

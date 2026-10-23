@@ -27,14 +27,14 @@ the propositions erased to their labels.
 
 namespace CORALean
 
-variable {A : Type}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {A : Type}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `formattedDisplayText(phi)`. -/
-def OnlineReachSetAnalyzer.Formula.key : OnlineReachSetAnalyzer.Formula A →
-    OnlineReachSetAnalyzer.Formula Unit
+def OnlineReachSetAnalyzer.Formula.key : OnlineReachSetAnalyzer.Formula 𝕋 A →
+    OnlineReachSetAnalyzer.Formula 𝕋 Unit
   | .tt => .tt
   | .ff => .ff
   | .ap label _ => .ap label ()

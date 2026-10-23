@@ -27,18 +27,6 @@ open scoped MatrixOrder
 variable {n : ℕ}
 
 
--- ==================================  `apply_eq_dotProduct`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- A functional applied is the dot product with its `dualVec` -/
-theorem apply_eq_dotProduct (c : Vec ℝ n →ₗ[ℝ] ℝ) (x : Vec ℝ n) : c x = dualVec c ⬝ᵥ x := by
-  rw [LinearMap.pi_apply_eq_sum_univ c x, dotProduct]
-  exact Finset.sum_congr rfl fun i _ => by rw [smul_eq_mul]; exact mul_comm _ _
-
-
 -- ======================================  `Ellipsoid.G`  ======================================= --
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
@@ -61,18 +49,6 @@ noncomputable def Ellipsoid.G (E : Ellipsoid n) : Mat ℝ n n := CFC.sqrt E.Q
 value is the length of. -/
 noncomputable def Ellipsoid.pullback (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : Vec ℝ n :=
   E.Gᵀ *ᵥ dualVec c
-
-
--- =================================  `Ellipsoid.apply_mulVec`  ================================= --
--- Authors:       Claude Opus 5, Claude Opus 5.5
--- Written:       02-September-2026
--- Last update:   15-October-2026
--- Reviewed:      ---
-
-/-- A functional applied to a generator-space image is the dot product with its pullback -/
-theorem Ellipsoid.apply_mulVec (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) (u : Vec ℝ n) :
-    c (E.G *ᵥ u) = E.pullback c ⬝ᵥ u := by
-  rw [apply_eq_dotProduct, dotProduct_mulVec, Ellipsoid.pullback, mulVec_transpose]
 
 
 -- ==============================  `Ellipsoid.representsa_origin`  ============================== --

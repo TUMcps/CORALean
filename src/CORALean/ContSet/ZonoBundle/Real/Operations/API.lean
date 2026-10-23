@@ -44,7 +44,6 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
 public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
-public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
 
 /-!
 # What a zonotope bundle computes, collected

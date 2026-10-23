@@ -56,7 +56,7 @@ namespace CORALean
 
 /-- The conclusive interval is the longest initial stretch without inconclusive times. -/
 theorem FourValuedSignal.conclusiveInterval_spec (obj : FourValuedSignal ℝ) (hobj : obj.IsValid)
-    (ignore : STLInterval) (t : ℝ) : -- --- CONCL ---
+    (ignore : STLInterval ℝ) (t : ℝ) : -- --- CONCL ---
     t ∈ (obj.conclusiveInterval ignore).set ↔ 0 ≤ t ∧ ∀ x, 0 ≤ x → x ≤ t →
       x ∈ ignore.set ∨ obj.at x ≠ FourValued.ii := by -- --- PROOF ---
   -- the conclusive times: in `ignore`, or not inconclusive

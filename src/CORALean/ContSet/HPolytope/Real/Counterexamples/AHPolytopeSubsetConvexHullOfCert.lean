@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Data.Matrix.Basic

@@ -13,7 +13,7 @@ an atom is an atomic proposition `a` named `label`, which stands both for a `var
 `atomicProposition` and for a comparison, turned into one by `convert2set`. CORA keys its cache of
 subformulas by their display text `formattedDisplayText(phi)`; here that is the formula with the
 propositions erased to their labels (`Formula.key`), two atoms with one name being one node. The
-time interval of an `until` is the `stlInterval` of CORA.
+time interval of an `until` is the `stlInterval` of CORA, over the time scalar `𝕋`.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -31,14 +31,15 @@ namespace CORALean
 
 /-- An STL formula as the online analyzer parses it, after desugaring: true, false, labeled atoms,
 negation, conjunction, disjunction and until. -/
-inductive OnlineReachSetAnalyzer.Formula (A : Type)
+inductive OnlineReachSetAnalyzer.Formula (𝕋 : Type) [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (A : Type)
   | tt
   | ff
   | ap (label : String) (a : A)
-  | not (φ : Formula A)
-  | and (φ ψ : Formula A)
-  | or (φ ψ : Formula A)
-  | until (I : STLInterval) (φ ψ : Formula A)
+  | not (φ : Formula 𝕋 A)
+  | and (φ ψ : Formula 𝕋 A)
+  | or (φ ψ : Formula 𝕋 A)
+  | until (I : STLInterval 𝕋) (φ ψ : Formula 𝕋 A)
 
 end CORALean
 

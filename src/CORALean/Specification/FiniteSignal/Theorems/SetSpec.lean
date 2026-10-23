@@ -8,6 +8,7 @@ public import CORALean.Specification.FiniteSignal.Theorems.PairsOfValid
 public import CORALean.Specification.FiniteSignal.Theorems.TakeWhileGetElem
 public import CORALean.Specification.FiniteSignal.Theorems.TimeLeDuration
 public import CORALean.Specification.FiniteSignal.Theorems.ValueAtConsOfGe
+public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 
@@ -185,8 +186,11 @@ theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s
   unfold FiniteSignal.aux_setLower at h
   by_cases c1 : s.value[sI]? ≠ some value ∧ 0 < a
   · rw [if_pos c1] at h
+    have hc2 : (0 < sI ∧ ∃ b ∈ s.time[sI - 1]?, TimeOrder.Eqv b a) ↔
+        (0 < sI ∧ s.time[sI - 1]? = some a) := by
+      simp only [TimeOrder.eqv_iff_eq, Option.mem_def, exists_eq_right]
     by_cases c2 : 0 < sI ∧ s.time[sI - 1]? = some a
-    · rw [if_pos c2] at h
+    · rw [if_pos (hc2.mpr c2)] at h
       have ht1 : s.time[sI - 1]'(by omega) = a := by
         have := c2.2; rwa [List.getElem?_eq_getElem (by omega), Option.some.injEq] at this
       by_cases c3 : s.value[sI - 1]? = some value
@@ -244,7 +248,7 @@ theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s
             exact hta
           exact (aux_value_prefix s.pairs sI (by omega) t W hW).1 hex
     · -- a boundary is added at `a`
-      rw [if_neg c2] at h
+      rw [if_neg (mt hc2.mp c2)] at h
       rw [hsv] at h
       simp only [Option.toList_some, Prod.mk.injEq] at h
       obtain ⟨rfl, rfl, rfl⟩ := h
@@ -628,37 +632,25 @@ theorem aux_set_assemble {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.set?_spec {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V)
-    (hs : s.IsValid) (hpos : ∀ b ∈ s.time.head?, 0 < b) (lo hi : EReal) (value : V)
-    (hlt : Max.max lo 0 < Min.min hi (s.duration : EReal)) : -- --- CONCL ---
+    (hs : s.IsValid) (hpos : ∀ b ∈ s.time.head?, 0 < b) (lo hi : ℝ) (value : V)
+    (hlt : Max.max lo 0 < Min.min hi s.duration) : -- --- CONCL ---
     ∃ r, s.set? lo hi value = some r ∧ r.IsValid ∧ r.duration = s.duration ∧
       ∀ t : ℝ, 0 ≤ t → t ≤ s.duration → r.at? t =
-        if Max.max lo 0 ≤ (t : EReal) ∧ ((t : EReal) < Min.min hi (s.duration : EReal) ∨
-            Min.min hi (s.duration : EReal) = (s.duration : EReal)) then some value
+        if Max.max lo 0 ≤ t ∧ (t < Min.min hi s.duration ∨ Min.min hi s.duration = s.duration)
+        then some value
         else s.at? t := by -- --- PROOF ---
   obtain ⟨hmem, hle⟩ := FiniteSignal.time_le_duration s hs
-  -- the bounds are real numbers `a < b ≤ duration`
-  have hlb_ne_top : Max.max lo 0 ≠ ⊤ := ne_top_of_lt (hlt.trans_le (min_le_right _ _))
-  have hlb_ne_bot : Max.max lo 0 ≠ ⊥ :=
-    ne_bot_of_gt (lt_of_lt_of_le EReal.bot_lt_zero (le_max_right _ _))
-  have hub_ne_top : Min.min hi (s.duration : EReal) ≠ ⊤ :=
-    ne_top_of_le_ne_top (EReal.coe_ne_top _) (min_le_right _ _)
-  have hub_ne_bot : Min.min hi (s.duration : EReal) ≠ ⊥ := ne_bot_of_gt hlt
-  obtain ⟨a, ha⟩ : ∃ a : ℝ, (a : EReal) = Max.max lo 0 :=
-    ⟨_, EReal.coe_toReal hlb_ne_top hlb_ne_bot⟩
-  obtain ⟨b, hb⟩ : ∃ b : ℝ, (b : EReal) = Min.min hi (s.duration : EReal) :=
-    ⟨_, EReal.coe_toReal hub_ne_top hub_ne_bot⟩
-  rw [← ha, ← hb] at hlt ⊢
-  have ha0 : 0 ≤ a := by
-    have : (0 : EReal) ≤ a := ha ▸ le_max_right _ _
-    exact_mod_cast this
-  -- the fact `hab`
-  have hab : a < b := EReal.coe_lt_coe_iff.mp hlt
-  have hbD : b ≤ s.duration := by
-    have : (b : EReal) ≤ s.duration := hb ▸ min_le_right _ _
-    exact_mod_cast this
+  -- the bounds are `a < b ≤ duration`
+  set a := Max.max lo 0 with ha
+  set b := Min.min hi s.duration with hb
+  have ha0 : 0 ≤ a := le_max_right _ _
+  have hab : a < b := hlt
+  have hbD : b ≤ s.duration := min_le_right _ _
   unfold FiniteSignal.set?
   dsimp only
-  rw [← ha, ← hb, if_neg (not_not.mpr hlt), EReal.toReal_coe a, EReal.toReal_coe b]
+  rw [show (if lo ≤ 0 then 0 else lo) = a from (max_def lo 0).symm,
+    show (if hi ≤ s.duration then hi else s.duration) = b from (min_def hi _).symm,
+    if_neg (not_not.mpr hlt)]
   -- the indices of the cells of `a` and `b`
   obtain ⟨t1, t2⟩ := List.takeWhile_getElem (fun x : ℝ => decide (x ≤ a)) s.time
   obtain ⟨u1, u2⟩ := List.takeWhile_getElem (fun x : ℝ => decide (x ≤ b)) s.time
@@ -687,14 +679,12 @@ theorem FiniteSignal.set?_spec {V : Type} [DecidableEq V] (s : FiniteSignal ℝ 
     aux_set_left s hs hpos a ha0 value sI hsIlt hT1 hT2 A nT nV hlow
   obtain ⟨rne, rhead, rsort, rtimes, rchain, rlast, rpoint⟩ := aux_set_right s hs b
     (ha0.trans hab.le) value hbD pI hpIle hP1 hP2
-    (b = s.duration ∨ s.value[pI]? ≠ some value) Iff.rfl
+    (TimeOrder.Eqv b s.duration ∨ s.value[pI]? ≠ some value) Iff.rfl
   obtain ⟨r, hr1, hr2, hr3, hr4⟩ := aux_set_assemble s hs a b hab value pI A nT nV hnl
-    (b = s.duration ∨ s.value[pI]? ≠ some value) lsort ltimes lchain llast lpoint rne rhead rsort
-    rtimes rchain rlast rpoint
+    (TimeOrder.Eqv b s.duration ∨ s.value[pI]? ≠ some value) lsort ltimes lchain llast lpoint rne
+    rhead rsort rtimes rchain rlast rpoint
   refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
   rw [hr4 t ht0 ht1]
-  -- rewrite and simplify
-  simp only [EReal.coe_le_coe_iff, EReal.coe_lt_coe_iff, EReal.coe_eq_coe_iff]
 
 end CORALean
 

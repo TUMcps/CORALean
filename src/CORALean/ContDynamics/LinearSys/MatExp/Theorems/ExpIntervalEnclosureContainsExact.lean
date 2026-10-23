@@ -10,12 +10,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWAttain
 /-!
 # The exact-second-order enclosure is inside the uniform one
 
-What [1, Thm. 3.2] buys over [1, Sec. 3.3.1] as `expIntervalEnclosure` writes it: the same
-remainder, the same orders from three on, and orders one and two narrower, so the sharper
-enclosure is contained in the cruder one and never the other way. The comparison is where
-*exactness* pays off rather than soundness: each bound of `expIntervalW` is a value `W(t)` really
-takes, and `expIntervalTaylor` is sound, so that value lies in the cruder box. Soundness of
-`expIntervalW` alone would say nothing about which of the two is narrower.
+What the exact `W(t)` of [1, Lemma 1] buys [1, Thm. 1] over the same enclosure with every order by
+interval arithmetic, `expIntervalEnclosure`: the same remainder, the same orders from three on, and
+orders one and two narrower, so the sharper enclosure is contained in the cruder one and never the
+other way. The comparison is where *exactness* pays off rather than soundness: each bound of
+`expIntervalW` is a value `W(t)` really takes, and `expIntervalTaylor` is sound, so that value lies
+in the cruder box. Soundness of `expIntervalW` alone would say nothing about which of the two is
+narrower.
 
 ## Inputs
 * `A` – interval matrix
@@ -32,8 +33,9 @@ takes, and `expIntervalTaylor` is sound, so that value lies in the cruder box. S
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -90,8 +92,8 @@ theorem aux_taylor_split (B : Interval (Mat ℝ n n)) (m : ℕ) (i j : Fin n) : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The cruder enclosure of [1, Sec. 3.3.1] contains the sharper one of
-[1, Thm. 3.2], entry by entry and at every order from two up. -/
+/-- The enclosure with every order by interval arithmetic contains [1, Thm. 1]'s, entry
+by entry and at every order from two up. -/
 theorem MatExp.expIntervalEnclosure_contains_exact (A : Interval (Mat ℝ n n)) {t : ℝ}
     (ht : t ≠ 0) (hA : ∀ p q, A.inf p q ≤ A.sup p q) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
     (MatExp.expIntervalEnclosureExact A t κ).construct

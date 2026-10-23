@@ -38,7 +38,7 @@ variable {S : ℕ → Type} {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The builders of the analyzer mark `PT k` as possibly true and `PF k` as possibly false. -/
-def ReachSetAnalyzer.Represents (obj : ReachSetAnalyzer S n) (d : ℝ) (PT PF : String → ℝ → Prop) :
+def ReachSetAnalyzer.Represents (obj : ReachSetAnalyzer ℝ S n) (d : ℝ) (PT PF : String → ℝ → Prop) :
     Prop :=
   (obj.aps.map Prod.fst).Nodup ∧ ∀ p ∈ obj.aps, ∃ b, obj.sigBuilder.lookup p.1 = some b ∧
     b.Represents d (PT p.1) (PF p.1)

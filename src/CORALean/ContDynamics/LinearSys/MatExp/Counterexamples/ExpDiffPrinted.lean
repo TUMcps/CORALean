@@ -9,8 +9,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpDiffMulVecMemCo
 /-!
 # [1, Eq. 6]'s unscaled `ΔR = (e^{Ar} - I + F) η(R(0), γ)` misses `Δx(0) = 0`
 
-With the correction matrix `F` of [2] (`MatExp.correctionMatrix`), `F` is second order in `r‖A‖`
-while `e^{Ar} - I` is first order. In `ℝ¹` with `A = 1`, `r = 1/10` and `x(0) = 1` every
+With the correction matrix `F` of [2, Thm. 3] (`MatExp.correctionMatrix`), `F` is second order in
+`r‖A‖` while `e^{Ar} - I` is first order. In `ℝ¹` with `A = 1`, `r = 1/10` and `x(0) = 1` every
 `e^{Ar} - I + F` is positive, so `Δx(0) = 0` is not in `(e^{Ar} - I + F) x(0)`; the
 interpolation weight `t/r` on `e^{Ar} - I` cannot be dropped.
 
@@ -25,11 +25,12 @@ interpolation weight `t/r` on `e^{Ar} - I` cannot be dropped.
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems
-      using Enclosing Hulls of Probability Density Functions". In Proc. of the European Control
-      Conference (ECC), pp. 625-630, 2009.
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

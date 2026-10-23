@@ -10,9 +10,6 @@ public import CORALean.Specification.OnlineAnalyzerNode.OnlineAnalyzerNode
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
-
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 
@@ -21,7 +18,7 @@ intervals over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
-variable {A : Type}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {A : Type}
 
 
 -- ==============================  `OnlineAnalyzerNode.addChild`  =============================== --
@@ -31,7 +28,7 @@ variable {A : Type}
 -- Reviewed:      ---
 
 /-- `addChild(obj,child)`: registers a new child in the graph structure. -/
-def OnlineAnalyzerNode.addChild (n : OnlineAnalyzerNode A) (child : ℕ) : OnlineAnalyzerNode A :=
+def OnlineAnalyzerNode.addChild (n : OnlineAnalyzerNode 𝕋 A) (child : ℕ) : OnlineAnalyzerNode 𝕋 A :=
   { n with children := n.children ++ [child] }
 
 
@@ -42,7 +39,8 @@ def OnlineAnalyzerNode.addChild (n : OnlineAnalyzerNode A) (child : ℕ) : Onlin
 -- Reviewed:      ---
 
 /-- `addParent(obj,parent)`: registers a new parent, with nothing propagated to it yet. -/
-def OnlineAnalyzerNode.addParent (n : OnlineAnalyzerNode A) (parent : ℕ) : OnlineAnalyzerNode A :=
+def OnlineAnalyzerNode.addParent (n : OnlineAnalyzerNode 𝕋 A) (parent : ℕ) :
+    OnlineAnalyzerNode 𝕋 A :=
   { n with parents := n.parents ++ [parent], prop := n.prop ++ [STLInterval.empty] }
 
 
@@ -66,8 +64,8 @@ def OnlineAnalyzerNode.Kind.initValue : OnlineAnalyzerNode.Kind → FourValued
 -- Reviewed:      ---
 
 /-- `aux_initSignal(type)`: the constant signal a node starts with. -/
-noncomputable def OnlineAnalyzerNode.initSignal (k : OnlineAnalyzerNode.Kind) :
-    FourValuedSignal ℝ :=
+def OnlineAnalyzerNode.initSignal [TimeOrder 𝕋] (k : OnlineAnalyzerNode.Kind) :
+    FourValuedSignal 𝕋 :=
   FourValuedSignal.uniformSignal k.initValue
 
 

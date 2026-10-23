@@ -44,8 +44,8 @@ variable {A : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `setPropagated(obj,parent,int)`. -/
-noncomputable def OnlineAnalyzerNode.setPropagated (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (parent : ℕ) (int : STLInterval) : Option (OnlineAnalyzerNode A) :=
+noncomputable def OnlineAnalyzerNode.setPropagated (eps : ℝ) (n : OnlineAnalyzerNode ℝ A)
+    (parent : ℕ) (int : STLInterval ℝ) : Option (OnlineAnalyzerNode ℝ A) :=
   open Classical in
   -- i = obj.parents == parent
   let i := n.parents.idxOf parent

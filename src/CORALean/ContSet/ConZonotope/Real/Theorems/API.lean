@@ -91,6 +91,8 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinBoundsInt
 public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinBoundsOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinIterOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IntervalOfFactorBoundsOuter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 
 /-!
 # What `ConZonotope` guarantees

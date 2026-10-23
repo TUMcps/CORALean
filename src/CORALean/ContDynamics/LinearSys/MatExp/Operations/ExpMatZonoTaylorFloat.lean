@@ -19,8 +19,9 @@ materialised before the next order joins it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -38,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Sec. 3.3.2]'s Taylor truncation as a float matrix zonotope, orders `0 … η`. -/
+/-- [1, Sec. 3.1]'s Taylor truncation as a float matrix zonotope, orders `0 … η`. -/
 def MatExp.expMatZonoTaylor (M : Zonotope (Mat 𝕋 n n)) : ℕ → Zonotope (Mat 𝕋 n n)
   | 0 => MatExp.expMatZonoTerm M 0
   | k + 1 => (Zonotope.matPlus (MatExp.expMatZonoTerm M (k + 1))

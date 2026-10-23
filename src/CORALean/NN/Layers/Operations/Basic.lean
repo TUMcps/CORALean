@@ -163,6 +163,16 @@ def conjCoeffsDown (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) → �
     if i = 0 then addDown (A.down (B.down^[(i : ℕ)] (p i))) c else A.down (B.down^[(i : ℕ)] (p i))
 
 
+-- ====================================  `Enclosure.exact`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   23-September-2026
+-- Reviewed:      ---
+
+/-- `σ` itself at both ends, which only ℝ stores. -/
+def Enclosure.exact (σ : ℝ → ℝ) : Enclosure ℝ := ⟨fun a => ⟨σ a, σ a⟩⟩
+
+
 -- =================================  `invSqrtRootRelaxation`  ================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
@@ -265,6 +275,16 @@ def Relaxation.conjSlopeHigh (R : Relaxation 𝕋) (A B : ScaleRounding 𝕋) (l
 
 The slope-zero relaxation of the monotone square root at `rootEnclosure`. -/
 def rootRelaxation (p : ℕ) : Relaxation 𝕋 := Relaxation.ofMonotone (rootEnclosure p)
+
+
+-- ==================================  `ScaleRounding.exact`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   23-September-2026
+-- Reviewed:      ---
+
+/-- Multiplication by `r` itself, both ways, which only ℝ stores. -/
+def ScaleRounding.exact (r : ℝ) : ScaleRounding ℝ := ⟨(r * ·), (r * ·)⟩
 
 
 -- ===============================  `sigmoidCurvatureRelaxation`  =============================== --

@@ -37,7 +37,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = cutoff(sig,dur)`. -/
-def FiniteSignal.cutoff? {T V : Type} [LinearOrder T] [Zero T] [DecidableEq V]
+def FiniteSignal.cutoff? {T V : Type} [TimeOrder T] [Zero T] [DecidableEq V]
     (s : FiniteSignal T V) (dur : T) : Option (FiniteSignal T V) :=
   -- the signal must have at least the given duration
   if s.duration < dur then none

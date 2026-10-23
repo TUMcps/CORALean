@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.OutputEq.OutputEq
+public import CORALean.ContDynamics.OutputEq.Operations.Eval
 public import CORALean.ContSet.ContSet.ContSet
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 

@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.Float.FloatBound
 
 @[expose] public section
@@ -47,7 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.minkDiffOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
-    (u : ∀ i, FloatBound 𝕋 T (rowLin P.A i)) : HPolytope 𝕋 (Vec 𝕋 n) where
+    (u : ∀ i, FloatBound 𝕋 T (Real.HPolytope.rowLin (toRealMat P.A) i)) : HPolytope 𝕋 (Vec 𝕋 n)
+        where
   m := P.m
   A := P.A
   b := fun i => subDown (P.b i) (u i).val

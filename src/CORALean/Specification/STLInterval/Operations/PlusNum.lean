@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Operations.Basic
-public import CORALean.Specification.STLInterval.Theorems.ZeroLeAddCoe
+public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
 
@@ -9,10 +9,11 @@ public import CORALean.Specification.STLInterval.Theorems.ZeroLeAddCoe
 # `plus` with a number
 
 `@stlInterval/plus.m`, the numeric branch: both bounds move by the summand, the flags stay. CORA
-throws if the lower bound becomes negative; here that is the hypothesis `hc` (see `STLInterval`).
+throws if the lower bound, computed in doubles, becomes negative; here that is the hypothesis `hc`
+on the rounded bound (see `STLInterval`).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
-over `𝕋`, rounded outward) is not yet written.
+Over a float scalar the lower bound is rounded down and the upper one up, so the result encloses
+the exact one; over ℝ nothing rounds.
 
 ## Inputs
 * `I` – interval
@@ -35,17 +36,22 @@ over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.plusNum (I : STLInterval) (c : ℝ)
-    (hc : I ≠ .empty → 0 ≤ I.lowerBound + c) : STLInterval :=
+def STLInterval.plusNum (I : STLInterval 𝕋) (c : 𝕋)
+    (hc : I ≠ .empty → 0 ≤ toReal (addDown I.lowerBound c)) : STLInterval 𝕋 :=
   match I, hc with
   | .empty, _ => .empty
-  | .nonempty l u lc rc _ hu hlt hz, hc =>
-    let lb := l + c
-    let ub := u + c
-    stlInterval lb ub lc rc (STLInterval.zero_le_add_coe hu hlt hz c (hc (by simp)))
+  | .nonempty l u lc rc _ _ _, hc =>
+    -- both bounds move by the number, the lower one rounded down, the upper one up
+    let lb := addDown l c
+    let ub := u.map (addUp · c)
+    stlInterval lb ub lc rc (hc (by simp))
 
 end CORALean
 

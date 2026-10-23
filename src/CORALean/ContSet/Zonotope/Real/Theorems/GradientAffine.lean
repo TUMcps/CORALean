@@ -107,25 +107,24 @@ theorem Zonotope.gradient_affine (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat �
       congr 1
       funext t
       refine congrArg ℒ ?_
+      -- column `j` of `W`, placed at generator `l`
+      set colE : Fin (H.affine W b).h → Vec ℝ m := Pi.single l (fun i => W i j) with hcolE
       show Zonotope.mk H.h (W *ᵥ H.c + b) (fun l' => W *ᵥ (Function.update H.G l
           (Function.update (H.G l) j t) l')) =
         Zonotope.mk H.h ((H.affine W b).c + (t - H.G l j) • (0 : Vec ℝ m))
-          ((H.affine W b).G + (t - H.G l j) • (Pi.single l (fun i => W i j : Vec ℝ m) :
-            Fin (H.affine W b).h → Vec ℝ m))
+          ((H.affine W b).G + (t - H.G l j) • colE)
       congr 1
       · show _ = W *ᵥ H.c + b + (t - H.G l j) • (0 : Vec ℝ m)
         simp
       · -- only the `l`-th generator moves, by `(t - G_l(j))` times column `j`
         funext l'
         show W *ᵥ (Function.update H.G l (Function.update (H.G l) j t) l') =
-          W *ᵥ H.G l' + (t - H.G l j) • ((Pi.single l (fun i => W i j : Vec ℝ m) :
-            Fin (H.affine W b).h → Vec ℝ m) l')
+          W *ᵥ H.G l' + (t - H.G l j) • (colE l')
         by_cases hl : l' = l
         · subst hl
           rw [Function.update_self, hcol]
-          simp
-        · have h0 : ((Pi.single l (fun i => W i j : Vec ℝ m) :
-              Fin (H.affine W b).h → Vec ℝ m) l') = 0 := Pi.single_eq_of_ne hl _
+          simp [hcolE]
+        · have h0 : (colE l') = 0 := Pi.single_eq_of_ne hl _
           rw [Function.update_of_ne hl, h0]
           simp
     -- read off the gradient set: only the `l`-th generator's gradient is left

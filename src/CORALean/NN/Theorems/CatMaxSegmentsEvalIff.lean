@@ -63,28 +63,28 @@ theorem aux_lt_of_window {a k r j q : ℕ} (hj : j < a + r) (ha : a ≤ j) (hq :
 
 theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- CONCL ---
     ∀ (a r : ℕ) (x : Vec ℝ (a + (k + 1) * r))
-    (y : Vec ℝ (a + r)), (Cat.maxSegments (𝕋 := 𝕋) k a r).Eval x y ↔
-      y = fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
-        else Real.windowMax fun q : Fin (k + 1) =>
-          x ⟨a + (k + 1) * (j.val - a) + q.val,
-            aux_lt_of_window j.isLt (by omega) q.isLt⟩ := by -- --- PROOF ---
+    (y : Vec ℝ (a + r)),
+    -- the pooled coordinates, then the maximum of each window
+    let yv : Vec ℝ (a + r) := fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
+      else Real.windowMax fun q : Fin (k + 1) =>
+        x ⟨a + (k + 1) * (j.val - a) + q.val, aux_lt_of_window j.isLt (by omega) q.isLt⟩
+    (Cat.maxSegments (𝕋 := 𝕋) k a r).Eval x y ↔ y = yv := by -- --- PROOF ---
   intro a r
   induction r generalizing a with
   | zero =>
-    intro x y
+    intro x y yv
     simp only [Cat.maxSegments]
     rw [Cat.eval_affine_iff]
     -- every coordinate is among the `a` already pooled
     have h : (toRealMat (selectMat (𝕋 := 𝕋) fun i : Fin (a + 0) =>
           (⟨i.val, by simp⟩ : Fin (a + (k + 1) * 0))) *ᵥ x
-        + toRealVec (fun _ => (zero : 𝕋))) = fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
-          else Real.windowMax fun q : Fin (k + 1) =>
-            x ⟨a + (k + 1) * (j.val - a) + q.val, aux_lt_of_window j.isLt (by omega) q.isLt⟩ := by
+        + toRealVec (fun _ => (zero : 𝕋))) = yv := by
       funext j
+      simp only [yv]
       rw [selectMat_mulVec_add_zero, dif_pos (by simp)]
     rw [h]
   | succ r ih =>
-    intro x y
+    intro x y yv
     simp only [Cat.maxSegments]
     -- the chain has a value: split, the first window, the rest, renamed; and only that one
     have key : (∃ y, (Cat.comp (.affine (selectMat fun i : Fin (a + (r + 1)) =>
@@ -100,9 +100,7 @@ theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- CONCL ---
           (.affine (selectMat fun i : Fin (a + (k + 1) + (k + 1) * r) =>
             (⟨i.val, by have := i.isLt; rw [Nat.mul_succ]; omega⟩ :
               Fin (a + (k + 1) * (r + 1)))) fun _ => zero)))).Eval x y →
-        y = fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
-          else Real.windowMax fun q : Fin (k + 1) =>
-            x ⟨a + (k + 1) * (j.val - a) + q.val, aux_lt_of_window j.isLt (by omega) q.isLt⟩ := by
+        y = yv := by
       refine ⟨⟨_, Cat.Eval.comp _ _ _ (Cat.Eval.comp _ _ _ (Cat.Eval.comp _ _ _
         (Cat.Eval.affine _ _ x) ((Cat.maxSegment_eval_iff _ _ _ _ _).mpr rfl))
         ((ih _ _ _).mpr rfl)) (Cat.Eval.affine _ _ _)⟩, fun y hy => ?_⟩
@@ -112,9 +110,10 @@ theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- CONCL ---
       obtain ⟨z₁, hz₁, hz₂⟩ := (Cat.eval_comp_iff _ _ _ _).mp hz₂
       rw [Cat.eval_affine_iff] at hz₁ hy
       rw [Cat.maxSegment_eval_iff] at hz₂
-      rw [ih] at hz₃
+      replace hz₃ := (ih _ _ _).mp hz₃
       subst hz₁ hz₂ hz₃ hy
       funext j
+      simp only [yv]
       rw [selectMat_mulVec_add_zero]
       -- an already pooled coordinate is kept
       by_cases h1 : j.val < a

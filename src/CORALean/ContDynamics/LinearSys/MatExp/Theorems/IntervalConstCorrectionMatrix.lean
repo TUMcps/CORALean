@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # Every member's constant-input interpolation error lies in the box's `F̃`
 
-Althoff's `F̃` of [1, Prop. 3.4] at an interval matrix rather than at the one the system stores:
+The `F̃` of [1, Sec. III-A] at an interval matrix rather than at the one the system stores:
 `ConstCorrectionMatrix` one step over, following `IntervalCorrectionMatrix`'s pattern. Apply the
 point theorem at a member `M`, then read the finite orders off entrywise through
 `intervalConstCorrTerm`'s `min`/`max` monotonicity and the tail through `expRemainderBound_mono`,
@@ -41,8 +41,8 @@ both scaled by `r` as `constCorrectionMatrix` itself is. **`hε` is stated at th
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5
@@ -65,7 +65,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Althoff's `F̃` at an interval matrix contains the constant input's
+/-- [1, Sec. III-A]'s `F̃` at an interval matrix contains the constant input's
 interpolation error, at every time of the step, of every matrix the box holds. -/
 theorem MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix (A : Interval (Mat ℝ n n))
     {r : ℝ} (hr : 0 < r) (η : ℕ)

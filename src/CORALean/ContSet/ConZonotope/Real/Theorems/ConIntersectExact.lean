@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.ConIntersect
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 
 @[expose] public section

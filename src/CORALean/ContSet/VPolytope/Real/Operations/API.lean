@@ -1,9 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
 public import CORALean.ContSet.VPolytope.Real.Operations.Point
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
 public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
@@ -14,14 +12,12 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Bilin
 public import CORALean.ContSet.VPolytope.Real.Operations.ColLin
 public import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
 public import CORALean.ContSet.VPolytope.Real.Operations.Plus
-public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
 public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
 public import CORALean.ContSet.VPolytope.Real.Operations.Or
 public import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim
 public import CORALean.ContSet.VPolytope.Real.Operations.Center
 public import CORALean.ContSet.VPolytope.Real.Operations.CartProd
-public import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
 public import CORALean.ContSet.VPolytope.Real.Operations.HausdorffDist
 public import CORALean.ContSet.VPolytope.Real.Operations.DistPoint
 public import CORALean.ContSet.VPolytope.Real.Operations.Mpower

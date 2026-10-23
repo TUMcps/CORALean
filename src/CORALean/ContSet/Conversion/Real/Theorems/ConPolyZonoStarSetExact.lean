@@ -1,12 +1,12 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_StarSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Instances
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight

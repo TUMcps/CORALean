@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 /-!
 # The exponential's remainder, at a step
 
-`expRemainder`: the `E(Δt, η)` of [1] itself, without `inputRemainder`'s extra `r ·`.
+`expRemainder`: the `E(Δt, η)` of [1, Thm. 1] itself, without `inputRemainder`'s extra `r ·`.
 `Theorems/SuperlinearDecreaseExpRemainder` is `Lemma 1` about this.
 
 ## Inputs
@@ -20,8 +20,9 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -44,7 +45,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `E(Δt, η)` of [1] itself, without `inputRemainder`'s extra `r ·`.
+/-- The `E(Δt, η)` of [1, Thm. 1] itself, without `inputRemainder`'s extra `r ·`.
 `Theorems/SuperlinearDecreaseExpRemainder` is `Lemma 1` about this. -/
 noncomputable def MatExp.expRemainder (A : Mat ℝ n n) (Δt : ℝ) (η : ℕ) :
     Interval (Mat ℝ n n) where

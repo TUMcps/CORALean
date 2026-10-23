@@ -4,6 +4,7 @@ public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.HybridDynamics.Operations.TimeInterval
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -80,12 +81,10 @@ theorem Location.IsTrajectory.timeInterval_outer_inputSolution
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct ℓ.inputSet)) (hclosed : IsClosed (construct ℓ.inputSet))
     (hbdd : Bornology.IsBounded (construct ℓ.inputSet))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet)))
+    (hRconv : Convex ℝ (ℓ.dynamics.inputRemainderSet τ (m + 2) ℓ.inputSet))
+    (hRclosed : IsClosed (ℓ.dynamics.inputRemainderSet τ (m + 2) ℓ.inputSet))
+    (hRbdd : Bornology.IsBounded (ℓ.dynamics.inputRemainderSet τ (m + 2)
+      ℓ.inputSet))
     (h0 : (0 : Vec ℝ n) ∈ construct ℓ.inputSet) {t : ℝ} (ht0 : 0 ≤ t)
     (htτ : t ≤ τ) :
     x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀)

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.StarSet.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemLiftNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 
 @[expose] public section

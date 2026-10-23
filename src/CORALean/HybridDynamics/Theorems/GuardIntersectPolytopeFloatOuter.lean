@@ -98,12 +98,16 @@ theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R
     simp [Scalar.toRealMat_apply]
   have hBB : ∀ y : Vec ℝ n, Scalar.toRealMat B *ᵥ (Scalar.toRealMat Bᵀ *ᵥ y) = y := fun y => by
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
+  -- the cut of `R'` with the guard, in the basis
+  set cutOf : Zonotope (Vec 𝕋 n) → ConZonotope 𝕋 (Vec 𝕋 n) := fun R' =>
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
+      (ConZonotope.intersection (Zonotope.conZonotope R') guard) with hcutOf
   -- the state in its cut, boxed in the basis
   have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.construct →
       Scalar.toRealMat Bᵀ *ᵥ x ∈
-        ((Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
-        (ConZonotope.intersection (Zonotope.conZonotope R') guard)).interval).construct :=
+        ((cutOf R').interval).construct :=
     fun R' hx' => by
+    simp only [hcutOf]
     have h5 := ConZonotope.intersection_outer _ guard ⟨Zonotope.conZonotope_contains _ hx', hg⟩
     generalize ConZonotope.intersection (Zonotope.conZonotope R') guard = cZ at h5 ⊢
     exact ConZonotope.interval_contains _
@@ -111,8 +115,7 @@ theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h5)))
   -- the state is in the box of the union of the cuts
   have h2 := hfold (Rs.map
-    fun R' => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
-      (ConZonotope.intersection (Zonotope.conZonotope R') guard)).interval)
+    fun R' => (cutOf R').interval)
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
       (ConZonotope.intersection (Zonotope.conZonotope R₀) guard)).interval
     (Scalar.toRealMat Bᵀ *ᵥ x) (by
@@ -123,8 +126,7 @@ theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R
   generalize List.foldl Interval.or
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
       (ConZonotope.intersection (Zonotope.conZonotope R₀) guard)).interval
-    (Rs.map fun R' => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
-      (ConZonotope.intersection (Zonotope.conZonotope R') guard)).interval) = box at h2 ⊢
+    (Rs.map fun R' => (cutOf R').interval) = box at h2 ⊢
   have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ h2)))

@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `aux_isIntersecting_capsule(C₁, C₂)` at tolerance `0`. -/
-noncomputable def Capsule.isIntersecting_ (C₁ C₂ : Capsule n) : Prop :=
+def Capsule.isIntersecting_ (C₁ C₂ : Capsule n) : Prop :=
   let dist := Capsule.segDist C₁ C₂
   dist ≤ C₁.r + C₂.r
 

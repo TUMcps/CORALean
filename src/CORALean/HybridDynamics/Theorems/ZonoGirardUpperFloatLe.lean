@@ -69,14 +69,17 @@ theorem Location.zonoGirardUpperFloat_le (Z : Zonotope (Vec 𝕋 n)) (nv : Vec �
   generalize Scalar.toRealMat (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) *ᵥ x
     = y at hy h0 h1
   -- the dual bound at a multiplier `μ`
-  have hdual : ∀ μ : 𝕋, x ⬝ᵥ toRealVec ℓ ≤ toReal (addUp
-      (S.boundDot (c := rowLin (fun _ : Fin 1 => ![neg μ, one]) 0) ![neg μ, one]
-        (fun _ => rfl)).val (mulUp μ γ)) := fun μ => by
-    have hb := (S.boundDot (c := rowLin (fun _ : Fin 1 => ![neg μ, one]) 0) ![neg μ, one]
-      (fun _ => rfl)).le y hy
-    have hb' : -toReal μ * y 0 + y 1 ≤ toReal (S.boundDot
-        (c := rowLin (fun _ : Fin 1 => ![neg μ, one]) 0) ![neg μ, one] (fun _ => rfl)).val := by
-      have : (rowLin (fun _ : Fin 1 => ![neg μ, one]) 0) y = -toReal μ * y 0 + y 1 := by
+  have hdual : ∀ μ : 𝕋,
+      let bd := S.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => ![neg μ, one]))
+          0) ![neg μ, one]
+        (fun _ => rfl)
+      x ⬝ᵥ toRealVec ℓ ≤ toReal (addUp bd.val (mulUp μ γ)) := fun μ => by
+    intro bd
+    have hb := bd.le y hy
+    have hb' : -toReal μ * y 0 + y 1 ≤ toReal bd.val := by
+      -- the row functional is `y ↦ -μ y₀ + y₁`
+      have : (Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => ![neg μ, one])) 0) y = -toReal μ *
+          y 0 + y 1 := by
         show (Scalar.toRealMat (fun _ : Fin 1 => ![neg μ, one]) *ᵥ y) 0 = _
         simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_two, Scalar.toRealMat_apply]
         show toReal ((![neg μ, one] : Vec 𝕋 2) 0) * y 0 + toReal ((![neg μ, one] : Vec 𝕋 2) 1) * y 1
@@ -84,8 +87,7 @@ theorem Location.zonoGirardUpperFloat_le (Z : Zonotope (Vec 𝕋 n)) (nv : Vec �
         simp [toReal_neg, toReal_one]
       rw [← this]; exact hb
     have hm := mul_le_mulUp μ γ
-    have := add_le_addUp (S.boundDot (c := rowLin (fun _ : Fin 1 => ![neg μ, one]) 0)
-      ![neg μ, one] (fun _ => rfl)).val (mulUp μ γ)
+    have := add_le_addUp bd.val (mulUp μ γ)
     rw [h0] at hb'
     rw [h1] at hb'
     nlinarith [hb', hm, this]

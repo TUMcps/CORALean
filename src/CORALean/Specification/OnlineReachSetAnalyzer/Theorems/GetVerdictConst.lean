@@ -40,11 +40,11 @@ variable {S : ℕ → Type} {d : ℕ}
 
 theorem OnlineReachSetAnalyzer.getVerdict_const (f : ℕ) (dp : Bool) : -- --- CONCL ---
     ∀ obj' ∈ OnlineReachSetAnalyzer.mk?
-        (OnlineReachSetAnalyzer.Formula.ff : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
-        f dp,
+        (OnlineReachSetAnalyzer.Formula.ff :
+          OnlineReachSetAnalyzer.Formula ℝ (AtomicProposition S d)) f dp,
       ∀ obj ∈ OnlineReachSetAnalyzer.mk?
           (OnlineReachSetAnalyzer.Formula.tt :
-            OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) f dp,
+            OnlineReachSetAnalyzer.Formula ℝ (AtomicProposition S d)) f dp,
         obj.getVerdict = some FourValued.tt ∧
           obj'.getVerdict = some FourValued.ff := by -- --- PROOF ---
   intro obj' hff obj htt

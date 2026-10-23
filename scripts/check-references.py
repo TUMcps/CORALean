@@ -642,18 +642,6 @@ def fix_decl_links(say):
             print(f"{page.relative_to(ROOT).as_posix()}: re-pointed declaration links")
 
 
-_ALLOW = None
-
-
-def noncomputable_allowlist():
-    """The names on `scripts/noncomputable-allowlist.txt`."""
-    global _ALLOW
-    if _ALLOW is None:
-        lines = (ROOT / "scripts" / "noncomputable-allowlist.txt").read_text(encoding="utf-8").splitlines()
-        _ALLOW = {l.split()[0] for l in lines if l.strip() and not l.startswith("#")}
-    return _ALLOW
-
-
 class CoraTable:
     """One `references/coverage/<group>/<class>.md`: a row per CORA method."""
 
@@ -735,7 +723,7 @@ class CoraTable:
         """Route (b) of `float`: no float counterpart, because the definition is generic over the
         scalar (or the set representation) and the theorem is its soundness proof at every
         instance. The checkable half: the linked definitions are not in the real layer, not
-        `noncomputable` and not on `noncomputable-allowlist.txt`, and a linked theorem or class
+        `noncomputable`, and a linked theorem or class
         from outside the real layer names a scalar or a set representation as a parameter."""
         say = self.say
         defs = [(t, n) for t, n, k in found if k not in ("theorem", "lemma")]
@@ -744,8 +732,6 @@ class CoraTable:
         for t, n in defs:
             if "Real" in t.parts:
                 say(f"{tag}: route b, but `{n}` is in the real layer")
-            if n in noncomputable_allowlist():
-                say(f"{tag}: route b, but `{n}` is on the noncomputable allowlist")
             for m in DECL.finditer(strip_block_comments(t.read_text(encoding="utf-8"))):
                 if m.group(3) == n and "noncomputable" in m.group(1):
                     say(f"{tag}: route b, but `{n}` is `noncomputable`")
@@ -758,14 +744,12 @@ class CoraTable:
         """Route (b), scalar-free: the linked definitions hold no scalar and compute nothing
         numeric (`EmptySet`, `Fullspace`), so there is nothing to generalise over. They may sit in
         the real layer and need no generic theorem; they must still be computable: not
-        `noncomputable`, not on `noncomputable-allowlist.txt`."""
+        `noncomputable`."""
         say = self.say
         defs = [(t, n) for t, n, k in found if k not in ("theorem", "lemma")]
         if not defs:
             say(f"{tag}: a `route b (scalar-free)` row links the definition it runs")
         for t, n in defs:
-            if n in noncomputable_allowlist():
-                say(f"{tag}: route b (scalar-free), but `{n}` is on the noncomputable allowlist")
             for m in DECL.finditer(strip_block_comments(t.read_text(encoding="utf-8"))):
                 if m.group(3) == n and "noncomputable" in m.group(1):
                     say(f"{tag}: route b (scalar-free), but `{n}` is `noncomputable`")

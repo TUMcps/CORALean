@@ -4,7 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne

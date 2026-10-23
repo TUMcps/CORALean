@@ -2,11 +2,11 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.AbsFactorExtendLeOne
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendLeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendRight
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.AbsFactorExtendLeOne
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorExtendLeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorExtendRight
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorIdxLeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialFactorIdxRight
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
 

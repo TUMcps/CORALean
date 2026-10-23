@@ -52,8 +52,8 @@ theorem PointSegmentSignal.at_snoc_eq {T : Type} [LinearOrder T] (tp : List T) (
     rcases List.mem_append.mp hx with hx | hx
     · simpa using (hlt x hx).le
     · simp at hx; simp [hx]
-  simp only [PointSegmentSignal.at, h, List.length_append, List.length_singleton,
-    Nat.add_sub_cancel]
+  simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at, h, List.length_append,
+    List.length_singleton, Nat.add_sub_cancel]
   have : (tp ++ [N])[tp.length]? = some N := by simp
   rw [this, if_pos rfl, List.getD_append_right _ _ _ _ (by omega)]
   simp [hlen]

@@ -32,7 +32,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
-public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds
 public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import CORALean.ContSet.LevelSet.Real.Operations.And
 public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
@@ -140,7 +140,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- Reviewed:      ---
 
 /-- A constrained polynomial zonotope as its corners -/
-noncomputable def ConPolyZono.vPolytope (cPZ : ConPolyZono α) : VPolytope α :=
+def ConPolyZono.vPolytope (cPZ : ConPolyZono α) : VPolytope α :=
   cPZ.polyZonotope.vPolytope
 
 

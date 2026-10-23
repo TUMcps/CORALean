@@ -2,6 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Operations.TransitionSynchronizeGuard
 public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemFullspace
 
 @[expose] public section
 

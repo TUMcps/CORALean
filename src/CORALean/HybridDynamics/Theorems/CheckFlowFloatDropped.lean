@@ -47,11 +47,14 @@ theorem Location.checkFlowFloat_dropped
     toRealVec c ⬝ᵥ (Scalar.toRealMat ℓ.dynamics.A *ᵥ
       (x - (toRealVec c ⬝ᵥ x - toReal d) • toRealVec c) + (Scalar.toRealMat ℓ.dynamics.B *ᵥ u +
         toRealVec ℓ.dynamics.c + Scalar.toRealMat ℓ.dynamics.E *ᵥ w)) ≤ 0 := by -- --- PROOF ---
+  -- the image of the hyperplane projection under the dynamics
+  set pr := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A
+    (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d) with hpr
   -- dropped means the second test certified `flowUp ≤ 0`
   have hle : le (((Plus.plus
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A
-      (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)) ℓ.inputSetFloat).boundDot
-        (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl).val) zero = true := by
+    pr ℓ.inputSetFloat).boundDot
+        (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => c)) 0) c fun _ => rfl).val) zero =
+            true := by
     by_contra hne
     refine hdrop (List.mem_filter.mpr ⟨hR, ?_⟩)
     simp only [Bool.or_eq_true, Bool.not_eq_true']
@@ -63,13 +66,10 @@ theorem Location.checkFlowFloat_dropped
     (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hp))
   have hflow := Plus.plus_outer
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A
-      (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)) ℓ.inputSetFloat
+    pr ℓ.inputSetFloat
     ⟨_, hmap, _, ℓ.inputSetFloat_outer hu hw, rfl⟩
-  have hb := (((Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋)
-    (S := 𝒵[𝕋]) ℓ.dynamics.A
-      (ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d)) ℓ.inputSetFloat).boundDot
-        (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl)).le _ hflow
+  have hb := (((Plus.plus pr ℓ.inputSetFloat).boundDot
+        (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => c)) 0) c fun _ => rfl)).le _ hflow
   have h0 := toReal_le_of_le hle
   rw [toReal_zero] at h0
   exact le_trans hb h0

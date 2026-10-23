@@ -14,7 +14,6 @@ public import Mathlib.Data.Fin.VecNotation
 false) is the Boolean part, and the value is unknown where it differs from that of the maximal
 refinements (unknown as true). This is `Λ₁ ∧ Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the
 conjunctions of `⌊Λ⌋` and `⌈Λ⌉`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
 
 ## Inputs
 * `ι` – index type of the operands
@@ -39,12 +38,14 @@ Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = kleeneSignal.and_(varargin)`. -/
-noncomputable def KleeneSignal.and_ {ι : Type} [Fintype ι] (sigs : ι → KleeneSignal ℝ) :
-    KleeneSignal ℝ :=
+def KleeneSignal.and_ {ι : Type} [FinEnum ι] (sigs : ι → KleeneSignal 𝕋) : KleeneSignal 𝕋 :=
   -- 1. minRefinements with unknown mapped to false, and their `@all`
   let minRefinements := fun k => (sigs k).toBoolSignal false
   let minAnd := PointSegmentSignal.combine

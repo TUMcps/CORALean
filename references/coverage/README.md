@@ -80,8 +80,7 @@ A `proved` row that is not `float` is the **float backlog** (`needs_float` in
   definition, and a theorem about it, in a `Float/` directory or in a declaration or file with
   `Float` in its name. The row links them after `float:`; or
 * **(b)** its definition is generic over the scalar `𝕋` (or over the set representation, whose
-  scalar the instances carry), is computable (not `noncomputable`, so not on
-  `scripts/noncomputable-allowlist.txt`), and its soundness theorem is stated for that generic
+  scalar the instances carry), is computable (not `noncomputable`), and its soundness theorem is stated for that generic
   `𝕋` or representation, not only at ℝ. Such a method needs no `Float/` counterpart: at
   `Dyadic`/`Float` with float set representations the same definition runs and the same theorem is
   its soundness proof (`Examples/ReachFloat.lean`, `Examples/RunnableFloat.lean`). The row's note

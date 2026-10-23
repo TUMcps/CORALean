@@ -4,11 +4,11 @@ public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
-public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadRight
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadRight
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
@@ -184,71 +184,9 @@ end
 
 section
 
-open Matrix FloatOps SoundFloatArithmetic
-
--- membership at each shape, the block that is absent discharged by `Fin.elim0`
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ} {S : Set (Vec ℝ n)}
-
-
--- ================================  `HPolytope.mem_fullspace`  ================================= --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   15-October-2026
--- Reviewed:      ---
-
-/-- Every point is in `HPolytope.fullspace` -/
-theorem HPolytope.mem_fullspace (x : Vec ℝ n) :
-    x ∈ (HPolytope.fullspace 𝕋 n).construct :=
-  (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mpr
-    ⟨fun i => i.elim0, fun i => i.elim0⟩
-
-
--- ===============================  `HPolytope.subset_ofBounds`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      14-October-2026 (Tobias Ladner)
-
-/-- The rounding has already been paid where each bound was combined, and nothing
-rounds here. -/
-theorem HPolytope.subset_ofBounds (Aq : Mat 𝕋 q n) (u : ∀ i, FloatBound 𝕋 S (rowLin Aq i)) :
-    S ⊆ (HPolytope.ofBounds Aq u).construct :=
-  fun x hx => HPolytope.mem_ineqs_iff.mpr fun i => (u i).le x hx
-
-end
-
-
-section
-
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n n₁ n₂ : ℕ}
-
-
--- ===========================  `HPolytope.mem_padLeft_nominal_iff`  ============================ --
--- Authors:       Claude Sonnet 5.5
--- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Membership of the padded nominal part is membership of the block it came from. -/
-theorem HPolytope.mem_padLeft_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {x : Vec ℝ (n₁ + n₂)} :
-    x ∈ (P.padLeft n₂).nominal.construct ↔ blockLeft n₁ n₂ x ∈ P.nominal.construct := by
-  rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
-  simp only [HPolytope.padLeft, HPolytope.mulVec_padLeft]
-
-
--- ===========================  `HPolytope.mem_padRight_nominal_iff`  =========================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The mirror statement for the right block. -/
-theorem HPolytope.mem_padRight_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {x : Vec ℝ (n₁ + n₂)} :
-    x ∈ (HPolytope.padRight n₁ P).nominal.construct ↔ blockRight n₁ n₂ x ∈ P.nominal.construct := by
-  rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
-  simp only [HPolytope.padRight, HPolytope.mulVec_padRight]
 
 
 -- ==============================  `HPolytope.mem_stackRows_iff`  =============================== --

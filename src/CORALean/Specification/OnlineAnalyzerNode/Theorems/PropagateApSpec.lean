@@ -45,9 +45,9 @@ variable {A : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk : n.kind = .ap) (hs : n.signal.IsValid)
-    (hne : I ≠ .empty) : -- --- CONCL ---
+theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode ℝ A)
+    (ch : List (OnlineAnalyzerNode ℝ A)) (I : STLInterval ℝ) (hk : n.kind = .ap)
+    (hs : n.signal.IsValid) (hne : I ≠ .empty) : -- --- CONCL ---
     ∀ tent ∈ n.tentative,
       tent.IsValid →
       ∃ n', n.propagate eps ch I = some (n', ch) ∧ n'.signal.IsValid ∧
@@ -62,18 +62,18 @@ theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode
   obtain ⟨hmv, hm⟩ := n.signal.merge_spec (tent.getInterval I) hs hfv
   obtain ⟨hsv, -⟩ := tent.setInvalid_spec htv I
   -- the interval is nonempty, so the node does merge
-  have hIne : ∃ l u lc rc a b c z, I = STLInterval.nonempty l u lc rc a b c z := by
+  have hIne : ∃ l u lc rc b c z, I = STLInterval.nonempty l u lc rc b c z := by
     cases I with
     | empty => exact absurd rfl hne
-    | nonempty l u lc rc a b c z => exact ⟨l, u, lc, rc, a, b, c, z, rfl⟩
-  obtain ⟨l, u, lc, rc, a, b, c, z, hIeq⟩ := hIne
+    | nonempty l u lc rc b c z => exact ⟨l, u, lc, rc, b, c, z, rfl⟩
+  obtain ⟨l, u, lc, rc, b, c, z, hIeq⟩ := hIne
   have hprop : n.propagate eps ch I = some ({ n with
       signal := n.signal.merge (tent.getInterval I),
       tentative := some (tent.setInvalid I) }, ch) := by
     subst hIeq
     unfold OnlineAnalyzerNode.propagate
     rw [hk, ht]
-  obtain ⟨n', hn'⟩ : ∃ n' : OnlineAnalyzerNode A, n' = { n with
+  obtain ⟨n', hn'⟩ : ∃ n' : OnlineAnalyzerNode ℝ A, n' = { n with
       signal := n.signal.merge (tent.getInterval I),
       tentative := some (tent.setInvalid I) } := ⟨_, rfl⟩
   have hsig : n'.signal = n.signal.merge (tent.getInterval I) := by rw [hn']

@@ -45,7 +45,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FourValuedSignal.combine_spec {ι κ : Type} [Fintype ι] [Nonempty ι] (op : (ι →
+theorem FourValuedSignal.combine_spec {ι κ : Type} [FinEnum ι] [Nonempty ι] (op : (ι →
     FourValued) → κ → FourValued)
     (sig : ι → FourValuedSignal ℝ) (hv : ∀ k, (sig k).IsValid) (i : κ) : -- --- CONCL ---
     (FourValuedSignal.combine op sig i).IsValid ∧ ∀ t : ℝ, 0 ≤ t →

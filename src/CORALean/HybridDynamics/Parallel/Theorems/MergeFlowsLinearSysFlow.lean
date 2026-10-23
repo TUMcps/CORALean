@@ -168,19 +168,22 @@ theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flow (sys : ∀ i, LinearSys
     · intro c _ hc
       exact Finset.sum_eq_zero fun b _ => by simp [dif_neg (Ne.symm hc)]
     · simp
+  -- the output a component reads off, at output `s` of component `c`
+  set outv := fun (c : Fin k) (s : Fin (sys c).q) =>
+    ((sys c).C *ᵥ x c) s + ∑ j', match binds c j' with
+      | .global a' => (sys c).D s j' * g a'
+      | .output _ _ => 0 with houtv
   -- every input term of component `i`, through its binding
   have hBu : ((sys i).B *ᵥ u i) a = ∑ j, match binds i j with
       | .global a' => (sys i).B a j * g a'
-      | .output c s => (sys i).B a j * (((sys c).C *ᵥ x c) s + ∑ j', match binds c j' with
-            | .global a' => (sys c).D s j' * g a'
-            | .output _ _ => 0) + (sys i).B a j * (sys c).k s := by
+      | .output c s => (sys i).B a j * (outv c s) + (sys i).B a j * (sys c).k s := by
     simp only [Matrix.mulVec, dotProduct]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [hu i j]
     cases hb : binds i j with
     | global a' => simp
     | output c₀ s₀ =>
-      simp only [Pi.add_apply, mul_add]
+      simp only [houtv, Pi.add_apply, mul_add]
       congr 2
       congr 1
       simp only [Matrix.mulVec, dotProduct]
@@ -191,9 +194,7 @@ theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flow (sys : ∀ i, LinearSys
   -- each input term splits into its state, global-input and constant parts
   have hsplit : ∀ j, (match binds i j with
       | .global a' => (sys i).B a j * g a'
-      | .output c s => (sys i).B a j * (((sys c).C *ᵥ x c) s + ∑ j', match binds c j' with
-            | .global a' => (sys c).D s j' * g a'
-            | .output _ _ => 0) + (sys i).B a j * (sys c).k s) =
+      | .output c s => (sys i).B a j * (outv c s) + (sys i).B a j * (sys c).k s) =
       (match binds i j with
         | .global _ => 0
         | .output c s => (sys i).B a j * ((sys c).C *ᵥ x c) s) +
@@ -211,9 +212,7 @@ theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flow (sys : ∀ i, LinearSys
   -- and so does their sum
   have hsum : ∑ j, (match binds i j with
       | .global a' => (sys i).B a j * g a'
-      | .output c s => (sys i).B a j * (((sys c).C *ᵥ x c) s + ∑ j', match binds c j' with
-            | .global a' => (sys c).D s j' * g a'
-            | .output _ _ => 0) + (sys i).B a j * (sys c).k s) =
+      | .output c s => (sys i).B a j * (outv c s) + (sys i).B a j * (sys c).k s) =
       (∑ j, (match binds i j with
         | .global _ => 0
         | .output c s => (sys i).B a j * ((sys c).C *ᵥ x c) s)) + (∑ j, (match binds i j with

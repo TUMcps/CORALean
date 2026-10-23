@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Topology.Instances.Matrix
 public import Mathlib.Topology.Algebra.Order.Group
 public import Mathlib.Topology.Instances.Real.Lemmas

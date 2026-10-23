@@ -5,6 +5,7 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 public import Mathlib.Data.Fin.Tuple.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith

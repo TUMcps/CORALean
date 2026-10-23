@@ -3,9 +3,11 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadRightNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
-public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabNominalIff
 
 @[expose] public section
 

@@ -11,13 +11,14 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability with inputs over `[tStart, tFinal]`, one window of width `Δt` at a time
 
-[1, Alg. 2], `0 ∈ U`: the windows `τ_0, …, τ_{N-1}`, one `reachStepk` each, collected as a
-`SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one, exactly
-`LinearSys.reachWrappingFree`'s count. No `box()` on the accumulated input set: that bounds a
-zonotope's order and is a reduction, which an enclosure need not make. `X₀ = params.X₀`,
-`Δt = options.Δt`, `η = options.η`, the Taylor order asked for, raised to `reachOrder Δt + 2` where
-that is higher, as in `LinearSys.reachWrappingFree`: `timeInterval_outer` and `inputSolution`'s
-enclosure both hold only at an order admissible for `Δt` and `sys.A`. The times are real, as there.
+With `0 ∈ U`, the windows `τ_0, …, τ_{N-1}`, one `reachStepk` each, each resting on the separation
+of [1, Prop. 4], collected as a `SetUnion`, `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer
+than one, exactly `LinearSys.reachWrappingFree`'s count. No `box()` on the accumulated input set:
+that bounds a zonotope's order and is a reduction, which an enclosure need not make.
+`X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`, the Taylor order asked for, raised to
+`reachOrder Δt + 2` where that is higher, as in `LinearSys.reachWrappingFree`: `timeInterval_outer`
+and `inputSolution`'s enclosure both hold only at an order admissible for `Δt` and `sys.A`. The
+times are real, as there.
 
 ## Inputs
 * `sys` – linear system with input
@@ -29,8 +30,9 @@ enclosure both hold only at an order admissible for `Δt` and `sys.A`. The times
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -34,7 +34,7 @@ variable {A : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Two nodes agree in `idx`, `kind`, `dropPropagated` and the first parent. -/
-def OnlineReachSetAnalyzer.Same (n n' : OnlineAnalyzerNode A) : Prop :=
+def OnlineReachSetAnalyzer.Same (n n' : OnlineAnalyzerNode ℝ A) : Prop :=
   n.idx = n'.idx ∧ n.kind = n'.kind ∧ n.parents.head? = n'.parents.head? ∧
     n.dropPropagated = n'.dropPropagated
 

@@ -37,7 +37,8 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `build(Obj, finalStateMat, iInput, iState)`: the empirical cell frequencies as a column. -/
+/-- `build(Obj, finalStateMat, iInput, iState)`: the empirical cell frequencies as a column.
+Noncomputable because `transitionProbability` counts real points. -/
 noncomputable def MarkovChain.build (M : MarkovChain n m)
     (finalStateMat : MarkovChain.FinalStates n) (iInput : Fin m)
     (iState : Fin (M.field.nrOfCells + 1)) : MarkovChain n m :=

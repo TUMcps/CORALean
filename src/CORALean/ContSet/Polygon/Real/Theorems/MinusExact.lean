@@ -3,7 +3,7 @@ module
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import CORALean.ContSet.Polygon.Real.Operations.Minus
 public import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
 
 @[expose] public section
 

@@ -40,8 +40,8 @@ variable {A : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (hv : n.signal.IsValid) (parent : ℕ) (int : STLInterval) : -- --- CONCL ---
+theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n : OnlineAnalyzerNode ℝ A)
+    (hv : n.signal.IsValid) (parent : ℕ) (int : STLInterval ℝ) : -- --- CONCL ---
     ∀ n' ∈ n.setPropagated eps parent int,
       n'.signal.IsValid ∧ n'.prop = n.prop.set (n.parents.idxOf parent) int ∧
         (n.dropPropagated = false → n'.signal = n.signal) ∧

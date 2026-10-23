@@ -44,7 +44,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Interval.Float.Operations.OfBounds
-public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetOfBounds
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter

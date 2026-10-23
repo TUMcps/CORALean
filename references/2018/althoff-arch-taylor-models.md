@@ -89,3 +89,10 @@ takes the slower exact remainder. CORA's `priv_inverse` tests instead whether `L
 `1/B(T)` at both ends, and takes the exact remainder only then, which matches the text's intent
 (the Lagrange remainder "does not always result in large over-approximations"). Formalized with
 CORA's test; both branches are sound, so the choice affects only how tight the result is.
+
+## Cited without a result
+
+These name the paper as a whole. A locator would put each in a row above.
+
+* [`Zoo.lean`](../../src/CORALean/ContSet/Zoo/Real/Zoo.lean)
+* [`Zoo.lean`](../../src/CORALean/ContSet/Zoo/Float/Zoo.lean)

@@ -8,8 +8,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 /-!
 # Enclosing the matrix exponential
 
-`expEnclosure`: [1, Eq. (3.2)–(3.3)], `expTaylor` as the center and `expRemainderBound` as the
-radius.
+`expEnclosure`: [1, Thm. 1] at a single matrix, `expTaylor` as the center and `expRemainderBound` as
+the radius.
 
 `exp` needs a norm on `Mat`, which is a choice rather than an instance, so every
 file reasoning about these must make the same one — the `l∞` operator norm.
@@ -23,8 +23,9 @@ file reasoning about these must make the same one — the `l∞` operator norm.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

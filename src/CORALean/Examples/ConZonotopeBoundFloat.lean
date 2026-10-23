@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!
@@ -67,7 +68,8 @@ def thirdRow : HPolytope D (Vec D 2) :=
 
 /-- The bound in direction `a`, read exactly. -/
 def bound (cZ : ConZonotope D (Vec D 2)) (a : Vec D 2) : ℚ :=
-  ToRat.toRat (cZ.boundDot (c := rowLin (fun (_ : Fin 1) => a) 0) a fun _ => rfl).val
+  ToRat.toRat (cZ.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0) a fun
+      _ => rfl).val
 
 #eval bound (square eqRow) ![d 1 0, d 1 0]    -- 0, where the zonotope bound is 2
 #eval bound (square eqRow) ![d 1 0, d 0 0]    -- 1

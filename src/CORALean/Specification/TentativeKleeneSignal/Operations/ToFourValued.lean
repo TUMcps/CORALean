@@ -37,7 +37,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = toFourValued(obj)`. -/
-def TentativeKleeneSignal.toFourValued {T : Type} [LinearOrder T] [Zero T]
+def TentativeKleeneSignal.toFourValued {T : Type} [TimeOrder T] [Zero T]
     (s : TentativeKleeneSignal T) : FourValuedSignal T :=
   -- 1. unk = obj.canBeTrue & obj.canBeFalse
   let unk := PointSegmentSignal.combine (fun (a : Fin 2 → Bool) (_ : Unit) =>

@@ -93,6 +93,11 @@ public import CORALean.Global.RecList
 public import CORALean.Global.LookupMapConst
 public import CORALean.Global.LookupReplaceKey
 public import CORALean.Global.ReplaceKey
+public import CORALean.Global.LookupMapSnd
+public import CORALean.Global.IsEqvTop
+public import CORALean.Global.ReplaceKeyMapSnd
+public import CORALean.Global.FoldlMOptionMap
+public import CORALean.Global.MapMOptionMap
 public import CORALean.Global.SqrtDeriv
 public import CORALean.Global.TaylorLagrangeConvex
 public import CORALean.Global.NearestPointSeparates

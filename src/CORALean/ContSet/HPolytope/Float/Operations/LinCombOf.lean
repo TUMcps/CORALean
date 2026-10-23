@@ -41,8 +41,9 @@ variable {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.linCombOf (Aq : Mat 𝕋 q n)
-    (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (rowLin Aq i))
-    (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (rowLin Aq i)) : HPolytope 𝕋 (Vec 𝕋 n) :=
+    (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (Real.HPolytope.rowLin (toRealMat Aq) i))
+    (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (Real.HPolytope.rowLin (toRealMat Aq) i)) : HPolytope 𝕋
+        (Vec 𝕋 n) :=
   HPolytope.ofBounds Aq fun i => (u₁ i).setLinComb (u₂ i)
 
 end CORALean.Float

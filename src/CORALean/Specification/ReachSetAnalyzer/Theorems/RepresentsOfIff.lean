@@ -43,7 +43,7 @@ variable {S : ℕ → Type} {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.represents_of_iff (obj : ReachSetAnalyzer S n) (d : ℝ)
+theorem ReachSetAnalyzer.represents_of_iff (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     {PT PF PT' PF' : String → ℝ → Prop} (h : obj.Represents d PT PF)
     (hT : ∀ k t, PT k t ↔ PT' k t) (hF : ∀ k t, PF k t ↔ PF' k t) :
     obj.Represents d PT' PF' :=

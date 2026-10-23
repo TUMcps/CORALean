@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Float.TimeOrder
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
@@ -10,8 +11,8 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `@stlInterval/minus.m`, the numeric branch: both bounds move down by the subtrahend, the flags
 stay, a negative lower bound is cut to the closed `0`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
-over `𝕋`, rounded outward) is not yet written.
+Over a float scalar the lower bound is rounded down and the upper one up, so the result encloses
+the exact one; over ℝ nothing rounds.
 
 ## Inputs
 * none
@@ -30,15 +31,21 @@ over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.minusNum : STLInterval → ℝ → STLInterval
+def STLInterval.minusNum : STLInterval 𝕋 → 𝕋 → STLInterval 𝕋
   | .empty, _ => .empty
-  | .nonempty l u lc rc _ _ _ _, c =>
-    let lb := l - c
-    let ub := u - c
-    if h : lb < 0 then stlInterval 0 ub true rc le_rfl else stlInterval lb ub lc rc (not_lt.1 h)
+  | .nonempty l u lc rc _ _ _, c =>
+    -- both bounds move down by the number, the lower one rounded down, the upper one up
+    let lb := subDown l c
+    let ub := u.map (subUp · c)
+    if h : toReal lb < toReal (0 : 𝕋) then stlInterval 0 ub true rc toReal_zero_eq.ge
+    else stlInterval lb ub lc rc (by rw [← toReal_zero_eq (𝕋 := 𝕋)]; exact not_lt.1 h)
 
 end CORALean
 

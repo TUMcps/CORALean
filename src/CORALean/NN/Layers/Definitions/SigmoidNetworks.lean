@@ -48,7 +48,8 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The sigmoid layer as a network, named so the statements about it stay readable. -/
+/-- The sigmoid layer as a network, named so the statements about it stay readable. Noncomputable
+because the sigmoid's polynomial relaxation family is built from the real sigmoid. -/
 noncomputable def sigmoidRefinableNetwork (n : ℕ) : RefinableNetwork 𝒫𝒵 n n :=
   .cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_sound) .nil
 

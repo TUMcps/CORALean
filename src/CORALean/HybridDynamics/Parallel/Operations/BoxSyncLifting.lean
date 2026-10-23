@@ -3,6 +3,7 @@ module
 public import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
 public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructFullspace
 
 @[expose] public section
 

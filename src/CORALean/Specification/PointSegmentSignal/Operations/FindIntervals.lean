@@ -13,9 +13,6 @@ public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 which the signal has a value satisfying `cond` (by default, `true`), as the `stlInterval`s of the
 bounds `findIntervalsBounds` computes.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `s` – signal
 * `cond` – condition on values
@@ -34,12 +31,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `intervals = findIntervals(obj,cond)`. -/
-noncomputable def PointSegmentSignal.findIntervals (s : PointSegmentSignal ℝ)
-    (cond : Bool → Bool := id) : List STLInterval :=
+def PointSegmentSignal.findIntervals (s : PointSegmentSignal 𝕋) (cond : Bool → Bool := id) :
+    List (STLInterval 𝕋) :=
   (s.findIntervalsBounds cond).map
     (fun b => STLInterval.stlIntervalBounds b.1 b.2.1 b.2.2.1 b.2.2.2)
 

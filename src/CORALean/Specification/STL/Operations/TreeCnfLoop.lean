@@ -42,61 +42,6 @@ def STL.Tree.aux_cnfWeight : STL.Tree n → ℕ
   | .or φ ψ => aux_cnfWeight φ * aux_cnfWeight ψ
   | _ => 2
 
--- every formula weighs at least two
-theorem STL.Tree.aux_two_le_cnfWeight (φ : STL.Tree n) : 2 ≤ φ.aux_cnfWeight := by
-  induction φ with
-  | and φ ψ ihφ ihψ => simp only [STL.Tree.aux_cnfWeight]; omega
-  | or φ ψ ihφ ihψ => simp only [STL.Tree.aux_cnfWeight]; nlinarith
-  | _ => simp [STL.Tree.aux_cnfWeight]
-
--- a pass never raises the weight, and lowers it when it distributes
-theorem STL.Tree.aux_cnfRewrite_weight (φ : STL.Tree n) : -- --- CONCL ---
-    (φ.cnfRewrite).1.aux_cnfWeight ≤ φ.aux_cnfWeight ∧
-      ((φ.cnfRewrite).2 ≠ 0 →
-        (φ.cnfRewrite).1.aux_cnfWeight < φ.aux_cnfWeight) := by -- --- PROOF ---
-  induction φ with
-  | or φ ψ ihφ ihψ =>
-    have h₁ := STL.Tree.aux_two_le_cnfWeight (φ.cnfRewrite).1
-    have h₂ := STL.Tree.aux_two_le_cnfWeight (ψ.cnfRewrite).1
-    obtain ⟨a₁, a₂⟩ := ihφ
-    obtain ⟨b₁, b₂⟩ := ihψ
-    simp only [STL.Tree.cnfRewrite]
-    split
-    all_goals simp_all only [STL.Tree.aux_cnfWeight]
-    -- both operands became `&`: four clauses replace the product
-    · rename_i ψ' _ _ _ l₁ l₂ r₁ r₂ _ _
-      have t₁ := STL.Tree.aux_two_le_cnfWeight l₁
-      have t₂ := STL.Tree.aux_two_le_cnfWeight l₂
-      have t₃ := STL.Tree.aux_two_le_cnfWeight r₁
-      have t₄ := STL.Tree.aux_two_le_cnfWeight r₂
-      have key := Nat.mul_le_mul a₁ b₁
-      refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
-    -- only the left operand is an `&`
-    · rename_i ψ' _ _ _ l₁ l₂ _ _
-      have key := Nat.mul_le_mul a₁ b₁
-      refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
-    -- only the right operand is an `&`
-    · rename_i _ _ _ r₁ r₂ φ' ψ' _ _
-      have key := Nat.mul_le_mul a₁ b₁
-      refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
-    -- nothing distributed here: the weight drops where an operand's did
-    · refine ⟨Nat.mul_le_mul a₁ b₁, fun h => ?_⟩
-      by_cases c : φ.cnfRewrite.2 = 0
-      · have := Nat.mul_le_mul (a₁) (b₂ (by omega))
-        nlinarith
-      · have := Nat.mul_le_mul (a₂ c) b₁
-        nlinarith
-  -- the case of an `&`
-  | and φ ψ ihφ ihψ =>
-    obtain ⟨a₁, a₂⟩ := ihφ
-    obtain ⟨b₁, b₂⟩ := ihψ
-    simp only [STL.Tree.cnfRewrite, STL.Tree.aux_cnfWeight]
-    refine ⟨by omega, fun h => ?_⟩
-    by_cases hφ : (φ.cnfRewrite).2 = 0
-    · have := b₂ (by omega); omega
-    · have := a₂ hφ; omega
-  | _ => simp [STL.Tree.cnfRewrite]
-
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
@@ -107,7 +52,67 @@ def STL.Tree.cnfLoop (φ : STL.Tree n) : STL.Tree n :=
   let cnt := (φ.cnfRewrite).2
   if _ : cnt = 0 then res else cnfLoop res
 termination_by φ.aux_cnfWeight
-decreasing_by rename_i h; exact (STL.Tree.aux_cnfRewrite_weight φ).2 h
+decreasing_by
+  rename_i h
+  -- every formula weighs at least two
+  have htwo' : ∀ φ : STL.Tree n, 2 ≤ φ.aux_cnfWeight := by
+    intro φ
+    induction φ with
+    | and φ ψ ihφ ihψ => simp only [STL.Tree.aux_cnfWeight]; omega
+    | or φ ψ ihφ ihψ => simp only [STL.Tree.aux_cnfWeight]; nlinarith
+    | _ => simp [STL.Tree.aux_cnfWeight]
+  have htwo : PLift (∀ φ : STL.Tree n, 2 ≤ φ.aux_cnfWeight) := ⟨htwo'⟩
+  clear htwo'
+  -- a pass never raises the weight, and lowers it when it distributes
+  have hweight : ∀ φ : STL.Tree n,
+      (φ.cnfRewrite).1.aux_cnfWeight ≤ φ.aux_cnfWeight ∧
+        ((φ.cnfRewrite).2 ≠ 0 →
+          (φ.cnfRewrite).1.aux_cnfWeight < φ.aux_cnfWeight) := by
+    clear * - htwo
+    intro φ
+    induction φ with
+    | or φ ψ ihφ ihψ =>
+      have h₁ := htwo.down (φ.cnfRewrite).1
+      have h₂ := htwo.down (ψ.cnfRewrite).1
+      obtain ⟨a₁, a₂⟩ := ihφ
+      obtain ⟨b₁, b₂⟩ := ihψ
+      simp only [STL.Tree.cnfRewrite]
+      split
+      all_goals simp_all only [STL.Tree.aux_cnfWeight]
+      -- both operands became `&`: four clauses replace the product
+      · rename_i ψ' _ _ _ l₁ l₂ r₁ r₂ _ _
+        have t₁ := htwo.down l₁
+        have t₂ := htwo.down l₂
+        have t₃ := htwo.down r₁
+        have t₄ := htwo.down r₂
+        have key := Nat.mul_le_mul a₁ b₁
+        refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
+      -- only the left operand is an `&`
+      · rename_i ψ' _ _ _ l₁ l₂ _ _
+        have key := Nat.mul_le_mul a₁ b₁
+        refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
+      -- only the right operand is an `&`
+      · rename_i _ _ _ r₁ r₂ φ' ψ' _ _
+        have key := Nat.mul_le_mul a₁ b₁
+        refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
+      -- nothing distributed here: the weight drops where an operand's did
+      · refine ⟨Nat.mul_le_mul a₁ b₁, fun h => ?_⟩
+        by_cases c : φ.cnfRewrite.2 = 0
+        · have := Nat.mul_le_mul (a₁) (b₂ (by omega))
+          nlinarith
+        · have := Nat.mul_le_mul (a₂ c) b₁
+          nlinarith
+    -- the case of an `&`
+    | and φ ψ ihφ ihψ =>
+      obtain ⟨a₁, a₂⟩ := ihφ
+      obtain ⟨b₁, b₂⟩ := ihψ
+      simp only [STL.Tree.cnfRewrite, STL.Tree.aux_cnfWeight]
+      refine ⟨by omega, fun h => ?_⟩
+      by_cases hφ : (φ.cnfRewrite).2 = 0
+      · have := b₂ (by omega); omega
+      · have := a₂ hφ; omega
+    | _ => simp [STL.Tree.cnfRewrite]
+  exact (hweight φ).2 h
 
 end CORALean
 

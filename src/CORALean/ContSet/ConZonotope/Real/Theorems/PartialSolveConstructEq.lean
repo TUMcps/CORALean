@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.PartialSolve
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamAMulVec
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamGMulVec
 public import Mathlib.Data.Matrix.Mul

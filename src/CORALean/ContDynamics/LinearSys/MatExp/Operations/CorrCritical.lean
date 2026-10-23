@@ -7,8 +7,8 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 /-!
 # The correction's critical point
 
-`corrCritical`: where [1]'s `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only stationary
-point, and the minimum because the map is convex.
+`corrCritical`: where [1, Thm. 3]'s `s ↦ s ^ i - s` bottoms out: `i ^ (-1/(i-1))`, the only
+stationary point, and the minimum because the map is convex.
 
 ## Inputs
 * `i` – order
@@ -18,8 +18,9 @@ point, and the minimum because the map is convex.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

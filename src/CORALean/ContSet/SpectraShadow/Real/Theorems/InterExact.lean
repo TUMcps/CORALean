@@ -45,13 +45,14 @@ variable {n : ℕ}
 /-- `inter`'s inequality: `plus`'s, and the diagonal block at the difference of the two points. -/
 theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
     (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
+    let dd := (S₁.c - S₂.c) + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i - ∑ j, β (Fin.natAdd S₁.m j) •
+      S₂.G j
     (S₁.inter S₂).A₀ + ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).A i
       = blockDiag 0 ((S₁.plus S₂).A₀ + ∑ i : Fin (S₁.plus S₂).m, β i • (S₁.plus S₂).A i)
         (blockDiag 0
-          (diagonal ((S₁.c - S₂.c) + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i
-            - ∑ j, β (Fin.natAdd S₁.m j) • S₂.G j))
-          (diagonal (-((S₁.c - S₂.c) + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i
-            - ∑ j, β (Fin.natAdd S₁.m j) • S₂.G j)))) := by -- --- PROOF ---
+          (diagonal dd)
+          (diagonal (-dd))) := by -- --- PROOF ---
+  intro dd
   set G'' : Fin (S₁.m + S₂.m) → Vec ℝ n := Fin.append S₁.G (fun j => - S₂.G j) with hG
   -- the second blocks' variables carry `-G₂`, so the sum of generators is a difference
   have hsum : ∑ i, β i • G'' i
@@ -65,10 +66,8 @@ theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
         (blockDiag 0 (diagonal (G'' i)) (diagonal (-G'' i)))
       = blockDiag 0 ((S₁.plus S₂).A₀ + ∑ i : Fin (S₁.plus S₂).m, β i • (S₁.plus S₂).A i)
         (blockDiag 0
-          (diagonal ((S₁.c - S₂.c) + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i
-            - ∑ j, β (Fin.natAdd S₁.m j) • S₂.G j))
-          (diagonal (-((S₁.c - S₂.c) + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i
-            - ∑ j, β (Fin.natAdd S₁.m j) • S₂.G j)))) := by
+          (diagonal dd)
+          (diagonal (-dd))) := by
     -- a sum of block-diagonal terms is the block-diagonal of the two sums
     have hcomb : ∀ {a b : ℕ} (X : Fin (S₁.m + S₂.m) → Mat ℝ a a)
         (Y : Fin (S₁.m + S₂.m) → Mat ℝ b b),
@@ -78,6 +77,7 @@ theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
       rw [← blockDiag_sum]
     -- the first block is `plus`'s, the second is the diagonal block at the summed vector
     rw [hcomb, ← blockDiag_add, SpectraShadow.eq_block_sum, hsum]
+    simp only [dd]
     congr 1
     rw [← blockDiag_add]
     congr 1 <;> (ext j k; by_cases hjk : j = k <;> simp [hjk]; ring)

@@ -43,6 +43,23 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- the compiler runs the implementation the operation's `aux_` pair builds
+omit [SoundFloatArithmetic 𝕋] in
+@[csimp] theorem MatExp.aux_expIntervalTaylor_eq_impl : -- --- CONCL ---
+    @MatExp.expIntervalTaylor = @MatExp.aux_expIntervalTaylorImpl := by -- --- PROOF ---
+  funext 𝕋 _ n A k
+  -- the pair is the power and the sum, order by order
+  have hpair : ∀ k, MatExp.aux_expIntervalTaylorPair A k
+      = (Interval.matPow A k, MatExp.expIntervalTaylor A k) := by
+    intro k
+    induction k with
+    | zero => rfl
+    | succ k ih => rw [MatExp.aux_expIntervalTaylorPair, ih]; rfl
+  rw [MatExp.aux_expIntervalTaylorImpl, hpair]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))

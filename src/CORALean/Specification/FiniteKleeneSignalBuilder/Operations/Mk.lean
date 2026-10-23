@@ -12,10 +12,11 @@ public import CORALean.Specification.FiniteSignal.Operations.Mk
 `finiteSignal(dur,false)`. CORA throws in that constructor for a negative `dur` (`time` must be
 nonnegative); here `none`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+Generic over the time type: at a float scalar nothing rounds, the only comparison being exact
+(`TimeOrder`).
 
 ## Inputs
+* `T` – time type
 * `dur` – signal duration
 
 ## Output
@@ -36,7 +37,8 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `obj = finiteKleeneSignalBuilder(dur)`. -/
-noncomputable def FiniteKleeneSignalBuilder.mk? (dur : ℝ) : Option FiniteKleeneSignalBuilder :=
+def FiniteKleeneSignalBuilder.mk? {T : Type} [TimeOrder T] [Zero T] (dur : T) :
+    Option (FiniteKleeneSignalBuilder T) :=
   (FiniteSignal.mk? [dur] [false]).bind fun possiblyTrueSignal =>
     (FiniteSignal.mk? [dur] [false]).map fun possiblyFalseSignal =>
       ⟨possiblyTrueSignal, possiblyFalseSignal⟩

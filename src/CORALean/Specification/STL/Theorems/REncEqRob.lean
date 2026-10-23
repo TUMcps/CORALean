@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STL.Theorems.UntilDecompIff
 public import CORALean.Specification.STL.Theorems.UntilRobNonstrictLeIff
 public import CORALean.Specification.STL.Operations.DFormulaBound
+public import CORALean.Specification.STL.Operations.DFormulaRob
 
 @[expose] public section
 

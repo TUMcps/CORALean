@@ -295,24 +295,25 @@ theorem MatExp.exists_peanoBaker_expansion {B : Interval (Mat ℝ n n)} {A : ℝ
       (hgs.mul_left _))).trans ((Summable.tsum_le_tsum hvb (Summable.of_nonneg_of_le
         (fun _ => norm_nonneg _) hvb (hgs.mul_left _)) (hgs.mul_left _)).trans
           (htail _ (mul_nonneg ht hν0)))
+  -- both series at order `k`
+  set d : ℕ → Vec ℝ n := fun k =>
+    MatExp.peanoBakerTerm A k t *ᵥ x 0 + MatExp.peanoBakerInputTerm A u k t with hd
   -- the expansion telescopes: what order `η` leaves is every later order of both
   have htel : ∀ m : ℕ,
-      x t - ∑ k ∈ Finset.range (η + 1),
-          (MatExp.peanoBakerTerm A k t *ᵥ x 0 + MatExp.peanoBakerInputTerm A u k t)
+      x t - ∑ k ∈ Finset.range (η + 1), (d k)
         = ∑ i ∈ Finset.range m, (p i + v i)
-          + (x t - ∑ k ∈ Finset.range (m + (η + 1)),
-              (MatExp.peanoBakerTerm A k t *ᵥ x 0 + MatExp.peanoBakerInputTerm A u k t)) := by
+          + (x t - ∑ k ∈ Finset.range (m + (η + 1)), (d k)) := by
     intro m
     induction m with
     | zero => simp
     | succ m ih =>
       rw [ih, Finset.sum_range_succ, show m + 1 + (η + 1) = (m + (η + 1)) + 1 by ring,
         Finset.sum_range_succ]
+      simp only [hd, hp, hv]
       abel
   -- and the Picard remainder past order `m + η` vanishes as `m` grows
   have hlim : Tendsto (fun m : ℕ => ∑ i ∈ Finset.range m, (p i + v i)
-      + (x t - ∑ k ∈ Finset.range (m + (η + 1)),
-          (MatExp.peanoBakerTerm A k t *ᵥ x 0 + MatExp.peanoBakerInputTerm A u k t)))
+      + (x t - ∑ k ∈ Finset.range (m + (η + 1)), (d k)))
       atTop (nhds ((∑' i, p i + ∑' i, v i) + 0)) := by
     refine ((hps.hasSum.add hvs.hasSum).tendsto_sum_nat).add ?_
     refine squeeze_zero_norm (fun m => (aux_pb_remainder_le hA hAB hu hxc hx hX _ t htt).trans

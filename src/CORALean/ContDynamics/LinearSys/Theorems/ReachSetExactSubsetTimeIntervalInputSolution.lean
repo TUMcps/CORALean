@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -75,12 +76,9 @@ theorem LinearSys.reachSetExact_subset_timeInterval_inputSolution (sys : LinearS
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (h0 : (0 : Vec ℝ n) ∈ construct U) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     sys.reachSetExact T R₀ U t ⊆ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---

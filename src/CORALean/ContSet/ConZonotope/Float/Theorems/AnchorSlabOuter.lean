@@ -2,9 +2,9 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLeft
 public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Theorems.AnchorEqsInBoxSound
 

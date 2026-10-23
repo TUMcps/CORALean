@@ -89,27 +89,26 @@ theorem aux_scale_coord {β bb x : ℝ} (hβ : β ≠ 0) (hbb : 0 ≤ bb) : -- -
 
 theorem Interval.mem_extremePoints_scale_iff {b β : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i)
     (hβ : ∀ i, β i ≠ 0) {α : ℝ} {c : Vec ℝ n} : -- --- CONCL ---
+    let bx := (⟨fun i => min 0 (β i * b i), fun i => max 0 (β i * b i)⟩ : Interval (Vec ℝ n))
     c ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩
         Interval.hyperplane β α) ↔
       (fun i => β i * c i) ∈ Set.extremePoints ℝ
-        ((⟨fun i => min 0 (β i * b i), fun i => max 0 (β i * b i)⟩ :
-          Interval (Vec ℝ n)).construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
+        (bx.construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
+  intro bx
   rw [Interval.mem_extremePoints_inter_hyperplane_iff hβ,
     Interval.mem_extremePoints_inter_hyperplane_iff (a := 1) (fun _ => by simp)]
   have hco := fun i => aux_scale_coord (x := c i) (hβ i) (hb0 i)
   have hbox : c ∈ (⟨0, b⟩ : Interval (Vec ℝ n)).construct ↔
-      (fun i => β i * c i) ∈ (⟨fun i => min 0 (β i * b i), fun i => max 0 (β i * b i)⟩ :
-        Interval (Vec ℝ n)).construct :=
+      (fun i => β i * c i) ∈ bx.construct :=
     ⟨fun h i => (hco i).1.mp (h i), fun h i => (hco i).1.mpr (h i)⟩
   have hplane : c ∈ Interval.hyperplane β α ↔ (fun i => β i * c i) ∈ Interval.hyperplane 1 α := by
     simp [Interval.hyperplane]
   have hedge : (⟨0, b⟩ : Interval (Vec ℝ n)).OnEdge c ↔
-      (⟨fun i => min 0 (β i * b i), fun i => max 0 (β i * b i)⟩ :
-        Interval (Vec ℝ n)).OnEdge (fun i => β i * c i) := by
+      bx.OnEdge (fun i => β i * c i) := by
     have hk : ∀ k, (c k = (0 : Vec ℝ n) k ∨ c k = b k) ↔
         (β k * c k = min 0 (β k * b k) ∨ β k * c k = max 0 (β k * b k)) := fun k => by
       simpa only [Pi.zero_apply] using (hco k).2
-    simp only [Interval.OnEdge, hk]
+    simp only [bx, Interval.OnEdge, hk]
   rw [Set.mem_inter_iff, Set.mem_inter_iff, hbox, hplane, hedge]
 
 end CORALean.Real

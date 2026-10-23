@@ -2,6 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Operations.TransitionSynchronize
 public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

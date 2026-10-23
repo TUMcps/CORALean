@@ -17,7 +17,7 @@ skipped wrongly is a bad commit, a check run needlessly is a few seconds.
 The commit is unaffected only if every change is a modification of an existing `src/**/*.lean`
 file that leaves the *cross-file projection* of that file as it was. The projection is the
 lines the cross-file rules read (`PROJECTION`): imports, namespaces, type declarations,
-`noncomputable`, the `module` line and the import guards. Editing a proof, a docstring or a
+the `module` line and the import guards. Editing a proof, a docstring or a
 comment keeps it; editing anything else in the repository that a check reads (`scripts/`,
 `lakefile.toml`, `.gitlab-ci.yml`, the hooks) or any added, deleted or renamed file does not.
 
@@ -39,7 +39,6 @@ ROOT = Path(__file__).resolve().parent.parent
 # towards the full run.
 PROJECTION = re.compile(
     r"^\s*(?:public\s+)?(?:meta\s+)?import\b"      # reachability, layering, duplicates
-    r"|noncomputable"                                # the allowlist's stale entries
     r"|^\s*namespace\b"                              # the layer a declaration sits in
     r"|^(?:@\[[^\]]*\]\s*)?(?:(?:private|protected|noncomputable|partial|scoped|unsafe|nonrec)\s+)*"
     r"(?:structure|inductive|class|abbrev)\b"        # the float layer's type names

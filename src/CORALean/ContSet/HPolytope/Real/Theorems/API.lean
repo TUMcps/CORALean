@@ -88,6 +88,14 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
 public import CORALean.ContSet.HPolytope.Real.Theorems.HitAndRunStepMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardStepMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEqEmptyOfDual
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemHalfScaledIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabSelfIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.SubsetOfBoundsOpt
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructFullspace
 
 /-!
 # What `HPolytope` guarantees

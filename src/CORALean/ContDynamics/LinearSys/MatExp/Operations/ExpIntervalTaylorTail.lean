@@ -8,8 +8,9 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Interval matrices: the Taylor series past order two
 
-`expIntervalTaylorTail`: orders `3 … κ` of [1, Thm. 3.2]'s Taylor series at an interval
-matrix, by ordinary interval arithmetic. Below order three there are none — `point 0` rather
+`expIntervalTaylorTail`: orders `3 … κ` of [1, Thm. 1]'s Taylor series at an interval
+matrix, by ordinary interval arithmetic, each power formed as `B·Bᵏ` (`Interval.matPow`) where [1]
+multiplies left to right, `((BB)…B)`. Below order three there are none — `point 0` rather
 than undefined, so `κ < 3` is the truncation `I + W(t)` and not a special case.
 
 ## Inputs
@@ -20,8 +21,9 @@ than undefined, so `κ < 3` is the truncation `I + W(t)` and not a special case.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

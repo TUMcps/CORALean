@@ -3,14 +3,15 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
-public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabNominalIff
 
 @[expose] public section
 
@@ -230,10 +231,12 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨HPolytope.mem_padLeft_nominal_iff.mpr ?_,
       HPolytope.mem_slab_nominal_iff.mpr fun k => ?_⟩
     · rw [blockLeft_append]; exact hP
-    · have hrow : (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l =>
-            if l = k then neg (φ k) else zero) *ᵥ Fin.append ξ ν) k
+    · -- the strip's rows applied to the coefficients
+      set rowv := toRealMat (fun k => Fin.append (fun j => W.G j k) fun l =>
+        if l = k then neg (φ k) else zero) *ᵥ Fin.append ξ ν with hrowv
+      have hrow : rowv k
           = ∑ j, toReal (W.G j k) * ξ j - toReal (φ k) * ν k := by
-        simp only [mulVec, dotProduct, toRealMat, Fin.sum_univ_add, Fin.append_left,
+        simp only [hrowv, mulVec, dotProduct, toRealMat, Fin.sum_univ_add, Fin.append_left,
           Fin.append_right]
         rw [Finset.sum_eq_single k (fun l _ hl => by rw [if_neg hl, toReal_zero, zero_mul])
           (fun h => absurd (Finset.mem_univ k) h), if_pos rfl, toReal_neg]
@@ -245,10 +248,8 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
           = toReal (y k) - toReal (W.c k) - eW k := by
         simp only [heW]; linarith
       show toReal (subDown (subDown (y k) (W.c k)) (W.I_error.sup k))
-          ≤ (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k)
-            else zero) *ᵥ Fin.append ξ ν) k
-        ∧ (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k)
-            else zero) *ᵥ Fin.append ξ ν) k ≤ toReal (subUp (subUp (y k) (W.c k)) (W.I_error.inf k))
+          ≤ rowv k
+        ∧ rowv k ≤ toReal (subUp (subUp (y k) (W.c k)) (W.I_error.inf k))
       rw [hrow, hk]
       have h1 := subDown_le_sub (y k) (W.c k)
       have h2 := subDown_le_sub (subDown (y k) (W.c k)) (W.I_error.sup k)

@@ -44,7 +44,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.getInterval_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) : -- --- CONCL ---
+    (I : STLInterval ℝ) : -- --- CONCL ---
     (s.getInterval I).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.getInterval I).at t = s.at t) ∧
       (t ∉ I.set → (s.getInterval I).at t = FourValued.ii) := by -- --- PROOF ---
@@ -53,9 +53,9 @@ theorem TentativeKleeneSignal.getInterval_spec (s : TentativeKleeneSignal ℝ) (
     -- the empty interval: the inconclusive signal
     obtain ⟨hv, h⟩ := FourValuedSignal.uniformSignal_spec FourValued.ii
     refine ⟨hv, fun t ht => ⟨fun hm => absurd hm (by simp [STLInterval.set]), fun _ => h t ht⟩⟩
-  | nonempty l u lc rc a b c z =>
+  | nonempty l u lc rc b c z =>
     -- the interval is nonempty, so `toLeft` and `toRight` are the intervals on either side
-    have hne : (STLInterval.nonempty l u lc rc a b c z) ≠ .empty := by simp
+    have hne : (STLInterval.nonempty l u lc rc b c z) ≠ .empty := by simp
     obtain ⟨L, hL, hLset⟩ := STLInterval.set_toLeft _ hne
     obtain ⟨R, hR, hRset⟩ := STLInterval.set_toRight _ hne
     simp only [TentativeKleeneSignal.getInterval, hL, hR]
@@ -65,7 +65,8 @@ theorem TentativeKleeneSignal.getInterval_spec (s : TentativeKleeneSignal ℝ) (
     obtain ⟨v3, g3⟩ := TentativeKleeneSignal.toFourValued_spec _ ⟨v2.1, v2.2⟩
     refine ⟨v3, fun t ht => ?_⟩
     rw [g3 t ht]
-    have hoc := STLInterval.rawSet_ordConnected l u lc rc
+    have hoc := STLInterval.rawSet_ordConnected (Float.SoundFloatArithmetic.toReal l : ℝ)
+      (STLInterval.toEReal u) lc rc
     -- inside the interval nothing is made invalid, outside everything is
     constructor
     · intro hm
@@ -80,11 +81,11 @@ theorem TentativeKleeneSignal.getInterval_spec (s : TentativeKleeneSignal ℝ) (
         · rw [(g2 t ht).2 hmR]; exact (g1 t ht).1 hmL
         · exfalso
           rw [hLset] at hmL; rw [hRset] at hmR
-          have h1 : ∃ x ∈ (STLInterval.nonempty l u lc rc a b c z).set, x < t := by
+          have h1 : ∃ x ∈ (STLInterval.nonempty l u lc rc b c z).set, x < t := by
             by_contra hcon
             push Not at hcon
             exact hmL ⟨ht, hm, fun x hx => hcon x hx⟩
-          have h2 : ∃ y ∈ (STLInterval.nonempty l u lc rc a b c z).set, t < y := by
+          have h2 : ∃ y ∈ (STLInterval.nonempty l u lc rc b c z).set, t < y := by
             by_contra hcon
             push Not at hcon
             exact hmR ⟨hm, fun x hx => hcon x hx⟩

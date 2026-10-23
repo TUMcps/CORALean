@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeMemHPolytopeFacetsIff
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

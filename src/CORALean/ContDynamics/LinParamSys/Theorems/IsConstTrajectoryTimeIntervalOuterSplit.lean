@@ -95,6 +95,13 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
             (MatExp.intervalConstCorrectionMatrix sys.A r (m + 2))
             (OfPoint.ofPoint (Recenter.center U))))
         (sys.inputSolution r (m + 2) (Recenter.recenter U)))) :=
+  -- the segment from `0` to the center, and its product with the remainder
+  let seg : S n := LinComb.linComb (OfPoint.ofPoint (0 : Vec ℝ n))
+    (OfPoint.ofPoint (Recenter.center U))
+  let rem : S n := Mtimes.mtimes (𝕄 := ℐ) (MatExp.intervalInputRemainder sys.A r (m + 2)) seg
+  -- the remainder's product with the recentered set
+  let rem₂ : S n := Mtimes.mtimes (𝕄 := ℐ) (MatExp.intervalInputRemainder sys.A r (m + 2))
+    (Recenter.recenter U)
   -- every hypothesis comes off `Recenter`/`OfPoint`, which is why no representation is named
   traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_construct U)
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
@@ -102,34 +109,22 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
       (OfPoint.mem_ofPoint (Recenter.center U))
       (fun _ hlam => smul_mem_linComb_ofPoint (Recenter.center U) hlam)
       (CompactSet.isBounded_construct (OfPoint.ofPoint (Recenter.center U)))
-      (ConvexSet.convex_construct (LinComb.linComb
-        (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U))))
-      (CompactSet.isClosed_construct (LinComb.linComb
-        (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U))))
-      (CompactSet.isBounded_construct (LinComb.linComb
-        (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U))))
+      (ConvexSet.convex_construct seg)
+      (CompactSet.isClosed_construct seg)
+      (CompactSet.isBounded_construct seg)
       -- the tail of `C(r)` meets the segment, so the shape is asked of that product
-      (ConvexSet.convex_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.intervalInputRemainder sys.A r (m + 2)) (LinComb.linComb
-          (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U)))))
-      (CompactSet.isClosed_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.intervalInputRemainder sys.A r (m + 2)) (LinComb.linComb
-          (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U)))))
-      (CompactSet.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.intervalInputRemainder sys.A r (m + 2)) (LinComb.linComb
-          (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U)))))
+      (ConvexSet.convex_construct rem)
+      (CompactSet.isClosed_construct rem)
+      (CompactSet.isBounded_construct rem)
       -- and the recentered set is what [1, Sec. 3.3] is read at
       (Recenter.zero_mem_recenter U)
       (ConvexSet.convex_construct (Recenter.recenter U))
       (CompactSet.isClosed_construct (Recenter.recenter U))
       (CompactSet.isBounded_construct (Recenter.recenter U))
       -- its own remainder product, the same three facts again
-      (ConvexSet.convex_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.intervalInputRemainder sys.A r (m + 2)) (Recenter.recenter U)))
-      (CompactSet.isClosed_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.intervalInputRemainder sys.A r (m + 2)) (Recenter.recenter U)))
-      (CompactSet.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.intervalInputRemainder sys.A r (m + 2)) (Recenter.recenter U)))
+      (ConvexSet.convex_construct rem₂)
+      (CompactSet.isClosed_construct rem₂)
+      (CompactSet.isBounded_construct rem₂)
       ht0 htr)
 
 end CORALean

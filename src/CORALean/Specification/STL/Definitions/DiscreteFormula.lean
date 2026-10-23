@@ -6,15 +6,13 @@ public import Mathlib.Order.Interval.Finset.Nat
 @[expose] public section
 
 /-!
-# Signal temporal logic over discrete time, and its robustness
+# Signal temporal logic over discrete time
 
 [1, Sec. II-B (semantics)]: formulas in negation normal form,
 `φ ::= μ | ¬μ | φ ∧ ψ | φ ∨ ψ | □[a,b] ψ | φ U[a,b] ψ`, with `◇[a,b]` beside them, over a run
 `x₀ x₁ …` of a discrete-time system; `μ` holds where `μ(xₜ) > 0`, `□[a,b] φ` at every step of
 `[t+a, t+b]`, `φ U[a,b] ψ` where `ψ` holds at some `t'` there and `φ` on all of `[t, t']`. Each
-interval carries `a ≤ b`. [1, Sec. II-C]: the robustness `ρ`, by `min` and `max` along the same
-recursion; the paper prints no `ρ` of `◇`, which is taken as the `max` dual to `□`.
-`STL.Formula` is continuous-time STL.
+interval carries `a ≤ b`. `STL.Formula` is continuous-time STL.
 
 ## References
 
@@ -61,23 +59,6 @@ def STL.DFormula.Sat : STL.DFormula X → (ℕ → X) → ℕ → Prop
 
 /-- `⊤`, the predicate `μ ≡ 1`. -/
 abbrev STL.DFormula.tt : STL.DFormula X := .pred fun _ => 1
-
-/-- `ρ^φ(x, t)`, [1, Sec. II-C]. -/
-noncomputable def STL.DFormula.rob : STL.DFormula X → (ℕ → X) → ℕ → ℝ
-  | .pred μ, x, t => μ (x t)
-  | .npred μ, x, t => -μ (x t)
-  | .and φ ψ, x, t => min (φ.rob x t) (ψ.rob x t)
-  | .or φ ψ, x, t => max (φ.rob x t) (ψ.rob x t)
-  | .always a b hab φ, x, t =>
-      (Finset.Icc (t + a) (t + b)).inf' (Finset.nonempty_Icc.mpr (by omega)) fun t' => φ.rob x t'
-  | .eventually a b hab φ, x, t =>
-      (Finset.Icc (t + a) (t + b)).sup' (Finset.nonempty_Icc.mpr (by omega)) fun t' => φ.rob x t'
-  | .until a b hab φ ψ, x, t =>
-      (Finset.Icc (t + a) (t + b)).attach.sup'
-        (Finset.attach_nonempty_iff.mpr (Finset.nonempty_Icc.mpr (by omega))) fun t' =>
-          min (ψ.rob x t'.1) ((Finset.Icc t t'.1).inf'
-            (Finset.nonempty_Icc.mpr (by have := (Finset.mem_Icc.mp t'.2).1; omega))
-            fun t'' => φ.rob x t'')
 
 end CORALean
 

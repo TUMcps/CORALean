@@ -9,6 +9,7 @@ public import CORALean.Specification.OnlineAnalyzerNode.Operations.Mk
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.ObserveSet
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.Propagate
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.SetPropagated
+public import CORALean.Specification.OnlineAnalyzerNode.Operations.ToRealNode
 
 /-!
 # Online analyzer nodes, operations

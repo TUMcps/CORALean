@@ -28,13 +28,13 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Formula
 
 namespace CORALean
 
-variable {A : Type}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {A : Type}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `phi.type`. -/
-def OnlineReachSetAnalyzer.Formula.kind : OnlineReachSetAnalyzer.Formula A →
+def OnlineReachSetAnalyzer.Formula.kind : OnlineReachSetAnalyzer.Formula 𝕋 A →
     OnlineAnalyzerNode.Kind
   | .tt => .true
   | .ff => .false

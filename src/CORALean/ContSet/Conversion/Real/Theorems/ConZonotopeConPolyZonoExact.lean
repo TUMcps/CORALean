@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConRowsIff
 
 @[expose] public section

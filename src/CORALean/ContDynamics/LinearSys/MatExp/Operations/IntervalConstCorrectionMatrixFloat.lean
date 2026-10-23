@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFl
 /-!
 # `MatExp.intervalConstCorrectionMatrix`, the constant input's correction `F̃` over a float box
 
-[1, Prop. 3.4]'s `F̃`, as `Real.MatExp.intervalConstCorrectionMatrix` builds it: orders `1`
+[1, Sec. III-A]'s `F̃`, as `Real.MatExp.intervalConstCorrectionMatrix` builds it: orders `1`
 through `η` from `intervalConstCorrTerm`, each spanning the interval between it and zero,
 and everything past `η` in the remainder bound at `r • A` scaled by `r`. This is the float
 `G` (`Real.MatExp.constCorrectionMatrix`) that `curvatureEnclosure` needs, enclosed outward
@@ -25,8 +25,8 @@ as an interval matrix: the float layer has no point matrix to hold it in.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `F̃` of [1] over a whole box: `Σᵢ [min(Tᵢ, 0), max(Tᵢ, 0)] ⊕ [-r E, r E]`, orders `1`
-through `η`, for a nonnegative `r`. -/
+/-- The `F̃` of [1, Sec. III-A] over a whole box: `Σᵢ [min(Tᵢ, 0), max(Tᵢ, 0)] ⊕ [-r E, r E]`,
+orders `1` through `η`, for a nonnegative `r`. -/
 def MatExp.intervalConstCorrectionMatrix (A : Interval (Mat 𝕋 n n)) (r : 𝕋) (η : ℕ) :
     Interval (Mat 𝕋 n n) :=
   let E := MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul r r A)) η  -- E(r)

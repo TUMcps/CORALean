@@ -12,7 +12,8 @@ public import Mathlib.Topology.Order.DenselyOrdered
 /-!
 # `interval` is the closure of the times
 
-For an interval with finite bounds the box `interval(I)` denotes the closure of the set of times:
+For an interval with a finite upper bound the box `interval(I)` denotes the closure of the set of
+times:
 both ends closed, the same bounds.
 
 ## Inputs
@@ -20,14 +21,12 @@ both ends closed, the same bounds.
 * `u` – upper bound
 * `lc` – lower bound is closed
 * `rc` – upper bound is closed
-* `a` – an infinite lower bound is open
 * `b` – an infinite upper bound is open
 * `c` – the bounds leave a time in the interval
 * `z` – the lower bound is nonnegative
 
 ## Hypotheses
-* `hl` – the lower bound is finite
-* `hu` – the upper bound is finite
+* none
 
 ## Conclusion
 * the box of the interval is the closure of its times
@@ -43,35 +42,31 @@ both ends closed, the same bounds.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The box of a bounded STL interval is the closure of its times. -/
-theorem STLInterval.set_interval (l u : EReal) (lc rc : Bool) (a b c z) (hl : l ≠ ⊥)
-    (hu : u ≠ ⊤) : -- --- CONCL ---
+theorem STLInterval.set_interval (l u : ℝ) (lc rc : Bool) (b c z) : -- --- CONCL ---
     (fun x : Vec ℝ 1 => x 0) ''
-      (STLInterval.nonempty l u lc rc a b c z).interval.construct =
-        closure (STLInterval.nonempty l u lc rc a b c z).set := by -- --- PROOF ---
-  have hne := rawSet_nonempty_of _ _ _ _ a b c
-  have hlt := (rawSet_bounds_ne hne).1
-  have hub := (rawSet_bounds_ne hne).2
-  -- the bounds are real: name them
-  obtain ⟨x, rfl⟩ : ∃ x : ℝ, l = x := ⟨l.toReal, (EReal.coe_toReal hlt hl).symm⟩
-  obtain ⟨y, rfl⟩ : ∃ y : ℝ, u = y := ⟨u.toReal, (EReal.coe_toReal hu hub).symm⟩
+      (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).interval.construct =
+        closure (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).set := by -- --- PROOF ---
   have himg : (fun x : Vec ℝ 1 => x 0) ''
-      (STLInterval.nonempty (x : EReal) y lc rc a b c z).interval.construct = Set.Icc x y :=
+      (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).interval.construct = Set.Icc l u :=
     (Real.Interval.stlInterval_exact _).symm
   rw [himg]
-  show _ = closure (rawSet x y lc rc)
+  show _ = closure (rawSet (toReal l : ℝ) (toEReal (u : WithTop ℝ)) lc rc)
+  simp only [toReal_real, STLInterval.toEReal_coe] at c ⊢
   -- closing an interval with real bounds gives `Icc`, whatever its flags
   rcases c with h | ⟨e, hc, hr⟩
-  · have hxy : x < y := EReal.coe_lt_coe_iff.1 h
+  · have hxy : l < u := EReal.coe_lt_coe_iff.1 h
     cases lc <;> cases rc
-    · rw [show rawSet (x : EReal) y false false = Set.Ioo x y by
+    · rw [show rawSet (l : EReal) u false false = Set.Ioo l u by
         ext t; simp [rawSet], closure_Ioo hxy.ne]
-    · rw [show rawSet (x : EReal) y false true = Set.Ioc x y by
+    · rw [show rawSet (l : EReal) u false true = Set.Ioc l u by
         ext t; simp [rawSet, le_iff_lt_or_eq, eq_comm], closure_Ioc hxy.ne]
-    · rw [show rawSet (x : EReal) y true false = Set.Ico x y by
+    · rw [show rawSet (l : EReal) u true false = Set.Ico l u by
         ext t; simp [rawSet, le_iff_lt_or_eq, eq_comm], closure_Ico hxy.ne]
     · rw [rawSet_closed_coe, closure_Icc]
   · subst hc hr

@@ -51,7 +51,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 theorem ReachSetAnalyzer.analyze_sound (aps : List (String × AtomicProposition S n)) (dur : ℝ)
     (masks : List (String × FiniteSignal ℝ Bool)) (hd : 0 ≤ dur) (hnd : (aps.map Prod.fst).Nodup)
-    (R : List (ReachSetAnalyzer.Entry S n))
+    (R : List (ReachSetAnalyzer.Entry ℝ S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
     (outs : List (List (String × FiniteSignal ℝ Kleene))) : -- --- CONCL ---
     ∀ obj ∈ ReachSetAnalyzer.mk? aps dur masks,

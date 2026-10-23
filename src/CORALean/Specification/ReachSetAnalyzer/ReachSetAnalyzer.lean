@@ -14,13 +14,14 @@ interval are tested against atomic propositions, and for each proposition a
 `containers.Map`s of CORA, keyed by the name of the proposition, are lists of pairs in the order of
 `keys(aps)`; `aps` holds the propositions, `sigBuilder` their builders and `masks` the times at
 which each one matters (a proposition without mask matters always). CORA's analyzer is a handle
-object that its methods mutate; here a method returns the new analyzer.
+object that its methods mutate; here a method returns the new analyzer. Time stamps are in a time
+type `T`: ℝ, or the float scalar the reach sets were computed in, compared exactly.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -32,10 +33,10 @@ namespace CORALean
 
 /-- A reach set analyzer: named atomic propositions, for each a builder of the three-valued signal
 of its truth, and masks restricting the signals. -/
-structure ReachSetAnalyzer (S : ℕ → Type) (n : ℕ) where
+structure ReachSetAnalyzer (T : Type) (S : ℕ → Type) (n : ℕ) where
   aps : List (String × AtomicProposition S n)
-  sigBuilder : List (String × FiniteKleeneSignalBuilder)
-  masks : List (String × FiniteSignal ℝ Bool)
+  sigBuilder : List (String × FiniteKleeneSignalBuilder T)
+  masks : List (String × FiniteSignal T Bool)
 
 end CORALean
 

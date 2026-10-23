@@ -42,9 +42,6 @@ structure Enclosure.Sound (E : Enclosure 𝕋) (σ : ℝ → ℝ) : Prop where
   lo_le (a : 𝕋) : toReal (E.enclose a).inf ≤ σ (toReal a)
   le_hi (a : 𝕋) : σ (toReal a) ≤ toReal (E.enclose a).sup
 
-/-- `σ` itself at both ends, which only ℝ stores. -/
-noncomputable def Enclosure.exact (σ : ℝ → ℝ) : Enclosure ℝ := ⟨fun a => ⟨σ a, σ a⟩⟩
-
 end CORALean
 
 

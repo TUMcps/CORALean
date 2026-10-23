@@ -44,14 +44,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Zonotope.cubMapC_between (T : Fin m → Fin n → Mat 𝕋 n n)
     (Z : Zonotope (Vec 𝕋 n)) (i : Fin m) : -- --- CONCL ---
+    let cm := Real.Zonotope.cubMap (fun i k => toRealMat (T i k)) (nominal Z : Real.Zonotope (Vec ℝ
+      n))
     toReal (Zonotope.cubMapCDown T Z i)
-        ≤ (Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-            (nominal Z : Real.Zonotope (Vec ℝ n))).c i
-      ∧ (Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-            (nominal Z : Real.Zonotope (Vec ℝ n))).c i
+        ≤ cm.c i
+      ∧ cm.c i
         ≤ toReal (Zonotope.cubMapCUp T Z i) := by -- --- PROOF ---
-  have hR : (Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
-        (nominal Z : Real.Zonotope (Vec ℝ n))).c i
+  intro cm
+  have hR : cm.c i
       = Real.Zonotope.cubFold (fun i k => toRealMat (T i k))
           (nominal Z : Real.Zonotope (Vec ℝ n)) i 0 0 0
         + 1 / 2 * ∑ y : Fin Z.h, Real.Zonotope.cubFold (fun i k => toRealMat (T i k))

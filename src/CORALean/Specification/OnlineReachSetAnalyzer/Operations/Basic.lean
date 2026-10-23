@@ -17,7 +17,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
-variable {A : Type}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {A : Type}
 
 
 -- ===========================  `OnlineReachSetAnalyzer.Formula.ap?`  =========================== --
@@ -27,7 +27,7 @@ variable {A : Type}
 -- Reviewed:      ---
 
 /-- The atomic proposition of an atom, the extra argument of an `AP` node. -/
-def OnlineReachSetAnalyzer.Formula.ap? : OnlineReachSetAnalyzer.Formula A → Option A
+def OnlineReachSetAnalyzer.Formula.ap? : OnlineReachSetAnalyzer.Formula 𝕋 A → Option A
   | .ap _ a => some a
   | _ => none
 
@@ -39,8 +39,8 @@ def OnlineReachSetAnalyzer.Formula.ap? : OnlineReachSetAnalyzer.Formula A → Op
 -- Reviewed:      ---
 
 /-- The time interval of an `until`, the extra argument of an `until` node. -/
-def OnlineReachSetAnalyzer.Formula.interval? : OnlineReachSetAnalyzer.Formula A →
-    Option STLInterval
+def OnlineReachSetAnalyzer.Formula.interval? : OnlineReachSetAnalyzer.Formula 𝕋 A →
+    Option (STLInterval 𝕋)
   | .until I _ _ => some I
   | _ => none
 

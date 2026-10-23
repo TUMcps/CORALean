@@ -100,7 +100,8 @@ theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) : -- --- CONCL ---
   have e1 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 0) (w := fun u => -10 + u)
     (V := fun _ => (1 : ℝ)) (τ := 0) (d := 0) (r := 10) (by norm_num)
     (fun u _ => by simpa using (hasDerivAt_id u).const_add (-10 : ℝ))
-    (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (fun u hu => by
+    (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (by
+      intro u hu
       simp [hHf, DiffInclAutomaton.finalConversion]
       linarith [hu.2]) (by simpa using e0)
   have e2 : Hf.IsExec 10 1 (0, 0) :=
@@ -111,7 +112,8 @@ theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) : -- --- CONCL ---
   have e3 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 1) (w := fun _ => (0 : ℝ))
     (V := fun _ => (0 : ℝ)) (τ := 0) (d := 10) (r := ts) hts
     (fun u _ => hasDerivAt_const u (0 : ℝ))
-    (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (fun u hu => by
+    (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (by
+      intro u hu
       simp [hHf, DiffInclAutomaton.finalConversion]
       linarith [hu.2]) e2
   have e4 : Hf.IsExec (10 + ts) 2 (0, 0) :=
@@ -121,7 +123,8 @@ theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) : -- --- CONCL ---
   have e5 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 2) (w := fun u => u)
     (V := fun _ => (1 : ℝ)) (τ := 0) (d := 10 + ts) (r := 50) (by norm_num)
     (fun u _ => hasDerivAt_id' u)
-    (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (fun u hu => by
+    (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (by
+      intro u hu
       simp [hHf, DiffInclAutomaton.finalConversion]
       linarith [hu.2]) e4
   exact ⟨(50, 0 + 50), ⟨10 + ts + 50, 2, by linarith, e5⟩, rfl⟩
@@ -132,16 +135,16 @@ theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) : -- --- CONCL ---
 /-- With `t₁ = 10`, `t₂ = 100` the dwell conditions hold, but for every `t_scaling ≥ 0` the error
 of `H_final` against `Reach≤100(H)` is at least `50`: none brings it below `δ = 50`. -/
 theorem DiffInclAutomaton.finalConversion_not_error_lt : -- --- CONCL ---
-    (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-        (fun _ => (0 : ℝ)) (1 : ℝ) 0).FirstDwell 10 ∧
-      (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-        (fun _ => (0 : ℝ)) (1 : ℝ) 0).SecondDwell 10 100 ∧
+    let H := DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
+      (fun _ => (0 : ℝ)) (1 : ℝ) 0
+    H.FirstDwell 10 ∧
+      H.SecondDwell 10 100 ∧
       ∀ ts : ℝ, 0 ≤ ts → ∀ e : ENNReal, e < ENNReal.ofReal 50 →
-        ¬ (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-          (fun _ => (0 : ℝ)) (1 : ℝ) 0).OverapproxErrorLE 100
+        ¬ H.OverapproxErrorLE 100
           (DiffInclAutomaton.finalConversion ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
             (fun _ => (0 : ℝ)) (fun _ => Icc (0 : ℝ) 1) (1 : ℝ) 0 10 100 ts) Prod.fst
           (100 + ts) e := by -- --- PROOF ---
+  intro H
   refine ⟨fun d hd m x h => ?_, fun d hd m x h => ?_, fun ts hts e he hle => ?_⟩
   · -- an execution in `m₂` has duration at least `10`
     by_contra hm
@@ -153,8 +156,7 @@ theorem DiffInclAutomaton.finalConversion_not_error_lt : -- --- CONCL ---
     linarith [((aux_exec_char h).1 hm0).2.2]
   · -- `50` is at distance at least `50` from the states `H` reaches, which are in `[-100, 0]`
     have h50 := hle 50 (aux_reaches_fifty hts)
-    have hge : ENNReal.ofReal 50 ≤ Metric.infEDist (50 : ℝ) ((DiffInclAutomaton.spaceTriggered
-        ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ)) (fun _ => (0 : ℝ)) (1 : ℝ) 0).reachLE 100) := by
+    have hge : ENNReal.ofReal 50 ≤ Metric.infEDist (50 : ℝ) (H.reachLE 100) := by
       rw [Metric.le_infEDist]
       rintro y ⟨d, m, -, hy⟩
       have hy0 : -100 ≤ y ∧ y ≤ 0 := by

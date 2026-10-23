@@ -14,6 +14,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError

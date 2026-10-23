@@ -13,7 +13,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # A run is its free motion, its constant input, and a recentered input's share
 
-[1, Alg. 3]'s split, at one run: with inputs in `U ⊆ V` and `V = ũ ⊕ Ũ` by
+[1, Sec. III-A]'s split, at one run: with inputs in `U ⊆ V` and `V = ũ ⊕ Ũ` by
 `Recenter`, `x(t) = e^{At} x(0) + ∫₀ᵗ e^{Aσ}dσ ũ + ∫₀ᵗ e^{A(t-s)} (u(s) - ũ) ds`,
 and the last term is one admissible `Ũ`-input's contribution, `inputReach Ũ t`.
 The argument `WithInputSplit.reach_outer` makes inline, named so that a float
@@ -39,8 +39,8 @@ reach can state its windows against the same three pieces.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

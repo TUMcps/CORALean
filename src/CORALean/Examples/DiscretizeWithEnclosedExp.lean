@@ -49,7 +49,8 @@ theorem Example.hε : ‖(1:ℝ) • toRealMat Example.sys.A‖ / ((0:ℕ) + 2 :
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The discretized system: still `LinParamSysDT`, over the interval matrix
-`expEnclosure` computed for this `Δt` and this truncation order. -/
+`expEnclosure` computed for this `Δt` and this truncation order. Noncomputable: the enclosure is
+built from the real matrix exponential. -/
 noncomputable def Example.sysD : LinParamSysDT ℐ 1 := Example.sys.discretizeEnclosure 1 0
 
 /-- The one matrix the enclosure is sound about: `exp (Δt • sys.A)` itself. -/

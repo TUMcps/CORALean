@@ -54,14 +54,14 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An analyzer of one fresh `AP` node observing a set finally. -/
-theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (N : OnlineAnalyzerNode (AtomicProposition S d)) (a : AtomicProposition S d)
+theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
+    (N : OnlineAnalyzerNode ℝ (AtomicProposition S d)) (a : AtomicProposition S d)
     (hn : obj.nodes = [N]) (hl : obj.leaves = [1]) (hf : obj.propagationFrequency = 1)
     (hc : obj.numObservations = 0) (hk : N.kind = .ap) (hap : N.ap = some a)
     (ht : N.tentative = some TentativeKleeneSignal.emptySignal)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = [])
     (hsig : N.signal = OnlineAnalyzerNode.initSignal .ap) (set : S d) (loc : ℕ) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) (I : STLInterval)
+    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) (I : STLInterval ℝ)
     (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) : -- --- CONCL ---
     ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
       obj1.getVerdict = some (FourValued.fromKleene val) ∧
@@ -85,7 +85,7 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineReachSetAnalyzer.getVerdict_ap (label : String) (a : AtomicProposition S d)
-    (dp : Bool) (eps : ℝ) (set : S d) (loc : ℕ) (I : STLInterval) (hne : I ≠ .empty)
+    (dp : Bool) (eps : ℝ) (set : S d) (loc : ℕ) (I : STLInterval ℝ) (hne : I ≠ .empty)
     (h0 : (0 : ℝ) ∈ I.set) : -- --- CONCL ---
     ∀ val ∈ OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc,
       ∀ obj0 ∈ OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp,

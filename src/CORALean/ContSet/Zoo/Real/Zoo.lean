@@ -16,6 +16,13 @@ bound, and CORA's `affine` is a Taylor model of order one. A zoo here has two me
 Taylor model (`taylm(int)`) and an optional interval, over the box `[-1, 1]ⁿ` (`Taylm.Encloses`).
 Each member denotes the set of functions it encloses (`Zoo.Member`), and the zoo the
 `SetIntersection` of its members' sets (`Zoo.members`), an absent member read as all functions.
+The `zoo` class is described in [1].
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous and
+      Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

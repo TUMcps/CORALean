@@ -89,7 +89,7 @@ theorem Example.compressW_apply (v : Vec ℝ 3) : -- --- CONCL ---
 
 /-- One kept neuron, two merged: a split of the hidden layer, chosen the way
 "dynamic merge buckets" would choose one, but arbitrary otherwise. -/
-noncomputable def Example.compressPart : Split (Fin 3) into (Fin 1) ⊕ (Fin 2) :=
+def Example.compressPart : Split (Fin 3) into (Fin 1) ⊕ (Fin 2) :=
   Partition.split 1 2
 
 

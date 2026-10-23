@@ -12,7 +12,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # Matrix zonotopes: enclosing the exponential of a matrix zonotope
 
-`expMatZonoEnclosure`: CORA's `expmInd` at [1, Sec. 3.3.2], which is what `expm` defers to: the
+`expMatZonoEnclosure`: CORA's `expmInd`, the enclosure of [1, Sec. 3.1] at a matrix zonotope with
+every order evaluated independently, which is what `expm` defers to: the
 finite Taylor sum kept as a matrix zonotope, and the tail bounded through the interval matrix the
 zonotope encloses, where no matrix-zonotope machinery is needed. The remainder is a box of one
 uniform width (`expRemainderBound` bounds a norm, not an entry) and becomes a matrix zonotope
@@ -28,8 +29,9 @@ widens to cover whatever the sum left out.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

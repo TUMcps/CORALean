@@ -49,7 +49,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = until(lhs,interval,rhs)`; `none` if `toBoolSignal()` throws. -/
-noncomputable def FourValuedSignal.until (lhs : FourValuedSignal ℝ) (interval : STLInterval)
+noncomputable def FourValuedSignal.until (lhs : FourValuedSignal ℝ) (interval : STLInterval ℝ)
     (rhs : FourValuedSignal ℝ) : Option (FourValuedSignal ℝ) :=
   -- 1. minUntil of the refinements with inconclusive mapped to False
   let lhsMinRefinement := lhs.toKleeneSignal Kleene.ff

@@ -11,16 +11,16 @@ public import Mathlib.Topology.Instances.Matrix
 @[expose] public section
 
 /-!
-# `reachBox`: [1, Alg. 2], the wrapping-free reachable set with `box()`
+# `reachBox`: [1, Alg. 1], the wrapping-free reachable set with `box()`
 
-[1, Alg. 2], "Compute `R([0, t_f])`", for `ẋ = Ax + u`, `u ∈ U ∋ 0`, on zonotopes, one `let` per
-printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰` (`timeInterval`),
-`V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolution`, [1, Thm. 3.1]), `P^R_0 = box(V₀)`,
-`R₀ = H^R_0 + P^R_0`, and then, `N` times, `H^R_k = e^{Ar}H^R_{k-1}`, `V_k = e^{Ar}V_{k-1}`,
-`P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The result is the list `R₀, …, R_N`,
-whose union is the printed `R([0, t_f])` at `N = t_f/r - 1`. `box` is `Zonotope.interval` read
-back as a zonotope, which keeps the order of `P^R_k` at one: the input part's generators do not
-pile up. The step is the exact `e^{Ar}`; `LinearSys.WithInput.reach` runs it without `box()`.
+[1, Alg. 1], "Compute `R_k := R([t_k, t_{k+1}])` for `k = 1 … N`", for `ẋ = Ax + u`, `u ∈ U ∋ 0`, on
+zonotopes, one `let` per printed line, its inputs `R^h_0`, `R^i_0` computed first:
+`H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰` (`timeInterval`, [2, Sec. V-B]) and
+`V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolution`, [2, Prop. 2] in its corrected form). Then
+`P^R_0 = box(V₀)`, `R₀ = H^R_0 + P^R_0`, and `N` times `H^R_k = e^{Ar}H^R_{k-1}`,
+`V_k = e^{Ar}V_{k-1}`, `P^R_k = P^R_{k-1} + box(V_k)` and `R_k = H^R_k + P^R_k`. The result is the
+list `R₀, …, R_N`, [1]'s output. `box` is `Zonotope.interval` read back as a zonotope, so `P^R_k`
+keeps order one. The step is the exact `e^{Ar}`; `WithInput.reach` drops `box()`.
 
 ## Inputs
 * `sys` – linear system
@@ -35,8 +35,12 @@ pile up. The step is the exact `e^{Ar}`; `LinearSys.WithInput.reach` runs it wit
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+      Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control
+      Conference (CDC-ECC), pp. 6814-6821, 2011.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -57,7 +61,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2]: `R₀, …, R_N`, `R_k ⊇ R([kr, (k+1)r])`, from `X⁰` and `U` at Taylor order `η`. -/
+/-- [1, Alg. 1]: `R₀, …, R_N`, `R_k ⊇ R([kr, (k+1)r])`, from `X⁰` and `U` at Taylor order `η`. -/
 noncomputable def LinearSys.reachBox (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) (r : ℝ)
     (η N : ℕ) : List (Zonotope (Vec ℝ n)) :=
   let eAr := exp (r • toRealMat sys.A)                             -- e^{Ar}

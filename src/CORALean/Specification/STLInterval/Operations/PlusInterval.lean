@@ -1,8 +1,8 @@
 module
 
-public import CORALean.Specification.STLInterval.Operations.Basic
-public import CORALean.Specification.STLInterval.Theorems.ZeroLeAddCoe
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
 
@@ -11,15 +11,15 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 `@stlInterval/plus.m`, the `stlInterval + interval` branch: the bounds move by the infimum and the
 supremum of the (one-dimensional) summand, the flags stay. An empty summand, `sup < inf`, gives
-`stlInterval()`. CORA throws if the lower bound becomes negative; here that is the hypothesis `hc`
-(see `STLInterval`).
+`stlInterval()`. CORA throws if the lower bound, computed in doubles, becomes negative; here that
+is the hypothesis `hc` on the rounded bound (see `STLInterval`).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
-over `𝕋`, rounded outward) is not yet written.
+Over a float scalar the lower bound is rounded down and the upper one up, so the result encloses
+the exact one; over ℝ nothing rounds.
 
 ## Inputs
 * `I` – interval
-* `J` – real interval
+* `J` – interval of stored bounds
 
 ## Hypotheses
 * `hc` – the lower bound stays nonnegative
@@ -38,19 +38,25 @@ over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.plusInterval (I : STLInterval) (J : Real.Interval (Vec ℝ 1))
-    (hc : I ≠ .empty → ¬ J.sup 0 < J.inf 0 → 0 ≤ I.lowerBound + J.inf 0) : STLInterval :=
+def STLInterval.plusInterval (I : STLInterval 𝕋) (J : Real.Interval (Vec 𝕋 1))
+    (hc : I ≠ .empty → ¬ toReal (J.sup 0) < toReal (J.inf 0) →
+      0 ≤ toReal (addDown I.lowerBound (J.inf 0))) : STLInterval 𝕋 :=
   match I, hc with
   | .empty, _ => .empty
-  | .nonempty l u lc rc _ hu hlt hz, hc =>
-    if hJ : J.sup 0 < J.inf 0 then .empty
+  | .nonempty l u lc rc _ _ _, hc =>
+    if hJ : toReal (J.sup 0) < toReal (J.inf 0) then .empty
     else
-      let lb := l + J.inf 0
-      let ub := u + J.sup 0
-      stlInterval lb ub lc rc (STLInterval.zero_le_add_coe hu hlt hz (J.inf 0) (hc (by simp) hJ))
+      -- the bounds move by the infimum and the supremum, rounded outward
+      let lb := addDown l (J.inf 0)
+      let ub := u.map (addUp · (J.sup 0))
+      stlInterval lb ub lc rc (hc (by simp) hJ)
 
 end CORALean
 

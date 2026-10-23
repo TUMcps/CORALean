@@ -151,10 +151,13 @@ theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toRe
     by_contra hne
     have ht : C.representsa_point = true := by simpa using hne
     exact hnp (Capsule.representsa_point_parts ht).2
+  -- the box around the angle's two bounds
+  set θB : Interval (Vec 𝕋 1) :=
+    ⟨fun _ => Interval.atan2Lo p k (C.g 0) (C.g 1), fun _ => Interval.atan2Hi p k (C.g 0) (C.g 1)⟩
+    with hθB
   -- the angle `θ`, `π/2`, the step and the two centers, in their boxes
   have hθ : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ : Vec ℝ 1) ∈
-      (⟨fun _ => Interval.atan2Lo p k (C.g 0) (C.g 1),
-        fun _ => Interval.atan2Hi p k (C.g 0) (C.g 1)⟩ : Interval (Vec 𝕋 1)).construct :=
+      θB.construct :=
     fun _ => ⟨Interval.atan2Lo_le p k _ _, Interval.le_atan2Hi p k _ _⟩
   -- `π/2` in the box of `acos` at `0`
   have hq : (fun _ => Real.pi / 2 : Vec ℝ 1) ∈
@@ -177,13 +180,11 @@ theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toRe
     fun j => ⟨subDown_le_sub _ _, sub_le_subUp _ _⟩
   -- the base angles `θ - π/2` and `θ + π/2` in their boxes
   have hm : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ - Real.pi / 2 : Vec ℝ 1) ∈
-      ((⟨fun _ => Interval.atan2Lo p k (C.g 0) (C.g 1),
-        fun _ => Interval.atan2Hi p k (C.g 0) (C.g 1)⟩ : Interval (Vec 𝕋 1)).minus
+      (θB.minus
         ⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩).construct :=
     Interval.minus_outer _ _ (Set.sub_mem_sub hθ hq)
   have hpl : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ + Real.pi / 2 : Vec ℝ 1) ∈
-      ((⟨fun _ => Interval.atan2Lo p k (C.g 0) (C.g 1),
-        fun _ => Interval.atan2Hi p k (C.g 0) (C.g 1)⟩ : Interval (Vec 𝕋 1)).plus
+      (θB.plus
         ⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩).construct :=
     Interval.plus_outer _ _ (Set.add_mem_add hθ hq)
   unfold Capsule.vertices

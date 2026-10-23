@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
 public import CORALean.ContSet.VPolytope.Real.Operations.Basic
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 
 @[expose] public section

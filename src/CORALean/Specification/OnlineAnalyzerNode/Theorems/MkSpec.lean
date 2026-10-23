@@ -44,7 +44,7 @@ variable {A : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.mk?_spec (kind : OnlineAnalyzerNode.Kind) (idx : ℕ) (parents : List ℕ)
-    (dp : Bool) (interval : Option STLInterval) (ap : Option A) : -- --- CONCL ---
+    (dp : Bool) (interval : Option (STLInterval ℝ)) (ap : Option A) : -- --- CONCL ---
     (OnlineAnalyzerNode.mk? kind idx parents dp interval ap = none ↔
       ¬ (decide (kind = .until) = interval.isSome ∧ decide (kind = .ap) = ap.isSome)) ∧
     ∀ n, OnlineAnalyzerNode.mk? kind idx parents dp interval ap = some n → n.kind = kind ∧

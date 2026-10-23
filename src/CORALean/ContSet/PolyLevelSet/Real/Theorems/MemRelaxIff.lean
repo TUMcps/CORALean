@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Theorems.MemAppendIff
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.Relax
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import Mathlib.Algebra.BigOperators.Fin

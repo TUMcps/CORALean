@@ -28,14 +28,19 @@ object (`none`) contains nothing.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def STLInterval.fieldsContainsPoint : Option STLInterval.Fields → ℝ → Prop
+def STLInterval.fieldsContainsPoint : Option (STLInterval.Fields 𝕋) → ℝ → Prop
   | none, _ => False
   | some ⟨l, u, lc, rc⟩, t =>
-    (l < t ∧ ∃ x, u = some x ∧ (t : EReal) < x) ∨ (lc = true ∧ l = t) ∨
-      (rc = true ∧ u = some (t : EReal))
+    (((toReal l : ℝ) : EReal) < t ∧ ∃ x, u = some x ∧ (t : EReal) < toEReal x) ∨
+      (lc = true ∧ ((toReal l : ℝ) : EReal) = t) ∨
+      (rc = true ∧ ∃ x, u = some x ∧ toEReal x = (t : EReal))
 
 end CORALean
 

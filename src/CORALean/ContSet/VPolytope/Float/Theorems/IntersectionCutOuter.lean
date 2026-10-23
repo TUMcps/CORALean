@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
 public import CORALean.ContSet.VPolytope.Float.Operations.IntersectionCut
-public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope

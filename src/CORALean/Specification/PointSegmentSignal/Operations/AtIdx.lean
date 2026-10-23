@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import Mathlib.Order.WithBot
 
@@ -35,12 +36,12 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[val,i] = priv_atIdx(obj,time)`. -/
-def PointSegmentSignal.atIdx {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+def PointSegmentSignal.atIdx {T : Type} [TimeOrder T] [Zero T] (s : PointSegmentSignal T)
     (time : WithTop T) : Bool × ℕ :=
   -- i = find(obj.timePoints <= time,1,'last')
   let i := (s.timePoints.takeWhile (fun x : T => (x : WithTop T) ≤ time)).length
   -- the point value if timePoints(i) == time, else the following interval value
-  (if ((s.timePoints.getD (i - 1) 0 : T) : WithTop T) = time then s.pointValue i
+  (if TimeOrder.IsEqvTop ((s.timePoints.getD (i - 1) 0 : T) : WithTop T) time then s.pointValue i
     else s.succIntervalValue i, i)
 
 end CORALean

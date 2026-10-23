@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ProdUnitCol
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalCartProd
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalPadVars
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalSwitch

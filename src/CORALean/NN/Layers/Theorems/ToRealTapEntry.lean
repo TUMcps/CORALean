@@ -38,6 +38,22 @@ open Float Float.FloatOps Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- the compiler runs the loop the operation's `aux_` implementation is
+omit [SoundFloatArithmetic 𝕋] in
+@[csimp] theorem aux_tapEntry_eq_impl : -- --- CONCL ---
+    @tapEntry = @aux_tapEntryImpl := by -- --- PROOF ---
+  funext 𝕋 _ n k
+  induction k with
+  | zero => funext t v i; rw [aux_tapEntryImpl, Fin.foldr_zero]; rfl
+  | succ k ih =>
+    funext t v i
+    rw [aux_tapEntryImpl, Fin.foldr_succ, ← aux_tapEntryImpl,
+      ← congrFun (congrFun (congrFun ih fun l => t l.succ) fun l => v l.succ) i]
+    rfl
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem toReal_tapEntry {n : ℕ} : -- --- CONCL ---

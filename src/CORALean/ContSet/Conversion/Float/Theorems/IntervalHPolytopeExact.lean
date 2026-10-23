@@ -1,12 +1,13 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
 
 @[expose] public section
 

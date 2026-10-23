@@ -37,16 +37,18 @@ made; here `none`.
 
 namespace CORALean
 
-variable {S : ℕ → Type} {d : ℕ}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+  [TimeOrder 𝕋]
+    {S : ℕ → Type} {d : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- No node for phi --> create one and store in cache. -/
-noncomputable def OnlineReachSetAnalyzer.parseNew (dropPropagated : Bool)
-    (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (parent : ℕ)
-    (st : OnlineReachSetAnalyzer.ParseState S d) :
-    Option (OnlineReachSetAnalyzer.ParseState S d) :=
+def OnlineReachSetAnalyzer.parseNew (dropPropagated : Bool)
+    (φ : OnlineReachSetAnalyzer.Formula 𝕋 (AtomicProposition S d)) (parent : ℕ)
+    (st : OnlineReachSetAnalyzer.ParseState 𝕋 S d) :
+    Option (OnlineReachSetAnalyzer.ParseState 𝕋 S d) :=
   let myPos := st.nodes.length + 1
   -- need this check for the first iteration where we pass in 0 as parent
   (if parent ≠ 0 then

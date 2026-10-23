@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

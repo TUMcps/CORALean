@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 
 @[expose] public section
@@ -34,7 +35,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = cutAtFirstFallingEdge(obj)`. -/
-def PointSegmentSignal.cutAtFirstFallingEdge {T : Type} [LinearOrder T] [Zero T]
+def PointSegmentSignal.cutAtFirstFallingEdge {T : Type} [TimeOrder T] [Zero T]
     (s : PointSegmentSignal T) : PointSegmentSignal T :=
   -- 1. i = find(~obj.values(2:end) & obj.values(1:end-1),1,'first')
   match (List.matlabFind id (List.zipWith (fun a b => !b && a) s.values s.values.tail)).head? with

@@ -62,11 +62,12 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeContain
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContains
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.SubsetOfBounds
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
 public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 public import CORALean.ContSet.Interval.Float.Operations.Point
-public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetOfBounds
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.VPolytope.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound

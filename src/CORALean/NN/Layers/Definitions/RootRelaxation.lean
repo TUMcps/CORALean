@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
 public import Mathlib.Analysis.SpecialFunctions.Sqrt
 

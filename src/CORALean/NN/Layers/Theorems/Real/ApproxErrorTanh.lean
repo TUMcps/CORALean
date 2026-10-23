@@ -50,12 +50,14 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem approxError_tanh (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
+    let cand := ({Real.artanh (√(1 - m)), -Real.artanh (√(1 - m)), l, u} : Set ℝ) ∩ Set.Icc l u
     IsLeast ((fun x => Real.tanh x - (fun x => m * x) x) ''
-          (({Real.artanh (√(1 - m)), -Real.artanh (√(1 - m)), l, u} : Set ℝ) ∩ Set.Icc l u))
+          cand)
         (approxErrorLow Real.tanh (fun x => m * x) l u) ∧
       IsGreatest ((fun x => Real.tanh x - (fun x => m * x) x) ''
-          (({Real.artanh (√(1 - m)), -Real.artanh (√(1 - m)), l, u} : Set ℝ) ∩ Set.Icc l u))
+          cand)
         (approxErrorUp Real.tanh (fun x => m * x) l u) := by -- --- PROOF ---
+  intro cand
   obtain ⟨⟨a, haI, ha, hac⟩, ⟨b, hbI, hb, hbc⟩⟩ := exists_critical_extreme Real.tanh
     (fun x => 1 - Real.tanh x ^ 2) m l u _root_.CORALean.hasDerivAt_tanh hlu
   -- a critical point is one of the two `±artanh √(1 - m)`
@@ -66,7 +68,7 @@ theorem approxError_tanh (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
     refine eq_pm_artanh_of_tanh q (√(1 - m)) (Real.sqrt_nonneg _) ?_ h2
     rw [Real.sqrt_lt' one_pos]; nlinarith [Real.tanh_sq_lt_one q]
   have hmem : ∀ q ∈ Set.Icc l u, (q = l ∨ q = u ∨ 1 - Real.tanh q ^ 2 = m) →
-      q ∈ (({Real.artanh (√(1 - m)), -Real.artanh (√(1 - m)), l, u} : Set ℝ) ∩ Set.Icc l u) :=
+      q ∈ cand :=
     fun q hq h => by
       refine ⟨?_, hq⟩
       rcases h with h | h | h

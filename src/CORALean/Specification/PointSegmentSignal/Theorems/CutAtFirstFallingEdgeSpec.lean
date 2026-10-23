@@ -148,7 +148,7 @@ theorem PointSegmentSignal.aux_cell_take {T : Type} [LinearOrder T] [Zero T]
       intro h
       have := Option.some.inj h
       exact absurd (this ▸ hlt) (not_lt.2 hkt)
-    rw [if_neg hne]
+    rw [if_neg (show ¬ ∃ b ∈ s.timePoints[k - 1]?, TimeOrder.Eqv b t by simpa using hne)]
     omega
 
 

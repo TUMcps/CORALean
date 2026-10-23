@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
 public import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 /-!
 # Nonlinear ARX models: the conversion

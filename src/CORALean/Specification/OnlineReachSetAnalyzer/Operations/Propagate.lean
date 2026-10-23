@@ -39,8 +39,8 @@ variable {S : ℕ → Type} {d : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `propagate(obj,makeValid)`. -/
-noncomputable def OnlineReachSetAnalyzer.propagate (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (makeValid : STLInterval) : Option (OnlineReachSetAnalyzer S d) :=
+noncomputable def OnlineReachSetAnalyzer.propagate (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
+    (makeValid : STLInterval ℝ) : Option (OnlineReachSetAnalyzer ℝ S d) :=
   -- obj.propagated = false(1,length(obj.nodes)); obj.propagateRec(makeValid,1)
   (OnlineReachSetAnalyzer.propagateRec eps makeValid (obj.nodes.length + 1) 1
     (obj.nodes, List.replicate obj.nodes.length false)).map fun st =>

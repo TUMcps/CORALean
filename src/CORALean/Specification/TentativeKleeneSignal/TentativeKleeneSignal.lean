@@ -1,7 +1,6 @@
 module
 
-public import CORALean.Specification.FourValued.FourValued
-public import CORALean.Specification.PointSegmentSignal.Operations.At
+public import CORALean.Specification.PointSegmentSignal.PointSegmentSignal
 
 @[expose] public section
 
@@ -35,15 +34,6 @@ structure TentativeKleeneSignal (T : Type) where
   canBeTrue : PointSegmentSignal T
   canBeFalse : PointSegmentSignal T
   deriving DecidableEq
-
-/-- The value at a time: `Inconclusive` if neither value can be, `Unknown` if both can. -/
-def TentativeKleeneSignal.at {T : Type} [LinearOrder T] (s : TentativeKleeneSignal T) (time : T) :
-    FourValued :=
-  match s.canBeTrue.at time, s.canBeFalse.at time with
-  | true, true => .uu
-  | true, false => .tt
-  | false, true => .ff
-  | false, false => .ii
 
 end CORALean
 

@@ -56,13 +56,13 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Bounded error identification of systems with time-varying parameters](2006/bravo-tac-bounded-error-identification.md) | Bravo, Alamo, Camacho | IEEE Transactions on Automatic Control, 51(7):1144-1150 | 2006 | 🟢 6/6 \| 13 |
 | [Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs](2006/girard-hscc-lti-inputs.md) | Girard, Le Guernic, Maler | HSCC, LNCS 3927, pp. 257-271 | 2006 | 🟢 14/14 \| 5 |
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
+| [Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs](2007/althoff-cdc-uncertain-parameters-inputs.md) | Althoff, Stursberg, Buss | CDC, pp. 726-732 | 2007 | 🟡 2/15 \| 7 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟢 11/11 \| 4 |
 | [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md) | Girard, Le Guernic | HSCC, LNCS 4981, pp. 215-228 | 2008 | 🟢 7/7 \| 13 |
 | [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md) | Althoff, Stursberg, Buss | ECC, pp. 625-630 | 2009 | 🟡 13/15 \| 5 |
 | [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md) | Campi, Calafiore, Garatti | Automatica, 45(2):382-392 | 2009 | 🟢 9/9 \| 28 |
 | [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md) | Lara, Flores, Calderon | INFOCOMP Journal of Computer Science, 8(4):21-27 | 2009 | 🟢 18/18 \| 17 |
 | [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md) | Althoff, Stursberg, Buss | Nonlinear Analysis: Hybrid Systems, 4(2):233-249 | 2010 | 🟢 13/13 \| 8 |
-| [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 22/22 \| 14 |
 | [Inner approximation of the range of vector-valued functions](2010/goldsztejn-rc-inner-range.md) | Goldsztejn, Jaulin | Reliable Computing, 14:1-23 | 2010 | 🟡 11/18 \| 6 |
 | [A Box-Consistency Contractor Based on Extremal Functions](2010/trombettoni-cp-box-consistency.md) | Trombettoni, Papegay, Chabert, Pourtallier | CP 2010, LNCS 6308, pp. 491-498 | 2010 | 🟢 9/9 \| 10 |
 | [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md) | Althoff, Krogh | CDC-ECC, pp. 6814-6821 | 2011 | 🟢 16/16 \| 7 |
@@ -74,7 +74,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | Automatica, 49(11):3418-3424 | 2013 | 🟢 14/14 \| 7 |
 | [Zonotope-based set-membership estimation for multi-output uncertain systems](2013/le-isic-multi-output-estimation.md) | Le, Stoica, Alamo, Camacho, Dumur | ISIC, pp. 212-217 | 2013 | 🟡 3/10 \| 21 |
 | [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md) | Mullier, Goubault, Kieffer, Putot | Reliable Computing, 18:117-143 | 2013 | 🟢 15/15 \| 15 |
-| [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟢 18/18 \| 17 |
+| [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md) | Althoff, Krogh | IEEE Transactions on Automatic Control, 59(2):371-383 | 2014 | 🟡 18/20 \| 16 |
 | [Formal and Compositional Analysis of Power Systems using Reachable Sets](2014/althoff-tps-power-systems.md) | Althoff | IEEE Transactions on Power Systems, 29(5):2270-2280 | 2014 | 🟡 3/4 \| 34 |
 | [Billiard walk - a new sampling algorithm for control and optimization](2014/polyak-ifac-billiard-walk.md) | Polyak, Gryazina | IFAC World Congress, IFAC Proceedings Volumes 47(3), pp. 6123-6128 | 2014 | 🟡 3/10 \| 11 |
 | [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md) | Raman, Donzé, Maasoumy, Murray, Sangiovanni-Vincentelli, Seshia | CDC, pp. 81-87 | 2014 | 🟢 16/16 \| 17 |

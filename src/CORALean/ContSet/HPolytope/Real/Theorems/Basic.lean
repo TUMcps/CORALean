@@ -7,6 +7,9 @@ public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.Volume
+public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
+public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 
 @[expose] public section
 
@@ -40,6 +43,17 @@ theorem HPolytope.comap_exact (f : β →ₗ[ℝ] α) (P : HPolytope α) :
     (HPolytope.comap f P).construct = f ⁻¹' P.construct := rfl
 
 
+-- ============================  `HPolytope.construct_eq_feasible`  ============================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- A halfspace description's own construct is `Feasible` -/
+theorem HPolytope.construct_eq_feasible (P : HPolytope α) :
+    P.construct = Feasible P.A P.b P.Ae P.be := rfl
+
+
 -- ===========================  `HPolytope.construct_subset_dropEqs`  =========================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
@@ -62,6 +76,30 @@ theorem HPolytope.construct_subset_dropEqs (P : HPolytope α) : P.construct ⊆ 
 theorem HPolytope.lift_exact (P : HPolytope (Vec ℝ n)) (dims : Fin n → Fin N) :
     (P.lift_ dims).construct = {x : Vec ℝ N | (fun k => x (dims k)) ∈ P.construct} :=
   HPolytope.comap_exact (LinearMap.funLeft ℝ ℝ dims) P
+
+
+-- =================================  `HPolytope.mem_eqs_iff`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       01-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- Membership in `HPolytope.eqs` -/
+theorem HPolytope.mem_eqs_iff {Ae : Mat ℝ s n} {be : Vec ℝ s} {x : Vec ℝ n} :
+    x ∈ (HPolytope.eqs Ae be).construct ↔ ∀ i, (Ae *ᵥ x) i = be i :=
+  ⟨fun h i => h.2 i, fun h => ⟨fun i => i.elim0, h⟩⟩
+
+
+-- ================================  `HPolytope.mem_ineqs_iff`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       01-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- Membership in `HPolytope.ineqs` -/
+theorem HPolytope.mem_ineqs_iff {A : Mat ℝ s n} {b : Vec ℝ s} {x : Vec ℝ n} :
+    x ∈ (HPolytope.ineqs A b).construct ↔ ∀ i, (A *ᵥ x) i ≤ b i :=
+  ⟨fun h i => h.1 i, fun h => ⟨h, fun i => i.elim0⟩⟩
 
 
 -- =================================  `HPolytope.mem_ofPoint`  ================================== --
@@ -99,6 +137,18 @@ exactly when its start and every term are. -/
 theorem HPolytope.polyNorm_le_iff {H : Mat ℝ s n} {h : Vec ℝ s} {x : Vec ℝ n} {t : ℝ} :
     HPolytope.polyNorm H h x ≤ t ↔ 0 ≤ t ∧ ∀ i, (H *ᵥ x) i / h i ≤ t := by
   simp [HPolytope.polyNorm, Finset.fold_max_le]
+
+
+-- ===============================  `HPolytope.subset_ofBounds`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- Nothing here solves a linear program. It consumes the answers. -/
+theorem HPolytope.subset_ofBounds {S : Set α} (Aq : Fin s → (α →ₗ[ℝ] ℝ))
+    (u : ∀ i, SupportBound S (Aq i)) : S ⊆ (HPolytope.ofBounds Aq u).construct :=
+  fun _ hx => ⟨fun i => (u i).le _ hx, fun i => i.elim0⟩
 
 
 -- ================================  `HPolytope.toIneqs_exact`  ================================= --

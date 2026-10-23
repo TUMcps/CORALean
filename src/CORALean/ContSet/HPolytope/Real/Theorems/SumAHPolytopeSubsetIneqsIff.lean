@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import CORALean.Global.LinProg.Farkas
 public import Mathlib.Data.Fintype.BigOperators

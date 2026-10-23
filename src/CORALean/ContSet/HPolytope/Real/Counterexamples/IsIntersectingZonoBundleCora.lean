@@ -5,6 +5,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Tactic.Linarith
 

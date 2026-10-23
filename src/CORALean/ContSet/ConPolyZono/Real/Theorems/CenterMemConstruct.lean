@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
 

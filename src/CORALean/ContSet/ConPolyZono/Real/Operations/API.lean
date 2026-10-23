@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Isequal
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
@@ -18,11 +17,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactCons
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
 public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
-public import CORALean.ContSet.ConPolyZono.Real.Operations.AbsFactorExtendLeOne
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendLeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendRight
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
@@ -42,9 +36,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
 public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
@@ -53,7 +45,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Point
 /-!
 # `LinearSys.oneStepFloat`
 
-`LinearSys.oneStep` [1, Sec. 3.3] computed in `𝕋`, one `let` per `let` of the real one: the
+`LinearSys.oneStep` [1, Eq. 4] computed in `𝕋`, one `let` per `let` of the real one: the
 exact `e^{AΔt}` becomes `expIntervalFloat` at the point range `[Δt, Δt]`; `PU` and `Pu` are
 `inputSolutionFloat` at `U` and at the point zonotope `{u}`; `[F]` and `[G]` are
 `MatExp.intervalCorrectionMatrix` and `MatExp.intervalConstCorrectionMatrix` at the point box
@@ -34,8 +34,8 @@ box.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

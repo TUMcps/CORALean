@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Float.TimeOrder
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
@@ -27,12 +28,16 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.toLeft : STLInterval → Option STLInterval
+def STLInterval.toLeft : STLInterval 𝕋 → Option (STLInterval 𝕋)
   | .empty => none
-  | .nonempty l _ lc _ _ _ _ _ => some (stlInterval 0 l true (!lc) le_rfl)
+  | .nonempty l _ lc _ _ _ _ => some (stlInterval 0 (l : WithTop 𝕋) true (!lc) toReal_zero_eq.ge)
 
 end CORALean
 

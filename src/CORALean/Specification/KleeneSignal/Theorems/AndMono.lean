@@ -44,7 +44,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem KleeneSignal.and_mono {ι : Type} [Fintype ι] [Nonempty ι]
+theorem KleeneSignal.and_mono {ι : Type} [FinEnum ι] [Nonempty ι]
     (sigs sigs' : ι → KleeneSignal ℝ) (hv : ∀ k, (sigs k).IsValid) (hv' : ∀ k, (sigs' k).IsValid)
     (h : ∀ k, ∀ t : ℝ, 0 ≤ t → (sigs k).at t ≤ (sigs' k).at t) : -- --- CONCL ---
     ∀ t : ℝ, 0 ≤ t →

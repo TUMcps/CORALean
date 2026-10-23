@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.PointSegmentSignal.Theorems.AllTrueSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.AndMono
 public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueEqFalseOfAt
+public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtAppendGe
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtAppendLt
@@ -10,6 +11,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtBetween
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtIdxFst
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtLast
+public import CORALean.Specification.PointSegmentSignal.Theorems.AtMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtSnocEq
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtSnocGt
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtSnocLt
@@ -21,6 +23,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.CellLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellMemBounds
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellMono
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellRel
+public import CORALean.Specification.PointSegmentSignal.Theorems.CombineMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.CutAtFirstFallingEdgeAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.CutAtFirstFallingEdgeSpec
@@ -28,8 +31,10 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.ExistsCellEq
 public import CORALean.Specification.PointSegmentSignal.Theorems.ExistsMinimalUnitaryDecomposition
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsRuns
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindLastSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilUnitary
@@ -49,6 +54,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
 public import CORALean.Specification.PointSegmentSignal.Theorems.PrecTimeAtValIdxSucc
 public import CORALean.Specification.PointSegmentSignal.Theorems.RelevantCells
+public import CORALean.Specification.PointSegmentSignal.Theorems.SetMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetPointSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.SuccTimeAtValIdxOfGe

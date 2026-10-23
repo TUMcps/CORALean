@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # `expIntervalTaylorExact` encloses the truncation of every member
 
-[1, Thm. 3.2] up to the remainder. The truncation splits at order three —
+[1, Thm. 1] up to the remainder. The truncation splits at order three —
 `sum_Ico_consecutive` — into `expTaylor (t • M) 2`, which `expTaylor_two` turns
 into `I + W(t)`, and the orders past it. The first piece is enclosed exactly by
 `expIntervalW`, the second by ordinary interval arithmetic.
@@ -36,8 +36,9 @@ empty and this would be claiming more orders than the truncation has.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

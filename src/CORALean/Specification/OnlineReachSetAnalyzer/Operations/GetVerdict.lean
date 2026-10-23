@@ -28,13 +28,14 @@ an analyzer without nodes; here `none`.
 
 namespace CORALean
 
-variable {S : ℕ → Type} {d : ℕ}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [TimeOrder 𝕋]
+    {S : ℕ → Type} {d : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `verdict = getVerdict(obj)`. -/
-noncomputable def OnlineReachSetAnalyzer.getVerdict (obj : OnlineReachSetAnalyzer S d) :
+def OnlineReachSetAnalyzer.getVerdict (obj : OnlineReachSetAnalyzer 𝕋 S d) :
     Option FourValued :=
   obj.nodes[0]?.map fun n => n.signal.at 0
 

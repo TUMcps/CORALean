@@ -75,8 +75,8 @@ relaxation read over that bracket, `aux_sqrtBroadcast`/`aux_sqrtRow`/`aux_sqrtCo
 into the two normalising matrices `messagePassingEnclosure`, [1, Prop. 4], pairs entrywise with the
 padded adjacency.
 
-All ℝ-only, `noncomputable` where a search or an inverse square root has no computable form yet —
-see `scripts/noncomputable-allowlist.txt`.
+All ℝ-only, `noncomputable` where a search or an inverse square root has no computable form yet,
+and says so in its docstring.
 
 ## References
 

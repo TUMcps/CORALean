@@ -47,11 +47,12 @@ theorem Ellipsoid.excludesPoint_sound {E : Ellipsoid 𝕋 n} {p a : Vec 𝕋 n} 
   split_ifs at h with hs
   intro hp
   -- the point's reading is at most the bound, and strictly above it
-  have hle := (E.boundDot (c := rowLin (fun (_ : Fin 1) => a) 0) a (fun _ => rfl) s
+  have hle := (E.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0) a
+      (fun _ => rfl) s
     (toReal_le_of_le hs)).le _ hp
   have hlt := toReal_lt_of_ltStrict h
   have hd := dotDown_le a p
-  have hc : rowLin (fun (_ : Fin 1) => a) 0 (toRealVec p)
+  have hc : Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0 (toRealVec p)
       = ∑ k, toReal (a k) * toReal (p k) := rfl
   linarith
 

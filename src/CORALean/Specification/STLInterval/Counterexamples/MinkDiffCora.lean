@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import CORALean.Specification.STLInterval.Definitions.FieldsContainsPoint
+public import CORALean.Specification.STLInterval.Theorems.Basic
 
 @[expose] public section
 
@@ -41,29 +42,34 @@ is the documented set.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
 
 -- The model: CORA's code as printed, kept only to be refuted.
-noncomputable def STLInterval.minkDiffCora : STLInterval → STLInterval → Option STLInterval.Fields
-  | _, .empty => fieldsOf (stlInterval 0 ⊤ true false le_rfl)
+noncomputable def STLInterval.minkDiffCora :
+    STLInterval ℝ → STLInterval ℝ → Option (STLInterval.Fields ℝ)
+  | _, .empty => fieldsOf (stlInterval 0 ⊤ true false (by simp))
   | .empty, _ => none
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
     let lb := l₁ - l₂
-    let ub : Option EReal := if u₁ = ⊤ ∧ u₂ = ⊤ then none else some (u₁ - u₂)
     let lc := lc₁ || !lc₂
     let rc := rc₁ || !rc₂
-    match ub with
-    | none => if lb < 0 then some ⟨0, none, true, rc⟩ else some ⟨lb, none, lc, rc⟩
-    | some ub => if h : lb < 0 then fieldsOf (stlInterval 0 ub true rc le_rfl)
-      else fieldsOf (stlInterval lb ub lc rc (not_lt.1 h))
+    match u₁, u₂ with
+    -- `Inf - Inf` is `NaN`
+    | none, none => if lb < 0 then some ⟨0, none, true, rc⟩ else some ⟨lb, none, lc, rc⟩
+    -- `upper - Inf` is `-Inf`, and the constructor makes `stlInterval()`
+    | some _, none => none
+    | _, _ => if h : lb < 0 then fieldsOf (stlInterval 0 (subUpTop u₁ u₂) true rc (by simp))
+      else fieldsOf (stlInterval lb (subUpTop u₁ u₂) lc rc (by simpa using not_lt.1 h))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STLInterval.minkDiffCora_counterexample : -- --- CONCL ---
-    ∃ (I J : STLInterval) (t : ℝ), (0 ≤ t ∧ ∀ y ∈ J.set, t + y ∈ I.set) ∧
+    ∃ (I J : STLInterval ℝ) (t : ℝ), (0 ≤ t ∧ ∀ y ∈ J.set, t + y ∈ I.set) ∧
       ¬ STLInterval.fieldsContainsPoint (STLInterval.minkDiffCora I J) t := by -- --- PROOF ---
   -- the operands are `[0, ∞)`, `stlInterval(0,inf)`
-  let I : STLInterval := .nonempty 0 ⊤ true false (by simp) (by simp) (Or.inl (by simp)) le_rfl
+  let I : STLInterval ℝ := .nonempty 0 ⊤ true false (fun _ => rfl) (Or.inl (by simp)) (by simp)
   refine ⟨I, I, 1, ⟨zero_le_one, fun y hy => ?_⟩, ?_⟩
   · -- `1 + y ≥ 0` for `y ≥ 0`
     have hy0 : 0 ≤ y := by

@@ -64,17 +64,22 @@ theorem Zonotope.observeDescriptorCurrent_construct (T : Mat ℝ n n) (N Ghat : 
   -- the sign pattern of the four blocks
   let σ : Fin (X.h + nw + nv + nv) → ℝ :=
     Fin.append (Fin.append (Fin.append (fun _ => 1) (fun _ => 1)) (fun _ => -1)) (fun _ => -1)
-  have hσ : ∀ j, σ j * σ j = 1 := fun j => by
-    refine Fin.addCases (fun j => Fin.addCases (fun j => Fin.addCases (fun j => ?_)
-      (fun j => ?_) j) (fun j => ?_) j) (fun j => ?_) j <;> simp [σ]
-  have hσa : ∀ j, |σ j| = 1 := fun j => by
-    refine Fin.addCases (fun j => Fin.addCases (fun j => Fin.addCases (fun j => ?_)
-      (fun j => ?_) j) (fun j => ?_) j) (fun j => ?_) j <;> simp [σ]
+  -- a statement about the four blocks of generators is one about each block
+  have hcases : ∀ {P : Fin (X.h + nw + nv + nv) → Prop},
+      (∀ j, P (Fin.castAdd nv (Fin.castAdd nv (Fin.castAdd nw j))))
+      → (∀ j, P (Fin.castAdd nv (Fin.castAdd nv (Fin.natAdd X.h j))))
+      → (∀ j, P (Fin.castAdd nv (Fin.natAdd (X.h + nw) j)))
+      → (∀ j, P (Fin.natAdd (X.h + nw + nv) j)) → ∀ j, P j :=
+    fun h₁ h₂ h₃ h₄ j => Fin.addCases (fun j => Fin.addCases (fun j => Fin.addCases h₁ h₂ j) h₃ j)
+      h₄ j
+  have hσ : ∀ j, σ j * σ j = 1 := by
+    refine hcases ?_ ?_ ?_ ?_ <;> intro j <;> simp [σ]
+  have hσa : ∀ j, |σ j| = 1 := by
+    refine hcases ?_ ?_ ?_ ?_ <;> intro j <;> simp [σ]
   have hG : ∀ j : Fin (X.h + nw + nv + nv),
       (X.observeDescriptorCurrent T N Ghat A B D C F u y_plus).G j =
-        σ j • (X.intersectDescriptor T N Ghat A B D C F u y_plus).G j := fun j => by
-    refine Fin.addCases (fun j => Fin.addCases (fun j => Fin.addCases (fun j => ?_)
-      (fun j => ?_) j) (fun j => ?_) j) (fun j => ?_) j <;>
+        σ j • (X.intersectDescriptor T N Ghat A B D C F u y_plus).G j := by
+    refine hcases ?_ ?_ ?_ ?_ <;> intro j <;>
       ext i <;> simp [σ, Zonotope.observeDescriptorCurrent, Zonotope.intersectDescriptor]
   -- a coefficient vector for one is the sign-flipped one for the other
   ext x

@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
 
 @[expose] public section
 
@@ -112,20 +113,14 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer_
     (hbddP : Bornology.IsBounded (construct P))
     (hconvS : Convex ℝ (construct Sg)) (hclosedS : IsClosed (construct Sg))
     (hbddS : Bornology.IsBounded (construct Sg))
-    (hRconvS : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) Sg)))
-    (hRclosedS : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) Sg)))
-    (hRbddS : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) Sg)))
+    (hRconvS : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η Sg))
+    (hRclosedS : IsClosed (MatExp.intervalInputRemainderSet sys.A r η Sg))
+    (hRbddS : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η Sg))
     (h0₀ : (0 : Vec ℝ n) ∈ construct U₀) (hconv₀ : Convex ℝ (construct U₀))
     (hclosed₀ : IsClosed (construct U₀)) (hbdd₀ : Bornology.IsBounded (construct U₀))
-    (hRconv₀ : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U₀)))
-    (hRclosed₀ : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U₀)))
-    (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U₀)))
+    (hRconv₀ : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U₀))
+    (hRclosed₀ : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U₀))
+    (hRbdd₀ : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U₀))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct (Plus.plus (Plus.plus
       (sys.inputSolution r η Sg) (Mtimes.mtimes (𝕄 := ℐ)

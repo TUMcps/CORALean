@@ -38,7 +38,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = until(lhs,interval,rhs)`. -/
-noncomputable def PointSegmentSignal.until (lhs : PointSegmentSignal ℝ) (interval : STLInterval)
+noncomputable def PointSegmentSignal.until (lhs : PointSegmentSignal ℝ) (interval : STLInterval ℝ)
     (rhs : PointSegmentSignal ℝ) : PointSegmentSignal ℝ :=
   -- 1. find the positive intervals
   let lhsInt := lhs.findIntervals

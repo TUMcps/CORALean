@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.CartProd
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadRightNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 
 @[expose] public section
 

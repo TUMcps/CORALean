@@ -39,7 +39,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The disjunction of Kleene signals is Kleene's disjunction. -/
-theorem KleeneSignal.at_or {ι : Type} [Fintype ι] [Nonempty ι]
+theorem KleeneSignal.at_or {ι : Type} [FinEnum ι] [Nonempty ι]
     (sigs : ι → KleeneSignal ℝ) (hv : ∀ k, (sigs k).IsValid) : -- --- CONCL ---
     (KleeneSignal.or_ sigs).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((KleeneSignal.or_ sigs).at t = Kleene.tt ↔ ∃ k, (sigs k).at t = Kleene.tt) ∧

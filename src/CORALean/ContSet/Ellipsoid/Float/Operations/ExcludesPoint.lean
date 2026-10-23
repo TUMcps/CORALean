@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 
@@ -45,7 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Ellipsoid.excludesPoint (E : Ellipsoid 𝕋 n) (p a : Vec 𝕋 n) (s : 𝕋) : Bool :=
   if hs : le (E.quadUp a) (mulDown s s) = true then
     -- the set's bound in direction `a`, strictly below the point's reading
-    let bound := E.boundDot (c := rowLin (fun (_ : Fin 1) => a) 0) a (fun _ => rfl) s
+    let bound := E.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0) a
+        (fun _ => rfl) s
       (toReal_le_of_le hs)
     ltStrict bound.val (dotDown a p)
   else false

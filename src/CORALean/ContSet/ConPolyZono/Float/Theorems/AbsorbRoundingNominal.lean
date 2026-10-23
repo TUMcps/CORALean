@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff

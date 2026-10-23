@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.observeSet_spec (eps : ℝ)
-    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval)
+    (n : OnlineAnalyzerNode ℝ (AtomicProposition S d)) (set : S d) (interval : STLInterval ℝ)
     (loc : ℕ) (tentative : Bool) : -- --- CONCL ---
     ((n.kind = .not ∨ n.kind = .or ∨ n.kind = .and ∨ n.kind = .until) →
       OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc tentative = none) ∧

@@ -40,7 +40,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `s` is unitary with `I⁺_s = J`. -/
-def PointSegmentSignal.IsUnitary (s : PointSegmentSignal ℝ) (J : STLInterval) : Prop :=
+def PointSegmentSignal.IsUnitary (s : PointSegmentSignal ℝ) (J : STLInterval ℝ) : Prop :=
   ∀ t : ℝ, 0 ≤ t → (s.at t = true ↔ t ∈ J.set)
 
 end CORALean

@@ -41,18 +41,6 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-theorem Polygon.aux_le_foldr_maximum (l : List 𝕋) (s : 𝕋) {a : 𝕋} (h : a ∈ l) : -- --- CONCL ---
-    toReal a ≤ toReal (l.foldr maximum s) := by -- --- PROOF ---
-  induction l with
-  | nil => exact absurd h List.not_mem_nil
-  | cons b l ih =>
-    rcases List.mem_cons.mp h with rfl | h
-    · rw [List.foldr_cons, toReal_maximum]; exact le_max_left _ _
-    · rw [List.foldr_cons, toReal_maximum]; exact le_trans (ih h) (le_max_right _ _)
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Polygon.boundDot (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec 𝕋 2)
@@ -61,9 +49,18 @@ def Polygon.boundDot (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec
   val := (P.sets.map fun p => (p.boundDot a hc).val).foldr maximum
     ((P.sets.map fun p => (p.boundDot a hc).val).headD zero)
   le x hx := by
+    -- nothing in a list exceeds its fold of `maximum`
+    have hfold : ∀ (l : List 𝕋) (s : 𝕋) {a : 𝕋}, a ∈ l → toReal a ≤ toReal (l.foldr maximum s) := by
+      intro l s a h
+      induction l with
+      | nil => exact absurd h List.not_mem_nil
+      | cons b l ih =>
+        rcases List.mem_cons.mp h with rfl | h
+        · rw [List.foldr_cons, toReal_maximum]; exact le_max_left _ _
+        · rw [List.foldr_cons, toReal_maximum]; exact le_trans (ih h) (le_max_right _ _)
     obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
     exact le_trans ((p.boundDot a hc).le x hxp)
-      (Polygon.aux_le_foldr_maximum _ _ (List.mem_map_of_mem hp))
+      (hfold _ _ (List.mem_map_of_mem hp))
 
 end CORALean.Float
 

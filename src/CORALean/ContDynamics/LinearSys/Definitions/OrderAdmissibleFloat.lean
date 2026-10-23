@@ -10,13 +10,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 /-!
 # A Taylor order the float enclosures of `e^{At}` admit over a time range
 
-The float remainder `MatExp.expRemainderBound` is sound once `nrm / (η + 2) ≤ 1/2`,
-`nrm` a float bound on `‖t A‖` over every `t ∈ [tLo, tHi]` — here the one
-`MatExp.normUpperBound` reads off the interval matrix `[tLo, tHi] · A`. The geometric series of the
-remainder bound needs `nrm / (η + 2) < 1`, [1, Eq. 3.2–3.3] and the sentence after Eq. 3.3, which
-no paper states as a condition; the float layer asks `≤ 1/2`, its geometric factor being the fixed
-constant `2`, where the exact layer's `timeInterval_outer` asks `< 1`. At least `2`, from no
-paper: as `MatExp.intervalCorrectionMatrix`'s guarantee needs.
+The float remainder `MatExp.expRemainderBound` is sound once `nrm / (η + 2) ≤ 1/2`, `nrm` a float
+bound on `‖t A‖` over every `t ∈ [tLo, tHi]` — here the one `MatExp.normUpperBound` reads off the
+interval matrix `[tLo, tHi] · A`. The geometric series of the remainder bound needs
+`nrm / (η + 2) < 1`, the condition [1, Thm. 1] states; the float layer asks `≤ 1/2`, its geometric
+factor being the fixed constant `2`, where the exact layer's `timeInterval_outer` asks `< 1`. At
+least `2`, from no paper: as `MatExp.intervalCorrectionMatrix`'s guarantee needs.
 
 ## Inputs
 * `sys` – linear system
@@ -29,8 +28,9 @@ paper: as `MatExp.intervalCorrectionMatrix`'s guarantee needs.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

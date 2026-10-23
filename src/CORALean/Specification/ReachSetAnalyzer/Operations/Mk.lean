@@ -34,14 +34,14 @@ intervals over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
-variable {S : ℕ → Type} {n : ℕ}
+variable {T : Type} [TimeOrder T] [Zero T] {S : ℕ → Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `obj = reachSetAnalyzer(aps,dur,masks)`. -/
-noncomputable def ReachSetAnalyzer.mk? (aps : List (String × AtomicProposition S n)) (dur : ℝ)
-    (masks : List (String × FiniteSignal ℝ Bool) := []) : Option (ReachSetAnalyzer S n) :=
+def ReachSetAnalyzer.mk? (aps : List (String × AtomicProposition S n)) (dur : T)
+    (masks : List (String × FiniteSignal T Bool) := []) : Option (ReachSetAnalyzer T S n) :=
   -- obj.sigBuilder(k{i}) = finiteKleeneSignalBuilder(dur) for every key
   (aps.mapM fun p => (FiniteKleeneSignalBuilder.mk? dur).map fun builder => (p.1, builder)).map
     fun sigBuilder => ⟨aps, sigBuilder, masks⟩

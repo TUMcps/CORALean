@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The kept columns of a merge, indexed by a plain count and in order. -/
-noncomputable def PolyZonotope.aux_mergeIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
+def PolyZonotope.aux_mergeIdx {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (j : Fin (PolyZonotope.mergeKeep E).card) : Fin h :=
   (PolyZonotope.mergeKeep E).orderIsoOfFin rfl j
 
@@ -53,7 +53,7 @@ noncomputable def PolyZonotope.aux_mergeIdx {p h : ℕ} (E : Fin p → Fin h →
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Equal exponent columns added together, one column per class kept. -/
-noncomputable def PolyZonotope.merge (pZ : PolyZonotope α) : PolyZonotope α where
+def PolyZonotope.merge (pZ : PolyZonotope α) : PolyZonotope α where
   p := pZ.p
   h := (PolyZonotope.mergeKeep pZ.E).card
   q := pZ.q

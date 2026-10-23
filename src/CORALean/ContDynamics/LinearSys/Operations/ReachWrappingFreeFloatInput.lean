@@ -19,13 +19,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # Wrapping-free reachability with inputs in floats
 
 `ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, in `𝕋`, read and split as `reachFloatInput` reads
-and splits it, with windows taken as `reachWrappingFreeFloat` takes them: [1, Alg. 3]'s window
-`R(τ_k) = e^{A t_k}(H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R(t_{k+1})`, as `WithInputSplit.reachStepk`
-states it over ℝ, with `[e^{A t_k}]` taken at `t_k` directly, so no window's error compounds into
-the next. `P^R(t_{k+1}) = e^{A t_k} P^R(Δt) ⊕ P^R(t_k)`, so the first summand is carried with the
-first window and the rest accumulates from `{0}` by
-`P(t_{k+1}) = P(t_k) ⊕ [e^{A t_k}](P̃(Δt) ⊕ P^R(Δt))`, reduced to order `ρ`. CORA's
-`priv_reach_wrappingfree` steps by `[e^{AΔt}]` and keeps the input in a box instead.
+and splits it, with windows taken as `reachWrappingFreeFloat` takes them: the window
+`R(τ_k) = e^{A t_k}(H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R(t_{k+1})`, [1, Eq. 4]'s split-input step
+at the first window carried to `τ_k` (`WithInputSplit.reachStepk` over ℝ), `[e^{A t_k}]` taken at
+`t_k` directly, so no window's error compounds into the next.
+`P^R(t_{k+1}) = e^{A t_k} P^R(Δt) ⊕ P^R(t_k)`, so the first summand is carried with the first window
+and the rest accumulates from `{0}` by `P(t_{k+1}) = P(t_k) ⊕ [e^{A t_k}](P̃(Δt) ⊕ P^R(Δt))`,
+reduced to order `ρ`. CORA's `priv_reach_wrappingfree` steps by `[e^{AΔt}]` and boxes the input.
 
 ## Inputs
 * `sys` – linear system
@@ -37,8 +37,8 @@ first window and the rest accumulates from `{0}` by
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

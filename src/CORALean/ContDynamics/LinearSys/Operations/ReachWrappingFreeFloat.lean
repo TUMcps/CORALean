@@ -14,7 +14,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Wrapping-free reachability in floats: `R(τ_k) = [e^{A t_k}] R(τ_0)`
 
-[1, Alg. 1] without an input, computed in `𝕋`, CORA's `linAlg = 'wrapping-free'`, at `params` and
+[1, Sec. V-B] without an input, computed in `𝕋`, CORA's `linAlg = 'wrapping-free'`, at `params` and
 `options` read as `reachFloat` reads them: the first window is `timeIntervalFloat`, reduced by
 Girard's rule to order `ρ`, and window `k < N` is that one set carried by an enclosure of
 `e^{A t_k}` taken at `t_k` directly (`reachStepkWrappingFreeFloat`), so no window's error
@@ -33,8 +33,9 @@ that is no natural number or a search fails.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

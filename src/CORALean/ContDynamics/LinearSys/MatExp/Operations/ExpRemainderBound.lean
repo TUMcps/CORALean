@@ -8,7 +8,7 @@ public import Mathlib.Analysis.Matrix.Normed
 /-!
 # The matrix exponential's Taylor remainder, bounded
 
-`expRemainderBound`: [1, Eq. 3.2–3.3] — what the neglected terms of `expTaylor` can still amount
+`expRemainderBound`: [1, Thm. 1] — what the neglected terms of `expTaylor` can still amount
 to, the radius of `expEnclosure`. Sound only under `‖x‖ / (η + 2) < 1`; without it the geometric
 bound diverges and this is meaningless rather than merely loose.
 
@@ -21,8 +21,9 @@ bound diverges and this is meaningless rather than merely loose.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

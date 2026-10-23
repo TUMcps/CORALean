@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.NN.Graph.Operations.AdjAt
 public import CORALean.NN.Graph.Operations.UncertainAdj
 public import CORALean.NN.Graph.Theorems.SmulEdgeHalf

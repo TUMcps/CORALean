@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemFullspace
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 @[expose] public section

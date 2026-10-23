@@ -7,7 +7,6 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Recenter
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
-public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Operations.MinkDiff
 public import CORALean.ContSet.Interval.Real.Operations.LinComb
 public import CORALean.ContSet.Interval.Real.Operations.MtimesIntervalMat
@@ -16,7 +15,6 @@ public import CORALean.ContSet.Interval.Real.Operations.MatPow
 public import CORALean.ContSet.Interval.Real.Operations.Smul
 public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
-public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 public import CORALean.ContSet.Interval.Real.Operations.Reindex
 public import CORALean.ContSet.Interval.Real.Operations.SplitAt
 public import CORALean.ContSet.Interval.Real.Operations.SupportBound

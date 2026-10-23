@@ -335,9 +335,10 @@ theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 
       simp only [varphiprod]; linarith
     have hkpos : 0 < k j := by linarith [hk1 j]
     simp only [objfuncset, zero_mul, zero_add]
+    -- the sum over the earlier segments plus the last segment's share
+    set Sx := sumallbutlast j + (1 + zetaZ) ^ (k j - (j : ℝ)) * (k j - (floork j : ℝ)) with hSx
     -- rerr1 / k * prod * (sum + extra) ≥ rerr1 * prod * (floork / k) ≥ rerr1 * prod / 2
-    have hA : varphimin / (9 / 10) * varphimin / 2 ≤ varphiprod j * (sumallbutlast j +
-        (1 + zetaZ) ^ (k j - (j : ℝ)) * (k j - (floork j : ℝ))) / k j := by
+    have hA : varphimin / (9 / 10) * varphimin / 2 ≤ varphiprod j * Sx / k j := by
       rw [le_div_iff₀ hkpos]
       have hpp : 0 ≤ varphiprod j := le_trans (by positivity) hprod
       have hS : k j / 2
@@ -354,11 +355,9 @@ theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 
         ≤ rerr1 * (varphimin / (9 / 10) * varphimin / 2) := by
           rw [mul_assoc]; apply mul_le_mul_of_nonneg_left _ hr
           rw [mul_div_assoc]; exact mul_le_mul_of_nonneg_left hB (by positivity)
-      _ ≤ rerr1 * (varphiprod j * (sumallbutlast j +
-        (1 + zetaZ) ^ (k j - (j : ℝ)) * (k j - (floork j : ℝ))) / k j) :=
+      _ ≤ rerr1 * (varphiprod j * Sx / k j) :=
           mul_le_mul_of_nonneg_left hA hr
-      _ = rerr1 / k j * varphiprod j * (sumallbutlast j +
-        (1 + zetaZ) ^ (k j - (j : ℝ)) * (k j - (floork j : ℝ))) := by ring
+      _ = rerr1 / k j * varphiprod j * Sx := by ring
   have hb : bestIdxnew = 0 := aux_linReachAdaptiveCora1D_firstMin objfuncset hobj kprime
   simp only [hb, deltats, pow_zero, mul_one]
 

@@ -609,6 +609,8 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
             (fun (j : Fin (1 + R0red.h + R0red.h)) i =>
               (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).G j)
             R0red.recenter))).construct := by -- --- PROOF ---
+  -- the Hessian zonotope of coordinate `i`
+  set hz := fun i => GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i with hhz
   set Ar := toRealMat A with hAr
   set br := toRealVec b with hbr
   set nr := toRealVec nv with hnr
@@ -642,10 +644,10 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
   set fac : Fin (1 + R0red.h + R0red.h) → ℝ :=
     Fin.append (Fin.append ![κ] (0 : Fin R0red.h → ℝ)) fun α => κ * (0 : Fin R0red.h → ℝ) α
     with hfac
-  have hQ : ∀ i, ∃ E ∈ (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.construct,
+  have hQ : ∀ i, ∃ E ∈ (hz i).I_error.construct,
       GuardMap.hitHessianNum Ar br nr (toReal d) ξ i
-        = (toRealMat (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c + E)
-          + ∑ j, fac j • toRealMat ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).G j) :=
+        = (toRealMat (hz i).c + E)
+          + ∑ j, fac j • toRealMat ((hz i).G j) :=
     fun i => by
       have h := GuardMap.hitHessianNum_eq_hitHessianMatZono Ar br nr (toReal d) R0r ψc ψg i 0 κ
         (by rw [hξeq]; exact hψ)
@@ -664,23 +666,23 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
   have hqmem : (fun i => ν ⬝ᵥ (GuardMap.hitHessianNum Ar br nr (toReal d) ξ i *ᵥ ν))
       ∈ (Zonotope.quadMapMatZono
             (fun i => ⟨fun l m => addDown
-                ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c l m)
-                ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.inf l m),
-              fun l m => addUp ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c l m)
-                ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.sup l m)⟩)
+                ((hz i).c l m)
+                ((hz i).I_error.inf l m),
+              fun l m => addUp ((hz i).c l m)
+                ((hz i).I_error.sup l m)⟩)
             (fun (j : Fin (1 + R0red.h + R0red.h)) i =>
-              (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).G j)
+              (hz i).G j)
             R0red.recenter).construct := by
     refine Zonotope.quadMapMatZono_outer _ _ _ ⟨ν, hνmem, fun i => toRealMat
-      (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c + E i, fun i => ?_, fac, hfac1,
+      (hz i).c + E i, fun i => ?_, fac, hfac1,
       fun i => by dsimp only; exact congrArg (fun M => ν ⬝ᵥ (M *ᵥ ν)) (hEeq i)⟩
     -- `c + E` within the directed sums of the center and the box
     refine Interval.mem_mat_iff.mpr fun l m => ?_
     have hEl := Interval.mem_mat_iff.mp (hE i) l m
-    have h1 := addDown_le_add ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c l m)
-      ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.inf l m)
-    have h2 := add_le_addUp ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c l m)
-      ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.sup l m)
+    have h1 := addDown_le_add ((hz i).c l m)
+      ((hz i).I_error.inf l m)
+    have h2 := add_le_addUp ((hz i).c l m)
+      ((hz i).I_error.sup l m)
     simp only [Matrix.add_apply, toRealMat]
     constructor <;> linarith [hEl.1, hEl.2]
   -- assemble `k + Lν + ½φq`

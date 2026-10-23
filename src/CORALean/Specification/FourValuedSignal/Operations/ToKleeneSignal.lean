@@ -15,9 +15,6 @@ public import CORALean.Specification.PointSegmentSignal.Operations.FindIntervals
 interval where the signal is inconclusive set to `mapInconclusiveTo`. Without an argument CORA
 throws if some value is inconclusive; that call is `toKleeneSignal?` (`none` for the error).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `s` – four-valued signal
 * `mapInconclusiveTo` – value for inconclusive times
@@ -36,12 +33,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = toKleeneSignal(obj,mapInconclusiveTo)`. -/
-noncomputable def FourValuedSignal.toKleeneSignal (s : FourValuedSignal ℝ)
-    (mapInconclusiveTo : Kleene) : KleeneSignal ℝ :=
+def FourValuedSignal.toKleeneSignal (s : FourValuedSignal 𝕋) (mapInconclusiveTo : Kleene) :
+    KleeneSignal 𝕋 :=
   -- 1. intervals = obj.isInconclusive.findIntervals()
   let intervals := s.isInconclusive.findIntervals
   -- 2. sig = sig.set(intervals(i),mapInconclusiveTo) for each interval

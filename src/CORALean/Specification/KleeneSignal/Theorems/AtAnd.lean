@@ -46,7 +46,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The conjunction of Kleene signals is Kleene's conjunction. -/
-theorem KleeneSignal.at_and {ι : Type} [Fintype ι] [Nonempty ι]
+theorem KleeneSignal.at_and {ι : Type} [FinEnum ι] [Nonempty ι]
     (sigs : ι → KleeneSignal ℝ) (hv : ∀ k, (sigs k).IsValid) : -- --- CONCL ---
     (KleeneSignal.and_ sigs).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((KleeneSignal.and_ sigs).at t = Kleene.tt ↔ ∀ k, (sigs k).at t = Kleene.tt) ∧

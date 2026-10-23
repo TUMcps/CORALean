@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
-public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyFactorCount
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
@@ -218,25 +218,26 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
       simp only [Pi.add_apply, Pi.zero_apply, zero_add, Finset.sum_apply, Pi.smul_apply,
         smul_eq_mul]
       exact Finset.sum_congr rfl fun l _ => mul_comm _ _
+    -- the product's point against the product of the points, coordinate by coordinate
+    set prodErr : Fin n → ℝ := fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast
+      hR k)) i
+      * Real.PolyZonotope.point (nominal pZ) b i
+      - Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR)) (fun k => b (Fin.cast hR k)) i
+        with hprodErr
     -- term B, priced by `mulG_close`
-    have hmulErr : (fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i
-            * Real.PolyZonotope.point (nominal pZ) b i
-          - Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
-              (fun k => b (Fin.cast hR k)) i)
+    have hmulErr : prodErr
         ∈ (PolyZonotope.generatorError (PolyZonotope.mulGDiff R pZ)).construct := by
       have key := PolyZonotope.mem_generatorError_monomial (E := PolyZonotope.mulE R pZ hR)
         (a := fun k => b (Fin.cast hR k)) (PolyZonotope.mulG_close R pZ)
         (fun k => hb (Fin.cast hR k))
       -- the gap is the generator-level bound, aggregated by the shared monomials
-      have heq : (fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i
-            * Real.PolyZonotope.point (nominal pZ) b i
-          - Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
-              (fun k => b (Fin.cast hR k)) i)
+      have heq : prodErr
           = fun i => ∑ l, (Real.PolyZonotope.mulG (nominal R) (nominal pZ) l i
               - toReal (PolyZonotope.mulGDown R pZ i l))
             * Real.PolyZonotope.monomial (PolyZonotope.mulE R pZ hR)
                 (fun k => b (Fin.cast hR k)) l := by
         funext i
+        simp only [hprodErr]
         rw [show (Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i
               * Real.PolyZonotope.point (nominal pZ) b i) = _ from congrFun hRSexact i,
           show Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
@@ -253,8 +254,11 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
     have hSbound : ∀ i, |Real.PolyZonotope.point (nominal pZ) b i|
         ≤ toReal (PolyZonotope.evalPolyBoundS pZ i) :=
       PolyZonotope.aux_point_le_boundS pZ b hb
-    have htermAbound : ∀ i, |(X.point (fun k => b (Fin.cast hXS k)) i
-          - Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i)
+    -- the term's point against the nominal one, coordinate by coordinate
+    set dX : Fin n → ℝ := fun i =>
+      X.point (fun k => b (Fin.cast hXS k)) i
+        - Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i with hdX
+    have htermAbound : ∀ i, |(dX i)
           * Real.PolyZonotope.point (nominal pZ) b i|
         ≤ toReal (mulUp (PolyZonotope.errorBound R.I_error i)
             (PolyZonotope.evalPolyBoundS pZ i)) := by
@@ -263,8 +267,7 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
       exact le_trans (mul_le_mul (hRerrBound i) (hSbound i) (abs_nonneg _)
           (le_trans (abs_nonneg _) (hRerrBound i))) (mul_le_mulUp _ _)
     -- the same bound, packaged as membership in the symmetric box
-    have htermAmem : (fun i => (X.point (fun k => b (Fin.cast hXS k)) i
-          - Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i)
+    have htermAmem : (fun i => (dX i)
           * Real.PolyZonotope.point (nominal pZ) b i)
         ∈ (Interval.symmetric (fun i => mulUp (PolyZonotope.errorBound R.I_error i)
             (PolyZonotope.evalPolyBoundS pZ i))).construct := by
@@ -301,14 +304,10 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
         - (toReal (FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i))
             + Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
                 (fun k => b (Fin.cast hR k)) i))
-        = ((fun i => Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i
-              * Real.PolyZonotope.point (nominal pZ) b i
-            - Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
-                (fun k => b (Fin.cast hR k)) i)
+        = (prodErr
           + (fun i => toReal (a0 i)
               - toReal (FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i)))
-          + (fun i => (X.point (fun k => b (Fin.cast hXS k)) i
-              - Real.PolyZonotope.point (nominal R) (fun k => b (Fin.cast hR k)) i)
+          + (fun i => (dX i)
               * Real.PolyZonotope.point (nominal pZ) b i) : Vec ℝ n) := by
       funext i; simp only [Pi.add_apply]; ring
     rw [hsplit]

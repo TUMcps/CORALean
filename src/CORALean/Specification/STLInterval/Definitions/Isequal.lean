@@ -27,15 +27,20 @@ otherwise both bounds agree up to `tol` and both flags are the same.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def STLInterval.isequal (tol : ℝ) : STLInterval → STLInterval → Prop
+def STLInterval.isequal (tol : ℝ) : STLInterval 𝕋 → STLInterval 𝕋 → Prop
   | .empty, .empty => True
   | .nonempty .., .empty => False
   | .empty, .nonempty .. => False
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
-    withinTol tol l₁ l₂ ∧ withinTol tol u₁ u₂ ∧ lc₁ = lc₂ ∧ rc₁ = rc₂
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
+    withinTol tol (toReal l₁ : ℝ) (toReal l₂ : ℝ) ∧ withinTol tol (toEReal u₁) (toEReal u₂) ∧
+      lc₁ = lc₂ ∧ rc₁ = rc₂
 
 end CORALean
 

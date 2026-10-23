@@ -17,6 +17,7 @@ public import CORALean.Specification.STL.Operations.RTLFinally
 public import CORALean.Specification.STL.Operations.SampToCNF
 public import CORALean.Specification.STL.Operations.SampToFormula
 public import CORALean.Specification.STL.Operations.DFormulaBound
+public import CORALean.Specification.STL.Operations.DFormulaRob
 public import CORALean.Specification.STL.Operations.AutomatedVerification
 public import CORALean.Specification.STL.Operations.FactorCheck
 public import CORALean.Specification.STL.Operations.FactorMeet

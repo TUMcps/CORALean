@@ -35,20 +35,15 @@ open Matrix
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-theorem aux_symmetrize_isHermitian (S : Mat ℝ n n) :
-    ((2 : ℝ)⁻¹ • (S + Sᵀ)).IsHermitian := by
-  ext i j
-  simp [Matrix.conjTranspose_apply, add_comm]
-  ring
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ProbZonotope.generators (P : ProbZonotope n) : Mat ℝ n n :=
-  ((aux_symmetrize_isHermitian P.cov).eigenvectorUnitary : Mat ℝ n n)
-    * diagonal (fun i => Real.sqrt ((aux_symmetrize_isHermitian P.cov).eigenvalues i))
+  -- the symmetrized covariance is Hermitian, so it has an eigendecomposition
+  have hherm : ((2 : ℝ)⁻¹ • (P.cov + P.covᵀ)).IsHermitian := by
+    ext i j
+    simp [Matrix.conjTranspose_apply, add_comm]
+    ring
+  (hherm.eigenvectorUnitary : Mat ℝ n n) * diagonal (fun i => Real.sqrt (hherm.eigenvalues i))
 
 end CORALean.Real
 

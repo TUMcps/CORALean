@@ -66,11 +66,13 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : F
     cPZ.toPolyZonotope.getSubsetGDown k cen rad
   set mon := Real.PolyZonotope.monomial
     (Real.PolyZonotope.getSubsetE (nominal cPZ.toPolyZonotope) k) a
+  -- the generator error of the subset's difference of generators
+  set GE := PolyZonotope.generatorError (cPZ.toPolyZonotope.getSubsetGDiff k cen rad) with hGE
   -- the rounding of the generators, scaled by the monomials, lies in the added box
   set err : Fin n → ℝ := fun i => ∑ l : Fin (cPZ.toPolyZonotope.h *
     (cPZ.toPolyZonotope.maxExp k + 1)), (G l i - toReal (Gd i l)) * mon l with herr
   have hbox : err ∈
-      (PolyZonotope.generatorError (cPZ.toPolyZonotope.getSubsetGDiff k cen rad)).construct :=
+      GE.construct :=
     PolyZonotope.mem_generatorError_monomial
       (PolyZonotope.getSubsetG_close cPZ.toPolyZonotope k cen rad) ha
   -- the float point at the same factors and coefficients, plus what the rounding and the box add
@@ -88,10 +90,8 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : F
     have h₁ : toReal (cPZ.toPolyZonotope.I_error.inf i) ≤ e i := (he i).1
     have h₂ : e i ≤ toReal (cPZ.toPolyZonotope.I_error.sup i) := (he i).2
     -- the generator rounding's point, within its own box
-    have h₃ : toReal ((PolyZonotope.generatorError
-          (cPZ.toPolyZonotope.getSubsetGDiff k cen rad)).inf i) ≤ err i ∧
-        err i ≤ toReal ((PolyZonotope.generatorError
-          (cPZ.toPolyZonotope.getSubsetGDiff k cen rad)).sup i) := hbox i
+    have h₃ : toReal (GE.inf i) ≤ err i ∧
+        err i ≤ toReal (GE.sup i) := hbox i
     refine ⟨le_trans (addDown_le_add _ _) ?_, le_trans ?_ (add_le_addUp _ _)⟩
     · simp only [Entrywise.entry]
       linarith [h₃.1]

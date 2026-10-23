@@ -16,15 +16,14 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 `timeInterval_outer_convexCompact` needs `0 ∈ U`, which no representation has to satisfy. `Recenter`
 takes the input set apart into a center and a remainder holding the origin, and `OfPoint` gives the
 constant its own singleton; `linComb (ofPoint 0) (ofPoint c)` is then the segment the constant is
-enclosed against, so no representation-specific development is needed. So [1, Alg. 3], the extension
-of [1, Alg. 2] to an input set not containing the origin, split into a constant part and a
-zero-containing remainder, assumes nothing about where the input set sits, at every representation
-with a center.
+enclosed against, so no representation-specific development is needed. So the step of [1, Eq. 4],
+the input set split into a constant part and a remainder holding the origin, assumes nothing about
+where the input set sits, at every representation with a center.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5
@@ -74,6 +73,9 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
             (MatExp.constCorrectionMatrix (toRealMat sys.A) r (m + 2))
             (OfPoint.ofPoint (Recenter.center U))))
         (sys.inputSolution r (m + 2) (Recenter.recenter U)))) :=
+  -- the remainder's product with the recentered set
+  let rem : S n := Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
+    (Recenter.recenter U)
   -- every hypothesis comes off `Recenter`/`OfPoint`, which is why this needs no representation
   traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_construct U)
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
@@ -85,12 +87,9 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
       (ConvexSet.convex_construct (Recenter.recenter U))
       (CompactSet.isClosed_construct (Recenter.recenter U))
       (CompactSet.isBounded_construct (Recenter.recenter U))
-      (ConvexSet.convex_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recenter.recenter U)))
-      (CompactSet.isClosed_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recenter.recenter U)))
-      (CompactSet.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recenter.recenter U)))
+      (ConvexSet.convex_construct rem)
+      (CompactSet.isClosed_construct rem)
+      (CompactSet.isBounded_construct rem)
       ht0 htr)
 
 end CORALean

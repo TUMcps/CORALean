@@ -95,22 +95,24 @@ theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n} (hC 
 plus a point of its error box. -/
 theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
     (R₀ : Zonotope (Vec 𝕋 n)) (τc τg : 𝕋) (i : Fin n) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- CONCL ---
+    let cf := Fin.append (Fin.append ![κ] (0 : Fin R₀.h → ℝ)) fun α => κ * (0 : Fin R₀.h → ℝ) α
     ∃ E ∈ (GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).I_error.construct,
       (GuardMap.hitHessianMatZono (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
           (⟨R₀.h, toRealVec R₀.c, fun j => toRealVec (R₀.G j)⟩ : Real.Zonotope (Vec ℝ n))
           (-toRealVec nv - toReal τc • (toRealVec nv ᵥ* toRealMat A))
           (-(toReal τg • (toRealVec nv ᵥ* toRealMat A))) i).c
         + ∑ j : Fin (1 + R₀.h + R₀.h),
-          (Fin.append (Fin.append ![κ] (0 : Fin R₀.h → ℝ)) fun α => κ * (0 : Fin R₀.h → ℝ) α) j
+          cf j
           • (GuardMap.hitHessianMatZono (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
           (⟨R₀.h, toRealVec R₀.c, fun j => toRealVec (R₀.G j)⟩ : Real.Zonotope (Vec ℝ n))
           (-toRealVec nv - toReal τc • (toRealVec nv ᵥ* toRealMat A))
           (-(toReal τg • (toRealVec nv ᵥ* toRealMat A))) i).G j
       = (toRealMat (GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).c + E)
         + ∑ j : Fin (1 + R₀.h + R₀.h),
-          (Fin.append (Fin.append ![κ] (0 : Fin R₀.h → ℝ)) fun α => κ * (0 : Fin R₀.h → ℝ) α) j
+          cf j
           • toRealMat ((GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).G
             j) := by -- --- PROOF ---
+  intro cf
   set Ar := toRealMat A with hAr
   set nr := toRealVec nv with hnr
   set cr := toRealVec R₀.c with hcr
@@ -168,10 +170,10 @@ theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 
     (Interval.smul_outer h2lo h2hi _ (Interval.matMul_outer _ _ hψg hΥ))
   -- the sums keep only the first generator, at `κ`
   have hsum : ∀ X : Fin (1 + R₀.h + R₀.h) → Mat ℝ n n, ∑ j : Fin (1 + R₀.h + R₀.h),
-      (Fin.append (Fin.append ![κ] (0 : Fin R₀.h → ℝ)) fun α => κ * (0 : Fin R₀.h → ℝ) α) j
+      cf j
         • X j = κ • X (Fin.castAdd R₀.h (Fin.castAdd R₀.h 0)) := fun X => by
     rw [Fin.sum_univ_add, Fin.sum_univ_add]
-    simp [Fin.append_left, Fin.append_right]
+    simp [cf, Fin.append_left, Fin.append_right]
   obtain ⟨E, hE, heq⟩ := aux_hessF_box _ _ hC hG1 hκ
   refine ⟨E, hE, ?_⟩
   rw [hsum, hsum]

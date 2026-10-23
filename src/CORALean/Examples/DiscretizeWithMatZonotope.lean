@@ -51,7 +51,8 @@ theorem DMZ.hε : ‖(1:ℝ) • toRealMat DMZ.sys.A‖ / ((0:ℕ) + 2 : ℝ) < 
   norm_num
 
 /-- The discretized system, over the matrix zonotope `expMatZonoEnclosure`
-computed for this `Δt` and this truncation order. -/
+computed for this `Δt` and this truncation order. Noncomputable: the enclosure is built from the
+real matrix exponential. -/
 noncomputable def DMZ.sysD : LinParamSysDT 𝕄𝒵 1 := DMZ.sys.discretizeMatZonotope 1 0
 
 /-- The one matrix the enclosure is sound about: `exp (Δt • sys.A)` itself. -/

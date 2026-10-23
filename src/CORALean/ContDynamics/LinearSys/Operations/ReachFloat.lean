@@ -13,7 +13,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Recursive reachability in floats: `R_{k+1} = reduce([e^{AΔt}] R_k, ρ)`
 
-[1, Alg. 4] at a point matrix, no input, in `𝕋`, CORA's `linAlg = 'standard'`: `X₀ = params.X₀`,
+[1, Alg. 1] at a point matrix, no input, in `𝕋`, CORA's `linAlg = 'standard'`: `X₀ = params.X₀`,
 `Δt`, `η`, `ρ` the `options`', `N = (tFinal - tStart) / Δt` by `Reach.steps`, `none` unless a
 natural number. Time-point sets `R_0 = X₀, …, R_N` by `timePointStepFloat` and Girard's reduction
 to order `ρ`, window `k < N` by `timeIntervalFloat` from `R_k`, not reduced. The error box is
@@ -32,8 +32,9 @@ once, `η` raised as `reachWrappingFreeFloat` raises it, and the steps apply the
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

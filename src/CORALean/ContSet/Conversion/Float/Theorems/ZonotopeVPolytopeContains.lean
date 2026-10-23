@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
-public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.VPolytope.Float.Theorems.MemColumnGap
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContains
 public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 public import CORALean.ContSet.Interval.Real.Theorems.Convex

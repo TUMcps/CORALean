@@ -37,15 +37,15 @@ throws otherwise, here `none`.
 
 namespace CORALean
 
-variable {A : Type}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {A : Type}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `obj = onlineAnalyzerNode(type,idx,parents,dropPropagated,varargin)`. -/
-noncomputable def OnlineAnalyzerNode.mk? (kind : OnlineAnalyzerNode.Kind) (idx : ℕ)
-    (parents : List ℕ) (dropPropagated : Bool) (interval : Option STLInterval) (ap : Option A) :
-    Option (OnlineAnalyzerNode A) :=
+def OnlineAnalyzerNode.mk? [Float.ExactLe 𝕋] [TimeOrder 𝕋] (kind : OnlineAnalyzerNode.Kind)
+    (idx : ℕ) (parents : List ℕ) (dropPropagated : Bool) (interval : Option (STLInterval 𝕋))
+    (ap : Option A) : Option (OnlineAnalyzerNode 𝕋 A) :=
   -- narginchk: an `until` node gets its interval, an `AP` node its proposition, no other one
   if decide (kind = .until) = interval.isSome ∧ decide (kind = .ap) = ap.isSome then
     some { kind := kind, signal := OnlineAnalyzerNode.initSignal kind,

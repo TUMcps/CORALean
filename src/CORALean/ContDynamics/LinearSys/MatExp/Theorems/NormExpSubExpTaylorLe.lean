@@ -12,10 +12,10 @@ public import Mathlib.Tactic.Positivity
 /-!
 # The matrix exponential's Taylor truncation error, bounded
 
-[1, Eq. (3.2)–(3.3)]. The tail past `η` is dominated term by term by a
-geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows
-`(η+1)!` by at least `(η+2)` a step. Summing that geometric series is where the
-`1 / (1 - ε)` comes from, and where `ε < 1` is needed.
+The remainder bound of [1, Thm. 1] at a single matrix. The tail past `η` is dominated term by term
+by a geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows `(η+1)!` by at least
+`(η+2)` a step. Summing that geometric series is where the `1 / (1 - ε)` comes from, and where
+`ε < 1` is needed.
 
 ## Inputs
 * `x` – matrix
@@ -29,8 +29,9 @@ geometric series of ratio `‖x‖ / (η + 2)`, because `(η+1+i)!` outgrows
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

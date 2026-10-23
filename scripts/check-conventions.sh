@@ -86,15 +86,9 @@ FLINT_AXIOM_FILE=src/CORALean/Global/Float/Instances/Flint/Definitions/Axioms.le
 FLINT_AXIOM=trustedFlint
 BENCH_DIR=src/CORALean/Examples/Bench/
 
-# `noncomputable` outside a representation's `Real/` layer, the scalar
-# interface's instance at ℝ and a `Definitions/` file is legitimate only for an
-# `aux_` declaration or a name listed here with a reason — see the file's own
-# header for what a reason must say. The name is the declaration's own,
-# exactly as written after `noncomputable` — a dotted prefix and all, so a
-# bare `reach` here excuses only a bare `reach`, never `LinearSys.reach` too.
-# Under `Float/` even that allowlist does not reach: only the `aux_` exemption
-# does, because the whole point of the float layer is that it runs.
-ALLOWLIST=scripts/noncomputable-allowlist.txt
+# `noncomputable` is checked by `scripts/check-noncomputable.py` (#257): free in a real layer, for
+# a `Set`, a `Prop` or an ℝ-valued type, or with a docstring that says why; never in the float
+# layer. There is no list. `noncomputable section` is refused below.
 
 # `Operations/` holds definitions, never theorems (#198), the mirror of the rule that keeps
 # definitions out of `Theorems/`: a theorem in an `Operations/` file is a guarantee about the
@@ -202,7 +196,6 @@ if [ -n "$STAGED" ]; then
     printf 'conventions: no staged file under src/, nothing to check\n'
     exit 0
   fi
-  ALLOWLIST=$repo/$ALLOWLIST
   OPS_THEOREM_LIST=$repo/$OPS_THEOREM_LIST
   stage=$(mktemp -d)
   printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
@@ -246,8 +239,7 @@ out=$(awk \
   -v CEXLIST="$cexlist" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v PYTHON="$PYTHON" \
-  -v REPO="$repo" \
-  -v ALLOWLIST="$ALLOWLIST" '
+  -v REPO="$repo" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
 function checkReview(val, ln,    d, nm) {
   if (val !~ /^[0-9][0-9]-[A-Za-z]+-[0-9][0-9][0-9][0-9] \(.+\)$/) {
@@ -267,25 +259,6 @@ BEGIN {
   CONT = "[\200-\277]"
   MONTH = "(January|February|March|April|May|June|July|August|September|October|November|December)"
   DATE = "^(0[1-9]|[12][0-9]|3[01])-" MONTH "-[0-9][0-9][0-9][0-9]$"
-
-  # The allowlist: `<qualified name>  <reason>` per line, `#` comments and
-  # blank lines ignored. `allowLine` is kept for the stale-entry report at
-  # the end.
-  while ((getline aline < ALLOWLIST) > 0) {
-    allowFNR++
-    line = aline
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    name = line
-    sub(/[ \t].*$/, "", name)
-    # One line per name: a merge that keeps an old reason beside a new one
-    # (a stale `pending` next to its `real-layer`) inflates every count read here.
-    if (name in allowNC)
-      say(ALLOWLIST ":" allowFNR ": duplicate allowlist entry `" name "` (first at line " allowLine[name] ")")
-    allowNC[name] = 1
-    allowLine[name] = allowFNR
-  }
-  close(ALLOWLIST)
 
   # The counterexample exceptions: `<path> | <reason>` per line.
   while ((getline cline < CEXLIST) > 0) {
@@ -1053,7 +1026,7 @@ FNR == 1 {
     sub(DECL_PREFIX, "", decl)
     sub(/[^A-Za-z0-9_'"'"'.].*$/, "", decl)
     b = base(decl)
-    # The declaration name as written, for the `noncomputable` allowlist:
+    # The declaration name as written:
     # unlike `decl`/`b`, kept whole rather than trimmed to identifier
     # characters, so a dotted prefix (`LinearSys.reach`) and a non-ASCII byte
     # (`norm₂`, a UTF-8 continuation byte under `LC_ALL=C`) both survive, and
@@ -1105,34 +1078,6 @@ FNR == 1 {
       say(FILENAME ":" FNR ": a `" kind "` in a theorem file — `" qualDecl "` is a definition," \
           " which belongs in `Definitions/` (a type, proposition, set or specification) or" \
           " `Operations/` (an algorithm); only `private` and `aux_` helpers of one proof stay")
-
-    # `noncomputable` is free in the `Real/` layer of a representation (rule 1),
-    # in the instance of the scalar interface at ℝ, `Global/Float/Instances/Real/`
-    # (rule 2), and in a `Definitions/` file, which says what an object means
-    # and is never run, and in a `Counterexamples/` file, whose models are read, not run.
-    # Elsewhere it is free only for an `aux_` declaration
-    # (rule 3) or a name the allowlist gives a reason (rule 4), and under
-    # `Float/` even the allowlist does not reach: the float layer exists to run.
-    if (prefix ~ /noncomputable /) {
-      isAux = (b ~ /^aux_/)
-      if (FILENAME !~ /\/ContSet\/.*\/Real\// && FILENAME !~ /\/Global\/Float\/Instances\/Real\// &&
-          FILENAME !~ /\/Definitions\// && FILENAME !~ /\/Counterexamples\//) {
-        if (FILENAME ~ /\/Float\//) {
-          if (!isAux)
-            say(FILENAME ":" FNR ": `noncomputable` under `Float/` — only an" \
-                " `aux_` declaration may be; the float layer must run")
-        } else if (isAux) {
-          # exempt
-        } else if (qualDecl in allowNC) {
-          usedAllow[qualDecl] = 1
-        } else {
-          say(FILENAME ":" FNR ": `noncomputable` outside a `Real/` layer or" \
-              " `Definitions/`, not an `aux_` declaration, and `" qualDecl "` is not in `" \
-              ALLOWLIST "` — add it there with a reason, or make the" \
-              " declaration computable")
-        }
-      }
-    }
 
     # Rule B. A `Definitions/` file holds meanings: types, propositions, sets,
     # and what is `noncomputable` because it is a specification. A theorem
@@ -1194,10 +1139,6 @@ END {
   if (prev != "") check(prev)
   # The stale-entry reports need the declarations of every file, which a staged run lacks.
   if (!STALE) exit
-  for (name in allowNC)
-    if (!(name in usedAllow))
-      say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
-          "` — no longer matches any `noncomputable` declaration the rules do not already allow")
   for (p in cexOK)
     if (!(p in cexUsed))
       say("scripts/check-conventions.sh: stale COUNTEREXAMPLE_EXCEPTIONS entry `" p \
@@ -1743,7 +1684,7 @@ report "$out"
 # whose name does not end in `Exact` (#224), and a main
 # theorem that takes `(h : f … = some E)` instead of quantifying `∀ E ∈ f …`
 # (#212), and a `## References` entry that names a thesis
-# instead of the paper (scripts/thesis-ref-allowlist.txt), and a definition of a composite
+# instead of the paper (#255), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
 # instead of through the component's operations (scripts/component-reuse-allowlist.txt, #174), and
 # a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt),
@@ -1755,7 +1696,7 @@ if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
     check-exact-names.py check-option-hyps.py check-thesis-refs.py check-io-doc.py \
-    check-component-reuse.py check-float-refinement.py check-steps.py; do
+    check-component-reuse.py check-float-refinement.py check-steps.py check-noncomputable.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then
@@ -1936,11 +1877,8 @@ report "$out"
 # mentions is an operation and goes to `Operations/`. The exempt names are `construct`, `nominal…`,
 # `toReal…`, `containsReal`, `IsTrajectory…`; a `def` returning `Prop`, `Set` or a `Type` is a
 # meaning. Out of scope: `Global/` and `Examples/`, which are not class roots, and
-# `Interfaces.lean`, whose operation classes are #135's. What is legitimately there is listed in
-# `scripts/main-type-allowlist.txt`, `<path>::<name>  <reason>` per line (`<path>::*` for a whole
-# file); the list only shrinks, and an entry that matches nothing is stale.
-out=$(awk -v LIST=scripts/main-type-allowlist.txt -v PATHLIST="$repo/scripts/main-type-allowlist.txt" \
-    -v STALE="${STAGED:-}" '
+# `Interfaces.lean`, whose operation classes are #135's. There is no list.
+out=$(awk '
 function dataResult(h,   i, c, d, cut, t, seg) {
   sub(/:=.*$/, "", h); sub(/ where([ \t].*)?$/, "", h); sub(/[ \t]\|.*$/, "", h)
   d = 0; cut = 0
@@ -1962,10 +1900,8 @@ function dataResult(h,   i, c, d, cut, t, seg) {
   return !(seg == "Prop" || seg ~ /^Set([ \t(]|$)/ || seg ~ /^Type/ || seg ~ /^Sort/)
 }
 function report(key, line, msg) {
-  if ((file "::*") in allow) { hit[file "::*"] = 1; return }
-  if (key in allow) { hit[key] = 1; return }
   print file ":" line ": " msg " — move it to `Theorems/` or `Operations/` (a `Basic.lean` section" \
-        " when it is small), or list `" key "` in " LIST " with the reason it stays"
+        " when it is small)"
 }
 function flush(   i, j, k, short, refs, pat, s) {
   if (file == "" || !banner) return
@@ -1986,11 +1922,6 @@ function flush(   i, j, k, short, refs, pat, s) {
 }
 BEGIN {
   LB = "\133"; RB = "\135"
-  while ((getline l < PATHLIST) > 0) {
-    if (l ~ /^#/ || l == "") continue
-    split(l, kv, /[ \t]+/); allow[kv[1]] = 1; aln[kv[1]] = ++n
-  }
-  close(PATHLIST)
 }
 FNR == 1 {
   flush()
@@ -2022,15 +1953,7 @@ FNR == 1 {
   else if (s !~ /^([ \t]|$)/) cur = 0
   if (cur > 0) de[cur] = nl
 }
-END {
-  flush()
-  if (STALE != "") exit
-  for (k in allow) {
-    split(k, kp, "::")
-    if (!(kp[1] in seen)) print LIST ":" aln[k] ": stale entry `" k "` — no such file"
-    else if (!(k in hit)) print LIST ":" aln[k] ": stale entry `" k "` — nothing matches it any more; the list only shrinks"
-  }
-}' $files | sort)
+END { flush() }' $files | sort)
 report "$out"
 
 # A main-type file cites the publication it formalizes (#211): the file with the `MAIN TYPE`

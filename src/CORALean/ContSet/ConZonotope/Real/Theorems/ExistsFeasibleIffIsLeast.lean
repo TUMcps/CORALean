@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Mathlib.Analysis.RCLike.Lemmas
 

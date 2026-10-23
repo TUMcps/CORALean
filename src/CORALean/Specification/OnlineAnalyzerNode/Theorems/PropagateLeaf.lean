@@ -38,8 +38,9 @@ variable {A : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A `true` or `false` node propagates nothing. -/
-theorem OnlineAnalyzerNode.propagate_leaf (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (h : n.kind = .true ∨ n.kind = .false) :
+theorem OnlineAnalyzerNode.propagate_leaf (eps : ℝ) (n : OnlineAnalyzerNode ℝ A)
+    (ch : List (OnlineAnalyzerNode ℝ A)) (I : STLInterval ℝ)
+    (h : n.kind = .true ∨ n.kind = .false) :
     n.propagate eps ch I = some (n, ch) := by
   unfold OnlineAnalyzerNode.propagate
   rcases h with h | h <;> rw [h]

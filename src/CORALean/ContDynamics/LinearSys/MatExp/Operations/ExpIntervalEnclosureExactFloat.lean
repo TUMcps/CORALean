@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFl
 # Interval matrices: the exponential enclosed with an exact second order, in floats
 
 `expIntervalEnclosure`'s sharper sibling, `Real.MatExp.expIntervalEnclosureExact` rounded:
-`e^{At}_[κ]` of [1, Thm. 3.2] is the truncation `expIntervalTaylorExact` widened by `E(t)`,
+`⌈e^{At}_κ⌉` of [1, Thm. 1] is the truncation `expIntervalTaylorExact` widened by `E(t)`,
 the tail bound taken at `normUpperBound` of `[t] A` as `expIntervalEnclosure` takes it. Widened
 outward, `inf` down and `sup` up.
 
@@ -24,8 +24,9 @@ outward, `inf` down and `sup` up.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -45,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `e^{At}_[κ]` of [1, Thm. 3.2]: that truncation widened by `E(t)`. -/
+/-- `⌈e^{At}_κ⌉` of [1, Thm. 1]: that truncation widened by `E(t)`. -/
 def MatExp.expIntervalEnclosureExact (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (κ : ℕ) :
     Interval (Mat 𝕋 n n) :=
   let T := MatExp.expIntervalTaylorExact A t κ                      -- the truncation

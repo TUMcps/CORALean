@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STLInterval.Operations.Infimum
 public import CORALean.Specification.STLInterval.Theorems.Basic
 public import CORALean.Specification.STLInterval.Theorems.RawSetBoundsNe
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
 public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
 
 @[expose] public section
@@ -32,27 +33,31 @@ The flag `infimum` returns holds iff the infimum is itself one of the times.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `isMin` holds iff the infimum is attained by a time of the interval. -/
-theorem STLInterval.infimum_closed_iff (I : STLInterval) (hI : I ≠ .empty) : -- --- CONCL ---
-    I.infimum.closed = true ↔ ∃ t ∈ I.set, I.infimum.value = some (t : EReal) := by -- --- PROOF ---
+theorem STLInterval.infimum_closed_iff (I : STLInterval 𝕋) (hI : I ≠ .empty) : -- --- CONCL ---
+    I.infimum.closed = true ↔
+      ∃ t ∈ I.set, I.infimum.value.map STLInterval.toEReal = some (t : EReal) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI
-  | nonempty l u lc rc a b c _ =>
-    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
-    show lc = true ↔ ∃ t ∈ rawSet l u lc rc, some l = some (t : EReal)
+  | nonempty l u lc rc b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of_fields b c
+    show lc = true ↔ ∃ t ∈ rawSet (toReal l : ℝ) (toEReal u) lc rc,
+      some ((toReal l : ℝ) : EReal) = some (t : EReal)
     constructor
-    · intro hc
-      have hb : l ≠ ⊥ := fun h => by simp [a h] at hc
-      have ht : l ≠ ⊤ := (rawSet_bounds_ne ⟨x, hx⟩).1
-      refine ⟨l.toReal, ⟨Or.inr ⟨hc, (EReal.coe_toReal ht hb).symm⟩, ?_⟩,
-        by rw [EReal.coe_toReal ht hb]⟩
+    · -- the lower bound itself is a time of the interval
+      intro hc
+      refine ⟨toReal l, ⟨Or.inr ⟨hc, rfl⟩, ?_⟩, rfl⟩
       refine rawSet_upper_of_le ?_ hx.2
       rcases hx.1 with h | ⟨_, h⟩
-      · rw [← EReal.coe_le_coe_iff, EReal.coe_toReal ht hb]; exact h.le
-      · rw [← EReal.coe_le_coe_iff, EReal.coe_toReal ht hb]; exact h.le
+      · exact (EReal.coe_lt_coe_iff.1 h).le
+      · exact (EReal.coe_eq_coe_iff.1 h).le
     · rintro ⟨t, ⟨h | ⟨hc, _⟩, _⟩, e⟩
       · exact absurd (Option.some.inj e ▸ h) (lt_irrefl _)
       · exact hc

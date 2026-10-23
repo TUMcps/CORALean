@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
 
 @[expose] public section
 
@@ -70,12 +71,9 @@ theorem LinParamSys.inputReach_subset_inputSolution (sys : LinParamSys ℐ n)
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U))) : -- --- CONCL ---
+    (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U))
+    (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U))
+    (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U)) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach U r
       ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩

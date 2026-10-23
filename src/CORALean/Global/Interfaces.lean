@@ -14,11 +14,13 @@ that read back as the real ones, all a block matrix needs; `ExactAdd` is the law
 as the real sum, which holds at ℝ and at no float format (#117, #40), and `NegScalar` the same for
 negation, exact in every format. `Entrywise α ι` reads an ambient type coordinate by coordinate,
 `Fin n` for a vector and `Fin m × Fin n` for a matrix, `entry` linear and injective.
+`TimeOrder T` is what an algorithm on time stamps compares with: a linear order's own order, or a
+float format's exact comparison, so that a signal stores the scalar its layer computes in.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   23-October-2026
 -- Reviewed:      ---
 
 
@@ -105,6 +107,30 @@ class NegScalar (𝕋 : Type) [Scalar 𝕋] [Neg 𝕋] where
 /-- `ℝ` negates itself. -/
 instance : NegScalar ℝ where
   toReal_neg _ := rfl
+
+/-- The comparisons an algorithm on time stamps branches on, with no law of their own: a linear
+order's, or a float format's exact ones read through `toReal` (`ExactLe`). The order parents are
+low-priority instances, so a type with an order of its own (`Float`) keeps it. -/
+class TimeOrder (T : Type) extends LE T, LT T where
+  /-- Two time stamps denote the same time. -/
+  Eqv : T → T → Prop
+  decLe : DecidableRel (· ≤ · : T → T → Prop)
+  decLt : DecidableRel (· < · : T → T → Prop)
+  decEqv : DecidableRel Eqv
+
+attribute [instance low] TimeOrder.toLE TimeOrder.toLT
+attribute [reducible, instance] TimeOrder.decLe TimeOrder.decLt TimeOrder.decEqv
+
+/-- A linear order compares with its own order and equality. -/
+instance {T : Type} [LinearOrder T] : TimeOrder T where
+  Eqv a b := a = b
+  decLe := inferInstance
+  decLt := inferInstance
+  decEqv := inferInstance
+
+/-- At a linear order, `Eqv` is equality. -/
+@[simp] theorem TimeOrder.eqv_iff_eq {T : Type} [LinearOrder T] (a b : T) :
+    TimeOrder.Eqv a b ↔ a = b := Iff.rfl
 
 /-- An ambient type read coordinate by coordinate, over the index set `ι`, with `entry` linear and
 injective. -/

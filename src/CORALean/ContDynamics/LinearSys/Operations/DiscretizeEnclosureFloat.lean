@@ -27,8 +27,9 @@ Its `reach` is `LinParamSysDT.reach` at that family, which runs as it stands;
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
@@ -50,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The system a step of `Δt` leaves behind, its matrix the float enclosure of
-`e^{AΔt}` at Taylor order `η`, [1, Sec. 3.2]. -/
+`e^{AΔt}` at Taylor order `η`, [1, Thm. 1]. -/
 def LinearSys.discretizeEnclosureFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) :
     LinParamSysDT ℐ[𝕋] n :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                         -- [e^{AΔt}]

@@ -8,13 +8,13 @@ public import CORALean.ContSet.Interval.Real.Operations.MatMul
 /-!
 # A symmetric interval matrix times a point matrix, in closed form
 
-[1, Lemma 3.2]. `Interval.matMul` bounds a general interval-times-interval product through four
-corner bounds per summand; when the left factor is symmetric (`S.inf = -S.sup`) and the right one
-a single matrix rather than an interval, those corners collapse entrywise to `|M|` scaled by
-`S.sup` — the thesis's `S M = [-S̄|M|, S̄|M|]` half of (3.18). Proved at full matrix generality,
-one column of `M` at a time, needing no regularity of `M`, only that `M` is a point. The bound is
-stated entrywise, as CORA's row/column sum is. `S.IsNonempty` stands in for "`S = [-S̄, S̄]` is a
-genuine interval": crossed bounds would make `S.sup` negative somewhere.
+[1, Lemma 2]. `Interval.matMul` bounds a general interval-times-interval product through four corner
+bounds per summand; when the left factor is symmetric (`S.inf = -S.sup`) and the right one a single
+matrix rather than an interval, those corners collapse entrywise to `|M|` scaled by `S.sup` — the
+`ST = ⟨-Ŝ|T|, Ŝ|T|⟩` half of [1, Lemma 2]'s (6). Proved at full matrix generality, one column of `M`
+at a time, needing no regularity of `M`, only that `M` is a point. The bound is stated entrywise, as
+CORA's row/column sum is. `S.IsNonempty` stands in for "`S = [-S̄, S̄]` is a genuine interval":
+crossed bounds would make `S.sup` negative somewhere.
 
 ## Inputs
 * `S` – symmetric interval matrix
@@ -29,8 +29,9 @@ genuine interval": crossed bounds would make `S.sup` negative somewhere.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

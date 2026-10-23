@@ -4,10 +4,12 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactConfinementOfSubset
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeIntervalHorizon
+public import
+  CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeIntervalHorizon
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.SetUnion.Theorems.Basic
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -93,14 +95,14 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
     fun _ _ => (CompactSet.isCompact_construct _).isClosed
   have hbdd : ∀ i < N, Bornology.IsBounded (construct (sys.steps i).linInput) :=
     fun _ _ => (CompactSet.isCompact_construct _).isBounded
-  have hRconv : ∀ i < N, Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (sys.steps i).A Δt (q + 2)) (sys.steps i).linInput)) :=
+  -- the remainder set of step `i`
+  set Rm : ℕ → Set (Vec ℝ n) := fun i =>
+    MatExp.inputRemainderSet (sys.steps i).A Δt (q + 2) (sys.steps i).linInput with hRm
+  have hRconv : ∀ i < N, Convex ℝ (Rm i) :=
     fun _ _ => ConvexSet.convex_construct _
-  have hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (sys.steps i).A Δt (q + 2)) (sys.steps i).linInput)) :=
+  have hRclosed : ∀ i < N, IsClosed (Rm i) :=
     fun _ _ => (CompactSet.isCompact_construct _).isClosed
-  have hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (sys.steps i).A Δt (q + 2)) (sys.steps i).linInput)) :=
+  have hRbdd : ∀ i < N, Bornology.IsBounded (Rm i) :=
     fun _ _ => (CompactSet.isCompact_construct _).isBounded
   -- every test passed: the ball of radius `2MΔt` about each start lies in the region
   have hsub : ∀ i < N, ∀ y ∈ construct (sys.sys.relinReach ⟨params.X₀, 0, i⟩

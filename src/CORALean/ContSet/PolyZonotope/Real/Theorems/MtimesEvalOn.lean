@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesEqMap
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapEvalOn
 
 @[expose] public section

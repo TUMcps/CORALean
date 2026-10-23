@@ -54,6 +54,26 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.RepresentsaFullspaceSoun
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadRightIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLast
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadRight
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecSingle
+public import CORALean.ContSet.HPolytope.Float.Theorems.SmulMemHalfScaledLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemFullspace
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadRightNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.SubsetOfBounds
 
 /-!
 # What the float `HPolytope` guarantees

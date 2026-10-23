@@ -14,7 +14,6 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
 public import CORALean.ContSet.Interval.Float.Operations.BoundProj
 public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
-public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MatPow
@@ -27,7 +26,6 @@ public import CORALean.ContSet.Interval.Float.Operations.OfBounds
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Operations.Reindex
 public import CORALean.ContSet.Interval.Float.Operations.Smul
-public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
 public import CORALean.ContSet.Interval.Float.Operations.Log
 public import CORALean.ContSet.Interval.Float.Operations.Sqrt
 public import CORALean.ContSet.Interval.Float.Operations.Asinh
