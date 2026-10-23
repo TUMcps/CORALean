@@ -24,6 +24,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoZonotopeConta
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeContainsVPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeEllipsoidContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeExistsPolyZonotopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopePolyZonotopeContains
