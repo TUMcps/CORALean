@@ -9,8 +9,8 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Interval matrices: one order's contribution to the integrated correction over a box
 
-`intervalConstCorrTerm`: what order `i` contributes to [1]'s constant correction over a whole
-box: `constCorrTerm`'s scalar factor against the box the `(i+1)`-th power lies in.
+`intervalConstCorrTerm`: what order `i` contributes to [1, Sec. III-A]'s constant correction over a
+whole box: `constCorrTerm`'s scalar factor against the box the `(i+1)`-th power lies in.
 
 ## Inputs
 * `A` – interval matrix
@@ -22,8 +22,8 @@ box: `constCorrTerm`'s scalar factor against the box the `(i+1)`-th power lies i
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5

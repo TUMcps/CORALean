@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.Linear
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 
 @[expose] public section
 

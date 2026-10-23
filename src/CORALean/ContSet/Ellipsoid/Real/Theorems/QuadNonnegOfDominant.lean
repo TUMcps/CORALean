@@ -64,7 +64,10 @@ theorem Ellipsoid.quad_nonneg_of_dominant {n : ℕ} (M : Mat ℝ n n) (hsymm : �
           abs_mul (v i) (v j), abs_nonneg (v i), abs_nonneg (v j)]
       have h2 := (abs_le.mp h1).1
       nlinarith
-  have hsum : ∑ i, ∑ j, ((if i = j then M i i * v i ^ 2 else 0) - W i j * (v i ^ 2 + v j ^ 2) / 2)
+  -- the entry at `(i, j)` of the quadratic form's split
+  set e : Fin n → Fin n → ℝ := fun i j =>
+    (if i = j then M i i * v i ^ 2 else 0) - W i j * (v i ^ 2 + v j ^ 2) / 2 with he
+  have hsum : ∑ i, ∑ j, (e i j)
       ≤ ∑ i, ∑ j, v i * (M i j * v j) :=
     Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ => hterm i j
   -- the two squares contribute the same sum, by symmetry of `W`
@@ -76,9 +79,9 @@ theorem Ellipsoid.quad_nonneg_of_dominant {n : ℕ} (M : Mat ℝ n n) (hsymm : �
     simp
   have hrow : ∑ i, ∑ j, W i j * v i ^ 2 / 2 = ∑ i, (∑ j, W i j) * v i ^ 2 / 2 :=
     Finset.sum_congr rfl fun i _ => by rw [← Finset.sum_div, ← Finset.sum_mul]
-  have hform : ∑ i, ∑ j, ((if i = j then M i i * v i ^ 2 else 0) - W i j * (v i ^ 2 + v j ^ 2) / 2)
+  have hform : ∑ i, ∑ j, (e i j)
       = ∑ i, M i i * v i ^ 2 - ∑ i, (∑ j, W i j) * v i ^ 2 := by
-    have : ∀ i j, ((if i = j then M i i * v i ^ 2 else 0) - W i j * (v i ^ 2 + v j ^ 2) / 2)
+    have : ∀ i j, (e i j)
         = (if i = j then M i i * v i ^ 2 else 0) - W i j * v i ^ 2 / 2 - W i j * v j ^ 2 / 2 :=
       fun i j => by ring
     simp only [this, Finset.sum_sub_distrib]

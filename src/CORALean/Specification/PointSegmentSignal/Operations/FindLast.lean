@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtValIdx
 
@@ -35,7 +36,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[time,inclusive] = findLast(obj,value)`. -/
-def PointSegmentSignal.findLast {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+def PointSegmentSignal.findLast {T : Type} [TimeOrder T] [Zero T] (s : PointSegmentSignal T)
     (value : Bool) : WithTop T × Bool :=
   -- 1. i = find(obj.values == value,1,'last')
   match (List.matlabFind (· == value) s.values).getLast? with

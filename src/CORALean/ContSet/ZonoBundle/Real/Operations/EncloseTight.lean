@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
-public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVerticesNonempty
-public import CORALean.ContSet.VPolytope.Real.Operations.KNeZeroOfNonempty
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightVerticesNonempty
+public import CORALean.ContSet.VPolytope.Real.Theorems.KNeZeroOfNonempty
 
 @[expose] public section
 

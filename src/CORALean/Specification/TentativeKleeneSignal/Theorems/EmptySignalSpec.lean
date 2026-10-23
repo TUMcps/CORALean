@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
+public import CORALean.Specification.TentativeKleeneSignal.Operations.At
 
 @[expose] public section
 
@@ -35,13 +36,13 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.emptySignal_spec : -- --- CONCL ---
-    TentativeKleeneSignal.emptySignal.IsValid ∧ ∀ t : ℝ, 0 ≤ t →
-      TentativeKleeneSignal.emptySignal.at t = FourValued.ii := by -- --- PROOF ---
-  obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (STLInterval.stlInterval 0 ⊤ true true le_rfl)
-    false false
+    (TentativeKleeneSignal.emptySignal (𝕋 := ℝ)).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
+      (TentativeKleeneSignal.emptySignal (𝕋 := ℝ)).at t = FourValued.ii := by -- --- PROOF ---
+  obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec
+    (STLInterval.stlInterval (0 : ℝ) ⊤ true true (by simp)) false false
   refine ⟨⟨hv, hv⟩, fun t ht => ?_⟩
   simp only [TentativeKleeneSignal.emptySignal, TentativeKleeneSignal.at]
-  by_cases hm : t ∈ (STLInterval.stlInterval 0 ⊤ true true le_rfl).set
+  by_cases hm : t ∈ (STLInterval.stlInterval (0 : ℝ) ⊤ true true (by simp)).set
   · rw [(h t ht).1 hm]
   · rw [(h t ht).2 hm]
 

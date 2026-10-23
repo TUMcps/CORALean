@@ -12,14 +12,20 @@ public import Mathlib.Data.Real.Basic
 /-!
 # Taylor models: the representation
 
-CORA's `taylm` (`contSet/@taylm/taylm.m`): a polynomial `p` in `n` variables and a remainder
-interval `rem`, read over CORA's normalized domain, the box `[-1, 1]ⁿ` (`box`): its constructor maps
-a variable's interval onto `[-1, 1]` (`mid + rad · t`), and every range bound it computes
-(`interval`) assumes that box. A term is a coefficient and an exponent vector; the polynomial is a
-list of them, unsorted and possibly repeating an exponent. Variables are positional, `Fin n`, where
-CORA matches them by name (`priv_rescale_dim`). What it means is functional: `T.Encloses f` says
-`f t - p t ∈ [rem.inf, rem.sup]` on the box, which is what CORA's arithmetic is sound for.
-`construct` is the range set of an array of models over the same variables, for the conversions.
+CORA's `taylm` (`contSet/@taylm/taylm.m`), the Taylor model of [1, Def. 2]: a polynomial `p` in `n`
+variables and a remainder interval `rem`, read over CORA's normalized domain, the box `[-1, 1]ⁿ`
+(`box`): its constructor maps a variable's interval onto `[-1, 1]` (`mid + rad · t`), and every
+range bound it computes (`interval`) assumes that box. A term is a coefficient and an exponent
+vector; the polynomial is a list of them, unsorted and possibly repeating an exponent. Variables are
+positional, `Fin n`, where CORA matches them by name (`priv_rescale_dim`). What it means is
+functional: `T.Encloses f` says `f t - p t ∈ [rem.inf, rem.sup]` on the box, which is what CORA's
+arithmetic is sound for. `construct` is the range set of an array of models over the same variables.
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous and
+      Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

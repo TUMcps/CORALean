@@ -50,7 +50,7 @@ theorem KleeneSignal.eq_not_complete : -- --- CONCL ---
   refine ⟨a, a.not, ha.1, KleeneSignal.not_isValid _ ha.1, fun t ht => ?_, ?_⟩
   · rw [KleeneSignal.at_not _ ha.1, ha.2 t ht]; rfl
   · have : a.signal ≠ a.not.signal := by
-      simp [a, KleeneSignal.indicator, PointSegmentSignal.indicator,
+      simp [TimeOrder.isEqvTop_iff_eq, a, KleeneSignal.indicator, PointSegmentSignal.indicator,
           PointSegmentSignal.indicatorBounds, STLInterval.emptyBounds,
         STLInterval.lowerBound, STLInterval.upperBound, STLInterval.lowerClosed,
         STLInterval.upperClosed, KleeneSignal.not,

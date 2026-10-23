@@ -100,18 +100,18 @@ theorem aux_hausdorffDist₂_add_right {S T X : Set (Vec ℝ n)} (hS : IsCompact
 per-step reduction errors of the same accumulation with line 10's `reduce` omitted. -/
 theorem LinearSys.hausdorffDist₂_manualRun_reduce_le (sys : LinearSys 𝕋 n)
     (X₀ U : Zonotope (Vec ℝ n)) (Δt : ℝ) (η ρ k : ℕ) : -- --- CONCL ---
+    let IS := sys.inputSolution (S := 𝒵) Δt η ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))
     hausdorffDist₂
         (∑ j ∈ Finset.range k, (fun x => exp (((j : ℝ) * Δt) • toRealMat sys.A) *ᵥ x)
-          '' (sys.inputSolution (S := 𝒵) Δt η
-              ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))).construct)
+          '' IS.construct)
         (sys.manualRun X₀ U Δt η ρ k).PU.construct
       ≤ ∑ j ∈ Finset.range k, (Zonotope.plus (sys.manualRun X₀ U Δt η ρ j).PU
           (Zonotope.mtimes (exp (((j : ℝ) * Δt) • toRealMat sys.A))
-            (sys.inputSolution (S := 𝒵) Δt η
-              ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))))).reduceBoxError
+            IS)).reduceBoxError
           ρ := by -- --- PROOF ---
+  intro IS
   have hsum := aux_isCompact_sum_range_mulVec
-    (sys.inputSolution (S := 𝒵) Δt η ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n)))
+    IS
     (fun j => exp (((j : ℝ) * Δt) • toRealMat sys.A))
   induction k with
   | zero =>
@@ -128,16 +128,13 @@ theorem LinearSys.hausdorffDist₂_manualRun_reduce_le (sys : LinearSys 𝕋 n)
     have hstep : (sys.manualRun X₀ U Δt η ρ (k + 1)).PU
         = Zonotope.reduce (Zonotope.plus (sys.manualRun X₀ U Δt η ρ k).PU
             (Zonotope.mtimes (exp (((k : ℝ) * Δt) • toRealMat sys.A))
-              (sys.inputSolution (S := 𝒵) Δt η
-                ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))))) ρ := by
-      simp only [LinearSys.manualRun, LinearSys.manualStep, sys.manualRun_t_eq]
+              IS)) ρ := by
+      simp only [IS, LinearSys.manualRun, LinearSys.manualStep, sys.manualRun_t_eq]
     have hXc : IsCompact ((fun x => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x)
-        '' (sys.inputSolution (S := 𝒵) Δt η
-            ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))).construct) :=
+        '' IS.construct) :=
       (Zonotope.isCompact_construct _).image (mulVecL _).continuous
     have hXne : ((fun x => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x)
-        '' (sys.inputSolution (S := 𝒵) Δt η
-            ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))).construct).Nonempty :=
+        '' IS.construct).Nonempty :=
       Set.Nonempty.image _ ⟨_, Zonotope.center_mem_construct _⟩
     rw [Finset.sum_range_succ, Finset.sum_range_succ, hstep]
     -- through the unreduced sum: the step's own accumulation, then line 10's reduction of it

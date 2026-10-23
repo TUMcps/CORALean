@@ -271,6 +271,8 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   obtain ⟨rfl, rfl⟩ := h
   set A := Scalar.toRealMat sys.A with hA
   set eAtk := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup (max ηmax 2) sq with heAtk
+  -- the squaring that the first step's exponential comes from
+  set E₁ := sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1 with hE₁
   set ũ := Recenter.center V with hũ
   set Ũ := Recenter.recenter V with hŨ
   set tk : ℝ := (s.t : ℝ) with htk
@@ -297,7 +299,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       → exp ((toReal Δt + tk) • A) *ᵥ z
         ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋])
-          (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) Z) :=
+          E₁ Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
@@ -337,11 +339,11 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       qi + exp (tk • A) *ᵥ pi, Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hqi
         (Interval.zonotope_contains _ (Zonotope.interval_contains _ (hmt hpi)))), ?_⟩
     beta_reduce; rw [Matrix.mulVec_add]; abel
-  -- the constant's share by `t_{k+1}`, in the box `P^u(t_{k+1})`
+  -- the constant's share by `t_{k+1}` is in the box `P^u(t_{k+1})` of the stored input's reach
+  set PuI := ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAtk
+    (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval) with hPuI
   have hPu' : Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ
-      ∈ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAtk
-        (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).construct := by
+      ∈ PuI.construct := by
     rw [Real.MatExp.expIntegral_add_mulVec A ũ hΔr.le htk0, add_comm]
     exact Zonotope.interval_contains _ (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
       (Set.add_mem_add (Interval.zonotope_contains _ hPu) (hmt hPuΔ)))
@@ -350,10 +352,8 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       + Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ ∈
         (Mtimes.mtimes (S := 𝒵[𝕋])
         (𝕄 := ℐ[𝕋])
-        (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) X₀
-        ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-          (S := 𝒵[𝕋]) eAtk
-          (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).zonotope
+        E₁ X₀
+        ⊞ PuI.zonotope
         ).construct := fun x₀ hx₀ =>
     Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
       (Set.add_mem_add (hmt1 hx₀) (Interval.zonotope_contains _ hPu'))
@@ -394,10 +394,8 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
         + Real.MatExp.expIntegral A (toReal Δt) *ᵥ ũ ∈
           (Mtimes.mtimes (S := 𝒵[𝕋])
           (𝕄 := ℐ[𝕋])
-          (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) X₀
-          ⊞ ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-            (S := 𝒵[𝕋]) eAtk
-            (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval).zonotope
+          E₁ X₀
+          ⊞ PuI.zonotope
           ).construct := by
       -- both the exponential and the integral split at `t_k`, so `x_k` one step on is `t_{k+1}`'s
       have hG := Real.MatExp.expIntegral_add_mulVec A ũ htk0 hΔr.le

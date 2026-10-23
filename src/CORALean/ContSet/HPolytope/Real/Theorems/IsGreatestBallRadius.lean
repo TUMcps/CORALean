@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Order.Lattice
 

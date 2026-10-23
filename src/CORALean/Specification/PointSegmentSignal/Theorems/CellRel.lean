@@ -52,7 +52,7 @@ theorem aux_cell_data {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSigna
   obtain ⟨h1, h2, ⟨a, ha, hale⟩, hnext⟩ := PointSegmentSignal.takeWhile_le_pos s hs t ht
   refine ⟨_, a, h1, h2, ha, hale, hnext, ?_, rfl⟩
   unfold PointSegmentSignal.cell
-  simp only [ha, Option.some.injEq]
+  simp only [ha, TimeOrder.exists_mem_eqv_iff, Option.some.injEq]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

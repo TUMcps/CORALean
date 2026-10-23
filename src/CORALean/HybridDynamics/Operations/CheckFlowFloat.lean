@@ -62,7 +62,8 @@ def Location.checkFlowFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     -- the flow set `A proj ⊞ V`, bounded from above along `c`
     let flowSet := Plus.plus
       (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A Rproj) ℓ.inputSetFloat
-    let flowUp := (flowSet.boundDot (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl).val
+    let flowUp := (flowSet.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => c)) 0)
+        c fun _ => rfl).val
     !le flowC zero || !le flowUp zero
 
 end CORALean

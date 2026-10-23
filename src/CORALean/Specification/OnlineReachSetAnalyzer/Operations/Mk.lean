@@ -33,15 +33,18 @@ and visualization).
 
 namespace CORALean
 
-variable {S : ℕ → Type} {d : ℕ}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+  [TimeOrder 𝕋]
+    {S : ℕ → Type} {d : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `analyzer = onlineReachSetAnalyzer(phi,propagationFrequency,dropPropagated)`. -/
+/-- `analyzer = onlineReachSetAnalyzer(phi,propagationFrequency,dropPropagated)`. Noncomputable
+because `parse` is. -/
 noncomputable def OnlineReachSetAnalyzer.mk?
-    (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (propagationFrequency : ℕ := 1)
-    (dropPropagated : Bool := true) : Option (OnlineReachSetAnalyzer S d) :=
+    (φ : OnlineReachSetAnalyzer.Formula 𝕋 (AtomicProposition S d)) (propagationFrequency : ℕ := 1)
+    (dropPropagated : Bool := true) : Option (OnlineReachSetAnalyzer 𝕋 S d) :=
   -- parse(phi,0), with an empty cache
   (OnlineReachSetAnalyzer.parse dropPropagated φ 0 ⟨[], []⟩).map fun st =>
     { propagationFrequency := propagationFrequency, nodes := st.nodes,

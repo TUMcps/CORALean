@@ -36,7 +36,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `val = at(sig,time)`. -/
-def FiniteSignal.at? {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V) (t : T) :
+def FiniteSignal.at? {T V : Type} [TimeOrder T] [Zero T] (s : FiniteSignal T V) (t : T) :
     Option V :=
   -- 1. the time must lie in the range of the signal
   if 0 ≤ t ∧ t ≤ s.duration then

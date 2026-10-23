@@ -24,6 +24,18 @@ namespace CORALean
 variable {n : ℕ}
 
 
+-- ================================  `GridPartition.intervals`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
+
+/-- CORA's `intervals`: the state space, from the first to the last divider of each dimension. -/
+def GridPartition.intervals (P : GridPartition n) : Real.Interval (Vec ℝ n) where
+  inf := fun j => P.dividers j 0
+  sup := fun j => P.dividers j (P.nrOfSegments j)
+
+
 -- ==============================  `GridPartition.multiplicator`  =============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026

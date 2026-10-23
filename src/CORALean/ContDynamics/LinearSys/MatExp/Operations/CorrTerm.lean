@@ -8,7 +8,7 @@ public import CORALean.Global.Tensor
 /-!
 # What one order contributes to the correction
 
-`corrTerm`: what order `i` contributes to [1]'s correction, at the far end of its range.
+`corrTerm`: what order `i` contributes to [1, Thm. 3]'s correction, at the far end of its range.
 The interval it spans is between this and zero, on whichever side its sign puts it.
 
 ## Inputs
@@ -23,8 +23,9 @@ The interval it spans is between this and zero, on whichever side its sign puts 
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

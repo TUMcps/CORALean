@@ -61,8 +61,8 @@ theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk1 : n.kind ≠ .true)
+theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode ℝ A)
+    (ch : List (OnlineAnalyzerNode ℝ A)) (I : STLInterval ℝ) (hk1 : n.kind ≠ .true)
     (hk2 : n.kind ≠ .false) (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) : -- --- CONCL ---
     ∀ n' ch', (n', ch') ∈ n.propagate eps ch I →
       ∀ delta ∈ n.combine ch,

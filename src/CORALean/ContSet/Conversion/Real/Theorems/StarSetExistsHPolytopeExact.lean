@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
 public import Mathlib.Tactic.Linarith
 public import CORALean.ContSet.Conversion.Real.Theorems.StarSetConZonotopeExact
-public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
 
 @[expose] public section
 

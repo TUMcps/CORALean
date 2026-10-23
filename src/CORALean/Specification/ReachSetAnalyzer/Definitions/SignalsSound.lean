@@ -49,8 +49,8 @@ variable {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The signals `out` are sound for the entries `w` of `R` of the analyzer `obj`. -/
-def ReachSetAnalyzer.SignalsSound (obj : ReachSetAnalyzer S n) (d : ℝ)
-    (R : List (ReachSetAnalyzer.Entry S n)) (w : List ℕ)
+def ReachSetAnalyzer.SignalsSound (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+    (R : List (ReachSetAnalyzer.Entry ℝ S n)) (w : List ℕ)
     (out : List (String × FiniteSignal ℝ Kleene)) : Prop :=
   ∀ k s, (k, s) ∈ out → ∀ ap, (k, ap) ∈ obj.aps → s.IsValid ∧ s.duration = d ∧
     ∀ t : ℝ, 0 ≤ t → t ≤ d → ∃ v, s.at? t = some v ∧

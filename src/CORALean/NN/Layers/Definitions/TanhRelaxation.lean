@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.RelaxationOfAffineConj
 
 @[expose] public section

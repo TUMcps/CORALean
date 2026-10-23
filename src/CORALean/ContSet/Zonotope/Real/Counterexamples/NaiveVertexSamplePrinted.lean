@@ -48,16 +48,16 @@ open MeasureTheory
 
 theorem Zonotope.naive_vertex_sample_printed_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 2)) (σ : Fin Z.h → Bool),
+      -- the sampled corner's slack
+      let r := 1 - coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0)
       coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0) ≤ 1 ∧
-      0 < shenmaierProb Z.h 1 0 (1 - coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2)
-        (Z.corner σ - 0)) ∧
+      0 < shenmaierProb Z.h 1 0 r ∧
       ¬ Z.construct ⊆
         {x | ∃ β : Vec ℝ 2, ‖β‖ ≤ 1 ∧ x = 0 + (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) β} ∧
       ∀ (Ω : Type) [MeasurableSpace Ω] (P : Measure Ω),
         P {_ω | Z.construct ⊆
           {x | ∃ β : Vec ℝ 2, ‖β‖ ≤ 1 ∧ x = 0 + (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) β}}
-        < ENNReal.ofReal (shenmaierProb Z.h 1 0 (1 - coeffNorm
-          (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0))) := by -- --- PROOF ---
+        < ENNReal.ofReal (shenmaierProb Z.h 1 0 r) := by -- --- PROOF ---
   let Z : Zonotope (Vec ℝ 2) := ⟨2, ![21 / 20, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩
   let σ : Fin Z.h → Bool := ![false, true]
   -- through `H = I` the circumbody norm is the supremum norm
@@ -104,7 +104,9 @@ theorem Zonotope.naive_vertex_sample_printed_counterexample : -- --- CONCL ---
     simp only [shenmaierProb, pow_one]
     show 0 < 1 - (1 - (((1 - 19 / 20) / (2 + (1 - 19 / 20))) ^ 2 : ℝ) + 0)
     norm_num
-  refine ⟨Z, σ, ?_, hp0, hnot, ?_⟩
+  refine ⟨Z, σ, ?_⟩
+  intro r
+  refine ⟨?_, hp0, hnot, ?_⟩
   · rw [hr]; norm_num
   · intro Ω _ P
     simp only [hnot, Set.setOf_false, measure_empty]

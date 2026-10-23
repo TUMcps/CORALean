@@ -1,9 +1,10 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Operations.Cell
-public import Mathlib.Order.Basic
 public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtValIdx
+public import Mathlib.Order.Basic
 
 @[expose] public section
 
@@ -38,7 +39,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `intervals = findIntervals(obj,cond)`, as the bounds of its intervals. -/
-def PointSegmentSignal.findIntervalsBounds {T : Type} [LinearOrder T] [Zero T]
+def PointSegmentSignal.findIntervalsBounds {T : Type} [TimeOrder T] [Zero T]
     (s : PointSegmentSignal T) (cond : Bool → Bool := id) : List (T × WithTop T × Bool × Bool) :=
   -- 1. take = arrayfun(cond,obj.values)
   let take := s.values.map cond

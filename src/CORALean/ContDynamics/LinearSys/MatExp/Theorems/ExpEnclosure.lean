@@ -12,9 +12,9 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # The matrix exponential lies in its enclosure
 
-[1, Eq. (3.2)–(3.3)], assembled entrywise: `norm_exp_sub_expTaylor_le` bounds
-the whole matrix, and an entry of a bounded matrix is bounded by the same
-amount, so the truncation plus the remainder brackets every entry of `exp x`.
+[1, Thm. 1] at a single matrix, assembled entrywise: `norm_exp_sub_expTaylor_le` bounds the whole
+matrix, and an entry of a bounded matrix is bounded by the same amount, so the truncation plus the
+remainder brackets every entry of `exp x`.
 
 ## Inputs
 * `x` – matrix
@@ -28,8 +28,9 @@ amount, so the truncation plus the remainder brackets every entry of `exp x`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

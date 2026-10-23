@@ -46,7 +46,7 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.Tactic.Positivity
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
-public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds
 public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem

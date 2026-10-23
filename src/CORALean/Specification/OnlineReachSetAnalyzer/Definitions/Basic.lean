@@ -25,11 +25,11 @@ namespace CORALean
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What `parse` changes: the nodes made so far and `cache`, the `containers.Map` from the key of a
-subformula to the index of its node. -/
-structure OnlineReachSetAnalyzer.ParseState (S : ℕ → Type) (d : ℕ) where
-  nodes : List (OnlineAnalyzerNode (AtomicProposition S d))
-  cache : List (OnlineReachSetAnalyzer.Formula Unit × ℕ)
+/-- What `parse` changes: the nodes made so far, and `cache` from subformula key to node index. -/
+structure OnlineReachSetAnalyzer.ParseState (𝕋 : Type) [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (S : ℕ → Type) (d : ℕ) where
+  nodes : List (OnlineAnalyzerNode 𝕋 (AtomicProposition S d))
+  cache : List (OnlineReachSetAnalyzer.Formula 𝕋 Unit × ℕ)
 
 end CORALean
 

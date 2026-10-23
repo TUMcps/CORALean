@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # The matrix exponential's Taylor truncation
 
-`expTaylor`: [1, Eq. 3.2–3.3]'s series truncated at `η`, the center of the enclosure
+`expTaylor`: [1, Thm. 1]'s series truncated at `η`, the center of the enclosure
 `expEnclosure` builds around `exp x`.
 
 ## Inputs
@@ -22,8 +22,9 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

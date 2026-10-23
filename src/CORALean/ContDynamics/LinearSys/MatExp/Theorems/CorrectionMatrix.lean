@@ -17,11 +17,11 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 /-!
 # The interpolation error lies in the correction matrix
 
-[1, Prop. 3.1]. Orders `2` through `η` are kept exactly, each contributing the interval between
+[1, Thm. 3]. Orders `2` through `η` are kept exactly, each contributing the interval between
 `corrTerm` and zero (`corrCoeff` bounds `r^i (s^i - s)` for `t = s·r`); everything past `η` goes
 into the remainder that bounds the exponential. The tail is not as tight: for
-`E(t) = [-1,1]Φ(t)`, [1] concludes `E(t) - (t/r)E(r) ⊆ E(r)` by pulling a *single* `[-1,1]` out
-of both remainders; as independent interval matrices the difference has radius
+`E(t) = [-1,1]Φ(t)`, [1, Thm. 3] concludes `E(t) - (t/r)E(r) ⊆ E(r)` by pulling a *single*
+`[-1,1]` out of both remainders; as independent interval matrices the difference has radius
 `Φ(t) + (t/r)Φ(r)`, twice what `E(r)` allows at `t = r`. What holds (`ExpDiff`) is that the
 remainders share `A^i` term by term: never splitting them leaves one series, and
 `|t^i - t·r^(i-1)| ≤ r^i` bounds it by `∑_{i>η} ‖A‖^i r^i / i!`.
@@ -43,8 +43,9 @@ remainders share `A^i` term by term: never splitting them leaves one series, and
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -74,6 +75,10 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
     ‖∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
         * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖
       ≤ MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
+  -- the coefficient of the `i`-th term: a factorial and the interpolation error of `t ^ k`
+  set c : ℕ → ℝ := fun i =>
+    ((Nat.factorial (i + (η + 1)) : ℝ))⁻¹ * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1))) with
+      hc
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   have hrA : ‖r • A‖ = r * ‖A‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos hr]
@@ -81,8 +86,7 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
   have hε0 : (0:ℝ) ≤ ‖r • A‖ / ((η : ℝ) + 2) := by positivity
   -- each term is dominated by the exponential's own tail term
   have hterm : ∀ i : ℕ,
-      ‖(((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
-          * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖
+      ‖(c i) • A ^ (i + (η + 1))‖
         ≤ (‖r • A‖ ^ (η + 1) / Nat.factorial (η + 1))
             * (‖r • A‖ / ((η : ℝ) + 2)) ^ i := by
     intro i
@@ -109,14 +113,11 @@ theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : 
   have hgeo : Summable (fun i : ℕ => (‖r • A‖ / ((η : ℝ) + 2)) ^ i) :=
     summable_geometric_of_lt_one hε0 hε
   have hnorm : Summable (fun i : ℕ =>
-      ‖(((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
-          * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖) :=
+      ‖(c i) • A ^ (i + (η + 1))‖) :=
     Summable.of_nonneg_of_le (fun i => norm_nonneg _) hterm (hgeo.mul_left _)
   -- norm of the sum under the sum of norms, then termwise, then in closed form
-  calc ‖∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
-          * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖
-      ≤ ∑' i : ℕ, ‖(((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
-          * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖ :=
+  calc ‖∑' i : ℕ, (c i) • A ^ (i + (η + 1))‖
+      ≤ ∑' i : ℕ, ‖(c i) • A ^ (i + (η + 1))‖ :=
         norm_tsum_le_tsum_norm hnorm
     _ ≤ ∑' i : ℕ, (‖r • A‖ ^ (η + 1) / Nat.factorial (η + 1))
           * (‖r • A‖ / ((η : ℝ) + 2)) ^ i :=

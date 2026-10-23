@@ -8,9 +8,10 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 /-!
 # The integrated correction matrix
 
-`constCorrectionMatrix`: the `F̃ = A⁻¹F` of [1], without the inverse: orders `1` through `η`
-of `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and everything past `η` in `E(r)·r`,
-integrating the exponential's tail scaling it by at most the step.
+`constCorrectionMatrix`: the `F̃` of [1, Sec. III-A], formed without an inverse of `A`: orders
+`1` through `η` of `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and everything past `η` in
+`E(r)·r`, integrating the exponential's tail scaling it by at most the step. [1] bounds that
+tail by `W(r)r` instead, `W` the entrywise tail of `e^{|A|r}`.
 
 ## Inputs
 * `A` – system matrix
@@ -22,8 +23,8 @@ integrating the exponential's tail scaling it by at most the step.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -41,7 +42,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `F̃ = A⁻¹F` of [1], without the inverse: orders `1` through `η` of
+/-- The `F̃` of [1, Sec. III-A], without an inverse of `A`: orders `1` through `η` of
 `∫₀ᵗ e^{Aσ}dσ - (t/r)∫₀ʳ e^{Aσ}dσ` exactly, and everything past `η` in `E(r)·r`,
 integrating the exponential's tail scaling it by at most the step. -/
 noncomputable def MatExp.constCorrectionMatrix (A : Mat ℝ n n) (r : ℝ) (η : ℕ) :

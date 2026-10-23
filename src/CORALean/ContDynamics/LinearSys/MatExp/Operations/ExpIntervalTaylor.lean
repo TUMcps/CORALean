@@ -8,13 +8,13 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Interval matrices: the Taylor truncation
 
-`expIntervalTaylor`: [1, Sec. 3.3.1]'s Taylor truncation as an interval matrix, `i = 0 … η`
-matching `MatExp.expTaylor`'s `Finset.range (η + 1)` exactly.
+`expIntervalTaylor`: [1, Thm. 1]'s Taylor truncation as an interval matrix, every order by interval
+arithmetic, `i = 0 … η` matching `MatExp.expTaylor`'s `Finset.range (η + 1)` exactly.
 
-Not exact: `matPow A k` admits products of *different* members of `A` at
-different factors, so the Taylor terms are bounded independently of each other
-and of any one `M` they might come from — ordinary interval-arithmetic
-dependency loss, and why [1, Sec. 3.3.2] moves on to matrix zonotopes instead.
+Not exact: `matPow A k` admits products of *different* members of `A` at different factors, so the
+Taylor terms are bounded independently of each other and of any one `M` they might come from —
+ordinary interval-arithmetic dependency loss, which [2, Sec. 3.1] limits by evaluating the low
+orders dependently.
 
 ## Inputs
 * `A` – interval matrix
@@ -24,8 +24,12 @@ dependency loss, and why [1, Sec. 3.3.2] moves on to matrix zonotopes instead.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
+* [2] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

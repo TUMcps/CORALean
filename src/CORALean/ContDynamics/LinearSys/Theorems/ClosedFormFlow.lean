@@ -179,15 +179,14 @@ theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_ht : 0 �
   -- `G`'s joint measurability and boundedness on the rectangle
   have hMcont : Continuous fun p : ℝ × ℝ => exp ((p.1 - p.2) • A) :=
     exp_continuous.comp ((continuous_fst.sub continuous_snd).smul continuous_const)
-  have hGmeas : AEStronglyMeasurable (Function.uncurry G)
-      ((volume.restrict (Set.Ioc (0:ℝ) τ)).prod (volume.restrict (Set.Ioc (0:ℝ) τ))) := by
-    have hv : AEStronglyMeasurable (fun p : ℝ × ℝ => u p.2)
-        ((volume.restrict (Set.Ioc (0:ℝ) τ)).prod (volume.restrict (Set.Ioc (0:ℝ) τ))) :=
+  -- the product of two copies of the restricted Lebesgue measure
+  set μ₂ := (volume.restrict (Set.Ioc (0:ℝ) τ)).prod (volume.restrict (Set.Ioc (0:ℝ) τ)) with hμ₂
+  have hGmeas : AEStronglyMeasurable (Function.uncurry G) μ₂ := by
+    have hv : AEStronglyMeasurable (fun p : ℝ × ℝ => u p.2) μ₂ :=
       AEStronglyMeasurable.comp_snd
         (hmeas'.mono_measure (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl))
     -- `A` and the shifted exponential, then `u ∘ snd`, combined entry by entry
-    have hFm : AEStronglyMeasurable (fun p : ℝ × ℝ => F p.1 p.2)
-        ((volume.restrict (Set.Ioc (0:ℝ) τ)).prod (volume.restrict (Set.Ioc (0:ℝ) τ))) :=
+    have hFm : AEStronglyMeasurable (fun p : ℝ × ℝ => F p.1 p.2) μ₂ :=
       aux_aestronglyMeasurable_mulVec2 (continuous_const : Continuous fun _ : ℝ × ℝ => A)
         (aux_aestronglyMeasurable_mulVec2 hMcont hv)
     have hGeq : Function.uncurry G

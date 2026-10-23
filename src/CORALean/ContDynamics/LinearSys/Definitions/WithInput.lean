@@ -10,14 +10,18 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 The input set `U` a `IsTrajectory` draws from is bundled with the system rather than taken from
 CORA's `params.U`, because `0 ∈ U` is a proof about it that `params` cannot carry;
 `Reach LinearSys.WithInput` reads it off the system it is asked about, exactly as it reads `sys.A`.
-`0 ∈ U` is a field, being [1, Alg. 2]'s own precondition: with the origin admissible, what the input
-contributes only grows with time (`inputReach_mono`), so one accumulated set serves a whole window.
-An input set off the origin is [1, Alg. 3], a constant split off first: `LinearSys.WithInputSplit`.
+`0 ∈ U` is a field, the hypothesis [1, Prop. 4]'s proof takes: with the origin admissible, what
+the input contributes only grows with time (`inputReach_mono`), so one accumulated set serves a
+whole window. An input set off the origin is split as in [2, Eq. 4], a constant first:
+`LinearSys.WithInputSplit`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
+* [2] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

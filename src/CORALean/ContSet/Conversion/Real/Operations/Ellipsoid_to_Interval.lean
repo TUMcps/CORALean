@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
-public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds
 
 @[expose] public section
 

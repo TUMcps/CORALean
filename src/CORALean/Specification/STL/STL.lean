@@ -65,38 +65,6 @@ def STL.Formula.ofPform : Pform X → STL.Formula X
   | .not ϱ => .not (ofPform ϱ)
   | .or ϱ₁ ϱ₂ => .or (ofPform ϱ₁) (ofPform ϱ₂)
 
-/-- `true`. -/
-def STL.Formula.tt : STL.Formula X := .atom fun _ => True
-
-/-- `false`. -/
-def STL.Formula.ff : STL.Formula X := .atom fun _ => False
-
-/-- `φ ∧ ψ`, by De Morgan. -/
-def STL.Formula.and (φ ψ : STL.Formula X) : STL.Formula X := .not (.or (.not φ) (.not ψ))
-
-/-- The continuous next-operator `Xₐ φ := true U[a,a] φ`. -/
-def STL.Formula.next (a : ℝ≥0) (φ : STL.Formula X) : STL.Formula X := .until a a .tt φ
-
-/-- `F[a,b] φ := true U[a,b] φ`. -/
-def STL.Formula.finally (a b : ℝ≥0) (φ : STL.Formula X) : STL.Formula X := .until a b .tt φ
-
-/-- `φ R[a,b] ψ := ¬(¬φ U[a,b] ¬ψ)`. -/
-def STL.Formula.release (a b : ℝ≥0) (φ ψ : STL.Formula X) : STL.Formula X :=
-  .not (.until a b (.not φ) (.not ψ))
-
-/-- `φ ⇒ ψ := ¬φ ∨ ψ`. -/
-def STL.Formula.implies (φ ψ : STL.Formula X) : STL.Formula X := .or (.not φ) ψ
-
-/-- `G[a,b] φ := ¬F[a,b] ¬φ`. -/
-def STL.Formula.globally (a b : ℝ≥0) (φ : STL.Formula X) : STL.Formula X :=
-  .not (.finally a b (.not φ))
-
-/-- `⋁` of a list, `false` for the empty one. -/
-def STL.Formula.bigOr (l : List (STL.Formula X)) : STL.Formula X := l.foldr .or .ff
-
-/-- `⋀` of a list, `true` for the empty one. -/
-def STL.Formula.bigAnd (l : List (STL.Formula X)) : STL.Formula X := l.foldr .and .tt
-
 /-- `φ` holds of every trace of a set, `M ⊨ₜ φ`. -/
 def STL.Formula.HoldsOn (φ : STL.Formula X) (M : Set (ℝ≥0 → X)) : Prop := ∀ ξ ∈ M, φ.Sat ξ
 

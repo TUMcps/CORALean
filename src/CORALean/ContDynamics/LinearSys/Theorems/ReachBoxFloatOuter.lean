@@ -54,8 +54,9 @@ the same induction, with `e^{Ar}` in the float interval matrix `[e^{Ar}]`
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+      Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control
+      Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -78,7 +79,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Alg. 2] in floats: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`,
+/-- [1, Alg. 1] in floats: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`,
 `k ≤ N`. -/
 theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) {r : 𝕋}
     {η N : ℕ} (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} (hk : k ≤ N) {t : ℝ}

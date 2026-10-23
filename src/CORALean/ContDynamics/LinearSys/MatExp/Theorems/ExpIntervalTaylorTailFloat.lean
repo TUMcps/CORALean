@@ -55,6 +55,27 @@ theorem aux_zero_mem_point :
   exact Interval.mem_point (α := Mat 𝕋 n n) fun _ _ => zero
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- the compiler runs the implementation the operation's `aux_` pair builds
+omit [SoundFloatArithmetic 𝕋] in
+@[csimp] theorem MatExp.aux_expIntervalTaylorTail_eq_impl : -- --- CONCL ---
+    @MatExp.expIntervalTaylorTail = @MatExp.aux_expIntervalTaylorTailImpl := by -- --- PROOF ---
+  funext 𝕋 _ n B k
+  have hpair : ∀ k, MatExp.aux_expIntervalTaylorTailPair B k
+      = (Interval.matPow B k, MatExp.expIntervalTaylorTail B k) := by
+    intro k
+    induction k with
+    | zero => rfl
+    | succ k ih =>
+      rw [MatExp.aux_expIntervalTaylorTailPair, ih]
+      match k with
+      | 0 => rfl
+      | 1 => rfl
+      | m + 2 => rfl
+  rw [MatExp.aux_expIntervalTaylorTailImpl, hpair]
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.taylorTail_mem_expIntervalTaylorTail (B : Interval (Mat 𝕋 n n))

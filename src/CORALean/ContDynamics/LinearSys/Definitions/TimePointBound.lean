@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetImageInputSolution
 public import CORALean.Global.SupportFunction.Composition
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -77,12 +78,9 @@ noncomputable def LinearSys.timePointBound (sys : LinearSys 𝕋 n) {T : Set ℝ
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
     (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct (sys.inputSolution r η U)) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :

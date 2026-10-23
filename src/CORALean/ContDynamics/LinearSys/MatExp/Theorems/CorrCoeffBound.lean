@@ -10,7 +10,7 @@ public import Mathlib.Tactic.Positivity
 /-!
 # The correction coefficient bounds `s^i - s` from below
 
-[1, Prop. 3.1]: the correction matrix widens by the range of `t ↦ t^i - t·r^(i-1)` over a step,
+[1, Thm. 3]: the correction matrix widens by the range of `t ↦ t^i - t·r^(i-1)` over a step,
 whose lower end this bounds after scaling `t = s·r` to `s^i - s` on `[0,1]` (`sub_le_zero` gives
 the upper end). Proved by the tangent line at the stationary point rather than by calculus:
 factoring `s^i - a^i = (Σ_k s^k a^(i-1-k))(s - a)` turns the claim into `Σ_k s^k a^(i-1-k) ≥ 1`
@@ -29,8 +29,9 @@ bound on `s` is needed: the stationary point is the minimum over all of `[0,∞)
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -76,7 +77,7 @@ theorem aux_corrCritical_pow (hi : 2 ≤ i) : -- --- CONCL ---
     ← Real.rpow_mul hipos.le, hcast, div_mul_cancel₀ _ hsub, Real.rpow_neg_one]
   exact (one_div _).symm
 
-/-- The form [1] states the coefficient in. -/
+/-- The form [1, Thm. 3] states the coefficient in. -/
 theorem aux_corrCoeff_eq (hi : 2 ≤ i) : -- --- CONCL ---
     MatExp.corrCoeff i
       = (i : ℝ) ^ (-(i:ℝ) / ((i : ℝ) - 1))

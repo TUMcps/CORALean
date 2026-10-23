@@ -39,7 +39,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sigs = kleeneSignal.combine(op,varargin)`. -/
-def KleeneSignal.combine {T : Type} [LinearOrder T] [Zero T] {ι κ : Type} [Fintype ι]
+def KleeneSignal.combine {T : Type} [TimeOrder T] [Zero T] {ι κ : Type} [FinEnum ι]
     (op : (ι → Kleene) → κ → Kleene) (sig : ι → KleeneSignal T) : κ → KleeneSignal T := fun i =>
   -- 1. c = [arr.signal,arr.isUnknown]
   let c : ι ⊕ ι → PointSegmentSignal T :=

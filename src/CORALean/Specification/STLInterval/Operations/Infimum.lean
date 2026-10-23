@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Definitions.Endpoint
+public import CORALean.Specification.STLInterval.STLInterval
 
 @[expose] public section
 
@@ -26,12 +27,16 @@ public import CORALean.Specification.STLInterval.Definitions.Endpoint
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def STLInterval.infimum : STLInterval → STLInterval.Endpoint
+def STLInterval.infimum : STLInterval 𝕋 → STLInterval.Endpoint 𝕋
   | .empty => ⟨none, true⟩
-  | .nonempty l _ lc _ _ _ _ _ => ⟨some l, lc⟩
+  | .nonempty l _ lc _ _ _ _ => ⟨some (l : WithTop 𝕋), lc⟩
 
 end CORALean
 

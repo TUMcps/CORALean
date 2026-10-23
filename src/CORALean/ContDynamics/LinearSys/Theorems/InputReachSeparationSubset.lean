@@ -9,14 +9,14 @@ public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 /-!
 # The input reach set comes apart at any intermediate time
 
-[1, Prop. 3.2] in the direction `InputReachSeparation` leaves open: every run over `[0, a+b]` is its
+[1, Prop. 4] in the direction `InputReachSeparation` leaves open: every run over `[0, a+b]` is its
 own first `a` propagated across the remaining `b`, plus its own last `b`. Nothing is built here,
 both inputs are the given one read on a different window, so the work is all in the integral.
 Splitting at `a` is legal because `intervalIntegrable_expSub_mulVec` holds on the whole window;
 `e^{(a+b-s)A} = e^{bA} e^{(a-s)A}` pulls the propagator out of the first piece, and
 `integral_comp_add_left` moves the second back to a window starting at zero
 (`aux_aestronglyMeasurable_comp_add_left`). With `InputReachSeparationEq` the two inclusions give
-the equality [1, Prop. 3.2] prints, and [1, Cor. 3.1] at `a = Δt` and `b = r`.
+the equality [1, Prop. 4] prints.
 
 ## Inputs
 * `sys` – linear system
@@ -34,8 +34,9 @@ the equality [1, Prop. 3.2] prints, and [1, Cor. 3.1] at `a = Δt` and `b = r`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5
@@ -79,7 +80,7 @@ theorem aux_aestronglyMeasurable_comp_add_left {f : ℝ → Vec ℝ n} {a b c : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the given input, read on each half of the window the split produces
-/-- [1, Prop. 3.2]: what a run over `[0, a+b]` contributes is no more than what
+/-- [1, Prop. 4]: what a run over `[0, a+b]` contributes is no more than what
 some run over `[0,a]` contributes, propagated across the remaining `b`, plus
 what some run over `[0,b]` contributes. -/
 theorem LinearSys.inputReach_separation_subset (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}

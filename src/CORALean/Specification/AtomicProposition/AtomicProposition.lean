@@ -13,6 +13,12 @@ and the locations `locs` of a hybrid automaton it is restricted to (empty: all o
 `set` lives in `S k`, a `k`-dimensional representation, and `dims` picks a coordinate of the `n`
 ambient ones for each of its `k`; CORA does not check `dims` against `dim(set)`, here the length is
 the type. `k` is a field, so propositions of different dimensions share a type.
+The set of states where the proposition holds is [1, Sec. 3 (predicate)]'s `⟦a⟧`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

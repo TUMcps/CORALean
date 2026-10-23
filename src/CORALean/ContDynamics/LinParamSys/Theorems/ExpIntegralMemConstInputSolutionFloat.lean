@@ -63,18 +63,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The segment `[0, ũ]` holds both of its ends. -/
 theorem LinParamSys.aux_zero_mem_segment (uc : Vec 𝕋 n) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ construct (LinComb.linComb
-      (OfScalarPoint.ofVec (S := 𝒵[𝕋]) (fun _ : Fin n => (zero : 𝕋)) :
-        Zonotope (Vec 𝕋 n))
+    let z₀ : Zonotope (Vec 𝕋 n) := OfScalarPoint.ofVec (S := 𝒵[𝕋]) (fun _ : Fin n => (zero : 𝕋))
+    (0 : Vec ℝ n) ∈ construct (LinComb.linComb z₀
       (OfScalarPoint.ofVec (S := 𝒵[𝕋]) uc : Zonotope (Vec 𝕋 n))) ∧
-    Scalar.toRealVec uc ∈ construct (LinComb.linComb
-      (OfScalarPoint.ofVec (S := 𝒵[𝕋]) (fun _ : Fin n => (zero : 𝕋)) :
-        Zonotope (Vec 𝕋 n))
-      (OfScalarPoint.ofVec (S := 𝒵[𝕋]) uc :
-        Zonotope (Vec 𝕋 n))) := by -- --- PROOF ---
-  have hz : (0 : Vec ℝ n) ∈ construct
-      (OfScalarPoint.ofVec (S := 𝒵[𝕋]) (fun _ : Fin n => (zero : 𝕋)) :
-        Zonotope (Vec 𝕋 n)) := by
+    Scalar.toRealVec uc ∈ construct (LinComb.linComb z₀
+      (OfScalarPoint.ofVec (S := 𝒵[𝕋]) uc : Zonotope (Vec 𝕋 n))) := by -- --- PROOF ---
+  intro z₀
+  have hz : (0 : Vec ℝ n) ∈ construct z₀ := by
     have h0 := OfScalarPoint.mem_ofVec (S := 𝒵[𝕋])
       (fun _ : Fin n => (zero : 𝕋))
     rwa [show Scalar.toRealVec (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from

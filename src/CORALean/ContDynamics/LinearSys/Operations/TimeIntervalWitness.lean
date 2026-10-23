@@ -56,16 +56,6 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-theorem aux_reachSetExact_subset_timeIntervalReachSetExact
-    (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
-    {r t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    sys.reachSetExact T R₀ U t ⊆ sys.timeIntervalReachSetExact T R₀ U r := by
-  rw [sys.timeIntervalReachSetExact_eq_iUnion]
-  exact Set.subset_biUnion_of_mem ⟨ht0, htr⟩
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- A witness at any time of the step is a witness for the whole step. -/
@@ -73,7 +63,10 @@ def LinearSys.timeIntervalWitness (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U
     (ht0 : 0 ≤ t) (htr : t ≤ r) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (w : SupportWitness (sys.reachSetExact T R₀ U t) c) :
     SupportWitness (sys.timeIntervalReachSetExact T R₀ U r) c :=
-  w.mono (aux_reachSetExact_subset_timeIntervalReachSetExact sys T R₀ U ht0 htr)
+  w.mono (by
+    -- a state at time `t` of the step is reached within the step
+    rw [sys.timeIntervalReachSetExact_eq_iUnion]
+    exact Set.subset_biUnion_of_mem ⟨ht0, htr⟩)
 
 end CORALean
 

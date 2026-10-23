@@ -26,8 +26,8 @@ namespace CORALean
 
 /-- A bound of an STL interval: its value, `none` for the empty interval, and whether the bound
 belongs to the interval. -/
-structure STLInterval.Endpoint where
-  value : Option EReal
+structure STLInterval.Endpoint (𝕋 : Type) where
+  value : Option (WithTop 𝕋)
   closed : Bool
 
 end CORALean

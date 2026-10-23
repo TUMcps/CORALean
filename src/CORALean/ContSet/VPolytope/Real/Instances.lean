@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.VPolytope.Real.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
 public import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter

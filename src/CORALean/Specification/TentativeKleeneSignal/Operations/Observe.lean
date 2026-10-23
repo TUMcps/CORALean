@@ -15,9 +15,6 @@ the interval, `False` lets `canBeFalse` hold, `Unknown` both; the other part is 
 `otherwise` branch (`assert(false)`) is a value that is no Kleene value, which `Kleene` has none
 of.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `s` – tentative signal
 * `I` – time interval
@@ -37,12 +34,14 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = observe(obj,interval,value)`. -/
-noncomputable def TentativeKleeneSignal.observe (s : TentativeKleeneSignal ℝ) (I : STLInterval)
-    (value : Kleene) : TentativeKleeneSignal ℝ :=
+def TentativeKleeneSignal.observe (s : TentativeKleeneSignal 𝕋) (I : STLInterval 𝕋)
+    (value : Kleene) : TentativeKleeneSignal 𝕋 :=
   match value with
   -- `case kleene.True`
   | .tt => ⟨s.canBeTrue.set I true, s.canBeFalse⟩

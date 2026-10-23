@@ -6,13 +6,13 @@ module
 # What `oneStep` returns
 
 `StepSets`: the two sets CORA's `oneStep` computes for one step `Δt` of a linear system
-[1, Sec. 3.3], the time-point set `Rtp` of the state at the end of the step and the
+[1, Eq. 4], the time-point set `Rtp` of the state at the end of the step and the
 time-interval set `Rti` of the states at every time of it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5.5

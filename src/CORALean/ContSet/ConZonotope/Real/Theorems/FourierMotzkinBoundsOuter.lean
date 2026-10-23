@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.FourierMotzkinBounds
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.NormNum

@@ -48,7 +48,7 @@ theorem PointSegmentSignal.at_last {T : Type} [LinearOrder T] (tp : List T) (val
     rw [List.takeWhile_eq_self_iff]
     intro x hx; simpa using (ht x hx).le
   have hpos : 0 < tp.length := List.length_pos_iff.mpr hne
-  simp only [PointSegmentSignal.at, h]
+  simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at, h]
   have hl : tp[tp.length - 1]? = some (tp.getLast hne) := by
     rw [List.getLast_eq_getElem]
     simp [List.getElem?_eq_getElem (by omega : tp.length - 1 < tp.length)]

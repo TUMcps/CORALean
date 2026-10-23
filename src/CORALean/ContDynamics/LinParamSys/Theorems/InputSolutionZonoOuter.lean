@@ -17,6 +17,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
 public import Mathlib.Algebra.Order.Ring.Star
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
 
 @[expose] public section
 
@@ -112,12 +113,9 @@ theorem LinParamSys.inputSolutionZono_outer (sys : LinParamSys 𝕄𝒵 n)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
     -- the next three are asked of the product and not of `U`, `R(τ)` varying with `τ`
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A.interval r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A.interval r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A.interval r η) U)))
+    (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A.interval r η U))
+    (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A.interval r η U))
+    (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A.interval r η U))
     {u : ℝ → Vec ℝ n}
     (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
     (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r)))

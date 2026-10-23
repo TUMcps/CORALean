@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Theorems.Basic
 public import CORALean.Specification.STLInterval.Definitions.MemBounds
 public import CORALean.Specification.STLInterval.Definitions.Fields
 public import Mathlib.Data.EReal.Operations
@@ -38,7 +39,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.set_iff_memBounds (I : STLInterval) (t : ℝ) : -- --- CONCL ---
+theorem STLInterval.set_iff_memBounds (I : STLInterval ℝ) (t : ℝ) : -- --- CONCL ---
     t ∈ I.set ↔ STLInterval.memBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed t
       := by -- --- PROOF ---
   induction I with
@@ -47,24 +48,15 @@ theorem STLInterval.set_iff_memBounds (I : STLInterval) (t : ℝ) : -- --- CONCL
     simp [STLInterval.set, STLInterval.memBounds, STLInterval.lowerBound, STLInterval.upperBound,
       STLInterval.lowerClosed, STLInterval.upperClosed, not_lt]
     exact fun h => h.le
-  | nonempty l u lc rc h1 h2 h3 h0 =>
-    -- the lower end is finite and nonnegative, the upper end is infinite or a real
-    induction l using EReal.rec with
-    | bot => exact absurd h0 (by simp)
+  | nonempty l u lc rc h2 h3 h0 =>
+    -- case on the upper end, then unfold both sides to the same inequalities
+    cases u with
     | top =>
-      rcases h3 with h3 | ⟨h3, -, h4⟩
-      · exact absurd h3 (not_lt.mpr le_top)
-      · exact absurd (h2 (h3 ▸ rfl)) (by simp [h4])
-    | coe a =>
-      -- case on the upper end, then unfold both sides to the same inequalities
-      induction u using EReal.rec with
-      | bot => simp at h3
-      | top =>
-        simp [STLInterval.set, STLInterval.rawSet, STLInterval.memBounds, STLInterval.lowerBound,
-          STLInterval.upperBound, STLInterval.lowerClosed, STLInterval.upperClosed, eq_comm]
-      | coe b =>
-        simp [STLInterval.set, STLInterval.rawSet, STLInterval.memBounds, STLInterval.lowerBound,
-          STLInterval.upperBound, STLInterval.lowerClosed, STLInterval.upperClosed, eq_comm]
+      simp [STLInterval.set, STLInterval.rawSet, STLInterval.memBounds, STLInterval.lowerBound,
+        STLInterval.upperBound, STLInterval.lowerClosed, STLInterval.upperClosed, eq_comm]
+    | coe b =>
+      simp [STLInterval.set, STLInterval.rawSet, STLInterval.memBounds, STLInterval.lowerBound,
+        STLInterval.upperBound, STLInterval.lowerClosed, STLInterval.upperClosed, eq_comm]
 
 end CORALean
 

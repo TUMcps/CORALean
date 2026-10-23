@@ -42,30 +42,6 @@ noncomputable def HPolytope.colWeight (P : HPolytope α) (v : α) : ℝ :=
   (∑ i, |P.A i v|) + ∑ i, |P.Ae i v|
 
 
--- ============================  `HPolytope.construct_eq_feasible`  ============================= --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- A halfspace description's own construct is `Feasible` -/
-theorem HPolytope.construct_eq_feasible (P : HPolytope α) :
-    P.construct = Feasible P.A P.b P.Ae P.be := rfl
-
-
--- =============================  `HPolytope.construct_fullspace`  ============================== --
--- Authors:       Claude Opus 5
--- Written:       04-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- There is no row index to discharge, in either block, so the set it denotes is
-one `ext` away. -/
-theorem HPolytope.construct_fullspace : (HPolytope.fullspace α).construct = Set.univ := by
-  ext x
-  exact ⟨fun _ => trivial, fun _ => ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
-
-
 -- ===================================  `HPolytope.dropEqs`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       19-October-2026
@@ -87,30 +63,6 @@ open Classical in
 /-- `P` without its equality rows `0 = 0`, which every point meets. -/
 noncomputable def HPolytope.dropTrivialEqs (P : HPolytope α) : HPolytope α :=
   P.restrict Finset.univ (Finset.univ.filter fun i => ¬(P.Ae i = 0 ∧ P.be i = 0))
-
-
--- =================================  `HPolytope.mem_eqs_iff`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       01-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- Membership in `HPolytope.eqs` -/
-theorem HPolytope.mem_eqs_iff {Ae : Mat ℝ q n} {be : Vec ℝ q} {x : Vec ℝ n} :
-    x ∈ (HPolytope.eqs Ae be).construct ↔ ∀ i, (Ae *ᵥ x) i = be i :=
-  ⟨fun h i => h.2 i, fun h => ⟨fun i => i.elim0, h⟩⟩
-
-
--- ================================  `HPolytope.mem_ineqs_iff`  ================================= --
--- Authors:       Claude Opus 5
--- Written:       01-September-2026
--- Last update:   05-September-2026
--- Reviewed:      14-October-2026 (Tobias Ladner)
-
-/-- Membership in `HPolytope.ineqs` -/
-theorem HPolytope.mem_ineqs_iff {A : Mat ℝ q n} {b : Vec ℝ q} {x : Vec ℝ n} :
-    x ∈ (HPolytope.ineqs A b).construct ↔ ∀ i, (A *ᵥ x) i ≤ b i :=
-  ⟨fun h i => h.1 i, fun h => ⟨h, fun i => i.elim0⟩⟩
 
 
 -- ====================================  `HPolytope.minus`  ===================================== --
@@ -136,17 +88,6 @@ def HPolytope.minus (P : HPolytope α) (v : α) : HPolytope α :=
 def HPolytope.relax (P : HPolytope α) (s : Fin P.m → ℝ) : HPolytope α :=
   { P with b := fun i => P.b i + s i }
 
-
--- ===============================  `HPolytope.subset_ofBounds`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- Nothing here solves a linear program. It consumes the answers. -/
-theorem HPolytope.subset_ofBounds (Aq : Fin q → (α →ₗ[ℝ] ℝ))
-    (u : ∀ i, SupportBound S (Aq i)) : S ⊆ (HPolytope.ofBounds Aq u).construct :=
-  fun _ hx => ⟨fun i => (u i).le _ hx, fun i => i.elim0⟩
 
 end CORALean.Real
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCenter
 
 @[expose] public section

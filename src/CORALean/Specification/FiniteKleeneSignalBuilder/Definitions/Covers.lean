@@ -1,6 +1,6 @@
 module
 
-public import Mathlib.Data.EReal.Basic
+public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 
@@ -36,8 +36,8 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The interval `[lo,hi)` marks the time `t` of a signal of duration `dur`. -/
-abbrev FiniteKleeneSignalBuilder.Covers (dur t : ℝ) (lo hi : EReal) : Prop :=
-  0 < hi ∧ lo < (dur : EReal) ∧ lo ≤ (t : EReal) ∧ ((t : EReal) < hi ∨ (dur : EReal) ≤ hi)
+abbrev FiniteKleeneSignalBuilder.Covers (dur t lo hi : ℝ) : Prop :=
+  0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi)
 
 end CORALean
 

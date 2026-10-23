@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def PolyZonotope.vPolytope (pZ : PolyZonotope α) : VPolytope α :=
+def PolyZonotope.vPolytope (pZ : PolyZonotope α) : VPolytope α :=
   pZ.zonotope.vPolytope
 
 /-- The vertex a choice of sign picks out, one sign per factor and then one per
@@ -50,7 +50,7 @@ def PolyZonotope.corner (pZ : PolyZonotope α) (σ : Fin (pZ.p + pZ.q) → Bool)
 
 /-- The hull of a polynomial zonotope's corners, one per sign pattern of its dependent and
 independent factors. -/
-noncomputable def PolyZonotope.vPolytopeCorners (pZ : PolyZonotope α) : VPolytope α where
+def PolyZonotope.vPolytopeCorners (pZ : PolyZonotope α) : VPolytope α where
   k := 2 ^ (pZ.p + pZ.q)
   V := fun v => pZ.corner (signEquiv (pZ.p + pZ.q) v)
 

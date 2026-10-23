@@ -31,11 +31,15 @@ it too (so two intervals never touch). It is what the `findIntervals` of the sig
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The intervals of `L` are the maximal runs of times with the property `P`. -/
-def STLInterval.MaximalRuns (L : List STLInterval) (P : ℝ → Prop) : Prop :=
+def STLInterval.MaximalRuns (L : List (STLInterval 𝕋)) (P : ℝ → Prop) : Prop :=
   (∀ t : ℝ, 0 ≤ t → ((∃ I ∈ L, t ∈ I.set) ↔ P t)) ∧
   (∀ I ∈ L, ∀ t₁ ∈ I.set, ∀ t₂ : ℝ, 0 ≤ t₂ →
     (∀ t, 0 ≤ t → min t₁ t₂ ≤ t → t ≤ max t₁ t₂ → P t) → t₂ ∈ I.set)

@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ColRep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
-public import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepCongr
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumMonomialMerge
 
 @[expose] public section
 

@@ -11,12 +11,12 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 # `timePointStep` contains every state the step can end at
 
 The two halves of the step, each already proved: `mtimes` carries the initial
-set by `e^{Ar}` and `inputReach_subset_inputSolution` is [1, Thm. 3.1] for
+set by `e^{Ar}` and `inputReach_subset_inputSolution` is [1, Prop. 2] for
 what the input adds, with its six topological hypotheses read off the
 representation as `ReachOuterConvexCompact` does.
 
 `0 ∈ U` is not needed. The step ends at `r`, so no earlier time has to be
-covered, which is what asks for the zero input elsewhere — [1, Prop. 3.3] is
+covered, which is what asks for the zero input elsewhere — [2, Prop. 4] is
 where that hypothesis belongs.
 
 ## Inputs
@@ -35,8 +35,12 @@ where that hypothesis belongs.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5

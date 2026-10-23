@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.OutputEq.OutputEq
+public import CORALean.ContDynamics.OutputEq.Operations.Eval
 public import CORALean.ContSet.ContSet.ContSet
 
 @[expose] public section
@@ -10,17 +10,18 @@ public import CORALean.ContSet.ContSet.ContSet
 
 CORA's `linearSysDT`, `x(k+1) = A x(k) + B u(k) + c + E w(k)` with the output
 `y(k) = C x(k) + D u(k) + k + F v(k)`, every matrix stored, `m` inputs, `q` outputs, `r`
-disturbances, `s` noises, and CORA's sampling time `dt`. Runs and reachable sets are indexed by
-the step `k`, the time `k dt`. `IsTrajectory` is a run of the whole equation;
-`IsCanonicalTrajectory` of the canonical form, `x(k+1) = A x(k) + u'(k)` with
-`u' = B u + c + E w` in state coordinates, as in [1, Sec. 3.2], what the reachability
-algorithms are proved against; `IsTrajectory.canonical` turns every run into one.
-`IsCanonicalTrajectoryOn K` is the canonical run known only for `k < K`.
+disturbances, `s` noises, and CORA's sampling time `dt`. Runs and reachable sets are indexed by the
+step `k`, the time `k dt`. `IsTrajectory` is a run of the whole equation; `IsCanonicalTrajectory` of
+the canonical form, `x(k+1) = A x(k) + u'(k)` with `u' = B u + c + E w` in state coordinates, as
+[1, Sec. I] absorbs `B u` into the input set in continuous time, what the reachability algorithms
+are proved against; `IsTrajectory.canonical` turns every run into one. `IsCanonicalTrajectoryOn K`
+is the canonical run known only for `k < K`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

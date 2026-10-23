@@ -67,17 +67,6 @@ def VPolytope.matPolytope (P : VPolytope (Vec ℝ n)) : VPolytope (Mat ℝ n 1) 
   P.map (colLin n)
 
 
--- ================================  `VPolytope.mtimes_eq_map`  ================================= --
--- Authors:       Claude Opus 5
--- Written:       01-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem VPolytope.mtimes_eq_map (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
-    VPolytope.mtimes M P = P.map (Matrix.mulVecLin M) := rfl
-
-
 -- ===================================  `VPolytope.project`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026

@@ -86,7 +86,7 @@ theorem PointSegmentSignal.setPoint_spec (s : PointSegmentSignal T) (hs : s.IsVa
   · rw [if_neg hcv]
     by_cases hap : s.timePoints.getD (i - 1) 0 = p
     · -- `p` is a time point
-      rw [if_pos hap]
+      rw [if_pos (show TimeOrder.Eqv _ _ from hap)]
       have hap' : a = p := hgi.symm.trans hap
       subst hap'
       have hPle : ∀ x ∈ s.timePoints.take i, x ≤ a := fun x hx => by
@@ -187,7 +187,7 @@ theorem PointSegmentSignal.setPoint_spec (s : PointSegmentSignal T) (hs : s.IsVa
           · have := h5 m hm1 hm2
             rw [hget (2 * m) (by omega), hget (2 * m + 1) (by omega), hget (2 * m - 1) (by omega)]
             exact this
-        · simp only [PointSegmentSignal.at]
+        · simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at]
           by_cases hta : t = a
           · rw [hta, ← hi, if_pos ha, if_pos rfl, show 2 * (i - 1) = 2 * i - 2 by omega, hset]
           -- at another time the index read is not the changed one
@@ -204,7 +204,7 @@ theorem PointSegmentSignal.setPoint_spec (s : PointSegmentSignal T) (hs : s.IsVa
               apply hget
               omega
     · -- `p` lies inside an interval: insert a new point
-      rw [if_neg hap]
+      rw [if_neg (show ¬ TimeOrder.Eqv _ _ from hap)]
       -- the last point `≤ p` is strictly before it
       have hlt : a < p := hale.lt_of_ne (fun h => hap (hgi.trans h))
       have hcs : cur = s.succIntervalValue i := by
@@ -256,7 +256,7 @@ theorem PointSegmentSignal.setPoint_spec (s : PointSegmentSignal T) (hs : s.IsVa
           rcases List.mem_append.mp hx with hx | hx
           · exact (hPlt x hx).trans (hnext b hb)
           · simp at hx; exact hx ▸ hnext b hb
-        · rw [List.getD_append_right _ _ _ _ (by simp [List.length_take]; omega)]
+        · rw [List.getD_append_right _ _ _ _ (by simp [List.length_take])]
           simp [List.length_take, hcs, PointSegmentSignal.succIntervalValue,
             List.getD_eq_getElem?_getD]
       -- before `p`, at `p` and after `p`

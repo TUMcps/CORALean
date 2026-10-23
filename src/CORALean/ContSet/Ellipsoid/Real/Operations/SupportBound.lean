@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ApplyMulVec
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
 public import CORALean.Global.SupportFunction.SupportFunction
 

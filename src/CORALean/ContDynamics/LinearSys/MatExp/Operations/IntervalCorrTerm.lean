@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 /-!
 # Interval matrices: one order's contribution to the correction over a box
 
-`intervalCorrTerm`: what order `i` contributes to [1]'s correction over a whole box:
+`intervalCorrTerm`: what order `i` contributes to [1, Thm. 3]'s correction over a whole box:
 `corrTerm`'s scalar factor against the box the `i`-th power lies in.
 
 The finite orders are CORA's `priv_tie` of `@linParamSys`: the interval
@@ -28,8 +28,9 @@ different members at each factor.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5

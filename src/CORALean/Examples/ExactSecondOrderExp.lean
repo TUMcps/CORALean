@@ -7,10 +7,10 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureConta
 bounds are values `W(t)` really takes, which is what a `_attained` use site
 looks like — an existential rather than a containment.
 
-What that buys is the last `example` here: the sharper enclosure of
-[1, Thm. 3.2] sits inside the uniform one of [1, Sec. 3.3.1] at every order
-from two up, and no size of box or step can turn that round. Soundness alone
-would not give it; only the bounds being attained does.
+What that buys is the last `example` here: the enclosure of [1, Thm. 1], exact at order two by
+[1, Lemma 1], sits inside the uniform one with every order by interval arithmetic at every order
+from two up, and no size of box or step can turn that round. Soundness alone would not give it; only
+the bounds being attained does.
 
 ## Inputs
 * none
@@ -20,8 +20,9 @@ would not give it; only the bounds being attained does.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -44,7 +45,7 @@ noncomputable def ESO.A : Interval (Mat ℝ 2 2) := ⟨fun _ _ => (-1 : ℝ), fu
 /-- Non-empty, which is what the witnesses of `expIntervalW_attained` need. -/
 theorem ESO.le : ∀ p q, ESO.A.inf p q ≤ ESO.A.sup p q := fun _ _ => by norm_num [ESO.A]
 
-/-- Every member's `W(t)` lands in the box [1, Lemma 3.1] computes. -/
+/-- Every member's `W(t)` lands in the box [1, Lemma 1] computes. -/
 example {M : Mat ℝ 2 2} (hM : M ∈ ESO.A.construct) :
     MatExp.expW M 1 ∈ (MatExp.expIntervalW ESO.A 1).construct :=
   MatExp.expW_mem_expIntervalW ESO.A 1 hM

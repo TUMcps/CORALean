@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.STLInterval.Operations.ToLeft
+public import CORALean.Specification.STLInterval.Operations.ToRight
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 public import CORALean.Specification.TentativeKleeneSignal.Operations.ToFourValued
 
@@ -13,9 +14,6 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.ToFourValu
 `sig = getInterval(obj,interval)` of `tentativeKleeneSignal.m`: everything outside the interval is
 made invalid, the rest read as a four-valued signal; the empty interval gives the inconclusive
 signal. `isemptyobject(interval)` is the case where `toLeft` has nothing to return.
-
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
 
 ## Inputs
 * `s` – tentative signal
@@ -35,12 +33,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = getInterval(obj,interval)`. -/
-noncomputable def TentativeKleeneSignal.getInterval (s : TentativeKleeneSignal ℝ)
-    (I : STLInterval) : FourValuedSignal ℝ :=
+def TentativeKleeneSignal.getInterval (s : TentativeKleeneSignal 𝕋) (I : STLInterval 𝕋) :
+    FourValuedSignal 𝕋 :=
   match I.toLeft, I.toRight with
   | some left, some right =>
     -- 1. obj = obj.setInvalid(left); obj = obj.setInvalid(right)

@@ -21,8 +21,9 @@ adding no generators to what later products multiply.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -42,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Sec. 3.3.2]'s tail: every entry within `b`, as an interval matrix. -/
+/-- The tail of [1, Sec. 3.1]'s series: every entry within `b`, as an interval matrix. -/
 def MatExp.expMatZonoRemainder (m : ℕ) (b : 𝕋) : Interval (Mat 𝕋 m m) :=
   ⟨fun _ _ => neg b, fun _ _ => b⟩
 

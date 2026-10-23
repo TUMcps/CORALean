@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import Mathlib.Order.WithBot
 
@@ -36,12 +37,12 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[start,stop] = priv_relevantValueIdx(obj,interval)`, the `start`. -/
-def PointSegmentSignal.relevantStart {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+def PointSegmentSignal.relevantStart {T : Type} [TimeOrder T] [Zero T] (s : PointSegmentSignal T)
     (lb : T) (lc : Bool) : ℕ :=
   -- i = find(obj.timePoints <= lb,1,'last')
   let i := (s.timePoints.takeWhile (· ≤ lb)).length
   -- at the lower end the point value, if that end is closed
-  if s.timePoints.getD (i - 1) 0 = lb ∧ lc = true then 2 * i - 1 else 2 * i
+  if TimeOrder.Eqv (s.timePoints.getD (i - 1) 0) lb ∧ lc = true then 2 * i - 1 else 2 * i
 
 end CORALean
 

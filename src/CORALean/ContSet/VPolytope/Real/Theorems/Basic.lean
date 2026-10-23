@@ -91,6 +91,17 @@ theorem VPolytope.matPolytope_exact (P : VPolytope (Vec ℝ n)) :
   VPolytope.map_exact (colLin n) P
 
 
+-- ================================  `VPolytope.mtimes_eq_map`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       01-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
+theorem VPolytope.mtimes_eq_map (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
+    VPolytope.mtimes M P = P.map (Matrix.mulVecLin M) := rfl
+
+
 -- ===================================  `VPolytope.or_exact`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026

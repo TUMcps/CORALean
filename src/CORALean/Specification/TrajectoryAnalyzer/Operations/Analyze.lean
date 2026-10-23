@@ -32,15 +32,16 @@ degenerate interval; here `none`.
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
+variable {T 𝕋 : Type} [TimeOrder T] [Zero T] [Scalar 𝕋] {S : ℕ → Type} {n : ℕ}
+  [∀ k, ContSet (S k) (Vec ℝ k)]
   [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sigs = analyze(obj,s)`. -/
-noncomputable def TrajectoryAnalyzer.analyze (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ) :
-    Option (List (String × FiniteSignal ℝ Bool)) :=
+def TrajectoryAnalyzer.analyze (obj : TrajectoryAnalyzer T 𝕋 S n) (s : ℕ) :
+    Option (List (String × FiniteSignal T Bool)) :=
   -- dur = obj.traj.t(:,end)
   obj.traj.t.getLast?.bind fun dur =>
     -- prepare signals for all atomic propositions

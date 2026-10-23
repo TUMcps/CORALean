@@ -10,6 +10,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SetLinCombSubsetOfIsOrOuter
+public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
 
 @[expose] public section
 
@@ -30,6 +31,18 @@ open Matrix
 open scoped MatrixOrder
 
 variable {n m : ℕ}
+
+
+-- ==================================  `apply_eq_dotProduct`  =================================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- A functional applied is the dot product with its `dualVec` -/
+theorem apply_eq_dotProduct (c : Vec ℝ n →ₗ[ℝ] ℝ) (x : Vec ℝ n) : c x = dualVec c ⬝ᵥ x := by
+  rw [LinearMap.pi_apply_eq_sum_univ c x, dotProduct]
+  exact Finset.sum_congr rfl fun i _ => by rw [smul_eq_mul]; exact mul_comm _ _
 
 
 -- ================================  `Ellipsoid.dot_transpose`  ================================= --

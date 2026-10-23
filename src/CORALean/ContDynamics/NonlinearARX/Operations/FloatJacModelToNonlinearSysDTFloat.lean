@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatJacModel
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
 public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatJacModel
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 @[expose] public section
 
@@ -51,47 +52,39 @@ def NonlinearARX.FloatJacModel.toNonlinearSysDTFloat
   jacX := fun X V =>
     -- the window and the inputs, newest first, as `f_ARX` reads them
     let Y : Interval (Vec 𝕋 (p * dy)) :=
-      ⟨fun s => X.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => X.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
+      ⟨fun s => X.inf (NonlinearARX.revBlocks s),
+       fun s => X.sup (NonlinearARX.revBlocks s)⟩
     let W : Interval (Vec 𝕋 ((p + 1) * du)) :=
-      ⟨fun s => V.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => V.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
+      ⟨fun s => V.inf (NonlinearARX.revBlocks s),
+       fun s => V.sup (NonlinearARX.revBlocks s)⟩
     let A_lin := fm.jacY Y W                                         -- A_lin
     -- A_tilde = [A_tilde_firstRows; A_lin]
     ⟨fun r c => if h : (finProdFinEquiv.symm r).1.val + 1 < p then
         (if c = finProdFinEquiv ((⟨(finProdFinEquiv.symm r).1.val + 1, h⟩ : Fin p),
           (finProdFinEquiv.symm r).2) then one else zero)
       else A_lin.inf (finProdFinEquiv.symm r).2
-        (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2)),
+        (NonlinearARX.revBlocks c),
      fun r c => if h : (finProdFinEquiv.symm r).1.val + 1 < p then
         (if c = finProdFinEquiv ((⟨(finProdFinEquiv.symm r).1.val + 1, h⟩ : Fin p),
           (finProdFinEquiv.symm r).2) then one else zero)
       else A_lin.sup (finProdFinEquiv.symm r).2
-        (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2))⟩
+        (NonlinearARX.revBlocks c)⟩
   jacU := fun X V =>
     -- the window and the inputs, newest first, as `f_ARX` reads them
     let Y : Interval (Vec 𝕋 (p * dy)) :=
-      ⟨fun s => X.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => X.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
+      ⟨fun s => X.inf (NonlinearARX.revBlocks s),
+       fun s => X.sup (NonlinearARX.revBlocks s)⟩
     let W : Interval (Vec 𝕋 ((p + 1) * du)) :=
-      ⟨fun s => V.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => V.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
+      ⟨fun s => V.inf (NonlinearARX.revBlocks s),
+       fun s => V.sup (NonlinearARX.revBlocks s)⟩
     let B_lin := fm.jacU Y W                                         -- B_lin
     -- B_tilde = [B_tilde_firstRows; B_lin]
     ⟨fun r c => if (finProdFinEquiv.symm r).1.val + 1 < p then zero
       else B_lin.inf (finProdFinEquiv.symm r).2
-        (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2)),
+        (NonlinearARX.revBlocks c),
      fun r c => if (finProdFinEquiv.symm r).1.val + 1 < p then zero
       else B_lin.sup (finProdFinEquiv.symm r).2
-        (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2))⟩
+        (NonlinearARX.revBlocks c)⟩
 
 end CORALean
 

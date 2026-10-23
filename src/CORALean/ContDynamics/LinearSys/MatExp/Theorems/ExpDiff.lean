@@ -13,7 +13,7 @@ true flow and the straight line from `I` to `e^{Ar}`. Written here as a single s
 starting at `i = 2`. The constant terms cancel against `I` and `(t/r)I`, and the linear terms
 because `t - (t/r)r = 0`, which is why the correction is second order and why `r ≠ 0` is needed:
 at `r = 0` Lean's `t/r` is `0`. Keeping the two exponentials in one series makes the `E(r)` bound
-of [1, Prop. 3.1] provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once
+of [1, Thm. 3] provable: the tail terms share `A^i`, so `t^i - t·r^(i-1)` is bounded once
 rather than each remainder separately and the two added. `CorrectionMatrix` spells out why
 splitting them would cost a factor of two.
 
@@ -30,8 +30,9 @@ splitting them would cost a factor of two.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

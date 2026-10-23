@@ -29,10 +29,10 @@ namespace CORALean
 
 /-- One element of an array of reach sets: the index of its parent, its location, and its sets with
 the time intervals they are reachable in. -/
-structure ReachSetAnalyzer.Entry (S : ℕ → Type) (n : ℕ) where
+structure ReachSetAnalyzer.Entry (T : Type) (S : ℕ → Type) (n : ℕ) where
   parent : ℕ
   loc : ℕ
-  timeInterval : List (ReachSetAnalyzer.TimedSet S n)
+  timeInterval : List (ReachSetAnalyzer.TimedSet T S n)
 
 end CORALean
 

@@ -35,7 +35,7 @@ and `0 ∈ U`, shown to enclose the reachable set from what its subroutines deli
 | `Eq. 5` | conv(Z₁, Z₂) ⊆ ½(c + d, g + h, c - d, g - h) for zonotopes of equal order. | n/a — restated from Girard 2005 [22] | `restated` |
 | `Sec. II-B` | An interval matrix M ⊕ [-S, S] times a zonotope is enclosed by (Mc, Mg⁽ⁱ⁾, h⁽ʲ⁾), h⁽ʲ⁾ = Sⱼ(\|c\| + Σ\|g⁽ᵏ⁾\|)eⱼ. | n/a — restated from Althoff's thesis [61, Thm. 3.3] | `restated` |
 | `Eq. 6` | box(Z) = (c, ĥ⁽¹⁾, …, ĥ⁽ⁿ⁾), ĥ⁽ⁱ⁾ⱼ = (Σ\|g⁽ᵏ⁾\|)ⱼ for i = j. | n/a — restated from Althoff's thesis [61, Prop. 2.2] | `restated` |
-| `Eq. 9` | (Exact reachable set) R^e([0, t_f]) = {χ(t; x₀, u(·)) \| x₀ ∈ R(0), t ∈ [0, t_f], u(τ) ∈ U}. | n/a — restated; tracked as `Def. 3.1` on [Althoff's thesis](../2010/althoff-thesis.md) | `restated` |
+| `Eq. 9` | (Exact reachable set) R^e([0, t_f]) = {χ(t; x₀, u(·)) \| x₀ ∈ R(0), t ∈ [0, t_f], u(τ) ∈ U}. | n/a — restated; tracked as `Def. 1` on [Althoff, Stursberg, Buss 2009](../2009/althoff-ecc-enclosing-hulls.md) | `restated` |
 | `Lemma III.1` | (Single state homogeneous solution) With V, H from Alg. 1 for C = A, v = x₀: x_h(t) = e^{At}x₀ ∈ ‖x₀‖Ve^{Ht}e₁ ⊕ [-1, 1]ⁿ‖x₀‖ε_norm t (10). | [`MemBoxOfNormLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/MemBoxOfNormLe.lean) — from (3) as hypothesis, for any vector and approximation | `correct` |
 | `Thm. III.1` | (Homogeneous solution for a point in time) For X₀ = (c, g⁽¹⁾, …, g⁽ᵖ⁾): e^{At}X₀ ⊆ (ĉ, ĝ⁽¹⁾, …, ĝ⁽ᵖ⁾) ⊕ [-1, 1]ⁿ(‖c‖ + Σ‖g⁽ⁱ⁾‖)ε_norm t, ĉ, ĝ⁽ⁱ⁾ the Krylov approximations of e^{At}c, e^{At}g⁽ⁱ⁾. | [`ImageSubsetOfApprox.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ImageSubsetOfApprox.lean) — any linear map, from Lemma III.1's box at c and at each g⁽ⁱ⁾ | `underspecified` — ε_norm is computed per vector (Appendix B: h_{ξ+1,ξ} and ω come from that vector's Arnoldi run), and one ε_norm for c and every g⁽ⁱ⁾ holds only as their maximum; the formalization takes one bound per vector, as Thm. IV.1 does |
 | `Eq. 12` | [-1, 1]ⁿ ε̂_norm t = ⊕ᵢ [-1, 1]eᵢ ε̂_norm t, the box as a zonotope with n generators. | n/a — the box as a zonotope, restated from [61] | `restated` |
@@ -160,7 +160,7 @@ adds `box(R*_{b,k+1})`, so the input part after two steps is
 within `[0, (1 - e⁻¹)(1 + e⁻²)] ≈ [0, 0.718]`, while the constant input `1` reaches `1 - e⁻² ≈ 0.865`
 at `t = 2`; with `X₀ = {0}` the union of line 13 misses it. Line 8 with `kδ`, as (24)'s `e^{At_k}`
 reads for `t_k = kδ`, encloses: `R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ}R_p(δ)` for `s ∈ [0, δ]`, from
-[Althoff's thesis](../2010/althoff-thesis.md) (`Prop. 3.2`, `Prop. 3.3`). It is proved with `0 ∈ U`,
+the separation of [Althoff, Stursberg, Buss 2009](../2009/althoff-ecc-enclosing-hulls.md) (`Prop. 4`) and the growth with time its proof takes. It is proved with `0 ∈ U`,
 which `Alg. 2` does not state; that is what makes line 3's `conv(0ₙ, R*_{b,1})` hold `R_p(s)` for
 `s < δ` (`R_p(s) ⊆ R_p(δ)`, the input held at `0` first).
 Line 10 calls `Thm. III.2` with the start set `R*_{h,k}` and the end set `R*_{h,k+1}`, the latter

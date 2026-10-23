@@ -66,18 +66,6 @@ def MatExp.aux_expIntervalTaylorPair (A : Interval (Mat 𝕋 n n)) :
 def MatExp.aux_expIntervalTaylorImpl (A : Interval (Mat 𝕋 n n)) (k : ℕ) : Interval (Mat 𝕋 n n) :=
   (MatExp.aux_expIntervalTaylorPair A k).2
 
-@[csimp] theorem MatExp.aux_expIntervalTaylor_eq_impl : -- --- CONCL ---
-    @MatExp.expIntervalTaylor = @MatExp.aux_expIntervalTaylorImpl := by -- --- PROOF ---
-  funext 𝕋 _ n A k
-  -- the pair is the power and the sum, order by order
-  have hpair : ∀ k, MatExp.aux_expIntervalTaylorPair A k
-      = (Interval.matPow A k, MatExp.expIntervalTaylor A k) := by
-    intro k
-    induction k with
-    | zero => rfl
-    | succ k ih => rw [MatExp.aux_expIntervalTaylorPair, ih]; rfl
-  rw [MatExp.aux_expIntervalTaylorImpl, hpair]
-
 end CORALean.Float
 
 

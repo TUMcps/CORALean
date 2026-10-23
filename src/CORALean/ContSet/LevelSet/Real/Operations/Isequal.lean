@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def LevelSet.isequal (L S : LevelSet n) : Prop :=
+def LevelSet.isequal (L S : LevelSet n) : Prop :=
   match L.compact_, S.compact_ with
   | Sum.inl L', Sum.inl S' =>
       ∃ σ : Fin L'.m → Fin S'.m, Function.Bijective σ ∧

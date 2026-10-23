@@ -1,18 +1,19 @@
 module
 
+public import CORALean.Global.Float.TimeOrder
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
 
 /-!
-# `stlInterval` with real bounds
+# `stlInterval` with stored bounds
 
-`stlInterval(lb,ub,lc,rc)` for a real lower bound and an upper bound that is real or `inf`, the
+`stlInterval(lb,ub,lc,rc)` for a stored lower bound and an upper bound that is stored or `inf`, the
 bounds `findIntervals` and `conclusiveInterval` read off a signal. CORA rejects `lb < 0`; the
 model returns `stlInterval()` for it, a case no valid signal reaches (its time points are `≥ 0`).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
-over `𝕋`, rounded outward) is not yet written.
+The bounds are stored in the scalar `𝕋`; the sign test is decided exactly (`ExactLe`), so nothing
+rounds.
 
 ## Inputs
 * `lb` – lower bound
@@ -34,16 +35,18 @@ over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `stlInterval(lb,ub,lc,rc)` for real bounds, `ub` possibly `inf`; a negative `lb`, which CORA
-rejects, gives `stlInterval()`. -/
-noncomputable def STLInterval.stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc rc : Bool) :
-    STLInterval :=
-  if hlb : 0 ≤ lb then
-    STLInterval.stlInterval (lb : EReal) (ub.recTopCoe (⊤ : EReal) (fun r => (r : EReal))) lc rc
-      (EReal.coe_nonneg.2 hlb)
+/-- `stlInterval(lb,ub,lc,rc)` for stored bounds, the upper one possibly `inf`; a negative `lb`,
+which CORA rejects, gives `stlInterval()`. -/
+def STLInterval.stlIntervalBounds (lb : 𝕋) (ub : WithTop 𝕋) (lc rc : Bool) : STLInterval 𝕋 :=
+  if hlb : toReal (0 : 𝕋) ≤ toReal lb then
+    STLInterval.stlInterval lb ub lc rc (by rwa [toReal_zero_eq] at hlb)
   else .empty
 
 end CORALean

@@ -55,11 +55,11 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the entries of a branch record. -/
-theorem ReachSetAnalyzer.aux_analyzeBranch_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
-    (R : List (ReachSetAnalyzer.Entry S n)) : -- --- CONCL ---
+theorem ReachSetAnalyzer.aux_analyzeBranch_spec (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+    (R : List (ReachSetAnalyzer.Entry ℝ S n)) : -- --- CONCL ---
     ∀ (w : List ℕ), (∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
       ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) →
-    ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer S n), obj0.aps = obj.aps →
+    ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer ℝ S n), obj0.aps = obj.aps →
       obj0.masks = obj.masks → obj0.Represents d PT PF →
       ∃ obj', w.foldlM (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) obj0 =
         some obj' ∧ obj'.aps = obj.aps ∧ obj'.masks = obj.masks ∧ obj'.Represents d
@@ -116,11 +116,11 @@ theorem ReachSetAnalyzer.aux_analyzeBranch_spec (obj : ReachSetAnalyzer S n) (d 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.signalsSound_of_branch (obj : ReachSetAnalyzer S n) (d : ℝ)
+theorem ReachSetAnalyzer.signalsSound_of_branch (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (hobj : obj.Represents d (fun _ _ => False) (fun _ _ => False))
-    (R : List (ReachSetAnalyzer.Entry S n)) (w : List ℕ)
+    (R : List (ReachSetAnalyzer.Entry ℝ S n)) (w : List ℕ)
     (hw : ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
-    (obj' : ReachSetAnalyzer S n)
+    (obj' : ReachSetAnalyzer ℝ S n)
     (hf : w.foldlM (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) obj =
       some obj') (out : List (String × FiniteSignal ℝ Kleene)) (hs : obj'.signals = some out)
     : -- --- CONCL ---

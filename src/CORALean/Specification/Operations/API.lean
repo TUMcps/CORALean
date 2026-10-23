@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.Operations.Custom
 public import CORALean.Specification.Operations.Check
 public import CORALean.Specification.Operations.DiffPoint
 public import CORALean.Specification.Operations.VerifyConvex

@@ -61,7 +61,7 @@ theorem PointSegmentSignal.at_append_lt (A R : List T) (VA VR : List Bool)
     · simp [hR, h1]
     · rfl
   have hi : (A.takeWhile (· ≤ t)).length - 1 < A.length := by omega
-  simp only [PointSegmentSignal.at, hlen']
+  simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at, hlen']
   rw [List.getElem?_append_left hi, List.getD_append _ _ _ _ (by omega),
     List.getD_append _ _ _ _ (by omega)]
 

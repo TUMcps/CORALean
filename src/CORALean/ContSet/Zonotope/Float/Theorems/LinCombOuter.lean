@@ -130,16 +130,18 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨β₁, hβ₁, hy₁⟩ := Zonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hy₂⟩ := Zonotope.mem_nominalSet_iff.mp hy₂'
+  -- the coefficients of the sum and of the difference of the pair
+  set pc := Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam) (Real.Zonotope.pairCoeffDiff β₁ β₂
+    lam) with hpc
   have hβ : ∀ j : Fin (Z₁.h + Z₂.h + 1),
-      |Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-        (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j| ≤ 1 := by
+      |Fin.append pc (fun _ : Fin 1 => 2 * lam - 1) j| ≤ 1 := by
     -- every appended coefficient is admissible, the fresh one because `2λ-1` is in `[-1,1]`
     refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro j
-        simpa using Real.Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
+        simpa [hpc] using Real.Zonotope.abs_pairCoeffSum_le_one hβ₁ hβ₂ hl0 hl1 j
       · intro j
-        simpa using Real.Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
+        simpa [hpc] using Real.Zonotope.abs_pairCoeffDiff_le_one hβ₁ hβ₂ hl0 hl1 j
     · intro _
       simp only [Fin.append_right]
       rw [abs_le]
@@ -148,8 +150,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --
   refine ⟨fun i => toReal (Zonotope.midpoint Z₁.c Z₂.c i)
             + ∑ j : Fin (Z₁.h + Z₂.h + 1),
                 toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
-                  * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-                      (Real.Zonotope.pairCoeffDiff β₁ β₂ lam))
+                  * Fin.append pc
                       (fun _ : Fin 1 => 2 * lam - 1) j,
           Zonotope.mem_nominalSet_iff.mpr ⟨_, hβ, fun _ => rfl⟩,
           _,
@@ -160,15 +161,12 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --
   -- the stored generators and their shortfalls recombine into the exact ones
   have hsum : (∑ j : Fin (Z₁.h + Z₂.h + 1),
         toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
-          * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-              (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j)
+          * Fin.append pc (fun _ : Fin 1 => 2 * lam - 1) j)
       + (∑ j, (Zonotope.aux_linCombGReal Z₁ Z₂ i j
             - toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j))
-          * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-              (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j)
+          * Fin.append pc (fun _ : Fin 1 => 2 * lam - 1) j)
       = ∑ j, Zonotope.aux_linCombGReal Z₁ Z₂ i j
-          * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
-              (Real.Zonotope.pairCoeffDiff β₁ β₂ lam)) (fun _ : Fin 1 => 2 * lam - 1) j := by
+          * Fin.append pc (fun _ : Fin 1 => 2 * lam - 1) j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]

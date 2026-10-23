@@ -10,12 +10,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # The input reach set splits at any intermediate time
 
-[1, Prop. 3.2], in the direction the enclosures need: concatenating an input over `[0,a]` with one
+[1, Prop. 4], in the direction the enclosures need: concatenating an input over `[0,a]` with one
 over `[0,b]` gives an input over `[0,a+b]`, and what it contributes is `e^{Ab}` applied to the first
 contribution plus the second. This direction has to build an input rather than take one apart
-(`InputReachSeparationSubset` takes one apart, `InputReachSeparationEq` puts the two together).
-Taking `a = Δt` and `b = r` is [1, Cor. 3.1]. The concatenation is measured by splitting the window
-and rebuilding it: `intervalIntegrable_expSub_mulVec` gives integrability on each half, and
+(`InputReachSeparationSubset` takes one apart, `InputReachSeparationEq` puts the two together). At
+`a ∈ [0, r]` and `b = kr` it is [1, Prop. 4] at one time of the window `[kr, (k+1)r]`. The
+concatenation is measured by splitting the window and rebuilding it:
+`intervalIntegrable_expSub_mulVec` gives integrability on each half, and
 `aux_aestronglyMeasurable_comp_sub_right` moves the second half back to zero.
 
 ## Inputs
@@ -34,8 +35,9 @@ and rebuilding it: `intervalIntegrable_expSub_mulVec` gives integrability on eac
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5
@@ -88,7 +90,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Prop. 3.2]: what a run over `[0, a+b]` can contribute includes everything
+/-- [1, Prop. 4]: what a run over `[0, a+b]` can contribute includes everything
 a run over `[0,a]` can contribute, propagated across the remaining `b`, plus
 everything a run over `[0,b]` can. -/
 theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}

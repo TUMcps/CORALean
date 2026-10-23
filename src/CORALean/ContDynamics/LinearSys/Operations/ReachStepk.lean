@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 /-!
 # One window of `reach`, enclosed from its own time point: `HR(τ_k) = HR(t_k, t_{k+1})`
 
-CORA's `standard` scheme, its default, and [1, Alg. 4]'s recursion at a point matrix with no input
+CORA's `standard` scheme, its default, and [1, Alg. 1]'s recursion at a point matrix with no input
 and no order reduction: the recursion runs over the time-point sets `timePoint`,
 `R(t_{k+1}) = e^{AΔt} R(t_k)`, and the window `τ_k = [k Δt, (k + 1) Δt]` is `timeInterval` run
 once, from `R(t_k)` directly, rather than carried step by step the way `timePoint` itself is.
@@ -28,8 +28,9 @@ first window directly rather than `e^{AΔt}` to the window before.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

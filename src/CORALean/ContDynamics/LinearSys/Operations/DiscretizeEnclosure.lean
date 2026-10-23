@@ -28,8 +28,9 @@ does not, so the family is written out here.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5
@@ -51,7 +52,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The system a step of `Δt` leaves behind, its matrix only enclosed: the
-Taylor truncation at order `η` widened by the tail bound, [1, Sec. 3.2]. -/
+Taylor truncation at order `η` widened by the tail bound, [1, Thm. 1]. -/
 noncomputable def LinearSys.discretizeEnclosure (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) :
     LinParamSysDT ℐ n :=
   .canonical (Real.MatExp.expEnclosure (Δt • toRealMat sys.A) η)

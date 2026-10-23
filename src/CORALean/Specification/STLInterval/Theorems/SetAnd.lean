@@ -25,12 +25,16 @@ public import CORALean.Specification.STLInterval.STLInterval
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      16-October-2026 (Tobias Ladner)
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 namespace CORALean
+
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -141,17 +145,25 @@ theorem STLInterval.aux_rawSet_inter (l₁ u₁ l₂ u₂ : EReal)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `and_` denotes the intersection of the two sets. -/
-theorem STLInterval.set_and_ (I J : STLInterval) : -- --- CONCL ---
+theorem STLInterval.set_and_ [ExactLe 𝕋] (I J : STLInterval 𝕋) : -- --- CONCL ---
     (I.and_ J).set = I.set ∩ J.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.and_, STLInterval.set]
-  | nonempty l₁ u₁ lc₁ rc₁ _ _ _ _ =>
+  | nonempty l₁ u₁ lc₁ rc₁ _ _ _ =>
     cases J with
     | empty => simp [STLInterval.and_, STLInterval.set]
-    | nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
+    | nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
       simp only [STLInterval.and_]
-      rw [STLInterval.set_stlInterval]
-      exact (aux_rawSet_inter l₁ u₁ l₂ u₂ lc₁ rc₁ lc₂ rc₂).symm
+      rw [STLInterval.set_stlInterval, STLInterval.set, STLInterval.set,
+        aux_rawSet_inter (toReal l₁ : ℝ) (toEReal u₁) (toReal l₂ : ℝ) (toEReal u₂)]
+      -- the bounds and flags are those of the larger lower and the smaller upper bound
+      congr 1
+      · rw [toReal_maximum]; exact EReal.coe_strictMono.monotone.map_max
+      · split_ifs with h
+        · exact (min_eq_left h).symm
+        · exact (min_eq_right (not_le.1 h).le).symm
+      · simp only [EReal.coe_lt_coe_iff]
+      · split_ifs <;> rfl
 
 end CORALean
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
 public import CORALean.ContSet.Interval.Float.Operations.OfBounds
-public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetOfBounds
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 
 @[expose] public section

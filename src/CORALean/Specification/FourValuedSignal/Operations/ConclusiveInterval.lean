@@ -18,9 +18,6 @@ public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 first time the signal is inconclusive outside `ignore`; empty if it is inconclusive at `0`. It is
 closed at the end if the signal is conclusive there, and open, or unbounded, otherwise.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `obj` – four-valued signal
 * `ignore` – interval to disregard
@@ -39,12 +36,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `int = conclusiveInterval(obj,ignore)`. -/
-noncomputable def FourValuedSignal.conclusiveInterval (obj : FourValuedSignal ℝ)
-    (ignore : STLInterval) : STLInterval :=
+def FourValuedSignal.conclusiveInterval (obj : FourValuedSignal 𝕋) (ignore : STLInterval 𝕋) :
+    STLInterval 𝕋 :=
   -- 1. isConclusive = ~(obj.isInconclusive.set(ignore,false))
   let isConclusive := (obj.isInconclusive.set ignore false).not
   -- 2. if ~isConclusive.at(0), there is no conclusive time

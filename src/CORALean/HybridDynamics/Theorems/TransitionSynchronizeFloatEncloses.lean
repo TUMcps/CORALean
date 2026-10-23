@@ -5,6 +5,7 @@ public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeApply
 public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOuter
 public import CORALean.HybridDynamics.Theorems.LinearResetSynchronizeFloatOffsetOuter
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardOuter
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

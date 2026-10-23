@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
 public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 @[expose] public section
 
@@ -50,10 +51,8 @@ def NonlinearARX.toNonlinearSysDT (sys : NonlinearARX dy du p) :
       x (finProdFinEquiv ((⟨(finProdFinEquiv.symm r).1.val + 1, h⟩ : Fin p),
         (finProdFinEquiv.symm r).2))
     else
-      sys.f (fun s => x (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)))
-        (fun s => v (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))) (finProdFinEquiv.symm r).2
+      sys.f (fun s => x (NonlinearARX.revBlocks s))
+        (fun s => v (NonlinearARX.revBlocks s)) (finProdFinEquiv.symm r).2
   q := p * dy
   g x _ := x
   dt := sys.dt

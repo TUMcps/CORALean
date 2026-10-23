@@ -5,7 +5,7 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.ContSet.HPolytope.Real.Operations.Rows
 public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
-public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
+public import CORALean.ContSet.HPolytope.Real.Theorems.SubsetOfBoundsOpt
 public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact

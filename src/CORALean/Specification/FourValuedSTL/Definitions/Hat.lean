@@ -32,7 +32,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 open Classical in
-/-- `â(X')`. -/
+/-- `â(X')`. Noncomputable: nonemptiness and inclusion of a set are decided classically. -/
 noncomputable def FourValuedSTL.hat {X : Type} (a : X → Prop) (S : Set X) : Kleene :=
   if S.Nonempty ∧ S ⊆ {x | a x} then .tt
   else if S.Nonempty ∧ S ∩ {x | a x} = ∅ then .ff else .uu

@@ -84,7 +84,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `a` read as the functional over ℝ it names, one row of a one-row matrix. -/
-abbrev aux_dirLin (a : Vec 𝕋 n) : Vec ℝ n →ₗ[ℝ] ℝ := rowLin (fun (_ : Fin 1) => a) 0
+abbrev aux_dirLin (a : Vec 𝕋 n) : Vec ℝ n →ₗ[ℝ] ℝ := Real.HPolytope.rowLin
+    (toRealMat (fun (_ : Fin 1) => a)) 0
 
 /-- A box's bound along `a`. -/
 def aux_boxBound (I : Interval (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=

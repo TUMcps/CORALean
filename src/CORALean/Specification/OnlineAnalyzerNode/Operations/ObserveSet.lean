@@ -51,8 +51,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 
 /-- `observeSet(obj,set,interval,loc,tentative)`. -/
 noncomputable def OnlineAnalyzerNode.observeSet (eps : ℝ)
-    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval)
-    (loc : ℕ) (tentative : Bool) : Option (OnlineAnalyzerNode (AtomicProposition S d)) :=
+    (n : OnlineAnalyzerNode ℝ (AtomicProposition S d)) (set : S d) (interval : STLInterval ℝ)
+    (loc : ℕ) (tentative : Bool) : Option (OnlineAnalyzerNode ℝ (AtomicProposition S d)) :=
   -- if ~ismember(obj.type,{'true','false','AP'}), throw notSupported
   if n.kind ≠ .true ∧ n.kind ≠ .false ∧ n.kind ≠ .ap then none
   else

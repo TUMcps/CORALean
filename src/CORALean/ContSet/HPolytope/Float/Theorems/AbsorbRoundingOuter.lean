@@ -2,7 +2,7 @@ module
 
 public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.AbsorbRounding
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
+public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLeft
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 
 @[expose] public section

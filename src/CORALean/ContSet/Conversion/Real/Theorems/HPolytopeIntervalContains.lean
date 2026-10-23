@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
-public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section

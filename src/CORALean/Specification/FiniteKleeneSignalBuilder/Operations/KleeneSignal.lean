@@ -15,10 +15,11 @@ property can only be true where only `possiblyTrueSignal` holds, only false wher
 does (with masks a property can be neither). `finiteSignal.combine` throws if the constructor
 rejects the result; here `none`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+Generic over the time type: at a float scalar nothing rounds, the only comparisons being exact
+(`TimeOrder`).
 
 ## Inputs
+* `T` – time type
 * `obj` – signal builder
 
 ## Output
@@ -39,8 +40,8 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = kleeneSignal(obj)`. -/
-noncomputable def FiniteKleeneSignalBuilder.kleeneSignal? (obj : FiniteKleeneSignalBuilder) :
-    Option (FiniteSignal ℝ Kleene) :=
+def FiniteKleeneSignalBuilder.kleeneSignal? {T : Type} [TimeOrder T] [Zero T]
+    (obj : FiniteKleeneSignalBuilder T) : Option (FiniteSignal T Kleene) :=
   FiniteSignal.combine? FiniteKleeneSignalBuilder.comb
     [obj.possiblyTrueSignal, obj.possiblyFalseSignal]
 

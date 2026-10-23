@@ -43,7 +43,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The disjunction of four-valued signals is `True`, `False`, `Inconclusive` as `fourValued.or`. -/
-theorem FourValuedSignal.at_or {ι : Type} [Fintype ι] [Nonempty ι] (sigs : ι → FourValuedSignal ℝ)
+theorem FourValuedSignal.at_or {ι : Type} [FinEnum ι] [Nonempty ι] (sigs : ι → FourValuedSignal ℝ)
     (hv : ∀ k, (sigs k).IsValid) : -- --- CONCL ---
     ∃ r, FourValuedSignal.or_ sigs = some r ∧ r.IsValid ∧
       ∀ t : ℝ, 0 ≤ t → (r.at t = FourValued.tt ↔ ∃ k, (sigs k).at t = FourValued.tt) ∧

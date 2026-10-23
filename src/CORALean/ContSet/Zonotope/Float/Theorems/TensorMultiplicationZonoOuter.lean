@@ -82,20 +82,22 @@ theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec 𝕋 n))
     Real.Zonotope.tensorEval (fun i a b c => toReal (M.c i a b c)
         + ∑ j, β j * toReal (M.G j i a b c)) x
       ∈ (Z.tensorMultiplication_zono M L).construct := by -- --- PROOF ---
+  -- the tensor of the point, center and generators at the coefficients `β`
+  set Mt : Tensor3 ℝ n := fun i a b c => toReal (M.c i a b c) + ∑ j, β j * toReal (M.G j i a b c)
+    with hMt
   -- the product is linear in the tensor
-  have hlin : Real.Zonotope.tensorEval (fun i a b c => toReal (M.c i a b c)
-        + ∑ j, β j * toReal (M.G j i a b c)) x
+  have hlin : Real.Zonotope.tensorEval Mt x
       = Real.Zonotope.tensorEval (fun i a b c => toReal (M.c i a b c)) x
         + ∑ j, β j • Real.Zonotope.tensorEval (fun i a b c => toReal (M.G j i a b c)) x := by
     have := (Real.Zonotope.tensorEvalLin x).map_add (fun i a b c => toReal (M.c i a b c))
       (∑ j, β j • fun i a b c => toReal (M.G j i a b c))
     simp only [Real.Zonotope.tensorEvalLin, LinearMap.coe_mk, AddHom.coe_mk, map_sum,
       map_smul] at this
-    have hM : (fun i a b c => toReal (M.c i a b c) + ∑ j, β j * toReal (M.G j i a b c))
+    have hM : Mt
         = (fun i a b c => toReal (M.c i a b c))
           + ∑ j, β j • fun i a b c => toReal (M.G j i a b c) := by
       funext i a b c
-      simp [Finset.sum_apply]
+      simp [hMt, Finset.sum_apply]
     rw [hM]
     exact this
   rw [hlin]

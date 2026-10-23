@@ -13,8 +13,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 A correct form of [1, Cor. IV.2]: for `U = (c_u, g⁽¹⁾_u, …, g⁽q⁾_u)`, `R_p(δ)` lies in the sum
 over `j = 1, …, η + 1` of the zonotopes
-`(P Ṽ(c_u)H̃ʲ(c_u)e₁ δʲ/j!, P Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)e₁ δʲ/j!)`, plus the remainder of Althoff's
-thesis [2, Thm. 3.1] in place of [1]'s `R_p,err`, below the Krylov order `η + 1 ≤ m`. There [1]'s
+`(P Ṽ(c_u)H̃ʲ(c_u)e₁ δʲ/j!, P Ṽ(g⁽ⁱ⁾_u)H̃ʲ(g⁽ⁱ⁾_u)e₁ δʲ/j!)`, plus the remainder `E(δ)·δ·U` of
+[2, Prop. 2] in place of [1]'s `R_p,err`, below the Krylov order `η + 1 ≤ m`. There [1]'s
 splitting into center and generators holds: after `P` and `e₁` the Krylov term is `A^{j-1}u`
 (`augment_arnoldi_pow`), linear in `u`. [1]'s `R_p,err` fails
 (`varying_input_reach_counterexample`).
@@ -36,10 +36,11 @@ splitting into center and generators holds: after `P` and `e₁` the Krylov term
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
-  Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
+      Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -98,7 +99,7 @@ theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Cor. IV.2] below the Krylov order `η + 1 ≤ m`: the zonotopes of the Krylov terms at
-`c_u` and the `g⁽ⁱ⁾_u`, plus the thesis' remainder `E(δ)·δ·U` closed and convexified. -/
+`c_u` and the `g⁽ⁱ⁾_u`, plus [2, Prop. 2]'s remainder `E(δ)·δ·U` closed and convexified. -/
 theorem Krylov.inputReach_subset_krylovZonotope (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.construct δ

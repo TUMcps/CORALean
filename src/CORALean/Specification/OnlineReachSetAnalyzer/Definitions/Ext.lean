@@ -34,7 +34,7 @@ variable {A : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `nodes'` is `nodes` with edges added and nodes appended. -/
-def OnlineReachSetAnalyzer.Ext (nodes nodes' : List (OnlineAnalyzerNode A)) : Prop :=
+def OnlineReachSetAnalyzer.Ext (nodes nodes' : List (OnlineAnalyzerNode ℝ A)) : Prop :=
   nodes.length ≤ nodes'.length ∧ ∀ (j : ℕ) (h : j < nodes.length) (h' : j < nodes'.length),
     OnlineReachSetAnalyzer.Same nodes[j] nodes'[j]
 

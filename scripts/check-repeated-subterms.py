@@ -11,9 +11,7 @@ repeats"). The check is a heuristic for the clearest case: within one declaratio
 space, comments left out) that occurs at least `MIN_COUNT` times. A tactic block `(by …)` is left
 out, a name does not stand in for one.
 
-An entry of `scripts/repeated-subterm-allowlist.txt` — `<path>::<name>  <reason>` per line —
-names a declaration that has not been brought to the rule yet. The list only shrinks: an entry
-whose declaration is gone, or no longer repeats such a subterm, is reported as stale.
+There is no list of exceptions: every declaration of `src/` follows the rule.
 """
 import re
 import sys
@@ -21,7 +19,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
-ALLOW = ROOT / "scripts" / "repeated-subterm-allowlist.txt"
 
 MIN_LEN = 70
 MIN_COUNT = 3
@@ -87,25 +84,13 @@ def repeats(path):
 
 
 def main():
-    allow = {}
-    for n, line in enumerate(ALLOW.read_text(encoding="utf-8").split("\n"), 1):
-        if line.strip() and not line.startswith("#"):
-            allow[line.split("  ", 1)[0].strip()] = n
-    msgs, seen = [], set()
+    msgs = []
     for path in sorted(SRC.rglob("*.lean")):
         rel = path.relative_to(ROOT).as_posix()
         for ln, name, length, count in repeats(path):
-            key = f"{rel}::{name}"
-            seen.add(key)
-            if key not in allow:
-                msgs.append(f"{rel}:{ln}: `{name}` spells a {length}-character subterm out"
-                            f" {count} times — name it once, with `have`, `set` or a `let`"
-                            f" (CONTRIBUTING, \"Name what repeats\"), or list it in"
-                            f" scripts/repeated-subterm-allowlist.txt")
-    for key, n in allow.items():
-        if key not in seen:
-            msgs.append(f"scripts/repeated-subterm-allowlist.txt:{n}: stale entry `{key}` — the"
-                        f" declaration is gone or no longer repeats a subterm")
+            msgs.append(f"{rel}:{ln}: `{name}` spells a {length}-character subterm out"
+                        f" {count} times — name it once, with `have`, `set` or a `let`"
+                        f" (CONTRIBUTING, \"Name what repeats\")")
     for m in sorted(msgs):
         print(m)
     return 1 if msgs else 0

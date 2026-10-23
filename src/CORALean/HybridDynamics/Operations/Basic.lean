@@ -67,7 +67,19 @@ def scatter {n N : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) : Fin N → �
 end
 
 section
+open Matrix Scalar
 variable {G : ℕ → Type} {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
+-- ====================================  `Transition.reset`  ==================================== --
+-- Authors:       Claude Sonnet 5
+-- Written:       02-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The map the coefficients denote, which is what a run applies at a jump. -/
+def Transition.reset (e : Transition G L 𝕋 n) (x : Vec ℝ n) : Vec ℝ n :=
+  toRealMat e.W *ᵥ x + toRealVec e.w
 
 
 -- ==============================  `Transition.toNonlinearReset`  =============================== --
@@ -78,7 +90,7 @@ variable {G : ℕ → Type} {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- A transition's affine reset `x ↦ W x + w` as a nonlinear reset, which ignores its input: CORA's
 `linearReset` is a `nonlinearReset` with a function that happens to be affine. -/
-noncomputable def Transition.toNonlinearReset (e : Transition G L 𝕋 n) : NonlinearReset n 0 n where
+def Transition.toNonlinearReset (e : Transition G L 𝕋 n) : NonlinearReset n 0 n where
   f := fun x _ => e.reset x
 
 end

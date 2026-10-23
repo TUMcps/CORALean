@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -79,12 +80,10 @@ theorem LinearSys.reachSetExact_subset_image_inputSolution (sys : LinearSys 𝕋
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U))) : -- --- CONCL ---
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η
+      U)) : -- --- CONCL ---
     sys.reachSetExact T R₀ U r
       ⊆ (exp (r • toRealMat sys.A)).mulVecLin '' construct R₀
         + construct (sys.inputSolution r η U) := by -- --- PROOF ---

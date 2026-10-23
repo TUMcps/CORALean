@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.TrajectoryAnalyzer.Operations.Analyze
 public import CORALean.Specification.TrajectoryAnalyzer.Operations.AnalyzeInterval
+public import CORALean.Specification.TrajectoryAnalyzer.Operations.Basic
 public import CORALean.Specification.TrajectoryAnalyzer.Operations.MarkKey
 
 /-!

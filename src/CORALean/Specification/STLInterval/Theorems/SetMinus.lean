@@ -1,10 +1,11 @@
 module
 
 public import CORALean.Specification.STLInterval.Operations.Minus
-public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
-public import CORALean.Specification.STLInterval.Theorems.RawSetSub
-public import CORALean.Specification.STLInterval.Theorems.RawSetClamp
 public import CORALean.Specification.STLInterval.Theorems.Basic
+public import CORALean.Specification.STLInterval.Theorems.RawSetClamp
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
+public import CORALean.Specification.STLInterval.Theorems.RawSetSub
+public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 
 @[expose] public section
 
@@ -34,26 +35,46 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
 open scoped Pointwise
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `minus` denotes the differences of the two sets, at least `0`. -/
-theorem STLInterval.set_minus (I J : STLInterval) : -- --- CONCL ---
+theorem STLInterval.set_minus (I J : STLInterval ℝ) : -- --- CONCL ---
     (I.minus J).set = (I.set - J.set) ∩ Set.Ici 0 := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.minus, STLInterval.set]
-  | nonempty l₁ u₁ lc₁ rc₁ a b c _ =>
+  | nonempty l₁ u₁ lc₁ rc₁ b c _ =>
     cases J with
     | empty => simp [STLInterval.minus, STLInterval.set]
-    | nonempty l₂ u₂ lc₂ rc₂ d e f _ =>
-      simp only [STLInterval.minus]
-      have h := rawSet_sub (rawSet_nonempty_of _ _ _ _ a b c)
-        (rawSet_nonempty_of _ _ _ _ d e f)
-      show _ = (rawSet l₁ u₁ lc₁ rc₁ - rawSet l₂ u₂ lc₂ rc₂) ∩ Set.Ici 0
+    | nonempty l₂ u₂ lc₂ rc₂ e f _ =>
+      have h := rawSet_sub (rawSet_nonempty_of_fields b c) (rawSet_nonempty_of_fields e f)
+      show _ = (rawSet (toReal l₁ : ℝ) (toEReal u₁) lc₁ rc₁ -
+        rawSet (toReal l₂ : ℝ) (toEReal u₂) lc₂ rc₂) ∩ Set.Ici 0
       rw [← h, rawSet_clamp]
-      split_ifs <;> exact set_stlInterval _ _ _ _ _
+      simp only [STLInterval.minus, toReal_real] at *
+      rcases u₂ with _ | y
+      · -- `lower - inf` is below `0`: the cut to `0`
+        dsimp only
+        rw [if_pos (show (l₁ : EReal) - toEReal (none : WithTop ℝ) < 0 by
+          change (l₁ : EReal) - ⊤ < 0; simp), set_stlInterval,
+          STLInterval.toEReal_map_subUp]
+        simp
+      · -- the lower bound is cut to `0` exactly when it is negative
+        dsimp only
+        by_cases hl : l₁ - y < 0
+        · rw [dif_pos (show subDown l₁ y < 0 by simpa using hl),
+            if_pos (show (l₁ : EReal) - toEReal (some y : WithTop ℝ) < 0 by
+              change (l₁ : EReal) - (y : EReal) < 0; exact_mod_cast hl),
+            set_stlInterval, STLInterval.toEReal_map_subUp]
+          simp
+        · rw [dif_neg (show ¬ subDown l₁ y < 0 by simpa using hl),
+            if_neg (show ¬ (l₁ : EReal) - toEReal (some y : WithTop ℝ) < 0 by
+              change ¬ (l₁ : EReal) - (y : EReal) < 0; exact_mod_cast hl),
+            set_stlInterval, STLInterval.toEReal_map_subUp]
+          simp
 
 end CORALean
 

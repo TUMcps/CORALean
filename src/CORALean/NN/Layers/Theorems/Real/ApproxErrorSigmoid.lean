@@ -48,14 +48,15 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem approxError_sigmoid (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
+    let cand := ({2 * Real.artanh (√(1 - 4 * m)), -(2 * Real.artanh (√(1 - 4 * m))), l, u} : Set ℝ)
+      ∩ Set.Icc l u
     IsLeast ((fun x => sigmoid x - (fun x => m * x) x) ''
-          (({2 * Real.artanh (√(1 - 4 * m)), -(2 * Real.artanh (√(1 - 4 * m))), l, u} : Set ℝ) ∩
-            Set.Icc l u))
+          cand)
         (approxErrorLow sigmoid (fun x => m * x) l u) ∧
       IsGreatest ((fun x => sigmoid x - (fun x => m * x) x) ''
-          (({2 * Real.artanh (√(1 - 4 * m)), -(2 * Real.artanh (√(1 - 4 * m))), l, u} : Set ℝ) ∩
-            Set.Icc l u))
+          cand)
         (approxErrorUp sigmoid (fun x => m * x) l u) := by -- --- PROOF ---
+  intro cand
   obtain ⟨⟨a, haI, ha, hac⟩, ⟨b, hbI, hb, hbc⟩⟩ := exists_critical_extreme sigmoid
     sigmoidDeriv m l u hasDerivAt_sigmoid hlu
   -- a critical point is one of the two `±2 artanh √(1 - 4m)`
@@ -78,8 +79,7 @@ theorem approxError_sigmoid (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
       · right; linarith
   -- the bounds and the critical points are the candidates
   have hmem : ∀ q ∈ Set.Icc l u, (q = l ∨ q = u ∨ sigmoidDeriv q = m) →
-      q ∈ (({2 * Real.artanh (√(1 - 4 * m)), -(2 * Real.artanh (√(1 - 4 * m))), l, u} :
-        Set ℝ) ∩ Set.Icc l u) :=
+      q ∈ cand :=
     fun q hq h => by
       refine ⟨?_, hq⟩
       rcases h with h | h | h

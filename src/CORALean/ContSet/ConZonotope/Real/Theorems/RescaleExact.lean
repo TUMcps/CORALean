@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Rescale
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 @[expose] public section

@@ -9,8 +9,8 @@ public import Mathlib.Analysis.SpecialFunctions.Exponential
 # The matrices `s (e^{Ar} - I) + F` that enclose the variation of a point over `[0, r]`
 
 `[1, Eq. 6]`'s `ΔR` is `M Z`, `M = {s(e^{Ar} - I) + F}` for `s ∈ [0, 1]` and `F` in the
-correction matrix of [2] (`MatExp.correctionMatrix`); the weight `s` stands for `t/r` and cannot be
-dropped, since `(e^{Ar} - I + F) Z` alone misses `Δx(0) = 0`.
+correction matrix of [2, Thm. 3] (`MatExp.correctionMatrix`); the weight `s` stands for `t/r` and
+cannot be dropped, since `(e^{Ar} - I + F) Z` alone misses `Δx(0) = 0`.
 
 ## Inputs
 * `A` – system matrix
@@ -22,11 +22,12 @@ dropped, since `(e^{Ar} - I + F) Z` alone misses `Δx(0) = 0`.
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems
-      using Enclosing Hulls of Probability Density Functions". In Proc. of the European Control
-      Conference (ECC), pp. 625-630, 2009.
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.AbsFactorExtendLeOne
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsFactorExtendLeOne
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactFactors
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtend
-public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorExtendFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.FactorExtendFactorIdx
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FactorIdx
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialFactorIdx
 public import CORALean.ContSet.PolyZonotope.Real.Operations.UsedFactors
 
 @[expose] public section

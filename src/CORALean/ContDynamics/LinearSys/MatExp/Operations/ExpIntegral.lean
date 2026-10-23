@@ -11,9 +11,9 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # The matrix exponential, integrated
 
-`expIntegral`: [1]'s `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!`: `Matrix` carries no
-metrizable-space instance Bochner integration can see, so `expIntegral_mulVec` ties it back
-to the integral one vector at a time.
+`expIntegral`: [1, Eq. 7]'s `∫₀ᵗ e^{Aσ} dσ`, as the series `∑ᵢ Aⁱ t^{i+1}/(i+1)!`: `Matrix` carries
+no metrizable-space instance Bochner integration can see, so `expIntegral_mulVec` ties it back to
+the integral one vector at a time.
 
 ## Inputs
 * `A` – system matrix
@@ -24,8 +24,9 @@ to the integral one vector at a time.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+      Analysis of Hybrid Systems". In Proc. of the 15th ACM International Conference on Hybrid
+      Systems: Computation and Control (HSCC), 2012, pp. 45-54.
 -/
 
 -- Authors:       Claude Sonnet 5

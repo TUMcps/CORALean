@@ -17,7 +17,7 @@ A time `t ∈ [0, tFinal]` falls in a window `τ_k` with `k < max 1 ⌈tFinal / 
 time-point set `timePoint Δt X₀ k` the window's own recursion runs on. The
 order is the caller's, `η` itself rather than `m + 2`, admissible by `hε`,
 since `reach` raises nothing itself: the statement is `reachWrappingFree_outer`'s
-with that side condition and `0 < tFinal` added. [1, Alg. 4]'s soundness, at a
+with that side condition and `0 < tFinal` added. [1, Alg. 1]'s soundness, at a
 point matrix with no input.
 
 ## Inputs
@@ -36,8 +36,9 @@ point matrix with no input.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -38,7 +38,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The system CORA returns: the state stays put, the inputs are the stacked bias perturbations
-and the output is `outputFn`. -/
+and the output is `outputFn`. Noncomputable because `outputFn` applies the real activations. -/
 noncomputable def SmoothNetwork.toNonlinearSysDT {n k : ℕ} (N : SmoothNetwork n k) :
     NonlinearSysDT n N.nu where
   f x _ := x

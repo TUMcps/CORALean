@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ColRep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 

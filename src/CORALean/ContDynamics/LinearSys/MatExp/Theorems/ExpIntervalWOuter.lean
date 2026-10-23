@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Positivity
 /-!
 # `W(t)` of every member of an interval matrix lies in `expIntervalW`
 
-[1, Lemma 3.1], the enclosure half. Once `expW_apply` has split the entry into
+[1, Lemma 1], the enclosure half. Once `expW_apply` has split the entry into
 three pieces each piece is bounded by one fact: `mul_between_corners` for the
 single-use product and for every term of the `k ≠ i, j` sum, and
 `quadTerm_between` for the diagonal parabola.
@@ -33,8 +33,9 @@ tightness theorem instead, which is the one that would fail without them.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5
@@ -52,7 +53,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every member's second-order term sits in the interval matrix [1] computes. -/
+/-- Every member's second-order term sits in the interval matrix [1, Lemma 1] computes. -/
 theorem MatExp.expW_mem_expIntervalW (A : Interval (Mat ℝ n n)) (t : ℝ)
     {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
     MatExp.expW M t ∈ (MatExp.expIntervalW A t).construct := by -- --- PROOF ---

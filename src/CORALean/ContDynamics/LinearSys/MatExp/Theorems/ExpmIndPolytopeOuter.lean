@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExponentialRemaind
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalMatrixContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalMatPolytopeExact
 

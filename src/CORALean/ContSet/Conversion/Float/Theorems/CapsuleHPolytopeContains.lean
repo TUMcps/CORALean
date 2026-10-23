@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleIntervalContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.SubsetOfBounds
 
 @[expose] public section
 

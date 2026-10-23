@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.Eliminate
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import CORALean.Global.DropIdx
 
 @[expose] public section

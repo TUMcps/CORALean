@@ -12,13 +12,14 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # A symmetric interval matrix map is `S · box(Z)`
 
-[1, Lemma 3.3], as [1, Remark 3.2] observes it. `Zonotope.mtimesIntervalMat` is already
-[1, Thm. 3.3]'s interval-matrix map, and its diagonal generator block is [1, Lemma 3.2]'s bound
-applied to `Z`'s own reach `|c| + Σ|g|` — exactly `radiusReach`. So what Lemma 3.3 adds is that
-mapping `Z` this way coincides with mapping `Z.interval.zonotope`, CORA's `S · box(Z)`. At a
-*symmetric* `IM` (`IM.inf = -IM.sup`), `IM.center = 0`, which turns the leading generators — the
-image of `Z`'s own — into an all-zero block on both sides; `aux_construct_append_zero_left` drops
-it, and `aux_absBound_interval_zonotope` is why the diagonal block is the same on both sides.
+[1, Lemma 3]'s box, whose generators `N̂_j(|c| + Σ|g|)` are what `S · box(Z)` gives.
+`Zonotope.mtimesIntervalMat` is already [1, Thm. 4]'s interval-matrix map, and its diagonal
+generator block is [1, Lemma 2]'s bound applied to `Z`'s own reach `|c| + Σ|g|` — exactly
+`radiusReach`. So at a symmetric matrix, mapping `Z` this way coincides with mapping
+`Z.interval.zonotope`, CORA's `S · box(Z)`. At a *symmetric* `IM` (`IM.inf = -IM.sup`),
+`IM.center = 0`, which turns the leading generators — the image of `Z`'s own — into an all-zero
+block on both sides; `aux_construct_append_zero_left` drops it, and `aux_absBound_interval_zonotope`
+is why the diagonal block is the same on both sides.
 
 ## Inputs
 * `IM` – interval matrix
@@ -32,8 +33,9 @@ it, and `aux_absBound_interval_zonotope` is why the diagonal block is the same o
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

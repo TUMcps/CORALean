@@ -49,24 +49,22 @@ theorem ProbZonotope.project_laws_outer {m : ℕ} (P : ProbZonotope 𝕋 n)
           (toLp 2 (fun k => ofLp x (dims k)) : EuclideanSpace ℝ (Fin m)))) '' P.laws
       ⊆ (P.project dims).laws := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, S, hS, hp, rfl⟩, rfl⟩
+  -- the selection matrix of the coordinates `dims`
+  set Sel : Mat ℝ m n := Matrix.of fun (i : Fin m) (j : Fin n) => if j = dims i then (1 : ℝ) else 0
+    with hSel
   -- the selection matrix picks the coordinates `dims`
-  have hv : ∀ x : Vec ℝ n, (Matrix.of fun (i : Fin m) (j : Fin n) =>
-      if j = dims i then (1 : ℝ) else 0) *ᵥ x = fun k => x (dims k) := by
+  have hv : ∀ x : Vec ℝ n, Sel *ᵥ x = fun k => x (dims k) := by
     intro x; funext i
-    simp [Matrix.mulVec, dotProduct]
-  have hC : S.submatrix dims dims = (Matrix.of fun (i : Fin m) (j : Fin n) =>
-      if j = dims i then (1 : ℝ) else 0) * S * (Matrix.of fun (i : Fin m) (j : Fin n) =>
-      if j = dims i then (1 : ℝ) else 0)ᵀ := by
+    simp [hSel, Matrix.mulVec, dotProduct]
+  have hC : S.submatrix dims dims = Sel * S * Selᵀ := by
     ext i j
-    simp [Matrix.mul_apply, Matrix.transpose_apply]
+    simp [hSel, Matrix.mul_apply, Matrix.transpose_apply]
   refine ⟨fun k => a (dims k), Zonotope.project_outer P.Z dims ⟨a, ha, rfl⟩, S.submatrix dims dims,
     fun q => hS (dims q.1, dims q.2), ?_, ?_⟩
   · rw [hC]
-    simpa [Matrix.mul_assoc] using hp.mul_mul_conjTranspose_same (Matrix.of fun (i : Fin m)
-      (j : Fin n) => if j = dims i then (1 : ℝ) else 0)
+    simpa [Matrix.mul_assoc] using hp.mul_mul_conjTranspose_same Sel
   · -- the projection is the map of the selection matrix
-    have hmap := Real.map_multivariateGaussian (Matrix.of fun (i : Fin m) (j : Fin n) =>
-      if j = dims i then (1 : ℝ) else 0) (toLp 2 a) hp
+    have hmap := Real.map_multivariateGaussian Sel (toLp 2 a) hp
     simp only [hv, hC] at hmap ⊢
     simpa using hmap
 

@@ -56,7 +56,7 @@ With `¬` and `∧` as `op` this is their point-wise lift to Boolean signals of 
 
 namespace CORALean
 
-variable {T : Type} [LinearOrder T] [Zero T] {ι : Type} [Fintype ι]
+variable {T : Type} [LinearOrder T] [Zero T] {ι : Type} [FinEnum ι]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -91,6 +91,25 @@ theorem PointSegmentSignal.aux_exists_get (s : PointSegmentSignal T) (idx : ℕ)
 /-- The next time `combine` will process: the smallest unconsumed time of the inputs. -/
 def aux_loopTime (sig : ι → PointSegmentSignal T) (inIdx : ι → ℕ) : WithTop T :=
   Finset.univ.inf fun k => (sig k).timeOrInf (inIdx k)
+
+omit [Zero T] in
+/-- The smallest time found in the order of the inputs is their infimum. -/
+theorem aux_foldMin_eq_inf (f : ι → WithTop T) : -- --- CONCL ---
+    (FinEnum.toList ι).foldr (fun k m => if f k ≤ m then f k else m) ⊤ =
+      Finset.univ.inf f := by -- --- PROOF ---
+  -- over any list, the fold is the infimum of its elements
+  have h : ∀ l : List ι, l.foldr (fun k m => if f k ≤ m then f k else m) ⊤ = l.toFinset.inf f := by
+    intro l
+    induction l with
+    | nil => simp
+    | cons k l ih =>
+      rw [List.foldr_cons, ih, List.toFinset_cons, Finset.inf_insert]
+      split_ifs with hk
+      · exact (inf_eq_left.mpr hk).symm
+      · exact (inf_eq_right.mpr (le_of_not_ge hk)).symm
+  rw [h]
+  congr 1
+  exact Finset.ext fun x => by simp [FinEnum.mem_toList]
 
 /-- What the loop keeps: the output so far is right before the next time to process. -/
 structure aux_LoopInv (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
@@ -489,6 +508,7 @@ theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool) (sig : 
     · obtain ⟨hskip, happ⟩ := aux_loopInv_step op sig hv fuel inIdx tp val inv hc
       rw [PointSegmentSignal.combineLoop, if_pos hc]
       dsimp only
+      simp only [aux_foldMin_eq_inf, TimeOrder.isEqvTop_iff_eq]
       split_ifs with hs
       · exact ih _ _ _ (hskip hs)
       · exact ih _ _ _ (happ hs)
@@ -525,7 +545,7 @@ theorem aux_loopInv_init [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.combine_spec {T : Type} [LinearOrder T] [Zero T] {ι κ : Type}
-    [Fintype ι] [Nonempty ι]
+    [FinEnum ι] [Nonempty ι]
     (op : (ι → Bool) → κ → Bool) (sig : ι → PointSegmentSignal T)
     (hv : ∀ k, (sig k).IsValid) (i : κ) : -- --- CONCL ---
     (PointSegmentSignal.combine op sig i).IsValid ∧ ∀ t : T, 0 ≤ t →

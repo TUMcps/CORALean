@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STL.Definitions.Composition
+public import CORALean.Specification.STL.Operations.Basic
 
 @[expose] public section
 

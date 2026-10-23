@@ -11,9 +11,9 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 instead; the substitution `σ = t - s` is the whole difference. So a constant input over `[0,t]`
 contributes exactly `(∫₀ᵗ e^{Aσ}dσ)v`, [2, Eq. 5]'s `Γ(t)u_c` and [3, Eq. 12]'s `R_con`, with no
 matrix inverse anywhere (`expIntegral_eq_inv_mul` brings one in for invertible `A`), which is what
-lets an input set be split into a constant and a remainder holding the origin. Stated apart from
-either caller: the point-matrix split of [1, Alg. 3] and the interval-matrix one of [1, Alg. 4] both
-need it, and it is about `MatExp` alone.
+lets an input set be split into a constant and a remainder holding the origin, as [1, Eq. 4] splits
+it. Stated apart from its callers, the split step at a point matrix and the one of `LinParamSys` at
+an interval matrix, since it is about `MatExp` alone.
 
 ## Inputs
 * `A` – system matrix
@@ -28,15 +28,14 @@ need it, and it is about `MatExp` alone.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
-      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
-      International Conference on Hybrid Systems: Computation and Control (HSCC),
-      2012, pp. 45-54.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
+* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+      Analysis of Hybrid Systems". In Proc. of the 15th ACM International Conference on Hybrid
+      Systems: Computation and Control (HSCC), 2012, pp. 45-54.
 * [3] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
-  8:2033-2038, 2024.
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 8:2033-2038,
+      2024.
 -/
 
 -- Authors:       Claude Opus 5

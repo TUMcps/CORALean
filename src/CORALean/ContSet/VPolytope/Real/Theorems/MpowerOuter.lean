@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.Mpower
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
 
 @[expose] public section
 

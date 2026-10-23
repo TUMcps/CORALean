@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Instances
 public import CORALean.NN.Layers.Definitions.Sigmoid
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.Activation
 public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 public import CORALean.NN.Layers.Operations.RelaxationOfMonotone

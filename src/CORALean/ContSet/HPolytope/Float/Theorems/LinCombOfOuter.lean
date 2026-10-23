@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.SubsetOfBounds
 
 @[expose] public section
 
@@ -42,8 +43,8 @@ variable {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.linCombOf_outer (Aq : Mat 𝕋 q n)
-    (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (rowLin Aq i))
-    (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (rowLin Aq i)) :
+    (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (Real.HPolytope.rowLin (toRealMat Aq) i))
+    (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (Real.HPolytope.rowLin (toRealMat Aq) i)) :
     Set.linComb P₁.construct P₂.construct ⊆ (HPolytope.linCombOf Aq u₁ u₂).construct :=
   HPolytope.subset_ofBounds _ _
 

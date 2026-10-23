@@ -51,7 +51,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.until_mono (l l' r r' : PointSegmentSignal ℝ) (hl : l.IsValid)
-    (hl' : l'.IsValid) (hr : r.IsValid) (hr' : r'.IsValid) (U : STLInterval)
+    (hl' : l'.IsValid) (hr : r.IsValid) (hr' : r'.IsValid) (U : STLInterval ℝ)
     (h1 : ∀ t : ℝ, 0 ≤ t → l.at t ≤ l'.at t)
     (h2 : ∀ t : ℝ, 0 ≤ t → r.at t ≤ r'.at t) : -- --- CONCL ---
     ∀ t : ℝ, 0 ≤ t → (l.until U r).at t ≤ (l'.until U r').at t := by -- --- PROOF ---

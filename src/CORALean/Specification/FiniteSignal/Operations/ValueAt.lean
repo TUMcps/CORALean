@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Interfaces
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import Mathlib.Order.Basic
 
@@ -33,7 +34,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The value held at `t` by the breakpoints `L`. -/
-def FiniteSignal.valueAt {T V : Type} [LinearOrder T] : List (T × V) → T → Option V
+def FiniteSignal.valueAt {T V : Type} [TimeOrder T] : List (T × V) → T → Option V
   | [], _ => none
   | [(_, v)], _ => some v
   | (b, v) :: x :: rest, t => if t < b then some v else FiniteSignal.valueAt (x :: rest) t

@@ -222,14 +222,13 @@ theorem PointSegmentSignal.aux_indicatorBounds_spec {T : Type} [LinearOrder T] [
   have hne : val ≠ default := fun e => h (Or.inl e)
   have hemp : STLInterval.emptyBounds lo up lc rc = false := by
     cases e : STLInterval.emptyBounds lo up lc rc <;> simp_all
-  simp only [STLInterval.emptyBounds] at hemp
+  simp only [TimeOrder.isEqvTop_iff_eq, STLInterval.emptyBounds] at hemp
   split_ifs at hemp with hh
   clear h
   induction up using WithTop.recTopCoe with
   | top =>
     -- an unbounded interval
-    simp only [WithTop.coe_ne_top, ne_eq, not_false_eq_true, not_true_eq_false, and_false,
-      if_false, if_true]
+    simp only [ne_eq, not_true_eq_false, and_false, if_false]
     rcases hI.lt_or_eq with hlo | hlo
     · simp only [hlo, if_true, List.cons_append, List.nil_append]
       exact aux_top_pos lo lc rc val default hne hlo
@@ -242,11 +241,13 @@ theorem PointSegmentSignal.aux_indicatorBounds_spec {T : Type} [LinearOrder T] [
     rcases hls.lt_or_eq with hls | rfl
     · -- a bounded interval with distinct ends
       rcases hI.lt_or_eq with hlo | hlo
-      · simp only [hlo, if_true, WithTop.coe_inj, hls.ne, ne_eq, not_false_eq_true,
+      · simp only [hlo, if_true, TimeOrder.isEqvTop_iff_eq, WithTop.coe_inj, hls.ne, ne_eq,
+          not_false_eq_true,
           WithTop.coe_ne_top, and_self, WithTop.untopD_coe, List.cons_append, List.nil_append]
         exact aux_lt_pos lo s lc rc val default hne hlo hls
       · subst hlo
-        simp only [lt_irrefl, if_false, WithTop.coe_inj, hls.ne, ne_eq, not_false_eq_true,
+        simp only [lt_irrefl, if_false, TimeOrder.isEqvTop_iff_eq, WithTop.coe_inj, hls.ne, ne_eq,
+          not_false_eq_true,
           WithTop.coe_ne_top, and_self, if_true, WithTop.untopD_coe, List.cons_append,
           List.nil_append]
         exact aux_lt_zero s lc rc val default hne hls
@@ -255,12 +256,12 @@ theorem PointSegmentSignal.aux_indicatorBounds_spec {T : Type} [LinearOrder T] [
         by_contra hc; exact hh (Or.inr ⟨rfl, hc⟩)
       obtain ⟨rfl, rfl⟩ := hlc
       rcases hI.lt_or_eq with hlo | hlo
-      · simp only [hlo, ne_eq, not_true_eq_false, false_and, ↓reduceIte, WithTop.coe_ne_top,
-          not_false_eq_true, List.cons_append, List.nil_append]
+      · simp only [hlo, TimeOrder.isEqvTop_iff_eq, ne_eq, not_true_eq_false, false_and, ↓reduceIte,
+          WithTop.coe_ne_top, not_false_eq_true, List.cons_append, List.nil_append]
         exact aux_eq_pos lo val default hne hlo
       · subst hlo
-        simp only [lt_irrefl, ne_eq, not_true_eq_false, false_and, ↓reduceIte,
-          WithTop.coe_ne_top, not_false_eq_true, List.nil_append, List.cons_append]
+        simp only [lt_irrefl, TimeOrder.isEqvTop_iff_eq, ne_eq, not_true_eq_false, false_and,
+          ↓reduceIte, WithTop.coe_ne_top, not_false_eq_true, List.nil_append, List.cons_append]
         exact aux_eq_zero val default hne
 
 end
@@ -268,7 +269,7 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PointSegmentSignal.indicator_spec (I : STLInterval)
+theorem PointSegmentSignal.indicator_spec (I : STLInterval ℝ)
     (val default : Bool) : -- --- CONCL ---
     (PointSegmentSignal.indicator I val default).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (PointSegmentSignal.indicator I val default).at t = val) ∧

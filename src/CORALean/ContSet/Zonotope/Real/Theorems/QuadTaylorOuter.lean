@@ -145,24 +145,24 @@ theorem Zonotope.aux_quadTaylor_diagfold {n h : ℕ} (G : Fin h → Mat ℝ n n)
 own swap argument again. -/
 theorem Zonotope.aux_quadTaylor_pairblock {n h : ℕ} (G : Fin h → Mat ℝ n n) (p : Fin h → ℝ)
     (t : ℝ) : -- --- CONCL ---
+    let gk := fun k : Fin (h * h) => G (finProdFinEquiv.symm k).1 * G (finProdFinEquiv.symm k).2 +
+      G (finProdFinEquiv.symm k).2 * G (finProdFinEquiv.symm k).1
     ∑ k, (p (finProdFinEquiv.symm k).1 * p (finProdFinEquiv.symm k).2) •
         (if (finProdFinEquiv.symm k).1 < (finProdFinEquiv.symm k).2 then
-            (t ^ 2 / 2) • (G (finProdFinEquiv.symm k).1 * G (finProdFinEquiv.symm k).2
-              + G (finProdFinEquiv.symm k).2 * G (finProdFinEquiv.symm k).1)
+            (t ^ 2 / 2) • (gk k)
           else 0)
       = (t ^ 2 / 2) • ∑ i, ∑ j,
           (if i < j then (p i * p j) • (G i * G j + G j * G i) else 0) := by -- --- PROOF ---
+  intro gk
   -- pull the shared `t²/2` in front, leaving a plain reindex to do
   have hstep : ∀ k : Fin (h * h),
       (p (finProdFinEquiv.symm k).1 * p (finProdFinEquiv.symm k).2) •
           (if (finProdFinEquiv.symm k).1 < (finProdFinEquiv.symm k).2 then
-              (t ^ 2 / 2) • (G (finProdFinEquiv.symm k).1 * G (finProdFinEquiv.symm k).2
-                + G (finProdFinEquiv.symm k).2 * G (finProdFinEquiv.symm k).1)
+              (t ^ 2 / 2) • (gk k)
             else 0)
         = (t ^ 2 / 2) • (if (finProdFinEquiv.symm k).1 < (finProdFinEquiv.symm k).2 then
               (p (finProdFinEquiv.symm k).1 * p (finProdFinEquiv.symm k).2) •
-                (G (finProdFinEquiv.symm k).1 * G (finProdFinEquiv.symm k).2
-                  + G (finProdFinEquiv.symm k).2 * G (finProdFinEquiv.symm k).1)
+                (gk k)
             else 0) := fun k => by
     split_ifs with h
     · exact smul_comm _ _ _
@@ -173,8 +173,7 @@ theorem Zonotope.aux_quadTaylor_pairblock {n h : ℕ} (G : Fin h → Mat ℝ n n
   rw [Fintype.sum_equiv finProdFinEquiv.symm
     (fun k => if (finProdFinEquiv.symm k).1 < (finProdFinEquiv.symm k).2 then
         (p (finProdFinEquiv.symm k).1 * p (finProdFinEquiv.symm k).2) •
-          (G (finProdFinEquiv.symm k).1 * G (finProdFinEquiv.symm k).2
-            + G (finProdFinEquiv.symm k).2 * G (finProdFinEquiv.symm k).1)
+          (gk k)
       else 0)
     (fun ij : Fin h × Fin h => if ij.1 < ij.2 then
         (p ij.1 * p ij.2) • (G ij.1 * G ij.2 + G ij.2 * G ij.1)

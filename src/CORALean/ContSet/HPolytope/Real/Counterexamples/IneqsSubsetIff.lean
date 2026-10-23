@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Tactic.Linarith

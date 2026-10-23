@@ -307,7 +307,8 @@ noncomputable def SyntaxTree.sqrt (obj : SyntaxTree n) : SyntaxTree n :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `sum(obj)` of a vector of trees: the first entry, then `res + obj(i)`. -/
+/-- `sum(obj)` of a vector of trees: the first entry, then `res + obj(i)`. Noncomputable because
+`plus` is. -/
 noncomputable def SyntaxTree.sum (obj : SyntaxTree n) (rest : List (SyntaxTree n)) : SyntaxTree n :=
   rest.foldl SyntaxTree.plus obj
 
@@ -351,7 +352,8 @@ noncomputable def SyntaxTree.times (obj₁ obj₂ : SyntaxTree n) : SyntaxTree n
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `prod(obj)` of a vector of trees: the first entry, then `res .* obj(i)`. -/
+/-- `prod(obj)` of a vector of trees: the first entry, then `res .* obj(i)`. Noncomputable because
+`times` is. -/
 noncomputable def SyntaxTree.prod (obj : SyntaxTree n) (rest : List (SyntaxTree n)) : SyntaxTree n
     :=
   rest.foldl SyntaxTree.times obj

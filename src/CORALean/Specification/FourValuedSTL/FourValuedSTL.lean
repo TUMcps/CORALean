@@ -45,7 +45,7 @@ inductive FourValuedSTL.Formula (X : Type)
   | atom (a : X → Prop)
   | not (φ : Formula X)
   | and (φ ψ : Formula X)
-  | until (I : STLInterval) (φ ψ : Formula X)
+  | until (I : STLInterval ℝ) (φ ψ : Formula X)
 
 /-- `⟦φ⟧_ξ(t) = ⊤`, [1, Sec. 2.5]; `t' ∈ t ⊕ I` is `t' - t ∈ I`. -/
 def FourValuedSTL.Formula.Sat : FourValuedSTL.Formula X → (ℝ≥0 → X) → ℝ≥0 → Prop

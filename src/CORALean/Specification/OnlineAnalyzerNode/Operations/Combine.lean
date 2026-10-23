@@ -43,8 +43,8 @@ variable {A : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = combine(obj,childNodes)`. -/
-noncomputable def OnlineAnalyzerNode.combine (n : OnlineAnalyzerNode A)
-    (childNodes : List (OnlineAnalyzerNode A)) : Option (FourValuedSignal ℝ) :=
+noncomputable def OnlineAnalyzerNode.combine (n : OnlineAnalyzerNode ℝ A)
+    (childNodes : List (OnlineAnalyzerNode ℝ A)) : Option (FourValuedSignal ℝ) :=
   match n.kind with
   -- only non-leaf nodes support combine
   | .true | .false | .ap => none

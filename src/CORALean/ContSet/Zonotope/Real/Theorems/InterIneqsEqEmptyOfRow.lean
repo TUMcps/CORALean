@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Theorems.NegSumAbsLeSumMul
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Data.Matrix.Basic
 public import Mathlib.Tactic.Linarith
 

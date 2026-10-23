@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachRunFloat
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
 
 @[expose] public section
@@ -63,7 +64,8 @@ def LinearSys.minBackReachSupportFloat (sys : LinearSys 𝕋 n)
     (N : Mat 𝕋 q n)
     (t₀ Δt : 𝕋) (η ν k : ℕ) (j : Fin q) : 𝕋 :=
   let s := sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k
-  let ρR := (s.R.boundDot (c := rowLin N j) (N j) fun _ => rfl).val   -- ρ(R̂^∃, N_(j,·)), up
+  let ρR := (s.R.boundDot (c := Real.HPolytope.rowLin (toRealMat N) j) (N j) fun _ => rfl).val
+       -- ρ(R̂^∃, N_(j,·)), up
   let ρU := s.ZU₀.lowerDot (-(N j))                      -- ρ(Ẑ_{U₀}, -N_(j,·)), down
   subUp ρR ρU
 

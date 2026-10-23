@@ -10,12 +10,12 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubse
 
 [1, Alg. 2] keeps the input solution as `R_{p,k+1} = R_{p,k} ⊕ box(R*_{b,k+1})` (line 9), from
 `R_{p,1} = box(conv(0ₙ, R*_{b,1}))` (line 3), `R*_{b,1} ⊇ R_p(δ)` (line 2). With
-`R*_{b,k+1} ⊇ e^{Akδ} R*_{b,1}`, (24)'s `e^{At_k}` at `t_k = kδ`, this encloses the input
-solution on `[kδ, (k + 1)δ]`: `R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ} R_p(δ)` for `s ∈ [0, δ]`, and each
-term lies in the box of the matching `R*_{b,i+1}`. One step of [2, Prop. 3.2]
-(`inputReach_separation_subset`) per `k`, and [2, Prop. 3.3] (`inputReach_mono`, `0 ∈ U`) for
-the part of the step before `δ`. Line 8 as printed takes `e^{A(k+1)δ}`, one step too many
-(`printed_input_propagation_counterexample`).
+`R*_{b,k+1} ⊇ e^{Akδ} R*_{b,1}`, (24)'s `e^{At_k}` at `t_k = kδ`, this encloses the input solution
+on `[kδ, (k + 1)δ]`: `R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ} R_p(δ)` for `s ∈ [0, δ]`, and each term lies
+in the box of the matching `R*_{b,i+1}`. One step of the separation of [2, Prop. 4]
+(`inputReach_separation_subset`) per `k`, and the growth with time that `0 ∈ U` gives its proof
+(`inputReach_mono`) for the part of the step before `δ`. Line 8 as printed takes `e^{A(k+1)δ}`, one
+step too many (`printed_input_propagation_counterexample`).
 
 ## Inputs
 * `sys` – linear system
@@ -36,10 +36,11 @@ the part of the step before `δ`. Line 8 as printed takes `e^{A(k+1)δ}`, one st
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
-  Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
+      Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

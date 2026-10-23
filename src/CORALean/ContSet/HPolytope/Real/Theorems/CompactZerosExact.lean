@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
-public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
 public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 

@@ -16,14 +16,11 @@ stacks the matrices as `[A0 A1 ... Am]`; here `A₀` and the family `A` are sepa
 can append two families without renumbering. Every convex set a conic program can describe is of
 this form, the representation a sum or an image can always land in. Membership, emptiness and the
 support function are semidefinite programs, so none is computed: `construct` is the specification.
-Over any real module, as a zonotope is.
+Over any real module, as a zonotope is. CORA's header cites Netzer's habilitation, which is unused.
 
 ## References
 
-* [1] `contSet/@spectraShadow/spectraShadow.m`, CORA (Sep. 2025). The header
-      cites T. Netzer, "Spectrahedra and Their Shadows", Habilitation thesis,
-      Universität Leipzig, 2011, which is not cited here: no numbered result of
-      it is used.
+* [1] `contSet/@spectraShadow/spectraShadow.m`, CORA (Sep. 2025).
 -/
 
 -- Authors:       Claude Opus 5.5

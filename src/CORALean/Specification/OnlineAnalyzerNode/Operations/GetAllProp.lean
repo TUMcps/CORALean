@@ -42,14 +42,16 @@ variable {A : Type}
 
 /-- The loop of `getAllProp`: the bound `ub` and its closedness `rc` after the intervals. -/
 noncomputable def OnlineAnalyzerNode.aux_propBound (eps : ℝ) :
-    List STLInterval → EReal × Bool → EReal × Bool
+    List (STLInterval ℝ) → WithTop ℝ × Bool → WithTop ℝ × Bool
   | [], st => st
   -- isemptyobject(obj.prop(i)): ub = 0; rc = false; break
   | .empty :: _, _ => (0, false)
-  | .nonempty _ u _ nRc _ _ _ _ :: rest, (ub, rc) =>
+  | .nonempty _ u _ nRc _ _ _ :: rest, (ub, rc) =>
     open Classical in
     -- if nUb < ub || withinTol(nUb,ub,eps) && ~nRc
-    if u < ub ∨ (STLInterval.withinTol eps u ub ∧ nRc = false) then
+    if STLInterval.toEReal u < STLInterval.toEReal ub ∨
+        (STLInterval.withinTol eps (STLInterval.toEReal u) (STLInterval.toEReal ub) ∧
+          nRc = false) then
       OnlineAnalyzerNode.aux_propBound eps rest (u, nRc)
     else OnlineAnalyzerNode.aux_propBound eps rest (ub, rc)
 
@@ -57,11 +59,11 @@ noncomputable def OnlineAnalyzerNode.aux_propBound (eps : ℝ) :
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `allProp = getAllProp(obj)`. -/
-noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerNode A) :
-    STLInterval :=
+noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerNode ℝ A) :
+    STLInterval ℝ :=
   -- ub = inf; rc = true; the loop; allProp = stlInterval(0,ub,true,rc)
   let b := OnlineAnalyzerNode.aux_propBound eps n.prop (⊤, true)
-  STLInterval.stlInterval 0 b.1 true b.2 le_rfl
+  STLInterval.stlInterval (0 : ℝ) b.1 true b.2 (by simp)
 
 end CORALean
 

@@ -84,12 +84,14 @@ theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec �
     (hAff : ∀ z p, F z p = F z 0 + ∑ i, p i • (F z (Pi.single i 1) - F z 0)) (z : Vec ℝ k)
     (hd : ∀ p, DifferentiableAt ℝ (fun w => F w p) z) (I : Interval (Vec ℝ q)) {p : Vec ℝ q}
     (hp : p ∈ I.construct) : -- --- CONCL ---
+    let Δ := fun i : Fin q => jacobianMat (fun w => F w (Pi.single i 1)) z - jacobianMat (fun w =>
+      F w 0) z
     jacobianMat (fun w => F w p) z ∈
       (⟨q, jacobianMat (fun w => F w 0) z + ∑ i, I.center i •
-          (jacobianMat (fun w => F w (Pi.single i 1)) z - jacobianMat (fun w => F w 0) z),
-        fun i => I.radius i • (jacobianMat (fun w => F w (Pi.single i 1)) z
-          - jacobianMat (fun w => F w 0) z)⟩ :
+          (Δ i),
+        fun i => I.radius i • (Δ i)⟩ :
         Zonotope (Mat ℝ n k)).construct := by -- --- PROOF ---
+  intro Δ
   obtain ⟨β, hβ, hpi⟩ := I.exists_coeff_of_mem hp
   refine ⟨β, hβ, ?_⟩
   -- the map is `F(·, 0) + ∑ pᵢ (F(·, eᵢ) - F(·, 0))`, so its Jacobian is that of the pieces
@@ -100,13 +102,11 @@ theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec �
   rw [hmap, aux_jacobianMat_param _ _ p z (hd 0) hdi]
   simp only [aux_jacobianMat_sub _ _ z (hd _) (hd 0)]
   -- split each parameter into the center's part and the generator's
-  have hsum : ∀ i, p i • (jacobianMat (fun w => F w (Pi.single i 1)) z
-        - jacobianMat (fun w => F w 0) z)
-      = I.center i • (jacobianMat (fun w => F w (Pi.single i 1)) z
-        - jacobianMat (fun w => F w 0) z)
-        + β i • (I.radius i • (jacobianMat (fun w => F w (Pi.single i 1)) z
-        - jacobianMat (fun w => F w 0) z)) := fun i => by
+  have hsum : ∀ i, p i • (Δ i)
+      = I.center i • (Δ i)
+        + β i • (I.radius i • (Δ i)) := fun i => by
     rw [hpi i, add_smul, mul_smul]
+  simp only [Δ] at hsum ⊢
   simp only [Finset.sum_congr rfl fun i _ => hsum i, Finset.sum_add_distrib]
   abel
 

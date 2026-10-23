@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Center
-public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Float.Operations.Materialise
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.IsCompact

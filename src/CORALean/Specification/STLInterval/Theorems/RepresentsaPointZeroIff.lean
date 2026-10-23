@@ -31,27 +31,32 @@ At `tol = 0` `representsa_(I,'point')` holds iff `I` denotes a single time.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `representsa_ point` at `tol = 0` iff the set of times is a singleton. -/
-theorem STLInterval.representsa_point_zero_iff (I : STLInterval) : -- --- CONCL ---
+theorem STLInterval.representsa_point_zero_iff (I : STLInterval ℝ) : -- --- CONCL ---
     I.representsa_ 0 .point ↔ ∃ x : ℝ, I.set = {x} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]
-  | nonempty l u lc rc a b c z =>
-    simp only [STLInterval.representsa_, withinTol_zero, set_eq_singleton_iff a b c z]
+  | nonempty l u lc rc b c z =>
+    simp only [STLInterval.representsa_, withinTol_zero, set_eq_singleton_iff b c z, toReal_real]
     constructor
-    · rintro ⟨hc, hr, x, y, rfl, rfl, h⟩
-      have : y = x := by
-        have h' : y - x = 0 := by
-          have := EReal.coe_eq_zero.1 h
-          linarith
+    · -- a radius `0` makes the upper bound the lower one
+      rintro ⟨hc, hr, y, hy, h⟩
+      have hyl : y = l := by
+        have := EReal.coe_eq_zero.1 h
         linarith
-      subst this
-      exact ⟨y, rfl, rfl, hc, hr⟩
+      subst hyl
+      cases u with
+      | top => simp at hy
+      | coe x =>
+        simp only [STLInterval.toEReal_coe, toReal_real, EReal.coe_eq_coe_iff] at hy
+        exact ⟨y, rfl, by rw [hy], hc, hr⟩
     · rintro ⟨x, rfl, rfl, hc, hr⟩
-      exact ⟨hc, hr, x, x, rfl, rfl, by simp⟩
+      exact ⟨hc, hr, l, by simp, by simp⟩
 
 end CORALean
 

@@ -36,7 +36,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sigs = combine(op,varargin)`. -/
-def PointSegmentSignal.combine {T : Type} [LinearOrder T] [Zero T] {ι κ : Type} [Fintype ι]
+def PointSegmentSignal.combine {T : Type} [TimeOrder T] [Zero T] {ι κ : Type} [FinEnum ι]
     (op : (ι → Bool) → κ → Bool) (sig : ι → PointSegmentSignal T) :
     κ → PointSegmentSignal T := fun i =>
   -- 1. inIdx = ones(1,numInputs)

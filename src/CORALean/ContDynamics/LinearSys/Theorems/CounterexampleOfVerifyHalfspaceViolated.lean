@@ -81,16 +81,12 @@ theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys �
       (fun r k i => (sys.supportLower (tEnd / 2 ^ r) ν₀ νU c (H i) (k + 1)).ρRτ) f r fuel
         = .violated) : -- --- CONCL ---
     ∃ (r' j : ℕ) (i : ι), (j : ℝ) * (tEnd / 2 ^ r') ∈ Set.Icc 0 tEnd ∧
-      sys.IsCanonicalTrajectory (Set.Icc 0 tEnd) R₀ U
-        (sys.closedForm (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).1
-          (LinearSys.heldInput (tEnd / 2 ^ r')
-            (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).2))
-        (LinearSys.heldInput (tEnd / 2 ^ r')
-          (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).2) ∧
-      f i < H i (sys.closedForm (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).1
-        (LinearSys.heldInput (tEnd / 2 ^ r')
-          (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).2)
-        (j * (tEnd / 2 ^ r'))) := by -- --- PROOF ---
+      -- the held input of the counterexample and the closed-form run it drives
+      let u := LinearSys.heldInput (tEnd / 2 ^ r')
+        (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).2
+      let x := sys.closedForm (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).1 u
+      sys.IsCanonicalTrajectory (Set.Icc 0 tEnd) R₀ U x u ∧
+        f i < H i (x (j * (tEnd / 2 ^ r'))) := by -- --- PROOF ---
   obtain ⟨r', _, k, i, hlt⟩ := exists_round_of_verifyHalfspace_eq_violated h
   have hpow : (0:ℝ) < 2 ^ r' := pow_pos two_pos r'
   have hΔt : 0 < tEnd / 2 ^ r' := div_pos htEnd hpow
@@ -102,7 +98,7 @@ theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys �
     have : j ≤ 2 ^ r' := by omega
     exact_mod_cast this
   refine ⟨r', j, i, ⟨mul_nonneg j.cast_nonneg hΔt.le, ?_⟩,
-    sys.isTrajectory_heldInput R₀ U hU htEnd.le _ (hν₀ _) (fun _ => hνU _), hviol⟩
+    ⟨sys.isTrajectory_heldInput R₀ U hU htEnd.le _ (hν₀ _) (fun _ => hνU _), hviol⟩⟩
   calc (j : ℝ) * (tEnd / 2 ^ r') ≤ 2 ^ r' * (tEnd / 2 ^ r') :=
         mul_le_mul_of_nonneg_right hjle hΔt.le
     _ = tEnd := mul_div_cancel₀ tEnd hpow.ne'

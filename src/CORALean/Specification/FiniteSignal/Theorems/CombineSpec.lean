@@ -74,12 +74,12 @@ theorem FiniteSignal.aux_combineLoop_step {T V W : Type} [LinearOrder T] [Decida
     · -- both signals make progress
       refine ⟨l.1, ls, rs, ?_, hls, fun y hy => h2 ▸ hrs y hy, (min_eq_left h2.le).symm,
         Or.inl ⟨rfl, rfl⟩, Or.inl ⟨rfl, h2⟩⟩
-      rw [FiniteSignal.combineLoop, if_neg h1, if_pos h2]
+      rw [FiniteSignal.combineLoop, if_neg h1, if_pos (show TimeOrder.Eqv l.1 r.1 from h2)]
     · -- the right signal makes progress
       have h3 : r.1 < l.1 := lt_of_le_of_ne (not_lt.mp h1) (Ne.symm h2)
       refine ⟨r.1, l :: ls, rs, ?_, ?_, hrs, (min_eq_right h3.le).symm, Or.inr ⟨rfl, h3⟩,
         Or.inl ⟨rfl, rfl⟩⟩
-      · rw [FiniteSignal.combineLoop, if_neg h1, if_neg h2]
+      · rw [FiniteSignal.combineLoop, if_neg h1, if_neg (show ¬ TimeOrder.Eqv l.1 r.1 from h2)]
       · intro y hy
         rcases List.mem_cons.mp hy with rfl | hy
         · exact h3
@@ -216,7 +216,7 @@ theorem aux_combineLoop_props {T V W : Type} [LinearOrder T] [DecidableEq W] (op
     rw [hO]
     obtain ⟨h6, h7⟩ := aux_combineLoop_single l r ls rs hL hR eL eR t₀ heL heR hmin ls' rs' hA1 hA2
       hnil
-    refine ⟨rfl, by simp, by simp, by simp [hmin], ?_, fun t x y hx hy hok => ?_⟩
+    refine ⟨rfl, by simp, by simp, by simp [hmin, le_total], ?_, fun t x y hx hy hok => ?_⟩
     · exact ⟨by simp [h6], by simp [h6]⟩
     · obtain ⟨rfl, rfl⟩ := h7 t x y hx hy hok
       simp [FiniteSignal.valueAt_singleton]

@@ -9,14 +9,12 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # `timeInterval`'s content one step before the representation lifts
 
-`timeInterval_outer`, the wrapping-effect-free construction of [1, Alg. 1],
-ends on two representation calls: `LinComb.linComb_outer` turns the straight
-line from `X₀` to its image into a hull, `Plus.plus_outer` turns the sum of
-that hull and the curvature term into `timeInterval`. Held back, the
-straight line is a genuine `Set.linComb` between `construct X₀` and its exact
-image, and only the curvature term still needs `Mtimes`, which has no
-set-level form to fall back to. `timeInterval_outer` is this composed with
-those two lifts.
+`timeInterval_outer`, the first window of [1, Sec. V-B], ends on two representation calls:
+`LinComb.linComb_outer` turns the straight line from `X₀` to its image into a hull,
+`Plus.plus_outer` turns the sum of that hull and the curvature term into `timeInterval`. Held back,
+the straight line is a genuine `Set.linComb` between `construct X₀` and its exact image, and only
+the curvature term still needs `Mtimes`, which has no set-level form to fall back to.
+`timeInterval_outer` is this composed with those two lifts.
 
 ## Inputs
 * `sys` – linear system
@@ -36,8 +34,9 @@ those two lifts.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

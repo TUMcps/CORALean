@@ -58,17 +58,16 @@ theorem Interval.prod₁_outer : -- --- CONCL ---
     -- the first row times the product of the others, each step `times_outer`
     intro I
     rintro _ ⟨A, hA, rfl⟩
+    -- the interval matrix without its first row
+    set tl : Interval (Mat 𝕋 m n) := ⟨fun i => I.inf i.succ, fun i => I.sup i.succ⟩ with htl
     let row0 : Interval (Vec 𝕋 n) := ⟨fun j => I.inf 0 j, fun j => I.sup 0 j⟩
     have hT : (fun j => ∏ i : Fin m, A i.succ j) ∈
-        (Interval.prod₁ (⟨fun i => I.inf i.succ, fun i => I.sup i.succ⟩ :
-          Interval (Mat 𝕋 m n))).construct :=
+        (Interval.prod₁ tl).construct :=
       ih _ ⟨fun i => A i.succ, fun p => hA (p.1.succ, p.2), rfl⟩
     have hrow : A 0 ∈ row0.construct := fun j => hA (0, j)
-    have h := Interval.times_outer row0 (Interval.prod₁
-      (⟨fun i => I.inf i.succ, fun i => I.sup i.succ⟩ : Interval (Mat 𝕋 m n)))
+    have h := Interval.times_outer row0 (Interval.prod₁ tl)
       ⟨A 0, hrow, _, hT, rfl⟩
-    have e : I.prod₁ = row0.times (Interval.prod₁
-      (⟨fun i => I.inf i.succ, fun i => I.sup i.succ⟩ : Interval (Mat 𝕋 m n))) := by
+    have e : I.prod₁ = row0.times (Interval.prod₁ tl) := by
       simp only [Interval.prod₁, Fin.foldr_succ]
       rfl
     rw [e]

@@ -43,14 +43,15 @@ namespace CORALean
 
 open Classical in
 /-- `out = aux_intervalUntil(lhsInt,untilInt,rhsInt)`. -/
-noncomputable def PointSegmentSignal.intervalUntil (lhsInt : List STLInterval)
-    (untilInt : STLInterval) (rhsInt : List STLInterval) : PointSegmentSignal ℝ :=
+noncomputable def PointSegmentSignal.intervalUntil (lhsInt : List (STLInterval ℝ))
+    (untilInt : STLInterval ℝ) (rhsInt : List (STLInterval ℝ)) : PointSegmentSignal ℝ :=
   -- 1. out = pointSegmentSignal.indicator(stlInterval(0,inf),false,false)
-  let out := PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true le_rfl) false false
+  let out := PointSegmentSignal.indicator (STLInterval.stlInterval (0 : ℝ) ⊤ true true (by simp))
+    false false
   -- 2. untilIntNoZero: if untilInt.contains(0), the interval `(0,ub]` or `(0,ub)` of its supremum
   let untilIntNoZero := if untilInt.containsPoint 0 0 then
-    STLInterval.stlInterval 0 (untilInt.supremum.value.getD 0) false untilInt.supremum.closed
-      le_rfl
+    STLInterval.stlInterval (0 : ℝ) (untilInt.supremum.value.getD 0) false
+      untilInt.supremum.closed (by simp)
     else untilInt
   -- 3. for each pair, the times `t` with a witness `t'`: set them to true unless there are none
   let out := lhsInt.foldl (fun out lhs => rhsInt.foldl (fun out rhs =>

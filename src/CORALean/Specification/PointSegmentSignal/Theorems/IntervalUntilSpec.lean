@@ -52,9 +52,10 @@ open scoped Pointwise
 section
 open Classical in
 /-- `untilIntNoZero` denotes the times of the until interval except `0`. -/
-theorem STLInterval.aux_set_untilNoZero (U U' : STLInterval)
+theorem STLInterval.aux_set_untilNoZero (U U' : STLInterval ℝ)
     (hU' : U' = if U.containsPoint 0 0 then
-      STLInterval.stlInterval 0 (U.supremum.value.getD 0) false U.supremum.closed le_rfl else U)
+      STLInterval.stlInterval (0 : ℝ) (U.supremum.value.getD 0) false U.supremum.closed (by simp)
+      else U)
     : -- --- CONCL ---
     U'.set = U.set \ {0} := by -- --- PROOF ---
   by_cases h : U.containsPoint 0 0
@@ -63,8 +64,10 @@ theorem STLInterval.aux_set_untilNoZero (U U' : STLInterval)
     rw [hU', if_pos h]
     cases U with
     | empty => exact absurd h0 (by simp [STLInterval.set])
-    | nonempty l u lc rc a b c hl =>
-      simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq, EReal.coe_zero] at h0
+    | nonempty l u lc rc b c hl =>
+      simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq, EReal.coe_zero,
+        Float.toReal_real, EReal.coe_lt_coe_iff, EReal.coe_eq_coe_iff] at h0
+      simp only [Float.toReal_real] at hl
       have hl0 : l = 0 := by
         rcases h0.1 with h' | ⟨-, h'⟩
         · exact absurd hl (not_le.2 h')
@@ -98,8 +101,8 @@ end
 
 open Classical in
 /-- `aux_intervalUntil` is true exactly where a pair of intervals gives a witness. -/
-theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval) (U : STLInterval)
- : -- --- CONCL ---
+theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List (STLInterval ℝ))
+    (U : STLInterval ℝ) : -- --- CONCL ---
     (PointSegmentSignal.intervalUntil lhsInt U rhsInt).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((PointSegmentSignal.intervalUntil lhsInt U rhsInt).at t = true ↔
         (∃ L ∈ lhsInt, ∃ R ∈ rhsInt, ∃ t' ∈ R.set, t' ∈ L.rightClosure.set ∧
@@ -110,12 +113,12 @@ theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval)
   have h0U : U.containsPoint 0 0 ↔ (0 : ℝ) ∈ U.set := STLInterval.containsPoint_zero_iff U 0
   unfold PointSegmentSignal.intervalUntil
   dsimp only
-  generalize (if U.containsPoint 0 0 then STLInterval.stlInterval 0 (U.supremum.value.getD 0)
-    false U.supremum.closed le_rfl else U) = U' at hU'set ⊢
+  generalize (if U.containsPoint 0 0 then STLInterval.stlInterval (0 : ℝ)
+    (U.supremum.value.getD 0) false U.supremum.closed (by simp) else U) = U' at hU'set ⊢
   -- the shifted interval of a pair of intervals, and its times
-  let P : STLInterval → STLInterval → STLInterval := fun L R =>
+  let P : STLInterval ℝ → STLInterval ℝ → STLInterval ℝ := fun L R =>
     ((R.and_ L.rightClosure).minus U').and_ L.leftClosure
-  have hP : ∀ L R : STLInterval, ∀ t : ℝ, t ∈ (P L R).set ↔ 0 ≤ t ∧ t ∈ L.leftClosure.set ∧
+  have hP : ∀ L R : STLInterval ℝ, ∀ t : ℝ, t ∈ (P L R).set ↔ 0 ≤ t ∧ t ∈ L.leftClosure.set ∧
       ∃ t' ∈ R.set, t' ∈ L.rightClosure.set ∧ t' - t ∈ U.set ∧ t' ≠ t := by
     intro L R t
     show t ∈ (((R.and_ L.rightClosure).minus U').and_ L.leftClosure).set ↔ _
@@ -128,10 +131,10 @@ theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval)
     · rintro ⟨h0, hl, a, ha1, ha2, hu, hne⟩
       exact ⟨⟨⟨a, ⟨ha1, ha2⟩, a - t, ⟨hu, fun h => hne (by linarith)⟩, by ring⟩, h0⟩, hl⟩
   -- the step of the inner loop: set the shifted interval of a pair, unless it is empty
-  let step : STLInterval → PointSegmentSignal ℝ → STLInterval → PointSegmentSignal ℝ :=
+  let step : STLInterval ℝ → PointSegmentSignal ℝ → STLInterval ℝ → PointSegmentSignal ℝ :=
     fun L out R => if (P L R).representsa_ 0 .emptySet then out else out.set (P L R) true
   -- the inner step sets the shifted interval of a pair, unless it is empty
-  have hstep : ∀ L ∈ lhsInt, ∀ (out : PointSegmentSignal ℝ) (R : STLInterval), out.IsValid →
+  have hstep : ∀ L ∈ lhsInt, ∀ (out : PointSegmentSignal ℝ) (R : STLInterval ℝ), out.IsValid →
       (step L out R).IsValid ∧
       ∀ t : ℝ, 0 ≤ t →
         (t ∈ (P L R).set → (step L out R).at t = true) ∧
@@ -154,9 +157,11 @@ theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval)
       (fun sig R _ hsig => hstep L hL' sig R hsig) out hout
   -- the signal that is false everywhere
   obtain ⟨hv0, h0⟩ :=
-    PointSegmentSignal.indicator_spec (STLInterval.stlInterval 0 ⊤ true true le_rfl) false false
+    PointSegmentSignal.indicator_spec (STLInterval.stlInterval (0 : ℝ) ⊤ true true
+        (by simp)) false false
   obtain ⟨B, hBdef⟩ : ∃ B, B = lhsInt.foldl (fun out lhs => rhsInt.foldl (step lhs) out)
-      (PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true le_rfl) false false) :=
+      (PointSegmentSignal.indicator (STLInterval.stlInterval (0 : ℝ) ⊤ true true
+          (by simp)) false false) :=
     ⟨_, rfl⟩
   obtain ⟨hvB, hB⟩ := List.foldl_set_spec (fun sig : PointSegmentSignal ℝ => sig.IsValid)
     (fun sig t => sig.at t) lhsInt (fun L => {t | ∃ R ∈ rhsInt, t ∈ (P L R).set}) true
@@ -173,7 +178,7 @@ theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval)
     · intro h
       by_contra hn
       have := b2 (fun ⟨L, hL', hh⟩ => hn ⟨L, hL', hh⟩)
-      by_cases hm : t ∈ (STLInterval.stlInterval 0 ⊤ true true le_rfl).set
+      by_cases hm : t ∈ (STLInterval.stlInterval (0 : ℝ) ⊤ true true (by simp)).set
       · rw [(h0 t ht).1 hm] at this; simp [this] at h
       · rw [(h0 t ht).2 hm] at this; simp [this] at h
     · rintro ⟨L, hL', hh⟩

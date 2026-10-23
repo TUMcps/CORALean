@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 public import CORALean.HybridDynamics.Operations.Jump
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

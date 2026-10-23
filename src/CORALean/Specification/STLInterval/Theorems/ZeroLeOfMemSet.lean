@@ -31,20 +31,25 @@ The lower bound of an interval is `≥ 0`, so are all its times.
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A time of an interval is `≥ 0`. -/
-theorem STLInterval.zero_le_of_mem_set (I : STLInterval) (t : ℝ) (ht : t ∈ I.set) : -- --- CONCL ---
+theorem STLInterval.zero_le_of_mem_set (I : STLInterval 𝕋) (t : ℝ)
+    (ht : t ∈ I.set) : -- --- CONCL ---
     0 ≤ t := by -- --- PROOF ---
   cases I with
   | empty => exact absurd ht (by simp [STLInterval.set])
-  | nonempty l u lc rc a b c z =>
+  | nonempty l u lc rc b c z =>
     -- the lower end is at most `t`
-    have hl : l ≤ (t : EReal) := by
+    have hl : ((toReal l : ℝ) : EReal) ≤ (t : EReal) := by
       simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq] at ht
       rcases ht.1 with h | ⟨-, h⟩ <;> [exact h.le; exact h.le]
-    exact EReal.coe_nonneg.1 (z.trans hl)
+    exact z.trans (EReal.coe_le_coe_iff.1 hl)
 
 end CORALean
 

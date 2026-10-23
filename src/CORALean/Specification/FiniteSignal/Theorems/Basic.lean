@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FiniteSignal.Operations.Basic
 public import CORALean.Specification.FiniteSignal.Operations.CellsFrom
 public import CORALean.Specification.FiniteSignal.Operations.ValueAt
 
@@ -17,6 +18,18 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 namespace CORALean
+
+
+-- =============================  `FiniteSignal.duration_mapTime`  ============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       23-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Mapping the time stamps by an `f` that keeps `0` maps the duration. -/
+theorem FiniteSignal.duration_mapTime {T T' V : Type} [Zero T] [Zero T'] (f : T → T')
+    (hf : f 0 = 0) (s : FiniteSignal T V) : (s.mapTime f).duration = f s.duration := by
+  rw [FiniteSignal.duration, FiniteSignal.duration, FiniteSignal.mapTime, ← hf, List.getLastD_map]
 
 
 -- =============================  `FiniteSignal.length_cellsFrom`  ============================== --

@@ -40,20 +40,6 @@ namespace CORALean.Real
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The direction `c` as a coefficient vector: its value at each unit vector. -/
-theorem Taylm.aux_linearMap_eq_sum (c : Vec ℝ m →ₗ[ℝ] ℝ) (x : Vec ℝ m) : -- --- CONCL ---
-    c x = ∑ j, c (Pi.single j 1) * x j := by -- --- PROOF ---
-  conv_lhs => rw [pi_eq_sum_univ x]
-  simp only [map_sum, map_smul, smul_eq_mul]
-  refine Finset.sum_congr rfl fun j _ => ?_
-  rw [mul_comm]
-  congr 2
-  ext k
-  simp [Pi.single_apply, eq_comm]
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `supportFunc_`, `upper`: the upper end of the range of `dirᵀ T`. -/
@@ -65,7 +51,16 @@ noncomputable def Taylm.supportBound (c : Vec ℝ m →ₗ[ℝ] ℝ) (T : Fin m 
     obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_construct_iff T x).1 hx
     have hmem := Taylm.bounds_mem
       (Taylm.mtimes_outer (fun (_ : Fin 1) j => c (Pi.single j 1)) hf 0) ht
-    rw [Taylm.aux_linearMap_eq_sum c x]
+    -- the direction `c` as a coefficient vector: its value at each unit vector
+    have hc : c x = ∑ j, c (Pi.single j 1) * x j := by
+      conv_lhs => rw [pi_eq_sum_univ x]
+      simp only [map_sum, map_smul, smul_eq_mul]
+      refine Finset.sum_congr rfl fun j _ => ?_
+      rw [mul_comm]
+      congr 2
+      ext k
+      simp [Pi.single_apply, eq_comm]
+    rw [hc]
     simpa [hxf] using hmem.2
 
 end CORALean.Real

@@ -73,10 +73,10 @@ theorem PointSegmentSignal.aux_isNewPointOk_iff (s : PointSegmentSignal T) (i : 
       := by -- --- PROOF ---
   unfold PointSegmentSignal.aux_isNewPointOk
   by_cases h : s.timePoints.getD (i - 1) 0 = p
-  · simp only [h, if_true, decide_eq_true_eq, true_and, ne_eq, not_true_eq_false, false_and,
-      or_false]
-  · simp only [h, if_false, List.any_eq_true, decide_eq_true_eq, ne_eq, not_false_eq_true,
-      true_and, false_and, false_or]
+  · simp only [TimeOrder.eqv_iff_eq, h, if_true, decide_eq_true_eq, true_and, ne_eq,
+      not_true_eq_false, false_and, or_false]
+  · simp only [TimeOrder.eqv_iff_eq, h, if_false, List.any_eq_true, decide_eq_true_eq, ne_eq,
+      not_false_eq_true, true_and, false_and, false_or]
 
 
 /-- The lower prefix of `set`: the points before `lb` and the new point at `lb`, if any. -/
@@ -472,7 +472,8 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
         rw [List.takeWhile_eq_self_iff.mpr (fun _ _ => rfl)]
       have hvl : s.values.length = 2 * s.timePoints.length := hs.2.1
       unfold PointSegmentSignal.aux_setBounds aux_lowerPrefix
-      simp only [hne, hlt, Bool.false_eq_true, if_false, ne_eq, not_true_eq_false, and_false, hj,
+      simp only [TimeOrder.isEqvTop_iff_eq, TimeOrder.eqv_iff_eq, hne, hlt, Bool.false_eq_true,
+        if_false, ne_eq, not_true_eq_false, and_false, hj,
         List.drop_length, hvl.symm ▸ (List.drop_length (l := s.values)), List.append_nil]
     -- with no upper end the result is the lower prefix alone
     rw [hR]
@@ -520,7 +521,8 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
       subst hM
       -- unfold `set` and regroup the appended lists
       unfold PointSegmentSignal.aux_setBounds aux_lowerPrefix
-      simp only [hne, hlt, Bool.false_eq_true, if_false, ne_eq, WithTop.coe_ne_top,
+      simp only [TimeOrder.isEqvTop_iff_eq, TimeOrder.eqv_iff_eq, hne, hlt, Bool.false_eq_true,
+        if_false, ne_eq, WithTop.coe_ne_top,
         not_false_eq_true, and_true, WithTop.untopD_coe, List.append_assoc]
     subst hM
     obtain ⟨hRv, hRlt, hRu, hRgt⟩ :=
@@ -593,7 +595,8 @@ theorem PointSegmentSignal.aux_setBounds_spec (s : PointSegmentSignal T) (hs : s
   · have hne' : STLInterval.emptyBounds lb up lc rc = false := by simpa using hne
     by_cases hsing : (lb : WithTop T) = up
     · have hset : s.aux_setBounds lb up lc rc value = s.setPoint lb value := by
-        unfold PointSegmentSignal.aux_setBounds; rw [if_neg hne, if_pos hsing]
+        unfold PointSegmentSignal.aux_setBounds
+        rw [if_neg hne, if_pos ((TimeOrder.isEqvTop_iff_eq _ _).2 hsing)]
       -- a single time is `aux_setPoint`
       rw [hset]
       obtain ⟨hv, hat⟩ := PointSegmentSignal.setPoint_spec s hs lb hI value
@@ -627,7 +630,7 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.set_spec (s : PointSegmentSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) (value : Bool) : -- --- CONCL ---
+    (I : STLInterval ℝ) (value : Bool) : -- --- CONCL ---
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧
       (t ∉ I.set → (s.set I value).at t = s.at t) := by -- --- PROOF ---

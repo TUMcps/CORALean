@@ -15,9 +15,6 @@ is `match` (by default `True`). The unknown intervals are those of `isUnknown`; 
 found after mapping unknown to false, and the false ones, with the condition `~x`, after mapping
 unknown to true.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
-
 ## Inputs
 * `s` – three-valued signal
 * `match_` – value to find
@@ -36,12 +33,15 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [Float.ExactLe 𝕋]
+    [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `intervals = findIntervals(obj,match)`. -/
-noncomputable def KleeneSignal.findIntervals (s : KleeneSignal ℝ) (match_ : Kleene := Kleene.tt) :
-    List STLInterval :=
+def KleeneSignal.findIntervals (s : KleeneSignal 𝕋) (match_ : Kleene := Kleene.tt) :
+    List (STLInterval 𝕋) :=
   match match_ with
   | Kleene.uu => s.isUnknown.findIntervals
   | Kleene.tt => (s.toBoolSignal false).findIntervals

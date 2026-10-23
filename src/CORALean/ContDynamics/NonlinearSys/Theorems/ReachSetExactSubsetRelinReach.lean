@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -78,12 +79,10 @@ theorem NonlinearSys.reachSetExact_subset_relinReach [Mtimes ℐ S] (sys : Nonli
     (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
     (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
     (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (hRconv : ∀ i < N, Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
-    (hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput)))
-    (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt η) (steps i).linInput))) {o : ℕ} (ho : 0 < o)
+    (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt η (steps i).linInput))
+    (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt η (steps i).linInput))
+    (hRbdd : ∀ i < N, Bornology.IsBounded (MatExp.inputRemainderSet (steps i).A Δt η (steps
+      i).linInput)) {o : ℕ} (ho : 0 < o)
     : -- --- CONCL ---
     ∀ i ≤ N, sys.reachSetExact T R₀ U ((i : ℝ) * Δt)
       ⊆ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩

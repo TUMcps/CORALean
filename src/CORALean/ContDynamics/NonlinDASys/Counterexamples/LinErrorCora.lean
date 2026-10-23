@@ -91,22 +91,22 @@ open CORALean.Real Matrix
 /-- The linearization error `½ (σ - CF⁻¹φ) = 1` of `ẋ = y`, `0 = y - x²` at `z* = 0`, `ν = 1`,
 lies in [1, Cor. 1]'s set and not in CORA's. -/
 theorem NonlinDASys.linErrorCora_counterexample : -- --- CONCL ---
-    (1 / 2 : ℝ) • ((fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ ((0 : Mat ℝ 1 1) *ᵥ ![1]))
-        - (1 : Mat ℝ 1 1) *ᵥ (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ (!![-2] *ᵥ ![1])))
+    let w := (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ ((0 : Mat ℝ 1 1) *ᵥ ![1])) -
+        (1 : Mat ℝ 1 1) *ᵥ (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ (!![-2] *ᵥ ![1]))
+    (1 / 2 : ℝ) • w
       ∈ (NonlinDASys.linError (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1
           ⟨1, 0, fun _ => ![1]⟩).construct ∧
-    (1 / 2 : ℝ) • ((fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ ((0 : Mat ℝ 1 1) *ᵥ ![1]))
-        - (1 : Mat ℝ 1 1) *ᵥ (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ (!![-2] *ᵥ ![1])))
+    (1 / 2 : ℝ) • w
       ∉ (NonlinDASys.linErrorCora (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1
           ⟨1, 0, fun _ => ![1]⟩).construct := by -- --- PROOF ---
+  intro w
   refine ⟨NonlinDASys.linError_outer _ _ _ _ _ _ (by simp) (by simp)
     ⟨fun _ => 1, fun _ => by simp, by funext i; fin_cases i; simp⟩, ?_⟩
   -- the error is `1`
-  have hP : (1 / 2 : ℝ) • ((fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ ((0 : Mat ℝ 1 1) *ᵥ ![1]))
-      - (1 : Mat ℝ 1 1) *ᵥ (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ (!![-2] *ᵥ ![1])))
+  have hP : (1 / 2 : ℝ) • w
       = fun _ => 1 := by
     funext i
-    simp [dotProduct, mulVec]
+    simp [w, dotProduct, mulVec]
   rw [hP]
   -- every point of CORA's set has its coordinate at most `0`
   rintro ⟨β, hβ, hx⟩

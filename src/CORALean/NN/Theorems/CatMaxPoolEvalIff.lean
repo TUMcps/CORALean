@@ -79,7 +79,7 @@ theorem Cat.maxPool_eval_iff (tap : Fin m → Fin (k + 1) → Fin n) (x : Vec �
     obtain ⟨z₂, hz₂, hy⟩ := (Cat.eval_comp_iff _ _ _ _).mp hy
     obtain ⟨z₁, hz₁, hz₂⟩ := (Cat.eval_comp_iff _ _ _ _).mp hz₂
     rw [Cat.eval_affine_iff] at hz₁ hy
-    rw [Cat.maxSegments_eval_iff] at hz₂
+    replace hz₂ := (Cat.maxSegments_eval_iff _ _ _ _ _).mp hz₂
     subst hz₁ hz₂ hy
     funext j
     rw [selectMat_mulVec_add_zero]

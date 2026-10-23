@@ -13,6 +13,14 @@ each coordinate's bounds admit.
 Over any ambient type that has coordinates, so `Interval (Mat ℝ m n)` is CORA's
 `intervalMatrix` and needs no separate representation: only which index set the
 bounds run over changes.
+The interval `[x̲, x̅]` is the one [1, Sec. 2] introduces for CORA's `interval`, also written
+`mid ⊕ rad ⊗ [-1, 1]`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification of Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Claude Opus 5

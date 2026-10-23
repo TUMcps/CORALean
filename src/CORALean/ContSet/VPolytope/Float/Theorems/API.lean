@@ -18,6 +18,7 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.OriginExact
 public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.MemColumnGap
 
 /-!
 # What the float `VPolytope` guarantees

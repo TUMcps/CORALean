@@ -7,8 +7,8 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Matrix zonotopes: a uniform-width box
 
-`expMatZonoRemainder`: [1, Sec. 3.3.2]'s tail, a box of uniform width `b` as a matrix
-zonotope: center zero, and one generator per entry carrying `b` there and nothing else.
+`expMatZonoRemainder`: the tail of [1, Sec. 3.1]'s series bounded by a box of uniform width `b`,
+as a matrix zonotope: center zero, and one generator per entry carrying `b` there and nothing else.
 
 ## Inputs
 * `m` – matrix dimension
@@ -19,8 +19,9 @@ zonotope: center zero, and one generator per entry carrying `b` there and nothin
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

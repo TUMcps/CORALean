@@ -10,7 +10,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # `reachBoxFloatChecked`, without a NaN
 
-`reachBoxFloat` ([1, Alg. 2] in floats) followed by `checkNoNaN`: `none` where it is `none` or
+`reachBoxFloat` ([1, Alg. 1] in floats) followed by `checkNoNaN`: `none` where it is `none` or
 a float of its result is a NaN. A `some` is the unchecked `some`
 (`reachBoxFloatChecked_eq_some`), so whatever is proved of `reachBoxFloat` holds of it, and the
 NaN test that the trust base asks of the caller has been made.
@@ -28,8 +28,9 @@ NaN test that the trust base asks of the caller has been made.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+      Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control
+      Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

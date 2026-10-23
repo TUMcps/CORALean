@@ -1,5 +1,6 @@
 import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
@@ -52,10 +53,12 @@ def bundle : ZonoBundle (Vec D 2) :=
 def e₁ : Vec D 2 := ![d 1 0, d 0 0]
 
 -- 2, the least member bound
-#eval ToRat.toRat (bundle.boundDot (by decide) (c := rowLin (fun (_ : Fin 1) => e₁) 0) e₁
+#eval ToRat.toRat (bundle.boundDot (by decide) (c := Real.HPolytope.rowLin
+    (toRealMat (fun (_ : Fin 1) => e₁)) 0) e₁
   fun _ => rfl).val
 -- 3/8, the linear program over the intersection
-#eval ToRat.toRat (bundle.boundDotLP (by decide) (c := rowLin (fun (_ : Fin 1) => e₁) 0) e₁
+#eval ToRat.toRat (bundle.boundDotLP (by decide) (c := Real.HPolytope.rowLin
+    (toRealMat (fun (_ : Fin 1) => e₁)) 0) e₁
   fun _ => rfl).val
 
 end CORALean.Examples.ZonoBundleBoundLPFloat

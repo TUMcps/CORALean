@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 

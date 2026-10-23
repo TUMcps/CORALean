@@ -3,6 +3,7 @@ module
 public import CORALean.NN.Operations.EncloseUnsafeInputs
 public import CORALean.NN.Theorems.ForwardLatent
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.NegSumAbsLeSumMul
 public import Mathlib.Tactic.Linarith
 

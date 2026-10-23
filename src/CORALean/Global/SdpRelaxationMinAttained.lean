@@ -93,21 +93,22 @@ theorem sdp_relaxation_exists_isLeast (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁
         {vw | (fromBlocks 0 Gᵀ G 0 -
           fromBlocks (diagonal vw.1) 0 0 (H * diagonal vw.2 * Hᵀ)).PosSemidef})
         Z := by -- --- PROOF ---
-  set K : Set ((Fin m → ℝ) × (Fin l → ℝ)) := {vw | (fromBlocks 0 Gᵀ G 0 -
-    fromBlocks (diagonal vw.1) 0 0 (H * diagonal vw.2 * Hᵀ)).PosSemidef} with hKdef
+  -- the slack matrix at the multipliers `vw`
+  set Mx := fun vw : (Fin m → ℝ) × (Fin l → ℝ) =>
+    fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal vw.1) 0 0 (H * diagonal vw.2 * Hᵀ) with hMx
+  set K : Set ((Fin m → ℝ) × (Fin l → ℝ)) := {vw | (Mx vw).PosSemidef} with hKdef
   set obj : (Fin m → ℝ) × (Fin l → ℝ) → ℝ :=
     fun vw => (‖WithLp.toLp s₁ vw.1‖ + ‖WithLp.toLp s₂ vw.2‖) / 2 with hobj
   -- the symmetric matrices of `K`
-  have hherm : ∀ vw : (Fin m → ℝ) × (Fin l → ℝ), (fromBlocks 0 Gᵀ G 0 -
-      fromBlocks (diagonal vw.1) 0 0 (H * diagonal vw.2 * Hᵀ)).IsHermitian := fun vw => by
+  have hherm : ∀ vw : (Fin m → ℝ) × (Fin l → ℝ), (Mx vw).IsHermitian := fun vw => by
     ext a b
     rcases a with j | k <;> rcases b with j' | k' <;>
-      simp [diagonal_apply, eq_comm, mul_apply, mul_comm, mul_left_comm]
+      simp [hMx, diagonal_apply, eq_comm, mul_apply, mul_comm, mul_left_comm]
     split_ifs with h <;> simp [h]
   have hKeq : K = ⋂ x : Fin m ⊕ Fin n → ℝ, {vw | 0 ≤ 2 * ((x ∘ Sum.inr) ⬝ᵥ (G *ᵥ (x ∘ Sum.inl))) -
       ∑ j, vw.1 j * (x (Sum.inl j)) ^ 2 - ∑ i, vw.2 i * ((x ∘ Sum.inr) ᵥ* H) i ^ 2} := by
     ext vw
-    simp only [hKdef, Set.mem_setOf_eq, Set.mem_iInter]
+    simp only [hKdef, hMx, Set.mem_setOf_eq, Set.mem_iInter]
     constructor
     · intro h x
       rw [← aux_srm_quad]

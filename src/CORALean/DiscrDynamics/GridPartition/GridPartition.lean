@@ -40,11 +40,6 @@ structure GridPartition (n : ℕ) where
   /-- CORA's `dividers{j}(k + 1)`, counted from `k = 0`. -/
   dividers : Fin n → ℕ → ℝ
 
-/-- CORA's `intervals`: the state space, from the first to the last divider of each dimension. -/
-def GridPartition.intervals (P : GridPartition n) : Real.Interval (Vec ℝ n) where
-  inf := fun j => P.dividers j 0
-  sup := fun j => P.dividers j (P.nrOfSegments j)
-
 end CORALean
 
 

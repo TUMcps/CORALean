@@ -75,17 +75,6 @@ def ConPolyZono.factorIdx {p h q : ℕ} (E : Fin p → Fin h → ℕ) (R : Fin p
   PolyZonotope.factorIdx (ConPolyZono.appendE E R) k
 
 
--- ===============================  `ConPolyZono.mtimes_eq_map`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
-theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    ConPolyZono.mtimes M cPZ = cPZ.map (Matrix.mulVecLin M) := rfl
-
-
 -- ================================  `ConPolyZono.rescaleStep`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026

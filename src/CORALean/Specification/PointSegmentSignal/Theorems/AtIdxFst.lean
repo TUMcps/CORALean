@@ -47,7 +47,8 @@ theorem PointSegmentSignal.atIdx_fst (s : PointSegmentSignal T) (hs : s.IsValid)
   obtain ⟨hi1, hi2, ⟨a, ha, hale⟩, hnext⟩ := PointSegmentSignal.takeWhile_le_pos s hs u h0
   have hg : s.timePoints.getD ((s.timePoints.takeWhile (· ≤ u)).length - 1) 0 = a := by
     simp [List.getD_eq_getElem?_getD, ha]
-  simp only [PointSegmentSignal.atIdx, WithTop.coe_le_coe, hg, WithTop.coe_inj]
+  simp only [TimeOrder.isEqvTop_iff_eq, PointSegmentSignal.atIdx, WithTop.coe_le_coe, hg,
+    WithTop.coe_inj]
   rcases hale.lt_or_eq with hlt | heq
   · rw [if_neg hlt.ne]
     have := s.at_between hs _ a u ha hlt

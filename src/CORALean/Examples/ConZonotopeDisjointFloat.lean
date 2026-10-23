@@ -1,5 +1,6 @@
 import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
-import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+import CORALean.Global.Float.SoundFloatArithmetic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!

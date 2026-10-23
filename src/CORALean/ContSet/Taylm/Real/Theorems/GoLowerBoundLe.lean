@@ -74,8 +74,8 @@ theorem Taylm.goLowerBound_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Enclo
     have := (Taylm.bounds_mem hE hs).1; rwa [hst] at this
   have hLDB : (T.reexpand B).ldb ε fuel ≤ f t := by
     have := Taylm.ldb_le hE ε fuel hs; rwa [hst] at this
-  have hQFB : (@ite _ (Taylm.aux_hessian (T.reexpand B).terms).PosSemidef (Classical.dec _)
-      ((T.reexpand B).qfbLower (Taylm.aux_hessian (T.reexpand B).terms) 0)
+  have hQFB : (@ite _ (Taylm.hessian (T.reexpand B).terms).PosSemidef (Classical.dec _)
+      ((T.reexpand B).qfbLower (Taylm.hessian (T.reexpand B).terms) 0)
       (T.reexpand B).bounds.inf) ≤ f t := by
     split_ifs with hH
     · have := Taylm.qfbLower_le hE hH 0 hs; rwa [hst] at this

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 

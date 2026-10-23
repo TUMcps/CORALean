@@ -7,13 +7,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
+public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderSet
 
 @[expose] public section
 
 /-!
 # `oneStep` holds the state at every time of the step
 
-`Rti` of `LinearSys.oneStep` [1, Sec. 3.3] encloses `x(t)` for every `t ∈ [0, Δt]` of every run from
+`Rti` of `LinearSys.oneStep` [1, Eq. 4] encloses `x(t)` for every `t ∈ [0, Δt]` of every run from
 `X` whose input is the constant `u` plus a signal in `U ∋ 0`. The state is `e^{At} x₀ + Γ(t) u + p`,
 and with `λ = t/Δt` it comes apart into `(1-λ) x₀ + λ (e^{AΔt} x₀ + Γ(Δt) u)`, a point of the hull
 of `X` and `Htp`, `F x₀` with the state's interpolation error `[F]`, `G u` with the constant's
@@ -60,8 +61,8 @@ are bounds.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -98,21 +99,18 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timeInterval_outer {sys : Linear
     (hWU : ∀ v ∈ construct W, v - u ∈ construct U) (hW : Bornology.IsBounded (construct W))
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) U)))
+    (hRconv : Convex ℝ (sys.inputRemainderSet Δt (m + 2) U))
+    (hRclosed : IsClosed (sys.inputRemainderSet Δt (m + 2) U))
+    (hRbdd : Bornology.IsBounded (sys.inputRemainderSet Δt (m + 2) U))
     (pconv : Convex ℝ (construct (OfPoint.ofPoint (S := S n) u)))
     (pclosed : IsClosed (construct (OfPoint.ofPoint (S := S n) u)))
     (pbdd : Bornology.IsBounded (construct (OfPoint.ofPoint (S := S n) u)))
-    (pRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
-    (pRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
-    (pRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
+    (pRconv : Convex ℝ (sys.inputRemainderSet Δt (m + 2) (OfPoint.ofPoint (S
+      := S n) u)))
+    (pRclosed : IsClosed (sys.inputRemainderSet Δt (m + 2) (OfPoint.ofPoint (S
+      := S n) u)))
+    (pRbdd : Bornology.IsBounded (sys.inputRemainderSet Δt (m + 2)
+      (OfPoint.ofPoint (S := S n) u)))
     : -- --- CONCL ---
     x t ∈ construct (sys.oneStep X U u Δt (m + 2)).Rti := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

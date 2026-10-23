@@ -426,21 +426,17 @@ that file's `aux_` lemma unless something outward-facing names it
 (`scripts/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
 `noncomputable` stays where it is legitimate — see below.
 
-`noncomputable` is checked against the rule the float layer exists to keep:
-free in a representation's `Real/` layer, in the ℝ model of the scalar
-interface, in a `Definitions/` file, which says what an object means and is
-never run, and on an `aux_` declaration anywhere, since that is a helper
-rather than something a caller runs. Everywhere else it needs a reason, on one
-line of `scripts/noncomputable-allowlist.txt`: `spec:` for a specification
-object with nothing to compute (a reachable set defined by trajectories, a
-norm, a Hausdorff distance, a real-valued certificate), `cost:` for an asserted
-running cost, `real-layer:` for the real half of a representation or an ℝ-only
-part of a directory otherwise written over the scalar, or `pending #N:` for an
-algorithm with no float refinement yet. Under `Float/` even the allowlist
-does not reach: a float declaration is free only as that same kind of `aux_`,
-because the whole point of the float layer is that it runs. An allowlist
-entry that stops matching anything is itself an error, so the list only
-shrinks honestly.
+**Principle.** Keep `noncomputable` to a minimum: a definition should compute wherever it can;
+where the real version cannot, there should at least be a float variant that does.
+
+**Rule** (`scripts/check-noncomputable.py`, no list). A `noncomputable` declaration is allowed if it
+is in a real layer (a file under a `Real/` folder, or a declaration that works over ℝ rather than
+the float scalar `𝕋`: its text mentions ℝ, or the file's `variable` lines do, and `𝕋` is at most
+the index of a system, never the type of a value), or its type is a `Set`, a `Prop` or ℝ-valued,
+or its docstring says why it cannot compute (a choice, an integral, an infimum, a classical
+decision, `Noncomputable: …`). In the float layer, a `Float/` folder (its `Theorems/` files state
+things about floats and never run) or a declaration whose result is a value of `𝕋`, it is never
+allowed: the float layer exists to run. `noncomputable section` is refused outright.
 
 Every limit it applies is a named variable at the top of the script, set from
 what the tree actually contains, so raising one is a decision rather than a
@@ -703,7 +699,7 @@ The rule is not about the file's name: any file with a `MAIN TYPE` banner (`NN/N
 that nothing else in the file is stated with (#134); `NeuralNetwork.Encloses` is in
 `Definitions/Encloses.lean`, `Enclose.toLayer` and `Layer.comp` in `Layers/Operations/Basic.lean`.
 `Global/`, `Examples/` and `Interfaces.lean` (whose operation classes are #135's) are out of scope,
-and `scripts/main-type-allowlist.txt` names the rest, a reason to each, and only shrinks. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
+and nothing else is exempt. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
 `check-conventions.sh` asks for it; `OutputEq`, which is no system, is the named exception
 (`LinProbSys.IsTrajectory` gives a run by its law at each time, since the process itself is not
@@ -1276,7 +1272,7 @@ bare form is rejected by `scripts/check-float-wrappers.py`, and so is the exact 
 to the arguments read as reals — `Real.HPolytope.rowLin (toRealMat M) i` — which is no more than the
 conversion under a name. What stays is listed in `scripts/float-wrapper-allowlist.txt` with the
 reason: a class's `construct` or a type's meaning (`Taylm.Encloses`), spelt for dot notation to
-resolve, or a name (`rowLin`) whose statements would otherwise spell the conversion out each time.
+resolve. A name for the conversion (`rowLin` was one) is not kept: its uses spell it out.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
 layers wherever it can, and a contribution that lands only the `Real` half must
@@ -1462,8 +1458,8 @@ at that step. Naming changes how a statement or proof is written, not what it st
 does not count as a change of the file for the `Reviewed:` line.
 
 `scripts/check-repeated-subterms.py` reports the clearest case: a parenthesised or `⟨ … ⟩` group
-of 70 characters or more that one declaration spells out three times or more. The ones not yet
-named are on `scripts/repeated-subterm-allowlist.txt`, which only shrinks.
+of 70 characters or more that one declaration spells out three times or more. There is no list of exceptions: a
+repeated group in a statement is named with a `let` or, where it is a concept, a definition.
 
 ### `aux_sum_univ_<op>`
 
@@ -1695,9 +1691,8 @@ more. Where no paper we hold states a result, remove the citation and say so in 
 A book is fine where no paper stands behind the result — CORA cites one for the matrix zonotope
 product, and so do we. Where none can be confirmed, leave the section out; a blank is honest and
 a wrong citation is not. `check-conventions.sh` runs `scripts/check-thesis-refs.py`, which rejects
-a `## References` entry that says `thesis`, `dissertation`, `PhD` or `habilitation`, except in the
-files `scripts/thesis-ref-allowlist.txt` lists with the reason no paper we hold states the result;
-the list only shrinks.
+a `## References` entry that says `thesis`, `dissertation`, `PhD` or `habilitation`, in every
+file and with no exception list.
 
 ## The module header
 

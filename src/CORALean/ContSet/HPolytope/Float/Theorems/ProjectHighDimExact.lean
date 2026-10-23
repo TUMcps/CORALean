@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 public import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
-public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.PreimageAddImage
 

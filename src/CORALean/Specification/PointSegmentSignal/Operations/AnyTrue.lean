@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Operations.RelevantStart
 public import CORALean.Specification.PointSegmentSignal.Operations.RelevantStop
@@ -40,7 +41,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `res = anyTrue(obj,interval,cond)`. -/
-def PointSegmentSignal.anyTrue {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+def PointSegmentSignal.anyTrue {T : Type} [TimeOrder T] [Zero T] (s : PointSegmentSignal T)
     (lb : T := 0) (ub : WithTop T := ⊤) (lc : Bool := true) (rc : Bool := false)
     (cond : Bool → Bool := id) : Bool :=
   -- res = any(arrayfun(cond,obj.values(start:stop))), [start,stop] = priv_relevantValueIdx(...)

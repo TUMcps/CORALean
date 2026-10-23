@@ -14,6 +14,13 @@ type it stores, as the exact layer's `Interval α` is: `Interval (Vec 𝕋 n)` i
 one denotes, and that is all `nominal` needs; the exact layer's `Entrywise` reads the result, so the
 float layer needs no counterpart of that class. What it denotes is the exact layer's `construct` of
 `nominal`, fixed by definition rather than by a lemma. Each operation then owes only enclosure.
+The interval is the one [1, Sec. 2] introduces for CORA's `interval`, with its ends held in `𝕋`.
+
+## References
+
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
+      Proc. of the 3rd International Workshop on Applied Verification of Continuous and Hybrid
+      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
 -/
 
 -- Authors:       Claude Opus 5

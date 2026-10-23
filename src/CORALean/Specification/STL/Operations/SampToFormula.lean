@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.STL.Definitions.Samp
 public import CORALean.Specification.STL.STL
+public import CORALean.Specification.STL.Operations.Basic
 
 @[expose] public section
 

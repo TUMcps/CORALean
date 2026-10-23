@@ -64,10 +64,10 @@ theorem aux_updateNodes_getElem? {B : Type} (g : B → Option B) : -- --- CONCL 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.observeSet_spec (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (set : S d) (loc : ℕ) (mv : Option STLInterval) : -- --- CONCL ---
+theorem OnlineReachSetAnalyzer.observeSet_spec (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
+    (set : S d) (loc : ℕ) (mv : Option (STLInterval ℝ)) : -- --- CONCL ---
     OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set .empty loc mv = some obj ∧
-    ∀ (I : STLInterval) (obj' : OnlineReachSetAnalyzer S d), I ≠ .empty →
+    ∀ (I : STLInterval ℝ) (obj' : OnlineReachSetAnalyzer ℝ S d), I ≠ .empty →
       OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc mv = some obj' →
       obj'.numObservations = obj.numObservations + 1 ∧ obj'.leaves = obj.leaves ∧
         obj'.propagationFrequency = obj.propagationFrequency ∧
@@ -77,7 +77,7 @@ theorem OnlineReachSetAnalyzer.observeSet_spec (eps : ℝ) (obj : OnlineReachSet
   refine ⟨rfl, fun I obj' hI h => ?_⟩
   cases I with
   | empty => exact absurd rfl hI
-  | nonempty l u lc rc a b c =>
+  | nonempty l u lc rc b c =>
     unfold OnlineReachSetAnalyzer.observeSet at h
     obtain ⟨nodes, hnodes, h⟩ := Option.bind_eq_some_iff.mp h
     dsimp only at h

@@ -7,6 +7,7 @@ public import CORALean.NN.Layers.Operations.StarSetReluNeuron
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Theorems.MemAppendIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
 
 @[expose] public section
 

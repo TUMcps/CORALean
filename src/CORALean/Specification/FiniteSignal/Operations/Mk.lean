@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Interfaces
 public import CORALean.Specification.FiniteSignal.Definitions.IsValid
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import Mathlib.Data.List.Chain
@@ -36,7 +37,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = finiteSignal(time,value)`. -/
-def FiniteSignal.mk? {T V : Type} [LinearOrder T] [Zero T] [DecidableEq V] (time : List T)
+def FiniteSignal.mk? {T V : Type} [TimeOrder T] [Zero T] [DecidableEq V] (time : List T)
     (value : List V) : Option (FiniteSignal T V) :=
   -- the five checks of the constructor
   if time ≠ [] ∧ time.length = value.length ∧ time.Pairwise (· < ·) ∧ value.IsChain (· ≠ ·) ∧

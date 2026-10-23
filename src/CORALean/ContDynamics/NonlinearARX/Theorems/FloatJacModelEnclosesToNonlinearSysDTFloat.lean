@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNo
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Analysis.Calculus.FDeriv.Const
 public import Mathlib.Analysis.Calculus.FDeriv.Prod
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 @[expose] public section
 
@@ -66,12 +67,11 @@ theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) : -- --- CONCL ---
 /-- The reindexing, as a continuous linear map, sends a unit vector to a unit vector. -/
 theorem aux_reindex_hasFDerivAt {a b : ℕ} (x : Vec ℝ (a * b)) : -- --- CONCL ---
     ∃ L : Vec ℝ (a * b) →L[ℝ] Vec ℝ (a * b),
-      HasFDerivAt (fun x' : Vec ℝ (a * b) => fun s => x' (finProdFinEquiv
-        (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2))) L x ∧
+      HasFDerivAt (fun x' : Vec ℝ (a * b) => fun s => x' (NonlinearARX.revBlocks s)) L x ∧
       ∀ c, L (Pi.single c 1) = Pi.single (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1,
         (finProdFinEquiv.symm c).2)) 1 := by -- --- PROOF ---
-  refine ⟨ContinuousLinearMap.pi fun s => ContinuousLinearMap.proj (finProdFinEquiv
-    (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2)), ?_, fun c => ?_⟩
+  refine ⟨ContinuousLinearMap.pi fun s => ContinuousLinearMap.proj (NonlinearARX.revBlocks s), ?_,
+    fun c => ?_⟩
   · exact hasFDerivAt_pi.2 fun s => hasFDerivAt_apply _ x
   · funext s
     simp only [ContinuousLinearMap.pi_apply, ContinuousLinearMap.proj_apply, Pi.single_apply]
@@ -96,19 +96,15 @@ theorem NonlinearARX.FloatJacModel.Encloses.toNonlinearSysDTFloat
     fun _ _ => Iff.rfl
   -- the window and the inputs newest first lie in the reindexed boxes
   have hY : ∀ (X : Interval (Vec 𝕋 (p * dy))) (x : Vec ℝ (p * dy)), x ∈ construct X →
-      (fun s => x (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))) ∈ construct (⟨fun s => X.inf (finProdFinEquiv
-            (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2)),
-          fun s => X.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-            (finProdFinEquiv.symm s).2))⟩ : Interval (Vec 𝕋 (p * dy))) :=
+      (fun s => x (NonlinearARX.revBlocks s)) ∈ construct (⟨fun s => X.inf (NonlinearARX.revBlocks
+        s),
+          fun s => X.sup (NonlinearARX.revBlocks s)⟩ : Interval (Vec 𝕋 (p * dy))) :=
     fun X x hx => (mem_iff _ _).2 fun s => (mem_iff _ _).1 hx _
   have hW : ∀ (V : Interval (Vec 𝕋 ((p + 1) * du))) (v : Vec ℝ ((p + 1) * du)),
       v ∈ construct V →
-      (fun s => v (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))) ∈ construct (⟨fun s => V.inf (finProdFinEquiv
-            (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2)),
-          fun s => V.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-            (finProdFinEquiv.symm s).2))⟩ : Interval (Vec 𝕋 ((p + 1) * du))) :=
+      (fun s => v (NonlinearARX.revBlocks s)) ∈ construct (⟨fun s => V.inf (NonlinearARX.revBlocks
+        s),
+          fun s => V.sup (NonlinearARX.revBlocks s)⟩ : Interval (Vec 𝕋 ((p + 1) * du))) :=
     fun V v hv => (mem_iff _ _).2 fun s => (mem_iff _ _).1 hv _
   refine ⟨(NonlinearARX.FloatModel.Encloses.toNonlinearSysDTFloat
     (fm := ⟨fm.f⟩) ⟨h.f_mem⟩).f_mem, fun X V x hx v hv => ?_, fun X V x hx v hv => ?_⟩
@@ -121,10 +117,8 @@ theorem NonlinearARX.FloatJacModel.Encloses.toNonlinearSysDTFloat
         ContinuousLinearMap.proj (finProdFinEquiv ((⟨(finProdFinEquiv.symm r).1.val + 1, hr⟩ :
           Fin p), (finProdFinEquiv.symm r).2))
       else (ContinuousLinearMap.proj (finProdFinEquiv.symm r).2).comp
-        ((fderiv ℝ (fun y' => sys.f y' (fun s => v (finProdFinEquiv
-          (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2))))
-          (fun s => x (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-            (finProdFinEquiv.symm s).2)))).comp L)
+        ((fderiv ℝ (fun y' => sys.f y' (fun s => v (NonlinearARX.revBlocks s)))
+          (fun s => x (NonlinearARX.revBlocks s))).comp L)
     have hD : ∀ r, HasFDerivAt (fun x' => sys.toNonlinearSysDT.f x' v r) (D r) x := by
       intro r
       by_cases hr : (finProdFinEquiv.symm r).1.val + 1 < p
@@ -159,10 +153,8 @@ theorem NonlinearARX.FloatJacModel.Encloses.toNonlinearSysDTFloat
     let D : Fin (p * dy) → (Vec ℝ ((p + 1) * du) →L[ℝ] ℝ) := fun r =>
       if (finProdFinEquiv.symm r).1.val + 1 < p then 0
       else (ContinuousLinearMap.proj (finProdFinEquiv.symm r).2).comp
-        ((fderiv ℝ (fun v' => sys.f (fun s => x (finProdFinEquiv
-          (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2))) v')
-          (fun s => v (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-            (finProdFinEquiv.symm s).2)))).comp L)
+        ((fderiv ℝ (fun v' => sys.f (fun s => x (NonlinearARX.revBlocks s)) v')
+          (fun s => v (NonlinearARX.revBlocks s))).comp L)
     have hD : ∀ r, HasFDerivAt (fun v' => sys.toNonlinearSysDT.f x v' r) (D r) v := by
       intro r
       by_cases hr : (finProdFinEquiv.symm r).1.val + 1 < p

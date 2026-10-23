@@ -42,9 +42,6 @@ structure ScaleRounding.Sound (A : ScaleRounding 𝕋) (r : ℝ) : Prop where
   up_ge (x : 𝕋) : r * toReal x ≤ toReal (A.up x)
   down_le (x : 𝕋) : toReal (A.down x) ≤ r * toReal x
 
-/-- Multiplication by `r` itself, both ways, which only ℝ stores. -/
-noncomputable def ScaleRounding.exact (r : ℝ) : ScaleRounding ℝ := ⟨(r * ·), (r * ·)⟩
-
 end CORALean
 
 

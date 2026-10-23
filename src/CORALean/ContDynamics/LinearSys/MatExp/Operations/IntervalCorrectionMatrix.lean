@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 /-!
 # Interval matrices: the correction matrix over a box
 
-`intervalCorrectionMatrix`: [1, Sec. 3.3.1]'s `F` over a whole box: orders `2` through `η` from
+`intervalCorrectionMatrix`: [1, Thm. 3]'s `F` over a whole box: orders `2` through `η` from
 `intervalCorrTerm`, everything past `η` in the tail bound at `r • A`, and indexed from `2`
 exactly as the point case is.
 
@@ -23,8 +23,9 @@ exactly as the point case is.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -42,7 +43,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `F` of [1] over a whole box: orders `2` through `η` from
+/-- The `F` of [1, Thm. 3] over a whole box: orders `2` through `η` from
 `intervalCorrTerm`, everything past `η` in the tail bound at `r • A`, and
 indexed from `2` exactly as the point case is. -/
 noncomputable def MatExp.intervalCorrectionMatrix (A : Interval (Mat ℝ n n)) (r : ℝ)

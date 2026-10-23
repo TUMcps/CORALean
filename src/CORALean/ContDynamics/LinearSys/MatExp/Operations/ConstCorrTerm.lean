@@ -8,8 +8,8 @@ public import CORALean.Global.Tensor
 /-!
 # What one order contributes to the integrated correction
 
-`constCorrTerm`: [1]'s order `i+2` contribution to the *integrated* correction. The same shape
-as `corrTerm`, one factorial further along and one matrix power back, which is what
+`constCorrTerm`: [1, Sec. III-A]'s order `i+2` contribution to the *integrated* correction. The same
+shape as `corrTerm`, one factorial further along and one matrix power back, which is what
 integrating each order of the exponential does to it.
 
 ## Inputs
@@ -24,8 +24,8 @@ integrating each order of the exponential does to it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5

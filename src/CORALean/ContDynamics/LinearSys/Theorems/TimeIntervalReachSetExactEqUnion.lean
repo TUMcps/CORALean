@@ -6,13 +6,12 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSetEx
 @[expose] public section
 
 /-!
-# The interval set is exactly the union [1, Def. 3.2] states
+# The interval set is exactly the union [1, Def. 1] states
 
-`timeIntervalReachSetExact` is written as one existential rather than as a literal
-`Set.iUnion`, so it reads the same way `reachSetExact` does; this recovers the union
-the thesis states it as, and is what lets a `reachSetExact`-indexed hypothesis — one
-per time in `[0, r]`, as `ReachSetExactSubsetTimeIntervalInputSolution` supplies —
-answer for the whole interval at once.
+`timeIntervalReachSetExact` is written as one existential rather than as a literal `Set.iUnion`, so
+it reads the same way `reachSetExact` does; this recovers the union [1, Def. 1] states it as, and is
+what lets a `reachSetExact`-indexed hypothesis — one per time in `[0, r]`, as
+`ReachSetExactSubsetTimeIntervalInputSolution` supplies — answer for the whole interval at once.
 
 ## Inputs
 * `sys` – linear system
@@ -29,8 +28,9 @@ answer for the whole interval at once.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5
@@ -51,7 +51,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Def. 3.2]: the reachable set over `[0, r]` is the union of the
+/-- [1, Def. 1]: the reachable set over `[0, r]` is the union of the
 point-in-time reachable sets at every time in it. -/
 theorem LinearSys.timeIntervalReachSetExact_eq_iUnion (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
     (r : ℝ) : -- --- CONCL ---

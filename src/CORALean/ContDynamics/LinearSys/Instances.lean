@@ -15,16 +15,19 @@ public import CORALean.ContSet.Interval.Real.Instances
 `params` is `Reach.Params` at real time, `options` `ReachStepOptions`; `reachExact` is each system's
 own on `[0, tFinal - tStart]`, the system being time-invariant. All of it is the canonical form's,
 as CORA's `reach` runs on `canonicalForm`: a `U` is the combined input `B U ⊕ c ⊕ E W` in state
-coordinates. `LinearSys.WithInput` carries `U`, `0 ∈ U` among its fields, and asks the
-representation to be convex and compact, what [1, Thm. 3.1] needs of `U` ([1, Alg. 2]);
-`LinearSys.WithInputSplit` drops `0 ∈ U` and asks for `Recenter` and `OfPoint` too ([1, Alg. 3]).
-`LinearSys` is the homogeneous case: `reachInstance` runs `reachAdmissible` (CORA's `standard`, [1,
-Alg. 4]), `reachWrappingFreeInstance` `reachWrappingFree` ([1, Alg. 1]); `none` unless `0 < Δt`.
+coordinates. `LinearSys.WithInput` carries `U ∋ 0` and asks the representation to be convex and
+compact, as the corrected input solution of [1, Prop. 2] needs; `LinearSys.WithInputSplit` drops
+`0 ∈ U` and asks for `Recenter` and `OfPoint`, to split `U` as [2, Eq. 4] does. `LinearSys` is the
+homogeneous case: `reachInstance` runs `reachAdmissible` (CORA's `standard`, [1, Alg. 1]),
+`reachWrappingFreeInstance` `reachWrappingFree` ([1, Sec. V-B]); `none` unless `0 < Δt`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
+* [2] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -40,7 +40,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FiniteKleeneSignalBuilder.represents_of_iff (b : FiniteKleeneSignalBuilder) (d : ℝ)
+theorem FiniteKleeneSignalBuilder.represents_of_iff (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ)
     {PT PF PT' PF' : ℝ → Prop} (h : b.Represents d PT PF) (hT : ∀ t, PT t ↔ PT' t)
     (hF : ∀ t, PF t ↔ PF' t) : b.Represents d PT' PF' := by
   obtain ⟨hv, hd, hts⟩ := h

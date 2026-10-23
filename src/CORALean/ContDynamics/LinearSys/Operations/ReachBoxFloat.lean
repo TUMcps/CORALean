@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 @[expose] public section
 
 /-!
-# `reachBoxFloat`: [1, Alg. 2], the wrapping-free reachable set with `box()`, in floats
+# `reachBoxFloat`: [1, Alg. 1], the wrapping-free reachable set with `box()`, in floats
 
 `reachBox` computed in `𝕋`, one `let` per printed line: `H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰`
 (`timeIntervalFloat`), `V₀ = ⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` (`inputSolutionFloat`),
@@ -37,8 +37,9 @@ outward. `η` is raised with `reachOrderFloat` to the first order the float rema
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+      Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control
+      Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -58,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2] in floats: `R₀, …, R_N`, `R_k ⊇ R([kr, (k+1)r])`, from `X⁰` and `U` at Taylor
+/-- [1, Alg. 1] in floats: `R₀, …, R_N`, `R_k ⊇ R([kr, (k+1)r])`, from `X⁰` and `U` at Taylor
 order `η` raised until admissible. -/
 def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) (r : 𝕋) (η N : ℕ) :
     Option (List (Zonotope (Vec 𝕋 n))) := do

@@ -55,9 +55,10 @@ theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
   simpa using hβ 0
 
 theorem aux_stdNormal_volume_le : -- --- CONCL ---
-    volume.real (toLp 2 '' (aux_stdNormal.zonotope 1).construct :
-      Set (EuclideanSpace ℝ (Fin 1))) ≤ 2 := by -- --- PROOF ---
-  have hsub : (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1)))
+    let P := (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1)))
+    volume.real P ≤ 2 := by -- --- PROOF ---
+  intro P
+  have hsub : P
       ⊆ ofLp ⁻¹' Set.Icc (fun _ => (-1 : ℝ)) (fun _ => 1) := by
     rintro _ ⟨y, hy, rfl⟩
     have := aux_stdNormal_zonotope_subset hy
@@ -70,8 +71,7 @@ theorem aux_stdNormal_volume_le : -- --- CONCL ---
     rw [(PiLp.volume_preserving_ofLp (Fin 1)).measure_preimage
       measurableSet_Icc.nullMeasurableSet, Real.volume_Icc_pi]
     simp; norm_num
-  have hfin : volume (toLp 2 '' (aux_stdNormal.zonotope 1).construct :
-      Set (EuclideanSpace ℝ (Fin 1))) ≤ ENNReal.ofReal 2 := (measure_mono hsub).trans hvol.le
+  have hfin : volume P ≤ ENNReal.ofReal 2 := (measure_mono hsub).trans hvol.le
   calc _ ≤ (ENNReal.ofReal 2).toReal :=
         ENNReal.toReal_mono ENNReal.ofReal_ne_top hfin
     _ = 2 := ENNReal.toReal_ofReal (by norm_num)

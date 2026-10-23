@@ -55,7 +55,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point `t < x` of the left closure has a time of `J` below `x`. -/
-theorem PointSegmentSignal.aux_exists_lt (J : STLInterval) (t x : ℝ) (ht : t ∈ J.leftClosure.set)
+theorem PointSegmentSignal.aux_exists_lt (J : STLInterval ℝ) (t x : ℝ) (ht : t ∈ J.leftClosure.set)
     (htx : t < x) : -- --- CONCL ---
     ∃ s ∈ J.set, s < x := by -- --- PROOF ---
   rw [STLInterval.set_leftClosure] at ht
@@ -76,7 +76,7 @@ theorem PointSegmentSignal.aux_exists_lt (J : STLInterval) (t x : ℝ) (ht : t �
     exact ⟨s, hsJ, by exact_mod_cast hsx⟩
 
 /-- A point `t > x` of the right closure has a time of `J` above `x`. -/
-theorem PointSegmentSignal.aux_exists_gt (J : STLInterval) (t x : ℝ) (ht : t ∈ J.rightClosure.set)
+theorem PointSegmentSignal.aux_exists_gt (J : STLInterval ℝ) (t x : ℝ) (ht : t ∈ J.rightClosure.set)
     (hxt : x < t) : -- --- CONCL ---
     ∃ s ∈ J.set, x < s := by -- --- PROOF ---
   rw [STLInterval.set_rightClosure] at ht
@@ -97,7 +97,7 @@ theorem PointSegmentSignal.aux_exists_gt (J : STLInterval) (t x : ℝ) (ht : t �
     exact ⟨s, hsJ, by exact_mod_cast hsx⟩
 
 /-- If `J` contains everything strictly between `t < t'`, `t` is in its left closure. -/
-theorem PointSegmentSignal.aux_mem_leftClosure (J : STLInterval) (t t' : ℝ) (htt : t < t')
+theorem PointSegmentSignal.aux_mem_leftClosure (J : STLInterval ℝ) (t t' : ℝ) (htt : t < t')
     (h : ∀ x, t < x → x < t' → x ∈ J.set) : -- --- CONCL ---
     t ∈ J.leftClosure.set := by -- --- PROOF ---
   rw [STLInterval.set_leftClosure]
@@ -109,7 +109,7 @@ theorem PointSegmentSignal.aux_mem_leftClosure (J : STLInterval) (t t' : ℝ) (h
   have hJ : J ≠ .empty := by
     rintro rfl
     simp [STLInterval.set_empty] at hm
-  show J.infimum.value = some (t : EReal)
+  show J.infimum.value.map STLInterval.toEReal = some (t : EReal)
   rw [STLInterval.infimum_value J hJ]
   congr 1
   apply le_antisymm
@@ -135,7 +135,7 @@ theorem PointSegmentSignal.aux_mem_leftClosure (J : STLInterval) (t t' : ℝ) (h
     exact htJ ((STLInterval.set_ordConnected J).out hsJ hm ⟨hst'.le, by linarith⟩)
 
 /-- If `J` contains everything strictly between `t < t'`, `t'` is in its right closure. -/
-theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval) (t t' : ℝ) (htt : t < t')
+theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval ℝ) (t t' : ℝ) (htt : t < t')
     (h : ∀ x, t < x → x < t' → x ∈ J.set) : -- --- CONCL ---
     t' ∈ J.rightClosure.set := by -- --- PROOF ---
   rw [STLInterval.set_rightClosure]
@@ -147,7 +147,7 @@ theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval) (t t' : ℝ) (
   have hJ : J ≠ .empty := by
     rintro rfl
     simp [STLInterval.set_empty] at hm
-  show J.supremum.value = some (t' : EReal)
+  show J.supremum.value.map STLInterval.toEReal = some (t' : EReal)
   rw [STLInterval.supremum_value J hJ]
   congr 1
   -- the supremum is `t'`: at least `t'`, else a time of `J` above `t'` would put `t'` in `J`
@@ -176,7 +176,7 @@ theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval) (t t' : ℝ) (
 
 /-- The unitary until of `Eq. 1` is `true` exactly where the until semantics says. -/
 theorem PointSegmentSignal.intervalUntil_unitary (l₁ l₂ : PointSegmentSignal ℝ)
-    (J₁ J₂ U : STLInterval) (h₁ : l₁.IsUnitary J₁) (h₂ : l₂.IsUnitary J₂) : -- --- CONCL ---
+    (J₁ J₂ U : STLInterval ℝ) (h₁ : l₁.IsUnitary J₁) (h₂ : l₂.IsUnitary J₂) : -- --- CONCL ---
     (PointSegmentSignal.intervalUntil [J₁] U [J₂]).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((PointSegmentSignal.intervalUntil [J₁] U [J₂]).at t = true ↔
         ∃ t', t' - t ∈ U.set ∧ l₂.at t' = true ∧

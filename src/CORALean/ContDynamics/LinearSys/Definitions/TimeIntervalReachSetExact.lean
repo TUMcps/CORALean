@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # The set a continuous run visits over an interval
 
-The definition is [1, Def. 3.2]: the union of `LinearSys.reachSetExact` at every time in
+The definition is [1, Def. 1]: the union of `LinearSys.reachSetExact` at every time in
 `[0, r]`. `timeIntervalReachSetExact_eq_iUnion` is that union, read back off this definition.
 Written the same way `reachSetExact` is, an existential over a trajectory, rather than as a
 literal `Set.iUnion`: a caller already holding a trajectory and a time reaches either with
@@ -26,8 +26,9 @@ exact counterpart of, rather than an arbitrary sub-interval of `T`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Sonnet 5

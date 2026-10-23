@@ -60,7 +60,8 @@ def Location.zonoGirardUpperFloat (Z : Zonotope (Vec 𝕋 n)) (nv : Vec 𝕋 n) 
       (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z
   -- the dual bound at the multiplier `μ`
   let dual : 𝕋 → 𝕋 := fun μ =>
-    addUp (S.boundDot (c := rowLin (fun _ : Fin 1 => ![neg μ, one]) 0) ![neg μ, one]
+    addUp (S.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => ![neg μ, one])) 0)
+        ![neg μ, one]
       (fun _ => rfl)).val (mulUp μ γ)
   -- the slopes `(gⱼ)₂/(gⱼ)₁` of the generators, the dual's breakpoints
   let slope : Fin S.h → 𝕋 := fun j =>

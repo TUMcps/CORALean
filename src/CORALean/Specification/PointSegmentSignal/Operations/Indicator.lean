@@ -8,14 +8,10 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 /-!
 # Indicator signals of an interval
 
-`indicator(interval,val,default)` of `pointSegmentSignal.m` for a time type `ℝ` and an
-`stlInterval`:
-the bounds of the interval (the empty interval, and any interval with a bound below `0`, as the
-constructor leaves them) are read off by `lowerBound`, `upperBound` and the closedness flags, and
-`indicatorBounds` builds the signal.
-
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+`indicator(interval,val,default)` of `pointSegmentSignal.m` for a time scalar `𝕋` and an
+`stlInterval`: the bounds of the interval (the empty interval, and any interval with a bound below
+`0`, as the constructor leaves them) are read off by `lowerBound`, `upperBound` and the closedness
+flags, and `indicatorBounds` builds the signal.
 
 ## Inputs
 * `I` – time interval
@@ -36,12 +32,13 @@ stamps over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [TimeOrder 𝕋]
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = pointSegmentSignal.indicator(interval,val,default)`. -/
-noncomputable def PointSegmentSignal.indicator (I : STLInterval) (val default : Bool) :
-    PointSegmentSignal ℝ :=
+def PointSegmentSignal.indicator (I : STLInterval 𝕋) (val default : Bool) : PointSegmentSignal 𝕋 :=
   PointSegmentSignal.indicatorBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed val
     default
 

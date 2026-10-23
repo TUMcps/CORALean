@@ -7,17 +7,20 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # A continuous-time system paired with an input set anywhere
 
-`LinearSys.WithInput` without `0 ∈ U`: [1, Alg. 3]'s case, the input set taken
+`LinearSys.WithInput` without `0 ∈ U`: [1, Eq. 4]'s case, the input set taken
 apart into a constant `ũ` and a remainder `Ũ` holding the origin before any
 window is computed. The split is the representation's, by `Recenter`, so no
 field here names it; `Reach LinearSys.WithInputSplit` asks the representation
 for `Recenter` and `OfPoint` instead. `WithInput` stays for representations
-without a center, where `0 ∈ U` is the precondition [1, Alg. 2] asks.
+without a center, where `0 ∈ U` is the hypothesis [2, Prop. 4]'s proof takes.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

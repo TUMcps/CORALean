@@ -72,15 +72,17 @@ theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
     (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m)
     {R₀ : S n} {U : S m} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q}
     (traj : sys.IsTrajectory R₀ U x u y) (k : ℕ) : -- --- CONCL ---
+    let res := fun j : ℕ => (Fin.append (linResidual sys.f ((sys.computeGO x0 u_ref).x j) (u_ref j)
+      (x j) (u j))
+        (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j)) : Vec ℝ (n +
+          sys.q))
     y k - (sys.computeGO x0 u_ref).y k
       = (sys.computeGO x0 u_ref).C k *ᵥ (x 0 - x0)
         + ∑ j ∈ Finset.range (k + 1),
             (sys.computeGO x0 u_ref).D k j *ᵥ (u j - u_ref j)
         + ∑ j ∈ Finset.range (k + 1), (sys.computeGO x0 u_ref).E k j *ᵥ
-            (Fin.append
-              (linResidual sys.f ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
-              (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
-              : Vec ℝ (n + sys.q)) := by -- --- PROOF ---
+            (res j) := by -- --- PROOF ---
+  intro res
   rw [traj.output k]
   cases k with
   | zero =>
@@ -129,15 +131,9 @@ theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
       rw [Matrix.mulVec_sum]
       exact Finset.sum_congr rfl fun j hj => by rw [hD j hj, Matrix.mulVec_mulVec]
     have sE : ∑ j ∈ Finset.range (k + 1), (sys.computeGO x0 u_ref).E (k + 1) j
-          *ᵥ (Fin.append
-            (linResidual sys.f ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
-            (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
-            : Vec ℝ (n + sys.q)) = jacobianMat (fun x => sys.g x (u_ref (k + 1)))
+          *ᵥ (res j) = jacobianMat (fun x => sys.g x (u_ref (k + 1)))
           ((sys.computeGO x0 u_ref).x (k + 1)) *ᵥ ∑ j ∈ Finset.range (k + 1),
-          (sys.computeGO x0 u_ref).F k j *ᵥ (Fin.append
-            (linResidual sys.f ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
-            (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
-            : Vec ℝ (n + sys.q)) := by
+          (sys.computeGO x0 u_ref).F k j *ᵥ (res j) := by
       rw [Matrix.mulVec_sum]
       exact Finset.sum_congr rfl fun j hj => by rw [hE j hj, Matrix.mulVec_mulVec]
     rw [Finset.sum_range_succ _ (k + 1), Finset.sum_range_succ _ (k + 1), hC, sD, sE, hD', hE',

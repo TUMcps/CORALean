@@ -44,7 +44,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PointSegmentSignal.and_mono {ι : Type} [Fintype ι] [Nonempty ι]
+theorem PointSegmentSignal.and_mono {ι : Type} [FinEnum ι] [Nonempty ι]
     (sigs sigs' : ι → PointSegmentSignal ℝ) (hv : ∀ k, (sigs k).IsValid)
     (hv' : ∀ k, (sigs' k).IsValid)
     (h : ∀ k, ∀ t : ℝ, 0 ≤ t → (sigs k).at t ≤ (sigs' k).at t) : -- --- CONCL ---

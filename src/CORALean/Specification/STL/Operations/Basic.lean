@@ -7,6 +7,7 @@ public import CORALean.Specification.STL.Operations.TreeEliminateTrueFalseWith
 public import CORALean.Specification.STL.Operations.TreeMaximumTimeFrom
 public import CORALean.Specification.STL.Operations.TreeMinimumTimeFrom
 public import CORALean.Specification.STL.Operations.TreeNnfWith
+public import CORALean.Specification.STL.STL
 
 @[expose] public section
 
@@ -28,7 +29,7 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {n : ℕ} {X : Type}
 
 
 -- =====================================  `STL.Expr.minus`  ===================================== --
@@ -74,6 +75,108 @@ def STL.Expr.times : STL.Expr n → STL.Expr n → STL.Expr n
   | .num c, e₂ => .mul (.num c) e₂
   | e₁, .num c => .mul (.num c) e₁
   | e₁, e₂ => .mul e₂ e₁
+
+
+-- ====================================  `STL.Formula.and`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `φ ∧ ψ`, by De Morgan. -/
+def STL.Formula.and (φ ψ : STL.Formula X) : STL.Formula X := .not (.or (.not φ) (.not ψ))
+
+
+-- =====================================  `STL.Formula.ff`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `false`. -/
+def STL.Formula.ff : STL.Formula X := .atom fun _ => False
+
+
+-- ===================================  `STL.Formula.bigOr`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `⋁` of a list, `false` for the empty one. -/
+def STL.Formula.bigOr (l : List (STL.Formula X)) : STL.Formula X := l.foldr .or .ff
+
+
+-- ==================================  `STL.Formula.implies`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `φ ⇒ ψ := ¬φ ∨ ψ`. -/
+def STL.Formula.implies (φ ψ : STL.Formula X) : STL.Formula X := .or (.not φ) ψ
+
+
+-- ==================================  `STL.Formula.release`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `φ R[a,b] ψ := ¬(¬φ U[a,b] ¬ψ)`. -/
+def STL.Formula.release (a b : ℝ≥0) (φ ψ : STL.Formula X) : STL.Formula X :=
+  .not (.until a b (.not φ) (.not ψ))
+
+
+-- =====================================  `STL.Formula.tt`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `true`. -/
+def STL.Formula.tt : STL.Formula X := .atom fun _ => True
+
+
+-- ===================================  `STL.Formula.bigAnd`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `⋀` of a list, `true` for the empty one. -/
+def STL.Formula.bigAnd (l : List (STL.Formula X)) : STL.Formula X := l.foldr .and .tt
+
+
+-- ==================================  `STL.Formula.finally`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `F[a,b] φ := true U[a,b] φ`. -/
+def STL.Formula.finally (a b : ℝ≥0) (φ : STL.Formula X) : STL.Formula X := .until a b .tt φ
+
+
+-- ==================================  `STL.Formula.globally`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- `G[a,b] φ := ¬F[a,b] ¬φ`. -/
+def STL.Formula.globally (a b : ℝ≥0) (φ : STL.Formula X) : STL.Formula X :=
+  .not (.finally a b (.not φ))
+
+
+-- ====================================  `STL.Formula.next`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
+
+/-- The continuous next-operator `Xₐ φ := true U[a,a] φ`. -/
+def STL.Formula.next (a : ℝ≥0) (φ : STL.Formula X) : STL.Formula X := .until a a .tt φ
 
 
 -- ===============================  `STL.Tree.assignIdentifiers`  =============================== --

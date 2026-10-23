@@ -49,8 +49,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
-    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval) (loc : ℕ)
-    (hk : n.kind = .ap)
+    (n : OnlineAnalyzerNode ℝ (AtomicProposition S d)) (set : S d) (interval : STLInterval ℝ)
+    (loc : ℕ) (hk : n.kind = .ap)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
       n.prop = some false) (val : Kleene) : -- --- CONCL ---
     ∀ tent ∈ n.tentative,

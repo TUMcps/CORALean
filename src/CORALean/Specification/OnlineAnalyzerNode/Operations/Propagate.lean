@@ -45,9 +45,9 @@ variable {A : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `propagate(obj,childNodes,makeValid)`. -/
-noncomputable def OnlineAnalyzerNode.propagate (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (childNodes : List (OnlineAnalyzerNode A)) (makeValid : STLInterval) :
-    Option ((OnlineAnalyzerNode A) × List (OnlineAnalyzerNode A)) :=
+noncomputable def OnlineAnalyzerNode.propagate (eps : ℝ) (n : OnlineAnalyzerNode ℝ A)
+    (childNodes : List (OnlineAnalyzerNode ℝ A)) (makeValid : STLInterval ℝ) :
+    Option ((OnlineAnalyzerNode ℝ A) × List (OnlineAnalyzerNode ℝ A)) :=
   match n.kind with
   | .true | .false => some (n, childNodes)
   | .ap =>
@@ -66,7 +66,7 @@ noncomputable def OnlineAnalyzerNode.propagate (eps : ℝ) (n : OnlineAnalyzerNo
       -- concInt = conclusiveInterval(obj.signal,obj.getAllProp())
       let concInt := m.signal.conclusiveInterval (m.getAllProp eps)
       -- for i = 1:length(childNodes), childNodes(i).setPropagated(obj.idx,concInt)
-      (childNodes.mapM fun (c : OnlineAnalyzerNode A) => c.setPropagated eps m.idx concInt).map
+      (childNodes.mapM fun (c : OnlineAnalyzerNode ℝ A) => c.setPropagated eps m.idx concInt).map
         fun cs => (m, cs)
 
 end CORALean

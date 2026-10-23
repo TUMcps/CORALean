@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFl
 /-!
 # `MatExp.intervalCorrectionMatrix`, the correction `F` over a float box
 
-[1, Sec. 3.3.1]'s `F`, as `Real.MatExp.intervalCorrectionMatrix` builds it:
+[1, Thm. 3]'s `F`, as `Real.MatExp.intervalCorrectionMatrix` builds it:
 orders `2` through `η` from `intervalCorrTerm`, each spanning the interval
 between it and zero, everything past `η` in the remainder bound at `r • A` —
 the bound the exponential and the input remainder of the same step are taken
@@ -25,8 +25,9 @@ at. The orders are stored once, not per entry, so a read costs a lookup.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -46,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `F` of [1] over a whole box: `Σᵢ [min(Tᵢ, 0), max(Tᵢ, 0)] ⊕ [-E, E]`,
+/-- The `F` of [1, Thm. 3] over a whole box: `Σᵢ [min(Tᵢ, 0), max(Tᵢ, 0)] ⊕ [-E, E]`,
 orders `2` through `η`, for a nonnegative `r`. -/
 def MatExp.intervalCorrectionMatrix (A : Interval (Mat 𝕋 n n)) (r : 𝕋) (η : ℕ) :
     Interval (Mat 𝕋 n n) :=

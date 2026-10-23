@@ -37,6 +37,10 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
 public import CORALean.ContSet.VPolytope.Real.Theorems.MpowerOuter
 public import CORALean.ContSet.VPolytope.Real.Theorems.VecRepresentsa
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.KNeZeroOfNonempty
+public import CORALean.ContSet.VPolytope.Real.Theorems.LeOfForallLe
 
 /-!
 # What `VPolytope` guarantees

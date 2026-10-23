@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STL.Definitions.MILPEncoding
 public import Mathlib.Tactic.NormNum
 public import CORALean.Specification.STL.Operations.DFormulaBound
+public import CORALean.Specification.STL.Operations.DFormulaRob
 
 @[expose] public section
 

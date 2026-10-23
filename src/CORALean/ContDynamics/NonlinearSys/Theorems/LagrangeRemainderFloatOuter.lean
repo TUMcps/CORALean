@@ -95,8 +95,10 @@ theorem lagrangeRemainderFloat_outer {d n : ℕ} {Ef : Fin n → Fin d → Mat �
       (fun k l => by
         rw [toReal_absolute]
         exact le_trans (hE i j k l) (le_abs_self _))
+  -- the float bound's sum, with the entries of `Ef` in absolute value
+  set Sg := sumUp fun j => mulUp (γ j) (bilinUp γ (fun k l => absolute (Ef i j k l)) γ) with hSg
   have hsum : |∑ j, γr j * (γr ⬝ᵥ (E i j *ᵥ γr))| ≤
-      toReal (sumUp fun j => mulUp (γ j) (bilinUp γ (fun k l => absolute (Ef i j k l)) γ)) := by
+      toReal Sg := by
     refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))
     refine Finset.sum_le_sum fun j _ => ?_
     rw [abs_mul, abs_of_nonneg (h0 j)]
@@ -115,11 +117,10 @@ theorem lagrangeRemainderFloat_outer {d n : ℕ} {Ef : Fin n → Fin d → Mat �
   simp only [lagrangeRemainder] at h1 h2
   have h1' : -((∑ j, γr j * (γr ⬝ᵥ (E i j *ᵥ γr))) / 6) ≤ y i := h1
   have h2' : y i ≤ (∑ j, γr j * (γr ⬝ᵥ (E i j *ᵥ γr))) / 6 := h2
-  set T := toReal (sumUp fun j => mulUp (γ j) (bilinUp γ (fun k l => absolute (Ef i j k l)) γ))
+  set T := toReal Sg
     with hT
   have hT0 : 0 ≤ T := le_trans (abs_nonneg _) hsum
-  have hL : (∑ j, γr j * (γr ⬝ᵥ (E i j *ᵥ γr))) / 6 ≤ toReal (mulUp
-      (sumUp fun j => mulUp (γ j) (bilinUp γ (fun k l => absolute (Ef i j k l)) γ))
+  have hL : (∑ j, γr j * (γr ⬝ᵥ (E i j *ᵥ γr))) / 6 ≤ toReal (mulUp Sg
       (addUp (half (half (half (one : 𝕋)))) (addUp (half (half (half (half (half
         (one : 𝕋)))))) (half (half (half (half (half (half (one : 𝕋)))))))))) := by
     refine le_trans ?_ (mul_le_mulUp _ _)

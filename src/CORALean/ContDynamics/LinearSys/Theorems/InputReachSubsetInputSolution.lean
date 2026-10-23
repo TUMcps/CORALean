@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -46,12 +47,10 @@ theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U))) : -- --- CONCL ---
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η
+      U)) : -- --- CONCL ---
     sys.inputReach U r ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩
   refine sys.inputSolution_outer hr η hε hconv hclosed hbdd hRconv hRclosed hRbdd ?_

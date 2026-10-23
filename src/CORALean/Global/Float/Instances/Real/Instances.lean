@@ -59,6 +59,11 @@ noncomputable instance : SoundFloatArithmetic ℝ where
   toReal_le_of_le h := of_decide_eq_true h
   toReal_half _ := rfl
 
+-- classical, like ℝ's own order: no machine compares reals
+noncomputable instance : ExactLe ℝ where
+  le a b := decide (a ≤ b)
+  le_iff _ _ := decide_eq_true_iff
+
 end CORALean.Float
 
 

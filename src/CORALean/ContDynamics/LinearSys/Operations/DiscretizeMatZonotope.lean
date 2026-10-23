@@ -14,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 `discretizeEnclosure` again, at a matrix zonotope in place of an interval matrix. Not a second
 spelling of the same thing: an interval matrix throws away every correlation between the entries
 of `e^{AΔt}`, a matrix zonotope keeps them, and that is why CORA carries `matZonotope` alongside
-`intervalMatrix` [1, Sec. 3.3.2]. `sys.A` is one fixed matrix, so `ofPoint` is what enters the
+`intervalMatrix` [1, Sec. 3.1]. `sys.A` is one fixed matrix, so `ofPoint` is what enters the
 enclosure; the width is entirely the exponential's truncation error, and it leaves the enclosure
 as generators rather than as a box. `𝕄𝒵` names this family, but only `Zonotope/Real/Instances`
 declares it, and that file brings instances a *use* wants and a definition does not, so the
@@ -30,8 +30,9 @@ family is written out here, as `discretizeEnclosure` writes out `ℐ`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

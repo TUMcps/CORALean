@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -59,12 +60,9 @@ theorem LinearSys.IsCanonicalTrajectory.stepInput_outer [Mtimes ℐ S]
     (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
+    (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
+    (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
+    (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
     (k : ℕ) (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- CONCL ---
     sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by -- --- PROOF ---
   rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT

@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionWithSel
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ProdUnitCol
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope

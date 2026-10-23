@@ -1,9 +1,10 @@
 module
 
 public import CORALean.Specification.STLInterval.Operations.PlusNum
-public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
-public import CORALean.Specification.STLInterval.Theorems.RawSetAdd
 public import CORALean.Specification.STLInterval.Theorems.Basic
+public import CORALean.Specification.STLInterval.Theorems.RawSetAdd
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
+public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 
 @[expose] public section
 
@@ -33,21 +34,22 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 
 namespace CORALean
 
-open scoped Pointwise
+open Float FloatOps SoundFloatArithmetic
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `plusNum` denotes `I` shifted by `c`. -/
-theorem STLInterval.set_plusNum (I : STLInterval) (c : ℝ)
-    (hc : I ≠ .empty → 0 ≤ I.lowerBound + c) : -- --- CONCL ---
+theorem STLInterval.set_plusNum (I : STLInterval ℝ) (c : ℝ)
+    (hc : I ≠ .empty → 0 ≤ toReal (addDown I.lowerBound c)) : -- --- CONCL ---
     (I.plusNum c hc).set = (fun t => t + c) '' I.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.plusNum, STLInterval.set]
-  | nonempty l u lc rc a b c' _ =>
+  | nonempty l u lc rc b c' _ =>
     simp only [STLInterval.plusNum]
-    rw [set_stlInterval, ← Set.add_singleton, ← Set.Icc_self c, ← rawSet_closed_coe]
-    have := rawSet_add (rawSet_nonempty_of _ _ _ _ a b c') (rawSet_closed_nonempty (le_refl c))
+    rw [set_stlInterval, STLInterval.toEReal_map_addUp, toReal_real, addDown_real, EReal.coe_add,
+      ← Set.add_singleton, ← Set.Icc_self c, ← rawSet_closed_coe]
+    have := rawSet_add (rawSet_nonempty_of_fields b c') (rawSet_closed_nonempty (le_refl c))
     simpa [STLInterval.set] using this
 
 end CORALean

@@ -137,10 +137,13 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
       (Z₂.pointHi (Z₂.stBeta Z₁ H)) i
       (Zonotope.aux_point_between Z₂ (Z₂.stBeta Z₁ H) i).1
       (Zonotope.aux_point_between Z₂ (Z₂.stBeta Z₁ H) i).2
+    -- the rounded residual of coordinate `i`
+    set res : Fin n → 𝕋 := fun i => sumUp fun j =>
+      Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j
+        with hresDef
     have a2 : ∑ j, |(toRealMat (fun i j => Z₁.G j i)
           - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
-        ≤ toReal (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i)
-          (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j) :=
+        ≤ toReal (res i) :=
       le_trans (Finset.sum_le_sum fun j _ => Zonotope.aux_mulResidual_bound _ _ _ i j)
         (sum_le_sumUp _)
     have a3 := Zonotope.aux_abs_le_errBound Z₁.I_error he₁ i
@@ -148,14 +151,10 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
     have a4 := toReal_le_of_le (hres i)
     simp only [Zonotope.aux_stLeftover] at a4
     have a5 := add_le_addUp (addUp (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf
-      (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-      (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
-        (Z₂.stGamma Z₁ H) i j))
+      (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i) (res i))
       (Zonotope.aux_errBound Z₁.I_error i)
     have a6 := add_le_addUp (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf
-      (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-      (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
-        (Z₂.stGamma Z₁ H) i j)
+      (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i) (res i)
     have a7 : (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i
         = ∑ j, toReal (Z₂.G j i) * toReal (Z₂.stBeta Z₁ H j) := rfl
     rw [a7]

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 

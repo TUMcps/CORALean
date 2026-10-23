@@ -14,10 +14,11 @@ public import CORALean.Specification.TrajectoryAnalyzer.TrajectoryAnalyzer
 `k` becomes true on the interval, as in `setPossiblyTrue` of the builder of the reach set analyzer.
 CORA throws if there is no signal of key `k` or the interval is degenerate; here `none`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Generic over the time type: at a float scalar nothing rounds, the comparisons being exact
+(`TimeOrder`).
 
 ## Inputs
+* `T` – time type
 * `dur` – signal duration
 * `lo` – interval lower bound
 * `hi` – interval upper bound
@@ -42,9 +43,9 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sigs(k) = sigs(k) | finiteSignal.indicator(dur,interval(lo,hi),true)`. -/
-noncomputable def TrajectoryAnalyzer.markKey (dur lo hi : ℝ)
-    (sigs : List (String × FiniteSignal ℝ Bool)) (k : String) :
-    Option (List (String × FiniteSignal ℝ Bool)) :=
+def TrajectoryAnalyzer.markKey {T : Type} [TimeOrder T] [Zero T] (dur lo hi : T)
+    (sigs : List (String × FiniteSignal T Bool)) (k : String) :
+    Option (List (String × FiniteSignal T Bool)) :=
   (sigs.lookup k).bind fun sig => (FiniteSignal.indicator? dur lo hi true).bind fun ind =>
     (FiniteSignal.combine? (· || ·) [sig, ind]).map fun sig' => replaceKey sigs k sig'
 

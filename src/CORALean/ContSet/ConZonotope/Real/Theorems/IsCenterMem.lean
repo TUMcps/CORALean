@@ -1,8 +1,9 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.IsCenter
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCenterMem
 
 @[expose] public section
@@ -64,12 +65,19 @@ theorem ConZonotope.IsCenter.mem {c : α} {G : Fin h → α} {A : Mat ℝ q h} {
     refine ⟨x0 + N *ᵥ y, fun j => ?_, fun i => ?_, rfl⟩
     · have h1 : (N *ᵥ y) j ≤ 1 - x0 j := by
         have := hrow (Fin.castAdd h j)
-        simp only [ConZonotope.aux_nullPolytope, Fin.append_left] at this
-        exact this
+        simpa [ConZonotope.aux_nullPolytope, HPolytope.ineqs, HPolytope.rowLin,
+          Matrix.mulVec] using this
       have h2 : -(N *ᵥ y) j ≤ 1 + x0 j := by
         have := hrow (Fin.natAdd h j)
-        simp only [ConZonotope.aux_nullPolytope, Fin.append_right] at this
-        exact this
+        simp only [ConZonotope.aux_nullPolytope, HPolytope.ineqs, Fin.append_right] at this
+        -- the lower block of the stacked rows is `-N`
+        have e : (Fin.append N (-N) : Mat ℝ (h + h) k) (Fin.natAdd h j) = -N j :=
+          Fin.append_right N (-N) j
+        have h3 : (HPolytope.rowLin (Fin.append N (-N)) (Fin.natAdd h j)) y = -(N *ᵥ y) j := by
+          show (Fin.append N (-N) *ᵥ y) (Fin.natAdd h j) = _
+          simp only [Matrix.mulVec, e]
+          simp [dotProduct]
+        linarith
       rw [abs_le]
       simp only [Pi.add_apply]
       constructor <;> linarith

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 @[expose] public section
 
@@ -60,18 +61,12 @@ theorem NonlinearARX.FloatModel.Encloses.toNonlinearSysDTFloat
   · -- the newest block, `f_ARX`
     simp only [dif_neg hr]
     exact (mem_iff _ _).1 (h.f_mem
-      ⟨fun s => X.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => X.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
-      ⟨fun s => V.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => V.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
-      (fun s => x (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))) ((mem_iff _ _).2 fun s => hx _)
-      (fun s => v (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))) ((mem_iff _ _).2 fun s => hv _)) _
+      ⟨fun s => X.inf (NonlinearARX.revBlocks s),
+       fun s => X.sup (NonlinearARX.revBlocks s)⟩
+      ⟨fun s => V.inf (NonlinearARX.revBlocks s),
+       fun s => V.sup (NonlinearARX.revBlocks s)⟩
+      (fun s => x (NonlinearARX.revBlocks s)) ((mem_iff _ _).2 fun s => hx _)
+      (fun s => v (NonlinearARX.revBlocks s)) ((mem_iff _ _).2 fun s => hv _)) _
 
 end CORALean
 

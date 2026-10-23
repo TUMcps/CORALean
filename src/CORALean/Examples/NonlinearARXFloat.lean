@@ -47,7 +47,7 @@ def toF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `y(k) = y(k-1)/2 - y(k-2)²/4 + u(k)`: the past outputs `(y(k-1), y(k-2))` and the inputs
-`(u(k), u(k-1), u(k-2))`. -/
+`(u(k), u(k-1), u(k-2))`. Noncomputable: the map divides reals. -/
 noncomputable def arxSys : NonlinearARX 1 1 2 where
   f y u := ![y 0 / 2 - y 1 ^ 2 / 4 + u 0]
   dt := 1

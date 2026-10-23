@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
 public import CORALean.ContSet.Conversion.Real.Instances
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -97,10 +98,10 @@ theorem NonlinearSys.IsLinReachInnerCert.of_abstractionError [Mtimes ℐ S]
       Convex ℝ (construct st.VerrorDyn) →
       IsClosed (construct st.VerrorDyn) →
       Bornology.IsBounded (construct st.VerrorDyn) →
-      Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder st.A Δt η) st.VerrorDyn)) →
-      IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder st.A Δt η) st.VerrorDyn)) →
+      Convex ℝ (MatExp.inputRemainderSet st.A Δt η st.VerrorDyn) →
+      IsClosed (MatExp.inputRemainderSet st.A Δt η st.VerrorDyn) →
       Bornology.IsBounded
-        (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder st.A Δt η) st.VerrorDyn)) →
+        (MatExp.inputRemainderSet st.A Δt η st.VerrorDyn) →
       IsCompact st.Rerror →
       Convex ℝ st.Rerror →
       st.Rerror.Nonempty →

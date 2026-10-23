@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIneqsOfCert
 public import CORALean.Global.LinProg.Farkas
 

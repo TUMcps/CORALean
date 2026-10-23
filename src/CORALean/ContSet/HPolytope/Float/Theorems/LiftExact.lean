@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.HPolytope.Float.Operations.Lift
-public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemLiftNominalIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.LiftErrorBox
 public import CORALean.ContSet.HPolytope.Float.Theorems.PreimageAddImage
 public import Mathlib.LinearAlgebra.Pi

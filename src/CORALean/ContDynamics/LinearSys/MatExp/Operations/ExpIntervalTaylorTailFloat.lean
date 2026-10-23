@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 /-!
 # Interval matrices: the Taylor series past order two, over a floating-point scalar
 
-`expIntervalTaylorTail`: orders `3 … κ` of [1, Thm. 3.2]'s Taylor series at an interval matrix,
+`expIntervalTaylorTail`: orders `3 … κ` of [1, Thm. 1]'s Taylor series at an interval matrix,
 `Real.MatExp.expIntervalTaylorTail` rounded. Each order is `Interval.smul` at
 `invFactorialBounds`, the float layer's only handle on `1/k!`, and below order three there
 are none, so `κ < 3` is the truncation `I + W(t)`.
@@ -27,8 +27,9 @@ power along instead of rebuilding `Bᵏ` at every order, by `@[csimp]`, exactly 
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -77,22 +78,6 @@ def MatExp.aux_expIntervalTaylorTailPair (B : Interval (Mat 𝕋 n n)) :
 def MatExp.aux_expIntervalTaylorTailImpl (B : Interval (Mat 𝕋 n n)) (k : ℕ) :
     Interval (Mat 𝕋 n n) :=
   (MatExp.aux_expIntervalTaylorTailPair B k).2
-
-@[csimp] theorem MatExp.aux_expIntervalTaylorTail_eq_impl : -- --- CONCL ---
-    @MatExp.expIntervalTaylorTail = @MatExp.aux_expIntervalTaylorTailImpl := by -- --- PROOF ---
-  funext 𝕋 _ n B k
-  have hpair : ∀ k, MatExp.aux_expIntervalTaylorTailPair B k
-      = (Interval.matPow B k, MatExp.expIntervalTaylorTail B k) := by
-    intro k
-    induction k with
-    | zero => rfl
-    | succ k ih =>
-      rw [MatExp.aux_expIntervalTaylorTailPair, ih]
-      match k with
-      | 0 => rfl
-      | 1 => rfl
-      | m + 2 => rfl
-  rw [MatExp.aux_expIntervalTaylorTailImpl, hpair]
 
 end CORALean.Float
 

@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.STL.Definitions.DiscreteFormula
 public import Mathlib.Tactic.Linarith
+public import CORALean.Specification.STL.Operations.DFormulaRob
 
 @[expose] public section
 

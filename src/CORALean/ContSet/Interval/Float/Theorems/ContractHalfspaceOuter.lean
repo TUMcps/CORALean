@@ -49,10 +49,12 @@ theorem Interval.contractHalfspace_outer (I : Interval (Vec 𝕋 n)) (a : Vec �
     x ∈ (I.contractHalfspace a b).construct := by -- --- PROOF ---
   have hlo : ∀ k, toReal (I.inf k) ≤ x k := fun k => (hx k).1
   have hhi : ∀ k, x k ≤ toReal (I.sup k) := fun k => (hx k).2
+  -- the rest of the row against the box, rounded upward
+  set rest : Fin n → 𝕋 := fun j => sumUp fun k =>
+    if k = j then zero else maximum (mulUp (neg (a k)) (I.sup k)) (mulUp (neg (a k)) (I.inf k))
+      with hrest
   -- the row's own term, bounded by the rest of it over the box
-  have hrow : ∀ j, toReal (a j) * x j ≤ toReal (addUp b (sumUp fun k =>
-      if k = j then zero
-      else maximum (mulUp (neg (a k)) (I.sup k)) (mulUp (neg (a k)) (I.inf k)))) := by
+  have hrow : ∀ j, toReal (a j) * x j ≤ toReal (addUp b (rest j)) := by
     intro j
     have hterm : ∀ k, (if k = j then (0 : ℝ) else -(toReal (a k) * x k)) ≤ toReal
         (if k = j then zero
@@ -78,14 +80,11 @@ theorem Interval.contractHalfspace_outer (I : Interval (Vec 𝕋 n)) (a : Vec �
         by_cases hk : k = j <;> simp [hk]
       rw [Finset.sum_congr rfl fun k _ => h k, Finset.sum_sub_distrib, Finset.sum_ite_eq']
       simp
-    have hadd := add_le_addUp b (sumUp fun k =>
-      if k = j then zero
-      else maximum (mulUp (neg (a k)) (I.sup k)) (mulUp (neg (a k)) (I.inf k)))
+    have hadd := add_le_addUp b (rest j)
     linarith
   intro j
   have hr := hrow j
-  set C := addUp b (sumUp fun k => if k = j then zero
-    else maximum (mulUp (neg (a k)) (I.sup k)) (mulUp (neg (a k)) (I.inf k))) with hC
+  set C := addUp b (rest j) with hC
   constructor
   · -- the lower end moves only for a coefficient certified negative
     show toReal (if ltStrict (a j) zero then maximum (I.inf j) (neg (divUp C (neg (a j))))

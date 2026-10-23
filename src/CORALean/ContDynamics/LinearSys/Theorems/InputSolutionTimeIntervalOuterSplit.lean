@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeInterval
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -89,12 +90,9 @@ theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer_split
     (h0₀ : (0 : Vec ℝ n) ∈ construct U₀)
     (hconv₀ : Convex ℝ (construct U₀)) (hclosed₀ : IsClosed (construct U₀))
     (hbdd₀ : Bornology.IsBounded (construct U₀))
-    (hRconv₀ : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
-    (hRclosed₀ : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
-    (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
+    (hRconv₀ : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U₀))
+    (hRclosed₀ : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U₀))
+    (hRbdd₀ : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η U₀))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     -- the propagated constant, its interpolation error, and the recentered set
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)

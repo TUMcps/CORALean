@@ -148,10 +148,12 @@ theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding
       ≤ toReal (Relaxation.conjOffsetGap R A B c l u) := by
     rw [Relaxation.conjOffsetGap]; exact abs_sub_le_spread hOffsetLow hOffsetHigh
   have htBound := aux_abs_le_conjTBound hl hu
+  -- the rounded slope gap against the box bound of `t`
+  set gt := mulUp (Relaxation.conjSlopeGap R A B l u) (Relaxation.conjTBound l u) with hgt
   -- the slope gap multiplies `t`, bounded only by the box, not by anything smaller
   have hcorrection : |(ra * rb * sl
         - toReal (Relaxation.conjSlope R A B l u)) * t|
-      ≤ toReal (mulUp (Relaxation.conjSlopeGap R A B l u) (Relaxation.conjTBound l u)) := by
+      ≤ toReal gt := by
     rw [abs_mul]
     have hnn : (0:ℝ) ≤ toReal (Relaxation.conjSlopeGap R A B l u) :=
       le_trans (abs_nonneg _) hSlopeGap
@@ -178,10 +180,8 @@ theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding
       + (ra * off + toReal c)))
     ((ra * rb * sl
       - toReal (Relaxation.conjSlope R A B l u)) * t)
-  have hstep1 := add_le_addUp (A.up (R.error (B.down l) (B.up u)))
-    (mulUp (Relaxation.conjSlopeGap R A B l u) (Relaxation.conjTBound l u))
-  have hstep2 := add_le_addUp (addUp (A.up (R.error (B.down l) (B.up u)))
-    (mulUp (Relaxation.conjSlopeGap R A B l u) (Relaxation.conjTBound l u)))
+  have hstep1 := add_le_addUp (A.up (R.error (B.down l) (B.up u))) gt
+  have hstep2 := add_le_addUp (addUp (A.up (R.error (B.down l) (B.up u))) gt)
     (Relaxation.conjOffsetGap R A B c l u)
   have hErrRound := hA.up_ge (R.error (B.down l) (B.up u))
   rw [Relaxation.conjError]

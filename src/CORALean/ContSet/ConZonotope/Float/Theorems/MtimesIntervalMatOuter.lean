@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual

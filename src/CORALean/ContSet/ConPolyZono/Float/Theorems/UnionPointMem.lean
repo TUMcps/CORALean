@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.SumUnionE
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
 
@@ -101,9 +101,11 @@ theorem ConPolyZono.aux_midpoint_mem (a b : Vec 𝕋 n) :
 /-- The sliding generator rounds down, so its shortfall is non-negative and at most the gap
 between the two directed halvings; the selector spreads it over `[-1,1]`. -/
 theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 1) : -- --- CONCL ---
-    (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i)) * t)
+    let dd := fun i : Fin n => (toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a
+      b i)
+    (fun i => (dd i) * t)
       ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
-  intro i
+  intro dd i
   have hdown : toReal (PolyZonotope.halfDiff a b i) = toReal (subDown (a i) (b i)) / 2 :=
     toReal_half _
   -- the shortfall is non-negative
@@ -122,10 +124,10 @@ theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 
     linarith
   obtain ⟨ht1, ht2⟩ := abs_le.mp ht
   have hbox : -toReal (subUp (half (subUp (a i) (b i))) (half (subDown (a i) (b i))))
-        ≤ ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i)) * t
-      ∧ ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i)) * t
+        ≤ (dd i) * t
+      ∧ (dd i) * t
         ≤ toReal (subUp (half (subUp (a i) (b i))) (half (subDown (a i) (b i)))) :=
-    ⟨by nlinarith, by nlinarith⟩
+    ⟨by simp only [dd]; nlinarith, by simp only [dd]; nlinarith⟩
   refine ⟨?_, hbox.2⟩
   show toReal (neg _) ≤ _
   rw [toReal_neg]

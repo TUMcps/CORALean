@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 public import CORALean.ContSet.Polygon.Float.Polygon
 
@@ -50,8 +51,10 @@ def Polygon.isDisjoint (P Q : Polygon 𝕋) : Bool :=
   -- `d` keeps `p` certainly below `q`
   let separates : VPolytope (Vec 𝕋 2) → VPolytope (Vec 𝕋 2) → Vec 𝕋 2 → Bool := fun p q d =>
     let negD : Vec 𝕋 2 := (-d)
-    let hiP := (p.boundDot (c := rowLin (fun _ : Fin 1 => d) 0) d fun _ => rfl).val
-    let hiQ := (q.boundDot (c := rowLin (fun _ : Fin 1 => negD) 0) negD fun _ => rfl).val
+    let hiP := (p.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => d)) 0) d fun _
+        => rfl).val
+    let hiQ := (q.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => negD)) 0) negD
+        fun _ => rfl).val
     ltStrict hiP (neg hiQ)
   P.sets.all fun p => Q.sets.all fun q => (normals p ++ normals q).any (separates p q)
 

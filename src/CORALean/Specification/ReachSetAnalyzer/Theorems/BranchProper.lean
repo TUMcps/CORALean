@@ -39,7 +39,7 @@ variable {S : ℕ → Type} {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The children are entries. -/
-theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry S n)) (i j : ℕ)
+theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry ℝ S n)) (i j : ℕ)
     (h : j ∈ ReachSetAnalyzer.children R i) : -- --- CONCL ---
     1 ≤ j ∧ ∃ e, R[j - 1]? = some e ∧ e.parent = i := by -- --- PROOF ---
   unfold ReachSetAnalyzer.children at h
@@ -55,7 +55,7 @@ theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry S n)
 
 /-- A branch names entries. -/
 theorem ReachSetAnalyzer.aux_branch_entries
-    (R : List (ReachSetAnalyzer.Entry S n)) : -- --- CONCL ---
+    (R : List (ReachSetAnalyzer.Entry ℝ S n)) : -- --- CONCL ---
     ∀ (i : ℕ) (w : List ℕ), ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) i w →
       (i = 0 ∨ ∃ e, R[i - 1]? = some e) → ∀ j ∈ w, ∃ e, R[j - 1]? = some e := by -- --- PROOF ---
   intro i w hw
@@ -81,7 +81,7 @@ theorem ReachSetAnalyzer.aux_branch_entries
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.branch_proper (R : List (ReachSetAnalyzer.Entry S n))
+theorem ReachSetAnalyzer.branch_proper (R : List (ReachSetAnalyzer.Entry ℝ S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) (w : List ℕ)
     (hw : ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w) :
     ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧

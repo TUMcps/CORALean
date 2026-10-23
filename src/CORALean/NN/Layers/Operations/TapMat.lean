@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.TapEntry
+public import CORALean.NN.Layers.Theorems.ToRealTapEntry
 
 @[expose] public section
 

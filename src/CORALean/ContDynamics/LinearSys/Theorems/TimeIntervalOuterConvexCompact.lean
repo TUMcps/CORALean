@@ -15,10 +15,10 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 the representation, exactly as `ReachOuterConvexCompact` does at the sample
 times.
 
-`0 ∈ U` stays a hypothesis: it is a fact about where the input set sits, not
-about its shape, so no class can supply it. The first case of [1, Alg. 2], the only one
-with a single enclosure for the whole step; the second case splits `U` instead
-and needs a representation that can recenter itself.
+`0 ∈ U` stays a hypothesis: it is a fact about where the input set sits, not about its shape, so no
+class can supply it. With it the step is [1, Alg. 1]'s first window, `R̂([0, r]) + R̄([0, r])`, one
+enclosure for the whole step; an input set off the origin is split instead, which needs a
+representation that can recenter itself.
 
 ## Inputs
 * `sys` – linear system
@@ -45,8 +45,9 @@ and needs a representation that can recenter itself.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

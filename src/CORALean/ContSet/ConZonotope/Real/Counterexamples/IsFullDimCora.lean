@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import Mathlib.LinearAlgebra.Dimension.Finrank
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.Tactic.FinCases
 

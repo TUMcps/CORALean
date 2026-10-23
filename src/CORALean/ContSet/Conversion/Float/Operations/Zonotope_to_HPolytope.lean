@@ -54,9 +54,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 def Zonotope.nominalBoundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 (nominalSet Z) c :=
+  -- the generators' total reach in the direction, summed upward once
+  let rad := sumUp fun j => maximum (dotUp a fun i => Z.G j i) (neg (dotDown a fun i => Z.G j i))
   FloatBound.ofSupportBound ((InflatedContSet.nominal Z).supportBound c)
     (addUp (dotUp a Z.c)
-      (sumUp fun j => maximum (dotUp a fun i => Z.G j i) (neg (dotDown a fun i => Z.G j i))))
+      rad)
     (by
       have h₁ : c (InflatedContSet.nominal Z).c ≤ toReal (dotUp a Z.c) := by
         rw [hc]
@@ -80,11 +82,10 @@ def Zonotope.nominalBoundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[�
           linarith
       -- and the generators' total, summed upward once
       have h₃ : (∑ j, |c ((InflatedContSet.nominal Z).G j)|)
-          ≤ toReal (sumUp fun j => maximum (dotUp a fun i => Z.G j i)
-              (neg (dotDown a fun i => Z.G j i))) :=
+          ≤ toReal rad :=
         le_trans (Finset.sum_le_sum fun j _ => h₂ j) (sum_le_sumUp _)
       have h₄ := add_le_addUp (dotUp a Z.c)
-        (sumUp fun j => maximum (dotUp a fun i => Z.G j i) (neg (dotDown a fun i => Z.G j i)))
+        rad
       show c (InflatedContSet.nominal Z).c + ∑ j, |c ((InflatedContSet.nominal Z).G j)| ≤ _
       linarith)
 

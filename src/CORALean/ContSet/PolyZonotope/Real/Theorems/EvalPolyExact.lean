@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
-public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyFactorCount
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyReal

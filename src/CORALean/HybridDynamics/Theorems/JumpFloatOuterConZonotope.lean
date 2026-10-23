@@ -8,6 +8,7 @@ public import CORALean.HybridDynamics.Definitions.Transition
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

@@ -11,7 +11,7 @@ CORA's `standard` scheme, its default: the time-point set `R(t_{k+1}) = e^{AΔt}
 R(t_k)` carried forward one sample at a time, `R(t_0) = X₀`. `reachStepk`
 encloses each window `[k Δt, (k + 1) Δt]` from the pair of time points
 `timePoint k` and `timePoint (k + 1)`'s implicit next one, which is what makes
-the scheme's `timeInterval` recursion read `[1, Alg. 4]`'s own, rather than
+the scheme's `timeInterval` recursion read `[1, Alg. 1]`'s own, rather than
 `reachStepkWrappingFree`'s carrying the wrapped window itself forward.
 
 ## Inputs
@@ -25,8 +25,9 @@ the scheme's `timeInterval` recursion read `[1, Alg. 4]`'s own, rather than
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

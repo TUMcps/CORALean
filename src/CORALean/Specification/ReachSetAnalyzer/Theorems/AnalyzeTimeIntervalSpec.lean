@@ -51,10 +51,10 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop over the propositions of a list `l` of those of `obj`. -/
-theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer S n) (d : ℝ)
+theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (set : S n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) : -- --- CONCL ---
     ∀ (l : List (String × AtomicProposition S n)), (∀ q ∈ l, q ∈ obj.aps) →
-    ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer S n), obj0.aps = obj.aps →
+    ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer ℝ S n), obj0.aps = obj.aps →
       obj0.masks = obj.masks →
       obj0.Represents d PT PF → ∃ obj', l.foldlM
         (fun o p => o.analyzeKey (𝕋 := 𝕋) set loc lo hi p) obj0 = some obj' ∧
@@ -115,7 +115,7 @@ theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer S n) (d : ℝ)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ReachSetAnalyzer.analyzeTimeInterval_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
+theorem ReachSetAnalyzer.analyzeTimeInterval_spec (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF) (set : S n) (loc : ℕ)
     (lo hi : ℝ) (hlh : lo < hi) : -- --- CONCL ---
     ∃ obj', obj.analyzeTimeInterval (𝕋 := 𝕋) set loc lo hi = some obj' ∧ obj'.aps = obj.aps ∧

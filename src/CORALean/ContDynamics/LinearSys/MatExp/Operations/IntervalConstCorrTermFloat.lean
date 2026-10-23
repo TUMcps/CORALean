@@ -13,8 +13,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 `Real.MatExp.intervalConstCorrTerm`'s scalar `corrCoeff (i+2) · r^{i+2}/(i+2)!` against the
 box the `(i+1)`-th power lies in, the scalar replaced by the range `[κ·r^{i+2}/(i+2)!, 0]` it
 lies in: `corrCoeff (i+2)` is in `[corrCoeffLow (i+2), 0]` and `r^{i+2}/(i+2)!` is below
-`taylorCoeffBounds`'s upper end. The float counterpart of the order [1, Prop. 3.4]'s
-`constCorrectionMatrix` sums, one factorial further along and one matrix power back than
+`taylorCoeffBounds`'s upper end. The float counterpart of the orders `constCorrectionMatrix`, the
+`F̃` of [1, Sec. III-A], sums, one factorial further along and one matrix power back than
 `intervalCorrTerm`.
 
 ## Inputs
@@ -27,8 +27,8 @@ lies in: `corrCoeff (i+2)` is in `[corrCoeffLow (i+2), 0]` and `r^{i+2}/(i+2)!` 
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Sonnet 5.5

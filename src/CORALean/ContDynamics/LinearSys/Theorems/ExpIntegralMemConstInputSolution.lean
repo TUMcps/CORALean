@@ -11,7 +11,7 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 
 At `t ∈ [0, r]`, `∫₀ᵗ e^{Aσ}dσ ũ` is the straight line `∫₀ʳ e^{Aσ}dσ ((t/r) ũ)`
 plus `(∫₀ᵗ e^{Aσ}dσ - (t/r) ∫₀ʳ e^{Aσ}dσ) ũ`: the first factor applied to a
-point of the segment `[0, ũ]`, the second a member of `F̃` [1, Prop. 3.4]
+point of the segment `[0, ũ]`, the second a member of `F̃` [1, Sec. III-A]
 applied to `ũ` itself. `plus_outer` adds them.
 
 ## Inputs
@@ -32,8 +32,8 @@ applied to `ũ` itself. `plus_outer` adds them.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

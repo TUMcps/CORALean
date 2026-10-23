@@ -54,11 +54,12 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.observeSet_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (N : OnlineAnalyzerNode (AtomicProposition S d)) (hn : obj.nodes = [N]) (hl : obj.leaves = [1])
+theorem OnlineReachSetAnalyzer.observeSet_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
+    (N : OnlineAnalyzerNode ℝ (AtomicProposition S d)) (hn : obj.nodes = [N])
+    (hl : obj.leaves = [1])
     (hf : obj.propagationFrequency = 1) (hc : obj.numObservations = 0) (hk : N.kind = .ap)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = []) (set : S d) (loc : ℕ)
-    (I : STLInterval) (hne : I ≠ .empty) (val : Kleene) : -- --- CONCL ---
+    (I : STLInterval ℝ) (hne : I ≠ .empty) (val : Kleene) : -- --- CONCL ---
     ∀ tent ∈ N.tentative,
       ∀ a ∈ N.ap,
         OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val →
@@ -74,7 +75,7 @@ theorem OnlineReachSetAnalyzer.observeSet_single_ap (eps : ℝ) (obj : OnlineRea
     ht a hap hval).1.1
   cases I with
   | empty => exact absurd rfl hne
-  | nonempty l u lc rc p1 p2 p3 =>
+  | nonempty l u lc rc p2 p3 =>
     -- the leaf observes, then the propagation visits the lone node and changes nothing
     unfold OnlineReachSetAnalyzer.observeSet
     simp only [hl, hn, List.foldlM_cons, List.foldlM_nil, OnlineReachSetAnalyzer.updateNode]

@@ -50,15 +50,16 @@ theorem Polygon.isDisjoint_sound {P Q : Polygon 𝕋}
   obtain ⟨q, hq, hxq⟩ := SetUnion.mem_construct.mp hQ
   obtain ⟨d, -, hd⟩ := h p hp q hq
   -- the two bounds along `d` and `-d`, at the common point
-  have h₁ := (p.boundDot (c := rowLin (fun _ : Fin 1 => d) 0) d fun _ => rfl).le x hxp
-  have h₂ := (q.boundDot (c := rowLin (fun _ : Fin 1 => (-d)) 0)
+  have h₁ := (p.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => d)) 0) d fun _ =>
+      rfl).le x hxp
+  have h₂ := (q.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => (-d))) 0)
     (-d) fun _ => rfl).le x hxq
   have hgap := toReal_lt_of_ltStrict hd
   rw [toReal_neg] at hgap
   -- the functional along `-d` is the negation of the one along `d`
-  have hneg : (rowLin (fun _ : Fin 1 => (-d)) 0) x
-      = -(rowLin (fun _ : Fin 1 => d) 0) x := by
-    simp [rowLin, Real.HPolytope.rowLin, Matrix.mulVec, dotProduct, toRealMat, toReal_neg']
+  have hneg : (Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => (-d))) 0) x
+      = -(Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => d)) 0) x := by
+    simp [Real.HPolytope.rowLin, Matrix.mulVec, dotProduct, toRealMat, toReal_neg']
   rw [hneg] at h₂
   linarith
 

@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.STLInterval.Definitions.Representsa
 public import CORALean.Specification.STLInterval.Theorems.Basic
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
 
 @[expose] public section
 
@@ -31,16 +32,20 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 
 namespace CORALean
 
+open Float FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `representsa_ emptySet` iff the set of times is empty. -/
-theorem STLInterval.representsa_emptySet_iff (tol : ℝ) (I : STLInterval) :
+theorem STLInterval.representsa_emptySet_iff (tol : ℝ) (I : STLInterval 𝕋) :
     I.representsa_ tol .emptySet ↔ I.set = ∅ := by
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]
-  | nonempty l u lc rc a b c _ =>
-    exact iff_of_false id (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of _ _ _ _ a b c))
+  | nonempty l u lc rc b c _ =>
+    exact iff_of_false id (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of_fields b c))
 
 end CORALean
 

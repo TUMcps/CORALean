@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.SubsetOfBounds
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Basic

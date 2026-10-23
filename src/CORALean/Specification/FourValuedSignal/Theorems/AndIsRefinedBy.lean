@@ -44,7 +44,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FourValuedSignal.and_isRefinedBy {ι : Type} [Fintype ι] [Nonempty ι]
+theorem FourValuedSignal.and_isRefinedBy {ι : Type} [FinEnum ι] [Nonempty ι]
     (sigs : ι → FourValuedSignal ℝ) (ks : ι → KleeneSignal ℝ) (hs : ∀ i, (sigs i).IsValid)
     (hk : ∀ i, (ks i).IsValid) (h : ∀ i, (sigs i).IsRefinedBy (ks i)) : -- --- CONCL ---
     ∃ r, FourValuedSignal.and_ sigs = some r ∧ r.IsValid ∧

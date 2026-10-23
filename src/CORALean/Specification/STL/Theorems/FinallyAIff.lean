@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STL.Operations.RTLFinally
 public import CORALean.Specification.STL.Theorems.ForallTraceSetSatIff
 public import CORALean.Specification.STL.Theorems.SatOfPform
+public import CORALean.Specification.STL.Operations.Basic
 
 @[expose] public section
 

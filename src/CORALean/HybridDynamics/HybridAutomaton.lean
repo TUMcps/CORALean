@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

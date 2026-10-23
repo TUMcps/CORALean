@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPo
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidExistsNotVPolytope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 
 @[expose] public section
 

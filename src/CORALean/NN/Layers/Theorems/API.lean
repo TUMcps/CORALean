@@ -89,6 +89,7 @@ public import CORALean.NN.Layers.Theorems.ToRealIteZero
 public import CORALean.NN.Layers.Theorems.ToRealMatTapMat
 public import CORALean.NN.Layers.Theorems.ToRealTapEntry
 public import CORALean.NN.Layers.Theorems.ToRelaxationSound
+public import CORALean.NN.Layers.Theorems.AllOverEqImpl
 
 /-!
 # What the standard layers enclose, collected

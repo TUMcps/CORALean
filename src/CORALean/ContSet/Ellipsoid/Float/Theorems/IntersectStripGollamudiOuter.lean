@@ -173,6 +173,9 @@ theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo
       ∧ 1 - toReal lam + toReal lam * toReal φ' ^ 2 - toReal lam * (1 - toReal lam)
           * toReal δ ^ 2 / (1 - toReal lam + toReal lam * ν)
         ≤ toReal S := by -- --- PROOF ---
+  -- the product of the two clamped scalars in `corr`
+  set P := mulDown (maximum FloatOps.zero (mulDown lam om)) (maximum FloatOps.zero (mulDown δ δ))
+    with hP
   set l := toReal lam with hl
   have hom₁ : toReal om ≤ 1 - l := by
     have := subDown_le_sub FloatOps.one lam; rwa [toReal_one, ← h_om] at this
@@ -215,15 +218,13 @@ theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo
       ∧ toReal (maximum FloatOps.zero (mulDown δ δ)) ≤ toReal δ ^ 2 := by
     rw [toReal_maximum, toReal_zero]
     exact ⟨le_max_left _ _, max_le (sq_nonneg _) ((mulDown_le_mul _ _).trans_eq (sq _).symm)⟩
-  have hPm : toReal (mulDown (maximum FloatOps.zero (mulDown lam om))
-      (maximum FloatOps.zero (mulDown δ δ))) ≤ l * (1 - l) * toReal δ ^ 2 :=
+  have hPm : toReal P ≤ l * (1 - l) * toReal δ ^ 2 :=
     le_trans (mulDown_le_mul _ _) (mul_le_mul hP1.2 hP2.2 hP2.1 (le_trans hP1.1 hP1.2))
   -- divided by `sHi ≥ s`, whatever the numerator's sign
   have hcorr : toReal corr ≤ l * (1 - l) * toReal δ ^ 2 / s := by
     rw [h_corr]
     refine le_trans (divDown_le_div _ _ hsH0) ?_
-    rcases le_total (toReal (mulDown (maximum FloatOps.zero (mulDown lam om))
-      (maximum FloatOps.zero (mulDown δ δ)))) 0 with h | h
+    rcases le_total (toReal P) 0 with h | h
     · exact le_trans (div_nonpos_of_nonpos_of_nonneg h hsH0.le) (div_nonneg hT hs0.le)
     · exact le_trans (div_le_div_of_nonneg_left h hs0 hsHi)
         (div_le_div_of_nonneg_right hPm hs0.le)

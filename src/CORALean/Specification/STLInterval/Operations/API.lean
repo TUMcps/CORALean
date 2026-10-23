@@ -15,6 +15,8 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 public import CORALean.Specification.STLInterval.Operations.Supremum
 public import CORALean.Specification.STLInterval.Operations.ToLeft
+public import CORALean.Specification.STLInterval.Operations.ToRealInterval
+public import CORALean.Specification.STLInterval.Operations.ToRight
 
 /-!
 # STL intervals: the operations

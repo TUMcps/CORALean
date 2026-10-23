@@ -3,13 +3,15 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
-public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadRightNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemPadLeftNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
-public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabNominalIff
 
 @[expose] public section
 

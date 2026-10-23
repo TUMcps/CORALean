@@ -76,14 +76,12 @@ theorem NonlinDASys.IsTrajectory.linReachAdaptive_outer {sys : NonlinDASys n p m
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 pass.Δt) Rstart U x y u z)
     (hΔt : 0 < pass.Δt)
     (hc : (pass.linPoint (T.taylor Rstart)).Certifies sys U pass.Δt k x y u) : -- --- CONCL ---
-    x pass.Δt ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
-        (k + 2)).1.construct ∧
+    let lr := NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt (k + 2)
+    x pass.Δt ∈ lr.1.construct ∧
       ∀ t ∈ Set.Icc 0 pass.Δt,
-        x t ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
-          (k + 2)).2.1.construct ∧
-        (x t, y t) ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
-          (k + 2)).2.2.construct := by -- --- PROOF ---
-
+        x t ∈ lr.2.1.construct ∧
+        (x t, y t) ∈ lr.2.2.construct := by -- --- PROOF ---
+  intro lr
   exact traj.linReachAt_outer hΔt hc
 
 end CORALean

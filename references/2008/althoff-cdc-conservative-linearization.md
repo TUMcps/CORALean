@@ -7,8 +7,8 @@ M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear System
 
 The origin of CORA's `'lin'` algorithm for `nonlinearSys`: linearize on the fly,
 bound the Lagrange remainder by a box that is added as an uncertain input, and
-split the start set when the box exceeds an admissible one. The thesis reproduces
-it in its §3.4 (see [Althoff's thesis](../2010/althoff-thesis.md)), and the rows
+split the start set when the box exceeds an admissible one. Althoff's thesis (2010)
+reproduces it in its §3.4, and the rows
 below that are the same result link the same files; this page is where the
 propositions first appeared.
 

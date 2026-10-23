@@ -57,7 +57,7 @@ theorem PointSegmentSignal.at_snoc_lt {T : Type} [LinearOrder T] (tp : List T) (
     · simp [not_le.mpr ht, h1]
     · rfl
   have hi : (tp.takeWhile (· ≤ t)).length - 1 < tp.length := by omega
-  simp only [PointSegmentSignal.at, h]
+  simp only [TimeOrder.exists_mem_eqv_iff, PointSegmentSignal.at, h]
   rw [List.getElem?_append_left hi, List.getD_append _ _ _ _ (by omega),
     List.getD_append _ _ _ _ (by omega)]
 

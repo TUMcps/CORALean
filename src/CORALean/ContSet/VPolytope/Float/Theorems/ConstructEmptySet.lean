@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
 public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
-public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEmptySet
 
 @[expose] public section
 

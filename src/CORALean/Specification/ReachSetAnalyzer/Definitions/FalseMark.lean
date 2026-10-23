@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `set` in `[lo,hi]` marks `t` as a time where proposition `k` can be false. -/
-def ReachSetAnalyzer.FalseMark (obj : ReachSetAnalyzer S n) (k : String) (set : S n) (loc : ℕ)
+def ReachSetAnalyzer.FalseMark (obj : ReachSetAnalyzer ℝ S n) (k : String) (set : S n) (loc : ℕ)
     (lo hi d t : ℝ) : Prop :=
   ∃ ap, (k, ap) ∈ obj.aps ∧ obj.maskOk k lo hi = true ∧
     ap.canBeFalse (𝕋 := 𝕋) set loc = true ∧ FiniteKleeneSignalBuilder.Covers d t lo hi

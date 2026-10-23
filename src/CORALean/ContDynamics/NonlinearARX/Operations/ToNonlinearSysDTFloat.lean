@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatModel
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT
 public import CORALean.ContDynamics.NonlinearSysDT.Definitions.FloatModel
+public import CORALean.ContDynamics.NonlinearARX.Operations.RevBlocks
 
 @[expose] public section
 
@@ -47,14 +48,10 @@ def NonlinearARX.FloatModel.toNonlinearSysDTFloat (fm : NonlinearARX.FloatModel 
   f := fun X V =>
     -- the window and the inputs, newest first, as `f_ARX` reads them
     let Y := fm.f
-      ⟨fun s => X.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => X.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
-      ⟨fun s => V.inf (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2)),
-       fun s => V.sup (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
-          (finProdFinEquiv.symm s).2))⟩
+      ⟨fun s => X.inf (NonlinearARX.revBlocks s),
+       fun s => X.sup (NonlinearARX.revBlocks s)⟩
+      ⟨fun s => V.inf (NonlinearARX.revBlocks s),
+       fun s => V.sup (NonlinearARX.revBlocks s)⟩
     ⟨fun r => if h : (finProdFinEquiv.symm r).1.val + 1 < p then
         X.inf (finProdFinEquiv ((⟨(finProdFinEquiv.symm r).1.val + 1, h⟩ : Fin p),
           (finProdFinEquiv.symm r).2))

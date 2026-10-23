@@ -112,6 +112,8 @@ public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
 public import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
 public import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
 public import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+public import CORALean.ContSet.Interval.Float.Theorems.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Theorems.SubsetOfBounds
 
 /-!
 # What `Interval` guarantees

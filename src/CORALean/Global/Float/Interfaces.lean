@@ -13,12 +13,14 @@ public import Mathlib.Data.Real.Basic
 any format and for ℝ itself; not IEEE 754, and overflow is assumed away. The two are separate so
 the layer stays executable. `RealImage` lifts the reading to an ambient type. `ToRat` decodes a
 scalar exactly into ℚ, which ℝ cannot, for decisions the rounded operations cannot make, and
-`isNaN` tells a NaN apart. `Floats 𝕋 α` lists the floats a value stores, for `noNaN`.
+`isNaN` tells a NaN apart. `ExactLe` is one such decision, the comparison of two scalars as reals,
+which every format with `ToRat` has and ℝ decides classically. `Floats 𝕋 α` lists the floats a value
+stores, for `noNaN`.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       16-August-2026
--- Last update:   ---
+-- Last update:   23-October-2026
 -- Reviewed:      ---
 
 
@@ -108,6 +110,14 @@ class ToRat (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] where
   /-- Native `Float.isNaN`; `false` at a format with no NaN. A NaN's `toRat` is a
   number like another, so this is the only way to tell it apart. -/
   isNaN : 𝕋 → Bool
+
+/-- An exact comparison, which `FloatOps.le` is not: `le a b` decides `toReal a ≤ toReal b`, both
+ways. An algorithm that only orders stored values, such as the time stamps of a signal, runs on it
+(`TimeOrder`). -/
+class ExactLe (𝕋 : Type) [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] where
+  le : 𝕋 → 𝕋 → Bool
+  le_iff (a b : 𝕋) :
+    le a b = true ↔ SoundFloatArithmetic.toReal a ≤ SoundFloatArithmetic.toReal b
 
 /-- The scalars of type `𝕋` a value of type `α` stores, every one of them: a set is
 reported only if none of these is a NaN. -/

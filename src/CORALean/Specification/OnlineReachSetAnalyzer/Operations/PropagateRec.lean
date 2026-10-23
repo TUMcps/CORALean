@@ -40,9 +40,9 @@ variable {S : ℕ → Type} {d : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `propagateRec(makeValid,idx)` on the nodes and the `propagated` flags. -/
-noncomputable def OnlineReachSetAnalyzer.propagateRec (eps : ℝ) (makeValid : STLInterval) :
-    ℕ → ℕ → List (OnlineAnalyzerNode (AtomicProposition S d)) × List Bool →
-      Option (List (OnlineAnalyzerNode (AtomicProposition S d)) × List Bool)
+noncomputable def OnlineReachSetAnalyzer.propagateRec (eps : ℝ) (makeValid : STLInterval ℝ) :
+    ℕ → ℕ → List (OnlineAnalyzerNode ℝ (AtomicProposition S d)) × List Bool →
+      Option (List (OnlineAnalyzerNode ℝ (AtomicProposition S d)) × List Bool)
   | 0, _, _ => none
   | fuel + 1, idx, (nodes, propagated) =>
     (nodes[idx - 1]?).bind fun node =>

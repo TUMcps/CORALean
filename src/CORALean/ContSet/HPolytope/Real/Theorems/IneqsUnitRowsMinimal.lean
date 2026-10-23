@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.Global.DropIdx
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 

@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
 
@@ -94,12 +95,12 @@ theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m}
     (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
     (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
     (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ construct (steps i).linInput)
-    (hRconv : ∀ i < N, Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
-    (hRclosed : ∀ i < N, IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
-    (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
+    (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
+      i).linInput))
+    (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
+      i).linInput))
+    (hRbdd : ∀ i < N, Bornology.IsBounded (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
+      i).linInput))
     {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
     {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) : -- --- CONCL ---
     x t - x ((i : ℝ) * Δt) ∈ construct (sys.relinDeltaReach ⟨R₀, 0, i⟩ ⟨⟨Δt, o, ho⟩, (q + 2)⟩ steps

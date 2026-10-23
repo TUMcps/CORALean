@@ -1,6 +1,8 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.Operations.TimeOrInf
+public import Mathlib.Data.FinEnum
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Data.Finset.Lattice.Fold
 public import Mathlib.Order.Basic
@@ -12,8 +14,9 @@ public import Mathlib.Order.Basic
 
 The `while` loop of `pointSegmentSignal.combine` for one output. Each pass takes the smallest
 unconsumed time among the inputs, evaluates `op` at the point and on the interval after it, and
-appends the point unless it repeats the interval before and after. CORA's `eps` tie tolerance
-becomes equality; the passes are bounded by `fuel` (the total number of time points suffices).
+appends the point unless it repeats the interval before and after. The smallest time is found in
+the order of the inputs, as `min` does; CORA's `eps` tie tolerance becomes `TimeOrder.IsEqvTop`, the
+same time; the passes are bounded by `fuel` (the total number of time points suffices).
 
 ## Inputs
 * `T` – time type
@@ -39,7 +42,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The `while any(inIdx <= cellfun(@length,varargin))` loop, output arrays `tp` and `val`. -/
-def PointSegmentSignal.combineLoop {T : Type} [LinearOrder T] [Zero T] {ι : Type} [Fintype ι]
+def PointSegmentSignal.combineLoop {T : Type} [TimeOrder T] [Zero T] {ι : Type} [FinEnum ι]
     (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T) :
     ℕ → (ι → ℕ) → List T → List Bool → List T × List Bool
   | 0, _, tp, val => (tp, val)
@@ -47,9 +50,10 @@ def PointSegmentSignal.combineLoop {T : Type} [LinearOrder T] [Zero T] {ι : Typ
     if ∃ k, inIdx k ≤ (sig k).length then
       -- 1. times = arrayfun(@aux_time,varargin,inIdx); timePoint = min(times)
       let times := fun k => (sig k).timeOrInf (inIdx k)
-      let timePoint := Finset.univ.inf times
+      let timePoint := (FinEnum.toList ι).foldr
+        (fun k m => if times k ≤ m then times k else m) ⊤
       -- 2. isMin = times - timePoint < eps
-      let isMin := fun k => decide (times k = timePoint)
+      let isMin := fun k => decide (TimeOrder.IsEqvTop (times k) timePoint)
       -- 3. pointValues = op(...); intValues = op(...)
       let pointValue := op fun k =>
         if isMin k then (sig k).pointValue (inIdx k) else (sig k).precIntervalValue (inIdx k)

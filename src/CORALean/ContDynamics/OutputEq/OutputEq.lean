@@ -41,11 +41,6 @@ structure OutputEq (𝕋 : Type) (n m r : ℕ) where
   D : Mat 𝕋 r m
   k : Vec 𝕋 r
 
-/-- The output at one state and one input, which is what an output set has to
-contain. Read into ℝ by the layer's scalar, as a trajectory is. -/
-def OutputEq.eval (out : OutputEq 𝕋 n m r) (x : Vec ℝ n) (u : Vec ℝ m) : Vec ℝ r :=
-  toRealMat out.C *ᵥ x + toRealMat out.D *ᵥ u + toRealVec out.k
-
 end CORALean
 
 

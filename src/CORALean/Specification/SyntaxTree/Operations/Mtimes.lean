@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `mtimes(obj1,obj2)`: entry `(i,j)` is `sum(obj1(i,:).*obj2(:,j)')`; the scalar case is `times`.
--/
+Noncomputable because `sum` is. -/
 noncomputable def SyntaxTree.mtimes {m k p : ℕ} (A : Fin m → Fin (k + 1) → SyntaxTree n)
     (B : Fin (k + 1) → Fin p → SyntaxTree n) : Fin m → Fin p → SyntaxTree n :=
   fun i j => sum (times (A i 0) (B 0 j))

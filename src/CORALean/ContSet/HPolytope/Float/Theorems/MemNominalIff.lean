@@ -2,8 +2,9 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabIff
 
 @[expose] public section
 

@@ -42,6 +42,17 @@ theorem ConZonotope.isClosed_construct (cZ : ConZonotope α) : IsClosed cZ.const
   cZ.isCompact_construct.isClosed
 
 
+-- ===============================  `ConZonotope.mtimes_eq_map`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       01-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
+theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
+    ConZonotope.mtimes M cZ = cZ.map (Matrix.mulVecLin M) := rfl
+
+
 -- ================================  `ConZonotope.mtimes_exact`  ================================ --
 -- Authors:       Claude Opus 5
 -- Written:       01-September-2026

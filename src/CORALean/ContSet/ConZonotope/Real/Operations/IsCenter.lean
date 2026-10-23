@@ -1,9 +1,10 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Operations.OfMat
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCenter
+public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 
 @[expose] public section
@@ -49,13 +50,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q h : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `y ↦ x0 + N y` in `[-1, 1]^h`, as `2h` halfspaces over `y`. -/
-def ConZonotope.aux_nullPolytope {k : ℕ} (N : Mat ℝ h k) (x0 : Vec ℝ h) : HPolytope (Vec ℝ k) where
-  m := h + h
-  A := Fin.append (fun i => HPolytope.rowLin N i) (fun i => -HPolytope.rowLin N i)
-  b := Fin.append (fun i => 1 - x0 i) (fun i => 1 + x0 i)
-  me := 0
-  Ae := Fin.elim0
-  be := Fin.elim0
+def ConZonotope.aux_nullPolytope {k : ℕ} (N : Mat ℝ h k) (x0 : Vec ℝ h) : HPolytope (Vec ℝ k) :=
+  HPolytope.ineqs (Fin.append N (-N)) (Fin.append (fun i => 1 - x0 i) (fun i => 1 + x0 i))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

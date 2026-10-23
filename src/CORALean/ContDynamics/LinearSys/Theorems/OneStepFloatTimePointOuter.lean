@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 /-!
 # `oneStepFloat` holds the state at the end of the step
 
-`oneStep_timePoint_outer` [1, Sec. 3.3] at the float sets: `x(Δt)` of every run from `X` whose input
+`oneStep_timePoint_outer` [1, Eq. 4] at the float sets: `x(Δt)` of every run from `X` whose input
 is the constant `u` plus a signal in `U` is `e^{AΔt} x₀ + Γ(Δt) u + p` with `p` one `U`-input's
 contribution (`sub_mem_inputReach_shift`). `e^{AΔt}` is in `expIntervalFloat`
 (`exp_mem_expIntervalFloat`), `Γ(Δt) u` is the constant input's contribution, which `Pu` holds, and
@@ -44,8 +44,8 @@ zonotopes have all three, and the float input solution's soundness asks only an 
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

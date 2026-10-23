@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.Specification.Specification
 public import CORALean.Specification.Theorems.Basic
+public import CORALean.Specification.Operations.Custom
 
 @[expose] public section
 

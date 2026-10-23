@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 

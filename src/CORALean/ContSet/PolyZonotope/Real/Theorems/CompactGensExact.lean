@@ -1,16 +1,16 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ColRep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactGens
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactIdx
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CompactKeep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSum
-public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.FiberSumEqZeroOfNotMem
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
-public import CORALean.ContSet.PolyZonotope.Real.Operations.SumCompactKeep
-public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCompactKeep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumMonomialMerge
 
 @[expose] public section
 

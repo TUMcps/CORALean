@@ -42,7 +42,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The time point `l` of realization `s` marks proposition `k` true at `τ`. -/
-def TrajectoryAnalyzer.TrueAt (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ) (dur : ℝ) (k : String)
+def TrajectoryAnalyzer.TrueAt (obj : TrajectoryAnalyzer ℝ 𝕋 S n) (s : ℕ) (dur : ℝ) (k : String)
     (l : ℕ) (τ : ℝ) : Prop :=
   ∃ ap, (k, ap) ∈ obj.aps ∧ ap.evaluatePoint (obj.traj.x l s)
       (if obj.traj.loc ≠ [] then obj.traj.loc.getD (l - 1) 0 else 1) = true ∧

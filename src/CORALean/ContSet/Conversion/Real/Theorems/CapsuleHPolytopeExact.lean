@@ -7,7 +7,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecColZero
 public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecOrthogonal
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
-public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
 public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 

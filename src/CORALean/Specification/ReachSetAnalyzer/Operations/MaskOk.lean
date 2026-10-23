@@ -36,14 +36,14 @@ intervals over `𝕋`, rounded outward) is not yet written.
 
 namespace CORALean
 
-variable {S : ℕ → Type} {n : ℕ}
+variable {T : Type} [TimeOrder T] [Zero T] {S : ℕ → Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `~isKey(obj.masks,k) || max(obj.masks(k),int)`. -/
-noncomputable def ReachSetAnalyzer.maskOk (obj : ReachSetAnalyzer S n) (k : String)
-    (lo hi : ℝ) : Bool :=
+def ReachSetAnalyzer.maskOk (obj : ReachSetAnalyzer T S n) (k : String)
+    (lo hi : T) : Bool :=
   match obj.masks.lookup k with
   | none => true
   | some mask => FiniteSignal.max mask lo hi

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.TentativeKleeneSignal.Operations.At
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 public import CORALean.Specification.TentativeKleeneSignal.Operations.GetInterval
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Observe

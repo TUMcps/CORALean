@@ -63,7 +63,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyBoundS
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyStep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
-public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyFactorCount
 public import CORALean.ContSet.PolyZonotope.Float.Operations.DropRadius
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GirardMetric

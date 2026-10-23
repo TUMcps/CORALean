@@ -4,7 +4,8 @@ public import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
 public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
+public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
+public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
@@ -62,10 +63,11 @@ def LinearSys.maxBackReachPolyFloat (p : ℕ) (X : HPolytope 𝕋 (Vec 𝕋 n))
     HPolytope 𝕋 (Vec 𝕋 n) :=
   let ball : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, maximum zero μ, Interval.origin n⟩ -- B_μ
   let XF := X.minkDiffOf FB.construct fun i =>                      -- ⊖ F box(X_end)
-    let u := FB.conZonotope.boundDot (c := rowLin X.A i) (X.A i) fun _ => rfl
+    let u := FB.conZonotope.boundDot (c := Real.HPolytope.rowLin (toRealMat X.A) i) (X.A i) fun _
+        => rfl
     ⟨u.val, fun x hx => u.le x (Zonotope.conZonotope_contains FB hx)⟩
   XF.minkDiffOf ball.construct fun i =>                             -- ⊖ B_μ
-    ball.boundDotUp (f := rowLin XF.A i) (XF.A i) (fun _ => rfl) p
+    ball.boundDotUp (f := Real.HPolytope.rowLin (toRealMat XF.A) i) (XF.A i) (fun _ => rfl) p
 
 end CORALean
 

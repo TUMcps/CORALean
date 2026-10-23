@@ -31,11 +31,15 @@ Two properties that agree at all times `t ≥ 0` have the same maximal runs.
 
 namespace CORALean
 
+open Float SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Properties that agree at times `≥ 0` have the same maximal runs. -/
-theorem STLInterval.maximalRuns_congr (L : List STLInterval) (P Q : ℝ → Prop)
+theorem STLInterval.maximalRuns_congr (L : List (STLInterval 𝕋)) (P Q : ℝ → Prop)
     (h : ∀ t : ℝ, 0 ≤ t → (P t ↔ Q t)) : -- --- CONCL ---
     STLInterval.MaximalRuns L P ↔ STLInterval.MaximalRuns L Q := by -- --- PROOF ---
   unfold STLInterval.MaximalRuns

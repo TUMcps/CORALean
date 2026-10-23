@@ -36,7 +36,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The builder marks `PT` as possibly true and `PF` as possibly false on `[0,d]`. -/
-def FiniteKleeneSignalBuilder.Represents (b : FiniteKleeneSignalBuilder) (d : ℝ)
+def FiniteKleeneSignalBuilder.Represents (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ)
     (PT PF : ℝ → Prop) : Prop :=
   b.IsValid ∧ b.possiblyTrueSignal.duration = d ∧ ∀ t : ℝ, 0 ≤ t → t ≤ d →
     (∃ x, b.possiblyTrueSignal.at? t = some x ∧ (x = true ↔ PT t)) ∧

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
+public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOfFields
 
 @[expose] public section
 
@@ -35,35 +36,35 @@ namespace CORALean
 
 /-- `STLInterval.set` is injective. -/
 theorem STLInterval.set_injective : -- --- CONCL ---
-    Function.Injective STLInterval.set := by -- --- PROOF ---
+    Function.Injective (STLInterval.set : STLInterval ℝ → Set ℝ) := by -- --- PROOF ---
   intro I J h
   -- an empty interval equals only an empty one
   cases I with
   | empty =>
     cases J with
     | empty => rfl
-    | nonempty l u lc rc a b c _ =>
-      exact absurd h.symm (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of _ _ _ _ a b c))
-  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ z₁ =>
+    | nonempty l u lc rc b c _ =>
+      exact absurd h.symm (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of_fields b c))
+  | nonempty l₁ u₁ lc₁ rc₁ b₁ c₁ z₁ =>
     -- two nonempty intervals include each other, so the bounds and flags agree
     cases J with
     | empty =>
-      exact absurd h (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of _ _ _ _ a₁ b₁ c₁))
-    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ z₂ =>
-      have h12 := (nonempty_set_subset_iff a₁ b₁ c₁ a₂ b₂ c₂ z₁ z₂).1 h.symm.subset
-      have h21 := (nonempty_set_subset_iff a₂ b₂ c₂ a₁ b₁ c₁ z₂ z₁).1 h.subset
+      exact absurd h (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of_fields b₁ c₁))
+    | nonempty l₂ u₂ lc₂ rc₂ b₂ c₂ z₂ =>
+      have h12 := (nonempty_set_subset_iff b₁ c₁ b₂ c₂ z₁ z₂).1 h.symm.subset
+      have h21 := (nonempty_set_subset_iff b₂ c₂ b₁ c₁ z₂ z₁).1 h.subset
       have hl : l₁ = l₂ := by
         rcases h12.1 with h1 | ⟨e, _⟩
         · rcases h21.1 with h2 | ⟨e, _⟩
           · exact (lt_asymm h1 h2).elim
           · exact (ne_of_lt h1 e.symm).elim
-        · exact e
+        · simpa using e
       have hu : u₁ = u₂ := by
         rcases h12.2 with h1 | ⟨e, _⟩
         · rcases h21.2 with h2 | ⟨e, _⟩
           · exact (lt_asymm h1 h2).elim
           · exact (ne_of_lt h1 e).elim
-        · exact e
+        · cases u₁ <;> cases u₂ <;> simp_all
       -- the bounds agree, and then the flags
       subst hl hu
       have hlc : lc₁ = lc₂ := by

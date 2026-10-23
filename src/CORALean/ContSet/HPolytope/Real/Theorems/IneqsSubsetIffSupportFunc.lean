@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 

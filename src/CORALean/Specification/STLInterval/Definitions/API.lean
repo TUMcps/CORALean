@@ -10,6 +10,7 @@ public import CORALean.Specification.STLInterval.Definitions.MaximalRuns
 public import CORALean.Specification.STLInterval.Definitions.MemBounds
 public import CORALean.Specification.STLInterval.Definitions.Representsa
 public import CORALean.Specification.STLInterval.Definitions.RepresentsaType
+public import CORALean.Specification.STLInterval.Definitions.ToEReal
 public import CORALean.Specification.STLInterval.Definitions.WithinTol
 
 /-!

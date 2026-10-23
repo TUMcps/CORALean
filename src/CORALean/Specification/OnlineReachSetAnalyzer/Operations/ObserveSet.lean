@@ -47,9 +47,9 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `observeSet(obj,set,interval,loc,makeValid)`. -/
-noncomputable def OnlineReachSetAnalyzer.observeSet (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (set : S d) (interval : STLInterval) (loc : ℕ) (makeValid : Option STLInterval := none) :
-    Option (OnlineReachSetAnalyzer S d) :=
+noncomputable def OnlineReachSetAnalyzer.observeSet (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
+    (set : S d) (interval : STLInterval ℝ) (loc : ℕ) (makeValid : Option (STLInterval ℝ) := none) :
+    Option (OnlineReachSetAnalyzer ℝ S d) :=
   match interval with
   -- if the interval is empty, we cannot do anything with this observation
   | .empty => some obj

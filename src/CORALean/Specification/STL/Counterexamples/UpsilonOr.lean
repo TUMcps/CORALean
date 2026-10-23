@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STL.Definitions.Transformation
 public import CORALean.Specification.STL.Definitions.Tsupp
 public import CORALean.Specification.STL.Theorems.SatOr
+public import CORALean.Specification.STL.Operations.Basic
 
 @[expose] public section
 

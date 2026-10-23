@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.IsEqvTop
 public import CORALean.Specification.PointSegmentSignal.PointSegmentSignal
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import Mathlib.Algebra.Group.Defs
@@ -41,7 +42,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sig = pointSegmentSignal.indicator(stlInterval(lb,ub,lc,rc),val,default)`. -/
-def PointSegmentSignal.indicatorBounds {T : Type} [LinearOrder T] [Zero T] (lb : T)
+def PointSegmentSignal.indicatorBounds {T : Type} [TimeOrder T] [Zero T] (lb : T)
     (ub : WithTop T) (lc rc : Bool) (val default : Bool) : PointSegmentSignal T :=
   if val = default ∨ STLInterval.emptyBounds lb ub lc rc = true then ⟨[0], [default, default]⟩
   else
@@ -52,9 +53,9 @@ def PointSegmentSignal.indicatorBounds {T : Type} [LinearOrder T] [Zero T] (lb :
     let tp2 := tp1 ++ [lb]
     let v2 := v1 ++ [if lc then val else default]
     -- 3. set signal in (infi,sup)
-    let v3 := if (lb : WithTop T) ≠ ub then v2 ++ [val] else v2
+    let v3 := if ¬ TimeOrder.IsEqvTop (lb : WithTop T) ub then v2 ++ [val] else v2
     -- 4. set signal at sup
-    let atSup := (lb : WithTop T) ≠ ub ∧ ub ≠ ⊤
+    let atSup := ¬ TimeOrder.IsEqvTop (lb : WithTop T) ub ∧ ub ≠ ⊤
     let tp4 := if atSup then tp2 ++ [ub.untopD 0] else tp2
     let v4 := if atSup then v3 ++ [if rc then val else default] else v3
     -- 5. set signal in (sup,inf)

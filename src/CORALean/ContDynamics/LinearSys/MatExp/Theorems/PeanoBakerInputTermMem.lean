@@ -117,13 +117,14 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
     ∀ s ∈ Set.Icc 0 t, MatExp.peanoBakerInputTerm A u k s
       ∈ (s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
         {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---
+  -- the hull of the products of the order-`k` power with the inputs
+  set H : ℕ → Set (Vec ℝ n) := fun k =>
+    convexHull ℝ {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v} with hH
   -- the hull at every order is closed, convex and holds a point
-  have hne : ∀ k, (closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v})).Nonempty := fun k =>
+  have hne : ∀ k, (closure (H k)).Nonempty := fun k =>
     ⟨_, subset_closure (subset_convexHull ℝ _
       ⟨A 0 ^ k, Interval.matPow_outer B (hAB 0) k, u 0, huU 0 ⟨le_rfl, ht⟩, rfl⟩)⟩
-  have hcv : ∀ k, Convex ℝ (closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v})) := fun _ =>
+  have hcv : ∀ k, Convex ℝ (closure (H k)) := fun _ =>
     (convex_convexHull ℝ _).closure
   -- the weight `σ^k/k!`, whose integral is the next order's
   have hw : ∀ k : ℕ, IntervalIntegrable
@@ -132,8 +133,7 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
       _ _
   -- at the start of the window every term is zero
   have hzero : ∀ k, ∀ s ∈ Set.Icc 0 t, s = 0 → MatExp.peanoBakerInputTerm A u k s
-      ∈ (s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
-        {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v}) := by
+      ∈ (s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (H k) := by
     rintro k s - rfl
     cases k <;> simp [MatExp.peanoBakerInputTerm, Set.zero_smul_set (hne _)]
   -- every window inside the whole one, and the identity the zeroth power

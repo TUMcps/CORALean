@@ -9,14 +9,20 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # Taylor models over a floating-point scalar: the representation
 
-CORA's `taylm` with its coefficients and remainder bounds in `𝕋`, and an error box `I_error` beside
-the remainder (#185). The exponents stay in ℕ, so the monomials are the exact layer's. The remainder
-`rem` holds what the exact layer's would, rounded outward. Rounding is paid where a coefficient is
-computed, by storing one end of its enclosure, and the width, every monomial being in `[-1, 1]` on
-the box, goes into the error box. `Taylm.absorbRounding` adds the box to the remainder, which a
-product, whose cross terms multiply the remainders, does first. `nominal` reads the stored floats as
-an exact model, its remainder `rem` alone; `inflated` is the same model with the box added to the
-remainder.
+CORA's `taylm`, the Taylor model of [1, Def. 2], with its coefficients and remainder bounds in `𝕋`,
+and an error box `I_error` beside the remainder (#185). The exponents stay in ℕ, so the monomials
+are the exact layer's. The remainder `rem` holds what the exact layer's would, rounded outward.
+Rounding is paid where a coefficient is computed, by storing one end of its enclosure, and the
+width, every monomial being in `[-1, 1]` on the box, goes into the error box. `Taylm.absorbRounding`
+adds the box to the remainder, which a product, whose cross terms multiply the remainders, does
+first. `nominal` reads the stored floats as an exact model, its remainder `rem` alone; `inflated` is
+the same model with the box added to the remainder.
+
+## References
+
+* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
+      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous and
+      Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

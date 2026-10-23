@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMono
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft

@@ -16,7 +16,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 /-!
 # Multiplying by an interval matrix over-approximates every matrix in it
 
-The result is [1, Thm. 3.3]. Outer and never exact: the boxed generators are one per coordinate,
+The result is [1, Thm. 4]. Outer and never exact: the boxed generators are one per coordinate,
 so what the radius does to different coordinates is allowed to vary independently, which the
 matrices denoted do not. The center part is `mtimes` exactly; the whole content is that the
 leftover `(A - center) x` fits inside the diagonal block, because a coordinate of a zonotope never
@@ -35,8 +35,9 @@ exceeds `absBound`. Nonnegativity of the radius is read off the witness rather t
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreAnd
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
-public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.VPolytope.Float.Theorems.MemColumnGap
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 public import CORALean.ContSet.Zonotope.Float.Operations.Polygon

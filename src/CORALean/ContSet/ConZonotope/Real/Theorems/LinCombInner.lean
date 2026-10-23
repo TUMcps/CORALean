@@ -1,11 +1,11 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
-public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.SumUnivLinComb
-public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Real.Operations.Comap
-public import CORALean.ContSet.HPolytope.Real.Operations.MemHalfScaledIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemHalfScaledIff
 
 @[expose] public section
 

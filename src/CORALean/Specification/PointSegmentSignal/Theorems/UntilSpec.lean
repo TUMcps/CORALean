@@ -68,14 +68,15 @@ theorem PointSegmentSignal.aux_findIntervals_stretch (s : PointSegmentSignal ℝ
         hall y (lt_of_lt_of_le (lt_min hx0.1 hx1) hy1) (lt_of_le_of_lt hy2 (max_lt hx0.2 hx2))
     cases I with
     | empty => exact absurd hx0I (by simp [STLInterval.set])
-    | nonempty l u lc rc a b c _ =>
+    | nonempty l u lc rc b c _ =>
       simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq] at hx0I hsub
-      have hlx : l ≤ (((t + t') / 2 : ℝ) : EReal) := by
+      have hlx : ((Float.SoundFloatArithmetic.toReal l : ℝ) : EReal) ≤
+        (((t + t') / 2 : ℝ) : EReal) := by
         rcases hx0I.1 with h | ⟨-, h⟩ <;> [exact h.le; exact h.le]
-      have hux : (((t + t') / 2 : ℝ) : EReal) ≤ u := by
+      have hux : (((t + t') / 2 : ℝ) : EReal) ≤ STLInterval.toEReal u := by
         rcases hx0I.2 with h | ⟨-, h⟩ <;> [exact h.le; exact h.le]
       -- the lower end is at most `t`, the upper end at least `t'`
-      have hl : l ≤ (t : EReal) := by
+      have hl : ((Float.SoundFloatArithmetic.toReal l : ℝ) : EReal) ≤ (t : EReal) := by
         by_contra h
         obtain ⟨y, hy1, hy2⟩ := EReal.exists_between_coe_real (not_le.1 h)
         have hyt : y < t' := by
@@ -85,7 +86,7 @@ theorem PointSegmentSignal.aux_findIntervals_stretch (s : PointSegmentSignal ℝ
         · exact absurd hy2 (not_lt.2 h'.le)
         · exact absurd hy2 (not_lt.2 h'.le)
       -- and the upper end is at least `t'`
-      have hu : (t' : EReal) ≤ u := by
+      have hu : (t' : EReal) ≤ STLInterval.toEReal u := by
         by_contra h
         obtain ⟨y, hy1, hy2⟩ := EReal.exists_between_coe_real (not_le.1 h)
         have hyt : t < y := by
@@ -96,34 +97,36 @@ theorem PointSegmentSignal.aux_findIntervals_stretch (s : PointSegmentSignal ℝ
         · exact absurd hy1 (not_lt.2 h'.le)
       refine ⟨_, hI, ?_, ?_⟩
       · rw [STLInterval.set_leftClosure]
-        by_cases e : l = (t : EReal)
-        · exact Or.inr (by simp [STLInterval.infimum, e])
+        by_cases e : ((Float.SoundFloatArithmetic.toReal l : ℝ) : EReal) = (t : EReal)
+        · exact Or.inr (by simpa [STLInterval.infimum] using e.symm)
         · refine Or.inl ⟨Or.inl (lt_of_le_of_ne hl e), Or.inl ?_⟩
           exact lt_of_lt_of_le (EReal.coe_lt_coe_iff.2 hx0.1) hux
       -- the same for the right end
       · rw [STLInterval.set_rightClosure]
-        by_cases e : u = (t' : EReal)
+        by_cases e : STLInterval.toEReal u = (t' : EReal)
         · exact Or.inr (by simp [STLInterval.supremum, e])
         · refine Or.inl ⟨Or.inl (lt_of_le_of_lt hlx (EReal.coe_lt_coe_iff.2 hx0.2)), Or.inl ?_⟩
           exact lt_of_le_of_ne hu (Ne.symm e)
   · rintro ⟨I, hI, htl, htr⟩ x hx1 hx2
     cases I with
     | empty => exact absurd htl (by simp [STLInterval.leftClosure, STLInterval.set])
-    | nonempty l u lc rc a b c _ =>
+    | nonempty l u lc rc b c _ =>
       -- the interval reaches from `t` to `t'`, so it contains everything between
       rw [STLInterval.set_leftClosure] at htl
       rw [STLInterval.set_rightClosure] at htr
-      have hl : l ≤ (t : EReal) := by
+      have hl : ((Float.SoundFloatArithmetic.toReal l : ℝ) : EReal) ≤ (t : EReal) := by
         rcases htl with h | h
         · simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq] at h
           rcases h.1 with h' | ⟨-, h'⟩ <;> [exact h'.le; exact h'.le]
-        · simp only [STLInterval.infimum, Set.mem_setOf_eq, Option.some.injEq] at h
+        · simp only [STLInterval.infimum, Set.mem_setOf_eq, Option.map_some,
+            STLInterval.toEReal_coe, Option.some.injEq] at h
           exact h.le
-      have hu : (t' : EReal) ≤ u := by
+      have hu : (t' : EReal) ≤ STLInterval.toEReal u := by
         rcases htr with h | h
         · simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq] at h
           rcases h.2 with h' | ⟨-, h'⟩ <;> [exact h'.le; exact h'.le]
-        · simp only [STLInterval.supremum, Set.mem_setOf_eq, Option.some.injEq] at h
+        · simp only [STLInterval.supremum, Set.mem_setOf_eq, Option.map_some,
+            Option.some.injEq] at h
           exact h.ge
       refine (h1 x (ht.trans hx1.le)).1 ⟨_, hI, ?_⟩
       simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq]
@@ -136,7 +139,7 @@ theorem PointSegmentSignal.aux_findIntervals_stretch (s : PointSegmentSignal ℝ
 /-- `until` is true where the right-hand side holds at a time in the interval after, the
 left-hand side in between. -/
 theorem PointSegmentSignal.until_spec (lhs rhs : PointSegmentSignal ℝ) (hl : lhs.IsValid)
-    (hr : rhs.IsValid) (U : STLInterval) : -- --- CONCL ---
+    (hr : rhs.IsValid) (U : STLInterval ℝ) : -- --- CONCL ---
     (lhs.until U rhs).IsValid ∧ ∀ t : ℝ, 0 ≤ t → ((lhs.until U rhs).at t = true ↔
       ∃ t', t' - t ∈ U.set ∧ rhs.at t' = true ∧
         ∀ x, t < x → x < t' → lhs.at x = true) := by -- --- PROOF ---

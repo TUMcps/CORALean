@@ -12,10 +12,10 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
 /-!
 # `MatExp.expMatZonoEnclosure`, over a floating-point scalar
 
-`Real.MatExp.expMatZonoEnclosure` rounded, CORA's `expmInd` at [1, Sec. 3.3.2]: the
-Taylor sum kept as a float matrix zonotope, and the tail bounded through the interval
-matrix the zonotope encloses — `expRemainderBound` at `normUpperBound` of its `interval`,
-as `expIntervalEnclosure` bounds it — added as an interval matrix into the box.
+`Real.MatExp.expMatZonoEnclosure` rounded, CORA's `expmInd`, [1, Sec. 3.1] at a matrix zonotope with
+every order evaluated independently: the Taylor sum kept as a float matrix zonotope, and the tail
+bounded through the interval matrix the zonotope encloses — `expRemainderBound` at `normUpperBound`
+of its `interval`, as `expIntervalEnclosure` bounds it — added as an interval matrix into the box.
 
 ## Inputs
 * `M` – float matrix zonotope
@@ -26,8 +26,9 @@ as `expIntervalEnclosure` bounds it — added as an interval matrix into the box
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
+      Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -49,11 +49,13 @@ theorem ConZonotope.aux_separatesAlong_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
   intro x hx₁ hx₂
   have hlt := toReal_lt_of_ltStrict h
   rw [toReal_neg] at hlt
-  have h₁ := cZ₁.boundDot_le (c := rowLin (fun (_ : Fin 1) => a) 0) a (fun _ => rfl) x hx₁
-  have h₂ := cZ₂.boundDot_le (c := rowLin (fun (_ : Fin 1) j => neg (a j)) 0)
+  have h₁ := cZ₁.boundDot_le (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0) a
+      (fun _ => rfl) x hx₁
+  have h₂ := cZ₂.boundDot_le (c := Real.HPolytope.rowLin (toRealMat
+      (fun (_ : Fin 1) j => neg (a j))) 0)
     (-a) (fun _ => rfl) x hx₂
-  have hneg : rowLin (fun (_ : Fin 1) j => neg (a j)) 0 x
-      = -rowLin (fun (_ : Fin 1) => a) 0 x := by
+  have hneg : Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) j => neg (a j))) 0 x
+      = -Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0 x := by
     show ∑ j, toReal (neg (a j)) * x j = -∑ j, toReal (a j) * x j
     simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib]
   rw [hneg] at h₂

@@ -4,7 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 
 @[expose] public section
 

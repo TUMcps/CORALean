@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Constrain
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Tactic.NormNum
 

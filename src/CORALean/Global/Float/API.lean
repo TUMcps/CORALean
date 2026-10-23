@@ -4,6 +4,9 @@ public import CORALean.Global.Float.FloatOps
 public import CORALean.Global.Float.GenOpNorm
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.Float.Interfaces
+public import CORALean.Global.Float.DecidableToReal
+public import CORALean.Global.Float.ExactLe
+public import CORALean.Global.Float.TimeOrder
 public import CORALean.Global.Float.NoNaN
 public import CORALean.Global.Float.EuclideanNorm
 public import CORALean.Global.Float.Exp
@@ -36,7 +39,8 @@ public import CORALean.Global.Float.InvSqrtOneSub
 
 `FloatOps` gives the rounded operations, `SoundFloatArithmetic` says their
 directions are honest, `ToRat` decodes a scalar exactly into ℚ where one can,
-`Exp` and `Log` are the transcendentals built on top of
+`ExactLe` compares two scalars as reals through it, `DecidableToReal` decides those comparisons,
+`TimeOrder` orders time stamps by them, `Exp` and `Log` are the transcendentals built on top of
 them, `SinCos` the sine and cosine by halving and doubling, `InverseTrig` the
 arctangent, arcsine and arccosine by a bisection on them, and `Instances`
 supplies models of both classes.

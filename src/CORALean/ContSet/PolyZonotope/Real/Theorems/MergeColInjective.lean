@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ColRep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-public import CORALean.ContSet.PolyZonotope.Real.Operations.RepCongr
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepCongr
 
 @[expose] public section
 

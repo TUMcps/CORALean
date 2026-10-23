@@ -15,7 +15,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 may overshoot `tFinal`, which an outer enclosure may. The times are real, unlike `Reach.steps`'
 rational ones: the ceiling is part of what `reach_outer` says, a horizon that is no multiple of
 `Δt` is covered, where `Reach.steps` would refuse it, and `ℝ` has no `ToRat`. CORA's `standard`
-scheme, its default: [1, Alg. 4] at a point matrix, with no input and no order reduction;
+scheme, its default: [1, Alg. 1] at a point matrix, with no input and no order reduction;
 `reachStepk`'s recursion runs on the time-point sets `timePoint`. Unlike `reachWrappingFree`,
 `η` is taken as given and `N` is not raised to one.
 
@@ -29,8 +29,9 @@ scheme, its default: [1, Alg. 4] at a point matrix, with no input and no order r
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Opus 5.5

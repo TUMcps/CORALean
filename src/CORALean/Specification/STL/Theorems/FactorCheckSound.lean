@@ -78,10 +78,12 @@ theorem STL.factorCheck_sound (H J K : ℕ) (box : Set X) (R : ℕ → Set S)
     by_contra hn
     exact hcon ⟨j, hj, k, hk, fun Pl hPl hin => hn ⟨Pl, hPl, hin⟩⟩
   let jk := (List.range (J + 1)).flatMap fun j => (List.range (K + 1)).map fun k => (j, k)
+  -- one `(j, k)` step of the loop at index `h`
+  set fs := fun h V (q : ℕ × ℕ) => STL.factorStep (R q.1) (P h q.1 q.2) (unsafeSet q.1) meets
+    isEmpty V with hfs
   -- `α` stays in a polytope along the loop over `(j, k)`
   have gen : ∀ (l : List (ℕ × ℕ)), (∀ q ∈ l, q.1 ≤ J ∧ q.2 ≤ K) → ∀ V : List (Set X),
-      (∃ v ∈ V, α ∈ v) → ∃ v ∈ l.foldl (fun V (q : ℕ × ℕ) =>
-        STL.factorStep (R q.1) (P h q.1 q.2) (unsafeSet q.1) meets isEmpty V) V, α ∈ v := by
+      (∃ v ∈ V, α ∈ v) → ∃ v ∈ l.foldl (fs h) V, α ∈ v := by
     intro l
     induction l with
     | nil => intro _ V hV; exact hV
@@ -98,10 +100,8 @@ theorem STL.factorCheck_sound (H J K : ℕ) (box : Set X) (R : ℕ → Set S)
     exact ⟨Nat.lt_succ_iff.mp hj, Nat.lt_succ_iff.mp hk⟩
   -- and the polytope of conjunction `h` is appended to `L`, which then holds `α`
   have fold : ∀ (l : List ℕ) (L : List (Set X)),
-      (∃ v ∈ L, α ∈ v) ∨ (∃ h ∈ l, ∃ v ∈ jk.foldl (fun V (q : ℕ × ℕ) =>
-        STL.factorStep (R q.1) (P h q.1 q.2) (unsafeSet q.1) meets isEmpty V) [box], α ∈ v) →
-      ∃ v ∈ l.foldl (fun L h => L ++ jk.foldl (fun V (q : ℕ × ℕ) =>
-        STL.factorStep (R q.1) (P h q.1 q.2) (unsafeSet q.1) meets isEmpty V) [box]) L, α ∈ v := by
+      (∃ v ∈ L, α ∈ v) ∨ (∃ h ∈ l, ∃ v ∈ jk.foldl (fs h) [box], α ∈ v) →
+      ∃ v ∈ l.foldl (fun L h => L ++ jk.foldl (fs h) [box]) L, α ∈ v := by
     intro l
     induction l with
     | nil => intro L hL'; rcases hL' with hL' | ⟨h, hh, _⟩; exact hL'; simp at hh

@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.HybridDynamics.Operations.JumpFloat
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

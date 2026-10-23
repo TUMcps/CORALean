@@ -60,19 +60,17 @@ theorem LinearSysDT.reachError_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 
     show (Zonotope.ofPoint (0 : Vec ℝ n)).h ≤ 0 * n
     simp [Zonotope.ofPoint]
   | succ k ih =>
+    -- the box that the step's reduction adds
+    set bx := Zonotope.reduceBox ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o,
+      ho⟩)).plus U) o with hbx
     have herr : sys.reachError ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
-        = (Zonotope.mtimes sys.A (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus
-            (Zonotope.reduceBox
-              ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o) :=
+        = (Zonotope.mtimes sys.A (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus bx :=
       rfl
-    have hbox : (Zonotope.reduceBox
-        ((Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o).h ≤ n := by
+    have hbox : bx.h ≤ n := by
       rw [Zonotope.reduceBox_h]; split_ifs <;> omega
     calc (sys.reachError ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).h
         = (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h
-            + (Zonotope.reduceBox
-                ((Zonotope.mtimes sys.A
-                  (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U) o).h := by
+            + bx.h := by
           rw [herr, Zonotope.plus_h, Zonotope.mtimes_h]
       _ ≤ k * n + n := by omega
       _ = (k + 1) * n := by ring

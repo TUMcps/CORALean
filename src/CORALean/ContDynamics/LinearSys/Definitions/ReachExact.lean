@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 # The exact set `Reach LinearSys` is asked to enclose
 
 Every image of a bare initial set under the homogeneous flow, at every time
-of `[0, tFinal]` — [1, Def. 3.1] at `U = 0`, the case `Reach.reachExact` has
+of `[0, tFinal]` — [1, Def. 1] at `U = 0`, the case `Reach.reachExact` has
 room for. `reach_outer` and `reachWrappingFree_outer` put it inside `reach` and
 `reachWrappingFree`, one window at a time.
 
@@ -23,8 +23,9 @@ room for. `reach_outer` and `reachWrappingFree_outer` put it inside `reach` and
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
+      (ECC), pp. 625-630, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

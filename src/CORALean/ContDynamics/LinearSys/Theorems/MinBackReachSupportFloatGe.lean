@@ -161,8 +161,9 @@ theorem LinearSys.minBackReachSupportFloat_ge (sys : LinearSys 𝕋 n)
   set s := sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k
   obtain ⟨w, hw, hlow⟩ := Zonotope.aux_lowerDot_le s.ZU₀ (-(N j)) hE
   refine ⟨w, hw, fun x hx => ?_⟩
-  have hR := s.R.boundDot_le (c := rowLin N j) (N j) (fun _ => rfl) x hx
-  have hsub := sub_le_subUp (s.R.boundDot (c := rowLin N j) (N j) fun _ => rfl).val
+  have hR := s.R.boundDot_le (c := Real.HPolytope.rowLin (toRealMat N) j) (N j) (fun _ => rfl) x hx
+  have hsub := sub_le_subUp (s.R.boundDot (c := Real.HPolytope.rowLin (toRealMat N) j) (N j) fun _
+      => rfl).val
     (s.ZU₀.lowerDot (-(N j)))
   have hneg : ∑ i, toReal ((-N j) i) * w i = -(toRealMat N *ᵥ w) j := by
     show _ = -∑ i, toReal (N j i) * w i
@@ -171,7 +172,8 @@ theorem LinearSys.minBackReachSupportFloat_ge (sys : LinearSys 𝕋 n)
   rw [hneg] at hlow
   unfold LinearSys.minBackReachSupportFloat
   have hR' : (toRealMat N *ᵥ x) j
-      ≤ toReal (s.R.boundDot (c := rowLin N j) (N j) fun _ => rfl).val := hR
+      ≤ toReal (s.R.boundDot (c := Real.HPolytope.rowLin (toRealMat N) j) (N j) fun _ => rfl).val
+          := hR
   linarith
 
 end CORALean

@@ -9,9 +9,10 @@ public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 /-!
 # Interval matrices: enclosing the exponential of an interval matrix
 
-`expIntervalEnclosure`: [1, Sec. 3.3.1]: `expTaylor`/`expEnclosure` at one matrix, widened to
-bound every matrix a whole box could hold. The Taylor box is widened by the remainder bound
-taken at `A.absMax`, so the tail bound is checkable from the interval matrix alone rather than
+`expIntervalEnclosure`: the enclosure of [1, Thm. 1] at a whole box with every order by interval
+arithmetic, the exact `W(t)` of [1, Lemma 1] left out: `expTaylor`/`expEnclosure` at one matrix,
+widened to bound every matrix a whole box could hold. The Taylor box is widened by the remainder
+bound taken at `A.absMax`, so the tail bound is checkable from the interval matrix alone rather than
 at whichever member of it a step turns out to hold.
 
 ## Inputs
@@ -23,8 +24,9 @@ at whichever member of it a step turns out to hold.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
+      2007, pp. 726-732.
 -/
 
 -- Authors:       Claude Sonnet 5
