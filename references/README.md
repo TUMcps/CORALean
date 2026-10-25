@@ -56,7 +56,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Bounded error identification of systems with time-varying parameters](2006/bravo-tac-bounded-error-identification.md) | Bravo, Alamo, Camacho | IEEE Transactions on Automatic Control, 51(7):1144-1150 | 2006 | 🟢 6/6 \| 13 |
 | [Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs](2006/girard-hscc-lti-inputs.md) | Girard, Le Guernic, Maler | HSCC, LNCS 3927, pp. 257-271 | 2006 | 🟢 14/14 \| 5 |
 | [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md) | Kurzhanskiy, Varaiya | CDC, pp. 1498-1503 | 2006 | 🟢 6/6 \| 14 |
-| [Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs](2007/althoff-cdc-uncertain-parameters-inputs.md) | Althoff, Stursberg, Buss | CDC, pp. 726-732 | 2007 | 🟡 2/15 \| 7 |
+| [Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs](2007/althoff-cdc-uncertain-parameters-inputs.md) | Althoff, Stursberg, Buss | CDC, pp. 726-732 | 2007 | 🟡 3/15 \| 7 |
 | [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md) | Althoff, Stursberg, Buss | CDC, pp. 4042-4048 | 2008 | 🟢 11/11 \| 4 |
 | [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md) | Girard, Le Guernic | HSCC, LNCS 4981, pp. 215-228 | 2008 | 🟢 7/7 \| 13 |
 | [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md) | Althoff, Stursberg, Buss | ECC, pp. 625-630 | 2009 | 🟡 13/15 \| 5 |

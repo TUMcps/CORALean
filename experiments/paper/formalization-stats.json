@@ -17,8 +17,8 @@
     "papers": 101,
     "papers_with_findings": 90,
     "in_scope": 1299,
-    "formalized": 1211,
-    "not_formalized": 88,
+    "formalized": 1212,
+    "not_formalized": 87,
     "out_of_scope": 1157,
     "out_of_scope_by_reason": {
       "restated": 428,
@@ -31,16 +31,16 @@
       "correct": 800,
       "underspecified": 258,
       "proof-gap": 33,
-      "fixed": 108,
+      "fixed": 109,
       "false": 12
     },
     "claims": {
       "in_scope": 489,
-      "formalized": 450,
+      "formalized": 451,
       "correct": 265,
       "underspecified": 96,
       "proof-gap": 33,
-      "fixed": 49,
+      "fixed": 50,
       "false": 7
     },
     "definitions": {
@@ -656,8 +656,8 @@
       "year": 2007,
       "title": "Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs",
       "in_scope": 15,
-      "formalized": 2,
-      "not_formalized": 13,
+      "formalized": 3,
+      "not_formalized": 12,
       "out_of_scope": 7,
       "out_of_scope_by_reason": {
         "restated": 3,
@@ -670,16 +670,16 @@
         "correct": 1,
         "underspecified": 1,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "claims": {
         "in_scope": 9,
-        "formalized": 2,
+        "formalized": 3,
         "correct": 1,
         "underspecified": 1,
         "proof-gap": 0,
-        "fixed": 0,
+        "fixed": 1,
         "false": 0
       },
       "definitions": {
@@ -696,6 +696,11 @@
           "result": "Lemma 1",
           "class": "underspecified",
           "reason": "`t ∈ ℝ⁺` is not said to exclude `0`; at `t = 0` the `-1/t` branch is sound but not the exact value claimed"
+        },
+        {
+          "result": "Prop. 2",
+          "class": "fixed",
+          "reason": "the printed `(Ir + W*(r))V` is the input as if constant over the step, and a sign-switching input leaves it; the correction applies each order to `V` on its own, as the thesis's Thm. 3.1 and Prop. 3.3 do; see Findings"
         }
       ]
     },
@@ -7204,7 +7209,7 @@
           "correct": 48,
           "underspecified": 23,
           "proof-gap": 8,
-          "fixed": 8,
+          "fixed": 9,
           "false": 2
         }
       },
@@ -8633,7 +8638,7 @@
           "correct": 176,
           "underspecified": 62,
           "proof-gap": 15,
-          "fixed": 27,
+          "fixed": 28,
           "false": 4
         }
       },
@@ -8759,7 +8764,7 @@
         "correct": 716,
         "underspecified": 227,
         "proof-gap": 29,
-        "fixed": 91,
+        "fixed": 92,
         "false": 11
       }
     },
@@ -8780,11 +8785,11 @@
       }
     },
     "theorems": {
-      "paper": 1867,
+      "paper": 1868,
       "float": 1983,
-      "helper": 2037,
+      "helper": 2046,
       "lemma": 3259,
-      "total": 9146,
+      "total": 9156,
       "examples": 129
     }
   }
