@@ -37,6 +37,7 @@ the reading `Prop. 3` and `Prop. 5` are equalities in; see the findings below.
 | `Def. 5` | (Forward reachable set) R(t) := {ξ(t;x_0,u(·)) \| x_0∈X_0, ∀θ∈[0,t]: u(θ)∈U} for ẋ = Ax + u. | n/a — restated; tracked as `Def. 1` on [Althoff, Stursberg, Buss 2009](../2009/althoff-ecc-enclosing-hulls.md) | `restated` |
 | `Def. 6` | (AE backward reachable set; "minimal" in v1) R^∀∃(-t) := {x_0 \| ∀u(·)∈U ∃w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that cannot avoid the target — and its time-interval version, which requires the state to pass through X_end at some t∈τ. | [`BackReachSetForallExistsExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Definitions/BackReachSetForallExistsExact.lean) and [`TimeIntervalBackReachSetForallExistsExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Definitions/TimeIntervalBackReachSetForallExistsExact.lean), over Carathéodory runs — the reading the findings below argue for | `underspecified` — quantifies over all input signals, for which no solution exists; needs Carathéodory's class |
 | `Def. 7` | (EA backward reachable set; "maximal" in v1) R^∃∀(-t) := {x_0 \| ∃u(·)∈U ∀w(·)∈W: ξ(t;x_0,u(·),w(·))∈X_end} — the states that can be steered into the target despite any disturbance — and its time-interval version. | [`BackReachSetExistsForallExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Definitions/BackReachSetExistsForallExact.lean) and [`TimeIntervalBackReachSetExistsForallExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Definitions/TimeIntervalBackReachSetExistsForallExact.lean), over Carathéodory runs — the reading the findings below argue for | `underspecified` — as Def. 6: quantifies over signals for which no solution exists |
+| `Eq. 21` | (Inner time-interval homogeneous solution) [cites [15, Prop. 1]] H(τ_k) ⊇ (conv(H(t_k), H(t_{k+1})) ⊖ F H(t_k)) ⊖ B_µ, µ = √γ‖(e^{AΔt} - I_n)G‖₂ (22), G the generator matrix of H(t_k) = ⟨c, G⟩_Z, H(τ_k) the flow (17), F of (19)-(20). | [`ConvexHullMinkowskiDiffBall.lean`](../../src/CORALean/ContDynamics/LinearSys/Counterexamples/ConvexHullMinkowskiDiffBall.lean) — **Counterexample:** `LinearSys.convexHull_minkowskiDiff_ball_counterexample`: for ẋ = (x₂, x₃, 0), Δt = 1/8, every η ≥ 2 and the box H(0) = ⟨(0, 0, 256), diag(1, 1/4, 1/4)⟩, with F (19) and E (20) computed from their formulas (`STL.depCurvatureF`), F H(0) the exact product and µ = √3 `genOpNorm₂` of (22) bounded by 1/9, the point (7/4, 16, 256) is in the set, and in the erode-first hull conv(H(t_k) ⊖ F H(t_k) ⊖ B_µ, H(t_{k+1}) ⊖ F H(t_k) ⊖ B_µ) as well, and on no e^{At}H(0), t ∈ [0, Δt] | `false` — `⊖ F H(t_k)` trims the hull on the side the trajectories bend towards, so points beyond the chords, on the other side, stay; no correction is known (Findings) |
 | `Prop. 1` | (Approximation error of particular solution) [cites [15, Thm. 1], [15, Lemma 2]] The Hausdorff distances between the exact particular solution Z_S(t) = {∫_0^t e^{A(t-θ)}s(θ)dθ \| s(θ)∈S} (23) and its outer approximation (24) and inner approximation (25), propagated by (26), converge linearly to 0 as Δt→0. | [`InputSolutionSetConverges.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/InputSolutionSetConverges.lean), [`InputSolutionSetPrinted.lean`](../../src/CORALean/ContDynamics/LinearSys/Counterexamples/InputSolutionSetPrinted.lean) and [`InputSolutionInnerConverges.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/InputSolutionInnerConverges.lean) — both halves outright, and with the rate the limit follows from: the Euclidean Hausdorff distance to `LinearSys.inputReach` over t = σΔt is at most a constant times Δt. (24) is [`InputSolutionSet.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/InputSolutionSet.lean), written as the set it is because `Plus` and `Mtimes` only ever over-approximate and a distance needs both bounds — see the findings for the lower index arXiv v1 printed; (25) is [`InputSolutionInner.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/InputSolutionInner.lean) at the power series rather than A⁻¹, so A may be singular, as the paper itself allows; (26) is [`PropagateInputSolution.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/PropagateInputSolution.lean), which [`PropagateInputReach.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/PropagateInputReach.lean) shows is *exact* on the exact particular solution. Both distances are measured through the inner approximation, as arXiv v1's own proof was, so neither uses Z_S ⊆ Ẑ_S and nothing of [15] is needed; U convex, closed, bounded, non-empty (both halves), and Δt‖A‖ ≤ 1 (outer half only) **As printed:** the rate is linear, as stated, and the representation is the sets themselves; arXiv v1's version of (24), which sums from `i = 1`, is refuted by `LinearSys.inputSolutionSet_printed_counterexample`, in the file linked first | `correct` |
 | `Prop. 2` | (Union) [cites [1, Prop. 2]] ⋃_{t∈τ} R^∀∃(-t) ⊆ R^∀∃(-τ) and ⋃_{t∈τ} R^∃∀(-t) ⊆ R^∃∀(-τ); the proof is the order of the quantifiers. | n/a — restated from Mitchell 2007, which this formalization does not draw on directly; the `R^∃∀` half is nevertheless proved in the tree, as `aux_backReach_subset_timeInterval` beside `Thm. 2` below | `restated` |
 | `Assumption 1` | (Parameters) The number of steps σ and the truncation order η in (24) are fixed, while the number of halfspaces of X_end and the number of generators of U and W are linear in the state dimension n. | n/a — a standing hypothesis for the runtime-complexity analysis, not a claim to formalize | `not-a-claim` |
@@ -148,6 +149,30 @@ minimum over `j` goes through, and so does (49)'s weaker polytope, which is why
 `LinearSys.minBackReachTimeInterval_outer` asks only that each row `j` be bounded by some
 one trajectory's set — the content of both — and nothing about the others.
 
+**(21) is no inner approximation.** (21) erodes the hull of the two time-point sets by the
+curvature set `F H(t_k)` of (18)-(20) and by the ball `B_µ`, citing [15, Prop. 1], whose
+statement is an outer Hausdorff bound; the inner inclusion appears there only inside the proof,
+unproved (see [Wetzlinger et al. 2023](../2023/wetzlinger-fully-automated-verification.md)).
+A trajectory `e^{At}x₀` deviates from its chord `x₀ + (t/Δt)(e^{AΔt} - I)x₀` by a point of
+`F x₀`, so a point `p` of the chord is reached when `p - F H(t_k)` lies in the chord slice:
+the erosion has to be by `-F H(t_k)`, and (19)'s terms `[min_λ(λⁱ - λ)Δtⁱ, 0]Aⁱ/i!` are not
+symmetric. For the chain `ẋ = (x₂, x₃, 0)`, `A³ = 0`, so for `η ≥ 2`, `E = 0` and `F` is
+`[-Δt²/8, 0]` at `(1, 3)` alone; the trajectories bend towards smaller `x₁`, the chords lie on
+the larger side, and `⊖ F H(t_k)` removes the hull's small-`x₁` side, keeping points beyond the
+chords. With `Δt = 1/8` and `H(0) = ⟨(0, 0, 256), diag(1, 1/4, 1/4)⟩`, `µ ≤ 1/9` and
+`F H(0) ⊆ [-1025/2048, 0] × 0 × 0`, and `(7/4, 16, 256)`, the midpoint of the chord of
+`x₀ = (3/4, 0, 256)`, keeps `F H(0) ⊕ B_µ` inside the hull, while a run through it would start at
+first coordinate `5/4 + 128(t - 1/16)² > 1`
+(`LinearSys.convexHull_minkowskiDiff_ball_counterexample`). The point also lies in the
+erode-first hull `conv(H(t_k) ⊖ F H(t_k) ⊖ B_µ, H(t_{k+1}) ⊖ F H(t_k) ⊖ B_µ)`, so the order of
+hull and erosion does not save it; (15)'s enclosure of `F H(0)`, about
+`[-0.5008, 0.0008] × 0 × 0`, leaves the margins of the proof intact (checked numerically, not
+in Lean). The random search that found it (2-D and 3-D linear systems, zonotopes of up to 20
+generators) saw no failure of the form [Wetzlinger et al. 2024](../2024/wetzlinger-lcss-inner-minkowski-difference.md)
+would need, `conv(H(t_k) ⊖ C, H(t_{k+1}) ⊖ C) ⊖ B_µ + 2c` with `C` symmetric about `c`, whose
+shift turns the erosion into one by `-C`, the side the trajectories need; that form is unproved.
+[`ConvexHullMinkowskiDiffBall.lean`](../../src/CORALean/ContDynamics/LinearSys/Counterexamples/ConvexHullMinkowskiDiffBall.lean)
+
 **`Thm. 2`'s proof erodes a union slice by slice, which only holds one way.** Both
 versions reduce `⋃_{t∈τ_k} R^∃∀(-t)` to a single expression by substituting union-level
 containments — v1 wrote `Z̲_U(t_k) ⊆ Z_U(τ_k)` and `Z_W(τ_k) ⊆ Ẑ_W(τ_k)` for the
@@ -163,9 +188,13 @@ summand contained in *every* `C_t` distributes over the union. The `⊖` half is
 What the argument needs, and what `LinearSys.maxBackReachTimeInterval_inner` asks for
 instead, is the per-`t` form: each point of the eroded hull of `P₁`, `P₂` is reached at
 *one* `t ∈ τ_k`, and `Z̲_U(t_k)` sits inside `e^{A(t_{k+1}-t)} Z_U(t)` for *that* `t`. For
-`W = {0}` the per-`t` form is exactly (21) and nothing is assumed beyond the paper; the gap
-opens only once the disturbance is present. The conclusion is not thereby refuted: `R̂^∃∀(-τ_k)`
-takes the hull *after* eroding each polytope, so the counterexample above does not reach it.
+`W = {0}` the per-`t` form is exactly (21), which is false (finding above); beyond it the gap
+opens only once the disturbance is present. The union counterexample here does not refute the
+conclusion: `R̂^∃∀(-τ_k)` takes the hull *after* eroding each polytope. (21)'s witness lies in
+that erode-first hull too, so for `U = W = {0}` and `k = 0`, where (54) is
+`e^{-AΔt}conv(X_end ⊖ F X_end ⊖ B_µ, e^{AΔt}X_end ⊖ F X_end ⊖ B_µ)` for a box `X_end` and (53)
+is `⋃_{t∈[0,Δt]} e^{-At}X_end`, the theorem fails as well; not reclassified, as (54)'s sets are
+not stated in Lean for that witness.
 
 **(53) is a family of sets where the union is meant, and the runtime argument over-reaches.**
 (53), unchanged from v1's (50), asserts `⋃_{t∈τ_k} R^∃∀(-t) = {e^{-At}((X_end

@@ -144,7 +144,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Underapproximative Methods for the Order Reduction of Zonotopes](2025/luetzow-lcss-underapprox-order-reduction.md) | Lützow, Kochdumper, Althoff | IEEE Control Systems Letters, 9:1730-1735 | 2025 | 🟢 10/10 \| 12 |
 | [Out of the Shadows: Exploring a Latent Space for Neural Network Verification](2026/koller-iclr-latent-space.md) | Koller, Ladner, Althoff | ICLR | 2026 | 🟢 11/11 \| 22 |
 | [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟢 14/14 \| 11 |
-| [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2026/wetzlinger-tac-backward-reachability.md) | Wetzlinger, Althoff | IEEE Transactions on Automatic Control, 71(1):352-367 | 2026 | 🟢 11/11 \| 10 |
+| [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2026/wetzlinger-tac-backward-reachability.md) | Wetzlinger, Althoff | IEEE Transactions on Automatic Control, 71(1):352-367 | 2026 | 🟢 12/12 \| 10 |
 
 ## CORA coverage
 
