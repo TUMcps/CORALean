@@ -7,7 +7,7 @@ import CORALean.HybridDynamics.Theorems.IsRunOnOuter
 
 Two locations, `false` and `true`, each transitioning to the other. `R k ℓ` is a box of radius
 `k + 1` regardless of `ℓ`, so `R 0 ℓ ≠ R 1 ℓ`: an example with a constant family would prove
-nothing about the index `InvariantOn` carries. `hinv` is proved outright: `flow` from the
+nothing about the index `IsInvariantOn` carries. `hinv` is proved outright: `flow` from the
 radius-`1` invariant box sitting inside every wider `R k ℓ`; `jump` from the identity reset
 carrying a radius-`(k+1)` point into the radius-`(k+2)` box. An actual flowing run is not
 attempted: `Location.IsTrajectory.flow` asks for a `HasDerivWithinAt` witness this file does not
@@ -67,7 +67,7 @@ theorem BHI.R_ne : BHI.R 0 false ≠ BHI.R 1 false := by
 
 /-- The family `R` is an invariant of the automaton: flow stays in the fixed location invariant,
 jumps keep the identity reset. -/
-theorem BHI.hinv : BHI.HA.InvariantOn BHI.R where
+theorem BHI.hinv : BHI.HA.IsInvariantOn BHI.R where
   flow {k ℓ τ x u w} h h₀ {t} ht := by
     intro i
     rw [show i = 0 from Subsingleton.elim i 0]
@@ -102,7 +102,7 @@ theorem BHI.hinv : BHI.HA.InvariantOn BHI.R where
       linarith [hzb.2]
 
 /-- The one thing the whole file is for: a run known only through its jump
-count lands where `InvariantOn`, read at the count reached, says it must. -/
+count lands where `IsInvariantOn`, read at the count reached, says it must. -/
 example {m k : ℕ} {ℓ ℓ' : Bool} {x y : Vec ℝ 1} (run : BHI.HA.IsRunOn m ℓ x ℓ' y)
     (hx : x ∈ construct (BHI.R k ℓ)) : y ∈ construct (BHI.R (k + m) ℓ') :=
   run.mem_of_invariantOn BHI.hinv hx

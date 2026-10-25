@@ -16,7 +16,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 [1, Prop. 1]'s proof writes every solution at the end of a step as
 `x(Δt) = e^{AΔt} x(0) + R_con + z(x(0))`, `z(x(0)) ∈ R̂_err` (21). Here it is derived from the
 linearization: a run under the constant input `u₀` that stays in the region `R` of an
-`AbstractionError` certificate `L` solves `ẋ = Ax + w + l(t)`, `l(t) ∈ L`
+`IsAbstractionError` certificate `L` solves `ẋ = Ax + w + l(t)`, `l(t) ∈ L`
 (`IsTrajectory.linearize`); the variation of constants splits off `R_con`, and what `l`
 contributes lies in `inputSolution Δt η L` (`inputSolution_outer`), which is `R̂_err`. The
 confinement of the run to `R` is the hypothesis `hR`, as in conservative linearization.
@@ -35,11 +35,11 @@ confinement of the run to `R` is the hypothesis `hR`, as in conservative lineari
 * `R` – confinement region
 * `Δt` – step size
 * `y` – output trajectory
-* `cert` – abstraction-error certificate
 * `η` – Taylor terms
 
 ## Hypotheses
 * `traj` – trajectory of the system
+* `cert` – abstraction-error certificate
 * `hR` – trajectory stays in region
 * `hΔt` – step size positive
 * `hε` – step norm small enough
@@ -89,7 +89,7 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
     {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u₀ : Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ}
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x (fun _ => u₀) y)
-    (cert : AbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct L)) (hclosed : IsClosed (construct L))

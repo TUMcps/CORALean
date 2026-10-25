@@ -1,13 +1,13 @@
 module
 
 public import CORALean.NN.Graph.Definitions.BallEnumIdx
-public import CORALean.NN.Graph.Definitions.PermInvariant
+public import CORALean.NN.Graph.Definitions.IsPermInvariant
 public import CORALean.NN.Graph.Definitions.ActLayer
 
 /-!
 # What a graph layer means
 
-`PermInvariant` is [1, Def. 5]'s condition on a global pooling layer's aggregation.
+`IsPermInvariant` is [1, Def. 5]'s condition on a global pooling layer's aggregation.
 
 ## References
 

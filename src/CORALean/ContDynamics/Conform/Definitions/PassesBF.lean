@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.ContDynamics.Conform.Definitions.Conformant
+public import CORALean.ContDynamics.Conform.Definitions.IsConformant
 
 @[expose] public section
 

@@ -55,7 +55,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 /-- The requirement stated once for the automaton: checked at every location, it
 answers wherever a run ends. -/
 theorem HybridAutomaton.holdsAll_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
-    {R : L → S n} (hinv : HA.Invariant R) (specs : List (Specification ContSet))
+    {R : L → S n} (hinv : HA.IsInvariant R) (specs : List (Specification ContSet))
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : ∀ ℓ : L, Specification.HoldsAll specs (construct (R ℓ))) :
     Specification.HoldsAll specs {y} :=

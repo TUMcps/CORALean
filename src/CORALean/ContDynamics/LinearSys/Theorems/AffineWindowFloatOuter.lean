@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CurvatureEnclosureFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AffineWindowFloat
 
 @[expose] public section
@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zonotope (Vec 𝕋 n)}
     {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
     (hnext : exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ h
       + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ toRealVec ũ
         ∈ Hnext.construct) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) : -- --- CONCL ---

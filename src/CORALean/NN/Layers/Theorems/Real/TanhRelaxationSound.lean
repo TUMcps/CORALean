@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- ℝ-only, as `ScaleRounding.exact` is: only ℝ stores `r · x` exactly. Both directions are the
 product itself. -/
-theorem aux_scaleRounding_exact_sound (r : ℝ) : (ScaleRounding.exact r).Sound r :=
+theorem aux_scaleRounding_exact_sound (r : ℝ) : (ScaleRounding.exact r).IsSound r :=
   ⟨fun _ => le_rfl, fun _ => le_rfl⟩
 
 end
@@ -50,7 +50,7 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tanhRelaxation_sound : tanhRelaxation.Sound Real.tanh :=
+theorem tanhRelaxation_sound : tanhRelaxation.IsSound Real.tanh :=
   Relaxation.ofAffineConj_sound sigmoidRelaxation_sound (aux_scaleRounding_exact_sound 2)
     (aux_scaleRounding_exact_sound 2) (by norm_num) (by norm_num)
     (fun t => by

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
 public import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
 public import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
@@ -52,7 +52,7 @@ def PolyZonotope.relaxGreedy (η : ℕ) : ℕ → PolyZonotope α → PolyZonoto
   | 0, PZ => PZ
   | fuel + 1, PZ =>
     -- 1. construct `G_{PZ,η}`, Def. 5
-    let G := PolyZonotope.ExpEdge PZ.E η
+    let G := PolyZonotope.IsExpEdge PZ.E η
     -- 2. `G_{PZ,η} ← greedy(G_{PZ,η})`: each node keeps its lightest outgoing edge
     let G' := fun i => @PolyZonotope.greedyTarget PZ.h G
       (fun i j => PolyZonotope.instDecidableExpEdge PZ.E η i j) (PolyZonotope.expWeight PZ.E) i

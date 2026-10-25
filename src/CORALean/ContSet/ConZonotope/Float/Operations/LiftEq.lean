@@ -45,6 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- Not the polytope's work (conversion): the lifted zonotope [G; Aₑ] of Scott et al. 2016, Sec.
+4.3, a `Zonotope` whose lower generator rows are the equality rows. -/
 def ConZonotope.liftEq (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 (n + cZ.P.me)) where
   h := cZ.h
   c := Fin.append cZ.c fun _ => zero

@@ -13,6 +13,11 @@ signal of Kleene logic is built from two Boolean `finiteSignal`s, the times wher
 `possiblyTrueSignal` can be true and where it `possiblyFalseSignal` can be false. CORA's builder is
 a handle object that its methods mutate; here a method returns the new builder. The signals are
 over a time type `T`: ℝ, or the scalar a float layer computes in.
+
+## References
+
+None: CORA's `finiteKleeneSignalBuilder`, a software class: no publication introduces it, and the
+CORA manual page for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

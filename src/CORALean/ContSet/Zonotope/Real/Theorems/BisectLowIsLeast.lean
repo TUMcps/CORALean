@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 # The bisection of [1, Alg. 4] finds the lowest point of the section
 
 For `Z ∩ L_γ` nonempty, `bisectLow` is the least `y` with `(γ, y) ∈ Z`. The loop keeps
-`BisectInv` (`bisectInv_step`) from the start, with `B = ∅` and `G` all the generators along the
+`IsBisectInv` (`bisectInv_step`) from the start, with `B = ∅` and `G` all the generators along the
 side searched, whose reach contains the line since the zonogon meets it; `|G| ≤ r` and it shrinks
 each pass, so after `r` passes one generator `a` is left. Then `[P; P + 2 g_a]` is an edge with the
 zonogon on one side (`edge_point_least`), and its point on the line is the lowest of the section.
@@ -71,8 +71,8 @@ theorem Zonotope.aux_cross_nonneg_of_horizontal {σ : ℝ} (hσ : σ = 1 ∨ σ 
 theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) (right : Bool) {σ : ℝ}
     (hσ : σ = if right then 1 else -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
-    (hinv : Z.BisectInv γ σ st) (n : ℕ) : -- --- CONCL ---
-    Z.BisectInv γ σ ((Z.bisectStep γ right)^[n] st) ∧
+    (hinv : Z.IsBisectInv γ σ st) (n : ℕ) : -- --- CONCL ---
+    Z.IsBisectInv γ σ ((Z.bisectStep γ right)^[n] st) ∧
       ((Z.bisectStep γ right)^[n] st).2.1.card ≤ max 1 (st.2.1.card - n) := by -- --- PROOF ---
   induction n with
   | zero => exact ⟨hinv, by simp⟩
@@ -91,7 +91,7 @@ theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
 theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) {σ : ℝ}
     (hσ : σ = 1 ∨ σ = -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
-    (hinv : Z.BisectInv γ σ st) (hcard : st.2.1.card ≤ 1) : -- --- CONCL ---
+    (hinv : Z.IsBisectInv γ σ st) (hcard : st.2.1.card ≤ 1) : -- --- CONCL ---
     IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
       (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ st.1 (st.1 + st.2.2)}) := by -- --- PROOF ---
   classical
@@ -227,7 +227,7 @@ theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
       rw [hσp] at hr hs0
       exact ⟨min_le_of_left_le this.le, le_max_of_le_right (by linarith)⟩
   -- the search keeps its invariant from the start
-  have hinit : Z.BisectInv γ σ (P, G, s) :=
+  have hinit : Z.IsBisectInv γ σ (P, G, s) :=
     ⟨∅, Finset.disjoint_empty_left _, by simp, fun i hi => (hGσ i).mp hi, by simp [hP], hs,
       by simp, fun i _ r hr' _ hrG => absurd ((hGσ r).mpr hr') hrG, hstr, by simp⟩
   obtain ⟨hI, hC⟩ := Zonotope.aux_iterate Z hH γ right hσ _ hinit Z.h

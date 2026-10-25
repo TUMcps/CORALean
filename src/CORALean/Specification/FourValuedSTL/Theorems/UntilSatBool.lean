@@ -57,7 +57,7 @@ open scoped NNReal
 
 /-- `⟦φ⟧_ξ(t) = ⊤` iff `φ` holds of `ξ` at `t`, [1, Sec. 2.5]. -/
 theorem FourValuedSTL.Formula.aux_satBool_eq_true_iff {X : Type} (φ : FourValuedSTL.Formula X)
-    (ξ : ℝ≥0 → X) (t : ℝ≥0) : φ.satBool ξ t = true ↔ φ.Sat ξ t := by
+    (ξ : ℝ≥0 → X) (t : ℝ≥0) : φ.satBool ξ t = true ↔ φ.Satisfies ξ t := by
   simp [FourValuedSTL.Formula.satBool]
 
 
@@ -78,9 +78,9 @@ theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValued
     (FourValuedSTL.Formula.aux_satBool_eq_true_iff φ₁ ξ t')
   have e₂ := fun t' => (iff_of_eq (congrArg (· = true) (h₂ t'))).trans
     (FourValuedSTL.Formula.aux_satBool_eq_true_iff φ₂ ξ t')
-  have key : (l₁.until I l₂).at t = true ↔ (FourValuedSTL.Formula.until I φ₁ φ₂).Sat ξ t := by
+  have key : (l₁.until I l₂).at t = true ↔ (FourValuedSTL.Formula.until I φ₁ φ₂).Satisfies ξ t := by
     rw [h t t.2]
-    simp only [FourValuedSTL.Formula.Sat]
+    simp only [FourValuedSTL.Formula.Satisfies]
     constructor
     · rintro ⟨t', hu, hr, hl⟩
       have hd := STLInterval.zero_le_of_mem_set I _ hu

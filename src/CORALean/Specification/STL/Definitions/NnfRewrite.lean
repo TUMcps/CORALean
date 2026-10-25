@@ -43,9 +43,11 @@ variable {X : Type}
 
 /-- `n`, `F_I n` and `G_I n` each have a sampled time formula, at step `1`, implying them. -/
 def STL.Nnf.HasSampledRewrite (n : STL.Nnf X) : Prop :=
-  (∃ s : STL.Samp X, ∀ ξ, (s.toFormula 1).Sat ξ → n.toFormula.Sat ξ) ∧
-  (∃ s : STL.Samp X, ∀ ξ, (s.toFormula 1).Sat ξ → (STL.Formula.finOpen 1 n.toFormula).Sat ξ) ∧
-  (∃ s : STL.Samp X, ∀ ξ, (s.toFormula 1).Sat ξ → (STL.Formula.globOpen 1 n.toFormula).Sat ξ)
+  (∃ s : STL.Samp X, ∀ ξ, (s.toFormula 1).Satisfies ξ → n.toFormula.Satisfies ξ) ∧
+  (∃ s : STL.Samp X, ∀ ξ, (s.toFormula 1).Satisfies ξ → (STL.Formula.finOpen 1
+      n.toFormula).Satisfies ξ) ∧
+  (∃ s : STL.Samp X, ∀ ξ, (s.toFormula 1).Satisfies ξ → (STL.Formula.globOpen 1
+      n.toFormula).Satisfies ξ)
 
 
 end CORALean

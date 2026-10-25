@@ -7,9 +7,9 @@ import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
 import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
 
 /-!
-# `lake exe hardwarecheck`: does the machine do what `TrustedHardware` says?
+# `lake exe hardwarecheck`: does the machine do what `IsTrustedHardware` says?
 
-`Float` is opaque in Lean's logic, so the ten conjuncts of `TrustedHardware` are trusted claims
+`Float` is opaque in Lean's logic, so the ten conjuncts of `IsTrustedHardware` are trusted claims
 about the machine and the C the compiler emitted for `Binary64`'s operations; nothing proves them.
 This executable SAMPLES them: every native result is compared, exactly, with the axiom-free
 soft-float `IEEE .binary64`, on uniform random bit patterns and structured inputs (`Rng.lean`), and

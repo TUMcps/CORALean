@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.DependencyPreserving
+public import CORALean.ContSet.ContSet.Definitions.IsDependencyPreserving
 public import Mathlib.Order.BourbakiWitt
 
 @[expose] public section
@@ -56,10 +56,10 @@ namespace CORALean
 
 /-- [1, Lemma 2]: dependency preservation composes, the outer operation's
 monotonicity carrying the inner one's inclusion. -/
-theorem DependencyPreserving.comp {D α β γ : Type} {A : Set β → Set γ} {B : Set α → Set β}
+theorem IsDependencyPreserving.comp {D α β γ : Type} {A : Set β → Set γ} {B : Set α → Set β}
     {e : D → Set α} {e₁ : D → Set β} {e₂ : D → Set γ} (hA : Monotone A)
-    (hB : DependencyPreserving B e e₁) (hAe : DependencyPreserving A e₁ e₂) :
-    DependencyPreserving (A ∘ B) e e₂ := by
+    (hB : IsDependencyPreserving B e e₁) (hAe : IsDependencyPreserving A e₁ e₂) :
+    IsDependencyPreserving (A ∘ B) e e₂ := by
   intro d x hx
   exact hAe d (hA (hB d) hx)
 

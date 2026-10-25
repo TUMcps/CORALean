@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.TrajectoryAnalyzer.Definitions.TrueAt
+public import CORALean.Specification.TrajectoryAnalyzer.Definitions.IsTrueAt
 public import CORALean.Specification.TrajectoryAnalyzer.Operations.AnalyzeInterval
 public import CORALean.Specification.TrajectoryAnalyzer.Theorems.MarkKeySpec
 public import CORALean.Specification.TrajectoryAnalyzer.Theorems.SignalsRepresentOfIff
@@ -12,7 +12,7 @@ public import CORALean.Specification.TrajectoryAnalyzer.Theorems.SignalsRepresen
 
 If the signals represent `M` and the interval `[t(l),t(l+1))` is proper, `analyzeInterval`
 succeeds and the signals then represent `M` plus the times that the time point `l` marks true
-(`TrueAt`) for the propositions that hold at its point.
+(`IsTrueAt`) for the propositions that hold at its point.
 
 ## Inputs
 * `obj` – analyzer
@@ -104,7 +104,7 @@ theorem TrajectoryAnalyzer.analyzeInterval_spec (obj : TrajectoryAnalyzer ℝ �
     (hlh : obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) : -- --- CONCL ---
     ∃ sigs', obj.analyzeInterval s dur sigs l = some sigs' ∧
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs'
-        (fun k τ => M k τ ∨ obj.TrueAt s dur k l τ) := by -- --- PROOF ---
+        (fun k τ => M k τ ∨ obj.IsTrueAt s dur k l τ) := by -- --- PROOF ---
   obtain ⟨sigs', h1, h2⟩ := aux_analyzeInterval_loop obj.aps dur (obj.traj.x l s)
     (if obj.traj.loc ≠ [] then obj.traj.loc.getD (l - 1) 0 else 1) _ _ hlh obj.aps
     (fun q hq => hq) sigs M h

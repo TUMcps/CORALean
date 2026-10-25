@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
+public import CORALean.ContDynamics.LinearSys.Definitions.IsAdaptiveInvariant
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
@@ -74,9 +74,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 in time, and its window holds every run over `[t_i, t_{i+1}] ∩ [0, t_f]`. -/
 theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} {s : LinearSys.AdaptiveState 𝕋 n}
-    (hinv : sys.AdaptiveInvariant V s) : -- --- CONCL ---
+    (hinv : sys.IsAdaptiveInvariant V s) : -- --- CONCL ---
     ∀ r s', (r, s') ∈ sys.adaptiveStepFloat X₀ V t₀ tf options s →
-      sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
+      sys.IsAdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
         r.tEnd = t₀ + min s'.t tf ∧
         ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
@@ -102,7 +102,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
   have hti0 : 0 ≤ ti := by rw [hti]; exact_mod_cast h0
   have hΔr : 0 < toReal Δt := by rw [← ToRat.toReal_toRat]; exact_mod_cast hΔ
   -- the order the check admitted, read back from ℚ
-  have hadm : sys.OrderAdmissibleFloat Δt Δt η := ⟨hη2, by
+  have hadm : sys.IsOrderAdmissibleFloat Δt Δt η := ⟨hη2, by
     have h := (Rat.cast_le (K := ℝ)).mpr hnrm
     push_cast at h
     rwa [← ToRat.toReal_toRat]⟩

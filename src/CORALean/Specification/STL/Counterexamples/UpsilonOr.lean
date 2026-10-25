@@ -59,11 +59,11 @@ def STL.aux_phi1 : STL.Formula Bool :=
     (.globOpen 1 (.finOpen 1 STL.aux_p))
 
 theorem STL.aux_phi2_sat (ξ : ℝ≥0 → Bool) :
-    STL.aux_phi2.Sat ξ ↔ ∃ t, 0 < t ∧ t < 1 ∧ ξ t = false := by
-  simp [STL.aux_phi2, STL.aux_p, STL.Formula.Sat, Time.shift]
+    STL.aux_phi2.Satisfies ξ ↔ ∃ t, 0 < t ∧ t < 1 ∧ ξ t = false := by
+  simp [STL.aux_phi2, STL.aux_p, STL.Formula.Satisfies, Time.shift]
 
 theorem STL.aux_phi1_sat (ξ : ℝ≥0 → Bool) : -- --- CONCL ---
-    STL.aux_phi1.Sat ξ ↔ (ξ 1 = false ∧ ∀ s, 0 < s → s < 1 → ξ (s + 1) = false) ∧
+    STL.aux_phi1.Satisfies ξ ↔ (ξ 1 = false ∧ ∀ s, 0 < s → s < 1 → ξ (s + 1) = false) ∧
       ∀ t, 0 < t → t < 1 → ∃ u, t < u ∧ u < 1 + t ∧ ξ u = true := by -- --- PROOF ---
   -- the window `(0,1)` after `t` is the interval `(t, 1 + t)` of points `u = s + t`
   have key : ∀ t : ℝ≥0, (∃ s, 0 < s ∧ s < 1 ∧ ξ (s + t) = true) ↔
@@ -76,7 +76,7 @@ theorem STL.aux_phi1_sat (ξ : ℝ≥0 → Bool) : -- --- CONCL ---
       refine ⟨u - t, tsub_pos_of_lt h0, ?_, by rwa [tsub_add_cancel_of_le h0.le]⟩
       exact (tsub_lt_iff_left h0.le).2 (by rwa [add_comm] at h1)
   simp only [STL.aux_phi1, STL.aux_p, STL.Formula.and, STL.Formula.next, STL.Formula.tt,
-    STL.Formula.Sat, Time.shift, zero_add, not_exists, not_and, not_or, not_not, not_forall]
+    STL.Formula.Satisfies, Time.shift, zero_add, not_exists, not_and, not_or, not_not, not_forall]
   -- the guard is the first conjunct, the cofinality the second, with `u = s + t`
   refine and_congr ?_ (forall₃_congr fun t _ _ => by
     -- each direction swaps the order of the two bounds
@@ -109,8 +109,8 @@ theorem STL.aux_one_add_lt_two {a : ℝ≥0} (ha : a < 1) : 1 + a < 2 :=
 
 /-- Changing one point outside `[1,2)` keeps `ϕ₁` true. -/
 theorem STL.aux_phi1_sat_of_ne {t : ℝ≥0} (ht : t < 1 ∨ 2 ≤ t) {ξ ξ' : ℝ≥0 → Bool}
-    (hag : ∀ t', t' ≠ t → ξ t' = ξ' t') (h : STL.aux_phi1.Sat ξ) : -- --- CONCL ---
-    STL.aux_phi1.Sat ξ' := by -- --- PROOF ---
+    (hag : ∀ t', t' ≠ t → ξ t' = ξ' t') (h : STL.aux_phi1.Satisfies ξ) : -- --- CONCL ---
+    STL.aux_phi1.Satisfies ξ' := by -- --- PROOF ---
   rw [STL.aux_phi1_sat] at h ⊢
   obtain ⟨⟨hz1, hz⟩, hc⟩ := h
   -- the guard on `[1,2)` is unchanged, since `t` is not in it
@@ -188,14 +188,15 @@ theorem STL.aux_cexTsupp_disjoint : Disjoint STL.aux_phi1.tsupp STL.aux_phi2.tsu
 theorem STL.upsilon_or_counterexample : -- --- CONCL ---
     ∃ (R : ℝ≥0 → Set Bool) (Υ : STL.Formula Bool → RTL.Formula Bool) (φ₁ φ₂ : STL.Formula Bool),
       STL.IsSound {R} Υ ∧ STL.IsComplete {R} Υ ∧ Disjoint φ₁.tsupp φ₂.tsupp ∧
-        ¬ ((Υ (φ₁.or φ₂)).Sat R ↔ (RTL.Formula.or (Υ φ₁) (Υ φ₂)).Sat R) := by -- --- PROOF ---
+        ¬ ((Υ (φ₁.or φ₂)).Satisfies R ↔ (RTL.Formula.or (Υ φ₁) (Υ φ₂)).Satisfies
+        R) := by -- --- PROOF ---
   classical
   let R : ℝ≥0 → Set Bool := fun t => if 0 < t ∧ t < 1 then Set.univ else {false}
   let Υ : STL.Formula Bool → RTL.Formula Bool := fun φ =>
     if φ.HoldsOn (ReachSequence.traceSet R) then .A Pform.top else .A Pform.bot
   have h0 : R 0 = {false} := by simp [R]
-  have hbot : ¬ (RTL.Formula.A Pform.bot).Sat R := fun h => h false (by simp [h0])
-  have htop : (RTL.Formula.A Pform.top).Sat R := fun r _ => trivial
+  have hbot : ¬ (RTL.Formula.A Pform.bot).Satisfies R := fun h => h false (by simp [h0])
+  have htop : (RTL.Formula.A Pform.top).Satisfies R := fun r _ => trivial
   -- the values off `(0,1)` are `false`
   have hR1 : ∀ ξ ∈ ReachSequence.traceSet R, ∀ t, ¬ (0 < t ∧ t < 1) → ξ t = false :=
       fun ξ hξ t ht => by

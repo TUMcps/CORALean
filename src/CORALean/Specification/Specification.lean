@@ -14,6 +14,11 @@ specification's set is a representation; what it is checked on stays a `Set α`,
 `Theorems.HoldsOfOuter` carries a verdict on an outer approximation. `custom` is not a fourth kind:
 it provably survives an outer approximation, pinned down to a safe set. `logic` is out of scope:
 satisfying one is model checking.
+
+## References
+
+None: CORA's `specification`, a software class: no publication introduces it, and the CORA manual
+page for it could not be read.
 -/
 
 -- Authors:       Claude Opus 5

@@ -50,7 +50,7 @@ variable {X : Type}
 
 theorem STL.DFormula.zEnc_iff_sat {N : ℕ} (x : ℕ → X) : -- --- CONCL ---
     ∀ (φ : STL.DFormula X) (t : ℕ), t + φ.bound ≤ N →
-      (φ.zEnc N true x t ↔ φ.Sat x t) := by -- --- PROOF ---
+      (φ.IsZEnc N true x t ↔ φ.Satisfies x t) := by -- --- PROOF ---
   intro φ
   induction φ with
   | pred μ => intro t _; exact Iff.rfl
@@ -67,13 +67,13 @@ theorem STL.DFormula.zEnc_iff_sat {N : ℕ} (x : ℕ → X) : -- --- CONCL ---
     -- within the horizon the window is `[t+a, t+b]`, and every step of it is decided
     intro t ht
     simp only [STL.DFormula.bound] at ht
-    simp only [STL.DFormula.zEnc, STL.DFormula.Sat, min_eq_left (show t + a ≤ N by omega),
+    simp only [STL.DFormula.IsZEnc, STL.DFormula.Satisfies, min_eq_left (show t + a ≤ N by omega),
       min_eq_left (show t + b ≤ N by omega)]
     exact forall₂_congr fun i hi => ih i (by have := (Finset.mem_Icc.mp hi).2; omega)
   | eventually a b hab φ ih =>
     intro t ht
     simp only [STL.DFormula.bound] at ht
-    simp only [STL.DFormula.zEnc, STL.DFormula.Sat, min_eq_left (show t + a ≤ N by omega),
+    simp only [STL.DFormula.IsZEnc, STL.DFormula.Satisfies, min_eq_left (show t + a ≤ N by omega),
       min_eq_left (show t + b ≤ N by omega)]
     exact exists_congr fun i => and_congr_right fun hi =>
       ih i (by have := (Finset.mem_Icc.mp hi).2; omega)
@@ -81,7 +81,7 @@ theorem STL.DFormula.zEnc_iff_sat {N : ℕ} (x : ℕ → X) : -- --- CONCL ---
     -- the decomposition is the bounded until, then each operand is decided on `[t, t+b]`
     intro t ht
     simp only [STL.DFormula.bound] at ht
-    simp only [STL.DFormula.zEnc, STL.DFormula.Sat, min_eq_left (show t ≤ N by omega),
+    simp only [STL.DFormula.IsZEnc, STL.DFormula.Satisfies, min_eq_left (show t ≤ N by omega),
       min_eq_left (show t + a ≤ N by omega), min_eq_left (show t + b ≤ N by omega)]
     rw [STL.until_decomp_iff hab (by omega)]
     refine exists_congr fun t' => and_congr_right fun ht' =>

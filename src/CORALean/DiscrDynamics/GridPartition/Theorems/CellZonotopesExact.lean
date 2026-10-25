@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The zonotopes of `cellZonotopes` denote the boxes of `cellIntervals`, one for one. -/
-theorem GridPartition.cellZonotopes_exact (P : GridPartition n) (hP : P.WellFormed)
+theorem GridPartition.cellZonotopes_exact (P : GridPartition n) (hP : P.IsWellFormed)
     (cs : List ℕ) : -- --- CONCL ---
     (P.cellZonotopes cs).map Real.Zonotope.construct =
       (P.cellIntervals cs).map Real.Interval.construct := by -- --- PROOF ---

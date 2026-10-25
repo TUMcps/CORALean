@@ -44,9 +44,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.rewrite_finOpen_or (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X)
-    (h : ((STL.Formula.finOpen 1 φ₁).or (STL.Formula.finOpen 1 φ₂)).Sat ξ) :
-    (STL.Formula.finOpen 1 (φ₁.or φ₂)).Sat ξ := by
-  simp only [STL.Formula.Sat] at h ⊢
+    (h : ((STL.Formula.finOpen 1 φ₁).or (STL.Formula.finOpen 1 φ₂)).Satisfies ξ) :
+    (STL.Formula.finOpen 1 (φ₁.or φ₂)).Satisfies ξ := by
+  simp only [STL.Formula.Satisfies] at h ⊢
   rcases h with ⟨s, hs₀, hs₁, hs⟩ | ⟨s, hs₀, hs₁, hs⟩
   · exact ⟨s, hs₀, hs₁, Or.inl hs⟩
   · exact ⟨s, hs₀, hs₁, Or.inr hs⟩

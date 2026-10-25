@@ -19,21 +19,22 @@ never folded silently into a parameter. Each float representation therefore prov
     `PolyLevelSet`, records the slack `b_error` of its rows), and they are named there too, where
     `absorbRounding` moves them or says where they stay.
 
-A float type whose variables are no ambient points (a constraint system, as a float `PolyLevelSet`
-is: its rows are on free variables, with no point to hold a box around) has no box and no
-`absorbRounding`. It says so on one line of its main docstring, starting
-`There is no \`I_error\` and no \`absorbRounding\`:` and giving the reason, and it records its
-rounding in a `<name>_error` field of its own. The marker is refused on a type that has a box, and on
-one that records no rounding at all.
+A float type that cannot or need not hold a box has no `I_error` and no `absorbRounding`: a
+constraint system on free variables (a float `PolyLevelSet`, with no point to hold a box around),
+the interval that is the box type itself, a union or an intersection whose members carry the boxes,
+a set of functions. It says so on one line of its main docstring, starting
+`There is no \`I_error\` and no \`absorbRounding\`:` and giving the reason. The marker is refused
+on a type that has a box (an `I_error` field or an `extends`), an `absorbRounding` or an
+`absorbRounding_outer`. A type that has a box but cannot move it into its parameters says on one line
+of the main docstring `There is no \`absorbRounding\`: <reason>` (a vertex description, whose
+absorbed box would need the box's corners at every vertex); the line is refused when an
+`absorbRounding` or `absorbRounding_outer` exists. There is no list.
 
 It also rejects the names this operation had before it was unified: `dependent_outer` and
 `dependent_nominal` under a `Float/` folder, and a `Dependent*.lean` file there, except for
 `ConPolyZono`, whose `dependent` is a different, exact operation (it frees the independent
 generators and leaves the box alone).
 
-An entry of `scripts/absorb-rounding-allowlist.txt` — `<X>  <reason>` per line — exempts a
-representation that cannot or need not hold the box; the reason says why. An entry whose
-representation meets the rule, or has no float main type, is stale.
 """
 import re
 import sys
@@ -41,26 +42,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTSET = ROOT / "src" / "CORALean" / "ContSet"
-ALLOW = ROOT / "scripts" / "absorb-rounding-allowlist.txt"
 OLD_NAMES = re.compile(r"\bdependent_(outer|nominal)\b")
 OLD_FILES = re.compile(r"^Dependent(Outer|Nominal)?\.lean$")
 EXEMPT_OLD = {"ConPolyZono"}
 
 
-def allowlist():
-    entries = {}
-    for ln, line in enumerate(ALLOW.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip() or line.startswith("#"):
-            continue
-        parts = line.split(None, 1)
-        if len(parts) < 2:
-            print(f"{ALLOW.relative_to(ROOT)}:{ln}: entry `{parts[0]}` has no reason")
-            continue
-        entries[parts[0]] = ln
-    return entries
-
-
 MARKER = re.compile(r"^There is no `I_error` and no `absorbRounding`: \S", re.M)
+# a type with a box that cannot move it into its parameters
+BOX_MARKER = re.compile(r"^There is no `absorbRounding`: \S", re.M)
 
 
 def error_fields(text):
@@ -68,7 +57,6 @@ def error_fields(text):
 
 
 def main():
-    allowed = allowlist()
     findings = 0
     seen = set()
     # the `_error` fields of every float main type, for the fields typed by one
@@ -93,12 +81,17 @@ def main():
         # the other `_error` fields, and the body of `absorbRounding` they must appear in
         others = error_fields(text)
         if MARKER.search(text):
-            if has_box or has_def or has_thm or not others:
+            if has_box or has_def or has_thm:
                 print(f"{main_file.relative_to(ROOT)}:1: the docstring says the type has no "
-                      "`I_error` and no `absorbRounding`, but it has one, or it records no "
-                      "rounding in a `<name>_error` field — drop the line or the field")
+                      "`I_error` and no `absorbRounding`, but it has one — drop the line")
                 findings += 1
             seen.add(X)
+            continue
+        if BOX_MARKER.search(text):
+            if not has_box or has_def or has_thm:
+                print(f"{rel}:1: the docstring says the type has a box and no `absorbRounding`, "
+                      "but it has no box or has an `absorbRounding` — drop the line")
+                findings += 1
             continue
         struct = re.search(rf"^structure {X}\b.*?(?=^\S)", text, re.M | re.S)
         for typ, fs in nested.items():
@@ -111,28 +104,18 @@ def main():
                       "recorded rounding beside `I_error` is moved into the parameters by "
                       "`absorbRounding` too (CONTRIBUTING, \"The error box and absorbRounding\")")
                 findings += 1
-        if X in allowed:
-            if ok:
-                print(f"{ALLOW.relative_to(ROOT)}:{allowed[X]}: stale entry `{X}` — it has an "
-                      "`I_error`, an `absorbRounding` and an `absorbRounding_outer` now")
-                findings += 1
-            continue
         if not has_box:
             print(f"{rel}:1: float main type `{X}` has no `I_error` field — a float set records "
-                  "its rounding in a box (CONTRIBUTING, \"The error box and absorbRounding\"), or "
-                  "goes on scripts/absorb-rounding-allowlist.txt with a reason")
+                  "its rounding in a box (CONTRIBUTING, \"The error box and absorbRounding\"), or its "
+                  "main docstring says why it has none: `There is no \\`I_error\\` and no "
+                  "\\`absorbRounding\\`: <reason>`")
             findings += 1
         if not has_def:
             print(f"{rel}:1: no `def {X}.absorbRounding` under `ContSet/{X}/Float/` — move the "
-                  "box into the parameters, or list the representation with a reason")
+                  "box into the parameters, or say in the main docstring why there is none")
             findings += 1
         if not has_thm:
             print(f"{rel}:1: no `theorem {X}.absorbRounding_outer` under `ContSet/{X}/Float/`")
-            findings += 1
-    for X, ln in allowed.items():
-        if X not in seen:
-            print(f"{ALLOW.relative_to(ROOT)}:{ln}: stale entry `{X}` — no "
-                  f"`ContSet/{X}/Float/{X}.lean`")
             findings += 1
     for path in sorted(CONTSET.glob("*/Float/**/*.lean")):
         X = path.relative_to(CONTSET).parts[0]

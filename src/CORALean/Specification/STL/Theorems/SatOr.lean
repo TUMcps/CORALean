@@ -45,7 +45,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_or (φ ψ : STL.Formula X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.or φ ψ).Sat ξ ↔ φ.Sat ξ ∨ ψ.Sat ξ :=
+    (STL.Formula.or φ ψ).Satisfies ξ ↔ φ.Satisfies ξ ∨ ψ.Satisfies ξ :=
   Iff.rfl
 
 end CORALean

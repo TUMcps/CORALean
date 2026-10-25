@@ -12,7 +12,7 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 # The inner time-point set of one linearized step
 
 [1, Prop. 1] with its representation (21) derived rather than assumed: for a linearization whose
-`AbstractionError` certificate `L` holds on a region `R` the solutions under `u₀` do not leave
+`IsAbstractionError` certificate `L` holds on a region `R` the solutions under `u₀` do not leave
 over the step, `R̂(Δt) = (e^{AΔt} X₀ + R_con) ⊖ R̂_err + 2c ⊆ R(Δt)` with
 `R̂_err = inputSolution Δt η L` (`IsTrajectory.sub_mem_inputSolution`, then
 `NonlinearSys.minkowskiDiff_add_subset_reachSetExact`). This is the time-point set of [1, Alg. 1]
@@ -30,7 +30,6 @@ solutions `hex`, the field Lipschitz along them `hLip`, and `R̂_err` convex, co
 * `us` – input expansion point
 * `R` – confinement region
 * `L` – remainder set
-* `cert` – abstraction-error certificate
 * `u₀` – constant input
 * `η` – Taylor terms
 * `c` – center of symmetry
@@ -39,6 +38,7 @@ solutions `hex`, the field Lipschitz along them `hLip`, and `R̂_err` convex, co
 
 ## Hypotheses
 * `hΔt` – step size positive
+* `cert` – abstraction-error certificate
 * `hu₀` – input in input set
 * `hε` – step norm small enough
 * `hconv` – remainder set convex
@@ -92,7 +92,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 theorem NonlinearSys.minkowskiDiff_inputSolution_subset_reachSetExact [Mtimes ℐ S]
     (sys : NonlinearSys n m) (R₀ : S n) (U : S m) {Δt : ℝ} (hΔt : 0 < Δt) {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n}
-    (cert : AbstractionError sys.f A B xs us R (construct U) L) {u₀ : Vec ℝ m}
+    (cert : IsAbstractionError sys.f A B xs us R (construct U) L) {u₀ : Vec ℝ m}
     (hu₀ : u₀ ∈ construct U) (η : ℕ) (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct L)) (hclosed : IsClosed (construct L))
     (hbdd : Bornology.IsBounded (construct L))

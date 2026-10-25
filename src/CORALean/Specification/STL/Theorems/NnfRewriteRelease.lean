@@ -67,7 +67,7 @@ theorem STL.Nnf.hasSampledRewrite_release (i j : ℕ) {φ ψ : STL.Nnf X} (hφ :
   obtain ⟨⟨sTψ, hTψ⟩, ⟨sFψ, hFψ⟩, ⟨sGψ, hGψ⟩⟩ := hψ
   by_cases hji : j < i
   · -- an empty interval: `⊥` implies everything
-    have hbot : ∀ ξ, ¬ ((STL.Samp.lit (Pform.bot : Pform X)).toFormula 1).Sat ξ :=
+    have hbot : ∀ ξ, ¬ ((STL.Samp.lit (Pform.bot : Pform X)).toFormula 1).Satisfies ξ :=
       fun ξ h => (h : False)
     exact ⟨⟨.lit Pform.bot, fun ξ h => absurd h (hbot ξ)⟩,
       ⟨.lit Pform.bot, fun ξ h => absurd h (hbot ξ)⟩,
@@ -75,7 +75,8 @@ theorem STL.Nnf.hasSampledRewrite_release (i j : ℕ) {φ ψ : STL.Nnf X} (hφ :
   rcases Nat.eq_zero_or_pos j with rfl | hj
   · -- `φ R[0,0] ψ ≡ ψ`, in each context
     obtain rfl : i = 0 := by omega
-    have e : ∀ ξ : ℝ≥0 → X, (STL.Nnf.release 0 0 φ ψ).toFormula.Sat ξ ↔ ψ.toFormula.Sat ξ := by
+    have e : ∀ ξ : ℝ≥0 → X, (STL.Nnf.release 0 0 φ ψ).toFormula.Satisfies ξ ↔ ψ.toFormula.Satisfies
+        ξ := by
       intro ξ
       simpa only [STL.Nnf.toFormula, Nat.cast_zero] using
         STL.release_zero_equiv φ.toFormula ψ.toFormula ξ

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySoundFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
 public import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
@@ -63,12 +63,12 @@ theorem LinearSys.aux_verifySpecFloat_of_verifyStepFloat
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
-    (h : LinearSys.VerifySoundFloat Reach reachFn innerApprox distG distF)
+    (h : LinearSys.IsVerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋)
     (hG : toReal (LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax).νGout ≤ 0)
     (hF : 0 < toReal (LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax).νFout)
     : -- --- CONCL ---
-    LinearSys.VerifySpecFloat G F Reach := by -- --- PROOF ---
+    LinearSys.IsVerifySpecFloat G F Reach := by -- --- PROOF ---
   -- the outer approximation, read as a constrained zonotope, still contains `Reach`
   have hR : Reach ⊆ (reachFn εmax).conZonotope.construct :=
     (h.outer εmax).trans (Zonotope.conZonotope_contains _)
@@ -88,12 +88,12 @@ theorem LinearSys.aux_verifySpecFloat_of_verifyRunFloat
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
-    (h : LinearSys.VerifySoundFloat Reach reachFn innerApprox distG distF)
+    (h : LinearSys.IsVerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n))
     (εmax : 𝕋) (fuel : ℕ)
     (hrun : LinearSys.aux_verifyRunFloat reachFn innerApprox distG distF G F εmax fuel = some true)
     : -- --- CONCL ---
-    LinearSys.VerifySpecFloat G F Reach := by -- --- PROOF ---
+    LinearSys.IsVerifySpecFloat G F Reach := by -- --- PROOF ---
   induction fuel generalizing εmax with
   | zero => simp [LinearSys.aux_verifyRunFloat] at hrun
   | succ fuel ih =>
@@ -120,12 +120,12 @@ theorem LinearSys.verifyFloat_safe
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
-    (h : LinearSys.VerifySoundFloat Reach reachFn innerApprox distG distF)
+    (h : LinearSys.IsVerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n))
     (εmax₀ : 𝕋) (fuel : ℕ)
     (hv : LinearSys.verifyFloat reachFn innerApprox distG distF G F εmax₀ fuel = some true)
     :
-    LinearSys.VerifySpecFloat G F Reach :=
+    LinearSys.IsVerifySpecFloat G F Reach :=
   LinearSys.aux_verifySpecFloat_of_verifyRunFloat h G F εmax₀ fuel hv
 
 end CORALean

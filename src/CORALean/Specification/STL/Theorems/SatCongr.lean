@@ -46,7 +46,7 @@ variable {X : Type}
 
 theorem STL.DFormula.sat_congr : -- --- CONCL ---
     (∀ (φ : STL.DFormula X) (x y : ℕ → X) (t : ℕ),
-      (∀ i ≤ φ.bound, x (t + i) = y (t + i)) → (φ.Sat x t ↔ φ.Sat y t)) ∧
+      (∀ i ≤ φ.bound, x (t + i) = y (t + i)) → (φ.Satisfies x t ↔ φ.Satisfies y t)) ∧
     ∀ μ : X → ℝ, (STL.DFormula.always 0 10 (by norm_num)
       (STL.DFormula.always 1 6 (by norm_num) (.pred μ))).bound = 16 := by -- --- PROOF ---
   refine ⟨fun φ => ?_, fun μ => rfl⟩
@@ -55,12 +55,12 @@ theorem STL.DFormula.sat_congr : -- --- CONCL ---
     intro x y t h
     have h0 := h 0 (Nat.zero_le _)
     simp only [add_zero] at h0
-    simp only [STL.DFormula.Sat, h0]
+    simp only [STL.DFormula.Satisfies, h0]
   | npred μ =>
     intro x y t h
     have h0 := h 0 (Nat.zero_le _)
     simp only [add_zero] at h0
-    simp only [STL.DFormula.Sat, h0]
+    simp only [STL.DFormula.Satisfies, h0]
   -- the window of each operand lies inside that of the conjunction
   | and φ ψ ihφ ihψ =>
     intro x y t h

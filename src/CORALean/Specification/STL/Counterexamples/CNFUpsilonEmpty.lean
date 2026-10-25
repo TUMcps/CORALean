@@ -45,9 +45,9 @@ open scoped NNReal
 
 theorem STL.CNF.exists_upsilon_not_complete_of_empty : -- --- CONCL ---
     ∃ (R : ℝ≥0 → Set Bool) (T : Finset ℝ≥0) (cnf : STL.CNF Bool),
-      ReachSequence.FinRep T R ∧ ReachSequence.CDivisible 1 T ∧
+      ReachSequence.IsFinRep T R ∧ ReachSequence.IsCDivisible 1 T ∧
         (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧
-          ¬ ((cnf.upsilon 1).Sat R ↔
+          ¬ ((cnf.upsilon 1).Satisfies R ↔
             (cnf.toFormula 1).HoldsOn (ReachSequence.traceSet R)) := by -- --- PROOF ---
   classical
   -- `R` is `Bool` everywhere but at time `5`
@@ -76,7 +76,7 @@ theorem STL.CNF.exists_upsilon_not_complete_of_empty : -- --- CONCL ---
     have hU := (STL.CNF.sat_upsilon 1 _ R (by simp [R]) hR).1 (h.2 hC) _ (List.mem_singleton_self _)
     obtain ⟨b', hb', hb''⟩ := hU
     obtain rfl := List.mem_singleton.1 hb'
-    simp [b, R, Pform.bigOr, Pform.Sat, h25] at hb''
+    simp [b, R, Pform.bigOr, Pform.Satisfies, h25] at hb''
 
 end CORALean
 

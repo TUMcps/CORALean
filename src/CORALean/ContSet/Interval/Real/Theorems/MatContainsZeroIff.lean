@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Definitions.MatContains
+public import CORALean.ContSet.Interval.Real.Definitions.ContainsMat
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 @[expose] public section
 
 /-!
-# Without tolerance, `Interval.matContains` is membership
+# Without tolerance, `Interval.ContainsMat` is membership
 
 At `tol = 0` the tests `inf < M`, `|inf - M| ≤ 0` collapse to `inf ≤ M`, and likewise for the
 upper end; the emptiness test of a column then follows from `M` being in it.
@@ -39,7 +39,7 @@ variable {m n : ℕ}
 
 /-- `contains(intMat, M, 'exact', 0)` holds exactly for the members of the box. -/
 theorem Interval.matContains_zero_iff (A : Interval (Mat ℝ m n)) (M : Mat ℝ m n) : -- --- CONCL ---
-    A.matContains M 0 ↔ M ∈ A.construct := by -- --- PROOF ---
+    A.ContainsMat M 0 ↔ M ∈ A.construct := by -- --- PROOF ---
   rw [Interval.mem_mat_iff]
   constructor
   · -- every test at tolerance `0` says `inf ≤ M` or `M ≤ sup`

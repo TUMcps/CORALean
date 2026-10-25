@@ -50,7 +50,7 @@ open Pointwise ContSet
 
 /-- The network statement, at a network that exists. -/
 theorem aux_sigmoidRefinableNetwork_convergent (n : ℕ) :
-    (Real.sigmoidRefinableNetwork n).Convergent :=
+    (Real.sigmoidRefinableNetwork n).IsConvergent :=
   ⟨Real.Layer.activationPolySigmoid_convergent n, ⟨1, LipschitzWith.id⟩, trivial⟩
 
 

@@ -45,9 +45,9 @@ namespace CORALean
 theorem STL.DFormula.rob_counterexample :
     let φ : STL.DFormula ℝ := .npred id
     let x : ℕ → ℝ := fun _ => 0
-    φ.Sat x 0 ∧ ¬ 0 < φ.rob x 0 := by
+    φ.Satisfies x 0 ∧ ¬ 0 < φ.rob x 0 := by
   intro φ x
-  simp [φ, x, STL.DFormula.Sat, STL.DFormula.rob]
+  simp [φ, x, STL.DFormula.Satisfies, STL.DFormula.rob]
 
 end CORALean
 

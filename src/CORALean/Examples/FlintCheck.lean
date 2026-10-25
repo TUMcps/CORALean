@@ -4,7 +4,7 @@ import CORALean.Global.Float.Instances.Flint.API
 # `lake exe flintcheck`: does FLINT do what `trustedFlint` says?
 
 `trustedFlint` (`Flint/Definitions/Axioms.lean`) is a claim about C no proof reaches; this SAMPLES
-it, as `hardwarecheck` does `TrustedHardware`, against exact rationals with the rounding written
+it, as `hardwarecheck` does `IsTrustedHardware`, against exact rationals with the rounding written
 out from the definition. For each directed operation, precision `p` and operand pair (bit lengths
 about `p`, ties, cancellation, zeros, a positive divisor), with `x` the exact result, `r` must lie
 on the claimed side of `x`, have at most `p` significant bits, and be the nearest such number. Run

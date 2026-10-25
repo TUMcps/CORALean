@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem rootRelaxation_sound : rootRelaxation.Sound Real.sqrt :=
+theorem rootRelaxation_sound : rootRelaxation.IsSound Real.sqrt :=
   Relaxation.ofMonotone_sound (fun _ _ h => Real.sqrt_le_sqrt h) (enclosure_exact_sound _)
 
 end CORALean.Real

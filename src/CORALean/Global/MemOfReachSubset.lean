@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.RobustInvariant
+public import CORALean.Global.IsRobustInvariant
 
 @[expose] public section
 
@@ -8,7 +8,7 @@ public import CORALean.Global.RobustInvariant
 # Once in an invariant set, always in it
 
 What the verification of a region of attraction in [1, Sec. 3.1.2] shows: if `S` is robust
-positively invariant (`RobustInvariant`) and the reachable set from `R(0)` lies in `S` at one
+positively invariant (`IsRobustInvariant`) and the reachable set from `R(0)` lies in `S` at one
 time, `∃ t > 0 : R(t) ⊆ S`, then every solution from `R(0)` is in `S` at every later time. That
 the solution converges, which the region of attraction `D` asks for, it does not show
 (`regionOfAttraction_counterexample`). The argument restarts the solution at `t`: the system of
@@ -55,8 +55,8 @@ variable {X Inp : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RobustInvariant.mem_of_reach_subset {γ : ℝ → X → (ℝ → Inp) → X} {U : Set (ℝ → Inp)}
-    {S R₀ : Set X} {t : ℝ} (hS : RobustInvariant γ U S)
+theorem IsRobustInvariant.mem_of_reach_subset {γ : ℝ → X → (ℝ → Inp) → X} {U : Set (ℝ → Inp)}
+    {S R₀ : Set X} {t : ℝ} (hS : IsRobustInvariant γ U S)
     (hγ : ∀ t s : ℝ, 0 ≤ t → 0 ≤ s → ∀ x u, γ (t + s) x u = γ s (γ t x u) (fun r => u (t + r)))
     (hU : ∀ u ∈ U, ∀ t : ℝ, 0 ≤ t → (fun r => u (t + r)) ∈ U) (ht : 0 ≤ t)
     (hR : ∀ x₀ ∈ R₀, ∀ u ∈ U, γ t x₀ u ∈ S) : -- --- CONCL ---

@@ -153,7 +153,7 @@ theorem aux_inputTaylorSumFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : �
 /-- The float input solution is *contained in* the exact `inputSolution` at `U`'s nominal
 zonotope, widened by `inputSolutionBoxFloat` — the upper side of its outer guarantee. -/
 theorem LinearSys.inputSolutionFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {U : Zonotope (Vec 𝕋 n)}
+    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {U : Zonotope (Vec 𝕋 n)}
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     (sys.inputSolutionFloat r η U).construct
       ⊆ ContSet.construct (sys.inputSolution (S := 𝒵)

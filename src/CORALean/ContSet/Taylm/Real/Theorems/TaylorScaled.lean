@@ -65,8 +65,8 @@ variable {n : ℕ}
 
 /-- `T - c` at a center no larger than `C` weighs at most twice `T`. -/
 theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
-    (hT : T.Scaled h C) : -- --- CONCL ---
-    (T.minus (Taylm.const n c T.maxOrder)).Scaled h (2 * C) := by -- --- PROOF ---
+    (hT : T.IsScaled h C) : -- --- CONCL ---
+    (T.minus (Taylm.const n c T.maxOrder)).IsScaled h (2 * C) := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
   have hC : 0 ≤ C := le_trans (abs_nonneg _) hc
   have hp : 0 ≤ C * h ^ (T.maxOrder + 1) := by
@@ -85,10 +85,10 @@ theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h0 : 0 < h)
-    (h1 : h ≤ 1) (hT : T.Scaled h C)
+    (h1 : h ≤ 1) (hT : T.IsScaled h C)
     (hA : ∀ k ≤ T.maxOrder, |iteratedDeriv k g T.constCoef / (Nat.factorial k : ℝ)| ≤ A)
     (hD : |D| ≤ E) : -- --- CONCL ---
-    (T.taylor g T.constCoef D).Scaled h
+    (T.taylor g T.constCoef D).IsScaled h
       (A * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
         + E * (2 * C) ^ (T.maxOrder + 1)) := by -- --- PROOF ---
   set N := T.maxOrder
@@ -102,7 +102,8 @@ theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h
     simp [Taylm.minus, Taylm.plus, Taylm.uminus, Taylm.const, N]
   have hk : ∀ k : Fin (N + 1),
       (((T.minus (Taylm.const n c N)).pow k).smul
-        (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))).Scaled h (A * (8 * C) ^ (k : ℕ)) := by
+        (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))).IsScaled h (A * (8 * C) ^ (k : ℕ)) :=
+            by
     intro k
     have hs := Taylm.smul_scaled (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))
       (Taylm.pow_scaled h0 h1 hm k)

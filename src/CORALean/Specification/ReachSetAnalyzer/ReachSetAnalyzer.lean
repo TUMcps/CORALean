@@ -16,6 +16,11 @@ interval are tested against atomic propositions, and for each proposition a
 which each one matters (a proposition without mask matters always). CORA's analyzer is a handle
 object that its methods mutate; here a method returns the new analyzer. Time stamps are in a time
 type `T`: ℝ, or the float scalar the reach sets were computed in, compared exactly.
+
+## References
+
+None: CORA's `reachSetAnalyzer`, a software class: no publication introduces it, and the CORA manual
+page for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

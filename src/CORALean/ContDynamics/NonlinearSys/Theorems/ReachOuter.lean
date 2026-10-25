@@ -33,12 +33,12 @@ forward time; the `_horizon` and `_inputSolution` variants relax each in turn.
 * `R` – state region
 * `Δt` – step size
 * `y` – output trajectory
-* `cert` – abstraction-error certificate
 * `o` – maximum order
 * `k` – sample index
 
 ## Hypotheses
 * `traj` – trajectory of the system
+* `cert` – abstraction-error certificate
 * `hT` – nonnegative times in time set
 * `hR` – trajectory stays in region
 * `hΔt` – step size nonnegative
@@ -86,7 +86,7 @@ theorem NonlinearSys.IsTrajectory.reach_outer {sys : NonlinearSys n m} {T : Set 
     {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
     {R : Set (Vec ℝ n)} {Δt : ℝ} {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y)
-    (cert : AbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Ici 0 ⊆ T) (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))
     (hUd : ∀ k : ℕ, (NonlinearSys.linearize A).stepInput

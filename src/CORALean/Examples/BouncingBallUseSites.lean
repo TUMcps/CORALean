@@ -38,14 +38,14 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- A run that starts inside the invariant ends inside it, however many bounces
 it took and wherever it stopped. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
-    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
+    (hinv : HA.IsInvariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
     (hx : x ∈ construct (R ℓ)) : y ∈ construct (R ℓ') :=
   run.mem_of_invariant hinv hx
 
 /-- The floor as a requirement rather than as a guard: checked on the invariant
 of the location a run ends in, it is answered for the state it ends at. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
-    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
+    (hinv : HA.IsInvariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
     (hx : x ∈ construct (R ℓ))
     (h : (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds (construct (R ℓ'))) :
     (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds {y} :=

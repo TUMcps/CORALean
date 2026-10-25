@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.GammaTest
+public import CORALean.Global.PassesGammaTest
 public import Mathlib.LinearAlgebra.Matrix.Notation
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
@@ -13,8 +13,8 @@ public import Mathlib.Tactic.Ring
 
 [1, Example 4.1]: `f(x) = M x`, `M = (1 1; -1 1)`, `x = [-2, 2]²`, `y = [-ε, ε]²`, `x₀ = 0` (the
 paper's `x̃`) and `J = M`. The image of `x` is `x` rotated by `π/4` and inflated by `√2`, so
-`y ⊆ range(f, x)` holds if and only if `ε ≤ 2`; yet (2) of [1, Cor. 3.1], `gammaTest`, fails
-for every `ε > 0`, because `M` is not an H-matrix. (2) is that of the corollary, `gammaTest`.
+`y ⊆ range(f, x)` holds if and only if `ε ≤ 2`; yet (2) of [1, Cor. 3.1], `PassesGammaTest`, fails
+for every `ε > 0`, because `M` is not an H-matrix. (2) is that of the corollary, `PassesGammaTest`.
 
 ## Inputs
 * `ε` – half width of the target box
@@ -48,7 +48,7 @@ open Set Matrix
 
 /-- [1, Example 4.1]: `y ⊆ range(f, x)` iff `ε ≤ 2`, and (2) fails for every `ε > 0`. -/
 theorem gammaTest_rotation_example {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
-    ¬ gammaTest (fun x => !![1, 1; -1, 1] *ᵥ x) 0 (fun _ => -2) (fun _ => 2)
+    ¬ PassesGammaTest (fun x => !![1, 1; -1, 1] *ᵥ x) 0 (fun _ => -2) (fun _ => 2)
         !![1, 1; -1, 1] !![1, 1; -1, 1] (fun _ => -ε) (fun _ => ε) ∧
       (Icc (fun _ : Fin 2 => -ε) (fun _ => ε) ⊆
         (fun x => !![1, 1; -1, 1] *ᵥ x) '' Icc (fun _ : Fin 2 => (-2 : ℝ)) (fun _ => 2) ↔

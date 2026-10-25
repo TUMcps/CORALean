@@ -44,35 +44,35 @@ namespace CORALean
 open Polynomial
 
 /-- `P` is dominated by `A`: every coefficient of `P` is at most that of `A` in magnitude. -/
-def CoeffDom (P A : ℝ[X]) : Prop := ∀ j, |P.coeff j| ≤ A.coeff j
+def IsCoeffDom (P A : ℝ[X]) : Prop := ∀ j, |P.coeff j| ≤ A.coeff j
 
 
 -- a dominating polynomial has nonnegative coefficients
-theorem CoeffDom.nonneg {P A : ℝ[X]} (h : CoeffDom P A) (j : ℕ) : 0 ≤ A.coeff j :=
+theorem IsCoeffDom.nonneg {P A : ℝ[X]} (h : IsCoeffDom P A) (j : ℕ) : 0 ≤ A.coeff j :=
   le_trans (abs_nonneg _) (h j)
 
 -- dominance is closed under sums
-theorem CoeffDom.add {P Q A B : ℝ[X]} (hP : CoeffDom P A) (hQ : CoeffDom Q B) :
-    CoeffDom (P + Q) (A + B) := fun j => by
+theorem IsCoeffDom.add {P Q A B : ℝ[X]} (hP : IsCoeffDom P A) (hQ : IsCoeffDom Q B) :
+    IsCoeffDom (P + Q) (A + B) := fun j => by
   rw [coeff_add, coeff_add]
   exact le_trans (abs_add_le _ _) (add_le_add (hP j) (hQ j))
 
 -- the sign of a coefficient does not matter
-theorem CoeffDom.neg {P A : ℝ[X]} (h : CoeffDom P A) : CoeffDom (-P) A := fun j => by
+theorem IsCoeffDom.neg {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom (-P) A := fun j => by
   rw [coeff_neg, abs_neg]
   exact h j
 
 -- dominance is closed under products
-theorem CoeffDom.mul {P Q A B : ℝ[X]} (hP : CoeffDom P A) (hQ : CoeffDom Q B) :
-    CoeffDom (P * Q) (A * B) := fun j => by
+theorem IsCoeffDom.mul {P Q A B : ℝ[X]} (hP : IsCoeffDom P A) (hQ : IsCoeffDom Q B) :
+    IsCoeffDom (P * Q) (A * B) := fun j => by
   rw [coeff_mul, coeff_mul]
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (Finset.sum_le_sum fun x _ => ?_)
   rw [abs_mul]
   exact mul_le_mul (hP _) (hQ _) (abs_nonneg _) ((hP.nonneg _))
 
 -- dominance is closed under the derivative
-theorem CoeffDom.derivative {P A : ℝ[X]} (h : CoeffDom P A) :
-    CoeffDom (derivative P) (derivative A) := fun j => by
+theorem IsCoeffDom.derivative {P A : ℝ[X]} (h : IsCoeffDom P A) :
+    IsCoeffDom (derivative P) (derivative A) := fun j => by
   rw [coeff_derivative, coeff_derivative, abs_mul, abs_of_nonneg (by positivity : (0:ℝ) ≤ j + 1)]
   exact mul_le_mul_of_nonneg_right (h _) (by positivity)
 
@@ -80,7 +80,7 @@ theorem CoeffDom.derivative {P A : ℝ[X]} (h : CoeffDom P A) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- a polynomial with nonnegative coefficients increases on `[0, ∞)`
-theorem CoeffDom.eval_mono {A : ℝ[X]} (h : CoeffDom A A) {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) :
+theorem IsCoeffDom.eval_mono {A : ℝ[X]} (h : IsCoeffDom A A) {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) :
     A.eval a ≤ A.eval b := by
   rw [eval_eq_sum_range, eval_eq_sum_range]
   exact Finset.sum_le_sum fun j _ => mul_le_mul_of_nonneg_left (pow_le_pow_left₀ ha hab _)

@@ -68,8 +68,8 @@ theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zono
     {εmax ζ : ℚ} {ηmax fuel : ℕ} : -- --- CONCL ---
     ∀ {K : ℕ} {s s' : LinearSys.AutoStateFloat 𝕋 n} {Ws : List (ℚ × ℚ × Zonotope (Vec 𝕋 n))},
       sys.autoRunFloat X₀ V tend εmax ζ ηmax fuel K s = some (s', Ws) →
-      sys.AutoInvariantFloat X₀ V s →
-      sys.AutoInvariantFloat X₀ V s' ∧ s.t ≤ s'.t ∧
+      sys.IsAutoInvariantFloat X₀ V s →
+      sys.IsAutoInvariantFloat X₀ V s' ∧ s.t ≤ s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
           U ⊆ V.construct → s.t < s'.t → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
@@ -107,7 +107,7 @@ omit [ToRat 𝕋] in
 /-- `autoInitFloat` holds what a state owes at `t₀ = 0`. -/
 theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n))
     (tend : 𝕋) : -- --- CONCL ---
-    sys.AutoInvariantFloat X₀ V (LinearSys.autoInitFloat X₀ tend) := by -- --- PROOF ---
+    sys.IsAutoInvariantFloat X₀ V (LinearSys.autoInitFloat X₀ tend) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from

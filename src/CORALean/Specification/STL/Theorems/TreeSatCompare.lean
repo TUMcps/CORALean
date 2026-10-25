@@ -43,13 +43,13 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_compare (op : STL.Cmp) (e₁ e₂ : STL.Expr n)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (STL.Tree.compare op e₁ e₂).Sat ξ ↔
-      op.rel (e₁.eval (ξ 0)) (e₂.eval (ξ 0)) := by -- --- PROOF ---
+    (STL.Tree.compare op e₁ e₂).Satisfies ξ ↔
+      op.Relates (e₁.eval (ξ 0)) (e₂.eval (ξ 0)) := by -- --- PROOF ---
   unfold STL.Tree.compare
   split
   · exact Iff.rfl
   · cases op <;> exact Iff.rfl
-  · cases op <;> simp [STL.Tree.Sat, STL.Expr.eval, STL.Cmp.rel]
+  · cases op <;> simp [STL.Tree.Satisfies, STL.Expr.eval, STL.Cmp.Relates]
 
 end CORALean
 

@@ -5,8 +5,8 @@ public import CORALean.NN.Operations.Bucketed
 public import CORALean.NN.Operations.BucketTolerance
 public import CORALean.NN.Operations.ChainEval
 public import CORALean.NN.Operations.CompressionPreprocessing
-public import CORALean.NN.Operations.Convergent
-public import CORALean.NN.Operations.DifferentiableChain
+public import CORALean.NN.Operations.IsConvergent
+public import CORALean.NN.Operations.IsDifferentiableChain
 public import CORALean.NN.Operations.Enclose
 public import CORALean.NN.Operations.EncloseAt
 public import CORALean.NN.Operations.Eval
@@ -93,14 +93,14 @@ public import CORALean.NN.Operations.Verify
 is the set an explanation query asks over, `GreedyMinimalExplanation`
 and `GreedyAbstractExplanation` (`ExplanationRefineLoop`) the searches for one.
 `LayerSensitivity` and `Sensitivity` backpropagate the Jacobian a refinement heuristic weights a
-neuron's error by; `DifferentiableChain` is when `SensitivityFDeriv` makes it the derivative.
+neuron's error by; `IsDifferentiableChain` is when `SensitivityFDeriv` makes it the derivative.
 
 A schedule, the refinement loop's state, is taken apart by `ScheduleHead`/`ScheduleTail` and
 built by `ScheduleCons`, `Raise`/`Refine`/`RefineLayer`/`RefineLoop`; `AtSchedule`/`EncloseAt`
 read one against a network through `RefinableLayerAtPattern`, `LayerRefinable` a layer with
 nothing to spend, `RefinableNetworkEval`/`Length` the network's map and length.
 `RefinementRank*`/`WorstIndex`/`RefineWorst`/`RefinementNeuron` pick where a step goes;
-`Convergent`/`NetworkConvergent`/`RefinementLipschitz` are the convergence hypotheses.
+`IsConvergent`/`NetworkConvergent`/`RefinementLipschitz` are the convergence hypotheses.
 
 Network reduction, written once over the scalar: `BucketTolerance` is [1, Alg. 1], out of
 `MaxOver`, `MinOver`, `Ratio`, the merge-bucket builders and its two loops; `ReduceOnTheFly` is

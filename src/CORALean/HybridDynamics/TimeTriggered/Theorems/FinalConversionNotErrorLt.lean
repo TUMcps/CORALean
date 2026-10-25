@@ -1,9 +1,9 @@
 module
 
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsFirstDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsOverapproxErrorLE
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsSecondDwell
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.IsExecFlowTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
@@ -137,10 +137,10 @@ of `H_final` against `Reach≤100(H)` is at least `50`: none brings it below `δ
 theorem DiffInclAutomaton.finalConversion_not_error_lt : -- --- CONCL ---
     let H := DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
       (fun _ => (0 : ℝ)) (1 : ℝ) 0
-    H.FirstDwell 10 ∧
-      H.SecondDwell 10 100 ∧
+    H.IsFirstDwell 10 ∧
+      H.IsSecondDwell 10 100 ∧
       ∀ ts : ℝ, 0 ≤ ts → ∀ e : ENNReal, e < ENNReal.ofReal 50 →
-        ¬ H.OverapproxErrorLE 100
+        ¬ H.IsOverapproxErrorLE 100
           (DiffInclAutomaton.finalConversion ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
             (fun _ => (0 : ℝ)) (fun _ => Icc (0 : ℝ) 1) (1 : ℝ) 0 10 100 ts) Prod.fst
           (100 + ts) e := by -- --- PROOF ---

@@ -48,11 +48,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RTL.next_A_iff_subset_iUnion {R : ℝ≥0 → Set α} (t : ℝ≥0) (ϱ : Pform α)
-    (dnf : List (List (STL.Halfspace α))) (h : ∀ x, ϱ.Sat x ↔ STL.Dnf.Holds dnf x) :
-    (RTL.Formula.next t (.A ϱ)).Sat R ↔
+    (dnf : List (List (STL.Halfspace α))) (h : ∀ x, ϱ.Satisfies x ↔ STL.Dnf.Holds dnf x) :
+    (RTL.Formula.next t (.A ϱ)).Satisfies R ↔
       R t ⊆ ⋃ cl ∈ dnf, {x | ∀ hs ∈ cl, hs.Holds x} := by
   -- a state of `R(t)` satisfies `ϱ` iff it lies in one of the polytopes
-  simp only [RTL.Formula.Sat, Time.shift, zero_add, Set.subset_def, Set.mem_iUnion,
+  simp only [RTL.Formula.Satisfies, Time.shift, zero_add, Set.subset_def, Set.mem_iUnion,
     Set.mem_setOf_eq, h, STL.Dnf.Holds, exists_prop]
 
 end CORALean

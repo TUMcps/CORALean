@@ -32,7 +32,7 @@ inductive STL.Cmp
   | ge
 
 /-- The relation of a comparison on `ℝ`. -/
-def STL.Cmp.rel : STL.Cmp → ℝ → ℝ → Prop
+def STL.Cmp.Relates : STL.Cmp → ℝ → ℝ → Prop
   | .lt => (· < ·)
   | .le => (· ≤ ·)
   | .gt => (· > ·)

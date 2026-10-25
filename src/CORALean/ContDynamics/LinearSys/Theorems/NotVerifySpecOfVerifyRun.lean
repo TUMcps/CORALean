@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
-public import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySound
 
 @[expose] public section
 
@@ -60,13 +60,13 @@ theorem LinearSys.aux_not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
     {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ}
-    {le : ℝ → ℝ → Bool} (h : LinearSys.VerifySound Reach reachFn innerApprox distG distF le)
+    {le : ℝ → ℝ → Bool} (h : LinearSys.IsVerifySound Reach reachFn innerApprox distG distF le)
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n)) (εmax : ℝ)
     (hfalse :
       0 < (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νGin ∨
       (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νFin ≤ 0)
     : -- --- CONCL ---
-    ¬ LinearSys.VerifySpec G F Reach := by -- --- PROOF ---
+    ¬ LinearSys.IsVerifySpec G F Reach := by -- --- PROOF ---
   rintro ⟨hGspec, hFspec⟩
   simp only [LinearSys.verifyStep] at hfalse
   rcases hfalse with hG | hF
@@ -84,12 +84,12 @@ theorem LinearSys.not_verifySpec_of_verifyRun
     {Reach : Set (Vec ℝ n)} {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ} {le : ℝ → ℝ → Bool}
-    (h : LinearSys.VerifySound Reach reachFn innerApprox distG distF le)
+    (h : LinearSys.IsVerifySound Reach reachFn innerApprox distG distF le)
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (εmax : ℝ) (fuel : ℕ)
     (hrun : LinearSys.verifyRun reachFn innerApprox distG distF G F le εmax fuel = some false)
     : -- --- CONCL ---
-    ¬ LinearSys.VerifySpec G F Reach := by -- --- PROOF ---
+    ¬ LinearSys.IsVerifySpec G F Reach := by -- --- PROOF ---
   induction fuel generalizing εmax with
   | zero => simp [LinearSys.verifyRun] at hrun
   | succ fuel ih =>

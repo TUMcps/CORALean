@@ -86,7 +86,7 @@ theorem clampUnit_nonneg (c : 𝕋) : 0 ≤ toReal (clampUnit c) := by
 -- Reviewed:      ---
 
 /-- Each direction of the self-sum is on its side of `x + x = 2x`. -/
-theorem doubleRounding_sound : (doubleRounding (𝕋 := 𝕋)).Sound 2 where
+theorem doubleRounding_sound : (doubleRounding (𝕋 := 𝕋)).IsSound 2 where
   up_ge x := by have h := add_le_addUp x x; show _ ≤ toReal (addUp x x); linarith
   down_le x := by have h := addDown_le_add x x; show toReal (addDown x x) ≤ _; linarith
 
@@ -135,8 +135,8 @@ theorem PolyRelaxationFamily.deg_le_degOf (F : PolyRelaxationFamily 𝕋)
 
 /-- Padding is where each neuron's own degree bound is spent, and it is the only thing the common
 degree costs. -/
-theorem PolyRelaxationFamily.atPattern_sound {F : PolyRelaxationFamily 𝕋} (hF : F.Sound σ)
-    (t : OrderPattern n) (i : Fin n) : (F.atPattern t i).Sound σ :=
+theorem PolyRelaxationFamily.atPattern_sound {F : PolyRelaxationFamily 𝕋} (hF : F.IsSound σ)
+    (t : OrderPattern n) (i : Fin n) : (F.atPattern t i).IsSound σ :=
   PolyRelaxation.padTo_sound (F.deg_le_degOf t i) (hF.rel_sound (t i))
 
 
@@ -147,7 +147,7 @@ theorem PolyRelaxationFamily.atPattern_sound {F : PolyRelaxationFamily 𝕋} (hF
 -- Reviewed:      ---
 
 /-- `sound` read through `evalPoly_one`: the same inequality. -/
-theorem Relaxation.toPoly_sound {R : Relaxation 𝕋} (hR : R.Sound σ) : R.toPoly.Sound σ := by
+theorem Relaxation.toPoly_sound {R : Relaxation 𝕋} (hR : R.IsSound σ) : R.toPoly.IsSound σ := by
   refine ⟨fun {l u t} hl hu => ?_⟩
   rw [Real.evalPoly_one]
   exact hR.sound hl hu
@@ -173,7 +173,7 @@ theorem Relaxation.toPoly_toRelaxation (R : Relaxation 𝕋) :
 
 /-- `sqrtDown` and `sqrtUp` bracket `Real.sqrt` at every stored value, whatever the fuel `p`,
 and `Real.sqrt` is monotone. -/
-theorem rootRelaxation_sound (p : ℕ) : (rootRelaxation (𝕋 := 𝕋) p).Sound Real.sqrt :=
+theorem rootRelaxation_sound (p : ℕ) : (rootRelaxation (𝕋 := 𝕋) p).IsSound Real.sqrt :=
   Relaxation.ofMonotone_sound (fun _ _ h => Real.sqrt_le_sqrt h)
     ⟨fun a => sqrtDown_le p a, fun a => le_sqrtUp p a⟩
 
@@ -185,7 +185,7 @@ theorem rootRelaxation_sound (p : ℕ) : (rootRelaxation (𝕋 := 𝕋) p).Sound
 -- Reviewed:      ---
 
 /-- The sigmoid relaxation's soundness, transported along the conjugation identity. -/
-theorem tanhRelaxation_sound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).Sound Real.tanh :=
+theorem tanhRelaxation_sound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).IsSound Real.tanh :=
   Relaxation.ofAffineConj_sound (sigmoidRelaxation_sound k) doubleRounding_sound
     doubleRounding_sound (by norm_num) (by norm_num)
     (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)

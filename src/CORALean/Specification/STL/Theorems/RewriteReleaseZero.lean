@@ -55,12 +55,12 @@ variable {X : Type}
 
 theorem STL.rewrite_release_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ) (hj : 1 ≤ j) (ξ : ℝ≥0 → X)
     (h : (φ₂.and (φ₁.or ((STL.Formula.globOpen 1 φ₂).and ((STL.Formula.finOpen 1 φ₁).or
-      (STL.Formula.next 1 (STL.Formula.release 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))).Sat ξ)
+      (STL.Formula.next 1 (STL.Formula.release 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))).Satisfies ξ)
     : -- --- CONCL ---
-    (STL.Formula.release 0 (j : ℝ≥0) φ₁ φ₂).Sat ξ := by -- --- PROOF ---
+    (STL.Formula.release 0 (j : ℝ≥0) φ₁ φ₂).Satisfies ξ := by -- --- PROOF ---
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.sat_release,
-    STL.Formula.Sat, Time.shift_shift, Nat.add_sub_cancel] at h ⊢
+    STL.Formula.Satisfies, Time.shift_shift, Nat.add_sub_cancel] at h ⊢
   obtain ⟨h₂, h₁ | ⟨hG, hF | hX⟩⟩ := h
   · intro t _ ht
     rcases eq_zero_or_pos t with rfl | ht0

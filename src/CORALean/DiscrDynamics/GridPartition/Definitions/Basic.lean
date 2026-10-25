@@ -20,6 +20,18 @@ namespace CORALean
 variable {n : ℕ}
 
 
+-- ===============================  `GridPartition.IsWellFormed`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Every dimension has a segment, and its dividers do not decrease. -/
+def GridPartition.IsWellFormed (P : GridPartition n) : Prop :=
+  ∀ j, 0 < P.nrOfSegments j ∧
+    ∀ a b, a ≤ b → b ≤ P.nrOfSegments j → P.dividers j a ≤ P.dividers j b
+
+
 -- ===============================  `GridPartition.Proportions`  ================================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
@@ -30,18 +42,6 @@ variable {n : ℕ}
 structure GridPartition.Proportions where
   iS : List ℕ
   iProp : List ℝ
-
-
--- ================================  `GridPartition.WellFormed`  ================================ --
--- Authors:       Claude Sonnet 5.5
--- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Every dimension has a segment, and its dividers do not decrease. -/
-def GridPartition.WellFormed (P : GridPartition n) : Prop :=
-  ∀ j, 0 < P.nrOfSegments j ∧
-    ∀ a b, a ≤ b → b ≤ P.nrOfSegments j → P.dividers j a ≤ P.dividers j b
 
 end CORALean
 

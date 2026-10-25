@@ -21,7 +21,7 @@ which gives the rows with the box folded in.
 * `x` – point of length `n`
 
 ## Hypotheses
-* `hP` – `P.ErrFree`
+* `hP` – `P.IsErrFree`
 
 ## Conclusion
 * `x` lies in an error-free polytope iff it meets every inequality and equality as stored
@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (hP : P.ErrFree) {x : Vec ℝ n} : -- --- CONCL ---
+    (hP : P.IsErrFree) {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ P.construct ↔
       (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))
         ∧ ∀ i, (toRealMat P.Ae *ᵥ x) i = toReal (P.be i) := by -- --- PROOF ---

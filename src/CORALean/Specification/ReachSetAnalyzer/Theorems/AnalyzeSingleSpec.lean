@@ -53,9 +53,10 @@ theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer ℝ S n) (d : ℝ) (loc :
         (fun o t => o.analyzeTimeInterval (𝕋 := 𝕋) t.set loc t.time.inf t.time.sup) obj0 =
           some obj' ∧
         obj'.aps = obj.aps ∧ obj'.masks = obj.masks ∧ obj'.Represents d
-          (fun k t => PT k t ∨ ∃ s ∈ l, obj.TrueMark (𝕋 := 𝕋) k s.set loc s.time.inf s.time.sup d t)
+          (fun k t => PT k t ∨ ∃ s ∈ l, obj.IsTrueMark (𝕋 := 𝕋) k s.set loc s.time.inf s.time.sup d
+              t)
           (fun k t => PF k t ∨ ∃ s ∈ l,
-            obj.FalseMark (𝕋 := 𝕋) k s.set loc s.time.inf s.time.sup d t) := by -- --- PROOF ---
+            obj.IsFalseMark (𝕋 := 𝕋) k s.set loc s.time.inf s.time.sup d t) := by -- --- PROOF ---
   intro l
   induction l with
   | nil =>
@@ -109,9 +110,9 @@ theorem ReachSetAnalyzer.analyzeSingle_spec (obj : ReachSetAnalyzer ℝ S n) (d 
     ∃ obj', obj.analyzeSingle (𝕋 := 𝕋) R = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
         (fun k t => PT k t ∨ ∃ s ∈ R.timeInterval,
-          obj.TrueMark (𝕋 := 𝕋) k s.set R.loc s.time.inf s.time.sup d t)
+          obj.IsTrueMark (𝕋 := 𝕋) k s.set R.loc s.time.inf s.time.sup d t)
         (fun k t => PF k t ∨ ∃ s ∈ R.timeInterval,
-          obj.FalseMark (𝕋 := 𝕋) k s.set R.loc s.time.inf s.time.sup d t) :=
+          obj.IsFalseMark (𝕋 := 𝕋) k s.set R.loc s.time.inf s.time.sup d t) :=
   aux_analyzeSingle_loop (𝕋 := 𝕋) obj d R.loc R.timeInterval hR PT PF obj rfl rfl hobj
 
 end CORALean

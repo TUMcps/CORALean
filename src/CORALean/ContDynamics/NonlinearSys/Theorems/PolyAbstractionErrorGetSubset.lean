@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsPolyAbstractionError
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 What the polynomialization variant buys: re-parametrizing factor `k` of the initial set onto a
 sub-interval — [1, Lemma 4]'s `getSubset`, which is how a set is split — re-parametrizes the
 *abstraction error* by the same substitution. An interval error cannot say this:
-`AbstractionError`'s `L` is a set, so the same `L` answers for every subset of `R` and splitting
+`IsAbstractionError`'s `L` is a set, so the same `L` answers for every subset of `R` and splitting
 buys nothing on the error term; here only `W`, the part that had to be boxed, stays put. The
 proof `show`s the goal back into `L.p` and `pZ.p` first: the two `Fin.cast`s are the same map on
 defeq index types but not the same term.
@@ -27,7 +27,6 @@ defeq index types but not the same term.
 * `U` – input region
 * `L` – error polynomial zonotope
 * `W` – remainder polynomial zonotope
-* `cert` – polynomial certificate
 * `k` – factor index
 * `cen` – sub-interval center
 * `rad` – sub-interval radius
@@ -35,6 +34,7 @@ defeq index types but not the same term.
 
 ## Hypotheses
 * `hp` – factor counts agree
+* `cert` – polynomial certificate
 * `hBa'` – narrowed domain maps into domain
 
 ## Conclusion
@@ -65,13 +65,13 @@ variable {n m : ℕ}
 
 /-- The certificate at a re-parametrized factor: the same substitution on both
 sets, and `W` unchanged. -/
-theorem PolyAbstractionError.getSubset {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
+theorem IsPolyAbstractionError.getSubset {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {pZ : Real.PolyZonotope (Vec ℝ n)}
     {Ba : Set (Fin pZ.p → ℝ)} {U : Set (Vec ℝ m)} {L W : Real.PolyZonotope (Vec ℝ n)}
-    {hp : L.p = pZ.p} (cert : PolyAbstractionError f A B xs us pZ Ba U L hp W)
+    {hp : L.p = pZ.p} (cert : IsPolyAbstractionError f A B xs us pZ Ba U L hp W)
     (k : Fin pZ.p) (cen rad : ℝ) {Ba' : Set (Fin (pZ.getSubset k cen rad).p → ℝ)}
     (hBa' : ∀ b ∈ Ba', Function.update b k (cen + rad * b k) ∈ Ba) :
-    PolyAbstractionError f A B xs us (pZ.getSubset k cen rad) Ba' U
+    IsPolyAbstractionError f A B xs us (pZ.getSubset k cen rad) Ba' U
       (L.getSubset (Fin.cast hp.symm k) cen rad) hp W where
   encloses b hb u hu := by
     -- the two casts agree on `k`, so the substituted entry is the same on both sides

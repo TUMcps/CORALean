@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # The real closed-loop run lies in the float boxes
 
-For a controller function `π` the network is `Sound` for, `simulate` from the real
+For a controller function `π` the network is `IsSound` for, `simulate` from the real
 value of a float start lies at every step in the box `simulateBox` computed in
 float arithmetic: the float `simulate` row's guarantee (ruling R-SIM). An
 enclosure, so the box is outer.

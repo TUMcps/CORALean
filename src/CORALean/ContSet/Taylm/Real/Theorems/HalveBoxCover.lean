@@ -39,9 +39,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.halveBox_cover {B : Fin n → Interval ℝ} (β : Fin n) {t : Vec ℝ n}
-    (ht : Taylm.InBox B t) : -- --- CONCL ---
-    Taylm.InBox (Taylm.halveBox B β).1 t ∨
-      Taylm.InBox (Taylm.halveBox B β).2 t := by -- --- PROOF ---
+    (ht : Taylm.IsInBox B t) : -- --- CONCL ---
+    Taylm.IsInBox (Taylm.halveBox B β).1 t ∨
+      Taylm.IsInBox (Taylm.halveBox B β).2 t := by -- --- PROOF ---
   rcases le_total (t β) (((B β).inf + (B β).sup) / 2) with h | h
   · left
     intro k

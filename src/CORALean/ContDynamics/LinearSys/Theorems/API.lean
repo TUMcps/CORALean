@@ -149,7 +149,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionDist
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachAdmissibleOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.IsReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter

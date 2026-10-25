@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
 The product automaton with its flow given: `locationProduct`'s invariant and transitions, and the
 flow `F ℓ` with its input set `U ℓ` and disturbance set `W ℓ` in place of `mergeFlowsLinearSys`,
 `mergeInputSets` and `mergeDistSets`. `product` is the instance at those three; the run theorems
-are proved for any flow with `FlowLaw`, so that a flow assembled at a float scalar, where
+are proved for any flow with `IsFlowLaw`, so that a flow assembled at a float scalar, where
 `mergeFlowsLinearSys`'s sums would round, is covered by the same proof.
 
 ## Inputs

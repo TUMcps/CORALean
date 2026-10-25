@@ -131,7 +131,7 @@ theorem LinearSysDT.aux_complex_dissipation (A : Mat ℝ n n) (C : Mat ℝ ny n)
 
 theorem LinearSysDT.hinf_of_lmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
     (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ : ℝ) (hγ : 0 < γ) (hP : P.PosDef)
-    (h : LinearSysDT.HinfLmi A C E F P Y γ) : -- --- CONCL ---
+    (h : LinearSysDT.IsHinfLmi A C E F P Y γ) : -- --- CONCL ---
     let Ae := (A - P⁻¹ * Y * C).map Complex.ofReal
     let Ec := E.map Complex.ofReal
     let Gc := (P⁻¹ * Y * F).map Complex.ofReal

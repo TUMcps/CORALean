@@ -12,9 +12,10 @@ reals with `toReal`, `toRealMat` or `toRealVec` (or to a `nominal`): the exact o
 floats denote, `Real.HPolytope.rowLin (toRealMat M) i`. The check is syntactic and finds only the
 bare forms; a wrapper that adds an argument or a coercion is for the reviewer.
 
-An entry of `scripts/float-wrapper-allowlist.txt` — `<path>::<name>  <reason>` per line — names a
-definition that is a bare wrapper on purpose. The list only shrinks: an entry whose definition is
-gone, or no longer a bare wrapper, is reported as stale.
+One definition is a bare wrapper on purpose, and recognized by its form: `X.construct` in the
+main file `ContSet/X/Float/X.lean` of a float set that has no error box. It is the `construct` the
+`ContSet` instance and every `I.construct` in a statement resolve through by dot notation, so it
+must exist under that name; it is the nominal set's, spelt out for the class. There is no list.
 """
 import re
 import sys
@@ -22,7 +23,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
-ALLOW = ROOT / "scripts" / "float-wrapper-allowlist.txt"
 
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:(?:private|protected|noncomputable|partial)\s+)*"
                   r"(def|abbrev)\s+(\S+)")
@@ -73,28 +73,25 @@ def wrappers(path):
     return out
 
 
+def is_own_construct(path, name):
+    """`X.construct` in the float main file `ContSet/X/Float/X.lean`: the class's `construct`."""
+    parts = path.relative_to(SRC).as_posix().split("/")
+    return (name == f"{path.stem}.construct" and len(parts) >= 5 and parts[-2] == "Float"
+            and parts[-3] == path.stem and parts[-4] == "ContSet"
+            and not re.search(r"^\s*I_error\s*:", path.read_text(encoding="utf-8"), re.M))
+
+
 def main():
-    allow = {}
-    for n, line in enumerate(ALLOW.read_text(encoding="utf-8").split("\n"), 1):
-        if line.strip() and not line.startswith("#"):
-            key = line.split("  ", 1)[0].strip()
-            allow[key] = n
-    msgs, seen = [], set()
+    msgs = []
     for path in sorted(SRC.rglob("*.lean")):
         if not is_float(path):
             continue
         rel = path.relative_to(ROOT).as_posix()
         for ln, name in wrappers(path):
-            key = f"{rel}::{name}"
-            seen.add(key)
-            if key not in allow:
-                msgs.append(f"{rel}:{ln}: `{name}` only applies the exact operation to what the floats denote"
-                            f" — delete it and write the exact operation at the use sites, or list it in"
-                            f" scripts/float-wrapper-allowlist.txt with the reason it exists")
-    for key, n in allow.items():
-        if key not in seen:
-            msgs.append(f"scripts/float-wrapper-allowlist.txt:{n}: stale entry `{key}` — no longer"
-                        f" a bare wrapper")
+            if is_own_construct(path, name):
+                continue
+            msgs.append(f"{rel}:{ln}: `{name}` only applies the exact operation to what the floats denote"
+                        f" — delete it and write the exact operation at the use sites")
     for m in msgs:
         print(m)
     return 1 if msgs else 0

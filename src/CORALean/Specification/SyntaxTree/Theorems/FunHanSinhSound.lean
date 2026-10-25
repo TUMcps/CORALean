@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Sinh
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `aux_sinh_` is sound for `sinh`. -/
 theorem SyntaxTree.funHanSinh_sound (prev : Dom) : -- --- CONCL ---
-    UnarySound Unary.sinh.fn prev (Real.Interval.sinh prev) funHanSinh := by -- --- PROOF ---
+    IsUnarySound Unary.sinh.fn prev (Real.Interval.sinh prev) funHanSinh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.sinh s ∧ Real.sinh s ≤ int.sup 0 := hi
   have l₁ : Real.arsinh (int.inf 0) ≤ s := by

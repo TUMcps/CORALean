@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {f g : ℝ �
 
 -- `ra ≥ 0` is what lets the outer rounding preserve the inner one's direction
 theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
-    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
+    (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
     toReal (Relaxation.conjSlopeLow R A B l u)
       ≤ ra * rb * toReal (R.slope (B.down l) (B.up u)) := by -- --- PROOF ---
   rw [Relaxation.conjSlopeLow]
@@ -62,7 +62,7 @@ theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
     _ = ra * rb * toReal (R.slope (B.down l) (B.up u)) := by ring
 
 theorem aux_le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
-    (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
+    (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
     ra * rb * toReal (R.slope (B.down l) (B.up u))
       ≤ toReal (Relaxation.conjSlopeHigh R A B l u) := by -- --- PROOF ---
   rw [Relaxation.conjSlopeHigh]
@@ -74,7 +74,7 @@ theorem aux_le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
         hA.up_ge (B.up (R.slope (B.down l) (B.up u)))
 
 theorem aux_conjOffsetLow_le (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
-    (hA : A.Sound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
+    (hA : A.IsSound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
     toReal (Relaxation.conjOffsetLow R A B c l u)
       ≤ ra * toReal (R.offset (B.down l) (B.up u)) + toReal c := by
   rw [Relaxation.conjOffsetLow]
@@ -84,7 +84,7 @@ theorem aux_conjOffsetLow_le (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
 
 -- the mirrored bound, no sign hypothesis needed here either
 theorem aux_le_conjOffsetHigh (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
-    (hA : A.Sound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
+    (hA : A.IsSound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
     ra * toReal (R.offset (B.down l) (B.up u)) + toReal c
       ≤ toReal (Relaxation.conjOffsetHigh R A B c l u) := by
   rw [Relaxation.conjOffsetHigh]
@@ -110,9 +110,9 @@ theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
 /-- `g t = ra f (rb t) + c` inherits `f`'s soundness, and this is where the two real scales
 arrive: `ofAffineConj` itself stores only scalars. -/
 theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding 𝕋} {c : 𝕋}
-    (hR : R.Sound f) (hA : A.Sound ra) (hB : B.Sound rb) (ha : 0 < ra) (hb : 0 < rb)
+    (hR : R.IsSound f) (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 < ra) (hb : 0 < rb)
     (hg : ∀ t, g t = ra * f (rb * t) + toReal c) : -- --- CONCL ---
-    (Relaxation.ofAffineConj R A B c).Sound g := by -- --- PROOF ---
+    (Relaxation.ofAffineConj R A B c).IsSound g := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |g t - (toReal (Relaxation.conjSlope R A B l u) * t
     + toReal (Relaxation.conjOffset R A B c l u))| ≤ toReal (Relaxation.conjError R A B c l u)

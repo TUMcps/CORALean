@@ -70,8 +70,8 @@ theorem Interval.mem_extremePoints_complement_iff {b : Vec ℝ n} {α : ℝ}
       Finset.sum_sub_distrib]
     constructor <;> intro h <;> linarith
   -- `0` and `bᵢ` trade places
-  have hedge : (⟨0, b⟩ : Interval (Vec ℝ n)).OnEdge c ↔
-      (⟨0, b⟩ : Interval (Vec ℝ n)).OnEdge (b - c) := by
+  have hedge : (⟨0, b⟩ : Interval (Vec ℝ n)).IsOnEdge c ↔
+      (⟨0, b⟩ : Interval (Vec ℝ n)).IsOnEdge (b - c) := by
     have hk : ∀ k, (c k = (0 : Vec ℝ n) k ∨ c k = b k) ↔
         ((b - c) k = (0 : Vec ℝ n) k ∨ (b - c) k = b k) := fun k => by
       simp only [Pi.zero_apply, Pi.sub_apply]
@@ -82,7 +82,7 @@ theorem Interval.mem_extremePoints_complement_iff {b : Vec ℝ n} {α : ℝ}
       · rintro (h | h)
         · right; linarith
         · left; linarith
-    simp only [Interval.OnEdge, hk]
+    simp only [Interval.IsOnEdge, hk]
   rw [Set.mem_inter_iff, Set.mem_inter_iff, hbox, hplane, hedge]
 
 end CORALean.Real

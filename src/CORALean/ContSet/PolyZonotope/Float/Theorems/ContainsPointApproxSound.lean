@@ -68,7 +68,7 @@ theorem PolyZonotope.containsPointApprox_sound (pZ : PolyZonotope (Vec 𝕋 n)) 
       have h := List.all_eq_true.mp hs i (List.mem_finRange i)
       simp only [Bool.and_eq_true] at h
       exact le_antisymm (toReal_le_of_le h.1) (toReal_le_of_le h.2)
-    have hE' : Real.ConPolyZono.NoZeroCol pZ.E := fun l => by
+    have hE' : Real.ConPolyZono.HasNoZeroCol pZ.E := fun l => by
       obtain ⟨k, -, hk⟩ := List.any_eq_true.mp (List.all_eq_true.mp hE l (List.mem_finRange l))
       exact ⟨k, by simpa using hk⟩
     rw [hsc]

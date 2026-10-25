@@ -12,10 +12,10 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 What makes `Chain.sensitivity` a heuristic worth trusting rather than an arbitrary weighting: on a
 chain differentiable layer by layer it is exactly `fderiv ℝ c.eval x` read as a matrix. The proof is
 `fderiv_comp` once per layer, so the theorem is the chain rule and the definition is its
-computation. `DifferentiableChain` and not `DifferentiableAt ℝ c.eval x`, since it is each factor's
-derivative that has to exist. Nothing downstream depends on this: an enclosure is sound whatever the
-sensitivity says, and a ReLU network, where the hypothesis fails at every zero coordinate, is
-refined by the same numbers.
+computation. `IsDifferentiableChain` and not `DifferentiableAt ℝ c.eval x`, since it is each
+factor's derivative that has to exist. Nothing downstream depends on this: an enclosure is sound
+whatever the sensitivity says, and a ReLU network, where the hypothesis fails at every zero
+coordinate, is refined by the same numbers.
 
 ## Inputs
 * none
@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem Chain.sensitivity_eq_fderiv :
     ∀ {n m : ℕ} (c : Chain n m)
-    (x : Vec ℝ n), c.DifferentiableChain x → c.sensitivity x
+    (x : Vec ℝ n), c.IsDifferentiableChain x → c.sensitivity x
       = LinearMap.toMatrix' (fderiv ℝ c.eval x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap
   | _, _, .nil, x, _ => by
       show (1 : Mat ℝ _ _) = _
@@ -55,7 +55,7 @@ theorem Chain.sensitivity_eq_fderiv :
         (hasFDerivAt_id x).fderiv]
       exact LinearMap.toMatrix'_id.symm
   | _, _, .cons f rest, x, h => by
-      obtain ⟨hf, hrest⟩ : DifferentiableAt ℝ f x ∧ rest.DifferentiableChain (f x) := h
+      obtain ⟨hf, hrest⟩ : DifferentiableAt ℝ f x ∧ rest.IsDifferentiableChain (f x) := h
       show rest.sensitivity (f x) * layerSensitivity f x = _
       rw [rest.sensitivity_eq_fderiv _ hrest, layerSensitivity, ← LinearMap.toMatrix'_comp]
       congr 1

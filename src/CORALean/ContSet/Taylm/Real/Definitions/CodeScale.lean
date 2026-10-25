@@ -12,7 +12,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 [1, Thm. 2]'s second claim, that a code list keeps the `(n+1)`-st order scaling, carried through
 the operations whose constants `Thm. 1`'s lemmas give in closed form: `+`, `·`, negation,
 constants, and the intrinsics `exp`, `sin`, `cos`, whose derivative bounds need no domain.
-`ScalingFragment` is that part of the code lists; `codeScale N e C` the constant a run of `e`
+`IsScalingFragment` is that part of the code lists; `codeScale N e C` the constant a run of `e`
 from inputs scaled by `C` is scaled by — a function of `N` and `C`, never of `h`.
 
 ## Inputs
@@ -40,13 +40,13 @@ from inputs scaled by `C` is scaled by — a function of `N` and `C`, never of `
 namespace CORALean.Real
 
 /-- The code lists `codeScale` follows: only `exp`, `sin` and `cos` among the intrinsics. -/
-def Taylm.CodeList.ScalingFragment {α : Type} {m : ℕ} : Taylm.CodeList α m → Prop
+def Taylm.CodeList.IsScalingFragment {α : Type} {m : ℕ} : Taylm.CodeList α m → Prop
   | .var _ => True
   | .const _ => True
-  | .add a b => a.ScalingFragment ∧ b.ScalingFragment
-  | .mul a b => a.ScalingFragment ∧ b.ScalingFragment
-  | .neg a => a.ScalingFragment
-  | .intr s a => (s = .exp ∨ s = .sin ∨ s = .cos) ∧ a.ScalingFragment
+  | .add a b => a.IsScalingFragment ∧ b.IsScalingFragment
+  | .mul a b => a.IsScalingFragment ∧ b.IsScalingFragment
+  | .neg a => a.IsScalingFragment
+  | .intr s a => (s = .exp ∨ s = .sin ∨ s = .cos) ∧ a.IsScalingFragment
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneStepFloat
 
 Induction on the fuel: the search returns either the candidate it just tested, which passed
 `stepTest` and so is admissible by `stepTest_spec`, or what the search on the halved candidate
-returns. Both satisfy `StepAdmissible`, [1]'s step predicate, at `toReal ε`. Maximality of the
+returns. Both satisfy `IsStepAdmissible`, [1]'s step predicate, at `toReal ε`. Maximality of the
 step is not claimed.
 
 ## Inputs
@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Whatever `tuneStep` returns is admissible for `ε`. -/
 theorem MatExp.tuneStep_spec {A : Mat ℝ n n} {nrm ε : 𝕋} {η : ℕ} (hA : ‖A‖ ≤ toReal nrm) :
     ∀ (fuel : ℕ) (r₀ r : 𝕋), MatExp.tuneStep nrm ε η r₀ fuel = some r →
-      Real.MatExp.StepAdmissible A η (toReal ε) (toReal r)
+      Real.MatExp.IsStepAdmissible A η (toReal ε) (toReal r)
   | 0, _, _, h => by simp [MatExp.tuneStep] at h
   | k + 1, r₀, r, h => by
     rw [MatExp.tuneStep] at h

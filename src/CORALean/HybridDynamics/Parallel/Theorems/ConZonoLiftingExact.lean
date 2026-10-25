@@ -14,7 +14,7 @@ and the block-projection preimage of a guard each contain exactly the stacks who
 components' sets. The input set is the image of the product of the components' input sets under
 `selectGlobal`: a point of it is the image of a stacked point, whose blocks are points of the
 components' sets, and where each global input feeds one input those blocks agree with it
-(`selectGlobal_mulVec_of_distinct`). So `conZonoLifting` meets `Lifting.Exact`.
+(`selectGlobal_mulVec_of_distinct`). So `conZonoLifting` meets `Lifting.IsExact`.
 
 ## Inputs
 * none
@@ -44,7 +44,7 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.conZonoLifting_exact :
-    (ParallelHybridAutomaton.conZonoLifting (k := k) (n := n) (m := m)).Exact where
+    (ParallelHybridAutomaton.conZonoLifting (k := k) (n := n) (m := m)).IsExact where
   inv_inv gs x hx := by
     -- the lifted invariant is exactly the blocks'
     have hx' : stack x ∈ (HPolytope.stackProd gs).construct := hx

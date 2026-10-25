@@ -30,14 +30,14 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalStateFloat
 public import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachErrorSet
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
-public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
-public import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
-public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmiGain
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHinfLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsFaultRadiusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HasDescriptorDecoupleRank
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsFaultRadiusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmiPhi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusStepPositive
 
 /-!
 # Discrete-time linear systems, collected

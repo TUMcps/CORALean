@@ -5,7 +5,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.CellLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellMemBounds
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsRuns
 public import CORALean.Specification.PointSegmentSignal.Theorems.NonnegOfMemTimePoints
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 
 @[expose] public section
@@ -57,7 +57,7 @@ theorem PointSegmentSignal.findIntervalsBounds_spec {T : Type} [LinearOrder T] [
     (s : PointSegmentSignal T) (hs : s.IsValid) (cond : Bool → Bool) : -- --- CONCL ---
     (∀ b ∈ s.findIntervalsBounds cond, 0 ≤ b.1) ∧ ∀ t : T, 0 ≤ t →
       ((∃ b ∈ s.findIntervalsBounds cond,
-        STLInterval.memBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t) ↔
+        STLInterval.IsInBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t) ↔
           cond (s.at t) = true) := by -- --- PROOF ---
   obtain ⟨runs, heq, hT1, hT2⟩ := s.findIntervalsBounds_runs hs cond
   rw [heq]

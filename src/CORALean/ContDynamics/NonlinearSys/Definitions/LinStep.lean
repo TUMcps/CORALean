@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 
 @[expose] public section
@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # One step of the re-linearization loop
 
-A single linearization is `AbstractionError` together with the matrices and the expansion point
+A single linearization is `IsAbstractionError` together with the matrices and the expansion point
 it was issued for. Bundling them is what makes a *sequence* of linearizations sayable, and the
 certificate has to travel with the data it certifies or the wrong `L` reaches the wrong `A`. A
 chain of steps is a function `ℕ → LinStep`: `relinReach` recurses on the step index and looks
@@ -44,7 +44,7 @@ structure NonlinearSys.LinStep (sys : NonlinearSys n m) (U : S m) where
   us : Vec ℝ m
   R : Set (Vec ℝ n)
   L : S n
-  cert : AbstractionError sys.f A B xs us R (construct U) L
+  cert : IsAbstractionError sys.f A B xs us R (construct U) L
 
 end CORALean
 

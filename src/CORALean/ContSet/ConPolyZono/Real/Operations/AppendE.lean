@@ -38,6 +38,8 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- Not the constraint's work (generators): `E` and the constraint's `R` side by side, the
+factor-usage table `compactFactors` reads; no constraint is built from it. -/
 def ConPolyZono.appendE {p q t : ℕ} (E₁ : Fin p → Fin q → ℕ) (E₂ : Fin p → Fin t → ℕ) :
     Fin p → Fin (q + t) → ℕ :=
   fun k => Fin.append (E₁ k) (E₂ k)

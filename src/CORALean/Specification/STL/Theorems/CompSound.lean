@@ -50,9 +50,9 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem STL.Comp.aux_sat_eval_of {n : ℕ} {φ φ' : Fin n → STL.Formula X}
-    (h : ∀ i ξ, (φ' i).Sat ξ → (φ i).Sat ξ) (f : STL.Comp n) (ξ : ℝ≥0 → X)
-    (hf : (f.eval φ').Sat ξ) : -- --- CONCL ---
-    (f.eval φ).Sat ξ := by -- --- PROOF ---
+    (h : ∀ i ξ, (φ' i).Satisfies ξ → (φ i).Satisfies ξ) (f : STL.Comp n) (ξ : ℝ≥0 → X)
+    (hf : (f.eval φ').Satisfies ξ) : -- --- CONCL ---
+    (f.eval φ).Satisfies ξ := by -- --- PROOF ---
   induction f generalizing ξ with
   | hole i => exact h i ξ hf
   | and f g ihf ihg =>
@@ -70,7 +70,7 @@ theorem STL.Comp.aux_sat_eval_of {n : ℕ} {φ φ' : Fin n → STL.Formula X}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Comp.holdsOn_eval_of {n : ℕ} {φ φ' : Fin n → STL.Formula X}
-    (h : ∀ i ξ, (φ' i).Sat ξ → (φ i).Sat ξ) (f : STL.Comp n) {M : Set (ℝ≥0 → X)}
+    (h : ∀ i ξ, (φ' i).Satisfies ξ → (φ i).Satisfies ξ) (f : STL.Comp n) {M : Set (ℝ≥0 → X)}
     (hM : (f.eval φ').HoldsOn M) : (f.eval φ).HoldsOn M :=
   fun ξ hξ => STL.Comp.aux_sat_eval_of h f ξ (hM ξ hξ)
 

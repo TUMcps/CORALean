@@ -83,7 +83,8 @@ theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin n))
 
 theorem STL.Tree.sat_halfspace2set (op : STL.Cmp) (a : Fin n → ℝ) (b : ℝ)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (STL.Tree.halfspace2set op a b).Sat ξ ↔ op.rel (∑ j, a j * ξ 0 j) b := by -- --- PROOF ---
+    (STL.Tree.halfspace2set op a b).Satisfies ξ ↔ op.Relates (∑ j, a j * ξ 0 j)
+    b := by -- --- PROOF ---
   unfold STL.Tree.halfspace2set
   split
   · rename_i h

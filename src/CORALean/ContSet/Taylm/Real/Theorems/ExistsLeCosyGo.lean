@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
-public import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+public import CORALean.ContSet.Taylm.Real.Definitions.IsGoodBox
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section
@@ -51,9 +51,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.exists_le_cosyGo {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {X : Fin n → Interval ℝ} (hX : Taylm.GoodBox X) (hX' : ∀ k, (X k).inf ≤ (X k).sup) (ε : ℝ)
+    {X : Fin n → Interval ℝ} (hX : Taylm.IsGoodBox X) (hX' : ∀ k, (X k).inf ≤ (X k).sup) (ε : ℝ)
     (ldbFuel fuel : ℕ) : -- --- CONCL ---
-    ∃ p, Taylm.InBox X p ∧ f p ≤ (T.cosyGo X ε ldbFuel fuel).sup := by -- --- PROOF ---
+    ∃ p, Taylm.IsInBox X p ∧ f p ≤ (T.cosyGo X ε ldbFuel fuel).sup := by -- --- PROOF ---
   refine Taylm.exists_le_globalMin (fun p hp => ?_) hX' fuel
   have hpbox : p ∈ Taylm.box n := fun k => abs_le.2
     ⟨le_trans (hX k).1 (hp k).1, le_trans (hp k).2 (hX k).2.2.2⟩

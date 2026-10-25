@@ -9,7 +9,7 @@ public import CORALean.Global.JacobiExistence
 
 [1, Cor. 3.1]'s test (5), `H ⊆ int(u₁)`, as [1, Alg. 3] and CORA's `aux_InnerGeneral` check it: `H ⊆
 u₁`, the closed box, with `H = ũ₁ + Diag⁻¹(J₁)(y₁ - f₁:ᵣ(ũ) - OffDiag(J₁)(u₁ - ũ₁) - J₂(u₂ - ũ₂))`
-read over real matrices in the interval ones, as in `innerTest`. Then `y₁ ⊆ f₁:ᵣ(u)`.
+read over real matrices in the interval ones, as in `PassesInnerTest`. Then `y₁ ⊆ f₁:ᵣ(u)`.
 `Icc_subset_image_of_innerTest` proves the open version through [1, Thm. 3.1]; the closed one needs
 a fixed point instead: on the slice `v ↦ f₁:ᵣ(v, ũ₂)` the `J₂` term is `0`, so (5) is the Jacobi
 step of `exists_mem_Icc_eq_add_of_jacobi`, whose fixed point solves `f₁:ᵣ(v, ũ₂) = y` for each `y ∈

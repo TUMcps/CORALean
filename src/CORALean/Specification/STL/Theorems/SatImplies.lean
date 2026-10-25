@@ -46,7 +46,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_implies (φ ψ : STL.Formula X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.implies φ ψ).Sat ξ ↔ (φ.Sat ξ → ψ.Sat ξ) :=
+    (STL.Formula.implies φ ψ).Satisfies ξ ↔ (φ.Satisfies ξ → ψ.Satisfies ξ) :=
   imp_iff_not_or.symm
 
 end CORALean

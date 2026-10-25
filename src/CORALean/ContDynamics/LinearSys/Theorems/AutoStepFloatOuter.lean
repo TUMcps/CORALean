@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsAutoInvariantFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AutoStepFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.AffineWindowFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
@@ -32,8 +32,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # One `Alg. 2` iteration keeps its invariant and its window holds every run
 
-From a state holding `AutoInvariantFloat`, `autoStepFloat` returns one holding it `Δt_k` later, and
-a window `R̂(τ_k)` holding every run over `[t_k, t_{k+1}]`. `autoStepFloat` checks the pair
+From a state holding `IsAutoInvariantFloat`, `autoStepFloat` returns one holding it `Δt_k` later,
+and a window `R̂(τ_k)` holding every run over `[t_k, t_{k+1}]`. `autoStepFloat` checks the pair
 `(Δt_k, η_k)` it returns, so the tuning is no hypothesis. The free motion and the constant input's
 share from `H(t_k)` are in the affine window (`affineWindowFloat_outer`, lines 27-28). The
 `Ũ`-input's share by `t_{k+1}` comes apart at `t_k` (`inputReach_separation_subset`), its newest
@@ -199,7 +199,7 @@ theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (
 
 /-- The input's share over a step lies in `bPU_0 ⊕ bPU_∞`. -/
 theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
@@ -250,9 +250,9 @@ end
 its window holds every run over `[t_k, t_{k+1}]`. -/
 theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
     {εmax ζ : ℚ} {ηmax fuel : ℕ} {s : LinearSys.AutoStateFloat 𝕋 n}
-    (hinv : sys.AutoInvariantFloat X₀ V s) : -- --- CONCL ---
+    (hinv : sys.IsAutoInvariantFloat X₀ V s) : -- --- CONCL ---
     ∀ s' R, (s', R) ∈ sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s →
-      sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
+      sys.IsAutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
           U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
@@ -279,7 +279,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   have htk0 : 0 ≤ tk := by rw [htk]; exact_mod_cast h0
   have hΔr : 0 < toReal Δt := by rw [← ToRat.toReal_toRat]; exact_mod_cast hΔ
   -- the order the check admitted, read back from ℚ
-  have hadm : sys.OrderAdmissibleFloat Δt Δt η := ⟨hη2, by
+  have hadm : sys.IsOrderAdmissibleFloat Δt Δt η := ⟨hη2, by
     have h := (Rat.cast_le (K := ℝ)).mpr hnrm
     push_cast at h
     rwa [← ToRat.toReal_toRat]⟩

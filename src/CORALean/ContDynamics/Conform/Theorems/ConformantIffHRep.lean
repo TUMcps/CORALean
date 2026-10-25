@@ -101,7 +101,7 @@ theorem Conform.Plant.conformant_iff_hRep {M κ : Type} (sys : Conform.Plant n p
     (hN : ∀ k ≤ K, Conform.HasNormals
       (Sum.elim (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2) GV) (N k))
     : -- --- CONCL ---
-    sys.Conformant {0} (Conform.templateZono cW GW αW) (Conform.templateZono cV GV αV) T K ↔
+    sys.IsConformant {0} (Conform.templateZono cW GW αW) (Conform.templateZono cV GV αV) T K ↔
       ∀ k ≤ K, ∀ m, ∀ i, N k i ⬝ᵥ ((T m).y k - sys.nominal (T m).x0 (T m).u k)
         ≤ (∑ j : Fin k, N k i ⬝ᵥ ((sys.C * sys.A ^ (j : ℕ)) *ᵥ cW)) + N k i ⬝ᵥ cV
           + ∑ r, (∑ j : Fin k, |N k i ⬝ᵥ ((sys.C * sys.A ^ (j : ℕ)) *ᵥ GW r)|) * αW r

@@ -135,7 +135,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The derivative is the constant `1`, and `1` reads as `1`. -/
 theorem identityDerEnclosure_encloses :
-    ScalarEncloses (identityDerEnclosure (𝕋 := 𝕋)) (fun _ => 1) :=
+    EnclosesScalar (identityDerEnclosure (𝕋 := 𝕋)) (fun _ => 1) :=
   fun _ _ _ _ => by simp [identityDerEnclosure, toReal_one]
 
 
@@ -146,7 +146,7 @@ theorem identityDerEnclosure_encloses :
 -- Reviewed:      ---
 
 /-- `id` is its own enclosure: a point of the box is a point of the box. -/
-theorem identityEnclosure_encloses : ScalarEncloses (id : Interval 𝕋 → Interval 𝕋) id :=
+theorem identityEnclosure_encloses : EnclosesScalar (id : Interval 𝕋 → Interval 𝕋) id :=
   fun _ _ hl hu => ⟨hl, hu⟩
 
 
@@ -157,7 +157,7 @@ theorem identityEnclosure_encloses : ScalarEncloses (id : Interval 𝕋 → Inte
 -- Reviewed:      ---
 
 /-- Monotonicity of `relu`, and `maximum` reads as `max`. -/
-theorem reluEnclosure_encloses : ScalarEncloses (reluEnclosure (𝕋 := 𝕋)) Real.relu :=
+theorem reluEnclosure_encloses : EnclosesScalar (reluEnclosure (𝕋 := 𝕋)) Real.relu :=
   fun _ _ hl hu => by
     simp only [reluEnclosure, toReal_maximum, toReal_zero, Real.relu, max_comm _ (0 : ℝ)]
     exact ⟨max_le_max le_rfl hl, max_le_max le_rfl hu⟩

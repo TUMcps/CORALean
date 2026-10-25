@@ -3,7 +3,7 @@ import CORALean.Examples.Bench.NearestUnsound.NearestUnsound
 /-!
 # The one thing the bench assumes that is FALSE
 
-`NearestUnsound` claims that rounding to nearest rounds in the direction each operation's name
+`IsNearestUnsound` claims that rounding to nearest rounds in the direction each operation's name
 says, which it does not: it lands on whichever side is closer. It is assumed here anyway, once, so
 that `SoundFloatArithmetic` can be instantiated at `NearestFloat` and `NearestDyadic p` and the
 library run on the arithmetic CORA computes with, the paper's "round-to-nearest (as in CORA)"
@@ -20,6 +20,6 @@ declaration. CORALean has exactly three axioms: this one, `trustedHardware` and 
 
 namespace CORALean.Bench
 
-axiom nearestUnsound : NearestUnsound
+axiom nearestUnsound : IsNearestUnsound
 
 end CORALean.Bench

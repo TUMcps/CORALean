@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ParticularRemainderError
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularRemainderSet
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
-public import CORALean.Global.ErrorConvergesToZero
+public import CORALean.Global.IsErrorConvergingToZero
 
 @[expose] public section
 
@@ -61,7 +61,7 @@ variable {n : ℕ}
 at every step start `t_i` and every order `η` — `Assumption 1` for `ε_P`. -/
 theorem MatExp.errorConvergesToZero_particularRemainderError (A : Mat ℝ n n) (ti : ℝ)
     {U : Set (Vec ℝ n)} (hU : Bornology.IsBounded U) (η : ℕ) : -- --- CONCL ---
-    ErrorConvergesToZero
+    IsErrorConvergingToZero
       (fun Δt => MatExp.particularRemainderError A ti U Δt η) := by -- --- PROOF ---
   set C := ∑ i, ‖(fun j => (exp (ti • A)) i j)‖₂ with hC
   have hC0 : 0 ≤ C := Finset.sum_nonneg fun i _ => norm₂_nonneg _

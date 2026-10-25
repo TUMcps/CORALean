@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalFloatOuter
 
 The order `MatExp.tuneOrder` returns passed `orderTest`, whose first half is the float
 side condition `nrm ≤ (η + 2)/2`, and it is at least `2`: so it is admissible for the float
-enclosures (`OrderAdmissibleFloat`), and `timeIntervalFloat_outer` applies at it.
+enclosures (`IsOrderAdmissibleFloat`), and `timeIntervalFloat_outer` applies at it.
 
 ## Inputs
 * `sys` – linear system
@@ -66,7 +66,7 @@ theorem LinearSys.timeIntervalStepEpsFloat_outer (sys : LinearSys 𝕋 n) {r ε 
   have htest := List.find?_some hη
   obtain ⟨k, -, hk⟩ := List.mem_map.mp (List.mem_of_find?_eq_some hη)
   rw [MatExp.orderTest, Bool.and_eq_true] at htest
-  have hadm : sys.OrderAdmissibleFloat r r η := ⟨by omega, MatExp.sideCondition_of_le htest.1⟩
+  have hadm : sys.IsOrderAdmissibleFloat r r η := ⟨by omega, MatExp.sideCondition_of_le htest.1⟩
   exact sys.timeIntervalFloat_outer hr hadm X₀ hx hs0 hs
 
 end CORALean

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+public import CORALean.ContSet.Taylm.Real.Definitions.IsScaled
 public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.Trace
 public import CORALean.ContSet.Taylm.Real.Taylm

@@ -1,8 +1,0 @@
-# `Operations/` files that still declare a `theorem` or `lemma` (#198, #257). `Operations/` holds
-# definitions: a guarantee about an operation belongs in a `Theorems/` file, a general fact in the
-# global lemmas. The one file left: `HPolytope.mem_stackRows_iff` is five lines, so by rule a section
-# of a `Basic.lean`; `Float/Theorems/Basic.lean` cannot host it, since `StackRows` imports
-# `Theorems/MemConstruct`, which imports that `Basic.lean`. The list only shrinks, and an entry whose
-# file declares no theorem any more is reported as stale by `scripts/check-conventions.sh`.
-# One path per line.
-src/CORALean/ContSet/HPolytope/Float/Operations/Basic.lean

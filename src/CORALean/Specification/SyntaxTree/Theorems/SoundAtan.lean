@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesAtan
@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `atan` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_atan (h : Sound B t) : Sound B (t.atan) :=
+theorem SyntaxTree.sound_atan (h : IsSound B t) : IsSound B (t.atan) :=
   ⟨h, encloses_atan (encloses_of_sound h), funHanAtan_sound t.value⟩
 
 end CORALean

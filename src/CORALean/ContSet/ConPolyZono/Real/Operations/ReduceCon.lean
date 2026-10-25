@@ -49,8 +49,9 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The surviving generator exponent columns, then the surviving constraint
-exponent columns. -/
+/-- The surviving generator exponent columns, then the surviving constraint exponent columns. Not
+the constraint's work (generators): [1, Prop. 13]'s generator exponents after the substitution; its
+constraint is `PolyLevelSet.eliminate`. -/
 def ConPolyZono.aux_reduceConE {p h q : ℕ} (E : Fin p → Fin h → ℕ) (R : Fin p → Fin q → ℕ)
     (d : Fin h) (t : Fin q) : Fin p → Fin ((h - 1) + (q - 1)) → ℕ :=
   fun k => Fin.addCases (fun i => E k (dropIdx d i)) (fun i => R k (dropIdx t i))

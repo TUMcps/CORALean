@@ -15,6 +15,11 @@ its power of two through ℚ, which makes the scalar *runnable*: ℝ's inversion
 ℚ's is not, and a class field of type `𝕋 → ℝ` is data the compiler cannot erase, so a noncomputable
 `toReal` would make every generic algorithm at this type noncomputable. `toReal_def` is the number
 it denotes.
+
+## References
+
+None: dyadic numbers with a mantissa held to `p` bits, defined here for a runnable scalar; no
+publication defines this type.
 -/
 
 -- Authors:       Claude Opus 5

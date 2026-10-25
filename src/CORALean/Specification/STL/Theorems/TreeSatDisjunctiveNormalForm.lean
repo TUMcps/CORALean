@@ -10,8 +10,8 @@ public import CORALean.Specification.STL.Theorems.Basic
 /-!
 # The disjunctive normal form keeps the meaning
 
-`disjunctiveNormalForm(obj)` is satisfied by the same traces as `obj` (`Tree.Sat`, CORA's reading
-of `until`), with or without the negation normal form step.
+`disjunctiveNormalForm(obj)` is satisfied by the same traces as `obj` (`Tree.Satisfies`, CORA's
+reading of `until`), with or without the negation normal form step.
 
 ## Inputs
 * `φ` – formula
@@ -44,18 +44,18 @@ variable {n : ℕ}
 
 /-- One DNF pass keeps the meaning. -/
 theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (φ.dnfRewrite).1.Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
+    (φ.dnfRewrite).1.Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
   | and φ ψ ihφ ihψ =>
     simp only [STL.Tree.dnfRewrite]
-    split <;> (have e₁ := ihφ ξ; have e₂ := ihψ ξ; simp_all only [STL.Tree.Sat] <;> grind)
-  | or φ ψ ihφ ihψ => simp [STL.Tree.dnfRewrite, STL.Tree.Sat, ihφ, ihψ]
+    split <;> (have e₁ := ihφ ξ; have e₂ := ihψ ξ; simp_all only [STL.Tree.Satisfies] <;> grind)
+  | or φ ψ ihφ ihψ => simp [STL.Tree.dnfRewrite, STL.Tree.Satisfies, ihφ, ihψ]
   | _ => simp [STL.Tree.dnfRewrite]
 
 
 /-- The DNF loop keeps the meaning. -/
 theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    φ.dnfLoop.Sat ξ ↔ φ.Sat ξ := by
+    φ.dnfLoop.Satisfies ξ ↔ φ.Satisfies ξ := by
   induction φ using STL.Tree.dnfLoop.induct generalizing ξ with
   | case1 φ cnt hc => rw [STL.Tree.dnfLoop, dif_pos hc]; exact STL.Tree.aux_sat_dnfRewrite φ ξ
   | case2 φ res cnt h ih =>
@@ -66,7 +66,7 @@ theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → �
 
 theorem STL.Tree.sat_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (φ.disjunctiveNormalForm nnf).Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
+    (φ.disjunctiveNormalForm nnf).Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   unfold STL.Tree.disjunctiveNormalForm
   rw [STL.Tree.aux_sat_dnfLoop]
   cases nnf

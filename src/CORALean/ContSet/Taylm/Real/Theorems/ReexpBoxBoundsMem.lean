@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.reexpBoxBounds_mem (P : List (ℝ × (Fin n → ℕ))) {B : Fin n → Interval ℝ}
-    {t : Vec ℝ n} (ht : Taylm.InBox B t) : -- --- CONCL ---
+    {t : Vec ℝ n} (ht : Taylm.IsInBox B t) : -- --- CONCL ---
     (Taylm.reexpBoxBounds P B).inf ≤ Taylm.polyOf P t ∧
       Taylm.polyOf P t ≤ (Taylm.reexpBoxBounds P B).sup := by -- --- PROOF ---
   -- the normalized coordinates of `t`

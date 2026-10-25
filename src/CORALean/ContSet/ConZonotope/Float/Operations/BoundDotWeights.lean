@@ -52,22 +52,26 @@ open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 /-- A proposed weight, made admissible. -/
 def ConZonotope.aux_clamp (w : 𝕋) : 𝕋 := maximum zero w
 
-/-- An upper end of the residual's `j`-th entry. -/
+/-- An upper end of the residual's `j`-th entry. Not the polytope's work (certificate): the residual
+of the coefficient program's dual over the constraint and the unit box together, column by column,
+which no operation of the polytope alone states. -/
 def ConZonotope.aux_resUp (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
   addUp (dotUp a (cZ.G j))
     (addUp (neg (dotDown y fun k => cZ.P.A k j))
       (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
 
-/-- A lower end of the residual's `j`-th entry. -/
+/-- A lower end of the residual's `j`-th entry. Not the polytope's work (certificate): the lower end
+of the same dual residual. -/
 def ConZonotope.aux_resDown (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
   addDown (dotDown a (cZ.G j))
     (addDown (neg (dotUp y fun k => cZ.P.A k j))
       (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
 
-/-- The coefficient program bounded at the given weights, each clamped at zero,
-the residual paid by the unit box. Sound for every weight vector. -/
+/-- The coefficient program bounded at the given weights, each clamped at zero, the residual paid by
+the unit box; sound for every weight vector. Not the polytope's work (certificate): weak duality
+over the constraint and the unit box. -/
 def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (y₀ : Vec 𝕋 cZ.P.m) (zu₀ zl₀ : Vec 𝕋 cZ.P.me) : FloatBound 𝕋 (nominalSet cZ) c :=

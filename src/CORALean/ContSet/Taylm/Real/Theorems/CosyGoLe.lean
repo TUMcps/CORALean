@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
 public import CORALean.ContSet.Taylm.Real.Theorems.GlobalMinLe
 public import CORALean.ContSet.Taylm.Real.Theorems.GoLowerBoundLe
-public import CORALean.ContSet.Taylm.Real.Definitions.GoodBox
+public import CORALean.ContSet.Taylm.Real.Definitions.IsGoodBox
 public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
 public import Mathlib.Tactic.Linarith
 
@@ -53,10 +53,10 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Halving keeps a sub-box of the normalized box. -/
-theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.GoodBox B)
+theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.IsGoodBox B)
     (β : Fin n) : -- --- CONCL ---
-    Taylm.GoodBox (Taylm.halveBox B β).1 ∧
-      Taylm.GoodBox (Taylm.halveBox B β).2 := by -- --- PROOF ---
+    Taylm.IsGoodBox (Taylm.halveBox B β).1 ∧
+      Taylm.IsGoodBox (Taylm.halveBox B β).2 := by -- --- PROOF ---
   have hm := hB β
   constructor <;> intro k <;> simp only [Taylm.halveBox, Function.update_apply] <;>
     split_ifs with hk
@@ -69,8 +69,8 @@ theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.GoodBox
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.cosyGo_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {X : Fin n → Interval ℝ} (hX : Taylm.GoodBox X) (ε : ℝ) (ldbFuel fuel : ℕ) {t : Vec ℝ n}
-    (ht : Taylm.InBox X t) : (T.cosyGo X ε ldbFuel fuel).inf ≤ f t :=
+    {X : Fin n → Interval ℝ} (hX : Taylm.IsGoodBox X) (ε : ℝ) (ldbFuel fuel : ℕ) {t : Vec ℝ n}
+    (ht : Taylm.IsInBox X t) : (T.cosyGo X ε ldbFuel fuel).inf ≤ f t :=
   Taylm.globalMin_le (fun _ β hB => Taylm.aux_goodBox_halve hB β)
     (fun _ hB _ ht => Taylm.goLowerBound_le h ε ldbFuel hB ht) hX fuel ht
 

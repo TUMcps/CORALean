@@ -13,6 +13,11 @@ index. Generic over the member representation `S`, not split into `Real/` and `F
 `SetUnion`: the type stores nothing but a `List S`, so no arithmetic of its own sits here for a
 scalar to model. `List S`, not `Fin k → S` as `ZonoBundle`: the two denote the same thing at a fixed
 arity, and `List` lets a caller append rather than reindex.
+
+## References
+
+None: CORALean's own generalization of `ZonoBundle`'s intersection, with no counterpart in a
+publication.
 -/
 
 -- Authors:       Claude Sonnet 5

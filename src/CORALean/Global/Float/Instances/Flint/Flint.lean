@@ -12,9 +12,14 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 `Dyadic`. What differs is who rounds. The six directed operations are handed to FLINT's
 `arf_add`/`arf_mul`/`arf_div` at `p` bits, compiled C that Lean cannot see into, so their directions
 are assumed once, in `Definitions/Axioms`. The exponent is unbounded on both sides, FLINT's being an
-`fmpz`, so nothing overflows or underflows and the assumption needs no range side condition, unlike
-the hardware's. Opt-in: nothing in the default build links FLINT (README, "FLINT backend
-(optional)").
+`fmpz` [1, Sec. 3.1.2], so nothing overflows or underflows and the assumption needs no range side
+condition, unlike the hardware's. Opt-in: nothing in the default build links FLINT (README, "FLINT
+backend (optional)").
+
+## References
+
+* [1] F. Johansson. "Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic".
+      IEEE Transactions on Computers 66(8), 2017, pp. 1281-1292.
 -/
 
 -- Authors:       Claude Opus 5.5

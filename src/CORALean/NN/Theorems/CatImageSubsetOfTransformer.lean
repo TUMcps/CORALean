@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {S : ℕ → 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every output of `N` on `X` lies in `C` once the abstract output does. -/
-theorem Cat.image_subset_of_transformer (D : CatDomain 𝕋 S) (hD : D.Sound) {m n : ℕ}
+theorem Cat.image_subset_of_transformer (D : CatDomain 𝕋 S) (hD : D.IsSound) {m n : ℕ}
     (N : Cat 𝕋 m n) {X : Set (Vec ℝ m)} {C : Set (Vec ℝ n)} (a : S m)
     (hα : X ⊆ construct a) (hC : construct (N.transformer D a) ⊆ C) : N.image X ⊆ C :=
   fun _ ⟨x, hx, hxy⟩ => hC (Cat.transformer_outer D hD N a ⟨x, hα hx, hxy⟩)

@@ -74,7 +74,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.discretizeEnclosureFloat
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct
         Ud)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) :
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) :
     (sys.discretizeEnclosureFloat Δt η).IsCanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt))
           ((LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt))

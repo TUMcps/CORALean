@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
-public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsPolyAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
@@ -32,7 +32,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.IsLinReachInnerCert
 /-!
 # What `NonlinearSys` means beyond the system itself
 
-`AbstractionError`/`PolyAbstractionError` are the certificates a linearization
+`IsAbstractionError`/`IsPolyAbstractionError` are the certificates a linearization
 is checked against; `LinStep` bundles one linearization with its certificate.
 `OptStep`/`TunedStep` are what `optDeltat` and the tuning of `Δt` return.
 `AbstrState`/`AdaptState`/`CenterAbstrState`/`PolyReachState` (with

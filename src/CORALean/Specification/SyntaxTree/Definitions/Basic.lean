@@ -28,14 +28,14 @@ namespace CORALean
 def SyntaxTree.Dom.contains (I : Dom) (t : ℝ) : Prop := I.inf 0 ≤ t ∧ t ≤ I.sup 0
 
 
--- ====================================  `SyntaxTree.InBox`  ==================================== --
+-- ===================================  `SyntaxTree.IsInBox`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- `x` lies in the box `B`. -/
-def SyntaxTree.InBox {n : ℕ} (B : Real.Interval (Vec ℝ n)) (x : Fin n → ℝ) : Prop :=
+def SyntaxTree.IsInBox {n : ℕ} (B : Real.Interval (Vec ℝ n)) (x : Fin n → ℝ) : Prop :=
   ∀ i, B.inf i ≤ x i ∧ x i ≤ B.sup i
 
 
@@ -47,7 +47,7 @@ def SyntaxTree.InBox {n : ℕ} (B : Real.Interval (Vec ℝ n)) (x : Fin n → �
 
 /-- `t.value` holds `t.eval x` at every point `x` of the box `B`. -/
 def SyntaxTree.Encloses {n : ℕ} (B : Real.Interval (Vec ℝ n)) (t : SyntaxTree n) : Prop :=
-  ∀ x, SyntaxTree.InBox B x → Dom.contains t.value (t.eval x)
+  ∀ x, SyntaxTree.IsInBox B x → Dom.contains t.value (t.eval x)
 
 end CORALean
 

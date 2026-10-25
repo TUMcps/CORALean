@@ -32,11 +32,11 @@ from a check on the computed sets, not by CORA's own, circular check. This is th
 * `R` – state region
 * `L` – remainder set
 * `y` – output trajectory
-* `cert` – abstraction-error certificate
 
 ## Hypotheses
 * `traj` – trajectory of the system
 * `hTm` – time set measurable
+* `cert` – abstraction-error certificate
 * `hR` – trajectory stays in region
 
 ## Conclusion
@@ -74,7 +74,7 @@ theorem NonlinearSys.IsTrajectory.linearize {sys : NonlinearSys n m} {T : Set �
     {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n}
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hTm : MeasurableSet T)
-    (cert : AbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ T, x t ∈ R) :
     (NonlinearSys.linearize A).IsCanonicalTrajectory T R₀ (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) where

@@ -14,6 +14,11 @@ saying it. The dimension is the index rather than a field, exactly as in `EmptyS
 `ContSet (Fullspace n) (Vec ℝ n)` pins the ambient type. It is the unit an intersection starts from,
 and the outer approximation that assumes nothing. It is unbounded at `0 < n`, so `CompactSet` is
 missing from its instances rather than proved. Real layer only: it holds no scalar.
+
+## References
+
+None: the whole space, a set class of CORA's own with no publication; it holds no data to take from
+one.
 -/
 
 -- Authors:       Claude Opus 5

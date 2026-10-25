@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Ext
+public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.IsExt
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.GetVerdict
 
 @[expose] public section
@@ -38,9 +38,9 @@ theorem OnlineReachSetAnalyzer.getVerdict_eq_some_iff (obj : OnlineReachSetAnaly
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `Same` is reflexive. -/
+/-- `IsSame` is reflexive. -/
 theorem OnlineReachSetAnalyzer.same_refl (n : OnlineAnalyzerNode ℝ A) :
-    OnlineReachSetAnalyzer.Same n n := ⟨rfl, rfl, rfl, rfl⟩
+    OnlineReachSetAnalyzer.IsSame n n := ⟨rfl, rfl, rfl, rfl⟩
 
 
 -- ===========================  `OnlineReachSetAnalyzer.ext_append`  ============================ --
@@ -51,7 +51,7 @@ theorem OnlineReachSetAnalyzer.same_refl (n : OnlineAnalyzerNode ℝ A) :
 
 /-- Appending a node extends the list. -/
 theorem OnlineReachSetAnalyzer.ext_append (nodes : List (OnlineAnalyzerNode ℝ A))
-    (node : OnlineAnalyzerNode ℝ A) : OnlineReachSetAnalyzer.Ext nodes (nodes ++ [node]) :=
+    (node : OnlineAnalyzerNode ℝ A) : OnlineReachSetAnalyzer.IsExt nodes (nodes ++ [node]) :=
   ⟨by simp, fun j h h' => by simp [List.getElem_append_left h, OnlineReachSetAnalyzer.same_refl]⟩
 
 
@@ -61,9 +61,9 @@ theorem OnlineReachSetAnalyzer.ext_append (nodes : List (OnlineAnalyzerNode ℝ 
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `Ext` is reflexive. -/
+/-- `IsExt` is reflexive. -/
 theorem OnlineReachSetAnalyzer.ext_refl (nodes : List (OnlineAnalyzerNode ℝ A)) :
-    OnlineReachSetAnalyzer.Ext nodes nodes :=
+    OnlineReachSetAnalyzer.IsExt nodes nodes :=
   ⟨le_rfl, fun _ _ _ => OnlineReachSetAnalyzer.same_refl _⟩
 
 
@@ -73,10 +73,10 @@ theorem OnlineReachSetAnalyzer.ext_refl (nodes : List (OnlineAnalyzerNode ℝ A)
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `Same` is transitive. -/
+/-- `IsSame` is transitive. -/
 theorem OnlineReachSetAnalyzer.same_trans {n m k : OnlineAnalyzerNode ℝ A}
-    (h1 : OnlineReachSetAnalyzer.Same n m) (h2 : OnlineReachSetAnalyzer.Same m k) :
-    OnlineReachSetAnalyzer.Same n k :=
+    (h1 : OnlineReachSetAnalyzer.IsSame n m) (h2 : OnlineReachSetAnalyzer.IsSame m k) :
+    OnlineReachSetAnalyzer.IsSame n k :=
   ⟨h1.1.trans h2.1, h1.2.1.trans h2.2.1, h1.2.2.1.trans h2.2.2.1, h1.2.2.2.trans h2.2.2.2⟩
 
 end CORALean

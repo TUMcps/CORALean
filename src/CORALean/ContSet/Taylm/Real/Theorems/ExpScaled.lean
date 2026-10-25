@@ -49,8 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.exp_scaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
-    (hT : T.Scaled h C) : -- --- CONCL ---
-    T.exp.Scaled h (Real.exp C * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
+    (hT : T.IsScaled h C) : -- --- CONCL ---
+    T.exp.IsScaled h (Real.exp C * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
       + Real.exp (3 * C) * (2 * C) ^ (T.maxOrder + 1)) := by -- --- PROOF ---
   have hc := Taylm.abs_constCoef_le T h0
   have hC : |T.constCoef| ≤ C := le_trans hc hT.1

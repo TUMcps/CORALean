@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.Flint.Definitions.TrustedFlint
+public import CORALean.Global.Float.Instances.Flint.Definitions.IsTrustedFlint
 
 @[expose] public section
 
@@ -24,6 +24,6 @@ every result outside this opt-in backend, linked only by `bench-flint`.
 
 namespace CORALean.Float.Flint
 
-axiom trustedFlint : TrustedFlint
+axiom trustedFlint : IsTrustedFlint
 
 end CORALean.Float.Flint

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.IsInMergeBucket
 public import CORALean.NN.Theorems.Real.MergeBucketWidth
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
@@ -14,10 +14,10 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 `neuronMerging_sandwich_outer` is sound at *every* bucket of [1]'s `B_{k,y,δ}`, so which `y` and `δ`
 get chosen owes no proof. This is the statement that makes an automatic choice meaningful anyway:
 the error the merge costs is linear in `δ`, so driving `δ` down drives the reduction's cost to zero.
-`mergeBucket` alone only bounds `Y.sup i - Y.inf i`, one-sided; a bucket with crossed bounds at some
-index (denoting `∅`) satisfies that bound in the wrong direction, and the error box's *width* needs
-the other side too. `hY : Y.IsNonempty` is the one hypothesis this adds to the plan, exactly what a
-real relaxation's output box always has.
+`IsInMergeBucket` alone only bounds `Y.sup i - Y.inf i`, one-sided; a bucket with crossed bounds at
+some index (denoting `∅`) satisfies that bound in the wrong direction, and the error box's *width*
+needs the other side too. `hY : Y.IsNonempty` is the one hypothesis this adds to the plan, exactly
+what a real relaxation's output box always has.
 
 ## Inputs
 * `n` – layer width
@@ -90,10 +90,10 @@ theorem mergeError_width_le {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ
   rw [show EB = _ from rfl, Real.Interval.aux_mtimes_width, Finset.sum_mul]
   -- each column's width is at most `2δ`, its index lying in the bucket
   refine Finset.sum_le_sum fun k _ => mul_le_mul_of_nonneg_left ?_ (abs_nonneg _)
-  have hbucket : mergeBucket Y y δ ((mergeSplit Y y δ).right k) :=
-    Partition.ofPred_right (mergeBucket Y y δ) k
+  have hbucket : IsInMergeBucket Y y δ ((mergeSplit Y y δ).right k) :=
+    Partition.ofPred_right (IsInMergeBucket Y y δ) k
   have hwidth := mergeBucket_width Y y δ hbucket
-  -- the bucket's own bounds are in order too, which is the other half `mergeBucket` lacks
+  -- the bucket's own bounds are in order too, which is the other half `IsInMergeBucket` lacks
   have hnon : Y.inf ((mergeSplit Y y δ).right k) ≤ Y.sup ((mergeSplit Y y δ).right k) :=
     hY ((mergeSplit Y y δ).right k)
   show |Y.sup ((mergeSplit Y y δ).right k) - Y.inf ((mergeSplit Y y δ).right k)| ≤ 2 * δ

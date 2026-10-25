@@ -42,28 +42,28 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_nnfWith (ng : STL.Cmp → STL.Cmp)
-    (hng : ∀ op a b, (ng op).rel a b ↔ ¬ op.rel a b) (φ : STL.Tree n) (neg : Bool)
+    (hng : ∀ op a b, (ng op).Relates a b ↔ ¬ op.Relates a b) (φ : STL.Tree n) (neg : Bool)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (φ.nnfWith ng neg).Sat ξ ↔ (φ.Sat ξ ↔ neg = false) := by -- --- PROOF ---
+    (φ.nnfWith ng neg).Satisfies ξ ↔ (φ.Satisfies ξ ↔ neg = false) := by -- --- PROOF ---
   induction φ generalizing neg ξ with
-  | tt => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat]
-  | ff => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat]
-  | cmp op e₁ e₂ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, hng]
-  | not φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ih]
+  | tt => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies]
+  | ff => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies]
+  | cmp op e₁ e₂ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies, hng]
+  | not φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies, ih]
   | and φ ψ ihφ ihψ =>
-    cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ihφ, ihψ, imp_iff_not_or]
-  | or φ ψ ihφ ihψ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ihφ, ihψ]
+    cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies, ihφ, ihψ, imp_iff_not_or]
+  | or φ ψ ihφ ihψ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies, ihφ, ihψ]
   | «until» a b φ ψ ihφ ihψ => cases neg <;>
-    simp [STL.Tree.nnfWith, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+    simp [STL.Tree.nnfWith, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ihφ, ihψ]
   | release a b φ ψ ihφ ihψ => cases neg <;>
-    simp [STL.Tree.nnfWith, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+    simp [STL.Tree.nnfWith, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ihφ, ihψ]
   | «finally» a b φ ih => cases neg <;>
-    simp [STL.Tree.nnfWith, STL.Tree.Sat,
+    simp [STL.Tree.nnfWith, STL.Tree.Satisfies,
       STL.Tree.HasUntilWitness, ih]
   | globally a b φ ih => cases neg <;>
-    simp [STL.Tree.nnfWith, STL.Tree.Sat,
+    simp [STL.Tree.nnfWith, STL.Tree.Satisfies,
       STL.Tree.HasUntilWitness, ih]
-  | next a φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ih]
+  | next a φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Satisfies, ih]
 
 end CORALean
 

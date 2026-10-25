@@ -96,7 +96,7 @@ theorem FourValuedSignal.conclusiveInterval_spec (obj : FourValuedSignal ℝ) (h
     obtain ⟨hlub, hincl⟩ := (C.cutAtFirstFallingEdge.findLast_spec hvc true).1 hex
     -- the end of the cut signal is the end of the interval
     rw [STLInterval.mem_set_stlIntervalBounds _ _ _ _ le_rfl]
-    simp only [STLInterval.memBounds]
+    simp only [STLInterval.IsInBounds]
     have hrhs : (0 ≤ t ∧ ∀ x : ℝ, 0 ≤ x → x ≤ t → x ∈ ignore.set ∨ obj.at x ≠ FourValued.ii) ↔
         0 ≤ t ∧ ∀ y, 0 ≤ y → y ≤ t → C.at y = true :=
       and_congr_right fun _ => forall_congr' fun x => forall_congr' fun hx =>

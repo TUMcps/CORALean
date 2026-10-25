@@ -106,7 +106,7 @@ theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem softplusRelaxation_sound (β : 𝕋) (k nl kl : ℕ) :
-    (softplusRelaxation β k nl kl).SoundWhere (Real.softplus (toReal β))
+    (softplusRelaxation β k nl kl).IsSoundWhere (Real.softplus (toReal β))
       (IsSoftplusBox β k nl) :=
   Relaxation.ofMonotone_soundWhere (E := softplusEnclosure β k nl kl)
     (fun _ _ h => Real.aux_softplus_mono h.1) (fun _ _ h => aux_softplus_lo_le h)

@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.center_mem_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (hE : Real.ConPolyZono.NoZeroCol cPZ.E) (hR : Real.ConPolyZono.NoZeroCol cPZ.cons.R)
+    (hE : Real.ConPolyZono.HasNoZeroCol cPZ.E) (hR : Real.ConPolyZono.HasNoZeroCol cPZ.cons.R)
     (hb : ∀ i, |toReal (cPZ.cons.b i)| ≤ |toReal (cPZ.cons.b_error i)|)
     (h0 : ∀ i, toReal (cPZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (cPZ.I_error.sup i)) : -- --- CONCL ---
     toRealVec cPZ.center ∈ cPZ.construct := by -- --- PROOF ---

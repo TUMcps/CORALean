@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Operations.Basic
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 
 @[expose] public section
 
@@ -41,7 +41,7 @@ namespace CORALean
 theorem STLInterval.not_memBounds_of_emptyBounds {T : Type} [LinearOrder T] (lb : T)
     (ub : WithTop T) (lc rc : Bool) (t : T)
     (h : STLInterval.emptyBounds lb ub lc rc = true) : -- --- CONCL ---
-    ¬ STLInterval.memBounds lb ub lc rc t := by -- --- PROOF ---
+    ¬ STLInterval.IsInBounds lb ub lc rc t := by -- --- PROOF ---
   -- an empty interval is one whose ends cross, or meet while one is open
   intro hm
   simp only [TimeOrder.isEqvTop_iff_eq, STLInterval.emptyBounds] at h

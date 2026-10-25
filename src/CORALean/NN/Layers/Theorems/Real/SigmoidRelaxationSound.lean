@@ -39,9 +39,9 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem sigmoidRelaxation_sound : -- --- CONCL ---
-    sigmoidRelaxation.Sound sigmoid := by -- --- PROOF ---
+    sigmoidRelaxation.IsSound sigmoid := by -- --- PROOF ---
   -- the curvature half: the exact bracket, and the clamped secant inside it
-  have hcurv : sigmoidCurvatureRelaxation.Sound sigmoid :=
+  have hcurv : sigmoidCurvatureRelaxation.IsSound sigmoid :=
     Relaxation.ofDeriv_sound sigmoidDeriv hasDerivAt_sigmoid (enclosure_exact_sound sigmoid)
       (fun _ _ _ h₁ h₂ => sigmoidDerivLo_le h₁ h₂) (fun _ _ _ h₁ h₂ => le_sigmoidDerivHi h₁ h₂)
       fun l u h => ⟨le_max_left _ _,

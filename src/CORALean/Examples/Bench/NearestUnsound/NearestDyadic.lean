@@ -10,7 +10,7 @@ back to `p` bits is to nearest with ties to even, in both directions alike. The 
 unbounded: this models a format's precision, not its range. The quotient is rounded while the
 integers are still there, as `Dyadic.quotDown` does, with a halfway bit and a sticky bit; that is
 what `NearestFloat` at `p = 53` is checked against. Nothing here is sound: the six false laws are
-fields of `NearestUnsound`, assumed in `Axioms`, and at `Dyadic` they are refutable.
+fields of `IsNearestUnsound`, assumed in `Axioms`, and at `Dyadic` they are refutable.
 -/
 
 -- Authors:       Claude Opus 5.5

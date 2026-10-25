@@ -51,10 +51,10 @@ open scoped NNReal
 
 theorem FourValuedSTL.Formula.sat_and_until_and {X : Type} (φ₁ φ₂ : FourValuedSTL.Formula X)
     (I : STLInterval ℝ) (ξ : ℝ≥0 → X) (t : ℝ≥0) : -- --- CONCL ---
-    (FourValuedSTL.Formula.and φ₁ (.until I φ₁ (.and φ₁ φ₂))).Sat ξ t ↔
-      ∃ t' : ℝ≥0, (t' : ℝ) - t ∈ I.set ∧ φ₂.Sat ξ t' ∧
-        ∀ t'' : ℝ≥0, t ≤ t'' → t'' ≤ t' → φ₁.Sat ξ t'' := by -- --- PROOF ---
-  simp only [FourValuedSTL.Formula.Sat]
+    (FourValuedSTL.Formula.and φ₁ (.until I φ₁ (.and φ₁ φ₂))).Satisfies ξ t ↔
+      ∃ t' : ℝ≥0, (t' : ℝ) - t ∈ I.set ∧ φ₂.Satisfies ξ t' ∧
+        ∀ t'' : ℝ≥0, t ≤ t'' → t'' ≤ t' → φ₁.Satisfies ξ t'' := by -- --- PROOF ---
+  simp only [FourValuedSTL.Formula.Satisfies]
   constructor
   · -- `φ₁` at `t`, at `t'`, and strictly between
     rintro ⟨h0, t', hu, ⟨h1, h2⟩, hl⟩

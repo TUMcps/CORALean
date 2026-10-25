@@ -64,7 +64,7 @@ holds every run at every time of it. -/
 theorem LinearSys.aux_adaptiveRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} : -- --- CONCL ---
     ∀ {k : ℕ} {s : LinearSys.AdaptiveState 𝕋 n} {steps : List (LinearSys.AdaptiveStepInfo 𝕋 n)},
-      sys.adaptiveRunFloat X₀ V t₀ tf options k s = some steps → sys.AdaptiveInvariant V s →
+      sys.adaptiveRunFloat X₀ V t₀ tf options k s = some steps → sys.IsAdaptiveInvariant V s →
       ((tf : ℝ) ≤ s.t ∨ ∀ t ∈ Set.Icc ((t₀ : ℝ) + s.t) ((t₀ : ℝ) + tf),
           ∃ r ∈ steps, t ∈ Set.Icc (r.tStart : ℝ) r.tEnd) ∧
         ∀ r ∈ steps, ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
@@ -142,7 +142,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
   split_ifs at h with htf
   set V := sys.inputSetFloat params.U with hV
   -- nothing is contributed by time `0`
-  have hinv : sys.AdaptiveInvariant V (⟨0, ⟨zero, zero⟩,
+  have hinv : sys.IsAdaptiveInvariant V (⟨0, ⟨zero, zero⟩,
       mulDown (ratUp (params.tFinal - params.tStart)) options.μ, 0, 0,
       (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope⟩ : LinearSys.AdaptiveState 𝕋 n) := by
     refine ⟨le_rfl, by simp [toReal_zero], by simp [toReal_zero], fun y hy => ?_⟩

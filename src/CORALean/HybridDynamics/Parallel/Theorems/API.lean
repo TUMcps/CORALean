@@ -51,7 +51,7 @@ relate `stack` to `unstack`, the `…StackProdExact` say the Cartesian products 
 `BoxLifting`, `ZonoLifting` and `ConZonoLifting` are `Lifting`s, exact (`…LiftingExact`) where no
 global input feeds two inputs (`SelectGlobal…`); `BoxSyncLifting` adds the guard conjunction that
 synchronized transitions need. `IsRun.ofProduct` is the converse of `IsRun.toProduct` and
-`reachSetExact_product_eq` the equality of reachable sets they give, under `Lifting.Exact`,
+`reachSetExact_product_eq` the equality of reachable sets they give, under `Lifting.IsExact`,
 `GlobalsDistinct` and nonempty input sets. `SyncRunToProduct` is `IsRun.toProduct` with
 synchronization labels; `ReachFloatOuter` the float reach's soundness.
 -/

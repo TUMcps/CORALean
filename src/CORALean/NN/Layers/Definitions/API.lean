@@ -50,7 +50,7 @@ public import CORALean.NN.Layers.Definitions.WindowMax
 public import CORALean.NN.Layers.Definitions.IsSShape
 public import CORALean.NN.Layers.Definitions.DeepZRelu
 public import CORALean.NN.Layers.Definitions.DeepZSShape
-public import CORALean.NN.Layers.Definitions.SShapedPrinted
+public import CORALean.NN.Layers.Definitions.IsSShapedPrinted
 public import CORALean.NN.Layers.Definitions.ApproxError
 public import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation
 public import CORALean.NN.Layers.Definitions.SecantSlope
@@ -60,7 +60,7 @@ public import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
 # What the standard layers mean, collected
 
 **What a layer is handed.** `Relaxation`, `Enclosure`, `ScaleRounding` and `PolyRelaxation` are
-what an activation has to supply, each with the `Sound` predicate that ties it to `σ`.
+what an activation has to supply, each with the `IsSound` predicate that ties it to `σ`.
 
 **The functions over ℝ.** `Relu`, `WindowMax`, `BatchNorm`, `Sigmoid`, `Softmax`, `InvSqrt` and
 `EvalPoly` are what the layers enclose, never what they run.
@@ -76,7 +76,7 @@ squares and chooses by existence, and `ActivationPoly`, `ActivationPolyRefinable
 its `Enclose` instance in `Instances.lean`; `SoftmaxExactLayer` and `ActivationPolyExactLayer` are
 the two exact ones, their instances here, being noncomputable.
 
-**DeepZ.** `DeepZRelu` and `DeepZSShape` are its transformers over ℝ, `SShapedPrinted` the
+**DeepZ.** `DeepZRelu` and `DeepZSShape` are its transformers over ℝ, `IsSShapedPrinted` the
 class its footnote defines. `EvaluateSinghNeuronCora` and `EvaluateSinghCora` are CORA's
 `'singh'` neuron step and a two-neuron network run through it.
 -/

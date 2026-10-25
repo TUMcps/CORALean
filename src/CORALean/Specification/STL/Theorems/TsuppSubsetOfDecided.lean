@@ -45,7 +45,7 @@ variable {X : Type}
 
 /-- [1, Eq. 12]: a set that decides `ϕ` contains its time support. -/
 theorem STL.Formula.tsupp_subset_of_decided {φ : STL.Formula X} {T : Set ℝ≥0}
-    (h : φ.DecidedOn T) : φ.tsupp ⊆ T := by
+    (h : φ.IsDecidedOn T) : φ.tsupp ⊆ T := by
   rintro t ⟨ξ, ξ', hξ, hξ', hagree⟩
   by_contra ht
   -- the two traces agree on `T`, since they differ only at `t ∉ T`

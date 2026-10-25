@@ -99,9 +99,9 @@ theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec 
 /-- Both relaxed operands lie in their union relaxed by their slacks, the selector rows by none. -/
 theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec ℝ cPZ₁.cons.m)
     (s₂ : Vec ℝ cPZ₂.cons.m) (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
-    (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.NoZeroCol cPZ₁.cons.R)
-    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E)
-    (hR₂ : ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
+    (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.HasNoZeroCol cPZ₁.cons.R)
+    (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
+    (hR₂ : ConPolyZono.HasNoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
     (cPZ₁.relax s₁).construct ∪ (cPZ₂.relax s₂).construct
       ⊆ ((cPZ₁.union cPZ₂).relax
           (Fin.append (0 : Vec ℝ (1 + 1)) (Fin.append s₁ s₂))).construct := by -- --- PROOF ---

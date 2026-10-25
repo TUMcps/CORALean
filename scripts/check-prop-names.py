@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
-"""A `Prop`-valued definition is named so that `X.Name args` reads as a statement (#196).
+"""A `Prop`-valued definition is named so that `X.Name args` reads as a statement (#196, #257).
 
 Every `def`, `abbrev`, `structure`, `inductive` and `class` under `src/` whose type is a `Prop`
-(`: Prop`, `… → Prop`, `structure … : Prop where`) has a last name component that starts with
-`Is` or `Has`, or is listed in `scripts/prop-name-allowlist.txt`: a CORA method's own name, a
-verb form (`Encloses`, `Holds`, `Reaches`) or an adjective (`Admissible`). The list is
-`<name>  <reason>` per line, `#` comments and blank lines ignored, entries grouped under reason
-headers as comments allowed (a line `<name>` alone is fine when a header comment gives the
-reason). An entry that matches no declaration any more is reported as stale, so the list only
-shrinks. Prints findings and exits 1 on any.
+(`: Prop`, `… → Prop`, `structure … : Prop where`) has a last name component of one of three forms:
+
+* `Is…` or `Has…` (`IsCompact`, `HasDerivAt`, `IsTrajectory`), also lower-case (`isBounded`, `hasDeriv`);
+* a *verb relation*: its first word, read up to the next capital letter, digit or `_`, is an English
+  third-person verb: at least four letters, ending in `s`, but not in `ss`, `us` or `is`
+  (`Encloses`, `Holds`, `HoldsOn`, `Covers`, `Satisfies`, `Represents`, `Reaches`, `containsPoint`).
+  A noun or an adjective (`Sorted`, `Branch`, `Exact`) has no such first word and fails;
+* a CORA mirror: a lower-case name that starts with the name of a CORA method of
+  `references/coverage/cora-inventory.json`, the method's own spelling being the point
+  (`eq`, `le`, `isequal`, `representsa_point`, `constrSat`).
+
+There is no list of exceptions. Prints findings and exits 1 on any.
 
 `--root DIR` reads another tree (used to test the rule on a mutated copy); `--survey` prints
 every Prop-valued declaration as `path:line: name` and exits 0.
 """
+import json
 import re
 import sys
 from pathlib import Path
@@ -22,7 +28,7 @@ args = sys.argv[1:]
 survey = "--survey" in args
 if "--root" in args:
     ROOT = Path(args[args.index("--root") + 1]).resolve()
-LIST = ROOT / "scripts/prop-name-allowlist.txt"
+INVENTORY = ROOT / "references/coverage/cora-inventory.json"
 
 DECL = re.compile(
     r"^(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|nonrec|partial|unsafe)\s+)*"
@@ -73,36 +79,57 @@ def prop_decls(path):
     return out
 
 
+def cora_methods():
+    """Every CORA method name of the coverage inventory."""
+    names = set()
+
+    def walk(x):
+        if isinstance(x, dict):
+            for v in x.values():
+                walk(v)
+        else:
+            for v in x:
+                names.add(v) if isinstance(v, str) else walk(v)
+    walk(json.loads(INVENTORY.read_text(encoding="utf-8")))
+    return names
+
+
+def first_word(name):
+    """The leading letters of `name`, up to the next capital letter, digit or `_`."""
+    return re.match(r"[A-Za-z][a-z]*", name).group(0)
+
+
+def is_verb(word):
+    """A third-person verb form: four letters or more, ending in `s`, not in `ss`, `us`, `is`."""
+    w = word.lower()
+    return len(w) >= 4 and w.endswith("s") and not w.endswith(("ss", "us", "is"))
+
+
+def accepted(name, methods):
+    w = first_word(name).lower()
+    if w in ("is", "has") or is_verb(w):
+        return True
+    if name[0].islower():
+        stem = re.split(r"[A-Z_0-9]", name, 1)[0]
+        return name in methods or stem in methods or stem + "_" in methods
+    return False
+
+
 def main():
-    allow, alines = {}, {}
-    if LIST.exists():
-        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
-            if not l.strip() or l.startswith("#"):
-                continue
-            key = l.split()[0]
-            allow[key] = True
-            alines[key] = no
-    findings, used = [], set()
+    methods = cora_methods()
+    findings = []
     for p in sorted((ROOT / "src").rglob("*.lean")):
         rel = p.relative_to(ROOT)
         for ln, name, kind in prop_decls(p):
             if survey:
                 print(f"{rel}:{ln}: {kind} {name}")
                 continue
-            if name.startswith(("Is", "Has")):
-                continue
-            if name in allow:
-                used.add(name)
+            if accepted(name, methods):
                 continue
             findings.append(
                 f"{rel}:{ln}: `{name}` is a Prop-valued {kind} — name it so that `X.{name} args` reads as"
-                " a statement (`Is…`/`Has…`, an adjective, a verb form), or list a CORA mirror in"
-                " scripts/prop-name-allowlist.txt")
-    if not survey:
-        for k in sorted(allow):
-            if k not in used:
-                findings.append(f"scripts/prop-name-allowlist.txt:{alines[k]}: stale entry `{k}` —"
-                                " no Prop-valued declaration of that name; the list only shrinks")
+                " a statement: `Is…`/`Has…`, or a verb relation (`Encloses`, `Holds`), or, for a CORA"
+                " mirror, the CORA method's own lower-case name")
     for f in findings:
         print(f)
     sys.exit(1 if findings else 0)

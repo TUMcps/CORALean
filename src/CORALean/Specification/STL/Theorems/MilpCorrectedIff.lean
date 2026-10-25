@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.STL.Definitions.MilpCorrected
+public import CORALean.Specification.STL.Definitions.IsMilpCorrected
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 public import Mathlib.Tactic.Linarith
 
@@ -9,7 +9,7 @@ public import Mathlib.Tactic.Linarith
 /-!
 # The corrected program (26) finds a factor outside the polytope
 
-`STL.milpCorrected C d α` holds iff `α ∈ [-1, 1]^p` and some row is violated,
+`STL.IsMilpCorrected C d α` holds iff `α ∈ [-1, 1]^p` and some row is violated,
 `d_k < C_k α`: `α` lies outside `⟨C, d⟩_P`. This is what line 9 of [1, Alg. 3] needs of
 the program [1, Eq. (26)], which as printed is infeasible; see `STL.not_milpPrinted_of_two_le`.
 The `λ_jk` select a row `k`, the other `α̃_jk` vanish and `α̃ = α̃_jk`.
@@ -49,7 +49,7 @@ variable {s p : ℕ}
 
 theorem STL.milpCorrected_iff (C : Matrix (Fin s) (Fin p) ℝ) (d : Fin s → ℝ)
     (α : Fin p → ℝ) : -- --- CONCL ---
-    STL.milpCorrected C d α ↔
+    STL.IsMilpCorrected C d α ↔
       (∀ i, -1 ≤ α i ∧ α i ≤ 1) ∧ ∃ k, d k < ∑ i, C k i * α i := by -- --- PROOF ---
   constructor
   · rintro ⟨a, lam, hbin, hstrict, hbox, hα, hsum, hα1⟩

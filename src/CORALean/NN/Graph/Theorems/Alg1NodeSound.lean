@@ -14,7 +14,7 @@ public import CORALean.NN.Graph.Theorems.EvalLayersMemGcnActStepsUncertain
 `[0, 1]` of them, which contains the subsets) and whatever input of the set `X`, the network
 `Φ(X, G)` computed exactly lies in the set `Alg. 1` returns. The input's independent generators are
 the first factors (`dependent_exact`); the rest is `evalLayers_mem_gcnActSteps_uncertain`. The
-activation enclosures are hypotheses (`ActLayer.Sound`), the content of [1, Prop. 1], which
+activation enclosures are hypotheses (`ActLayer.IsSound`), the content of [1, Prop. 1], which
 [1] does not prove.
 
 ## Inputs
@@ -65,11 +65,11 @@ variable {N m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: the exact output of the node-level network is in `Alg. 1`'s enclosure. -/
-theorem GNN.alg1Node_sound (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
+theorem GNN.alg1Node_sound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
-    (hσ : ∀ s, (acts s).Sound (σ s)) (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)}
+    (hσ : ∀ s, (acts s).IsSound (σ s)) (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)}
     (hx : x ∈ X.construct) : -- --- CONCL ---
     GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x
       ∈ (GNN.alg1Node R A U L c W acts X).construct := by -- --- PROOF ---

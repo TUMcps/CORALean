@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IsOrderAdmissible
 
 @[expose] public section
 
@@ -52,7 +52,7 @@ variable {n : ℕ}
 /-- The least order meeting `ε`, and `0` where none does — which `0 < ε` rules
 out, `expRemainderOrder_spec` being stated under exactly that. -/
 noncomputable def MatExp.expRemainderOrder (x : Mat ℝ n n) (ε : ℝ) : ℕ :=
-  sInf {η : ℕ | MatExp.OrderAdmissible x ε η}
+  sInf {η : ℕ | MatExp.IsOrderAdmissible x ε η}
 
 end CORALean.Real
 

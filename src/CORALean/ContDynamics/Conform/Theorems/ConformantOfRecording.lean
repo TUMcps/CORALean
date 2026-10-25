@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.Conform.Definitions.Conformant
+public import CORALean.ContDynamics.Conform.Definitions.IsConformant
 public import Mathlib.Tactic.Abel
 
 @[expose] public section
@@ -61,7 +61,7 @@ theorem Conform.Plant.conformant_of_recording (sys : Conform.Plant n p q) (W : S
     (V : Set (Vec ℝ q)) (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ p) (y : ℕ → Vec ℝ q)
     (hW : ∀ t, x (t + 1) - (sys.A *ᵥ x t + sys.B *ᵥ u t) ∈ W)
     (hV : ∀ t, y t - sys.C *ᵥ x t - sys.D *ᵥ u t ∈ V) (K : ℕ) : -- --- CONCL ---
-    sys.Conformant {0} W V
+    sys.IsConformant {0} W V
       (fun m => ⟨fun k => y (m + k), fun k => u (m + k), x m⟩) K := by -- --- PROOF ---
   intro m k _
   -- the residuals of the recording are the run's disturbances

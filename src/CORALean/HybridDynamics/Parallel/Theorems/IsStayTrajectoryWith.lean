@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFlowLaw
 public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import Mathlib.Analysis.InnerProductSpace.Basic
@@ -11,7 +11,7 @@ public import Mathlib.MeasureTheory.SpecificCodomains.Pi
 /-!
 # A shared stay is a stay of the product
 
-For any flow with `FlowLaw`. At each instant of the stay the flow law supplies the product's input
+For any flow with `IsFlowLaw`. At each instant of the stay the flow law supplies the product's input
 and disturbance, in its input and disturbance sets, under which every coordinate of the product's
 right-hand side at the stack is the component's own; the integral of the stack is the stack of
 the integrals, so the stack is a stay of the product with those. The invariant is the lifted
@@ -60,7 +60,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 stack, under some input and disturbance of the product. -/
 theorem ParallelHybridAutomaton.IsStay.trajectoryWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLaw F U W)
     (lift : ParallelHybridAutomaton.Lifting S G n m) {ℓ : ∀ i, L i} {τ : ℝ}
     {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m} (h : P.IsStay ℓ τ x u w g) : -- --- CONCL ---
     ∃ (g' : ℝ → Vec ℝ (F ℓ).m) (w' : ℝ → Vec ℝ (F ℓ).r),

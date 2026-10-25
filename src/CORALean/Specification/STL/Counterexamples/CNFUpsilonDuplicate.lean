@@ -45,8 +45,8 @@ open scoped NNReal
 
 theorem STL.CNF.exists_upsilon_not_complete_of_duplicate : -- --- CONCL ---
     ∃ (R : ℝ≥0 → Set Bool) (cnf : STL.CNF Bool),
-      (∀ t, (R t).Nonempty) ∧ ReachSequence.FinRep ∅ R ∧ ReachSequence.CDivisible 1 ∅ ∧
-        ¬ ((cnf.upsilon 1).Sat R ↔
+      (∀ t, (R t).Nonempty) ∧ ReachSequence.IsFinRep ∅ R ∧ ReachSequence.IsCDivisible 1 ∅ ∧
+        ¬ ((cnf.upsilon 1).Satisfies R ↔
           (cnf.toFormula 1).HoldsOn (ReachSequence.traceSet R)) := by -- --- PROOF ---
   -- two branches at `j = 0`, one for each of the two states
   let br : (Bool → Prop) → STL.Branch Bool := fun p =>
@@ -66,16 +66,16 @@ theorem STL.CNF.exists_upsilon_not_complete_of_duplicate : -- --- CONCL ---
     cases hx : ξ (1 / 2)
     · refine ⟨br (fun x => x = false), by simp, Or.inl (Or.inl ⟨Pform.atom fun x => x = false,
         by simp [br], 1 / 2, by norm_num, by norm_num, ?_⟩)⟩
-      simpa [Pform.Sat, br] using hx
+      simpa [Pform.Satisfies, br] using hx
     · refine ⟨br (fun x => x = true), by simp, Or.inl (Or.inl ⟨Pform.atom fun x => x = true,
         by simp [br], 1 / 2, by norm_num, by norm_num, ?_⟩)⟩
-      simpa [Pform.Sat, br] using hx
+      simpa [Pform.Satisfies, br] using hx
   -- but `Υ` asks that all of `Bool` be `true`, or all `false`
   have hU := (STL.CNF.sat_upsilon 1 _ R (hne 0) fun _ _ _ _ => ⟨true, trivial⟩).1 (h.2 hC) _
     (List.mem_singleton_self _)
   obtain ⟨b, hb, hb'⟩ := hU
   rcases List.mem_pair.1 hb with rfl | rfl <;>
-    simp [br, Pform.bigOr, Pform.Sat, R] at hb'
+    simp [br, Pform.bigOr, Pform.Satisfies, R] at hb'
 
 end CORALean
 

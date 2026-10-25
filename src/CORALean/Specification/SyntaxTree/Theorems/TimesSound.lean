@@ -5,7 +5,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Rdivide
 public import CORALean.ContSet.Interval.Real.Operations.Times
 public import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
-public import CORALean.Specification.SyntaxTree.Definitions.BinarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsBinarySound
 public import CORALean.Specification.SyntaxTree.Definitions.DomWithin
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
@@ -55,7 +55,7 @@ private theorem SyntaxTree.funHanTimes_operand {int prev other : Dom} {a b : ℝ
     (ha : Dom.contains other a) (hi : Dom.contains int (a * b)) : -- --- CONCL ---
     Dom.contains (if prev.inf 0 ≤ 0 ∧ 0 ≤ prev.sup 0 then other
       else Real.Interval.intersection other (Real.Interval.rdivide int prev)) a ∧
-    Dom.within (if prev.inf 0 ≤ 0 ∧ 0 ≤ prev.sup 0 then other
+    Dom.IsWithin (if prev.inf 0 ≤ 0 ∧ 0 ≤ prev.sup 0 then other
       else Real.Interval.intersection other (Real.Interval.rdivide int prev))
         other := by -- --- PROOF ---
   split_ifs with h
@@ -90,12 +90,12 @@ private theorem SyntaxTree.funHanTimes_operand {int prev other : Dom} {a b : ℝ
       have e : a * b / b = a := mul_div_cancel_right₀ a hb0
       simp only [e] at hq0
       exact hq0
-    simp only [Dom.contains, Dom.within, Real.Interval.intersection] at ha hqa ⊢
+    simp only [Dom.contains, Dom.IsWithin, Real.Interval.intersection] at ha hqa ⊢
     exact ⟨⟨max_le ha.1 hqa.1, le_min ha.2 hqa.2⟩, le_max_left _ _, min_le_left _ _⟩
 
 /-- `aux_times_` is sound for `*`. -/
 theorem SyntaxTree.times_sound (prev₁ prev₂ : Dom) : -- --- CONCL ---
-    BinarySound Binary.times.fn prev₁ prev₂ (Real.Interval.times prev₁ prev₂)
+    IsBinarySound Binary.times.fn prev₁ prev₂ (Real.Interval.times prev₁ prev₂)
       funHanTimes := by -- --- PROOF ---
   intro int _ s₁ s₂ h₁ h₂ hi
   have a := funHanTimes_operand (int := int) (prev := prev₂) (other := prev₁) h₂ h₁ hi

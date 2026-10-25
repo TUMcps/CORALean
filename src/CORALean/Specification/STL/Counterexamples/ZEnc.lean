@@ -50,22 +50,22 @@ theorem STL.DFormula.zEnc_counterexample : -- --- CONCL ---
     let x : ℕ → ℝ × ℝ := fun t => if t = 0 then (1, -1) else (-1, 1)
     let φ : STL.DFormula (ℝ × ℝ) := .until 0 1 (by norm_num) (.pred Prod.fst) (.pred Prod.snd)
     let χ : STL.DFormula (ℝ × ℝ) := .always 0 1 (by norm_num) (.pred Prod.fst)
-    φ.bound ≤ 1 ∧ φ.zEnc 1 false x 0 ∧ ¬ φ.Sat x 0 ∧
-      χ.zEnc 0 true x 0 ∧ ¬ χ.Sat x 0 := by -- --- PROOF ---
+    φ.bound ≤ 1 ∧ φ.IsZEnc 1 false x 0 ∧ ¬ φ.Satisfies x 0 ∧
+      χ.IsZEnc 0 true x 0 ∧ ¬ χ.Satisfies x 0 := by -- --- PROOF ---
   intro x φ χ
   -- the bound, then the strict until true and the formula false, then the truncation
   refine ⟨by simp [φ, STL.DFormula.bound], ?_, ?_, ?_, ?_⟩
-  · simp only [φ, STL.DFormula.zEnc]
+  · simp only [φ, STL.DFormula.IsZEnc]
     refine ⟨fun i hi => ?_, ⟨1, by simp, by simp [x]⟩, ?_⟩
     · simp at hi; subst hi; simp [x]
-    · rw [STL.untilEnc]
+    · rw [STL.IsUntilEnc]
       simp only [Bool.false_eq_true, if_false]
       right
       refine ⟨by simp [x], ?_⟩
-      rw [STL.untilEnc]
+      rw [STL.IsUntilEnc]
       simp [x]
   -- the formula: `μ₂` fails at `0`, and at `1` `μ₁` fails
-  · simp only [φ, STL.DFormula.Sat]
+  · simp only [φ, STL.DFormula.Satisfies]
     rintro ⟨t', ht', hψ, hφ⟩
     simp at ht'
     rcases Nat.le_one_iff_eq_zero_or_eq_one.mp ht' with rfl | rfl
@@ -73,10 +73,10 @@ theorem STL.DFormula.zEnc_counterexample : -- --- CONCL ---
     · have h1 : (0 : ℝ) < (x 1).1 := hφ 1 (by simp)
       norm_num [x] at h1
   -- the truncated `□[0,1]` reads step `0` alone
-  · simp only [χ, STL.DFormula.zEnc]
+  · simp only [χ, STL.DFormula.IsZEnc]
     intro i hi
     simp at hi; subst hi; simp [x]
-  · simp only [χ, STL.DFormula.Sat]
+  · simp only [χ, STL.DFormula.Satisfies]
     intro h
     have := h 1 (by simp)
     norm_num [x] at this

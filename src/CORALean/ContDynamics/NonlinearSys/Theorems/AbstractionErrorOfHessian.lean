@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLin
 public import CORALean.ContSet.Interval.Real.Instances
 public import Mathlib.Analysis.Calculus.Deriv.Pow
@@ -13,7 +13,7 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 # A twice-differentiable field supplies its own certificate
 
 [1, Prop. 1], and the one place in the directory where `f` is differentiated: `abstrErrLin` is
-an `AbstractionError` once `A` and `B` really are the derivative at `(xs, us)` and `H` really
+an `IsAbstractionError` once `A` and `B` really are the derivative at `(xs, us)` and `H` really
 bounds the second derivative. No theorem that *spends* a certificate imports it, so the
 reachability chain built on it stays derivative-free. `C` carries the regularity the proposition
 leaves implicit: an open convex neighbourhood of `Z` and `zs` ([1, Eq. 2]). `hA` pins `Ff`
@@ -223,7 +223,7 @@ theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
 
 /-- [1, Prop. 1]: where `A` and `B` are the derivative of `f` at `(xs, us)` and
 `H` bounds its second derivative entrywise, `abstrErrLin` is a certificate. -/
-theorem AbstractionError.of_hessian {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
+theorem IsAbstractionError.of_hessian {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {F : Vec ℝ (n + m) → Vec ℝ n} {C : Set (Vec ℝ (n + m))} {Z : Zonotope (Vec ℝ (n + m))}
     {Ff : Fin n → Vec ℝ (n + m) → (Vec ℝ (n + m) →L[ℝ] ℝ)}
@@ -237,7 +237,7 @@ theorem AbstractionError.of_hessian {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} 
     (hHb : ∀ i, ∀ ξ ∈ C, ∀ j k, |Hf i ξ (Pi.single j 1) (Pi.single k 1)| ≤ H i j k)
     (hA : ∀ i (v : Vec ℝ n) (w : Vec ℝ m),
       Ff i (Fin.append xs us) (Fin.append v w) = (A *ᵥ v) i + (B *ᵥ w) i) :
-    AbstractionError (S := ℐ𝒱) f A B xs us R U (abstrErrLin H Z (Fin.append xs us)) where
+    IsAbstractionError (S := ℐ𝒱) f A B xs us R U (abstrErrLin H Z (Fin.append xs us)) where
   encloses x hx u hu := by
     -- the radius `abstrErrLin` takes its bound at
     set γ : Vec ℝ (n + m) := fun j => |Z.c j - Fin.append xs us j| + ∑ k, |Z.G k j| with hγ

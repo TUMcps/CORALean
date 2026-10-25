@@ -71,10 +71,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 pending layer `L̂_{k-1}` admits. -/
 theorem aux_reduceOnTheFlyFrom_reducesAt :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
-      (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) {σ : ℝ → ℝ} (_hR : R.Sound σ)
+      (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.IsSound σ) {σ : ℝ → ℝ} (_hR : R.IsSound σ)
       (B : MergeBuckets ℝ)
       {c : Vec ℝ n₁} (_hc : c - L.b ∈ L.I'.construct) {nn : NeuralNetwork S n₁ m}
-      {h : Vec ℝ n₁ → Vec ℝ m} (_hrest : rest.InstanceNetwork nn h)
+      {h : Vec ℝ n₁ → Vec ℝ m} (_hrest : rest.IsInstanceNetwork nn h)
       {Φhat : ReducibleNetwork ℝ n m} {Y : S m},
       reduceOnTheFlyFrom le tol fuel ρ H L R hτ B rest = some (Φhat, Y) →
       NeuralNetwork.ReducesAt H
@@ -131,7 +131,7 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
 /-- [1, Alg. 2] returns a reduction of every instance of `Φ`, and `Y` is its enclosure of `X`. -/
 theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ : ReducibleNetwork ℝ n m}
     {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hΦ : Φ.InstanceNetwork nn f) : -- --- CONCL ---
+    (hΦ : Φ.IsInstanceNetwork nn f) : -- --- CONCL ---
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
       NeuralNetwork.ReducesAt X nn Φhat.toNetwork f
         ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---

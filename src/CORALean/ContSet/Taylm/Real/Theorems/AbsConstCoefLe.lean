@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+public import CORALean.ContSet.Taylm.Real.Definitions.IsScaled
 
 @[expose] public section
 

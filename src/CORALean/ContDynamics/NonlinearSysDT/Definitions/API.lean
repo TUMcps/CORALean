@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ExactUncertainSet
 /-!
 # What `NonlinearSysDT` means beyond the system itself
 
-`LinStep`: one linearization of `sys`, with the `AbstractionError` certificate
+`LinStep`: one linearization of `sys`, with the `IsAbstractionError` certificate
 that makes it conservative wherever the state stays in `R`. `WithSteps` bundles
 the system with a chain of them and checkable regions, and `ReachUnionExact` is
 the set a `Reach` run encloses; `ReachOptions` is CORA's `options` for it.

@@ -15,6 +15,8 @@ point, and there is no direction to move it that enlarges the hull, a hull havin
 away from, so what rounding costs cannot be absorbed into the vertices the way an interval absorbs
 it into its bounds. `VPolytope α` is generic over its ambient type, vertices a family, as the exact
 layer's is; `VPolytope (Vec 𝕋 n)` is the vector case, and the nominal reading copies the family.
+There is no `absorbRounding`: absorbing the box needs its `2^n` corners at each of the `k` vertices,
+a vertex count the representation cannot hold in general.
 
 ## References
 

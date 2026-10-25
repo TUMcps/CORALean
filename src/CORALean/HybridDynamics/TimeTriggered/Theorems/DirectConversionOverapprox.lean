@@ -1,8 +1,8 @@
 module
 
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsFirstDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsSecondDwell
 public import CORALean.HybridDynamics.TimeTriggered.Operations.DirectConversion
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
 public import Mathlib.Analysis.Calculus.Deriv.Shift
@@ -92,11 +92,11 @@ end
 [1, Sec. 3.1], with `t₁`, `t₂` as selected there and `f_either ⊇ f₁ ∪ f₂`. -/
 theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X → X} {a : X}
     {b : ℝ} {fe : X → Set X} {t₁ t₂ : ℝ} (hfe₁ : ∀ x, f₁ x ∈ fe x) (hfe₂ : ∀ x, f₂ x ∈ fe x)
-    (ht₁ : 0 ≤ t₁) (h₁ : (spaceTriggered I f₁ f₂ a b).FirstDwell t₁)
-    (h₂ : (spaceTriggered I f₁ f₂ a b).SecondDwell t₁ t₂) (T : ℝ) : -- --- CONCL ---
-    (spaceTriggered I f₁ f₂ a b).ContOverapprox T
+    (ht₁ : 0 ≤ t₁) (h₁ : (spaceTriggered I f₁ f₂ a b).IsFirstDwell t₁)
+    (h₂ : (spaceTriggered I f₁ f₂ a b).IsSecondDwell t₁ t₂) (T : ℝ) : -- --- CONCL ---
+    (spaceTriggered I f₁ f₂ a b).IsContOverapprox T
       (directConversion I f₁ f₂ fe t₁ t₂) Prod.fst T := by -- --- PROOF ---
-  unfold DiffInclAutomaton.ContOverapprox
+  unfold DiffInclAutomaton.IsContOverapprox
   set Hs := spaceTriggered I f₁ f₂ a b with hHs
   set Ht := directConversion I f₁ f₂ fe t₁ t₂ with hHt
   -- a flow of `Hs` in mode `m` is a flow of `Ht` in mode `k` once the flow sets and invariants fit

@@ -14,6 +14,10 @@ in meaning: an `Option` here says a *candidate the caller supplied* failed its c
 `Zonotope.minkDiffRep`'s does, a statement about the input; `OptEmpty.empty` is a statement about
 the set. A wrapper rather than a sum with `EmptySet`: `S` already fixes the ambient type, so this
 extends the matrix and module ambient types too.
+
+## References
+
+None: CORALean's own wrapper, `Option` in shape, with no counterpart in CORA or in a publication.
 -/
 
 -- Authors:       Claude Opus 5

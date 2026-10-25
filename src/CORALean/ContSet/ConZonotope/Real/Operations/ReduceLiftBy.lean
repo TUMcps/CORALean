@@ -48,8 +48,9 @@ variable {n q r : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Reduce the lifted zonotope `[G; Aₑ]` at `part` and read the equality rows back off it;
-the inequality rows follow the kept generators with their dropped slack. -/
+/-- Reduce the lifted zonotope `[G; Aₑ]` at `part` and read the equality rows back off it. Not the
+polytope's work (data): `bₑ` carried to the equality rows read back (`HPolytope.eqs`); the
+inequality rows are `keepRows`'s. -/
 noncomputable def ConZonotope.reduceLiftBy (cZ : ConZonotope (Vec ℝ n))
     (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : ConZonotope (Vec ℝ n) :=
   -- Z⁺ = {[G; Aₑ], [c; -bₑ]} with the inequality rows of `P`

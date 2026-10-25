@@ -68,7 +68,7 @@ theorem LinParamSys.aux_toReal_half_iterate (a : 𝕋) : -- --- CONCL ---
 
 theorem LinParamSys.exp_mem_expSquaringFloat
     (sys : LinParamSys ℐ[𝕋] n) {tLo tHi : 𝕋} {η s : ℕ}
-    (hη : sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {A : Mat ℝ n n}
+    (hη : sys.IsOrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) {t : ℝ} (htLo : toReal tLo ≤ t)
     (htHi : t ≤ toReal tHi) : -- --- CONCL ---
     exp (t • A) ∈ (sys.expSquaringFloat tLo tHi η s).construct := by -- --- PROOF ---

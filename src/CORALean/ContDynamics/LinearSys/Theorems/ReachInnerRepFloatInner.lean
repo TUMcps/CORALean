@@ -80,7 +80,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `t = kΔt` from the nominal zonotopes of `R₀` and `U`, at `Δt > 0` and an admissible order,
 given both error boxes bracket `0`. -/
 theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
-    {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)}
+    {η : ℕ} (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋
+        n)}
     (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct) (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ)
     (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h →

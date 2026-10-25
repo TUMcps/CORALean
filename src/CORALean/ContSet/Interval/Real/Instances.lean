@@ -75,7 +75,7 @@ instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
 instance : OfIdentity ℐ where
   identity _ := OfPoint.ofPoint 1
 
-instance : IdentityMem ℐ where
+instance : IsIdentityMem ℐ where
   one_mem_identity _ := OfPoint.mem_ofPoint 1
 
 instance : Plus (Interval (Vec ℝ n)) (Vec ℝ n) where

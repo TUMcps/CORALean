@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Counterexamples.ReachSpecCora
+public import CORALean.ContDynamics.LinearSysDT.Counterexamples.IsReachSpecCora
 public import CORALean.ContDynamics.LinearSysDT.Counterexamples.Real.API
 
 /-!

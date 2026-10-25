@@ -2,7 +2,7 @@ module
 
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
 public import CORALean.Specification.SyntaxTree.Definitions.DomWithin
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Backpropagation
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
@@ -57,10 +57,10 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `backpropagation` of a sound tree returns a box holding every solution. -/
 theorem SyntaxTree.backpropagation_sound {B : Real.Interval (Vec ℝ n)} (t : SyntaxTree n)
-    (h : Sound B t) {int : Real.Interval (Vec ℝ n)} {x : Fin n → ℝ} (v : Dom)
-    (hv : Dom.within v t.value) (hB : InBox B x) (hx : InBox int x)
+    (h : IsSound B t) {int : Real.Interval (Vec ℝ n)} {x : Fin n → ℝ} (v : Dom)
+    (hv : Dom.IsWithin v t.value) (hB : IsInBox B x) (hx : IsInBox int x)
     (hs : Dom.contains v (t.eval x)) : -- --- CONCL ---
-    ∃ r, backpropagation t v int = .ok r ∧ InBox r x := by -- --- PROOF ---
+    ∃ r, backpropagation t v int = .ok r ∧ IsInBox r x := by -- --- PROOF ---
   induction t generalizing v with
   | var i w =>
     have hc : Dom.contains v (x i) := hs

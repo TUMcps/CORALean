@@ -9,8 +9,8 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 /-!
 # The preconditioned inclusion test proves a box inside the range
 
-[1, Eq. 4]: for a regular real matrix `C`, the inclusion (2) of the corollary (`gammaTest`) for
-`C f` with the interval Jacobian `C J` and the box `C y` gives `y ⊆ range(f, x)`. Here
+[1, Eq. 4]: for a regular real matrix `C`, the inclusion (2) of the corollary (`PassesGammaTest`)
+for `C f` with the interval Jacobian `C J` and the box `C y` gives `y ⊆ range(f, x)`. Here
 `z = [zlo, zhi]` is the box `C y` (any box holding `C y` for the `y ∈ y`, which the interval product
 computes), and `[Jlo, Jhi]` encloses `C f'` on `int x`, the interval Jacobian `C J` of `C f`.
 The proof is the paper's: the corollary for `C f` puts `z` in the range of `C f`
@@ -81,7 +81,7 @@ theorem Icc_subset_image_of_preconditioned_gammaTest
     (hJ : ∀ i j, Jlo i j ≤ Jhi i j) (hdiag : ∀ i, (0 : ℝ) ∉ Icc (Jlo i i) (Jhi i i))
     (hx₀ : x₀ ∈ Icc xlo xhi) (hz : ∀ y ∈ Icc ylo yhi, C *ᵥ y ∈ Icc zlo zhi)
     (hy : f x₀ ∈ Icc ylo yhi)
-    (h4 : gammaTest (fun x => C *ᵥ f x) x₀ xlo xhi Jlo Jhi zlo zhi) : -- --- CONCL ---
+    (h4 : PassesGammaTest (fun x => C *ᵥ f x) x₀ xlo xhi Jlo Jhi zlo zhi) : -- --- CONCL ---
     Icc ylo yhi ⊆ f '' Icc xlo xhi := by -- --- PROOF ---
   -- `C f` is differentiable with derivative `C f'`
   let A : (Fin n → ℝ) →L[ℝ] (Fin n → ℝ) :=

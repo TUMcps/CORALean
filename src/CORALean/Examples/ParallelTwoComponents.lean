@@ -14,7 +14,7 @@ Two one-dimensional components, each a `linearSys` with output `y = x`. Componen
 Invariants are boxes `x₀ ∈ [0, 2]` and `x₁ ∈ [-1, 1]`. The lifting is `boxLifting`: the product's
 invariant is the box as halfspaces and the lifted guard `x₀ ≥ 1` is free in `x₁`. The product's
 flow is `mergeFlowsLinearSys`, `A + B C`, the `1` being component `0`'s `B` times component `1`'s
-`C`. The box is a product `Invariant`, so `reachSetExact_subset_invariant` puts every reachable
+`C`. The box is a product `IsInvariant`, so `reachSetExact_subset_invariant` puts every reachable
 tuple in it; the invariant proof is by hand.
 
 ## Inputs
@@ -111,7 +111,7 @@ theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1}
   exact ⟨h1, h2⟩
 
 /-- The box is an inductive invariant of the product. -/
-theorem PTC.invariant : PTC.product.Invariant PTC.R where
+theorem PTC.invariant : PTC.product.IsInvariant PTC.R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     -- in the location, so in each component's invariant, so in each component's box
     have hx := h.invariant t ht
@@ -153,7 +153,7 @@ theorem PTC.invariant : PTC.product.Invariant PTC.R where
     · simpa [Function.update_of_ne] using hz 1
 
 /-- No output that feeds an input has a feedthrough: both components' `D` are zero. -/
-theorem PTC.feedthroughFree : PTC.parallel.FeedthroughFree := by
+theorem PTC.feedthroughFree : PTC.parallel.IsFeedthroughFree := by
   intro ℓ i j c s _ j' c' s' _
   fin_cases c <;> rfl
 

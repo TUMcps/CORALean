@@ -58,9 +58,9 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 /-- `R₀'` is the product's initial set: its stacks are exactly the tuples of `R₀`. -/
 theorem ParallelHybridAutomaton.reachSetExact_productWith_eq [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
-    (hF' : P.FlowLawConverse F U W) {lift : ParallelHybridAutomaton.Lifting S G n m}
-    (hex : lift.Exact) {R₀ : ∀ i, S (n i)}
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLaw F U W)
+    (hF' : P.IsFlowLawConverse F U W) {lift : ParallelHybridAutomaton.Lifting S G n m}
+    (hex : lift.IsExact) {R₀ : ∀ i, S (n i)}
     {R₀' : S (∑ i, n i)}
     (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ construct R₀' ↔ ∀ i, x i ∈ construct (R₀ i))
     (ℓ₀ ℓ : ∀ i, L i) : -- --- CONCL ---

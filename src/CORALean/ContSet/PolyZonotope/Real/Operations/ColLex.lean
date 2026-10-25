@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Col
 order on `Fin p → ℕ`: first factor first, and the whole column compared only as
 far as the first exponent that differs.
 
-A linear order on the columns is all that `sort` and `Sorted` ask of them, and
+A linear order on the columns is all that `sort` and `IsSorted` ask of them, and
 carrying it in the type rather than in a comparator is what lets `Tuple.sort`
 supply the permutation and its monotonicity together.
 

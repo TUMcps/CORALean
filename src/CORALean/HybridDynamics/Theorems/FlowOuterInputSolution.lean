@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderSet
 `Ud` the caller must already know contains the trajectory's particular integral.
 `TimeIntervalOuterInputSolution` discharges it from properties of `ℓ.inputSet` alone (convex,
 closed, bounded, containing the origin), so the enclosure names no set after `u`: `inputSolution`
-supplies it, the same for every admissible input. That is what makes `Invariant.flow`'s quantifier
+supplies it, the same for every admissible input. That is what makes `IsInvariant.flow`'s quantifier
 over trajectories tractable.
 
 ## Inputs

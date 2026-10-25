@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSysDT.Counterexamples.ReachSpecCora
+public import CORALean.ContDynamics.NonlinearSysDT.Counterexamples.IsReachSpecCora
 
 /-!
 # Counterexamples of `NonlinearSysDT`, collected

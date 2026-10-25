@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Interval.Real.Theorems.NormLe
-public import CORALean.ContSet.Zonotope.Real.Definitions.MatContains
+public import CORALean.ContSet.Zonotope.Real.Definitions.ContainsMat
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
 public import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
@@ -188,7 +188,7 @@ theorem Zonotope.vec_construct (Z : Zonotope (Mat ℝ m n)) :
 
 /-- The matrices lie in the zonotope iff their stackings lie in `zonotope(matZ)`. -/
 theorem Zonotope.matContains_iff {p : ℕ} (Z : Zonotope (Mat ℝ m n)) (S : Fin p → Mat ℝ m n) :
-    Z.matContains S ↔ ∀ k, matVecEquiv (S k) ∈ Z.vec.construct :=
+    Z.ContainsMat S ↔ ∀ k, matVecEquiv (S k) ∈ Z.vec.construct :=
   forall_congr' fun k => by
     rw [← Zonotope.vec_construct]; exact matVecEquiv.injective.mem_set_image.symm
 

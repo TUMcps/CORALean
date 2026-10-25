@@ -16,6 +16,11 @@ number came from: a simplex implementation may produce it and need not be truste
 solution it returns *proves* the bound by weak duality, and the proof is what gets carried. Stated
 over a `Set`, not a representation, so a bound transfers along set operations. `SupportWitness` is
 the dual: a value with a point attaining it; no `ofEmpty`.
+
+## References
+
+None: a bound on a linear objective as a number with its proof, CORALean's own interface; no
+publication defines it.
 -/
 
 -- Authors:       Claude Opus 5

@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A cell returned by `intersectingCells` holds a point within `tol` of the nonempty box `I`. -/
-theorem GridPartition.intersectingCells_inner (P : GridPartition n) (hP : P.WellFormed)
+theorem GridPartition.intersectingCells_inner (P : GridPartition n) (hP : P.IsWellFormed)
     (I : Real.Interval (Vec ℝ n)) (hI : ∀ j, I.inf j ≤ I.sup j) (hn : n ≠ 0) {c : ℕ}
     (hc : c ∈ P.intersectingCells I) (h0 : c ≠ 0) : -- --- CONCL ---
     ∃ x ∈ (P.cellInterval c).construct,

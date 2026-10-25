@@ -3,7 +3,7 @@ module
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.MeasureTheory.Integral.DominatedConvergence
 public import Mathlib.Topology.Order.IntermediateValue
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsContOverapprox
 public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
@@ -74,7 +74,7 @@ theorem DiffInclAutomaton.scalingConversion_contOverapprox {I : Set X} {f : X �
     (hf : LipschitzWith K f) {g : X → ℝ} (hg : Continuous g) (hg0 : ∀ x, 0 ≤ g x)
     (hF : LipschitzWith K' fun x => g x • f x) {tb ts : ℝ} (htb : 0 < tb) (hts : 0 < ts)
     (T : ℝ) : -- --- CONCL ---
-    (DiffInclAutomaton.singleMode I f).ContOverapprox T
+    (DiffInclAutomaton.singleMode I f).IsContOverapprox T
       (DiffInclAutomaton.scalingConversion I f g tb ts) Prod.fst (T + ts) := by -- --- PROOF ---
   set H' := DiffInclAutomaton.scalingConversion I f g tb ts with hH'
   -- a flow of `H'` in mode `k`, along a curve `w` with derivative `V` and the timer running

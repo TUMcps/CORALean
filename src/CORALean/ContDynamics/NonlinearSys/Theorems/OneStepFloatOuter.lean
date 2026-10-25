@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.IsReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub

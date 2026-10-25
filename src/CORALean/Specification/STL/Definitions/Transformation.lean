@@ -45,11 +45,11 @@ variable {X : Type}
 
 /-- `R ⊨ᵣ Υ(φ) ⇒ C(R) ⊨ₜ φ` for every `R ∈ 𝓡`. -/
 def STL.IsSound (𝓡 : Set (ℝ≥0 → Set X)) (Υ : STL.Formula X → RTL.Formula X) : Prop :=
-  ∀ R ∈ 𝓡, ∀ φ, (Υ φ).Sat R → φ.HoldsOn (ReachSequence.traceSet R)
+  ∀ R ∈ 𝓡, ∀ φ, (Υ φ).Satisfies R → φ.HoldsOn (ReachSequence.traceSet R)
 
 /-- `C(R) ⊨ₜ φ ⇒ R ⊨ᵣ Υ(φ)` for every `R ∈ 𝓡`. -/
 def STL.IsComplete (𝓡 : Set (ℝ≥0 → Set X)) (Υ : STL.Formula X → RTL.Formula X) : Prop :=
-  ∀ R ∈ 𝓡, ∀ φ, φ.HoldsOn (ReachSequence.traceSet R) → (Υ φ).Sat R
+  ∀ R ∈ 𝓡, ∀ φ, φ.HoldsOn (ReachSequence.traceSet R) → (Υ φ).Satisfies R
 
 end CORALean
 

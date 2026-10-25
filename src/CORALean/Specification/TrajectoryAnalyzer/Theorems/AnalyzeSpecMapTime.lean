@@ -157,7 +157,7 @@ theorem TrajectoryAnalyzer.analyze_spec_mapTime (obj : TrajectoryAnalyzer T 𝕋
       TrajectoryAnalyzer.SignalsRepresent obj.aps (toReal dur)
         (sigs.map fun p => (p.1, p.2.mapTime toReal)) (fun k τ =>
           ∃ l ∈ List.range' 1 (obj.traj.t.length - 1),
-            (obj.mapTime toReal).TrueAt s (toReal dur) k l τ) := by -- --- PROOF ---
+            (obj.mapTime toReal).IsTrueAt s (toReal dur) k l τ) := by -- --- PROOF ---
   -- what `analyze_spec` says of the trajectory read as reals
   obtain ⟨dur', sigs', hl, ha, hr⟩ := TrajectoryAnalyzer.analyze_spec (obj.mapTime toReal) s hnd
     (by simpa [TrajectoryAnalyzer.mapTime] using ht) hsorted

@@ -51,7 +51,7 @@ theorem STL.Branch.holds_merge (c : ℝ≥0) {b b' : STL.Branch X} (hj : b.j = b
     (b.merge b').Holds c ξ ↔ b.Holds c ξ ∨ b'.Holds c ξ := by -- --- PROOF ---
   -- the two branches read the trace at the same times
   unfold STL.Branch.Holds STL.Branch.merge
-  simp only [← hj, List.mem_append, Pform.Sat, or_and_right, exists_or]
+  simp only [← hj, List.mem_append, Pform.Satisfies, or_and_right, exists_or]
   constructor
   · rintro (((h | h) | (h | h)) | h | h)
     · exact Or.inl (Or.inl (Or.inl h))

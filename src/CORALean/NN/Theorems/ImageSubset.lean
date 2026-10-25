@@ -10,7 +10,7 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # The image sits inside the enclosed one
 
-Induction on `Sound`, the exact map and `enclose` unfolding in step: at `output`
+Induction on `IsSound`, the exact map and `enclose` unfolding in step: at `output`
 both are the identity, at `layer` `Layer.Encloses.image_subset` gets the head
 layer's set inside the head layer's enclosure, and the tail's own induction
 carries that the rest of the way — the form `Verified` composes with

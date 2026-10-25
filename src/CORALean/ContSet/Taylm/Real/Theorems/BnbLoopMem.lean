@@ -52,8 +52,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.bnbLoop_mem {bnd : (Fin n → Interval ℝ) → Interval ℝ} {g : Vec ℝ n → ℝ}
-    (hb : ∀ B t, Taylm.InBox B t → (bnd B).inf ≤ g t ∧ g t ≤ (bnd B).sup) (ε : ℝ)
-    {X : Fin n → Interval ℝ} {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- CONCL ---
+    (hb : ∀ B t, Taylm.IsInBox B t → (bnd B).inf ≤ g t ∧ g t ≤ (bnd B).sup) (ε : ℝ)
+    {X : Fin n → Interval ℝ} {t : Vec ℝ n} (ht : Taylm.IsInBox X t) : -- --- CONCL ---
     ∀ (fuel : ℕ) (l : List (Fin n → Interval ℝ)), Taylm.Covers X l →
       (Taylm.bnbLoop bnd ε fuel l).inf ≤ g t ∧
         g t ≤ (Taylm.bnbLoop bnd ε fuel l).sup := by -- --- PROOF ---

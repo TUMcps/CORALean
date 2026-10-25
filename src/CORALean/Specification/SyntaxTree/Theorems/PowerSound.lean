@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Power
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.AuxSignedSpec
@@ -94,7 +94,7 @@ private theorem SyntaxTree.nthroot_pow_even {k : ℕ} (hk : k % 2 = 0) (hk0 : k 
 
 /-- `aux_power_` is sound for `x^k`. -/
 theorem SyntaxTree.power_sound (k : ℕ) (prev : Dom) : -- --- CONCL ---
-    UnarySound (Unary.power k).fn prev (Real.Interval.power prev k) (funHanPower
+    IsUnarySound (Unary.power k).fn prev (Real.Interval.power prev k) (funHanPower
       k) := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ s ^ k ∧ s ^ k ≤ int.sup 0 := hi

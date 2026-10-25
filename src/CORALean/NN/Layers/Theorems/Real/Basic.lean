@@ -52,7 +52,7 @@ theorem antitone_invSqrt : Antitone invSqrt := by
 
 /-- ℝ-only, as `Enclosure.exact` is: only ℝ stores `σ`'s values. Both ends are `σ`, and reading ℝ
 is the identity, so the bracket is two equalities. -/
-theorem enclosure_exact_sound (σ : ℝ → ℝ) : (Enclosure.exact σ).Sound σ :=
+theorem enclosure_exact_sound (σ : ℝ → ℝ) : (Enclosure.exact σ).IsSound σ :=
   ⟨fun _ => le_rfl, fun _ => le_rfl⟩
 
 

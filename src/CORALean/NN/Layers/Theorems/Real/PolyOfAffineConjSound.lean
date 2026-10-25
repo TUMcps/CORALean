@@ -46,9 +46,9 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyRelaxation.ofAffineConj_sound {f g : ℝ → ℝ} {n : ℕ} {P : CORALean.PolyRelaxation ℝ n}
-    (hP : P.Sound f) {a b d : ℝ} (ha : 0 < a) (hb : 0 < b)
+    (hP : P.IsSound f) {a b d : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hg : ∀ t, g t = a * f (b * t) + d) : -- --- CONCL ---
-    (PolyRelaxation.ofAffineConj P a b d).Sound g := by -- --- PROOF ---
+    (PolyRelaxation.ofAffineConj P a b d).IsSound g := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   have hbl : b * l ≤ b * t := mul_le_mul_of_nonneg_left hl hb.le
   have hbu : b * t ≤ b * u := mul_le_mul_of_nonneg_left hu hb.le

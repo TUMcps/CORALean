@@ -4,7 +4,7 @@ public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.IsReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.HybridDynamics.Operations.LocationReachFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding

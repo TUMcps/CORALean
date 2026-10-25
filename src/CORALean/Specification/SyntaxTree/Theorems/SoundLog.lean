@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesLog
@@ -42,7 +42,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `log` of a positive operand node over a sound tree is sound. -/
-theorem SyntaxTree.sound_log (h : Sound B t) (hd : 0 < t.value.inf 0) : Sound B (t.log) :=
+theorem SyntaxTree.sound_log (h : IsSound B t) (hd : 0 < t.value.inf 0) : IsSound B (t.log) :=
   ⟨h, encloses_log (encloses_of_sound h) hd, log_sound t.value hd⟩
 
 end CORALean

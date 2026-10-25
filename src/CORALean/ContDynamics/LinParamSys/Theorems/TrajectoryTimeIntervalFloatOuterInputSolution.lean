@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
@@ -133,7 +133,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
     (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
     x t ∈ construct (Plus.plus (sys.timeIntervalFloat Δt η R₀)
       (sys.inputSolutionFloat Δt η U)) := by -- --- PROOF ---

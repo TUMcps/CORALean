@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IsOrderAdmissible
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsExpRemainderBoundLt
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
@@ -117,12 +117,12 @@ theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
 /-- The order chosen for `ε` is admissible for `ε`: under the bound, and sound,
 with no side condition left for the caller to discharge. -/
 theorem MatExp.expRemainderOrder_spec (x : Mat ℝ n n) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
-    MatExp.OrderAdmissible x ε (MatExp.expRemainderOrder x ε) := by -- --- PROOF ---
+    MatExp.IsOrderAdmissible x ε (MatExp.expRemainderOrder x ε) := by -- --- PROOF ---
   obtain ⟨η, hη⟩ := MatExp.exists_expRemainderBound_lt x hε
   -- two orders up is admissible outright, `2 ≤ η + 2` needing nothing of `η`
   have h2 := aux_expRemainderBound_lt_succ (aux_expRemainderBound_lt_succ hη)
-  have hmem : MatExp.OrderAdmissible x ε (η + 1 + 1) := ⟨by omega, h2.1, h2.2⟩
-  have hne : {η : ℕ | MatExp.OrderAdmissible x ε η}.Nonempty := ⟨η + 1 + 1, hmem⟩
+  have hmem : MatExp.IsOrderAdmissible x ε (η + 1 + 1) := ⟨by omega, h2.1, h2.2⟩
+  have hne : {η : ℕ | MatExp.IsOrderAdmissible x ε η}.Nonempty := ⟨η + 1 + 1, hmem⟩
   exact Nat.sInf_mem hne
 
 end CORALean.Real

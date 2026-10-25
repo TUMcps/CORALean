@@ -15,6 +15,11 @@ discrete one and a hybrid location's enclosure alike. The noise term `F v` is no
 `outputSetNoise` takes `F` and the noise set beside it, as CORA's `outputSet` takes `params.V`.
 
 The input dimension `m` is separate from the state dimension `n`, as CORA's are.
+
+## References
+
+None: the output equation `y = C x + D u + k` of CORA's linear classes, a textbook object with no
+publication of its own.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

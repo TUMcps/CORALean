@@ -40,10 +40,10 @@ inductive IntervalChain : ℕ → ℕ → Type where
 
 /-- That the activations' stored derivatives are derivatives, which is what the tangent
 propagation being the derivative needs. -/
-def IntervalChain.Smooth : ∀ {n k : ℕ}, IntervalChain n k → Prop
+def IntervalChain.IsSmooth : ∀ {n k : ℕ}, IntervalChain n k → Prop
   | _, _, .nil => True
-  | _, _, .linear _ _ rest => rest.Smooth
-  | _, _, .act σ σ' rest => (∀ x, HasDerivAt σ (σ' x) x) ∧ rest.Smooth
+  | _, _, .linear _ _ rest => rest.IsSmooth
+  | _, _, .act σ σ' rest => (∀ x, HasDerivAt σ (σ' x) x) ∧ rest.IsSmooth
 
 end CORALean.Real
 

@@ -19,8 +19,8 @@
 # `--staged` is what `.githooks/pre-commit` runs for a commit that cannot change
 # a cross-file rule. It leaves out everything that reads other files than the
 # ones given: reachability, the layout, the collectors' completeness, the float
-# layer's type names, layering, the import guards, the allowlists' stale-entry
-# reports and the `Basic.lean` exceptions' import cycles. It is not a way to
+# layer's type names, layering, the import guards, the stale-entry reports and the
+# import cycles of the `Basic.lean` rule. It is not a way to
 # check less: `.githooks/pre-commit` decides, with `scripts/precommit-scope.py`,
 # when one of those rules could notice the commit, and then runs the whole tree.
 #
@@ -96,7 +96,6 @@ BENCH_DIR=src/CORALean/Examples/Bench/
 # (or, with one user, a `private` lemma there). A file that still declares one is listed in this
 # file, `<path>` per line with `#` comments, until it is moved. The list only shrinks: an entry
 # whose file declares no theorem any more is reported as stale.
-OPS_THEOREM_LIST=scripts/operations-theorem-allowlist.txt
 
 # Rule A. A class root, a directory holding an `Operations/`, `Theorems/` or
 # `Definitions/` folder, holds its class file, `Interfaces.lean`, `Instances.lean` and `API.lean`
@@ -106,7 +105,7 @@ OPS_THEOREM_LIST=scripts/operations-theorem-allowlist.txt
 
 # Class roots not yet sorted into role folders, one per line. The list only
 # shrinks: an entry whose directory now passes, or is gone, is reported the way
-# a stale allowlist entry is.
+# a stale pending entry is.
 CLASS_ROOT_PENDING="
 "
 
@@ -196,7 +195,6 @@ if [ -n "$STAGED" ]; then
     printf 'conventions: no staged file under src/, nothing to check\n'
     exit 0
   fi
-  OPS_THEOREM_LIST=$repo/$OPS_THEOREM_LIST
   stage=$(mktemp -d)
   printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
   cd "$stage"
@@ -208,7 +206,7 @@ fi
 # for every pass below, not only the two that are global by nature. `xargs`
 # splits an argument list that does not fit — on Windows the limit is 32 KB,
 # and the environment a git hook adds is enough to cross it at this repository
-# size — and the allowlist's stale-entry report is global exactly the way the
+# size — and a stale-entry report is global exactly the way the
 # reachability check is: a split would see only one batch's declarations and
 # call every entry the other batch owns stale.
 list=$(mktemp)
@@ -217,7 +215,7 @@ trap 'rm -f "$list" "$cexlist"; [ -z "${stage:-}" ] || rm -rf "$stage"' EXIT INT
 printf '%s\n' "$files" > "$list"
 printf '%s\n' "$COUNTEREXAMPLE_EXCEPTIONS" > "$cexlist"
 
-# Per-file conventions, one pass, plus the allowlist's own stale-entry report
+# Per-file conventions, one pass, plus the pending list's own stale-entry report
 # at the end, which needs every file's declarations to have been seen.
 # `depth` tracks nesting of `/- -/` across lines, so a docstring mentioning
 # `aux_` or `sorry` is not mistaken for code.
@@ -1671,22 +1669,22 @@ fi
 rm -f "$bundle_err"
 report "$out"
 
-# More rules that read a definition's body, whole-tree only (their allowlists need every
+# More rules that read a definition's body, whole-tree only (they need every
 # file): a float definition that is only the exact operation at `nominal` (#154), a definition
 # citing a paper's algorithm without its `-- <n>.` step comments (CONTRIBUTING, "Algorithms
 # read like the paper"), a long subterm spelled out three times in one declaration, and a
-# discrete-time class whose fields differ from its continuous twin's without a reason in
-# scripts/dt-twin-allowlist.txt (#172), and a public theorem that exactly one other file reads
+# discrete-time class whose fields differ from its continuous twin's but for the sampling
+# time `dt` (#172), and a public theorem that exactly one other file reads
 # and nothing outward-facing names (#189), and a Prop-valued definition whose name does not read
-# as a statement (`Is…`/`Has…`, or an entry of scripts/prop-name-allowlist.txt, #196), and a
+# as a statement (`Is…`/`Has…`, a verb relation, or a CORA method's name, #196), and a
 # float main type without an `I_error` box, an `absorbRounding` and its `absorbRounding_outer`
-# (scripts/absorb-rounding-allowlist.txt, #185), and a definition of the true reachable `Set`
+# or a docstring line saying why there is none (#185), and a definition of the true reachable `Set`
 # whose name does not end in `Exact` (#224), and a main
 # theorem that takes `(h : f … = some E)` instead of quantifying `∀ E ∈ f …`
 # (#212), and a `## References` entry that names a thesis
 # instead of the paper (#255), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
-# instead of through the component's operations (scripts/component-reuse-allowlist.txt, #174), and
+# instead of through the component's operations without saying why in its docstring (#174), and
 # a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt),
 # and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
 # `aux_` step (#227).
@@ -1956,26 +1954,18 @@ FNR == 1 {
 END { flush() }' $files | sort)
 report "$out"
 
-# A main-type file cites the publication it formalizes (#211): the file with the `MAIN TYPE`
+# A main-type file cites the publication it formalizes (#211, #257): the file with the `MAIN TYPE`
 # banner at `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has at least one numbered entry
-# (`* [N] ...`) under `## References` in its module docstring. Files not yet brought up to this
-# are listed in `scripts/main-reference-allowlist.txt`, one path per line; the list only
-# shrinks, and an entry whose file has a reference (or is no main-type file) is stale.
-out=$(awk -v LIST=scripts/main-reference-allowlist.txt -v PATHLIST="$repo/scripts/main-reference-allowlist.txt" \
-    -v STALE="${STAGED:-}" '
+# (`* [N] ...`) under `## References` in its module docstring: the publication it formalizes, or a
+# standard or manual that defines it. A file with nothing to cite says so on one line there,
+# `None: <reason>`. There is no list.
+out=$(awk '
 function flush() {
   if (file == "") return
   if (!(banner && isMain)) return
-  mainfile[file] = 1
   if (hasref) return
-  if (file in allow) hit[file] = 1
-  else
-    print file ":1: a main-type file without a reference — add `* [1] ...` under `## References`," \
-          " the publication it formalizes"
-}
-BEGIN {
-  while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++n }
-  close(PATHLIST)
+  print file ":1: a main-type file without a reference — add `* [1] ...` under `## References`," \
+        " the publication it formalizes, or one line `None: <reason>` there"
 }
 FNR == 1 {
   flush()
@@ -1988,20 +1978,14 @@ FNR == 1 {
   if (inb) {
     if (s ~ /^## References/) inref = 1
     else if (s ~ /^#/) inref = 0
-    else if (inref && s ~ /^\* \[[0-9]+\]/) hasref = 1
+    else if (inref && (s ~ /^\* \[[0-9]+\]/ || s ~ /^None: [^ ]........./)) hasref = 1
     if (s ~ /-\//) inb = 0
     next
   }
   if (s ~ /^[ \t]*\/-/) { if (s !~ /-\//) inb = 1; inref = 0; next }
   if (s ~ /^-- =.*MAIN TYPE/) banner = 1
 }
-END {
-  flush()
-  if (STALE != "") exit
-  for (f in allow)
-    if (!(f in seen)) print LIST ":" aln[f] ": stale entry `" f "` — no such file"
-    else if (!(f in hit)) print LIST ":" aln[f] ": stale entry `" f "` — the file has a reference now (or is no main-type file); the list only shrinks"
-}' $files | sort)
+END { flush() }' $files | sort)
 report "$out"
 if [ -z "$STAGED" ]; then
 
@@ -2178,10 +2162,11 @@ BEGIN {
 }' | sort)
 report "$out"
 
-# No `theorem` or `lemma` in an `Operations/` file but those `OPS_THEOREM_LIST` names (#198).
+# No `theorem` or `lemma` in an `Operations/` file (#198), except in the `Basic.lean` of an
+# `Operations/` directory: a theorem of at most five lines is a section there, where the
+# basic-bundle rule puts it when its `Theorems/` `Basic.lean` would close an import cycle (#257).
 # Comments are stripped as in the class rule above.
-out=$(awk -v LIST="$list" -v OPSLIST="$OPS_THEOREM_LIST" \
-  -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" '
+out=$(awk -v LIST="$list" '
 function strip(line,   out, i, c, n) {
   out = ""; i = 1; n = length(line)
   while (i <= n) {
@@ -2195,44 +2180,24 @@ function strip(line,   out, i, c, n) {
   return out
 }
 BEGIN {
-  while ((getline ol < OPSLIST) > 0) {
-    opsFNR++
-    line = ol
-    sub(/^[ \t]+/, "", line)
-    if (line == "" || line ~ /^#/) continue
-    p = line; sub(/[ \t].*$/, "", p)
-    if (p in opsOK)
-      print OPSLIST ":" opsFNR ": duplicate entry `" p "` (first at line " opsLine[p] ")"
-    opsOK[p] = 1; opsLine[p] = opsFNR
-  }
-  close(OPSLIST)
   while ((getline f < LIST) > 0) {
     if (f == "") continue
     seen[f] = 1; depth = 0; ln = 0
-    inOps = (f ~ /\/Operations\//)
+    inOps = (f ~ /\/Operations\// && f !~ /\/Operations\/Basic[.]lean$/)
     while ((getline raw < f) > 0) {
       ln++
       code = strip(raw)
       if (!inOps ||
           code !~ /^(@\[[^]]*\][ \t]*)*((private|protected|nonrec|local)[ \t]+)*(theorem|lemma)[ \t]/)
         continue
-      hasThm[f] = 1
-      if (!(f in opsOK) && !(f in reported)) {
+      if (!(f in reported)) {
         reported[f] = 1
         print f ":" ln ": a theorem in an `Operations/` file — state it in a `Theorems/` file, or" \
-              " in the global lemmas if it is a general fact (or list the file in " OPSLIST \
-              " until it is moved)"
+              " in the global lemmas if it is a general fact"
       }
     }
     close(f)
   }
-  if (!STALE) exit
-  for (p in opsOK)
-    if (!(p in seen))
-      print OPSLIST ":" opsLine[p] ": stale entry `" p "` — no such file"
-    else if (!(p in hasThm))
-      print OPSLIST ":" opsLine[p] ": stale entry `" p "` — the file declares no theorem now;" \
-            " the list only shrinks"
 }' | sort)
 report "$out"
 

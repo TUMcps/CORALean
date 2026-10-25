@@ -396,7 +396,7 @@ theorem ReachSetAnalyzer.analyze_sound_of_hasEnclosingTimes
     (outs : List (List (String × FiniteSignal T Kleene))) : -- --- CONCL ---
     ∀ obj ∈ ReachSetAnalyzer.mk? aps dur masks,
       obj.analyze (𝕋 := 𝕋) R = some outs →
-      ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w ∧
+      ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.IsBranch (ReachSetAnalyzer.children R) 0 w ∧
         ∀ Rx, ReachSetAnalyzer.HasEnclosingTimes
             (R.map (ReachSetAnalyzer.Entry.mapTime toReal)) Rx →
           (obj.mapTime toReal).SignalsSound (toReal dur) Rx w
@@ -435,7 +435,7 @@ theorem ReachSetAnalyzer.analyze_sound_of_hasEnclosingTimes
     obtain ⟨e0, he0, rfl⟩ := List.mem_map.mp he
     obtain ⟨s0, hs0, rfl⟩ := List.mem_map.mp hs
     exact hR e0 he0 s0 hs0
-  have hwR : ReachSetAnalyzer.Branch (ReachSetAnalyzer.children
+  have hwR : ReachSetAnalyzer.IsBranch (ReachSetAnalyzer.children
       (R.map (ReachSetAnalyzer.Entry.mapTime toReal))) 0 w := by
     rw [aux_children_mapTime]; exact hw
   -- sound for the float intervals read as reals, so for the exact ones they enclose

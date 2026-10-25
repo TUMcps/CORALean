@@ -53,19 +53,19 @@ variable {X : Type}
 theorem STL.CNF.sat_upsilon (c : ℝ≥0) (cnf : STL.CNF X) (R : ℝ≥0 → Set X)
     (h₀ : (R 0).Nonempty)
     (hne : ∀ clause ∈ cnf, ∀ b ∈ clause, (R (c / 2 + b.j * c)).Nonempty) : -- --- CONCL ---
-    (cnf.upsilon c).Sat R ↔ ∀ clause ∈ cnf, ∃ b ∈ clause,
-      ((∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Sat r) ∨
-        ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Sat r) ∨
-      ∀ r ∈ R (b.j * c), b.ϱ.Sat r := by -- --- PROOF ---
+    (cnf.upsilon c).Satisfies R ↔ ∀ clause ∈ cnf, ∃ b ∈ clause,
+      ((∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Satisfies r) ∨
+        ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Satisfies r) ∨
+      ∀ r ∈ R (b.j * c), b.ϱ.Satisfies r := by -- --- PROOF ---
   unfold STL.CNF.upsilon
   simp only [RTL.Formula.sat_bigAnd]
   refine forall₂_congr fun clause hcl => ?_
   rw [RTL.Formula.sat_bigOr _ _ _ h₀]
   refine exists_congr fun b => and_congr_right fun hb => ?_
   -- unfold the shifts, each leaving the set at a single time
-  simp only [RTL.Formula.Sat, Time.shift_shift]
+  simp only [RTL.Formula.Satisfies, Time.shift_shift]
   rw [RTL.Formula.sat_bigOr _ _ _ (by simp only [Time.shift, zero_add]; exact hne clause hcl b hb)]
-  simp only [RTL.Formula.Sat, Time.shift, zero_add]
+  simp only [RTL.Formula.Satisfies, Time.shift, zero_add]
 
 end CORALean
 

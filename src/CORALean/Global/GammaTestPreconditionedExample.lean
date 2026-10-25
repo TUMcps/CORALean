@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.GammaTest
+public import CORALean.Global.PassesGammaTest
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section
@@ -45,7 +45,7 @@ open Set Matrix
 
 /-- [1, Example 4.2]: (2) holds for `C f = id`, `J = I` and `C y = [-ε, ε]²`, `ε < 2`. -/
 theorem gammaTest_preconditioned_example {ε : ℝ} (hε : ε < 2) : -- --- CONCL ---
-    gammaTest (fun x : Fin 2 → ℝ => x) 0 (fun _ => -2) (fun _ => 2) 1 1 (fun _ => -ε)
+    PassesGammaTest (fun x : Fin 2 → ℝ => x) 0 (fun _ => -2) (fun _ => 2) 1 1 (fun _ => -ε)
       (fun _ => ε) := by -- --- PROOF ---
   intro y hy J hJ v _ i
   -- `J = I`, so the off-diagonal sum vanishes and the point is `yᵢ ∈ [-ε, ε]`

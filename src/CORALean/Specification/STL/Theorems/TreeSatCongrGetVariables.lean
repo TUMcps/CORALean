@@ -42,29 +42,30 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_congr_getVariables (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
     (h : ∀ t, ∀ i ∈ φ.getVariables, ξ t i = ξ' t i) : -- --- CONCL ---
-    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with
   | tt | ff => rfl
   -- a comparison reads its expressions at time `0`
   | cmp op e₁ e₂ =>
-    simp only [STL.Tree.Sat, STL.Expr.eval_congr_variables e₁ (fun i hi => h 0 i
+    simp only [STL.Tree.Satisfies, STL.Expr.eval_congr_variables e₁ (fun i hi => h 0 i
       (by simp [STL.Tree.getVariables, hi])), STL.Expr.eval_congr_variables e₂ (fun i hi => h 0 i
       (by simp [STL.Tree.getVariables, hi]))]
-  | not φ ih => simp only [STL.Tree.Sat, ih ξ ξ' h]
+  | not φ ih => simp only [STL.Tree.Satisfies, ih ξ ξ' h]
   | and φ ψ ihφ ihψ | or φ ψ ihφ ihψ =>
-    simp only [STL.Tree.Sat, ihφ ξ ξ' fun t i hi => h t i (by simp [STL.Tree.getVariables, hi]),
+    simp only [STL.Tree.Satisfies, ihφ ξ ξ' fun t i hi => h t i (by simp [STL.Tree.getVariables,
+        hi]),
       ihψ ξ ξ' fun t i hi => h t i (by simp [STL.Tree.getVariables, hi])]
   -- the temporal operators read the operands at shifted traces
   | «until» a b φ ψ ihφ ihψ | release a b φ ψ ihφ ihψ =>
-    have hφ : ∀ t, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t =>
+    have hφ : ∀ t, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t =>
       ihφ _ _ fun s i hi => h _ i (by simp [STL.Tree.getVariables, hi])
-    have hψ : ∀ t, ψ.Sat (Time.shift ξ t) ↔ ψ.Sat (Time.shift ξ' t) := fun t =>
+    have hψ : ∀ t, ψ.Satisfies (Time.shift ξ t) ↔ ψ.Satisfies (Time.shift ξ' t) := fun t =>
       ihψ _ _ fun s i hi => h _ i (by simp [STL.Tree.getVariables, hi])
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness, hφ, hψ]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness, hφ, hψ]
   | «finally» a b φ ih | globally a b φ ih =>
-    have hφ : ∀ t, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t =>
+    have hφ : ∀ t, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t =>
       ih _ _ fun s i hi => h _ i (by simpa [STL.Tree.getVariables] using hi)
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness, hφ]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness, hφ]
   | next a φ ih => exact ih _ _ fun s i hi => h _ i (by simpa [STL.Tree.getVariables] using hi)
 
 end CORALean

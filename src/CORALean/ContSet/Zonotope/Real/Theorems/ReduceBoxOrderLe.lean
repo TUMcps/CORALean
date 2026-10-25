@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+public import CORALean.ContSet.Zonotope.Real.Definitions.IsReduceBoxAdmissible
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
 
 @[expose] public section
@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- Minimality: every order meeting `B` is at least the one chosen for it. -/
 theorem Zonotope.reduceBoxOrder_le {Z : Zonotope (Vec ℝ n)} {B : Set (Vec ℝ n)} {o : ℕ}
-    (h : Z.ReduceBoxAdmissible B o) : Z.reduceBoxOrder B ≤ o :=
+    (h : Z.IsReduceBoxAdmissible B o) : Z.reduceBoxOrder B ≤ o :=
   Nat.sInf_le h
 
 end CORALean.Real

@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 [1, Sec. 3]: for `ẋ = Ax + Bu`, zonotopes `X₀` and `U` and an STL formula `φ`, every trace
 `ξ(·, x₀, u(·))`, `x₀ ∈ X₀`, `u(t) ∈ U` for all `t`, satisfies `φ`. [1] writes `∀t` and
-`ξ(t,...) ⊨ φ`, where `⊨` takes the trace; the trace is what `Formula.Sat` takes here. The
+`ξ(t,...) ⊨ φ`, where `⊨` takes the trace; the trace is what `Formula.Satisfies` takes here. The
 solution is the variation-of-constants formula `LinearSys.closedForm` for a measurable
 `u(·)`, with `B u` entering.
 

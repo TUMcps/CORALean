@@ -13,7 +13,7 @@ public import CORALean.NN.Theorems.Real.ReduceOnTheFlyReducesAt
 
 Each statement here says more than its generic counterpart, and only because the scalar is ℝ.
 `ReduceOnTheFlyReducesAt` puts what [1, Alg. 2] returns in `ReducesAt`, whose networks carry real
-biases; `InstanceOfInstanceNetwork` forgets that network, back to the generic `Instance`.
+biases; `InstanceOfInstanceNetwork` forgets that network, back to the generic `IsInstance`.
 `BucketToleranceNone` is [1, Alg. 1] failing to return, which rests on exact subtraction.
 `LinearWithErrorZero` is [1, Eq. 2]'s initialization, the box's sum being exact; `LinearExact`
 is the linear layer losing nothing at a polynomial zonotope, and `LinearConvergent` what that

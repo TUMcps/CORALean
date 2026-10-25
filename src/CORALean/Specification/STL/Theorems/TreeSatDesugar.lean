@@ -40,21 +40,21 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_desugar (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    φ.desugar.Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
+    φ.desugar.Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
   | tt | ff | cmp => rfl
-  | not φ ih => simp only [STL.Tree.desugar, STL.Tree.Sat, ih]
-  | and φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Sat, ihφ, ihψ]
-  | or φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Sat, ihφ, ihψ]
+  | not φ ih => simp only [STL.Tree.desugar, STL.Tree.Satisfies, ih]
+  | and φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Satisfies, ihφ, ihψ]
+  | or φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Satisfies, ihφ, ihψ]
   | «until» a b φ ψ ihφ ihψ =>
-    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+    simp only [STL.Tree.desugar, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ihφ, ihψ]
   | release a b φ ψ ihφ ihψ =>
-    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
-  | «finally» a b φ ih => simp [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ih]
+    simp only [STL.Tree.desugar, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ihφ, ihψ]
+  | «finally» a b φ ih => simp [STL.Tree.desugar, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ih]
   | globally a b φ ih =>
-    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ih]
+    simp only [STL.Tree.desugar, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ih]
   | next a φ ih =>
-    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ih]
+    simp only [STL.Tree.desugar, STL.Tree.Satisfies, STL.Tree.HasUntilWitness, ih]
     constructor
     · rintro ⟨t, h₁, h₂, h₃, -⟩
       obtain rfl : t = a := le_antisymm h₂ h₁

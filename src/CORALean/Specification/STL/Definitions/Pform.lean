@@ -42,10 +42,10 @@ inductive Pform (X : Type)
   | or (ϱ₁ ϱ₂ : Pform X)
 
 /-- `r ⊨ₚ ϱ`, [1, Def. 2]. -/
-def Pform.Sat : Pform X → X → Prop
+def Pform.Satisfies : Pform X → X → Prop
   | .atom p, r => p r
-  | .not ϱ, r => ¬ ϱ.Sat r
-  | .or ϱ₁ ϱ₂, r => ϱ₁.Sat r ∨ ϱ₂.Sat r
+  | .not ϱ, r => ¬ ϱ.Satisfies r
+  | .or ϱ₁ ϱ₂, r => ϱ₁.Satisfies r ∨ ϱ₂.Satisfies r
 
 /-- The predicate that always holds. -/
 abbrev Pform.top : Pform X := .atom fun _ => True

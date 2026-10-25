@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.IsInMergeBucket
 public import Mathlib.Tactic.Positivity
 
 @[expose] public section
@@ -49,7 +49,7 @@ namespace CORALean
 /-- At a tolerance wide enough — the sum, over every neuron, of its distance to `y` on both
 sides — every neuron is in the bucket. -/
 theorem exists_mergeBucket_all {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y : ℝ) : -- --- CONCL ---
-    ∃ δ : ℝ, 0 ≤ δ ∧ ∀ i, mergeBucket Y y δ i := by -- --- PROOF ---
+    ∃ δ : ℝ, 0 ≤ δ ∧ ∀ i, IsInMergeBucket Y y δ i := by -- --- PROOF ---
   refine ⟨∑ i, (|y - Y.inf i| + |Y.sup i - y|), Finset.sum_nonneg fun i _ => by positivity, ?_⟩
   intro i
   -- this index's own two terms are at most the sum taken over every index

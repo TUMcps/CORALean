@@ -9,7 +9,7 @@ public import Mathlib.Topology.MetricSpace.Basic
 /-!
 # The Lipschitz hypothesis, asked of a layer instead of a tail
 
-`RefinableNetwork.Convergent` wants a bound on every *tail*, a statement about a composite and so
+`RefinableNetwork.IsConvergent` wants a bound on every *tail*, a statement about a composite and so
 nothing a layer library can hand over. This is the per-layer form: each node's own `eval` Lipschitz,
 one existential per layer, which is what a linear layer's matrix and an activation's slope give.
 `Theorems.EvalLipschitz` turns this into the tail bounds, the constants multiplying along the chain,
@@ -40,9 +40,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every layer's own map Lipschitz, with no claim about the composite. -/
-def RefinableNetwork.LipschitzLayers : ∀ {n m : ℕ}, RefinableNetwork S n m → Prop
+def RefinableNetwork.HasLipschitzLayers : ∀ {n m : ℕ}, RefinableNetwork S n m → Prop
   | _, _, .nil => True
-  | _, _, .cons L rest => (∃ K : NNReal, LipschitzWith K L.eval) ∧ rest.LipschitzLayers
+  | _, _, .cons L rest => (∃ K : NNReal, LipschitzWith K L.eval) ∧ rest.HasLipschitzLayers
 
 end CORALean
 

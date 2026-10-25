@@ -56,10 +56,10 @@ variable {X : Type}
 theorem STL.rewrite_finOpen_until_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ) (hj : 1 ≤ j) (ξ : ℝ≥0 → X)
     (h : ((STL.Formula.finOpen 1 φ₂).or ((STL.Formula.globOpen 1 φ₁).and (STL.Formula.next 1
       (φ₂.or (φ₁.and ((STL.Formula.globOpen 1 φ₁).and (STL.Formula.finOpen 1
-        (STL.Formula.until 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))))).Sat ξ) : -- --- CONCL ---
-    (STL.Formula.finOpen 1 (STL.Formula.until 0 (j : ℝ≥0) φ₁ φ₂)).Sat ξ := by -- --- PROOF ---
+        (STL.Formula.until 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))))).Satisfies ξ) : -- --- CONCL ---
+    (STL.Formula.finOpen 1 (STL.Formula.until 0 (j : ℝ≥0) φ₁ φ₂)).Satisfies ξ := by -- --- PROOF ---
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
-  simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.Sat, Time.shift_shift,
+  simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.Satisfies, Time.shift_shift,
     Nat.add_sub_cancel] at h ⊢
   rcases h with ⟨s, hs₀, hs₁, hs₂⟩ | ⟨hG, hφ₂ | ⟨hφ, hG', s, hs₀, hs₁, t, ht₁, ht₂, ht₃, ht₄⟩⟩
   · refine ⟨s, hs₀, hs₁, 0, le_rfl, zero_le, ?_, fun t ht => absurd ht not_lt_zero⟩
@@ -79,7 +79,8 @@ theorem STL.rewrite_finOpen_until_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ) (
     · push_cast; exact add_le_add ht₂ le_rfl
     · have e : t + 1 + s = t + (s + 1) := by ring
       rw [e]; exact ht₃
-    · exact Time.forall_lt_add_one_of_blocks (fun x => φ₁.Sat (Time.shift ξ x)) hs₀ hs₁ hG hφ hG'
+    · exact Time.forall_lt_add_one_of_blocks (fun x => φ₁.Satisfies (Time.shift ξ x)) hs₀ hs₁ hG hφ
+        hG'
         ht₄
 
 end CORALean

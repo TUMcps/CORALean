@@ -78,11 +78,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- [1, Alg. 3]: on a nonnegative image box `I_X`, the output set holds every
 instance of `Φ_org` at every point of `I_X`. -/
 theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ}
-    {R_relu : Relaxation 𝕋} (hR : R_relu.Sound Real.relu) {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Sound σ}
+    {R_relu : Relaxation 𝕋} (hR : R_relu.IsSound Real.relu) {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.IsSound
+        σ}
     {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)} (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i)
-    {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋} {hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ}
+    {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋} {hσ_2 : ∃ σ : ℝ → ℝ, L_2.IsSound σ}
     {B_2 : MergeBuckets 𝕋} {rest : ReducibleNetwork 𝕋 n₁ m} {f : Vec ℝ n → Vec ℝ m}
-    (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).Instance f) {ρ : 𝕋} : -- --- CONCL ---
+    (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).IsInstance f) {ρ : 𝕋} : -- --- CONCL ---
     ∀ Y ∈ compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2 rest ρ,
       f '' I_X.construct ⊆ construct Y := by -- --- PROOF ---
   intro Y (hrun : compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2
@@ -160,9 +161,9 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         rw [hsplit]
         exact Interval.plus_outer _ _ (Set.add_mem_add hc1
           (Interval.mtimes_outer (L_1.W.submatrix id part.right) _ ⟨w, hw, rfl⟩))
-      have hΦ' := ReducibleNetwork.Instance.cons (c := 0) (R := R_relu) (hτ := hσ_relu)
+      have hΦ' := ReducibleNetwork.IsInstance.cons (c := 0) (R := R_relu) (hτ := hσ_relu)
         (B := .dynamic) (L := ReducedLinear.identity _) hR (h00 _)
-        (ReducibleNetwork.Instance.cons (c := c1 + W1.submatrix id part.right *ᵥ w) (R := L_2)
+        (ReducibleNetwork.IsInstance.cons (c := c1 + W1.submatrix id part.right *ᵥ w) (R := L_2)
           (hτ := hσ_2) (B := B_2) hR2 hc' hrest1 (fun _ => rfl)) (fun _ => rfl)
       obtain ⟨hout, rfl⟩ := reduceOnTheFly_outer hΦ' _ _ hrun2
       have hmem := hout ⟨x ∘ part.left, hxl, rfl⟩

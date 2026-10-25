@@ -4,7 +4,7 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # A certificate computed from a field, end to end
 
-`AbstractionError` is a certificate someone can produce, and not only assume: `f(x, u) = x₀² + u₀`
+`IsAbstractionError` is a certificate someone can produce, and not only assume: `f(x, u) = x₀² + u₀`
 over the unit box, expanded at the origin, is certified by `abstrErrLin` with nothing left over.
 `γ` is `(1, 1)`, the box's own radius; the second derivative is the constant `2` in the state entry
 and `0` elsewhere, so the bound is `½ · 1 · 2 · 1 = 1`, and the true error `x₀²` reaches exactly
@@ -62,11 +62,11 @@ def Example.sqBox : Zonotope (Vec ℝ 2) := ⟨2, 0, fun k => Pi.single k 1⟩
 /-- The unit box's abstraction error for `f(x, u) = x₀² + u₀` at the origin,
 where `A = 0` and `B = 1` really are the derivative. -/
 theorem Example.sq_abstractionError : -- --- CONCL ---
-    AbstractionError (S := ℐ𝒱) Example.sqField 0 1 0 0
+    IsAbstractionError (S := ℐ𝒱) Example.sqField 0 1 0 0
       {x : Vec ℝ 1 | |x 0| ≤ 1} {u : Vec ℝ 1 | |u 0| ≤ 1}
       (abstrErrLin Example.sqHessBound Example.sqBox
         (Fin.append (0 : Vec ℝ 1) (0 : Vec ℝ 1))) := by -- --- PROOF ---
-  refine AbstractionError.of_hessian (F := Example.sqStacked) (C := univ)
+  refine IsAbstractionError.of_hessian (F := Example.sqStacked) (C := univ)
     (Ff := Example.sqDeriv) (Hf := Example.sqHess) ?_ convex_univ (mem_univ _)
     (subset_univ _) ?_ ?_ ?_ ?_ ?_
   -- the stacked field is the field

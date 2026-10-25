@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Relaxation.ofMonotone_sound {E : Enclosure 𝕋} (hσ : Monotone σ)
-    (hE : E.Sound σ) : -- --- CONCL ---
-    (Relaxation.ofMonotone E).Sound σ := by -- --- PROOF ---
+    (hE : E.IsSound σ) : -- --- CONCL ---
+    (Relaxation.ofMonotone E).IsSound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   have hlo : toReal (E.enclose l).inf ≤ σ t := le_trans (hE.lo_le l) (hσ hl)
   have hhi : σ t ≤ toReal (E.enclose u).sup := le_trans (hσ hu) (hE.le_hi u)

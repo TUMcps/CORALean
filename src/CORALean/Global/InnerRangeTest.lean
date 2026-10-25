@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.InnerRangeOfFrontier
-public import CORALean.Global.InnerTest
+public import CORALean.Global.PassesInnerTest
 public import Mathlib.Analysis.Calculus.MeanValue
 public import Mathlib.Analysis.Calculus.FDeriv.Prod
 public import Mathlib.Analysis.Calculus.Deriv.Prod
@@ -108,7 +108,7 @@ theorem Icc_subset_image_of_innerTest {g : (Fin r → ℝ) × (Fin s → ℝ) �
       g' x (0, Pi.single l 1) i ∈ Icc (J₂lo i l) (J₂hi i l))
     (hdiag : ∀ i, (0 : ℝ) ∉ Icc (J₁lo i i) (J₁hi i i)) (hũ : ũ ∈ Icc lo₁ hi₁ ×ˢ Icc lo₂ hi₂)
     (hii : g ũ ∈ Icc ylo yhi)
-    (h5 : innerTest g ũ lo₁ hi₁ lo₂ hi₂ J₁lo J₁hi J₂lo J₂hi ylo yhi) : -- --- CONCL ---
+    (h5 : PassesInnerTest g ũ lo₁ hi₁ lo₂ hi₂ J₁lo J₁hi J₂lo J₂hi ylo yhi) : -- --- CONCL ---
     Icc ylo yhi ⊆ g '' (Icc lo₁ hi₁ ×ˢ Icc lo₂ hi₂) := by -- --- PROOF ---
   -- the slice `h(v) = g(v, ũ₂)`, a submersion by (3)
   let h : (Fin r → ℝ) → (Fin r → ℝ) := fun v => g (v, ũ.2)

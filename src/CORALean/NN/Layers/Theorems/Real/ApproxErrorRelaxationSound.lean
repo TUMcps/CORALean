@@ -42,7 +42,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem approxErrorRelaxation_sound {ϕ : ℝ → ℝ} (hϕ : Continuous ϕ) : -- --- CONCL ---
-    (approxErrorRelaxation ϕ).Sound ϕ := by -- --- PROOF ---
+    (approxErrorRelaxation ϕ).IsSound ϕ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   change l ≤ t at hl
   change t ≤ u at hu

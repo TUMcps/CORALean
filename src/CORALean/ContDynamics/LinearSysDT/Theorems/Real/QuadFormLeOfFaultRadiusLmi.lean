@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsFaultRadiusLmi
 public import CORALean.Global.PosDefSchurComplement
 public import Mathlib.LinearAlgebra.Matrix.SchurComplement
 
@@ -9,8 +9,8 @@ public import Mathlib.LinearAlgebra.Matrix.SchurComplement
 /-!
 # The fault-observer LMI bounds the P-norm of a step
 
-[1, Eq. 16], [1, Eq. 17]: if `P ≻ 0` and `W` satisfy Eq. 17 (`LinearSysDT.FaultRadiusLmi`), then at
-the gain `L = P⁻¹W` every `θ`, `s₁`, `s₂` satisfy
+[1, Eq. 16], [1, Eq. 17]: if `P ≻ 0` and `W` satisfy Eq. 17 (`LinearSysDT.IsFaultRadiusLmi`), then
+at the gain `L = P⁻¹W` every `θ`, `s₁`, `s₂` satisfy
 `‖(A - LC)θ + D_xH_w s₁ - L D_yH_v s₂‖²_P ≤ γ‖θ‖²_P + ‖D_xH_w s₁‖²₂ + ‖D_yH_v s₂‖²₂`, the inequality
 between [1, Eq. 15] and [1, Eq. 16] with `θ` free. That is the paper's derivation run backwards:
 the Schur complement of the block `-P` (`posDef_schur_of_fromBlocks`) is
@@ -65,7 +65,8 @@ variable {n ny nw nv rw rv : ℕ}
 
 theorem LinearSysDT.quadForm_le_of_faultRadiusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (Dx : Mat ℝ n nw) (Hw : Mat ℝ nw rw) (Dy : Mat ℝ ny nv) (Hv : Mat ℝ nv rv) (P : Mat ℝ n n)
-    (W : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef) (h : LinearSysDT.FaultRadiusLmi A C Dx Hw Dy Hv P W γ)
+    (W : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef) (h : LinearSysDT.IsFaultRadiusLmi A C Dx Hw Dy Hv P W
+        γ)
     (θ : Vec ℝ n) (s₁ : Vec ℝ rw) (s₂ : Vec ℝ rv) : -- --- CONCL ---
     let L := P⁻¹ * W
     let e := (A - L * C) *ᵥ θ + (Dx * Hw) *ᵥ s₁ - (L * (Dy * Hv)) *ᵥ s₂

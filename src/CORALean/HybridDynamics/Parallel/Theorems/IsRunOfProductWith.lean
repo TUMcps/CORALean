@@ -4,7 +4,7 @@ public import CORALean.HybridDynamics.Parallel.Theorems.IsStayTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
-public import CORALean.HybridDynamics.Parallel.Definitions.FlowLawConverse
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFlowLawConverse
 public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 
 @[expose] public section
@@ -12,11 +12,11 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 /-!
 # Every run of the product is a parallel run
 
-The converse of `IsRun.toProductWith`, for any flow with `FlowLawConverse`, by the product run's
+The converse of `IsRun.toProductWith`, for any flow with `IsFlowLawConverse`, by the product run's
 recursion. A stay is `IsStay.aux_ofTrajectoryWith`; a jump of the product is a lifted transition of
-some component `c`, whose guard comes back through `Lifting.Exact` and whose reset is the update,
+some component `c`, whose guard comes back through `Lifting.IsExact` and whose reset is the update,
 by `liftTransition_reset`, of the blocks of the stacked state. The conditions are those under which
-the product loses nothing: `Lifting.Exact` and the converse flow law, which for
+the product loses nothing: `Lifting.IsExact` and the converse flow law, which for
 `mergeFlowsLinearSys` asks `GlobalsDistinct` and nonempty input sets as well
 (`mergeFlowsLinearSys_flowLawConverse`).
 
@@ -65,8 +65,8 @@ open MeasureTheory
 product's state. -/
 theorem ParallelHybridAutomaton.IsStay.aux_ofTrajectoryWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLawConverse F U W)
-    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {ℓ : ∀ i, L i} {τ : ℝ}
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLawConverse F U W)
+    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) {ℓ : ∀ i, L i} {τ : ℝ}
     {X : ℝ → Vec ℝ (∑ i, n i)} {g' w'}
     (h : ((P.productWith lift F U W).loc ℓ).IsTrajectory τ X g' w') : -- --- CONCL ---
     ∃ (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
@@ -129,7 +129,7 @@ theorem ParallelHybridAutomaton.IsStay.aux_ofTrajectoryWith [ExactScalar 𝕋]
     rw [Pi.add_apply, hev (h.integrable t ht)] at hX
     rw [Pi.add_apply, hev (hbi i t ht)]
     exact hX
-  · -- the invariant, through `Lifting.Exact`
+  · -- the invariant, through `Lifting.IsExact`
     exact hex.inv_inv _ _ (by rw [stack_unstack]; exact h.invariant t ht) i
 
 end
@@ -140,8 +140,8 @@ end
 /-- A run of the product is a run of the parallel automaton, on the blocks of its states. -/
 theorem ParallelHybridAutomaton.IsRun.ofProductWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLawConverse F U W)
-    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {ℓ ℓ' : ∀ i, L i}
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLawConverse F U W)
+    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) {ℓ ℓ' : ∀ i, L i}
     {z w : Vec ℝ (∑ i, n i)} (run : (P.productWith lift F U W).IsRun ℓ z ℓ' w) : -- --- CONCL ---
     P.IsRun ℓ (unstack z) ℓ' (unstack w) := by -- --- PROOF ---
   induction run with

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdge
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section
@@ -51,7 +51,7 @@ namespace CORALean.Real
 /-- The column sum strictly drops across an edge: every other exponent is
 shared, and the one the edge moves falls. -/
 theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
-    {i j : Fin h} (hij : PolyZonotope.ExpEdge E η i j) : -- --- CONCL ---
+    {i j : Fin h} (hij : PolyZonotope.IsExpEdge E η i j) : -- --- CONCL ---
     ∑ k, E k j < ∑ k, E k i := by -- --- PROOF ---
   obtain ⟨k₀, hsim, -, -, hlt⟩ := hij
   refine Finset.sum_lt_sum (fun k _ => ?_) ⟨k₀, Finset.mem_univ k₀, hlt⟩
@@ -62,7 +62,7 @@ theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → 
 
 /-- The same along a path, the measure dropping at every step. -/
 theorem PolyZonotope.aux_sum_lt_of_path {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
-    {i j : Fin h} (hij : Relation.TransGen (PolyZonotope.ExpEdge E η) i j) :
+    {i j : Fin h} (hij : Relation.TransGen (PolyZonotope.IsExpEdge E η) i j) :
     ∑ k, E k j < ∑ k, E k i := by
   induction hij with
   | single hedge => exact PolyZonotope.aux_sum_lt_of_expEdge E hedge
@@ -74,7 +74,7 @@ theorem PolyZonotope.aux_sum_lt_of_path {p h : ℕ} (E : Fin p → Fin h → ℕ
 /-- The generator graph has no cycles: a path from a node back to itself would
 put its column sum below itself. -/
 theorem PolyZonotope.expEdge_acyclic {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) (i : Fin h) :
-    ¬ Relation.TransGen (PolyZonotope.ExpEdge E η) i i :=
+    ¬ Relation.TransGen (PolyZonotope.IsExpEdge E η) i i :=
   fun hi => lt_irrefl _ (PolyZonotope.aux_sum_lt_of_path E hi)
 
 end CORALean.Real

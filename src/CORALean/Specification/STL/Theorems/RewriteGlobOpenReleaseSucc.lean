@@ -57,13 +57,13 @@ theorem STL.rewrite_globOpen_release_succ (φ₁ φ₂ : STL.Formula X) (i j : �
     (hij : i ≤ j)
     (ξ : ℝ≥0 → X)
     (h : ((STL.Formula.globOpen 1 φ₁).or (STL.Formula.next 1 (φ₁.or (STL.Formula.globOpen 1
-      (STL.Formula.release ((i - 1 : ℕ) : ℝ≥0) ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂))))).Sat ξ)
+      (STL.Formula.release ((i - 1 : ℕ) : ℝ≥0) ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂))))).Satisfies ξ)
     : -- --- CONCL ---
     (STL.Formula.globOpen 1
-      (STL.Formula.release (i : ℝ≥0) (j : ℝ≥0) φ₁ φ₂)).Sat ξ := by -- --- PROOF ---
+      (STL.Formula.release (i : ℝ≥0) (j : ℝ≥0) φ₁ φ₂)).Satisfies ξ := by -- --- PROOF ---
   obtain ⟨i, rfl⟩ : ∃ i', i = i' + 1 := ⟨i - 1, by omega⟩
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
-  simp only [STL.Formula.sat_next, STL.Formula.sat_release, STL.Formula.Sat, Time.shift_shift,
+  simp only [STL.Formula.sat_next, STL.Formula.sat_release, STL.Formula.Satisfies, Time.shift_shift,
     Nat.add_sub_cancel] at h ⊢
   intro s hs₀ hs₁ t ht₁ ht₂
   -- every `t ≥ i + 1` is at least `1`

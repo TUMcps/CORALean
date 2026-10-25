@@ -1,0 +1,45 @@
+module
+
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import Mathlib.LinearAlgebra.Span.Defs
+
+@[expose] public section
+
+/-!
+# `ZonoBundle.HasAllMembersFullDim`
+
+The first two tests of CORA's `@zonoBundle/isFullDim`: it answers `false` if a member
+zonotope is not full-dimensional (its generators do not span the ambient space), the rank test of
+`Zonotope.isFullDim`. Its last step, `isFullDim(polytope(zB))`, tests the intersection itself
+and is not formalized. CORA also answers `false` for a bundle without members, whose `construct`
+here is the whole space.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Output
+* every member's generators span the space
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+def ZonoBundle.HasAllMembersFullDim (zB : ZonoBundle α) : Prop :=
+  ∀ i, Submodule.span ℝ (Set.range (zB.Z i).G) = ⊤
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

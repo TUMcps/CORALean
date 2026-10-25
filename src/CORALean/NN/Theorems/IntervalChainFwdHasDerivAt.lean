@@ -47,7 +47,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.fwd_hasDerivAt : -- --- CONCL ---
-    ∀ {n k : ℕ} (c : IntervalChain n k), c.Smooth →
+    ∀ {n k : ℕ} (c : IntervalChain n k), c.IsSmooth →
     ∀ (γ : ℝ → (Fin n → ℝ) × (Fin n → ℝ)) (γ' : (Fin n → ℝ) × (Fin n → ℝ)) (t : ℝ),
       HasDerivAt γ γ' t →
       HasDerivAt (fun s => (c.fwd (γ s) : (Fin k → ℝ) × (Fin k → ℝ)))

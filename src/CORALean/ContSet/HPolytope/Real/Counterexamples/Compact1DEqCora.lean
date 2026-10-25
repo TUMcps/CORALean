@@ -19,7 +19,7 @@ after the first has set `Ae = 1`, so the merged row is `x = be(1)`, the normaliz
 `x = be(1) / Ae(1)` for the row's own coefficient.
 
 The output is the triple `(empty, Ae, be)` of the source as a flag and an `HPolytope` of equality
-rows (`HPolytope.ofEqs1D`); `none` is the error. `withinTol` reads as exact equality. Read from
+rows (`HPolytope.ofEqs1D`); `none` is the error. `IsWithinTol` reads as exact equality. Read from
 the source, not run.
 
 # CORA's `priv_compact_1D` moves a repeated equality constraint

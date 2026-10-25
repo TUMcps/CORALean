@@ -12,7 +12,7 @@ The definition is [1, Def. 2], `LinearSys.reachSetExact`'s shape at an `IsRun` i
 reaches at `ℓ`; `reachLocationsExact` is every `ℓ` it reaches at all. Not indexed by [1, Def. 2]'s
 real `r`: no `IsRun` here carries elapsed global time, so both sets are read across every run.
 `Theorems.ReachSetExactOuter`/`ReachLocationsExactOuter` put every run into these;
-`ReachSetExactSubsetInvariant` puts `reachSetExact` inside what an `Invariant` supplies.
+`ReachSetExactSubsetInvariant` puts `reachSetExact` inside what an `IsInvariant` supplies.
 
 ## Inputs
 * `HA` – hybrid automaton

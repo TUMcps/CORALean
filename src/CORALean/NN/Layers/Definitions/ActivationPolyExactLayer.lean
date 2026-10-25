@@ -34,7 +34,7 @@ and a proof that all enclose one activation. -/
 structure ActivationPolyLayer (n m : ℕ) where
   deg : ℕ
   P : LayerRelaxation ℝ n deg
-  sound : ∃ σ : ℝ → ℝ, ∀ i, (P i).Sound σ
+  sound : ∃ σ : ℝ → ℝ, ∀ i, (P i).IsSound σ
   dim : n = m
 
 /-- The exact polynomial activation layer is an `Enclose` kind at polynomial zonotopes;

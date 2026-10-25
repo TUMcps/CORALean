@@ -14,6 +14,11 @@ carries none. No fields at all. The dimension is the index and not a field, as
 `ContSet (EmptySet n) (Vec ℝ n)` needs it to pin the ambient type, and CORA's `emptySet` carries its
 dimension the same way. Real layer only: the representation holds no scalar to round, so a `Float`
 copy would be the same type twice.
+
+## References
+
+None: the empty set, a set class of CORA's own with no publication; it holds no data to take from
+one.
 -/
 
 -- Authors:       Claude Opus 5

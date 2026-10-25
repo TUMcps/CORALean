@@ -57,11 +57,12 @@ variable {X : Type}
 theorem STL.rewrite_finOpen_release_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ) (hj : 1 ≤ j) (ξ : ℝ≥0 → X)
     (h : ((STL.Formula.finOpen 1 (φ₁.and φ₂)).or ((STL.Formula.globOpen 1 φ₂).and
       (STL.Formula.next 1 (φ₂.and (φ₁.or ((STL.Formula.globOpen 1 φ₂).and (STL.Formula.finOpen 1
-        (STL.Formula.release 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))))).Sat ξ) : -- --- CONCL ---
-    (STL.Formula.finOpen 1 (STL.Formula.release 0 (j : ℝ≥0) φ₁ φ₂)).Sat ξ := by -- --- PROOF ---
+        (STL.Formula.release 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))))).Satisfies ξ) : -- --- CONCL ---
+    (STL.Formula.finOpen 1 (STL.Formula.release 0 (j : ℝ≥0) φ₁ φ₂)).Satisfies
+    ξ := by -- --- PROOF ---
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.sat_release,
-    STL.Formula.Sat, Time.shift_shift, Nat.add_sub_cancel] at h ⊢
+    STL.Formula.Satisfies, Time.shift_shift, Nat.add_sub_cancel] at h ⊢
   have h2 : (0 : ℝ≥0) < 2⁻¹ := by norm_num
   have h2' : (2⁻¹ : ℝ≥0) < 1 := by norm_num
   have hh : (2⁻¹ : ℝ≥0) + 2⁻¹ = 1 := by rw [← two_mul]; exact mul_inv_cancel₀ two_ne_zero
@@ -80,7 +81,7 @@ theorem STL.rewrite_finOpen_release_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ)
       exact lt_of_add_lt_add_right hp
   · refine ⟨s, hs₀, hs₁, fun t _ ht₂ => ?_⟩
     rcases lt_or_ge t 1 with ht | ht
-    · refine Or.inl (Time.forall_lt_two_of_blocks (fun x => φ₂.Sat (Time.shift ξ x)) hG hφ₂
+    · refine Or.inl (Time.forall_lt_two_of_blocks (fun x => φ₂.Satisfies (Time.shift ξ x)) hG hφ₂
         (by simpa using hG') (t + s) (lt_of_lt_of_le hs₀ le_add_self) ?_)
       calc t + s < 1 + 1 := add_lt_add ht hs₁
         _ = 2 := one_add_one_eq_two

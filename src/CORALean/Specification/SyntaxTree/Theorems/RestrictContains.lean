@@ -54,7 +54,7 @@ private theorem SyntaxTree.toReal_between {e : EReal} {a b : ℝ} (h₁ : (a : E
 /-- `restrict prev lo hi` holds `s` and lies inside `prev`. -/
 theorem SyntaxTree.restrict_contains {prev : Dom} {lo hi : EReal} {s : ℝ}
     (hs : Dom.contains prev s) (h₁ : lo ≤ s) (h₂ : (s : EReal) ≤ hi) : -- --- CONCL ---
-    Dom.contains (restrict prev lo hi) s ∧ Dom.within (restrict prev lo hi)
+    Dom.contains (restrict prev lo hi) s ∧ Dom.IsWithin (restrict prev lo hi)
       prev := by -- --- PROOF ---
   have hb : hi ≠ ⊥ := fun h => by simp [h] at h₂
   have hl : (max (prev.inf 0 : EReal) lo).toReal ≥ prev.inf 0 ∧
@@ -64,7 +64,7 @@ theorem SyntaxTree.restrict_contains {prev : Dom} {lo hi : EReal} {s : ℝ}
       s ≤ (min (prev.sup 0 : EReal) hi).toReal :=
     ⟨(toReal_between (a := s) (le_min (EReal.coe_le_coe_iff.2 hs.2) h₂) (min_le_left _ _)).2,
       (toReal_between (a := s) (le_min (EReal.coe_le_coe_iff.2 hs.2) h₂) (min_le_left _ _)).1⟩
-  simp only [restrict, Dom.contains, Dom.within, hb, if_false]
+  simp only [restrict, Dom.contains, Dom.IsWithin, hb, if_false]
   exact ⟨⟨hl.2, hu.2⟩, hl.1, hu.1⟩
 
 end CORALean

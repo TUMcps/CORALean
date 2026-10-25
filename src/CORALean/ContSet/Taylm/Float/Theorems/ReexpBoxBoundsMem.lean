@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.reexpBoxBounds_mem (P : List (𝕋 × (Fin n → ℕ))) {B : Fin n → Interval 𝕋} {t : Vec ℝ n}
-    (ht : Taylm.InBox B t) : -- --- CONCL ---
+    (ht : Taylm.IsInBox B t) : -- --- CONCL ---
     toReal (Taylm.reexpBoxBounds P B).inf ≤ Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t ∧
       Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t
         ≤ toReal (Taylm.reexpBoxBounds P B).sup := by -- --- PROOF ---

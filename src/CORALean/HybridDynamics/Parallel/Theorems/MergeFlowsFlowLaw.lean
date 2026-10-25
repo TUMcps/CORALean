@@ -3,9 +3,9 @@ module
 public import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
 public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
 public import CORALean.HybridDynamics.Parallel.Operations.MergeDistSets
-public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
-public import CORALean.HybridDynamics.Parallel.Definitions.StateBound
-public import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFlowLaw
+public import CORALean.HybridDynamics.Parallel.Definitions.HasStateBound
+public import CORALean.HybridDynamics.Parallel.Definitions.IsSelfBindFree
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlow
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 
@@ -14,8 +14,8 @@ public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 /-!
 # `mergeFlows` has the flow law
 
-At state-bound components (`StateBound`) and under `SelfBindFree`, `mergeFlows` with
-`mergeInputSets` and `mergeDistSets` has `FlowLaw`, at every scalar with an exact `0` and `1`. The
+At state-bound components (`HasStateBound`) and under `IsSelfBindFree`, `mergeFlows` with
+`mergeInputSets` and `mergeDistSets` has `IsFlowLaw`, at every scalar with an exact `0` and `1`. The
 product's input is the global inputs, zero where nothing reads them, its disturbance the stack.
 Row `⟨i, a⟩` of the merged right-hand side is component `i`'s: the block of `A` plus, where state
 `a`'s input is bound to output `s` of component `c`, state `s` of `c` (the `1` of `B C`, `C` the
@@ -53,9 +53,9 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.mergeFlows_flowLaw [ExactScalar 𝕋]
-    {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hst : P.StateBound) (hself : P.SelfBindFree)
+    {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hst : P.HasStateBound) (hself : P.IsSelfBindFree)
     (lift : ParallelHybridAutomaton.Lifting S G n m) : -- --- CONCL ---
-    P.FlowLaw P.mergeFlows (P.mergeInputSets lift) (P.mergeDistSets lift) := by -- --- PROOF ---
+    P.IsFlowLaw P.mergeFlows (P.mergeInputSets lift) (P.mergeDistSets lift) := by -- --- PROOF ---
   classical
   intro ℓ x u w g hu hin hw
   obtain ⟨hB, hC, hD, hk⟩ := hst ℓ

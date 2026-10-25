@@ -50,7 +50,7 @@ variable {n p q : ℕ} {M S : Type} [ContSet S (Vec ℝ q)]
 theorem Conform.passesBF_of_conformant (sys : Conform.Plant n p q) (X0 W : Set (Vec ℝ n))
     (V : Set (Vec ℝ q)) (T : M → Conform.TestCase n p q) (K : ℕ) (R : M → ℕ → S)
     (hR : ∀ m, ∀ k ≤ K, sys.reachOutExact ({(T m).x0} + X0) (T m).u W V k ⊆ construct (R m k))
-    (hconf : sys.Conformant X0 W V T K) : Conform.PassesBF T K R :=
+    (hconf : sys.IsConformant X0 W V T K) : Conform.PassesBF T K R :=
   fun m k hk => hR m k hk (hconf m k hk)
 
 end CORALean

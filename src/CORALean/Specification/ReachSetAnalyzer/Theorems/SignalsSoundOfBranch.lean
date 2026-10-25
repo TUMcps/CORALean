@@ -64,9 +64,9 @@ theorem ReachSetAnalyzer.aux_analyzeBranch_spec (obj : ReachSetAnalyzer ℝ S n)
       ∃ obj', w.foldlM (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) obj0 =
         some obj' ∧ obj'.aps = obj.aps ∧ obj'.masks = obj.masks ∧ obj'.Represents d
           (fun k t => PT k t ∨ ∃ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∃ s ∈ e.timeInterval,
-            obj.TrueMark (𝕋 := 𝕋) k s.set e.loc s.time.inf s.time.sup d t)
+            obj.IsTrueMark (𝕋 := 𝕋) k s.set e.loc s.time.inf s.time.sup d t)
           (fun k t => PF k t ∨ ∃ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∃ s ∈ e.timeInterval,
-            obj.FalseMark (𝕋 := 𝕋) k s.set e.loc s.time.inf s.time.sup d t) := by -- --- PROOF ---
+            obj.IsFalseMark (𝕋 := 𝕋) k s.set e.loc s.time.inf s.time.sup d t) := by -- --- PROOF ---
   intro w
   induction w with
   | nil =>

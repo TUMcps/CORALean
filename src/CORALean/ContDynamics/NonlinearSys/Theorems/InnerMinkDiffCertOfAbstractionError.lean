@@ -17,7 +17,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderS
 
 The representation (21) a step of [1, Alg. 1] relies on, from what the remainder loop of lines
 10-13 establishes: when `R̂_err(L̂)` is (13) at the enlarged remainder `L̂` (`inputSolution Δt η
-L̂`), `L̂` an `AbstractionError` certificate for `A` at `x*` on a region `R` the solutions from
+L̂`), `L̂` an `IsAbstractionError` certificate for `A` at `x*` on a region `R` the solutions from
 `X` do not leave over `[0, Δt]`, every solution satisfies
 `x(Δt) - (x* + e^{AΔt}(x(0) - x*) + R_con(Δt)) ∈ R̂_err(L̂)`. With [1, Prop. 1]'s other
 hypotheses, passed through, that is `IsInnerMinkDiffCert`. What stays assumed is what
@@ -93,7 +93,7 @@ theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- CONCL ---
     ∀ st ∈ NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X,
-      AbstractionError sys.f st.A B st.xstar u₀ R (construct U) st.Lhat →
+      IsAbstractionError sys.f st.A B st.xstar u₀ R (construct U) st.Lhat →
       ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1 →
       Convex ℝ (construct st.Lhat) →
       IsClosed (construct st.Lhat) →

@@ -52,6 +52,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q r : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- Not the polytope's work (data): `bₑ` and its slack carried to the equality rows read back from
+the reduced lifted zonotope (`HPolytope.eqsWithin`); the inequality rows are `keepCols`, `dropEqs`
+and `padLeft`, the stacking `stackRows`. -/
 def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- Z⁺ = [G; Aₑ], reduced at `part`

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 CORA's `linearize` in `𝕋`: `A` and `B` are the Jacobian blocks at the expansion
 point `(x✱, u✱)`, here the centers of the model's enclosures of them at that point.
 
-Any pair would do. `AbstractionError` does not ask `A` and `B` to be the
+Any pair would do. `IsAbstractionError` does not ask `A` and `B` to be the
 derivative, and the remainder `slopeRemainder` encloses is taken against whatever
 pair this returns, so a center rounded either way costs a slightly larger
 remainder and nothing else. That is why no real counterpart has to be named:

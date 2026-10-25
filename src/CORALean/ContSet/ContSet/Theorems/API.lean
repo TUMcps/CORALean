@@ -72,7 +72,7 @@ public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSetLinComb
 
 `smul_mem_linComb_ofPoint`: `LinComb` and `OfPoint` give the segment from the origin to a point.
 
-`DependencyPreserving.comp` and `.chain` are the closure properties a parameterized representation
+`IsDependencyPreserving.comp` and `.chain` are the closure properties a parameterized representation
 is judged by: composing two dependency-preserving operations keeps the property, and a whole loop
 of them keeps it too, which carries a subset of the initial parameters through to the result.
 

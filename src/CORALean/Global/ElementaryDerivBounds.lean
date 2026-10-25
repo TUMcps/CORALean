@@ -44,7 +44,7 @@ open Polynomial
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The value at `y` is bounded by the dominating polynomial at `|y|`. -/
-theorem CoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : CoeffDom P A) (y : ℝ) : -- --- CONCL ---
+theorem IsCoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : IsCoeffDom P A) (y : ℝ) : -- --- CONCL ---
     |P.eval y| ≤ A.eval |y| := by -- --- PROOF ---
   have hdeg : P.natDegree ≤ A.natDegree := by
     rw [natDegree_le_iff_coeff_eq_zero]
@@ -60,25 +60,25 @@ theorem CoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : CoeffDom P A) (y : ℝ) : -- 
 
 
 /-- A dominating polynomial dominates itself. -/
-theorem CoeffDom.aux_self_of_dom {P A : ℝ[X]} (h : CoeffDom P A) : CoeffDom A A := fun j => by
+theorem IsCoeffDom.aux_self_of_dom {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom A A := fun j => by
   rw [abs_of_nonneg (h.nonneg j)]
 
 
 /-- Dominance is closed under a nonnegative scalar. -/
-theorem CoeffDom.aux_smul_nat {P A : ℝ[X]} (h : CoeffDom P A) (m : ℝ) (hm : 0 ≤ m) :
-    CoeffDom (C m * P) (C m * A) := fun j => by
+theorem IsCoeffDom.aux_smul_nat {P A : ℝ[X]} (h : IsCoeffDom P A) (m : ℝ) (hm : 0 ≤ m) :
+    IsCoeffDom (C m * P) (C m * A) := fun j => by
   rw [coeff_C_mul, coeff_C_mul, abs_mul, abs_of_nonneg hm]
   exact mul_le_mul_of_nonneg_left (h j) hm
 
 
 /-- Dominance is closed under the factor `X`. -/
-theorem CoeffDom.aux_X_mul {P A : ℝ[X]} (h : CoeffDom P A) : CoeffDom (X * P) (X * A) :=
-  (show CoeffDom X X from fun j => by
+theorem IsCoeffDom.aux_X_mul {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom (X * P) (X * A) :=
+  (show IsCoeffDom X X from fun j => by
     rw [coeff_X]; split_ifs <;> simp).mul h
 
 
 /-- Polynomials dominated coefficientwise. -/
-theorem CoeffDom.aux_abs_eval_le {P A : ℝ[X]} (h : CoeffDom P A) {y m : ℝ} (hy : |y| ≤ m) :
+theorem IsCoeffDom.aux_abs_eval_le {P A : ℝ[X]} (h : IsCoeffDom P A) {y m : ℝ} (hy : |y| ≤ m) :
     |P.eval y| ≤ A.eval m :=
   le_trans (h.aux_of_abs_le y) (h.aux_self_of_dom.eval_mono (abs_nonneg _) hy)
 
@@ -113,33 +113,33 @@ noncomputable def asinDom : ℕ → ℝ[X]
 
 -- the recursion on absolute coefficients dominates the recursion
 /-- Domination of coefficients carries over to the ODE polynomials of `q` and `Q`. -/
-theorem odePoly_dom {q Q : ℝ[X]} (h : CoeffDom q Q) (k : ℕ) :
-    CoeffDom (odePoly q k) (odePoly Q k) := by
+theorem odePoly_dom {q Q : ℝ[X]} (h : IsCoeffDom q Q) (k : ℕ) :
+    IsCoeffDom (odePoly q k) (odePoly Q k) := by
   induction k with
   | zero => exact fun j => by rw [odePoly, odePoly, coeff_X]; split_ifs <;> simp
   | succ k ih => exact ih.derivative.mul h
 
 -- the constant `1` dominates itself
 /-- The polynomial `1` dominates itself. -/
-theorem one_dom : CoeffDom (1 : ℝ[X]) 1 := fun j => by
+theorem one_dom : IsCoeffDom (1 : ℝ[X]) 1 := fun j => by
   rw [coeff_one]; split_ifs <;> simp
 
 -- `1 - X²` is dominated by `1 + X²`
 /-- `1 + X²` dominates `1 - X²` coefficientwise. -/
-theorem one_sub_sq_dom : CoeffDom (1 - X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => by
+theorem one_sub_sq_dom : IsCoeffDom (1 - X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => by
   simp only [coeff_sub, coeff_add, coeff_one, coeff_X_pow]
   split_ifs <;> simp_all
 
 -- `1 + X²` dominates itself
 /-- `1 + X²` dominates itself. -/
-theorem one_add_sq_dom : CoeffDom (1 + X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => by
+theorem one_add_sq_dom : IsCoeffDom (1 + X ^ 2 : ℝ[X]) (1 + X ^ 2) := fun j => by
   simp only [coeff_add, coeff_one, coeff_X_pow]
   split_ifs <;> simp_all
 
 -- `atanDom` dominates `atanPoly`
 /-- `atanDom j` dominates `atanPoly j` coefficientwise. -/
 theorem atanPoly_dom (j : ℕ) : -- --- CONCL ---
-    CoeffDom (atanPoly j) (atanDom j) := by -- --- PROOF ---
+    IsCoeffDom (atanPoly j) (atanDom j) := by -- --- PROOF ---
   induction j with
   | zero => exact one_dom
   | succ j ih =>
@@ -149,7 +149,7 @@ theorem atanPoly_dom (j : ℕ) : -- --- CONCL ---
 -- `asinDom` dominates `asinPoly`
 /-- The derivative polynomial of arcsine is dominated coefficientwise by `asinDom`. -/
 theorem asinPoly_dom (j : ℕ) : -- --- CONCL ---
-    CoeffDom (asinPoly j) (asinDom j) := by -- --- PROOF ---
+    IsCoeffDom (asinPoly j) (asinDom j) := by -- --- PROOF ---
   induction j with
   | zero => exact one_dom
   | succ j ih =>

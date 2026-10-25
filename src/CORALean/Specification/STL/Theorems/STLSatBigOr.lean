@@ -47,13 +47,13 @@ variable {X : Type}
 
 theorem STL.Formula.sat_bigOr {β : Type} (l : List β) (g : β → STL.Formula X)
     (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.bigOr (l.map g)).Sat ξ ↔ ∃ b ∈ l, (g b).Sat ξ := by -- --- PROOF ---
+    (STL.Formula.bigOr (l.map g)).Satisfies ξ ↔ ∃ b ∈ l, (g b).Satisfies ξ := by -- --- PROOF ---
   induction l with
-  | nil => simp [STL.Formula.bigOr, STL.Formula.ff, STL.Formula.Sat]
+  | nil => simp [STL.Formula.bigOr, STL.Formula.ff, STL.Formula.Satisfies]
   | cons b l ih =>
     -- one step of the fold is a binary `∨`
-    have : (STL.Formula.bigOr ((b :: l).map g)).Sat ξ ↔
-        (g b).Sat ξ ∨ (STL.Formula.bigOr (l.map g)).Sat ξ := Iff.rfl
+    have : (STL.Formula.bigOr ((b :: l).map g)).Satisfies ξ ↔
+        (g b).Satisfies ξ ∨ (STL.Formula.bigOr (l.map g)).Satisfies ξ := Iff.rfl
     rw [this, ih]
     simp
 

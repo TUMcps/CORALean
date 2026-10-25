@@ -15,7 +15,7 @@ The argument of `timeInterval_outer_setLinComb`, at the float matrices:
 The first term is on the segment `linComb` covers, once `e^{AΔt}` is in
 `expIntervalFloat`; the second is in `[F] R` by
 `MatExp.expDiff_mem_intervalCorrectionMatrix`, whose norm bound is the one
-`OrderAdmissibleFloat` asks of `[Δt, Δt] · A`.
+`IsOrderAdmissibleFloat` asks of `[Δt, Δt] · A`.
 
 ## Inputs
 * `sys` – linear system
@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.timeIntervalFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s)
     (hs : s ≤ toReal Δt) : -- --- CONCL ---
     exp (s • Scalar.toRealMat sys.A) *ᵥ x

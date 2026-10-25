@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinParamSys.timeIntervalFloat_outer
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ}
     (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- CONCL ---
     exp (s • A) *ᵥ x ∈ (sys.timeIntervalFloat Δt η R).construct := by -- --- PROOF ---

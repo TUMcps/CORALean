@@ -11,13 +11,13 @@ public import Mathlib.Order.Filter.AtTopBot.Basic
 # The region-of-attraction criterion, where the limits exist
 
 [1, Sec. 3.1.2]: "To verify the region of attraction, we have to show that for `R(0) = D`, it
-holds that `∃ t > 0 : R(t) ⊆ S`." With `S` robust positively invariant (`RobustInvariant`)
+holds that `∃ t > 0 : R(t) ⊆ S`." With `S` robust positively invariant (`IsRobustInvariant`)
 and closed, the criterion puts `R(0)` inside the region of attraction `D`
 (`regionOfAttraction`) once every solution from `R(0)` converges: from `t` on every solution
-is in `S` (`RobustInvariant.mem_of_reach_subset`), so its limit is in the closed `S`. The
+is in `S` (`IsRobustInvariant.mem_of_reach_subset`), so its limit is in the closed `S`. The
 convergence is a hypothesis, and has to be: the criterion holds for a rotation, whose
 solutions have no limit (`regionOfAttraction_counterexample`). `hγ` and `hU` are the
-time-invariance and unique solutions of [1, Sec. 3.1], as in `RobustInvariant.mem_of_reach_subset`.
+time-invariance and unique solutions of [1, Sec. 3.1].
 
 ## Inputs
 * `γ` – solution map of the system
@@ -63,7 +63,7 @@ variable {X Inp : Type} [TopologicalSpace X]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem subset_regionOfAttraction_of_reach_subset {γ : ℝ → X → (ℝ → Inp) → X}
-    {U : Set (ℝ → Inp)} {S R₀ : Set X} {t : ℝ} (hS : RobustInvariant γ U S) (hSc : IsClosed S)
+    {U : Set (ℝ → Inp)} {S R₀ : Set X} {t : ℝ} (hS : IsRobustInvariant γ U S) (hSc : IsClosed S)
     (hγ : ∀ t s : ℝ, 0 ≤ t → 0 ≤ s → ∀ x u, γ (t + s) x u = γ s (γ t x u) (fun r => u (t + r)))
     (hU : ∀ u ∈ U, ∀ t : ℝ, 0 ≤ t → (fun r => u (t + r)) ∈ U) (ht : 0 < t)
     (hR : ∀ x₀ ∈ R₀, ∀ u ∈ U, γ t x₀ u ∈ S)

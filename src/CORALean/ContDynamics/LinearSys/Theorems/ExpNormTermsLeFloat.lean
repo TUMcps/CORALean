@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoun
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpNormUpFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `e^{nrm} ≤ expNormUpFloat r η`, `nrm` the float bound on `‖r A‖`, at an admissible `η`. -/
 theorem LinearSys.aux_exp_le_expNormUpFloat (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
-    (hη : sys.OrderAdmissibleFloat r r η) : -- --- CONCL ---
+    (hη : sys.IsOrderAdmissibleFloat r r η) : -- --- CONCL ---
     Real.exp (toReal (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))))
       ≤ toReal (sys.expNormUpFloat r η) := by -- --- PROOF ---
   refine le_expUp _ _ ?_
@@ -77,7 +77,7 @@ theorem LinearSys.aux_exp_le_expNormUpFloat (sys : LinearSys 𝕋 n) {r : 𝕋} 
 /-- At `r ≥ 0` and an admissible `η`: `r‖A‖ ≤ nrm`, `e^{r‖A‖} - 1` and `e^{r‖A‖} - 1 - r‖A‖`
 under their float bounds, and `0 ≤ E(rA, η) ≤` its float bound. -/
 theorem LinearSys.expNormTerms_le_float (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
-    (hr : 0 ≤ toReal r) (hη : sys.OrderAdmissibleFloat r r η) : -- --- CONCL ---
+    (hr : 0 ≤ toReal r) (hη : sys.IsOrderAdmissibleFloat r r η) : -- --- CONCL ---
     toReal r * ‖Scalar.toRealMat sys.A‖
         ≤ toReal (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ∧
       Real.exp (toReal r * ‖Scalar.toRealMat sys.A‖) - 1

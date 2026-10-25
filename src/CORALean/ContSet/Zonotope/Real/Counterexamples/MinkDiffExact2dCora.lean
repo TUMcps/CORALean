@@ -9,7 +9,7 @@ public import Mathlib.Tactic.FinCases
 @[expose] public section
 
 /-!
-# `Zonotope.areAlignedCora`, CORA's `aux_areAligned`
+# `Zonotope.IsAlignedCora`, CORA's `aux_areAligned`
 
 CORA's `@zonotope/minkDiff.m` [1], `aux_areAligned` (l. 522-549): the generator matrices must have
 the same size; if both are zero the sets are aligned, if exactly one is zero they are not;
@@ -17,7 +17,7 @@ otherwise both matrices are divided by their largest column 2-norm (`vecnorm`, l
 `max`) and compared column by column, in order, up to `eps` (l. 542).
 
 The comparison is an equality of the two normalised matrices, so it accepts a subtrahend
-that is ANY positive multiple of the minuend, in particular a larger one. The `withinTol` and
+that is ANY positive multiple of the minuend, in particular a larger one. The `IsWithinTol` and
 `eps` tolerances are read as exact equality here.
 
 # `Zonotope.minkDiffExact2dCora`, CORA's two-dimensional `minkDiff`
@@ -67,7 +67,7 @@ variable {n : ℕ}
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- `aux_areAligned(minuend, subtrahend)` once the sizes agree (`hh`, l. 530's size test). -/
-def Zonotope.areAlignedCora (minuend subtrahend : Zonotope (Vec ℝ n))
+def Zonotope.IsAlignedCora (minuend subtrahend : Zonotope (Vec ℝ n))
     (hh : minuend.h = subtrahend.h) : Prop :=
   -- l. 530: `normMin = max(vecnorm(Gmin))`
   let normMin : ℝ := ⨆ j, Real.sqrt (∑ i, minuend.G j i ^ 2)
@@ -89,7 +89,7 @@ noncomputable def Zonotope.minkDiffExact2dCora (minuend subtrahend : Zonotope (V
     Option (Zonotope (Vec ℝ 2)) :=
   if hh : minuend.h = subtrahend.h then
     -- l. 123: `if aux_areAligned(minuend, subtrahend)`
-    if minuend.areAlignedCora subtrahend hh then
+    if minuend.IsAlignedCora subtrahend hh then
       -- l. 125: `zonotope(minuend.c - subtrahend.c, minuend.G - subtrahend.G)`
       some (minuend.minkDiffAligned subtrahend hh)
     else none
@@ -127,14 +127,14 @@ theorem Zonotope.minkDiffExact2dCora_not_inner : -- --- CONCL ---
     simp at h1 h2
     linarith [h1.2, h2.1]
   -- `aux_areAligned` accepts: both column norms are constant (`1` and `2`), the quotients agree
-  have hal : Z₁.areAlignedCora Z₂ rfl := by
+  have hal : Z₁.IsAlignedCora Z₂ rfl := by
     have e1 : ∀ j : Fin 2, Real.sqrt (∑ i : Fin 2, Z₁.G j i ^ 2) = 1 := by
       intro j
       fin_cases j <;> simp [Z₁]
     have e2 : ∀ j : Fin 2, Real.sqrt (∑ i : Fin 2, Z₂.G j i ^ 2) = 2 := by
       intro j
       fin_cases j <;> simp [Z₂]
-    simp only [Zonotope.areAlignedCora, e1, e2, ciSup_const]
+    simp only [Zonotope.IsAlignedCora, e1, e2, ciSup_const]
     norm_num
     intro j
     fin_cases j <;> simp [Z₁, Z₂]

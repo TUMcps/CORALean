@@ -68,7 +68,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 nominal zonotope, widened by `timePointStepExcessFloat` and the step's float error box — the
 upper side of the float step, at `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
+    (hr : 0 < toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
     (hX : (0 : Vec ℝ n) ∈ X.I_error.construct)
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     (sys.timePointStepInputFloat r η X U).construct

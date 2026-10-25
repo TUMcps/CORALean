@@ -48,7 +48,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One selector column, then each operand's generators over its own factors. -/
+/-- One selector column, then each operand's generators over its own factors. Not the constraint's
+work (generators): the union's generator exponents of [1, Thm. 1]; its constraint is
+`PolyLevelSet.and_` of the selector rows and `unionLower`. -/
 def ConPolyZono.unionE {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ)
     (E₂ : Fin p₂ → Fin h₂ → ℕ) : Fin (p₁ + p₂ + 2) → Fin (1 + (h₁ + h₂)) → ℕ :=
   ConPolyZono.appendE (fun k _ => ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1 k)

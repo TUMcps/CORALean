@@ -12,7 +12,7 @@ join, over the cases, of each case's transformer applied to the element met with
 a composition is the composition of the transformers. The join of no case is `⊥`, and the
 cases are joined right to left, which the paper leaves open, `⊔` being commutative in it.
 
-The meet with the `i`-th guard does not exclude the earlier guards, as `Cat.Eval` does: an
+The meet with the `i`-th guard does not exclude the earlier guards, as `Cat.Evaluates` does: an
 element met with fewer constraints is only larger, so nothing is lost but precision, exactly as
 in the paper.
 

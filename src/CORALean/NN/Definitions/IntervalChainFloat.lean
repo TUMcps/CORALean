@@ -10,7 +10,7 @@ public import CORALean.Global.Float.FloatOps
 `Real.IntervalChain` with the weights and biases stored as floats, for the float interval
 backpropagation to run on. An activation is stored as two scalar interval enclosures, `σE` of its
 value and `σ'E` of its derivative; what they enclose is not data but a statement
-(`IntervalChain.Sound`), as the real functions have no code to run.
+(`IntervalChain.IsSound`), as the real functions have no code to run.
 -/
 
 -- Authors:       Claude Opus 5.5

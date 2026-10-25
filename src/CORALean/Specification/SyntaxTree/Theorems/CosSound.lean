@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Cos
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.PeriodicContains
@@ -86,7 +86,7 @@ private theorem SyntaxTree.exists_cos_branch {s lo hi : ℝ} (h₁ : lo ≤ Real
 
 /-- `aux_cos_` is sound for `cos`. -/
 theorem SyntaxTree.cos_sound (prev : Dom) : -- --- CONCL ---
-    UnarySound Unary.cos.fn prev (Real.Interval.cos prev) funHanCos := by -- --- PROOF ---
+    IsUnarySound Unary.cos.fn prev (Real.Interval.cos prev) funHanCos := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.cos s ∧ Real.cos s ≤ int.sup 0 := hi
   obtain ⟨k, hk⟩ := exists_cos_branch (s := s) (lo := max (int.inf 0) (-1)) (hi := min (int.sup 0)

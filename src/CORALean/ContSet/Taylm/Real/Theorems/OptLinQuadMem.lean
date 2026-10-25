@@ -53,8 +53,8 @@ theorem Taylm.optLinQuad_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Enclos
     (ldbFuel fuel : ℕ) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     (T.optLinQuad ε ldbFuel fuel).inf ≤ f t ∧
       f t ≤ (T.optLinQuad ε ldbFuel fuel).sup := by -- --- PROOF ---
-  have hX : Taylm.GoodBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) := fun _ => by norm_num
-  have htX : Taylm.InBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) t := fun k => abs_le.1 (ht k)
+  have hX : Taylm.IsGoodBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) := fun _ => by norm_num
+  have htX : Taylm.IsInBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) t := fun k => abs_le.1 (ht k)
   have h1 := Taylm.cosyGo_le h hX ε ldbFuel fuel htX
   have h2 := Taylm.cosyGo_le (Taylm.uminus_outer h) hX ε ldbFuel fuel htX
   simp only [Taylm.optLinQuad]

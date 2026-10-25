@@ -50,7 +50,7 @@ theorem Taylm.optBnb_mem {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enclo
     {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     toReal (T.optBnb ε fuel).inf ≤ f t ∧ f t ≤ toReal (T.optBnb ε fuel).sup := by -- --- PROOF ---
   -- the normalized box as a float box
-  have hX : Taylm.InBox (fun _ => ⟨neg one, one⟩ : Fin n → Interval 𝕋) t := fun k => by
+  have hX : Taylm.IsInBox (fun _ => ⟨neg one, one⟩ : Fin n → Interval 𝕋) t := fun k => by
     have := abs_le.1 (ht k)
     simp only [toReal_neg, toReal_one]
     exact this

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.Operations.Mtimes
 public import CORALean.Specification.SyntaxTree.SyntaxTree
@@ -48,8 +48,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- Every entry of `mtimes` of sound trees is sound. -/
 theorem SyntaxTree.sound_mtimes {m k p : ℕ} {A : Fin m → Fin (k + 1) → SyntaxTree n}
-    {C : Fin (k + 1) → Fin p → SyntaxTree n} (hA : ∀ i l, Sound B (A i l))
-    (hC : ∀ l j, Sound B (C l j)) (i : Fin m) (j : Fin p) : Sound B (mtimes A C i j) :=
+    {C : Fin (k + 1) → Fin p → SyntaxTree n} (hA : ∀ i l, IsSound B (A i l))
+    (hC : ∀ l j, IsSound B (C l j)) (i : Fin m) (j : Fin p) : IsSound B (mtimes A C i j) :=
   sound_sum (sound_times (hA i 0) (hC 0 j)) _ (fun u hu => by
     obtain ⟨l, _, rfl⟩ := List.mem_map.1 hu
     exact sound_times (hA i l.succ) (hC l.succ j))

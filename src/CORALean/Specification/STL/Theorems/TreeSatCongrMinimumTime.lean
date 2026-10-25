@@ -44,13 +44,13 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
     (h : ∀ s, φ.minimumTime ≤ s → ξ s = ξ' s) : -- --- CONCL ---
-    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with
   | tt | ff => rfl
-  | cmp op e₁ e₂ => simp only [STL.Tree.Sat, h 0 le_rfl]
+  | cmp op e₁ e₂ => simp only [STL.Tree.Satisfies, h 0 le_rfl]
   | not φ ih => exact not_congr (ih ξ ξ' h)
   | and φ ψ ihφ ihψ | or φ ψ ihφ ihψ =>
-    simp only [STL.Tree.Sat, ihφ ξ ξ' fun s hs => h s ((min_le_left _ _).trans hs),
+    simp only [STL.Tree.Satisfies, ihφ ξ ξ' fun s hs => h s ((min_le_left _ _).trans hs),
       ihψ ξ ξ' fun s hs => h s ((min_le_right _ _).trans hs)]
   -- `next` shifts the trace by `a`
   | next a φ ih =>
@@ -64,11 +64,11 @@ theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
     have e : (STL.Tree.finally a b φ).minimumTime = a := by simp [STL.Tree.minimumTime,
       STL.Tree.minimumTimeFrom]
     rw [e] at h
-    have hφ : ∀ t, a ≤ t → (φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t)) :=
+    have hφ : ∀ t, a ≤ t → (φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t)) :=
       fun t (ht : a ≤ t) =>
       ih (Time.shift ξ t) (Time.shift ξ' t) fun s hs =>
         h (s + t) (ht.trans le_add_self)
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness]
     exact exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
       and_congr (hφ t h1) Iff.rfl
   -- the same for `globally`
@@ -76,20 +76,20 @@ theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
     have e : (STL.Tree.globally a b φ).minimumTime = a := by simp [STL.Tree.minimumTime,
       STL.Tree.minimumTimeFrom]
     rw [e] at h
-    have hφ : ∀ t, a ≤ t → (φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t)) :=
+    have hφ : ∀ t, a ≤ t → (φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t)) :=
       fun t (ht : a ≤ t) =>
       ih (Time.shift ξ t) (Time.shift ξ' t) fun s hs =>
         h (s + t) (ht.trans le_add_self)
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness]
     exact not_congr (exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
       and_congr (not_congr (hφ t h1)) Iff.rfl)
   -- `until` and `release` start at the present: every shift is read
   | «until» a b φ ψ ihφ ihψ | release a b φ ψ ihφ ihψ =>
-    have hφ : ∀ t, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t =>
+    have hφ : ∀ t, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t =>
       ihφ (Time.shift ξ t) (Time.shift ξ' t) fun s hs => h (s + t) zero_le
-    have hψ : ∀ t, ψ.Sat (Time.shift ξ t) ↔ ψ.Sat (Time.shift ξ' t) := fun t =>
+    have hψ : ∀ t, ψ.Satisfies (Time.shift ξ t) ↔ ψ.Satisfies (Time.shift ξ' t) := fun t =>
       ihψ (Time.shift ξ t) (Time.shift ξ' t) fun s hs => h (s + t) zero_le
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness, hφ, hψ]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness, hφ, hψ]
 
 end CORALean
 

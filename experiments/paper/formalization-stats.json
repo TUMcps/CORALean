@@ -14,16 +14,16 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 100,
+    "papers": 101,
     "papers_with_findings": 90,
     "in_scope": 1299,
     "formalized": 1211,
     "not_formalized": 88,
-    "out_of_scope": 1156,
+    "out_of_scope": 1157,
     "out_of_scope_by_reason": {
       "restated": 428,
       "mathlib": 24,
-      "not-a-claim": 597,
+      "not-a-claim": 598,
       "done-differently": 12,
       "not-covered": 95
     },
@@ -2709,6 +2709,49 @@
       ]
     },
     {
+      "page": "2017/johansson-tc-arb.md",
+      "label": "Johansson 2017",
+      "year": 2017,
+      "title": "Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic",
+      "in_scope": 0,
+      "formalized": 0,
+      "not_formalized": 0,
+      "out_of_scope": 1,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 1,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
       "page": "2017/kipf-iclr-gcn.md",
       "label": "Kipf 2017",
       "year": 2017,
@@ -4897,7 +4940,7 @@
         {
           "result": "Thm. 1",
           "class": "underspecified",
-          "reason": "fails only when an exponent matrix has an all-zero column (`8 ∉ union`), which the paper's definition of the representation forbids; `NoZeroCol` is supplied"
+          "reason": "fails only when an exponent matrix has an all-zero column (`8 ∉ union`), which the paper's definition of the representation forbids; `HasNoZeroCol` is supplied"
         },
         {
           "result": "Prop. 14",

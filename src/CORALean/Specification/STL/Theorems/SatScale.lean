@@ -56,13 +56,13 @@ theorem STL.Formula.aux_shift_scale (c t : ℝ≥0) (ξ : ℝ≥0 → X) :
 
 theorem STL.Formula.sat_scale {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X)
     (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (φ.scale c).Sat ξ ↔ φ.Sat (fun t => ξ (t * c)) := by -- --- PROOF ---
+    (φ.scale c).Satisfies ξ ↔ φ.Satisfies (fun t => ξ (t * c)) := by -- --- PROOF ---
   induction φ generalizing ξ with
-  | atom p => simp [STL.Formula.scale, STL.Formula.Sat]
-  | not φ ih => simp only [STL.Formula.scale, STL.Formula.Sat, ih]
-  | or φ ψ ihφ ihψ => simp only [STL.Formula.scale, STL.Formula.Sat, ihφ, ihψ]
+  | atom p => simp [STL.Formula.scale, STL.Formula.Satisfies]
+  | not φ ih => simp only [STL.Formula.scale, STL.Formula.Satisfies, ih]
+  | or φ ψ ihφ ihψ => simp only [STL.Formula.scale, STL.Formula.Satisfies, ihφ, ihψ]
   | «until» a b φ ψ ihφ ihψ =>
-    simp only [STL.Formula.scale, STL.Formula.Sat, ihφ, ihψ]
+    simp only [STL.Formula.scale, STL.Formula.Satisfies, ihφ, ihψ]
     constructor
     · -- the witness `t` of the scaled formula is `t / c` on the scaled trace
       rintro ⟨t, h₁, h₂, h₃, h₄⟩
@@ -87,7 +87,7 @@ theorem STL.Formula.sat_scale {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X)
         exact this
   | finOpen d φ ih =>
     -- a time in the open window `(0, d c)` is `t c` for a time `t` in `(0, d)`
-    simp only [STL.Formula.scale, STL.Formula.Sat, ih]
+    simp only [STL.Formula.scale, STL.Formula.Satisfies, ih]
     constructor
     · -- the scaled window's witness divided by `c`
       rintro ⟨t, h₀, h₁, h⟩
@@ -99,7 +99,7 @@ theorem STL.Formula.sat_scale {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X)
       rwa [STL.Formula.aux_shift_scale] at h
   | globOpen d φ ih =>
     -- as for the window `F(0, d c)`, now for every time of it
-    simp only [STL.Formula.scale, STL.Formula.Sat, ih]
+    simp only [STL.Formula.scale, STL.Formula.Satisfies, ih]
     constructor
     · intro h t h₀ h₁
       have := h (t * c) (mul_pos h₀ hc) (mul_lt_mul_of_pos_right h₁ hc)

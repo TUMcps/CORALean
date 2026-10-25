@@ -14,6 +14,11 @@ At `Vec ℝ n`, not a general module: the ball is Euclidean. The distance is wri
 `Real.sqrt (∑ …)`, because the ambient norm of `Fin n → ℝ` is the supremum norm and `EuclideanSpace`
 would fight the `ContSet` instance at `Vec ℝ n`. A negative `r` denotes `∅`, as `Interval` does for
 a crossed box, which is why the structure has no `0 ≤ r` field.
+
+## References
+
+None: CORA's `capsule`, a software class: no publication introduces it, and the CORA manual page for
+it could not be read.
 -/
 
 -- Authors:       Claude Opus 5

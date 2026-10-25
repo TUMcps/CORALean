@@ -14,7 +14,7 @@ CORA's `priv_abstrerr_lin` at `tensorOrder = 2`, [1, Prop. 1]: the box `[-l, l]`
 second derivative of coordinate `i` entrywise. `γ` is the proposition's `|c - z✱| + Σⱼ |g⁽ʲ⁾|`,
 read off a zonotope rather than off a box, which is what lets `abstrErrLin_center_subset` name its
 center. `H` is data, as `precompStatError`'s `Q` is: nothing here differentiates `f`, and a wrong
-`H` yields a box `AbstractionError.of_hessian` cannot certify rather than an unsound one. Real
+`H` yields a box `IsAbstractionError.of_hessian` cannot certify rather than an unsound one. Real
 only. The state and the input are stacked into one `Vec ℝ d`, CORA's `dz = [dx; du]`, so `Hᵢ` is
 a single square matrix per coordinate; `d` is `n + m` at the use site.
 

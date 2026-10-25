@@ -43,7 +43,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_ofPform (ϱ : Pform X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.ofPform ϱ).Sat ξ ↔ ϱ.Sat (ξ 0) := by
+    (STL.Formula.ofPform ϱ).Satisfies ξ ↔ ϱ.Satisfies (ξ 0) := by
   induction ϱ with
   | atom p => rfl
   | not ϱ ih => exact not_congr ih

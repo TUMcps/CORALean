@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.ldbStep_reduce {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) {s : Vec ℝ n}
-    (hs : s ∈ Taylm.box n) (hR : ¬ Taylm.InBox T.ldbStep.2 s) : -- --- CONCL ---
+    (hs : s ∈ Taylm.box n) (hR : ¬ Taylm.IsInBox T.ldbStep.2 s) : -- --- CONCL ---
     T.ldbStep.1.sup < g s := by -- --- PROOF ---
   have hr := h s hs
   have hdec := Taylm.polyOf_eq_lin_add_higher T.terms s
@@ -71,7 +71,7 @@ theorem Taylm.ldbStep_reduce {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Enclos
     rw [Finset.sum_add_distrib] at this
     linarith
   -- a direction in which the point is outside the kept part
-  simp only [Taylm.InBox, not_forall] at hR
+  simp only [Taylm.IsInBox, not_forall] at hR
   obtain ⟨k, hk⟩ := hR
   have hsk := abs_le.1 (hs k)
   have hlk := hlin k

@@ -39,16 +39,16 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_conjoin (L : List (STL.Tree n)) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (STL.Tree.conjoin L).Sat ξ ↔ ∀ c ∈ L, c.Sat ξ := by -- --- PROOF ---
+    (STL.Tree.conjoin L).Satisfies ξ ↔ ∀ c ∈ L, c.Satisfies ξ := by -- --- PROOF ---
   suffices ∀ acc : Option (STL.Tree n), ((L.foldl (fun res c => some (res.elim c fun r => .and r c))
-      acc).getD .tt).Sat ξ ↔ (∀ r ∈ acc, r.Sat ξ) ∧ ∀ c ∈ L, c.Sat ξ by
+      acc).getD .tt).Satisfies ξ ↔ (∀ r ∈ acc, r.Satisfies ξ) ∧ ∀ c ∈ L, c.Satisfies ξ by
     simpa [STL.Tree.conjoin] using this none
   induction L with
-  | nil => intro acc; cases acc <;> simp [STL.Tree.Sat]
+  | nil => intro acc; cases acc <;> simp [STL.Tree.Satisfies]
   | cons c L ih =>
     intro acc
     rw [List.foldl_cons, ih]
-    cases acc <;> simp [STL.Tree.Sat, and_assoc]
+    cases acc <;> simp [STL.Tree.Satisfies, and_assoc]
 
 end CORALean
 

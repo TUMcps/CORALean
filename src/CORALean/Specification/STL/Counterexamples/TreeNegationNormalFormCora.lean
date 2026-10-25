@@ -59,10 +59,10 @@ open scoped NNReal
 
 theorem STL.Tree.negationNormalFormCora_counterexample :
     ∃ (φ : STL.Tree 1) (ξ : ℝ≥0 → Fin 1 → ℝ),
-      ¬ (φ.negationNormalFormCora.Sat ξ ↔ φ.Sat ξ) := by
+      ¬ (φ.negationNormalFormCora.Satisfies ξ ↔ φ.Satisfies ξ) := by
   refine ⟨.not (.cmp .lt (.var 0) (.num 0)), fun _ _ => 0, ?_⟩
-  simp [STL.Tree.negationNormalFormCora, STL.Tree.nnfWith, STL.Cmp.dual, STL.Tree.Sat,
-    STL.Expr.eval, STL.Cmp.rel]
+  simp [STL.Tree.negationNormalFormCora, STL.Tree.nnfWith, STL.Cmp.dual, STL.Tree.Satisfies,
+    STL.Expr.eval, STL.Cmp.Relates]
 
 end CORALean
 

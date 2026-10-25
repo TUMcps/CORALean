@@ -65,7 +65,7 @@ theorem LinearSys.aux_toReal_half_iterate (a : 𝕋) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.exp_mem_expSquaringFloat (sys : LinearSys 𝕋 n) {tLo tHi : 𝕋} {η s : ℕ}
-    (hη : sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {t : ℝ}
+    (hη : sys.IsOrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {t : ℝ}
     (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) : -- --- CONCL ---
     exp (t • Scalar.toRealMat sys.A)
       ∈ (sys.expSquaringFloat tLo tHi η s).construct := by -- --- PROOF ---

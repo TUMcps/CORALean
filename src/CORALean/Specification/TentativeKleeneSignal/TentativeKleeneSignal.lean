@@ -13,6 +13,11 @@ and `canBeFalse`. A time where only the first holds is `True`, only the second `
 `Unknown`, neither `Inconclusive` (nothing observed there yet). The constructor checks nothing;
 `TentativeKleeneSignal.at` is the value they
 denote.
+
+## References
+
+None: CORA's `tentativeKleeneSignal`, a software class: no publication introduces it, and the CORA
+manual page for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

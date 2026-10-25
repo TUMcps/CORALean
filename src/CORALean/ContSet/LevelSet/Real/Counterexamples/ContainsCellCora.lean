@@ -18,7 +18,7 @@ CORA's `@levelSet/contains_.m` against a set `S` (l. 90-133): the guard `strcmp(
 condition as soon as one entry is not `'=='`. Then `I = ls.funHan(interval(S))` is the interval
 evaluation of the function at the box enclosing `S` and `ub = supremum(I)`; with a cell `compOp`
 each row is tested by `ub(i) < 0 | withinTol(ub(i),0)` at `'<='` (default tolerance `1e-8`; the
-relative test of `withinTol` against `0` never holds) and by `ub(i) < 0` at every other
+relative test of `IsWithinTol` against `0` never holds) and by `ub(i) < 0` at every other
 operator, `'=='` included (l. 124-128). CORALean has no interval evaluation of a real function,
 so the bounds `(lb, ub)` are the argument `B`, assumed a range bound (`IsRangeBound`) by the
 theorems. `ub < 0` proves the row's function nonzero on `S`, the opposite of `== 0`; kept only so

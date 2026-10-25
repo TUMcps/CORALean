@@ -63,7 +63,7 @@ theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p] (x : Vec ℝ n) :
 
 /-- One `ReLUᵢ` replaces coordinate `i` by `max(xᵢ, 0)`. -/
 theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
-    Cat.Eval (𝕋 := 𝕋) (.cases 2 ![.nonneg i, .neg i]
+    Cat.Evaluates (𝕋 := 𝕋) (.cases 2 ![.nonneg i, .neg i]
       ![.affine (fun r c => if r = c then one else zero) (fun _ => zero),
         .affine (fun r c => if r = c ∧ r ≠ i then one else zero) (fun _ => zero)]) x y
       ↔ y = Function.update x i (Real.relu (x i)) := by -- --- PROOF ---
@@ -99,7 +99,7 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
   · rintro rfl
     rcases le_or_gt 0 (x i) with h0 | h0
     · -- `xᵢ ≥ 0`: the first case applies, and it is the identity
-      refine Cat.Eval.cases _ _ 0 ((CatCond.mem_nonneg_iff i x).mpr h0)
+      refine Cat.Evaluates.cases _ _ 0 ((CatCond.mem_nonneg_iff i x).mpr h0)
         (fun j hj => absurd hj (Fin.not_lt_zero j)) ?_
       have hy : Function.update x i (Real.relu (x i)) = toRealMat (fun r c : Fin n =>
           if r = c then (one : 𝕋) else zero) *ᵥ x + toRealVec (fun _ : Fin n => (zero : 𝕋)) := by
@@ -109,9 +109,9 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
         · subst hj; simp [Real.relu, max_eq_left h0]
         · simp [hj]
       rw [hy]
-      exact Cat.Eval.affine _ _ x
+      exact Cat.Evaluates.affine _ _ x
     · -- `xᵢ < 0`: the first guard fails, and the second case zeroes the row
-      refine Cat.Eval.cases _ _ 1 ((CatCond.mem_neg_iff i x).mpr h0) (fun j hj => ?_) ?_
+      refine Cat.Evaluates.cases _ _ 1 ((CatCond.mem_neg_iff i x).mpr h0) (fun j hj => ?_) ?_
       · have hj0 : j = 0 := Fin.ext (by have := hj; simp [Fin.lt_def] at this; omega)
         subst hj0
         exact fun h => absurd ((CatCond.mem_nonneg_iff i x).mp h) (not_le.mpr h0)
@@ -124,11 +124,11 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
           · subst hj; simp [Real.relu, max_eq_right h0.le]
           · simp [hj]
         rw [hy]
-        exact Cat.Eval.affine _ _ x
+        exact Cat.Evaluates.affine _ _ x
 
 /-- Over a list, the coordinates it names. -/
 theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL ---
-    (Cat.reluOn (𝕋 := 𝕋) l).Eval x y
+    (Cat.reluOn (𝕋 := 𝕋) l).Evaluates x y
       ↔ y = fun j => if j ∈ l then Real.relu (x j) else x j := by -- --- PROOF ---
   induction l generalizing x y with
   | nil =>
@@ -146,7 +146,7 @@ theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL 
         rw [hb, add_zero, hid]
         simp
       rw [hy]
-      exact Cat.Eval.affine _ _ x
+      exact Cat.Evaluates.affine _ _ x
   | cons i is ih =>
     -- the step on coordinate `i`, then the rest of the list on its result
     have key : (fun j => if j ∈ is then Real.relu (Function.update x i (Real.relu (x i)) j)
@@ -162,7 +162,7 @@ theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL 
       rw [(aux_eval_step_iff i x z).mp h₁] at h₂
       rw [(ih _ y).mp h₂, key]
     · rintro rfl
-      refine Cat.Eval.comp _ _ (Function.update x i (Real.relu (x i)))
+      refine Cat.Evaluates.comp _ _ (Function.update x i (Real.relu (x i)))
         ((aux_eval_step_iff i x _).mpr rfl) ?_
       rw [← key]
       exact (ih _ _).mpr rfl
@@ -171,7 +171,7 @@ theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Cat.reluOn_finRange_eval_iff (x y : Vec ℝ n) :
-    (Cat.reluOn (𝕋 := 𝕋) (List.finRange n)).Eval x y ↔ y = fun j => Real.relu (x j) := by
+    (Cat.reluOn (𝕋 := 𝕋) (List.finRange n)).Evaluates x y ↔ y = fun j => Real.relu (x j) := by
   rw [aux_reluOn_eval_iff]
   simp [List.mem_finRange]
 

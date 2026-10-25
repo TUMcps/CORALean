@@ -1,13 +1,13 @@
 module
 
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.Branch
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsBranch
 public import CORALean.Specification.ReachSetAnalyzer.Definitions.Entry
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.FalseMark
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsFalseMark
 public import CORALean.Specification.ReachSetAnalyzer.Definitions.HasEnclosingTimes
 public import CORALean.Specification.ReachSetAnalyzer.Definitions.Represents
 public import CORALean.Specification.ReachSetAnalyzer.Definitions.SignalsSound
 public import CORALean.Specification.ReachSetAnalyzer.Definitions.TimedSet
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.TrueMark
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsTrueMark
 
 /-!
 # Reach set analyzers, definitions

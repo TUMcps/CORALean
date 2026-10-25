@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.IsInMergeBucket
 
 @[expose] public section
 
@@ -39,7 +39,7 @@ namespace CORALean
 
 /-- A bucketed neuron's bounds are within `2δ` of each other, `y ± δ` both between them. -/
 theorem mergeBucket_width {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) {i : Fin n}
-    (hi : mergeBucket Y y δ i) : Y.sup i - Y.inf i ≤ 2 * δ := by
+    (hi : IsInMergeBucket Y y δ i) : Y.sup i - Y.inf i ≤ 2 * δ := by
   linarith [hi.1, hi.2]
 
 end CORALean

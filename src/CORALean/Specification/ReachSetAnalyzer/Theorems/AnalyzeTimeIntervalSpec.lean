@@ -1,7 +1,7 @@
 module
 
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.FalseMark
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.TrueMark
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsFalseMark
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsTrueMark
 public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeTimeInterval
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeKeySpec
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.RepresentsOfIff
@@ -12,8 +12,8 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.RepresentsOfIff
 # What one set in one time interval records
 
 If the analyzer represents `PT` and `PF` and `lo < hi`, analyzing a set in `[lo,hi]` succeeds and
-leaves the analyzer representing the same plus the times the set marks (`TrueMark`, `FalseMark`) for
-the propositions it concerns. The propositions and masks are untouched.
+leaves the analyzer representing the same plus the times the set marks (`IsTrueMark`, `IsFalseMark`)
+for the propositions it concerns. The propositions and masks are untouched.
 
 ## Inputs
 * `obj` – analyzer
@@ -120,8 +120,8 @@ theorem ReachSetAnalyzer.analyzeTimeInterval_spec (obj : ReachSetAnalyzer ℝ S 
     (lo hi : ℝ) (hlh : lo < hi) : -- --- CONCL ---
     ∃ obj', obj.analyzeTimeInterval (𝕋 := 𝕋) set loc lo hi = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
-        (fun k t => PT k t ∨ obj.TrueMark (𝕋 := 𝕋) k set loc lo hi d t)
-        (fun k t => PF k t ∨ obj.FalseMark (𝕋 := 𝕋) k set loc lo hi d t) := by -- --- PROOF ---
+        (fun k t => PT k t ∨ obj.IsTrueMark (𝕋 := 𝕋) k set loc lo hi d t)
+        (fun k t => PF k t ∨ obj.IsFalseMark (𝕋 := 𝕋) k set loc lo hi d t) := by -- --- PROOF ---
   obtain ⟨obj', h, ha, hm, hr⟩ := aux_analyzeTimeInterval_loop (𝕋 := 𝕋) obj d set loc lo hi hlh
     obj.aps (fun q hq => hq) PT PF obj rfl rfl hobj
   exact ⟨obj', h, ha, hm, hr⟩

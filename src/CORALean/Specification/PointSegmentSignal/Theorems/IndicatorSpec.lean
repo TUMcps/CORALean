@@ -4,7 +4,7 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Indicator
 public import CORALean.Specification.PointSegmentSignal.Definitions.IsValid
 public import CORALean.Specification.PointSegmentSignal.Operations.At
 public import CORALean.Specification.PointSegmentSignal.Operations.IndicatorBounds
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBounds
 public import Mathlib.Data.List.TakeWhile
 public import CORALean.Specification.STLInterval.Theorems.SetIffMemBounds
@@ -105,8 +105,8 @@ theorem aux_valid_three (a b : T) (ha : 0 < a) (hab : a < b) (p0 v0 p1 v1 p2 v2 
 /-- The claim of `indicator_spec` for one explicit signal. -/
 def aux_Spec (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
     (s : PointSegmentSignal T) : Prop :=
-  s.IsValid ∧ ∀ t : T, 0 ≤ t → (STLInterval.memBounds lb ub lc rc t → s.at t = val) ∧
-    (¬ STLInterval.memBounds lb ub lc rc t → s.at t = default)
+  s.IsValid ∧ ∀ t : T, 0 ≤ t → (STLInterval.IsInBounds lb ub lc rc t → s.at t = val) ∧
+    (¬ STLInterval.IsInBounds lb ub lc rc t → s.at t = default)
 
 
 /-- An empty interval or equal values: the constant signal. -/
@@ -131,7 +131,7 @@ theorem aux_top_pos (lo : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ 
   · cases val <;> cases default <;> cases lc <;> simp_all
   · rw [aux_at_two lo _ _ _ _ t ht]
     rcases lt_trichotomy t lo with h | rfl | h <;> cases val <;> cases default <;> cases lc <;>
-      simp_all [STLInterval.memBounds, le_of_lt, ne_of_lt, ne_of_gt]
+      simp_all [STLInterval.IsInBounds, le_of_lt, ne_of_lt, ne_of_gt]
 
 
 /-- An interval starting at `0` and unbounded: one time point. -/
@@ -141,7 +141,7 @@ theorem aux_top_zero (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
   refine ⟨aux_valid_one _ _, fun t ht => ?_⟩
   rw [aux_at_one _ _ t ht]
   rcases ht.lt_or_eq with h | rfl <;> cases val <;> cases default <;> cases lc <;>
-    simp_all [STLInterval.memBounds, ne_of_gt]
+    simp_all [STLInterval.IsInBounds, ne_of_gt]
 
 
 /-- A single time after `0`: two time points. -/
@@ -153,7 +153,7 @@ theorem aux_eq_pos (lo : T) (val default : Bool) (hne : val ≠ default)
   · cases val <;> cases default <;> simp_all
   · rw [aux_at_two lo _ _ _ _ t ht]
     rcases lt_trichotomy t lo with h | rfl | h <;> cases val <;> cases default <;>
-      simp_all [STLInterval.memBounds, le_of_lt, ne_of_lt, ne_of_gt]
+      simp_all [STLInterval.IsInBounds, le_of_lt, ne_of_lt, ne_of_gt]
 
 
 /-- The time `0` alone: one time point. -/
@@ -163,7 +163,7 @@ theorem aux_eq_zero (val default : Bool) (hne : val ≠ default) :
   refine ⟨aux_valid_one _ _, fun t ht => ?_⟩
   rw [aux_at_one _ _ t ht]
   rcases ht.lt_or_eq with h | rfl <;> cases val <;> cases default <;>
-    simp_all [STLInterval.memBounds, ne_of_gt]
+    simp_all [STLInterval.IsInBounds, ne_of_gt]
 
 end
 
@@ -183,11 +183,11 @@ theorem aux_lt_pos (lo s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠
   · rw [aux_at_three lo s hls _ _ _ _ _ _ t ht]
     rcases lt_trichotomy t lo with h | rfl | h
     · cases val <;> cases default <;> cases lc <;> cases rc <;>
-        simp_all [STLInterval.memBounds, le_of_lt, ne_of_lt, ne_of_gt]
+        simp_all [STLInterval.IsInBounds, le_of_lt, ne_of_lt, ne_of_gt]
     · cases val <;> cases default <;> cases lc <;> cases rc <;>
-        simp_all [STLInterval.memBounds, le_of_lt, ne_of_lt, ne_of_gt]
+        simp_all [STLInterval.IsInBounds, le_of_lt, ne_of_lt, ne_of_gt]
     · rcases lt_trichotomy t s with h' | rfl | h' <;> cases val <;> cases default <;>
-        cases lc <;> cases rc <;> simp_all [STLInterval.memBounds, le_of_lt, ne_of_lt, ne_of_gt]
+        cases lc <;> cases rc <;> simp_all [STLInterval.IsInBounds, le_of_lt, ne_of_lt, ne_of_gt]
 
 
 /-- A bounded interval starting at `0`: two time points. -/
@@ -201,16 +201,16 @@ theorem aux_lt_zero (s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ d
   · rw [aux_at_two s _ _ _ _ t ht]
     rcases lt_trichotomy t s with h | rfl | h <;> rcases ht.lt_or_eq with h0 | rfl <;>
       cases val <;> cases default <;> cases lc <;> cases rc <;>
-      simp_all [STLInterval.memBounds, le_of_lt, ne_of_lt, ne_of_gt]
+      simp_all [STLInterval.IsInBounds, le_of_lt, ne_of_lt, ne_of_gt]
 
 
 /-- An indicator signal is the indicator. -/
 theorem PointSegmentSignal.aux_indicatorBounds_spec {T : Type} [LinearOrder T] [Zero T] (lo : T)
     (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lo) (val default : Bool) : -- --- CONCL ---
     (PointSegmentSignal.indicatorBounds lo up lc rc val default).IsValid ∧ ∀ t : T, 0 ≤ t →
-      (STLInterval.memBounds lo up lc rc t →
+      (STLInterval.IsInBounds lo up lc rc t →
         (PointSegmentSignal.indicatorBounds lo up lc rc val default).at t = val) ∧
-      (¬ STLInterval.memBounds lo up lc rc t →
+      (¬ STLInterval.IsInBounds lo up lc rc t →
         (PointSegmentSignal.indicatorBounds lo up lc rc val default).at t =
           default) := by -- --- PROOF ---
   show aux_Spec lo up lc rc val default _

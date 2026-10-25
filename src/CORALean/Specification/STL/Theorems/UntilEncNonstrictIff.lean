@@ -44,13 +44,13 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.untilEnc_nonstrict_iff {N : ℕ} {P Q : ℕ → Prop} : -- --- CONCL ---
-    ∀ i, i ≤ N → (STL.untilEnc N true P Q i ↔
+    ∀ i, i ≤ N → (STL.IsUntilEnc N true P Q i ↔
       ∃ t₁ ∈ Finset.Icc i N, Q t₁ ∧ ∀ s ∈ Finset.Icc i t₁, P s) := by -- --- PROOF ---
   intro i
   induction hk : N - i using Nat.strong_induction_on generalizing i with
   | _ k ih =>
   intro hi
-  rw [STL.untilEnc]
+  rw [STL.IsUntilEnc]
   simp only [if_true]
   by_cases hiN : i < N
   · -- one step: `t₁ = i`, or `φ₁` at `i` and a later `t₁`

@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every cell of a well-formed partition is inside its state space. -/
-theorem GridPartition.aux_cell_subset_intervals (P : GridPartition n) (hP : P.WellFormed) {c : ℕ}
+theorem GridPartition.aux_cell_subset_intervals (P : GridPartition n) (hP : P.IsWellFormed) {c : ℕ}
     (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) : -- --- CONCL ---
     (P.cellInterval c).construct ⊆ P.intervals.construct := by -- --- PROOF ---
   intro x hx
@@ -58,7 +58,7 @@ theorem GridPartition.aux_cell_subset_intervals (P : GridPartition n) (hP : P.We
 
 /-- The union of the cell boxes is the state space of a well-formed partition. -/
 theorem GridPartition.cellIntervals_cover (P : GridPartition n)
-    (hP : P.WellFormed) : -- --- CONCL ---
+    (hP : P.IsWellFormed) : -- --- CONCL ---
     P.intervals.construct = {x | ∃ B ∈ P.cellIntervals, x ∈ B.construct} := by -- --- PROOF ---
   ext x
   constructor

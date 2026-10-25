@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 
 @[expose] public section
 
@@ -38,8 +38,8 @@ def STLInterval.containsPoint (tol : ℝ) : STLInterval 𝕋 → ℝ → Prop
   | .empty, _ => False
   | .nonempty l u lc rc _ _ _, t =>
     (((toReal l : ℝ) : EReal) < t ∧ (t : EReal) < toEReal u) ∨
-      (lc = true ∧ withinTol tol (toReal l : ℝ) t) ∨
-      (rc = true ∧ withinTol tol (toEReal u) t)
+      (lc = true ∧ IsWithinTol tol (toReal l : ℝ) t) ∨
+      (rc = true ∧ IsWithinTol tol (toEReal u) t)
 
 end CORALean
 

@@ -157,7 +157,7 @@ noncomputable instance : Mtimes 𝕄𝒵 𝒵 where
 instance : OfIdentity 𝕄𝒵 where
   identity _ := OfPoint.ofPoint 1
 
-instance : IdentityMem 𝕄𝒵 where
+instance : IsIdentityMem 𝕄𝒵 where
   one_mem_identity _ := OfPoint.mem_ofPoint 1
 
 /-- Not at `Zonotope α`: `{0} ⊖ [-1, 1]` is `∅`, which no zonotope denotes, so

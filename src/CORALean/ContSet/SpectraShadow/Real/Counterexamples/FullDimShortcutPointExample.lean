@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.FullDimShortcutCora
+public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.IsFullDimShortcutCora
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
 
@@ -37,10 +37,10 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.fullDimShortcut_pointExample_counterexample :
-    SpectraShadow.pointExample.fullDimShortcutCora ∧
+    SpectraShadow.pointExample.IsFullDimShortcutCora ∧
       SpectraShadow.pointExample.construct.Nonempty := by
   refine ⟨?_, ?_⟩
-  · simp [SpectraShadow.fullDimShortcutCora, SpectraShadow.pointExample]
+  · simp [SpectraShadow.IsFullDimShortcutCora, SpectraShadow.pointExample]
   · rw [SpectraShadow.pointExample_construct]
     exact ⟨0, rfl⟩
 

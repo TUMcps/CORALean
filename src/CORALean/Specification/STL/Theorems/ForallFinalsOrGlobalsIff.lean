@@ -59,10 +59,10 @@ theorem ReachSequence.forall_finals_or_globals_iff {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) {a c : ℝ≥0} (hc : 0 < c) {S : Set X}
     (hS : ∀ x, a < x → x < a + c → R x = S) (K L : List (Pform X)) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R,
-      (∃ ϱ ∈ K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + a))) ∨
-        ∃ ϱ ∈ L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + a))) ↔
-      (∀ r ∈ S, (Pform.bigOr K).Sat r) ∨
-        ∃ ϱ ∈ L, ∀ r ∈ S, (Pform.or ϱ (Pform.bigOr K)).Sat r := by -- --- PROOF ---
+      (∃ ϱ ∈ K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Satisfies (ξ (t + a))) ∨
+        ∃ ϱ ∈ L, ∀ t, 0 < t → t < c → ϱ.Satisfies (ξ (t + a))) ↔
+      (∀ r ∈ S, (Pform.bigOr K).Satisfies r) ∨
+        ∃ ϱ ∈ L, ∀ r ∈ S, (Pform.or ϱ (Pform.bigOr K)).Satisfies r := by -- --- PROOF ---
   classical
   -- inside the block, `R` is `S`
   have hSt : ∀ t, 0 < t → t < c → R (t + a) = S := fun t h₀ h₁ =>
@@ -129,7 +129,7 @@ theorem ReachSequence.forall_finals_or_globals_iff {R : ℝ≥0 → Set X}
       obtain ⟨ϱ, hϱ, hs⟩ :=
         (Pform.sat_bigOr K _).1 (hall _ (hxS (c / 2) (half_pos hc) (half_lt_self hc)))
       exact Or.inl ⟨ϱ, hϱ, c / 2, half_pos hc, half_lt_self hc, hs⟩
-    · by_cases hF : ∃ ϱ ∈ K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + a))
+    · by_cases hF : ∃ ϱ ∈ K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Satisfies (ξ (t + a))
       · exact Or.inl hF
       · -- no `ϱ_k` ever holds, so `ϱ_l` holds throughout
         refine Or.inr ⟨ϱ, hϱL, fun t h₀ h₁ => ?_⟩

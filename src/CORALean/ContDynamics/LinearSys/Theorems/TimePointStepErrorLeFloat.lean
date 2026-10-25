@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- At `r ≥ 0` and an admissible `η`, the float estimate is at least the real one at `U`'s
 nominal zonotope. -/
 theorem LinearSys.timePointStepError_le_float (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
-    (hr : 0 ≤ toReal r) (hη : sys.OrderAdmissibleFloat r r η)
+    (hr : 0 ≤ toReal r) (hη : sys.IsOrderAdmissibleFloat r r η)
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.timePointStepError (toReal r) η (nominal Z)
       ≤ toReal (sys.timePointStepErrorFloat r η Z) := by -- --- PROOF ---

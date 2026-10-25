@@ -4,7 +4,7 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Parse
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.Basic
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.MkSpec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ParseNew
-public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Ext
+public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.IsExt
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.UpdateNodeSpec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.NodesInv
 
@@ -48,7 +48,7 @@ variable {A : Type}
 /-- The invariant survives a change of edges. -/
 theorem OnlineReachSetAnalyzer.aux_nodesInv_of_ext (dp : Bool)
     (nodes nodes' : List (OnlineAnalyzerNode ℝ A)) (hl : nodes'.length = nodes.length)
-    (he : OnlineReachSetAnalyzer.Ext nodes nodes')
+    (he : OnlineReachSetAnalyzer.IsExt nodes nodes')
     (h : OnlineReachSetAnalyzer.NodesInv dp nodes) : -- --- CONCL ---
     OnlineReachSetAnalyzer.NodesInv dp nodes' := by -- --- PROOF ---
   refine ⟨fun j hj => ?_, fun n hn => ?_⟩
@@ -72,13 +72,14 @@ variable {A : Type}
 /-- Updating a node keeps the list. -/
 theorem OnlineReachSetAnalyzer.aux_ext_updateNode (nodes : List (OnlineAnalyzerNode ℝ A)) (i : ℕ)
     (f : OnlineAnalyzerNode ℝ A → Option (OnlineAnalyzerNode ℝ A))
-    (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.Same n n') : -- --- CONCL ---
+    (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.IsSame n n') : -- --- CONCL ---
     ∀ nodes' ∈ OnlineReachSetAnalyzer.updateNode nodes i f,
-      OnlineReachSetAnalyzer.Ext nodes nodes' ∧ nodes'.length = nodes.length := by -- --- PROOF ---
+      OnlineReachSetAnalyzer.IsExt nodes nodes' ∧ nodes'.length =
+      nodes.length := by -- --- PROOF ---
   intro nodes' (h : OnlineReachSetAnalyzer.updateNode nodes i f = some nodes')
   obtain ⟨-, n, n', hn, hfn, rfl⟩ := (OnlineReachSetAnalyzer.updateNode_eq_some_iff _ _ _ _).mp h
   refine ⟨⟨by simp, fun j hj hj' => ?_⟩, by simp⟩
-  -- the updated position is `Same`, every other one is equal
+  -- the updated position is `IsSame`, every other one is equal
   rw [List.getElem_set]
   by_cases hji : i - 1 = j
   · rw [if_pos hji]
@@ -94,10 +95,10 @@ end
 section
 variable {A : Type}
 
-/-- `Ext` is transitive. -/
+/-- `IsExt` is transitive. -/
 theorem OnlineReachSetAnalyzer.aux_ext_trans {a b c : List (OnlineAnalyzerNode ℝ A)}
-    (h1 : OnlineReachSetAnalyzer.Ext a b) (h2 : OnlineReachSetAnalyzer.Ext b c) :
-    OnlineReachSetAnalyzer.Ext a c :=
+    (h1 : OnlineReachSetAnalyzer.IsExt a b) (h2 : OnlineReachSetAnalyzer.IsExt b c) :
+    OnlineReachSetAnalyzer.IsExt a c :=
   ⟨h1.1.trans h2.1, fun j h h' => OnlineReachSetAnalyzer.same_trans
     (h1.2 j h (lt_of_lt_of_le h h1.1)) (h2.2 j (lt_of_lt_of_le h h1.1) h')⟩
 
@@ -138,7 +139,7 @@ theorem OnlineReachSetAnalyzer.aux_parseNew_spec (dp : Bool)
     (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes) : -- --- CONCL ---
     ∀ st' ∈ OnlineReachSetAnalyzer.parseNew dp φ parent st,
       OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
-        OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
+        OnlineReachSetAnalyzer.IsExt st.nodes st'.nodes ∧
         ∃ node, st'.nodes[st.nodes.length]? = some node ∧ node.kind = φ.kind ∧
           node.parents = [parent] := by -- --- PROOF ---
   intro st' (h : OnlineReachSetAnalyzer.parseNew dp φ parent st = some st')
@@ -146,7 +147,7 @@ theorem OnlineReachSetAnalyzer.aux_parseNew_spec (dp : Bool)
   obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
   obtain ⟨node, hnode, rfl⟩ := Option.map_eq_some_iff.mp h
   -- the parent gets a child: same nodes, up to edges
-  have hext : OnlineReachSetAnalyzer.Ext st.nodes nodes1 ∧ nodes1.length = st.nodes.length := by
+  have hext : OnlineReachSetAnalyzer.IsExt st.nodes nodes1 ∧ nodes1.length = st.nodes.length := by
     by_cases hp : parent ≠ 0
     · rw [if_pos hp] at h1
       exact OnlineReachSetAnalyzer.aux_ext_updateNode _ _ _ (fun n _ n' hn' =>
@@ -175,7 +176,7 @@ theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState �
           (OnlineReachSetAnalyzer.updateNode nodes parent (fun n => some (n.addChild c))).map
             fun nodes => ({ st with nodes := nodes } : OnlineReachSetAnalyzer.ParseState ℝ S d)) =
       some st') : -- --- CONCL ---
-    OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
+    OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.IsExt st.nodes st'.nodes ∧
       st.nodes ≠ [] := by -- --- PROOF ---
   obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
   obtain ⟨nodes2, h2, rfl⟩ := Option.map_eq_some_iff.mp h
@@ -203,7 +204,7 @@ theorem aux_parse_root (st st1 st' : OnlineReachSetAnalyzer.ParseState ℝ S d) 
     (k : OnlineAnalyzerNode.Kind)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
       node.parents = [parent]) (hnil : st.nodes = [])
-    (hext : OnlineReachSetAnalyzer.Ext st1.nodes st'.nodes) : -- --- CONCL ---
+    (hext : OnlineReachSetAnalyzer.IsExt st1.nodes st'.nodes) : -- --- CONCL ---
     ∃ root, st'.nodes[0]? = some root ∧ root.kind = k ∧
       root.parents.head? = some parent := by -- --- PROOF ---
   obtain ⟨node, hn, hk, hp⟩ := hnode
@@ -219,10 +220,10 @@ theorem aux_parse_root (st st1 st' : OnlineReachSetAnalyzer.ParseState ℝ S d) 
 /-- The conclusion for a subformula without operands. -/
 theorem aux_parse_leaf (dp : Bool) (st st1 : OnlineReachSetAnalyzer.ParseState ℝ S d) (parent : ℕ)
     (k : OnlineAnalyzerNode.Kind) (hi1 : OnlineReachSetAnalyzer.NodesInv dp st1.nodes)
-    (he1 : OnlineReachSetAnalyzer.Ext st.nodes st1.nodes)
+    (he1 : OnlineReachSetAnalyzer.IsExt st.nodes st1.nodes)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
       node.parents = [parent]) :
-    OnlineReachSetAnalyzer.NodesInv dp st1.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st1.nodes ∧
+    OnlineReachSetAnalyzer.NodesInv dp st1.nodes ∧ OnlineReachSetAnalyzer.IsExt st.nodes st1.nodes ∧
       (st.nodes = [] → ∃ root, st1.nodes[0]? = some root ∧ root.kind = k ∧
         root.parents.head? = some parent) :=
   ⟨hi1, he1, fun hnil =>
@@ -232,13 +233,13 @@ theorem aux_parse_leaf (dp : Bool) (st st1 : OnlineReachSetAnalyzer.ParseState �
 /-- The conclusion once the node and its two operands are parsed. -/
 theorem aux_parse_chain (dp : Bool) (st st1 st2 st' : OnlineReachSetAnalyzer.ParseState ℝ S d)
     (parent : ℕ) (k : OnlineAnalyzerNode.Kind)
-    (he1 : OnlineReachSetAnalyzer.Ext st.nodes st1.nodes)
+    (he1 : OnlineReachSetAnalyzer.IsExt st.nodes st1.nodes)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
       node.parents = [parent])
-    (he2 : OnlineReachSetAnalyzer.Ext st1.nodes st2.nodes)
-    (he3 : OnlineReachSetAnalyzer.Ext st2.nodes st'.nodes)
+    (he2 : OnlineReachSetAnalyzer.IsExt st1.nodes st2.nodes)
+    (he3 : OnlineReachSetAnalyzer.IsExt st2.nodes st'.nodes)
     (hi3 : OnlineReachSetAnalyzer.NodesInv dp st'.nodes) :
-    OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
+    OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.IsExt st.nodes st'.nodes ∧
       (st.nodes = [] → ∃ root, st'.nodes[0]? = some root ∧ root.kind = k ∧
         root.parents.head? = some parent) :=
   ⟨hi3, OnlineReachSetAnalyzer.aux_ext_trans he1 (OnlineReachSetAnalyzer.aux_ext_trans he2 he3),
@@ -254,7 +255,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- CONCL ---
       OnlineReachSetAnalyzer.NodesInv dp st.nodes →
       OnlineReachSetAnalyzer.parse dp φ parent st = some st' →
       OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
-        OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
+        OnlineReachSetAnalyzer.IsExt st.nodes st'.nodes ∧
         (st.nodes = [] → ∃ root, st'.nodes[0]? = some root ∧ root.kind = φ.kind ∧
           root.parents.head? = some parent) := by -- --- PROOF ---
   intro φ

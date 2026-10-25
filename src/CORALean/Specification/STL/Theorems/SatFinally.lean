@@ -47,9 +47,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_finally (a b : ℝ≥0) (φ : STL.Formula X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.finally a b φ).Sat ξ ↔
-      ∃ t, a ≤ t ∧ t ≤ b ∧ φ.Sat (Time.shift ξ t) := by
-  simp [STL.Formula.finally, STL.Formula.tt, STL.Formula.Sat]
+    (STL.Formula.finally a b φ).Satisfies ξ ↔
+      ∃ t, a ≤ t ∧ t ≤ b ∧ φ.Satisfies (Time.shift ξ t) := by
+  simp [STL.Formula.finally, STL.Formula.tt, STL.Formula.Satisfies]
 
 end CORALean
 

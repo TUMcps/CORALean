@@ -15,6 +15,11 @@ operation here floors or ceils explicitly. `digits` only grows through `half`, o
 every other rounded operation cuts back to `f`. `toReal` takes its power of ten through ℚ rather
 than ℝ, the same detour as `Dyadic.toReal` and for the same reason: ℚ's division and `pow` are
 computable where ℝ's are not. `toReal_def` is the number it denotes.
+
+## References
+
+None: decimal fixed-point numbers as CORA's rounding to a target precision uses them; no public
+source defines this type.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,6 +14,10 @@ a `List S`, so no arithmetic of its own sits here, and a float member type alrea
 number through `S`. Not a fixed-size `Fin k → S` as `ZonoBundle` uses for its intersection: a union
 has no reason to fix its arity, and a caller building one from a growing worklist only wants to
 append.
+
+## References
+
+None: CORALean's own finite union of representations, which CORA has no class for.
 -/
 
 -- Authors:       Claude Sonnet 5

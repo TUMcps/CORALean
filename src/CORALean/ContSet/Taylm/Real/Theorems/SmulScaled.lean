@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Smul
-public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
+public import CORALean.ContSet.Taylm.Real.Definitions.IsScaled
 public import CORALean.ContSet.Interval.Real.Theorems.AbsMulLoMulHiLe
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Positivity
@@ -48,8 +48,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.smul_scaled {T : Taylm n} {h C : ℝ} (a : ℝ) (hT : T.Scaled h C) : -- --- CONCL ---
-    (T.smul a).Scaled h (|a| * C) := by -- --- PROOF ---
+theorem Taylm.smul_scaled {T : Taylm n} {h C : ℝ} (a : ℝ) (hT : T.IsScaled h C) : -- --- CONCL ---
+    (T.smul a).IsScaled h (|a| * C) := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
   have m := Interval.abs_mulLo_mulHi_le (le_refl |a|) (le_refl |a|) i s
   refine ⟨?_, by simpa [Taylm.smul, mul_assoc] using m.1,

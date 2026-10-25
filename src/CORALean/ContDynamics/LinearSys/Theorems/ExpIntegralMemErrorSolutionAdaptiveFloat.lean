@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- At `Δt > 0` and an order the float enclosures admit, `∫₀^Δt e^{Aσ}dσ v` is in the float
 error solution for every `v ∈ Vdyn`. -/
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋}
-    {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     {Vdyn : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Vdyn.construct) : -- --- CONCL ---
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ v
       ∈ (sys.errorSolutionAdaptiveFloat Δt η Vdyn none).construct := by -- --- PROOF ---

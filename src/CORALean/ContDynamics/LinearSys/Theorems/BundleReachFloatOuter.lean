@@ -26,7 +26,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 the same three invariants go through by induction on `k`, at every `τ ∈ [0, r]`, each product
 `e^{Ar} v` landing in the product of the enclosure with the set `v` is in, and each sum in the float
 sum. The claim is `⊇`, an outer approximation, and nothing is claimed of the tightness. `r` is a
-float, the order `η` must be admissible for it (`OrderAdmissibleFloat r r η`, the condition
+float, the order `η` must be admissible for it (`IsOrderAdmissibleFloat r r η`, the condition
 `expIntervalFloat` is sound under), and `Rh₀`, `Ri₀` are float sets held to enclose the listing's
 first two inputs.
 
@@ -87,7 +87,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 `k ≤ N`. -/
 theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     (Rh₀ : ZonoBundle (Vec 𝕋 n)) (Ri₀ : Zonotope (Vec 𝕋 n)) {r : 𝕋} (hr : 0 ≤ toReal r) {η : ℕ}
-    (hη : sys.OrderAdmissibleFloat r r η)
+    (hη : sys.IsOrderAdmissibleFloat r r η)
     (hU : Bornology.IsBounded (construct U))
     (hh : ∀ τ ∈ Set.Icc (0:ℝ) (toReal r),
       (fun x => exp (τ • Scalar.toRealMat sys.A) *ᵥ x) '' construct X₀ ⊆ Rh₀.construct)

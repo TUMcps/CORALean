@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 
@@ -10,7 +10,7 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 /-!
 # A sound tree encloses its function
 
-`Sound` holds the enclosure of the root, whichever the root.
+`IsSound` holds the enclosure of the root, whichever the root.
 
 ## Inputs
 * none
@@ -38,7 +38,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A sound tree encloses its function over the box. -/
-theorem SyntaxTree.encloses_of_sound (h : Sound B t) : -- --- CONCL ---
+theorem SyntaxTree.encloses_of_sound (h : IsSound B t) : -- --- CONCL ---
     Encloses B t := by -- --- PROOF ---
   cases t with
   | var i v => exact fun x hx => h x hx

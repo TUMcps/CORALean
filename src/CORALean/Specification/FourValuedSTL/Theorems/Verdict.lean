@@ -60,8 +60,8 @@ theorem FourValuedSTL.verdict {X : Type} (φ : FourValuedSTL.Formula X) (T : Set
     (hS : ∀ a ∈ φ.atoms, FourValuedSTL.IsAtomSignal R a (S a))
     (hS' : ∀ a ∈ φ.atoms, FourValuedSTL.IsPartialAtomSignal T Rp a (S' a)) : -- --- CONCL ---
     ∃ r, φ.fourValuedSat S' = some r ∧ r.IsValid ∧ ∀ ξ : ℝ≥0 → X, FourValuedSTL.Covers R ξ →
-      (r.at 0 = FourValued.tt → φ.Sat ξ 0) ∧
-        (r.at 0 = FourValued.ff → ¬ φ.Sat ξ 0) := by -- --- PROOF ---
+      (r.at 0 = FourValued.tt → φ.Satisfies ξ 0) ∧
+        (r.at 0 = FourValued.ff → ¬ φ.Satisfies ξ 0) := by -- --- PROOF ---
   obtain ⟨r, hr, hv, h⟩ := FourValuedSTL.sound_fourValued φ T Rp R hext S S' hS hS'
   refine ⟨r, hr, hv, fun ξ hξ => ?_⟩
   -- the refinement chain `⟦φ⟧_ξ ≺ ⟦φ⟧_R ≺ ⟦φ⟧_R̃` at time `0`

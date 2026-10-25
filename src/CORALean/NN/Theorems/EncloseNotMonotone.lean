@@ -62,7 +62,7 @@ noncomputable def aux_encloseNotMonotone_R : Relaxation ℝ where
 /-- Both branches are sound: the deviation from the chosen line never exceeds half the box's
 width. -/
 theorem aux_encloseNotMonotone_R_sound : -- --- CONCL ---
-    aux_encloseNotMonotone_R.Sound aux_encloseNotMonotone_sigma := by -- --- PROOF ---
+    aux_encloseNotMonotone_R.IsSound aux_encloseNotMonotone_sigma := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |0 - ((if u - l < 2 then (1 : ℝ) else 0) * t + (if u - l < 2 then -(l + u) / 2 else 0))|
     ≤ (if u - l < 2 then (u - l) / 2 else 0)
@@ -133,7 +133,7 @@ theorem aux_encloseNotMonotone_not_mem_t : -- --- CONCL ---
 /-- The zero-function relaxation above witnesses that no such law holds: `[0, 1]`
 encloses past `1`, while its superset `[0, 3]` encloses only to `0`. -/
 theorem Layer.enclose_not_monotone : -- --- CONCL ---
-    ¬ ∀ {σ : ℝ → ℝ} (R : Relaxation ℝ), R.Sound σ → ∀ (s t : Real.Interval (Vec ℝ 1)),
+    ¬ ∀ {σ : ℝ → ℝ} (R : Relaxation ℝ), R.IsSound σ → ∀ (s t : Real.Interval (Vec ℝ 1)),
         construct s ⊆ construct t →
           construct ((Layer.activation (S := ℐ𝒱) R).enclose s)
             ⊆ construct ((Layer.activation (S := ℐ𝒱)

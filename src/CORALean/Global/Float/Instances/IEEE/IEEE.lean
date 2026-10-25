@@ -15,6 +15,11 @@ or saturate; `overflows` detects it. `half` alone leaves the grid: it only lower
 it is exact, as the class demands, and below the smallest subnormal its result is finer than any
 number of `fmt`; the next rounded operation rounds it back. `toReal` is `Dyadic`'s, through
 `toDyadic`, so the exact steps and their proofs are too.
+
+## References
+
+None: IEEE 754 is not freely available, and the OCP MX specification that defines the other formats
+could not be read.
 -/
 
 -- Authors:       Claude Opus 5.5

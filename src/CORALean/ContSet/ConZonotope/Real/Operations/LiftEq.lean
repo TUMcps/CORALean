@@ -45,7 +45,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `[c; -bₑ]` with generators `[G j; Aₑ e_j]`, the inequality rows of `P` kept. -/
+/-- `[c; -bₑ]` with generators `[G j; Aₑ e_j]`, the inequality rows of `P` kept. Not the polytope's
+work (conversion): the lifted zonotope [G; Aₑ] of Scott et al. 2016, Sec. 4.3, whose generators
+are the equality rows read at the unit vectors. -/
 noncomputable def ConZonotope.liftEq (cZ : ConZonotope (Vec ℝ n)) :
     ConZonotope (Vec ℝ (n + cZ.P.me)) where
   h := cZ.h

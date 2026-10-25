@@ -202,7 +202,7 @@ parameter tuning rests on: the bound vanishes as the order grows or the step shr
 chosen for an admissible error meets it, the order least of those.
 `TendstoExpRemainderMatZero`/`ExpRemainderMatIsBigO` are the same two limits at the entrywise
 `ExpRemainderMat`, as `Lemma 2`'s and `Lemma 4`'s pairs are for `Δε^U_k`/`Δε^{U,τ}_k`; at it,
-`SuperlinearDecreaseExpRemainderMat`, `ErrorConvergesToZero*RemainderError` and
+`SuperlinearDecreaseExpRemainderMat`, `IsErrorConvergingToZero*RemainderError` and
 `ParticularRemainderErrorSuperlinear` are CDC 2020's `Lemma 1`, `Prop. 3`/`4` and `Thm. 2`.
 `ExpTaylorSmulMulVec`, `ContinuousExpDiff` and `RemainderEntryLe` serve an input solution, and
 `HausdorffDist2ParticularSolutionLe`/`HausdorffDist2AffineDynamicsLe` are eqs. (25) and (23).

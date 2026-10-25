@@ -62,7 +62,7 @@ def FourValuedSTL.Extends {X : Type} (R Rp : ℝ≥0 → Set X) (T : Set ℝ≥0
 
 /-- `H ⊨ φ`, [1, Sec. 2.5]: `φ` holds of every execution in `E`, `ξ ⊨ φ` being `⟦φ⟧_ξ(0) = ⊤`. -/
 def FourValuedSTL.Formula.HoldsOn {X : Type} (φ : FourValuedSTL.Formula X)
-    (E : Set (ℝ≥0 → X)) : Prop := ∀ ξ ∈ E, φ.Sat ξ 0
+    (E : Set (ℝ≥0 → X)) : Prop := ∀ ξ ∈ E, φ.Satisfies ξ 0
 
 
 -- =============================  `FourValuedSTL.Formula.satBool`  ============================== --
@@ -72,9 +72,9 @@ def FourValuedSTL.Formula.HoldsOn {X : Type} (φ : FourValuedSTL.Formula X)
 -- Reviewed:      ---
 
 open Classical in
-/-- `⟦φ⟧_ξ(t)` as a Boolean, [1, Sec. 2.5]: `⊤` where `φ.Sat ξ t`, `⊥` otherwise. -/
+/-- `⟦φ⟧_ξ(t)` as a Boolean, [1, Sec. 2.5]: `⊤` where `φ.Satisfies ξ t`, `⊥` otherwise. -/
 noncomputable def FourValuedSTL.Formula.satBool {X : Type} (φ : FourValuedSTL.Formula X)
-    (ξ : ℝ≥0 → X) (t : ℝ≥0) : Bool := decide (φ.Sat ξ t)
+    (ξ : ℝ≥0 → X) (t : ℝ≥0) : Bool := decide (φ.Satisfies ξ t)
 
 
 -- ===============================  `FourValuedSTL.IsAtomSignal`  =============================== --

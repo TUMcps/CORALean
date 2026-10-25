@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.ContainsPointCora
-public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.FullDimShortcutCora
+public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.IsFullDimShortcutCora
 public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.FullDimShortcutPointExample
 public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.FullDimShortcutThinLine
 public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.MtimesFullDimCora

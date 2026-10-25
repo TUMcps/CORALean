@@ -51,7 +51,7 @@ variable {σ : ℝ → ℝ} {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The activation layer of a sound family: one `σ`, one exact enclosure per pattern. -/
-noncomputable def Layer.activationPolyRefinable (F : PolyRelaxationFamily ℝ) (hF : F.Sound σ) :
+noncomputable def Layer.activationPolyRefinable (F : PolyRelaxationFamily ℝ) (hF : F.IsSound σ) :
     RefinableLayer 𝒫𝒵 n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose

@@ -2,7 +2,7 @@
 
 CORA methods of `specification/@rtl/` (a class of `specification/` or `specification/signals/`; a single-file class lists its public methods, constructor included), one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** `Rtl` (`src/CORALean/Specification/Rtl/`), the tree of the node types `'all'` (`Aϱ`, the leaf, holding an `stl` formula), `'&'`, `'|'` and `'next'` (a time shift), over any type of leaves. `Rtl.Sat` is the semantics of Def. 2, Eqs. (4)-(7), of [Roehm et al., ATVA 2016](../../2016/roehm-atva-stl-model-checking.md) (CORA's `rtl.m` cites no paper, its `stl2rtl` cites that one for RTL; read in its authors' version), and `Rtl.toFormula` reads an object as a formula of Def. 1 (`RTL.Formula`): `Rtl.sat_toFormula` says that the two semantics agree. The class has no `until` and `release` nodes of Def. 1. `and` and `or` take empty operands (`none`: an empty array).
+**CORALean counterpart:** `Rtl` (`src/CORALean/Specification/Rtl/`), the tree of the node types `'all'` (`Aϱ`, the leaf, holding an `stl` formula), `'&'`, `'|'` and `'next'` (a time shift), over any type of leaves. `Rtl.Satisfies` is the semantics of Def. 2, Eqs. (4)-(7), of [Roehm et al., ATVA 2016](../../2016/roehm-atva-stl-model-checking.md) (CORA's `rtl.m` cites no paper, its `stl2rtl` cites that one for RTL; read in its authors' version), and `Rtl.toFormula` reads an object as a formula of Def. 1 (`RTL.Formula`): `Rtl.sat_toFormula` says that the two semantics agree. The class has no `until` and `release` nodes of Def. 1. `and` and `or` take empty operands (`none`: an empty array).
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|

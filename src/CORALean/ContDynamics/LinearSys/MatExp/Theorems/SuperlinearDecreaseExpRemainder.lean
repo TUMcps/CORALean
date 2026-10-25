@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
-public import CORALean.Global.SuperlinearDecrease
+public import CORALean.Global.HasSuperlinearDecrease
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ public import CORALean.Global.SuperlinearDecrease
 [1, Lemma 1]: `∀φ∈(0,1): E(φΔt,η) ⊆ φ·E(Δt,η)`, `E` being `MatExp.expRemainder`, an
 entrywise-uniform box, so a member of the smaller one scaled back up by `φ⁻¹` is a member of the
 larger, and `expRemainderBound_superlinear` is what keeps it inside. Stated at `construct`, the
-interval matrix as a set, which is what `Def. 1` quantifies over; `SuperlinearDecrease` is
+interval matrix as a set, which is what `Def. 1` quantifies over; `HasSuperlinearDecrease` is
 satisfied literally, with `E`'s own `Δt` filling `Def. 1`'s length argument. `hΔt`, the side
 condition at `Δt` alone, is the hypothesis `Enclosures.lean` already carries: `φ < 1` sends it
 down to `φΔt` inside the proof, so nothing further is asked of the caller there.
@@ -59,7 +59,8 @@ variable {n : ℕ}
 does, at every order `η` and every `Δt` meeting the usual side condition. -/
 theorem MatExp.superlinearDecrease_expRemainder {A : Mat ℝ n n} {Δt : ℝ} (η : ℕ)
     (hΔt : ‖Δt • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    SuperlinearDecrease (fun δ => (MatExp.expRemainder A δ η).construct) Δt := by -- --- PROOF ---
+    HasSuperlinearDecrease (fun δ => (MatExp.expRemainder A δ η).construct)
+    Δt := by -- --- PROOF ---
   intro φ hφ M hM
   obtain ⟨hφ0, hφ1⟩ := hφ
   have hbound : MatExp.expRemainderBound ((φ * Δt) • A) η

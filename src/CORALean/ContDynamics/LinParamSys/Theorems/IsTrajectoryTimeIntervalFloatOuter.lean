@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryExistsIntegralEq
@@ -19,7 +19,7 @@ the integral equation at a measurable member (`IsTrajectory.exists_integral_eq`)
 Peano–Baker expansion misses little (`MatExp.norm_sub_peanoBakerSum_le`), and the float core
 (`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`) reads the rest as the float
 interpolation plus the float correction. The condition is the float step's own,
-`OrderAdmissibleFloat`.
+`IsOrderAdmissibleFloat`.
 
 ## Inputs
 * `sys` – system
@@ -75,7 +75,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hu : ∀ s ∈ Set.Ico 0 (toReal Δt), u s = 0)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t)
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal Δt) : -- --- CONCL ---
     x t ∈ (sys.timeIntervalFloat Δt η R₀).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1

@@ -42,7 +42,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The monomials of the selector constraint, one per column. -/
+/-- The monomials of the selector constraint, one per column. Not the constraint's work (data): the
+monomials of [1, Thm. 1]'s selector polynomial, a fixed row of the union, stored as the
+`PolyLevelSet` `unionConRow`. -/
 def ConPolyZono.unionConCol (p₁ p₂ : ℕ) :
     Fin (2 + (p₁ + p₁ + (p₂ + p₂ + (p₁ * p₂ + p₁ * p₂)))) → Fin (p₁ + p₂ + 2) → ℕ :=
   Fin.append

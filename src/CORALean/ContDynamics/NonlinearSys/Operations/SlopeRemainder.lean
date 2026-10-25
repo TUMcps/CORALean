@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 /-!
 # The abstraction error from a slope enclosure
 
-The box `L` an `AbstractionError` certificate asks for, computed in `𝕋` from the model's slope
+The box `L` an `IsAbstractionError` certificate asks for, computed in `𝕋` from the model's slope
 boxes over `X × U`: what is left once the affine part at `(x✱, u✱)` is taken off lies in
 `L = ([J_x] - A)(X - x✱) ⊕ ([J_u] - B)(U - u✱)`. A departure from CORA's `'lin'`
 (`priv_abstrerr_lin`), which bounds the remainder by the second-order Lagrange term from an

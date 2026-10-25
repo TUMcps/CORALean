@@ -42,7 +42,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem deepZRelu_sound : -- --- CONCL ---
-    deepZRelu.Sound relu := by -- --- PROOF ---
+    deepZRelu.IsSound relu := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   have h := (reluRelaxation_sound (𝕋 := ℝ) reluSlope).sound hl hu
   change l ≤ t at hl

@@ -34,8 +34,8 @@ variable {n : ℕ}
 -- Reviewed:      ---
 
 /-- `negate` is the comparison that fails where the original holds. -/
-theorem STL.Cmp.rel_negate (op : STL.Cmp) (a b : ℝ) : op.negate.rel a b ↔ ¬ op.rel a b := by
-  cases op <;> simp [STL.Cmp.negate, STL.Cmp.rel]
+theorem STL.Cmp.rel_negate (op : STL.Cmp) (a b : ℝ) : op.negate.Relates a b ↔ ¬ op.Relates a b := by
+  cases op <;> simp [STL.Cmp.negate, STL.Cmp.Relates]
 
 
 -- ==================================  `STL.Expr.eval_minus`  =================================== --
@@ -92,7 +92,8 @@ theorem STL.Expr.eval_times (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
 
 /-- `ge.m` builds the comparison `e₁ >= e₂`. -/
 theorem STL.Tree.sat_ge (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    (STL.Tree.ge e₁ e₂).Sat ξ ↔ e₁.eval (ξ 0) ≥ e₂.eval (ξ 0) := STL.Tree.sat_compare .ge e₁ e₂ ξ
+    (STL.Tree.ge e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) ≥ e₂.eval (ξ 0) := STL.Tree.sat_compare .ge e₁
+        e₂ ξ
 
 
 -- ====================================  `STL.Tree.sat_gt`  ===================================== --
@@ -103,7 +104,8 @@ theorem STL.Tree.sat_ge (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 
 /-- `gt.m` builds the comparison `e₁ > e₂`. -/
 theorem STL.Tree.sat_gt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    (STL.Tree.gt e₁ e₂).Sat ξ ↔ e₁.eval (ξ 0) > e₂.eval (ξ 0) := STL.Tree.sat_compare .gt e₁ e₂ ξ
+    (STL.Tree.gt e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) > e₂.eval (ξ 0) := STL.Tree.sat_compare .gt e₁
+        e₂ ξ
 
 
 -- ==================================  `STL.Tree.sat_implies`  ================================== --
@@ -114,7 +116,7 @@ theorem STL.Tree.sat_gt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 
 /-- `implies.m` builds the classical implication. -/
 theorem STL.Tree.sat_implies (φ ψ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    (STL.Tree.implies φ ψ).Sat ξ ↔ (φ.Sat ξ → ψ.Sat ξ) := imp_iff_not_or.symm
+    (STL.Tree.implies φ ψ).Satisfies ξ ↔ (φ.Satisfies ξ → ψ.Satisfies ξ) := imp_iff_not_or.symm
 
 
 -- ====================================  `STL.Tree.sat_le`  ===================================== --
@@ -125,7 +127,8 @@ theorem STL.Tree.sat_implies (φ ψ : STL.Tree n) (ξ : ℝ≥0 → Fin n → �
 
 /-- `le.m` builds the comparison `e₁ <= e₂`. -/
 theorem STL.Tree.sat_le (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    (STL.Tree.le e₁ e₂).Sat ξ ↔ e₁.eval (ξ 0) ≤ e₂.eval (ξ 0) := STL.Tree.sat_compare .le e₁ e₂ ξ
+    (STL.Tree.le e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) ≤ e₂.eval (ξ 0) := STL.Tree.sat_compare .le e₁
+        e₂ ξ
 
 
 -- ====================================  `STL.Tree.sat_lt`  ===================================== --
@@ -136,7 +139,8 @@ theorem STL.Tree.sat_le (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 
 /-- `lt.m` builds the comparison `e₁ < e₂`. -/
 theorem STL.Tree.sat_lt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    (STL.Tree.lt e₁ e₂).Sat ξ ↔ e₁.eval (ξ 0) < e₂.eval (ξ 0) := STL.Tree.sat_compare .lt e₁ e₂ ξ
+    (STL.Tree.lt e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) < e₂.eval (ξ 0) := STL.Tree.sat_compare .lt e₁
+        e₂ ξ
 
 
 -- ============================  `STL.Tree.sat_negationNormalForm`  ============================= --
@@ -147,7 +151,7 @@ theorem STL.Tree.sat_lt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 
 /-- `negationNormalForm` keeps the meaning of a formula. -/
 theorem STL.Tree.sat_negationNormalForm (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    φ.negationNormalForm.Sat ξ ↔ φ.Sat ξ :=
+    φ.negationNormalForm.Satisfies ξ ↔ φ.Satisfies ξ :=
   (STL.Tree.sat_nnfWith STL.Cmp.negate STL.Cmp.rel_negate φ false ξ).trans (by simp)
 
 

@@ -45,8 +45,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.until_zero_equiv (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.until 0 0 φ₁ φ₂).Sat ξ ↔ φ₂.Sat ξ := by -- --- PROOF ---
-  simp only [STL.Formula.Sat]
+    (STL.Formula.until 0 0 φ₁ φ₂).Satisfies ξ ↔ φ₂.Satisfies ξ := by -- --- PROOF ---
+  simp only [STL.Formula.Satisfies]
   constructor
   · rintro ⟨t, h₁, h₂, h₃, -⟩
     obtain rfl : t = 0 := le_antisymm h₂ h₁

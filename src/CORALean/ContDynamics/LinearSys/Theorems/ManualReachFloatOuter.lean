@@ -3,8 +3,8 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 public import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ManualInvariantFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsManualInvariantFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
@@ -84,10 +84,10 @@ its window holds every run over `[t_k, t_{k+1}]`. -/
 theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋}
     {η ρ : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} (hΔt : 0 < toReal Δt)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    (hinv : sys.ManualInvariantFloat X₀ V s) : -- --- CONCL ---
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
+    (hinv : sys.IsManualInvariantFloat X₀ V s) : -- --- CONCL ---
     ∀ s' R, (s', R) ∈ sys.aux_manualStepFloat X₀ V Δt η ρ s →
-      sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
+      sys.IsManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
           U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
@@ -234,9 +234,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 every run over `[t_k + jΔt, t_k + (j+1)Δt]`. -/
 theorem LinearSys.aux_manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋} {η ρ : ℕ} (hΔt : 0 < toReal Δt)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
     ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
-      sys.aux_manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.ManualInvariantFloat X₀ V s →
+      sys.aux_manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.IsManualInvariantFloat X₀ V s →
       Rs.length = K ∧ ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
         sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
         U ⊆ V.construct → ∀ (j : ℕ) (hj : j < Rs.length),
@@ -273,7 +273,7 @@ omit [ToRat 𝕋] in
 /-- `aux_manualInitFloat` holds what a state owes at `t₀ = 0`. -/
 theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n)
     (X₀ V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    sys.ManualInvariantFloat X₀ V (LinearSys.aux_manualInitFloat X₀) := by -- --- PROOF ---
+    sys.IsManualInvariantFloat X₀ V (LinearSys.aux_manualInitFloat X₀) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from

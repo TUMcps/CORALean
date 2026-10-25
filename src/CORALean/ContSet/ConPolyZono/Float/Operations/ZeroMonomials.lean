@@ -34,6 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- Not the constraint's work (data): the constraint monomials at the zero factor vector, which
+CORA's `isFullDim` test reads beside the generators; it builds no constraint. -/
 def ConPolyZono.zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 cPZ.cons.q := fun k =>
   if ∀ l, cPZ.cons.R l k = 0 then one else zero
 
