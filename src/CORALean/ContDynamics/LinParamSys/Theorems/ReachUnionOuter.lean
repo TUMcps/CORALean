@@ -46,9 +46,9 @@ With `u' = ũ + (u' - ũ)` and `t = t_k + τ`, both the free motion and the cons
 
 ## References
 
-* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
-      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
-      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
+      Uncertainties, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

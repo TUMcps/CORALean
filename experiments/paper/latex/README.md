@@ -120,15 +120,14 @@ is committed beside it:
   without backticks), the description, written from the row's Class cell and the page's
   Findings, and, where the first linked theorem file is not the corrected theorem, `fix`, the
   linked file that is;
-* `experiments/paper/ledger-bibkeys.json`: the BibTeX key of every page with such a row. A key
-  listed under `paper_keys` is the paper's own `references.bib` entry for that publication; every
-  other key is defined in `appendix-errors.bib` here, which the paper adds to its
-  `\bibliography`.
+* the BibTeX entry of each page, which `references/<year>/*.md` carries itself (CONTRIBUTING.md,
+  "The BibTeX entry of a page"). `appendix-errors.bib` here is generated from the entries of the
+  pages with such a row, except those marked `**In the paper's bibliography.**`, whose key is the
+  paper's own `references.bib` entry; the paper adds it to its `\bibliography`.
 
 The run, and `--check`, fail when a `false`/`fixed` row has no description, a description
-matches no such row, a `fix` is not a linked file, a page has no key, or a key is defined nowhere
-or used by no page. So a new `false`/`fixed` row needs its description (and, for a new paper, its
-key and entry) in the same change. The paper needs `\usepackage{array,longtable,booktabs,hyperref}` (`longtable` after `arydshln`
+matches no such row, a `fix` is not a linked file, or a page with such a row has no well-formed entry. So a new `false`/`fixed` row needs its
+description (and, for a new paper, its page's entry) in the same change. The paper needs `\usepackage{array,longtable,booktabs,hyperref}` (`longtable` after `arydshln`
 if the paper loads it: the other order makes pdflatex loop at the end of the table),
 `\input{appendix-errors}` where the table goes, and `appendix-errors` in `\bibliography{...}`;
 the links point at `\coraleanrepo`, which the table `\providecommand`s as the repository's

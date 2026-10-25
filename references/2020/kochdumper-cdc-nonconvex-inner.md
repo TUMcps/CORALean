@@ -1,6 +1,13 @@
 # Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems
 
-N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and Control (CDC), pp. 2130-2137, 2020.
+```bibtex
+@inproceedings{kochdumper2020computing,
+  author = {Kochdumper, N. and Althoff, M.},
+  title = {Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems},
+  booktitle = {2020 59th IEEE Conference on Decision and Control (CDC)},
+  year = {2020}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1615632/document.pdf (the authors' 8-page version on TUM's repository, read in full: text extracted with `pypdf`; the paper is not on arXiv, and the typeset IEEE version, doi:10.1109/CDC42340.2020.9304022, was not reachable). Pages and venue from the published record. CORA cites the paper in `nonlinearSys/reachInner.m` (`options.algInner = 'scale'`) and `nonlinearSys/private/priv_reachInnerScaling.m`, without result numbers.  
 **Inventory:** confirmed (Definitions 1-3, Theorems 1-3, Propositions 1-3, Examples 1-5 and Algorithm 1, each with its own counter; equations (1)-(16), of which the rows below are the displays that make a claim; Sections IV-V)

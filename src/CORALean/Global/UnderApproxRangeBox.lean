@@ -38,9 +38,8 @@ box nonempty. The proof does not go through Goldsztejn's continuous selections, 
 
 ## References
 
-* [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to
-      Reachability of Non-Linear Control Systems With Disturbances". IEEE Control Systems
-      Letters, 4(4):928-933, 2020.
+* [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to Reachability of
+      Non-Linear Control Systems With Disturbances". IEEE Control Systems Letters, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

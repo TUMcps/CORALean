@@ -1,6 +1,13 @@
 # Zonotopic Fault Detection Observer with H− Performance
 
-Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer with H− Performance". In Proc. of the 36th Chinese Control Conference (CCC), pp. 7230-7235, 2017.
+```bibtex
+@inproceedings{wang2017zonotopic,
+  author = {Wang, Y. and Zhou, M. and Puig, V. and Cembrano, G. and Wang, Z.},
+  title = {Zonotopic Fault Detection Observer with H₋ Performance},
+  booktitle = {2017 36th Chinese Control Conference (CCC)},
+  year = {2017}
+}
+```
 
 **Source:** https://www.iri.upc.edu/download/scidoc/1892 (the authors' copy on IRI's publication server, the CCC camera-ready on the conference template, 6 pages, read in full; text extracted with `pypdf`, pages 2-4 also read as rendered images for the matrices of Eqs. 10-17 and 25-28). Eqs. 17 and 25-27 were read again in the same camera-ready from its UPCommons copy (https://upcommons.upc.edu/bitstream/2117/108305/1/1892-Zonotopic-Fault-Detection-Observer-with-H_-Performance.pdf, 6 pages, pages 3-4 as rendered images). The typeset version in IEEE Xplore (doi:10.23919/ChiCC.2017.8028498) was not reachable.  
 **Inventory:** confirmed (against the authors' copy: Assumptions 1-2 and Remark 1, each with its own counter, and Equations 1-33; no numbered definitions, theorems or algorithms; Sec. 5 is the example)

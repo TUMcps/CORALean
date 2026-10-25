@@ -1,6 +1,13 @@
 # Scalable Zonotopic Under-approximation of Backward Reachable Sets for Uncertain Linear Systems
 
-L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward reachable sets for uncertain linear systems". IEEE Control Systems Letters, 6:1555-1560, 2022.
+```bibtex
+@article{yang2022scalable,
+  author = {Yang, L. and Ozay, N.},
+  title = {Scalable zonotopic under-approximation of backward reachable sets for uncertain linear systems},
+  journal = {IEEE Control Systems Letters},
+  year = {2022}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2107.01724v3 (arXiv v3, 15 Apr 2022, the authors' version after publication, 8 pages, read in full; text extracted with `pypdf`, and the over- and underlines the extraction drops read from the arXiv LaTeX source of the same version). Volume and pages from the published record (doi:10.1109/LCSYS.2021.3123228); the typeset article was not reachable. CORA cites the paper in `contSet/@zonotope/reduceUnderApprox.m` (method `'yang'`) without a result number.  
 **Inventory:** confirmed (Lemmas 1-2, Definition 1, Propositions 1-6, equations (1)-(20) and the tagged problems (min-out) and (max-in); the rows below are the results and the numbered displays that make a claim)

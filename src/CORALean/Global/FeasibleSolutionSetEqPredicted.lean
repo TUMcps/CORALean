@@ -32,7 +32,7 @@ steps is a run for `N + 1` and one more step.
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with
-      time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
+      time-varying parameters". IEEE Transactions on Automatic Control, 2006.
 -/
 
 -- Authors:       Claude Opus 5.5

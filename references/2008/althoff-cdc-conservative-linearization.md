@@ -1,6 +1,13 @@
 # Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization
 
-M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization". In Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008, pp. 4042-4048.
+```bibtex
+@inproceedings{althoff2008reachability,
+  author = {Althoff, M. and Stursberg, O. and Buss, M.},
+  title = {Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization},
+  booktitle = {2008 47th IEEE Conference on Decision and Control},
+  year = {2008}
+}
+```
 
 **Source:** https://skoge.folk.ntnu.no/prost/proceedings/cdc-2008/data/papers/0299.pdf (the proceedings PDF, ThTA08.5, 7 pages, read in full; text extracted with `pypdf`)  
 **Inventory:** confirmed (Definitions 1-2 and Propositions 1-3, each with its own counter, equations (1)-(7) and Fig. 1; there are no Theorems, Lemmas or numbered Algorithms)

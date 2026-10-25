@@ -24,8 +24,7 @@ The interval it spans is between this and zero, on whichever side its sign puts 
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
-      2007, pp. 726-732.
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
 -/
 
 -- Authors:       Claude Sonnet 5

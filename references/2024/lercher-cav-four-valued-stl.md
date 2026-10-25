@@ -1,6 +1,13 @@
 # Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems
 
-F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
+```bibtex
+@inproceedings{lercher2024using,
+  author = {Lercher, F. and Althoff, M.},
+  title = {Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems},
+  booktitle = {Computer Aided Verification},
+  year = {2024}
+}
+```
 
 **Source:** https://link.springer.com/content/pdf/10.1007/978-3-031-65633-0_12.pdf (the published chapter, open access under CC BY, doi:10.1007/978-3-031-65633-0_12, 23 pages; read in full apart from the bibliography, text extracted with PyMuPDF; ar5iv was not used). Numbering is the printed one.  
 **Inventory:** confirmed (Lemmas 1-3, Theorems 1-2, Corollary 1, Algorithms 1-2, Remark 1 and the two numbered displays, Eqs. (1) and (2); the paper has no numbered definition and no appendix, so the definitions and the claims stated in prose without a number are rows of their own, named by section)

@@ -30,7 +30,7 @@ linear approximation supply them.
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
-      Transactions on Machine Learning Research (TMLR), 2025.
+      Transactions on Machine Learning Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

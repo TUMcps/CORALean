@@ -18,9 +18,8 @@ The interval `[x̲, x̅]` is the one [1, Sec. 2] introduces for CORA's `interval
 
 ## References
 
-* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In
-      Proc. of the 3rd International Workshop on Applied Verification of Continuous and Hybrid
-      Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
+* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". ARCH16. 3rd
+      International Workshop on Applied Verification for Continuous and Hybrid Systems, 2017.
 -/
 
 -- Authors:       Claude Opus 5

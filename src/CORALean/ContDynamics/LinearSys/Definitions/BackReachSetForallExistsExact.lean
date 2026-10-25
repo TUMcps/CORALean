@@ -28,9 +28,8 @@ quantifies over the same signals `Z_U(t)` integrates, no more and no fewer.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
-      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
-      Automatic Control, 71(1):352-367, 2026.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

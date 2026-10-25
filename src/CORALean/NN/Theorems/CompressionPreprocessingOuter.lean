@@ -51,8 +51,8 @@ nonnegativity is [1, Cor. 1]'s `X ⊂ ℝ₊`, without which the ReLU is not the
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
-      Formal Verification". TMLR. arXiv:2305.01932.
+* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

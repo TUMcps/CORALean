@@ -24,9 +24,9 @@ the point `0` matrix, as the exact one has the zero matrix.
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
-      Linear Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE
-      Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+      Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
+      Automatic Control, 2023.
 -/
 
 -- Authors:       Claude Sonnet 5.5

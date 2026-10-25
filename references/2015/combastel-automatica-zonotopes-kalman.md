@@ -1,6 +1,13 @@
 # Zonotopes and Kalman observers: Gain optimality under distinct uncertainty paradigms and robust convergence
 
-C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty paradigms and robust convergence". Automatica, 55:265-273, 2015.
+```bibtex
+@article{combastel2015zonotopes,
+  author = {Combastel, C.},
+  title = {Zonotopes and {Kalman} observers: Gain optimality under distinct uncertainty paradigms and robust convergence},
+  journal = {Automatica},
+  year = {2015}
+}
+```
 
 **Source:** the published article (Automatica 55 (2015) 265-273, doi:10.1016/j.automatica.2015.03.008, 9 pages), provided by the user and read in full; text extracted with PyMuPDF.  
 **Inventory:** confirmed (the numbered statements share one counter: Prop. 1, Defs. 2-4, Thm. 5, Cor. 6, Thm. 7, Lemma 8, Assumption 9, Thms. 10-12, Prop. 13 in App. A; equations (1)-(55), (A.1), (B.1)-(B.2), (D.1). An equation printed inside a statement or its proof is covered by that statement's row; the equations of the ZKF iteration, of the stochastic Kalman filter and of the example are grouped under `Sec. 5`, `Sec. 6` and `Sec. 8`)

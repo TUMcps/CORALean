@@ -1,8 +1,13 @@
 # AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation
 
-T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
-Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
-IEEE S&P 2018, pp. 3-18.
+```bibtex
+@inproceedings{gehr2018ai,
+  author = {Gehr, T. and Mirman, M. and Drachsler-Cohen, D. and Tsankov, P. and Chaudhuri, S. and Vechev, M.},
+  title = {AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation},
+  booktitle = {2018 IEEE Symposium on Security and Privacy (SP)},
+  year = {2018}
+}
+```
 
 **Source:** https://files.sri.inf.ethz.ch/website/papers/sp2018.pdf  
 **Inventory:** confirmed

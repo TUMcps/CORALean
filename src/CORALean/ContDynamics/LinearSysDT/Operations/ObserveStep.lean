@@ -33,13 +33,12 @@ steps 1 and 3 of its Sec. 2.1.
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
-* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
-      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+      estimation for uncertain systems". Automatica, 2013.
+* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
+      Verification of Continuous and Hybrid Systems (ARCH21), 2021.
 * [3] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
-      estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium
-      on Intelligent Control (ISIC), pp. 212-217, 2013.
+      estimation for multi-output uncertain systems". 2013 IEEE International Symposium on
+      Intelligent Control (ISIC), 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

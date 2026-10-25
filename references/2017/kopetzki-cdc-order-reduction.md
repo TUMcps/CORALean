@@ -1,6 +1,13 @@
 # Methods for Order Reduction of Zonotopes
 
-A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of Zonotopes". In Proc. of the 56th IEEE Conference on Decision and Control (CDC), pp. 5626-5633, 2017.
+```bibtex
+@inproceedings{kopetzki2017methods,
+  author = {Kopetzki, A.-K. and Schürmann, B. and Althoff, M.},
+  title = {Methods for Order Reduction of Zonotopes},
+  booktitle = {2017 IEEE 56th Annual Conference on Decision and Control (CDC)},
+  year = {2017}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1379661/document.pdf (the TUM repository copy of the proceedings paper, 8 pages, read in full; text extracted with `pypdf`)  
 **Inventory:** confirmed (the paper has no numbered Definitions, Propositions or Theorems: its results are the four Algorithms, which carry their own counter, and the named methods in Sections II-III; rows use the section and the algorithm number)

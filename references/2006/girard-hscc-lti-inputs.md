@@ -1,6 +1,15 @@
 # Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs
 
-A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs". In Hybrid Systems: Computation and Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
+```bibtex
+@inproceedings{girard2006efficient,
+  author = {Girard, A. and Le Guernic, C. and Maler, O.},
+  title = {Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs},
+  booktitle = {Hybrid Systems: Computation and Control},
+  year = {2006}
+}
+```
+
+**In the paper's bibliography.**
 
 **Source:** https://www-verimag.imag.fr/~maler/Papers/zonotope.pdf (the authors' 15-page manuscript, linked from O. Maler's publication list, read in full; `pypdf` extracts no readable text from it, its fonts being Type 3 without a character map, so it was read from page images rendered with PyMuPDF; the Springer chapter, <https://doi.org/10.1007/11730637_21>, was not reachable from the environment, and HAL's record hal-00171555 carries no file)  
 **Inventory:** confirmed (against the manuscript; its numbered items are Definitions 1-2, Algorithms 1-2, Propositions 1-3, Lemma 1, Theorem 1, Remarks 1-2 and equations (1)-(3); the unnumbered statements that make a claim are rows named by section)

@@ -1,7 +1,13 @@
 # Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes
 
-N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification using Polynomial
-Zonotopes". arXiv:2207.02715, 2022.
+```bibtex
+@article{kochdumper2022open,
+  author = {Kochdumper, N. and Schilling, C. and Althoff, M. and Bak, S.},
+  title = {Open- and Closed-Loop Neural Network Verification using Polynomial Zonotopes},
+  journal = {arXiv preprint arXiv:2207.02715},
+  year = {2022}
+}
+```
 
 **Source:** https://arxiv.org/html/2207.02715v2  
 **Published:** N. Kochdumper, C. Schilling, M. Althoff and S. Bak. NASA Formal Methods (NFM 2023), LNCS, Springer, pp. 16-36, doi:10.1007/978-3-031-33170-1_2 — the same work (title, authors and abstract as arXiv v2 of 18 Apr 2023); the numbering above is arXiv v2's and was not compared with the LNCS pages  

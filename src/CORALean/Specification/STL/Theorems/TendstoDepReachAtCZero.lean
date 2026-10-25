@@ -42,7 +42,7 @@ to `0` since the terms `[c_j Δt^j, 0] A^j/j!` are continuous and `0` at `Δt = 
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, vol. 53, 2024, 101491.
+      Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -1,6 +1,13 @@
 # A Box-Consistency Contractor Based on Extremal Functions
 
-G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor Based on Extremal Functions". In Proc. of the 16th International Conference on Principles and Practice of Constraint Programming (CP 2010), LNCS 6308, pp. 491-498, 2010.
+```bibtex
+@inproceedings{trombettoni2010box,
+  author = {Trombettoni, G. and Papegay, Y. and Chabert, G. and Pourtallier, O.},
+  title = {A Box-Consistency Contractor Based on Extremal Functions},
+  booktitle = {Principles and Practice of Constraint Programming – CP 2010},
+  year = {2010}
+}
+```
 
 **Source:** https://www.lirmm.fr/~trombetton/publis/63080491.pdf (the Springer LNCS pages 491-498 as published, 8 pages, read in full; text extracted with `pypdf`, so over- and underlines are lost and which of `g̲`, `g̅` a formula means is read from the cases it states). CORA's `contract`, `contractPoly` and `contractPolyBoxRevise` cite it as "G. Trombettoni et al., 2010"; the author list is the paper's own, Trombettoni, Papegay, Chabert and Pourtallier.  
 **Inventory:** confirmed (the numbered items are Definitions 1-2, Figure 1 and Table 1; Sec. 3 states the extremal functions, an example, a remark, the three cases of the contraction and the four cases of `PolyBoxRevise` in prose, which are rows of their own, named by section)

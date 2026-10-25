@@ -22,9 +22,8 @@ walk then discards.
 
 ## References
 
-* [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control
-      and optimization". In Proc. of the 19th IFAC World Congress, Cape Town, South Africa,
-      IFAC Proceedings Volumes 47(3), pp. 6123-6128, 2014.
+* [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control and
+      optimization". IFAC Proceedings Volumes, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

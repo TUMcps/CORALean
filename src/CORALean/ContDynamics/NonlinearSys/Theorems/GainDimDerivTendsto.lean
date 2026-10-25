@@ -40,9 +40,8 @@ is not `[1]`'s closing formula, which has only the coefficient of `t^{qᵢ+2}`; 
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
-      Reachability Algorithms for Nonlinear Systems Using Abstraction Error
-      Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms for
+      Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems, 2022.
 -/
 
 -- Authors:       Claude Opus 5.5

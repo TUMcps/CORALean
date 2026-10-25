@@ -22,8 +22,8 @@ subtrahend's.
 
 ## References
 
-* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
-      arXiv, 2015.
+* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794, 2015.
 -/
 
 -- Authors:       Claude Sonnet 5.5

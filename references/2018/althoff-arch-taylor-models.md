@@ -1,6 +1,13 @@
 # Implementation of Taylor Models in CORA 2018
 
-M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA 2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
+```bibtex
+@inproceedings{althoff2018implementation,
+  author = {Althoff, M. and Grebenyuk, D. and Kochdumper, N.},
+  title = {Implementation of Taylor Models in CORA 2018},
+  booktitle = {ARCH18. 5th International Workshop on Applied Verification of Continuous and Hybrid Systems},
+  year = {2018}
+}
+```
 
 **Source:** https://easychair.org/publications/paper/9Tz3 (the EPiC PDF, 29 pages, pp. 145-173, read in full; text extracted with `pypdf`. The TUM repository copy <https://mediatum.ub.tum.de/doc/1454477/file.pdf> is the same file. Over- and underlines are lost in the extraction, so the listing's `α̅`/`α̲` and the two ends in line 31 of `Alg. 1` are read from their comments.)  
 **Inventory:** confirmed (the numbered items are Definitions 1-2, Algorithm 1, Examples 1-5, equations (1)-(38) and Tables 1-8; Appendix A lists the elementary functions as eqs. (21)-(32), Appendix B the improved inverse as eqs. (33)-(38))

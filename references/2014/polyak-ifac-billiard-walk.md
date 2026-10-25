@@ -1,6 +1,13 @@
 # Billiard walk - a new sampling algorithm for control and optimization
 
-B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control and optimization". In Proc. of the 19th IFAC World Congress, Cape Town, South Africa, IFAC Proceedings Volumes 47(3), pp. 6123-6128, 2014.
+```bibtex
+@article{polyak2014billiard,
+  author = {Polyak, B. T. and Gryazina, E. N.},
+  title = {Billiard walk - a new sampling algorithm for control and optimization},
+  journal = {IFAC Proceedings Volumes},
+  year = {2014}
+}
+```
 
 **Source:** https://skoge.folk.ntnu.no/prost/proceedings/ifac2014/media/files/2312.pdf (the IFAC World Congress preprint of the paper, 6 pages numbered 6123-6128 as in the proceedings, with the IFAC copyright line; all pages read in full, text extracted with `pypdf`). The typeset volume, <https://doi.org/10.3182/20140824-6-ZA-1003.02312>, was not read. Not the arXiv preprint 1211.3932, "Random sampling: Billiard Walk algorithm" (Gryazina and Polyak, 22 pages, European Journal of Operational Research 238(2), 2014): a different, longer paper, which was not used.  
 **Inventory:** unconfirmed (against the congress preprint; the typeset proceedings may differ in wording or numbering. The preprint's numbered items are the Billiard Walk algorithm, Theorems 1-2, equations (1)-(4), Tables 1-3 and Figures 1-4)

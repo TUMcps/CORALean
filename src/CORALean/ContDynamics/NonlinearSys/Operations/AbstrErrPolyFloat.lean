@@ -47,8 +47,9 @@ centers, not the Jacobian, so `hessRemainder`'s first-order slack is added.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
-      Polynomialization and Non-Convex Sets". HSCC 2013.
+* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
+      and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
+      computation and control, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -33,7 +33,7 @@ The zonotope of the current-estimation-type observer of Eq. 37 of [1, Thm. 7] an
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
-      zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+      zonotopes for discrete-time descriptor systems". Automatica, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -26,10 +26,9 @@ the uniform draw is `x + (t̲ + u (t̄ - t̲)) d` for `u` uniform on `[0, 1]`. T
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed
-      Over Bounded Regions". Operations Research 32(6), pp. 1296-1308, 1984.
-* [2] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control
-      and optimization". In Proc. of the 19th IFAC World Congress, Cape Town, South Africa,
-      IFAC Proceedings Volumes 47(3), pp. 6123-6128, 2014.
+      Over Bounded Regions". Operations Research, 1984.
+* [2] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control and
+      optimization". IFAC Proceedings Volumes, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

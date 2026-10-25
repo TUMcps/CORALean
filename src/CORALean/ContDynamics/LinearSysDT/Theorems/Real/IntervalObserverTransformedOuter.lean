@@ -50,8 +50,7 @@ Schur is not needed for the enclosure, only for the bounds to stay bounded.
 ## References
 
 * [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
-      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
-      64(11):4717-4724, 2019.
+      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control, 2019.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -30,8 +30,9 @@ variants differ only in the `V` they build; this is [1, Alg. 1]'s line 13 at eit
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
-      Polynomialization and Non-Convex Sets". HSCC 2013.
+* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
+      and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
+      computation and control, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

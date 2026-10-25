@@ -1,6 +1,13 @@
 # Inner approximation of the range of vector-valued functions
 
-A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions". Reliable Computing, 14:1-23, 2010.
+```bibtex
+@article{goldsztejn2010inner,
+  author = {Goldsztejn, A. and Jaulin, L.},
+  title = {Inner approximation of the range of vector-valued functions},
+  journal = {Reliable Computing},
+  year = {2010}
+}
+```
 
 **Source:** https://interval.louisiana.edu/reliable-computing-journal/volume-14/reliable-computing-14-pp-1--23.pdf (the journal's open-access PDF, pp. 1-23, 23 pages, read in full; text extracted with `pypdf`). CORA cites the paper in `contSet/@polyZonotope/innerApprox.m` and `global/functions/helper/sets/contSet/polyZonotope/innerApproxImage.m`, whose `aux_InnerSpecial` is `Alg. 2` and whose bisection is `Alg. 1`.  
 **Inventory:** confirmed (Definition 2.1; Theorem 3.1, Corollary 3.1; Examples 4.1, 4.2, 5.1, 6.1, 6.2; Algorithms 1, 2; Theorem 5.1; Lemmas A.1-A.5; Propositions A.1, A.2; equations (1)-(10); numbered per section, the appendix as A.1-A.5)

@@ -29,7 +29,7 @@ both `FSS`; here `predictedSolutionSet … k` is the printed `FSS_{k+1}`.
 ## References
 
 * [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with
-      time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
+      time-varying parameters". IEEE Transactions on Automatic Control, 2006.
 -/
 
 -- Authors:       Claude Opus 5.5

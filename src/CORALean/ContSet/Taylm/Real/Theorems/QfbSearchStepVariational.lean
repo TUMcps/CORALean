@@ -29,8 +29,8 @@ was cut at `±1` and `z_k` lies on the other side of the cut.
 
 ## References
 
-* [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range
-      Bounders". Transactions on Computers, 11(4):1611-1618, 2005.
+* [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range Bounders".
+      2005.
 -/
 
 -- Authors:       Claude Opus 5.5

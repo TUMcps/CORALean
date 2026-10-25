@@ -28,9 +28,9 @@ Conversely `y = Q w` is `G u` for `u = G P y`, of squared length `yᵀ P Q P y =
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
-      Verification of Linear Systems Using Reachability Analysis with Support
-      Functions". HSCC, 2023, Article 5.
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+      Systems Using Reachability Analysis with Support Functions". Proceedings of the 26th ACM
+      International Conference on Hybrid Systems: Computation and Control, 2023.
 -/
 
 -- Authors:       Claude Opus 5.5

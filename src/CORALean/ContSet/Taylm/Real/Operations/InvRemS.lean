@@ -20,9 +20,9 @@ the integrals `∫_c^x (x - t)ʲ / tʲ⁺² dt` that integration by parts relate
 
 ## References
 
-* [1] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
-      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
-      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
+* [1] M. Althoff, D. Grebenyuk and N. Kochdumper. "Implementation of Taylor Models in CORA 2018".
+      ARCH18. 5th International Workshop on Applied Verification of Continuous and Hybrid Systems,
+      2018.
 -/
 
 -- Authors:       Claude Opus 5.5

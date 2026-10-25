@@ -30,9 +30,8 @@ the score `inf` and still returns the first one when all are), see
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
-      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
-      Analysis: Hybrid Systems, 4(2):233-249, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
 -/
 
 -- Authors:       Claude Sonnet 5.5

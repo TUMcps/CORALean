@@ -29,8 +29,8 @@ where `t⋆` divides by an edge length, and `n ≥ 1`: a `0`-dimensional box has
 
 ## References
 
-* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection
-      Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
+* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
+      INFOCOMP Journal of Computer Science, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,6 +1,13 @@
 # A state bounding observer based on zonotopes
 
-C. Combastel. "A state bounding observer based on zonotopes". ECC 2003.
+```bibtex
+@inproceedings{combastel2003state,
+  author = {Combastel, C.},
+  title = {A state bounding observer based on zonotopes},
+  booktitle = {2003 European Control Conference (ECC)},
+  year = {2003}
+}
+```
 
 **Source:** https://skoge.folk.ntnu.no/prost/proceedings/ecc03/pdfs/437.pdf (read directly with a custom PDF-content-stream text extractor since no PDF rasterizer was available in this environment — poppler/pdftoppm is not installed, so the Read tool's PDF-page mode is unavailable; NOTE: this PDF's internal page objects are NOT in ascending-object-number order — true reading order was recovered from the page tree's /Kids array: 169,166,150,132,111,84)  
 **Inventory:** confirmed (full 6-page paper read; obtained cleanly despite the task brief's expectation it might be hard to find)

@@ -24,8 +24,8 @@ convex function attains its maximum over the zonotope at a corner, which is why
 
 ## References
 
-* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment
-      Problem". European Journal of Control, 62:84-91, 2021.
+* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem".
+      European Journal of Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5.5

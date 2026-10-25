@@ -1,6 +1,13 @@
 # Discovering governing equations from data by sparse identification of nonlinear dynamical systems
 
-S. L. Brunton, J. L. Proctor and J. N. Kutz. "Discovering governing equations from data by sparse identification of nonlinear dynamical systems". Proceedings of the National Academy of Sciences, 113(15):3932-3937, 2016 (arXiv:1509.03580).
+```bibtex
+@article{brunton2016discovering,
+  author = {Brunton, S. L. and Proctor, J. L. and Kutz, J. N.},
+  title = {Discovering governing equations from data by sparse identification of nonlinear dynamical systems},
+  journal = {Proceedings of the National Academy of Sciences},
+  year = {2016}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1509.03580 (arXiv v1, September 2015, "Discovering governing equations from data: Sparse identification of nonlinear dynamical systems", 26 pages, read in full; text extracted with `pypdf`). The PNAS paper of 2016 is a shorter revision of this preprint and is not open access; its numbering differs from the one used here, which is the preprint's, and nothing in the revision was read. CORA cites the paper in `contDynamics/@nonlinearSys/identify.m` and `@nonlinearSysDT/identify.m` and their private `priv_identifySparse.m` (algorithm `'sparse'`, "SINDy").  
 **Inventory:** confirmed (equations (1)-(28); Sections 1-5; Code 1, the only algorithm, which is MATLAB code; Examples 1a, 1b, 2, 3 and the bifurcation examples; Figures 1-13 and Tables 1-7; no numbered theorems)

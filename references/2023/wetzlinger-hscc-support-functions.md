@@ -1,7 +1,13 @@
 # Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions
 
-M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
-Linear Systems Using Reachability Analysis with Support Functions". HSCC, 2023, Article 5.
+```bibtex
+@inproceedings{wetzlinger2023fully,
+  author = {Wetzlinger, M. and Kochdumper, N. and Bak, S. and Althoff, M.},
+  title = {Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions},
+  booktitle = {Proceedings of the 26th ACM International Conference on Hybrid Systems: Computation and Control},
+  year = {2023}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.3 (pp. 79–91), a verbatim reprint of the ACM version, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable, and the ACM version at https://doi.org/10.1145/3575870.3587121 is paywalled; the paper has no arXiv preprint).  
 **Inventory:** confirmed

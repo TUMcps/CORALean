@@ -27,9 +27,8 @@ the two (`Zonotope.inter_hyperplane_iff`); the converse is `Z ⊆ Box_S(Z)`.
 
 ## References
 
-* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of
-      Linear Time-Invariant Systems with Inputs". In Hybrid Systems: Computation and
-      Control (HSCC), LNCS 3927, Springer, 2006, pp. 257-271.
+* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
+      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control, 2006.
 -/
 
 -- Authors:       Claude Opus 5.5

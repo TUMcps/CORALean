@@ -31,8 +31,7 @@ CORA's `PRad-D` gain (`priv_observe_gain_PRadD`) imposes Eq. 20 as printed, `SM2
 ## References
 
 * [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for
-      discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control,
-      64(5):2092-2099, 2019.
+      discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control, 2019.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -22,8 +22,8 @@ the orthogonal width of `Z` past `H₋`'s bounding hyperplane; `IntersectHalfspa
 
 ## References
 
-* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
-      constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
+      zonotopes". Automatica, 2022.
 -/
 
 -- Authors:       Claude Opus 5

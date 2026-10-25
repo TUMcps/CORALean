@@ -1,6 +1,13 @@
 # Reachability Analysis of Nonlinear Differential-Algebraic Systems
 
-M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
+```bibtex
+@article{althoff2014reachability,
+  author = {Althoff, M. and Krogh, B. H.},
+  title = {Reachability Analysis of Nonlinear Differential-Algebraic Systems},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2014}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1281529/document.pdf (the authors' manuscript in TUM's repository mediaTUM, on the journal template with the venue left blank, 13 pages, read in full; text extracted with `pypdf`). The typeset article (doi:10.1109/TAC.2013.2285751, IEEE TAC 59(2):371-383, February 2014) was not reachable, so numbers are the manuscript's. CORA's `@nonlinDASys` headers give the year as 2013, the online-first date; `@nonlinearSysDT/private/priv_linError_mixed_noInt.m` gives the published volume, issue and pages.  
 **Inventory:** confirmed (against the manuscript: Definition 1, Propositions 1-3, Lemmas 1-2, Theorem 1, Corollary 1 and Algorithm 1, each with its own counter; Equations 1-26, of which 25-26 and Table I are the example's model; Sec. VII is the example)

@@ -36,11 +36,10 @@ keeps order one. The step is the exact `e^{Ar}`; `WithInput.reach` drops `box()`
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
-      Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control
-      Conference (CDC-ECC), pp. 6814-6821, 2011.
+      Sets". 2011 50th IEEE Conference on Decision and Control and European Control Conference
+      (CDC-ECC 2011), 2011.
 * [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
-      2007, pp. 726-732.
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
 -/
 
 -- Authors:       Claude Opus 5.5

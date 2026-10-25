@@ -24,8 +24,7 @@ undefined, and the first is taken, giving `F_1^{(1)} = G`, which is the coeffici
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety
-      Verification of High-Order Road Vehicle Models". In Proc. of the American Control
-      Conference, pp. 3559-3566, 2012.
+      Verification of High-Order Road Vehicle Models". 2012 American Control Conference (ACC), 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

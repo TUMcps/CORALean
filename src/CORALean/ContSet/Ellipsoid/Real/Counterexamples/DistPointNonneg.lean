@@ -27,8 +27,8 @@ it positive (`dist_point_eq_max`), so its maximum is `0`. Touching sets give `0`
 
 ## References
 
-* [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th
-      IEEE Conference on Decision and Control (CDC), pp. 1498-1503, 2006.
+* [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". Proceedings of the 45th IEEE
+      Conference on Decision and Control, 2006.
 -/
 
 -- Authors:       Claude Opus 5.5

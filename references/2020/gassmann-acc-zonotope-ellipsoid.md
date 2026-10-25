@@ -1,6 +1,13 @@
 # Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm
 
-V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm". In Proc. of the 2020 American Control Conference (ACC), pp. 4715-4721, 2020.
+```bibtex
+@inproceedings{gassmann2020scalable,
+  author = {Gaßmann, V. and Althoff, M.},
+  title = {Scalable Zonotope-Ellipsoid Conversions using the {Euclidean} Zonotope Norm},
+  booktitle = {2020 American Control Conference (ACC)},
+  year = {2020}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1554653/document.pdf (the TUM repository copy, 7 pages, read in full; text extracted with `pypdf`; it carries the DOI 10.23919/ACC45564.2020.9147938 of the ACC version, whose pages 4715-4721 are from the DOI record. IEEE Xplore was not reachable.)  
 **Inventory:** confirmed (the numbered items are Definitions 1-4, Lemmas 1-5, Proposition 1, Theorems 1-4, Example 1, equations (1)-(30), Tables I-II and Figures 1-2; each definition, lemma and theorem is a row with its own displays, the other displays that make a claim are rows of their own, and the remarks and paragraphs that make one are rows named by section)

@@ -13,6 +13,12 @@ every row asserting something links a file that proves something,
 every result cited somewhere is a row, every result one page defers to another
 is a row there, and the README's counts are the counts.
 
+Every page opens with its one BibTeX entry (#265, `scripts/refentry.py`): exactly one fenced
+`bibtex` block with the fields author, title, journal or booktitle, year, and a key no other
+page has. The line a module docstring writes under `## References` is rendered from it,
+`<authors>. "<Title>". <Venue>, <year>.`, and every docstring entry that cites a page must equal
+that rendering (`scripts/render-references.py` rewrites them).
+
 Every row also carries a `Class` cell, which `scripts/formalization-stats.py`
 turns into the paper's figure. A row in scope and formalized says how the *paper's*
 statement fared (`correct`, `underspecified`, `proof-gap`, `fixed`, `false`), and
@@ -59,6 +65,9 @@ import os
 import re
 import sys
 from pathlib import Path, PurePosixPath
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import refentry  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
@@ -204,13 +213,21 @@ class Paper:
         text = path.read_text(encoding="utf-8")
         head = text.split("\n## ", 1)[0]
 
-        m = re.match(r"#\s+(.+?)\n\s*\n(.+?)(?:\n\s*\n|\Z)", head, re.S)
+        m = re.match(r"#\s+(.+?)\n", head)
+        self.title = m.group(1).strip() if m else path.stem
+        self.bib = refentry.parse(head)
+        self.entry = ""
         if not m:
-            say(f"{self.rel}:1: opens with `# <title>`, a blank line, then the "
-                "bibliography entry as one paragraph")
-            self.title, self.entry = path.stem, ""
-        else:
-            self.title, self.entry = m.group(1).strip(), FLAT(m.group(2))
+            say(f"{self.rel}:1: opens with `# <title>`")
+        # The page's only bibliographic record is its one BibTeX entry (#265); the line every
+        # docstring writes is rendered from it.
+        for why in refentry.problems(head):
+            say(f"{self.rel}:1: BibTeX entry: {why}")
+        if self.bib:
+            self.entry = FLAT(refentry.render(self.bib))
+        self.in_paper = refentry.PAPER_MARK in head
+        if self.in_paper and not self.bib:
+            say(f"{self.rel}:1: marked {refentry.PAPER_MARK} but has no entry")
 
         for field in ("Source", "Inventory"):
             if f"**{field}:**" not in head:
@@ -1105,7 +1122,16 @@ def main():
     papers = [Paper(p, say) for p in sorted(REFS.glob(PAPER_GLOB))]
 
     by_entry = {}
+    by_key = {}
+    by_title = {}  # the title of an entry, or the page's heading, as bare words
     for paper in papers:
+        if paper.bib:
+            if paper.bib["key"] in by_key:
+                say(f"{paper.rel}: the BibTeX key `{paper.bib['key']}` is also the key of "
+                    f"{by_key[paper.bib['key']].name}")
+            by_key[paper.bib["key"]] = paper
+            by_title.setdefault(refentry.tnorm(paper.bib["title"]), paper)
+        by_title.setdefault(refentry.tnorm(paper.title), paper)
         if not paper.entry:
             continue
         if paper.entry in by_entry:
@@ -1128,9 +1154,14 @@ def main():
         paper = by_entry.get(entry)
         if paper is None:
             where = sorted({p.relative_to(ROOT).as_posix() for s in locs.values() for p in s})
-            near = [p.name for p in papers if p.entry and p.entry[:25] == entry[:25]]
-            say(f"{where[0]}: cites a publication with no file in references/: "
-                f"{entry[:70]}…" + (f" (did you mean {near[0]}?)" if near else ""))
+            t = refentry.quoted_title(entry)
+            near = by_title.get(refentry.tnorm(t)) if t else None
+            if near is not None and near.entry:
+                say(f"{where[0]}: the entry is not the rendering of {near.rel} ({len(where)} file(s)); "
+                    f"it reads `{entry}` and should read `{near.entry}`. "
+                    "`python3 scripts/render-references.py` rewrites it")
+            else:
+                say(f"{where[0]}: cites a publication with no file in references/: {entry[:70]}…")
             continue
         for loc, files in sorted(locs.items()):
             if not loc or loc in paper.results:

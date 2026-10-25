@@ -34,7 +34,7 @@ shape matrix of an ellipsoid (`Ellipsoid.ofShape`) for `n ≥ 2`, `0 < γ`, `nγ
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

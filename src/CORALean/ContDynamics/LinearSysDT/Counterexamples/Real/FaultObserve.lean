@@ -25,9 +25,8 @@ enclosure needs `f_k = 0` (`LinearSysDT.faultObserve_outer`). In one dimension w
 
 ## References
 
-* [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer
-      with H− Performance". In Proc. of the 36th Chinese Control Conference (CCC),
-      pp. 7230-7235, 2017.
+* [1] Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer with
+      H₋ Performance". 2017 36th Chinese Control Conference (CCC), 2017.
 -/
 
 -- Authors:       Claude Opus 5.5

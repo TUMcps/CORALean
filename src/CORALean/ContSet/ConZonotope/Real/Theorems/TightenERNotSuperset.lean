@@ -31,11 +31,10 @@ The one-row system is `-2ξ₁ + ξ₂ = 0`. The first step solves for `ξ₁` a
 
 ## References
 
-* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
-      constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
-* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
-      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
-      2016.
+* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
+      zonotopes". Automatica, 2022.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

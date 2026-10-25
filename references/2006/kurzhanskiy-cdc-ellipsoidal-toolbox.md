@@ -1,6 +1,13 @@
 # Ellipsoidal Toolbox (ET)
 
-A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th IEEE Conference on Decision and Control (CDC), pp. 1498-1503, 2006.
+```bibtex
+@inproceedings{kurzhanskiy2006ellipsoidal,
+  author = {Kurzhanskiy, A. A. and Varaiya, P.},
+  title = {Ellipsoidal Toolbox (ET)},
+  booktitle = {Proceedings of the 45th IEEE Conference on Decision and Control},
+  year = {2006}
+}
+```
 
 **Source:** http://lihodeev.com/pubs/2006CDC_EllipsoidalToolbox.pdf, read through the Wayback Machine (the first author's copy, 6 pages, read in full; text extracted with `pdftotext`; it is the conference paper, pages 1498-1503 of the proceedings, DOI 10.1109/CDC.2006.377036, not the longer ET manual. IEEE Xplore was not reachable.)  
 **Inventory:** confirmed (the paper numbers only equation (1), the system of Sec. III, and has no numbered definitions, lemmas or theorems; every paragraph that makes a claim is a row named by section and topic)

@@ -38,9 +38,9 @@ a matrix `Υ`, so the statement is made for any of these: nothing else is used.
 
 ## References
 
-* [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of
-      the 10th International Workshop on Applied Verification of Continuous and Hybrid
-      Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
+* [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of 10th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+      2023.
 -/
 
 -- Authors:       Claude Opus 5.5

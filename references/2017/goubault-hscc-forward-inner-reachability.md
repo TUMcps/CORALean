@@ -1,6 +1,13 @@
 # Forward Inner-Approximated Reachability of Non-Linear Continuous Systems
 
-E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear Continuous Systems". In Proc. of the 20th International Conference on Hybrid Systems: Computation and Control (HSCC), pp. 1-10, 2017.
+```bibtex
+@inproceedings{goubault2017forward,
+  author = {Goubault, E. and Putot, S.},
+  title = {Forward Inner-Approximated Reachability of Non-Linear Continuous Systems},
+  booktitle = {Proceedings of the 20th International Conference on Hybrid Systems: Computation and Control},
+  year = {2017}
+}
+```
 
 **Source:** http://www.lix.polytechnique.fr/Labo/Sylvie.Putot/Publications/hscc17.pdf (the published ACM version with its copyright block, doi:10.1145/3049797.3049811, 10 pages, read in full; text extracted with `pypdf`). CORA cites the paper in `nonlinearSys/reachInner.m`, `nonlinearSys/private/priv_reachInnerProjection.m` ("implementation of Alg. 1"), `priv_reachInnerParallelotope.m` (for the Jacobian dynamics of Sec. 3.1) and `global/classes/intKaucher.m` (Example 1).  
 **Inventory:** confirmed (Definition 1, Proposition 1, Theorem 1, Examples 1-6, Algorithm 1 and equations (1)-(30), each with its own counter; Sections 2-4)

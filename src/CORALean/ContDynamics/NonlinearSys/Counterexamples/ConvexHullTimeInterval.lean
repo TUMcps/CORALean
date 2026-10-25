@@ -42,11 +42,9 @@ the chords: points of the hull need not be `x₀ + (t/Δt)(R_aff - x₀)` for on
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
-  8:2033-2038, 2024.
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
 * [2] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-  Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 71(1):352-367,
-  2026.
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

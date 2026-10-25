@@ -38,8 +38,8 @@ corners holds the zonotope ([1, Thm. 4]).
 ## References
 
 * [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
-      Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on
-      Automatic Control, 61(9):2341-2356, 2016.
+      Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on Automatic
+      Control, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

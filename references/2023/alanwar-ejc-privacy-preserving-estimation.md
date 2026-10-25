@@ -1,6 +1,13 @@
 # Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption
 
-A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff. "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption". European Journal of Control, 2023.
+```bibtex
+@article{alanwar2023privacy,
+  author = {Alanwar, A. and Gaßmann, V. and He, X. and Said, H. and Sandberg, H. and Johansson, K. H. and Althoff, M.},
+  title = {Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption},
+  journal = {European Journal of Control},
+  year = {2023}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1731064/nolyj7l6ncgzyof5xvsikm85p.Alanwar-2023-EJC.pdf (the TUM repository copy of the journal version, 17 pages, read in full; text extracted with `pypdf`), cross-read against https://arxiv.org/pdf/2010.11097 (the arXiv preprint, which CORA's headers cite as "Privacy preserving set-based estimation using partially homomorphic encryption. arXiv.org."; same text)  
 **Inventory:** confirmed (the numbered items are Definitions 1-9, Assumptions 1-2, Problems 1-2, Example 1, Lemmas 1-4, Theorems 1-4, Protocols 1-2 and Remark 1; each of these has its own counter, and the eqs. 3-4 of Paillier's cryptosystem are listed beside them)

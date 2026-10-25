@@ -30,15 +30,15 @@ are tuning, as `Λ` is any matrix here, and the soundness does not depend on it.
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+      estimation for uncertain systems". Automatica, 2013.
 * [2] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
       "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
       European Journal of Control, 2023.
 * [3] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
-      Automatica, 41(6):1035-1043, 2005.
+      Automatica, 2005.
 * [4] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
-      estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium
-      on Intelligent Control (ISIC), pp. 212-217, 2013.
+      estimation for multi-output uncertain systems". 2013 IEEE International Symposium on
+      Intelligent Control (ISIC), 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

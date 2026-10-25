@@ -23,8 +23,9 @@ and a caller who needs those coefficients to count runs `dependent` on `pZ` firs
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
-      Network Verification using Sensitivity Analysis". HSCC 2023.
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
+      using Sensitivity Analysis". Proceedings of the 26th ACM International Conference on Hybrid
+      Systems: Computation and Control, 2023.
 -/
 
 -- Authors:       Claude Opus 5

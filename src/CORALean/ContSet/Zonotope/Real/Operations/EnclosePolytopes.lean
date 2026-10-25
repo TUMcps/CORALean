@@ -27,9 +27,8 @@ for now: the float layer would round the inverse, the vertices and the product a
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
-      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
-      Analysis: Hybrid Systems, 4(2):233-249, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
 -/
 
 -- Authors:       Claude Opus 5.5

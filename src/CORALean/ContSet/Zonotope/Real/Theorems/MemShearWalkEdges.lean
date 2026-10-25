@@ -30,9 +30,8 @@ vertical section theorem to every line `x - κ y = γ` ([1, Alg. 3]).
 
 ## References
 
-* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems
-      Reachability Analysis". In Hybrid Systems: Computation and Control (HSCC), LNCS 4981,
-      Springer, 2008, pp. 215-228.
+* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems Reachability
+      Analysis". Hybrid Systems: Computation and Control, 2008.
 -/
 
 -- Authors:       Claude Opus 5.5

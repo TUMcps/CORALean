@@ -29,9 +29,9 @@ model. With `- v(x)`, `GuardIntersectUnsolvableSubset`, the model is `xâ‚‚ = -xâ
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear
-      Guard Sets". In Proc. of the 23rd ACM International Conference on Hybrid Systems:
-      Computation and Control (HSCC), 2020.
+* [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
+      Sets". Proceedings of the 23rd International Conference on Hybrid Systems: Computation and
+      Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

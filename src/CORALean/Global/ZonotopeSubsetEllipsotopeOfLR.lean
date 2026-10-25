@@ -30,7 +30,6 @@ the radius is `lr_isLeast_radius_le`.
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
       Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
-      doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -1,6 +1,13 @@
 # Guaranteed State Estimation in CORA 2021
 
-M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21), EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+```bibtex
+@inproceedings{althoff2021guaranteed,
+  author = {Althoff, M.},
+  title = {Guaranteed State Estimation in CORA 2021},
+  booktitle = {8th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21)},
+  year = {2021}
+}
+```
 
 **Source:** https://easychair.org/publications/open/hMPK (the EPiC PDF, 15 pages, pp. 161-175, read in full; text extracted with `pypdf`).  
 **Inventory:** confirmed (the numbered items are Algorithm 1, equations (1)-(7), Figures 1-3 and Tables 1-6; Sec. 2 also defines the estimation and reachability sets in prose, Sec. 3 the cost functions, Sec. 4 the tank benchmark)

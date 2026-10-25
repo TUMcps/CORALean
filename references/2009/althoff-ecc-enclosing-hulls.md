@@ -1,8 +1,13 @@
 # Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions
 
-M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
-Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
-(ECC), pp. 625-630, 2009.
+```bibtex
+@inproceedings{althoff2009safety,
+  author = {Althoff, M. and Stursberg, O. and Buss, M.},
+  title = {Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions},
+  booktitle = {2009 European Control Conference (ECC)},
+  year = {2009}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1289123/document.pdf (the authors' copy in the TUM
 repository, byte-identical to https://vmknoll82.in.tum.de/Main/Publications/Althoff2009d.pdf,

@@ -48,8 +48,10 @@ Writes `experiments/paper/formalization-stats.json` and, under
   overview bars for a quick look without a TeX Live;
 * `appendix-errors.tex`, the appendix table of every `false` and `fixed` result with its
   description, Lean counterexample and Lean fix (`scripts/errors-table.py`, which says where
-  the descriptions and BibTeX keys come from); a row without a description, or a page without
-  a key, fails the run and `--check`;
+  the descriptions come from); a row without a description, or a page without a well-formed
+  BibTeX entry, fails the run and `--check`;
+* `appendix-errors.bib`, the BibTeX entries of those pages, written from the entries the pages
+  carry (`scripts/refentry.py`); never edited by hand;
 * `appendix-cora-bugs.tex`, the appendix table of the bugs found in CORA, one row per coverage
   row with a `cora-issue` note (`scripts/cora-bugs-table.py`); a row without an entry in
   `experiments/paper/cora-bugs.json`, or an entry without a row, fails the run and `--check`.
@@ -88,6 +90,7 @@ LATEX = cr.ROOT / "experiments" / "paper" / "latex"
 FIG_DIR = LATEX / "figures" / "formalization"
 APPENDIX = LATEX / "appendix-formalization.tex"
 ERRORS = LATEX / "appendix-errors.tex"  # see scripts/errors-table.py
+ERRORS_BIB = LATEX / "appendix-errors.bib"  # its entries, from the pages (#265)
 CORA_BUGS = LATEX / "appendix-cora-bugs.tex"  # see scripts/cora-bugs-table.py
 
 # The colours of `experiments/paper/latex/cora-macs.sty`, as (name, rgb): the TikZ files name
@@ -607,6 +610,7 @@ def outputs():
         FIG_DIR / "formalization.svg": svg(data),
         APPENDIX: appendix(data),
         ERRORS: errors,
+        ERRORS_BIB: et.bib(cr),
         CORA_BUGS: bugs,
     }, data, problems
 

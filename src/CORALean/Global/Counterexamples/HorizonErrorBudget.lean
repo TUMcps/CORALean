@@ -26,8 +26,8 @@ errors over any partition of `[0, t_f]` then sum to exactly `t_f`, so the budget
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning
-      for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
+* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
+      analysis of linear systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
 -/
 
 -- Authors:       Claude Sonnet 5.5

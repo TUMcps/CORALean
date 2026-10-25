@@ -35,8 +35,8 @@ exact `e^{rA}` and `e^{r‖A‖}`; it runs in floats as `girardReachFloat`.
 
 ## References
 
-* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
-      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
+      Computation and Control, 2005.
 -/
 
 -- Authors:       Claude Opus 5.5

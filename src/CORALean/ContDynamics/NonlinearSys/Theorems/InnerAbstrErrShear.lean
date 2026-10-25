@@ -25,11 +25,9 @@ holds `0` (it is `{0}`, `E(Δt, η) = 0`), so `R̂_err(0) = {0}`.
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
-  8:2033-2038, 2024.
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
 * [2] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-  Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 71(1):352-367,
-  2026.
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

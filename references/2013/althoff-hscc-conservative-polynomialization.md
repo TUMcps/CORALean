@@ -1,7 +1,13 @@
 # Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets
 
-M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
-Polynomialization and Non-Convex Sets". HSCC 2013.
+```bibtex
+@inproceedings{althoff2013reachability,
+  author = {Althoff, M.},
+  title = {Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets},
+  booktitle = {Proceedings of the 16th international conference on Hybrid systems: computation and control},
+  year = {2013}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1283922/39133.pdf (read directly with a custom PDF-content-stream text extractor since no PDF rasterizer was available in this environment — poppler/pdftoppm is not installed, so the Read tool's PDF-page mode is unavailable)  
 **Inventory:** confirmed (full 10-page paper read)

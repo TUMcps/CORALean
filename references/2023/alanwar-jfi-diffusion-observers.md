@@ -1,6 +1,13 @@
 # Distributed Set-Based Observers Using Diffusion Strategies
 
-A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based Observers Using Diffusion Strategies". Journal of the Franklin Institute, 360(10):6976-6993, 2023. arXiv:2003.10347.
+```bibtex
+@article{alanwar2003distributed,
+  author = {Alanwar, A. and Rath, J. J. and Said, H. and Johansson, K. H. and Althoff, M.},
+  title = {Distributed Set-Based Observers Using Diffusion Strategies},
+  journal = {Journal of the Franklin Institute},
+  year = {2023}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2003.10347v3 (arXiv v3, 18 Jun 2023, the accepted manuscript, 11 pages, read in full; text extracted with `pypdf`). The typeset article was not reachable. The arXiv versions are titled "Strategy" (v1) and "Strategies" (v3, the published title); CORA cites it as "Distributed Set-Based Observers Using Diffusion Strategy" in `@zonotope/private/priv_andAveraging.m` and `@zonotope/intersectStrip.m`, without a result number. Numbering is v3's.  
 **Inventory:** confirmed (against v3: Definitions 1-4, Lemma 1, Theorems 1-2, Propositions 1-2 and Algorithms 1-2, each with its own counter; the equations below are the numbered displays that make a claim)

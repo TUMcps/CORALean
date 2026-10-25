@@ -54,9 +54,8 @@ the float run's own outputs. `hp` is stated at the real number `p_(j)` denotes, 
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
-      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
-      Automatic Control, 71(1):352-367, 2026.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

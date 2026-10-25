@@ -23,7 +23,7 @@ predicate the set is a bounded polytope, exactly a `ConZonotope` (`Conversion/`)
 ## References
 
 * [1] P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear
-      Systems". CAV, 2016.
+      Systems". Computer Aided Verification, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

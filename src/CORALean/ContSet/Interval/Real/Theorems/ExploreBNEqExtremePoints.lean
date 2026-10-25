@@ -33,8 +33,8 @@ assumes, and `α ≥ 0`, which line 6 needs for its `k` and the paper does not s
 
 ## References
 
-* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection
-      Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
+* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
+      INFOCOMP Journal of Computer Science, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

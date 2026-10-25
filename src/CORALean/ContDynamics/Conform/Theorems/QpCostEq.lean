@@ -42,9 +42,9 @@ No sign condition on `α` and no definiteness of `P` is needed for the identity.
 
 ## References
 
-* [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of
-      the 10th International Workshop on Applied Verification of Continuous and Hybrid
-      Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
+* [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of 10th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+      2023.
 -/
 
 -- Authors:       Claude Opus 5.5

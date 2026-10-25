@@ -35,7 +35,7 @@ than these bands and not defined beyond the figure.
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
-      Certification". NeurIPS 2018.
+      Certification". Advances in Neural Information Processing Systems, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

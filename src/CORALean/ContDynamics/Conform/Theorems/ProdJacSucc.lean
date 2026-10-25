@@ -24,8 +24,8 @@ a recursion `x_{k+1} = A_k x_k + …` needs.
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE
-      Transactions on Automatic Control, 71(5):3014-3029, 2026.
+* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

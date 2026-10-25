@@ -1,7 +1,13 @@
 # Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation
 
-M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 71(1):352-367, 2026.
+```bibtex
+@article{wetzlinger2026backward,
+  author = {Wetzlinger, M. and Althoff, M.},
+  title = {Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2026}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2310.19083v3 (arXiv v3, 18 Sep 2025, the authors' version of the IEEE TAC article, "Author's version posted under CC BY 4.0", 16 pages, read in full; text extracted with `pypdf`). Volume, issue and pages from the DOI record (doi:10.1109/TAC.2025.3592719); the typeset TAC article is not open access and was not reachable, so the numbering is the authors' version's. That version says it differs from the typeset one in two places: a footnote removes an incorrect support-function identity, "Equation (9) in the published version", so the typeset article's equations after (8) may carry a number one higher than here, and the runtime paragraph of Sec. VI-B is altered. NOTE: arXiv v1 (29 Oct 2023), which Wetzlinger's thesis (Appendix A.4, pp. 92–108) reprints verbatim, numbers differently. It has no conversion algorithm, so its `Alg. 1` and `Alg. 2` are `Alg. 2` and `Alg. 3` here; its equations (2)-(7) are (3)-(8) here, its Minkowski-difference identity (8) is gone, its (17) is `Alg. 1`, its (23)-(26) are (24)-(27), its (27)-(44) are (29)-(46), its (45)-(54) are (48)-(57), (9)-(16) and (18)-(22) keep their numbers, and it calls the AE and EA sets "minimal" and "maximal". Every Definition, Proposition, Lemma, Theorem and Assumption keeps its number; `Prop. 1` and `Assumption 1` changed their statements. Where a finding below is about a misprint of v1, it says v1.
 **Inventory:** confirmed (against arXiv v3: Definitions 1-8, Assumption 1, Propositions 1-5, Lemma 1, Theorems 1-2, Algorithms 1-3; equations (1)-(57))

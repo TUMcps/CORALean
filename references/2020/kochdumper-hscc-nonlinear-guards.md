@@ -1,8 +1,13 @@
 # Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets
 
-N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
-Sets". In Proc. of the 23rd ACM International Conference on Hybrid Systems: Computation and
-Control (HSCC), 2020.
+```bibtex
+@inproceedings{kochdumper2020reachability,
+  author = {Kochdumper, N. and Althoff, M.},
+  title = {Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets},
+  booktitle = {Proceedings of the 23rd International Conference on Hybrid Systems: Computation and Control},
+  year = {2020}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1591470/document.pdf (the authors' copy in the TUM
 repository, typeset with the ACM header and footer "HSCC '20, April 22–24, 2020, Sydney, NSW,

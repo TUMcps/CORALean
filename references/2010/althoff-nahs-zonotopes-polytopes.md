@@ -1,6 +1,13 @@
 # Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes
 
-M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 4(2):233-249, 2010.
+```bibtex
+@article{althoff2010computing,
+  author = {Althoff, M. and Stursberg, O. and Buss, M.},
+  title = {Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes},
+  journal = {Nonlinear Analysis: Hybrid Systems},
+  year = {2010}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1287515/file.pdf (the authors' manuscript in the TUM repository, "Preprint submitted to Elsevier 23 March 2009", 29 pages, read in full; text extracted with `pypdf`. The typeset journal version, doi:10.1016/j.nahs.2009.03.009, was not accessible; the numbering below is the manuscript's.)  
 **Inventory:** confirmed (against the manuscript: Definitions 1-5, Lemma 6, Theorem 7 and Propositions 8-12 share one counter; Algorithm 1; equations (1)-(3))

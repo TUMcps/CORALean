@@ -34,7 +34,7 @@ unit ball: `κ_ε = exp(1/√(1+ε) + ε/(2(1+ε)) − 1)`. The volume of an ell
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

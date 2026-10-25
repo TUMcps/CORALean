@@ -20,8 +20,8 @@ linear layer runs on `I'.nonemptyHull`, which is `I'` whenever `I'` is nonempty.
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
-      Formal Verification". TMLR. arXiv:2305.01932.
+* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

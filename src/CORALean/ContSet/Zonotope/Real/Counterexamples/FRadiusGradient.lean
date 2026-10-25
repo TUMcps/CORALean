@@ -24,7 +24,7 @@ of `‖Y‖_F` along the entry `G(0,0) = 1` is `(1/2) · 1 / 1 = 1/2`, where the
 ## References
 
 * [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
-      Transactions on Machine Learning Research (TMLR), 2025.
+      Transactions on Machine Learning Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

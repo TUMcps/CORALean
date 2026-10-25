@@ -30,9 +30,8 @@ CORA stores as `R{k+2}`: its loop writes `R{i+1}` from the variables before they
 
 ## References
 
-* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
-      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
+      Verification of Continuous and Hybrid Systems (ARCH21), 2021.
 -/
 
 -- Authors:       Claude Opus 5.5

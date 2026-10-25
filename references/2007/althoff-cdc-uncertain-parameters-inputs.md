@@ -1,6 +1,13 @@
 # Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs
 
-M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC), 2007, pp. 726-732.
+```bibtex
+@inproceedings{althoff2007reachability,
+  author = {Althoff, M. and Stursberg, O. and Buss, M.},
+  title = {Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs},
+  booktitle = {2007 46th IEEE Conference on Decision and Control},
+  year = {2007}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1289985/728488.pdf (the authors' copy in the TUM repository, mediaTUM record 1289985, a 7-page PDF of the CDC'07 draft dated 17 September 2007, read in full; text extracted with PyMuPDF. The venue, pages 726-732 and doi:10.1109/CDC.2007.4434084 are from the repository's record.)  
 **Inventory:** confirmed (Definitions 1-2, Lemmas 1-3, Theorems 1-4, Propositions 1-2, Algorithm 1 and Example 1, each with its own counter; equations (1)-(7); Figs. 1-4 and Table I; the examples are Sec. VII)

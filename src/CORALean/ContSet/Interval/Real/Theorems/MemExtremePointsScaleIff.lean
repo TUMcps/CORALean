@@ -30,8 +30,8 @@ does, the vertices of the two cuts correspond exactly, by `c⋆ = (β₁c₁, �
 
 ## References
 
-* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection
-      Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
+* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
+      INFOCOMP Journal of Computer Science, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

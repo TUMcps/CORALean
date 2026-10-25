@@ -1,6 +1,13 @@
 # Guaranteed state estimation by zonotopes
 
-T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes". Automatica, 41(6):1035-1043, 2005.
+```bibtex
+@article{alamo2005guaranteed,
+  author = {Alamo, T. and Bravo, J. M. and Camacho, E. F.},
+  title = {Guaranteed state estimation by zonotopes},
+  journal = {Automatica},
+  year = {2005}
+}
+```
 
 **Source:** http://congres.cran.univ-lorraine.fr/2003/CDC%202003/pdffiles/papers/FrP07.2.pdf (the authors' six-page conference version, "Guaranteed state estimation by zonotopes", 42nd IEEE Conference on Decision and Control, Maui, 2003, paper FrP07.2, doi:10.1109/CDC.2003.1271935; read in full, text extracted with `pypdf`). The Automatica article (doi:10.1016/j.automatica.2004.12.008) is closed access and no copy was reachable (Unpaywall lists none), so **the rows below are the conference version's results under its own numbering, not the journal's**.  
 **Inventory:** unconfirmed (against the journal article: the conference version prints Definitions 1-11, Theorems 1-5, Properties 1-2 and Algorithm 1, each with its own counter, and the volume formula of Sec. 6.1 without a number; the article is longer, CORA citing from it a gain that minimizes the F-radius and calling the volume formula "the last equation before Sec. 7", so its numbering and its further results are not known)

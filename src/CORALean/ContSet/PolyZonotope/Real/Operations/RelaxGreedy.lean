@@ -28,8 +28,9 @@ which of equal weights is taken. The merge is `relaxExpMulti`, as in `relaxExpGr
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its
-      Applications in Formal Neural Network Verification". AAAI, 2024.
+* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its Applications in
+      Formal Neural Network Verification". Proceedings of the AAAI Conference on Artificial
+      Intelligence, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

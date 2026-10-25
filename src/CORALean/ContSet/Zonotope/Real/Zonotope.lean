@@ -18,11 +18,11 @@ type index: operations grow it freely and `reduce` is what bounds it, where the 
 
 ## References
 
-* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
-      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
-      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
-* [2] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
-      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
+      Uncertainties, 2011.
+* [2] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
+      Computation and Control, 2005.
 -/
 
 -- Authors:       Claude Opus 5

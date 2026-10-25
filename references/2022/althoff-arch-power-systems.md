@@ -1,6 +1,13 @@
 # Benchmarks for the Formal Verification of Power Systems
 
-M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the 9th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22), EPiC Series in Computing, vol. 90, pp. 26-43, 2022.
+```bibtex
+@inproceedings{althoff2022benchmarks,
+  author = {Althoff, M.},
+  title = {Benchmarks for the Formal Verification of Power Systems},
+  booktitle = {Proceedings of 9th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22)},
+  year = {2022}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1696138/1696138.pdf (the published EPiC paper as deposited in TUM's repository mediaTUM, 18 pages, read in full; text extracted with `pypdf`); also at https://easychair.org/publications/paper/8Tcg. CORA cites it as "Formal Verification of Power Systems", submitted to ARCH 2022, in `models/Cora/infiniteBus.m`, `models/Cora/infiniteBus_polynomialized.m` and the two region-of-attraction examples built on them.  
 **Inventory:** confirmed (against the published paper: Equations 1-7, Table 1 and Figures 1-8; no numbered definitions, theorems or algorithms, the verification problems being defined in the prose of Sec. 3.1; Sec. 4 is the benchmarks' solutions)

@@ -30,9 +30,8 @@ the expansion behind (5.6) of [1, Remark 4]. The series `Σ_k zᵏ/(k + j)!` has
 
 ## References
 
-* [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations
-  to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 60(1):157-197,
-  2020.
+* [1] T. Jawecki, W. Auzinger and O. Koch. "Computable upper error bounds for Krylov approximations
+      to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

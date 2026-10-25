@@ -1,7 +1,13 @@
 # Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems
 
-M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
-Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
+```bibtex
+@inproceedings{wetzlinger2021adaptive,
+  author = {Wetzlinger, M. and Kulmburg, A. and Althoff, M.},
+  title = {Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems},
+  booktitle = {Proceedings of the 24th International Conference on Hybrid Systems: Computation and Control},
+  year = {2021}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.5 (pp. 109–120), a verbatim reprint of the ACM version, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable, and the ACM version at https://doi.org/10.1145/3447928.3456643 is paywalled; the paper has no arXiv preprint).  
 **Inventory:** confirmed

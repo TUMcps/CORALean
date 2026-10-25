@@ -29,8 +29,7 @@ non-negative. So the gap of `Lemma 3` is the rank constraint's alone.
 ## References
 
 * [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
-      Zonotope Norm". In Proc. of the 2020 American Control Conference (ACC), pp. 4715-4721,
-      2020.
+      Zonotope Norm". 2020 American Control Conference (ACC), 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,8 +1,13 @@
 # Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets
 
-M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
-Linear Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE
-Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+```bibtex
+@article{wetzlinger2023inner,
+  author = {Wetzlinger, M. and Kochdumper, N. and Bak, S. and Althoff, M.},
+  title = {Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2023}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2209.09321v2 (arXiv v2, which matches the published IEEE TAC version — includes the "©2023 IEEE" notice; read via a custom PDF-content-stream text extractor, since poppler/pdftoppm is not installed in this environment so the Read tool's PDF-page mode is unavailable). NOTE: arXiv v1 (rendered fine by ar5iv/arxiv-html) has DIFFERENT Definition numbering — v1 has an extra "Definition 4 (Hyperball)" that v2 dropped, shifting v1's Def. 5-7 to v2's Def. 4-6. This file uses v2's (published) numbering, cross-checked directly against the v2 PDF text.  
 **Inventory:** confirmed (full text of the 14-page body + 2 appendices read via the custom extractor)

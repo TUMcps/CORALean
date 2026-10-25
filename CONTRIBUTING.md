@@ -496,7 +496,8 @@ asserts that these and `trustedHardware` are the only three axioms CORALean
 declares. It needs a built tree too, and runs beside `check-demo.sh` in CI's
 build job.
 
-`scripts/check-references.py` checks `references/` against the tree: that every
+`scripts/check-references.py` checks `references/` against the tree: that every page has
+one well-formed BibTeX entry and every docstring entry equals its rendering (below), that every
 paper cited has a page, that every link on a page resolves and lands on a file
 that really cites that paper, that every result cited anywhere is a row, that a
 row deferring to an earlier paper names a row that is really on that paper's
@@ -504,6 +505,54 @@ page and does not defer in a circle, that the README's counts are the counts,
 that a paper's findings are listed where the index says they are, that every row's `Class` cell is one of the allowed values and gives a reason when it is not `correct`, that a `correct` row's note does not say the Lean theorem is other than the printed one (unless an `**As printed:**` marker says why the printed statement follows; see [references/README.md](references/README.md#the-class-column)), that a `—` row's note reads `— partial: <declarations that exist, linked>; missing: <what is left>` and its links resolve, that a complexity statement sits in a row of its own (see [references/README.md](references/README.md#the-class-column)), and that `experiments/paper/formalization-stats.json` is what `scripts/formalization-stats.py` writes from the tables (rerun it after a row changes). A coverage table is a claim about where
 a theorem lives, which is the kind of prose that rots quietly; this is what
 stops it. It runs beside the conventions, on the same hook and the same CI job.
+
+### The BibTeX entry of a page, and the line every docstring writes
+
+Every `references/<year>/*.md` page carries exactly one fenced `bibtex` block under its heading,
+the page's only bibliographic record (#265):
+
+````
+```bibtex
+@inproceedings{althoff2012avoiding,
+  author = {Althoff, M. and Krogh, B. H.},
+  title = {Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems},
+  booktitle = {Proceedings of the 15th ACM international conference on Hybrid Systems: Computation and Control},
+  year = {2012}
+}
+```
+````
+
+The fields are `author` (`Last, F. M.` joined by ` and `), `title`, `journal` or `booktitle`
+(`publisher` too in an `@incollection`) and `year`, in that order, and no others: no volume,
+pages, DOI, note or URL. The type is `article`, `inproceedings` or `incollection`. The key is
+the one the paper cites. Non-ASCII letters are written as such (`Černý`); `scripts/refentry.py`
+turns them into LaTeX commands for the `.bib`. Braces protect a capital (`{Minkowski}`) and are
+dropped wherever the entry is printed. The venue is the publication's own name for it: the
+journal, the proceedings title as the publisher's DOI record gives it, `arXiv preprint
+arXiv:<id>` for a preprint. What the publisher, DOI page, dblp or arXiv does not confirm is
+left blank (`journal = {}`), never filled from memory or a secondary source. The link to the
+exact version read (`arxiv.org/pdf/…v3`) stays in the page's `**Source:**` line, below the
+entry, and is not part of it. A key that is already an entry of the paper's own `references.bib`
+adds the line `**In the paper's bibliography.**` under the block; every other page with a
+`false` or `fixed` row is written to `experiments/paper/latex/appendix-errors.bib` by
+`scripts/formalization-stats.py`, which nobody edits.
+
+The line every `## References` entry of a module docstring under that page writes is the
+rendering of the entry, in one format:
+
+```
+* [1] <authors>. "<Title>". <Venue>, <year>.
+```
+
+`<authors>` is `A. Name`, `A. Name and B. Name` or `A. Name, B. Name and C. Name`: the initials
+first, the names in the order of the entry, the last two joined by `and`, no Oxford comma.
+`<Title>` and `<Venue>` are the entry's `title` and `journal`/`booktitle` without braces; a blank
+venue drops its comma. The line is wrapped at 100 characters with a six-space hanging indent.
+`python3 scripts/render-references.py` rewrites every entry that names a page (found by its
+quoted title) and `check-references.py` renders the same line from the entry and fails on any
+entry that differs, on a page without exactly one well-formed entry, and on a repeated key. An
+entry that begins with a CORA file in backticks, `None: <reason>`, and the stamps are untouched.
+Correct a reference on the page, run the generator, and nothing else needs a hand.
 
 Nobody types a count. After a row changes, `python3 scripts/check-references.py
 --fix` writes the counts it computed into the README's cells, and re-points a

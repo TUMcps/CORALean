@@ -31,8 +31,8 @@ continuous one gives.
 
 ## References
 
-* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
-      functions". Reliable Computing, 14:1-23, 2010.
+* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
+      Reliable Computing, 2010.
 -/
 
 -- Authors:       Claude Opus 5.5

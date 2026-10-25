@@ -1,6 +1,13 @@
 # Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis
 
-A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis". In Hybrid Systems: Computation and Control (HSCC), LNCS 4981, Springer, 2008, pp. 215-228.
+```bibtex
+@inproceedings{girard2008zonotope,
+  author = {Girard, A. and Le Guernic, C.},
+  title = {Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis},
+  booktitle = {Hybrid Systems: Computation and Control},
+  year = {2008}
+}
+```
 
 **Source:** https://www.cecs.uci.edu/~papers/cpsweek08/papers/hscc08/session1/s1-2.pdf (the authors' manuscript in the LNCS format from the HSCC 2008 proceedings, 14 pages, read in full; text extracted with `pypdf`; the Springer DOI is 10.1007/978-3-540-78929-1_16)  
 **Inventory:** confirmed (the numbered items are Proposition 1, Algorithms 1-4, Remarks 1-2 and the display of equation (1); the unnumbered statements that make a claim are rows named by section)

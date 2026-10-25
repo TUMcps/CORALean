@@ -25,7 +25,7 @@ inflection point and `f'' ≤ 0` right of it, at the inflection point `0`.
 ## References
 
 * [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
-      Certification". NeurIPS 2018.
+      Certification". Advances in Neural Information Processing Systems, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

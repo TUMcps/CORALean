@@ -1,7 +1,13 @@
 # Fully Automatic Neural Network Reduction for Formal Verification
 
-T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal
-Verification". TMLR. arXiv:2305.01932.
+```bibtex
+@article{ladner2025fully,
+  author = {Ladner, T. and Althoff, M.},
+  title = {Fully Automatic Neural Network Reduction for Formal Verification},
+  journal = {Transactions on Machine Learning Research},
+  year = {2025}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2305.01932v3  
 **Inventory:** confirmed

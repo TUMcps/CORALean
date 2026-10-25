@@ -1,6 +1,13 @@
 # Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems
 
-A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems". In Proc. of the European Control Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
+```bibtex
+@inproceedings{kulmburg2024search,
+  author = {Kulmburg, A. and Brkan, I. and Althoff, M.},
+  title = {Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems},
+  booktitle = {2024 European Control Conference (ECC)},
+  year = {2024}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1750874/1750874.pdf (the authors' version on TUM's repository, carrying the IEEE copyright notice, 8 pages including Appendices A-B, read in full; text extracted with `pypdf`). The IEEE Xplore version was not reachable; the repository copy is the camera-ready one, and its numbering is what CORA cites.  
 **Inventory:** confirmed (Definitions 2.1 and 4.1, Proposition 2.2, Theorems 4.2, 4.3 and 4.6, Corollaries 4.7-4.8, Remarks 4.4-4.5 and Algorithms 1-3, numbered by section; the equations below are the numbered displays that make a claim)

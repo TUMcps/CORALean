@@ -28,9 +28,8 @@ of `g` the root of [1, Eq. 18], which is [1, Thm. 3]'s limit.
 
 ## References
 
-* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of
-      Minkowski sum of ellipsoids". In Proc. of the 57th IEEE Conference on Decision and
-      Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
+* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski
+      sum of ellipsoids". 2018 IEEE Conference on Decision and Control (CDC), 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

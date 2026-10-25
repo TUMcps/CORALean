@@ -1,6 +1,13 @@
 # Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models
 
-M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models". In Proc. of the American Control Conference, pp. 3559-3566, 2012.
+```bibtex
+@inproceedings{althoff2012reachability,
+  author = {Althoff, M. and Dolan, J. M.},
+  title = {Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models},
+  booktitle = {2012 American Control Conference (ACC)},
+  year = {2012}
+}
+```
 
 **Source:** https://archive.air.in.tum.de/Main/Publications/Althoff2012b.pdf (the authors' copy, 8 pages, matching the proceedings' pp. 3559-3566, read in full; text extracted with `pypdf`; the CMU Robotics Institute lists the same paper at https://ri.cmu.edu/?p=7515). The section numbers are the paper's own Roman ones.  
 **Inventory:** confirmed (the numbered items are Theorem 1, equations (1)-(3), Figures 1-5 and Tables I-IV; Sec. IV-A lists the three steps of a reachability step, Sec. IV-B derives the partial input solution, Sec. V the RRT steps)

@@ -24,7 +24,7 @@ For a valid four-valued signal `Λ̃`, `Λ̃(t) = ⌊Λ̃⌋(t) ⊔₂ ⌈Λ̃�
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
-      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
+      Verification of Hybrid Systems". Computer Aided Verification, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

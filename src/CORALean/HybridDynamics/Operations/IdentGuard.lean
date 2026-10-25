@@ -22,9 +22,9 @@ Over ℝ, with no float layer: it states the guard for [1, Prop. 1], as CORA's
 
 ## References
 
-* [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of
-      Hybrid Automata from Noisy Data". In Proc. of the 28th ACM International Conference on
-      Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
+* [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid
+      Automata from Noisy Data". Proceedings of the 28th ACM International Conference on Hybrid
+      Systems: Computation and Control, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -24,8 +24,8 @@ dropped one `g_b` have `‖g_a‖₁ - ‖g_a‖∞ ≥ ‖g_b‖₁ - ‖g_b‖
 
 ## References
 
-* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the
-      Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
+* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
+      of Zonotopes". IEEE Control Systems Letters, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

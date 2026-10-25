@@ -1,6 +1,13 @@
 # Error bounds for the Krylov subspace methods for computations of matrix exponentials
 
-H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix exponentials". SIAM Journal on Matrix Analysis and Applications, 38(1):155-187, 2017.
+```bibtex
+@article{wang2017error,
+  author = {Wang, H. and Ye, Q.},
+  title = {Error bounds for the {Krylov} subspace methods for computations of matrix exponentials},
+  journal = {SIAM Journal on Matrix Analysis and Applications},
+  year = {2017}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1603.07358 (arXiv:1603.07358v1, 23 Mar 2016, 33 pages, the only version, read in full; text extracted with `pypdf`). The typeset SIAM article (doi:10.1137/16M1075454) was not reachable, so the arXiv text may differ from it in numbering, constants and proofs; numbering below is the arXiv version's. CORA's `linearSys/private/priv_subspace_Krylov_individual_Wang.m` cites "Theorem 3.1 of [1]".  
 **Inventory:** unconfirmed (arXiv v1 only: Theorems 2.1, 3.1, 5.1, 5.2, 6.1, Propositions 2.2, Lemmas 4.1-4.5, Corollaries 5.3, 5.4, Examples 1-4, equations (1.1)-(7.3), Tables 1-3, Figures 1-5; no Definitions or Algorithms; the rows below are the results and the numbered displays that make a claim)

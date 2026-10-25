@@ -30,8 +30,8 @@ output map — a state-space model's, an input-output model's — fixed at one s
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE
-      Transactions on Automatic Control, 71(5):3014-3029, 2026.
+* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

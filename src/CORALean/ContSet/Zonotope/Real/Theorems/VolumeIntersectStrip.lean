@@ -33,9 +33,9 @@ al. that the papers quote; `σ ≥ 0` is the strip's half-width. The proof is
 ## References
 
 * [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
-      Automatica, 41(6):1035-1043, 2005.
+      Automatica, 2005.
 * [2] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with
-      time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
+      time-varying parameters". IEEE Transactions on Automatic Control, 2006.
 -/
 
 -- Authors:       Claude Opus 5.5

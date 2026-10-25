@@ -1,6 +1,13 @@
 # Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions
 
-R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions". Operations Research 32(6), pp. 1296-1308, 1984.
+```bibtex
+@article{smith1984efficient,
+  author = {Smith, R. L.},
+  title = {Efficient {Monte Carlo} Procedures for Generating Points Uniformly Distributed Over Bounded Regions},
+  journal = {Operations Research},
+  year = {1984}
+}
+```
 
 **Source:** http://deepblue.lib.umich.edu/bitstream/2027.42/7681/5/bam4111.0001.001.pdf (University of Michigan, Deep Blue; fetched from the Internet Archive snapshot <https://web.archive.org/web/2015id_/http://deepblue.lib.umich.edu/bitstream/2027.42/7681/5/bam4111.0001.001.pdf>): the author's own Technical Report #81-1 of the same title, Department of Industrial and Operations Engineering, January 1981, revised January 1982. A scan with no text layer, so all 20 pages were rendered with PyMuPDF and read as images. The copy ends at Table 2 (report page 18): the closing section the text promises ("how large M must be"), the conclusions and the references are not in it. The journal article, <https://doi.org/10.1287/opre.32.6.1296>, was not reachable from the environment (publisher paywall).  
 **Inventory:** unconfirmed (against the 1982 report, which stops at Table 2; the journal version may number, reorder or extend its items. The report's numbered items are Assumption (a), (b), Lemmas 1-2, Theorems 1-3 and Tables 1-2, with the Mixing Algorithm and three named special cases)

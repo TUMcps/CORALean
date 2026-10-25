@@ -38,7 +38,7 @@ polytopes `P_hjkl`, then `α` is in a polytope of `STL.factorStep` (lines 7-13 o
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, vol. 53, 2024, 101491.
+      Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

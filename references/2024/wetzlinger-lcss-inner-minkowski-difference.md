@@ -1,6 +1,13 @@
 # Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference
 
-M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 8:2033-2038, 2024.
+```bibtex
+@article{wetzlinger2024inner,
+  author = {Wetzlinger, M. and Kulmburg, A. and Althoff, M.},
+  title = {Inner Approximations of Reachable Sets for Nonlinear Systems using the {Minkowski} Difference},
+  journal = {IEEE Control Systems Letters},
+  year = {2024}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1749456/1749456.pdf (the accepted author's version on TUM's repository, "accepted for publication in IEEE Control Systems Letters", doi:10.1109/LCSYS.2024.3421194, 6 pages, read in full; text extracted with `pypdf`). Volume and pages from the published record; the typeset article was not reachable. CORA cites the paper in `nonlinearSys/private/priv_reachInnerMinkdiff.m` and `contDynamics/linReachInner.m` without result numbers.  
 **Inventory:** confirmed (Definitions 1-4, Lemma 1, Remark 1, Propositions 1-2 and Algorithm 1, each with its own counter; equations (1)-(26), of which the rows below are the displays that make a claim; Table I)

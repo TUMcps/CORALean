@@ -35,8 +35,7 @@ constant `u₀`, `U = {u₀}`, CORA's `params.u`.
 ## References
 
 * [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
-  8:2033-2038, 2024.
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

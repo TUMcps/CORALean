@@ -1,7 +1,13 @@
 # Constrained Polynomial Zonotopes
 
-N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
-2023.
+```bibtex
+@article{kochdumper2023constrained,
+  author = {Kochdumper, N. and Althoff, M.},
+  title = {Constrained Polynomial Zonotopes},
+  journal = {Acta Informatica},
+  year = {2023}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2005.08849 (the PDF, read with `pypdf`; poppler is not
 installed. The page was seeded from ar5iv, which renumbers results and has corrupted four of

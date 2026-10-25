@@ -19,9 +19,8 @@ initialisation, which encloses `Z` regardless.
 
 ## References
 
-* [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of
-      Zonotopes". In Proc. of the 56th IEEE Conference on Decision and Control (CDC), pp.
-      5626-5633, 2017.
+* [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of Zonotopes". 2017
+      IEEE 56th Annual Conference on Decision and Control (CDC), 2017.
 -/
 
 -- Authors:       Claude Opus 5.5

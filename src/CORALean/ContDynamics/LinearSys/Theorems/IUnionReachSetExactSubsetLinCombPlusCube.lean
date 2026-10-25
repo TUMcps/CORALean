@@ -45,8 +45,8 @@ taken as any bound `s` on `Z`'s norms; the enclosure only grows with `s`.
 
 ## References
 
-* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
-      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
+* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
+      Computation and Control, 2005.
 -/
 
 -- Authors:       Claude Opus 5.5

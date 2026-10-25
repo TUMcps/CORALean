@@ -30,9 +30,8 @@ statement omits: `∅` lies in every set, and is not always cut out by rows that
 
 ## References
 
-* [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In
-      Proc. of the 58th IEEE Conference on Decision and Control (CDC), pp. 4367-4372, 2019.
-      arXiv:1903.05214.
+* [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". 2019 IEEE
+      58th Conference on Decision and Control (CDC), 2019.
 -/
 
 -- Authors:       Claude Opus 5.5

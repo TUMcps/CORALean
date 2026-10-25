@@ -25,9 +25,9 @@ printed semantics' closed interval.
 
 ## References
 
-* [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and
-      S. A. Seshia. "Model Predictive Control with Signal Temporal Logic Specifications". In
-      Proc. of the 53rd IEEE Conference on Decision and Control (CDC), pp. 81-87, 2014.
+* [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and S. A. Seshia.
+      "Model Predictive Control with Signal Temporal Logic Specifications". 53rd IEEE Conference on
+      Decision and Control, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

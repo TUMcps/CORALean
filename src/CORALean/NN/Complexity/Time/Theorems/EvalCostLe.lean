@@ -32,8 +32,8 @@ an activation `n · cEval ≤ N² cEval`. This is the check of a candidate in [1
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for
-      Neural Network Verification". ICLR, 2026.
+* [1] L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
+      Network Verification". International Conference on Learning Representations, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

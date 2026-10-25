@@ -1,6 +1,13 @@
 # Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances
 
-E. Goubault and S. Putot. "Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances". IEEE Control Systems Letters, 4(4):928-933, 2020.
+```bibtex
+@article{goubault2020robust,
+  author = {Goubault, E. and Putot, S.},
+  title = {Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances},
+  journal = {IEEE Control Systems Letters},
+  year = {2020}
+}
+```
 
 **Source:** http://www.lix.polytechnique.fr/Labo/Sylvie.Putot/Publications/csl2020.pdf (the authors' preprint on Putot's page, 6 pages, read in full; text extracted with `pypdf`, the over- and underlines of Theorems 1-2 read from the vector rules with `pdfminer`). Volume, issue and pages from the published record (doi:10.1109/LCSYS.2020.2997261); the typeset article was not reachable. CORA cites the paper in `nonlinearSys/reachInner.m` and `nonlinearSys/private/priv_reachInnerParallelotope.m`, the latter for `Theorem 3` (and `Theorem 2` in a comment).  
 **Inventory:** confirmed (Theorems 1-3, Remark 1, Examples 1-4 and equations (1)-(6), each with its own counter; Sections II-IV; Table I)

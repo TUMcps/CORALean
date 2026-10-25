@@ -33,8 +33,8 @@ complex `T_k`, `β_{k+1}` and `v_{k+1}` with (6.2); the tridiagonal form of `T_k
 
 ## References
 
-* [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix
-  exponentials". SIAM Journal on Matrix Analysis and Applications, 38(1):155-187, 2017.
+* [1] H. Wang and Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix
+      exponentials". SIAM Journal on Matrix Analysis and Applications, 2017.
 -/
 
 -- Authors:       Claude Opus 5.5

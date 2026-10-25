@@ -1,7 +1,13 @@
 # Utilizing Dependencies to Obtain Subsets of Reachable Sets
 
-N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
-Reachable Sets". HSCC 2020. arXiv:1910.08354.
+```bibtex
+@inproceedings{kochdumper1910utilizing,
+  author = {Kochdumper, N. and Schürmann, B. and Althoff, M.},
+  title = {Utilizing Dependencies to Obtain Subsets of Reachable Sets},
+  booktitle = {Proceedings of the 23rd International Conference on Hybrid Systems: Computation and Control},
+  year = {2020}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1910.08354 (read as the PDF with `pypdf`, poppler not being
 installed here; ar5iv's rendering of this paper renders every `Lemma`'s own caption as `Lemma 0`

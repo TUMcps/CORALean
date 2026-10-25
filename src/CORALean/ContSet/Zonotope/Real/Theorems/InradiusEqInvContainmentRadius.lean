@@ -26,8 +26,8 @@ for `n > 0`. The printed cube `[-1, -1]ⁿ` is `[-1, 1]ⁿ`, the supremum-norm u
 
 ## References
 
-* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment
-      Problem". European Journal of Control, 62:84-91, 2021.
+* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem".
+      European Journal of Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5.5

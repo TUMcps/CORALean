@@ -28,10 +28,9 @@ reports it degenerate. [1, Eq. 19] multiplies `r` by the row's norm, which is `0
 
 ## References
 
-* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
-      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
-      Verification of Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
-      vol. 103, pp. 163-181, 2024.
+* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral Operations
+      in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for Continuous
+      and Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

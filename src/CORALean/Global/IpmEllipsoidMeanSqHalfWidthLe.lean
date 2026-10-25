@@ -31,7 +31,7 @@ second moments exist.
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 45(2):382-392, 2009.
+      reliability". Automatica, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -29,8 +29,8 @@ ellipsoid [1, Sec. II (sign of the distance)], which fails on the boundary, wher
 
 ## References
 
-* [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". In Proc. of the 45th
-      IEEE Conference on Decision and Control (CDC), pp. 1498-1503, 2006.
+* [1] A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". Proceedings of the 45th IEEE
+      Conference on Decision and Control, 2006.
 -/
 
 -- Authors:       Claude Opus 5.5

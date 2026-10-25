@@ -45,7 +45,7 @@ zonotopes have all three, and the float input solution's soundness asks only an 
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
-      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
+      Systems". IEEE Transactions on Automatic Control, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

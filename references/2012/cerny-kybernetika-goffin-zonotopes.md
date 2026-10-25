@@ -1,6 +1,13 @@
 # Goffin's algorithm for zonotopes
 
-M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+```bibtex
+@article{cerny2012goffin,
+  author = {Černý, M.},
+  title = {Goffin's algorithm for zonotopes},
+  journal = {Kybernetika},
+  year = {2012}
+}
+```
 
 **Source:** https://dml.cz/bitstream/handle/10338.dmlcz/143088/Kybernetika_48-2012-5_5.pdf (the Czech Digital Mathematics Library copy of the journal paper, 17 pages, read in full; text extracted with `pypdf`)  
 **Inventory:** confirmed (the numbered items are Theorem and Definition 1.1, Definitions 1.2-1.3, Theorem 1.4, Lemmas 3.1-3.2 and 3.4, Theorem 3.3, Corollary 3.5, Lemmas 4.1-4.2, Lemma and Definition 4.3, Lemma 4.4 and equations (1)-(19); the unnumbered statements that make a claim are rows named by section)

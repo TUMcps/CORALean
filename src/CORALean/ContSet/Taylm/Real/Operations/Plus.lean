@@ -25,11 +25,11 @@ The sum of [2, Eq. 6], with the scalars through `smul`.
 
 ## References
 
-* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
-      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
-* [2] M. Althoff, D. Grebenyuk, and N. Kochdumper. "Implementation of Taylor Models in CORA
-      2018". In Proc. of the 5th International Workshop on Applied Verification of Continuous
-      and Hybrid Systems (ARCH18), EPiC Series in Computing, vol. 54, pp. 145-173, 2018.
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
+      International Journal of Pure and Applied Mathematics, 2003.
+* [2] M. Althoff, D. Grebenyuk and N. Kochdumper. "Implementation of Taylor Models in CORA 2018".
+      ARCH18. 5th International Workshop on Applied Verification of Continuous and Hybrid Systems,
+      2018.
 -/
 
 -- Authors:       Claude Opus 5.5

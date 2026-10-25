@@ -54,10 +54,9 @@ read the memberships off their own sets. The input's orders are averages (`integ
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
-      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
-      International Conference on Hybrid Systems: Computation and Control (HSCC),
-      2012, pp. 45-54.
+* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+      Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
+      Systems: Computation and Control, 2012.
 * [2] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_abstractionError`
 -/
 

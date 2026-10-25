@@ -36,7 +36,7 @@ zonotope": flipping the sign of a coefficient that ranges over `[-1, 1]` changes
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
-      zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+      zonotopes for discrete-time descriptor systems". Automatica, 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

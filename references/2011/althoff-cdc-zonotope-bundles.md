@@ -1,6 +1,13 @@
 # Zonotope Bundles for the Efficient Computation of Reachable Sets
 
-M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
+```bibtex
+@inproceedings{althoff2011zonotope,
+  author = {Althoff, M. and Krogh, B. H.},
+  title = {Zonotope Bundles for the Efficient Computation of Reachable Sets},
+  booktitle = {2011 50th IEEE Conference on Decision and Control and European Control Conference (CDC-ECC 2011)},
+  year = {2011}
+}
+```
 
 **Source:** https://skoge.folk.ntnu.no/prost/proceedings/cdc-ecc-2011/data/papers/1225.pdf (the proceedings PDF, 8 pages, read in full; text extracted with `pypdf`. The TUM repository copy <https://mediatum.ub.tum.de/doc/1287219/document.pdf> is the same paper.)  
 **Inventory:** confirmed (the numbered items are Definitions 1-4, Propositions 1-7 and Algorithm 1, each with its own counter; there are no Theorems or Lemmas)

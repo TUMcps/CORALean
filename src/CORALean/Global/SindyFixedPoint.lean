@@ -32,8 +32,8 @@ terms does), `Code 1` returns `Ξ*` after any number of passes.
 ## References
 
 * [1] S. L. Brunton, J. L. Proctor and J. N. Kutz. "Discovering governing equations from data by
-      sparse identification of nonlinear dynamical systems". Proceedings of the National
-      Academy of Sciences, 113(15):3932-3937, 2016 (arXiv:1509.03580).
+      sparse identification of nonlinear dynamical systems". Proceedings of the National Academy of
+      Sciences, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

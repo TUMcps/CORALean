@@ -26,8 +26,7 @@ are `[1, Prop. 1]`. It is the diffusion update, Step 2 of [1, Alg. 1] and of [1,
 ## References
 
 * [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
-      Observers Using Diffusion Strategies". Journal of the Franklin Institute,
-      360(10):6976-6993, 2023. arXiv:2003.10347.
+      Observers Using Diffusion Strategies". Journal of the Franklin Institute, 2023.
 -/
 
 -- Authors:       Claude Sonnet 5.5

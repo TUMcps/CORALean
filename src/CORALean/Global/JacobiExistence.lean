@@ -40,7 +40,7 @@ x̃) = b`.
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
-      Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
+      Vector-valued Functions". Reliable Computing, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

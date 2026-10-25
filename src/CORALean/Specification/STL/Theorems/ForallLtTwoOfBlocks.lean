@@ -23,8 +23,8 @@ all of `(0,2)`. How [1, Table 1] reads a window `(0,1)` followed by `X₁` of on
 
 ## References
 
-* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
-      Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
+* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and Hybrid
+      Systems". Automated Technology for Verification and Analysis, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5
