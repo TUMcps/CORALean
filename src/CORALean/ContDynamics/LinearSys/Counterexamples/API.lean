@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Counterexamples.ConvexHullMinkowskiDiffBall
 public import CORALean.ContDynamics.LinearSys.Counterexamples.InputSolutionSetPrinted
 public import CORALean.ContDynamics.LinearSys.Counterexamples.NoiseCovarianceDiagonal
+public import CORALean.ContDynamics.LinearSys.Counterexamples.ParticulateReachPrinted
 public import CORALean.ContDynamics.LinearSys.Counterexamples.PrintedSupportInput
 public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachAdaptiveOutputOffsetCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachCurvatureInputCora

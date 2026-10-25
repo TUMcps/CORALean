@@ -36,6 +36,11 @@
       "description": "strict sign printed; boundary and touching sets give $0$"
     }
   },
+  "2007/althoff-cdc-uncertain-parameters-inputs": {
+    "Prop. 2": {
+      "description": "$(Ir + W^*(r))V$ treats the input as constant over the step; a sign-switching input leaves it"
+    }
+  },
   "2008/althoff-cdc-conservative-linearization": {
     "Eq. 7": {
       "description": "condition $\\hat{L} \\le \\bar{L}$ does not imply (6)"
