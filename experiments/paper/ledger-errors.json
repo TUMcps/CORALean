@@ -482,5 +482,10 @@
       "description": "signs on $G^-$ fit $G^- \\ge 0$, while Prop. 3 needs $G^- \\le 0$; the printed interval can be empty",
       "fix": "IntervalOfFactorBoundsOuter.lean"
     }
+  },
+  "2026/wetzlinger-tac-backward-reachability": {
+    "Eq. 21": {
+      "description": "eroding the hull by $F H(t_k)$ keeps points beyond the chords that no trajectory reaches"
+    }
   }
 }

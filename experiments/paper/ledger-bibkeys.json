@@ -58,6 +58,7 @@
     "2025/koller-tmlr-set-based-training": "koller2025set",
     "2025/kulmburg-tac-approximability-containment": "kulmburg2025approximability",
     "2025/luetzow-lcss-underapprox-order-reduction": "luetzow2025underapproximative",
-    "2026/koller-iclr-latent-space": "koller2026out"
+    "2026/koller-iclr-latent-space": "koller2026out",
+    "2026/wetzlinger-tac-backward-reachability": "wetzlinger2026backward"
   }
 }

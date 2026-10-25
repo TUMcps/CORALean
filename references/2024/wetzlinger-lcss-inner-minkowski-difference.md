@@ -101,9 +101,18 @@ are `(I + tA)X₀ = R(t)`, so the repaired set is `R([0, 1])` and drops `(1/2, 0
 (`NonlinearSys.not_mem_minkowskiDiff_chord_shear`). Two candidates stay open. `⊖` of the whole
 chord union (the dependent `linComb`), nonconvex, is larger than the union of slice differences,
 and Brouwer's theorem, the proof's tool, gives it only slice by slice. The convex
-`conv(·) ⊖ C ⊖ R̂_err ⊖ B_μ`, `μ = √γ‖(e^{AΔt} - I)G‖₂`, rests on [16, (20)], which cites [15,
-Prop. 1], whose statement is an outer Hausdorff bound; the inner inclusion appears only inside
-its proof, unproved (see [Wetzlinger et al. 2023](../2023/wetzlinger-fully-automated-verification.md)). CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
+`conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) ⊖ B_μ + 2c`, `μ = √γ‖(e^{AΔt} - I)G‖₂`, was to rest on
+[16, (20)] (arXiv v3's (21)), which cites [15, Prop. 1], an outer Hausdorff bound whose proof
+alone uses the inner inclusion (see [Wetzlinger et al. 2023](../2023/wetzlinger-fully-automated-verification.md)).
+That inclusion is false: [16, (20)] erodes by `F H(t_k)` where the trajectories need `-F H(t_k)`,
+and for `ẋ = (x₂, x₃, 0)` its set holds a point no run reaches
+(`LinearSys.convexHull_minkowskiDiff_ball_counterexample`, on
+[Wetzlinger and Althoff 2026](../2026/wetzlinger-tac-backward-reachability.md)). The candidate
+does not fall with it: for `C` centrally symmetric about `c`, `(S ⊖ C) + 2c = S ⊖ (-C)`, so its
+`+ 2c` erodes on the side the trajectories need, and that witness is not in it. A random search
+over linear fields (2-D and 3-D, zonotopes of up to 20 generators, `C` the box of
+`F(X₀ - x*) ⊕ G w`, about 850 nonempty instances) found no point of it that no run reaches; it
+stays open, without a proof. CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
 [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean)
 
 **`Alg. 1` — the output is `Prop. 2`'s.** The listing ensures that R̂(τ) = ⋃_k R̂(τ_k) (line
