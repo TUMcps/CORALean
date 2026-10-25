@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.Branch
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsBranch
 public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeTree
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.MapMSpec
 
@@ -43,7 +43,7 @@ theorem ReachSetAnalyzer.analyzeTree_complete {σ α : Type} (children : ℕ →
     (analyzeSingle : σ → ℕ → Option σ) (signals : σ → Option α) : -- --- CONCL ---
     ∀ (fuel i : ℕ) (obj : σ) (outs : List α),
       ReachSetAnalyzer.analyzeTree children analyzeSingle signals fuel i obj = some outs →
-      ∀ w, ReachSetAnalyzer.Branch children i w → ∃ out ∈ outs, ∃ obj' : σ,
+      ∀ w, ReachSetAnalyzer.IsBranch children i w → ∃ out ∈ outs, ∃ obj' : σ,
         w.foldlM analyzeSingle obj = some obj' ∧ signals obj' = some out := by -- --- PROOF ---
   intro fuel
   induction fuel with

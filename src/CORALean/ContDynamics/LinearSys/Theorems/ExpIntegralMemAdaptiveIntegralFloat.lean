@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveIntegralOuterRefines
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.expIntegral_mem_adaptiveIntegralFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 ≤ toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
+    (hΔt : 0 ≤ toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt)
       ∈ (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η).construct := by -- --- PROOF ---
   -- the integrated exponential is in the exact `adaptiveIntegral`, so in the float one

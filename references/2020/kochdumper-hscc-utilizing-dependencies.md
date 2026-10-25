@@ -22,7 +22,7 @@ by evaluating the polynomial zonotope at the factors that name it —
 | `Def. 1` | (V-Representation) A polytope as the convex combination of its vertices. | [`VPolytope.lean`](../../src/CORALean/ContSet/VPolytope/Real/VPolytope.lean) | `correct` |
 | `Def. 2` | (H-Representation) A polytope as the solution set of linear inequalities. | [`HPolytope.lean`](../../src/CORALean/ContSet/HPolytope/Real/HPolytope.lean) | `correct` |
 | `Def. 3` | (Evaluation Function) The set a parameterized set denotes at given values of its parameters. | [`EvalOn.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/EvalOn.lean), [`EvalOnUnitBox.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/EvalOnUnitBox.lean), [`EvalOnMono.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/EvalOnMono.lean), [`SubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Operations/SubsetAt.lean), [`SubsetAtUnitBox.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/SubsetAtUnitBox.lean) — `evalOn` is eq. (13) itself, `subsetAt` its dependent half, which the two share only at `q = 0` | `correct` |
-| `Def. 4` | (Dependency Preservation) An operation preserves dependencies if applying it to a parameterized subset lands inside the evaluation of the operation on the whole. | [`DependencyPreserving.lean`](../../src/CORALean/ContSet/ContSet/Definitions/DependencyPreserving.lean), [`MapEvalOn.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MapEvalOn.lean), [`PlusEvalOn.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/PlusEvalOn.lean), [`MapSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MapSubsetAt.lean), [`BilinSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAt.lean), [`BilinSubsetAtSubsetImage2.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAtSubsetImage2.lean) | `correct` |
+| `Def. 4` | (Dependency Preservation) An operation preserves dependencies if applying it to a parameterized subset lands inside the evaluation of the operation on the whole. | [`IsDependencyPreserving.lean`](../../src/CORALean/ContSet/ContSet/Definitions/IsDependencyPreserving.lean), [`MapEvalOn.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MapEvalOn.lean), [`PlusEvalOn.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/PlusEvalOn.lean), [`MapSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/MapSubsetAt.lean), [`BilinSubsetAt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAt.lean), [`BilinSubsetAtSubsetImage2.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinSubsetAtSubsetImage2.lean) | `correct` |
 | `Def. 5` | (Polynomial Zonotope) Dependent factors carrying monomials, plus independent generators. | n/a — restated; tracked as `Def. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) | `restated` |
 | `Def. 6` | (Reachable Set) Every state reachable from the initial set under the dynamics and admissible inputs. | [`ReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/ReachSetExact.lean) — the runs are Carathéodory, the integral equation with a measurable field, so a measurable input is admitted; under a continuous input they are the classical ones (`NonlinearSys.IsTrajectory.hasDerivWithinAt`) | `correct` |
 | `Prop. 1` | Any polynomial zonotope with independent generators can be written without them, by expanding the exponent matrix. | [`DependentExact.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/DependentExact.lean) | `correct` |
@@ -79,7 +79,7 @@ not an artefact of the zonotope's generators but is exactly the largest
 `|z - z✱|` over what that zonotope denotes, hence a function of the set and
 monotone in it. That last proof needs `E` entrywise nonnegative, which is not a
 hypothesis added to the source but part of what `E` is — the `hEb` of
-`AbstractionError.of_lagrange`, its only supplier, already forces it.
+`IsAbstractionError.of_lagrange`, its only supplier, already forces it.
 
 They are false for the other two, which is why those two enter `abstrErr_mono`
 as hypotheses. `zono` returns a function of the representation and not of the
@@ -98,7 +98,7 @@ and appears inside `hpost` rather than as a binder of its own.
 
 **What is not proved.** `abstrErr` has no soundness theorem of its own. Its
 three operations each carry one — `postDelta_outer`, `varInputs_outer` and
-`AbstractionError.of_lagrange` — but chaining them needs `of_lagrange`'s
+`IsAbstractionError.of_lagrange` — but chaining them needs `of_lagrange`'s
 quadratic term to be state-only where it is exact over the whole stacked pair,
 the gap that file's own docstring names. That is not what `Lemma 3` claims, and
 is left as work rather than recorded as a departure.

@@ -4,7 +4,7 @@ public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueSpec
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 
 @[expose] public section
 

@@ -29,11 +29,11 @@ nothing past `KΔt` — which is what re-linearizing from there needs.
 * `Δt` – step size
 * `K` – number of steps
 * `y` – output trajectory
-* `cert` – abstraction-error certificate
 * `o` – maximum order
 
 ## Hypotheses
 * `traj` – trajectory of the system
+* `cert` – abstraction-error certificate
 * `hT` – horizon inside time set
 * `hR` – trajectory stays in region over horizon
 * `hΔt` – step size nonnegative
@@ -76,7 +76,7 @@ theorem NonlinearSys.IsTrajectory.reach_outer_horizon {sys : NonlinearSys n m} {
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
     {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} {y : ℝ → Vec ℝ sys.q}
     (traj : sys.IsTrajectory T R₀ U x u y)
-    (cert : AbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hR : ∀ t ∈ Set.Icc (0 : ℝ) ((K : ℝ) * Δt), x t ∈ R) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))

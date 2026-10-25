@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.Branch
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsBranch
 public import CORALean.Specification.ReachSetAnalyzer.Operations.Basic
 
 @[expose] public section
@@ -56,7 +56,7 @@ theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry ℝ 
 /-- A branch names entries. -/
 theorem ReachSetAnalyzer.aux_branch_entries
     (R : List (ReachSetAnalyzer.Entry ℝ S n)) : -- --- CONCL ---
-    ∀ (i : ℕ) (w : List ℕ), ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) i w →
+    ∀ (i : ℕ) (w : List ℕ), ReachSetAnalyzer.IsBranch (ReachSetAnalyzer.children R) i w →
       (i = 0 ∨ ∃ e, R[i - 1]? = some e) → ∀ j ∈ w, ∃ e, R[j - 1]? = some e := by -- --- PROOF ---
   intro i w hw
   induction hw with
@@ -83,7 +83,7 @@ theorem ReachSetAnalyzer.aux_branch_entries
 
 theorem ReachSetAnalyzer.branch_proper (R : List (ReachSetAnalyzer.Entry ℝ S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) (w : List ℕ)
-    (hw : ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w) :
+    (hw : ReachSetAnalyzer.IsBranch (ReachSetAnalyzer.children R) 0 w) :
     ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
       ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup := fun j hj => by
   obtain ⟨e, he⟩ := ReachSetAnalyzer.aux_branch_entries R 0 w hw (Or.inl rfl) j hj

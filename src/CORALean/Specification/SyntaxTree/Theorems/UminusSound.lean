@@ -4,7 +4,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
 public import CORALean.Specification.SyntaxTree.Definitions.DomWithin
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 
@@ -42,10 +42,11 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `aux_uminus_` is sound for `uminus`. -/
 theorem SyntaxTree.uminus_sound (prev : Dom) : -- --- CONCL ---
-    UnarySound Unary.uminus.fn prev (Real.Interval.uminus prev) funHanUminus := by -- --- PROOF ---
+    IsUnarySound Unary.uminus.fn prev (Real.Interval.uminus prev)
+    funHanUminus := by -- --- PROOF ---
   intro int _ s hs hi
   refine ⟨_, rfl, ?_, ?_⟩ <;>
-  simp only [Unary.fn, Dom.contains, Dom.within, Real.Interval.intersection,
+  simp only [Unary.fn, Dom.contains, Dom.IsWithin, Real.Interval.intersection,
     Real.Interval.uminus, Pi.neg_apply] at hs hi ⊢
   · exact ⟨max_le (by linarith [hi.2]) hs.1, le_min (by linarith [hi.1]) hs.2⟩
   · exact ⟨le_max_right _ _, min_le_right _ _⟩

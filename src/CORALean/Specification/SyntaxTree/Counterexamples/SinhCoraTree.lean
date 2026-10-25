@@ -84,8 +84,8 @@ private theorem SyntaxTree.funHanSinhCora_sup_le {int prev : Dom}
 /-- `backpropagation` of the printed `sinh` loses the zero `(1, sinh 1)`. -/
 theorem SyntaxTree.sinhCora_counterexample : -- --- CONCL ---
     ∃ (x : Fin 2 → ℝ) (B : Real.Interval (Vec ℝ 2)),
-      InBox B x ∧ Dom.contains (interval 0 0) (sinhCoraTree.eval x) ∧
-      ¬ ∃ r, backpropagation sinhCoraTree (interval 0 0) B = .ok r ∧ InBox r
+      IsInBox B x ∧ Dom.contains (interval 0 0) (sinhCoraTree.eval x) ∧
+      ¬ ∃ r, backpropagation sinhCoraTree (interval 0 0) B = .ok r ∧ IsInBox r
         x := by -- --- PROOF ---
   have hs1 : Real.sinh 1 < 3 / 2 := by
     have h3 := Real.exp_one_lt_three

@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 # Boxes
 
 A box of `n` coordinates is a pair of bounds per coordinate, the `[x]` that [1, Alg. 1] splits;
-`InBox` is membership, and `Covers X l` says the boxes `l` together contain `X`, the invariant
+`IsInBox` is membership, and `Covers X l` says the boxes `l` together contain `X`, the invariant
 branch and bound keeps.
 
 ## Inputs
@@ -43,12 +43,12 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `t` lies in the box `B`, coordinate by coordinate. -/
-def Taylm.InBox (B : Fin n → Interval ℝ) (t : Vec ℝ n) : Prop := ∀ k, (B k).inf ≤ t k ∧
+def Taylm.IsInBox (B : Fin n → Interval ℝ) (t : Vec ℝ n) : Prop := ∀ k, (B k).inf ≤ t k ∧
     t k ≤ (B k).sup
 
 /-- Every point of `X` lies in one of the boxes `l`. -/
 def Taylm.Covers (X : Fin n → Interval ℝ) (l : List (Fin n → Interval ℝ)) : Prop :=
-  ∀ t, Taylm.InBox X t → ∃ B ∈ l, Taylm.InBox B t
+  ∀ t, Taylm.IsInBox X t → ∃ B ∈ l, Taylm.IsInBox B t
 
 end CORALean.Real
 

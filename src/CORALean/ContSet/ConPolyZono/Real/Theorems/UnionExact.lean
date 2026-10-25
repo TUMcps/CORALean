@@ -27,7 +27,7 @@ column of `CPZ₂`'s blocks vanishes. An all-zero exponent column is a degree-`0
 E = 0⟩` is `[-3,3] ∪ {5}`, but the formula also reaches `8`. CORA's `@conPolyZono/or` inherits the
 same gap.
 
-`NoZeroCol` on all four exponent matrices is what A.3 needs, weaker than `regular`. `qI = 0` is
+`HasNoZeroCol` on all four exponent matrices is what A.3 needs, weaker than `regular`. `qI = 0` is
 `Def. 5`'s representation, as for `linComb_exact_of_dependent`.
 
 ## Inputs
@@ -81,7 +81,7 @@ theorem ConPolyZono.aux_holds_unionLower_iff {p₁ p₂ : ℕ} {P₁ : PolyLevel
 /-- A point of the closed form lies in one operand or the other: the branch
 `union_domain_iff` hands back says which, and pins the other one's block to `0`. -/
 theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
-    (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E)
+    (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (hab : ∀ k, |a k| ≤ 1)
     (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)
     (hlow : ∀ i, ((ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).op i).holds
@@ -134,9 +134,9 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
 
 theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
-    (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.NoZeroCol cPZ₁.cons.R)
-    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E)
-    (hR₂ : ConPolyZono.NoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
+    (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.HasNoZeroCol cPZ₁.cons.R)
+    (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
+    (hR₂ : ConPolyZono.HasNoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
     cPZ₁.construct ∪ cPZ₂.construct = (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   ext x
   simp only [Set.mem_union]

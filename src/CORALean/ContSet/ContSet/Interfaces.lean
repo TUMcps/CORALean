@@ -158,12 +158,12 @@ class OfPoint (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
   mem_ofPoint (v : α) : v ∈ construct (ofPoint v)
 
 -- Data and law are two classes, so a float operation builds the identity without a `ContSet`.
-/-- The identity matrix as a set of the family, data only (`IdentityMem` says it is one). -/
+/-- The identity matrix as a set of the family, data only (`IsIdentityMem` says it is one). -/
 class OfIdentity (𝕄 : ℕ → ℕ → Type) where
   identity (n : ℕ) : 𝕄 n n
 
 /-- `OfIdentity.identity` denotes a set holding the real identity matrix. -/
-class IdentityMem (𝕄 : ℕ → ℕ → Type) [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [OfIdentity 𝕄] :
+class IsIdentityMem (𝕄 : ℕ → ℕ → Type) [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [OfIdentity 𝕄] :
     Prop where
   one_mem_identity (n : ℕ) : (1 : Mat ℝ n n) ∈ construct (OfIdentity.identity (𝕄 := 𝕄) n)
 

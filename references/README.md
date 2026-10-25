@@ -89,6 +89,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md) | Althoff, Grebenyuk | ARCH16, EPiC Series in Computing 43, pp. 91-105 | 2017 | 🟢 19/19 \| 6 |
 | [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md) | Bak, Bogomolov, Althoff | FORMATS, LNCS 10419, pp. 133-150 | 2017 | 🟢 4/4 \| 18 |
 | [Forward Inner-Approximated Reachability of Non-Linear Continuous Systems](2017/goubault-hscc-forward-inner-reachability.md) | Goubault, Putot | HSCC, pp. 1-10 | 2017 | 🟢 4/4 \| 17 |
+| [Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic](2017/johansson-tc-arb.md) | Johansson | IEEE Transactions on Computers, 66(8):1281-1292 | 2017 | 🟢 0/0 \| 1 |
 | [Semi-Supervised Classification with Graph Convolutional Networks](2017/kipf-iclr-gcn.md) | Kipf, Welling | ICLR | 2017 | 🟢 1/1 \| 4 |
 | [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md) | Kopetzki, Schürmann, Althoff | CDC, pp. 5626-5633 | 2017 | 🟢 4/4 \| 4 |
 | [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md) | Wang, Zhou, Puig, Cembrano, Wang | CCC, pp. 7230-7235 | 2017 | 🟢 15/15 \| 20 |

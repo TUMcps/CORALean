@@ -52,7 +52,7 @@ variable {X : Type}
 theorem STL.upsilon_and {𝓡 : Set (ℝ≥0 → Set X)} {Υ : STL.Formula X → RTL.Formula X}
     (hs : STL.IsSound 𝓡 Υ) (hc : STL.IsComplete 𝓡 Υ) (φ₁ φ₂ : STL.Formula X)
     {R : ℝ≥0 → Set X} (hR : R ∈ 𝓡) : -- --- CONCL ---
-    (Υ (φ₁.and φ₂)).Sat R ↔ (RTL.Formula.and (Υ φ₁) (Υ φ₂)).Sat R := by -- --- PROOF ---
+    (Υ (φ₁.and φ₂)).Satisfies R ↔ (RTL.Formula.and (Υ φ₁) (Υ φ₂)).Satisfies R := by -- --- PROOF ---
   constructor
   · intro h
     have h' := hs R hR _ h

@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrPolySearch
 
 `abstrErrPolySearch`'s `some` read back: the linearization it was handed, the region
 and the error of one candidate `k`, and the *polynomial* certificate at that
-candidate — stronger than the `AbstractionError` the `LinStep` carries, which has
+candidate — stronger than the `IsAbstractionError` the `LinStep` carries, which has
 forgotten which factors carry the error.
 
 No bound on `k` is stated. The search tries candidates `0` to `fuel - 1`, but the
@@ -66,7 +66,7 @@ theorem NonlinearSys.abstrErrPolySearch_eq_some {sys : NonlinearSys n m}
     {hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1} {Ws : ℕ → PolyZonotope (Vec ℝ n)} {fuel : ℕ}
     {step : sys.LinStep (S := 𝒫𝒵) U}
     (h : sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel = some step) : -- --- CONCL ---
-    ∃ k, PolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k) (hp k) (Ws k) ∧
+    ∃ k, IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k) (hp k) (Ws k) ∧
       step.A = A ∧ step.B = B ∧ step.xs = xs ∧ step.us = us ∧
       step.R = (pZ k).subsetAt (Ba k) ∧ step.L = L k ⊞ Ws k := by -- --- PROOF ---
   unfold NonlinearSys.abstrErrPolySearch at h

@@ -86,7 +86,7 @@ theorem LinParamSys.aux_zero_mem_segment (uc : Vec 𝕋 n) : -- --- CONCL ---
 lies in `constInputSolutionFloat r η ũ`, at an order admissible for `r`. -/
 theorem LinParamSys.expIntegral_mem_constInputSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} {η : ℕ}
-    (hr : 0 < toReal r) (hη : sys.OrderAdmissibleFloat r r η) {A : Mat ℝ n n}
+    (hr : 0 < toReal r) (hη : sys.IsOrderAdmissibleFloat r r η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal r) : -- --- CONCL ---
     Real.MatExp.expIntegral A t *ᵥ Scalar.toRealVec uc

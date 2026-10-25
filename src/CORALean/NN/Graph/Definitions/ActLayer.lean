@@ -12,7 +12,7 @@ public import Mathlib.Data.Matrix.Basic
 set with at most one more generator per output neuron, which [1] takes from Kochdumper et al.
 (2023) and does not prove. `ActLayer` is any such enclosure, a map on matrix polynomial
 zonotopes that keeps the factor count (new coefficients are independent generators).
-`Sound σ` says it encloses `σ` applied entrywise *at the factor vector*, with a coefficient
+`IsSound σ` says it encloses `σ` applied entrywise *at the factor vector*, with a coefficient
 for each independent generator it adds: the dependency the next convolution needs to see, and
 what the enclosure of [1, Prop. 1] gives. `AddsAtMost n` is the count, `n` the layer's neurons.
 
@@ -47,7 +47,7 @@ structure GNN.ActLayer (N F : ℕ) where
 
 /-- At every factor vector of a set without independent generators, `σ` applied entrywise is a
 point of the enclosure at that vector, up to coefficients of the generators it adds. -/
-def GNN.ActLayer.Sound (A : GNN.ActLayer N F) (σ : ℝ → ℝ) : Prop :=
+def GNN.ActLayer.IsSound (A : GNN.ActLayer N F) (σ : ℝ → ℝ) : Prop :=
   ∀ S : PolyZonotope (Mat ℝ N F), S.q = 0 → ∀ a : Fin S.p → ℝ, (∀ k, |a k| ≤ 1) →
     ∃ β : Fin (A.act S).q → ℝ, (∀ j, |β j| ≤ 1) ∧
       (S.point a).map σ = (A.act S).point (fun k => a (Fin.cast (A.p_eq S) k))

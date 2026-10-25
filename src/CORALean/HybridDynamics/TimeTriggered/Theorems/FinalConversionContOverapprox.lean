@@ -2,10 +2,10 @@ module
 
 public import Mathlib.MeasureTheory.Integral.DominatedConvergence
 public import Mathlib.Topology.Order.IntermediateValue
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.ContOverapprox
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsContOverapprox
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsFirstDwell
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsSecondDwell
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.IsExecFlowTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
@@ -60,11 +60,11 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
     (hf₁ : LipschitzWith K₁ f₁) (hf₂ : LipschitzWith K₂ f₂)
     (hF : LipschitzWith K' fun x => ((b - inner ℝ a x) / ‖a‖) • f₁ x)
     (hfe₁ : ∀ x, f₁ x ∈ fe x) (hfe₂ : ∀ x, f₂ x ∈ fe x) (ht₁ : 0 ≤ t₁) (hts : 0 ≤ ts)
-    (h₁ : (spaceTriggered I f₁ f₂ a b).FirstDwell t₁)
-    (h₂ : (spaceTriggered I f₁ f₂ a b).SecondDwell t₁ t₂) (T : ℝ) : -- --- CONCL ---
-    (spaceTriggered I f₁ f₂ a b).ContOverapprox T
+    (h₁ : (spaceTriggered I f₁ f₂ a b).IsFirstDwell t₁)
+    (h₂ : (spaceTriggered I f₁ f₂ a b).IsSecondDwell t₁ t₂) (T : ℝ) : -- --- CONCL ---
+    (spaceTriggered I f₁ f₂ a b).IsContOverapprox T
       (finalConversion I f₁ f₂ fe a b t₁ t₂ ts) Prod.fst (T + ts) := by -- --- PROOF ---
-  unfold DiffInclAutomaton.ContOverapprox
+  unfold DiffInclAutomaton.IsContOverapprox
   set Hs := spaceTriggered I f₁ f₂ a b with hHs
   set Hf := finalConversion I f₁ f₂ fe a b t₁ t₂ ts with hHf
   set g : X → ℝ := fun x => (b - inner ℝ a x) / ‖a‖ with hgdef

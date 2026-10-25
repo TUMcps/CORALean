@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Definitions.Chain
 public import CORALean.NN.Definitions.IntervalChain
-public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.IsInMergeBucket
 public import CORALean.NN.Definitions.MinSuffExplanation
 public import CORALean.NN.Definitions.MinSuffExplanationAbstract
 public import CORALean.NN.Definitions.MinSuffExplanationExact

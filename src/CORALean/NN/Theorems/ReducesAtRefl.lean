@@ -10,7 +10,7 @@ public import CORALean.NN.Definitions.Encloses
 
 `refl` is what makes `reducesAt_outer` a generalisation of `enclose_outer` rather than a
 different claim: taking `nn' = nn` — no `merge` step anywhere — is one of the derivations
-`reducesAt_outer` is proved sound for, at the same map, by induction on `Sound` through
+`reducesAt_outer` is proved sound for, at the same map, by induction on `IsSound` through
 `keep`.
 
 ## Inputs

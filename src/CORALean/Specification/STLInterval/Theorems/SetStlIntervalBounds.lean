@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Theorems.Basic
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
@@ -13,7 +13,7 @@ public import Mathlib.Data.EReal.Operations
 # `stlInterval(lb,ub,lc,rc)` with real bounds denotes the times between them
 
 The interval with a real lower bound and an upper bound that is real or `inf`, each end closed as
-its flag says, contains `t` exactly when `STLInterval.memBounds` holds.
+its flag says, contains `t` exactly when `STLInterval.IsInBounds` holds.
 
 ## Inputs
 * `lb` – lower bound
@@ -46,11 +46,11 @@ namespace CORALean
 theorem STLInterval.mem_set_stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc rc : Bool)
     (hlb : 0 ≤ lb) (t : ℝ) :
     t ∈ (STLInterval.stlIntervalBounds lb ub lc rc).set ↔
-      STLInterval.memBounds lb ub lc rc t := by
+      STLInterval.IsInBounds lb ub lc rc t := by
   rw [STLInterval.stlIntervalBounds, dif_pos (by simpa using hlb), STLInterval.set_stlInterval]
   induction ub using WithTop.recTopCoe with
-  | top => simp [STLInterval.rawSet, STLInterval.memBounds, eq_comm]
-  | coe u => simp [STLInterval.rawSet, STLInterval.memBounds, eq_comm]
+  | top => simp [STLInterval.rawSet, STLInterval.IsInBounds, eq_comm]
+  | coe u => simp [STLInterval.rawSet, STLInterval.IsInBounds, eq_comm]
 
 end CORALean
 

@@ -11,7 +11,7 @@ public import CORALean.NN.Definitions.Cat
 [1, Thm. 1]: an abstract transformer for every CAT function needs a domain with an affine
 transformer `Aff`, a meet `⊓` with a guard, a join `⊔` and a least element `⊥`, each sound. The
 abstract elements of dimension `n` are a representation `S n`, and `construct` is the concretization
-`γ` of [1, Sec. III (transformers)]; `CatDomain.Sound` is the inclusions the paper assumes.
+`γ` of [1, Sec. III (transformers)]; `CatDomain.IsSound` is the inclusions the paper assumes.
 
 The paper also assumes `⊥ ⊓ E = ⊥` and `a ⊔ ⊥ = a`; neither is needed for soundness, so neither is
 asked. `γ(⊥) = ∅` is asked.
@@ -48,7 +48,7 @@ structure CatDomain (𝕋 : Type) (S : ℕ → Type) where
   bot (n : ℕ) : S n
 
 /-- The inclusions [1, Thm. 1] assumes, `γ` being `construct`. -/
-structure CatDomain.Sound {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+structure CatDomain.IsSound {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
     (D : CatDomain 𝕋 S) : Prop where
   aff_outer {m n : ℕ} (a : S m) (W : Mat 𝕋 n m) (b : Vec 𝕋 n) :
     (fun x => toRealMat W *ᵥ x + toRealVec b) '' construct a ⊆ construct (D.aff a W b)

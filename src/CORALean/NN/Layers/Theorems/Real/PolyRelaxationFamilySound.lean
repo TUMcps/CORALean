@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 theorem polyRelaxationFamily_sound {σ σ' : ℝ → ℝ} {Mσ : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) :
-    (polyRelaxationFamily hd hσ).Sound σ :=
+    (polyRelaxationFamily hd hσ).IsSound σ :=
   ⟨fun o => (exists_polyRelaxation_error_lt (L := -(o : ℝ)) (U := (o : ℝ)) hd hσ
     (show (0 : ℝ) < 1 / ((o : ℝ) + 1) by positivity)).choose_spec.choose_spec.1⟩
 

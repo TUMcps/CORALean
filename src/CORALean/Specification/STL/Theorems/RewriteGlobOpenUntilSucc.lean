@@ -58,13 +58,13 @@ theorem STL.rewrite_globOpen_until_succ (φ₁ φ₂ : STL.Formula X) (i j : ℕ
     (ξ : ℝ≥0 → X)
     (h : ((STL.Formula.globOpen 1 φ₁).and (STL.Formula.next 1 (φ₁.and
       ((STL.Formula.globOpen 1 φ₁).and (STL.Formula.globOpen 1
-        (STL.Formula.until ((i - 1 : ℕ) : ℝ≥0) ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))).Sat ξ)
+        (STL.Formula.until ((i - 1 : ℕ) : ℝ≥0) ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))).Satisfies ξ)
     : -- --- CONCL ---
     (STL.Formula.globOpen 1
-      (STL.Formula.until (i : ℝ≥0) (j : ℝ≥0) φ₁ φ₂)).Sat ξ := by -- --- PROOF ---
+      (STL.Formula.until (i : ℝ≥0) (j : ℝ≥0) φ₁ φ₂)).Satisfies ξ := by -- --- PROOF ---
   obtain ⟨i, rfl⟩ : ∃ i', i = i' + 1 := ⟨i - 1, by omega⟩
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
-  simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.Sat, Time.shift_shift,
+  simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.Satisfies, Time.shift_shift,
     Nat.add_sub_cancel] at h ⊢
   obtain ⟨hG, hφ, hG', hU⟩ := h
   intro s hs₀ hs₁
@@ -74,7 +74,8 @@ theorem STL.rewrite_globOpen_until_succ (φ₁ φ₂ : STL.Formula X) (i j : ℕ
   · push_cast; exact add_le_add ht₂ le_rfl
   · have e : t + 1 + s = t + (s + 1) := by ring
     rw [e]; exact ht₃
-  · exact Time.forall_lt_add_one_of_blocks (fun x => φ₁.Sat (Time.shift ξ x)) hs₀ hs₁ hG hφ hG' ht₄
+  · exact Time.forall_lt_add_one_of_blocks (fun x => φ₁.Satisfies (Time.shift ξ x)) hs₀ hs₁ hG hφ
+      hG' ht₄
 
 end CORALean
 

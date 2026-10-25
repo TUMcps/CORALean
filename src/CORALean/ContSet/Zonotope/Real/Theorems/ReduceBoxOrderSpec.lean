@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+public import CORALean.ContSet.Zonotope.Real.Definitions.IsReduceBoxAdmissible
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxOrder
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
@@ -49,17 +49,17 @@ variable {n : ℕ}
 `Z.h` is always an admissible witness, so the infimum meets `B` too. -/
 theorem Zonotope.reduceBoxOrder_spec (Z : Zonotope (Vec ℝ n)) (hn : 0 < n)
     {B : Set (Vec ℝ n)} (hB : (0 : Vec ℝ n) ∈ B) : -- --- CONCL ---
-    Z.ReduceBoxAdmissible B (Z.reduceBoxOrder B) := by -- --- PROOF ---
+    Z.IsReduceBoxAdmissible B (Z.reduceBoxOrder B) := by -- --- PROOF ---
   have hthr : Z.h ≤ Z.h * n := by
     calc Z.h = Z.h * 1 := (mul_one Z.h).symm
       _ ≤ Z.h * n := Nat.mul_le_mul (le_refl Z.h) hn
-  have hmem : Z.ReduceBoxAdmissible B Z.h := by
+  have hmem : Z.IsReduceBoxAdmissible B Z.h := by
     show (Z.reduceBox Z.h).construct ⊆ B
     rw [Zonotope.reduceBox_eq_ofPoint hthr]
     intro x hx
     rw [Zonotope.mem_ofPoint_iff] at hx
     rwa [hx]
-  have hne : {o : ℕ | Z.ReduceBoxAdmissible B o}.Nonempty := ⟨Z.h, hmem⟩
+  have hne : {o : ℕ | Z.IsReduceBoxAdmissible B o}.Nonempty := ⟨Z.h, hmem⟩
   exact Nat.sInf_mem hne
 
 end CORALean.Real

@@ -41,12 +41,13 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Pform.sat_bigOr (K : List (Pform X)) (r : X) : -- --- CONCL ---
-    (Pform.bigOr K).Sat r ↔ ∃ ϱ ∈ K, ϱ.Sat r := by -- --- PROOF ---
+    (Pform.bigOr K).Satisfies r ↔ ∃ ϱ ∈ K, ϱ.Satisfies r := by -- --- PROOF ---
   induction K with
-  | nil => simp [Pform.bigOr, Pform.Sat]
+  | nil => simp [Pform.bigOr, Pform.Satisfies]
   | cons ϱ K ih =>
     -- one step of the fold is a binary `∨`
-    have : (Pform.bigOr (ϱ :: K)).Sat r ↔ ϱ.Sat r ∨ (Pform.bigOr K).Sat r := Iff.rfl
+    have : (Pform.bigOr (ϱ :: K)).Satisfies r ↔ ϱ.Satisfies r ∨ (Pform.bigOr K).Satisfies r :=
+        Iff.rfl
     rw [this, ih]
     simp
 

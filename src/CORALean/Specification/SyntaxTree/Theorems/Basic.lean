@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.ContainsTimes
@@ -394,7 +394,7 @@ theorem SyntaxTree.eval_var (i : Fin n) (v : SyntaxTree.Dom) (x : Fin n → ℝ)
 
 /-- A point of both boxes is a point of their intersection. -/
 theorem SyntaxTree.inBox_intersection {B₁ B₂ : Real.Interval (Vec ℝ n)} {x : Fin n → ℝ}
-    (h₁ : InBox B₁ x) (h₂ : InBox B₂ x) : InBox (Real.Interval.intersection B₁ B₂) x :=
+    (h₁ : IsInBox B₁ x) (h₂ : IsInBox B₂ x) : IsInBox (Real.Interval.intersection B₁ B₂) x :=
   fun i => ⟨max_le (h₁ i).1 (h₂ i).1, le_min (h₁ i).2 (h₂ i).2⟩
 
 
@@ -405,8 +405,8 @@ theorem SyntaxTree.inBox_intersection {B₁ B₂ : Real.Interval (Vec ℝ n)} {x
 -- Reviewed:      ---
 
 /-- The `minus` node over two sound trees is sound. -/
-theorem SyntaxTree.sound_minus {t₁ t₂ : SyntaxTree n} (h₁ : Sound B t₁) (h₂ : Sound B t₂) :
-    Sound B (t₁.minus t₂) :=
+theorem SyntaxTree.sound_minus {t₁ t₂ : SyntaxTree n} (h₁ : IsSound B t₁) (h₂ : IsSound B t₂) :
+    IsSound B (t₁.minus t₂) :=
   ⟨h₁, h₂, fun x hx => SyntaxTree.contains_minus (encloses_of_sound h₁ x hx)
     (encloses_of_sound h₂ x hx), minus_sound _ _⟩
 
@@ -418,8 +418,8 @@ theorem SyntaxTree.sound_minus {t₁ t₂ : SyntaxTree n} (h₁ : Sound B t₁) 
 -- Reviewed:      ---
 
 /-- The `minus` node with a number first is sound. -/
-theorem SyntaxTree.sound_minusNumLeft (c : ℝ) (h : Sound B t) : Sound B (SyntaxTree.minusNumLeft c
-    t) :=
+theorem SyntaxTree.sound_minusNumLeft (c : ℝ) (h : IsSound B t) :
+    IsSound B (SyntaxTree.minusNumLeft c t) :=
   ⟨h, fun x hx => SyntaxTree.contains_minus SyntaxTree.contains_interval (encloses_of_sound h x
       hx), minus_sound _ _⟩
 
@@ -431,8 +431,8 @@ theorem SyntaxTree.sound_minusNumLeft (c : ℝ) (h : Sound B t) : Sound B (Synta
 -- Reviewed:      ---
 
 /-- The `minus` node with a number second is sound. -/
-theorem SyntaxTree.sound_minusNumRight (h : Sound B t) (c : ℝ) : Sound B (SyntaxTree.minusNumRight
-    t c) :=
+theorem SyntaxTree.sound_minusNumRight (h : IsSound B t) (c : ℝ) :
+    IsSound B (SyntaxTree.minusNumRight t c) :=
   ⟨h, fun x hx => SyntaxTree.contains_minus (encloses_of_sound h x hx)
       SyntaxTree.contains_interval, minus_sound _ _⟩
 
@@ -444,8 +444,8 @@ theorem SyntaxTree.sound_minusNumRight (h : Sound B t) (c : ℝ) : Sound B (Synt
 -- Reviewed:      ---
 
 /-- The `plus` node over two sound trees is sound. -/
-theorem SyntaxTree.sound_plus {t₁ t₂ : SyntaxTree n} (h₁ : Sound B t₁) (h₂ : Sound B t₂) :
-    Sound B (t₁.plus t₂) :=
+theorem SyntaxTree.sound_plus {t₁ t₂ : SyntaxTree n} (h₁ : IsSound B t₁) (h₂ : IsSound B t₂) :
+    IsSound B (t₁.plus t₂) :=
   ⟨h₁, h₂, fun x hx => SyntaxTree.contains_plus (encloses_of_sound h₁ x hx)
     (encloses_of_sound h₂ x hx), plus_sound _ _⟩
 
@@ -457,8 +457,8 @@ theorem SyntaxTree.sound_plus {t₁ t₂ : SyntaxTree n} (h₁ : Sound B t₁) (
 -- Reviewed:      ---
 
 /-- The `plus` node with a number first is sound. -/
-theorem SyntaxTree.sound_plusNumLeft (c : ℝ) (h : Sound B t) : Sound B (SyntaxTree.plusNumLeft c t)
-    :=
+theorem SyntaxTree.sound_plusNumLeft (c : ℝ) (h : IsSound B t) :
+    IsSound B (SyntaxTree.plusNumLeft c t) :=
   ⟨h, fun x hx => SyntaxTree.contains_plus SyntaxTree.contains_interval (encloses_of_sound h x hx),
       plus_sound _ _⟩
 
@@ -470,8 +470,8 @@ theorem SyntaxTree.sound_plusNumLeft (c : ℝ) (h : Sound B t) : Sound B (Syntax
 -- Reviewed:      ---
 
 /-- The `plus` node with a number second is sound. -/
-theorem SyntaxTree.sound_plusNumRight (h : Sound B t) (c : ℝ) : Sound B (SyntaxTree.plusNumRight t
-    c) :=
+theorem SyntaxTree.sound_plusNumRight (h : IsSound B t) (c : ℝ) :
+    IsSound B (SyntaxTree.plusNumRight t c) :=
   ⟨h, fun x hx => SyntaxTree.contains_plus (encloses_of_sound h x hx) SyntaxTree.contains_interval,
       plus_sound _ _⟩
 
@@ -483,7 +483,7 @@ theorem SyntaxTree.sound_plusNumRight (h : Sound B t) (c : ℝ) : Sound B (Synta
 -- Reviewed:      ---
 
 /-- The `power` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_power (h : Sound B t) (k : ℕ) : Sound B (t.power k) :=
+theorem SyntaxTree.sound_power (h : IsSound B t) (k : ℕ) : IsSound B (t.power k) :=
   ⟨h, encloses_power (encloses_of_sound h) k, power_sound k t.value⟩
 
 
@@ -494,7 +494,7 @@ theorem SyntaxTree.sound_power (h : Sound B t) (k : ℕ) : Sound B (t.power k) :
 -- Reviewed:      ---
 
 /-- The `mpower` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_mpower (h : Sound B t) (k : ℕ) : Sound B (t.mpower k) :=
+theorem SyntaxTree.sound_mpower (h : IsSound B t) (k : ℕ) : IsSound B (t.mpower k) :=
   SyntaxTree.sound_power h k
 
 
@@ -505,8 +505,8 @@ theorem SyntaxTree.sound_mpower (h : Sound B t) (k : ℕ) : Sound B (t.mpower k)
 -- Reviewed:      ---
 
 /-- The `times` node over two sound trees is sound. -/
-theorem SyntaxTree.sound_times {t₁ t₂ : SyntaxTree n} (h₁ : Sound B t₁) (h₂ : Sound B t₂) :
-    Sound B (t₁.times t₂) :=
+theorem SyntaxTree.sound_times {t₁ t₂ : SyntaxTree n} (h₁ : IsSound B t₁) (h₂ : IsSound B t₂) :
+    IsSound B (t₁.times t₂) :=
   ⟨h₁, h₂, fun x hx => SyntaxTree.contains_times (encloses_of_sound h₁ x hx)
     (encloses_of_sound h₂ x hx), times_sound _ _⟩
 
@@ -518,8 +518,8 @@ theorem SyntaxTree.sound_times {t₁ t₂ : SyntaxTree n} (h₁ : Sound B t₁) 
 -- Reviewed:      ---
 
 /-- The `times` node with a number first is sound. -/
-theorem SyntaxTree.sound_timesNumLeft (c : ℝ) (h : Sound B t) : Sound B (SyntaxTree.timesNumLeft c
-    t) :=
+theorem SyntaxTree.sound_timesNumLeft (c : ℝ) (h : IsSound B t) :
+    IsSound B (SyntaxTree.timesNumLeft c t) :=
   ⟨h, fun x hx => SyntaxTree.contains_times SyntaxTree.contains_interval (encloses_of_sound h x
       hx), times_sound _ _⟩
 
@@ -531,8 +531,8 @@ theorem SyntaxTree.sound_timesNumLeft (c : ℝ) (h : Sound B t) : Sound B (Synta
 -- Reviewed:      ---
 
 /-- The `times` node with a number second is sound. -/
-theorem SyntaxTree.sound_timesNumRight (h : Sound B t) (c : ℝ) : Sound B (SyntaxTree.timesNumRight
-    t c) :=
+theorem SyntaxTree.sound_timesNumRight (h : IsSound B t) (c : ℝ) :
+    IsSound B (SyntaxTree.timesNumRight t c) :=
   ⟨h, fun x hx => SyntaxTree.contains_times (encloses_of_sound h x hx)
       SyntaxTree.contains_interval, times_sound _ _⟩
 
@@ -544,7 +544,7 @@ theorem SyntaxTree.sound_timesNumRight (h : Sound B t) (c : ℝ) : Sound B (Synt
 -- Reviewed:      ---
 
 /-- The `uminus` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_uminus (h : Sound B t) : Sound B t.uminus :=
+theorem SyntaxTree.sound_uminus (h : IsSound B t) : IsSound B t.uminus :=
   ⟨h, fun x hx => (by
     have hc := encloses_of_sound h x hx
     exact ⟨neg_le_neg hc.2, neg_le_neg hc.1⟩), uminus_sound t.value⟩
@@ -557,7 +557,7 @@ theorem SyntaxTree.sound_uminus (h : Sound B t) : Sound B t.uminus :=
 -- Reviewed:      ---
 
 /-- `uplus` of a sound tree is sound. -/
-theorem SyntaxTree.sound_uplus (h : Sound B t) : Sound B t.uplus := h
+theorem SyntaxTree.sound_uplus (h : IsSound B t) : IsSound B t.uplus := h
 
 
 -- ==================================  `SyntaxTree.sound_var`  ================================== --
@@ -568,7 +568,7 @@ theorem SyntaxTree.sound_uplus (h : Sound B t) : Sound B t.uplus := h
 
 /-- The leaf of a variable holding its coordinate of the box is sound. -/
 theorem SyntaxTree.sound_var {B : Real.Interval (Vec ℝ n)} (i : Fin n) :
-    Sound B (.var i (interval (B.inf i) (B.sup i))) := fun _ hx => hx i
+    IsSound B (.var i (interval (B.inf i) (B.sup i))) := fun _ hx => hx i
 
 end CORALean
 

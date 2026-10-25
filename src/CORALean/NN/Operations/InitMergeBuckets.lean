@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Interval
-public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.IsInMergeBucket
 public import CORALean.NN.Operations.Bucketed
 
 @[expose] public section

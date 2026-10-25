@@ -52,7 +52,7 @@ variable {n : ℕ}
 theorem Taylm.ldbLoop_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     (ε : ℝ) : -- --- CONCL ---
     ∀ (fuel : ℕ) (B : Fin n → Interval ℝ), (∀ k, -1 ≤ (B k).inf ∧ (B k).sup ≤ 1) →
-      ∀ t, Taylm.InBox B t → Taylm.ldbLoop T ε fuel B ≤ f t := by -- --- PROOF ---
+      ∀ t, Taylm.IsInBox B t → Taylm.ldbLoop T ε fuel B ≤ f t := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero =>
@@ -80,13 +80,13 @@ theorem Taylm.ldbLoop_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f
         have := hrad k
         simp only [Taylm.boxMid, Taylm.boxRad] at this ⊢
         constructor <;> nlinarith [(hB' k).1, (hB' k).2.1, (hB' k).2.2, hR.1, hR.2]
-      have himg : ∀ q, Taylm.InBox R q → Taylm.InBox (fun k =>
+      have himg : ∀ q, Taylm.IsInBox R q → Taylm.IsInBox (fun k =>
           ⟨Taylm.boxMid B k + Taylm.boxRad B k * (R k).inf,
             Taylm.boxMid B k + Taylm.boxRad B k * (R k).sup⟩)
           (fun k => Taylm.boxMid B k + Taylm.boxRad B k * q k) := by
         intro q hq k
         exact ⟨by nlinarith [(hq k).1, hrad k], by nlinarith [(hq k).2, hrad k]⟩
-      by_cases hin : Taylm.InBox R s
+      by_cases hin : Taylm.IsInBox R s
       · exact ih _ hsub _ (himg s hin)
       · -- the point was cut: a kept point is lower still
         have hlt := Taylm.ldbStep_reduce hE hs hin

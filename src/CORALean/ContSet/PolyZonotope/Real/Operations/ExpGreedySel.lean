@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
 
@@ -51,7 +51,7 @@ def PolyZonotope.aux_lightestEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η 
     Option (Fin h × Fin h) :=
   ((List.finRange h).flatMap fun i => (List.finRange h).map fun j => (i, j)).foldl
     (fun best ij =>
-      if PolyZonotope.ExpEdge E η ij.1 ij.2 then
+      if PolyZonotope.IsExpEdge E η ij.1 ij.2 then
         match best with
         | none => some ij
         | some b =>

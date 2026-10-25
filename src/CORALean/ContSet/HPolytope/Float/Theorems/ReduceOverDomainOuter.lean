@@ -59,7 +59,7 @@ theorem HPolytope.reduceOverDomain_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
     omega
   simp only [HPolytope.reduceOverDomain, if_true]
   set Q := P.absorbRounding with hQdef
-  have hQe : Q.ErrFree := HPolytope.errFree_of_origin rfl rfl rfl
+  have hQe : Q.IsErrFree := HPolytope.errFree_of_origin rfl rfl rfl
   set i₀ : Fin Q.m := ⟨0, hmQ⟩
   set Ainf : Vec 𝕋 n := fun j => minimumOver fun i => mulDown (Q.A i j) (Q.rowScale p i)
   set Asup : Vec 𝕋 n := fun j => maximumOver fun i => mulUp (Q.A i j) (Q.rowScale p i)

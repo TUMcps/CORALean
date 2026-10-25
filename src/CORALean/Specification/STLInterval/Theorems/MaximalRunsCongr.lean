@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.STLInterval.Definitions.MaximalRuns
+public import CORALean.Specification.STLInterval.Definitions.IsMaximalRuns
 
 @[expose] public section
 
@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Properties that agree at times `≥ 0` have the same maximal runs. -/
 theorem STLInterval.maximalRuns_congr (L : List (STLInterval 𝕋)) (P Q : ℝ → Prop)
     (h : ∀ t : ℝ, 0 ≤ t → (P t ↔ Q t)) : -- --- CONCL ---
-    STLInterval.MaximalRuns L P ↔ STLInterval.MaximalRuns L Q := by -- --- PROOF ---
-  unfold STLInterval.MaximalRuns
+    STLInterval.IsMaximalRuns L P ↔ STLInterval.IsMaximalRuns L Q := by -- --- PROOF ---
+  unfold STLInterval.IsMaximalRuns
   refine and_congr (forall_congr' fun t => forall_congr' fun ht => ?_)
     (forall_congr' fun I => forall_congr' fun hI => forall_congr' fun t₁ =>
       forall_congr' fun h₁ => forall_congr' fun t₂ => forall_congr' fun ht₂ => ?_)

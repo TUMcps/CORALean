@@ -54,17 +54,18 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Samp.sat_toCNF (c : ℝ≥0) (s : STL.Samp X) (pos : Bool) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    ((s.toCNF pos).toFormula c).Sat ξ ↔
-      if pos then (s.toFormula c).Sat ξ else ¬ (s.toFormula c).Sat ξ := by -- --- PROOF ---
+    ((s.toCNF pos).toFormula c).Satisfies ξ ↔
+      if pos then (s.toFormula c).Satisfies ξ else ¬ (s.toFormula c).Satisfies
+      ξ := by -- --- PROOF ---
   induction s generalizing pos ξ with
   | lit ϱ =>
     rw [STL.CNF.sat_toFormula]
     cases pos <;> simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.sat_ofPform,
-      STL.Branch.Holds, Pform.Sat]
+      STL.Branch.Holds, Pform.Satisfies]
   | not s ih =>
     cases pos
-    · simpa [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Sat] using ih true ξ
-    · simpa [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Sat] using ih false ξ
+    · simpa [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Satisfies] using ih true ξ
+    · simpa [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Satisfies] using ih false ξ
   | and s t ihs iht =>
     cases pos
     · -- `¬(s ∧ t)` is `¬s ∨ ¬t`
@@ -87,17 +88,17 @@ theorem STL.Samp.sat_toCNF (c : ℝ≥0) (s : STL.Samp X) (pos : Bool) (ξ : ℝ
     -- the window operators swap under negation, and the point part is `⊥`
     rw [STL.CNF.sat_toFormula]
     cases pos
-    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Sat, STL.Formula.sat_ofPform,
-        STL.Branch.Holds, Pform.Sat, Time.shift]
-    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Sat, STL.Formula.sat_ofPform,
-        STL.Branch.Holds, Pform.Sat, Time.shift]
+    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Satisfies, STL.Formula.sat_ofPform,
+        STL.Branch.Holds, Pform.Satisfies, Time.shift]
+    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Satisfies, STL.Formula.sat_ofPform,
+        STL.Branch.Holds, Pform.Satisfies, Time.shift]
   | glob ϱ =>
     rw [STL.CNF.sat_toFormula]
     cases pos
-    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Sat, STL.Formula.sat_ofPform,
-        STL.Branch.Holds, Pform.Sat, Time.shift]
-    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Sat, STL.Formula.sat_ofPform,
-        STL.Branch.Holds, Pform.Sat, Time.shift]
+    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Satisfies, STL.Formula.sat_ofPform,
+        STL.Branch.Holds, Pform.Satisfies, Time.shift]
+    · simp [STL.Samp.toCNF, STL.Samp.toFormula, STL.Formula.Satisfies, STL.Formula.sat_ofPform,
+        STL.Branch.Holds, Pform.Satisfies, Time.shift]
 
 
 end CORALean

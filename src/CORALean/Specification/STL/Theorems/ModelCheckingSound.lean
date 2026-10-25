@@ -76,20 +76,20 @@ theorem STL.Samp.aux_toFormula_scale (c : ℝ≥0) (s : STL.Samp X) : -- --- CON
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.model_checking_sound {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X) (hstl : φ.IsStl)
-    (hdiv : φ.CDivisible c) : -- --- CONCL ---
+    (hdiv : φ.IsCDivisible c) : -- --- CONCL ---
     ∃ cnf : STL.CNF X,
       (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧
         ∀ (T : Finset ℝ≥0) (R : ℝ≥0 → Set X), (∀ t, (R t).Nonempty) →
-          ReachSequence.FinRep T R → ReachSequence.CDivisible c T →
-            (cnf.upsilon c).Sat R → φ.HoldsOn (ReachSequence.traceSet R) ∧
+          ReachSequence.IsFinRep T R → ReachSequence.IsCDivisible c T →
+            (cnf.upsilon c).Satisfies R → φ.HoldsOn (ReachSequence.traceSet R) ∧
               ∀ Traces : Set (ℝ≥0 → X), ReachSequence.Encloses R Traces →
                 φ.HoldsOn Traces := by -- --- PROOF ---
   obtain ⟨n, -, hn, -⟩ := STL.Formula.exists_nnf c φ hstl hdiv
   obtain ⟨⟨s, hs⟩, -, -⟩ := STL.Nnf.hasSampledRewrite n
   refine ⟨s.toCNF true, s.nodup_toCNF true, fun T R hne hT hT' hSat => ?_⟩
   -- the sampled time formula at step `c` implies `ϕ`: scale the one at step `1` that implies `n`
-  have hφ : ∀ ξ, (s.toFormula c).Sat ξ → φ.Sat ξ := fun ξ h => by
-    have h₁ : (s.toFormula 1).Sat (fun t => ξ (t * c)) := by
+  have hφ : ∀ ξ, (s.toFormula c).Satisfies ξ → φ.Satisfies ξ := fun ξ h => by
+    have h₁ : (s.toFormula 1).Satisfies (fun t => ξ (t * c)) := by
       rw [← STL.Formula.sat_scale hc, STL.Samp.aux_toFormula_scale]; exact h
     exact (hn ξ).1 ((STL.Formula.sat_scale hc _ ξ).2 (hs _ h₁))
   -- `Υ` is sound for the normal form, which is equivalent to `s`

@@ -45,9 +45,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.globOpen_next_equiv (φ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.globOpen 1 (STL.Formula.next 1 φ)).Sat ξ ↔
-      (STL.Formula.next 1 (STL.Formula.globOpen 1 φ)).Sat ξ := by -- --- PROOF ---
-  simp only [STL.Formula.sat_next, STL.Formula.Sat, Time.shift_shift]
+    (STL.Formula.globOpen 1 (STL.Formula.next 1 φ)).Satisfies ξ ↔
+      (STL.Formula.next 1 (STL.Formula.globOpen 1 φ)).Satisfies ξ := by -- --- PROOF ---
+  simp only [STL.Formula.sat_next, STL.Formula.Satisfies, Time.shift_shift]
   constructor
   · intro h t h₀ h₁
     have := h t h₀ h₁

@@ -44,7 +44,7 @@ namespace CORALean
 /-- The intervals of `findIntervals` are the maximal intervals where the signal is `match`. -/
 theorem FourValuedSignal.findIntervals_spec (s : FourValuedSignal ℝ) (hs : s.IsValid)
     (match_ : FourValued) : -- --- CONCL ---
-    STLInterval.MaximalRuns (s.findIntervals match_)
+    STLInterval.IsMaximalRuns (s.findIntervals match_)
       (fun t => s.at t = match_) := by -- --- PROOF ---
   -- the Kleene refinements are valid
   have hvf := (s.toKleeneSignal_spec hs Kleene.ff).1

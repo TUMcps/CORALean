@@ -12,7 +12,7 @@ public import Mathlib.Data.Real.Basic
 [1, Sec. 3.1.2]: `D = {[x(0); y(0)] | ∀ u(·) ∈ U(·) : lim_{t→∞} γ(t, x(0), y(0), u(·)) ∈ S}`, the
 initial states from which every admissible input leads into the invariant set `S`, read as
 printed: the limit exists and lies in `S`. `γ` is the unique solution [1, Sec. 3.1] assumes,
-an argument here as in the paper (`RobustInvariant`).
+an argument here as in the paper (`IsRobustInvariant`).
 
 ## Inputs
 * `γ` – solution map of the system

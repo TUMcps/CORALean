@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesOfSound
@@ -42,7 +42,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `sqrt` of a nonnegative operand node over a sound tree is sound. -/
-theorem SyntaxTree.sound_sqrt (h : Sound B t) (hd : 0 ≤ t.value.inf 0) : Sound B (t.sqrt) :=
+theorem SyntaxTree.sound_sqrt (h : IsSound B t) (hd : 0 ≤ t.value.inf 0) : IsSound B (t.sqrt) :=
   ⟨h, encloses_sqrt (encloses_of_sound h) hd, sqrt_sound t.value hd⟩
 
 end CORALean

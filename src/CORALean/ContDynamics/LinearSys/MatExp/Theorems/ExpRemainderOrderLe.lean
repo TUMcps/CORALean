@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 /-- Minimality: every order meeting `ε` is at least the one chosen for it. -/
 theorem MatExp.expRemainderOrder_le {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
-    (h : MatExp.OrderAdmissible x ε η) : MatExp.expRemainderOrder x ε ≤ η :=
+    (h : MatExp.IsOrderAdmissible x ε η) : MatExp.expRemainderOrder x ε ≤ η :=
   Nat.sInf_le h
 
 end CORALean.Real

@@ -1,13 +1,13 @@
 module
 
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 
 @[expose] public section
 
 /-!
-# `withinTol` at tolerance zero
+# `IsWithinTol` at tolerance zero
 
-At `tol = 0` `withinTol` is equality.
+At `tol = 0` `IsWithinTol` is equality.
 
 ## Inputs
 * `a` – first value
@@ -33,9 +33,9 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `withinTol 0 a b` iff `a = b`. -/
+/-- `IsWithinTol 0 a b` iff `a = b`. -/
 theorem STLInterval.withinTol_zero (a b : EReal) : -- --- CONCL ---
-    STLInterval.withinTol 0 a b ↔ a = b := by -- --- PROOF ---
+    STLInterval.IsWithinTol 0 a b ↔ a = b := by -- --- PROOF ---
   constructor
   · rintro (⟨x, y, rfl, rfl, h | h⟩ | ⟨h, _⟩)
     · have : x = y := sub_eq_zero.1 (abs_nonpos_iff.1 h)

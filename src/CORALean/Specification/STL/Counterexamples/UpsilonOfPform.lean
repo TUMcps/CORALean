@@ -45,8 +45,8 @@ open scoped NNReal
 theorem STL.exists_upsilon_ofPform_ne : -- --- CONCL ---
     ∃ (R : ℝ≥0 → Set Bool) (Υ : STL.Formula Bool → RTL.Formula Bool),
       STL.IsSound {R} Υ ∧ STL.IsComplete {R} Υ ∧
-        ¬ ((Υ (STL.Formula.ofPform Pform.bot)).Sat R ↔
-          (RTL.Formula.A Pform.bot).Sat R) := by -- --- PROOF ---
+        ¬ ((Υ (STL.Formula.ofPform Pform.bot)).Satisfies R ↔
+          (RTL.Formula.A Pform.bot).Satisfies R) := by -- --- PROOF ---
   classical
   let R : ℝ≥0 → Set Bool := fun t => if t = 1 then ∅ else Set.univ
   -- `Υ(φ)` is `A ⊤` when `φ` holds of the traces of `R` and `A ⊥` otherwise
@@ -54,8 +54,8 @@ theorem STL.exists_upsilon_ofPform_ne : -- --- CONCL ---
     if φ.HoldsOn (ReachSequence.traceSet R) then .A Pform.top else .A Pform.bot
   have h0 : R 0 = Set.univ := by simp [R]
   -- `A ⊥` fails at `R`, since `R 0` has a state
-  have hbot : ¬ (RTL.Formula.A Pform.bot).Sat R := fun h => h true (by simp [h0]) |>.elim
-  have htop : (RTL.Formula.A Pform.top).Sat R := fun r _ => trivial
+  have hbot : ¬ (RTL.Formula.A Pform.bot).Satisfies R := fun h => h true (by simp [h0]) |>.elim
+  have htop : (RTL.Formula.A Pform.top).Satisfies R := fun r _ => trivial
   refine ⟨R, Υ, ?_, ?_, ?_⟩
   · rintro R' rfl φ h
     by_contra hφ

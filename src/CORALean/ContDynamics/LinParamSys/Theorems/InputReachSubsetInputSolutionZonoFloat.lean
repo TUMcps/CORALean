@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
@@ -28,7 +28,7 @@ sets gives the member's orders `0 … η` and its remainder. Orders `0` and `1` 
 terms at `sys.A.matInterval`, and the remainder in `intervalInputRemainder` there; the
 exact sum is regrouped as the float one is, Minkowski sums being associative.
 
-`hη` is `OrderAdmissibleFloat` of the interval system `sys.A.matInterval` — a float check.
+`hη` is `IsOrderAdmissibleFloat` of the interval system `sys.A.matInterval` — a float check.
 
 ## Inputs
 * `sys` – system
@@ -166,7 +166,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset_zono
 theorem LinParamSys.aux_inputRemainder_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
-      sys.A.matInterval).OrderAdmissibleFloat r r η)
+      sys.A.matInterval).IsOrderAdmissibleFloat r r η)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     construct (Mtimes.mtimes (𝕄 := ℐ)
       (S := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
@@ -190,7 +190,7 @@ lies in `inputSolutionZonoFloat`. -/
 theorem LinParamSys.inputReach_subset_inputSolutionZonoFloat
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
-      sys.A.matInterval).OrderAdmissibleFloat Δt Δt η)
+      sys.A.matInterval).IsOrderAdmissibleFloat Δt Δt η)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (sys.inputSolutionZonoFloat Δt η V).construct := by -- --- PROOF ---

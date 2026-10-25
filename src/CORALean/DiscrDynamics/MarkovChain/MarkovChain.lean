@@ -16,6 +16,11 @@ time, `T.OT` the one averaged over it.
 
 Before `convertTransitionMatrix` the matrices are a cell array over the inputs (`Transitions`);
 after it and in `stretch` one matrix over the pairs of cell and input (`Stacked`).
+
+## References
+
+None: CORA's `markovchain`, a software class: no publication introduces it, and the CORA manual page
+for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

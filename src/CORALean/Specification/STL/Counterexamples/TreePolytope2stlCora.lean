@@ -74,9 +74,9 @@ variable {n : ℕ}
 
 -- A statement about the model, used by the refutation below.
 theorem STL.Tree.sat_polytope2stlCora (P : Real.HPolytope (Fin n → ℝ)) (ξ : ℝ≥0 → Fin n → ℝ) :
-    (STL.Tree.polytope2stlCora P).Sat ξ ↔ ∀ i, P.A i (ξ 0) ≤ P.b i := by
+    (STL.Tree.polytope2stlCora P).Satisfies ξ ↔ ∀ i, P.A i (ξ 0) ≤ P.b i := by
   simp [STL.Tree.polytope2stlCora, STL.Tree.sat_conjoin, STL.Tree.sat_halfspace2set,
-    STL.Cmp.rel, ← STL.Tree.linearMap_apply_eq_sum]
+    STL.Cmp.Relates, ← STL.Tree.linearMap_apply_eq_sum]
 
 end CORALean
 
@@ -91,7 +91,7 @@ variable {n : ℕ}
 
 theorem STL.Tree.polytope2stlCora_counterexample :
     ∃ (P : Real.HPolytope (Fin 1 → ℝ)) (ξ : ℝ≥0 → Fin 1 → ℝ),
-      (STL.Tree.polytope2stlCora P).Sat ξ ∧ ξ 0 ∉ P.construct := by
+      (STL.Tree.polytope2stlCora P).Satisfies ξ ∧ ξ 0 ∉ P.construct := by
   refine ⟨⟨1, fun _ => LinearMap.proj 0, fun _ => 5, 1, fun _ => LinearMap.proj 0, fun _ => 2⟩,
     fun _ _ => 0, ?_, ?_⟩
   · simp [STL.Tree.sat_polytope2stlCora]

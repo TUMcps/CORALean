@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
-public import CORALean.Global.SuperlinearDecrease
+public import CORALean.Global.HasSuperlinearDecrease
 
 @[expose] public section
 
@@ -11,7 +11,7 @@ public import CORALean.Global.SuperlinearDecrease
 # `Thm. 2`: `ε_P` decreases superlinearly
 
 [1, Thm. 2]: `∀φ∈(0,1): ε_P([t_i,t_i+φΔt_i]) ≤ φ·ε_P([t_i,t_i+Δt_i])`, stated
-here as `SuperlinearDecrease` at a closed ball around `0` in `ℝ` — the down-set
+here as `HasSuperlinearDecrease` at a closed ball around `0` in `ℝ` — the down-set
 a nonnegative radius picks out — so `⊆` unfolds to exactly this inequality.
 `timePointStepRemainderError`'s own `r` scales linearly and its
 `expRemainderBound` factor superlinearly by `Lemma 1`'s own workhorse, so the
@@ -79,7 +79,7 @@ meeting the usual side condition. -/
 theorem LinearSys.superlinearDecrease_timePointStepRemainderError (sys : LinearSys 𝕋 n)
     (η : ℕ) (U : Zonotope (Vec ℝ n)) {Δt : ℝ} (hΔt0 : 0 < Δt)
     (hΔt : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    SuperlinearDecrease
+    HasSuperlinearDecrease
       (fun δ => Metric.closedBall (0:ℝ) (sys.timePointStepRemainderError δ η U))
       Δt := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

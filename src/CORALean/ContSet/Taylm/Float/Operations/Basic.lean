@@ -298,14 +298,14 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ======================================  `Taylm.InBox`  ======================================= --
+-- =====================================  `Taylm.IsInBox`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- A real point lies in the box whose stored float ends are read as reals. -/
-def Taylm.InBox (B : Fin n → Interval 𝕋) (t : Vec ℝ n) : Prop :=
+def Taylm.IsInBox (B : Fin n → Interval 𝕋) (t : Vec ℝ n) : Prop :=
   ∀ k, toReal (B k).inf ≤ t k ∧ t k ≤ toReal (B k).sup
 
 
@@ -317,7 +317,7 @@ def Taylm.InBox (B : Fin n → Interval 𝕋) (t : Vec ℝ n) : Prop :=
 
 /-- Every point of the box `X` lies in one of the boxes `l`. -/
 def Taylm.Covers (X : Fin n → Interval 𝕋) (l : List (Fin n → Interval 𝕋)) : Prop :=
-  ∀ t, Taylm.InBox X t → ∃ B ∈ l, Taylm.InBox B t
+  ∀ t, Taylm.IsInBox X t → ∃ B ∈ l, Taylm.IsInBox B t
 
 end
 

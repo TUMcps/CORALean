@@ -42,7 +42,7 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Formula.sat_tt (ξ : ℝ≥0 → X) : (STL.Formula.tt : STL.Formula X).Sat ξ := by
+theorem STL.Formula.sat_tt (ξ : ℝ≥0 → X) : (STL.Formula.tt : STL.Formula X).Satisfies ξ := by
   trivial
 
 end CORALean

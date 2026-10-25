@@ -65,7 +65,7 @@ theorem DiffInclAutomaton.scalingConversion_zeroError {I : Set X} {f : X → X} 
     (hf : LipschitzWith K f) {g : X → ℝ} (hg : Continuous g) (hg0 : ∀ x, 0 ≤ g x)
     (hF : LipschitzWith K' fun x => g x • f x) {tb ts : ℝ} (htb : 0 < tb) (hts : 0 < ts)
     (T : ℝ) : -- --- CONCL ---
-    (DiffInclAutomaton.singleMode I f).ContOverapprox T
+    (DiffInclAutomaton.singleMode I f).IsContOverapprox T
         (DiffInclAutomaton.scalingConversion I f g tb ts) Prod.fst (T + ts) ∧
       ∀ T', Prod.fst '' (DiffInclAutomaton.scalingConversion I f g tb ts).reachLE T' ⊆
         (DiffInclAutomaton.singleMode I f).reach := by -- --- PROOF ---

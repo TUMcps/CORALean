@@ -43,8 +43,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Pform.exists_dnf (ϱ : Pform α) (h : ϱ.IsHalfspaceForm) : -- --- CONCL ---
-    (∃ dnf : List (List (STL.Halfspace α)), ∀ x, ϱ.Sat x ↔ STL.Dnf.Holds dnf x) ∧
-      ∃ dnf : List (List (STL.Halfspace α)), ∀ x, ¬ ϱ.Sat x ↔
+    (∃ dnf : List (List (STL.Halfspace α)), ∀ x, ϱ.Satisfies x ↔ STL.Dnf.Holds dnf x) ∧
+      ∃ dnf : List (List (STL.Halfspace α)), ∀ x, ¬ ϱ.Satisfies x ↔
         STL.Dnf.Holds dnf x := by -- --- PROOF ---
   induction ϱ with
   | atom p =>
@@ -55,17 +55,17 @@ theorem Pform.exists_dnf (ϱ : Pform α) (h : ϱ.IsHalfspaceForm) : -- --- CONCL
           ∃ dnf : List (List (STL.Halfspace α)), ∀ x, P x ↔ STL.Dnf.Holds dnf x := fun g c s P hP =>
       ⟨[[⟨g, c, s⟩]], fun x => by simp [STL.Dnf.Holds, STL.Halfspace.Holds, hP x]⟩
     cases r
-    · refine ⟨one f b true _ fun x => by simp [STL.Rel.Holds, Pform.Sat],
-        one (-f) (-b) false _ fun x => by simp [STL.Rel.Holds, Pform.Sat]⟩
-    · refine ⟨one f b false _ fun x => by simp [STL.Rel.Holds, Pform.Sat],
-        one (-f) (-b) true _ fun x => by simp [STL.Rel.Holds, Pform.Sat]⟩
-    · refine ⟨one (-f) (-b) true _ fun x => by simp [STL.Rel.Holds, Pform.Sat],
-        one f b false _ fun x => by simp [STL.Rel.Holds, Pform.Sat]⟩
-    · refine ⟨one (-f) (-b) false _ fun x => by simp [STL.Rel.Holds, Pform.Sat],
-        one f b true _ fun x => by simp [STL.Rel.Holds, Pform.Sat]⟩
+    · refine ⟨one f b true _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies],
+        one (-f) (-b) false _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies]⟩
+    · refine ⟨one f b false _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies],
+        one (-f) (-b) true _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies]⟩
+    · refine ⟨one (-f) (-b) true _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies],
+        one f b false _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies]⟩
+    · refine ⟨one (-f) (-b) false _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies],
+        one f b true _ fun x => by simp [STL.Rel.Holds, Pform.Satisfies]⟩
   | not ϱ ih =>
     obtain ⟨⟨d, hd⟩, ⟨d', hd'⟩⟩ := ih h
-    exact ⟨⟨d', hd'⟩, ⟨d, fun x => by simpa [Pform.Sat] using hd x⟩⟩
+    exact ⟨⟨d', hd'⟩, ⟨d, fun x => by simpa [Pform.Satisfies] using hd x⟩⟩
   | or ϱ₁ ϱ₂ ih₁ ih₂ =>
     -- the normal forms of the two operands
     obtain ⟨⟨d₁, hd₁⟩, ⟨d₁', hd₁'⟩⟩ := ih₁ h.1
@@ -73,7 +73,7 @@ theorem Pform.exists_dnf (ϱ : Pform α) (h : ϱ.IsHalfspaceForm) : -- --- CONCL
     refine ⟨⟨d₁ ++ d₂, fun x => ?_⟩, ⟨d₁'.flatMap fun c₁ => d₂'.map fun c₂ => c₁ ++ c₂,
       fun x => ?_⟩⟩
     · -- a disjunction is the two lists joined
-      simp only [Pform.Sat, hd₁, hd₂, STL.Dnf.Holds, List.mem_append]
+      simp only [Pform.Satisfies, hd₁, hd₂, STL.Dnf.Holds, List.mem_append]
       constructor
       · rintro (⟨cl, hcl, h'⟩ | ⟨cl, hcl, h'⟩)
         · exact ⟨cl, Or.inl hcl, h'⟩
@@ -82,7 +82,7 @@ theorem Pform.exists_dnf (ϱ : Pform α) (h : ϱ.IsHalfspaceForm) : -- --- CONCL
         · exact Or.inl ⟨cl, hcl, h'⟩
         · exact Or.inr ⟨cl, hcl, h'⟩
     · -- `¬(ϱ₁ ∨ ϱ₂)` is the conjunction, which distributes over the two disjunctions
-      simp only [Pform.Sat, not_or, hd₁', hd₂', STL.Dnf.Holds, List.mem_flatMap, List.mem_map]
+      simp only [Pform.Satisfies, not_or, hd₁', hd₂', STL.Dnf.Holds, List.mem_flatMap, List.mem_map]
       constructor
       · rintro ⟨⟨c₁, h₁, h₁'⟩, ⟨c₂, h₂, h₂'⟩⟩
         refine ⟨c₁ ++ c₂, ⟨c₁, h₁, c₂, h₂, rfl⟩, fun hh hm => ?_⟩

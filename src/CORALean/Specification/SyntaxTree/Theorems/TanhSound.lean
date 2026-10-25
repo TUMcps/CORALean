@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.RestrictContains
@@ -68,7 +68,7 @@ private theorem SyntaxTree.le_atanhE {x s : ℝ} (h : Real.tanh s ≤ x) (h₁ :
 
 /-- `aux_tanh_` is sound for `tanh`. -/
 theorem SyntaxTree.tanh_sound (prev : Dom) : -- --- CONCL ---
-    UnarySound Unary.tanh.fn prev (Real.Interval.tanh prev) funHanTanh := by -- --- PROOF ---
+    IsUnarySound Unary.tanh.fn prev (Real.Interval.tanh prev) funHanTanh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.tanh s ∧ Real.tanh s ≤ int.sup 0 := hi
   have l₁ := atanhE_le (x := max (int.inf 0) (-1)) (s := s)

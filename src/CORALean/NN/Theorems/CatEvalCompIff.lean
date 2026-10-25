@@ -8,7 +8,7 @@ public import CORALean.NN.Definitions.Cat
 # What a composed CAT function maps a point to
 
 `f₂ ∘ f₁` maps `x` to `y` exactly when some intermediate `z` is a value of `f₁` at `x` and `y`
-one of `f₂` at `z`: the inversion of `Cat.Eval` at `.comp`, [1, Fig. 3]'s third form.
+one of `f₂` at `z`: the inversion of `Cat.Evaluates` at `.comp`, [1, Fig. 3]'s third form.
 
 ## Inputs
 * `f₂` – second function
@@ -48,12 +48,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m l n : ℕ}
 
 theorem Cat.eval_comp_iff (f₂ : Cat 𝕋 l n) (f₁ : Cat 𝕋 m l) (x : Vec ℝ m)
     (y : Vec ℝ n) : -- --- CONCL ---
-    (Cat.comp f₂ f₁).Eval x y ↔ ∃ z, f₁.Eval x z ∧ f₂.Eval z y := by -- --- PROOF ---
+    (Cat.comp f₂ f₁).Evaluates x y ↔ ∃ z, f₁.Evaluates x z ∧ f₂.Evaluates z y := by -- --- PROOF ---
   constructor
   · rintro (_ | _ | ⟨_, _, z, h₁, h₂⟩)
     exact ⟨z, h₁, h₂⟩
   · rintro ⟨z, h₁, h₂⟩
-    exact Cat.Eval.comp f₂ f₁ z h₁ h₂
+    exact Cat.Evaluates.comp f₂ f₁ z h₁ h₂
 
 end CORALean
 

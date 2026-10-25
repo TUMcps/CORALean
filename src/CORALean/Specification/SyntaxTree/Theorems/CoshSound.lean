@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.AuxSignedSpec
@@ -42,7 +42,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `aux_cosh_` is sound for `cosh`. -/
 theorem SyntaxTree.cosh_sound (prev : Dom) : -- --- CONCL ---
-    UnarySound Unary.cosh.fn prev (Real.Interval.cosh prev) funHanCosh := by -- --- PROOF ---
+    IsUnarySound Unary.cosh.fn prev (Real.Interval.cosh prev) funHanCosh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.cosh s ∧ Real.cosh s ≤ int.sup 0 := hi
   have hc1 : 1 ≤ Real.cosh s := Real.one_le_cosh s

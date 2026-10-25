@@ -1,18 +1,18 @@
 module
 
-public import CORALean.HybridDynamics.Definitions.Invariant
+public import CORALean.HybridDynamics.Definitions.IsInvariant
 public import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
 public import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
 
 @[expose] public section
 
 /-!
-# `Invariant`, discharged from the computed enclosures
+# `IsInvariant`, discharged from the computed enclosures
 
-`Invariant.jump` falls out of `JumpIntersectionOuter` at `hjump`, one enclosure per transition met.
-`Invariant.flow` quantifies over every dwell time and admissible input; `FlowOuterInputSolution`
-discharges `u` structurally from `hconv`/`hclosed`/`hbdd`/`h0`. Two prices, which
-`InvariantOfEnclosureCut` does not pay: `h0` asks the input set to hold the origin, which a
+`IsInvariant.jump` falls out of `JumpIntersectionOuter` at `hjump`, one enclosure per transition
+met. `IsInvariant.flow` quantifies over every dwell time and admissible input;
+`FlowOuterInputSolution` discharges `u` structurally from `hconv`/`hclosed`/`hbdd`/`h0`. Two prices,
+which `InvariantOfEnclosureCut` does not pay: `h0` asks the input set to hold the origin, which a
 constant drift such as gravity breaks; and `hflow` asks one `R` to absorb the enclosure at every
 dwell time, which under a nonzero drift grows without bound. `jumpIntersection` is
 `Intersection.intersection` on the guard, so the guard is in the state's own family (#39).
@@ -66,7 +66,7 @@ noncomputable def aux_remainder [∀ n, OfPoint (S n) (Vec ℝ n)] (ℓ : Locati
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `Invariant.jump` is `JumpIntersectionOuter` at `hjump`; `Invariant.flow` is
+/-- `IsInvariant.jump` is `JumpIntersectionOuter` at `hjump`; `IsInvariant.flow` is
 `FlowOuterInputSolution` at `hflow`, an order `m` chosen per dwell time `τ`
 since `hε` cannot hold at one order for every one of them. -/
 theorem HybridAutomaton.invariant_of_enclosure [∀ n, Intersection (S n) (Vec ℝ n)]
@@ -85,7 +85,7 @@ theorem HybridAutomaton.invariant_of_enclosure [∀ n, Intersection (S n) (Vec �
         ((HA.loc ℓ).dynamics.inputSolution τ (m + 2) (HA.loc ℓ).inputSet)) ⊆ construct (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans →
       construct (e.jumpIntersection (R ℓ)) ⊆ construct (R e.target)) :
-    HA.Invariant R where
+    HA.IsInvariant R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     rcases h.nonneg.lt_or_eq with hτ | hτ0
     · -- `τ > 0`: `hflow`'s own order `m` both bounds the truncation and makes

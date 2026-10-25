@@ -15,7 +15,7 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
 an unlabeled jump is the lifted transition, in the merged list's first part; a synchronized jump
 is `liftSyncTransition`, in its second, available because every participant has its transition,
 its guard met by `SyncLifting.mem_guardAll` and its reset the participants' resets, by
-`liftSyncTransition_reset`. For any flow with `FlowLaw`. The soundness direction only: the
+`liftSyncTransition_reset`. For any flow with `IsFlowLaw`. The soundness direction only: the
 converse would need the lifted guards and the conjunction to be exact, and the labeled transition
 to be the only way to take a labeled transition, which is not proved.
 
@@ -60,7 +60,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 /-- A synchronized parallel run, its states stacked, is a run of the labeled product. -/
 theorem ParallelHybridAutomaton.IsSyncRun.toProductSync [ExactScalar 𝕋] [DecidableEq Λ]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLaw F U W)
     (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) {ℓ ℓ' : ∀ i, L i}
     {x y : ∀ i, Vec ℝ (n i)} (run : P.IsSyncRun lab ℓ x ℓ' y) : -- --- CONCL ---

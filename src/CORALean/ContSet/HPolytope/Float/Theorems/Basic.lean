@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A polytope whose box is the origin and whose slacks are `zero` is error-free. -/
 theorem HPolytope.errFree_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)} (h : P.I_error = Interval.origin n)
     (hb : P.b_error = fun _ => FloatOps.zero) (he : P.be_error = fun _ => FloatOps.zero) :
-    P.ErrFree :=
+    P.IsErrFree :=
   ⟨fun _ => h ▸ ⟨toReal_zero, toReal_zero⟩, fun _ => hb ▸ toReal_zero, fun _ => he ▸ toReal_zero⟩
 
 

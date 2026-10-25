@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
 public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
 public import CORALean.NN.Layers.Definitions.PolyFamily
-public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Operations.IsConvergent
 public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Definitions.ActivationPoly
 public import CORALean.NN.Layers.Theorems.CoeffListCoord
@@ -104,7 +104,7 @@ theorem aux_coeffListCoord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Ve
 /-- The enclosed set is inside the image inflated by `ε`, at any `ε` the neurons' doubled errors
 fit under. -/
 theorem Layer.aux_activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
-    (hPs : ∀ i, (P i).Sound σ) (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
+    (hPs : ∀ i, (P i).IsSound σ) (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) : -- --- CONCL ---
     construct ((Layer.activationPoly P).enclose s)
       ⊆ (fun x i => σ (x i)) '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
@@ -224,7 +224,7 @@ theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε
 theorem Layer.aux_activationPolyRefinable_convergent {σ σ' : ℝ → ℝ} {Mσ : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) : -- --- CONCL ---
     (Layer.activationPolyRefinable (n := n) (polyRelaxationFamily hd hσ)
-      (polyRelaxationFamily_sound hd hσ)).Convergent := by -- --- PROOF ---
+      (polyRelaxationFamily_sound hd hσ)).IsConvergent := by -- --- PROOF ---
   intro s ε hε
   obtain ⟨t, ht⟩ := aux_exists_level s hε
   refine ⟨t, Layer.aux_activationPoly_subset_inflate
@@ -244,7 +244,8 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPolySigmoid_convergent (n : ℕ) :
-    (Layer.activationPolyRefinable (n := n) sigmoidPolyFamily sigmoidPolyFamily_sound).Convergent :=
+    (Layer.activationPolyRefinable (n := n) sigmoidPolyFamily sigmoidPolyFamily_sound).IsConvergent
+        :=
   Layer.aux_activationPolyRefinable_convergent hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
 
 end CORALean.Real

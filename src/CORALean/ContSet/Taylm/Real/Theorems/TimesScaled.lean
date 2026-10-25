@@ -102,8 +102,9 @@ theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (h
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.times_scaled {T₁ T₂ : Taylm n} {h C₁ C₂ : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
-    (hN : T₁.maxOrder = T₂.maxOrder) (h₁ : T₁.Scaled h C₁) (h₂ : T₂.Scaled h C₂) : -- --- CONCL ---
-    (T₁.times T₂).Scaled h (4 * (C₁ * C₂)) := by -- --- PROOF ---
+    (hN : T₁.maxOrder = T₂.maxOrder) (h₁ : T₁.IsScaled h C₁) (h₂ : T₂.IsScaled h C₂)
+        : -- --- CONCL ---
+    (T₁.times T₂).IsScaled h (4 * (C₁ * C₂)) := by -- --- PROOF ---
   obtain ⟨w₁, i₁, s₁⟩ := h₁
   obtain ⟨w₂, i₂, s₂⟩ := h₂
   rw [← hN] at i₂ s₂

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.STLInterval.Definitions.RepresentsaType
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 
 @[expose] public section
 
@@ -44,9 +44,9 @@ def STLInterval.representsa_ (tol : ℝ) : STLInterval 𝕋 → STLInterval.Repr
   | .nonempty .., .stlInterval => True
   | .nonempty .., .emptySet => False
   | .nonempty l u lc rc _ _ _, .point =>
-    lc = true ∧ rc = true ∧ ∃ y : ℝ, toEReal u = y ∧ withinTol tol ((y - toReal l) / 2 : ℝ) 0
+    lc = true ∧ rc = true ∧ ∃ y : ℝ, toEReal u = y ∧ IsWithinTol tol ((y - toReal l) / 2 : ℝ) 0
   | .nonempty l u lc rc _ _ _, .origin =>
-    lc = true ∧ rc = true ∧ withinTol tol (toReal l : ℝ) 0 ∧ withinTol tol (toEReal u) 0
+    lc = true ∧ rc = true ∧ IsWithinTol tol (toReal l : ℝ) 0 ∧ IsWithinTol tol (toEReal u) 0
 
 end CORALean
 

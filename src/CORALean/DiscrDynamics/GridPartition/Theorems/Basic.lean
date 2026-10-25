@@ -31,7 +31,7 @@ variable {n : ℕ}
 -- Reviewed:      ---
 
 /-- A cell of a well-formed partition is a nonempty box. -/
-theorem GridPartition.cellInterval_nonempty (P : GridPartition n) (hP : P.WellFormed) {c : ℕ}
+theorem GridPartition.cellInterval_nonempty (P : GridPartition n) (hP : P.IsWellFormed) {c : ℕ}
     (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) (j : Fin n) :
     (P.cellInterval c).inf j ≤ (P.cellInterval c).sup j :=
   (hP j).2 _ _ (by omega) (GridPartition.i2s_mem P.nrOfSegments h2 h1 j).2

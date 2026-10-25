@@ -8,8 +8,8 @@ public import CORALean.Specification.STL.STL
 # Until in STL
 
 `ξ ⊨ₜ φ U[a,b] ψ` holds iff `ψ` holds on the trace shifted by some `t ∈ [a,b]` and `φ` on every
-shift strictly before `t`: [1, Sec. 2.2] as `Sat` states it. CORA's `until` builds a syntax-tree
-node, and its `modelCheckTrace` reads it with `φ` required strictly before `t`.
+shift strictly before `t`: [1, Sec. 2.2] as `Satisfies` states it. CORA's `until` builds a
+syntax-tree node, and its `modelCheckTrace` reads it with `φ` required strictly before `t`.
 
 ## Inputs
 * `a` – interval lower bound
@@ -48,8 +48,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_until (a b : ℝ≥0) (φ ψ : STL.Formula X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.until a b φ ψ).Sat ξ ↔ ∃ t, a ≤ t ∧ t ≤ b ∧ ψ.Sat (Time.shift ξ t) ∧
-      ∀ t' < t, φ.Sat (Time.shift ξ t') := Iff.rfl
+    (STL.Formula.until a b φ ψ).Satisfies ξ ↔ ∃ t, a ≤ t ∧ t ≤ b ∧ ψ.Satisfies (Time.shift ξ t) ∧
+      ∀ t' < t, φ.Satisfies (Time.shift ξ t') := Iff.rfl
 
 end CORALean
 

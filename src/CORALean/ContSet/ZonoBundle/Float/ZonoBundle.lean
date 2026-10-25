@@ -14,8 +14,8 @@ instance and `Instances` gives `ContSet` directly: `⋂ᵢ (Nᵢ + Eᵢ)` can be
 empty, and no single `E` then makes `(⋂ᵢ Nᵢ) + E` contain it. `ZonoBundle α` is indexed by the
 ambient type its members store, as the exact layer's is, and denotes the general `SetIntersection`
 of its members (`toSetIntersection`), so the facts of every intersection come from that class.
-`k = 0` denotes `univ`, the whole space and not `∅`, exactly as over ℝ. The vector case is
-`ZonoBundle (Vec 𝕋 n)`.
+`k = 0` denotes `univ`, the whole space and not `∅`, exactly as over ℝ.
+There is no `I_error` and no `absorbRounding`: each member carries its own box.
 
 ## References
 

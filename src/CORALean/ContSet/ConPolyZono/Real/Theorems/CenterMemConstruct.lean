@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
-public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HasNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.center_mem_construct (cPZ : ConPolyZono α)
-    (hE : ConPolyZono.NoZeroCol cPZ.E) (hR : ConPolyZono.NoZeroCol cPZ.cons.R)
+    (hE : ConPolyZono.HasNoZeroCol cPZ.E) (hR : ConPolyZono.HasNoZeroCol cPZ.cons.R)
     (h0 : cPZ.cons.b = 0) : -- --- CONCL ---
     cPZ.center ∈ cPZ.construct := by -- --- PROOF ---
   refine ⟨fun _ => 0, fun _ => 0, fun j => by simp,

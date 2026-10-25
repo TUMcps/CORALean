@@ -46,9 +46,9 @@ variable {X : Type}
 
 theorem STL.rewrite_finOpen_and (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X)
     (h : (((STL.Formula.globOpen 1 φ₁).and (STL.Formula.finOpen 1 φ₂)).or
-      ((STL.Formula.finOpen 1 φ₁).and (STL.Formula.globOpen 1 φ₂))).Sat ξ) :
-    (STL.Formula.finOpen 1 (φ₁.and φ₂)).Sat ξ := by
-  simp only [STL.Formula.sat_and, STL.Formula.Sat] at h ⊢
+      ((STL.Formula.finOpen 1 φ₁).and (STL.Formula.globOpen 1 φ₂))).Satisfies ξ) :
+    (STL.Formula.finOpen 1 (φ₁.and φ₂)).Satisfies ξ := by
+  simp only [STL.Formula.sat_and, STL.Formula.Satisfies] at h ⊢
   rcases h with ⟨hG, s, hs₀, hs₁, hs⟩ | ⟨⟨s, hs₀, hs₁, hs⟩, hG⟩
   · exact ⟨s, hs₀, hs₁, hG s hs₀ hs₁, hs⟩
   · exact ⟨s, hs₀, hs₁, hs, hG s hs₀ hs₁⟩

@@ -45,7 +45,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_next (a : ℝ≥0) (φ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.next a φ).Sat ξ ↔ φ.Sat (Time.shift ξ a) := by -- --- PROOF ---
+    (STL.Formula.next a φ).Satisfies ξ ↔ φ.Satisfies (Time.shift ξ a) := by -- --- PROOF ---
   unfold STL.Formula.next
   constructor
   · rintro ⟨t, h₁, h₂, h₃, -⟩

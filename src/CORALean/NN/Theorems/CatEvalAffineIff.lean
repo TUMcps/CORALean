@@ -8,7 +8,7 @@ public import CORALean.NN.Definitions.Cat
 # What an affine CAT function maps a point to
 
 `W x + b`, and nothing else: [1, Fig. 3]'s first form is a function. The inversion of
-`Cat.Eval` at `.affine`, which every computation of a CAT function's value starts from.
+`Cat.Evaluates` at `.affine`, which every computation of a CAT function's value starts from.
 
 ## Inputs
 * `W` – weight matrix
@@ -48,12 +48,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Cat.eval_affine_iff (W : Mat 𝕋 n m) (b : Vec 𝕋 n) (x : Vec ℝ m)
     (y : Vec ℝ n) : -- --- CONCL ---
-    (Cat.affine W b).Eval x y ↔ y = toRealMat W *ᵥ x + toRealVec b := by -- --- PROOF ---
+    (Cat.affine W b).Evaluates x y ↔ y = toRealMat W *ᵥ x + toRealVec b := by -- --- PROOF ---
   constructor
   · rintro (_ | _ | _)
     rfl
   · rintro rfl
-    exact Cat.Eval.affine W b x
+    exact Cat.Evaluates.affine W b x
 
 end CORALean
 

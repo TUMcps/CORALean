@@ -49,13 +49,13 @@ theorem STL.Tree.aux_le_add {s t x b : ℝ≥0} (hs : s ≤ x) (ht : t ≤ b) : 
 
 theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
     (h : ∀ s ≤ φ.maximumTime, ξ s = ξ' s) : -- --- CONCL ---
-    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with
   | tt | ff => rfl
-  | cmp op e₁ e₂ => simp only [STL.Tree.Sat, h 0 (by simp)]
+  | cmp op e₁ e₂ => simp only [STL.Tree.Satisfies, h 0 (by simp)]
   | not φ ih => exact not_congr (ih ξ ξ' h)
   | and φ ψ ihφ ihψ | or φ ψ ihφ ihψ =>
-    simp only [STL.Tree.Sat, ihφ ξ ξ' fun s hs => h s (hs.trans (le_max_left _ _)),
+    simp only [STL.Tree.Satisfies, ihφ ξ ξ' fun s hs => h s (hs.trans (le_max_left _ _)),
       ihψ ξ ξ' fun s hs => h s (hs.trans (le_max_right _ _))]
   -- `next` shifts the trace by `a`
   | next a φ ih =>
@@ -68,17 +68,17 @@ theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
   | «finally» a b φ ih =>
     have e : (STL.Tree.finally a b φ).maximumTime = b + φ.maximumTime := rfl
     rw [e] at h
-    have hφ : ∀ t ≤ b, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t ht =>
+    have hφ : ∀ t ≤ b, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t ht =>
       ih _ _ fun s hs => h _ (STL.Tree.aux_le_add hs ht)
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness]
     exact exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
       and_congr (hφ t h2) Iff.rfl
   | globally a b φ ih =>
     have e : (STL.Tree.globally a b φ).maximumTime = b + φ.maximumTime := rfl
     rw [e] at h
-    have hφ : ∀ t ≤ b, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t ht =>
+    have hφ : ∀ t ≤ b, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t ht =>
       ih _ _ fun s hs => h _ (STL.Tree.aux_le_add hs ht)
-    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    simp only [STL.Tree.Satisfies, STL.Tree.HasUntilWitness]
     exact not_congr (exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
       and_congr (not_congr (hφ t h2)) Iff.rfl)
   -- `until` and `release` read both operands at shifts up to `b`
@@ -86,9 +86,9 @@ theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
     have e : (STL.Tree.until a b φ ψ).maximumTime =
         b + max φ.maximumTime ψ.maximumTime := rfl
     rw [e] at h
-    have hφ : ∀ t ≤ b, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t ht =>
+    have hφ : ∀ t ≤ b, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t ht =>
       ihφ _ _ fun s hs => h _ (STL.Tree.aux_le_add (hs.trans (le_max_left _ _)) ht)
-    have hψ : ∀ t ≤ b, ψ.Sat (Time.shift ξ t) ↔ ψ.Sat (Time.shift ξ' t) := fun t ht =>
+    have hψ : ∀ t ≤ b, ψ.Satisfies (Time.shift ξ t) ↔ ψ.Satisfies (Time.shift ξ' t) := fun t ht =>
       ihψ _ _ fun s hs => h _ (STL.Tree.aux_le_add (hs.trans (le_max_right _ _)) ht)
     exact exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
       and_congr (hψ t h2) (forall_congr' fun t' => forall_congr' fun h3 => hφ t' (h3.trans h2))
@@ -97,9 +97,9 @@ theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
     have e : (STL.Tree.release a b φ ψ).maximumTime =
         b + max φ.maximumTime ψ.maximumTime := rfl
     rw [e] at h
-    have hφ : ∀ t ≤ b, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t ht =>
+    have hφ : ∀ t ≤ b, φ.Satisfies (Time.shift ξ t) ↔ φ.Satisfies (Time.shift ξ' t) := fun t ht =>
       ihφ _ _ fun s hs => h _ (STL.Tree.aux_le_add (hs.trans (le_max_left _ _)) ht)
-    have hψ : ∀ t ≤ b, ψ.Sat (Time.shift ξ t) ↔ ψ.Sat (Time.shift ξ' t) := fun t ht =>
+    have hψ : ∀ t ≤ b, ψ.Satisfies (Time.shift ξ t) ↔ ψ.Satisfies (Time.shift ξ' t) := fun t ht =>
       ihψ _ _ fun s hs => h _ (STL.Tree.aux_le_add (hs.trans (le_max_right _ _)) ht)
     exact not_congr <| exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
       and_congr (not_congr (hψ t h2))

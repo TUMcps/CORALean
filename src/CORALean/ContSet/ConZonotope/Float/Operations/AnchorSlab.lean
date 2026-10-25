@@ -47,8 +47,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `cZ` with the coefficient rows `lo ≤ A β ≤ hi` added: as the equalities `A β = hi` when they
-can be certified, the cost in the error box, else as the slab. -/
+/-- `cZ` with the rows `lo ≤ A β ≤ hi` added: as the equalities `A β = hi` when they can be
+certified, else as the slab. Not the polytope's work (data): the operand rows' slacks, handed to
+`HPolytope.anchorEqsInBox` as residuals. -/
 def ConZonotope.anchorSlab (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : Mat 𝕋 q cZ.h) (lo hi : Vec 𝕋 q) :
     ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- the old rows within their slack, the new ones within `hi - lo`

@@ -49,7 +49,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 theorem SyntaxTree.meet_contains {prev : Dom} {lo hi s : ℝ} (hs : Dom.contains prev s)
     (h₁ : lo ≤ s) (h₂ : s ≤ hi) :
     Dom.contains (Real.Interval.intersection prev (interval lo hi)) s ∧
-      Dom.within (Real.Interval.intersection prev (interval lo hi)) prev :=
+      Dom.IsWithin (Real.Interval.intersection prev (interval lo hi)) prev :=
   ⟨⟨max_le hs.1 h₁, le_min hs.2 h₂⟩, le_max_left _ _, min_le_left _ _⟩
 
 end CORALean

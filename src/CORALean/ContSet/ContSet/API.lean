@@ -21,7 +21,7 @@ operation just the first.
 `Definitions` holds two classes carrying no operation at all, `ConvexSet` and
 `CompactSet` — what an algorithm has to know about a set to enclose an
 integral over it, asked of the representation instead of proved again at each
-one — plus `DependencyPreserving`, which is what an implementation has when
+one — plus `IsDependencyPreserving`, which is what an implementation has when
 the parameters naming a subset of its operand name the corresponding subset
 of its result. `Operations` holds `SupportBoundSetLinComb`, the one thing this
 interface computes: a support-function bound across `Set.linComb`, CORA's

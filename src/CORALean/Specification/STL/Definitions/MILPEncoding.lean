@@ -10,7 +10,7 @@ public import CORALean.Specification.STL.Definitions.DiscreteFormula
 [1, Sec. IV-B]: every subformula `φ` gets a variable `z^φ_t`, tied by constraints to its operands
 so that `z^φ_t = 1` iff `φ` holds at `t`; [1, Sec. V] does the same with `r^φ_t` and `ρ`. Each
 gadget forces its variable (`STL.pred_encoding_iff`, `conj_encoding_iff`, `disj_encoding_iff`,
-`robust_conj_encoding`), and these are those values: `zEnc` and `rEnc` along the printed recursion
+`robust_conj_encoding`), and these are those values: `IsZEnc` and `rEnc` along the printed recursion
 over the horizon `N`, the window cut to `N` [1, Sec. IV-B.3 (temporal)], the unbounded until by
 `z_t = z^{φ₂}_t ∨ (z^{φ₁}_t ∧ z_{t+1})` [1, Sec. IV-B.3 (until)]; `nonstrict` replaces `z^{φ₂}_t`
 by `z^{φ₂}_t ∧ z^{φ₁}_t`, the recursion of the printed semantics.
@@ -48,9 +48,9 @@ variable {X : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `z^{φ₁ U φ₂}_i` of the operands' values `P`, `Q` over the horizon `N`. -/
-def STL.untilEnc (N : ℕ) (nonstrict : Bool) (P Q : ℕ → Prop) (i : ℕ) : Prop :=
+def STL.IsUntilEnc (N : ℕ) (nonstrict : Bool) (P Q : ℕ → Prop) (i : ℕ) : Prop :=
   if i < N then
-    (if nonstrict then Q i ∧ P i else Q i) ∨ (P i ∧ STL.untilEnc N nonstrict P Q (i + 1))
+    (if nonstrict then Q i ∧ P i else Q i) ∨ (P i ∧ STL.IsUntilEnc N nonstrict P Q (i + 1))
   else (if nonstrict then Q i ∧ P i else Q i)
 termination_by N - i
 
@@ -63,19 +63,19 @@ noncomputable def STL.untilRob (N : ℕ) (nonstrict : Bool) (A B : ℕ → ℝ) 
 termination_by N - i
 
 /-- `z^φ_t = 1`, [1, Sec. IV-B]. -/
-def STL.DFormula.zEnc (N : ℕ) (nonstrict : Bool) : STL.DFormula X → (ℕ → X) → ℕ → Prop
+def STL.DFormula.IsZEnc (N : ℕ) (nonstrict : Bool) : STL.DFormula X → (ℕ → X) → ℕ → Prop
   | .pred μ, x, t => 0 < μ (x t)
   | .npred μ, x, t => ¬ 0 < μ (x t)
-  | .and φ ψ, x, t => φ.zEnc N nonstrict x t ∧ ψ.zEnc N nonstrict x t
-  | .or φ ψ, x, t => φ.zEnc N nonstrict x t ∨ ψ.zEnc N nonstrict x t
+  | .and φ ψ, x, t => φ.IsZEnc N nonstrict x t ∧ ψ.IsZEnc N nonstrict x t
+  | .or φ ψ, x, t => φ.IsZEnc N nonstrict x t ∨ ψ.IsZEnc N nonstrict x t
   | .always a b _ φ, x, t =>
-      ∀ i ∈ Finset.Icc (min (t + a) N) (min (t + b) N), φ.zEnc N nonstrict x i
+      ∀ i ∈ Finset.Icc (min (t + a) N) (min (t + b) N), φ.IsZEnc N nonstrict x i
   | .eventually a b _ φ, x, t =>
-      ∃ i ∈ Finset.Icc (min (t + a) N) (min (t + b) N), φ.zEnc N nonstrict x i
+      ∃ i ∈ Finset.Icc (min (t + a) N) (min (t + b) N), φ.IsZEnc N nonstrict x i
   | .until a b _ φ ψ, x, t =>
-      (∀ i ∈ Finset.Icc (min t N) (min (t + a) N), φ.zEnc N nonstrict x i) ∧       -- □[0,a] φ₁
-      (∃ i ∈ Finset.Icc (min (t + a) N) (min (t + b) N), ψ.zEnc N nonstrict x i) ∧ -- ◇[a,b] φ₂
-      STL.untilEnc N nonstrict (φ.zEnc N nonstrict x) (ψ.zEnc N nonstrict x)       -- ◇[a,a] U
+      (∀ i ∈ Finset.Icc (min t N) (min (t + a) N), φ.IsZEnc N nonstrict x i) ∧       -- □[0,a] φ₁
+      (∃ i ∈ Finset.Icc (min (t + a) N) (min (t + b) N), ψ.IsZEnc N nonstrict x i) ∧ -- ◇[a,b] φ₂
+      STL.IsUntilEnc N nonstrict (φ.IsZEnc N nonstrict x) (ψ.IsZEnc N nonstrict x)       -- ◇[a,a] U
         (min (t + a) N)
 
 /-- `r^φ_t`, [1, Sec. V]. -/

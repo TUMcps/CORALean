@@ -45,9 +45,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.finOpen_next_equiv (φ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.finOpen 1 (STL.Formula.next 1 φ)).Sat ξ ↔
-      (STL.Formula.next 1 (STL.Formula.finOpen 1 φ)).Sat ξ := by -- --- PROOF ---
-  simp only [STL.Formula.sat_next, STL.Formula.Sat, Time.shift_shift]
+    (STL.Formula.finOpen 1 (STL.Formula.next 1 φ)).Satisfies ξ ↔
+      (STL.Formula.next 1 (STL.Formula.finOpen 1 φ)).Satisfies ξ := by -- --- PROOF ---
+  simp only [STL.Formula.sat_next, STL.Formula.Satisfies, Time.shift_shift]
   constructor
   · rintro ⟨t, h₀, h₁, h⟩
     exact ⟨t, h₀, h₁, by rwa [add_comm]⟩

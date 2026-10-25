@@ -45,7 +45,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `polyZonotope([c; -b], blkdiag(G, A), [GI; 0], [E, R])`. -/
+/-- `polyZonotope([c; -b], blkdiag(G, A), [GI; 0], [E, R])`. Not the constraint's work (conversion):
+the lifted polynomial zonotope over `state × constraint value` of [1, Lemma 1], a set, not an
+operation on the constraint. -/
 def ConPolyZono.extPolyZonotope (cPZ : ConPolyZono (Vec ℝ n)) :
     PolyZonotope (Vec ℝ n × Vec ℝ cPZ.cons.m) where
   p := cPZ.p

@@ -176,7 +176,7 @@ theorem Example.ballZono_inter_guard (hv : 0 < v) : -- --- CONCL ---
 half discharged by the cut and the jump half by the damping being at most one. -/
 theorem Example.bouncingBall_invariant (g : ℝ) (hp : 0 < p) (hv : 0 < v)
     (hd0 : 0 ≤ d) (hd1 : d ≤ 1) : -- --- CONCL ---
-    (Example.bouncingBall g d p v).Invariant
+    (Example.bouncingBall g d p v).IsInvariant
       (fun _ => Example.ballZono p v) := by -- --- PROOF ---
   refine HybridAutomaton.invariant_of_enclosure_cut _ _ (fun ℓ τ _ => ?_) (fun ℓ e he => ?_)
   · -- the cut is the whole flow obligation: whatever the dwell time, the part

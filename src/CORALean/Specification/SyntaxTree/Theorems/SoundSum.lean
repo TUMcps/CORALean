@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.Basic
@@ -39,9 +39,9 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `sum` of sound trees is sound. -/
-theorem SyntaxTree.sound_sum (h : Sound B t) (rest : List (SyntaxTree n))
-    (hs : ∀ u ∈ rest, Sound B u) : -- --- CONCL ---
-    Sound B (sum t rest) := by -- --- PROOF ---
+theorem SyntaxTree.sound_sum (h : IsSound B t) (rest : List (SyntaxTree n))
+    (hs : ∀ u ∈ rest, IsSound B u) : -- --- CONCL ---
+    IsSound B (sum t rest) := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => exact h
   | cons u us ih =>

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.Conform.Definitions.Conformant
+public import CORALean.ContDynamics.Conform.Definitions.IsConformant
 public import CORALean.ContDynamics.Conform.Theorems.MemReachOutExactIff
 
 @[expose] public section
@@ -53,10 +53,10 @@ variable {n p q : ℕ}
 theorem Conform.Plant.conformant_iff_devSet {M : Type} (sys : Conform.Plant n p q)
     (X0 W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (T : M → Conform.TestCase n p q)
     (K : ℕ) : -- --- CONCL ---
-    sys.Conformant X0 W V T K ↔
+    sys.IsConformant X0 W V T K ↔
       ∀ k ≤ K, (⋃ m, {(T m).y k - sys.nominal (T m).x0 (T m).u k}) ⊆
         sys.devSet X0 W V k := by -- --- PROOF ---
-  simp only [Conform.Plant.Conformant, Set.iUnion_subset_iff, Set.singleton_subset_iff]
+  simp only [Conform.Plant.IsConformant, Set.iUnion_subset_iff, Set.singleton_subset_iff]
   exact ⟨fun h k hk m => (sys.mem_reachOutExact_iff _ _ _ _ _ _ _).mp (h m k hk),
     fun h m k hk => (sys.mem_reachOutExact_iff _ _ _ _ _ _ _).mpr (h k hk m)⟩
 

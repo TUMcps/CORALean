@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 public import CORALean.Specification.STLInterval.Operations.Infimum
 public import CORALean.Specification.STLInterval.Operations.Supremum
 
@@ -50,7 +50,7 @@ noncomputable def OnlineAnalyzerNode.conflicts (eps : ℝ) (lb : Option (WithTop
     | some pUb, some lb' =>
       open Classical in
       if STLInterval.toEReal pUb > STLInterval.toEReal lb' ∨
-          (STLInterval.withinTol eps (STLInterval.toEReal pUb) (STLInterval.toEReal lb') ∧
+          (STLInterval.IsWithinTol eps (STLInterval.toEReal pUb) (STLInterval.toEReal lb') ∧
             p.supremum.closed = true ∧ lc = true)
       then some true else OnlineAnalyzerNode.conflicts eps lb lc rest
 

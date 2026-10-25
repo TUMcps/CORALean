@@ -1,7 +1,7 @@
 module
 
 public import Mathlib.Analysis.Calculus.Deriv.MeanValue
-public import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
+public import CORALean.HybridDynamics.TimeTriggered.Definitions.IsOverapproxErrorLE
 public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SingleMode
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsTimer
@@ -120,7 +120,7 @@ theorem aux_reaches_two : -- --- CONCL ---
 
 /-- At `ẋ = 1`, `g ≡ 1`, `t_begin = t_scaling = T = 1` the error against `Reach≤T` is not zero. -/
 theorem DiffInclAutomaton.scalingConversion_not_zeroError : -- --- CONCL ---
-    ¬ (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).OverapproxErrorLE 1
+    ¬ (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).IsOverapproxErrorLE 1
       (DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ)) (fun _ => (1 : ℝ))
         1 1) Prod.fst (1 + 1) 0 := by -- --- PROOF ---
   intro h

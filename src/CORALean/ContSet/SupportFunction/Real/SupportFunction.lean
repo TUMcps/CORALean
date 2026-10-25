@@ -15,6 +15,11 @@ closed convex set has one, and the sets denoted are exactly the closed convex on
 finite to store, so there is no `Float/` layer: what an algorithm computes of a support function is
 its value in a direction, `SupportBound`, and every conversion needing one asks for it as a
 certificate.
+
+## References
+
+None: the support function of convex analysis, defined here from the definition; no public source
+was read for it.
 -/
 
 -- Authors:       Claude Sonnet 5.5

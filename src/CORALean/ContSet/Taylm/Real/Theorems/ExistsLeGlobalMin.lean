@@ -53,8 +53,8 @@ theorem Taylm.aux_halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).i
     (β : Fin n) : -- --- CONCL ---
     (∀ k, ((Taylm.halveBox B β).1 k).inf ≤ ((Taylm.halveBox B β).1 k).sup) ∧
       (∀ k, ((Taylm.halveBox B β).2 k).inf ≤ ((Taylm.halveBox B β).2 k).sup) ∧
-      (∀ t, Taylm.InBox (Taylm.halveBox B β).1 t → Taylm.InBox B t) ∧
-      (∀ t, Taylm.InBox (Taylm.halveBox B β).2 t → Taylm.InBox B t) := by -- --- PROOF ---
+      (∀ t, Taylm.IsInBox (Taylm.halveBox B β).1 t → Taylm.IsInBox B t) ∧
+      (∀ t, Taylm.IsInBox (Taylm.halveBox B β).2 t → Taylm.IsInBox B t) := by -- --- PROOF ---
   have hm := hB β
   refine ⟨fun k => ?_, fun k => ?_, fun t ht k => ?_, fun t ht k => ?_⟩
   -- coordinate `β` is halved, the others are kept
@@ -77,18 +77,18 @@ theorem Taylm.aux_halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).i
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ) → ℝ}
-    {ub : Vec ℝ n → ℝ} {X : Fin n → Interval ℝ} (hub : ∀ p, Taylm.InBox X p → f p ≤ ub p)
+    {ub : Vec ℝ n → ℝ} {X : Fin n → Interval ℝ} (hub : ∀ p, Taylm.IsInBox X p → f p ≤ ub p)
     (hX : ∀ k, (X k).inf ≤ (X k).sup) (fuel : ℕ) : -- --- CONCL ---
-    ∃ p, Taylm.InBox X p ∧ f p ≤ (Taylm.globalMin lb ub X fuel).sup := by -- --- PROOF ---
+    ∃ p, Taylm.IsInBox X p ∧ f p ≤ (Taylm.globalMin lb ub X fuel).sup := by -- --- PROOF ---
   -- the center of a proper box lies in it
   have hmid : ∀ B : Fin n → Interval ℝ, (∀ k, (B k).inf ≤ (B k).sup) →
-      Taylm.InBox B (Taylm.boxMid B) :=
+      Taylm.IsInBox B (Taylm.boxMid B) :=
     fun B hB k => by simp only [Taylm.boxMid]; constructor <;> linarith [hB k]
   -- live boxes are proper and inside `X`, and some point of `X` is at most the cutoff
   have inv : ∀ fuel (st : List (Fin n → Interval ℝ) × ℝ),
-      (∀ B ∈ st.1, (∀ k, (B k).inf ≤ (B k).sup) ∧ ∀ t, Taylm.InBox B t → Taylm.InBox X t) →
-      (∃ p, Taylm.InBox X p ∧ f p ≤ st.2) →
-      ∃ p, Taylm.InBox X p ∧ f p ≤ (Taylm.aux_goLoop lb ub fuel st).2 := by
+      (∀ B ∈ st.1, (∀ k, (B k).inf ≤ (B k).sup) ∧ ∀ t, Taylm.IsInBox B t → Taylm.IsInBox X t) →
+      (∃ p, Taylm.IsInBox X p ∧ f p ≤ st.2) →
+      ∃ p, Taylm.IsInBox X p ∧ f p ≤ (Taylm.aux_goLoop lb ub fuel st).2 := by
     intro fuel
     -- by induction over the box steps
     induction fuel with
@@ -101,7 +101,7 @@ theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Inter
       | cons B rest =>
         have hBp := hl B (by simp)
         -- the new cutoff is still above a point of `X`
-        have hcut : ∃ p, Taylm.InBox X p ∧ f p ≤ min cut (ub (Taylm.boxMid B)) := by
+        have hcut : ∃ p, Taylm.IsInBox X p ∧ f p ≤ min cut (ub (Taylm.boxMid B)) := by
           obtain ⟨p, hpX, hfp⟩ := hp
           rcases le_total cut (ub (Taylm.boxMid B)) with hc | hc
           · exact ⟨p, hpX, by rw [min_eq_left hc]; exact hfp⟩

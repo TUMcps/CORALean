@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Operations.ChainEval
-public import CORALean.NN.Operations.DifferentiableChain
+public import CORALean.NN.Operations.IsDifferentiableChain
 public import Mathlib.Analysis.Calculus.FDeriv.Comp
 public import Mathlib.Analysis.InnerProductSpace.Basic
 
@@ -46,11 +46,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem Chain.differentiableAt_eval :
     ∀ {n m : ℕ} (c : Chain n m)
-    (x : Vec ℝ n), c.DifferentiableChain x → DifferentiableAt ℝ c.eval x
+    (x : Vec ℝ n), c.IsDifferentiableChain x → DifferentiableAt ℝ c.eval x
   | _, _, .nil, _, _ => differentiableAt_id
   | _, _, .cons f rest, x, h => by
-      -- the recursive `DifferentiableChain` is a conjunction only after unfolding
-      obtain ⟨hf, hrest⟩ : DifferentiableAt ℝ f x ∧ rest.DifferentiableChain (f x) := h
+      -- the recursive `IsDifferentiableChain` is a conjunction only after unfolding
+      obtain ⟨hf, hrest⟩ : DifferentiableAt ℝ f x ∧ rest.IsDifferentiableChain (f x) := h
       exact (rest.differentiableAt_eval _ hrest).comp x hf
 
 end CORALean

@@ -15,6 +15,11 @@ already the discrete system a step is taken against. `IsTrajectory` mirrors
 `NonlinearSys.IsTrajectory` with `step` in place of `flow`, the output `y k = g (x k) (u k)`
 carried as there. `IsTrajectoryOn K` is the bounded form `LinearSysDT` carries: a run known only
 for its first `K` steps.
+
+## References
+
+None: CORA's `nonlinearSysDT`, a software class: no publication introduces it, and the CORA manual
+page for it could not be read.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

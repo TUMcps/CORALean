@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋} (hE : E.Sound Real.sigmoid) :
-    (sigmoidCurvatureRelaxation E).Sound Real.sigmoid :=
+theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋} (hE : E.IsSound Real.sigmoid) :
+    (sigmoidCurvatureRelaxation E).IsSound Real.sigmoid :=
   Relaxation.ofDeriv_sound Real.sigmoidDeriv Real.hasDerivAt_sigmoid hE
     (sigmoidDerivLo_le hE) (le_sigmoidDerivHi hE) fun l u h => by
       refine ⟨by rw [sigmoidSlope, toReal_maximum]; exact le_max_left _ _, ?_⟩
@@ -60,7 +60,7 @@ theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋} (hE : E.Sound 
 
 /-- Both halves are sound at the sound enclosure, so the tighter is too. -/
 theorem sigmoidRelaxation_sound (k : ℕ) :
-    (sigmoidRelaxation (𝕋 := 𝕋) k).Sound Real.sigmoid :=
+    (sigmoidRelaxation (𝕋 := 𝕋) k).IsSound Real.sigmoid :=
   Relaxation.tighter_sound (aux_sigmoidCurvatureRelaxation_sound (sigmoidEnclosure_sound k))
     (Relaxation.ofMonotone_sound Real.sigmoid_mono (sigmoidEnclosure_sound k))
 

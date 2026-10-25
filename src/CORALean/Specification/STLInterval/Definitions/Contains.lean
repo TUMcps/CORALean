@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 
 @[expose] public section
 
@@ -41,9 +41,9 @@ def STLInterval.contains_ (tol : ℝ) : STLInterval 𝕋 → STLInterval 𝕋 �
   | .nonempty .., .empty => True
   | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
     let upperIncluded := toEReal u₁ > toEReal u₂ ∨
-      (withinTol tol (toEReal u₁) (toEReal u₂) ∧ (rc₁ = true ∨ rc₂ = false))
+      (IsWithinTol tol (toEReal u₁) (toEReal u₂) ∧ (rc₁ = true ∨ rc₂ = false))
     let lowerIncluded := ((toReal l₁ : ℝ) : EReal) < (toReal l₂ : ℝ) ∨
-      (withinTol tol (toReal l₁ : ℝ) (toReal l₂ : ℝ) ∧ (lc₁ = true ∨ lc₂ = false))
+      (IsWithinTol tol (toReal l₁ : ℝ) (toReal l₂ : ℝ) ∧ (lc₁ = true ∨ lc₂ = false))
     lowerIncluded ∧ upperIncluded
 
 end CORALean

@@ -11,8 +11,8 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
 [1, Prop. 5]'s "without loss of generality, we re-order the generators". That is a *choice* of
 witness for [1, Def. 3], and this is the record that it is one: the re-ordered hypothesis implies
 the printed relation. Not an `iff`: the converse would have to produce the re-ordering, and
-`AlignedWith` allows two generators of `Z₂` to pick the same generator of `Z₁`, which no injection
-into `Fin Z₁.h` recovers — the paper rules that out with `NoAlignedGens` on `Z₂`, a hypothesis
+`IsAlignedWith` allows two generators of `Z₂` to pick the same generator of `Z₁`, which no injection
+into `Fin Z₁.h` recovers — the paper rules that out with `HasNoAlignedGens` on `Z₂`, a hypothesis
 this direction does not need.
 
 ## Inputs
@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 an alignment witness. -/
 theorem Zonotope.alignedWith_of_smul (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
     (μ : Fin Z₁.h → ℝ) (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) :
-    Z₁.AlignedWith Z₂ := by
+    Z₁.IsAlignedWith Z₂ := by
   intro i
   exact ⟨Fin.cast hh.symm i, μ (Fin.cast hh.symm i), by simpa using (hG (Fin.cast hh.symm i)).symm⟩
 

@@ -48,13 +48,13 @@ variable {X : Type}
 
 theorem STL.Formula.sat_bigAnd {β : Type} (l : List β) (g : β → STL.Formula X)
     (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.bigAnd (l.map g)).Sat ξ ↔ ∀ b ∈ l, (g b).Sat ξ := by -- --- PROOF ---
+    (STL.Formula.bigAnd (l.map g)).Satisfies ξ ↔ ∀ b ∈ l, (g b).Satisfies ξ := by -- --- PROOF ---
   induction l with
-  | nil => simp [STL.Formula.bigAnd, STL.Formula.tt, STL.Formula.Sat]
+  | nil => simp [STL.Formula.bigAnd, STL.Formula.tt, STL.Formula.Satisfies]
   | cons b l ih =>
     -- one step of the fold is a binary `∧`
-    have : (STL.Formula.bigAnd ((b :: l).map g)).Sat ξ ↔
-        (g b).Sat ξ ∧ (STL.Formula.bigAnd (l.map g)).Sat ξ := STL.Formula.sat_and _ _ _
+    have : (STL.Formula.bigAnd ((b :: l).map g)).Satisfies ξ ↔
+        (g b).Satisfies ξ ∧ (STL.Formula.bigAnd (l.map g)).Satisfies ξ := STL.Formula.sat_and _ _ _
     rw [this, ih]
     simp
 

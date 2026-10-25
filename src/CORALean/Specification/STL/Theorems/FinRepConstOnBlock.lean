@@ -52,7 +52,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSequence.eq_of_cDivisible {c : ℝ≥0} {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
-    (hT : ReachSequence.FinRep T R) (hdiv : ReachSequence.CDivisible c T) (j : ℕ) {s t : ℝ≥0}
+    (hT : ReachSequence.IsFinRep T R) (hdiv : ReachSequence.IsCDivisible c T) (j : ℕ) {s t : ℝ≥0}
     (hs : j * c < s ∧ s < j * c + c) (ht : j * c < t ∧ t < j * c + c) : -- --- CONCL ---
     R s = R t := by -- --- PROOF ---
   refine hT s t fun u hu hmem => ?_

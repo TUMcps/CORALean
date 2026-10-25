@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IsStepAdmissible
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 
 @[expose] public section
@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 `stepTest` accepting `r` gives `0 < r`; the float norm bound `q = r · nrm` is above
 `‖r • A‖ = r ‖A‖` (`mul_le_mulUp`) and meets the side condition; and the float contribution
 `r · expRemainderBound q η` is strictly under `ε`, which `expRemainderBound_le` at `q` and
-`mul_le_mulUp` bring down to the contribution of `StepAdmissible`, [1]'s step predicate.
+`mul_le_mulUp` bring down to the contribution of `IsStepAdmissible`, [1]'s step predicate.
 
 ## Inputs
 * `A` – system matrix
@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A candidate passing `stepTest` is admissible. -/
 theorem MatExp.stepTest_spec {A : Mat ℝ n n} {nrm ε r : 𝕋} {η : ℕ}
     (hA : ‖A‖ ≤ toReal nrm) (h : MatExp.stepTest nrm ε η r = true) : -- --- CONCL ---
-    Real.MatExp.StepAdmissible A η (toReal ε) (toReal r) := by -- --- PROOF ---
+    Real.MatExp.IsStepAdmissible A η (toReal ε) (toReal r) := by -- --- PROOF ---
   rw [MatExp.stepTest, Bool.and_eq_true, Bool.and_eq_true] at h
   obtain ⟨⟨h0, h1⟩, h2⟩ := h
   have hr : 0 < toReal r := by

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmi
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
 # The two forms of the `H₋` inequality agree
 
 [1, Eq. 26], [1, Eq. 27]: with `Y = MᵀM`, `Q = αP` and `W = PL`, the inequality with the gain
-(`LinearSysDT.HMinusLmiGain`) is the inequality of Eq. 27 (`LinearSysDT.HMinusLmi`), the same
+(`LinearSysDT.IsHMinusLmiGain`) is the inequality of Eq. 27 (`LinearSysDT.IsHMinusLmi`), the same
 matrix: `QA - QLC = αPA - αWC`, `-QLE = -αWE` and `-Q - CᵀMᵀMC = -αP - CᵀYC`.
 
 ## Inputs
@@ -54,9 +54,9 @@ variable {n ny nf : ℕ}
 
 theorem LinearSysDT.hMinusLmiGain_iff_hMinusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (E : Mat ℝ ny nf) (L : Mat ℝ n ny) (P : Mat ℝ n n) (M : Mat ℝ ny ny) (α β : ℝ) :
-    LinearSysDT.HMinusLmiGain A C E L (α • P) M β ↔
-      LinearSysDT.HMinusLmi A C E P (P * L) (Mᵀ * M) α β := by
-  unfold LinearSysDT.HMinusLmiGain LinearSysDT.HMinusLmi
+    LinearSysDT.IsHMinusLmiGain A C E L (α • P) M β ↔
+      LinearSysDT.IsHMinusLmi A C E P (P * L) (Mᵀ * M) α β := by
+  unfold LinearSysDT.IsHMinusLmiGain LinearSysDT.IsHMinusLmi
   simp only [Matrix.smul_mul, Matrix.mul_assoc]
 
 end CORALean

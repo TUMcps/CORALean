@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.Rtl.Definitions.Sat
+public import CORALean.Specification.Rtl.Definitions.Satisfies
 public import CORALean.Specification.Rtl.Operations.ToFormula
 
 @[expose] public section
@@ -8,8 +8,8 @@ public import CORALean.Specification.Rtl.Operations.ToFormula
 /-!
 # An `rtl` formula means what the paper's RTL formula means
 
-If an `rtl` object is the formula `φ` of [1, Def. 1] (`toFormula`), its semantics (`Rtl.Sat`, the
-equations (4)-(7) of [1, Def. 2], leaf by leaf) is the semantics of `φ`.
+If an `rtl` object is the formula `φ` of [1, Def. 1] (`toFormula`), its semantics (`Rtl.Satisfies`,
+the equations (4)-(7) of [1, Def. 2], leaf by leaf) is the semantics of `φ`.
 
 ## Inputs
 * `f` – reading of a label as a predicate
@@ -45,7 +45,7 @@ variable {L X : Type}
 
 theorem Rtl.sat_toFormula (f : L → Pform X) : -- --- CONCL ---
     ∀ (ψ : Rtl L) (φ : RTL.Formula X), ψ.toFormula f = some φ → ∀ R : ℝ≥0 → Set X,
-      (ψ.Sat (fun l r => (f l).Sat r) R ↔ φ.Sat R) := by -- --- PROOF ---
+      (ψ.Satisfies (fun l r => (f l).Satisfies r) R ↔ φ.Satisfies R) := by -- --- PROOF ---
   intro ψ
   induction ψ with
   | all l =>

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.DeepZSShape
-public import CORALean.NN.Layers.Definitions.SShapedPrinted
+public import CORALean.NN.Layers.Definitions.IsSShapedPrinted
 public import Mathlib.Algebra.Order.Ring.Abs
 public import Mathlib.Analysis.Calculus.ContDiff.Operations
 public import Mathlib.Analysis.Calculus.Deriv.Mul
@@ -49,8 +49,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem deepZSShape_cube_not_sound : -- --- CONCL ---
-    SShapedPrinted (fun x : ℝ => x ^ 3) ∧ Monotone (fun x : ℝ => x ^ 3)
-      ∧ ¬ (deepZSShape (fun x : ℝ => x ^ 3) (deriv fun x : ℝ => x ^ 3)).Sound
+    IsSShapedPrinted (fun x : ℝ => x ^ 3) ∧ Monotone (fun x : ℝ => x ^ 3)
+      ∧ ¬ (deepZSShape (fun x : ℝ => x ^ 3) (deriv fun x : ℝ => x ^ 3)).IsSound
         (fun x : ℝ => x ^ 3) := by -- --- PROOF ---
   -- `f' = 3 x²` and `f'' = 6 x`
   have hd : deriv (fun x : ℝ => x ^ 3) = fun x => 3 * x ^ 2 :=

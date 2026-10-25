@@ -72,13 +72,13 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
     have := (h t t.2).2 (by simp [STLInterval.set_empty])
     simp only [FourValuedSTL.Formula.kleeneSat, this]
     rw [Kleene.isRefinedBy_iff_tt_ff]
-    simp [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Sat]
+    simp [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Satisfies]
   | atom a =>
     -- an atom: `â(R(t)) = ⊤` gives `a(ξ(t))`, and `⊥` gives `¬a(ξ(t))`
     obtain ⟨hv, h⟩ := hS a (by simp [FourValuedSTL.Formula.atoms])
     refine ⟨hv, fun t => ?_⟩
     simp only [FourValuedSTL.Formula.kleeneSat, h t, FourValuedSTL.Formula.satBool,
-      FourValuedSTL.Formula.Sat]
+      FourValuedSTL.Formula.Satisfies]
     rw [Kleene.isRefinedBy_iff_tt_ff]
     simpa using FourValuedSTL.hat_spec (hξ t)
   | not φ ih =>
@@ -88,7 +88,7 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
     simp only [FourValuedSTL.Formula.kleeneSat]
     rw [KleeneSignal.at_not _ hv, Kleene.isRefinedBy_iff_tt_ff]
     have := (Kleene.isRefinedBy_iff_tt_ff _ _).1 (h t)
-    simp only [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Sat] at this ⊢
+    simp only [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Satisfies] at this ⊢
     generalize (φ.kleeneSat S).at t = k at this ⊢
     cases k <;> simp_all [Kleene.not]
   | and φ ψ ihφ ihψ =>
@@ -105,7 +105,7 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
     rw [Kleene.isRefinedBy_iff_tt_ff, htt, hff]
     have a1 := (Kleene.isRefinedBy_iff_tt_ff _ _).1 (h₁ t)
     have a2 := (Kleene.isRefinedBy_iff_tt_ff _ _).1 (h₂ t)
-    simp only [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Sat, decide_eq_true_eq,
+    simp only [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Satisfies, decide_eq_true_eq,
       decide_eq_false_iff_not] at a1 a2 ⊢
     constructor
     · exact fun h => ⟨a1.1 h.1, a2.1 h.2⟩
@@ -123,7 +123,7 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
     rw [Kleene.isRefinedBy_iff_tt_ff, htt, hff]
     have a1 := fun t => (Kleene.isRefinedBy_iff_tt_ff _ _).1 (h₁ t)
     have a2 := fun t => (Kleene.isRefinedBy_iff_tt_ff _ _).1 (h₂ t)
-    simp only [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Sat, decide_eq_true_eq,
+    simp only [FourValuedSTL.Formula.satBool, FourValuedSTL.Formula.Satisfies, decide_eq_true_eq,
       decide_eq_false_iff_not] at a1 a2 ⊢
     constructor
     -- `True`: the witness `t'` is a time of `ℝ≥0`, since `I` is over `ℝ≥0`
@@ -133,7 +133,7 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
       refine ⟨⟨t', ht'⟩, hu, (a2 ⟨t', ht'⟩).1 hr, fun t'' h1 h2 => (a1 t'').1 (hl t'' ?_ ?_)⟩
       · exact_mod_cast h1
       · exact_mod_cast h2
-    -- `False`: a witness of `Sat` is a time where `ψ` is not `False` and `φ` not `False` before
+    -- `False`: a `Satisfies` witness is a time where `ψ` is not `False`, and `φ` not before it
     · intro H ⟨t', hu, hr, hl⟩
       rcases H t' hu with h0 | ⟨x, hx1, hx2, hx3⟩
       · exact (a2 t').2 h0 hr

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmi
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
 
 [1, Eq. 21], [1, Eq. 24]: with no disturbance or noise, the error `e_k = x_k - p_k` follows
 `e_{k+1} = (A - LC) e_k - L E f_k` [1, Eq. 19] and the residual center is `r_k = M C e_k + M E f_k`
-[1, Eq. 20]. If `P ≻ 0`, `α ≥ 0`, `W` and `β` satisfy [1, Eq. 27] (`LinearSysDT.HMinusLmi`) with
+[1, Eq. 20]. If `P ≻ 0`, `α ≥ 0`, `W` and `β` satisfy [1, Eq. 27] (`LinearSysDT.IsHMinusLmi`) with
 `Y = MᵀM`, then at `L = P⁻¹W`, from `e_0 = 0`, every fault sequence with `f_{k₀} ≠ 0` has
 `J^N_- = Σ_{k<N} (r_kᵀr_k - β² f_kᵀf_k) ≥ c > 0` [1, Eq. 21] for all `N > k₀`, `c` independent of
 `N`. The chain of the paper, run backwards: the form of the negated Eq. 27 is
@@ -67,7 +67,7 @@ variable {n ny nf : ℕ}
 -- [1, Eq. 24] at one step: the form of the negated Eq. 27 at `(e_{k+1}, e_k, f_k)`
 theorem LinearSysDT.aux_hMinus_step (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
     (P : Mat ℝ n n) (W : Mat ℝ n ny) (M : Mat ℝ ny ny) (α β : ℝ) (hP : P.PosDef)
-    (h : LinearSysDT.HMinusLmi A C E P W (Mᵀ * M) α β) (e : Vec ℝ n)
+    (h : LinearSysDT.IsHMinusLmi A C E P W (Mᵀ * M) α β) (e : Vec ℝ n)
     (f : Vec ℝ nf) : -- --- CONCL ---
     let L := P⁻¹ * W
     let w := (A - L * C) *ᵥ e - (L * E) *ᵥ f
@@ -139,7 +139,7 @@ theorem LinearSysDT.aux_hMinus_step (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Ma
 
 theorem LinearSysDT.hMinus_of_lmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf) (P : Mat ℝ n n)
     (W : Mat ℝ n ny) (M : Mat ℝ ny ny) (α β : ℝ) (hP : P.PosDef) (hα : 0 ≤ α)
-    (h : LinearSysDT.HMinusLmi A C E P W (Mᵀ * M) α β) (e : ℕ → Vec ℝ n) (f : ℕ → Vec ℝ nf)
+    (h : LinearSysDT.IsHMinusLmi A C E P W (Mᵀ * M) α β) (e : ℕ → Vec ℝ n) (f : ℕ → Vec ℝ nf)
     (he0 : e 0 = 0)
     (he : ∀ k, e (k + 1) = (A - P⁻¹ * W * C) *ᵥ e k - (P⁻¹ * W * E) *ᵥ f k)
     (k₀ : ℕ) (hf : f k₀ ≠ 0) : -- --- CONCL ---

@@ -17,8 +17,8 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 
 [1, Cor. 3.1]: for `f : x → ℝⁿ` continuous, continuously differentiable in `int x`, an interval
 matrix `J = [Jlo, Jhi]` enclosing `f'` there, `0 ∉ Jᵢᵢ` and `f(x₀) ∈ y`, the inclusion
-`x₀ + Γ(J, x - x₀, y - f(x₀)) ⊆ int x` (2), `gammaTest`, gives `y ⊆ f(x)`. Through [1, Thm. 3.1]
-(`Icc_subset_image_of_disjoint_boundary_singular`): (2) puts `x₀` in `int x` and makes `J` an
+`x₀ + Γ(J, x - x₀, y - f(x₀)) ⊆ int x` (2), `PassesGammaTest`, gives `y ⊆ f(x)`. Through [1, Thm.
+3.1] (`Icc_subset_image_of_disjoint_boundary_singular`): (2) puts `x₀` in `int x` and makes `J` an
 H-matrix (`isHMatrix_of_gammaTest`), so every real matrix in `J` is regular, which is (ii); (i) is
 the mean-value theorem along the segment from `x₀` to a boundary point, a row at a time, solving
 row `i` for `vᵢ`, which (2) puts in `(xloᵢ, xhiᵢ)`, contradicting `v ∈ ∂x`.
@@ -94,7 +94,7 @@ theorem Icc_subset_image_of_gammaTest
     (hJ₁ : ∀ x ∈ interior (Icc xlo xhi), ∀ i j, f' x (Pi.single j 1) i ∈ Icc (Jlo i j) (Jhi i j))
     (hJ : ∀ i j, Jlo i j ≤ Jhi i j) (hdiag : ∀ i, (0 : ℝ) ∉ Icc (Jlo i i) (Jhi i i))
     (hx₀ : x₀ ∈ Icc xlo xhi) (hy : f x₀ ∈ Icc ylo yhi)
-    (h2 : gammaTest f x₀ xlo xhi Jlo Jhi ylo yhi) : -- --- CONCL ---
+    (h2 : PassesGammaTest f x₀ xlo xhi Jlo Jhi ylo yhi) : -- --- CONCL ---
     Icc ylo yhi ⊆ f '' Icc xlo xhi := by -- --- PROOF ---
   have hH := isHMatrix_of_gammaTest hJ hdiag hx₀ hy h2
   -- a box point with every coordinate inside is an interior point

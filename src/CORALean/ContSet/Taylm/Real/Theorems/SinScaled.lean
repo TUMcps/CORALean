@@ -47,8 +47,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sin_scaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
-    (hT : T.Scaled h C) : -- --- CONCL ---
-    T.sin.Scaled h (1 * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
+    (hT : T.IsScaled h C) : -- --- CONCL ---
+    T.sin.IsScaled h (1 * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
       + 1 * (2 * C) ^ (T.maxOrder + 1)) := by -- --- PROOF ---
   refine Taylm.taylor_scaled h0 h1 hT (fun k _ => ?_) (by simp)
   -- a derivative at most one, divided by `k! ≥ 1`

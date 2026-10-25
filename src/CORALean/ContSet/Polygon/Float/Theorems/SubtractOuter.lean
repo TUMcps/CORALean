@@ -57,7 +57,7 @@ open Matrix
 /-- `innerHRep` returns the plain inequalities its edges give, with no error box. -/
 private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
     ∀ H ∈ Polygon.innerHRep p,
-      H.ErrFree := by -- --- PROOF ---
+      H.IsErrFree := by -- --- PROOF ---
   intro H (h : Polygon.innerHRep p = some H)
   simp only [Polygon.innerHRep] at h
   split_ifs at h

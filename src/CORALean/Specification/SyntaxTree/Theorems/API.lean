@@ -77,7 +77,7 @@ public import CORALean.Specification.SyntaxTree.Theorems.UminusSound
 encloses
 that function, the `*_sound` theorems that its `funHan` is sound, `sound_*` that a constructor
 keeps a
-tree `Sound`, and `backpropagation_sound` that `backpropagation` of a sound tree keeps every
+tree `IsSound`, and `backpropagation_sound` that `backpropagation` of a sound tree keeps every
 solution.
 `sinhCora_counterexample`, `tanCora_counterexample` and `powerOddCora_counterexample` are the
 places CORA's `funHan` is not sound.

@@ -133,7 +133,7 @@ theorem LinearSys.IsCanonicalTrajectory.aux_discretizeEnclosureFloat_mem_reach_h
     {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)
-    (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     {o : ℕ} (ho : 0 < o) : -- --- CONCL ---
     ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
@@ -165,7 +165,7 @@ period boundary, the order admissible for the step at the augmented matrix. -/
 theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
     (U_ext : Zonotope (Vec 𝕋 sys.nExt)) (o η N : ℕ) (ho : 0 < o) {Δt : 𝕋}
     (hΔt : 0 < toReal Δt) (hdt : sys.dt = (N : ℝ) * toReal Δt)
-    (hη : sys.augmentFloat.OrderAdmissibleFloat Δt Δt η) {H : ℕ} {R₀ : Zonotope (Vec 𝕋 n)}
+    (hη : sys.augmentFloat.IsOrderAdmissibleFloat Δt Δt η) {H : ℕ} {R₀ : Zonotope (Vec 𝕋 n)}
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}

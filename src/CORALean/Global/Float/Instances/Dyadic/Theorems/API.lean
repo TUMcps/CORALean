@@ -30,5 +30,5 @@ them: the `ToRealExact*`/`ToRealNeg`/`ToRealHalf`/`ToRealMkZero` family for
 the operations that lose nothing, `RoundDownLe`/`LeRoundUp` for the two that
 round, `LeIff` and what reads off it for the comparison, `DivDownLeDiv`/
 `LeDivUp` for the one operation with no exact step to compose with.
-`Instance` assembles them.
+`IsInstance` assembles them.
 -/

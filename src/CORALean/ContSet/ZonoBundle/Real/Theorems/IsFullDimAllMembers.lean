@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
-public import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
+public import CORALean.ContSet.ZonoBundle.Real.Operations.HasAllMembersFullDim
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsFullDimIff
 
 @[expose] public section
@@ -41,7 +41,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimensi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.allMembersFullDim_of_interior {zB : ZonoBundle α}
-    (h : (interior zB.construct).Nonempty) : zB.allMembersFullDim := fun i => by
+    (h : (interior zB.construct).Nonempty) : zB.HasAllMembersFullDim := fun i => by
   -- the intersection is inside member `i`
   have hsub : zB.construct ⊆ (zB.Z i).construct := SetIntersection.construct_subset_ofFn _ i
   exact (Zonotope.isFullDim_iff (zB.Z i)).mp (h.mono (interior_mono hsub))

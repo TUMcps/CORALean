@@ -1,8 +1,8 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlow
-public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
-public import CORALean.HybridDynamics.Parallel.Definitions.FeedthroughFree
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFlowLaw
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFeedthroughFree
 public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
 public import CORALean.HybridDynamics.Parallel.Operations.MergeDistSets
 
@@ -11,12 +11,12 @@ public import CORALean.HybridDynamics.Parallel.Operations.MergeDistSets
 /-!
 # The product's flow has the flow law
 
-At `ℝ` and under CORA's own check `FeedthroughFree`, `mergeFlowsLinearSys` with `mergeInputSets`
-and `mergeDistSets` has `FlowLaw`: for states, bound inputs, admitted global inputs `g` and
+At `ℝ` and under CORA's own check `IsFeedthroughFree`, `mergeFlowsLinearSys` with `mergeInputSets`
+and `mergeDistSets` has `IsFlowLaw`: for states, bound inputs, admitted global inputs `g` and
 disturbances `w` of the components, the product's input is `g` with the global inputs nothing
 reads set to `0` (in `mergeInputSets` by `Lifting.mem_input`), its disturbance the stack of `w`
 (in `mergeDistSets` by `Lifting.mem_dist`), and `mergeFlowsLinearSys_flow` is the coordinate
-identity. So every run theorem stated for `FlowLaw` holds of `product`.
+identity. So every run theorem stated for `IsFlowLaw` holds of `product`.
 
 ## Inputs
 * `P` – parallel automaton
@@ -48,9 +48,9 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flowLaw
-    {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.FeedthroughFree)
+    {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.IsFeedthroughFree)
     (lift : ParallelHybridAutomaton.Lifting S G n m) : -- --- CONCL ---
-    P.FlowLaw (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ)) (P.mergeInputSets lift)
+    P.IsFlowLaw (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ)) (P.mergeInputSets lift)
       (P.mergeDistSets lift) := by -- --- PROOF ---
   classical
   intro ℓ x u w g hu hin hw

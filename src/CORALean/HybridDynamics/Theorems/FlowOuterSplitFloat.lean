@@ -78,7 +78,7 @@ theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
     {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
     (traj : ℓ.IsTrajectory τ x u w)
     {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
-    (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
+    (hη : ℓ.dynamics.IsOrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
     (htr : t ≤ toReal r) : -- --- CONCL ---
     x t ∈ construct (ℓ.timeIntervalSplitFloat r η R₀) := by -- --- PROOF ---
   set A := Scalar.toRealMat ℓ.dynamics.A with hA

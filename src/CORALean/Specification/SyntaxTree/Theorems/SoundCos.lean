@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.CosSound
@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `cos` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_cos (h : Sound B t) : Sound B (t.cos) :=
+theorem SyntaxTree.sound_cos (h : IsSound B t) : IsSound B (t.cos) :=
   ⟨h, encloses_cos (encloses_of_sound h), cos_sound t.value⟩
 
 end CORALean

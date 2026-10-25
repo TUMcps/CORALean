@@ -102,8 +102,9 @@ private theorem SyntaxTree.funHanTanCora_sup_le : -- --- CONCL ---
 /-- `backpropagation` of the printed `tan` loses the zero `(π/3, √3)`. -/
 theorem SyntaxTree.tanCora_counterexample : -- --- CONCL ---
     ∃ (x : Fin 2 → ℝ) (B : Real.Interval (Vec ℝ 2)),
-      InBox B x ∧ Dom.contains (interval 0 0) (tanCoraTree.eval x) ∧
-      ¬ ∃ r, backpropagation tanCoraTree (interval 0 0) B = .ok r ∧ InBox r x := by -- --- PROOF ---
+      IsInBox B x ∧ Dom.contains (interval 0 0) (tanCoraTree.eval x) ∧
+      ¬ ∃ r, backpropagation tanCoraTree (interval 0 0) B = .ok r ∧ IsInBox r
+      x := by -- --- PROOF ---
   have hp := Real.pi_pos
   have h3 : Real.sqrt 3 ≤ 2 := Real.sqrt_le_iff.2 ⟨by norm_num, by norm_num⟩
   refine ⟨![Real.pi / 3, Real.sqrt 3], ⟨fun _ => 0, ![Real.pi / 3, 2]⟩, ?_, ?_, ?_⟩

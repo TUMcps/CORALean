@@ -14,7 +14,7 @@ with `λ = min(f'(l), f'(u))`, `μ₁ = (f(u) + f(l) - λ (u + l)) / 2` and
 `μ₂ = (f(u) - f(l) - λ (u - l)) / 2`. As a `Relaxation`: slope `λ`, offset `μ₁`, error `μ₂`.
 The rounded interval coefficients are left out, as for `deepZRelu`.
 
-Which `f` this is sound for is the question: `SShapedPrinted` is the class the paper's
+Which `f` this is sound for is the question: `IsSShapedPrinted` is the class the paper's
 footnote defines, and it is the wrong one.
 
 ## Inputs

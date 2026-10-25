@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 denotes, so a larger denoted set gives a larger `γ` whatever representation carries it — which
 is what fails for `zono`, the one step of `[2, Alg. 2]` without this. `0 ≤ E` is carried and
 is not an added hypothesis: `E` bounds a third derivative entrywise, so
-`AbstractionError.of_lagrange`'s own `hEb` already forces it.
+`IsAbstractionError.of_lagrange`'s own `hEb` already forces it.
 
 ## Inputs
 * `E` – third-derivative bounds

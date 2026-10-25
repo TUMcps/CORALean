@@ -16,6 +16,7 @@ each positive semidefinite `Σ` in the covariance interval. The operations' theo
 every law the real operation produces from laws of the operands is a law of the result.
 The set of means and the covariance are [1, Def. 4]'s G-zonotope with uncertain mean, which
 CORA's `probZonotope` implements.
+There is no `I_error` and no `absorbRounding`: the rounding sits in the means' box and covariance.
 
 ## References
 

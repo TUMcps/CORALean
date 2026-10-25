@@ -51,12 +51,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 
 /-- What the bracket buys, and the only place `σ` and its derivative appear. -/
 theorem Relaxation.ofDeriv_sound {E : Enclosure 𝕋} {lo hi lam : 𝕋 → 𝕋 → 𝕋} (σ' : ℝ → ℝ)
-    (hd : ∀ x, HasDerivAt σ (σ' x) x) (hE : E.Sound σ)
+    (hd : ∀ x, HasDerivAt σ (σ' x) x) (hE : E.IsSound σ)
     (hlo : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → toReal (lo l u) ≤ σ' x)
     (hhi : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → σ' x ≤ toReal (hi l u))
     (hlam : ∀ l u : 𝕋, toReal l ≤ toReal u →
       toReal (lo l u) ≤ toReal (lam l u) ∧ toReal (lam l u) ≤ toReal (hi l u)) : -- --- CONCL ---
-    (Relaxation.ofDeriv E lo hi lam).Sound σ := by -- --- PROOF ---
+    (Relaxation.ofDeriv E lo hi lam).IsSound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |σ t - (toReal (lam l u) * t + toReal (Relaxation.curvMid E lo hi lam l u))|
     ≤ toReal (maximum (subUp (Relaxation.curvHi E hi lam l u) (Relaxation.curvMid E lo hi lam l u))

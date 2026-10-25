@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Exp
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.RestrictContains
@@ -57,7 +57,7 @@ private theorem SyntaxTree.le_logE {a s : ℝ} (ha : 0 < a) (h : Real.exp s ≤ 
 
 /-- `aux_exp_` is sound for `exp`. -/
 theorem SyntaxTree.exp_sound (prev : Dom) : -- --- CONCL ---
-    UnarySound Unary.exp.fn prev (Real.Interval.exp prev) funHanExp := by -- --- PROOF ---
+    IsUnarySound Unary.exp.fn prev (Real.Interval.exp prev) funHanExp := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.exp s ∧ Real.exp s ≤ int.sup 0 := hi
   have hpos : 0 < int.sup 0 := (Real.exp_pos s).trans_le h.2

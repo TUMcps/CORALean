@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdgeAt
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
 
 @[expose] public section
@@ -53,7 +53,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 center shifted, given that the relaxed column is even. -/
 theorem PolyZonotope.relaxExpEven_outer_of_edge (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) {η : ℕ} {k₀ : Fin pZ.p}
-    (hedge : PolyZonotope.ExpEdgeAt pZ.E η k₀ (part.right 0) (part.right 1))
+    (hedge : PolyZonotope.IsExpEdgeAt pZ.E η k₀ (part.right 0) (part.right 1))
     (heven : ∀ k, Even (pZ.E k (part.right 0))) : -- --- CONCL ---
     pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   obtain ⟨hsim, hpar, -, hlt⟩ := hedge

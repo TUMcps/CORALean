@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.DescriptorDecoupleRank
+public import CORALean.ContDynamics.LinearSysDT.Definitions.HasDescriptorDecoupleRank
 public import CORALean.Global.RankOneKroneckerGe
 
 @[expose] public section
@@ -8,8 +8,8 @@ public import CORALean.Global.RankOneKroneckerGe
 /-!
 # The rank condition decouples the unknown input
 
-[1, Eq. 6]: if the rank condition of Eq. 5 (`LinearSysDT.DescriptorDecoupleRank`) holds, there are
-`T`, `N` with `TE + NC = I` (6a) and `TD_d = 0` (6b). With `M = [E D_d; C 0]`, `X = [T N]` and
+[1, Eq. 6]: if the rank condition of Eq. 5 (`LinearSysDT.HasDescriptorDecoupleRank`) holds, there
+are `T`, `N` with `TE + NC = I` (6a) and `TD_d = 0` (6b). With `M = [E D_d; C 0]`, `X = [T N]` and
 `J = [I 0]` they are `X M = J`, i.e. `Mᵀ Xᵀ = Jᵀ`, and `vec (Mᵀ Xᵀ) = (I ⊗ Mᵀ) vec Xᵀ`. The rank
 condition says the row `vec(Jᵀ)ᵀ` adds nothing to `I ⊗ M`, whose rank is at least `n_x · rank M`
 (`rank_one_kronecker_ge`) and at most that of the stacked matrix: so `vec Jᵀ` is in the column space
@@ -50,9 +50,9 @@ variable {nx ny nd : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.descriptorDecouple_of_rank (E : Mat ℝ nx nx) (Dd : Mat ℝ nx nd)
-    (C : Mat ℝ ny nx) (h : LinearSysDT.DescriptorDecoupleRank E Dd C) : -- --- CONCL ---
+    (C : Mat ℝ ny nx) (h : LinearSysDT.HasDescriptorDecoupleRank E Dd C) : -- --- CONCL ---
     ∃ (T : Mat ℝ nx nx) (N : Mat ℝ nx ny), T * E + N * C = 1 ∧ T * Dd = 0 := by -- --- PROOF ---
-  unfold LinearSysDT.DescriptorDecoupleRank at h
+  unfold LinearSysDT.HasDescriptorDecoupleRank at h
   simp only at h
   set M : Matrix (Fin nx ⊕ Fin ny) (Fin nx ⊕ Fin nd) ℝ := fromBlocks E Dd C 0 with hM
   set J : Matrix (Fin nx ⊕ Fin nd) (Fin nx) ℝ := fromRows 1 0 with hJ

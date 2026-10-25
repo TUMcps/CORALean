@@ -26,7 +26,7 @@ halfspaces, is paid in the slacks there, as `reduceOverDomain_outer` pays it on 
 * `dom` – domain interval
 
 ## Hypotheses
-* `hP` – `P.ErrFree`
+* `hP` – `P.IsErrFree`
 * `hA` – every inequality scaling `sA i` is positive
 
 ## Conclusion
@@ -76,7 +76,7 @@ theorem HPolytope.aux_scaleDev_between (v : Vec 𝕋 n) (s : 𝕋) (dom : Interv
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Inside `dom`, the scaled polytope contains the error-free one. -/
-theorem HPolytope.scaleRows_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.ErrFree)
+theorem HPolytope.scaleRows_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.IsErrFree)
     (sA : Fin P.m → 𝕋) (sE : Fin P.me → 𝕋)
     (hA : ∀ i, 0 < toReal (sA i)) (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     P.construct ∩ dom.construct ⊆

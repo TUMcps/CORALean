@@ -1,15 +1,15 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Definitions.MatContains
+public import CORALean.ContSet.Interval.Real.Definitions.ContainsMat
 
 @[expose] public section
 
 /-!
-# `Interval.matContains` holds only within the tolerance of the box
+# `Interval.ContainsMat` holds only within the tolerance of the box
 
 Each of the three tests that admit a bound moves it by at most `tol * max 1 |M i j|`: the strict
 test by `tol`, the absolute test by `tol`, the relative one by `tol * |M i j|`. A column that
-`matContains` accepts is nonempty.
+`ContainsMat` accepts is nonempty.
 
 ## Inputs
 * `A` – interval matrix
@@ -44,7 +44,7 @@ variable {m n : ℕ}
 /-- A matrix accepted with tolerance `tol ≥ 0` is within `tol * max 1 |M i j|` of its entry's
 interval, and every column of the box is nonempty. -/
 theorem Interval.matContains_sound (A : Interval (Mat ℝ m n)) (M : Mat ℝ m n) {tol : ℝ}
-    (ht : 0 ≤ tol) (h : A.matContains M tol) (i : Fin m) (j : Fin n) : -- --- CONCL ---
+    (ht : 0 ≤ tol) (h : A.ContainsMat M tol) (i : Fin m) (j : Fin n) : -- --- CONCL ---
     A.inf i j ≤ A.sup i j ∧ A.inf i j - tol * max 1 |M i j| ≤ M i j ∧
       M i j ≤ A.sup i j + tol * max 1 |M i j| := by -- --- PROOF ---
   obtain ⟨hne, h2⟩ := h j

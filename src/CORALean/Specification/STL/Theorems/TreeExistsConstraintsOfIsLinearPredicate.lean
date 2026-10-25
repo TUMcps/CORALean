@@ -44,21 +44,21 @@ theorem STL.Tree.exists_constraints_of_isLinearPredicate (φ : STL.Tree n)
     (h : φ.isLinearPredicate = true) : -- --- CONCL ---
     ∃ L : List (STL.Cmp × (Fin n → ℝ) × ℝ),
       ∀ ξ : ℝ≥0 → Fin n → ℝ,
-        φ.Sat ξ ↔ ∀ c ∈ L, c.1.rel (∑ i, c.2.1 i * ξ 0 i) c.2.2 := by -- --- PROOF ---
+        φ.Satisfies ξ ↔ ∀ c ∈ L, c.1.Relates (∑ i, c.2.1 i * ξ 0 i) c.2.2 := by -- --- PROOF ---
   induction φ with
   | cmp op e₁ e₂ =>
     simp only [STL.Tree.isLinearPredicate, Bool.and_eq_true] at h
     obtain ⟨a₁, b₁, h₁⟩ := STL.Expr.exists_affine_of_isLinear e₁ h.1
     obtain ⟨a₂, b₂, h₂⟩ := STL.Expr.exists_affine_of_isLinear e₂ h.2
     refine ⟨[(op, fun i => a₁ i - a₂ i, b₂ - b₁)], fun ξ => ?_⟩
-    simp only [STL.Tree.Sat, h₁, h₂, sub_mul, Finset.sum_sub_distrib, List.mem_singleton,
+    simp only [STL.Tree.Satisfies, h₁, h₂, sub_mul, Finset.sum_sub_distrib, List.mem_singleton,
       forall_eq]
-    cases op <;> simp only [STL.Cmp.rel] <;> constructor <;> intro <;> linarith
+    cases op <;> simp only [STL.Cmp.Relates] <;> constructor <;> intro <;> linarith
   | and φ ψ ihφ ihψ =>
     simp only [STL.Tree.isLinearPredicate, Bool.and_eq_true] at h
     obtain ⟨L₁, hL₁⟩ := ihφ h.1
     obtain ⟨L₂, hL₂⟩ := ihψ h.2
-    exact ⟨L₁ ++ L₂, fun ξ => by simp [STL.Tree.Sat, hL₁ ξ, hL₂ ξ, or_imp, forall_and]⟩
+    exact ⟨L₁ ++ L₂, fun ξ => by simp [STL.Tree.Satisfies, hL₁ ξ, hL₂ ξ, or_imp, forall_and]⟩
   | _ => simp [STL.Tree.isLinearPredicate] at h
 
 end CORALean

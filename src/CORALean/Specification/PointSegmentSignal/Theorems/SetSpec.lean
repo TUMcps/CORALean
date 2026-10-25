@@ -2,7 +2,7 @@ module
 
 public import CORALean.Specification.PointSegmentSignal.Operations.Set
 public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBounds
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetPointSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtAppendLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtAppendGe
@@ -460,8 +460,8 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
     (hne : STLInterval.emptyBounds lb up lc rc = false)
     (hlt : (lb : WithTop T) ≠ up) : -- --- CONCL ---
     (s.aux_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
-      (STLInterval.memBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
-      (¬ STLInterval.memBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = s.at t)
+      (STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
+      (¬ STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = s.at t)
       := by -- --- PROOF ---
   obtain ⟨hQv, hQle, hdrop, hbelow, hatlb, habove, hlast⟩ := aux_ls_spec s hs lb h0 lc value
   induction up using WithTop.recTopCoe with
@@ -479,7 +479,7 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
     rw [hR]
     refine ⟨hQv, fun t ht => ?_⟩
     rcases lt_trichotomy t lb with h | h | h
-    · have hnm : ¬ STLInterval.memBounds lb ⊤ lc rc t := by
+    · have hnm : ¬ STLInterval.IsInBounds lb ⊤ lc rc t := by
         rintro ⟨h1 | ⟨-, h1⟩, -⟩
         · exact absurd h1 (not_lt.mpr h.le)
         · exact absurd h1 h.ne
@@ -487,15 +487,15 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
     -- at `lb` itself
     · subst h
       cases lc
-      · have hnm : ¬ STLInterval.memBounds t ⊤ false rc t := by
+      · have hnm : ¬ STLInterval.IsInBounds t ⊤ false rc t := by
           rintro ⟨h1 | ⟨h1, -⟩, -⟩
           · exact lt_irrefl _ h1
           · exact Bool.noConfusion h1
         exact ⟨fun hm => absurd hm hnm, fun _ => by simpa using hatlb⟩
-      · have hm : STLInterval.memBounds t ⊤ true rc t := ⟨Or.inr ⟨rfl, rfl⟩,
+      · have hm : STLInterval.IsInBounds t ⊤ true rc t := ⟨Or.inr ⟨rfl, rfl⟩,
           Or.inl (WithTop.coe_lt_top t)⟩
         exact ⟨fun _ => by simpa using hatlb, fun hnm => absurd hm hnm⟩
-    · have hm : STLInterval.memBounds lb ⊤ lc rc t := ⟨Or.inl h, Or.inl (WithTop.coe_lt_top t)⟩
+    · have hm : STLInterval.IsInBounds lb ⊤ lc rc t := ⟨Or.inl h, Or.inl (WithTop.coe_lt_top t)⟩
       exact ⟨fun _ => habove t h, fun hnm => absurd hm hnm⟩
   | coe u =>
     have hlu : lb < u := by
@@ -532,7 +532,7 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
     have hlu' : (lb : WithTop T) < (u : WithTop T) := WithTop.coe_lt_coe.mpr hlu
     rcases lt_trichotomy t lb with h | h | h
     · -- before the interval
-      have hnm : ¬ STLInterval.memBounds lb (u : WithTop T) lc rc t := by
+      have hnm : ¬ STLInterval.IsInBounds lb (u : WithTop T) lc rc t := by
         rintro ⟨h1 | ⟨-, h1⟩, -⟩
         · exact absurd h1 (not_lt.mpr h.le)
         · exact absurd h1 h.ne
@@ -543,17 +543,17 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
           s.at t := by
         rw [hRlt t ht hlu]; exact hatlb
       cases lc
-      · have hnm : ¬ STLInterval.memBounds t (u : WithTop T) false rc t := by
+      · have hnm : ¬ STLInterval.IsInBounds t (u : WithTop T) false rc t := by
           rintro ⟨h1 | ⟨h1, -⟩, -⟩
           · exact lt_irrefl _ h1
           · exact Bool.noConfusion h1
         exact ⟨fun hm => absurd hm hnm, fun _ => by simpa using hat⟩
-      · have hm : STLInterval.memBounds t (u : WithTop T) true rc t :=
+      · have hm : STLInterval.IsInBounds t (u : WithTop T) true rc t :=
           ⟨Or.inr ⟨rfl, rfl⟩, Or.inl hlu'⟩
         exact ⟨fun _ => by simpa using hat, fun hnm => absurd hm hnm⟩
     · rcases lt_trichotomy t u with h' | h' | h'
       · -- inside
-        have hm : STLInterval.memBounds lb (u : WithTop T) lc rc t :=
+        have hm : STLInterval.IsInBounds lb (u : WithTop T) lc rc t :=
           ⟨Or.inl h, Or.inl (WithTop.coe_lt_coe.mpr h')⟩
         refine ⟨fun _ => ?_, fun hnm => absurd hm hnm⟩
         rw [hRlt t ht h', habove t h]
@@ -561,16 +561,16 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
         subst h'
         have hat := hRu
         cases rc
-        · have hnm : ¬ STLInterval.memBounds lb (t : WithTop T) lc false t := by
+        · have hnm : ¬ STLInterval.IsInBounds lb (t : WithTop T) lc false t := by
             rintro ⟨-, h1 | ⟨h1, -⟩⟩
             · exact lt_irrefl _ h1
             · exact Bool.noConfusion h1
           exact ⟨fun hm => absurd hm hnm, fun _ => by simpa using hat⟩
-        · have hm : STLInterval.memBounds lb (t : WithTop T) lc true t :=
+        · have hm : STLInterval.IsInBounds lb (t : WithTop T) lc true t :=
             ⟨Or.inl h, Or.inr ⟨rfl, rfl⟩⟩
           exact ⟨fun _ => by simpa using hat, fun hnm => absurd hm hnm⟩
       · -- after the interval
-        have hnm : ¬ STLInterval.memBounds lb (u : WithTop T) lc rc t := by
+        have hnm : ¬ STLInterval.IsInBounds lb (u : WithTop T) lc rc t := by
           rintro ⟨-, h1 | ⟨-, h1⟩⟩
           · exact absurd (WithTop.coe_lt_coe.mp h1) (not_lt.mpr h'.le)
           · exact h'.ne (WithTop.coe_inj.mp h1).symm
@@ -582,8 +582,8 @@ valid. -/
 theorem PointSegmentSignal.aux_setBounds_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T)
     (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lb) (value : Bool) : -- --- CONCL ---
     (s.aux_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
-      (STLInterval.memBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
-      (¬ STLInterval.memBounds lb up lc rc t →
+      (STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
+      (¬ STLInterval.IsInBounds lb up lc rc t →
         (s.aux_setBounds lb up lc rc value).at t = s.at t) := by -- --- PROOF ---
   by_cases hne : STLInterval.emptyBounds lb up lc rc = true
   · have hset : s.aux_setBounds lb up lc rc value = s := by
@@ -605,9 +605,9 @@ theorem PointSegmentSignal.aux_setBounds_spec (s : PointSegmentSignal T) (hs : s
         simpa [STLInterval.emptyBounds] using hne'
       have hlcrc : lc = true ∧ rc = true := by
         by_contra hc; exact h1 (Or.inr ⟨hsing.symm, hc⟩)
-      have hmem : STLInterval.memBounds lb up lc rc t ↔ t = lb := by
+      have hmem : STLInterval.IsInBounds lb up lc rc t ↔ t = lb := by
         rw [← hsing]
-        simp only [STLInterval.memBounds, hlcrc.1, hlcrc.2, true_and, WithTop.coe_lt_coe,
+        simp only [STLInterval.IsInBounds, hlcrc.1, hlcrc.2, true_and, WithTop.coe_lt_coe,
             WithTop.coe_inj]
         constructor
         · rintro ⟨h | h, h' | h'⟩

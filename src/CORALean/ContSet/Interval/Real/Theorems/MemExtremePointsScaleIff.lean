@@ -103,12 +103,12 @@ theorem Interval.mem_extremePoints_scale_iff {b β : Vec ℝ n} (hb0 : ∀ i, 0 
     ⟨fun h i => (hco i).1.mp (h i), fun h i => (hco i).1.mpr (h i)⟩
   have hplane : c ∈ Interval.hyperplane β α ↔ (fun i => β i * c i) ∈ Interval.hyperplane 1 α := by
     simp [Interval.hyperplane]
-  have hedge : (⟨0, b⟩ : Interval (Vec ℝ n)).OnEdge c ↔
-      bx.OnEdge (fun i => β i * c i) := by
+  have hedge : (⟨0, b⟩ : Interval (Vec ℝ n)).IsOnEdge c ↔
+      bx.IsOnEdge (fun i => β i * c i) := by
     have hk : ∀ k, (c k = (0 : Vec ℝ n) k ∨ c k = b k) ↔
         (β k * c k = min 0 (β k * b k) ∨ β k * c k = max 0 (β k * b k)) := fun k => by
       simpa only [Pi.zero_apply] using (hco k).2
-    simp only [bx, Interval.OnEdge, hk]
+    simp only [bx, Interval.IsOnEdge, hk]
   rw [Set.mem_inter_iff, Set.mem_inter_iff, hbox, hplane, hedge]
 
 end CORALean.Real

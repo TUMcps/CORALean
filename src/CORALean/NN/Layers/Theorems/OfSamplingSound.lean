@@ -65,7 +65,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ} {m : ℕ}
 
 /-- A sampled deviation's upper bound. -/
-theorem aux_le_sampleDevUp {E : Enclosure 𝕋} (hE : E.Sound σ) (c : Fin (m + 1) → 𝕋)
+theorem aux_le_sampleDevUp {E : Enclosure 𝕋} (hE : E.IsSound σ) (c : Fin (m + 1) → 𝕋)
     (x : 𝕋) : -- --- CONCL ---
     σ (toReal x) - Real.evalPoly (fun k => toReal (c k)) (toReal x)
       ≤ toReal (sampleDevUp E c x) := by -- --- PROOF ---
@@ -83,7 +83,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ σ' : ℝ
 
 /-- The fallback bracket is sound outright. -/
 theorem aux_coarse_bounds {E : Enclosure 𝕋} {c : Fin (m + 1) → 𝕋} {M l u : 𝕋} {t : ℝ}
-    (hE : E.Sound σ) (hd : ∀ x, HasDerivAt σ (σ' x) x)
+    (hE : E.IsSound σ) (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hM : ∀ x, toReal l ≤ x → x ≤ toReal u →
       |σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x| ≤ toReal M)
     (hl : toReal l ≤ t) (hu : t ≤ toReal u) : -- --- CONCL ---
@@ -106,11 +106,11 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyRelaxation.ofSampling_sound {E : Enclosure 𝕋} {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋}
-    {M dx : 𝕋 → 𝕋 → 𝕋} {p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋} (hE : E.Sound σ)
+    {M dx : 𝕋 → 𝕋 → 𝕋} {p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋} (hE : E.IsSound σ)
     (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hM : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u →
       |σ' x - Real.evalPolyDeriv (fun k => toReal (c l u k)) x| ≤ toReal (M l u)) :
-    (PolyRelaxation.ofSampling E c M dx p).Sound σ :=
+    (PolyRelaxation.ofSampling E c M dx p).IsSound σ :=
   PolyRelaxation.ofBracket_sound (c := c) (lo := fitLo E c M dx p)
     (hi := fitHi E c M dx p) fun l u t hl hu => by
       -- the fit is a polynomial, so the deviation differentiates termwise

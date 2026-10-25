@@ -37,18 +37,18 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every time interval of the formula is non-empty. -/
-def STL.Tree.WellFormed : STL.Tree n → Prop
+def STL.Tree.IsWellFormed : STL.Tree n → Prop
   | .tt => True
   | .ff => True
   | .cmp _ _ _ => True
-  | .not φ => φ.WellFormed
-  | .and φ ψ => φ.WellFormed ∧ ψ.WellFormed
-  | .or φ ψ => φ.WellFormed ∧ ψ.WellFormed
-  | .until a b φ ψ => a ≤ b ∧ φ.WellFormed ∧ ψ.WellFormed
-  | .release a b φ ψ => a ≤ b ∧ φ.WellFormed ∧ ψ.WellFormed
-  | .finally a b φ => a ≤ b ∧ φ.WellFormed
-  | .globally a b φ => a ≤ b ∧ φ.WellFormed
-  | .next _ φ => φ.WellFormed
+  | .not φ => φ.IsWellFormed
+  | .and φ ψ => φ.IsWellFormed ∧ ψ.IsWellFormed
+  | .or φ ψ => φ.IsWellFormed ∧ ψ.IsWellFormed
+  | .until a b φ ψ => a ≤ b ∧ φ.IsWellFormed ∧ ψ.IsWellFormed
+  | .release a b φ ψ => a ≤ b ∧ φ.IsWellFormed ∧ ψ.IsWellFormed
+  | .finally a b φ => a ≤ b ∧ φ.IsWellFormed
+  | .globally a b φ => a ≤ b ∧ φ.IsWellFormed
+  | .next _ φ => φ.IsWellFormed
 
 end CORALean
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.FullDimShortcutCora
+public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.IsFullDimShortcutCora
 
 @[expose] public section
 
@@ -51,10 +51,10 @@ theorem aux_thinLine_construct : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.fullDimShortcut_thinLine_counterexample : -- --- CONCL ---
-    aux_thinLine.fullDimShortcutCora ∧
+    aux_thinLine.IsFullDimShortcutCora ∧
       (interior aux_thinLine.construct).Nonempty := by -- --- PROOF ---
   refine ⟨?_, ?_⟩
-  · simp [SpectraShadow.fullDimShortcutCora, aux_thinLine]
+  · simp [SpectraShadow.IsFullDimShortcutCora, aux_thinLine]
     norm_num
   · rw [aux_thinLine_construct, interior_univ]
     exact ⟨0, trivial⟩

@@ -24,11 +24,11 @@ public import CORALean.NN.Theorems.SigmoidLipschitz
 /-!
 # The two-layer network is convergent
 
-[1, Prop. 4.13]'s hypothesis, discharged: the linear layer meets `Convergent` at every level because
-its propagation is exact, and the activation meets it by raising the order of its fit. The tail
-bound the network statement asks for is free on both sides here: behind the linear layer the tail is
-one sigmoid, whose constant is `1`; behind the activation the tail is empty. So no residual is
-amplified anywhere, which is why this case needs none of the care `MultiLayerRefinementConverges`
+[1, Prop. 4.13]'s hypothesis, discharged: the linear layer meets `IsConvergent` at every level
+because its propagation is exact, and the activation meets it by raising the order of its fit. The
+tail bound the network statement asks for is free on both sides here: behind the linear layer the
+tail is one sigmoid, whose constant is `1`; behind the activation the tail is empty. So no residual
+is amplified anywhere, which is why this case needs none of the care `MultiLayerRefinementConverges`
 does.
 
 ## Inputs
@@ -66,11 +66,11 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem linearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
-    (Real.linearSigmoidNetwork W b).Convergent := by -- --- PROOF ---
+    (Real.linearSigmoidNetwork W b).IsConvergent := by -- --- PROOF ---
   -- the activation on its own, which is the whole tail behind the matrix
   have h : (RefinableNetwork.cons (S := 𝒫𝒵)
       (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
-        Real.sigmoidPolyFamily_sound) .nil).LipschitzLayers :=
+        Real.sigmoidPolyFamily_sound) .nil).HasLipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   exact ⟨Layer.linear_refinable_convergent W b,
     RefinableNetwork.exists_lipschitzWith_eval _ h,

@@ -27,12 +27,22 @@ definitions live and what counts as doing the component's work by hand:
   `HPolytope` field by field (`me :=`, `Ae :=`, `be :=`, `b_error :=`, `be_error :=`; a star set's
   own literal has an `m :=` too); the coefficient box `dom` is the star set's own field.
 
-`scripts/component-reuse-allowlist.txt` lists what must stay, with the reason (a generator-side
-matrix, data of one construction, a conversion, a certificate or a proposal that reads the rows as
-numbers): one `<path>::<name>  <reason>` per line, `#` comments and blank lines ignored. An entry
-that matches no flagged definition any more is reported as stale, so the list only shrinks. Prints
-one finding per line and exits 1 on any. `--root DIR` reads another tree (used to test the rule on
-a mutated copy).
+A flagged definition that is not the component's work says so in its docstring, in one sentence
+of the form `Not the constraint's work (<kind>): <reason>` (`constraint's`, `polytope's` or
+`predicate's` for the component of the representation), with `<kind>` one of
+
+* `generators`: the generator side of a constrained polynomial zonotope (its exponent matrix `E`,
+  its ambient block `G`), which no constraint operation touches;
+* `data`: data of one construction, or an input of the component's own operation, that builds
+  no component;
+* `conversion`: a set of another representation built from the component's rows;
+* `certificate`: a residual or a bound proved over the component and another set together, which
+  no operation of the component alone states;
+* `proposal`: rows read as numbers for a solver that only proposes, a certificate checking its
+  answer.
+
+The reason after the colon is at least a phrase. There is no list. Prints one finding per line
+and exits 1 on any. `--root DIR` reads another tree (used to test the rule on a mutated copy).
 """
 import re
 import sys
@@ -42,13 +52,15 @@ ROOT = Path(__file__).resolve().parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()
-LIST = ROOT / "scripts" / "component-reuse-allowlist.txt"
 SRC = ROOT / "src" / "CORALean"
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:(?:private|protected|noncomputable)\s+)*"
                   r"(?:def|abbrev)\s+(\S+)")
 # a line that starts the next top-level declaration, banner or block end
 NEXT = re.compile(r"^(?:@\[|(?:private |protected |noncomputable )*(?:def|abbrev|theorem|lemma|"
                   r"instance|structure|class|inductive)\b|-- ={3,}|end\b|namespace\b|section\b)")
+# the sentence that gives the reason a flagged definition stays
+REASON = re.compile(r"Not the (?:constraint|polytope|predicate)'s work "
+                    r"\((?:generators|data|conversion|certificate|proposal)\): \S+(?: \S+){2,}")
 END = re.compile(r":=|\swhere\s*$|^\s*\|")
 MAT = re.compile(r"\bMat\b")
 EXP = re.compile(r"Fin [^→]+→\s*Fin [^→]+→\s*ℕ\s*$")
@@ -74,6 +86,19 @@ def result_type(sig):
     return sig[last + 1:].strip() if last >= 0 else ""
 
 
+def docstring(lines, i):
+    """The `/-- … -/` docstring of the declaration at line `i`, or the empty string."""
+    j = i - 1
+    while j >= 0 and lines[j].lstrip().startswith("@["):
+        j -= 1
+    if j < 0 or not lines[j].rstrip().endswith("-/"):
+        return ""
+    k = j
+    while k >= 0 and "/--" not in lines[k]:
+        k -= 1
+    return " ".join(l.strip() for l in lines[max(k, 0):j + 1])
+
+
 def decls(lines):
     """Each `def`/`abbrev`: its line, name, signature and body, comments dropped."""
     for i, line in enumerate(lines):
@@ -89,7 +114,7 @@ def decls(lines):
         while k < len(lines) and not NEXT.match(lines[k]):
             k += 1
         body = [l.split("--")[0] for l in lines[i:k]]
-        yield i + 1, m.group(1), sig, body
+        yield i + 1, m.group(1), sig, body, docstring(lines, i)
 
 
 def conpolyzono(name, sig, body):
@@ -138,14 +163,7 @@ CONFIG = [
 
 
 def main():
-    allow, alines = {}, {}
-    if LIST.exists():
-        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
-            if l.strip() and not l.startswith("#"):
-                key = l.split()[0]
-                allow[key] = True
-                alines[key] = no
-    findings, used = [], set()
+    findings = []
     for rep, comp, dirs, skip, rule in CONFIG:
         for d, keep in dirs:
             for p in sorted((SRC / d).rglob("*.lean")):
@@ -154,21 +172,15 @@ def main():
                     continue
                 if any(s in "/" + rel for s in skip):
                     continue
-                for no, name, sig, body in decls(p.read_text(encoding="utf-8").splitlines()):
+                for no, name, sig, body, doc in decls(p.read_text(encoding="utf-8").splitlines()):
                     why = rule(name, sig, body)
-                    if not why:
-                        continue
-                    key = f"{rel}::{name}"
-                    if key in allow:
-                        used.add(key)
+                    if not why or REASON.search(doc):
                         continue
                     findings.append(f"{rel}:{no}: `{name}` {' and '.join(why)} — {rep} does "
-                                    f"to its component only what {comp} do; use one, or add "
-                                    "a missing general one there (#174)")
-    for k in sorted(allow):
-        if k not in used:
-            findings.append(f"scripts/component-reuse-allowlist.txt:{alines[k]}: stale entry `{k}` "
-                            "— no such flagged definition any more; the list only shrinks")
+                                    f"to its component only what {comp} do; use one, add "
+                                    "a missing general one there, or say in the docstring "
+                                    "`Not the component's work (generators|data|conversion|"
+                                    "certificate|proposal): <reason>` (#174)")
     for f in findings:
         print(f)
     sys.exit(1 if findings else 0)

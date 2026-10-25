@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
@@ -113,7 +113,7 @@ theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋} 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.inputReach_subset_inputSolutionFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η V).construct := by -- --- PROOF ---

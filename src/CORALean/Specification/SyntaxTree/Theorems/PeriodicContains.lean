@@ -86,7 +86,7 @@ private theorem SyntaxTree.periodic_branch_lower {p a i s' s : ℝ} (hp : 0 < p)
 theorem SyntaxTree.periodic_contains {R₁ R₂ prev : Dom} {s : ℝ} (hs : Dom.contains prev s) (k : ℤ)
     (hk : (R₁.inf 0 + k * (2 * Real.pi) ≤ s ∧ s ≤ R₁.sup 0 + k * (2 * Real.pi)) ∨
       (R₂.inf 0 + k * (2 * Real.pi) ≤ s ∧ s ≤ R₂.sup 0 + k * (2 * Real.pi))) : -- --- CONCL ---
-    Dom.contains (periodic R₁ R₂ prev) s ∧ Dom.within (periodic R₁ R₂ prev)
+    Dom.contains (periodic R₁ R₂ prev) s ∧ Dom.IsWithin (periodic R₁ R₂ prev)
       prev := by -- --- PROOF ---
   have hp : 0 < 2 * Real.pi := by positivity
   have lowerK : (R₁.inf 0 + (⌊(prev.inf 0 - R₁.inf 0) / (2 * Real.pi)⌋ : ℝ) * (2 * Real.pi) ≤

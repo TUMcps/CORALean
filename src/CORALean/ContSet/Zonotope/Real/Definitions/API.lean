@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
 public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
-public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+public import CORALean.ContSet.Zonotope.Real.Definitions.IsReduceBoxAdmissible
 public import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
 public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm
 public import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
@@ -17,16 +17,16 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNet
 public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
 public import CORALean.ContSet.Zonotope.Real.Definitions.Degree
 public import CORALean.ContSet.Zonotope.Real.Definitions.MinFace
-public import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
+public import CORALean.ContSet.Zonotope.Real.Definitions.IsBisectInv
 public import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
 public import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
-public import CORALean.ContSet.Zonotope.Real.Definitions.MatContains
+public import CORALean.ContSet.Zonotope.Real.Definitions.ContainsMat
 
 /-!
 # What a zonotope means beyond its own construction
 
 `Aligned` names two zonotopes whose generators point the same way, [1, Def. 3].
-`ReduceBoxAdmissible` names an order whose reduction box a caller-given bound
+`IsReduceBoxAdmissible` names an order whose reduction box a caller-given bound
 already contains, what `reduceBoxOrder` searches for the least of.
 
 ## References

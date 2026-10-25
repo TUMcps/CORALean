@@ -47,14 +47,14 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_release (a b : ℝ≥0) (φ ψ : STL.Formula X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    (STL.Formula.release a b φ ψ).Sat ξ ↔ ∀ t, a ≤ t → t ≤ b →
-      ψ.Sat (Time.shift ξ t) ∨ ∃ i < t, φ.Sat (Time.shift ξ i) := by -- --- PROOF ---
-  simp only [STL.Formula.release, STL.Formula.Sat, not_exists, not_and, not_not, not_forall]
+    (STL.Formula.release a b φ ψ).Satisfies ξ ↔ ∀ t, a ≤ t → t ≤ b →
+      ψ.Satisfies (Time.shift ξ t) ∨ ∃ i < t, φ.Satisfies (Time.shift ξ i) := by -- --- PROOF ---
+  simp only [STL.Formula.release, STL.Formula.Satisfies, not_exists, not_and, not_not, not_forall]
   refine forall_congr' fun t => forall_congr' fun h₁ => forall_congr' fun h₂ => ?_
   -- `¬(¬ψ ∧ ∀ i < t, ¬¬φ)`... unfolds to the stated disjunction
   constructor
   · intro h
-    by_cases hψ : ψ.Sat (Time.shift ξ t)
+    by_cases hψ : ψ.Satisfies (Time.shift ξ t)
     · exact Or.inl hψ
     · obtain ⟨i, hi, hφ⟩ := h hψ
       exact Or.inr ⟨i, hi, hφ⟩

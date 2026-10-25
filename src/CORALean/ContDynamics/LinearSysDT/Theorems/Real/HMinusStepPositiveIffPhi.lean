@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusStepPositive
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmiPhi
 
 @[expose] public section
 
@@ -9,8 +9,8 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
 # The `H₋` step condition is the matrix inequality in `(e, f)`
 
 [1, Eq. 24], [1, Eq. 25]: for a symmetric `Q`, the quantity `pᵀp - β²fᵀf - (V⁺ - V)` of Eq. 24
-(`LinearSysDT.HMinusStepPositive`) is positive at every `(e, f) ≠ 0` iff `[Φ₁₁ Φ₁₂; ⋆ Φ₂₂] ≺ 0`
-(`LinearSysDT.HMinusLmiPhi`). The form of `-Φ` at `(e, f)` is that quantity: `pᵀp` expands to
+(`LinearSysDT.IsHMinusStepPositive`) is positive at every `(e, f) ≠ 0` iff `[Φ₁₁ Φ₁₂; ⋆ Φ₂₂] ≺ 0`
+(`LinearSysDT.IsHMinusLmiPhi`). The form of `-Φ` at `(e, f)` is that quantity: `pᵀp` expands to
 `eᵀCᵀMᵀMCe + 2eᵀCᵀMᵀMEf + fᵀEᵀMᵀMEf`, `e⁺ᵀQe⁺` to the blocks `(A - LC)ᵀQ(A - LC)`,
 `(A - LC)ᵀQ(-LE)` and `(LE)ᵀQ(LE)`, as `Q` is symmetric.
 
@@ -109,9 +109,9 @@ theorem LinearSysDT.aux_hMinusPhi_form (A : Mat ℝ n n) (C : Mat ℝ ny n) (E :
 theorem LinearSysDT.hMinusStepPositive_iff_phi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (E : Mat ℝ ny nf) (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ)
     (hQ : Qᵀ = Q) : -- --- CONCL ---
-    LinearSysDT.HMinusStepPositive A C E L Q M β ↔
-      LinearSysDT.HMinusLmiPhi A C E L Q M β := by -- --- PROOF ---
-  unfold LinearSysDT.HMinusStepPositive LinearSysDT.HMinusLmiPhi
+    LinearSysDT.IsHMinusStepPositive A C E L Q M β ↔
+      LinearSysDT.IsHMinusLmiPhi A C E L Q M β := by -- --- PROOF ---
+  unfold LinearSysDT.IsHMinusStepPositive LinearSysDT.IsHMinusLmiPhi
   simp only
   set Φ₁₁ : Mat ℝ n n := -(Cᵀ * Mᵀ * M * C) + (A - L * C)ᵀ * Q * (A - L * C) - Q with hΦ₁₁
   set Φ₁₂ : Matrix (Fin n) (Fin nf) ℝ := (A - L * C)ᵀ * Q * (-(L * E)) - Cᵀ * Mᵀ * M * E

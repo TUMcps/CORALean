@@ -59,7 +59,7 @@ theorem STL.Branch.aux_holds_shift (c : ℝ≥0) (b : STL.Branch X) (ξ : ℝ≥
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.CNF.sat_next (c : ℝ≥0) (a : STL.CNF X) (ξ : ℝ≥0 → X) :
-    (a.next.toFormula c).Sat ξ ↔ (a.toFormula c).Sat (Time.shift ξ c) := by
+    (a.next.toFormula c).Satisfies ξ ↔ (a.toFormula c).Satisfies (Time.shift ξ c) := by
   rw [STL.CNF.sat_toFormula, STL.CNF.sat_toFormula]
   simp only [STL.CNF.next, List.mem_map, forall_exists_index, and_imp,
     forall_apply_eq_imp_iff₂, exists_exists_and_eq_and, STL.Branch.aux_holds_shift]

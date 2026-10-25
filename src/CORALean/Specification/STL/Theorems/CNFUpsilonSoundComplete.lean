@@ -59,13 +59,14 @@ variable {X : Type}
 
 /-- The window part of a branch holds of every trace iff the set `S` does, by the interval lemma. -/
 theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
-    (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.FinRep T R)
-    (hdiv : ReachSequence.CDivisible c T) (b : STL.Branch X) : -- --- CONCL ---
+    (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.IsFinRep T R)
+    (hdiv : ReachSequence.IsCDivisible c T) (b : STL.Branch X) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R,
-      (∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + b.j * c))) ∨
-        ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + b.j * c))) ↔
-      (∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Sat r) ∨
-        ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Sat r := by -- --- PROOF ---
+      (∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Satisfies (ξ (t + b.j * c))) ∨
+        ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Satisfies (ξ (t + b.j * c))) ↔
+      (∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Satisfies r) ∨
+        ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Satisfies
+        r := by -- --- PROOF ---
   refine ReachSequence.forall_finals_or_globals_iff hne hc (fun x hx₁ hx₂ => ?_) b.K b.L
   -- the midpoint of the window and `x` lie in the same open block
   refine ReachSequence.eq_of_cDivisible hT hdiv b.j ⟨hx₁, hx₂⟩ ⟨?_, ?_⟩
@@ -74,24 +75,25 @@ theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R
 
 /-- One clause: some branch holds of every trace iff some branch holds outright. -/
 theorem STL.aux_clause {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
-    (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.FinRep T R)
-    (hdiv : ReachSequence.CDivisible c T) (clause : STL.Clause X)
+    (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.IsFinRep T R)
+    (hdiv : ReachSequence.IsCDivisible c T) (clause : STL.Clause X)
     (hnd : (clause.map STL.Branch.j).Nodup) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R, ∃ b ∈ clause,
-      ((∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + b.j * c))) ∨
-        ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + b.j * c))) ∨ b.ϱ.Sat (ξ (b.j * c))) ↔
-    ∃ b ∈ clause, ((∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Sat r) ∨
-        ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Sat r) ∨
-      ∀ r ∈ R (b.j * c), b.ϱ.Sat r := by -- --- PROOF ---
+      ((∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Satisfies (ξ (t + b.j * c))) ∨
+        ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Satisfies (ξ (t + b.j * c))) ∨ b.ϱ.Satisfies (ξ (b.j *
+            c))) ↔
+    ∃ b ∈ clause, ((∀ r ∈ R (c / 2 + b.j * c), (Pform.bigOr b.K).Satisfies r) ∨
+        ∃ ϱ ∈ b.L, ∀ r ∈ R (c / 2 + b.j * c), (ϱ.or (Pform.bigOr b.K)).Satisfies r) ∨
+      ∀ r ∈ R (b.j * c), b.ϱ.Satisfies r := by -- --- PROOF ---
   classical
   refine ⟨fun h => ?_, ?_⟩
   · -- index every branch twice: by its window `(jc, jc + c)` and by its point `jc`
     let Tm : STL.Branch X × Bool → Set ℝ≥0 := fun p =>
       if p.2 then Set.Ioo (p.1.j * c) (p.1.j * c + c) else {p.1.j * c}
     let P : STL.Branch X × Bool → (ℝ≥0 → X) → Prop := fun p ξ =>
-      if p.2 then (∃ ϱ ∈ p.1.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + p.1.j * c))) ∨
-        ∃ ϱ ∈ p.1.L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + p.1.j * c))
-      else p.1.ϱ.Sat (ξ (p.1.j * c))
+      if p.2 then (∃ ϱ ∈ p.1.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Satisfies (ξ (t + p.1.j * c))) ∨
+        ∃ ϱ ∈ p.1.L, ∀ t, 0 < t → t < c → ϱ.Satisfies (ξ (t + p.1.j * c))
+      else p.1.ϱ.Satisfies (ξ (p.1.j * c))
     -- every `Tm p` lies in the block `[jc, jc + c)`
     have hsub : ∀ p, Tm p ⊆ Set.Ico (p.1.j * c) (p.1.j * c + c) := by
       rintro ⟨b, i⟩ x hx
@@ -151,10 +153,10 @@ theorem STL.aux_clause {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ�
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.CNF.upsilon_sound_complete {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
-    (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.FinRep T R)
-    (hdiv : ReachSequence.CDivisible c T) (cnf : STL.CNF X)
+    (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.IsFinRep T R)
+    (hdiv : ReachSequence.IsCDivisible c T) (cnf : STL.CNF X)
     (hnd : ∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) : -- --- CONCL ---
-    (cnf.upsilon c).Sat R ↔
+    (cnf.upsilon c).Satisfies R ↔
       (cnf.toFormula c).HoldsOn (ReachSequence.traceSet R) := by -- --- PROOF ---
   rw [STL.CNF.sat_upsilon c cnf R (hne 0) fun _ _ _ _ => hne _]
   simp only [STL.Formula.HoldsOn, STL.CNF.sat_toFormula]

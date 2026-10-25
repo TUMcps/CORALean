@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 
 theorem Cat.maxPool_eval_iff (tap : Fin m → Fin (k + 1) → Fin n) (x : Vec ℝ n)
     (y : Vec ℝ m) : -- --- CONCL ---
-    (Cat.maxPool (𝕋 := 𝕋) tap).Eval x y ↔
+    (Cat.maxPool (𝕋 := 𝕋) tap).Evaluates x y ↔
       y = fun j => Real.windowMax fun q => x (tap j q) := by -- --- PROOF ---
   simp only [Cat.maxPool]
   -- window `j` comes back from position `j (k + 1) + q` to `(j, q)`
@@ -65,15 +65,15 @@ theorem Cat.maxPool_eval_iff (tap : Fin m → Fin (k + 1) → Fin n) (x : Vec �
           (⟨i.val, by omega⟩ : Fin (0 + m))) fun _ => (zero : 𝕋))
         (.comp (Cat.maxSegments k 0 m) (.affine (selectMat fun i : Fin (0 + (k + 1) * m) =>
           tap ⟨i.val / (k + 1), Nat.div_lt_of_lt_mul (by have := i.isLt; omega)⟩
-            ⟨i.val % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩) fun _ => zero))).Eval x y) ∧
+            ⟨i.val % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩) fun _ => zero))).Evaluates x y) ∧
       ∀ y, (Cat.comp (.affine (selectMat fun i : Fin m =>
           (⟨i.val, by omega⟩ : Fin (0 + m))) fun _ => (zero : 𝕋))
         (.comp (Cat.maxSegments k 0 m) (.affine (selectMat fun i : Fin (0 + (k + 1) * m) =>
           tap ⟨i.val / (k + 1), Nat.div_lt_of_lt_mul (by have := i.isLt; omega)⟩
-            ⟨i.val % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩) fun _ => zero))).Eval x y →
+            ⟨i.val % (k + 1), Nat.mod_lt _ (Nat.succ_pos k)⟩) fun _ => zero))).Evaluates x y →
         y = fun j => Real.windowMax fun q => x (tap j q) := by
-    refine ⟨⟨_, Cat.Eval.comp _ _ _ (Cat.Eval.comp _ _ _ (Cat.Eval.affine _ _ x)
-      ((Cat.maxSegments_eval_iff _ _ _ _ _).mpr rfl)) (Cat.Eval.affine _ _ _)⟩,
+    refine ⟨⟨_, Cat.Evaluates.comp _ _ _ (Cat.Evaluates.comp _ _ _ (Cat.Evaluates.affine _ _ x)
+      ((Cat.maxSegments_eval_iff _ _ _ _ _).mpr rfl)) (Cat.Evaluates.affine _ _ _)⟩,
       fun y hy => ?_⟩
     -- the reorder, the pooling from `a = 0`, the rename
     obtain ⟨z₂, hz₂, hy⟩ := (Cat.eval_comp_iff _ _ _ _).mp hy

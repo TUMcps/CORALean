@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
-public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsSorted
 
 @[expose] public section
 
@@ -46,8 +46,8 @@ theorem PolyZonotope.aux_mergeIdx_monotone {p h : ℕ} (E : Fin p → Fin h → 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem PolyZonotope.merge_sorted {pZ : PolyZonotope α} (hS : PolyZonotope.Sorted pZ.E) :
-    PolyZonotope.Sorted pZ.merge.E :=
+theorem PolyZonotope.merge_sorted {pZ : PolyZonotope α} (hS : PolyZonotope.IsSorted pZ.E) :
+    PolyZonotope.IsSorted pZ.merge.E :=
   hS.comp (PolyZonotope.aux_mergeIdx_monotone pZ.E)
 
 end CORALean.Real

@@ -69,7 +69,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MergeKeep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Merge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Reindex
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ColLex
-public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsSorted
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPerm
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Sort
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SortPlus
@@ -104,9 +104,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthMulti
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMulti
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidthGroup
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGroup
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdgeAt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdgeAt
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdgeAt
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpEdge
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpGreedySel
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpGreedy
@@ -180,7 +180,7 @@ set: equal exponent columns add, a zero generator goes, and so does a factor no 
 into a new independent generator, priced by `eDiff`; `eDrift` brackets that drift, read at the
 midpoint by `relaxDrift`/`relaxExpMid`. `relaxExpEven` halves the price at a one-sided drift,
 `relaxExpMulti` drops the agreement, summing over every factor, and `relaxExpGroup` merges a whole
-group at once; `ExpEdgeAt`/`ExpEdge` graph the pairs, `relaxExpGreedy` walking it at any pick.
+group at once; `IsExpEdgeAt`/`IsExpEdge` graph the pairs, `relaxExpGreedy` walking it at any pick.
 
 `plusE`, `linCombE` and `quadMapE` are the exponent matrices the size-changing operations assemble,
 each its own file (#62); `identE` is the block `dependent` appends and a conversion's whole answer.

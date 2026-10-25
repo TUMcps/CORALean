@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Definitions.PermInvariant
+public import CORALean.NN.Graph.Definitions.IsPermInvariant
 public import CORALean.NN.Graph.Operations.SumPoolLin
 
 @[expose] public section
@@ -43,7 +43,7 @@ variable {N F : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Def. 5]: `sumPoolLin` is a permutation-invariant aggregation. -/
-theorem GNN.sumPoolLin_permInvariant : GNN.PermInvariant (GNN.sumPoolLin N F) := by
+theorem GNN.sumPoolLin_permInvariant : GNN.IsPermInvariant (GNN.sumPoolLin N F) := by
   intro σ H
   funext j
   exact Equiv.sum_comp σ (fun i => H i j)

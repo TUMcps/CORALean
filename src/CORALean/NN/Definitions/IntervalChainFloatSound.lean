@@ -8,9 +8,9 @@ public import CORALean.NN.Definitions.Basic
 
 /-!
 # A float interval chain stands for a real one
-`Sound c r`: the two chains have the same layers, the float weights and biases read as the real
+`IsSound c r`: the two chains have the same layers, the float weights and biases read as the real
 ones, and each stored activation enclosure encloses the real activation and derivative of `r`
-(`ScalarEncloses`).
+(`EnclosesScalar`).
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -32,16 +32,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A float interval chain stands for a real one: the layers agree, the float weights read as the
 real ones, and each stored enclosure encloses the real activation and its derivative. -/
-inductive IntervalChain.Sound :
+inductive IntervalChain.IsSound :
     ∀ {n k : ℕ}, IntervalChain 𝕋 n k → Real.IntervalChain n k → Prop where
-  | nil {n : ℕ} : Sound (.nil : IntervalChain 𝕋 n n) .nil
+  | nil {n : ℕ} : IsSound (.nil : IntervalChain 𝕋 n n) .nil
   | linear {n m k : ℕ} {W : Mat 𝕋 m n} {b : Vec 𝕋 m} {c : IntervalChain 𝕋 m k}
-      {r : Real.IntervalChain m k} (h : Sound c r) :
-      Sound (.linear W b c) (.linear (toRealMat W) (toRealVec b) r)
+      {r : Real.IntervalChain m k} (h : IsSound c r) :
+      IsSound (.linear W b c) (.linear (toRealMat W) (toRealVec b) r)
   | act {n k : ℕ} {σE σ'E : Interval 𝕋 → Interval 𝕋} {σ σ' : ℝ → ℝ}
-      {c : IntervalChain 𝕋 n k} {r : Real.IntervalChain n k} (hσ : ScalarEncloses σE σ)
-      (hσ' : ScalarEncloses σ'E σ') (h : Sound c r) :
-      Sound (.act σE σ'E c) (.act σ σ' r)
+      {c : IntervalChain 𝕋 n k} {r : Real.IntervalChain n k} (hσ : EnclosesScalar σE σ)
+      (hσ' : EnclosesScalar σ'E σ') (h : IsSound c r) :
+      IsSound (.act σE σ'E c) (.act σ σ' r)
 
 end CORALean.Float
 

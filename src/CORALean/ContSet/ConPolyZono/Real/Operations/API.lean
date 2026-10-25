@@ -35,7 +35,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Reduce
-public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HasNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionSel
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq

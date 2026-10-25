@@ -56,7 +56,7 @@ theorem ReachSetAnalyzer.analyze_sound (aps : List (String × AtomicProposition 
     (outs : List (List (String × FiniteSignal ℝ Kleene))) : -- --- CONCL ---
     ∀ obj ∈ ReachSetAnalyzer.mk? aps dur masks,
       obj.analyze (𝕋 := 𝕋) R = some outs →
-      ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w ∧
+      ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.IsBranch (ReachSetAnalyzer.children R) 0 w ∧
         obj.SignalsSound dur R w out := by -- --- PROOF ---
   intro obj (hobj : ReachSetAnalyzer.mk? aps dur masks = some obj) h
   obtain ⟨obj0, hmk, -, -, hr⟩ := (ReachSetAnalyzer.mk?_spec aps dur masks).2 hd hnd

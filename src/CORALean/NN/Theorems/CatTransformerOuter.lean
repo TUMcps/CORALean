@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {S : ℕ → 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every element folded into the join is inside it. -/
-theorem aux_subset_foldr_join (D : CatDomain 𝕋 S) (hD : D.Sound) {n : ℕ} : -- --- CONCL ---
+theorem aux_subset_foldr_join (D : CatDomain 𝕋 S) (hD : D.IsSound) {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (g : Fin k → S n) (b : S n) (i : Fin k),
       construct (g i)
         ⊆ construct (Fin.foldr k (fun i acc => D.join (g i) acc) b) := by -- --- PROOF ---
@@ -69,7 +69,7 @@ theorem aux_subset_foldr_join (D : CatDomain 𝕋 S) (hD : D.Sound) {n : ℕ} : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Cat.transformer_outer (D : CatDomain 𝕋 S) (hD : D.Sound) {m n : ℕ} (f : Cat 𝕋 m n)
+theorem Cat.transformer_outer (D : CatDomain 𝕋 S) (hD : D.IsSound) {m n : ℕ} (f : Cat 𝕋 m n)
     (a : S m) : -- --- CONCL ---
     f.image (construct a) ⊆ construct (f.transformer D a) := by -- --- PROOF ---
   rintro y ⟨x, hx, hxy⟩

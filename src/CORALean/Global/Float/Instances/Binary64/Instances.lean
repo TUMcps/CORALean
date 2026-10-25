@@ -50,7 +50,7 @@ instance : FloatOps Float where
   half := Binary64.half
 
 /-- Every field is a conjunct of the single axiom, `toReal_le_of_le` after one
-step: the class asks for a `Bool` where `TrustedHardware` states `≤`, and
+step: the class asks for a `Bool` where `IsTrustedHardware` states `≤`, and
 `of_decide_eq_true` turns the one into the other. -/
 instance : SoundFloatArithmetic Float where
   toReal := Binary64.toReal

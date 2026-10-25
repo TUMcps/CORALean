@@ -32,7 +32,7 @@ structure ActivationPolyLayer (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFl
     (n m : ℕ) where
   deg : ℕ
   P : LayerRelaxation 𝕋 n deg
-  sound : ∃ σ : ℝ → ℝ, ∀ i, (P i).Sound σ
+  sound : ∃ σ : ℝ → ℝ, ∀ i, (P i).IsSound σ
   dim : n = m
 
 end CORALean

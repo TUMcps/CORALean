@@ -11,7 +11,7 @@ public import Mathlib.Tactic.Positivity
 
 [1, Prop. 2]: if `ε_P` decreases superlinearly (Def. 1), for any `ε_{P,max}>0` there is a
 sequence of time intervals whose errors sum below it. [1]'s proof needs more than
-`SuperlinearDecrease` supplies: that predicate only bounds `ε_P(Δt)` by the line through
+`HasSuperlinearDecrease` supplies: that predicate only bounds `ε_P(Δt)` by the line through
 `(Δt_ref, ε_P(Δt_ref))`, which a linear `ε_P` satisfies with equality, so no `ε_{P,max}` budget
 could then be met. What the construction needs, and what [1]'s "superlinear" has to mean, is
 `ε_P(Δt)/Δt → 0`, `Assumption 1`'s convergence of the *ratio*. Proved over a fixed horizon `t_f`,

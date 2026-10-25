@@ -13,7 +13,7 @@ CORA's `priv_lagrangeRemainder`, [1, Sec. 4.1]: the box `[-l, l]` with
 `lᵢ = (1/6) Σⱼ γⱼ (γᵀ Eᵢⱼ γ)`, where `γ` bounds `|z - z✱|` over the set the step runs on and
 `Eᵢⱼ` bounds the third derivative of coordinate `i` entrywise. `γ` is read off the zonotope
 `abstrErrLin` reads it from. `E` is data, as `abstrErrLin`'s `H` is: nothing here
-differentiates `f`, and a wrong `E` yields a box `PolyAbstractionError.of_lagrange` cannot
+differentiates `f`, and a wrong `E` yields a box `IsPolyAbstractionError.of_lagrange` cannot
 certify rather than an unsound one. The family is `Fin n → Fin d → Mat ℝ d d`.
 
 ## Inputs

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.SyntaxTree.Definitions.Sound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesAcosh
@@ -42,7 +42,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `acosh` of an operand `≥ 1` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_acosh (h : Sound B t) (hd : 1 ≤ t.value.inf 0) : Sound B (t.acosh) :=
+theorem SyntaxTree.sound_acosh (h : IsSound B t) (hd : 1 ≤ t.value.inf 0) : IsSound B (t.acosh) :=
   ⟨h, encloses_acosh (encloses_of_sound h) hd, funHanAcosh_sound t.value hd⟩
 
 end CORALean

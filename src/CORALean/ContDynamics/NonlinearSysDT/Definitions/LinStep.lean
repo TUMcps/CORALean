@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 public import CORALean.ContSet.Interval.Float.Instances
 public import CORALean.Global.Float.Instances.Real.Instances
@@ -10,7 +10,7 @@ public import CORALean.Global.Float.Instances.Real.Instances
 /-!
 # One linearization of a discrete step
 
-`AbstractionError` is stated over the map `f` itself, not a system — no flow, no derivative —
+`IsAbstractionError` is stated over the map `f` itself, not a system — no flow, no derivative —
 so it applies here unchanged, fed `sys.f` directly. The certificate is the same one CORA
 computes for the continuous case, checked against
 `f(x,u) = f(xs,us) + A(x - xs) + B(u - us) + L(x,u)`, which is what a discrete step needs:
@@ -49,7 +49,7 @@ structure NonlinearSysDT.LinStep (sys : NonlinearSysDT n m) (𝕋 : Type) [Float
   c : Float.Interval (Vec 𝕋 n)
   R : Set (Vec ℝ n)
   L : S n
-  cert : AbstractionError sys.f (toRealMat A) (toRealMat B) (toRealVec xs) (toRealVec us) R
+  cert : IsAbstractionError sys.f (toRealMat A) (toRealMat B) (toRealVec xs) (toRealVec us) R
     (construct U) L
   c_mem : sys.f (toRealVec xs) (toRealVec us) - toRealMat A *ᵥ toRealVec xs ∈ construct c
 

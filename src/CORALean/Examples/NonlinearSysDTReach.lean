@@ -62,7 +62,7 @@ def Example.quadraticL (r : ℝ) : Interval (Vec ℝ 1) := ⟨![0], ![r ^ 2]⟩
 /-- The certificate: arithmetic, since the residual is a computed square rather
 than a Taylor remainder. -/
 theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
-    AbstractionError (S := ℐ𝒱) Example.quadraticStep.f
+    IsAbstractionError (S := ℐ𝒱) Example.quadraticStep.f
       (Example.quadraticA p) Example.quadraticB ![p] ![q] (Example.quadraticRegion p r)
       (construct U) (Example.quadraticL r) where
   encloses x hx u _ := by

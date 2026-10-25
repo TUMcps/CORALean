@@ -9,8 +9,13 @@ stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`. R
 lands on whichever side of the exact result is closer, so it satisfies none of them: every field is
 false, and at `NearestDyadic` refutable. `Axioms` assumes this anyway, once, so that the unchanged
 library runs on the arithmetic CORA uses, the paper's baseline and nothing else. Bundled for the
-reason `Binary64.TrustedHardware` is: one name in every `#print axioms` that reaches either scalar.
-Everything a round-to-nearest scalar gets right is proved in `Instances`, not assumed here.
+reason `Binary64.IsTrustedHardware` is: one name in every `#print axioms` that reaches either
+scalar. Everything a round-to-nearest scalar gets right is proved in `Instances`, not assumed here.
+
+## References
+
+None: a false property that CORALean states only for its round-to-nearest baseline, with no
+publication behind it.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -28,7 +33,7 @@ namespace CORALean.Bench
 
 /-- FALSE in every field. Assumed only by `Axioms`, only for the bench's
 round-to-nearest baseline; nothing outside `Examples/Bench/` may reach it. -/
-structure NearestUnsound : Prop where
+structure IsNearestUnsound : Prop where
   /-- FALSE: `1 + 2⁻⁶⁰` rounds to `1`, below the exact sum. -/
   float_add_le_addUp : ∀ a b : NearestFloat, a.toReal + b.toReal ≤ (a.add b).toReal
   /-- FALSE: `1 + 3 · 2⁻⁵⁴` rounds up to `1 + 2⁻⁵²`, above the exact sum. -/

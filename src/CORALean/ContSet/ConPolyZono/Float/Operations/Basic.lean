@@ -73,7 +73,8 @@ def ConPolyZono.mergedColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin n)
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-/-- What a merged generator column can be off by. -/
+/-- What a merged generator column can be off by. Not the constraint's work (generators): the gap of
+a merged generator column, an `n × h` matrix of the ambient block. -/
 def ConPolyZono.compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Mat 𝕋 n (PolyZonotope.repKeep cPZ.E).card :=
   fun i j => subUp (cPZ.mergedColUp i j) (cPZ.mergedCol i j)

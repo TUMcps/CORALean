@@ -8,7 +8,7 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # `NeuralNetwork.enclose` contains the image
 
-Induction on `Sound`, applying each layer's own obligation in the order `enclose` applies the
+Induction on `IsSound`, applying each layer's own obligation in the order `enclose` applies the
 layers. Nothing else is used, so a new layer buys into the whole pipeline by proving
 `Layer.Encloses` and nothing more. The enclosure degrades monotonically: each layer encloses the
 image of what it was handed, never of the exact set, so the error a layer introduces is carried by

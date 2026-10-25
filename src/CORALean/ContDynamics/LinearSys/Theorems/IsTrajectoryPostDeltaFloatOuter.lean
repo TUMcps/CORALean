@@ -97,7 +97,7 @@ theorem aux_zero_mem_origin :
 /-- Every difference `e^{As} x - x` between a state of the step and the state it
 started from, for `x ∈ R` and `s ∈ [0, Δt]`. -/
 theorem LinearSys.aux_deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s)
     (hs : s ≤ toReal Δt) : -- --- CONCL ---
     exp (s • Scalar.toRealMat sys.A) *ᵥ x - x
@@ -152,7 +152,7 @@ theorem aux_zero_mem_segStart :
 /-- Every run on `[0, Δt]` from `R` under inputs in `U ⊆ V` differs from its start,
 at every time of the step, by a point of `postDeltaFloat`. -/
 theorem LinearSys.IsCanonicalTrajectory.postDeltaFloat_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {R V : Zonotope (Vec 𝕋 n)}
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {R V : Zonotope (Vec 𝕋 n)}
     {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n}
     (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct U
       x u) (hUV : U ⊆ V.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) : -- --- CONCL ---

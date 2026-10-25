@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinParamSys.exp_mem_expIntervalFloat
     (sys : LinParamSys ℐ[𝕋] n) {tLo tHi : 𝕋} {η : ℕ}
-    (hη : sys.OrderAdmissibleFloat tLo tHi η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
+    (hη : sys.IsOrderAdmissibleFloat tLo tHi η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
     {t : ℝ} (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) : -- --- CONCL ---
     exp (t • A) ∈ (sys.expIntervalFloat tLo tHi η).construct := by -- --- PROOF ---
   rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Operations.IsConvergent
 public import CORALean.NN.Operations.RefinableNetworkEval
 public import Mathlib.Topology.EMetricSpace.Lipschitz
 public import Mathlib.Topology.MetricSpace.Basic
@@ -10,7 +10,7 @@ public import Mathlib.Topology.MetricSpace.Basic
 /-!
 # What it takes for a whole network's refinement to converge
 
-Every layer `Convergent`, and every tail Lipschitz so that a residual left
+Every layer `IsConvergent`, and every tail Lipschitz so that a residual left
 early is still small at the output: an earlier layer's residual is amplified
 by everything downstream, so without a bound on the tail a vanishing residual
 at one layer buys nothing at the network's output. The bound is a hypothesis
@@ -41,10 +41,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every layer convergent, and every tail Lipschitz so that a residual left
 early is still small at the output. -/
-def RefinableNetwork.Convergent : ∀ {n m : ℕ}, RefinableNetwork S n m → Prop
+def RefinableNetwork.IsConvergent : ∀ {n m : ℕ}, RefinableNetwork S n m → Prop
   | _, _, .nil => True
   | _, _, .cons L rest =>
-      L.Convergent ∧ (∃ K : NNReal, LipschitzWith K rest.eval) ∧ rest.Convergent
+      L.IsConvergent ∧ (∃ K : NNReal, LipschitzWith K rest.eval) ∧ rest.IsConvergent
 
 end CORALean
 

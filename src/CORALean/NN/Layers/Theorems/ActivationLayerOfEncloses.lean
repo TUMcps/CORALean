@@ -9,7 +9,7 @@ public import CORALean.NN.Layers.Operations.ActivationLayerOf
 # An activation layer is sound at the `σ` it was built from
 
 `Layer.activation_encloses`, stated at `Enclose.toLayer` of the kind: the form a network's
-`Sound` relation asks for, so a caller does not unfold the instance to use it.
+`IsSound` relation asks for, so a caller does not unfold the instance to use it.
 
 ## Inputs
 * `R` – relaxation of the activation
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ActivationLayer.of_encloses {R : Relaxation 𝕋} (hR : R.Sound σ) :
+theorem ActivationLayer.of_encloses {R : Relaxation 𝕋} (hR : R.IsSound σ) :
     (Enclose.toLayer (S := S) (ActivationLayer.of (n := n) hR)).Encloses fun x i => σ (x i) :=
   Layer.activation_encloses hR
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.Rtl.Definitions.Sat
+public import CORALean.Specification.Rtl.Definitions.Satisfies
 public import CORALean.Specification.Rtl.Operations.Basic
 
 @[expose] public section
@@ -67,7 +67,7 @@ theorem Rtl.or?_spec (o : Option (Rtl L)) (a b : Rtl L) :
 
 /-- A leaf holds if it holds of every state of `R(0)`, Eq. (4). -/
 theorem Rtl.sat_all (sat : L → X → Prop) (l : L) (R : ℝ≥0 → Set X) :
-    (Rtl.all l).Sat sat R ↔ ∀ r ∈ R 0, sat l r := Iff.rfl
+    (Rtl.all l).Satisfies sat R ↔ ∀ r ∈ R 0, sat l r := Iff.rfl
 
 
 -- ======================================  `Rtl.sat_and`  ======================================= --
@@ -78,7 +78,7 @@ theorem Rtl.sat_all (sat : L → X → Prop) (l : L) (R : ℝ≥0 → Set X) :
 
 /-- A conjunction holds if both operands hold, Eq. (5). -/
 theorem Rtl.sat_and (sat : L → X → Prop) (a b : Rtl L) (R : ℝ≥0 → Set X) :
-    (Rtl.and a b).Sat sat R ↔ a.Sat sat R ∧ b.Sat sat R := Iff.rfl
+    (Rtl.and a b).Satisfies sat R ↔ a.Satisfies sat R ∧ b.Satisfies sat R := Iff.rfl
 
 
 -- ======================================  `Rtl.sat_next`  ====================================== --
@@ -89,7 +89,7 @@ theorem Rtl.sat_and (sat : L → X → Prop) (a b : Rtl L) (R : ℝ≥0 → Set 
 
 /-- A `next` holds if the operand holds of the shifted reach sequence, Eq. (7). -/
 theorem Rtl.sat_next (sat : L → X → Prop) (t : ℝ) (a : Rtl L) (R : ℝ≥0 → Set X) :
-    (Rtl.next t a).Sat sat R ↔ a.Sat sat (Time.shift R t.toNNReal) := Iff.rfl
+    (Rtl.next t a).Satisfies sat R ↔ a.Satisfies sat (Time.shift R t.toNNReal) := Iff.rfl
 
 
 -- =======================================  `Rtl.sat_or`  ======================================= --
@@ -100,7 +100,7 @@ theorem Rtl.sat_next (sat : L → X → Prop) (t : ℝ) (a : Rtl L) (R : ℝ≥0
 
 /-- A disjunction holds if one operand holds, Eq. (6). -/
 theorem Rtl.sat_or (sat : L → X → Prop) (a b : Rtl L) (R : ℝ≥0 → Set X) :
-    (Rtl.or a b).Sat sat R ↔ a.Sat sat R ∨ b.Sat sat R := Iff.rfl
+    (Rtl.or a b).Satisfies sat R ↔ a.Satisfies sat R ∨ b.Satisfies sat R := Iff.rfl
 
 end CORALean
 

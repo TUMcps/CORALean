@@ -47,15 +47,16 @@ inductive STL.DFormula (X : Type)
 variable {X : Type}
 
 /-- `(x, t) ⊨ φ`, [1, Sec. II-B (semantics)]. -/
-def STL.DFormula.Sat : STL.DFormula X → (ℕ → X) → ℕ → Prop
+def STL.DFormula.Satisfies : STL.DFormula X → (ℕ → X) → ℕ → Prop
   | .pred μ, x, t => 0 < μ (x t)
   | .npred μ, x, t => ¬ 0 < μ (x t)
-  | .and φ ψ, x, t => φ.Sat x t ∧ ψ.Sat x t
-  | .or φ ψ, x, t => φ.Sat x t ∨ ψ.Sat x t
-  | .always a b _ φ, x, t => ∀ t' ∈ Finset.Icc (t + a) (t + b), φ.Sat x t'
-  | .eventually a b _ φ, x, t => ∃ t' ∈ Finset.Icc (t + a) (t + b), φ.Sat x t'
+  | .and φ ψ, x, t => φ.Satisfies x t ∧ ψ.Satisfies x t
+  | .or φ ψ, x, t => φ.Satisfies x t ∨ ψ.Satisfies x t
+  | .always a b _ φ, x, t => ∀ t' ∈ Finset.Icc (t + a) (t + b), φ.Satisfies x t'
+  | .eventually a b _ φ, x, t => ∃ t' ∈ Finset.Icc (t + a) (t + b), φ.Satisfies x t'
   | .until a b _ φ ψ, x, t =>
-      ∃ t' ∈ Finset.Icc (t + a) (t + b), ψ.Sat x t' ∧ ∀ t'' ∈ Finset.Icc t t', φ.Sat x t''
+      ∃ t' ∈ Finset.Icc (t + a) (t + b), ψ.Satisfies x t' ∧ ∀ t'' ∈ Finset.Icc t t', φ.Satisfies x
+          t''
 
 /-- `⊤`, the predicate `μ ≡ 1`. -/
 abbrev STL.DFormula.tt : STL.DFormula X := .pred fun _ => 1

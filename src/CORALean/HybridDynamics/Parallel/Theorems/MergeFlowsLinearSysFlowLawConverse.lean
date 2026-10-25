@@ -3,8 +3,8 @@ module
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlow
 public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
-public import CORALean.HybridDynamics.Parallel.Definitions.FlowLawConverse
-public import CORALean.HybridDynamics.Parallel.Definitions.FeedthroughFree
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFlowLawConverse
+public import CORALean.HybridDynamics.Parallel.Definitions.IsFeedthroughFree
 public import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
 public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
@@ -15,12 +15,12 @@ public import CORALean.HybridDynamics.Parallel.Operations.MergeDistSets
 /-!
 # The product's flow has the converse flow law
 
-At `ℝ`, `mergeFlowsLinearSys` with `mergeInputSets` and `mergeDistSets` has `FlowLawConverse`
-under `FeedthroughFree`, `GlobalsDistinct`, an exact `Lifting` and nonempty input sets. For an
+At `ℝ`, `mergeFlowsLinearSys` with `mergeInputSets` and `mergeDistSets` has `IsFlowLawConverse`
+under `IsFeedthroughFree`, `GlobalsDistinct`, an exact `Lifting` and nonempty input sets. For an
 input `g` of the product in `mergeInputSets` and a disturbance in `mergeDistSets`, the components'
-global inputs are `g` and their disturbances the blocks (`Lifting.Exact`); an input bound to an
+global inputs are `g` and their disturbances the blocks (`Lifting.IsExact`); an input bound to an
 output is that output, computed with the feeding component's output-bound inputs at `0`, which
-`FeedthroughFree` makes no difference; `mergeFlowsLinearSys_flow` is the coordinate identity.
+`IsFeedthroughFree` makes no difference; `mergeFlowsLinearSys_flow` is the coordinate identity.
 
 ## Inputs
 * `P` – parallel automaton
@@ -84,11 +84,11 @@ theorem aux_bindsAt_distinct {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flowLawConverse
-    {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.FeedthroughFree)
+    {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.IsFeedthroughFree)
     (hdist : P.GlobalsDistinct)
     (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)
-    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) : -- --- CONCL ---
-    P.FlowLawConverse (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ))
+    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) : -- --- CONCL ---
+    P.IsFlowLawConverse (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ))
       (P.mergeInputSets lift) (P.mergeDistSets lift) := by -- --- PROOF ---
   classical
   intro ℓ x g w' hg hw

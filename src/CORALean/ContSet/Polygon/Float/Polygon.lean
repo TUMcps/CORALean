@@ -13,6 +13,8 @@ own error box, so that nothing is rounded at the union level: every operation ha
 to the piece's own float operation. Which sets the representation holds, and what is not
 formalized (the conversion from CORA's `polyshape` boundary lists), is as in
 `Polygon.Real.Polygon`.
+There is no `I_error` and no `absorbRounding`: a polygon abbreviates a union of float
+`VPolytope`s, and the pieces carry the boxes.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Sqrt
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `aux_sqrt_` is sound for `sqrt` on a nonnegative operand. -/
 theorem SyntaxTree.sqrt_sound (prev : Dom) (hd : 0 ≤ prev.inf 0) : -- --- CONCL ---
-    UnarySound Unary.sqrt.fn prev (Real.Interval.sqrt prev) funHanSqrt := by -- --- PROOF ---
+    IsUnarySound Unary.sqrt.fn prev (Real.Interval.sqrt prev) funHanSqrt := by -- --- PROOF ---
   intro int _ s hs hi
   have hs0 : 0 ≤ s := hd.trans hs.1
   have h : int.inf 0 ≤ Real.sqrt s ∧ Real.sqrt s ≤ int.sup 0 := hi

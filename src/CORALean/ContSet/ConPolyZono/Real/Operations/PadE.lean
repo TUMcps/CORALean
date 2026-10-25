@@ -40,6 +40,8 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- Not the constraint's work (generators): `E` with the slack factors of `relax` and
+`absorbRounding` appended; the constraint side is `PolyLevelSet.relax`. -/
 def ConPolyZono.padE {p q : ℕ} (R : Fin p → Fin q → ℕ) (r : ℕ) :
     Fin (p + r) → Fin q → ℕ :=
   PolyZonotope.padE R r

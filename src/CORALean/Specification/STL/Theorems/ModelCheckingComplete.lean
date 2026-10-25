@@ -51,8 +51,8 @@ theorem STL.model_checking_complete_sampled {c : ℝ≥0} (hc : 0 < c)
     (s : STL.Samp X) : -- --- CONCL ---
     ∃ cnf : STL.CNF X, (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧
       ∀ (T : Finset ℝ≥0) (R : ℝ≥0 → Set X), (∀ t, (R t).Nonempty) →
-        ReachSequence.FinRep T R → ReachSequence.CDivisible c T →
-          ((cnf.upsilon c).Sat R ↔
+        ReachSequence.IsFinRep T R → ReachSequence.IsCDivisible c T →
+          ((cnf.upsilon c).Satisfies R ↔
             (s.toFormula c).HoldsOn (ReachSequence.traceSet R)) := by -- --- PROOF ---
   refine ⟨s.toCNF true, s.nodup_toCNF true, fun T R hne hT hT' => ?_⟩
   rw [STL.CNF.upsilon_sound_complete hc hne hT hT' (s.toCNF true) (s.nodup_toCNF true)]

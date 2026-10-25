@@ -11,7 +11,7 @@ public import Mathlib.Data.Real.Basic
 
 [1, Eq. 2]: the hyperplane `Σᵢ xᵢ = α`; `hyperplane a α` is the scaled `Σᵢ aᵢxᵢ = α` of
 [1, Sec. 6.3 (scaling)], `a = 1` the paper's own. [1, Sec. 1]: the vertices of the cut lie on
-the edges of the box, perhaps at a vertex; `OnEdge` says that of a point — at most one
+the edges of the box, perhaps at a vertex; `IsOnEdge` says that of a point — at most one
 coordinate strictly between its bounds. [1, Def. 3]: a squashed face `(p₁, …, p_j, *, …, *)`
 fixes the first `j` labels, the only s-faces the algorithm forms; `prefixFace j p` is the
 set `V(s)` of labels it represents, a label `l` naming the vertex `I.corner l`.
@@ -48,7 +48,7 @@ variable {n : ℕ}
 def Interval.hyperplane (a : Vec ℝ n) (α : ℝ) : Set (Vec ℝ n) := {x | ∑ i, a i * x i = α}
 
 /-- On an edge of `I`, perhaps at a vertex: no two coordinates strictly inside. -/
-def Interval.OnEdge (I : Interval (Vec ℝ n)) (x : Vec ℝ n) : Prop :=
+def Interval.IsOnEdge (I : Interval (Vec ℝ n)) (x : Vec ℝ n) : Prop :=
   ∀ i j, i ≠ j → (x i = I.inf i ∨ x i = I.sup i) ∨ (x j = I.inf j ∨ x j = I.sup j)
 
 /-- `V(s)` of the s-face `(p₁, …, p_j, *, …, *)`: the labels agreeing with `p` below `j`. -/

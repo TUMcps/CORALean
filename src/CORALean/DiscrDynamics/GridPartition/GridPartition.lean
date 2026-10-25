@@ -13,9 +13,14 @@ CORA's `partition` (`discrDynamics/@partition`): a box, the state space, cut int
 segments along dimension `j`, and so into `∏ j, nrOfSegments j` cells. The cells are numbered
 `1, …, N` with the first dimension running fastest, as MATLAB's `ind2sub` does; the number `0`
 stands for everything outside the box. `dividers j k` is CORA's `dividers{j}(k + 1)`; `ofInterval`
-cuts evenly, `ofDividers` anywhere, and `WellFormed` asks the dividers not to decrease. Written
+cuts evenly, `ofDividers` anywhere, and `IsWellFormed` asks the dividers not to decrease. Written
 once over ℝ, with no float layer: the cells are boxes whose float enclosure would be a separate
 object.
+
+## References
+
+None: CORA's `partition`, a software class: no publication introduces it, and the CORA manual page
+for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

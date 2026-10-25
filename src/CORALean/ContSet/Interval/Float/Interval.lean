@@ -15,6 +15,7 @@ one denotes, and that is all `nominal` needs; the exact layer's `Entrywise` read
 float layer needs no counterpart of that class. What it denotes is the exact layer's `construct` of
 `nominal`, fixed by definition rather than by a lemma. Each operation then owes only enclosure.
 The interval is the one [1, Sec. 2] introduces for CORA's `interval`, with its ends held in `𝕋`.
+There is no `I_error` and no `absorbRounding`: the interval is the error-box type itself.
 
 ## References
 

@@ -13,7 +13,7 @@ The product of the invariants, the product of the disturbance boxes and the bloc
 preimage of a guard each contain exactly the stacks whose blocks lie in the components' sets.
 The box of the global inputs bounds `a` by the box of the one input bound to it, where each global
 input feeds one input; a point of each component's box, its globally bound coordinates replaced by
-the global inputs', is then in that box. So `boxLifting` meets `Lifting.Exact`, the components'
+the global inputs', is then in that box. So `boxLifting` meets `Lifting.IsExact`, the components'
 boxes being nonempty.
 
 ## Inputs
@@ -44,7 +44,7 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.boxLifting_exact :
-    (ParallelHybridAutomaton.boxLifting (k := k) (n := n) (m := m)).Exact where
+    (ParallelHybridAutomaton.boxLifting (k := k) (n := n) (m := m)).IsExact where
   inv_inv gs x hx := by
     -- the lifted invariant is exactly the blocks'
     have hx' : stack x ∈ (HPolytope.stackProd gs).construct := hx

@@ -66,7 +66,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 zonotope, `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`, widened by `timePointStepInnerErrorFloat`, at
 `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : LinearSys 𝕋 n)
-    {r : 𝕋} (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η)
+    {r : 𝕋} (hr : 0 < toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η)
     {X₀ U : Zonotope (Vec 𝕋 n)} (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.construct)
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     (sys.timePointStepInputFloat r η X₀ U).construct

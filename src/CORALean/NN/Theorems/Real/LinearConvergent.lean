@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Theorems.LinearEncloses
-public import CORALean.NN.Operations.Convergent
+public import CORALean.NN.Operations.IsConvergent
 public import CORALean.NN.Operations.LayerRefinable
 public import CORALean.NN.Theorems.Real.LinearExact
 
@@ -11,9 +11,9 @@ public import CORALean.NN.Theorems.Real.LinearExact
 # The linear layer converges, at every level
 
 ℝ-only, resting on `Real.Layer.linear_exact`: at a machine scalar the enclosure pays rounding.
-`Layer.refinable` puts a layer with nothing to spend into a refinable network, and `Convergent` then
-has to be met by its single enclosure. It is, because that enclosure is exact: any order pattern
-already lands the enclosed set on the image. So the linear layer contributes no residual to
+`Layer.refinable` puts a layer with nothing to spend into a refinable network, and `IsConvergent`
+then has to be met by its single enclosure. It is, because that enclosure is exact: any order
+pattern already lands the enclosed set on the image. So the linear layer contributes no residual to
 `EncloseAtInflate`'s budget, and everything the schedule buys is bought at the activations. That is
 where [1, Prop. 4.13]'s proof starts — "the linear layer is computed exactly".
 
@@ -53,7 +53,7 @@ variable {n m : ℕ}
 /-- ℝ-only, the linear layer being exact at the polynomial zonotope only there. -/
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     ((CORALean.Layer.linear (S := 𝒫𝒵) W b).refinable
-      (CORALean.Layer.linear_encloses W b)).Convergent := by -- --- PROOF ---
+      (CORALean.Layer.linear_encloses W b)).IsConvergent := by -- --- PROOF ---
   intro s ε hε
   refine ⟨fun _ => 0, ?_⟩
   show construct ((CORALean.Layer.linear (S := 𝒫𝒵) W b).enclose s)

@@ -57,11 +57,12 @@ variable {X : Type}
 theorem STL.rewrite_globOpen_release_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ) (hj : 1 ≤ j) (ξ : ℝ≥0 → X)
     (h : ((STL.Formula.globOpen 1 φ₂).and ((STL.Formula.globOpen 1 φ₁).or (STL.Formula.next 1
       (φ₂.and (φ₁.or ((STL.Formula.globOpen 1 φ₂).and (STL.Formula.globOpen 1
-        (STL.Formula.release 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))))).Sat ξ) : -- --- CONCL ---
-    (STL.Formula.globOpen 1 (STL.Formula.release 0 (j : ℝ≥0) φ₁ φ₂)).Sat ξ := by -- --- PROOF ---
+        (STL.Formula.release 0 ((j - 1 : ℕ) : ℝ≥0) φ₁ φ₂)))))))).Satisfies ξ) : -- --- CONCL ---
+    (STL.Formula.globOpen 1 (STL.Formula.release 0 (j : ℝ≥0) φ₁ φ₂)).Satisfies
+    ξ := by -- --- PROOF ---
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   simp only [STL.Formula.sat_and, STL.Formula.sat_next, STL.Formula.sat_release,
-    STL.Formula.Sat, Time.shift_shift, Nat.add_sub_cancel] at h ⊢
+    STL.Formula.Satisfies, Time.shift_shift, Nat.add_sub_cancel] at h ⊢
   obtain ⟨hG₂, hG | ⟨hφ₂, hφ₁ | ⟨hG', hR⟩⟩⟩ := h
   · intro s hs₀ hs₁ t _ _
     rcases eq_zero_or_pos t with rfl | ht
@@ -77,7 +78,7 @@ theorem STL.rewrite_globOpen_release_zero (φ₁ φ₂ : STL.Formula X) (j : ℕ
       exact hp
   · intro s hs₀ hs₁ t _ ht₂
     rcases lt_or_ge t 1 with ht | ht
-    · refine Or.inl (Time.forall_lt_two_of_blocks (fun x => φ₂.Sat (Time.shift ξ x)) hG₂ hφ₂
+    · refine Or.inl (Time.forall_lt_two_of_blocks (fun x => φ₂.Satisfies (Time.shift ξ x)) hG₂ hφ₂
         (by simpa using hG') (t + s) (lt_of_lt_of_le hs₀ le_add_self) ?_)
       calc t + s < 1 + 1 := add_lt_add ht hs₁
         _ = 2 := one_add_one_eq_two

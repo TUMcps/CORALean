@@ -58,8 +58,9 @@ elsewhere. -/
 def ConZonotope.aux_place {h : ℕ} (f : Fin h → ℚ) (off v : ℕ) : ℚ :=
   if hv : off ≤ v ∧ v - off < h then f ⟨v - off, hv.2⟩ else 0
 
-/-- A constraint polytope's rows on the coefficients at offset `off`: `A ≤ b`,
-`Ae ≤ be`, `-Ae ≤ -be`, and the unit box both ways. -/
+/-- The polytope's rows on the coefficients at offset `off`, and the unit box both ways. Not the
+polytope's work (proposal): the rows decoded into ℚ for the exact simplex that proposes a direction,
+which `separatesAlong` certifies. -/
 def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (off : ℕ) : List ((ℕ → ℚ) × ℚ) :=
   let A := fun k j => ToRat.toRat (cZ.P.A k j)
   let Ae := fun k j => ToRat.toRat (cZ.P.Ae k j)

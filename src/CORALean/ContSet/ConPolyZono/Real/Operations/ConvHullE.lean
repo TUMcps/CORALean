@@ -44,7 +44,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Weight columns, then the copies' exponents plain and weighted. -/
+/-- Weight columns, then the copies' exponents plain and weighted. Not the constraint's work
+(generators): the hull's generator exponents of [1, Prop. 9]; its constraint is
+`PolyLevelSet.copies` and `PolyLevelSet.linear`. -/
 def ConPolyZono.convHullE (a : ℕ) {p h : ℕ} (E : Fin p → Fin h → ℕ) :
     Fin (a * p + a) → Fin (a + (a * h + a * h)) → ℕ :=
   Fin.append

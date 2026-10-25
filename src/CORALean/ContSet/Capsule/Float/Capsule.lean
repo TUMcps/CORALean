@@ -15,6 +15,11 @@ read as reals, plus the box. An operation pays the difference from the exact val
 radius, itself a bound, is rounded upward. A capsule is not closed under the sum with a box, so the
 box stays separate until `Capsule.absorbRounding` moves it into the radius (#185). A negative stored
 radius denotes `∅`, as over ℝ.
+
+## References
+
+None: CORA's `capsule`, a software class: no publication introduces it, and the CORA manual page for
+it could not be read.
 -/
 
 -- Authors:       Claude Opus 5.5

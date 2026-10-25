@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.IsTrajectoryMemIccRight
-public import CORALean.HybridDynamics.Definitions.Invariant
+public import CORALean.HybridDynamics.Definitions.IsInvariant
 
 @[expose] public section
 
@@ -51,7 +51,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.IsRun.mem_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
-    {R : L → S n} (hinv : HA.Invariant R) {ℓ ℓ' : L} {x y : Vec ℝ n}
+    {R : L → S n} (hinv : HA.IsInvariant R) {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRun ℓ x ℓ' y) : x ∈ construct (R ℓ) → y ∈ construct (R ℓ') := by
   induction run with
   | flow h => exact fun hx => hinv.flow h hx h.mem_Icc_right

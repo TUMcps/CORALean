@@ -128,8 +128,8 @@ them. `ReachSetExactOuter`, `ReachLocationsExactOuter`, `ReachSetExactSubsetInva
 
 The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `IsRunOn` to `IsRun`, `RunOnOuter`
 is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and `InvariantOnOfInvariant` reads an
-`Invariant` as the constant-family case. By `RunIffExistsRunUntil`, `IsRunUntil` is a `IsRun` with a
-duration bound; `ReachFloatOuter`/`ReachSetExactSubsetReachFloat` enclose such runs in floats.
+`IsInvariant` as the constant-family case. By `RunIffExistsRunUntil`, `IsRunUntil` is a `IsRun` with
+a duration bound; `ReachFloatOuter`/`ReachSetExactSubsetReachFloat` enclose such runs in floats.
 
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution rather than
 naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.inputSet`, `…Float` the same in floats, and

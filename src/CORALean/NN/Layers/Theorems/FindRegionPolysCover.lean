@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Each `t` lies in a returned region whose polynomial is within its error of `σ t`. -/
 theorem findRegionPolys_cover {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
-    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol : 𝕋) (fuel : ℕ) (lMax uMax : 𝕋)
+    (hF : ∀ o, (F o).IsSound σ) (order : ℕ) (tol : 𝕋) (fuel : ℕ) (lMax uMax : 𝕋)
     {pStart pEnd : RegionPoly 𝕋} (hs : pStart.lo = none ∧ pStart.hi = some lMax)
     (he : pEnd.lo = some uMax ∧ pEnd.hi = none) (hS : pStart.Encloses σ)
     (hE : pEnd.Encloses σ) : -- --- CONCL ---

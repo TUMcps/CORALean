@@ -50,7 +50,7 @@ theorem PolyRelaxation.ofSampling_sound {σ σ' : ℝ → ℝ} {n : ℕ}
     (M : ℝ → ℝ → ℝ) (N : ℝ → ℝ → ℕ)
     (hM : ∀ l u x, l ≤ x → x ≤ u → |σ' x - evalPolyDeriv (c l u) x| ≤ M l u)
     (hN : ∀ l u, 0 < N l u) : -- --- CONCL ---
-    (PolyRelaxation.ofSampling σ c M N).Sound σ := by -- --- PROOF ---
+    (PolyRelaxation.ofSampling σ c M N).IsSound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   have hg : ∀ x, HasDerivAt (fun y => σ y - evalPoly (c l u) y)
       (σ' x - evalPolyDeriv (c l u) x) x :=

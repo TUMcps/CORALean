@@ -47,9 +47,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_globally (a b : ℝ≥0) (φ : STL.Formula X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.globally a b φ).Sat ξ ↔
-      ∀ t, a ≤ t → t ≤ b → φ.Sat (Time.shift ξ t) := by
-  simp only [STL.Formula.globally, STL.Formula.finally, STL.Formula.tt, STL.Formula.Sat]
+    (STL.Formula.globally a b φ).Satisfies ξ ↔
+      ∀ t, a ≤ t → t ≤ b → φ.Satisfies (Time.shift ξ t) := by
+  simp only [STL.Formula.globally, STL.Formula.finally, STL.Formula.tt, STL.Formula.Satisfies]
   push Not
   exact forall_congr' fun t => by tauto
 

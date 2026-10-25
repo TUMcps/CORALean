@@ -131,7 +131,7 @@
 \fill[white] ([yshift=-5.5pt]axis cs:1211.32,0) rectangle ([yshift=5.5pt]axis cs:1299.32,0);
 \end{scope}
 \draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1299.32,0);
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:1299.32,0) {\hspace{0em}\textcolor{black!40}{+1156}};
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:1299.32,0) {\hspace{0em}\textcolor{black!40}{+1157}};
 \end{axis}
 \begin{axis}[at={(results.south west)}, anchor=south west, height=0.55cm, width=4.22cm, xmin=0, xmax=1299, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.OnlineAnalyzerNode.OnlineAnalyzerNode
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 @[expose] public section
@@ -50,7 +50,7 @@ noncomputable def OnlineAnalyzerNode.aux_propBound (eps : ℝ) :
     open Classical in
     -- if nUb < ub || withinTol(nUb,ub,eps) && ~nRc
     if STLInterval.toEReal u < STLInterval.toEReal ub ∨
-        (STLInterval.withinTol eps (STLInterval.toEReal u) (STLInterval.toEReal ub) ∧
+        (STLInterval.IsWithinTol eps (STLInterval.toEReal u) (STLInterval.toEReal ub) ∧
           nRc = false) then
       OnlineAnalyzerNode.aux_propBound eps rest (u, nRc)
     else OnlineAnalyzerNode.aux_propBound eps rest (ub, rc)

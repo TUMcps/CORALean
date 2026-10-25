@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
 `m_either = 1` with flow `f_either ⊇ f₁ ∪ f₂` is put between `m₁ = 0` and `m₂ = 2`, and a time
 variable `t` with `ṫ = 1` is added, reset to `0` on entering each mode. The guards are
 `t = t₁` and `t = t₂`, the invariants `t ≤ t₁` and `t ≤ t₂`; `m₂` keeps the whole space as its
-invariant. `t₁`, `t₂` are parameters here, their selection being `FirstDwell`, `SecondDwell`;
+invariant. `t₁`, `t₂` are parameters here, their selection being `IsFirstDwell`, `IsSecondDwell`;
 it is the `H_tt` of [1, Lemma 1].
 
 ## Inputs

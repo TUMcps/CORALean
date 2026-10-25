@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 public import CORALean.ContSet.Interval.Real.Instances
 public import Mathlib.Algebra.EuclideanDomain.Basic
@@ -17,7 +17,7 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 [1, Sec. 4.1], and `AbstractionErrorOfHessian` carried one order up: where `A, B` are the
 derivative of `f` at `(xs, us)` and `Q` is half the exact Hessian there, `lagrangeRemainder`
 certifies what is left of `f` once the affine and the exact quadratic part are subtracted,
-provided `E` bounds the third derivative entrywise. The result is an `AbstractionError` of the
+provided `E` bounds the third derivative entrywise. The result is an `IsAbstractionError` of the
 *shifted* field, as the type has no slot for a quadratic term. A caller wanting a certificate for
 `f` itself must enclose the quadratic term separately; `precompStatError`'s `Q` is state-only,
 this one's is over the full stacked `(x, u)`, so the two do not yet compose.
@@ -295,7 +295,7 @@ theorem aux_abs_remainder_le2 {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec
 /-- [1, Sec. 4.1]: where `A, B` are the derivative of `f` at `(xs, us)`, `Q` is
 half the exact Hessian there and `E` bounds the third derivative entrywise,
 `lagrangeRemainder` certifies the field with its quadratic part shifted out. -/
-theorem AbstractionError.of_lagrange {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
+theorem IsAbstractionError.of_lagrange {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {F : Vec ℝ (n + m) → Vec ℝ n} {C : Set (Vec ℝ (n + m))} {Z : Zonotope (Vec ℝ (n + m))}
     {Ff : Fin n → Vec ℝ (n + m) → (Vec ℝ (n + m) →L[ℝ] ℝ)}
@@ -314,7 +314,7 @@ theorem AbstractionError.of_lagrange {f : Vec ℝ n → Vec ℝ m → Vec ℝ n}
     (hA : ∀ i (v : Vec ℝ n) (w : Vec ℝ m),
       Ff i (Fin.append xs us) (Fin.append v w) = (A *ᵥ v) i + (B *ᵥ w) i)
     (hQ : ∀ i (v : Vec ℝ (n + m)), Hf i (Fin.append xs us) v v = 2 * (v ⬝ᵥ (Q i *ᵥ v))) :
-    AbstractionError (S := ℐ𝒱)
+    IsAbstractionError (S := ℐ𝒱)
       (fun x u => f x u -
         (fun i => Fin.append (x - xs) (u - us) ⬝ᵥ (Q i *ᵥ Fin.append (x - xs) (u - us))))
       A B xs us R U (lagrangeRemainder E Z (Fin.append xs us)) where

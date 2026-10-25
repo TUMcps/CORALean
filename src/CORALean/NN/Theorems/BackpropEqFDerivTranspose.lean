@@ -41,7 +41,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Chain.backprop_eq_fderiv_transpose {n m : ℕ} (c : Chain n m) (x : Vec ℝ n) (g : Vec ℝ m)
-    (h : c.DifferentiableChain x) :
+    (h : c.IsDifferentiableChain x) :
     c.backprop x g
       = (LinearMap.toMatrix' (fderiv ℝ c.eval x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap)ᵀ *ᵥ g := by
   rw [c.backprop_eq_transpose_mulVec, c.sensitivity_eq_fderiv x h]

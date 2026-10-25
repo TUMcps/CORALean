@@ -59,7 +59,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 theorem ParallelHybridAutomaton.reachFloat_outer
     {P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m}
-    (hst : P.StateBound) (hself : P.SelfBindFree)
+    (hst : P.HasStateBound) (hself : P.IsSelfBindFree)
     (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
     {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀)

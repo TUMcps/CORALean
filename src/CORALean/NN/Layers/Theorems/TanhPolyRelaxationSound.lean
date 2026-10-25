@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem tanhPolyRelaxation_sound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (dx : 𝕋 → 𝕋 → 𝕋)
-    (p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) : (tanhPolyRelaxation k c dx p).Sound Real.tanh :=
+    (p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) : (tanhPolyRelaxation k c dx p).IsSound Real.tanh :=
   PolyRelaxation.ofAffineConj_sound (sigmoidPolyRelaxation_sound k c dx p) doubleRounding_sound
     doubleRounding_sound (by norm_num) (by norm_num)
     (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Acosh
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
@@ -49,7 +49,7 @@ private theorem SyntaxTree.cosh_mono_nonneg {a b : ℝ} (ha : 0 ≤ a) (hab : a 
 
 /-- `aaux_cosh_` is sound for `acosh` on an operand `≥ 1`. -/
 theorem SyntaxTree.funHanAcosh_sound (prev : Dom) (hd : 1 ≤ prev.inf 0) : -- --- CONCL ---
-    UnarySound Unary.acosh.fn prev (Real.Interval.acosh prev) funHanAcosh := by -- --- PROOF ---
+    IsUnarySound Unary.acosh.fn prev (Real.Interval.acosh prev) funHanAcosh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.arcosh s ∧ Real.arcosh s ≤ int.sup 0 := hi
   have hs1 : 1 ≤ s := hd.trans hs.1

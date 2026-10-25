@@ -13,7 +13,7 @@ public import CORALean.Specification.STL.Theorems.SatOr
 traces `ξ₁`, `ξ₂` in `C(R)` violating one each; since `C(R)` is a product of the sets `R(t)`,
 the trace that is `ξ₁` on the time set of `ϕ₁` and `ξ₂` elsewhere is in `C(R)` and violates both.
 That needs `ϕᵢ` to be settled by the trace on its own time set `Tᵢ`, the two disjoint
-(`DecidedOn`); the printed hypothesis is `tsupp(ϕ₁) ∩ tsupp(ϕ₂) = ∅`, which gives it only if
+(`IsDecidedOn`); the printed hypothesis is `tsupp(ϕ₁) ∩ tsupp(ϕ₂) = ∅`, which gives it only if
 `tsupp(ϕᵢ)` decides `ϕᵢ`.
 
 ## Inputs
@@ -62,9 +62,9 @@ variable {X : Type}
 /-- [1, Eq. 12]: `Υ(ϕ₁ ∨ ϕ₂) ≡ Υ(ϕ₁) ∨ Υ(ϕ₂)` when `ϕ₁`, `ϕ₂` are decided by disjoint time sets. -/
 theorem STL.upsilon_or_of_decided {𝓡 : Set (ℝ≥0 → Set X)} {Υ : STL.Formula X → RTL.Formula X}
     (hs : STL.IsSound 𝓡 Υ) (hc : STL.IsComplete 𝓡 Υ) (φ₁ φ₂ : STL.Formula X)
-    {T₁ T₂ : Set ℝ≥0} (hT : Disjoint T₁ T₂) (h₁ : φ₁.DecidedOn T₁) (h₂ : φ₂.DecidedOn T₂)
+    {T₁ T₂ : Set ℝ≥0} (hT : Disjoint T₁ T₂) (h₁ : φ₁.IsDecidedOn T₁) (h₂ : φ₂.IsDecidedOn T₂)
     {R : ℝ≥0 → Set X} (hR : R ∈ 𝓡) : -- --- CONCL ---
-    (Υ (φ₁.or φ₂)).Sat R ↔ (RTL.Formula.or (Υ φ₁) (Υ φ₂)).Sat R := by -- --- PROOF ---
+    (Υ (φ₁.or φ₂)).Satisfies R ↔ (RTL.Formula.or (Υ φ₁) (Υ φ₂)).Satisfies R := by -- --- PROOF ---
   constructor
   · intro h
     have hor := hs R hR _ h
@@ -83,9 +83,9 @@ theorem STL.upsilon_or_of_decided {𝓡 : Set (ℝ≥0 → Set X)} {Υ : STL.For
       · simp only [hξ, if_pos ht]; exact hξ₁ t
       · simp only [hξ, if_neg ht]; exact hξ₂ t
     -- it agrees with `ξ₁` on `T₁` and with `ξ₂` on `T₂`, so it violates both
-    have hv1 : ¬ φ₁.Sat ξ := fun h' =>
+    have hv1 : ¬ φ₁.Satisfies ξ := fun h' =>
       hv₁ ((h₁ ξ ξ₁ fun t ht => by simp only [hξ, if_pos ht]).1 h')
-    have hv2 : ¬ φ₂.Sat ξ := fun h' =>
+    have hv2 : ¬ φ₂.Satisfies ξ := fun h' =>
       hv₂ ((h₂ ξ ξ₂ fun t ht => by
         have : t ∉ T₁ := fun h1 => Set.disjoint_left.1 hT h1 ht
         simp only [hξ, if_neg this]).1 h')

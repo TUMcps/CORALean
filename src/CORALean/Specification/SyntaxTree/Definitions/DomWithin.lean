@@ -31,7 +31,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `J` lies inside `I`: `I`'s bounds enclose `J`'s. -/
-def SyntaxTree.Dom.within (J I : Dom) : Prop := I.inf 0 ≤ J.inf 0 ∧ J.sup 0 ≤ I.sup 0
+def SyntaxTree.Dom.IsWithin (J I : Dom) : Prop := I.inf 0 ≤ J.inf 0 ∧ J.sup 0 ≤ I.sup 0
 
 end CORALean
 

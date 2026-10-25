@@ -73,7 +73,7 @@
     "reach": {
       "description": "last output set unchecked; violation at tFinal missed",
       "kind": "unsound",
-      "cex": "ReachSpecCora.lean"
+      "cex": "IsReachSpecCora.lean"
     }
   },
   "contDynamics/nonlinDASys": {
@@ -136,7 +136,7 @@
     "reach": {
       "description": "initial set never checked against specification",
       "kind": "unsound",
-      "cex": "ReachSpecCora.lean"
+      "cex": "IsReachSpecCora.lean"
     }
   },
   "contSet/capsule": {

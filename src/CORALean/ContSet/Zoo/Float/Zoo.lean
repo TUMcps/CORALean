@@ -14,6 +14,8 @@ optional interval, as in the exact layer's `Zoo`. A member encloses the function
 1]ⁿ` through its stored floats (`nominal`): the Taylor model as `Taylm.Encloses`, the interval as
 holding the function's value at every box point.
 The `zoo` class is described in [1].
+There is no `I_error` and no `absorbRounding`: a zoo is a set of functions, with no ambient point
+set to hold a box; the members are a Taylor model and an interval.
 
 ## References
 

@@ -88,7 +88,7 @@ theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1))
 
 theorem Cat.maxSegment_eval_iff (a k b : ℕ) (x : Vec ℝ (a + (k + 1) + b))
     (y : Vec ℝ (a + 1 + b)) : -- --- CONCL ---
-    (Cat.maxSegment (𝕋 := 𝕋) a k b).Eval x y ↔
+    (Cat.maxSegment (𝕋 := 𝕋) a k b).Evaluates x y ↔
       y = fun r => if _h : r.val < a then x ⟨r.val, by omega⟩
         else if r.val = a then Real.windowMax (fun q : Fin (k + 1) => x ⟨a + q.val, by omega⟩)
         else x ⟨r.val + k, by have := r.isLt; omega⟩ := by -- --- PROOF ---
@@ -116,9 +116,9 @@ theorem Cat.maxSegment_eval_iff (a k b : ℕ) (x : Vec ℝ (a + (k + 1) + b))
       exact ⟨p.val, p.isLt, fun q => hp q (Finset.mem_univ q)⟩
     obtain ⟨hlt, hp⟩ := Nat.find_spec hex
     set p : Fin (k + 1) := ⟨Nat.find hex, hlt⟩
-    refine Cat.Eval.cases _ _ p ((hguard p).mpr hp) (fun j hj hholds => ?_) ?_
+    refine Cat.Evaluates.cases _ _ p ((hguard p).mpr hp) (fun j hj hholds => ?_) ?_
     · exact Nat.find_min hex (show j.val < Nat.find hex from hj) ⟨j.isLt, (hguard j).mp hholds⟩
-    · have hy := Cat.Eval.affine (selectMat (𝕋 := 𝕋) fun r : Fin (a + 1 + b) =>
+    · have hy := Cat.Evaluates.affine (selectMat (𝕋 := 𝕋) fun r : Fin (a + 1 + b) =>
         (⟨if r.val < a then r.val else if r.val = a then a + p.val else r.val + k,
           by have := r.isLt; have := p.isLt; split_ifs <;> omega⟩ : Fin (a + (k + 1) + b)))
         (fun _ => zero) x

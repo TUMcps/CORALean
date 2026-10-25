@@ -33,14 +33,14 @@ def HPolytope.IsSlackFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Prop :=
   (∀ i, toReal (P.b_error i) = 0) ∧ ∀ i, toReal (P.be_error i) = 0
 
 
--- ===================================  `HPolytope.ErrFree`  ==================================== --
+-- ==================================  `HPolytope.IsErrFree`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- The box is the origin and the polytope is slack-free: it denotes its stored rows exactly. -/
-def HPolytope.ErrFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Prop :=
+def HPolytope.IsErrFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Prop :=
   (∀ j, toReal (P.I_error.inf j) = 0 ∧ toReal (P.I_error.sup j) = 0) ∧ P.IsSlackFree
 
 end CORALean.Float

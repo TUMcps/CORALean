@@ -10,9 +10,9 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 /-!
 # Every parallel run is a run of the product
 
-`IsRun.toProductWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under `FeedthroughFree`,
-CORA's own check against algebraic loops. The soundness direction; the converse is
-`IsRun.ofProduct`, under more conditions.
+`IsRun.toProductWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under
+`IsFeedthroughFree`, CORA's own check against algebraic loops. The soundness direction; the converse
+is `IsRun.ofProduct`, under more conditions.
 
 ## Inputs
 * `P` – parallel automaton
@@ -50,7 +50,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 /-- A run of the parallel automaton, its states stacked, is a run of its product. -/
 theorem ParallelHybridAutomaton.IsRun.toProduct {P : ParallelHybridAutomaton S G k L ℝ n m}
-    (hfeed : P.FeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
+    (hfeed : P.IsFeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
     {ℓ ℓ' : ∀ i, L i} {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y) :
     (P.product lift).IsRun ℓ (stack x) ℓ' (stack y) :=
   ParallelHybridAutomaton.IsRun.toProductWith (P.mergeFlowsLinearSys_flowLaw hfeed lift) lift run

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SideConditionOfLeFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TuneOrderFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IsOrderAdmissible
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 
 `orderTest` accepting `η` gives `nrm ≤ (η + 2)/2` and a float remainder bound strictly under
 `ε`; `expRemainderBound_le` carries the bound through to the real remainder bound at any `x` of
-norm at most `nrm`, so `OrderAdmissible` of [1]'s truncation order holds at `toReal ε`. The
+norm at most `nrm`, so `IsOrderAdmissible` of [1]'s truncation order holds at `toReal ε`. The
 search starts at `2`, so `2 ≤ η` is by construction. Minimality is not claimed.
 
 ## Inputs
@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem MatExp.tuneOrder_spec {x : Mat ℝ n n} {nrm ε : 𝕋} {fuel : ℕ}
     (hx : ‖x‖ ≤ toReal nrm) : -- --- CONCL ---
     ∀ η ∈ MatExp.tuneOrder nrm ε fuel,
-      Real.MatExp.OrderAdmissible x (toReal ε) η := by -- --- PROOF ---
+      Real.MatExp.IsOrderAdmissible x (toReal ε) η := by -- --- PROOF ---
   intro η (h : MatExp.tuneOrder nrm ε fuel = some η)
   have htest := List.find?_some h
   obtain ⟨k, -, hk⟩ := List.mem_map.mp (List.mem_of_find?_eq_some h)

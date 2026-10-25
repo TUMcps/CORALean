@@ -38,7 +38,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem tanhPolyRelaxation_sound {n : ℕ} (c : ℝ → ℝ → Fin (n + 1) → ℝ) (N : ℝ → ℝ → ℕ)
-    (hN : ∀ l u, 0 < N l u) : (tanhPolyRelaxation c N).Sound Real.tanh :=
+    (hN : ∀ l u, 0 < N l u) : (tanhPolyRelaxation c N).IsSound Real.tanh :=
   PolyRelaxation.ofAffineConj_sound (sigmoidPolyRelaxation_sound c N hN) (by norm_num)
     (by norm_num) fun t => by rw [tanh_eq_sigmoid]; ring
 

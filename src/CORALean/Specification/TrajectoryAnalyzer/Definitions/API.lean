@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.TrajectoryAnalyzer.Definitions.SignalsRepresent
-public import CORALean.Specification.TrajectoryAnalyzer.Definitions.TrueAt
+public import CORALean.Specification.TrajectoryAnalyzer.Definitions.IsTrueAt
 
 /-!
 # Trajectory analyzers, definitions

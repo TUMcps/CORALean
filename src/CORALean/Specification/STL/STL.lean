@@ -50,14 +50,14 @@ inductive STL.Formula (X : Type)
   | globOpen (c : ℝ≥0) (φ : Formula X)
 
 /-- `ξ ⊨ₜ φ`, [1, Sec. 2.2]. -/
-def STL.Formula.Sat : STL.Formula X → (ℝ≥0 → X) → Prop
+def STL.Formula.Satisfies : STL.Formula X → (ℝ≥0 → X) → Prop
   | .atom p, ξ => p (ξ 0)
-  | .not φ, ξ => ¬ φ.Sat ξ
-  | .or φ ψ, ξ => φ.Sat ξ ∨ ψ.Sat ξ
+  | .not φ, ξ => ¬ φ.Satisfies ξ
+  | .or φ ψ, ξ => φ.Satisfies ξ ∨ ψ.Satisfies ξ
   | .until a b φ ψ, ξ =>
-      ∃ t, a ≤ t ∧ t ≤ b ∧ ψ.Sat (Time.shift ξ t) ∧ ∀ t' < t, φ.Sat (Time.shift ξ t')
-  | .finOpen c φ, ξ => ∃ t, 0 < t ∧ t < c ∧ φ.Sat (Time.shift ξ t)
-  | .globOpen c φ, ξ => ∀ t, 0 < t → t < c → φ.Sat (Time.shift ξ t)
+      ∃ t, a ≤ t ∧ t ≤ b ∧ ψ.Satisfies (Time.shift ξ t) ∧ ∀ t' < t, φ.Satisfies (Time.shift ξ t')
+  | .finOpen c φ, ξ => ∃ t, 0 < t ∧ t < c ∧ φ.Satisfies (Time.shift ξ t)
+  | .globOpen c φ, ξ => ∀ t, 0 < t → t < c → φ.Satisfies (Time.shift ξ t)
 
 /-- A non-temporal formula, as an STL formula. -/
 def STL.Formula.ofPform : Pform X → STL.Formula X
@@ -66,7 +66,7 @@ def STL.Formula.ofPform : Pform X → STL.Formula X
   | .or ϱ₁ ϱ₂ => .or (ofPform ϱ₁) (ofPform ϱ₂)
 
 /-- `φ` holds of every trace of a set, `M ⊨ₜ φ`. -/
-def STL.Formula.HoldsOn (φ : STL.Formula X) (M : Set (ℝ≥0 → X)) : Prop := ∀ ξ ∈ M, φ.Sat ξ
+def STL.Formula.HoldsOn (φ : STL.Formula X) (M : Set (ℝ≥0 → X)) : Prop := ∀ ξ ∈ M, φ.Satisfies ξ
 
 end CORALean
 

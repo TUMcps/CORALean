@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachInputError_subset_float (sys : LinearSys 𝕋 n) {Δt : 𝕋}
-    (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η)
+    (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (U : Zonotope (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
     (sys.reachInputError (toReal Δt) η (nominal U) k).construct ⊆
       ContSet.construct (sys.reachInputErrorFloat Δt η U k) := by -- --- PROOF ---

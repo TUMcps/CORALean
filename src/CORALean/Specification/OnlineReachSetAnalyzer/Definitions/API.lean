@@ -1,10 +1,10 @@
 module
 
 public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Basic
-public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Ext
+public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.IsExt
 public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Formula
 public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.NodesInv
-public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Same
+public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.IsSame
 
 /-!
 # Online reach set analyzers, definitions

@@ -46,12 +46,12 @@ variable {X : Type}
 
 theorem RTL.Formula.sat_bigAnd {β : Type} (l : List β) (g : β → RTL.Formula X)
     (R : ℝ≥0 → Set X) : -- --- CONCL ---
-    (RTL.Formula.bigAnd (l.map g)).Sat R ↔ ∀ b ∈ l, (g b).Sat R := by -- --- PROOF ---
+    (RTL.Formula.bigAnd (l.map g)).Satisfies R ↔ ∀ b ∈ l, (g b).Satisfies R := by -- --- PROOF ---
   induction l with
-  | nil => simp [RTL.Formula.bigAnd, RTL.Formula.Sat, Pform.Sat]
+  | nil => simp [RTL.Formula.bigAnd, RTL.Formula.Satisfies, Pform.Satisfies]
   | cons b l ih =>
-    have : (RTL.Formula.bigAnd ((b :: l).map g)).Sat R ↔
-        (g b).Sat R ∧ (RTL.Formula.bigAnd (l.map g)).Sat R := Iff.rfl
+    have : (RTL.Formula.bigAnd ((b :: l).map g)).Satisfies R ↔
+        (g b).Satisfies R ∧ (RTL.Formula.bigAnd (l.map g)).Satisfies R := Iff.rfl
     rw [this, ih]
     simp
 

@@ -23,10 +23,9 @@ sections or the import graph:
   (`order_problems`: alphabetical, after the sections they use) and groups in order by their
   first section (`group_order_problems`);
 * every other file: one that is eligible (`eligible`: its module docstring, moved into the
-  declaration's own as `section_doc` moves it, still within the cap) is in a `Basic.lean`, unless
-  `EXCEPTIONS` lists it with the import cycle that keeps it out;
-* `EXCEPTIONS` itself: one `<path>  <reason>` per line, no duplicates, and no stale entry —
-  a file gone, no longer eligible, or one whose move into `Basic.lean` would close no cycle.
+  declaration's own as `section_doc` moves it, still within the cap) is in a `Basic.lean`,
+  unless moving it there would close an import cycle (`closes_cycle`: a path from the file to
+  `Basic.lean`, or back, through a third module). No list: the cycle is the whole exception.
 
 Code lines are counted as issue #137 defines them: the non-blank, non-comment lines between the
 code markers, declaration docstrings included; `namespace`, `section`, `end`, `open`,
@@ -44,7 +43,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
-EXCEPTIONS = ROOT / "scripts" / "basic-bundle-exceptions.txt"
 # The CORA-bug appendix links the counterexample and the fix of each bug by file; those files
 # keep their own (see `scripts/cora-bugs-table.py`, which writes it from `cora-bugs.json`).
 CORA_BUGS_TEX = ROOT / "experiments" / "paper" / "latex" / "appendix-cora-bugs.tex"
@@ -55,10 +53,9 @@ BASIC = "Basic.lean"
 
 def set_root(root):
     """Point every path above at another checkout (the conversion runs on an archive)."""
-    global ROOT, SRC, EXCEPTIONS, CORA_BUGS_TEX, _BUGS
+    global ROOT, SRC, CORA_BUGS_TEX, _BUGS
     ROOT = Path(root).resolve()
     SRC = ROOT / "src"
-    EXCEPTIONS = ROOT / "scripts" / "basic-bundle-exceptions.txt"
     CORA_BUGS_TEX = ROOT / "experiments" / "paper" / "latex" / "appendix-cora-bugs.tex"
     _BUGS = None
 
@@ -719,6 +716,12 @@ def import_graph(files):
     return {module_of(lf.rel): [m for m in lf.imports] for lf in files}
 
 
+def tree_import_graph():
+    """The import graph of every file under `src/`, read from the imports alone."""
+    return {module_of(p.relative_to(ROOT).as_posix()): IMPORT.findall(p.read_text(encoding="utf-8"))
+            for p in all_files()}
+
+
 def closes_cycle(graph, a, b):
     """Whether merging modules `a` and `b` closes an import cycle: a path from one of them to
     one of them through some third module."""
@@ -734,28 +737,6 @@ def closes_cycle(graph, a, b):
                 seen.add(d)
                 stack.append(d)
     return False
-
-
-def read_exceptions(say=None):
-    """`{path: (line number, reason)}` of `EXCEPTIONS`."""
-    out = {}
-    if not EXCEPTIONS.exists():
-        return out
-    for n, line in enumerate(EXCEPTIONS.read_text(encoding="utf-8").splitlines(), 1):
-        s = line.strip()
-        if not s or s.startswith("#"):
-            continue
-        path, _, reason = s.partition(" ")
-        reason = reason.strip()
-        if say:
-            if path in out:
-                say(f"{EXCEPTIONS.relative_to(ROOT)}:{n}: duplicate entry `{path}`"
-                    f" (first at line {out[path][0]})")
-            if not reason:
-                say(f"{EXCEPTIONS.relative_to(ROOT)}:{n}: `{path}` carries no reason — name the"
-                    " import cycle that keeps it out of `Basic.lean`")
-        out.setdefault(path, (n, reason))
-    return out
 
 
 def check_basic(lf, say):
@@ -853,9 +834,9 @@ def main(argv=()):
     (repository paths, one per line), their text read from `DIR/<path>`: what `check-conventions.sh
     --staged` runs on the index versions of a commit's files. A listed file is read where it
     stands in the repository for everything but its text (the directories the exclusions look at),
-    and the rules that read other files stay out: the exceptions' file and its stale entries (they
-    need the import graph), and the files nothing was said about. The hook sends a commit that
-    touches an excepted file, or an import, down the full path."""
+    and the rules that read other files stay out (the cycle test of a small file reads the import
+    graph of the tree, its imports only). The hook sends a commit that touches an import down the
+    full path."""
     msgs = []
     say = msgs.append
     if argv:
@@ -866,41 +847,26 @@ def main(argv=()):
         rels = [l.strip() for l in Path(argv[1]).read_text(encoding="utf-8").splitlines()
                 if l.strip().endswith(".lean")]
         files = [LeanFile(ROOT / r, (stage / r).read_text(encoding="utf-8")) for r in rels]
-        exc = read_exceptions(say)
         scoped = True
     else:
         files = [LeanFile(p) for p in all_files()]
-        exc = read_exceptions(say)
         scoped = False
     by_rel = {lf.rel: lf for lf in files}
     graph = None if scoped else import_graph(files)
     for lf in files:
         if lf.path.name == BASIC:
             check_basic(lf, say)
-    exrel = EXCEPTIONS.relative_to(ROOT)
     for lf in files:
         if lf.path.name == BASIC or not eligible(lf):
             continue
-        if lf.rel in exc:
-            continue
+        if graph is None:
+            graph = tree_import_graph()
         basic = (lf.path.parent / BASIC).relative_to(ROOT).as_posix()
+        if closes_cycle(graph, module_of(lf.rel), module_of(basic)):
+            continue
         say(f"{lf.rel}:1: one declaration of {lf.region.code} code lines, at most {MAX_CODE} —"
-            f" it is a section of `{basic}` (CONTRIBUTING, \"Small declarations\"), or on"
-            f" `{exrel}` with the import cycle that keeps it out")
-    for path, (n, _) in ({} if scoped else exc).items():
-        tag = f"{exrel}:{n}"
-        lf = by_rel.get(path)
-        if lf is None:
-            say(f"{tag}: stale entry `{path}` — no such file")
-            continue
-        if not eligible(lf):
-            say(f"{tag}: stale entry `{path}` — it is no longer a single declaration of at most"
-                f" {MAX_CODE} code lines, or is excluded anyway")
-            continue
-        basic = module_of((lf.path.parent / BASIC).relative_to(ROOT).as_posix())
-        if not closes_cycle(graph, module_of(path), basic):
-            say(f"{tag}: stale entry `{path}` — moving it into `Basic.lean` closes no import"
-                " cycle now; move it in")
+            f" it is a section of `{basic}` (CONTRIBUTING, \"Small declarations\"), unless moving"
+            " it there would close an import cycle, and it closes none")
     for m in sorted(msgs):
         print(m)
     return 1 if msgs else 0

@@ -13,7 +13,7 @@ public import CORALean.Specification.TrajectoryAnalyzer.Theorems.AnalyzeInterval
 For a simulation with strictly increasing nonnegative time points and distinct propositions,
 `analyze(obj,s)` succeeds and gives, for every proposition, a valid Boolean signal of duration
 `dur = t(:,end)` that is true at the time `τ` of `[0,dur]` exactly when some time point `l` of the
-realization marks the proposition true at `τ` (`TrueAt`): it holds at the point `x(:,l,s)` and
+realization marks the proposition true at `τ` (`IsTrueAt`): it holds at the point `x(:,l,s)` and
 `τ` lies in `[t(l),t(l+1))` (closed at `dur`). Combined with `evaluatePoint_sound`: a signal that
 is true at `τ` means the proposition is satisfied by the sampled point of the interval around `τ`.
 
@@ -54,7 +54,7 @@ theorem aux_analyze_loop (obj : TrajectoryAnalyzer ℝ 𝕋 S n) (s : ℕ) (dur 
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs M → ∃ sigs',
         ls.foldlM (fun sigs l => obj.analyzeInterval s dur sigs l) sigs = some sigs' ∧
         TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs'
-          (fun k τ => M k τ ∨ ∃ l ∈ ls, obj.TrueAt s dur k l τ) := by -- --- PROOF ---
+          (fun k τ => M k τ ∨ ∃ l ∈ ls, obj.IsTrueAt s dur k l τ) := by -- --- PROOF ---
   intro ls
   induction ls with
   | nil =>
@@ -89,7 +89,8 @@ theorem TrajectoryAnalyzer.analyze_spec (obj : TrajectoryAnalyzer ℝ 𝕋 S n) 
     (hsorted : obj.traj.t.Pairwise (· < ·)) (hnn : ∀ x ∈ obj.traj.t, 0 ≤ x) : -- --- CONCL ---
     ∃ dur sigs, obj.traj.t.getLast? = some dur ∧ obj.analyze s = some sigs ∧
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs (fun k τ =>
-        ∃ l ∈ List.range' 1 (obj.traj.t.length - 1), obj.TrueAt s dur k l τ) := by -- --- PROOF ---
+        ∃ l ∈ List.range' 1 (obj.traj.t.length - 1), obj.IsTrueAt s dur k l
+        τ) := by -- --- PROOF ---
   -- the duration, the last time
   obtain ⟨dur, hdur⟩ : ∃ dur, obj.traj.t.getLast? = some dur :=
     ⟨_, List.getLast?_eq_getLast_of_ne_nil ht⟩

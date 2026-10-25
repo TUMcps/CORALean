@@ -11,8 +11,8 @@ public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 /-!
 # The float interval backpropagation encloses the real one
 
-For a float chain `c` that stands for the real chain `r` (`IntervalChain.Sound`), an input pair `p`
-and an output gradient pair `g` of real vectors inside the boxes `P` and `G`, the pair
+For a float chain `c` that stands for the real chain `r` (`IntervalChain.IsSound`), an input pair
+`p` and an output gradient pair `g` of real vectors inside the boxes `P` and `G`, the pair
 `Real.IntervalChain.backprop` returns lies, bound by bound, in the boxes `IntervalChain.backprop`
 returns. The forward values the real recursion needs are the ones `IntervalChain.fwd` encloses, so
 each layer's rule is enclosed at its own box: the linear layer's `dmu = Wᵀ (gu + gl)/2`, `dr = |W|ᵀ
@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.backprop_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.Sound r) : -- --- CONCL ---
+    {r : Real.IntervalChain n k} (hc : c.IsSound r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n)
       (G : Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k)) (g : Vec ℝ k × Vec ℝ k),
       p.1 ∈ P.1.construct → p.2 ∈ P.2.construct → g.1 ∈ G.1.construct → g.2 ∈ G.2.construct →
@@ -89,9 +89,9 @@ theorem IntervalChain.backprop_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
       (⟨fun i => (σE ⟨P.1.inf i, P.1.sup i⟩).inf, fun i => (σE ⟨P.1.inf i, P.1.sup i⟩).sup⟩,
         ⟨fun i => (σE ⟨P.2.inf i, P.2.sup i⟩).inf, fun i => (σE ⟨P.2.inf i, P.2.sup i⟩).sup⟩)
       (fun i => σ (p.1 i), fun i => σ (p.2 i)) G g
-      (ScalarEncloses.vec_mem hσ h1) (ScalarEncloses.vec_mem hσ h2) hg1 hg2
-    exact ⟨Interval.times_outer _ _ ⟨_, ScalarEncloses.vec_mem hσ' h1, _, hl, rfl⟩,
-      Interval.times_outer _ _ ⟨_, ScalarEncloses.vec_mem hσ' h2, _, hu, rfl⟩⟩
+      (EnclosesScalar.vec_mem hσ h1) (EnclosesScalar.vec_mem hσ h2) hg1 hg2
+    exact ⟨Interval.times_outer _ _ ⟨_, EnclosesScalar.vec_mem hσ' h1, _, hl, rfl⟩,
+      Interval.times_outer _ _ ⟨_, EnclosesScalar.vec_mem hσ' h2, _, hu, rfl⟩⟩
 
 end CORALean.Float
 

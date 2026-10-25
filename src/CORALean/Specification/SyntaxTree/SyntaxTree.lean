@@ -20,6 +20,11 @@ enclosing its value over the box (`value`) and the `funHan` narrowing the interv
 A leaf is a variable (`id`), a node an `operator` (its function `fn`), `value`, `funHan` and
 operands `nodes`; `eval` is the function a tree denotes. Intervals are one-dimensional real-layer
 `Interval`s: no infinite bound.
+
+## References
+
+None: CORA's `syntaxTree`, a software class: no publication introduces it, and the CORA manual page
+for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

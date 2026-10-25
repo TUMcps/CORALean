@@ -39,10 +39,10 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_getClausesDnf (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
-    φ.Sat ξ ↔ ∃ c ∈ φ.getClausesDnf, c.Sat ξ := by
+    φ.Satisfies ξ ↔ ∃ c ∈ φ.getClausesDnf, c.Satisfies ξ := by
   induction φ with
   | or φ ψ ihφ ihψ =>
-    simp [STL.Tree.getClausesDnf, STL.Tree.Sat, ihφ, ihψ, or_and_right, exists_or]
+    simp [STL.Tree.getClausesDnf, STL.Tree.Satisfies, ihφ, ihψ, or_and_right, exists_or]
   | _ => simp [STL.Tree.getClausesDnf]
 
 end CORALean

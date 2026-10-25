@@ -1,13 +1,13 @@
 module
 
-public import CORALean.HybridDynamics.Definitions.Invariant
+public import CORALean.HybridDynamics.Definitions.IsInvariant
 public import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 public import CORALean.HybridDynamics.Theorems.JumpOuter
 
 @[expose] public section
 
 /-!
-# `Invariant` from the enclosures, cut down by the location's invariant
+# `IsInvariant` from the enclosures, cut down by the location's invariant
 
 `InvariantOfEnclosure` without the two hypotheses no caller could meet. `FlowOuterSplit` stands in
 for `FlowOuterInputSolution`, so `0 ∈ ℓ.inputSet` is gone; and `hflow`'s containment is asked only
@@ -54,8 +54,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Mtimes (Mat 𝕋) S] [OfInterval S
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `Invariant.flow` is `FlowOuterSplit` at `hflow`, an order `m` per dwell
-time and the enclosure cut to `ℓ.inv`; `Invariant.jump` is `JumpOuter` at
+/-- `IsInvariant.flow` is `FlowOuterSplit` at `hflow`, an order `m` per dwell
+time and the enclosure cut to `ℓ.inv`; `IsInvariant.jump` is `JumpOuter` at
 `hjump`, one enclosure per transition met. -/
 theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec ℝ n)]
     [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
@@ -68,7 +68,7 @@ theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec �
     (hjump : ∀ (ℓ : L) (e : Transition G L 𝕋 n), e ∈ (HA.loc ℓ).trans → ∃ Rg : S n,
       construct (R ℓ) ∩ construct e.guard ⊆ construct Rg ∧
       construct (e.jump Rg) ⊆ construct (R e.target)) :
-    HA.Invariant R where
+    HA.IsInvariant R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     rcases h.nonneg.lt_or_eq with hτ | hτ0
     · -- `τ > 0`: the stay's own state is in the enclosure and in `ℓ.inv`, and

@@ -57,7 +57,7 @@ theorem GridPartition.aux_exists_cell (d : ℕ → ℝ) {m : ℕ} (hm : 1 ≤ m)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point of the state space lies in a cell of a well-formed partition. -/
-theorem GridPartition.exists_mem_cell (P : GridPartition n) (hP : P.WellFormed) {x : Vec ℝ n}
+theorem GridPartition.exists_mem_cell (P : GridPartition n) (hP : P.IsWellFormed) {x : Vec ℝ n}
     (hx : x ∈ P.intervals.construct) : -- --- CONCL ---
     ∃ c, 1 ≤ c ∧ c ≤ P.nrOfCells ∧ x ∈ (P.cellInterval c).construct := by -- --- PROOF ---
   rw [GridPartition.mem_interval_iff] at hx

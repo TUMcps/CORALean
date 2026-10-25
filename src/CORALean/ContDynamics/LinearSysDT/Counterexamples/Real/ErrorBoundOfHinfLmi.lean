@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HinfLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHinfLmi
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
 public import Mathlib.Tactic.FinCases
@@ -50,7 +50,7 @@ open Matrix
 
 -- Eq. 16 of [1, Thm. 1] at the instance: its negative has the form `x₁² + (2x₂ - x₄)² + 4x₃² + x₄²`
 theorem LinearSysDT.aux_hinfLmi_instance : -- --- CONCL ---
-    LinearSysDT.HinfLmi (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
+    LinearSysDT.IsHinfLmi (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
       (fun _ _ => 2) (0 : Mat ℝ 1 1) 2 := by -- --- PROOF ---
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
   · -- symmetric, entry by entry
@@ -96,7 +96,7 @@ theorem LinearSysDT.errorBound_of_hinfLmi_counterexample : -- --- CONCL ---
     let P : Mat ℝ 1 1 := fun _ _ => 2
     let Y : Mat ℝ 1 1 := 0
     let γ : ℝ := 2
-    P.PosDef ∧ LinearSysDT.HinfLmi A C E F P Y γ ∧
+    P.PosDef ∧ LinearSysDT.IsHinfLmi A C E F P Y γ ∧
       ¬ ∃ α β : ℝ, 0 < α ∧ α < 1 ∧ 0 < β ∧ β < 1 ∧
         ∀ (e : ℕ → Vec ℝ 1) (w v : ℕ → Vec ℝ 1),
           (∀ k, e (k + 1) = (A - P⁻¹ * Y * C) *ᵥ e k + E *ᵥ w k - (P⁻¹ * Y * F) *ᵥ v k) →

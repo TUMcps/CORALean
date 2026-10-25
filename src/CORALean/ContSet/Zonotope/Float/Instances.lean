@@ -110,7 +110,7 @@ instance : OfIdentity 𝕄𝒵[𝕋] where
 
 open FloatOps SoundFloatArithmetic in
 /-- The stored identity block reads back as the real `1`. -/
-instance : IdentityMem 𝕄𝒵[𝕋] where
+instance : IsIdentityMem 𝕄𝒵[𝕋] where
   one_mem_identity n := by
     have h : toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)) = (1 : Mat ℝ n n) := by
       funext i j

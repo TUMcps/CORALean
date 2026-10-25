@@ -265,10 +265,11 @@ or named after a constraint field (`…A`, `…B`, `…R`); under `ContSet/ConZo
 the polytope's rows (`P.A`, `P.b`, `P.Ae`, `P.be`, the slacks) or builds an `HPolytope` field by
 field; and under `ContSet/StarSet/` and the star-set files of `NN/Layers/`, one that reads the
 polytope predicate's rows (`pred.A`, `pred.b`, …) or builds an `HPolytope` field by field. `Counterexamples/` model
-CORA's code as written and are not read. What must stay is in
-`scripts/component-reuse-allowlist.txt` with its reason (the generator block, data of one
-construction, a conversion, a certificate or a proposal that reads the rows as numbers); the list
-only shrinks.
+CORA's code as written and are not read. What is not the
+component's work says so in its docstring, in one sentence `Not the constraint's work (<kind>):
+<reason>` (`polytope's` or `predicate's` for the others), with `<kind>` one of `generators` (the
+generator block), `data` (data of one construction), `conversion`, `certificate` or `proposal`
+(rows read as numbers for a solver); there is no list.
 
 ### The ambient type
 
@@ -393,7 +394,7 @@ out, that no file imports its own directory's collector, that no `Real` file of
 a representation reaches into `Float`, that a file under a representation's
 `Real/` or any `Float/` declares the namespace its directory claims, that a class
 root holds only its class file, `Interfaces.lean`, `Instances.lean` and `API.lean`, that a
-`class` is declared only in an `Interfaces.lean` or an allowlisted file, that a
+`class` is declared only in an `Interfaces.lean`, that a
 `Definitions/` file declares only meanings, that no `Real/` or `Float/` folder
 sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that a float
 type is named as its exact twin, the layer being the namespace — no `GZonotope`,
@@ -420,8 +421,8 @@ definitions earn their name"), that a definition citing a paper's algorithm carr
 (`scripts/check-algorithm-steps.py`; "Algorithms read like the paper"), that a long subterm
 is not spelled out three times in one declaration (`scripts/check-repeated-subterms.py`;
 "Name what repeats"), that a discrete-time class (`<X>DT`) has the fields of its continuous twin
-`<X>` (`scripts/check-dt-twins.py`; a difference such as `dt` is listed with its reason in
-`scripts/dt-twin-allowlist.txt`), that a public theorem that exactly one other file reads is
+`<X>` (`scripts/check-dt-twins.py`; the sampling time `dt` is the one field a discrete-time class
+has and its twin has not), that a public theorem that exactly one other file reads is
 that file's `aux_` lemma unless something outward-facing names it
 (`scripts/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
 `noncomputable` stays where it is legitimate — see below.
@@ -690,7 +691,7 @@ an instance, `materialise_eq`, `mem_construct` — to `Theorems/`, and the stora
 `materialise`, which rebuilds a float set's function-typed fields as vectors and is the
 identity, to `Operations/`. Each goes where its size puts it: a section of `Basic.lean` when it
 is at most five code lines ("Small declarations"), a file of its own otherwise.
-A validity predicate (`IsValid`, `WellFormed` and the like) is no part of the type: it is a
+A validity predicate (`IsValid`, `IsWellFormed` and the like) is no part of the type: it is a
 definition in `Definitions/IsValid.lean` of the same class, like any other proposition about the type.
 `check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…` definition
 in a main-type file.
@@ -718,9 +719,11 @@ it; a canonical form has none. `check-conventions.sh` asks for the field.
 
 A main-type file also cites the publication it formalizes: its module docstring has at least one
 numbered entry, `* [1] ...`, under `## References`, and says what it takes from it (`[1, Def. 5]`).
-A cross-reference in backticks does not count, as it is no publication. `check-conventions.sh`
-asks for it, and the files not yet brought up to it are listed in
-`scripts/main-reference-allowlist.txt`, which only shrinks (#211).
+A cross-reference in backticks does not count, as it is no publication. The publication is the
+paper that introduces the representation, or a standard or manual that defines it (a public
+one, read for what the file takes from it). A file with genuinely nothing to cite writes one
+line `None: <reason>` under `## References`. `check-conventions.sh` asks for one of the two;
+there is no list.
 
 ### A theorem used once is a lemma of its user
 
@@ -767,9 +770,10 @@ The mirror image holds for `Operations/` (#198): a file there holds definitions,
 or `lemma`. A guarantee about an operation is a `Theorems/` file's to state; a general fact about
 matrices or vectors, with no operation in it, belongs to the global lemmas
 (`toRealMat_append_mulVec_natAdd`, in `Global/Float/ToRealMatMulVec.lean`) or, with one user, is a
-`private` lemma there. The `Operations/` files that still declare a theorem are listed in
-`scripts/operations-theorem-allowlist.txt`, which only shrinks: an entry whose file declares none
-any more is reported as stale.
+`private` lemma there. The one place a theorem may stay in `Operations/` is the `Basic.lean` of
+an `Operations/` directory, where a theorem of at most five lines is a section when the
+`Basic.lean` of its `Theorems/` directory would close an import cycle
+(`HPolytope.mem_stackRows_iff`); there is no list.
 
 ### A size is proved; a running cost is asserted
 
@@ -947,11 +951,11 @@ float layer to `check-references.py` and the paper's statistics.
 
 **Import cycles.** A bundle imports what its sections import. If one section's
 file imported a file outside the bundle that imports another section back, the
-bundle would import itself, so that declaration keeps its file; it is listed in
-`scripts/basic-bundle-exceptions.txt` with the cycle, one line each. The list is
-the smallest set that breaks every cycle, and only shrinks: an entry whose move
-would close no cycle any more is reported as stale. Only `Basic.lean` is a bundle
-— a cycle is never resolved by a second bundle file in the same directory.
+bundle would import itself, so that declaration keeps its file; it stays in its
+file. A declaration of at most five code lines is therefore a section of its directory's
+`Basic.lean` unless moving it there would close an import cycle, which
+`scripts/check-basic-bundles.py` tests on the import graph; there is no list. Only `Basic.lean`
+is a bundle — a cycle is never resolved by a second bundle file in the same directory.
 
 **Moving in and out.** A section that grows past five code lines moves out into a
 file of its own, and a file that shrinks to five moves in; `check-conventions.sh`
@@ -1213,18 +1217,20 @@ name in code, and leaves comments and strings alone (#191).
 A `Prop`-valued definition (a `def`, `abbrev`, `structure`, `inductive` or `class` whose type is
 `Prop` or ends in `→ Prop`) is named so that `X.Name args` reads as a statement (#196):
 
-* a property is `Is…` or `Has…`, or an adjective (`IsCompact`, `HasDerivAt`, `Admissible`):
-  `sys.IsTrajectory …`, `IsRun`, `IsStay`, `IsCanonicalConstTrajectory`;
-* a relation is a verb form (`Encloses`, `Holds`, `Reaches`, `Refines`);
-* a predicate that mirrors a CORA method keeps CORA's name (`representsa_point`, `isequal`,
-  `containsPoint`), and the model of CORA's code ends in `Cora`.
+* a property is `Is…` or `Has…` (`IsCompact`, `HasDerivAt`, `IsAdmissible`): `sys.IsTrajectory …`,
+  `IsRun`, `IsStay`, `IsCanonicalConstTrajectory`; an adjective or a noun alone (`Sorted`,
+  `Branch`, `Exact`) is not a statement and takes the `Is`;
+* a relation is a third-person verb form (`Encloses`, `Holds`, `HoldsOn`, `Reaches`, `Refines`,
+  `Satisfies`): the first word of the name, up to the next capital letter, digit or `_`, is a
+  word of at least four letters that ends in `s` but not in `ss`, `us` or `is`;
+* a predicate that mirrors a CORA method keeps CORA's lower-case name when the name starts with a
+  method of `references/coverage/cora-inventory.json` (`eq`, `le`, `isequal`, `representsa_point`,
+  `constrSat`), and the model of CORA's code ends in `Cora`.
 
 A theorem that embeds the name follows Lean's rule, `IsTrajectory` as `isTrajectory` in a snake-case
 name (`simulate_isTrajectory`, `ofFull_isTrajectory_iff`). `check-conventions.sh` runs
-`scripts/check-prop-names.py`, which rejects a new Prop-valued definition that starts with neither
-`Is` nor `Has` and is not in `scripts/prop-name-allowlist.txt`; the list holds the CORA mirrors, the
-verb forms and adjectives under reason headers, and only shrinks: an entry that no declaration
-carries any more is reported as stale.
+`scripts/check-prop-names.py`, which rejects a Prop-valued definition whose name has none of these
+forms; there is no list.
 
 CORA's spelling is `center`: `center`, `centerMat`, `recenter`, `IsCenter`, never `centre`, in
 identifiers, file names, docstrings and comments alike. `check-conventions.sh` rejects `centre`
@@ -1270,9 +1276,10 @@ does not: a result in `𝕋` where the exact one is a real number (`nominalSuppo
 (`HPolytope.levelSet`, which writes an equation as two inequalities), or the error box. The
 bare form is rejected by `scripts/check-float-wrappers.py`, and so is the exact operation applied
 to the arguments read as reals — `Real.HPolytope.rowLin (toRealMat M) i` — which is no more than the
-conversion under a name. What stays is listed in `scripts/float-wrapper-allowlist.txt` with the
-reason: a class's `construct` or a type's meaning (`Taylm.Encloses`), spelt for dot notation to
-resolve. A name for the conversion (`rowLin` was one) is not kept: its uses spell it out.
+conversion under a name. The one bare wrapper that stays is recognized by its form: `X.construct`
+in the float main file `ContSet/X/Float/X.lean` of a set with no error box (`Interval.construct`),
+which the `ContSet` instance and every `I.construct` in a statement resolve through by dot
+notation; there is no list. A name for the conversion (`rowLin` was one) is not kept: its uses spell it out.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
 layers wherever it can, and a contribution that lands only the `Real` half must
@@ -1319,8 +1326,11 @@ must not assume `I_error = 0` after absorbing; where it is cheap, a lemma bounds
 part alone is `absorbRounding_nominal : S.construct ⊆ nominalSet S.absorbRounding`, which
 `absorbRounding_outer` follows from when the box left is the origin
 (`InflatedContSet.nominalSet_subset_construct`). A representation that cannot hold the box, or has
-none of its own, is listed in `scripts/absorb-rounding-allowlist.txt` with the reason, and says so in
-its main-type docstring; `scripts/check-absorb-rounding.py` (run by `check-conventions.sh`, #185)
+none of its own, says so in its main-type docstring in one line `There is no \`I_error\` and no
+\`absorbRounding\`: <reason>`, which the check accepts for a type with no box and no
+`absorbRounding` (`Interval`, `Polygon`, `ProbZonotope`, `ZonoBundle`, `Zoo`); a type with a box that
+cannot move it says `There is no \`absorbRounding\`: <reason>` (`VPolytope`);
+`scripts/check-absorb-rounding.py' (run by `check-conventions.sh`, #185)
 requires the rest to have an `I_error` field, a `def X.absorbRounding` that names every other
 recorded rounding field `<name>_error` of the type, and a `theorem X.absorbRounding_outer` under
 `ContSet/X/Float/`, and rejects the former name `dependent_outer`.
@@ -1333,7 +1343,7 @@ obligation is a theorem, nothing overflows, and a result computed there rests on
 `propext`, `Classical.choice` and `Quot.sound` and on nothing else. Native
 binary64 is Lean's `Float`, compiled to a machine double and fast — and opaque
 in the logic, so the ten obligations are bundled into one property,
-`TrustedHardware`, and assumed in one line in
+`IsTrustedHardware`, and assumed in one line in
 `Global/Float/Instances/Binary64/Definitions/Axioms.lean` — one of the three files
 in the tree that may carry an `axiom` (see the end of this section), and one of
 those `check-conventions.sh` names. A result that
@@ -1613,7 +1623,7 @@ Attributes (`@[simp]`) between the docstring and the declaration are fine. Struc
 `aux_` declarations in `AUXILIARY` sections are not covered. The docstring says in words, in one to
 three lines, what the declaration is or states, without copying the formula; an abbreviated name
 (`stBeta`) says where it comes from (CORA's `'approx:st'`, Sadraddini and Tedrake's β).
-`check-conventions.sh` reports each missing docstring; the rule has no allowlist.
+`check-conventions.sh` reports each missing docstring; the rule has no list.
 
 For a definition (`Zonotope.reduceGirard (Z : Zonotope (Vec ℝ n)) (o : ℕ)`):
 

@@ -44,9 +44,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.rewrite_globOpen_or (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X)
-    (h : ((STL.Formula.globOpen 1 φ₁).or (STL.Formula.globOpen 1 φ₂)).Sat ξ) :
-    (STL.Formula.globOpen 1 (φ₁.or φ₂)).Sat ξ := by
-  simp only [STL.Formula.Sat] at h ⊢
+    (h : ((STL.Formula.globOpen 1 φ₁).or (STL.Formula.globOpen 1 φ₂)).Satisfies ξ) :
+    (STL.Formula.globOpen 1 (φ₁.or φ₂)).Satisfies ξ := by
+  simp only [STL.Formula.Satisfies] at h ⊢
   rcases h with h | h
   · exact fun t h₀ h₁ => Or.inl (h t h₀ h₁)
   · exact fun t h₀ h₁ => Or.inr (h t h₀ h₁)

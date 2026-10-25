@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Operations.SlopeRemainder
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 
 The real layer's notion, at the real images of the float data: wherever the
 model encloses `f` and the expansion point lies in the box, `slopeRemainder` is
-an `AbstractionError` for `A`, `B` over `X × U`. The slope at `(x, u)` against
+an `IsAbstractionError` for `A`, `B` over `X × U`. The slope at `(x, u)` against
 `(x✱, u✱)` rewrites the remainder as `(J_x - A)(x - x✱) + (J_u - B)(u - u✱)`, and
 each factor lies in the interval its operation was given.
 
@@ -100,7 +100,7 @@ theorem NonlinearSys.FloatModel.Encloses.slopeRemainder_abstractionError
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {us : Vec 𝕋 m} {X : Interval (Vec 𝕋 n)}
     {U : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.construct)
     (hus : toRealVec us ∈ U.construct) :
-    AbstractionError (S := ℐ𝒱[𝕋]) sys.f (Scalar.toRealMat A)
+    IsAbstractionError (S := ℐ𝒱[𝕋]) sys.f (Scalar.toRealMat A)
       (Scalar.toRealMat B) (toRealVec xs) (toRealVec us) X.construct U.construct
       (fm.slopeRemainder A B xs us X U) where
   encloses x hx u hu := by

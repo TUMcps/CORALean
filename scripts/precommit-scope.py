@@ -110,14 +110,6 @@ def references_view(cr, text):
             bool(cr.GENERIC_SCALAR.search(text)))
 
 
-def exception_paths():
-    f = ROOT / "scripts" / "basic-bundle-exceptions.txt"
-    if not f.exists():
-        return set()
-    return {l.split()[0] for l in f.read_text(encoding="utf-8").splitlines()
-            if l.strip() and not l.lstrip().startswith("#")}
-
-
 def main():
     if len(sys.argv) != 2:
         print(__doc__, file=sys.stderr)
@@ -139,13 +131,12 @@ def main():
             if path.startswith(CONVENTION_INPUTS):
                 conv_full = True
     if edited:
-        excepted = exception_paths()
         specs = [s for p in edited for s in (f"HEAD:{p}", f":{p}")]
         text = blobs(specs)
         cr = None
         for p in edited:
             old, new = text[f"HEAD:{p}"], text[f":{p}"]
-            if (p.endswith("/API.lean") or p == "src/CORALean.lean" or p in excepted
+            if (p.endswith("/API.lean") or p == "src/CORALean.lean"
                     or projection(old) != projection(new)):
                 conv_full = True
             if not refs:

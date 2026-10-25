@@ -7,8 +7,8 @@ import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 /-!
 # The checks
 
-One function per conjunct of `TrustedHardware`, each comparing the native result with the exact one
-and answering with the failures it saw, tagged by kind: `unsound` (the result lies on the wrong
+One function per conjunct of `IsTrustedHardware`, each comparing the native result with the exact
+one and answering with the failures it saw, tagged by kind: `unsound` (the result lies on the wrong
 side of the exact value, or a `≤` that holds natively while the decoded values disagree), `loose`
 (more than one step past the soft-float's directed result, or a `≤` that fails natively while the
 decoded values are ordered), `range` (NaN where the result is in the normal range, or a number

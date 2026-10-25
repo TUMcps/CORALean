@@ -68,7 +68,7 @@ theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- CONCL ---
     let yv : Vec ℝ (a + r) := fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
       else Real.windowMax fun q : Fin (k + 1) =>
         x ⟨a + (k + 1) * (j.val - a) + q.val, aux_lt_of_window j.isLt (by omega) q.isLt⟩
-    (Cat.maxSegments (𝕋 := 𝕋) k a r).Eval x y ↔ y = yv := by -- --- PROOF ---
+    (Cat.maxSegments (𝕋 := 𝕋) k a r).Evaluates x y ↔ y = yv := by -- --- PROOF ---
   intro a r
   induction r generalizing a with
   | zero =>
@@ -92,18 +92,18 @@ theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- CONCL ---
         (.comp (Cat.maxSegments k (a + 1) r) (.comp (Cat.maxSegment a k ((k + 1) * r))
           (.affine (selectMat fun i : Fin (a + (k + 1) + (k + 1) * r) =>
             (⟨i.val, by have := i.isLt; rw [Nat.mul_succ]; omega⟩ :
-              Fin (a + (k + 1) * (r + 1)))) fun _ => zero)))).Eval x y) ∧
+              Fin (a + (k + 1) * (r + 1)))) fun _ => zero)))).Evaluates x y) ∧
         -- and every value is the one the statement names
         ∀ y, (Cat.comp (.affine (selectMat fun i : Fin (a + (r + 1)) =>
           (⟨i.val, by have := i.isLt; omega⟩ : Fin (a + 1 + r))) fun _ => (zero : 𝕋))
         (.comp (Cat.maxSegments k (a + 1) r) (.comp (Cat.maxSegment a k ((k + 1) * r))
           (.affine (selectMat fun i : Fin (a + (k + 1) + (k + 1) * r) =>
             (⟨i.val, by have := i.isLt; rw [Nat.mul_succ]; omega⟩ :
-              Fin (a + (k + 1) * (r + 1)))) fun _ => zero)))).Eval x y →
+              Fin (a + (k + 1) * (r + 1)))) fun _ => zero)))).Evaluates x y →
         y = yv := by
-      refine ⟨⟨_, Cat.Eval.comp _ _ _ (Cat.Eval.comp _ _ _ (Cat.Eval.comp _ _ _
-        (Cat.Eval.affine _ _ x) ((Cat.maxSegment_eval_iff _ _ _ _ _).mpr rfl))
-        ((ih _ _ _).mpr rfl)) (Cat.Eval.affine _ _ _)⟩, fun y hy => ?_⟩
+      refine ⟨⟨_, Cat.Evaluates.comp _ _ _ (Cat.Evaluates.comp _ _ _ (Cat.Evaluates.comp _ _ _
+        (Cat.Evaluates.affine _ _ x) ((Cat.maxSegment_eval_iff _ _ _ _ _).mpr rfl))
+        ((ih _ _ _).mpr rfl)) (Cat.Evaluates.affine _ _ _)⟩, fun y hy => ?_⟩
       -- peel the four maps off, each a function of its input
       obtain ⟨z₃, hz₃, hy⟩ := (Cat.eval_comp_iff _ _ _ _).mp hy
       obtain ⟨z₂, hz₂, hz₃⟩ := (Cat.eval_comp_iff _ _ _ _).mp hz₃

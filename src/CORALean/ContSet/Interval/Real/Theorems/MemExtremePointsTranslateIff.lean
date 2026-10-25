@@ -69,7 +69,7 @@ theorem Interval.mem_extremePoints_translate_iff {I : Interval (Vec ℝ n)} {α 
       Finset.sum_sub_distrib]
     constructor <;> intro h <;> linarith
   -- a bound moves with the box
-  have hedge : I.OnEdge c ↔ (⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).OnEdge (c - I.inf) := by
+  have hedge : I.IsOnEdge c ↔ (⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).IsOnEdge (c - I.inf) := by
     have hk : ∀ k, (c k = I.inf k ∨ c k = I.sup k) ↔
         ((c - I.inf) k = (0 : Vec ℝ n) k ∨ (c - I.inf) k = (I.sup - I.inf) k) := fun k => by
       simp only [Pi.zero_apply, Pi.sub_apply]
@@ -80,7 +80,7 @@ theorem Interval.mem_extremePoints_translate_iff {I : Interval (Vec ℝ n)} {α 
       · rintro (h | h)
         · left; linarith
         · right; linarith
-    simp only [Interval.OnEdge, hk]
+    simp only [Interval.IsOnEdge, hk]
   rw [Set.mem_inter_iff, Set.mem_inter_iff, hbox, hplane, hedge]
 
 end CORALean.Real

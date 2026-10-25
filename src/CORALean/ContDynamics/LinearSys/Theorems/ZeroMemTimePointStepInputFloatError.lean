@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The float step keeps `0` in its error box, given `X` and `U` do. -/
 theorem LinearSys.zero_mem_timePointStepInputFloat_error (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
+    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
     (hX : (0 : Vec ℝ n) ∈ X.I_error.construct)
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (sys.timePointStepInputFloat r η X U).I_error.construct := by -- --- PROOF ---

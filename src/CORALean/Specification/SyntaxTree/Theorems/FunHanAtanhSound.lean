@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Atanh
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
@@ -51,7 +51,7 @@ private theorem SyntaxTree.tanh_mono : -- --- CONCL ---
 /-- `aaux_tanh_` is sound for `atanh` on an operand inside `(-1,1)`. -/
 theorem SyntaxTree.funHanAtanh_sound (prev : Dom) (hd₁ : -1 < prev.inf 0)
     (hd₂ : prev.sup 0 < 1) : -- --- CONCL ---
-    UnarySound Unary.atanh.fn prev (Real.Interval.atanh prev) funHanAtanh := by -- --- PROOF ---
+    IsUnarySound Unary.atanh.fn prev (Real.Interval.atanh prev) funHanAtanh := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.artanh s ∧ Real.artanh s ≤ int.sup 0 := hi
   have hs1 : -1 < s := hd₁.trans_le hs.1

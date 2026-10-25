@@ -45,7 +45,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.exists_lipschitzWith_eval :
-    ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.LipschitzLayers →
+    ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.HasLipschitzLayers →
       ∃ K : NNReal, LipschitzWith K rn.eval
   | _, _, .nil, _ => ⟨1, LipschitzWith.id⟩
   | _, _, .cons L rest, h => by

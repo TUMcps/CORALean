@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.HomogeneousRema
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemInputCorrectionSet
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemStateCorrectionSet
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderMatZero
-public import CORALean.Global.ErrorConvergesToZero
+public import CORALean.Global.IsErrorConvergingToZero
 
 @[expose] public section
 
@@ -84,7 +84,7 @@ converges to `0` as `Δt → 0⁺`, at every step start `t_i`, order `η` and in
 `Assumption 1` for `ε_H`. -/
 theorem MatExp.errorConvergesToZero_homogeneousRemainderError (A : Mat ℝ n n) (ti : ℝ)
     {X₀ : Set (Vec ℝ n)} (hX₀ : Bornology.IsBounded X₀) (cu : Vec ℝ n) (η : ℕ) : -- --- CONCL ---
-    ErrorConvergesToZero
+    IsErrorConvergingToZero
       (fun Δt => MatExp.homogeneousRemainderError A ti X₀ cu Δt η) := by -- --- PROOF ---
   set C := ∑ i, ‖(fun j => (exp (ti • A)) i j)‖₂ with hC
   have hC0 : 0 ≤ C := Finset.sum_nonneg fun i _ => norm₂_nonneg _

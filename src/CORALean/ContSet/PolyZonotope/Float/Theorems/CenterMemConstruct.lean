@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialEqZeroOfNoZeroCol
-public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HasNoZeroCol
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 
@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.center_mem_construct (pZ : PolyZonotope (Vec 𝕋 n))
-    (hE : Real.ConPolyZono.NoZeroCol pZ.E)
+    (hE : Real.ConPolyZono.HasNoZeroCol pZ.E)
     (h0 : ∀ i, toReal (pZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (pZ.I_error.sup i)) :
     toRealVec pZ.center ∈ pZ.construct := by
   refine ⟨toRealVec pZ.center, PolyZonotope.mem_nominalSet_iff.mpr

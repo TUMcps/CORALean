@@ -8,8 +8,8 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # Times that are multiples of `0.5`
 
-The test of `next`: `withinTol(mod(time,0.5),0)` with the default tolerance `1e-8` of `withinTol`.
-`mod(time,0.5)` is `time - floor(time/0.5)*0.5`, in `[0,0.5)`, so `withinTol` (`abs(a-b) <= tol`;
+The test of `next`: `withinTol(mod(time,0.5),0)` with the default tolerance `1e-8` of `IsWithinTol`.
+`mod(time,0.5)` is `time - floor(time/0.5)*0.5`, in `[0,0.5)`, so `IsWithinTol` (`abs(a-b) <= tol`;
 its relative test divides by `min(abs(a),0) = 0`) holds exactly if it is at most `1e-8`: a time
 slightly above a multiple of `0.5` passes and one slightly below it does not.
 

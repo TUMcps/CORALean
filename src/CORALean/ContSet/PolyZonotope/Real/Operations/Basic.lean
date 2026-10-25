@@ -27,7 +27,7 @@ namespace CORALean.Real
 variable {n m : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
--- =========================================  `inCone`  ========================================= --
+-- ========================================  `IsInCone`  ======================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   14-October-2026
@@ -36,7 +36,7 @@ variable {n m : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- What the LP of `aux_inCone` decides: `d = N x` for some `x ≥ 0`.
 
 What the linear program of `aux_inCone` in CORA's `isPolytope` decides: `d = N x`, `x ≥ 0`. -/
-def inCone {m : ℕ} (N : Fin m → α) (d : α) : Prop :=
+def IsInCone {m : ℕ} (N : Fin m → α) (d : α) : Prop :=
   ∃ x : Fin m → ℝ, (∀ j, 0 ≤ x j) ∧ d = ∑ j, x j • N j
 
 

@@ -10,7 +10,7 @@ import CORALean.ContSet.PolyZonotope.Real.Instances
 # The polynomialization variant runs the loop already proved
 
 Step three of CORA's `alg = 'poly'`, lines 4-18 of [1, Alg. 1], is not a second induction. A
-`PolyAbstractionError` becomes a `LinStep` through `AbstractionError.of_poly`, and
+`IsPolyAbstractionError` becomes a `LinStep` through `IsAbstractionError.of_poly`, and
 `relinReach_outer` applies at `𝒫𝒵` with nothing added: soundness was stated at an arbitrary
 certificate rather than at the one `alg = 'lin'` computes. The instances it takes are `Plus`,
 `Reduce`, `Mtimes (Mat ℝ)`, `OfInterval`, `LinComb` and `Mtimes ℐ`, all of which `PolyZonotope`
@@ -40,9 +40,9 @@ open Matrix ContSet Plus
 example {n m : ℕ} (sys : NonlinearSys n m) (U : PolyZonotope (Vec ℝ m)) (A : Mat ℝ n n)
     (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (pZ L W : PolyZonotope (Vec ℝ n))
     (Ba : Set (Fin pZ.p → ℝ)) (hp : L.p = pZ.p) (hBa : ∀ a ∈ Ba, ∀ k, |a k| ≤ 1)
-    (cert : PolyAbstractionError sys.f A B xs us pZ Ba (construct U) L hp W) :
+    (cert : IsPolyAbstractionError sys.f A B xs us pZ Ba (construct U) L hp W) :
     sys.LinStep (S := 𝒫𝒵) U :=
-  ⟨A, B, xs, us, pZ.subsetAt Ba, L ⊞ W, AbstractionError.of_poly hBa cert⟩
+  ⟨A, B, xs, us, pZ.subsetAt Ba, L ⊞ W, IsAbstractionError.of_poly hBa cert⟩
 
 /-- The re-linearization loop at those steps, verbatim: the same theorem, the
 same hypotheses, a non-convex representation underneath. -/

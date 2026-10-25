@@ -9,8 +9,8 @@ operations are the machine's round-to-nearest ones, both directions alike, so `a
 direction. A one-field structure rather than `Float` itself, so that no instance written for
 `Float` applies to it by accident; the compiler erases the wrapper. The laws that stay true (`neg`,
 `min`, `max`, `≤`, `half`, the constants) are proved in `Instances` from
-`Binary64.trustedHardware`; the six false ones are fields of `NearestUnsound`, assumed by the false
-axiom in `Axioms` (see `scripts/check-axioms.sh`).
+`Binary64.trustedHardware`; the six false ones are fields of `IsNearestUnsound`, assumed by the
+false axiom in `Axioms` (see `scripts/check-axioms.sh`).
 -/
 
 -- Authors:       Claude Opus 5.5

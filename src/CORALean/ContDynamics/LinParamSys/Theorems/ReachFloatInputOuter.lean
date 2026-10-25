@@ -72,7 +72,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `constPropagateFloat Δt η ρ ũ k`, at an order admissible for `Δt`. -/
 theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) : -- --- CONCL ---
     Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt) *ᵥ Scalar.toRealVec uc
       ∈ (sys.constPropagateFloat Δt η ρ uc k).construct := by -- --- PROOF ---

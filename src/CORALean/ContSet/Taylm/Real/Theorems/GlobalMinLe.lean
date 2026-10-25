@@ -55,13 +55,13 @@ variable {n : ℕ}
 theorem Taylm.globalMin_le {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ) → ℝ} {ub : Vec ℝ n → ℝ}
     {Good : (Fin n → Interval ℝ) → Prop}
     (hgood : ∀ B β, Good B → Good (Taylm.halveBox B β).1 ∧ Good (Taylm.halveBox B β).2)
-    (hlb : ∀ B, Good B → ∀ t, Taylm.InBox B t → lb B ≤ f t) {X : Fin n → Interval ℝ} (hX : Good X)
-    (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- CONCL ---
+    (hlb : ∀ B, Good B → ∀ t, Taylm.IsInBox B t → lb B ≤ f t) {X : Fin n → Interval ℝ} (hX : Good X)
+    (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.IsInBox X t) : -- --- CONCL ---
     (Taylm.globalMin lb ub X fuel).inf ≤ f t := by -- --- PROOF ---
   -- every point is in a live box, or above the cutoff; every live box is good
   have inv : ∀ fuel (st : List (Fin n → Interval ℝ) × ℝ), (∀ B ∈ st.1, Good B) →
-      ((∃ B ∈ st.1, Taylm.InBox B t) ∨ st.2 < f t) →
-      ((∃ B ∈ (Taylm.aux_goLoop lb ub fuel st).1, Taylm.InBox B t) ∨
+      ((∃ B ∈ st.1, Taylm.IsInBox B t) ∨ st.2 < f t) →
+      ((∃ B ∈ (Taylm.aux_goLoop lb ub fuel st).1, Taylm.IsInBox B t) ∨
         (Taylm.aux_goLoop lb ub fuel st).2 < f t) ∧ ∀ B ∈ (Taylm.aux_goLoop lb ub fuel
           st).1, Good B := by
     intro fuel

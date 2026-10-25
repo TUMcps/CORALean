@@ -14,7 +14,7 @@ public import CORALean.NN.Operations.IntervalChainFwdFloat
 /-!
 # The float forward pass of an interval chain encloses the real one
 
-For a float chain `c` that stands for the real chain `r` (`IntervalChain.Sound`), and an
+For a float chain `c` that stands for the real chain `r` (`IntervalChain.IsSound`), and an
 input pair of real vectors inside the boxes `P`, the real `Real.IntervalChain.fwd` lies, bound by
 bound, in the boxes `IntervalChain.fwd` returns. Layer by layer: the linear layer's
 `mu = W (l + u)/2 + b` and `r = |W| (u - l)/2` are enclosed by `Interval.mtimes`, `plus`, `minus`
@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.fwd_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.Sound r) : -- --- CONCL ---
+    {r : Real.IntervalChain n k} (hc : c.IsSound r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n),
       p.1 ∈ P.1.construct → p.2 ∈ P.2.construct →
       (r.fwd p).1 ∈ (c.fwd P).1.construct ∧
@@ -78,7 +78,7 @@ theorem IntervalChain.fwd_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
       (Interval.plus_outer _ _ (Set.add_mem_add hmu hr))
   | act hσ _ _ ih =>
     intro P p h1 h2
-    exact ih _ _ (ScalarEncloses.vec_mem hσ h1) (ScalarEncloses.vec_mem hσ h2)
+    exact ih _ _ (EnclosesScalar.vec_mem hσ h1) (EnclosesScalar.vec_mem hσ h2)
 
 end CORALean.Float
 

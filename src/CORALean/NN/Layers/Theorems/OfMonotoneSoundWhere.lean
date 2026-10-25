@@ -47,7 +47,7 @@ theorem Relaxation.ofMonotone_soundWhere {E : Enclosure 𝕋} {P : 𝕋 → 𝕋
     (hσ : ∀ l u, P l u → Monotone σ)
     (hlo : ∀ l u, P l u → toReal (E.enclose l).inf ≤ σ (toReal l))
     (hhi : ∀ l u, P l u → σ (toReal u) ≤ toReal (E.enclose u).sup) : -- --- CONCL ---
-    (Relaxation.ofMonotone E).SoundWhere σ P := by -- --- PROOF ---
+    (Relaxation.ofMonotone E).IsSoundWhere σ P := by -- --- PROOF ---
   refine ⟨fun {l u t} hP hl hu => ?_⟩
   have hlo' : toReal (E.enclose l).inf ≤ σ t := le_trans (hlo l u hP) (hσ l u hP hl)
   have hhi' : σ t ≤ toReal (E.enclose u).sup := le_trans (hσ l u hP hu) (hhi l u hP)

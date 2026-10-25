@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IsStepAdmissible
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderStep
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulExpRemainderBoundLt
 
@@ -42,9 +42,9 @@ open scoped Classical in
 /-- The step chosen for `ε` at order `η` is admissible for it: positive, under
 the bound, and sound. -/
 theorem MatExp.expRemainderStep_spec (A : Mat ℝ n n) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
-    MatExp.StepAdmissible A η ε (MatExp.expRemainderStep A η ε) := by -- --- PROOF ---
+    MatExp.IsStepAdmissible A η ε (MatExp.expRemainderStep A η ε) := by -- --- PROOF ---
   obtain ⟨r, hr0, hrb, hrs⟩ := MatExp.exists_mul_expRemainderBound_lt A η hε
-  have h : ∃ r : ℝ, MatExp.StepAdmissible A η ε r := ⟨r, hr0, hrb, hrs⟩
+  have h : ∃ r : ℝ, MatExp.IsStepAdmissible A η ε r := ⟨r, hr0, hrb, hrs⟩
   -- the definition takes its `then` branch, and `Exists.choose_spec` is the claim
   simp only [MatExp.expRemainderStep, dif_pos h]
   exact h.choose_spec

@@ -44,8 +44,8 @@ variable {X : Type}
 
 /-- `ξ` satisfies the branch: `F(0,c)` or `G(0,c)` on the window, or `ϱᵢⱼ` at `jc`. -/
 def STL.Branch.Holds (c : ℝ≥0) (b : STL.Branch X) (ξ : ℝ≥0 → X) : Prop :=
-  ((∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + b.j * c))) ∨
-    ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + b.j * c))) ∨ b.ϱ.Sat (ξ (b.j * c))
+  ((∃ ϱ ∈ b.K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Satisfies (ξ (t + b.j * c))) ∨
+    ∃ ϱ ∈ b.L, ∀ t, 0 < t → t < c → ϱ.Satisfies (ξ (t + b.j * c))) ∨ b.ϱ.Satisfies (ξ (b.j * c))
 
 
 end CORALean

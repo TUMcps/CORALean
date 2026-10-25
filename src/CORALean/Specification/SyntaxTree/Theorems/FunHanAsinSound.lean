@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
@@ -43,7 +43,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 /-- `aaux_sin_` is sound for `asin` on an operand inside `[-1,1]`. -/
 theorem SyntaxTree.funHanAsin_sound (prev : Dom) (hd₁ : -1 ≤ prev.inf 0)
     (hd₂ : prev.sup 0 ≤ 1) : -- --- CONCL ---
-    UnarySound Unary.asin.fn prev (Real.Interval.asin prev) funHanAsin := by -- --- PROOF ---
+    IsUnarySound Unary.asin.fn prev (Real.Interval.asin prev) funHanAsin := by -- --- PROOF ---
   intro int hw s hs hi
   have h : int.inf 0 ≤ Real.arcsin s ∧ Real.arcsin s ≤ int.sup 0 := hi
   have hs1 : -1 ≤ s := hd₁.trans hs.1

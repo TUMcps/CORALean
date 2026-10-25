@@ -11,7 +11,7 @@ import CORALean.Examples.Bench.NearestUnsound.Tainted
 The paper's "round-to-nearest (as in CORA)" baseline and nothing else.
 `NearestFloat` is native binary64 and `NearestDyadic p` a `p`-bit format, both
 rounding to nearest where `SoundFloatArithmetic` asks for a direction. Their
-rounding laws are the fields of `NearestUnsound`, FALSE by design, assumed once
+rounding laws are the fields of `IsNearestUnsound`, FALSE by design, assumed once
 as `nearestUnsound` in `Axioms`; every other law is proved in `Instances`.
 
 No library theorem depends on that axiom: only `Examples/Bench/` may import this

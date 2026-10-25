@@ -3,10 +3,9 @@
 
 For every `src/CORALean/ContDynamics/<X>DT/<X>DT.lean` whose twin `<X>/<X>.lean` exists, the
 fields of `structure <X>DT` and of `structure <X>` are compared by name. A field present on one
-side only is reported unless `scripts/dt-twin-allowlist.txt` gives the reason, one line per
-field: `<X>DT.<field>  <reason>`. An entry that no longer matches a difference is reported as
-stale, so the list only shrinks. Prints findings and exits 1 on any; 2 when the sources cannot
-be read.
+side only is reported, except the field `dt` of the discrete-time side: the sampling time of
+CORA's `<x>SysDT`, which a continuous system has no use for. There is no list. Prints findings and
+exits 1 on any; 2 when the sources cannot be read.
 
 `--root DIR` reads another tree (used to test the rule on a mutated copy).
 """
@@ -19,7 +18,8 @@ args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()
 CD = ROOT / "src/CORALean/ContDynamics"
-LIST = ROOT / "scripts/dt-twin-allowlist.txt"
+# the one field a discrete-time class has and its continuous twin has not: the sampling time
+SAMPLING_TIME = "dt"
 
 
 def fields(path, name):
@@ -44,20 +44,7 @@ def fields(path, name):
 
 
 def main():
-    allow = {}
-    lines = {}
-    if LIST.exists():
-        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
-            if not l.strip() or l.startswith("#"):
-                continue
-            key, _, reason = l.partition("  ")
-            if not reason.strip():
-                print(f"{LIST.relative_to(ROOT)}:{no}: entry `{key}` has no reason")
-                continue
-            allow[key.strip()] = reason.strip()
-            lines[key.strip()] = no
     findings = []
-    used = set()
     for dt_dir in sorted(CD.glob("*DT")):
         dt = dt_dir.name
         cont = dt[:-2]
@@ -72,17 +59,12 @@ def main():
             sys.exit(2)
         for side, only, other in ((dt, set(a) - set(b), cont), (cont, set(b) - set(a), dt)):
             for fld in sorted(only):
-                key = f"{dt}.{fld}"
-                if key in allow:
-                    used.add(key)
-                else:
-                    findings.append(
-                        f"{(f_dt if side == dt else f_c).relative_to(ROOT)}: `{side}.{fld}` has "
-                        f"no counterpart in `{other}` — add it there, or give the reason in "
-                        f"scripts/dt-twin-allowlist.txt as `{key}  <reason>`")
-    for key in sorted(set(allow) - used):
-        findings.append(f"{LIST.relative_to(ROOT)}:{lines[key]}: stale entry `{key}` "
-                        "(no such difference any more)")
+                if side == dt and fld == SAMPLING_TIME:
+                    continue
+                findings.append(
+                    f"{(f_dt if side == dt else f_c).relative_to(ROOT)}: `{side}.{fld}` has "
+                    f"no counterpart in `{other}` — add it there (only the sampling time `dt` "
+                    "is a discrete-time class's own)")
     if findings:
         print("\n".join(findings))
         sys.exit(1)

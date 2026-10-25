@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsPowEntryLeAbsMatPow
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HasSumExpRemainderMatEntry
-public import CORALean.Global.SuperlinearDecrease
+public import CORALean.Global.HasSuperlinearDecrease
 public import Mathlib.Tactic.Positivity
 
 @[expose] public section
@@ -56,7 +56,7 @@ variable {n : ℕ}
 at least `φ` when the step does, for every step `Δt ≥ 0` and every order `η`. -/
 theorem MatExp.superlinearDecrease_expRemainderMat (A : Mat ℝ n n) (η : ℕ) {Δt : ℝ}
     (hΔt : 0 ≤ Δt) : -- --- CONCL ---
-    SuperlinearDecrease (fun δ => MatExp.expRemainderInterval A δ η) Δt := by -- --- PROOF ---
+    HasSuperlinearDecrease (fun δ => MatExp.expRemainderInterval A δ η) Δt := by -- --- PROOF ---
   intro φ hφ M hM
   obtain ⟨hφ0, hφ1⟩ := hφ
   -- entry by entry, the `k`-th term at `φΔt` is `φ^k ≤ φ` times the one at `Δt`

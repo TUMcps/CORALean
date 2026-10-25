@@ -107,7 +107,7 @@ theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k} {K : NN
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.exists_schedule_encloseAt_subset : -- --- CONCL ---
-    ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.Convergent → ∀ (X : S n) (ε : ℝ), 0 < ε →
+    ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.IsConvergent → ∀ (X : S n) (ε : ℝ), 0 < ε →
       ∃ sch : Schedule,
         construct (rn.encloseAt sch X)
           ⊆ rn.image (construct X) + Metric.closedBall 0 ε

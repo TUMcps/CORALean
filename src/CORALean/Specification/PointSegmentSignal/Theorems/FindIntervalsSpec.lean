@@ -8,7 +8,7 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.ExistsCellEq
 public import Mathlib.Order.Interval.Set.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsSpec
-public import CORALean.Specification.STLInterval.Definitions.MaximalRuns
+public import CORALean.Specification.STLInterval.Definitions.IsMaximalRuns
 public import CORALean.Specification.STLInterval.Theorems.SetStlIntervalBounds
 
 @[expose] public section
@@ -48,9 +48,9 @@ namespace CORALean
 theorem PointSegmentSignal.aux_findIntervalsBounds_maximal {T : Type} [LinearOrder T] [Zero T]
     [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid)
     (cond : Bool → Bool) (b : T × WithTop T × Bool × Bool) (hb : b ∈ s.findIntervalsBounds cond)
-    (t₁ t₂ : T) (ht₂ : 0 ≤ t₂) (h₁ : STLInterval.memBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₁)
+    (t₁ t₂ : T) (ht₂ : 0 ≤ t₂) (h₁ : STLInterval.IsInBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₁)
     (hpath : ∀ t, 0 ≤ t → min t₁ t₂ ≤ t → t ≤ max t₁ t₂ → cond (s.at t) = true) : -- --- CONCL ---
-    STLInterval.memBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₂ := by -- --- PROOF ---
+    STLInterval.IsInBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₂ := by -- --- PROOF ---
   obtain ⟨runs, heq, hT1, -⟩ := s.findIntervalsBounds_runs hs cond
   rw [heq, List.mem_map] at hb
   obtain ⟨⟨r, f⟩, hp, rfl⟩ := hb
@@ -107,9 +107,9 @@ theorem PointSegmentSignal.aux_findIntervalsBounds_maximal {T : Type} [LinearOrd
 /-- The intervals of `findIntervals` are the maximal intervals at which `cond` holds. -/
 theorem PointSegmentSignal.findIntervals_spec (s : PointSegmentSignal ℝ) (hs : s.IsValid)
     (cond : Bool → Bool) : -- --- CONCL ---
-    STLInterval.MaximalRuns (s.findIntervals cond)
+    STLInterval.IsMaximalRuns (s.findIntervals cond)
       (fun t => cond (s.at t) = true) := by -- --- PROOF ---
-  unfold STLInterval.MaximalRuns
+  unfold STLInterval.IsMaximalRuns
   obtain ⟨h0, h1⟩ := s.findIntervalsBounds_spec hs cond
   refine ⟨fun t ht => ?_, ?_⟩
   · show _ ↔ cond (s.at t) = true

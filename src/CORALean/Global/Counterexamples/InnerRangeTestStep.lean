@@ -65,7 +65,7 @@ theorem innerTest_step_counterexample : -- --- CONCL ---
     let g : (Fin 1 → ℝ) × (Fin 1 → ℝ) → (Fin 1 → ℝ) := fun x => x.1
     let lo : Fin 1 → ℝ := fun _ => -1
     let hi : Fin 1 → ℝ := fun _ => 1
-    innerTest g 0 lo hi lo hi (Matrix.of fun _ _ => 1) (Matrix.of fun _ _ => 1) 0 0
+    PassesInnerTest g 0 lo hi lo hi (Matrix.of fun _ _ => 1) (Matrix.of fun _ _ => 1) 0 0
         (fun _ => -1 / 2) (fun _ => 1 / 2) ∧
       ¬ Disjoint (Icc (fun _ => -1 / 2) fun _ => 1 / 2)
         (g '' frontier (Icc lo hi ×ˢ Icc lo hi)) := by -- --- PROOF ---

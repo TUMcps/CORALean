@@ -54,7 +54,7 @@ variable {n : ℕ}
 theorem Interval.mem_extremePoints_inter_hyperplane_iff {I : Interval (Vec ℝ n)} {a : Vec ℝ n}
     (ha : ∀ i, a i ≠ 0) {α : ℝ} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane a α) ↔
-      x ∈ I.construct ∩ Interval.hyperplane a α ∧ I.OnEdge x := by -- --- PROOF ---
+      x ∈ I.construct ∩ Interval.hyperplane a α ∧ I.IsOnEdge x := by -- --- PROOF ---
   constructor
   · -- two coordinates strictly inside: `x ± ε(aⱼeᵢ - aᵢeⱼ)` stay in `B ∩ P`
     intro hx

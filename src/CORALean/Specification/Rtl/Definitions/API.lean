@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.Rtl.Definitions.IsHalfMultiple
-public import CORALean.Specification.Rtl.Definitions.Sat
+public import CORALean.Specification.Rtl.Definitions.Satisfies
 public import CORALean.Specification.Rtl.Definitions.TimesNonneg
 
 /-!

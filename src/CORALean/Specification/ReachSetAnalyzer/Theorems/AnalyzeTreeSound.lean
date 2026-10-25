@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.ReachSetAnalyzer.Definitions.Branch
+public import CORALean.Specification.ReachSetAnalyzer.Definitions.IsBranch
 public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeTree
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.MapMSpec
 
@@ -43,7 +43,7 @@ theorem ReachSetAnalyzer.analyzeTree_sound {σ α : Type} (children : ℕ → Li
     (analyzeSingle : σ → ℕ → Option σ) (signals : σ → Option α) : -- --- CONCL ---
     ∀ (fuel i : ℕ) (obj : σ) (outs : List α),
       ReachSetAnalyzer.analyzeTree children analyzeSingle signals fuel i obj = some outs →
-      ∀ out ∈ outs, ∃ (w : List ℕ) (obj' : σ), ReachSetAnalyzer.Branch children i w ∧
+      ∀ out ∈ outs, ∃ (w : List ℕ) (obj' : σ), ReachSetAnalyzer.IsBranch children i w ∧
         w.foldlM analyzeSingle obj = some obj' ∧ signals obj' = some out := by -- --- PROOF ---
   intro fuel
   induction fuel with
@@ -61,7 +61,7 @@ theorem ReachSetAnalyzer.analyzeTree_sound {σ α : Type} (children : ℕ → Li
       obtain ⟨s, hs, h⟩ := Option.map_eq_some_iff.mp h
       obtain rfl : outs = [s] := h.symm
       obtain rfl : out = s := by simpa using hout
-      exact ⟨_, obj1, ReachSetAnalyzer.Branch.leaf i hc, hself, hs⟩
+      exact ⟨_, obj1, ReachSetAnalyzer.IsBranch.leaf i hc, hself, hs⟩
     · -- a node: the result of one of the children
       rw [if_neg hc] at h
       obtain ⟨L, hL, h⟩ := Option.map_eq_some_iff.mp h
@@ -69,7 +69,7 @@ theorem ReachSetAnalyzer.analyzeTree_sound {σ α : Type} (children : ℕ → Li
       obtain ⟨r, hr, hor⟩ := List.mem_flatten.mp hout
       obtain ⟨j, hj, hfj⟩ := (mapM_option_spec _ _ _ hL).1 r hr
       obtain ⟨w, obj', hw, hf, hsig⟩ := ih j obj1 r hfj out hor
-      refine ⟨(if i ≠ 0 then [i] else []) ++ w, obj', ReachSetAnalyzer.Branch.node i j w hj hw,
+      refine ⟨(if i ≠ 0 then [i] else []) ++ w, obj', ReachSetAnalyzer.IsBranch.node i j w hj hw,
         ?_, hsig⟩
       rw [List.foldlM_append, hself]
       exact hf

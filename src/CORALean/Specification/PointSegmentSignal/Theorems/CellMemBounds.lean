@@ -6,7 +6,7 @@ public import CORALean.Specification.PointSegmentSignal.Operations.Cell
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellGeIff
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellLeIff
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellRel
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 public import Mathlib.Order.Basic
 public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtValIdx
 
@@ -55,14 +55,14 @@ namespace CORALean
 theorem PointSegmentSignal.cell_mem_bounds {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (r f : ℕ) (hr : 1 ≤ r) (hrN : r ≤ s.values.length)
     (hf : 1 ≤ f) (hfN : f ≤ s.values.length) (t : T) (ht : 0 ≤ t) : -- --- CONCL ---
-    STLInterval.memBounds (s.precTimeAtValIdx r).1 (s.succTimeAtValIdx f).1
+    STLInterval.IsInBounds (s.precTimeAtValIdx r).1 (s.succTimeAtValIdx f).1
       (s.precTimeAtValIdx r).2 (s.succTimeAtValIdx f).2 t ↔
       r - 1 ≤ s.cell t ∧ s.cell t ≤ f - 1 := by -- --- PROOF ---
   have h1 := s.cell_ge_iff hs t ht (r - 1) (by omega)
   have h2 := s.cell_le_iff hs t ht (f - 1) (by omega)
   rw [show r - 1 + 1 = r by omega] at h1
   rw [show f - 1 + 1 = f by omega] at h2
-  rw [STLInterval.memBounds, h1, h2]
+  rw [STLInterval.IsInBounds, h1, h2]
 
 end CORALean
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 
 @[expose] public section
 
@@ -39,7 +39,7 @@ def STLInterval.isequal (tol : ℝ) : STLInterval 𝕋 → STLInterval 𝕋 → 
   | .nonempty .., .empty => False
   | .empty, .nonempty .. => False
   | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
-    withinTol tol (toReal l₁ : ℝ) (toReal l₂ : ℝ) ∧ withinTol tol (toEReal u₁) (toEReal u₂) ∧
+    IsWithinTol tol (toReal l₁ : ℝ) (toReal l₂ : ℝ) ∧ IsWithinTol tol (toEReal u₁) (toEReal u₂) ∧
       lc₁ = lc₂ ∧ rc₁ = rc₂
 
 end CORALean

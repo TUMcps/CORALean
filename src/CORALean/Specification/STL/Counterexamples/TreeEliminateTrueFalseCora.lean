@@ -59,10 +59,11 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.eliminateTrueFalseCora_until_counterexample (n : ℕ) (ξ : ℝ≥0 → Fin n → ℝ) :
-    ∃ φ : STL.Tree n, φ.WellFormed ∧ ¬ (φ.eliminateTrueFalseCora.Sat ξ ↔ φ.Sat ξ) := by
+    ∃ φ : STL.Tree n, φ.IsWellFormed ∧ ¬ (φ.eliminateTrueFalseCora.Satisfies ξ ↔ φ.Satisfies ξ) :=
+        by
   refine ⟨.until 0 1 .ff .tt, ⟨zero_le_one, trivial, trivial⟩, fun h => ?_⟩
   obtain ⟨t, -, -, -, h₄⟩ := h.1 (by simp [STL.Tree.eliminateTrueFalseCora,
-    STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat])
+    STL.Tree.eliminateTrueFalseWith, STL.Tree.Satisfies])
   exact h₄ 0 (by simp)
 
 end CORALean

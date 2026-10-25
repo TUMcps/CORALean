@@ -16,6 +16,11 @@ type `T` and its points in the scalar `𝕋` the simulation is stored in (ℝ, o
 both): the time points `t`, the points `x l s` of the realization `s` at the
 time with index `l` (both numbered from `1`, as in MATLAB), and the locations `loc` of a hybrid
 automaton, one for each time (empty if the system is not hybrid).
+
+## References
+
+None: CORA's `trajectoryAnalyzer`, a software class: no publication introduces it, and the CORA
+manual page for it could not be read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

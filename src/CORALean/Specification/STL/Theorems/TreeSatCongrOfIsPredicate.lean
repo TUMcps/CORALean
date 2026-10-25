@@ -42,12 +42,12 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_congr_of_isPredicate (φ : STL.Tree n) (h : φ.isPredicate = true)
     (ξ ξ' : ℝ≥0 → Fin n → ℝ) (hξ : ξ 0 = ξ' 0) : -- --- CONCL ---
-    φ.Sat ξ ↔ φ.Sat ξ' := by -- --- PROOF ---
+    φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ with
-  | cmp op e₁ e₂ => simp [STL.Tree.Sat, hξ]
+  | cmp op e₁ e₂ => simp [STL.Tree.Satisfies, hξ]
   | and φ ψ ihφ ihψ =>
     simp only [STL.Tree.isPredicate, Bool.and_eq_true] at h
-    simp [STL.Tree.Sat, ihφ h.1, ihψ h.2]
+    simp [STL.Tree.Satisfies, ihφ h.1, ihψ h.2]
   | _ => simp [STL.Tree.isPredicate] at h
 
 end CORALean

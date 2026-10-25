@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
+public import CORALean.ContSet.Zonotope.Real.Definitions.IsReduceBoxAdmissible
 public import Mathlib.Order.Lattice.Nat
 
 @[expose] public section
@@ -46,7 +46,7 @@ variable {n : ℕ}
 /-- The least order meeting `B`, and `0` where none does — which `0 ∈ B` rules
 out, `reduceBoxOrder_spec` being stated under exactly that. -/
 noncomputable def Zonotope.reduceBoxOrder (Z : Zonotope (Vec ℝ n)) (B : Set (Vec ℝ n)) : ℕ :=
-  sInf {o : ℕ | Z.ReduceBoxAdmissible B o}
+  sInf {o : ℕ | Z.IsReduceBoxAdmissible B o}
 
 end CORALean.Real
 

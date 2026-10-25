@@ -48,9 +48,9 @@ variable {X : Type}
 
 theorem STL.DFormula.eventually_sat_iff (a b : ℕ) (hab : a ≤ b) (φ : STL.DFormula X)
     (x : ℕ → X) (t : ℕ) :
-    (STL.DFormula.eventually a b hab φ).Sat x t ↔
-      (STL.DFormula.until a b hab STL.DFormula.tt φ).Sat x t := by
-  simp [STL.DFormula.Sat]
+    (STL.DFormula.eventually a b hab φ).Satisfies x t ↔
+      (STL.DFormula.until a b hab STL.DFormula.tt φ).Satisfies x t := by
+  simp [STL.DFormula.Satisfies]
 
 end CORALean
 

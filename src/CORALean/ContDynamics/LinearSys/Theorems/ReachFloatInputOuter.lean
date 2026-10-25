@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Theorems.IsReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 
 @[expose] public section

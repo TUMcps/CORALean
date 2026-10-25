@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
 # A shared stay is a stay of the product
 
 `IsStay.trajectoryWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under
-`FeedthroughFree` (`mergeFlowsLinearSys_flowLaw`).
+`IsFeedthroughFree` (`mergeFlowsLinearSys_flowLaw`).
 
 ## Inputs
 * `P` – parallel automaton
@@ -51,7 +51,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 /-- A stay of every component, inputs as bound, is one stay of the product location, whose state
 is the stack, under some input and disturbance of the product. -/
 theorem ParallelHybridAutomaton.IsStay.trajectory {P : ParallelHybridAutomaton S G k L ℝ n m}
-    (hfeed : P.FeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
+    (hfeed : P.IsFeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
     {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
     (h : P.IsStay ℓ τ x u w g) :
     ∃ (g' : ℝ → Vec ℝ m) (w' : ℝ → Vec ℝ (∑ i, (P.sys ℓ i).r)),

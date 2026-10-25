@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.errFree_of_isErrFree {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (h : P.isErrFree = true) : -- --- CONCL ---
-    P.ErrFree := by -- --- PROOF ---
+    P.IsErrFree := by -- --- PROOF ---
   simp only [HPolytope.isErrFree, Bool.and_eq_true] at h
   have hz : ∀ {k : ℕ} {v : Vec 𝕋 k}, HPolytope.isZeroVec v = true → ∀ j, toReal (v j) = 0 :=
     fun hv j => (HPolytope.toReal_eq_of_eqScalar

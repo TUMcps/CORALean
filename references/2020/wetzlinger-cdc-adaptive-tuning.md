@@ -30,8 +30,8 @@ and `Thm. 1`'s termination half, which is not established here.
 | Result | What it says | In CORALean | Class |
 |---|---|---|---|
 | `Prop. 1` | Bounds the Hausdorff distance between a set S= and its Minkowski sum S_tot = S= ⊕ S+ (0 ∈ S+) by err(S+) := r(box(S+)), the enclosing radius of the box over-approximation of S+. | [`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean) | `correct` |
-| `Assumption 1` | (Convergence of ε_H and ε_P) Floating-point errors are neglected so that ε_H([t_i,t_{i+1}]) → 0 and ε_P([t_i,t_{i+1}]) → 0 for Δt_i → 0. | [`ErrorConvergesToZero.lean`](../../src/CORALean/Global/ErrorConvergesToZero.lean) — the predicate, one step-error function of Δt at a time; `Prop. 3` and `Prop. 4` below discharge it for eq. (21)'s ε_H and eq. (22)'s ε_P themselves | `correct` |
-| `Def. 1` | (Superlinear decrease) A continuous function f's set-based evaluation f(S(t)) decreases superlinearly if for all φ∈(0,1), f(S([t,t+φΔt])) ⊆ φ·f(S([t,t+Δt])). | [`SuperlinearDecrease.lean`](../../src/CORALean/Global/SuperlinearDecrease.lean) | `correct` |
+| `Assumption 1` | (Convergence of ε_H and ε_P) Floating-point errors are neglected so that ε_H([t_i,t_{i+1}]) → 0 and ε_P([t_i,t_{i+1}]) → 0 for Δt_i → 0. | [`IsErrorConvergingToZero.lean`](../../src/CORALean/Global/IsErrorConvergingToZero.lean) — the predicate, one step-error function of Δt at a time; `Prop. 3` and `Prop. 4` below discharge it for eq. (21)'s ε_H and eq. (22)'s ε_P themselves | `correct` |
+| `Def. 1` | (Superlinear decrease) A continuous function f's set-based evaluation f(S(t)) decreases superlinearly if for all φ∈(0,1), f(S([t,t+φΔt])) ⊆ φ·f(S([t,t+Δt])). | [`HasSuperlinearDecrease.lean`](../../src/CORALean/Global/HasSuperlinearDecrease.lean) | `correct` |
 | `Prop. 2` | If ε_P(Δt)/Δt → 0 as Δt → 0 — what [1]'s "decreases superlinearly (Def. 1)" has to mean for its own claim to hold, see Findings — then for any ε_{P,max} > 0 and any horizon t_f > 0 there is a finite partition of [0,t_f] whose ε_P-errors sum below ε_{P,max}. | [`HorizonErrorBudget.lean`](../../src/CORALean/Global/HorizonErrorBudget.lean); [`HorizonErrorBudget.lean`](../../src/CORALean/Global/Counterexamples/HorizonErrorBudget.lean) — the linear `ε_P(Δt) = Δt` meets Def. 1 and no partition of `[0, 2]` keeps its errors below `1` **Counterexample:** `exists_finPartition_sum_particularError_le_counterexample` | `fixed` — needs `ε_P(Δt)/Δt → 0`, which Def. 1 does not give (a linear `ε_P` satisfies it); formalized with that hypothesis |
 | `Thm. 1` | Alg. 1 (fully automated parameter tuning) terminates and keeps the overall error below a user-defined bound ε_max, assuming the set-representation-size reduction step in each iteration is optional. | the *error* half, outright: [`TunedRunErrorBudget.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/TunedRunErrorBudget.lean) — a run that does not step past t_f keeps ε_P([0,t_i]) ≤ ε_{P,max}, ε_S([0,t_i]) ≤ ε_{S,max} and the last step's ε_H ≤ ε_{H,max}, so the budgeted total stays under ε_max = ε_{H,max}+ε_{P,max}+ε_{S,max}. The *termination* half is not established — see the Findings | `proof-gap` — termination argument does not follow (steps may shrink geometrically); the error half is proved for runs that stay within `t_f` |
 | `Alg. 1` | "Fully automated parameter tuning": given ε_{H,max}, ε_{P,max}, ε_{S,max}, t_f, iteratively computes Δt_i, calls Alg. 2 and Alg. 3 to tune the time step and set representation size, and returns the reachable set R([0,t_f]). |  (lines 5-10), [`TunedRun.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TunedRun.lean) (the loop of lines 4-11) and [`TunedReach.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TunedReach.lean) (line 12); line 6's `HR` is `timeInterval`, without eq. (19)'s `Fu(Δt,η)c_u` term; the error budget it keeps is `Thm. 1`'s row; in floats, [`ReachAdaptiveFloat.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/ReachAdaptiveFloat.lean) runs it ([`AdaptiveStepFloat.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/AdaptiveStepFloat.lean) lines 5-10, [`AdaptiveRunFloat.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/AdaptiveRunFloat.lean) the loop), clipping `Δt_i` to `t_f − t_i` as CORA's `maxTimeStep` does, and [`ReachAdaptiveFloatOuter.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ReachAdaptiveFloatOuter.lean) is its soundness — the windows cover `[t_0, t_f]` and hold every run, whatever the tuning chose; it is an outer theorem, not `Thm. 1`'s error half | `underspecified` — nothing clips `Δtᵢ` to `t_f − tᵢ` |
@@ -98,7 +98,7 @@ print them — `E` entrywise at `|A|`, not `correctionMatrix`'s uniform box.
 
 **`Prop. 2` needs more than `Def. 1` gives.** [1]'s own proof of `Prop. 2`
 treats "ε_P decreases superlinearly" as if it forced ε_P(Δt)/Δt → 0, but
-`SuperlinearDecrease` read at one reference length Δt only bounds ε_P(Δt) by
+`HasSuperlinearDecrease` read at one reference length Δt only bounds ε_P(Δt) by
 the *line through* `(Δt_ref,ε_P(Δt_ref))` — a linear ε_P (equality
 throughout) satisfies Def. 1 exactly, and for it ε_P(Δt)/Δt is a fixed
 positive constant that no ε_{P,max} budget could beat. `HorizonErrorBudget.lean`
@@ -230,8 +230,8 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`TimeIntervalStepError.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimeIntervalStepError.lean)
 * [`ExistsTimeIntervalStepErrorLt.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsTimeIntervalStepErrorLt.lean)
 * [`ExistsTimePointStepErrorLt.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsTimePointStepErrorLt.lean)
-* [`OrderAdmissible.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/OrderAdmissible.lean)
-* [`StepAdmissible.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/StepAdmissible.lean)
+* [`IsOrderAdmissible.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/IsOrderAdmissible.lean)
+* [`IsStepAdmissible.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/IsStepAdmissible.lean)
 * [`IsBoundedParticularRemainderSet.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/IsBoundedParticularRemainderSet.lean)
 * [`NormLeOfMemParticularRemainderSet.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/NormLeOfMemParticularRemainderSet.lean)
 * [`AbsEntryLeOfMemStateCorrectionSet.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/AbsEntryLeOfMemStateCorrectionSet.lean)
@@ -243,7 +243,7 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`ReachSubsetClosedBall.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/ReachSubsetClosedBall.lean)
 * [`ReduceBoxOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ReduceBoxOrder.lean)
 * [`ErrOp.lean`](../../src/CORALean/ContSet/Zonotope/Float/Operations/ErrOp.lean)
-* [`ReduceBoxAdmissible.lean`](../../src/CORALean/ContSet/Zonotope/Real/Definitions/ReduceBoxAdmissible.lean)
+* [`IsReduceBoxAdmissible.lean`](../../src/CORALean/ContSet/Zonotope/Real/Definitions/IsReduceBoxAdmissible.lean)
 * [`AdaptSetOrderLoop.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/AdaptSetOrderLoop.lean)
 * [`ReduceBoxAntitone.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceBoxAntitone.lean)
 * [`ReduceBoxEqOfPoint.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceBoxEqOfPoint.lean)

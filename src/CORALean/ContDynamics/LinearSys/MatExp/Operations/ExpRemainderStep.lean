@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.StepAdmissible
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IsStepAdmissible
 
 @[expose] public section
 
@@ -46,7 +46,7 @@ open scoped Classical in
 /-- A step meeting `ε` at order `η`, and `1` where none does — which `0 < ε`
 rules out, `expRemainderStep_spec` being stated under exactly that. -/
 noncomputable def MatExp.expRemainderStep (A : Mat ℝ n n) (η : ℕ) (ε : ℝ) : ℝ :=
-  if h : ∃ r : ℝ, MatExp.StepAdmissible A η ε r then h.choose else 1
+  if h : ∃ r : ℝ, MatExp.IsStepAdmissible A η ε r then h.choose else 1
 
 end CORALean.Real
 

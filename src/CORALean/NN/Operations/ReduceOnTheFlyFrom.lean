@@ -63,7 +63,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 activation; `Φ̂_ρ` from layer `k-1` on comes back with `Y = H_κ`, `none` where Alg. 1 gave out. -/
 def reduceOnTheFlyFrom (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (ρ : 𝕋) :
     ∀ {n n₁ m : ℕ}, S n → ReducedLinear 𝕋 n n₁ → (R : Relaxation 𝕋) →
-      (∃ σ : ℝ → ℝ, R.Sound σ) → MergeBuckets 𝕋 → ReducibleNetwork 𝕋 n₁ m →
+      (∃ σ : ℝ → ℝ, R.IsSound σ) → MergeBuckets 𝕋 → ReducibleNetwork 𝕋 n₁ m →
       Option (ReducibleNetwork 𝕋 n m × S m)
   -- 3. `if k < κ` fails, `k = κ`: no look-ahead, lines 4-8 are skipped
   | _, _, _, H_km2, Lhat_km1, L_k, hσ_k, B, .nil =>

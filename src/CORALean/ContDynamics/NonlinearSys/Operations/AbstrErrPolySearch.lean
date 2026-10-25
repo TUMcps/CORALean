@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 CORA's `linReach` while loop for `alg = 'poly'`, and the repeat-until of [1, Alg. 1], its lines
 8-16: `priv_abstrerr_poly` estimates the true error against an applied one, and a rejection
 multiplies the applied error by `1.1` and retries — `perfIndCurr = max(trueError ./ appliedError)
-≤ 1` the test. That test is `PolyAbstractionError` itself: `AbstractionError.of_poly` already
+≤ 1` the test. That test is `IsPolyAbstractionError` itself: `IsAbstractionError.of_poly` already
 proves a step meeting it a sound enclosure, so any `some step` carries `step.cert` and a wrong
 `Ws k` costs no soundness, only convergence. What is new is only the search: package the first
 candidate the certificate accepts into a `LinStep`, `none` once `fuel` runs out. A candidate is a
@@ -73,7 +73,7 @@ noncomputable def aux_search (P : ℕ → Prop) : ℕ → ℕ → Option {k // P
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The first candidate `(pZ k, Ba k, L k, Ws k)` a `PolyAbstractionError` accepts,
+/-- The first candidate `(pZ k, Ba k, L k, Ws k)` a `IsPolyAbstractionError` accepts,
 packaged as a `LinStep`; `none` once `fuel` is exhausted with none accepted. -/
 noncomputable def NonlinearSys.abstrErrPolySearch (sys : NonlinearSys n m)
     (U : PolyZonotope (Vec ℝ m)) (A : Mat ℝ n n) (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m)
@@ -81,10 +81,10 @@ noncomputable def NonlinearSys.abstrErrPolySearch (sys : NonlinearSys n m)
     (L : ℕ → PolyZonotope (Vec ℝ n)) (hp : ∀ k, (L k).p = (pZ k).p)
     (hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1) (Ws : ℕ → PolyZonotope (Vec ℝ n))
     (fuel : ℕ) : Option (sys.LinStep (S := 𝒫𝒵) U) :=
-  (aux_search (fun k => PolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k)
+  (aux_search (fun k => IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k)
       (hp k) (Ws k)) 0 fuel).map
     fun ⟨k, h⟩ => ⟨A, B, xs, us, (pZ k).subsetAt (Ba k), L k ⊞ Ws k,
-      AbstractionError.of_poly (hBa k) h⟩
+      IsAbstractionError.of_poly (hBa k) h⟩
 
 end CORALean
 

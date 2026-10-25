@@ -8,13 +8,13 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 /-!
 # Every parallel run is a run of the product
 
-For any flow with `FlowLaw`; the soundness direction, by the run's own recursion: a stay is
+For any flow with `IsFlowLaw`; the soundness direction, by the run's own recursion: a stay is
 `IsStay.trajectoryWith`, a jump of component `c` is the lifted transition's jump, in the list by
 construction, its guard met by `Lifting.mem_guard` and its reset the update by
 `liftTransition_reset`. The states are stacked and the locations are the tuples, so nothing is
 converted on the way.
 
-The converse is `IsRun.ofProductWith`, under `FlowLawConverse` and an exact `Lifting`.
+The converse is `IsRun.ofProductWith`, under `IsFlowLawConverse` and an exact `Lifting`.
 
 ## Inputs
 * `P` – parallel automaton
@@ -56,7 +56,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 /-- A run of the parallel automaton, its states stacked, is a run of the product with flow `F`. -/
 theorem ParallelHybridAutomaton.IsRun.toProductWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLaw F U W)
     (lift : ParallelHybridAutomaton.Lifting S G n m) {ℓ ℓ' : ∀ i, L i}
     {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y) : -- --- CONCL ---
     (P.productWith lift F U W).IsRun ℓ (stack x) ℓ' (stack y) := by -- --- PROOF ---

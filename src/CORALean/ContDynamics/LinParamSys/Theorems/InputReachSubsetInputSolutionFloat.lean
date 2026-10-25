@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
@@ -114,7 +114,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset
 /-- The member's remainder, closed and convexified, inside the float product. -/
 theorem LinParamSys.aux_inputRemainder_subset
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
+    {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     construct (Mtimes.mtimes (𝕄 := ℐ)
       (S := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
@@ -139,7 +139,7 @@ theorem LinParamSys.aux_inputRemainder_subset
 lies in `inputSolutionFloat`. -/
 theorem LinParamSys.inputReach_subset_inputSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
+    (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η V).construct := by -- --- PROOF ---

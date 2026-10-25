@@ -120,7 +120,7 @@ public import CORALean.NN.Theorems.EncloseUnsafeInputsOuter
 public import CORALean.NN.Theorems.EncloseUnsafeInputsSound
 public import CORALean.NN.Theorems.ForwardLatent
 public import CORALean.NN.Theorems.LeForwardH
-public import CORALean.NN.Theorems.VerifySound
+public import CORALean.NN.Theorems.IsVerifySound
 
 /-!
 # What a network's enclosure guarantees, collected

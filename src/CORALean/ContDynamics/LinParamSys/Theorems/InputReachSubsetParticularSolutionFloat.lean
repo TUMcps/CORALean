@@ -99,7 +99,7 @@ theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
 /-- Everything an input in `U` holding the origin contributes under a member `A` by
 any `t ≤ t_{k+1}` lies in `P^R(t_{k+1})` as `particularSolutionFloat` computes it. -/
 theorem LinParamSys.inputReach_subset_particularSolutionFloat (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋}
-    {η ρ : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
+    {η ρ : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) {U : Zonotope (Vec 𝕋 n)} (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ}
     {t : ℝ} (ht0 : 0 ≤ t) (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) : -- --- CONCL ---
     ∀ P ∈ sys.particularSolutionFloat Δt η ρ U k,

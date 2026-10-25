@@ -47,17 +47,18 @@ variable {X : Type}
 
 theorem RTL.Formula.sat_bigOr {β : Type} (l : List β) (g : β → RTL.Formula X) (R : ℝ≥0 → Set X)
     (h : (R 0).Nonempty) : -- --- CONCL ---
-    (RTL.Formula.bigOr (l.map g)).Sat R ↔ ∃ b ∈ l, (g b).Sat R := by -- --- PROOF ---
+    (RTL.Formula.bigOr (l.map g)).Satisfies R ↔ ∃ b ∈ l, (g b).Satisfies R := by -- --- PROOF ---
   induction l with
   | nil =>
     -- `A ⊥` says every state of `R 0` is false
     obtain ⟨r, hr⟩ := h
-    simp only [RTL.Formula.bigOr, List.map_nil, List.foldr_nil, RTL.Formula.Sat, List.not_mem_nil,
+    simp only [RTL.Formula.bigOr, List.map_nil, List.foldr_nil, RTL.Formula.Satisfies,
+        List.not_mem_nil,
       false_and, exists_false, iff_false]
     exact fun h => h r hr
   | cons b l ih =>
-    have : (RTL.Formula.bigOr ((b :: l).map g)).Sat R ↔
-        (g b).Sat R ∨ (RTL.Formula.bigOr (l.map g)).Sat R := Iff.rfl
+    have : (RTL.Formula.bigOr ((b :: l).map g)).Satisfies R ↔
+        (g b).Satisfies R ∨ (RTL.Formula.bigOr (l.map g)).Satisfies R := Iff.rfl
     rw [this, ih]
     simp
 

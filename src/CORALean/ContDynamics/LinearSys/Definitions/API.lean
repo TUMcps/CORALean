@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsAutoInvariantFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
@@ -25,11 +25,11 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimePointBoundOfInputR
 public import CORALean.ContDynamics.LinearSys.Definitions.TimePointWitness
 public import CORALean.ContDynamics.LinearSys.Definitions.TunedState
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
-public import CORALean.ContDynamics.LinearSys.Definitions.VerifySpec
-public import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySpec
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySound
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.VerifySpecFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySpecFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySoundFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
@@ -37,16 +37,16 @@ public import CORALean.ContDynamics.LinearSys.Definitions.WithInput
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatInputInvariant
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
 public import CORALean.ContDynamics.LinearSys.Definitions.StepSets
-public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
+public import CORALean.ContDynamics.LinearSys.Definitions.IsAdaptiveInvariant
 public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
 public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ManualInvariantFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsManualInvariantFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloatEncloses
 public import CORALean.ContDynamics.LinearSys.Definitions.HeldInput
@@ -75,8 +75,8 @@ signal, [1, Thm. 1]'s intersection target.
 `ReachExact` is what `Reach` asks of it, homogeneous;
 `WithInput`/`WithInputReachExact` the same with an input set holding the
 origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
-`OrderAdmissibleFloat` is the order the float steps ask for,
-`ReachFloatInputInvariant` what `reachFloatInput`'s loop state owes, and
+`IsOrderAdmissibleFloat` is the order the float steps ask for,
+`IsReachFloatInputInvariant` what `reachFloatInput`'s loop state owes, and
 `ReachOptions` CORA's `options` for a reach run, `Δt` and the orders,
 `ReachStepOptions` the two of them a scheme without order reduction reads.
 

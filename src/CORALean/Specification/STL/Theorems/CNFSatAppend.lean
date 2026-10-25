@@ -45,7 +45,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.CNF.sat_append (c : ℝ≥0) (a b : STL.CNF X) (ξ : ℝ≥0 → X) :
-    ((a ++ b).toFormula c).Sat ξ ↔ (a.toFormula c).Sat ξ ∧ (b.toFormula c).Sat ξ := by
+    ((a ++ b).toFormula c).Satisfies ξ ↔ (a.toFormula c).Satisfies ξ ∧ (b.toFormula c).Satisfies ξ
+        := by
   rw [STL.CNF.sat_toFormula, STL.CNF.sat_toFormula, STL.CNF.sat_toFormula,
     List.forall_mem_append]
 

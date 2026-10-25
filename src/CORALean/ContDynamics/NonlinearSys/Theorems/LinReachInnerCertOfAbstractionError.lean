@@ -17,7 +17,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderS
 
 The representation (21) of CORA's `contDynamics/linReachInner.m`, from what its error loop
 establishes: when `Rerror` is `particularSolution_timeVarying` of `VerrorDyn`
-(`inputSolution Δt η VerrorDyn`), `VerrorDyn` an `AbstractionError` certificate for `A` at `p`
+(`inputSolution Δt η VerrorDyn`), `VerrorDyn` an `IsAbstractionError` certificate for `A` at `p`
 on a region `R` the solutions from `Rinit` do not leave over `[0, Δt]` (CORA's `Rmax`), every
 solution satisfies `x(Δt) - (p + e^{AΔt}(x(0) - p) + Rcon) ∈ Rerror`. With [1, Prop. 1]'s other
 hypotheses that is `IsLinReachInnerCert`, as in `IsInnerMinkDiffCert.of_abstractionError`. Still
@@ -93,7 +93,7 @@ theorem NonlinearSys.IsLinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- CONCL ---
     ∀ o ∈ NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e, ∀ st ∈ o,
-      AbstractionError sys.f st.A B st.p u₀ R (construct U) st.VerrorDyn →
+      IsAbstractionError sys.f st.A B st.p u₀ R (construct U) st.VerrorDyn →
       ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1 →
       Convex ℝ (construct st.VerrorDyn) →
       IsClosed (construct st.VerrorDyn) →

@@ -67,7 +67,7 @@ theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.activationPolyOn_outer {P : LayerRelaxation ℝ n m} (hP : ∀ i, (P i).Sound σ)
+theorem Layer.activationPolyOn_outer {P : LayerRelaxation ℝ n m} (hP : ∀ i, (P i).IsSound σ)
     (J : Interval (Vec ℝ n)) (s : 𝒫𝒵 n) {x : Vec ℝ n} (hx : x ∈ construct s)
     (hJ : x ∈ J.construct) : -- --- CONCL ---
     (fun i => σ (x i)) ∈ construct ((Layer.activationPolyOn P J).enclose s) := by -- --- PROOF ---

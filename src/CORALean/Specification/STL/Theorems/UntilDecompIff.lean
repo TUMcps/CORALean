@@ -51,7 +51,7 @@ namespace CORALean
 theorem STL.until_decomp_iff {N t a b : ℕ} (hab : a ≤ b) (hN : t + b ≤ N)
     {P Q : ℕ → Prop} : -- --- CONCL ---
     ((∀ s ∈ Finset.Icc t (t + a), P s) ∧ (∃ s ∈ Finset.Icc (t + a) (t + b), Q s) ∧
-      STL.untilEnc N true P Q (t + a)) ↔
+      STL.IsUntilEnc N true P Q (t + a)) ↔
       ∃ t' ∈ Finset.Icc (t + a) (t + b), Q t' ∧ ∀ s ∈ Finset.Icc t t', P s := by -- --- PROOF ---
   rw [STL.untilEnc_nonstrict_iff (t + a) (by omega)]
   constructor

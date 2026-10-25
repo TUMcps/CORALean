@@ -9,7 +9,7 @@ public import CORALean.NN.Theorems.EnclosesVerifySplitEncloses
 # `verifySplit` is sound, with no hypothesis on the network
 
 A `true` from `verifySplit` at any depth gives the specification on the network's own
-image: `Sound.verifySplit_sound` at `sound_eval`. The checker is the specification's own,
+image: `IsSound.verifySplit_sound` at `sound_eval`. The checker is the specification's own,
 so the splitter's `hcov` is the one proof left to the caller, and `false` says only that
 this budget did not verify.
 

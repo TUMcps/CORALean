@@ -109,7 +109,7 @@ theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) (η : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.timePointStepErrorBox_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η)
+    (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η)
     (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (sys.timePointStepErrorBox (toReal r) η (nominal U)).construct ⊆
       ContSet.construct (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---

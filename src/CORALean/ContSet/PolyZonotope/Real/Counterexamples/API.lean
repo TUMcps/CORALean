@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CenterNotMem
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.ContainsExactCora1D
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.ConvHullCora
-public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CoraAccepts
+public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.AcceptsCora
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CoraNormalCone
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CoraVertex
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.DropIndepStretchPrinted

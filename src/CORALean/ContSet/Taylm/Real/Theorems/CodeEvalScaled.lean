@@ -19,7 +19,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
 [1, Thm. 2]'s second claim: "if the Taylor model of `f` has the `(n+1)`-st order scaling property,
 so does the resulting Taylor model for `g`". By induction over the code list from [1, Thm. 1]'s
 lemmas: inputs scaled by `C` at order `N` give a result scaled by `codeScale N e C`, a constant
-that does not depend on `h`. Shown for `ScalingFragment`, the code lists whose intrinsics are
+that does not depend on `h`. Shown for `IsScalingFragment`, the code lists whose intrinsics are
 `exp`, `sin` and `cos`; the others need a uniform bound on their derivative bound away from
 the edge of their domain, which `taylor_scaled` takes as a hypothesis.
 
@@ -83,7 +83,7 @@ theorem Taylm.aux_taylor_maxOrder (T : Taylm n) (g : ℝ → ℝ) (c D : ℝ) :
 
 /-- A constant is scaled by its magnitude. -/
 theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
-    (Taylm.const n c N).Scaled h |c| := by -- --- PROOF ---
+    (Taylm.const n c N).IsScaled h |c| := by -- --- PROOF ---
   have hp : 0 ≤ |c| * h ^ (N + 1) := mul_nonneg (abs_nonneg _) (pow_pos h0 _).le
   refine ⟨?_, ?_, ?_⟩
   · simp [Taylm.const, Taylm.weight, Taylm.degree]
@@ -94,10 +94,10 @@ theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- -
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C : ℝ} (h0 : 0 < h)
-    (h1 : h ≤ 1) (hN : ∀ i, (F i).maxOrder = N) (hF : ∀ i, (F i).Scaled h C) : -- --- CONCL ---
-    ∀ (e : Taylm.CodeList ℝ m), e.ScalingFragment → ∀ {T : Taylm n},
+    (h1 : h ≤ 1) (hN : ∀ i, (F i).maxOrder = N) (hF : ∀ i, (F i).IsScaled h C) : -- --- CONCL ---
+    ∀ (e : Taylm.CodeList ℝ m), e.IsScalingFragment → ∀ {T : Taylm n},
       Taylm.codeEval N F e = some T →
-        T.maxOrder = N ∧ T.Scaled h (Taylm.codeScale N C e) := by -- --- PROOF ---
+        T.maxOrder = N ∧ T.IsScaled h (Taylm.codeScale N C e) := by -- --- PROOF ---
   intro e
   induction e with
   -- an input or a constant

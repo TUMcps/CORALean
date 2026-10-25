@@ -15,8 +15,8 @@ condition the point satisfies. A condition is a level set (`CatCond`): [1]'s ato
 rows (`CatCond.ge`, `nonneg`, `neg`), a conjunction is two stacked (`LevelSet.and_`). A guard is
 unbounded, so a `LevelSet`, not a `PolyLevelSet`.
 
-`Eval` is a relation: a point no case accepts has no value, as in the paper. `image` is the concrete
-transformer `T_f` of [1, Sec. III (transformers)].
+`Evaluates` is a relation: a point no case accepts has no value, as in the paper. `image` is the
+concrete transformer `T_f` of [1, Sec. III (transformers)].
 
 ## Inputs
 * `n` – input dimension
@@ -58,21 +58,22 @@ inductive Cat (𝕋 : Type) : ℕ → ℕ → Type where
   | cases {m n : ℕ} (k : ℕ) (E : Fin k → CatCond m) (f : Fin k → Cat 𝕋 m n) : Cat 𝕋 m n
   | comp {m l n : ℕ} (f₂ : Cat 𝕋 l n) (f₁ : Cat 𝕋 m l) : Cat 𝕋 m n
 
-/-- `Eval f x y`: `f` maps `x` to `y`. A case applies when its guard holds and no earlier one
+/-- `Evaluates f x y`: `f` maps `x` to `y`. A case applies when its guard holds and no earlier one
 does. -/
-inductive Cat.Eval : {m n : ℕ} → Cat 𝕋 m n → Vec ℝ m → Vec ℝ n → Prop where
+inductive Cat.Evaluates : {m n : ℕ} → Cat 𝕋 m n → Vec ℝ m → Vec ℝ n → Prop where
   | affine {m n : ℕ} (W : Mat 𝕋 n m) (b : Vec 𝕋 n) (x : Vec ℝ m) :
-      Cat.Eval (.affine W b) x (toRealMat W *ᵥ x + toRealVec b)
+      Cat.Evaluates (.affine W b) x (toRealMat W *ᵥ x + toRealVec b)
   | cases {m n k : ℕ} (E : Fin k → CatCond m) (f : Fin k → Cat 𝕋 m n) (i : Fin k)
       {x : Vec ℝ m} {y : Vec ℝ n} (hi : x ∈ (E i).construct)
       (hfirst : ∀ j < i, x ∉ (E j).construct)
-      (hy : Cat.Eval (f i) x y) : Cat.Eval (.cases k E f) x y
+      (hy : Cat.Evaluates (f i) x y) : Cat.Evaluates (.cases k E f) x y
   | comp {m l n : ℕ} (f₂ : Cat 𝕋 l n) (f₁ : Cat 𝕋 m l) {x : Vec ℝ m} (z : Vec ℝ l)
-      {y : Vec ℝ n} (h₁ : Cat.Eval f₁ x z) (h₂ : Cat.Eval f₂ z y) : Cat.Eval (.comp f₂ f₁) x y
+      {y : Vec ℝ n} (h₁ : Cat.Evaluates f₁ x z) (h₂ : Cat.Evaluates f₂ z y) : Cat.Evaluates (.comp
+          f₂ f₁) x y
 
 /-- The concrete transformer `T_f(X) = {f(x) | x ∈ X}`. -/
 def Cat.image {m n : ℕ} (f : Cat 𝕋 m n) (X : Set (Vec ℝ m)) : Set (Vec ℝ n) :=
-  {y | ∃ x ∈ X, f.Eval x y}
+  {y | ∃ x ∈ X, f.Evaluates x y}
 
 end CORALean
 

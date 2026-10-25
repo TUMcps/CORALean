@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.RobustInvariant
+public import CORALean.Global.IsRobustInvariant
 public import CORALean.Global.RegionOfAttraction
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
@@ -18,7 +18,7 @@ solution circling inside `S` has no limit, so the criterion does not place its i
 `D` as printed. The harmonic oscillator `ẋ₁ = x₂`, `ẋ₂ = -x₁`, no input, is a counterexample: the
 closed unit disc `S` is robust positively invariant, `R(1) ⊆ S` for `R(0) = S`, and from `(1, 0)`
 the solution `(cos t, -sin t)` does not converge, so `S ⊄ D`. What the criterion does give is that
-every solution from `R(0)` is in `S` from `t` on (`RobustInvariant.mem_of_reach_subset`), and
+every solution from `R(0)` is in `S` from `t` on (`IsRobustInvariant.mem_of_reach_subset`), and
 `R(0) ⊆ D` where the limits exist (`subset_regionOfAttraction_of_reach_subset`).
 
 ## Inputs
@@ -59,7 +59,7 @@ theorem regionOfAttraction_counterexample : -- --- CONCL ---
     (∀ x u t, HasDerivAt (fun r => γ r x u) ((γ t x u).2, -(γ t x u).1) t) ∧
       (∀ x u, γ 0 x u = x) ∧
       (∀ t s x u, γ (t + s) x u = γ s (γ t x u) (fun r => u (t + r))) ∧
-      RobustInvariant γ Set.univ S ∧ IsClosed S ∧
+      IsRobustInvariant γ Set.univ S ∧ IsClosed S ∧
       (∀ x₀ ∈ S, ∀ u ∈ (Set.univ : Set (ℝ → Unit)), γ 1 x₀ u ∈ S) ∧
       ¬ S ⊆ regionOfAttraction γ Set.univ S := by -- --- PROOF ---
   intro γ S
@@ -68,7 +68,7 @@ theorem regionOfAttraction_counterexample : -- --- CONCL ---
     intro t x u
     simp only [γ]
     linear_combination (x.1 ^ 2 + x.2 ^ 2) * Real.sin_sq_add_cos_sq t
-  have hinv : RobustInvariant γ Set.univ S := by
+  have hinv : IsRobustInvariant γ Set.univ S := by
     intro t _ u _ x₀ hx₀
     simp only [S, Set.mem_setOf_eq] at hx₀ ⊢
     rw [hnorm t x₀ u]

@@ -252,7 +252,7 @@ build:
         EXPECTED=experiments/oracle/expected-unsound.jsonl \
         ORACLE="lake env lean --run src/CORALean/Examples/Bench/OracleUnsound.lean" \
         sh experiments/oracle/selftest.sh
-    # What no proof can say: whether the machine and the C lake emits do what `TrustedHardware`
+    # What no proof can say: whether the machine and the C lake emits do what `IsTrustedHardware`
     # assumes. Sampled, exactly, against the soft-float `IEEE .binary64`; see the README.
     # LINKED, unlike the two checks above: the interpreter would run the toolchain's precompiled
     # primitives, and this is about the C compiled from our own definitions. The link compiles the

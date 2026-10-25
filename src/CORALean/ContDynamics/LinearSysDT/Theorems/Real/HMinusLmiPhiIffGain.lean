@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiPhi
-public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmiGain
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmiPhi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsHMinusLmiGain
 public import CORALean.Global.PosDefSchurComplementFirst
 
 @[expose] public section
@@ -9,9 +9,9 @@ public import CORALean.Global.PosDefSchurComplementFirst
 /-!
 # The `H₋` inequality and its Schur complement
 
-[1, Eq. 25], [1, Eq. 26]: for `Q ≻ 0`, `[Φ₁₁ Φ₁₂; ⋆ Φ₂₂] ≺ 0` (`LinearSysDT.HMinusLmiPhi`) iff
+[1, Eq. 25], [1, Eq. 26]: for `Q ≻ 0`, `[Φ₁₁ Φ₁₂; ⋆ Φ₂₂] ≺ 0` (`LinearSysDT.IsHMinusLmiPhi`) iff
 `[-Q  QA - QLC  -QLE; ⋆  -Q - CᵀMᵀMC  -CᵀMᵀME; ⋆  ⋆  -EᵀMᵀME + β²I] ≺ 0`
-(`LinearSysDT.HMinusLmiGain`). The first row of Eq. 26 is `Q [(A - LC)  -LE]`, so the Schur
+(`LinearSysDT.IsHMinusLmiGain`). The first row of Eq. 26 is `Q [(A - LC)  -LE]`, so the Schur
 complement of `-Q` (`posDef_fromBlocks_first_iff`, on the negated matrix) is the lower block plus
 `[(A - LC)  -LE]ᵀ Q [(A - LC)  -LE]`, which is Eq. 25.
 
@@ -56,12 +56,12 @@ variable {n ny nf : ℕ}
 
 theorem LinearSysDT.hMinusLmiPhi_iff_gain (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
     (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ) (hQ : Q.PosDef) : -- --- CONCL ---
-    LinearSysDT.HMinusLmiPhi A C E L Q M β ↔
-      LinearSysDT.HMinusLmiGain A C E L Q M β := by -- --- PROOF ---
+    LinearSysDT.IsHMinusLmiPhi A C E L Q M β ↔
+      LinearSysDT.IsHMinusLmiGain A C E L Q M β := by -- --- PROOF ---
   haveI : Invertible Q := hQ.isUnit.invertible
   have hQT : Qᵀ = Q := by
     rw [← conjTranspose_eq_transpose_of_trivial]; exact hQ.isHermitian.eq
-  unfold LinearSysDT.HMinusLmiPhi LinearSysDT.HMinusLmiGain
+  unfold LinearSysDT.IsHMinusLmiPhi LinearSysDT.IsHMinusLmiGain
   simp only
   -- the first row `R = Q K`, `K = [(A - LC)  -LE]`
   set K : Matrix (Fin n) (Fin n ⊕ Fin nf) ℝ := fromCols (A - L * C) (-(L * E)) with hK

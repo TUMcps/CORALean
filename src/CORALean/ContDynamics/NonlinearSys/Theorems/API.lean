@@ -133,7 +133,7 @@ the run cannot cross a ball of radius `ρ > MΔt` about a step's start, so infla
 and checking it discharges it, which `ReachUnionOuter` does at run time for `Reach`. The
 `ReachSetExact` files say that of the reachable set rather than of a run.
 `AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises what it gives at
-the center, `AbstractionErrorOfLagrange` is the same one order up, and the `PolyAbstractionError`
+the center, `AbstractionErrorOfLagrange` is the same one order up, and the `IsPolyAbstractionError`
 files are the polynomialization variant's: `OfQuadRemainder` builds one, `GetSubset` splits it,
 `...OfPoly` forgets it; `AbstrErrPolySearchEqSome`, `LinReachPolyRegion` and `LinReachPolyOuter`
 read back what its search accepted. `GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its

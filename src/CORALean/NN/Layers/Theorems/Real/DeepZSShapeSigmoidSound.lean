@@ -42,7 +42,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem deepZSShape_sigmoid_sound : (deepZSShape sigmoid sigmoidDeriv).Sound sigmoid :=
+theorem deepZSShape_sigmoid_sound : (deepZSShape sigmoid sigmoidDeriv).IsSound sigmoid :=
   deepZSShape_sound hasDerivAt_sigmoid sigmoidDeriv_sShape.unimodal.1
     sigmoidDeriv_sShape.unimodal.2
 

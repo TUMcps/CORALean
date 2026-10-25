@@ -22,7 +22,7 @@ polytope, and an inner statement cannot read it as an outer one.
 * `dom` – domain interval
 
 ## Hypotheses
-* `hP` – `P.ErrFree`
+* `hP` – `P.IsErrFree`
 * `hme` – `P.me = 0`
 
 ## Conclusion
@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.ErrFree)
+theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.IsErrFree)
     (hme : P.me = 0)
     (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (P.reduceOverDomain p dom false).construct ∩ dom.construct ⊆

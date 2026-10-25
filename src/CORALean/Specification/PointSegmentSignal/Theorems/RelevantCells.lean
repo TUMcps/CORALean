@@ -15,7 +15,7 @@ public import CORALean.Specification.PointSegmentSignal.Operations.RelevantStop
 public import CORALean.Specification.PointSegmentSignal.Theorems.CellLeIff
 public import CORALean.Specification.PointSegmentSignal.Theorems.SuccTimeAtValIdxOfLt
 public import CORALean.Specification.PointSegmentSignal.Operations.SuccTimeAtValIdx
-public import CORALean.Specification.STLInterval.Definitions.MemBounds
+public import CORALean.Specification.STLInterval.Definitions.IsInBounds
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import Mathlib.Order.Interval.Set.Basic
 
@@ -322,7 +322,7 @@ theorem PointSegmentSignal.relevant_cells {T : Type} [LinearOrder T] [Zero T] [D
     (lc rc : Bool) (h0 : 0 ≤ lb) (hne : STLInterval.emptyBounds lb ub lc rc = false)
     (m : ℕ) : -- --- CONCL ---
     (s.relevantStart lb lc - 1 ≤ m ∧ m < s.relevantStop ub rc ∧ m < s.values.length) ↔
-      ∃ t : T, STLInterval.memBounds lb ub lc rc t ∧ s.cell t = m := by -- --- PROOF ---
+      ∃ t : T, STLInterval.IsInBounds lb ub lc rc t ∧ s.cell t = m := by -- --- PROOF ---
   -- the interval is not empty: `lb ≤ ub`, and a single point is closed on both sides
   have hcond : ¬ (ub < (lb : WithTop T) ∨ (ub = (lb : WithTop T) ∧ ¬ (lc = true ∧ rc = true))) :=
     fun h => by

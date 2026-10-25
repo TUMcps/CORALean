@@ -48,8 +48,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.CNF.sat_or (c : ℝ≥0) (a b : STL.CNF X) (ξ : ℝ≥0 → X) : -- --- CONCL ---
-    ((a.or b).toFormula c).Sat ξ ↔
-      (a.toFormula c).Sat ξ ∨ (b.toFormula c).Sat ξ := by -- --- PROOF ---
+    ((a.or b).toFormula c).Satisfies ξ ↔
+      (a.toFormula c).Satisfies ξ ∨ (b.toFormula c).Satisfies ξ := by -- --- PROOF ---
   rw [STL.CNF.sat_toFormula, STL.CNF.sat_toFormula, STL.CNF.sat_toFormula]
   simp only [STL.CNF.or, List.mem_flatMap, List.mem_map, forall_exists_index, and_imp]
   constructor

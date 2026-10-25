@@ -45,9 +45,9 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.rewrite_globOpen_and (φ₁ φ₂ : STL.Formula X) (ξ : ℝ≥0 → X)
-    (h : ((STL.Formula.globOpen 1 φ₁).and (STL.Formula.globOpen 1 φ₂)).Sat ξ) :
-    (STL.Formula.globOpen 1 (φ₁.and φ₂)).Sat ξ := by
-  simp only [STL.Formula.sat_and, STL.Formula.Sat] at h ⊢
+    (h : ((STL.Formula.globOpen 1 φ₁).and (STL.Formula.globOpen 1 φ₂)).Satisfies ξ) :
+    (STL.Formula.globOpen 1 (φ₁.and φ₂)).Satisfies ξ := by
+  simp only [STL.Formula.sat_and, STL.Formula.Satisfies] at h ⊢
   exact fun t h₀ h₁ => ⟨h.1 t h₀ h₁, h.2 t h₀ h₁⟩
 
 end CORALean

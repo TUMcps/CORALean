@@ -53,10 +53,10 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.exists_nnf (c : ℝ≥0) (φ : STL.Formula X) (hstl : φ.IsStl)
-    (hdiv : φ.CDivisible c) : -- --- CONCL ---
+    (hdiv : φ.IsCDivisible c) : -- --- CONCL ---
     ∃ n n' : STL.Nnf X,
-      (∀ ξ, (n.toFormula.scale c).Sat ξ ↔ φ.Sat ξ) ∧
-        ∀ ξ, (n'.toFormula.scale c).Sat ξ ↔ ¬ φ.Sat ξ := by -- --- PROOF ---
+      (∀ ξ, (n.toFormula.scale c).Satisfies ξ ↔ φ.Satisfies ξ) ∧
+        ∀ ξ, (n'.toFormula.scale c).Satisfies ξ ↔ ¬ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ with
   | atom p =>
     refine ⟨.lit (.atom p), .lit (.not (.atom p)), fun ξ => ?_, fun ξ => ?_⟩ <;>
@@ -71,8 +71,8 @@ theorem STL.Formula.exists_nnf (c : ℝ≥0) (φ : STL.Formula X) (hstl : φ.IsS
     · -- `∨` is `∨`
       simp only [STL.Nnf.toFormula, STL.Formula.scale, STL.Formula.sat_or, h₁, h₂]
     · -- `¬(φ ∨ ψ)` is `¬φ ∧ ¬ψ`
-      show (STL.Formula.and (n₁'.toFormula.scale c) (n₂'.toFormula.scale c)).Sat ξ ↔
-        ¬ (φ.Sat ξ ∨ ψ.Sat ξ)
+      show (STL.Formula.and (n₁'.toFormula.scale c) (n₂'.toFormula.scale c)).Satisfies ξ ↔
+        ¬ (φ.Satisfies ξ ∨ ψ.Satisfies ξ)
       rw [STL.Formula.sat_and, h₁' ξ, h₂' ξ]
       exact not_or.symm
   | «until» a b φ ψ ihφ ihψ =>
@@ -81,12 +81,12 @@ theorem STL.Formula.exists_nnf (c : ℝ≥0) (φ : STL.Formula X) (hstl : φ.IsS
     obtain ⟨n₂, n₂', h₂, h₂'⟩ := ihψ hstl.2 hψ
     refine ⟨.until i j n₁ n₂, .release i j n₁' n₂', fun ξ => ?_, fun ξ => ?_⟩
     · -- the same window, with the operands replaced by equivalent ones
-      simp only [STL.Nnf.toFormula, STL.Formula.scale, STL.Formula.Sat, h₁, h₂]
+      simp only [STL.Nnf.toFormula, STL.Formula.scale, STL.Formula.Satisfies, h₁, h₂]
     · -- `¬(φ U ψ)` is `¬φ R ¬ψ`
       show (STL.Formula.release (i * c) (j * c) (n₁'.toFormula.scale c)
-        (n₂'.toFormula.scale c)).Sat ξ ↔ ¬ (STL.Formula.until (i * c) (j * c) φ ψ).Sat ξ
+        (n₂'.toFormula.scale c)).Satisfies ξ ↔ ¬ (STL.Formula.until (i * c) (j * c) φ ψ).Satisfies ξ
       rw [STL.Formula.sat_release]
-      simp only [STL.Formula.Sat, h₁', h₂']
+      simp only [STL.Formula.Satisfies, h₁', h₂']
       push Not
       exact forall₃_congr fun t _ _ => imp_iff_not_or.symm
   | finOpen d φ _ => exact absurd hstl id

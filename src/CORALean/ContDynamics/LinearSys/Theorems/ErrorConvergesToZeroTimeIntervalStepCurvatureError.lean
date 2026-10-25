@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TendstoExpRemainderBoundZero
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatureError
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderError
-public import CORALean.Global.ErrorConvergesToZero
+public import CORALean.Global.IsErrorConvergingToZero
 
 @[expose] public section
 
@@ -59,7 +59,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Prop. 3]: `ε_H` in eq. (21) satisfies `Assumption 1`. -/
 theorem LinearSys.errorConvergesToZero_timeIntervalStepCurvatureError (sys : LinearSys 𝕋 n)
     (η : ℕ) (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    ErrorConvergesToZero
+    IsErrorConvergingToZero
       (fun r => sys.timeIntervalStepCurvatureError r η X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set B := ∑ j, X₀.absBound j with hB
@@ -77,7 +77,7 @@ theorem LinearSys.errorConvergesToZero_timeIntervalStepCurvatureError (sys : Lin
         (𝓝 (Real.exp ((0:ℝ) * ‖A‖) - 1 - (0:ℝ) * ‖A‖)) :=
       (hc.tendsto (0 : ℝ)).mono_left nhdsWithin_le_nhds
     simpa using h
-  unfold ErrorConvergesToZero
+  unfold IsErrorConvergingToZero
   rw [hfun]
   simpa using (hE2.add (MatExp.tendsto_expRemainderBound_zero A η)).const_mul (2 * B)
 

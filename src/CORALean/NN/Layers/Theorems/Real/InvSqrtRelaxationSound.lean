@@ -87,11 +87,11 @@ theorem aux_continuous_invSqrt : Continuous invSqrt := by
   exact lt_of_lt_of_le one_pos (le_max_right _ _)
 
 
-theorem aux_invSqrtRelaxationRange_sound : invSqrtRelaxationRange.Sound invSqrt :=
+theorem aux_invSqrtRelaxationRange_sound : invSqrtRelaxationRange.IsSound invSqrt :=
   Relaxation.ofAntitone_sound antitone_invSqrt (enclosure_exact_sound invSqrt)
 
 theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
-    invSqrtRelaxationDeriv.Sound invSqrt := by -- --- PROOF ---
+    invSqrtRelaxationDeriv.IsSound invSqrt := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |invSqrt t - (invSqrtRelaxationDeriv.slope l u * t + invSqrtRelaxationDeriv.offset l u)|
     ≤ invSqrtRelaxationDeriv.error l u
@@ -119,7 +119,7 @@ theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem invSqrtRelaxation_sound : invSqrtRelaxation.Sound invSqrt :=
+theorem invSqrtRelaxation_sound : invSqrtRelaxation.IsSound invSqrt :=
   Relaxation.tighter_sound aux_invSqrtRelaxationRange_sound aux_invSqrtRelaxationDeriv_sound
 
 end CORALean.Real

@@ -45,15 +45,15 @@ inductive RTL.Formula (X : Type)
   | release (a b : ℝ≥0) (ψ₁ ψ₂ : Formula X)
 
 /-- `R ⊨ᵣ ψ`, [1, Def. 2], Eqs. (4)-(9). -/
-def RTL.Formula.Sat : RTL.Formula X → (ℝ≥0 → Set X) → Prop
-  | .A ϱ, R => ∀ r ∈ R 0, ϱ.Sat r
-  | .and ψ₁ ψ₂, R => ψ₁.Sat R ∧ ψ₂.Sat R
-  | .or ψ₁ ψ₂, R => ψ₁.Sat R ∨ ψ₂.Sat R
-  | .next a ψ, R => ψ.Sat (Time.shift R a)
+def RTL.Formula.Satisfies : RTL.Formula X → (ℝ≥0 → Set X) → Prop
+  | .A ϱ, R => ∀ r ∈ R 0, ϱ.Satisfies r
+  | .and ψ₁ ψ₂, R => ψ₁.Satisfies R ∧ ψ₂.Satisfies R
+  | .or ψ₁ ψ₂, R => ψ₁.Satisfies R ∨ ψ₂.Satisfies R
+  | .next a ψ, R => ψ.Satisfies (Time.shift R a)
   | .until a b ψ₁ ψ₂, R =>
-      ∃ t, a ≤ t ∧ t ≤ b ∧ ψ₂.Sat (Time.shift R t) ∧ ∀ i < t, ψ₁.Sat (Time.shift R i)
+      ∃ t, a ≤ t ∧ t ≤ b ∧ ψ₂.Satisfies (Time.shift R t) ∧ ∀ i < t, ψ₁.Satisfies (Time.shift R i)
   | .release a b ψ₁ ψ₂, R =>
-      ∀ t, a ≤ t → t ≤ b → ψ₂.Sat (Time.shift R t) ∨ ∃ i < t, ψ₁.Sat (Time.shift R i)
+      ∀ t, a ≤ t → t ≤ b → ψ₂.Satisfies (Time.shift R t) ∨ ∃ i < t, ψ₁.Satisfies (Time.shift R i)
 
 end CORALean
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortP
-public import CORALean.ContSet.PolyZonotope.Real.Operations.Sorted
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IsSorted
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusSorted
 
 @[expose] public section
@@ -54,7 +54,7 @@ variable {n : ℕ}
 /-- Every tail is a `sortPlus`, or else empty. -/
 theorem PolyZonotope.aux_evalPolySortTail_sorted (pZ : PolyZonotope (Vec ℝ n))
     (coeffs : List (Vec ℝ n)) (k : ℕ) :
-    PolyZonotope.Sorted (pZ.evalPolySortTailP coeffs k).1.E := by
+    PolyZonotope.IsSorted (pZ.evalPolySortTailP coeffs k).1.E := by
   match coeffs with
   | [] => exact fun a _ _ => Fin.elim0 a
   | _ :: rest => exact PolyZonotope.sortPlus_sorted _ _ _
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_evalPolySortTail_sorted (pZ : PolyZonotope (Vec ℝ n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.evalPolySort_sorted (pZ : PolyZonotope (Vec ℝ n))
-    (coeffs : List (Vec ℝ n)) : PolyZonotope.Sorted (pZ.evalPolySort coeffs).E := by
+    (coeffs : List (Vec ℝ n)) : PolyZonotope.IsSorted (pZ.evalPolySort coeffs).E := by
   match coeffs with
   | [] => exact fun a _ _ => Fin.elim0 a
   | _ :: rest => exact PolyZonotope.aux_evalPolySortTail_sorted pZ rest 0

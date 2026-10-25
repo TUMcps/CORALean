@@ -31,10 +31,10 @@ public import CORALean.Global.RadstromHausdorff
 public import CORALean.Global.ConeEdge
 public import CORALean.Global.EqSmulNCross
 public import CORALean.Global.Minimax
-public import CORALean.Global.SuperlinearDecrease
-public import CORALean.Global.ErrorConvergesToZero
+public import CORALean.Global.HasSuperlinearDecrease
+public import CORALean.Global.IsErrorConvergingToZero
 public import CORALean.Global.HorizonErrorBudget
-public import CORALean.Global.ConvergenceOrder
+public import CORALean.Global.HasConvergenceOrder
 public import CORALean.Global.LinProg.API
 public import CORALean.Global.SupportFunction.API
 public import CORALean.Global.TaylorRemainder
@@ -46,7 +46,7 @@ public import CORALean.Global.LieDerivative
 public import CORALean.Global.PreconditionInner
 public import CORALean.Global.SubmersionFrontier
 public import CORALean.Global.InnerRangeOfFrontier
-public import CORALean.Global.InnerTest
+public import CORALean.Global.PassesInnerTest
 public import CORALean.Global.InnerRangeTest
 public import CORALean.Global.PreconditionedInnerTest
 public import CORALean.Global.HMatrix
@@ -54,7 +54,7 @@ public import CORALean.Global.HMatrixRegular
 public import CORALean.Global.PathMeetsFrontier
 public import CORALean.Global.FrontierImageSubsetOfSingular
 public import CORALean.Global.SubsetImageOfDisjointBoundarySingular
-public import CORALean.Global.GammaTest
+public import CORALean.Global.PassesGammaTest
 public import CORALean.Global.IsHMatrixOfGammaTest
 public import CORALean.Global.IccSubsetImageOfGammaTest
 public import CORALean.Global.SubsetImageOfPreconditioned
@@ -137,7 +137,7 @@ public import CORALean.Global.DoubleSumPosDef
 public import CORALean.Global.GeneratorPowerRewrite
 public import CORALean.Global.InfiniteBusField
 public import CORALean.Global.InfiniteBusEquilibrium
-public import CORALean.Global.RobustInvariant
+public import CORALean.Global.IsRobustInvariant
 public import CORALean.Global.RegionOfAttraction
 public import CORALean.Global.MemOfReachSubset
 public import CORALean.Global.SubsetRegionOfAttraction

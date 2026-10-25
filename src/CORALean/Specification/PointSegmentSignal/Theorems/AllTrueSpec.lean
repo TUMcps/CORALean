@@ -52,7 +52,7 @@ theorem PointSegmentSignal.allTrue_spec {T : Type} [LinearOrder T] [Zero T] [Den
     (lc rc : Bool) (cond : Bool → Bool) (h0 : 0 ≤ lb)
     (hne : STLInterval.emptyBounds lb ub lc rc = false) : -- --- CONCL ---
     s.allTrue lb ub lc rc cond = true ↔
-      ∀ t : T, STLInterval.memBounds lb ub lc rc t → cond (s.at t) = true := by -- --- PROOF ---
+      ∀ t : T, STLInterval.IsInBounds lb ub lc rc t → cond (s.at t) = true := by -- --- PROOF ---
   have hget : ∀ m (h : m < s.values.length), s.values[m] = s.values.getD m false := fun m h => by
     simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem h]
   unfold PointSegmentSignal.allTrue

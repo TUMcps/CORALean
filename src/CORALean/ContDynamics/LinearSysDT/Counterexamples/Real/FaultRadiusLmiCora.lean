@@ -145,7 +145,7 @@ theorem LinearSysDT.faultRadiusLmi_cora_counterexample : -- --- CONCL ---
     let R_cora : Matrix (Fin 1 ⊕ (Fin 0 ⊕ Fin 2)) (Fin 1) ℝ :=    -- block `(3, 4)`: `F*Y'`
       fromRows (Aᵀ * P - Cᵀ * Wᵀ) (fromRows (Gwᵀ * P) (Gv * Wᵀ))
     P.PosDef ∧ (-(fromBlocks TL R_cora R_coraᵀ (-P))).PosDef ∧
-      ¬ LinearSysDT.FaultRadiusLmi A C Dx Hw Dy Hv P W γ := by -- --- PROOF ---
+      ¬ LinearSysDT.IsFaultRadiusLmi A C Dx Hw Dy Hv P W γ := by -- --- PROOF ---
   intro A C Dx Hw Dy Hv P W γ Gw Gv TL R_cora
   have hP : P.PosDef := by
     refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩

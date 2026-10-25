@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.IsOrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContSet.ContSet.Theorems.Basic
@@ -73,7 +73,7 @@ attribute [local instance] aux_setMtimesIntervalRem
 
 /-- The remainder's closed convex hull, inside the float product. -/
 theorem LinearSys.inputRemainder_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+    {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     construct (Mtimes.mtimes (𝕄 := ℐ)
       (S := 𝒮)
       (Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η)

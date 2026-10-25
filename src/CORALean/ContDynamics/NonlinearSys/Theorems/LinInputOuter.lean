@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
@@ -27,11 +27,11 @@ parts `linInput` is built from.
 * `R` – state region
 * `U` – input set
 * `L` – remainder set
-* `cert` – abstraction-error certificate
 * `x` – state
 * `u` – admissible input
 
 ## Hypotheses
+* `cert` – abstraction-error certificate
 * `hx` – state in region
 * `hu` – input in set
 
@@ -61,7 +61,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S
 /-- The remainder of the split lies in `linInput` wherever the certificate holds. -/
 theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)}
-    {U : S m} {L : S n} (cert : AbstractionError f A B xs us R (construct U) L)
+    {U : S m} {L : S n} (cert : IsAbstractionError f A B xs us R (construct U) L)
     {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ construct U) : -- --- CONCL ---
     f x u - A *ᵥ x ∈ construct (linInput f A B xs us U L) := by -- --- PROOF ---
   have hsplit : f x u - A *ᵥ x

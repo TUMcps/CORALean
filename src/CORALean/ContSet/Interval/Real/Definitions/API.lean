@@ -5,7 +5,7 @@ public import CORALean.ContSet.Interval.Real.Definitions.RootBound
 public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
 public import CORALean.ContSet.Interval.Real.Definitions.IsBoundsContractor
 public import CORALean.ContSet.Interval.Real.Definitions.NormType
-public import CORALean.ContSet.Interval.Real.Definitions.MatContains
+public import CORALean.ContSet.Interval.Real.Definitions.ContainsMat
 
 /-!
 # What an interval means beyond its own construction

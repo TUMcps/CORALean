@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
+public import CORALean.ContDynamics.LinearSysDT.Definitions.IsFaultRadiusLmi
 public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
 public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
@@ -52,7 +52,7 @@ open Matrix CORALean
 -- simp evaluates the form of Eq. 17's concrete `4 × 4` block matrix entry by entry
 set_option maxHeartbeats 100000 in
 theorem Zonotope.aux_faultRadiusCounterexample_lmi : -- --- CONCL ---
-    LinearSysDT.FaultRadiusLmi (n := 2) (ny := 1) (nw := 0) (nv := 0) (rw := 0) (rv := 0)
+    LinearSysDT.IsFaultRadiusLmi (n := 2) (ny := 1) (nw := 0) (nv := 0) (rw := 0) (rv := 0)
       ((9 / 10 : ℝ) • 1) 0 0 0 0 0 1 0 (9 / 10) := by -- --- PROOF ---
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
   · -- symmetric, entry by entry
@@ -141,7 +141,7 @@ theorem Zonotope.faultObserve_pRadius_counterexample : -- --- CONCL ---
     let ε : ℝ := 0                                            -- Eq. 15 over empty boxes
     let Xk : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![2, 0], ![1, 1], ![1, -1]]⟩
     let Xp := (Xk.reduceBy (Partition.split 1 2)).faultObserve A B C L Dx Hw Dy Hv 0 0
-    LinearSysDT.FaultRadiusLmi A C Dx Hw Dy Hv P (P * L) γ ∧ 0 < γ ∧ γ < 1 ∧
+    LinearSysDT.IsFaultRadiusLmi A C Dx Hw Dy Hv P (P * L) γ ∧ 0 < γ ∧ γ < 1 ∧
       ¬ Xp.pRadius P ≤ γ * Xk.pRadius P + ε := by -- --- PROOF ---
   intro A B C L Dx Hw Dy Hv P γ ε Xk Xp
   have hW : P * L = 0 := by simp [P, L]

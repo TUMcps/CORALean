@@ -44,7 +44,7 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Formula.sat_not (φ : STL.Formula X) (ξ : ℝ≥0 → X) :
-    (STL.Formula.not φ).Sat ξ ↔ ¬ φ.Sat ξ := Iff.rfl
+    (STL.Formula.not φ).Satisfies ξ ↔ ¬ φ.Satisfies ξ := Iff.rfl
 
 end CORALean
 

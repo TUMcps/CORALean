@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.Atan
 public import CORALean.ContSet.Interval.Real.Operations.Tan
-public import CORALean.Specification.SyntaxTree.Definitions.UnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.PeriodicContains
@@ -45,7 +45,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 /-- `aux_tan_` is sound for `tan` on an operand inside `(-pi/2, pi/2)`. -/
 theorem SyntaxTree.tan_sound (prev : Dom) (hd₁ : -(Real.pi / 2) < prev.inf 0)
     (hd₂ : prev.sup 0 < Real.pi / 2) : -- --- CONCL ---
-    UnarySound Unary.tan.fn prev (Real.Interval.tan prev) funHanTan := by -- --- PROOF ---
+    IsUnarySound Unary.tan.fn prev (Real.Interval.tan prev) funHanTan := by -- --- PROOF ---
   intro int _ s hs hi
   have h : int.inf 0 ≤ Real.tan s ∧ Real.tan s ≤ int.sup 0 := hi
   have e : Real.arctan (Real.tan s) = s :=
