@@ -1,6 +1,13 @@
 # Robust Identification of Hybrid Automata from Noisy Data
 
-N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid Automata from Noisy Data". In Proc. of the 28th ACM International Conference on Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
+```bibtex
+@inproceedings{kochdumper2025robust,
+  author = {Kochdumper, N. and Foughali, M. A. and Habermehl, P. and Asarin, E.},
+  title = {Robust Identification of Hybrid Automata from Noisy Data},
+  booktitle = {Proceedings of the 28th ACM International Conference on Hybrid Systems: Computation and Control},
+  year = {2025}
+}
+```
 
 **Source:** https://opus4.kobv.de/opus4-haw/files/6120/3716863.3718030.pdf (the published ACM version, open access under CC-BY, doi:10.1145/3716863.3718030, as deposited in the OPUS repository; 11 pages, read in full; text extracted with `pypdf`; the ACM Digital Library refused automated download). CORA cites the paper in `hybridDynamics/@hybridAutomaton/identify.m` and its private `priv_identify_clustering.m` (Eq. (6) in `aux_dynamicModeDecomposition`), `priv_identify_decisionTreeLearning.m` and `priv_identify_decisionTree2automaton.m` (Eq. (17), Proposition 1).  
 **Inventory:** confirmed (Definitions 1-3, Algorithm 1, Proposition 1, Theorem 1, each with its own counter; equations (1)-(18); Sections 1-6; Tables 1-3)

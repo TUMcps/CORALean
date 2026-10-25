@@ -29,9 +29,9 @@ Padding moves the factor count and nothing else, so `gcnUncertain` counts as `gc
 
 ## References
 
-* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
-      Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025. arXiv:2404.15065.
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph Convolutional Networks
+      with Uncertain Node Features and Uncertain Graph Structure". Transactions on Machine Learning
+      Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5

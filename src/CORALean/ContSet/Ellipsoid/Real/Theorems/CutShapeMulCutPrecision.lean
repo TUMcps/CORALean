@@ -34,7 +34,7 @@ that the containment of [1, Lemma 4.3 (containment)] is stated against.
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

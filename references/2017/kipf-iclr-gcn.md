@@ -1,7 +1,13 @@
 # Semi-Supervised Classification with Graph Convolutional Networks
 
-T. N. Kipf and M. Welling. "Semi-Supervised Classification with Graph Convolutional
-Networks". ICLR, 2017.
+```bibtex
+@inproceedings{kipf2017semi,
+  author = {Kipf, T. N. and Welling, M.},
+  title = {Semi-Supervised Classification with Graph Convolutional Networks},
+  booktitle = {International Conference on Learning Representations},
+  year = {2017}
+}
+```
 
 **Source:** https://arxiv.org/html/1609.02907v4  
 **Inventory:** confirmed

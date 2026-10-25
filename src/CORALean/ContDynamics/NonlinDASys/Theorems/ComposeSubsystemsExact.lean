@@ -25,8 +25,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 
 ## References
 
-* [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets".
-      IEEE Transactions on Power Systems, 29(5):2270-2280, 2014.
+* [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets". IEEE
+      Transactions on Power Systems, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

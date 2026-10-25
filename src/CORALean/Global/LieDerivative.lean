@@ -28,9 +28,9 @@ at a time. `f` is smooth, [1]'s "sufficiently smooth".
 
 ## References
 
-* [1] E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear
-      Continuous Systems". In Proc. of the 20th International Conference on Hybrid Systems:
-      Computation and Control (HSCC), pp. 1-10, 2017.
+* [1] E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear Continuous
+      Systems". Proceedings of the 20th International Conference on Hybrid Systems: Computation and
+      Control, 2017.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -33,10 +33,11 @@ type does not say: a polynomial zonotope is never empty, and a box enclosing a p
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
-      Network Verification using Sensitivity Analysis". HSCC 2023.
-* [2] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
-      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
+      using Sensitivity Analysis". Proceedings of the 26th ACM International Conference on Hybrid
+      Systems: Computation and Control, 2023.
+* [2] N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
+      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715, 2022.
 -/
 
 -- Authors:       Claude Opus 5

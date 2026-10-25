@@ -45,9 +45,8 @@ if the integrand is integrable on `[0, a]` the flow differs by `∫ₐᵗ`, and 
 
 ## References
 
-* [1] T. H. Gronwall. "Note on the derivatives with respect to a parameter of
-      the solutions of a system of differential equations". Annals of
-      Mathematics, 20(4):292-296, 1919.
+* [1] T. H. Gronwall. "Note on the derivatives with respect to a parameter of the solutions of a
+      system of differential equations". Annals of Mathematics, 1919.
 -/
 
 -- Authors:       Claude Opus 5

@@ -107,9 +107,8 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 * the float iteration's state stands for the exact iteration's
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
-      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
-      Automatic Control, 71(1):352-367, 2026.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

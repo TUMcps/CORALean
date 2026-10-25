@@ -27,9 +27,8 @@ be recovered after the update as `Z̃ = {[T TR], c}`". That needs `T'R'` to be t
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
-      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
-      2016.
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -24,8 +24,8 @@ lines 9–11 stops the loop, which here is the caller stopping at `ξ = k`: only
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
-  Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
+      Subspace". IEEE Transactions on Automatic Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

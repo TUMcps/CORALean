@@ -1,7 +1,13 @@
 # Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis
 
-T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network
-Verification using Sensitivity Analysis". HSCC 2023.
+```bibtex
+@inproceedings{ladner2023automatic,
+  author = {Ladner, T. and Althoff, M.},
+  title = {Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis},
+  booktitle = {Proceedings of the 26th ACM International Conference on Hybrid Systems: Computation and Control},
+  year = {2023}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1710698/1710698.pdf (PDF; custom-embedded-font glyph codes decoded via the PDF's own ToUnicode CMaps)  
 **Inventory:** confirmed

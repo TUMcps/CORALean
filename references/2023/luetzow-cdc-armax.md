@@ -1,6 +1,13 @@
 # Reachability Analysis of ARMAX Models
 
-L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the 62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
+```bibtex
+@inproceedings{luetzow2023reachability,
+  author = {Lützow, L. and Althoff, M.},
+  title = {Reachability Analysis of ARMAX Models},
+  booktitle = {2023 62nd IEEE Conference on Decision and Control (CDC)},
+  year = {2023}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2309.11944 (arXiv:2309.11944v2, 28 Sep 2023, the authors' version, 8 pages, read in full; text extracted with `pypdf`). Venue and pages from TUM's publication portal (doi:10.1109/CDC49753.2023.10383972); the CDC typeset version was not reachable. CORA cites it in `@linearARX/reach.m` as `[1, Proposition 3]`, `[1, Theorem 2]`, `[1, Theorem 3]`, `[1, Algorithm 1]`, `[1, Algorithm 2]` and Eqs. (9a), (9b), (14a), (16), which match this numbering.  
 **Inventory:** confirmed (Definitions 1-5, Propositions 1-3, Theorems 1-3, Lemmas 1-3 and Algorithms 1-2, each with its own counter; equations (1)-(16), of which (12) is the one numbered display stated as a claim outside a result; Tables I-II)

@@ -30,7 +30,6 @@ The easy half of the dual form Eq. 21 of [1, Thm. 15 (accuracy)], [1, Thm. 17] a
 
 * [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
       Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
-      doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
 -/
 
 -- Authors:       Claude Opus 5.5

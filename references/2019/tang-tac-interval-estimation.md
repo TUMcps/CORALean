@@ -1,6 +1,13 @@
 # Interval estimation methods for discrete-time linear time-invariant systems
 
-W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control, 64(11):4717-4724, 2019.
+```bibtex
+@article{tang2019interval,
+  author = {Tang, W. and Wang, Z. and Wang, Y. and Raïssi, T. and Shen, Y.},
+  title = {Interval estimation methods for discrete-time linear time-invariant systems},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2019}
+}
+```
 
 **Source:** https://hal.science/hal-02467321/document (the accepted manuscript on HAL, "Tang2017tacDraft.pdf", 12 pages after HAL's cover page, read in full; text extracted with `pypdf`, pages 5-6 also read as rendered images for the bars and signs of Eqs. 27-43). The typeset article (doi:10.1109/TAC.2019.2902673) was not reachable.  
 **Inventory:** confirmed (against the manuscript: Definitions 1-3, Properties 1-4, Lemmas 1-5, Theorems 1-8, Proposition 1, Remarks 1-4 and Algorithm 1, each with its own counter; Equations 1-81, of which the rows below are the displays outside a theorem, proposition or lemma, the others being parts of the results they belong to; Sec. VII is the example)

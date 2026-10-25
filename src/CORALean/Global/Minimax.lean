@@ -32,8 +32,9 @@ theorem (`IsCompact.continuous_sInf`, reached from continuity on `C1 ×ˢ C2` al
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
-      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
+* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
+      Analysis of Nonlinear Systems". Proceedings of the 24th International Conference on Hybrid
+      Systems: Computation and Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5

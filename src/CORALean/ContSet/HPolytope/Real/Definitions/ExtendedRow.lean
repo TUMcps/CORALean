@@ -26,9 +26,8 @@ Its operator norm is `‖G'ᵀ λⱼ‖_{p*}`.
 
 ## References
 
-* [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the
-      Zonotope and Ellipsotope Containment Problems". In Proc. of the European Control
-      Conference (ECC), 2024. doi:10.23919/ECC64448.2024.10590884.
+* [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
+      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC), 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

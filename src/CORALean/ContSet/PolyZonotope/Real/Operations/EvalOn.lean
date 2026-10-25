@@ -22,8 +22,9 @@ well: every operation of its Alg. 1 grows the independent block.
 
 ## References
 
-* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
-      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
+      Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:
+      Computation and Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5

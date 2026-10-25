@@ -1,6 +1,13 @@
 # General Inner Approximation of Vector-valued Functions
 
-O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
+```bibtex
+@article{mullier2013general,
+  author = {Mullier, O. and Goubault, É. and Kieffer, M. and Putot, S.},
+  title = {General Inner Approximation of Vector-valued Functions},
+  journal = {Reliable Computing},
+  year = {2013}
+}
+```
 
 **Source:** https://reliable-computing.org/reliable-computing-18-pp-117-143.pdf (the journal's open-access PDF, pp. 117-143, 27 pages, read in full; text extracted with `pypdf`). CORA cites the paper in `contSet/@polyZonotope/innerApprox.m`, `contSet/@polyZonotope/contains_.m` and `global/functions/helper/sets/contSet/polyZonotope/innerApproxImage.m`, whose `aux_InnerGeneral` is `Alg. 3` and whose `aux_preconditionMatrix` is the preconditioner of (10).  
 **Inventory:** confirmed (Corollary 2.1; Theorem 3.1, Lemma 3.1, Corollary 3.1, Example 3.2; Example 4.1, Definitions 4.2-4.5, 4.7, 4.8, Theorems 4.6, 4.9, 4.10, Remarks 4.1-4.2; Algorithms 1-4; equations (1)-(20); numbered per section)

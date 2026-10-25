@@ -40,10 +40,9 @@ box being symmetric; that Eq. 10 is Eq. 7 of [1, Thm. 1] in this notation.
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
-      zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+      zonotopes for discrete-time descriptor systems". Automatica, 2018.
 * [2] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for
-      discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control,
-      64(5):2092-2099, 2019.
+      discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control, 2019.
 -/
 
 -- Authors:       Claude Opus 5.5

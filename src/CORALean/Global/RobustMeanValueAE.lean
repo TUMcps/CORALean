@@ -27,9 +27,8 @@ and once in `u` at each `w`, the outer one needing `x_A` nonempty and the inner 
 
 ## References
 
-* [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to
-      Reachability of Non-Linear Control Systems With Disturbances". IEEE Control Systems
-      Letters, 4(4):928-933, 2020.
+* [1] E. Goubault and S. Putot. "Robust Under-Approximations and Application to Reachability of
+      Non-Linear Control Systems With Disturbances". IEEE Control Systems Letters, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

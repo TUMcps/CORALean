@@ -1,6 +1,13 @@
 # Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems
 
-Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+```bibtex
+@article{wang2018set,
+  author = {Wang, Y. and Puig, V. and Cembrano, G.},
+  title = {Set-membership approach and {Kalman} observer based on zonotopes for discrete-time descriptor systems},
+  journal = {Automatica},
+  year = {2018}
+}
+```
 
 **Source:** https://upcommons.upc.edu/bitstream/2117/120598/1/2036-Set-membership-approach-and-Kalman-observer-based-on-zonotopes-for-discrete-time-descriptor-systems.pdf (the accepted manuscript on UPCommons, "Preprint submitted to Automatica Accepted 7 March 2018", 17 pages, read in full; text extracted with `pypdf`). The typeset article (doi:10.1016/j.automatica.2018.03.082) was not reachable.  
 **Inventory:** confirmed (against the manuscript: Definitions 1-5, Theorems 1-7, Propositions 1-2 and Remarks 1-2, each with its own counter; Equations 1-40, of which the rows below are the displays outside a theorem that make a claim, the others being parts of the theorems they belong to; Sec. 6 is the example)

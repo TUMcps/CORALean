@@ -1,6 +1,13 @@
 # A distributed set-membership approach based on zonotopes for interconnected systems
 
-Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on zonotopes for interconnected systems". IEEE Conference on Decision and Control (CDC), pp. 668-673, 2018.
+```bibtex
+@inproceedings{wang2018distributed,
+  author = {Wang, Y. and Alamo, T. and Puig, V. and Cembrano, G.},
+  title = {A distributed set-membership approach based on zonotopes for interconnected systems},
+  booktitle = {2018 IEEE Conference on Decision and Control (CDC)},
+  year = {2018}
+}
+```
 
 **Source:** http://www.iri.upc.edu/files/scidoc/2162-A-Distributed-Set-membership-Approach-based-on-Zonotopes-for-Interconnected-Systems.pdf (the authors' copy on IRI's repository, 6 pages numbered 668-673, read in full; text extracted with `pypdf`, the displays of Prop. 1 and Thm. 1 checked against the page images). The IEEE Xplore version (doi:10.1109/CDC.2018.8619038) was not reachable.  
 **Inventory:** confirmed (against the paper: Definitions 1-2, Assumptions 1-2, Lemma 1, Propositions 1-2 and Theorem 1, each with its own counter; Equations 1-23, of which the rows below are the displays outside a numbered result, the others being parts of the results they belong to; the algorithm of Sec. IV-C has no number, Sec. V is the example)

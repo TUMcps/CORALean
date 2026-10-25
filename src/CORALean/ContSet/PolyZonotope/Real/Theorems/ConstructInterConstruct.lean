@@ -25,9 +25,8 @@ set's own factors appended after the first's. [1, Def. 2]'s sets have no indepen
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and
-      Control (CDC), pp. 2130-2137, 2020.
+* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for
+      Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

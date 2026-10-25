@@ -29,13 +29,12 @@ an interval matrix, since it is about `MatExp` alone.
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
-      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
+      Systems". IEEE Transactions on Automatic Control, 2014.
 * [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
-      Analysis of Hybrid Systems". In Proc. of the 15th ACM International Conference on Hybrid
-      Systems: Computation and Control (HSCC), 2012, pp. 45-54.
+      Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
+      Systems: Computation and Control, 2012.
 * [3] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 8:2033-2038,
-      2024.
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
 -/
 
 -- Authors:       Claude Opus 5

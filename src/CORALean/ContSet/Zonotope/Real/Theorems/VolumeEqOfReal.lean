@@ -23,8 +23,8 @@ it is the Lebesgue measure.
 
 ## References
 
-* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the
-      Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
+* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
+      of Zonotopes". IEEE Control Systems Letters, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

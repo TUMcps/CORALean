@@ -1,7 +1,13 @@
 # Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations
 
-S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining Fast and Slow:
-Abstraction and Refinement of Provable Explanations". ICML 2025.
+```bibtex
+@inproceedings{bassan2025explaining,
+  author = {Bassan, S. and Elboher, Y. Y. and Ladner, T. and Althoff, M. and Katz, G.},
+  title = {Explaining, Fast and Slow: Abstraction and Refinement of Provable Explanations},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  year = {2025}
+}
+```
 
 **Source:** https://arxiv.org/html/2506.08505v1  
 **Inventory:** confirmed

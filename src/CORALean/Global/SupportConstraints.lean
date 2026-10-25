@@ -25,7 +25,7 @@ optimal value of Problem 1 for each set `F ⊆ {1, …, N}` of constraints, as i
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 45(2):382-392, 2009.
+      reliability". Automatica, 2009.
 -/
 
 -- Authors:       Claude Sonnet 5.5

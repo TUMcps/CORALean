@@ -26,12 +26,12 @@ picks the compression ratio of `cloud2zonotope`.
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+      estimation for uncertain systems". Automatica, 2013.
 * [2] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
-      zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+      zonotopes for discrete-time descriptor systems". Automatica, 2018.
 * [3] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
-      Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on
-      Automatic Control, 61(9):2341-2356, 2016.
+      Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on Automatic
+      Control, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

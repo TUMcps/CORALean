@@ -1,6 +1,13 @@
 # Taylor Models and Other Validated Functional Inclusion Methods
 
-K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+```bibtex
+@article{makino2003taylor,
+  author = {Makino, K. and Berz, M.},
+  title = {Taylor Models and Other Validated Functional Inclusion Methods},
+  journal = {International Journal of Pure and Applied Mathematics},
+  year = {2003}
+}
+```
 
 **Source:** https://www.ijpam.eu/contents/2003-4-4/2/2.pdf (the publisher's PDF, 74 pages, read in full; text extracted with `pypdf`. The PDF's header and the journal's table of contents both give pp. 379-452. The authors' copy at bt.pa.msu.edu refuses automated access and was not used.)  
 **Inventory:** confirmed (the numbered items are Definitions 1-8, Theorems 1-3, Remarks 1-8, Algorithms 1-8, equations (1.1), (2.1)-(2.9), (3.1)-(3.2), (5.1)-(5.5) and Table 4; there are no Lemmas, Propositions or Corollaries)

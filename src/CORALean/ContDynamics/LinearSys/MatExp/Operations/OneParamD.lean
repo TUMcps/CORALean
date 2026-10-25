@@ -20,8 +20,7 @@ part of `(C + βG)ⁱ` free of the parameter `β`.
 ## References
 
 * [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety
-      Verification of High-Order Road Vehicle Models". In Proc. of the American Control
-      Conference, pp. 3559-3566, 2012.
+      Verification of High-Order Road Vehicle Models". 2012 American Control Conference (ACC), 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

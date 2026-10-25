@@ -1,7 +1,13 @@
 # Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis
 
-N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation
-for Reachability Analysis". IEEE Transactions on Automatic Control, 2021.
+```bibtex
+@article{kochdumper2021sparse,
+  author = {Kochdumper, N. and Althoff, M.},
+  title = {Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2021}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1901.01780 (read as the PDF, whose numbering agrees with the ar5iv rendering at https://ar5iv.labs.arxiv.org/html/1901.01780 this page was first read from)  
 **Inventory:** confirmed

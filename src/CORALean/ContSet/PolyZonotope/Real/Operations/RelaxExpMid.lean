@@ -25,8 +25,9 @@ through its second disjunct, `E_{kâ‚€,j} = 0`, one-sided at any parity of `E_{kâ
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and
-      Its Applications in Formal Neural Network Verification". AAAI, 2024.
+* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its Applications in
+      Formal Neural Network Verification". Proceedings of the AAAI Conference on Artificial
+      Intelligence, 2024.
 -/
 
 -- Authors:       Claude Opus 5

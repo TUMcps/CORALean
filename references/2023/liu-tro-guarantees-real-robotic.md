@@ -1,6 +1,13 @@
 # Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification
 
-S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics, 39(5):3776-3790, 2023.
+```bibtex
+@article{liu2023guarantees,
+  author = {Liu, S. B. and Schürmann, B. and Althoff, M.},
+  title = {Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification},
+  journal = {IEEE Transactions on Robotics},
+  year = {2023}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2103.01626 (arXiv:2103.01626v2, 12 Sep 2023, the authors' accepted version with the "© 2023 IEEE" notice, 14 pages including Appendices A-B, read in full; text extracted with `pypdf`). Volume, issue and pages from the DOI record (doi:10.1109/TRO.2023.3277268); the typeset T-RO article was not reachable. CORA cites it as "Liu et al., 202x" in `@linearSysDT/isconform_dyn.m`, `confSynth_dyn.m`, `confSynth_gray.m`, `private/priv_conform_reachableHalfspaces.m` and `priv_conform_unifyTrajectories.m`, by equation number ((14), (15), (17), (21), Thm. 1, Cor. 1), which match this numbering; `isconform_dyn` notes that the signs in (21) "were incorrect in the IEEE early access version" — the arXiv version read here has them right.  
 **Inventory:** confirmed (Definitions 1-7, Propositions 1-4, Theorem 1, Corollary 1 and Remarks 1-3, each with its own counter; equations (1)-(33); Tables I-IV; Appendices A-B)

@@ -1,8 +1,14 @@
 # Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties
 
-M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic
-Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design,
-and Simulation of Systems with Uncertainties, Springer, 2011.
+```bibtex
+@incollection{althoff2011analyzing,
+  author = {Althoff, M. and Krogh, B. H. and Stursberg, O.},
+  title = {Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties},
+  booktitle = {Modeling, Design, and Simulation of Systems with Uncertainties},
+  publisher = {Springer},
+  year = {2011}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1287218/358815.pdf — this is the authors' own preprint/self-archived copy of the chapter (freely hosted on mediaTUM), NOT the final Springer-typeset book chapter (which is paywalled and was not accessed). Read directly with a custom PDF-content-stream text extractor since no PDF rasterizer was available in this environment (poppler/pdftoppm not installed).  
 **Inventory:** confirmed (against the preprint) — but with an UNVERIFIED section-number correspondence to the published book chapter (see notes)

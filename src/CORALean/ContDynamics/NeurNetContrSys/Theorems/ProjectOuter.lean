@@ -23,8 +23,8 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 ## References
 
-* [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
-      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
+* [1] N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
+      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715, 2022.
 -/
 
 -- Authors:       Claude Opus 5.5

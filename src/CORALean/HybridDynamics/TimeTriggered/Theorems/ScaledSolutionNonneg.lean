@@ -32,9 +32,8 @@ on (`lipschitzSolution_const_of_zero`), a contradiction. [1, Cor. 1] needs it fo
 
 ## References
 
-* [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for
-      Reachability Analysis of Hybrid Automata". In Formal Modelling and Analysis of Timed
-      Systems (FORMATS), LNCS 10419, pp. 133-150, 2017.
+* [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability
+      Analysis of Hybrid Automata". Formal Modeling and Analysis of Timed Systems, 2017.
 -/
 
 -- Authors:       Claude Sonnet 5.5

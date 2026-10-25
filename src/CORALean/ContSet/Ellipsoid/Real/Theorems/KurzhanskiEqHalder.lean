@@ -25,9 +25,8 @@ ellipsoids is `(1 + 1/β) Q₁ + (1 + β) Q₂` of [1, Eq. 11] at `β = √(ℓ�
 
 ## References
 
-* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of
-      Minkowski sum of ellipsoids". In Proc. of the 57th IEEE Conference on Decision and
-      Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
+* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski
+      sum of ellipsoids". 2018 IEEE Conference on Decision and Control (CDC), 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

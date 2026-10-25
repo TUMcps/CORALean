@@ -34,11 +34,10 @@ First appeared as [2, Thm. 7], its parallelotope case as [2, Lemma 6].
 
 ## References
 
-* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes".
-      arXiv, 2015.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
-      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
-      Analysis: Hybrid Systems, 4(2):233-249, 2010.
+* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794, 2015.
+* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
 -/
 
 -- Authors:       Claude Opus 5

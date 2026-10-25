@@ -1,6 +1,15 @@
 # On the co-NP-Completeness of the Zonotope Containment Problem
 
-A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem". European Journal of Control, 62:84-91, 2021.
+```bibtex
+@article{kulmburg2021co,
+  author = {Kulmburg, A. and Althoff, M.},
+  title = {On the co-NP-Completeness of the Zonotope Containment Problem},
+  journal = {European Journal of Control},
+  year = {2021}
+}
+```
+
+**In the paper's bibliography.**
 
 **Source:** https://mediatum.ub.tum.de/doc/1616344/document.pdf (the accepted manuscript on TUM's repository, "Preprint submitted to European Journal of Control April 20, 2021", 12 pages, read in full; text extracted with `pypdf`). The typeset Elsevier article (doi:10.1016/j.ejcon.2021.06.028) was not reachable; numbering is the manuscript's, which is the one CORA cites (`Definition 4`, `Algorithm 1`, `Algorithm 2`).  
 **Inventory:** confirmed (against the manuscript: Definitions 1-4, Lemmas 1-6, Theorems 1-2, Corollaries 1-4, Remarks 1-2 and Algorithms 1-2, each with its own counter; the equations below are the numbered displays that make a claim)

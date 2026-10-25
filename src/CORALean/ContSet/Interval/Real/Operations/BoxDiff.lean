@@ -25,9 +25,8 @@ half-open, so it is a set here and not a box; [1, Alg. 1] stores it closed, `box
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and
-      Control (CDC), pp. 2130-2137, 2020.
+* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for
+      Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

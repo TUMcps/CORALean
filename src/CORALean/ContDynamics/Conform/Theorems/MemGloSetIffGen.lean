@@ -40,8 +40,8 @@ factor `αⱼ` is `0`, `βⱼ = 0` is forced and the generator drops out, as fro
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE
-      Transactions on Automatic Control, 71(5):3014-3029, 2026.
+* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

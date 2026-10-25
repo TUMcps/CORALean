@@ -34,9 +34,9 @@ is `verifyFloat_safe` and `verifyFloat_violated`.
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of
-      Linear Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE
-      Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+      Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
+      Automatic Control, 2023.
 -/
 
 -- Authors:       Claude Opus 5.5

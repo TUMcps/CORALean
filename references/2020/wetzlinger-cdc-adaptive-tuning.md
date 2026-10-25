@@ -1,7 +1,13 @@
 # Adaptive parameter tuning for reachability analysis of linear systems
 
-M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
-analysis of linear systems". CDC, 2020, pp. 5145–5152.
+```bibtex
+@inproceedings{wetzlinger2020adaptive,
+  author = {Wetzlinger, M. and Kochdumper, N. and Althoff, M.},
+  title = {Adaptive parameter tuning for reachability analysis of linear systems},
+  booktitle = {2020 59th IEEE Conference on Decision and Control (CDC)},
+  year = {2020}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2006.12091 — the arXiv preprint of the CDC paper, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable). The table was seeded from https://ar5iv.labs.arxiv.org/html/2006.12091, whose numbering is not to be trusted; every locator below has since been re-read off the PDF and none of them moved.  
 **Inventory:** confirmed

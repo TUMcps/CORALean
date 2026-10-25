@@ -28,8 +28,8 @@ interval arithmetic [1, Def. 5] assumes, eq. (3.1) for `⊕`, proved here from d
 
 ## References
 
-* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
-      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
+      International Journal of Pure and Applied Mathematics, 2003.
 -/
 
 -- Authors:       Claude Opus 5

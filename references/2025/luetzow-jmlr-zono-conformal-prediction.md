@@ -1,6 +1,13 @@
 # Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks
 
-L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks". Journal of Machine Learning Research, 26(294):1-37, 2025.
+```bibtex
+@article{lutzow2025zono,
+  author = {Lützow, L. and Eichelbeck, M. and Kochenderfer, M. J. and Althoff, M.},
+  title = {Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks},
+  journal = {Journal of Machine Learning Research},
+  year = {2025}
+}
+```
 
 **Source:** http://jmlr.org/papers/volume26/25-1161/25-1161.pdf (the published JMLR article, CC-BY, 37 pages, read in full; text extracted with `pypdf`; volume, number and pages from the JMLR record). It matches arXiv:2508.11025v3 page for page. CORA cites the arXiv version, without result numbers, in `global/classes/@confPredictor` (`confPredictor.m`, `calibrate.m`, `predict.m`, `initializeUncertainties.m`, `evaluateData.m`, `evaluateCoverage.m`) and `contDynamics/@contDynamics/private/priv_conform_iterOD.m`, the boundary-point search for outliers.  
 **Inventory:** confirmed (Definitions 1-2, Problems 1-2, Example 1, Lemmas 3-5, Theorems 6-7 and Propositions 8-10, one shared counter; equations (1)-(33); Sections 1-7 and Appendices A-B; Tables 1-3)

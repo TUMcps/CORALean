@@ -31,8 +31,8 @@ touches the dependency term. That asymmetry is why [1] tunes the step size and n
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning
-      for reachability analysis of linear systems". CDC, 2020, pp. 5145–5152.
+* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
+      analysis of linear systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
 -/
 
 -- Authors:       Claude Opus 5

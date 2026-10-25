@@ -58,9 +58,8 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 * the float state after the iterations stands for the exact one
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
-      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
-      Automatic Control, 71(1):352-367, 2026.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

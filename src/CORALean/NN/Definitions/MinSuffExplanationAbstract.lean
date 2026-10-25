@@ -25,9 +25,9 @@ stronger one, so a set minimal here can still be shrinkable at `nn`.
 
 ## References
 
-* [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining
-      Fast and Slow: Abstraction and Refinement of Provable Explanations".
-      ICML 2025.
+* [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
+      Abstraction and Refinement of Provable Explanations". Proceedings of the 42nd International
+      Conference on Machine Learning, 2025.
 -/
 
 -- Authors:       Claude Opus 5

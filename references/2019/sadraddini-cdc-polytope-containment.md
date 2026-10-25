@@ -1,6 +1,13 @@
 # Linear Encodings for Polytope Containment Problems
 
-S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". In Proc. of the 58th IEEE Conference on Decision and Control (CDC), pp. 4367-4372, 2019. arXiv:1903.05214.
+```bibtex
+@inproceedings{sadraddini2019linear,
+  author = {Sadraddini, S. and Tedrake, R.},
+  title = {Linear Encodings for Polytope Containment Problems},
+  booktitle = {2019 IEEE 58th Conference on Decision and Control (CDC)},
+  year = {2019}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1903.05214 (arXiv v1, 12 Mar 2019, 17 pages, read in full; text extracted with `pypdf`). The arXiv version is the long one ("Shorter version submitted to CDC 2019"); the IEEE version was not reachable (the MIT repository copy sits behind a captcha). Numbering is the arXiv version's, which is what most of CORA cites (`Theorem 3`, `Proposition 6`, `Corollary 6`, `Eq. (42)`, `(43)`); the shorter CDC version numbers differently — CORA's `priv_zonotopeContainment_SadraddiniTedrake.m` and the ECC 2024 paper cite the zonotope condition, `Thm. 3` here, as its "Corollary 4".  
 **Inventory:** confirmed (against arXiv v1: Definitions 1-5, Lemmas 1-2, Theorems 1-3, Propositions 1-7, Corollaries 1-6, Remarks 1-3 and Examples 1-7, each with its own counter; the equations below are the numbered displays that make a claim)

@@ -1,6 +1,13 @@
 # A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems
 
-M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on Automatic Control, 61(9):2341-2356, 2016.
+```bibtex
+@article{maiga2016comprehensive,
+  author = {Maïga, M. and Ramdani, N. and Travé-Massuyès, L. and Combastel, C.},
+  title = {A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2016}
+}
+```
 
 **Source:** https://hal.science/hal-01650701v1/file/IEEE_TAC_postprint.pdf (the authors' accepted manuscript, deposited on HAL; its running head says "accepted for publication ... has not been fully edited"; all 17 pages read in full, text extracted with `pypdf`; the typeset IEEE version, <https://doi.org/10.1109/TAC.2015.2491740>, was not reachable)  
 **Inventory:** unconfirmed (against the accepted manuscript; the typeset version may number or word its items differently. The manuscript's numbered items are Props. 3.1, 3.2, 4.1, 4.2, 6.1, 7.1, Thms. 1-4, Def. 1, Algs. 1-6 and Remarks 1-3)

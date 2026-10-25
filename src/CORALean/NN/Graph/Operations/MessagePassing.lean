@@ -19,8 +19,8 @@ of `Ã = A + I` scaled by both endpoints' inverse square-root degrees.
 
 ## References
 
-* [1] T. N. Kipf and M. Welling. "Semi-Supervised Classification with Graph
-      Convolutional Networks". ICLR, 2017.
+* [1] T. N. Kipf and M. Welling. "Semi-Supervised Classification with Graph Convolutional Networks".
+      International Conference on Learning Representations, 2017.
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -36,11 +36,11 @@ same formula is [2, Eq. 7], `A ≈ X' Ṽ Σ̃⁻¹ Ũᵀ`, for the snapshots of
 
 ## References
 
-* [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of
-      Hybrid Automata from Noisy Data". In Proc. of the 28th ACM International Conference on
-      Hybrid Systems: Computation and Control (HSCC), pp. 1-11, 2025.
-* [2] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".
-      SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
+* [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid
+      Automata from Noisy Data". Proceedings of the 28th ACM International Conference on Hybrid
+      Systems: Computation and Control, 2025.
+* [2] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic Mode Decomposition with Control". SIAM
+      Journal on Applied Dynamical Systems, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

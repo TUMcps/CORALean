@@ -1,7 +1,13 @@
 # Note on the derivatives with respect to a parameter of the solutions of a system of differential equations
 
-T. H. Gronwall. "Note on the derivatives with respect to a parameter of the solutions of
-a system of differential equations". Annals of Mathematics, 20(4):292-296, 1919.
+```bibtex
+@article{gronwall1919note,
+  author = {Gronwall, T. H.},
+  title = {Note on the derivatives with respect to a parameter of the solutions of a system of differential equations},
+  journal = {Annals of Mathematics},
+  year = {1919}
+}
+```
 
 **Source:** https://archive.org/download/jstor-1967124/1967124.pdf (a scanned/OCR'd JSTOR copy hosted on the Internet Archive; AMS/JSTOR's own pages return HTTP 403. The PDF's text layer uses a custom-subset TrueType font whose raw character codes are NOT ASCII/Latin-1 — they had to be decoded via the font's embedded /ToUnicode CMap with a purpose-built script, since the plain byte values are meaningless without it. Some OCR artifacts remain, e.g. "y_v" sometimes rendered "Yv" or "yv?", and a few characters are misrecognized — these are the original scan's OCR errors, not further corruption introduced here.)  
 **Inventory:** confirmed

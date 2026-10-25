@@ -1,6 +1,13 @@
 # Checking and Establishing Reachset Conformance in CORA 2023
 
-M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of the 10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23), EPiC Series in Computing, vol. 96, pp. 9-33, 2023.
+```bibtex
+@inproceedings{althoff2023checking,
+  author = {Althoff, M.},
+  title = {Checking and Establishing Reachset Conformance in CORA 2023},
+  booktitle = {Proceedings of 10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23)},
+  year = {2023}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1731062/1731062.pdf (the EPiC PDF, 25 pages, pp. 9-33, read in full; text extracted with `pypdf`; the same paper as https://easychair.org/publications/paper/Zmbv, doi:10.29007/5v1g). CORA cites it in `@linearSysDT/confSynth_dyn.m`, `isconform_dyn.m` and `confSynth_gray.m` without result numbers; `confSynth_dyn` implements Thms. 1-2 (`'interval'`, `'frob'`).  
 **Inventory:** confirmed (Theorems 1-2, Figures 1-8, Tables 1-4, equations (1)-(37), of which (28)-(37) are in the proofs of Appendices A-B; the rows below are the results, the numbered displays that make a claim, and the claims of Secs. 1.1-2.2 stated in prose)

@@ -1,6 +1,13 @@
 # Out of the Shadows: Exploring a Latent Space for Neural Network Verification
 
-L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural Network Verification". ICLR, 2026.
+```bibtex
+@inproceedings{koller2026out,
+  author = {Koller, L. and Ladner, T. and Althoff, M.},
+  title = {Out of the Shadows: Exploring a Latent Space for Neural Network Verification},
+  booktitle = {International Conference on Learning Representations},
+  year = {2026}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2505.17854v3 (arXiv:2505.17854v3, 9 Feb 2026, "Published as a conference paper at ICLR 2026"; 18 pages with the appendix, read in full; text extracted with `pymupdf`, Prop. 2, Prop. 3, Eq. 9 and Eq. 13 checked against the page images)  
 **Inventory:** confirmed (against the paper: Definitions 1-3, Propositions 1-4, Corollary 1, Algorithm 1 and Example 1, each with its own counter, and Equations 1-15; the proofs are Appendices E-F, Sec. 5 and Appendices A and C are the evaluation)

@@ -23,7 +23,7 @@ series `Σ_j Δt^{j+1} A^j/(j+1)!`; for `A = 0` it is `Δt`, here at `Δt = 1` i
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, vol. 53, 2024, 101491.
+      Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

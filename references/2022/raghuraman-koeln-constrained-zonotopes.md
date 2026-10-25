@@ -1,7 +1,13 @@
 # Set operations and order reductions for constrained zonotopes
 
-V. Raghuraman and J. P. Koeln. "Set operations and order reductions for
-constrained zonotopes". Automatica, 139:110204, 2022. arXiv:2009.06039.
+```bibtex
+@article{raghuraman2009set,
+  author = {Raghuraman, V. and Koeln, J. P.},
+  title = {Set operations and order reductions for constrained zonotopes},
+  journal = {Automatica},
+  year = {2022}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2009.06039 (the PDF; arXiv v1 is the only version arXiv has — no v2 was ever posted, even though the paper was later published in Automatica 139 (2022) 110204, which is paywalled and could not be read)  
 **Inventory:** confirmed — against the arXiv v1 PDF; the published Automatica typesetting itself was not obtained, but see below for why its numbering is not believed to differ

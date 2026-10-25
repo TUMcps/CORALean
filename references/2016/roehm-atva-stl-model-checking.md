@@ -1,6 +1,13 @@
 # STL Model Checking of Continuous and Hybrid Systems
 
-H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
+```bibtex
+@inproceedings{roehm2016stl,
+  author = {Roehm, H. and Oehlerking, J. and Heinz, T. and Althoff, M.},
+  title = {{STL} Model Checking of Continuous and Hybrid Systems},
+  booktitle = {Automated Technology for Verification and Analysis},
+  year = {2016}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1430235/124621.pdf (the authors' version of the paper on mediaTUM, 15 pages, read in full; text extracted with `pypdf`, so Table 1 was read from the extracted text and its print layout was not rendered). The publisher's page, doi:10.1007/978-3-319-46520-3_26, is paywalled: numbering is that of this version, and the page range is the one CORA's own citation gives.  
 **Inventory:** confirmed (the numbered items are Definitions 1-2, Lemmas 1-4, Theorem 1, Remark 1, Table 1, Figures 3 and 6 and Equations (1)-(19); Lemma 1's three properties are Eqs. (10)-(12), Lemma 2's two definitions Eqs. (16)-(17), the others belong to the proofs. The claims stated in prose without a number are rows of their own, named by section)

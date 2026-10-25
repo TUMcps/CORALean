@@ -20,9 +20,8 @@ box, not two: only `P`'s nominal part is read; its own box stays at the origin.
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
-      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
-      2016.
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica, 2016.
 -/
 
 -- Authors:       Claude Opus 5

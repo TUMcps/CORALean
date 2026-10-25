@@ -20,9 +20,8 @@ constrained zonotope carries is as exact as a zonotope's.
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
-      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
-      2016.
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica, 2016.
 -/
 
 -- Authors:       Claude Opus 5

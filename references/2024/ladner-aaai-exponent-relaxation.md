@@ -1,7 +1,13 @@
 # Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification
 
-T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its
-Applications in Formal Neural Network Verification". AAAI, 2024.
+```bibtex
+@inproceedings{ladner2024exponent,
+  author = {Ladner, T. and Althoff, M.},
+  title = {Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year = {2024}
+}
+```
 
 **Source:** https://ojs.aaai.org/index.php/AAAI/article/view/30125/31990 (PDF; open-access download link from https://ojs.aaai.org/index.php/AAAI/article/view/30125)  
 **Inventory:** confirmed

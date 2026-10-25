@@ -26,8 +26,8 @@ from the weighted bound of the proof of Thm. 3.1 (`Krylov.error_le_of_decay_boun
 
 ## References
 
-* [1] H. Wang, Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix
-  exponentials". SIAM Journal on Matrix Analysis and Applications, 38(1):155-187, 2017.
+* [1] H. Wang and Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix
+      exponentials". SIAM Journal on Matrix Analysis and Applications, 2017.
 -/
 
 -- Authors:       Claude Opus 5.5

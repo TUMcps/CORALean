@@ -35,8 +35,8 @@ from the snapshots of `x_{k+1} = A x_k`.
 ## References
 
 * [1] `contDynamics/@linearSysDT/private/priv_identifyDMD.m`
-* [2] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".
-      SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
+* [2] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic Mode Decomposition with Control". SIAM
+      Journal on Applied Dynamical Systems, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,6 +1,13 @@
 # On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids
 
-A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids". In Proc. of the 57th IEEE Conference on Decision and Control (CDC), pp. 4040-4045, 2018. arXiv:1803.08157.
+```bibtex
+@inproceedings{halder2018parameterized,
+  author = {Halder, A.},
+  title = {On the parameterized computation of minimum volume outer ellipsoid of {Minkowski} sum of ellipsoids},
+  booktitle = {2018 IEEE Conference on Decision and Control (CDC)},
+  year = {2018}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1803.08157 (arXiv v5 of 22 June 2018, the CDC version, 8 pages, read in full; text extracted with `pypdf`; the CDC DOI is 10.1109/CDC.2018.8619508)  
 **Inventory:** confirmed (the numbered items are Lemmas 1-2, Proposition 1, Corollary 1, Theorems 2-3, Remark 1 and equations (1)-(28); the paper has no Definitions, and the unnumbered statements that make a claim are rows named by section)

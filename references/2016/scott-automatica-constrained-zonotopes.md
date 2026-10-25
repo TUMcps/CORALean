@@ -1,6 +1,13 @@
 # Constrained zonotopes: A new tool for set-based estimation and fault detection
 
-J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new tool for set-based estimation and fault detection". Automatica, 69:126-136, 2016.
+```bibtex
+@article{scott2016constrained,
+  author = {Scott, J. K. and Raimondo, D. M. and Marseglia, G. R. and Braatz, R. D.},
+  title = {Constrained zonotopes: {A} new tool for set-based estimation and fault detection},
+  journal = {Automatica},
+  year = {2016}
+}
+```
 
 **Source:** https://web.mit.edu/braatzgroup/Scott_Automatica_2016.pdf (the authors' group copy of the published article, 11 pages, read in full; text extracted with `pypdf`)  
 **Inventory:** confirmed (the numbered items are Definitions 1-3, Propositions 1-5, Theorem 1, Remarks 1-2 and the appendix's Algorithm 1; each of Definition, Proposition and Remark has its own counter)

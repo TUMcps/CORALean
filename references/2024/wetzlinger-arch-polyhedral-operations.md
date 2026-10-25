@@ -1,6 +1,15 @@
 # Implementation of Polyhedral Operations in CORA 2024
 
-M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing, vol. 103, pp. 163-181, 2024.
+```bibtex
+@inproceedings{wetzlinger2024implementation,
+  author = {Wetzlinger, M. and Kotsev, V. and Kulmburg, A. and Althoff, M.},
+  title = {Implementation of Polyhedral Operations in CORA 2024},
+  booktitle = {Proceedings of the 11th Int. Workshop on Applied Verification for Continuous and Hybrid Systems},
+  year = {2024}
+}
+```
+
+**In the paper's bibliography.**
 
 **Source:** https://easychair.org/publications/paper/81TW (the EPiC PDF, 19 pages, pp. 163-181, read in full; text extracted with `pypdf`, Table 1 again with its layout kept. The TUM repository copy <https://mediatum.ub.tum.de/doc/1763183/1763183.pdf> is the same file.)  
 **Inventory:** confirmed (the numbered items are Definitions 1-3, Algorithms 1-3, equations (1)-(37), Tables 1-4, Figure 1 and footnotes 1-3; footnotes 1 and 2 are a link and a side condition of the cited Quickhull analysis, footnote 3 a claim. The claims stated in prose without a number are rows of their own, named by section)

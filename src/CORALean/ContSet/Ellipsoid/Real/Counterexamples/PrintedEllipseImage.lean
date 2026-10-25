@@ -32,7 +32,7 @@ the first only.
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

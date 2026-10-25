@@ -1,6 +1,13 @@
 # Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions
 
-T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 60(1):157-197, 2020.
+```bibtex
+@article{jawecki2020computable,
+  author = {Jawecki, T. and Auzinger, W. and Koch, O.},
+  title = {Computable upper error bounds for {Krylov} approximations to matrix exponentials and associated φ-functions},
+  journal = {BIT Numerical Mathematics},
+  year = {2020}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1809.03369 (arXiv:1809.03369v2, 11 Feb 2019, the authors' version, 26 pages, read in full; text extracted with `pypdf`). The typeset BIT article (doi:10.1007/s10543-019-00771-6, published online 11 Sep 2019) was not reachable; numbering is the arXiv version's. CORA's `linearSys/private/priv_subspace_Krylov_individual_Jawecki.m` cites "equation 3.6 of [1]" and "(Err_a) in [1]", and `priv_subspace_Krylov_jaweckiBound.m` the paper without a result number.  
 **Inventory:** confirmed (Propositions 1-6, Theorems 1-3, Remarks 1-8, equations (2.1)-(7.9) and (8.1)-(8.3), Tables 8.1-8.4, Figures 8.1-8.7; no Definitions, Lemmas, Corollaries or Algorithms; the rows below are the results and the numbered displays that make a claim)

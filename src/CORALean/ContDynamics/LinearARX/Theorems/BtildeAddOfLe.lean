@@ -26,8 +26,8 @@ the older sets by `Ā_ext^p` instead of recomputing them.
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". In Proc. of the
-  62nd IEEE Conference on Decision and Control (CDC), 2023, pp. 7027-7034.
+* [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
+      on Decision and Control (CDC), 2023.
 -/
 
 -- Authors:       Claude Opus 5.5

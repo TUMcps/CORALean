@@ -33,8 +33,8 @@ the case of equal `εᵢ`, `eᵢ = ‖gᵢ‖ ε t`. [1, Alg. 2] calls it in lin
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
-  Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
+      Subspace". IEEE Transactions on Automatic Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

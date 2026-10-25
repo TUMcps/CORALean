@@ -22,9 +22,8 @@ computed in `𝕋`, so the two layers may keep different generators.
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
-      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
-      2016.
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica, 2016.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -28,21 +28,19 @@ confinement hypothesis: `ReachSetExactOuter` puts every trajectory into it,
 
 ## References
 
-* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
-      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
+      Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:
+      Computation and Control, 2020.
 * [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
-* [3] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
-      Systems with Uncertain Parameters using Conservative Linearization". In
-      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
-      pp. 4042-4048.
+* [3] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
+      Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
+      and Control, 2008.
 * [4] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-  Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
-  8:2033-2038, 2024.
-* [5] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and
-      Control (CDC), pp. 2130-2137, 2020.
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
+* [5] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for
+      Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
 -/
 
 -- Authors:       Claude Sonnet 5

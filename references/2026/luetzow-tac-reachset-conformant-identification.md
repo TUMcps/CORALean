@@ -1,6 +1,13 @@
 # Reachset-Conformant System Identification
 
-L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on Automatic Control, 71(5):3014-3029, 2026.
+```bibtex
+@article{lutzow2026reachset,
+  author = {Lützow, L. and Althoff, M.},
+  title = {Reachset-Conformant System Identification},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2026}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2407.11692 (arXiv:2407.11692v3, 6 Aug 2025, the authors' version, 16 pages, read in full; text extracted with `pypdf`). Volume, issue and pages from the DOI record (doi:10.1109/TAC.2025.3633534); the typeset TAC article was not reachable, so the numbering is the arXiv version's. CORA cites the arXiv version, without result numbers, in `@contDynamics/conform.m`, `private/priv_conform_white.m`, `priv_conform_whiteCon.m`, `priv_conform_gray.m` and the `computeGO` methods of `linearSysDT`, `linearARX`, `nonlinearSysDT` and `nonlinearARX`.  
 **Inventory:** confirmed (against arXiv v3: Definitions 1-7, Problem 1 with Problems 1.1-1.3, Theorems 1-2, Corollaries 1-2, Lemmas 1-4, Proposition 1 and Algorithms 1-4, each with its own counter; equations (1)-(25); Tables I-II)

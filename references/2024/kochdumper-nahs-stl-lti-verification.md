@@ -1,6 +1,13 @@
 # Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis
 
-N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis: Hybrid Systems, vol. 53, 2024, 101491.
+```bibtex
+@article{kochdumper2024fully,
+  author = {Kochdumper, N. and Bak, S.},
+  title = {Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis},
+  journal = {Nonlinear Analysis: Hybrid Systems},
+  year = {2024}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2306.04089v2 (arXiv v2, 8 April 2024, 35 pages with the appendices; the preprint submitted to Nonlinear Analysis: Hybrid Systems, "April 9, 2024"; read in full, text extracted with `pypdf`, Defs. 5-6, Eq. (12) and the statement of Thm. 1 also rendered with PyMuPDF to read their symbols; ar5iv was not used). The published article, doi:10.1016/j.nahs.2024.101491, was not reachable from the environment: numbering is that of arXiv v2.  
 **Inventory:** confirmed (Definitions 1-6, Propositions 1-5, Theorem 1, Algorithms 1-3, the numbered displays that make a claim, Eq. (26) among them, and Appendices A-B; the sections without a numbered result are rows of their own, named by section)

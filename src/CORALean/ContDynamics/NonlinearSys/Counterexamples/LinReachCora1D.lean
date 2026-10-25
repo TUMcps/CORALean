@@ -45,8 +45,8 @@ segment from `p`, which crosses `[0, 1]`, where `f''` reaches `4`. The run from 
 ## References
 
 * [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
-      Uncertain Parameters using Conservative Linearization". In Proc. of the 47th IEEE
-      Conference on Decision and Control (CDC), 2008, pp. 4042-4048.
+      Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
+      and Control, 2008.
 -/
 
 -- Authors:       Claude Opus 5.5

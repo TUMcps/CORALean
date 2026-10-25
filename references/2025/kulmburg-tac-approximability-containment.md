@@ -1,6 +1,13 @@
 # Approximability of the Containment Problem for Zonotopes and Ellipsotopes
 
-A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025. doi:10.1109/TAC.2025.3583624. arXiv:2404.11185.
+```bibtex
+@article{kulmburg2025approximability,
+  author = {Kulmburg, A. and Schäfer, L. and Althoff, M.},
+  title = {Approximability of the Containment Problem for Zonotopes and Ellipsotopes},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2025}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2404.11185v4 (arXiv v4, 30 Jul 2025, "accepted for publication in the IEEE Transactions on Automatic Control", 16 pages including the Appendix, read in full; text extracted with `pypdf`, the proof of Lemma 26 and the application equations (53)-(57) read from the page images). The typeset IEEE article was not reachable; volume and pages are not given. CORA cites it in `@ellipsoid/contains_.m` and `@ellipsoid/private/priv_containsEllipsoid.m` ("Approximability of the Containment Problem for Zonotopes and Ellipsotopes") and, as "Hardness and Approximability of the Containment Problem for Zonotopes and Ellipsotopes (to appear)", in `@zonotope/contains_.m`, without a result number. Numbering is v4's.  
 **Inventory:** confirmed (against v4: Definitions 1-3, 5, 8-9 and 23, Propositions 7 and 28, Theorems 12-13, 15-17, 19, 21 and 24, Lemmas 14, 25-27, Remarks 4, 6, 10-11, 20 and 22 and Example 18, each with its own counter, the claims in Secs. III-A, IV and V, and the equations below, which are the numbered displays that make a claim)

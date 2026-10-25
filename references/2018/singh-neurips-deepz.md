@@ -1,7 +1,13 @@
 # Fast and Effective Robustness Certification
 
-G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
-Certification". NeurIPS 2018.
+```bibtex
+@inproceedings{singh2018fast,
+  author = {Singh, G. and Gehr, T. and Mirman, M. and Püschel, M. and Vechev, M.},
+  title = {Fast and Effective Robustness Certification},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2018}
+}
+```
 
 **Source:** https://papers.nips.cc/paper_files/paper/2018/file/f2f446980d8e971ef3da97af089481c3-Paper.pdf  
 **Inventory:** confirmed

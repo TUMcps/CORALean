@@ -23,7 +23,7 @@ an operand-independent one is closed over by a `def` returning the class.
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
 * [2] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+      estimation for uncertain systems". Automatica, 2013.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

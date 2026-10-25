@@ -25,10 +25,9 @@ each with a coefficient in `[-1, 1]`: `[a, b] ⊗ Z = c Z ⊕ [-1, 1] ⊗ (g Z)`
 ## References
 
 * [1] `matrixSet/@matZonotope/mtimes.m`
-* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
-      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
-      International Conference on Hybrid Systems: Computation and Control (HSCC),
-      2012, pp. 45-54.
+* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+      Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
+      Systems: Computation and Control, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -34,15 +34,18 @@ assumed by [4, Lemma 3], is false here.
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural
-      Network Verification using Sensitivity Analysis". HSCC 2023.
-* [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative
-      Polynomialization and Non-Convex Sets". HSCC 2013.
+* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
+      using Sensitivity Analysis". Proceedings of the 26th ACM International Conference on Hybrid
+      Systems: Computation and Control, 2023.
+* [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
+      and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
+      computation and control, 2013.
 * [3] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
-* [4] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
-      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
+* [4] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
+      Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:
+      Computation and Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5

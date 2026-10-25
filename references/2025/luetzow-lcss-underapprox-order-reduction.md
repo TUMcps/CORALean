@@ -1,6 +1,13 @@
 # Underapproximative Methods for the Order Reduction of Zonotopes
 
-L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction of Zonotopes". IEEE Control Systems Letters, 9:1730-1735, 2025.
+```bibtex
+@article{luetzow2025underapproximative,
+  author = {Lützow, L. and Kochdumper, N. and Althoff, M.},
+  title = {Underapproximative Methods for the Order Reduction of Zonotopes},
+  journal = {IEEE Control Systems Letters},
+  year = {2025}
+}
+```
 
 **Source:** https://publikationen.bibliothek.kit.edu/1000183724/163165215 (the published article, IEEE L-CSS vol. 9, 2025, pp. 1730-1735, doi:10.1109/LCSYS.2025.3577642, open access under CC BY 4.0 and deposited in the KIT repository; 6 pages, read in full, text extracted with `pypdf`). The paper is not on arXiv. CORA cites it in `contSet/@zonotope/reduceUnderApprox.m` as [7] for the methods `'scale'` and `'boxCone'`  
 **Inventory:** confirmed (the letter numbers only Definition 1 and displays (1)-(8); the rows below are Definition 1, the displays that make a claim, and one row per method of Secs. III and IV, which the letter does not number)

@@ -1,6 +1,13 @@
 # Implementation of Interval Arithmetic in CORA 2016
 
-M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". In Proc. of the 3rd International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH16), EPiC Series in Computing, vol. 43, pp. 91-105, 2017.
+```bibtex
+@inproceedings{althoff2017implementation,
+  author = {Althoff, M. and Grebenyuk, D.},
+  title = {Implementation of Interval Arithmetic in CORA 2016},
+  booktitle = {ARCH16. 3rd International Workshop on Applied Verification for Continuous and Hybrid Systems},
+  year = {2017}
+}
+```
 
 **Source:** https://easychair.org/publications/open/ZRJ (the EPiC PDF, 15 pages, pp. 91-105, read in full; text extracted with `pypdf`; the volume is dated 2017, the workshop ARCH16). Over- and underlines are lost in the extraction, so which bound is the infimum and which the supremum in eqs. (1)-(15) is read from the monotonicity each case states, and checked against the formalization, which proves it.  
 **Inventory:** confirmed (the numbered items are Proposition 1, equations (1)-(18), Figures 1-4 and Tables 1-3; Sec. 2 and Sec. 3 also state the center-radius form, the interval hull and the elementwise unary operations in prose)

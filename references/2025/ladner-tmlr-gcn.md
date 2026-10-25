@@ -1,8 +1,13 @@
 # Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure
 
-T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph Convolutional
-Networks with Uncertain Node Features and Uncertain Graph Structure". TMLR, 2025.
-arXiv:2404.15065.
+```bibtex
+@article{ladner2025formal,
+  author = {Ladner, T. and Eichelbeck, M. and Althoff, M.},
+  title = {Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure},
+  journal = {Transactions on Machine Learning Research},
+  year = {2025}
+}
+```
 
 **Source:** https://arxiv.org/html/2404.15065v2  
 **Inventory:** confirmed

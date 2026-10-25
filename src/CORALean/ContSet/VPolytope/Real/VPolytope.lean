@@ -15,11 +15,12 @@ there. Zero vertices denote `∅`, no coefficient family over an empty index sum
 
 ## References
 
-* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
-      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
-* [2] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
-      Verification of Linear Systems Using Reachability Analysis with Support
-      Functions". HSCC, 2023, Article 5.
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
+      Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:
+      Computation and Control, 2020.
+* [2] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+      Systems Using Reachability Analysis with Support Functions". Proceedings of the 26th ACM
+      International Conference on Hybrid Systems: Computation and Control, 2023.
 -/
 
 -- Authors:       Claude Opus 5

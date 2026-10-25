@@ -21,9 +21,9 @@ C.2.1), as piecewise-continuous inputs jump; `meas` and `cont` are the regularit
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`
-* [2] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic
-      Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design,
-      and Simulation of Systems with Uncertainties, Springer, 2011.
+* [2] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+      with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
+      Uncertainties, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

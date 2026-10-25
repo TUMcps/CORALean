@@ -27,8 +27,9 @@ bounded by the weighted mean inequality at the weights `s/(s+1)` and `1/(s+1)`, 
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and
-      Its Applications in Formal Neural Network Verification". AAAI, 2024.
+* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its Applications in
+      Formal Neural Network Verification". Proceedings of the AAAI Conference on Artificial
+      Intelligence, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

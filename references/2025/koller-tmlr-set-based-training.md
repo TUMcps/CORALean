@@ -1,6 +1,13 @@
 # Set-Based Training for Neural Network Verification
 
-L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification". Transactions on Machine Learning Research (TMLR), 2025.
+```bibtex
+@article{koller2025set,
+  author = {Koller, L. and Ladner, T. and Althoff, M.},
+  title = {Set-Based Training for Neural Network Verification},
+  journal = {Transactions on Machine Learning Research},
+  year = {2025}
+}
+```
 
 **Source:** https://arxiv.org/pdf/2401.14961 (arXiv:2401.14961v4, dated 5 Aug 2025 like the TMLR publication, https://openreview.net/forum?id=n0lzHrAWIA; 29 pages with the appendix, read in full; text extracted with `pypdf`, Prop. 5, 8 and 9 checked against the page images)  
 **Inventory:** confirmed (against the paper: Definitions 1-7, Propositions 1-17 and Algorithms 1-2, each with its own counter, and Equations 1-12; the proofs are Appendix D, Sec. 5 and Appendices A-C are the evaluation)

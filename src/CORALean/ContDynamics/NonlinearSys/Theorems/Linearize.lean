@@ -44,9 +44,9 @@ from a check on the computed sets, not by CORA's own, circular check. This is th
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
-      Systems with Uncertain Parameters using Conservative Linearization". In
-      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008, pp. 4042-4048.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
+      Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
+      and Control, 2008.
 -/
 
 -- Authors:       Claude Opus 5

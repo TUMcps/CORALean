@@ -23,9 +23,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 ## References
 
-* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems
-      Reachability Analysis". In Hybrid Systems: Computation and Control (HSCC), LNCS 4981,
-      Springer, 2008, pp. 215-228.
+* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems Reachability
+      Analysis". Hybrid Systems: Computation and Control, 2008.
 -/
 
 -- Authors:       Claude Opus 5.5

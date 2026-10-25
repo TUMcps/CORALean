@@ -29,7 +29,7 @@ of `I ⊗ Mᵀ`, which is a solution `Xᵀ`.
 ## References
 
 * [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
-      zonotopes for discrete-time descriptor systems". Automatica, 93:435-443, 2018.
+      zonotopes for discrete-time descriptor systems". Automatica, 2018.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -27,9 +27,9 @@ one where some `αⱼ > 0` cannot be reduced without losing the point: `IsBounda
 
 ## References
 
-* [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal
-      Prediction: Zonotope-Based Uncertainty Quantification for Regression and
-      Classification Tasks". Journal of Machine Learning Research, 26(294):1-37, 2025.
+* [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal Prediction:
+      Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks". Journal of
+      Machine Learning Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5.5

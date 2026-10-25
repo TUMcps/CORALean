@@ -32,7 +32,7 @@ The count of [1, Thm. 4]: among the times `0, …, N - 1`, given `d` of them `H`
 ## References
 
 * [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 45(2):382-392, 2009.
+      reliability". Automatica, 2009.
 -/
 
 -- Authors:       Claude Opus 5.5

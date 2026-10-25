@@ -28,7 +28,7 @@ which keeps the center, is at every `i`.
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, vol. 53, 2024, 101491.
+      Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

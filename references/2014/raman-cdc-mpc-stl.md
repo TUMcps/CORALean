@@ -1,6 +1,13 @@
 # Model Predictive Control with Signal Temporal Logic Specifications
 
-V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and S. A. Seshia. "Model Predictive Control with Signal Temporal Logic Specifications". In Proc. of the 53rd IEEE Conference on Decision and Control (CDC), pp. 81-87, 2014.
+```bibtex
+@inproceedings{raman2014model,
+  author = {Raman, V. and Donzé, A. and Maasoumy, M. and Murray, R. M. and Sangiovanni-Vincentelli, A. and Seshia, S. A.},
+  title = {Model Predictive Control with Signal Temporal Logic Specifications},
+  booktitle = {53rd IEEE Conference on Decision and Control},
+  year = {2014}
+}
+```
 
 **Source:** http://www.cds.caltech.edu/~murray/preprints/ram+14-cdc.pdf (the authors' copy from R. M. Murray's preprint page, headed "2014 Conference on Decision and Control (CDC)", 7 pages, read in full; text extracted with `pypdf`, so `□` and `◇` print alike and are told apart by the text around them). CORA's `stl/robustnessEncodingMILP`, `falsifyTemporalLogic` and `falsifySingleOpt` cite it as "V. Raman and et al, 'Model Predictive Control for Signal Temporal Logic Specifications', 2016"; no 2016 publication of that title by these authors was found, and the encodings CORA cites, Eqs. (3)-(5), are this paper's.  
 **Inventory:** confirmed (the numbered items are Equations (1)-(7), Problems 1-2, Table I and Figures 1-2; the encodings of Sec. IV-B and Sec. V are stated in prose, rows of their own named by section)

@@ -33,8 +33,8 @@ The source asks `X` bounded and not nonempty, and the lemma is false without it:
 
 ## References
 
-* [1] H. Rådström. "An embedding theorem for spaces of convex sets".
-      Proc. Amer. Math. Soc. 3 (1952), pp. 165-169.
+* [1] H. Rådström. "An embedding theorem for spaces of convex sets". Proceedings of the American
+      Mathematical Society, 1952.
 -/
 
 -- Authors:       Claude Opus 5.5

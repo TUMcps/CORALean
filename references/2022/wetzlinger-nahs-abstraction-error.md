@@ -1,8 +1,13 @@
 # Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis
 
-M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms
-for Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid
-Systems, vol. 46, 2022, p. 101252.
+```bibtex
+@article{wetzlinger2022adaptive,
+  author = {Wetzlinger, M. and Kulmburg, A. and Le Penven, A. and Althoff, M.},
+  title = {Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis},
+  journal = {Nonlinear Analysis: Hybrid Systems},
+  year = {2022}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.6 (pp. 121–150), a verbatim reprint of the Elsevier version, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable, and the journal version at https://doi.org/10.1016/j.nahs.2022.101252 is paywalled; the paper has no arXiv preprint).  
 **Inventory:** confirmed

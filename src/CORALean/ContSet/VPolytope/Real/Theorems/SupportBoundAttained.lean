@@ -27,13 +27,12 @@ over an empty family at `ℝ` is `0` rather than `-∞`.
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
-      Verification of Linear Systems Using Reachability Analysis with Support
-      Functions". HSCC, 2023, Article 5.
-* [2] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
-      Operations in CORA 2024". In Proc. of the 11th International Workshop on Applied
-      Verification of Continuous and Hybrid Systems (ARCH24), EPiC Series in Computing,
-      vol. 103, pp. 163-181, 2024.
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+      Systems Using Reachability Analysis with Support Functions". Proceedings of the 26th ACM
+      International Conference on Hybrid Systems: Computation and Control, 2023.
+* [2] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral Operations
+      in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for Continuous
+      and Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Opus 5

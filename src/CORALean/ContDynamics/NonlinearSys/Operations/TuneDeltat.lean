@@ -36,11 +36,11 @@ shrunk by `ζ_δ` until eq. (32)'s `φ₁ ≥ ζ_Δ` holds — `tuneDeltatInit`.
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for
-      Reachability Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
-* [2] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive
-      Reachability Algorithms for Nonlinear Systems Using Abstraction Error
-      Analysis". Nonlinear Analysis: Hybrid Systems, vol. 46, 2022, p. 101252.
+* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
+      Analysis of Nonlinear Systems". Proceedings of the 24th International Conference on Hybrid
+      Systems: Computation and Control, 2021.
+* [2] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms for
+      Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems, 2022.
 -/
 
 -- Authors:       Claude Sonnet 5

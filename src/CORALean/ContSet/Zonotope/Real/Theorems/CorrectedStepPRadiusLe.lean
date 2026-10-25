@@ -56,8 +56,8 @@ rows; the paper prints it `m_w × m_w`. The `k → ∞` clause is `LinearSysDT.r
 ## References
 
 * [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on
-      zonotopes for interconnected systems". IEEE Conference on Decision and Control (CDC),
-      pp. 668-673, 2018.
+      zonotopes for interconnected systems". 2018 IEEE Conference on Decision and Control (CDC),
+      2018.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -25,9 +25,8 @@ extremal function in `[x]`. The search is the argument `root`, held to
 
 ## References
 
-* [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor
-      Based on Extremal Functions". In Proc. of the 16th International Conference on Principles
-      and Practice of Constraint Programming (CP 2010), LNCS 6308, pp. 491-498, 2010.
+* [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor Based
+      on Extremal Functions". Principles and Practice of Constraint Programming – CP 2010, 2010.
 -/
 
 -- Authors:       Claude Opus 5.5

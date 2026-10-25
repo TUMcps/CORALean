@@ -1,7 +1,13 @@
 # An embedding theorem for spaces of convex sets
 
-H. Rådström. "An embedding theorem for spaces of convex sets". Proc. Amer. Math. Soc. 3
-(1952), pp. 165-169.
+```bibtex
+@article{radstrom1952embedding,
+  author = {Rådström, H.},
+  title = {An embedding theorem for spaces of convex sets},
+  journal = {Proceedings of the American Mathematical Society},
+  year = {1952}
+}
+```
 
 **Source:** https://web.archive.org/web/20170824215421id_/http://www.ams.org/journals/proc/1952-003-01/S0002-9939-1952-0045938-2/S0002-9939-1952-0045938-2.pdf (the AMS's own copy, archived; ams.org itself answers scripts with a bot challenge)  
 **Inventory:** confirmed

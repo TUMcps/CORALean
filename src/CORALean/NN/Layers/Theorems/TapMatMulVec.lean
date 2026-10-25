@@ -29,9 +29,9 @@ convolution's stencil this is [1, Sec. II (Conv to CAT)]: Appendix A's `W^F`, wh
 
 ## References
 
-* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2:
-      Safety and Robustness Certification of Neural Networks with Abstract Interpretation".
-      IEEE S&P 2018, pp. 3-18.
+* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
+      and Robustness Certification of Neural Networks with Abstract Interpretation". 2018 IEEE
+      Symposium on Security and Privacy (SP), 2018.
 -/
 
 -- Authors:       Claude Opus 5.5

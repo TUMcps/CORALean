@@ -1,6 +1,13 @@
 # Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic
 
-F. Johansson. "Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic". IEEE Transactions on Computers 66(8), 2017, pp. 1281-1292.
+```bibtex
+@article{johansson2017arb,
+  author = {Johansson, F.},
+  title = {Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic},
+  journal = {IEEE Transactions on Computers},
+  year = {2017}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1611.02831 (the arXiv version v1, 9 November 2016, read with `pypdf`; numbering as there).
 **Inventory:** partial (only the section on the number types was read, for what `Flint` takes from it)

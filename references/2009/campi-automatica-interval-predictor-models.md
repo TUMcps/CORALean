@@ -1,6 +1,13 @@
 # Interval predictor models: Identification and reliability
 
-M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and reliability". Automatica, 45(2):382-392, 2009.
+```bibtex
+@article{campi2009interval,
+  author = {Campi, M. C. and Calafiore, G. and Garatti, S.},
+  title = {Interval predictor models: Identification and reliability},
+  journal = {Automatica},
+  year = {2009}
+}
+```
 
 **Source:** https://marco-campi.unibs.it/pdf-pszip/IPM-Automatica.pdf (the typeset article on the first author's site, 11 pages, read in full; text extracted with PyMuPDF); also at https://garatti.faculty.polimi.it/Publications/Journals/2009_campi_calafiore_garatti.pdf.  
 **Inventory:** confirmed (against the article: Assumptions 1-2, Remarks 1-6, Definitions 1-5, Theorems 1-4, Example 1, Problems 1, 1.a, 1.b and 1′, Algorithm A∗ and Table 1, each with its own counter; Equations 1-15, of which 11 is Example 1's problem, 12-14 belong to Theorem 3 and 15 to Sec. 5; Sec. 5 is the examples)

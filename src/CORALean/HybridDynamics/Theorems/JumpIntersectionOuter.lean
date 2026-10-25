@@ -29,9 +29,8 @@ sets of one type, so the guard is asked to be in the state's own family: `Transi
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
-      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
-      Analysis: Hybrid Systems, 4(2):233-249, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
 -/
 
 -- Authors:       Claude Opus 5

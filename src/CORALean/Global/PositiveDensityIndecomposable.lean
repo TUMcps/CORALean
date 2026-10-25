@@ -39,7 +39,7 @@ nonzero (`λ(S) = 1` in the paper).
 ## References
 
 * [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed
-      Over Bounded Regions". Operations Research 32(6), pp. 1296-1308, 1984.
+      Over Bounded Regions". Operations Research, 1984.
 -/
 
 -- Authors:       Claude Opus 5.5

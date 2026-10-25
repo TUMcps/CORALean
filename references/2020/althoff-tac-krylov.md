@@ -1,6 +1,13 @@
 # Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace
 
-M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+```bibtex
+@article{althoff2020reachability,
+  author = {Althoff, M.},
+  title = {Reachability Analysis of Large Linear Systems with Uncertain Inputs in the {Krylov} Subspace},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2020}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1712.00369 (arXiv:1712.00369v2, 5 Aug 2020, the author's version, 16 pages including Appendices A-B, read in full; text extracted with `pypdf`). The typeset IEEE article (doi:10.1109/TAC.2019.2906432) was not reachable; numbering is the arXiv version's, which has the TAC article's section-based labels. CORA's Krylov files (`linearSys/private/priv_reach_krylov.m`, `priv_initReach_Krylov.m`, `priv_inputSolution_Krylov.m`, `priv_exponential_Krylov*.m`) cite the paper without result numbers.  
 **Inventory:** confirmed (Definition II.1, Lemmas III.1-III.3 and IV.1, Theorems III.1-III.2 and IV.1-IV.2, Corollaries IV.1-IV.2, Proposition B.1, Algorithms 1-2, equations (1)-(35); the rows below are the results and the numbered displays that make a claim)

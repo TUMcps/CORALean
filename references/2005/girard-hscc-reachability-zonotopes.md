@@ -1,6 +1,15 @@
 # Reachability of Uncertain Linear Systems Using Zonotopes
 
-A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
+```bibtex
+@inproceedings{girard2005zonotopes,
+  author = {Girard, A.},
+  title = {Reachability of Uncertain Linear Systems Using Zonotopes},
+  booktitle = {Hybrid Systems: Computation and Control},
+  year = {2005}
+}
+```
+
+**In the paper's bibliography.**
 
 **Source:** https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=e76a36257cd743a04b4454c2c50670e47b3ca448 (the author's 15-page manuscript, read in full: text extracted with `pypdf`; the typeset Springer chapter, <https://doi.org/10.1007/978-3-540-31954-2_19>, was not reachable from the environment)  
 **Inventory:** confirmed (against the manuscript; the Springer typesetting is not believed to renumber anything: the manuscript already prints the page headers `292 A. Girard` ... `298 A. Girard` of the chapter, and its only numbered items are Definitions 1-2, Lemmas 1-2, Algorithm 1 and Theorem 1)

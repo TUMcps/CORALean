@@ -46,11 +46,10 @@ set and the reduction after the step. At `Zonotope.luenbergerGain` the sets are 
 
 ## References
 
-* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". In Proc. of the 8th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH21),
-      EPiC Series in Computing, vol. 80, pp. 161-175, 2021.
+* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
+      Verification of Continuous and Hybrid Systems (ARCH21), 2021.
 * [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
-      paradigms and robust convergence". Automatica, 55:265-273, 2015.
+      paradigms and robust convergence". Automatica, 2015.
 -/
 
 -- Authors:       Claude Opus 5.5

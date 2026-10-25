@@ -1,6 +1,13 @@
 # On the Hyperbox – Hyperplane Intersection Problem
 
-C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem". INFOCOMP Journal of Computer Science, 8(4):21-27, 2009.
+```bibtex
+@article{lara2009hyperbox,
+  author = {Lara, C. and Flores, J. J. and Calderon, F.},
+  title = {On the Hyperbox – Hyperplane Intersection Problem},
+  journal = {INFOCOMP Journal of Computer Science},
+  year = {2009}
+}
+```
 
 **Source:** https://repositorio.ufla.br/bitstreams/51400f6d-500c-4466-89aa-06b95bc35200/download (the journal's PDF from the Universidade Federal de Lavras repository, 7 pages, read in full; text extracted with `pypdf`, so over-bars, e.g. `v̄ᵢ` in Lemma 6.2, are read from the proofs that use them). The journal's own page, infocomp.dcc.ufla.br article 278, now answers 404.  
 **Inventory:** confirmed (the numbered items are Equations (1)-(5), Definitions 1-5, Lemmas 6.1, 6.2, 6.4, 6.5, Corollary 6.3 with three cases, Algorithms 1-3 and Figures 1-5; the claims of Sec. 1, Sec. 6.2 and Sec. 6.3 are rows of their own, named by section)

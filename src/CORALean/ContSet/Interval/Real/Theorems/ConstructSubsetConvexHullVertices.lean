@@ -27,7 +27,7 @@ two numbers is the segment between them.
 ## References
 
 * [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+      estimation for uncertain systems". Automatica, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

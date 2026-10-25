@@ -31,9 +31,8 @@ Taylor series of `e^{σtT_m}` with (2.3) and (2.5); hence `‖D_m(t)v‖ = O(t^{
 
 ## References
 
-* [1] T. Jawecki, W. Auzinger, O. Koch. "Computable upper error bounds for Krylov approximations
-  to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 60(1):157-197,
-  2020.
+* [1] T. Jawecki, W. Auzinger and O. Koch. "Computable upper error bounds for Krylov approximations
+      to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

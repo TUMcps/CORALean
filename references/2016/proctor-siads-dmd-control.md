@@ -1,6 +1,13 @@
 # Dynamic mode decomposition with control
 
-J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control". SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
+```bibtex
+@article{proctor2016dynamic,
+  author = {Proctor, J. L. and Brunton, S. L. and Kutz, J. N.},
+  title = {Dynamic Mode Decomposition with Control},
+  journal = {SIAM Journal on Applied Dynamical Systems},
+  year = {2016}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1409.6358 (arXiv v1, "DRAFT: last updated September 24, 2014", 10 pages, read in full; text extracted with `pypdf`). The SIAM version of 2016 is a revision of this draft and is not open access: its equation numbers may differ from the ones used here, which are the draft's, and nothing in the later revision was read. CORA cites the paper in `contDynamics/@linearSys/identify.m`, `@linearSysDT/identify.m`, `@nonlinearSys/identify.m`, `@nonlinearSysDT/identify.m` and the private `priv_identifyDMD.m` and `priv_identifySparse.m` of those classes (algorithm `'dmd'`, and the refit of `'sparse'`).  
 **Inventory:** confirmed (equations (1)-(45), Sections I-VI, Examples 1-3, Figures 1-4; the paper has no numbered theorems or algorithms: the algorithm of Sec. III-D is given by its six steps)

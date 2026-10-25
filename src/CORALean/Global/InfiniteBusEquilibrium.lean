@@ -27,9 +27,9 @@ CORA's `models/Cora/infiniteBus.m`, `[x₂; 15π(1 - 5 sin x₁ - 0.04 x₂)]`, 
 
 ## References
 
-* [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". In Proc. of the
-      9th International Workshop on Applied Verification of Continuous and Hybrid Systems
-      (ARCH22), EPiC Series in Computing, vol. 90, pp. 26-43, 2022.
+* [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of 9th
+      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22),
+      2022.
 -/
 
 -- Authors:       Claude Opus 5.5

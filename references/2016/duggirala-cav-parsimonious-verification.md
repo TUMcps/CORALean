@@ -1,6 +1,13 @@
 # Parsimonious, Simulation Based Verification of Linear Systems
 
-P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear Systems". CAV, 2016.
+```bibtex
+@inproceedings{duggirala2016parsimonious,
+  author = {Duggirala, P. S. and Viswanathan, M.},
+  title = {Parsimonious, Simulation Based Verification of Linear Systems},
+  booktitle = {Computer Aided Verification},
+  year = {2016}
+}
+```
 
 **Source:** https://www.cs.unc.edu/~psd/files/research/2016/duggirala-cav-2016-parsimonious-verification.pdf (the first author's copy of the paper, read in full; text extracted with `pypdf`). Numbering is that of this copy.  
 **Inventory:** confirmed (the numbered items are Definitions 1-4, Examples 1-2, Algorithms 1-3, Theorems 1-3, Remark 1 and Corollary 1)

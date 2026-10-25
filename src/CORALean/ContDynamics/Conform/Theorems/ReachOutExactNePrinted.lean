@@ -30,9 +30,9 @@ at every step, so `⨁ A^{k-i} W = ⨁ Aⁱ W` — and so is everything the pape
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems:
-      Unifying Formal Controller Synthesis and Reachset-Conformant Identification". IEEE
-      Transactions on Robotics, 39(5):3776-3790, 2023.
+* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+      Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
+      2023.
 -/
 
 -- Authors:       Claude Opus 5.5

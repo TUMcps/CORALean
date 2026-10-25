@@ -26,7 +26,7 @@ at the image of the center of `U₀`, so `D` is centered at `0` when `U₀` is, 
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, vol. 53, 2024, 101491.
+      Hybrid Systems, 2024.
 -/
 
 -- Authors:       Claude Opus 5.5

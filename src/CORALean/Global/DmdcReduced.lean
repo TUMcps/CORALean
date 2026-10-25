@@ -30,8 +30,8 @@ truncation) the dynamic modes `φ = Ā Û w`, `Ã w = λ w` [1, Eq. 32], in matr
 
 ## References
 
-* [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic mode decomposition with control".
-      SIAM Journal on Applied Dynamical Systems, 15(1):142-161, 2016 (arXiv:1409.6358).
+* [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic Mode Decomposition with Control". SIAM
+      Journal on Applied Dynamical Systems, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

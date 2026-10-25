@@ -23,11 +23,10 @@ carries either, so this is that constrained zonotope with the polytope `‚ü®C, d‚
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for
-      Neural Network Verification". ICLR, 2026.
-* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
-      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
-      2016.
+* [1] L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
+      Network Verification". International Conference on Learning Representations, 2026.
+* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

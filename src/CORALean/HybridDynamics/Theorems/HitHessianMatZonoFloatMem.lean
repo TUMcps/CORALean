@@ -40,10 +40,9 @@ matrices, so `C̃⁽ⁱ⁾` and `G̃^(i,1)` lie in the float interval matrices (
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in
-      Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM
-      International Conference on Hybrid Systems: Computation and Control (HSCC),
-      2012, pp. 45-54.
+* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+      Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
+      Systems: Computation and Control, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

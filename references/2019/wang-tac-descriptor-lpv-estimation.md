@@ -1,6 +1,13 @@
 # Zonotopic set-membership state estimation for discrete-time descriptor LPV systems
 
-Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control, 64(5):2092-2099, 2019.
+```bibtex
+@article{wang2019zonotopic,
+  author = {Wang, Y. and Wang, Z. and Puig, V. and Cembrano, G.},
+  title = {Zonotopic set-membership state estimation for discrete-time descriptor {LPV} systems},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2019}
+}
+```
 
 **Source:** https://www.iri.upc.edu/download/scidoc/2157 (the IEEE early-access version, doi:10.1109/TAC.2018.2863659, 8 pages, deposited on IRI's repository, read in full; text extracted with `pypdf`, pages 4-6 also read as rendered images for Eqs. 19-30). The final typeset pages 2092-2099 were not reachable.  
 **Inventory:** confirmed (against the manuscript: Assumptions 1-2, Definitions 1-6, Lemmas 1-2, Theorems 1-3, Corollaries 1-2, Remarks 1-6 and Algorithm 1, each with its own counter; Equations 1-36, of which the rows below are the displays outside a numbered result, the others being parts of the results they belong to; Sec. IV is the example)

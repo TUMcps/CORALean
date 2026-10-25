@@ -31,8 +31,8 @@ inner half of [1, Alg. 1]: the union of the boxes of `LInside` lies in `range(f,
 
 ## References
 
-* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
-      functions". Reliable Computing, 14:1-23, 2010.
+* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
+      Reliable Computing, 2010.
 -/
 
 -- Authors:       Claude Opus 5.5

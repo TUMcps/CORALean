@@ -1,6 +1,13 @@
 # Formal and Compositional Analysis of Power Systems using Reachable Sets
 
-M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets". IEEE Transactions on Power Systems, 29(5):2270-2280, 2014.
+```bibtex
+@article{althoff2014formal,
+  author = {Althoff, M.},
+  title = {Formal and Compositional Analysis of Power Systems using Reachable Sets},
+  journal = {IEEE Transactions on Power Systems},
+  year = {2014}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/doc/1281554/1281554.pdf (the author's manuscript in TUM's repository mediaTUM, node 1281554, on the journal template with volume, number and date left blank (`JOURNAL OF XX, VOL. X, NO. X, JANUARY XXXX`), 11 pages, read in full; text extracted with `pypdf`). The typeset article (doi:10.1109/TPWRS.2014.2306731, IEEE TPWRS 29(5):2270-2280, September 2014) was not reachable, so the numbers below are the manuscript's. CORA cites it as the reference of `@nonlinDASys/private/priv_linError_mixed_noInt_comp.m`, the compositional linearization error, and of the `nonlinDASys` power-system examples (`example_nonlinearDA_reach_04/05/06_powerSystem_*`, `powerSystem2cora`).  
 **Inventory:** unconfirmed (against the typeset article: the manuscript prints Equations 1-19, Definition VI.1 and Algorithms 1-2, each with its own counter, and Tables I-II and Figures 1-6; the final numbering was not seen, and the manuscript's Fig. 5 and Table II placement shows it is not the layout of the article)

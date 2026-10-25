@@ -1,6 +1,13 @@
 # Zonotope-based set-membership estimation for multi-output uncertain systems
 
-V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership estimation for multi-output uncertain systems". In Proc. of the IEEE International Symposium on Intelligent Control (ISIC), pp. 212-217, 2013.
+```bibtex
+@inproceedings{le2013zonotope,
+  author = {Le, V. T. H. and Stoica, C. and Alamo, T. and Camacho, E. F. and Dumur, D.},
+  title = {Zonotope-based set-membership estimation for multi-output uncertain systems},
+  booktitle = {2013 IEEE International Symposium on Intelligent Control (ISIC)},
+  year = {2013}
+}
+```
 
 **Source:** the published paper (2013 IEEE ISIC, part of the IEEE Multi-Conference on Systems and Control, Hyderabad, August 28-30, 2013, pp. 212-217, doi:10.1109/ISIC.2013.6658619, 6 pages), provided by the user and read in full; text extracted with PyMuPDF.  
 **Inventory:** confirmed (Properties 1-6, Definitions 1-2, Algorithm 1 and Proposition 1, each with its own counter, the example after `Prop. 1`, and Equations 1-18; Eqs. 2-7 are the proof of `Prop. 1`; Sec. V is the example with Table I)

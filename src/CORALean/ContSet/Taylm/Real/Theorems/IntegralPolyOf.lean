@@ -29,8 +29,8 @@ polynomial half of [1, Def. 3 (antiderivation)].
 
 ## References
 
-* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion
-      Methods". International Journal of Pure and Applied Mathematics, 4(4):379-452, 2003.
+* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
+      International Journal of Pure and Applied Mathematics, 2003.
 -/
 
 -- Authors:       Claude Opus 5.5

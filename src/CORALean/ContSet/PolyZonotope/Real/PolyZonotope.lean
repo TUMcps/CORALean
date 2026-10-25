@@ -21,9 +21,9 @@ where every use makes that instantiation.
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
-* [2] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
-      Convolutional Networks with Uncertain Node Features and Uncertain Graph
-      Structure". TMLR, 2025. arXiv:2404.15065.
+* [2] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph Convolutional Networks
+      with Uncertain Node Features and Uncertain Graph Structure". Transactions on Machine Learning
+      Research, 2025.
 -/
 
 -- Authors:       Claude Opus 5

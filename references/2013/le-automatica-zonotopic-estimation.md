@@ -1,6 +1,13 @@
 # Zonotopic guaranteed state estimation for uncertain systems
 
-V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state estimation for uncertain systems". Automatica, 49(11):3418-3424, 2013.
+```bibtex
+@article{le2013zonotopic,
+  author = {Le, V. T. H. and Stoica, C. and Alamo, T. and Camacho, E. F. and Dumur, D.},
+  title = {Zonotopic guaranteed state estimation for uncertain systems},
+  journal = {Automatica},
+  year = {2013}
+}
+```
 
 **Source:** https://centralesupelec.hal.science/hal-00876455/document (the accepted manuscript on HAL, "Preprint submitted to Automatica July 24, 2013", 7 pages after HAL's cover page, read in full; text extracted with `pypdf`). The typeset article (doi:10.1016/j.automatica.2013.08.014) was not reachable. CORA also cites the same authors' "Zonotope-based set-membership estimation for multi-output uncertain systems" (ISIC 2013) for `PRad-A`, `PRad-B` and `@zonotope/intersectStrip`; that paper has its own page, [Le et al. ISIC 2013](le-isic-multi-output-estimation.md).  
 **Inventory:** confirmed (against the manuscript: Properties 1-6, Definitions 1-2 and Algorithms 1-2, each with its own counter, and Equations 1-9; Sec. 2's notation defines the P-radius; Sec. 5 is the example)

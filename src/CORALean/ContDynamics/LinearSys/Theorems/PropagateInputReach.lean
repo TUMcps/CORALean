@@ -34,11 +34,10 @@ all there is no run, and `P_R(0)` is empty rather than `{0}`.
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 71(1):352-367,
-      2026.
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 * [2] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
-      Enclosing Hulls of Probability Density Functions". In Proc. of the European Control Conference
-      (ECC), pp. 625-630, 2009.
+      Enclosing Hulls of Probability Density Functions". 2009 European Control Conference (ECC),
+      2009.
 -/
 
 -- Authors:       Claude Opus 5

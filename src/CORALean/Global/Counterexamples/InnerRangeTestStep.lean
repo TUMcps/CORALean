@@ -27,7 +27,7 @@ holds, while `(0, 1) ∈ ∂u` is mapped into `y₁`. The corollary itself holds
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
-      Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
+      Vector-valued Functions". Reliable Computing, 2013.
 -/
 
 -- Authors:       Claude Opus 5.5

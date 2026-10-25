@@ -27,11 +27,11 @@ applies to it; [1, Thm. 2] assumes it compact, Prop. 1 does not say so.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". In Proc. of the 59th IEEE Conference on Decision and
-      Control (CDC), pp. 2130-2137, 2020.
+* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for
+      Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
 * [2] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
-      Reachable Sets". HSCC 2020. arXiv:1910.08354.
+      Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:
+      Computation and Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

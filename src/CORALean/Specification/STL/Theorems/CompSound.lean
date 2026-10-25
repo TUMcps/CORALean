@@ -28,8 +28,8 @@ C(R)` and any other set of traces; the paper's induction over `∧`, `∨` and `
 
 ## References
 
-* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
-      Hybrid Systems". ATVA, LNCS 9938, pp. 412-427, 2016.
+* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and Hybrid
+      Systems". Automated Technology for Verification and Analysis, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5

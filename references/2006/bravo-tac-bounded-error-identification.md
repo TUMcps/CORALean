@@ -1,6 +1,13 @@
 # Bounded error identification of systems with time-varying parameters
 
-J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with time-varying parameters". IEEE Transactions on Automatic Control, 51(7):1144-1150, 2006.
+```bibtex
+@article{bravo2006bounded,
+  author = {Bravo, J. M. and Alamo, T. and Camacho, E. F.},
+  title = {Bounded error identification of systems with time-varying parameters},
+  journal = {IEEE Transactions on Automatic Control},
+  year = {2006}
+}
+```
 
 **Source:** https://idus.us.es/handle/11441/94329 (the University of Sevilla repository record of the article, doi:10.1109/TAC.2006.878750). Its attached file, `CDC 04_ThC12.3_Bravo.pdf`, is not the article: it is the authors' six-page conference paper of the same title (43rd IEEE Conference on Decision and Control, Bahamas, 2004, paper ThC12.3, pages from 4063; read in full, text extracted with `pypdf`), whose abstract differs from the record's ("This note presents …"). The IEEE article was not reachable, so **the rows below are the conference version's results under its own numbering, not the journal note's**.  
 **Inventory:** unconfirmed (the conference version prints Assumptions 1-2, Definitions 1-9, Property 1 and Theorem 1, each with its own counter, and the algorithm of Sec. 3.3 without a number; the seven-page note may add results and renumber)

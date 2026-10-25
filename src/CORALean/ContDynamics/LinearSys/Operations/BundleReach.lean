@@ -34,9 +34,9 @@ first step computes, held to enclosing `R^h([0, t_1])` and `R^i([0, t_1])` by th
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
-      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
-      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+      Sets". 2011 50th IEEE Conference on Decision and Control and European Control Conference
+      (CDC-ECC 2011), 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

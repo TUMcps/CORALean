@@ -22,6 +22,6 @@ merge's cost factor at exact bounds and weights.
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for
-      Formal Verification". TMLR. arXiv:2305.01932.
+* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research, 2025.
 -/

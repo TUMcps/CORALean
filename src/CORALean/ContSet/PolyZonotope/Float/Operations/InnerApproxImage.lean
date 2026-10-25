@@ -32,9 +32,9 @@ depth first, which reorders the list; `depth` caps the recursion, which CORA bou
 ## References
 
 * [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
-      Vector-valued Functions". Reliable Computing, 18:117-143, 2013.
-* [2] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued
-      functions". Reliable Computing, 14:1-23, 2010.
+      Vector-valued Functions". Reliable Computing, 2013.
+* [2] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
+      Reliable Computing, 2010.
 -/
 
 -- Authors:       Claude Opus 5.5

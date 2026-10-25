@@ -31,8 +31,9 @@ is an identity. An edge of `[1, Def. 5]` with `E_{k₀,j} = 0` is the case they 
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and
-      Its Applications in Formal Neural Network Verification". AAAI, 2024.
+* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its Applications in
+      Formal Neural Network Verification". Proceedings of the AAAI Conference on Artificial
+      Intelligence, 2024.
 -/
 
 -- Authors:       Claude Opus 5

@@ -22,8 +22,8 @@ at a zonotope, so that the correlations between a system matrix's entries surviv
 ## References
 
 * [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
-      with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design, and
-      Simulation of Systems with Uncertainties, Springer, 2011.
+      with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
+      Uncertainties, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

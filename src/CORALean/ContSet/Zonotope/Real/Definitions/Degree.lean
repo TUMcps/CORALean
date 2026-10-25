@@ -26,7 +26,7 @@ contains `x` and the minimum of the empty set is `0` here.
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 48(5):890-906, 2012.
+* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
 -/
 
 -- Authors:       Claude Opus 5.5

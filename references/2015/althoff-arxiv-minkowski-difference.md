@@ -1,6 +1,13 @@
 # On Computing the Minkowski Difference of Zonotopes
 
-M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv, 2015.
+```bibtex
+@article{althoff2015computing,
+  author = {Althoff, M.},
+  title = {On Computing the {Minkowski} Difference of Zonotopes},
+  journal = {arXiv preprint arXiv:1512.02794},
+  year = {2015}
+}
+```
 
 **Source:** https://arxiv.org/pdf/1512.02794v3 (v3, 23 August 2022, the current version when this page was audited in September 2026; v1 is from 2015, v2 from 2016; read as the PDF; its numbering agrees
 exactly with the ar5iv rendering at https://ar5iv.labs.arxiv.org/html/1512.02794

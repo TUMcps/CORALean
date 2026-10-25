@@ -34,7 +34,7 @@ times, the output is `true` more often. This is the monotonicity of `U_I` of
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
-      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
+      Verification of Hybrid Systems". Computer Aided Verification, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

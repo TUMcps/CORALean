@@ -42,10 +42,9 @@ not add up to `ε̃δ`.
 ## References
 
 * [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
-      Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+      Subspace". IEEE Transactions on Automatic Control, 2020.
 * [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". In Proc. of the 46th IEEE Conference on Decision and Control (CDC),
-      2007, pp. 726-732.
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
 -/
 
 -- Authors:       Claude Opus 5.5

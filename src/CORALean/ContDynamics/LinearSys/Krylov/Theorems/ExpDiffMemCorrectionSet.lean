@@ -36,8 +36,8 @@ remainders each bounded on their own (which would give `2W(δ)`).
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
-  Krylov Subspace". IEEE Transactions on Automatic Control, 65(2):477-492, 2020.
+* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
+      Subspace". IEEE Transactions on Automatic Control, 2020.
 -/
 
 -- Authors:       Claude Opus 5.5

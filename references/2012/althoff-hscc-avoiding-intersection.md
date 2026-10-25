@@ -1,6 +1,13 @@
 # Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems
 
-M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems". In Proc. of the 15th ACM International Conference on Hybrid Systems: Computation and Control (HSCC), 2012, pp. 45-54.
+```bibtex
+@inproceedings{althoff2012avoiding,
+  author = {Althoff, M. and Krogh, B. H.},
+  title = {Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems},
+  booktitle = {Proceedings of the 15th ACM international conference on Hybrid Systems: Computation and Control},
+  year = {2012}
+}
+```
 
 **Source:** https://mediatum.ub.tum.de/download/1285848/1285848.pdf (the paper as published at HSCC'12, Beijing, April 17-19, 2012, ACM 978-1-4503-1220-2/12/04, 10 pages, read in full; text extracted with `pypdf`. CORA's headers give the year as 2011 or 2012; the paper's own copyright line says HSCC'12, and the TUM research portal gives pp. 45-54, doi:10.1145/2185632.2185643.)  
 **Inventory:** confirmed (Definitions 1-3, Lemma 1, Theorem 1 and Propositions 1-3, each with its own counter; equations (1)-(19))
