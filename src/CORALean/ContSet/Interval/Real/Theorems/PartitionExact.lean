@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One coordinate: a point of `[a, b]` lies in one of the `s` equal pieces. -/
-theorem Interval.aux_partition_exists (a b x : ℝ) (s : ℕ) (hs : 0 < s) (h1 : a ≤ x)
+private theorem Interval.aux_partition_exists (a b x : ℝ) (s : ℕ) (hs : 0 < s) (h1 : a ≤ x)
     (h2 : x ≤ b) : -- --- CONCL ---
     ∃ k : Fin s, a + (k : ℝ) * ((b - a) / s) ≤ x ∧
       x ≤ a + ((k : ℝ) + 1) * ((b - a) / s) := by -- --- PROOF ---

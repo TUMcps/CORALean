@@ -51,14 +51,14 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the form of a `4 × 4` block matrix, entry by entry
-theorem LinearSysDT.aux_form4 (M : Matrix ((Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1)
+private theorem LinearSysDT.aux_form4 (M : Matrix ((Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1)
     ((Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1) ℝ) (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → ℝ) :
     star x ⬝ᵥ (M *ᵥ x) = ∑ a, ∑ b, x a * M a b * x b := by
   simp only [star_trivial, dotProduct, mulVec, Finset.mul_sum]
   exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
 
 -- the `4 × 4` block matrices `Ψᵢⱼ` of the counterexample are symmetric, structurally
-theorem LinearSysDT.aux_isHermitian_psi
+private theorem LinearSysDT.aux_isHermitian_psi
     (Dg : Matrix (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ)
     (hDg : Dg.IsHermitian) (P : Matrix (Fin 1) (Fin 1) ℝ) (hP : P.IsHermitian)
     (R : Matrix (Fin 1) (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ℝ) :
@@ -67,7 +67,7 @@ theorem LinearSysDT.aux_isHermitian_psi
     (by rw [conjTranspose_eq_transpose_of_trivial, transpose_transpose]) hP
 
 -- a nonzero vector has a nonzero coordinate
-theorem LinearSysDT.aux_coord4 (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → ℝ) (hx : x ≠ 0) :
+private theorem LinearSysDT.aux_coord4 (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → ℝ) (hx : x ≠ 0) :
     x (Sum.inl (Sum.inl 0)) ≠ 0 ∨ x (Sum.inl (Sum.inr (Sum.inl 0))) ≠ 0 ∨
       x (Sum.inl (Sum.inr (Sum.inr 0))) ≠ 0 ∨ x (Sum.inr 0) ≠ 0 := by
   by_contra hc

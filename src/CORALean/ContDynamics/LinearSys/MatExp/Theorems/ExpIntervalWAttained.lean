@@ -55,14 +55,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A corner of an interval is in it. -/
-theorem aux_corner_mem {lo hi v : ℝ} (h : v = lo ∨ v = hi) (hle : lo ≤ hi) :
+private theorem aux_corner_mem {lo hi v : ℝ} (h : v = lo ∨ v = hi) (hle : lo ≤ hi) :
     lo ≤ v ∧ v ≤ hi := by
   rcases h with rfl | rfl
   · exact ⟨le_rfl, hle⟩
   · exact ⟨hle, le_rfl⟩
 
 /-- `mulLo` is one of the four corner products, and says which corners. -/
-theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
+private theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧ y * x = Interval.mulLo a b c d := by -- --- PROOF ---
   rcases min_cases (min (a * c) (a * d)) (min (b * c) (b * d)) with ⟨h1, -⟩ | ⟨h1, -⟩
   · rcases min_cases (a * c) (a * d) with ⟨h2, -⟩ | ⟨h2, -⟩
@@ -73,7 +73,7 @@ theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
     · exact ⟨b, d, Or.inr rfl, Or.inr rfl, by rw [Interval.mulLo, h1, h2]⟩
 
 /-- The same for `mulHi`. -/
-theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
+private theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧ y * x = Interval.mulHi a b c d := by -- --- PROOF ---
   rcases max_cases (max (a * c) (a * d)) (max (b * c) (b * d)) with ⟨h1, -⟩ | ⟨h1, -⟩
   · rcases max_cases (a * c) (a * d) with ⟨h2, -⟩ | ⟨h2, -⟩
@@ -85,7 +85,7 @@ theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
 
 /-- Either endpoint of the factor `[L, H]` is realised by sending *both* diagonal
 entries to the matching endpoint — the one place two variables move together. -/
-theorem aux_diag_choice (A : Interval (Mat ℝ n n)) (t : ℝ) (i j : Fin n) {x : ℝ}
+private theorem aux_diag_choice (A : Interval (Mat ℝ n n)) (t : ℝ) (i j : Fin n) {x : ℝ}
     (hx : x = t + t ^ 2 / 2 * (A.inf i i + A.inf j j)
       ∨ x = t + t ^ 2 / 2 * (A.sup i i + A.sup j j))
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
@@ -97,7 +97,7 @@ theorem aux_diag_choice (A : Interval (Mat ℝ n n)) (t : ℝ) (i j : Fin n) {x 
 
 /-- Off the diagonal, any independent choice inside the five families of entries
 entry `(i, j)` depends on is realised by one member of the box. -/
-theorem aux_expW_offDiag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) {i j : Fin n}
+private theorem aux_expW_offDiag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) {i j : Fin n}
     (hij : ¬ i = j) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     {y : ℝ} (hy : A.inf i j ≤ y ∧ y ≤ A.sup i j)
     (u : Fin n → ℝ) (hu : ∀ p, A.inf p p ≤ u p ∧ u p ≤ A.sup p p)
@@ -135,7 +135,7 @@ theorem aux_expW_offDiag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) {i j : Fi
       show M k j = e k by simp [hMdef, hk.2.1, hk.2.2]]
 
 /-- On the diagonal the same, with `A i i` left to the parabola. -/
-theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i : Fin n)
+private theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i : Fin n)
     (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     {a : ℝ} (ha : A.inf i i ≤ a ∧ a ≤ A.sup i i)
     (d : Fin n → ℝ) (hd : ∀ q, A.inf i q ≤ d q ∧ d q ≤ A.sup i q)

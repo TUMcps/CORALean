@@ -56,7 +56,8 @@ variable {n k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Σᵢ Σⱼ` of a pair function, its diagonal and its `i < j` pairs. -/
-theorem aux_lowOrder_diag_add {V : Type} [AddCommGroup V] (f : Fin k → Fin k → V) : -- --- CONCL ---
+private theorem aux_lowOrder_diag_add {V : Type} [AddCommGroup V]
+    (f : Fin k → Fin k → V) : -- --- CONCL ---
     ∑ i, ∑ j, f i j = ∑ i, f i i
       + ∑ ij : Fin k × Fin k,
           (if ij.1 < ij.2 then f ij.1 ij.2 + f ij.2 ij.1 else 0) := by -- --- PROOF ---
@@ -87,7 +88,7 @@ theorem aux_lowOrder_diag_add {V : Type} [AddCommGroup V] (f : Fin k → Fin k �
 
 /-- The flow's orders up to `A²`, at `A = A_c + G` and `u = U_c + w`, split by degree in
 `(G, w)`. -/
-theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
+private theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
     c + r • ((Ac + G) *ᵥ c) + (r ^ 2 / 2) • ((Ac + G) *ᵥ ((Ac + G) *ᵥ c))
       + (r • (Uc + w) + (r ^ 2 / 2) • ((Ac + G) *ᵥ (Uc + w))
         + (r ^ 3 / 6) • ((Ac + G) *ᵥ ((Ac + G) *ᵥ (Uc + w))))
@@ -103,7 +104,7 @@ theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) :
   module
 
 /-- The first-degree part, generator by generator. -/
-theorem aux_lowOrder_first (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc : Vec ℝ n)
+private theorem aux_lowOrder_first (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc : Vec ℝ n)
     (UG : Fin k → Vec ℝ n) (r : ℝ) (p : Fin k → ℝ) {G : Mat ℝ n n} {w : Vec ℝ n}
     (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- CONCL ---
     r • (G *ᵥ c) + (r ^ 2 / 2) • (Ac *ᵥ (G *ᵥ c) + G *ᵥ (Ac *ᵥ c))
@@ -119,7 +120,7 @@ theorem aux_lowOrder_first (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc
   module
 
 /-- The second-degree part, over all ordered pairs. -/
-theorem aux_lowOrder_second (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc : Vec ℝ n)
+private theorem aux_lowOrder_second (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c Uc : Vec ℝ n)
     (UG : Fin k → Vec ℝ n) (r : ℝ) (p : Fin k → ℝ) {G : Mat ℝ n n} {w : Vec ℝ n}
     (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- CONCL ---
     (r ^ 2 / 2) • (G *ᵥ (G *ᵥ c)) + (r ^ 3 / 6) • (G *ᵥ (G *ᵥ Uc))
@@ -133,7 +134,7 @@ theorem aux_lowOrder_second (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c U
   module
 
 /-- The third-degree part, over all ordered triples. -/
-theorem aux_lowOrder_third (Ag : Fin k → Mat ℝ n n) (UG : Fin k → Vec ℝ n) (r : ℝ)
+private theorem aux_lowOrder_third (Ag : Fin k → Mat ℝ n n) (UG : Fin k → Vec ℝ n) (r : ℝ)
     (p : Fin k → ℝ) {G : Mat ℝ n n} {w : Vec ℝ n}
     (hG : ∀ v, G *ᵥ v = ∑ i, p i • (Ag i *ᵥ v)) (hw : w = ∑ i, p i • UG i) : -- --- CONCL ---
     (r ^ 3 / 6) • (G *ᵥ (G *ᵥ w))
@@ -150,7 +151,7 @@ theorem aux_lowOrder_third (Ag : Fin k → Mat ℝ n n) (UG : Fin k → Vec ℝ 
 
 
 /-- `pᵢ² f = f/2 + (2pᵢ² - 1) f/2`, the square's range `[0, 1]` as a center and a generator. -/
-theorem aux_lowOrder_sq_split {V : Type} [AddCommGroup V] [Module ℝ V] (p : Fin k → ℝ)
+private theorem aux_lowOrder_sq_split {V : Type} [AddCommGroup V] [Module ℝ V] (p : Fin k → ℝ)
     (f : Fin k → V) :
     ∑ i, (p i * p i) • f i
       = ∑ i, (1 / 2 : ℝ) • f i + ∑ i, (2 * p i ^ 2 - 1) • (1 / 2 : ℝ) • f i := by
@@ -160,7 +161,7 @@ theorem aux_lowOrder_sq_split {V : Type} [AddCommGroup V] [Module ℝ V] (p : Fi
   congr 1; ring
 
 /-- Four groups of a sum, the second's halves moved. -/
-theorem aux_lowOrder_regroup {V : Type} [AddCommGroup V] (a b c d e f : V) :
+private theorem aux_lowOrder_regroup {V : Type} [AddCommGroup V] (a b c d e f : V) :
     a + b + ((c + d) + e) + f = (a + c) + (((b + d) + e) + f) := by abel
 
 

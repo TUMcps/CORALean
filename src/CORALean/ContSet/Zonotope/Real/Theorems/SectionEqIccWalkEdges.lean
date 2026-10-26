@@ -57,7 +57,8 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A zonotope is centrally symmetric. -/
-theorem Zonotope.aux_central_symm_mem_construct (Z : Zonotope α) {x : α} (hx : x ∈ Z.construct) :
+private theorem Zonotope.aux_central_symm_mem_construct (Z : Zonotope α) {x : α}
+    (hx : x ∈ Z.construct) :
     (2 : ℝ) • Z.c - x ∈ Z.construct := by
   obtain ⟨β, hβ, rfl⟩ := hx
   refine ⟨fun j => -β j, fun j => by simpa using hβ j, ?_⟩
@@ -68,7 +69,7 @@ end
 
 
 /-- The lowest point of a nonempty section is on a walk edge. -/
-theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
+private theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
     (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---

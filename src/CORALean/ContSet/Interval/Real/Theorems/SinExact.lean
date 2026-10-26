@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One coordinate: the sine image of `[lb, ub]` is the cosine image of the shifted range. -/
-theorem aux_image_sin_Icc (lb ub : ℝ) : -- --- CONCL ---
+private theorem aux_image_sin_Icc (lb ub : ℝ) : -- --- CONCL ---
     Real.sin '' Set.Icc lb ub =
       Real.cos '' Set.Icc (lb - Real.pi / 2) (ub - Real.pi / 2) := by -- --- PROOF ---
   ext v

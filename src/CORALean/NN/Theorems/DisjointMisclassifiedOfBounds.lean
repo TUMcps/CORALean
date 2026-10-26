@@ -45,7 +45,8 @@ variable {m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_marginDir_apply (j l : Fin m) (y : Vec ℝ m) : marginDir m j l y = y j - y l := by
+private theorem aux_marginDir_apply (j l : Fin m) (y : Vec ℝ m) : marginDir m j l y = y j - y l :=
+    by
   rw [marginDir, LinearMap.sub_apply]
   rfl
 

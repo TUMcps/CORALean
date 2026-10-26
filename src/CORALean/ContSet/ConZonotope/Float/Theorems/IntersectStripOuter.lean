@@ -58,8 +58,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n s : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image of `c + G ξ + e`, regrouped so the center and each generator appear once. -/
-theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
-    (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
+private theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋 n)
+    (G : Fin h → Vec 𝕋 n) (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
     (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin s) : -- --- CONCL ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (G j k)) * β j
@@ -81,7 +81,7 @@ theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋
           (Finset.sum_mul _ _ _).symm)) rfl
 
 /-- A product rounded down is off by at most the rounded gap to the one rounded up. -/
-theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) : -- --- CONCL ---
+private theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) : -- --- CONCL ---
     |toReal a * toReal r - toReal (mulDown a r)|
       ≤ toReal (subUp (mulUp a r) (mulDown a r)) := by -- --- PROOF ---
   have h1 := mulDown_le_mul a r

@@ -47,7 +47,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The points of `{0, l, u}` in `[l, u]` dominate `ReLU(x) - m x` from below. -/
-theorem aux_relu_dominated_below (m l u x : ℝ) (hxl : l ≤ x) (hxu : x ≤ u) : -- --- CONCL ---
+private theorem aux_relu_dominated_below (m l u x : ℝ) (hxl : l ≤ x)
+    (hxu : x ≤ u) : -- --- CONCL ---
     ∃ q ∈ ({0, l, u} : Set ℝ) ∩ Set.Icc l u, relu q - m * q ≤ relu x - m * x := by -- --- PROOF ---
   have hlu : l ≤ u := hxl.trans hxu
   simp only [relu]
@@ -70,7 +71,8 @@ theorem aux_relu_dominated_below (m l u x : ℝ) (hxl : l ≤ x) (hxu : x ≤ u)
       rw [max_eq_right (hxl.trans hx)]; nlinarith
 
 /-- The points of `{0, l, u}` in `[l, u]` dominate `ReLU(x) - m x` from above. -/
-theorem aux_relu_dominated_above (m l u x : ℝ) (hxl : l ≤ x) (hxu : x ≤ u) : -- --- CONCL ---
+private theorem aux_relu_dominated_above (m l u x : ℝ) (hxl : l ≤ x)
+    (hxu : x ≤ u) : -- --- CONCL ---
     ∃ q ∈ ({0, l, u} : Set ℝ) ∩ Set.Icc l u, relu x - m * x ≤ relu q - m * q := by -- --- PROOF ---
   have hlu : l ≤ u := hxl.trans hxu
   simp only [relu]

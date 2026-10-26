@@ -59,7 +59,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every candidate's differences have run `dependent`, so no independent block. -/
-theorem aux_abstrErrPolyCandidates_q (A : Mat ℝ n n) (xs : Vec ℝ n) (us : Vec ℝ m)
+private theorem aux_abstrErrPolyCandidates_q (A : Mat ℝ n n) (xs : Vec ℝ n) (us : Vec ℝ m)
     (H : Fin n → Mat ℝ (n + m) (n + m)) (E : Fin n → Fin (n + m) → Mat ℝ (n + m) (n + m))
     (Δt : ℝ) (η errorOrder intermediateOrder : ℕ) (U : PolyZonotope (Vec ℝ m))
     (Rinit Rdiff VerrorStat : PolyZonotope (Vec ℝ n)) (abstrerr : Vec ℝ n)

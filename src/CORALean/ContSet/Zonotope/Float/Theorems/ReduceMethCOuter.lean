@@ -52,7 +52,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 /-- `aux_methCResidual` bounds `|1 - H P|`. -/
-theorem Zonotope.aux_methCResidual_bound (H P : Mat 𝕋 n n) (i j : Fin n) : -- --- CONCL ---
+private theorem Zonotope.aux_methCResidual_bound (H P : Mat 𝕋 n n) (i j : Fin n) : -- --- CONCL ---
     |(1 - toRealMat H * toRealMat P) i j|
       ≤ toReal (Zonotope.aux_methCResidual H P i j) := by -- --- PROOF ---
   -- the entry of the product, between its two directed dot products
@@ -76,7 +76,7 @@ theorem Zonotope.aux_methCResidual_bound (H P : Mat 𝕋 n n) (i j : Fin n) : --
 
 
 /-- `aux_methCQ` bounds every absolute row sum of `1 - H P`. -/
-theorem Zonotope.aux_methCQ_bound (H P : Mat 𝕋 n n) (i : Fin n) :
+private theorem Zonotope.aux_methCQ_bound (H P : Mat 𝕋 n n) (i : Fin n) :
     ∑ j, |(1 - toRealMat H * toRealMat P) i j|
       ≤ toReal (Zonotope.aux_methCQ H P) := by
   refine le_trans (Finset.sum_le_sum fun j _ => Zonotope.aux_methCResidual_bound H P i j) ?_
@@ -90,7 +90,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 /-- `aux_methCReach` bounds `H G β`. -/
-theorem Zonotope.aux_methCReach_bound (H : Mat 𝕋 n n) (G : Mat 𝕋 n h) {β : Vec ℝ h}
+private theorem Zonotope.aux_methCReach_bound (H : Mat 𝕋 n n) (G : Mat 𝕋 n h) {β : Vec ℝ h}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |(toRealMat H *ᵥ fun l => ∑ j, toReal (G l j) * β j) i|
       ≤ toReal (Zonotope.aux_methCReach H G) := by -- --- PROOF ---

@@ -52,7 +52,7 @@ namespace CORALean.Real
 
 /-- A signed row holds exactly when the sign times the unsigned normal's pairing at `x − (c⁽ᵐ⁾ −
 c⁽ˢ⁾)` is within `Δd − Δd_trans`. -/
-theorem aux_row_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2))) (b : Bool)
+private theorem aux_row_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2))) (b : Bool)
     (T : Finset (Fin Zm.h)) (hT : T.card = n + 1) (x : Vec ℝ (n + 2)) : -- --- CONCL ---
     dotProductEquiv ℝ _ (Zm.minkDiffRowNormal (b, T)) x ≤ Zm.minkDiffRowOffset Zs (b, T)
       ↔ (if b then (1 : ℝ) else -1) *

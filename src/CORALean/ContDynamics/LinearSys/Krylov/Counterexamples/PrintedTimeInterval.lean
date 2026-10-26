@@ -56,7 +56,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exponential of a matrix with `A³ = 0` is its Taylor polynomial of degree two. -/
-theorem Krylov.aux_exp_smul_of_pow_three {n : ℕ} (A : Mat ℝ n n) (hA : A ^ 3 = 0)
+private theorem Krylov.aux_exp_smul_of_pow_three {n : ℕ} (A : Mat ℝ n n) (hA : A ^ 3 = 0)
     (s : ℝ) : -- --- CONCL ---
     exp (s • A) = 1 + s • A + (s ^ 2 / 2) • A ^ 2 := by -- --- PROOF ---
   rw [Real.exp_smul_tsum, tsum_eq_sum (s := Finset.range 3)]
@@ -70,7 +70,7 @@ theorem Krylov.aux_exp_smul_of_pow_three {n : ℕ} (A : Mat ℝ n n) (hA : A ^ 3
     rw [hAi, smul_zero]
 
 /-- The Hessenberg entries of the `3 × 3` shift's Arnoldi run at `e₁`, for all indices at once. -/
-theorem Krylov.aux_arnoldi_shift_hessenberg (i j : ℕ) :
+private theorem Krylov.aux_arnoldi_shift_hessenberg (i j : ℕ) :
     (Krylov.arnoldi (!![0, 0, 0; 1, 0, 0; 0, 1, 0] : Mat ℝ 3 3) ![1, 0, 0] 3).2 i j
       = if (j = 0 ∧ i = 1) ∨ (j = 1 ∧ i = 2) then 1 else 0 := by
   simp [Krylov.arnoldi, Krylov.gramSchmidtStep, norm₂, Fin.sum_univ_three, dotProduct, vecHead,

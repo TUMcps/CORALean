@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 /-- What the projection leaves of a generator, before dividing by its length:
 the symmetrised double sum, whose diagonal drops out. -/
-theorem aux_sq_bound (g nu : Vec ℝ n) (hnu : ∀ i, |nu i| ≤ 1) : -- --- CONCL ---
+private theorem aux_sq_bound (g nu : Vec ℝ n) (hnu : ∀ i, |nu i| ≤ 1) : -- --- CONCL ---
     (∑ i, g i ^ 2) * (∑ i, nu i ^ 2 * g i ^ 2) - (∑ i, nu i * g i ^ 2) ^ 2
       ≤ 2 * ((∑ i, g i ^ 2) ^ 2 - ∑ i, g i ^ 4) := by -- --- PROOF ---
   -- the double sum of squared coefficient differences is twice the left side
@@ -100,7 +100,7 @@ theorem aux_sq_bound (g nu : Vec ℝ n) (hnu : ∀ i, |nu i| ≤ 1) : -- --- CON
 
 /-- One generator taken at the coefficient that projects the displacement onto
 it: what the projection cuts off is the paper's per-generator term. -/
-theorem aux_exists_coeff_cut (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) : -- --- CONCL ---
+private theorem aux_exists_coeff_cut (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) : -- --- CONCL ---
     ∃ a : ℝ, |a| ≤ 1 ∧ ‖(fun i => lam i * |g i| - a * g i : Vec ℝ n)‖₂
       ≤ Real.sqrt 2 * (‖g‖₂ * Real.sqrt (1 - (∑ i, g i ^ 4) / ‖g‖₂ ^ 4)) := by -- --- PROOF ---
   have hrnn : 0 ≤ Real.sqrt 2 * (‖g‖₂ * Real.sqrt (1 - (∑ i, g i ^ 4) / ‖g‖₂ ^ 4)) :=

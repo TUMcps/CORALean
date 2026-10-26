@@ -97,18 +97,19 @@ def runDtdemo {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat �
 /-- The config's `X0` and horizon as CORA's `params`: `tFinal = steps · dt`, exactly the
 config's own reading of `steps` (`headline_*.json`'s `steps_comment`), so the run derives
 `steps` back from it, `dt` being exact in `𝕋`. -/
-def aux_params {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (X0 : Zonotope (Vec 𝕋 2))
+private def aux_params {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
+    (X0 : Zonotope (Vec 𝕋 2))
     (dt : 𝕋) (cfg : HeadlineConfig) : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ :=
   { X₀ := X0, tFinal := cfg.steps * ToRat.toRat dt }
 
 /-- The config's `dt`, `eta` and `rho` as CORA's `options`, under CORA's own names. -/
-def aux_options {𝕋 : Type} (dt : 𝕋) (cfg : HeadlineConfig) : LinearSys.ReachOptions 𝕋 :=
+private def aux_options {𝕋 : Type} (dt : 𝕋) (cfg : HeadlineConfig) : LinearSys.ReachOptions 𝕋 :=
   { Δt := dt, η := cfg.eta, ρ := cfg.rho }
 
 /-- Scheme (a), wrapping-free: `reachWrappingFreeFloat`'s time-interval windows beside
 `reachTimePointWrappingFreeFloat`'s time-point sets at the same `X₀`, `dt`, `eta`, `rho`,
 `N` -- `headline-a`'s whole algorithm call, both `some` or the pair is `none`. -/
-def aux_algoHeadlineA {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
+private def aux_algoHeadlineA {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope (Vec 𝕋 2)) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope (Vec 𝕋 2)) × List (Zonotope (Vec 𝕋 2))) :=
   fun _ => match sys.reachWrappingFreeFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg),
@@ -118,14 +119,14 @@ def aux_algoHeadlineA {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
 
 /-- Scheme (b), recursive: `reachFloat`'s own `(Rti, Rtp)` pair
 directly -- `headline-b`'s whole algorithm call. -/
-def aux_algoHeadlineB {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
+private def aux_algoHeadlineB {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope (Vec 𝕋 2)) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope (Vec 𝕋 2)) × List (Zonotope (Vec 𝕋 2))) :=
   fun _ => sys.reachFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg)
 
 /-- Scheme (b) again, keeping only the time-point half -- `exp2-timepoint`'s
 whole algorithm call, for the precision ablation at every `--format`. -/
-def aux_algoExp2 {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
+private def aux_algoExp2 {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (sys : LinearSys 𝕋 2) (X0 : Zonotope (Vec 𝕋 2)) (dt : 𝕋) (cfg : HeadlineConfig) :
     Unit → Option (List (Zonotope (Vec 𝕋 2)) × List (Zonotope (Vec 𝕋 2))) :=
   fun _ => (sys.reachFloatChecked (aux_params X0 dt cfg) (aux_options dt cfg)).map
@@ -134,7 +135,7 @@ def aux_algoExp2 {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRa
 /-- Loads the config, builds the continuous-time system, checks `eta` is
 admissible, times `mkAlgo`'s closure over `reps` repetitions, and writes the
 result -- `writeRunTiTp` on success, else `writeRunNone` and a nonzero exit. -/
-def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (args : CliArgs)
+private def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (args : CliArgs)
     (inst : String → ExactDyadic → Except String 𝕋) (toD : 𝕋 → Float) (format : String)
     (toExact : Option (𝕋 → String)) (sig : ℕ) (experiment scheme : String)
     (mkAlgo : LinearSys 𝕋 2 → Zonotope (Vec 𝕋 2) → 𝕋 → HeadlineConfig →

@@ -66,8 +66,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One step decreases `P₂` by at least `‖x⁺ - x‖² / (2α)`. -/
-theorem Taylm.aux_qfbSearchStep_descent {H : Mat ℝ n n} (hH : H.IsSymm) (c : ℝ) (g : Vec ℝ n)
-    {α L : ℝ} (hα : 0 < α) (hL : ∀ v : Vec ℝ n, v ⬝ᵥ (H *ᵥ v) ≤ L * (v ⬝ᵥ v))
+private theorem Taylm.aux_qfbSearchStep_descent {H : Mat ℝ n n} (hH : H.IsSymm) (c : ℝ)
+    (g : Vec ℝ n) {α L : ℝ} (hα : 0 < α) (hL : ∀ v : Vec ℝ n, v ⬝ᵥ (H *ᵥ v) ≤ L * (v ⬝ᵥ v))
     (hαL : α * L ≤ 1) {x : Vec ℝ n} (hx : x ∈ Taylm.box n) : -- --- CONCL ---
     2 * α * (c + g ⬝ᵥ Taylm.qfbSearchStep H g α x
         + Taylm.qfbSearchStep H g α x ⬝ᵥ (H *ᵥ Taylm.qfbSearchStep H g α x) / 2)

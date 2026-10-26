@@ -68,12 +68,13 @@ variable {n : ℕ}
 
 /-- A zonotope's center is one of its points, which is all the nonemptiness a Hausdorff
 distance asks of it. -/
-theorem aux_center_mem_construct {α : Type} [AddCommGroup α] [Module ℝ α] (Z : Zonotope α) :
+private theorem aux_center_mem_construct {α : Type} [AddCommGroup α] [Module ℝ α] (Z : Zonotope α) :
     Z.c ∈ Z.construct :=
   ⟨0, fun _ => by simp, by simp⟩
 
 /-- And the segments between two zonotopes are nonempty for the same reason. -/
-theorem aux_setLinComb_nonempty {α : Type} [AddCommGroup α] [Module ℝ α] (Z₁ Z₂ : Zonotope α) :
+private theorem aux_setLinComb_nonempty {α : Type} [AddCommGroup α] [Module ℝ α]
+    (Z₁ Z₂ : Zonotope α) :
     (Set.linComb Z₁.construct Z₂.construct).Nonempty :=
   ⟨Z₁.c, Z₁.c, aux_center_mem_construct Z₁, Z₂.c, aux_center_mem_construct Z₂, 1,
     ⟨zero_le_one, le_refl 1⟩, by simp⟩

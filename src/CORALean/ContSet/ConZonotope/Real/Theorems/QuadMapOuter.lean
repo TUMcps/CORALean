@@ -47,7 +47,7 @@ variable {n m : ℕ} {V : Type} [AddCommGroup V] [Module ℝ V]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `b(c + Σ pⱼgⱼ, c + Σ pⱼgⱼ)` expanded: constant, linear, and every ordered pair. -/
-theorem ConZonotope.aux_quadMap_sq {h : ℕ} (b : LinearMap.BilinForm ℝ V) (c : V)
+private theorem ConZonotope.aux_quadMap_sq {h : ℕ} (b : LinearMap.BilinForm ℝ V) (c : V)
     (g : Fin h → V) (p : Fin h → ℝ) : -- --- CONCL ---
     b (c + ∑ j, p j • g j) (c + ∑ j, p j • g j)
       = b c c + ∑ j, p j * (b c (g j) + b (g j) c)
@@ -70,8 +70,8 @@ theorem ConZonotope.aux_quadMap_sq {h : ℕ} (b : LinearMap.BilinForm ℝ V) (c 
   ring
 
 /-- The ordered pairs split into the diagonal and one term per unordered pair `j < k`. -/
-theorem ConZonotope.aux_quadMap_diagpair {h : ℕ} (b : LinearMap.BilinForm ℝ V) (g : Fin h → V)
-    (p : Fin h → ℝ) : -- --- CONCL ---
+private theorem ConZonotope.aux_quadMap_diagpair {h : ℕ} (b : LinearMap.BilinForm ℝ V)
+    (g : Fin h → V) (p : Fin h → ℝ) : -- --- CONCL ---
     ∑ j, ∑ k, (p j * p k) * b (g j) (g k)
       = ∑ j, (p j * p j) * b (g j) (g j)
         + ∑ j, ∑ k, (if j < k then
@@ -105,7 +105,7 @@ theorem ConZonotope.aux_quadMap_diagpair {h : ℕ} (b : LinearMap.BilinForm ℝ 
   ring
 
 /-- The pair block, read over `Fin (h * h)` through `finProdFinEquiv`. -/
-theorem ConZonotope.aux_quadMap_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ) :
+private theorem ConZonotope.aux_quadMap_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ) :
     ∑ l : Fin (h * h), f (finProdFinEquiv.symm l).1 (finProdFinEquiv.symm l).2
       = ∑ j, ∑ k, f j k := by
   rw [Fintype.sum_equiv finProdFinEquiv.symm _ (fun jk : Fin h × Fin h => f jk.1 jk.2)

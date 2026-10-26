@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- file-local: only `sum_monomial_merge` below needs it
-theorem PolyZonotope.aux_monomial_congr {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
+private theorem PolyZonotope.aux_monomial_congr {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     {i j : Fin h} (hij : PolyZonotope.col E i = PolyZonotope.col E j) :
     PolyZonotope.monomial E a i = PolyZonotope.monomial E a j := by
   rw [PolyZonotope.monomial, PolyZonotope.monomial]

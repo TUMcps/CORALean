@@ -41,7 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An appended pair of blocks, read as reals and at one coordinate. -/
-theorem PolyZonotope.aux_toReal_append {m : ℕ} {r : ℕ} (u v : Fin m → 𝕋) (U V : Fin m → Vec ℝ r)
+private theorem PolyZonotope.aux_toReal_append {m : ℕ} {r : ℕ} (u v : Fin m → 𝕋)
+    (U V : Fin m → Vec ℝ r)
     (i : Fin r) (hu : ∀ j, toReal (u j) = U j i) (hv : ∀ j, toReal (v j) = V j i)
     (l : Fin (m + m)) : toReal (Fin.append u v l) = (Fin.append U V l) i := by
   refine Fin.addCases (fun j => ?_) (fun j => ?_) l

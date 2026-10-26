@@ -69,7 +69,7 @@ variable {n : ℕ}
 
 /-- [1, Alg. 2] lines 19-22: the order the sweep settles on costs a `Δε^r_k(ρ_k)` inside
 eq. (35)'s admissible share, that being the check line 22 stops on. -/
-theorem Zonotope.aux_autoTuneSetOrder_le {le : ℝ → ℝ → Bool}
+private theorem Zonotope.aux_autoTuneSetOrder_le {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
     (Z : Zonotope (Vec ℝ n)) {εrτ : ℝ} : -- --- CONCL ---
     ∀ (k ρ ρ' : ℕ), Zonotope.autoTuneSetOrder le Z εrτ ρ k = some ρ' →
@@ -94,7 +94,7 @@ end Real
 
 /-- Lines 9-15: the order the sweep reports is one line 15 checked, so `Δε^a_k` is inside
 the share `ε^{a,τ}_k` it was measured against. -/
-theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk : ℝ)
     (U₀ : Zonotope (Vec ℝ n)) {Δt εaτ εnτ : ℝ} : -- --- CONCL ---
     ∀ (m η η' : ℕ), sys.autoTuneOrder le H ũ tk U₀ Δt εaτ εnτ η m = some η' →
@@ -116,7 +116,7 @@ theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool
 
 /-- Lines 6-15: whatever the halving sweep reports is a positive step whose `Δε^a_k` is
 inside line 14's share at that very step. -/
-theorem aux_autoTuneSearch_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_autoTuneSearch_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n)
     {tk tend εmax ζ εaAcc : ℝ} (ηmax : ℕ) (U₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∀ (m : ℕ) (Δt Δtk : ℝ) (ηk : ℕ), 0 < Δt →
@@ -138,7 +138,7 @@ theorem aux_autoTuneSearch_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Boo
     · exact ih _ _ _ (by linarith) h
 
 /-- Lines 5-15: the same of `autoTuneDeltaT`, whose own line 5 doubles a positive step. -/
-theorem aux_autoTuneDeltaT_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_autoTuneDeltaT_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n)
     {tk tend εmax ζ εaAcc Δtprev : ℝ} (ηmax fuel : ℕ) (U₀ : Zonotope (Vec ℝ n))
     (hΔtprev : 0 < Δtprev) {Δtk : ℝ} {ηk : ℕ}
@@ -150,7 +150,7 @@ theorem aux_autoTuneDeltaT_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Boo
 
 /-- One iteration re-establishes both budget bounds outright: lines 14 and 22 check each
 increment against what is left of its own share at `t_{k+1}`. -/
-theorem aux_autoStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_autoStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
     {tend εmax ζ : ℝ} {ηmax fuel : ℕ} {s : LinearSys.AutoState n} (hΔt : 0 < s.Δt)
     (ht : 0 ≤ s.t) {r : LinearSys.AutoState n × Zonotope (Vec ℝ n)}

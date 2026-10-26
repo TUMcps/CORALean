@@ -53,13 +53,13 @@ variable {n : ℕ}
 
 /-- Evaluating a matrix at one entry, as an additive homomorphism — linear, and (below)
 `1`-Lipschitz under the `l∞` operator norm, so continuous. -/
-def aux_entryAddHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
+private def aux_entryAddHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
   toFun M := M j k
   map_zero' := rfl
   map_add' _ _ := rfl
 
 /-- An entry moves by at most the norm of the difference — `abs_entry_le_norm` at `M - N`. -/
-theorem aux_lipschitzWith_entryAddHom (j k : Fin n) :
+private theorem aux_lipschitzWith_entryAddHom (j k : Fin n) :
     LipschitzWith 1 (aux_entryAddHom (n := n) j k) := by
   refine LipschitzWith.of_dist_le_mul fun M N => ?_
   rw [NNReal.coe_one, one_mul, Real.dist_eq, dist_eq_norm]

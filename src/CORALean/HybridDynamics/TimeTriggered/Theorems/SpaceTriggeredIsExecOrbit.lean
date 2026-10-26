@@ -66,8 +66,8 @@ section
 variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- A piece `g` with `ġ = f(g)` on `(0, t)` equals a solution `w` of `ẋ = f(x)` it starts with. -/
-theorem aux_lipschitzPiece_eq {f : X → X} {K : ℝ≥0} (hf : LipschitzWith K f) {g w : ℝ → X} {t : ℝ}
-    (ht : 0 < t) (hgd : DifferentiableOn ℝ g (Icc 0 t))
+private theorem aux_lipschitzPiece_eq {f : X → X} {K : ℝ≥0} (hf : LipschitzWith K f) {g w : ℝ → X}
+    {t : ℝ} (ht : 0 < t) (hgd : DifferentiableOn ℝ g (Icc 0 t))
     (hgder : ∀ u ∈ Ioo 0 t, deriv g u = f (g u)) (hw : ∀ u ∈ Icc 0 t, HasDerivAt w (f (w u)) u)
     (h0 : g 0 = w 0) : ∀ u ∈ Icc 0 t, g u = w u :=
   ODE_solution_unique (v := fun _ => f) (a := 0) (b := t) (fun _ => hf) hgd.continuousOn
@@ -79,7 +79,7 @@ end
 
 
 /-- A bound that holds on `(0, t)` holds on `[0, t]` for a continuous function. -/
-theorem aux_le_of_Ioo {h : ℝ → ℝ} {t b : ℝ} (ht : 0 < t) (hc : ContinuousOn h (Icc 0 t))
+private theorem aux_le_of_Ioo {h : ℝ → ℝ} {t b : ℝ} (ht : 0 < t) (hc : ContinuousOn h (Icc 0 t))
     (hb : ∀ u ∈ Ioo 0 t, h u ≤ b) : -- --- CONCL ---
     ∀ u ∈ Icc 0 t, h u ≤ b := by -- --- PROOF ---
   have hcl : IsClosed (Icc 0 t ∩ h ⁻¹' Iic b) :=

@@ -55,8 +55,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A pointwise bound on finitely many Minkowski summands adds to a bound on their sum. -/
-theorem aux_norm₂_le_of_mem_sum {ι : Type} (f : ι → Set (Vec ℝ n)) (bound : ι → ℝ) (s : Finset ι)
-    (h : ∀ i ∈ s, ∀ y ∈ f i, ‖y‖₂ ≤ bound i) : -- --- CONCL ---
+private theorem aux_norm₂_le_of_mem_sum {ι : Type} (f : ι → Set (Vec ℝ n)) (bound : ι → ℝ)
+    (s : Finset ι) (h : ∀ i ∈ s, ∀ y ∈ f i, ‖y‖₂ ≤ bound i) : -- --- CONCL ---
     ∀ y ∈ ∑ i ∈ s, f i, ‖y‖₂ ≤ ∑ i ∈ s, bound i := by -- --- PROOF ---
   classical
   induction s using Finset.induction with

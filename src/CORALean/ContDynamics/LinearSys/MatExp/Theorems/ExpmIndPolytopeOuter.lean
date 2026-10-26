@@ -54,8 +54,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The left fold of `VPolytope.plus` over `f s, …, f (s + m - 1)` contains `a + ∑ x (s + j)`. -/
-theorem MatExp.aux_foldl_plus_mem_poly (f : ℕ → VPolytope (Mat ℝ n n)) (x : ℕ → Mat ℝ n n) (s m : ℕ)
-    (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).construct) {acc : VPolytope (Mat ℝ n n)}
+private theorem MatExp.aux_foldl_plus_mem_poly (f : ℕ → VPolytope (Mat ℝ n n)) (x : ℕ → Mat ℝ n n)
+    (s m : ℕ) (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).construct) {acc : VPolytope (Mat ℝ n n)}
     {a : Mat ℝ n n} (ha : a ∈ acc.construct) : -- --- CONCL ---
     a + ∑ j ∈ Finset.range m, x (s + j) ∈ ((List.range' s m).foldl
       (fun e i => VPolytope.plus e (f i)) acc).construct := by -- --- PROOF ---

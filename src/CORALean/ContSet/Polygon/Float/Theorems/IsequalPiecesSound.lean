@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One direction: every piece of `P` inside some piece of `Q`. -/
-theorem Polygon.aux_subset_of_all {P Q : Polygon 𝕋}
+private theorem Polygon.aux_subset_of_all {P Q : Polygon 𝕋}
     (h : ∀ p ∈ P.sets, ∃ q ∈ Q.sets, Polygon.pieceSubset p q = true) :
     ContSet.construct P ⊆ ContSet.construct Q := by
   intro x hx

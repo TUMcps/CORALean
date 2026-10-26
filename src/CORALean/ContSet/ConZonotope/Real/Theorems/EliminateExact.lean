@@ -68,7 +68,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Row `r`'s equation, solved for coefficient `j` from the running box at every other
 coordinate it reads, sandwiches `β j` between `rowBound`'s two endpoints — `tightenCoeff`'s
 own tightening step, run once directly. -/
-theorem ConZonotope.aux_rowBound_dep {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_rowBound_dep {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (S : Set (Fin ng)) (r : Fin nc) (j : Fin ng)
     (hSread : ∀ l, l ≠ j → A r l ≠ 0 → l ∈ S) {E : Interval (Vec ℝ ng)}
     {β : Vec ℝ ng} (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k)
@@ -116,7 +116,7 @@ theorem ConZonotope.aux_rowBound_dep {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec 
 /-- The value identity behind `eliminate`: the center and generator `j`'s term, read
 either from the original system (`t = β j`) or from any `t` solving row `r` the same
 way — both directions below read this once each way. -/
-theorem ConZonotope.aux_eliminate_value {ng nc : ℕ} (c : α) (G : Fin ng → α)
+private theorem ConZonotope.aux_eliminate_value {ng nc : ℕ} (c : α) (G : Fin ng → α)
     (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0)
     (β' : Fin (ng - 1) → ℝ) (t : ℝ)
     (ht : A r j * t = b r - ∑ i, A r (dropIdx j i) * β' i) : -- --- CONCL ---
@@ -141,7 +141,7 @@ theorem ConZonotope.aux_eliminate_value {ng nc : ℕ} (c : α) (G : Fin ng → �
 /-- The row identity behind `eliminate`: row `i` with coefficient `j` read off as `t`
 equals the reduced system's corrected row at `i`, plus what `Λ_A`'s row gives back —
 unconditional, given only how `t` solves row `r`. -/
-theorem ConZonotope.aux_eliminate_row {ng nc : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_eliminate_row {ng nc : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0) (i : Fin nc) (β' : Fin (ng - 1) → ℝ)
     (t : ℝ) (ht : A r j * t = b r - ∑ l, A r (dropIdx j l) * β' l) : -- --- CONCL ---
     A i j * t + ∑ l, A i (dropIdx j l) * β' l
@@ -160,7 +160,7 @@ theorem ConZonotope.aux_eliminate_row {ng nc : ℕ} (A : Mat ℝ nc ng) (b : Vec
 /-- `Zc ⊆ Zr`: every feasible `β` of the original system restricts, at every column but
 `j`, to a feasible point of the eliminated one — routine algebra, needing only
 `a_{r,j} ≠ 0`. -/
-theorem ConZonotope.aux_eliminate_subset {ng nc : ℕ} (c : α) (G : Fin ng → α)
+private theorem ConZonotope.aux_eliminate_subset {ng nc : ℕ} (c : α) (G : Fin ng → α)
     (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0) : -- --- CONCL ---
     (ConZonotope.ofMat c G A b).construct
       ⊆ (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
@@ -202,7 +202,7 @@ theorem ConZonotope.aux_eliminate_subset {ng nc : ℕ} (c : α) (G : Fin ng → 
 /-- `Zr ⊆ Zc`: given the dependency-closed `S` `Thm. 2`'s own proof needs, a feasible
 point of the eliminated system extends back to a feasible point of the original one —
 row `r`'s solved-for coefficient lands in `[-1,1]` via `aux_rowBound_dep` and `hR`. -/
-theorem ConZonotope.aux_eliminate_superset {ng nc : ℕ} (c : α) (G : Fin ng → α)
+private theorem ConZonotope.aux_eliminate_superset {ng nc : ℕ} (c : α) (G : Fin ng → α)
     (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0)
     (S : Set (Fin ng)) (hjS : j ∉ S) (hrS : ∀ l, l ≠ j → A r l ≠ 0 → l ∈ S)
     (hclosed : ∀ k ∈ S, ∀ i : Fin nc, A i k ≠ 0 →

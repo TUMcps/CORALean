@@ -31,7 +31,7 @@ namespace CORALean.Bench
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The largest gap of `H` from `S` over the dimensions. -/
-def aux_windowGap (H S : Array (ℚ × ℚ)) : Option ℚ :=
+private def aux_windowGap (H S : Array (ℚ × ℚ)) : Option ℚ :=
   (H.zip S).foldl (fun acc ((hl, hh), (sl, sh)) =>
     let g := max (hl - sh) (sl - hh)
     some (acc.elim g (max g))) none

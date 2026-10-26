@@ -48,13 +48,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `merge` keeps at most every column. -/
-theorem PolyZonotope.aux_merge_h_le {α : Type} [AddCommGroup α] [Module ℝ α]
+private theorem PolyZonotope.aux_merge_h_le {α : Type} [AddCommGroup α] [Module ℝ α]
     (pZ : PolyZonotope α) : pZ.merge.h ≤ pZ.h := by
   show (PolyZonotope.mergeKeep pZ.E).card ≤ pZ.h
   exact (Finset.card_le_univ _).trans (Fintype.card_fin _).le
 
 /-- `PZ^(k+1)`, sorted and merged, has at most `(h + 2)^(k+1) - 1` generators. -/
-theorem PolyZonotope.aux_powSort_h_le (pZ : PolyZonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_powSort_h_le (pZ : PolyZonotope (Vec ℝ n))
+    (k : ℕ) : -- --- CONCL ---
     (pZ.powSort k).1.h + 1 ≤ (pZ.h + 2) ^ (k + 1) := by -- --- PROOF ---
   induction k with
   | zero => show pZ.h + 1 ≤ (pZ.h + 2) ^ 1; rw [pow_one]; omega
@@ -75,7 +76,7 @@ theorem PolyZonotope.aux_powSort_h_le (pZ : PolyZonotope (Vec ℝ n)) (k : ℕ) 
         _ = (pZ.h + 2) ^ (k + 1 + 1) := by ring
 
 /-- The tail of Alg. 2's sum from degree `k + 1`: at most `Σ_{i < len} (h + 2)^(k+i+1)`. -/
-theorem PolyZonotope.aux_evalPolySortTail_h_le (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_evalPolySortTail_h_le (pZ : PolyZonotope (Vec ℝ n))
     (rest : List (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
     (PolyZonotope.evalPolySortTailP pZ rest k).1.h
       ≤ ∑ i ∈ Finset.range rest.length, (pZ.h + 2) ^ (k + i + 1) := by -- --- PROOF ---

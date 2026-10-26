@@ -106,7 +106,7 @@ noncomputable def Taylm.asinRemainderUpperCora (k : ℕ) (r : ℝ) : ℝ :=
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The polynomial at `x = 1`, order `7`. -/
-theorem Taylm.aux_asinPoly_seven_one :
+private theorem Taylm.aux_asinPoly_seven_one :
     Taylm.asinPolyCora 7 1 = 1 + 1 / 6 + 3 / 40 + 5 / 112 := by
   simp [Taylm.asinPolyCora, Finset.sum_range_succ, Taylm.asinFactor1Cora,
     Taylm.asinDasinCora, Nat.factorial]

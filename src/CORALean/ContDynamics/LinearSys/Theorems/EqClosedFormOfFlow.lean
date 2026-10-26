@@ -66,7 +66,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- `x`'s own flow equation minus `closedForm`'s: `d` solves the homogeneous
 integral equation, `A d`'s continuity making the subtraction legitimate. -/
-theorem aux_diff_eq (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (ht : 0 ≤ t)
+private theorem aux_diff_eq (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (ht : 0 ≤ t)
     (hU : Bornology.IsBounded (construct U)) {x u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t)))

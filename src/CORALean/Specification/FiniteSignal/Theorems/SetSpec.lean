@@ -50,7 +50,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A breakpoint of the prefix beyond `t` decides the value, as in the whole list. -/
-theorem aux_valueAt_append_lt {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX : X ≠ [])
+private theorem aux_valueAt_append_lt {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX : X ≠ [])
     (h : ∃ p ∈ P, t < p.1) : -- --- CONCL ---
     FiniteSignal.valueAt (P ++ X) t = FiniteSignal.valueAt P t := by -- --- PROOF ---
   induction P with
@@ -73,7 +73,7 @@ theorem aux_valueAt_append_lt {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX :
         FiniteSignal.valueAt_cons_of_ge p _ t ht hP, ih h']
 
 /-- If no breakpoint of the prefix is beyond `t`, only the rest decides the value. -/
-theorem aux_valueAt_append_ge {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX : X ≠ [])
+private theorem aux_valueAt_append_ge {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX : X ≠ [])
     (h : ∀ p ∈ P, p.1 ≤ t) : -- --- CONCL ---
     FiniteSignal.valueAt (P ++ X) t = FiniteSignal.valueAt X t := by -- --- PROOF ---
   induction P with
@@ -83,7 +83,7 @@ theorem aux_valueAt_append_ge {V : Type} (P X : List (ℝ × V)) (t : ℝ) (hX :
       (by simp [hX]), ih (fun q hq => h q (List.mem_cons_of_mem _ hq))]
 
 /-- The index form of a splice of the arrays is the splice of the breakpoints. -/
-theorem aux_zip_splice {α β : Type} (t : List α) (v : List β) (A B : ℕ) (nT : List α)
+private theorem aux_zip_splice {α β : Type} (t : List α) (v : List β) (A B : ℕ) (nT : List α)
     (nV : List β) (h : t.length = v.length) (hn : nT.length = nV.length) :
     (t.take A ++ nT ++ t.drop B).zip (v.take A ++ nV ++ v.drop B) =
       (t.zip v).take A ++ nT.zip nV ++ (t.zip v).drop B := by
@@ -92,7 +92,7 @@ theorem aux_zip_splice {α β : Type} (t : List α) (v : List β) (A B : ℕ) (n
 
 
 /-- The last breakpoint of a nonempty prefix is the one before its length. -/
-theorem aux_last_take {α : Type} (L : List α) (k : ℕ) (hk0 : 0 < k) (hk : k ≤ L.length) :
+private theorem aux_last_take {α : Type} (L : List α) (k : ℕ) (hk0 : 0 < k) (hk : k ≤ L.length) :
     (L.take k).getLast? = L[k - 1]? := by
   rw [List.getLast?_take]
   have : k ≠ 0 := by omega
@@ -100,7 +100,7 @@ theorem aux_last_take {α : Type} (L : List α) (k : ℕ) (hk0 : 0 < k) (hk : k 
 
 /-- The prefix `L.take k` of the breakpoints decides the value before `a` if it has a breakpoint
 beyond `t`; otherwise the first breakpoint of the rest does. -/
-theorem aux_value_prefix {V : Type} (L : List (ℝ × V)) (k : ℕ) (hk : k < L.length) (t : ℝ)
+private theorem aux_value_prefix {V : Type} (L : List (ℝ × V)) (k : ℕ) (hk : k < L.length) (t : ℝ)
     (X : List (ℝ × V)) (hX : X ≠ []) : -- --- CONCL ---
     ((∃ p ∈ L.take k, t < p.1) → FiniteSignal.valueAt (L.take k ++ X) t = FiniteSignal.valueAt L t)
     ∧ ((∀ p ∈ L.take k, p.1 ≤ t) → FiniteSignal.valueAt (L.take k ++ X) t =
@@ -115,7 +115,7 @@ theorem aux_value_prefix {V : Type} (L : List (ℝ × V)) (k : ℕ) (hk : k < L.
 
 /-- The left part of the result of `set`: valid, ending before `a` with a value other than `value`,
 and acting as the signal before `a`. -/
-theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s.IsValid)
+private theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s.IsValid)
     (hpos : ∀ b ∈ s.time.head?, 0 < b) (a : ℝ) (ha0 : 0 ≤ a) (value : V) (sI : ℕ)
     (hsI : sI < s.time.length) (hT1 : ∀ i (hi : i < sI), s.time[i]'(by omega) ≤ a)
     (hT2 : a < s.time[sI]) (A : ℕ) (nT : List ℝ) (nV : List V)
@@ -356,7 +356,7 @@ theorem aux_set_left {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s
 
 /-- The right part of the result of `set`: ordered, ending at the duration, starting with `value`
 and acting as the signal from `b` on. -/
-theorem aux_set_right {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s.IsValid)
+private theorem aux_set_right {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s.IsValid)
     (b : ℝ) (hb0 : 0 ≤ b) (value : V) (hbD : b ≤ s.duration) (pI : ℕ)
     (hpI : pI ≤ s.time.length) (hP1 : ∀ i (hi : i < pI), s.time[i]'(by omega) ≤ b)
     (hP2 : ∀ (hi : pI < s.time.length), b < s.time[pI]) (U : Prop) [Decidable U]
@@ -498,7 +498,7 @@ theorem aux_set_right {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : 
     exact ⟨(hP2 (by omega)).le, hvv⟩
 
 /-- Putting the two parts together: the result of `set`. -/
-theorem aux_set_assemble {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s.IsValid)
+private theorem aux_set_assemble {V : Type} [DecidableEq V] (s : FiniteSignal ℝ V) (hs : s.IsValid)
     (a b : ℝ) (hab : a < b) (value : V) (pI A : ℕ) (nT : List ℝ) (nV : List V)
     (hnl : nT.length = nV.length)
     (U : Prop) [Decidable U]

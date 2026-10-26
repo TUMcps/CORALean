@@ -63,7 +63,7 @@ open scoped Manifold ContDiff
 open Polynomial MeasureTheory
 
 /-- `det (1 + A)` from `det (1 + v j • A)` at `finrank + 1` distinct nodes, by Lagrange. -/
-theorem aux_det_eval_one {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
+private theorem aux_det_eval_one {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
     {v : ℕ → ℝ} (hv : Set.InjOn v (Finset.range (Module.finrank ℝ E + 1)))
     (A : E →L[ℝ] E) : -- --- CONCL ---
@@ -103,7 +103,7 @@ theorem aux_det_eval_one {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 
 /-- A derivative of a map into the unit sphere is singular. -/
-theorem aux_det_eq_zero {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+private theorem aux_det_eq_zero {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {r : E → E} {r' : E →L[ℝ] E} {x : E} (hr : HasFDerivAt r r' x)
     (hn : ∀ᶠ y in nhds x, ‖r y‖ = 1) : -- --- CONCL ---
     r'.det = 0 := by -- --- PROOF ---
@@ -127,8 +127,8 @@ theorem aux_det_eq_zero {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ
 
 
 /-- `1 + t A` has a positive determinant while `t ‖A‖ < 1`. -/
-theorem aux_det_pos {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
-    (A : E →L[ℝ] E) {C : ℝ} (hA : ‖A‖ ≤ C) {t : ℝ} (ht0 : 0 ≤ t)
+private theorem aux_det_pos {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    [FiniteDimensional ℝ E] (A : E →L[ℝ] E) {C : ℝ} (hA : ‖A‖ ≤ C) {t : ℝ} (ht0 : 0 ≤ t)
     (htC : t * C < 1) : -- --- CONCL ---
     0 < (ContinuousLinearMap.id ℝ E + t • A).det := by -- --- PROOF ---
   set φ : ℝ → ℝ := fun s => (ContinuousLinearMap.id ℝ E + s • A).det
@@ -174,7 +174,7 @@ theorem aux_det_pos {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Finit
 
 /-- A map `C`-Lipschitz on the closed unit ball and zero on its sphere, extended by zero, is
 `C`-Lipschitz everywhere (given a unit vector `u`). -/
-theorem aux_norm_extension_sub_le {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
+private theorem aux_norm_extension_sub_le {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (h : E → E) {C : NNReal} (hLip : LipschitzOnWith C h (closedBall 0 1))
     (hsph : ∀ x : E, ‖x‖ = 1 → h x = 0) {u : E} (hu : ‖u‖ = 1) (x y : E) : -- --- CONCL ---
     ‖(if ‖x‖ ≤ 1 then h x else 0) - (if ‖y‖ ≤ 1 then h y else 0)‖ ≤
@@ -211,7 +211,7 @@ theorem aux_norm_extension_sub_le {E : Type} [NormedAddCommGroup E] [NormedSpace
 
 /-- For small `t ≥ 0`, `x + t (r x - x)` maps the ball onto itself injectively with positive
 Jacobian `1 + t h'`, so `∫_B det (1 + t h') = vol B`. -/
-theorem aux_setIntegral_det_eq {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+private theorem aux_setIntegral_det_eq {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] (μ : MeasureTheory.Measure E)
     [μ.IsAddHaarMeasure] {r : E → E} {h' : E → E →L[ℝ] E} {C : NNReal}
     (hnorm : ∀ x ∈ closedBall (0 : E) 1, ‖r x‖ = 1)
@@ -297,7 +297,7 @@ theorem aux_setIntegral_det_eq {E : Type} [NormedAddCommGroup E] [InnerProductSp
 
 /-- No `C¹` map on an open `U ⊇ closedBall 0 1` takes `U` into the unit sphere and fixes the
 sphere pointwise. -/
-theorem aux_no_contDiff_retraction_closedBall {E : Type} [NormedAddCommGroup E]
+private theorem aux_no_contDiff_retraction_closedBall {E : Type} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {U : Set E} (hU : IsOpen U) (hBU : closedBall (0 : E) 1 ⊆ U)
     {r : E → E} (hr : ContDiffOn ℝ 1 r U) (hnorm : ∀ x ∈ U, ‖r x‖ = 1)
@@ -407,8 +407,8 @@ section
 open scoped Manifold ContDiff
 
 /-- The `C¹` case: a `C¹` self-map of the closed unit ball has a fixed point. -/
-theorem aux_exists_fixedPoint_of_contDiff {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    [FiniteDimensional ℝ E] {g : E → E} (hg : ContDiff ℝ 1 g)
+private theorem aux_exists_fixedPoint_of_contDiff {E : Type} [NormedAddCommGroup E]
+    [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] {g : E → E} (hg : ContDiff ℝ 1 g)
     (hgB : ∀ x, ‖x‖ ≤ 1 → ‖g x‖ ≤ 1) : -- --- CONCL ---
     ∃ x, ‖x‖ ≤ 1 ∧ g x = x := by -- --- PROOF ---
   by_contra hno
@@ -499,8 +499,8 @@ theorem aux_exists_fixedPoint_of_contDiff {E : Type} [NormedAddCommGroup E] [Inn
 
 
 /-- Brouwer: a continuous map taking the closed unit ball into itself has a fixed point there. -/
-theorem aux_exists_fixedPoint_closedBall {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    [FiniteDimensional ℝ E] {f : E → E} (hf : Continuous f)
+private theorem aux_exists_fixedPoint_closedBall {E : Type} [NormedAddCommGroup E]
+    [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] {f : E → E} (hf : Continuous f)
     (hfB' : Set.MapsTo f (closedBall (0 : E) 1) (closedBall 0 1)) : -- --- CONCL ---
     ∃ x ∈ closedBall (0 : E) 1, f x = x := by -- --- PROOF ---
   have hfB : ∀ x, ‖x‖ ≤ 1 → ‖f x‖ ≤ 1 := fun x hx =>
@@ -563,8 +563,8 @@ end
 
 
 /-- A nonempty complete convex set is a continuous retract of an inner product space. -/
-theorem aux_exists_retraction_convex {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    {K : Set E}
+private theorem aux_exists_retraction_convex {E : Type} [NormedAddCommGroup E]
+    [InnerProductSpace ℝ E] {K : Set E}
     (hne : K.Nonempty) (hc : IsComplete K) (hconv : Convex ℝ K) : -- --- CONCL ---
     ∃ P : E → E, Continuous P ∧ (∀ x, P x ∈ K) ∧ ∀ x ∈ K, P x = x := by -- --- PROOF ---
   have hex : ∀ x, ∃ v ∈ K, ∀ w ∈ K, inner ℝ (x - v) (w - v) ≤ 0 := fun x => by
@@ -599,7 +599,8 @@ theorem aux_exists_retraction_convex {E : Type} [NormedAddCommGroup E] [InnerPro
     exact (sub_eq_zero.mp (norm_eq_zero.mp this)).symm
 
 /-- The theorem in an inner product space. -/
-theorem aux_exists_fixedPoint_inner {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+private theorem aux_exists_fixedPoint_inner {E : Type} [NormedAddCommGroup E]
+    [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {K : Set E} (hK : IsCompact K) (hconv : Convex ℝ K)
     (hne : K.Nonempty) {f : E → E} (hf : ContinuousOn f K)
     (hfK : Set.MapsTo f K K) : -- --- CONCL ---

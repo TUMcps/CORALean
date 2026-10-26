@@ -129,7 +129,7 @@ private theorem STLInterval.rawSet_upper_and (u₁ u₂ : EReal) (rc₁ rc₂ : 
 
 
 /-- The intersection of two `rawSet`s is `rawSet` of the larger lower and smaller upper bound. -/
-theorem STLInterval.aux_rawSet_inter (l₁ u₁ l₂ u₂ : EReal)
+private theorem STLInterval.aux_rawSet_inter (l₁ u₁ l₂ u₂ : EReal)
     (lc₁ rc₁ lc₂ rc₂ : Bool) : -- --- CONCL ---
     rawSet l₁ u₁ lc₁ rc₁ ∩ rawSet l₂ u₂ lc₂ rc₂ =
       rawSet (max l₁ l₂) (min u₁ u₂)

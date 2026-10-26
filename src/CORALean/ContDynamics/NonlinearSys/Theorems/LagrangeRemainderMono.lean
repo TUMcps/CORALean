@@ -62,7 +62,7 @@ variable {d n : ℕ}
 
 /-- One coordinate of a zonotope's point, written as its center plus what the
 generators contribute there. -/
-theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec ℝ d) (j : Fin d) :
+private theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec ℝ d) (j : Fin d) :
     (Z.c + ∑ k, β k • Z.G k) j - zs j = (Z.c j - zs j) + ∑ k, β k * Z.G k j := by
   rw [Pi.add_apply, Finset.sum_apply]
   simp only [Pi.smul_apply, smul_eq_mul]
@@ -70,7 +70,7 @@ theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec
 
 /-- `γ` grows with the set and not with the representation: the point attaining it on the
 left is a point of the right. -/
-theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
+private theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
     (zs : Vec ℝ d) (j : Fin d) : -- --- CONCL ---
     |Z₁.c j - zs j| + ∑ k, |Z₁.G k j|
       ≤ |Z₂.c j - zs j| + ∑ k, |Z₂.G k j| := by -- --- PROOF ---
@@ -86,7 +86,7 @@ theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct �
 
 /-- An entrywise nonnegative form is nonnegative, and monotone, at nonnegative
 arguments. -/
-theorem aux_quad_le {M : Mat ℝ d d} (hM : ∀ k l, 0 ≤ M k l) {γ₁ γ₂ : Vec ℝ d}
+private theorem aux_quad_le {M : Mat ℝ d d} (hM : ∀ k l, 0 ≤ M k l) {γ₁ γ₂ : Vec ℝ d}
     (h0 : ∀ j, 0 ≤ γ₁ j) (h : ∀ j, γ₁ j ≤ γ₂ j) : -- --- CONCL ---
     0 ≤ γ₁ ⬝ᵥ (M *ᵥ γ₁) ∧ γ₁ ⬝ᵥ (M *ᵥ γ₁) ≤ γ₂ ⬝ᵥ (M *ᵥ γ₂) := by -- --- PROOF ---
   have hrow : ∀ (γ : Vec ℝ d), (∀ j, 0 ≤ γ j) → ∀ k, 0 ≤ ∑ l, M k l * γ l :=

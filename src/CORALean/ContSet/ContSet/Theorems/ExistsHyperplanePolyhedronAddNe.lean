@@ -50,7 +50,7 @@ open Matrix Pointwise
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dot product in the plane, written out. -/
-theorem ContSet.aux_dot_two (x y : Vec ℝ 2) :
+private theorem ContSet.aux_dot_two (x y : Vec ℝ 2) :
     x ⬝ᵥ y = x 0 * y 0 + x 1 * y 1 := by
   simp [dotProduct, Fin.sum_univ_two]
 

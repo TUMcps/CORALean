@@ -62,12 +62,12 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- A float box's own `construct` sits inside its nominal reading as a
 zonotope, by `Interval.zonotope_contains`. What `plusBox` and `mtimesBox`
 need to feed `reachErrorFloat`'s real accumulator. -/
-theorem aux_interval_construct_subset_nominal_zonotope {n : ℕ} (I : Interval (Vec 𝕋 n)) :
+private theorem aux_interval_construct_subset_nominal_zonotope {n : ℕ} (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ I.nominal.zonotope.construct :=
   Real.Interval.zonotope_contains I.nominal
 
 /-- `y` in the degenerate `0` box's construct is `0`. -/
-theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
+private theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
     (hy : y ∈ (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct)
     : -- --- CONCL ---
     y = 0 := by -- --- PROOF ---
@@ -79,7 +79,7 @@ theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
 
 /-- `reduceGirardBox`'s own error box is the degenerate `0` one in either
 branch, so what its `construct` adds beyond its nominal reading is `0`. -/
-theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 𝕋 n))
+private theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 𝕋 n))
     (o : ℕ) : -- --- CONCL ---
     (Zonotope.reduceGirardBox Z o).construct
       ⊆ (nominal (Zonotope.reduceGirardBox Z o)).construct := by -- --- PROOF ---

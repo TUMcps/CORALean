@@ -83,7 +83,7 @@ variable {n : ℕ}
 /-- The input integral: its Taylor orders are `tⁱ⁺¹/(i + 1)! Aⁱ wᵢ` with `wᵢ ∈ U`, and what
 the cut leaves lies in any convex closed bounded `S ∋ 0` that holds `tmax M v` for every `M`
 within `W` entrywise and `v ∈ U`, `W` bounding the remainders on `[0, tmax]`. -/
-theorem aux_absErrDecomp_integral (A : Mat ℝ n n) {Us S : Set (Vec ℝ n)} (hUc : Convex ℝ Us)
+private theorem aux_absErrDecomp_integral (A : Mat ℝ n n) {Us S : Set (Vec ℝ n)} (hUc : Convex ℝ Us)
     (hUcl : IsClosed Us) (hUb : Bornology.IsBounded Us) (hUn : Us.Nonempty) (hSc : Convex ℝ S)
     (hScl : IsClosed S) (hSb : Bornology.IsBounded S) (hS0 : (0 : Vec ℝ n) ∈ S) {tmax t : ℝ}
     (ht : t ∈ Set.Icc 0 tmax) (η : ℕ) (W : Mat ℝ n n)

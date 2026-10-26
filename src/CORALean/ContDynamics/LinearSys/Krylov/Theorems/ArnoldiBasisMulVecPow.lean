@@ -54,7 +54,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A pass keeps the vectors stored before it. -/
-theorem Krylov.aux_arnoldi_fst_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ} (hpq : p ≤ q)
+private theorem Krylov.aux_arnoldi_fst_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ} (hpq : p ≤ q)
     (hi : i ≤ p) : -- --- CONCL ---
     (Krylov.arnoldi C v q).1 i = (Krylov.arnoldi C v p).1 i := by -- --- PROOF ---
   induction q, hpq using Nat.le_induction with
@@ -65,7 +65,7 @@ theorem Krylov.aux_arnoldi_fst_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ
     rw [Function.update_of_ne (by omega)]
 
 /-- A pass keeps the Hessenberg columns stored before it. -/
-theorem Krylov.aux_arnoldi_snd_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q k : ℕ} (hpq : p ≤ q)
+private theorem Krylov.aux_arnoldi_snd_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q k : ℕ} (hpq : p ≤ q)
     (hk : k < p) (i : ℕ) : -- --- CONCL ---
     (Krylov.arnoldi C v q).2 i k = (Krylov.arnoldi C v p).2 i k := by -- --- PROOF ---
   induction q, hpq using Nat.le_induction with
@@ -76,7 +76,8 @@ theorem Krylov.aux_arnoldi_snd_le (C : Mat ℝ n n) (v : Vec ℝ n) {p q k : ℕ
     rw [if_neg (by omega)]
 
 /-- `h_{i,k} = 0` below the subdiagonal: `H` is upper Hessenberg. -/
-theorem Krylov.aux_arnoldi_snd_eq_zero (C : Mat ℝ n n) (v : Vec ℝ n) {i k : ℕ} (hik : k + 1 < i) :
+private theorem Krylov.aux_arnoldi_snd_eq_zero (C : Mat ℝ n n) (v : Vec ℝ n) {i k : ℕ}
+    (hik : k + 1 < i) :
     ∀ p, (Krylov.arnoldi C v p).2 i k = 0
   | 0 => rfl
   | p + 1 => by

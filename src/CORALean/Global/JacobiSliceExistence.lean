@@ -64,13 +64,13 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- At the selected coordinates of `xc` itself, the slice is `xc`. -/
-theorem aux_jacobiSlice_self (xc : Fin m → ℝ) (ind : Fin n → Fin m) :
+private theorem aux_jacobiSlice_self (xc : Fin m → ℝ) (ind : Fin n → Fin m) :
     jacobiSlice xc ind (fun i => xc (ind i)) = xc := by
   simp [jacobiSlice]
 
 
 /-- The selection matrix of `ind` applied to a unit vector is the unit vector at `ind j`. -/
-theorem aux_select_mulVec_single {ind : Fin n → Fin m} (j : Fin n) : -- --- CONCL ---
+private theorem aux_select_mulVec_single {ind : Fin n → Fin m} (j : Fin n) : -- --- CONCL ---
     (Matrix.of fun k i => if ind i = k then (1 : ℝ) else 0) *ᵥ Pi.single j 1
       = Pi.single (ind j) 1 := by -- --- PROOF ---
   funext k

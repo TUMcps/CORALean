@@ -75,7 +75,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `e^x - 1 ≤ x e^x`: `1 - x ≤ e^{-x}`, multiplied by `e^x`. -/
-theorem aux_exp_sub_one_le_mul_exp (x : ℝ) : Real.exp x - 1 ≤ x * Real.exp x := by
+private theorem aux_exp_sub_one_le_mul_exp (x : ℝ) : Real.exp x - 1 ≤ x * Real.exp x := by
   have h1 := Real.add_one_le_exp (-x)
   have h2 : Real.exp x * Real.exp (-x) = 1 := by rw [← Real.exp_add, add_neg_cancel, Real.exp_zero]
   nlinarith [Real.exp_pos x]

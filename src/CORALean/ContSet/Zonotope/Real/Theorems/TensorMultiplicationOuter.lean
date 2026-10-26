@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A trilinear form of three sums, with the sums pulled out. -/
-theorem Zonotope.aux_trilinear_expand {k : ℕ} (M : Fin n → Fin n → Fin n → ℝ)
+private theorem Zonotope.aux_trilinear_expand {k : ℕ} (M : Fin n → Fin n → Fin n → ℝ)
     (A B C : Fin k → Fin n → ℝ) : -- --- CONCL ---
     ∑ a, ∑ b, ∑ c, M a b c * (∑ i, A i a) * (∑ j, B j b) * (∑ l, C l c)
       = ∑ i, ∑ j, ∑ l, ∑ a, ∑ b, ∑ c, M a b c * A i a * B j b * C l c := by -- --- PROOF ---

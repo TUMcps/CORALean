@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A Jacobian entry is the derivative of that component along that coordinate. -/
-theorem aux_jacobianMat_apply_of_hasFDerivAt {k N : ℕ} (g : Vec ℝ k → Vec ℝ N) (x : Vec ℝ k)
+private theorem aux_jacobianMat_apply_of_hasFDerivAt {k N : ℕ} (g : Vec ℝ k → Vec ℝ N) (x : Vec ℝ k)
     (D : Fin N → (Vec ℝ k →L[ℝ] ℝ)) (hg : ∀ i, HasFDerivAt (fun x => g x i) (D i) x)
     (i : Fin N) (j : Fin k) :
     jacobianMat g x i j = D i (Pi.single j 1) := by
@@ -57,7 +57,7 @@ theorem aux_jacobianMat_apply_of_hasFDerivAt {k N : ℕ} (g : Vec ℝ k → Vec 
   rfl
 
 /-- Reading `p` blocks newest first is its own inverse. -/
-theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) : -- --- CONCL ---
+private theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) : -- --- CONCL ---
     finProdFinEquiv (Fin.rev (finProdFinEquiv.symm (finProdFinEquiv (Fin.rev
       (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2))).1,
       (finProdFinEquiv.symm (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1,
@@ -65,7 +65,7 @@ theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) : -- --- CONCL ---
   simp only [Equiv.symm_apply_apply, Fin.rev_rev, Prod.mk.eta, Equiv.apply_symm_apply]
 
 /-- The reindexing, as a continuous linear map, sends a unit vector to a unit vector. -/
-theorem aux_reindex_hasFDerivAt {a b : ℕ} (x : Vec ℝ (a * b)) : -- --- CONCL ---
+private theorem aux_reindex_hasFDerivAt {a b : ℕ} (x : Vec ℝ (a * b)) : -- --- CONCL ---
     ∃ L : Vec ℝ (a * b) →L[ℝ] Vec ℝ (a * b),
       HasFDerivAt (fun x' : Vec ℝ (a * b) => fun s => x' (NonlinearARX.revBlocks s)) L x ∧
       ∀ c, L (Pi.single c 1) = Pi.single (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1,

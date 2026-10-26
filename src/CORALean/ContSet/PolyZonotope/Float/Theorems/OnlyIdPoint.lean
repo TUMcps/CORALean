@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator matrices of both parts are the exact layer's. -/
-theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope (Vec 𝕋 n))
+private theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope (Vec 𝕋 n))
     (S : Finset (Fin pZ.p)) : -- --- CONCL ---
     (nominal (pZ.onlyId S).1).G = (Real.PolyZonotope.onlyId (nominal pZ) S).1.G ∧
       (nominal (pZ.onlyId S).2).G =

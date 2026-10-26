@@ -44,18 +44,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` for a generator count written as `m + d` only by a proof. -/
-theorem Zonotope.aux_sum_split {h m d : ℕ} (hd : h = m + d) (f : Fin h → α) :
+private theorem Zonotope.aux_sum_split {h m d : ℕ} (hd : h = m + d) (f : Fin h → α) :
     ∑ j, f j = ∑ i : Fin m, f ⟨i, by have := i.2; omega⟩
       + ∑ i : Fin d, f ⟨m + i, by have := i.2; omega⟩ := by
   subst hd
   exact Fin.sum_univ_add f
 
-theorem Zonotope.aux_min_le_left (a b k : ℕ) : min (min a b) k ≤ a := by omega
+private theorem Zonotope.aux_min_le_left (a b k : ℕ) : min (min a b) k ≤ a := by omega
 
-theorem Zonotope.aux_min_le_right (a b k : ℕ) : min (min a b) k ≤ b := by omega
+private theorem Zonotope.aux_min_le_right (a b k : ℕ) : min (min a b) k ≤ b := by omega
 
 /-- A sum over three appended blocks, one block at a time. -/
-theorem Zonotope.aux_sum_append3 {a b c : ℕ} (δ : Fin (a + b + c) → ℝ) (A : Fin a → α)
+private theorem Zonotope.aux_sum_append3 {a b c : ℕ} (δ : Fin (a + b + c) → ℝ) (A : Fin a → α)
     (B : Fin b → α) (C : Fin c → α) : -- --- CONCL ---
     ∑ j, δ j • Fin.append (Fin.append A B) C j =
       ∑ i, δ (Fin.castAdd c (Fin.castAdd b i)) • A i
@@ -65,7 +65,7 @@ theorem Zonotope.aux_sum_append3 {a b c : ℕ} (δ : Fin (a + b + c) → ℝ) (A
   simp [Fin.append_left, Fin.append_right, add_assoc]
 
 /-- The generator sum of `exactPlus`, one block at a time. -/
-theorem Zonotope.aux_sum_exactPlus (Z₁ Z₂ : Zonotope α) (k : ℕ)
+private theorem Zonotope.aux_sum_exactPlus (Z₁ Z₂ : Zonotope α) (k : ℕ)
     (δ : Fin (Z₁.exactPlus Z₂ k).h → ℝ) : -- --- CONCL ---
     ∑ j, δ j • (Z₁.exactPlus Z₂ k).G j =
       ∑ i : Fin (min (min Z₁.h Z₂.h) k),
@@ -87,7 +87,7 @@ theorem Zonotope.aux_sum_exactPlus (Z₁ Z₂ : Zonotope α) (k : ℕ)
   exact this
 
 
-theorem Zonotope.aux_abs_append3 {a b c : ℕ} {A : Fin a → ℝ} {B : Fin b → ℝ} {C : Fin c → ℝ}
+private theorem Zonotope.aux_abs_append3 {a b c : ℕ} {A : Fin a → ℝ} {B : Fin b → ℝ} {C : Fin c → ℝ}
     (hA : ∀ i, |A i| ≤ 1) (hB : ∀ i, |B i| ≤ 1) (hC : ∀ i, |C i| ≤ 1) : -- --- CONCL ---
     ∀ j, |Fin.append (Fin.append A B) C j| ≤ 1 := by -- --- PROOF ---
   intro j

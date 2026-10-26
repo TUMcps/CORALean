@@ -53,7 +53,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The inverse square root's derivative bracket is nonempty. -/
-theorem aux_invSqrtDeriv_mono {l u : ℝ} (hl : 0 < l) (hlu : l ≤ u) : -- --- CONCL ---
+private theorem aux_invSqrtDeriv_mono {l u : ℝ} (hl : 0 < l) (hlu : l ≤ u) : -- --- CONCL ---
     invSqrtDerivLo l ≤ invSqrtDerivHi u := by -- --- PROOF ---
   unfold invSqrtDerivLo invSqrtDerivHi
   have hupos : (0 : ℝ) < u := hl.trans_le hlu
@@ -64,7 +64,7 @@ theorem aux_invSqrtDeriv_mono {l u : ℝ} (hl : 0 < l) (hlu : l ≤ u) : -- --- 
 
 
 /-- The clamped inverse square root's derivative above the clamp. -/
-theorem aux_hasDerivAt_invSqrt {x : ℝ} (hx : 1 < x) : -- --- CONCL ---
+private theorem aux_hasDerivAt_invSqrt {x : ℝ} (hx : 1 < x) : -- --- CONCL ---
     HasDerivAt invSqrt (-(2 * x * Real.sqrt x)⁻¹) x := by -- --- PROOF ---
   have heq : invSqrt =ᶠ[nhds x] (fun y => (Real.sqrt y)⁻¹) := by
     filter_upwards [eventually_gt_nhds hx] with y hy
@@ -80,17 +80,17 @@ theorem aux_hasDerivAt_invSqrt {x : ℝ} (hx : 1 < x) : -- --- CONCL ---
 
 
 /-- The clamped inverse square root is continuous. -/
-theorem aux_continuous_invSqrt : Continuous invSqrt := by
+private theorem aux_continuous_invSqrt : Continuous invSqrt := by
   have h : Continuous fun x : ℝ => Real.sqrt (max x 1) :=
     Real.continuous_sqrt.comp (continuous_id.max continuous_const)
   refine h.inv₀ fun x => ne_of_gt (Real.sqrt_pos.mpr ?_)
   exact lt_of_lt_of_le one_pos (le_max_right _ _)
 
 
-theorem aux_invSqrtRelaxationRange_sound : invSqrtRelaxationRange.IsSound invSqrt :=
+private theorem aux_invSqrtRelaxationRange_sound : invSqrtRelaxationRange.IsSound invSqrt :=
   Relaxation.ofAntitone_sound antitone_invSqrt (enclosure_exact_sound invSqrt)
 
-theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
+private theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
     invSqrtRelaxationDeriv.IsSound invSqrt := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |invSqrt t - (invSqrtRelaxationDeriv.slope l u * t + invSqrtRelaxationDeriv.offset l u)|

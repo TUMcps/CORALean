@@ -53,7 +53,7 @@ variable {q n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A halfspace's slack is continuous: a row of `C` is a sum of scaled coordinates. -/
-theorem aux_continuous_mulVec_sub (C : Mat ℝ q n) (d : Vec ℝ q) (i : Fin q) :
+private theorem aux_continuous_mulVec_sub (C : Mat ℝ q n) (d : Vec ℝ q) (i : Fin q) :
     Continuous fun x : Vec ℝ n => (C *ᵥ x) i - d i := by
   simp only [Matrix.mulVec_apply_eq_sum]
   exact (continuous_finsetSum _ fun j _ =>

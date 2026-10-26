@@ -53,8 +53,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m N : ℕ}
 
 /-- `listQuadDown` and `listQuadUp` bracket `listQuad`. -/
-theorem Zonotope.aux_listQuad_bracket (T : Fin m → Fin n → Mat 𝕋 n n) (Zext : Fin N → Vec 𝕋 n)
-    (i : Fin m) (j a b : Fin N) : -- --- CONCL ---
+private theorem Zonotope.aux_listQuad_bracket (T : Fin m → Fin n → Mat 𝕋 n n)
+    (Zext : Fin N → Vec 𝕋 n) (i : Fin m) (j a b : Fin N) : -- --- CONCL ---
     let quad : Fin n → ℝ := fun k => if a < b then
         toRealVec (Zext a) ⬝ᵥ (toRealMat (T i k) *ᵥ toRealVec (Zext b))
           + toRealVec (Zext b) ⬝ᵥ (toRealMat (T i k) *ᵥ toRealVec (Zext a))

@@ -49,7 +49,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- After `j` sweeps, `w` has lost exactly its components along `v(1), …, v(j)`. -/
-theorem Krylov.aux_gramSchmidtStep_eq (w : Vec ℝ n) (V : ℕ → Vec ℝ n) (j : ℕ) : -- --- CONCL ---
+private theorem Krylov.aux_gramSchmidtStep_eq (w : Vec ℝ n) (V : ℕ → Vec ℝ n)
+    (j : ℕ) : -- --- CONCL ---
     (Krylov.gramSchmidtStep w V j).1
       = w - ∑ i ∈ Finset.range j, (Krylov.gramSchmidtStep w V j).2 i • V i := by -- --- PROOF ---
   induction j with
@@ -69,7 +70,7 @@ theorem Krylov.aux_gramSchmidtStep_eq (w : Vec ℝ n) (V : ℕ → Vec ℝ n) (j
 
 
 /-- `‖w‖ (‖w‖⁻¹ w) = w`, also at `w = 0`, where line 12 divides by zero. -/
-theorem Krylov.aux_norm₂_smul_inv_smul (w : Vec ℝ n) : -- --- CONCL ---
+private theorem Krylov.aux_norm₂_smul_inv_smul (w : Vec ℝ n) : -- --- CONCL ---
     ‖w‖₂ • (‖w‖₂⁻¹ • w) = w := by -- --- PROOF ---
   rcases eq_or_ne ‖w‖₂ 0 with h | h
   · funext j

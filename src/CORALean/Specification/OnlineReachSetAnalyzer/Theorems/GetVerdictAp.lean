@@ -54,7 +54,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An analyzer of one fresh `AP` node observing a set finally. -/
-theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
+private theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer ℝ S d)
     (N : OnlineAnalyzerNode ℝ (AtomicProposition S d)) (a : AtomicProposition S d)
     (hn : obj.nodes = [N]) (hl : obj.leaves = [1]) (hf : obj.propagationFrequency = 1)
     (hc : obj.numObservations = 0) (hk : N.kind = .ap) (hap : N.ap = some a)

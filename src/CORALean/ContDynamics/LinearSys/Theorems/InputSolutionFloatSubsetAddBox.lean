@@ -68,7 +68,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Order `i`'s float product lies in the exact `Tᵢ` applied to `U`'s nominal zonotope, widened
 by that order's box. -/
-theorem aux_inputTerm_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
+private theorem aux_inputTerm_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {U : Zonotope (Vec 𝕋 n)} (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (i : ℕ) : -- --- CONCL ---
     (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) U).construct
@@ -100,7 +100,7 @@ theorem aux_inputTerm_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0
 
 /-- Every partial Taylor sum lies in the exact one at `U`'s nominal zonotope, widened by its
 box. -/
-theorem aux_inputTaylorSumFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋}
+private theorem aux_inputTaylorSumFloat_subset_add_box (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) {U : Zonotope (Vec 𝕋 n)}
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
     ∀ i, (sys.inputTaylorSumFloat r U i).construct

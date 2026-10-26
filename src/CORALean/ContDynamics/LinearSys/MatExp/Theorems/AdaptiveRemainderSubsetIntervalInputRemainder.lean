@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `|A|` has `A`'s row sums, so its `l∞` operator norm. -/
-theorem aux_norm_absMat (M : Mat ℝ n n) : ‖Real.MatExp.absMat M‖ = ‖M‖ := by
+private theorem aux_norm_absMat (M : Mat ℝ n n) : ‖Real.MatExp.absMat M‖ = ‖M‖ := by
   simp [Matrix.linfty_opNorm_def, Real.MatExp.absMat]
 
 

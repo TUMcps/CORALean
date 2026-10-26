@@ -71,7 +71,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- A float mask's maximum on an interval is that of the mask read as reals. -/
-theorem aux_max_mapTime (s : FiniteSignal T Bool) (lo hi : T) : -- --- CONCL ---
+private theorem aux_max_mapTime (s : FiniteSignal T Bool) (lo hi : T) : -- --- CONCL ---
     (s.mapTime toReal).max (toReal lo) (toReal hi) = s.max lo hi := by -- --- PROOF ---
   unfold FiniteSignal.max FiniteSignal.mapTime FiniteSignal.length
   simp only [List.length_map]
@@ -97,7 +97,7 @@ theorem aux_max_mapTime (s : FiniteSignal T Bool) (lo hi : T) : -- --- CONCL ---
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- The mask of a float analyzer lets an interval through as its masks read as reals do. -/
-theorem aux_maskOk_mapTime (obj : ReachSetAnalyzer T S n) (k : String)
+private theorem aux_maskOk_mapTime (obj : ReachSetAnalyzer T S n) (k : String)
     (lo hi : T) : -- --- CONCL ---
     (obj.mapTime toReal).maskOk k (toReal lo) (toReal hi) =
       obj.maskOk k lo hi := by -- --- PROOF ---
@@ -111,7 +111,7 @@ theorem aux_maskOk_mapTime (obj : ReachSetAnalyzer T S n) (k : String)
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- A float builder's constructor, read as reals, is the real one. -/
-theorem aux_builder_mk?_mapTime (dur : T) : -- --- CONCL ---
+private theorem aux_builder_mk?_mapTime (dur : T) : -- --- CONCL ---
     (FiniteKleeneSignalBuilder.mk? dur).map (FiniteKleeneSignalBuilder.mapTime toReal) =
       FiniteKleeneSignalBuilder.mk? (toReal dur) := by -- --- PROOF ---
   have h := FiniteSignal.mk?_mapTime [dur] [false]
@@ -123,7 +123,7 @@ theorem aux_builder_mk?_mapTime (dur : T) : -- --- CONCL ---
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- The constructor of a float analyzer, read as reals, is the real one. -/
-theorem aux_mk?_mapTime (aps : List (String × AtomicProposition S n)) (dur : T)
+private theorem aux_mk?_mapTime (aps : List (String × AtomicProposition S n)) (dur : T)
     (masks : List (String × FiniteSignal T Bool)) : -- --- CONCL ---
     (ReachSetAnalyzer.mk? aps dur masks).map (ReachSetAnalyzer.mapTime toReal) =
       ReachSetAnalyzer.mk? aps (toReal dur)
@@ -148,7 +148,7 @@ theorem aux_mk?_mapTime (aps : List (String × AtomicProposition S n)) (dur : T)
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- Marking a float builder possibly true, read as reals, is the real marking. -/
-theorem aux_setPossiblyTrue?_mapTime (obj : FiniteKleeneSignalBuilder T)
+private theorem aux_setPossiblyTrue?_mapTime (obj : FiniteKleeneSignalBuilder T)
     (lo hi : T) : -- --- CONCL ---
     (obj.setPossiblyTrue? lo hi).map (FiniteKleeneSignalBuilder.mapTime toReal) =
       (obj.mapTime toReal).setPossiblyTrue? (toReal lo) (toReal hi) := by -- --- PROOF ---
@@ -171,7 +171,7 @@ theorem aux_setPossiblyTrue?_mapTime (obj : FiniteKleeneSignalBuilder T)
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- Marking a float builder possibly false, read as reals, is the real marking. -/
-theorem aux_setPossiblyFalse?_mapTime (obj : FiniteKleeneSignalBuilder T)
+private theorem aux_setPossiblyFalse?_mapTime (obj : FiniteKleeneSignalBuilder T)
     (lo hi : T) : -- --- CONCL ---
     (obj.setPossiblyFalse? lo hi).map (FiniteKleeneSignalBuilder.mapTime toReal) =
       (obj.mapTime toReal).setPossiblyFalse? (toReal lo) (toReal hi) := by -- --- PROOF ---
@@ -193,7 +193,7 @@ theorem aux_setPossiblyFalse?_mapTime (obj : FiniteKleeneSignalBuilder T)
 
 omit [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
 /-- One proposition analyzed on a float analyzer, read as reals, is the real analysis. -/
-theorem aux_analyzeKey_mapTime [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)]
+private theorem aux_analyzeKey_mapTime [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)]
     (obj : ReachSetAnalyzer T S n) (set : S n) (loc : ℕ) (lo hi : T)
     (p : String × AtomicProposition S n) : -- --- CONCL ---
     (obj.analyzeKey (𝕋 := 𝕋) set loc lo hi p).map (ReachSetAnalyzer.mapTime toReal) =
@@ -246,7 +246,7 @@ theorem aux_analyzeKey_mapTime [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint 
       rfl
 
 /-- One time interval analyzed on a float analyzer, read as reals, is the real analysis. -/
-theorem aux_analyzeTimeInterval_mapTime (obj : ReachSetAnalyzer T S n) (set : S n) (loc : ℕ)
+private theorem aux_analyzeTimeInterval_mapTime (obj : ReachSetAnalyzer T S n) (set : S n) (loc : ℕ)
     (lo hi : T) : -- --- CONCL ---
     (obj.analyzeTimeInterval (𝕋 := 𝕋) set loc lo hi).map (ReachSetAnalyzer.mapTime toReal) =
       (obj.mapTime toReal).analyzeTimeInterval (𝕋 := 𝕋) set loc (toReal lo)
@@ -259,7 +259,7 @@ theorem aux_analyzeTimeInterval_mapTime (obj : ReachSetAnalyzer T S n) (set : S 
 
 /-- One reach set analyzed on a float analyzer, read as reals, is the real analysis of the reach
 set read as reals. -/
-theorem aux_analyzeSingle_mapTime (obj : ReachSetAnalyzer T S n)
+private theorem aux_analyzeSingle_mapTime (obj : ReachSetAnalyzer T S n)
     (R : ReachSetAnalyzer.Entry T S n) :
     (obj.analyzeSingle (𝕋 := 𝕋) R).map (ReachSetAnalyzer.mapTime toReal) =
       (obj.mapTime toReal).analyzeSingle (𝕋 := 𝕋) (R.mapTime toReal) := by
@@ -270,7 +270,7 @@ theorem aux_analyzeSingle_mapTime (obj : ReachSetAnalyzer T S n)
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- The signals of a float analyzer, read as reals, are those of the analyzer read as reals. -/
-theorem aux_signals_mapTime (obj : ReachSetAnalyzer T S n) : -- --- CONCL ---
+private theorem aux_signals_mapTime (obj : ReachSetAnalyzer T S n) : -- --- CONCL ---
     obj.signals.map (List.map fun p => (p.1, p.2.mapTime toReal)) =
       (obj.mapTime toReal).signals := by -- --- PROOF ---
   unfold ReachSetAnalyzer.signals
@@ -298,7 +298,7 @@ theorem aux_signals_mapTime (obj : ReachSetAnalyzer T S n) : -- --- CONCL ---
 omit [ExactLe T] [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- Mapping the time stamps keeps the parents, so the children of every entry. -/
-theorem aux_children_mapTime (R : List (ReachSetAnalyzer.Entry T S n)) :
+private theorem aux_children_mapTime (R : List (ReachSetAnalyzer.Entry T S n)) :
     ReachSetAnalyzer.children (R.map (ReachSetAnalyzer.Entry.mapTime toReal)) =
       ReachSetAnalyzer.children R := by
   funext parent
@@ -309,7 +309,7 @@ theorem aux_children_mapTime (R : List (ReachSetAnalyzer.Entry T S n)) :
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- A valid mask that lets an interval through lets every interval enclosing it through. -/
-theorem aux_maskOk_mono (obj : ReachSetAnalyzer ℝ S n) (hm : ∀ p ∈ obj.masks, p.2.IsValid)
+private theorem aux_maskOk_mono (obj : ReachSetAnalyzer ℝ S n) (hm : ∀ p ∈ obj.masks, p.2.IsValid)
     (k : String) {lo hi lo' hi' : ℝ} (hlo : lo ≤ lo') (hhi : hi' ≤ hi) (hlh : lo' ≤ hi')
     (h0 : 0 ≤ hi') (h : obj.maskOk k lo' hi' = true) : -- --- CONCL ---
     obj.maskOk k lo hi = true := by -- --- PROOF ---
@@ -339,7 +339,7 @@ theorem aux_maskOk_mono (obj : ReachSetAnalyzer ℝ S n) (hm : ∀ p ∈ obj.mas
 
 omit [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
 /-- Signals sound for reach sets are sound for any whose time intervals those enclose. -/
-theorem aux_signalsSound_of_hasEnclosingTimes (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+private theorem aux_signalsSound_of_hasEnclosingTimes (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (hm : ∀ p ∈ obj.masks, p.2.IsValid) (R Rx : List (ReachSetAnalyzer.Entry ℝ S n))
     (w : List ℕ) (out : List (String × FiniteSignal ℝ Kleene)) (hs : obj.SignalsSound d R w out)
     (hR : ReachSetAnalyzer.HasEnclosingTimes R Rx) : -- --- CONCL ---

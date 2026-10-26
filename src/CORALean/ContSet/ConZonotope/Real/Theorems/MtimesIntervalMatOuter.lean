@@ -52,7 +52,7 @@ variable {m n : ℕ}
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has. -/
-theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
+private theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
     {cZ : ConZonotope (Vec ℝ n)} (f : Fin (cZ.h + m) → ℝ) :
     ∑ j : Fin (ConZonotope.mtimesIntervalMat IM cZ).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd cZ.h j) :=

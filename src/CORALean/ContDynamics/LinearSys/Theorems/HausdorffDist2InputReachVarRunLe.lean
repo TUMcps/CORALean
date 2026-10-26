@@ -64,7 +64,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A finite Minkowski sum of compact nonempty sets is compact and nonempty. -/
-theorem aux_isCompact_sum_range_var (f : ℕ → Set (Vec ℝ n)) (hf : ∀ j, IsCompact (f j))
+private theorem aux_isCompact_sum_range_var (f : ℕ → Set (Vec ℝ n)) (hf : ∀ j, IsCompact (f j))
     (hne : ∀ j, (f j).Nonempty) (k : ℕ) : -- --- CONCL ---
     IsCompact (∑ j ∈ Finset.range k, f j) ∧
       (∑ j ∈ Finset.range k, f j).Nonempty := by -- --- PROOF ---
@@ -77,7 +77,7 @@ theorem aux_isCompact_sum_range_var (f : ℕ → Set (Vec ℝ n)) (hf : ∀ j, I
     exact ⟨ih.1.add (hf k), ih.2.add (hne k)⟩
 
 /-- Nothing has flowed in yet at `t = 0`: the exact particular solution is the origin. -/
-theorem aux_inputReach_zero_var (sys : LinearSys 𝕋 n) {U : S n}
+private theorem aux_inputReach_zero_var (sys : LinearSys 𝕋 n) {U : S n}
     (hne : (construct U).Nonempty) : -- --- CONCL ---
     sys.inputReach U 0 = {0} := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne

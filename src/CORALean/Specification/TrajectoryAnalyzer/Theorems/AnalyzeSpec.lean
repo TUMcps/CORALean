@@ -48,7 +48,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop over the time points `ls`, all with proper intervals. -/
-theorem aux_analyze_loop (obj : TrajectoryAnalyzer ℝ 𝕋 S n) (s : ℕ) (dur : ℝ) : -- --- CONCL ---
+private theorem aux_analyze_loop (obj : TrajectoryAnalyzer ℝ 𝕋 S n) (s : ℕ)
+    (dur : ℝ) : -- --- CONCL ---
     ∀ ls : List ℕ, (∀ l ∈ ls, obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) →
     ∀ (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop),
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs M → ∃ sigs',

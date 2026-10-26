@@ -46,7 +46,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A product with a block vector, at one coordinate, as a double sum. -/
-theorem LinearARX.aux_mulVec_block {m : ℕ} (M : Mat ℝ (p * dy) m) (x : Vec ℝ m) (a : Fin p)
+private theorem LinearARX.aux_mulVec_block {m : ℕ} (M : Mat ℝ (p * dy) m) (x : Vec ℝ m) (a : Fin p)
     (b : Fin dy) :
     (M *ᵥ x) (finProdFinEquiv (a, b)) = ∑ c, M (finProdFinEquiv (a, b)) c * x c := rfl
 

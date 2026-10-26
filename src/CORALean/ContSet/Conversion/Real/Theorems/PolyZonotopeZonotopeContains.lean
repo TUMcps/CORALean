@@ -45,7 +45,8 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at the generator count this conversion produces, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem PolyZonotope.aux_sum_univ_zonotope {pZ : PolyZonotope α} (f : Fin (pZ.h + pZ.q) → α) :
+private theorem PolyZonotope.aux_sum_univ_zonotope {pZ : PolyZonotope α}
+    (f : Fin (pZ.h + pZ.q) → α) :
     ∑ l : Fin pZ.zonotope.h, f l
       = ∑ i, f (Fin.castAdd pZ.q i) + ∑ j, f (Fin.natAdd pZ.h j) :=
   Fin.sum_univ_add f

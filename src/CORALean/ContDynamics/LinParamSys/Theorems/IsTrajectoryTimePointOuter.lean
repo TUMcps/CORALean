@@ -74,7 +74,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 /-- The first `η + 1` terms at `t` lie in the interval Taylor truncation of `t • B`. -/
-theorem aux_peanoBakerSum_mem {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
+private theorem aux_peanoBakerSum_mem {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
     (hAB : ∀ s, A s ∈ B.construct) {t : ℝ} (ht : 0 ≤ t) (η : ℕ) : -- --- CONCL ---
     ∑ k ∈ Finset.range (η + 1), MatExp.peanoBakerTerm A k t
@@ -95,7 +95,7 @@ theorem aux_peanoBakerSum_mem {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ 
 
 /-- A solution of the integral equation at a matrix that stays in `B` is mapped,
 at time `t`, by a member of `B`'s exponential enclosure over the step `t`. -/
-theorem MatExp.aux_exists_mem_expIntervalEnclosure_of_integral {B : Interval (Mat ℝ n n)}
+private theorem MatExp.aux_exists_mem_expIntervalEnclosure_of_integral {B : Interval (Mat ℝ n n)}
     {A : ℝ → Mat ℝ n n} (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
     (hAB : ∀ s, A s ∈ B.construct)
     {x : ℝ → Vec ℝ n} {t : ℝ} (ht : 0 ≤ t) (hxc : ContinuousOn x (Set.Icc 0 t))
@@ -133,7 +133,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 omit [Mtimes ℐ S] in
 /-- An input-free `'varParam'` run, at a time `t` of its window, is its start
 mapped by a member of the box's exponential enclosure over `t`. -/
-theorem LinParamSys.IsCanonicalTrajectory.aux_exists_mem_expIntervalEnclosure
+private theorem LinParamSys.IsCanonicalTrajectory.aux_exists_mem_expIntervalEnclosure
     {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)

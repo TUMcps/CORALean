@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix of Frobenius norm at most `1` keeps the unit ball. -/
-theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b) (u : Vec ℝ b)
+private theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b) (u : Vec ℝ b)
     (hT : ∑ i, ∑ j, T i j ^ 2 ≤ 1) (hu : ‖u‖₂ ≤ 1) : -- --- CONCL ---
     ‖fun i => ∑ j, T i j * u j‖₂ ≤ 1 := by -- --- PROOF ---
   -- each row's value is at most the row's length, by Cauchy–Schwarz

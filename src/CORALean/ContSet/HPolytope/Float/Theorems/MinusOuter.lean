@@ -44,7 +44,8 @@ section
 open Pointwise Matrix
 
 /-- The shifted polytope contains the shift of every point. -/
-theorem HPolytope.aux_translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem HPolytope.aux_translate_outer (t : Vec 𝕋 n)
+    (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealVec t + ·) '' P.construct ⊆ (HPolytope.translate t P).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨z, hz, e, he, rfl⟩ := Set.mem_add.mp hy

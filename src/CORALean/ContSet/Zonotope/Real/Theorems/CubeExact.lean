@@ -44,7 +44,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Coordinate `i` of the cube's generator sum is `ρ βᵢ`. -/
-theorem Zonotope.aux_cube_sum_apply {n : ℕ} (ρ : ℝ) (β : Fin (Zonotope.cube n ρ).h → ℝ)
+private theorem Zonotope.aux_cube_sum_apply {n : ℕ} (ρ : ℝ) (β : Fin (Zonotope.cube n ρ).h → ℝ)
     (i : Fin n) : -- --- CONCL ---
     ∑ j, (Zonotope.cube n ρ).G j i * β j = ρ * β i := by -- --- PROOF ---
   show ∑ j : Fin n, (Pi.single j ρ : Vec ℝ n) i * β j = ρ * β i

@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The halves of a proper box are proper boxes inside it. -/
-theorem Taylm.aux_halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).inf ≤ (B k).sup)
+private theorem Taylm.aux_halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).inf ≤ (B k).sup)
     (β : Fin n) : -- --- CONCL ---
     (∀ k, ((Taylm.halveBox B β).1 k).inf ≤ ((Taylm.halveBox B β).1 k).sup) ∧
       (∀ k, ((Taylm.halveBox B β).2 k).inf ≤ ((Taylm.halveBox B β).2 k).sup) ∧

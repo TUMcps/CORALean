@@ -57,7 +57,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- Both translates at once: shifting `x` either way along `v` lands in `A`. -/
-theorem aux_mem_translate_pair (A : Set α) (v x : α) : -- --- CONCL ---
+private theorem aux_mem_translate_pair (A : Set α) (v x : α) : -- --- CONCL ---
     x ∈ (A + ({v} : Set α)) ∩ (A - ({v} : Set α)) ↔ x - v ∈ A ∧ x + v ∈ A := by -- --- PROOF ---
   constructor
   · rintro ⟨⟨a, ha, b, hb, hx⟩, a', ha', b', hb', hx'⟩
@@ -71,7 +71,7 @@ theorem aux_mem_translate_pair (A : Set α) (v x : α) : -- --- CONCL ---
 
 /-- The segment one generator spans is convex: an average of coefficients is
 again a coefficient. -/
-theorem aux_convex_seg (g : α) : -- --- CONCL ---
+private theorem aux_convex_seg (g : α) : -- --- CONCL ---
     Convex ℝ {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g} := by -- --- PROOF ---
   rintro _ ⟨t₁, h₁, rfl⟩ _ ⟨t₂, h₂, rfl⟩ a b ha hb hab
   refine ⟨a * t₁ + b * t₂, ?_, by module⟩
@@ -83,7 +83,7 @@ theorem aux_convex_seg (g : α) : -- --- CONCL ---
 
 /-- A coefficient of size at most `c` against `g` is one of size at most `1`
 against `c • g` — at `c = 0` because both sides are then `0`. -/
-theorem aux_seg_mem (c : ℝ) (hc : 0 ≤ c) (g : α) (s : ℝ) (hs : |s| ≤ c) : -- --- CONCL ---
+private theorem aux_seg_mem (c : ℝ) (hc : 0 ≤ c) (g : α) (s : ℝ) (hs : |s| ≤ c) : -- --- CONCL ---
     ∃ t : ℝ, |t| ≤ 1 ∧ s • g = t • (c • g) := by -- --- PROOF ---
   rcases hc.eq_or_lt with rfl | hpos
   · have hs0 : s = 0 := abs_eq_zero.mp (le_antisymm hs (abs_nonneg s))
@@ -94,7 +94,7 @@ theorem aux_seg_mem (c : ℝ) (hc : 0 ≤ c) (g : α) (s : ℝ) (hs : |s| ≤ c)
 
 /-- One step of [1, Thm. 1]'s recursion at an aligned generator: intersecting
 both translates along `μ • g` shortens the segment `g` spans to `(1 - μ) • g`. -/
-theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : ℝ) (h0 : 0 ≤ μ)
+private theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : ℝ) (h0 : 0 ≤ μ)
     (h1 : μ ≤ 1) : -- --- CONCL ---
     ((W + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g}) + ({μ • g} : Set α))
         ∩ ((W + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g}) - ({μ • g} : Set α))
@@ -148,7 +148,7 @@ theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : ℝ) (h0 
 
 /-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
-theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
+private theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
     (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
       = {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0}
           + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct := by -- --- PROOF ---
@@ -172,7 +172,7 @@ theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
 
 /-- The whole fold, at every convex starting set: aligned generators leave the
 closed form's shortened ones behind, one step at a time. -/
-theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
+private theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
     ∀ (W : Set α), Convex ℝ W → ∀ (g : Fin n → α) (μ : Fin n → ℝ),
       (∀ i, 0 ≤ μ i) → (∀ i, μ i ≤ 1) →
       Fin.foldl n (fun A i => (A + {μ i • g i}) ∩ (A - {μ i • g i}))
@@ -214,7 +214,7 @@ theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
 
 /-- A zonotope shifted by `-v` is the zero-centered one on its generators, moved
 to `c - v`. -/
-theorem aux_sub_singleton (Z : Zonotope α) (v : α) : -- --- CONCL ---
+private theorem aux_sub_singleton (Z : Zonotope α) (v : α) : -- --- CONCL ---
     Z.construct - ({v} : Set α)
       = {Z.c - v} + (⟨Z.h, (0 : α), Z.G⟩ : Zonotope α).construct := by -- --- PROOF ---
   ext x
@@ -231,7 +231,7 @@ theorem aux_sub_singleton (Z : Zonotope α) (v : α) : -- --- CONCL ---
     abel
 
 /-- And back: moving a zero-centered zonotope to `v` is its center. -/
-theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) : -- --- CONCL ---
+private theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) : -- --- CONCL ---
     ({v} : Set α) + (⟨n, (0 : α), g⟩ : Zonotope α).construct
       = (⟨n, v, g⟩ : Zonotope α).construct := by -- --- PROOF ---
   ext x
@@ -246,7 +246,7 @@ theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) : -- --- CONCL -
 
 /-- The closed form at an explicit alignment: `g⁽ᵐ'ⁱ⁾ - μᵢ g⁽ᵐ'ⁱ⁾` is
 `(1 - μᵢ) g⁽ᵐ'ⁱ⁾`, which is what the fold leaves behind. -/
-theorem aux_aligned_eq (n : ℕ) (c₁ c₂ : α) (G₁ : Fin n → α) (μ : Fin n → ℝ) :
+private theorem aux_aligned_eq (n : ℕ) (c₁ c₂ : α) (G₁ : Fin n → α) (μ : Fin n → ℝ) :
     Zonotope.minkDiffAligned (⟨n, c₁, G₁⟩ : Zonotope α) ⟨n, c₂, fun i => μ i • G₁ i⟩ rfl
       = ⟨n, c₁ - c₂, fun i => (1 - μ i) • G₁ i⟩ := by
   simp only [Zonotope.minkDiffAligned, Zonotope.mk.injEq, heq_eq_eq, true_and]

@@ -45,7 +45,7 @@ variable {E Φ Y : Type} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the binomial probabilities sum to `1`
-theorem aux_binom_sum_eq_one {W k : ℕ} (hWk : W ≤ k) (ε : ℝ) : -- --- CONCL ---
+private theorem aux_binom_sum_eq_one {W k : ℕ} (hWk : W ≤ k) (ε : ℝ) : -- --- CONCL ---
     ∑ i ∈ Finset.range (k + 1), (W.choose i : ℝ) * ε ^ i * (1 - ε) ^ (W - i) =
       1 := by -- --- PROOF ---
   -- the terms above `W` vanish, the rest is `(ε + (1 - ε))^W`
@@ -58,7 +58,7 @@ theorem aux_binom_sum_eq_one {W k : ℕ} (hWk : W ≤ k) (ε : ℝ) : -- --- CON
   exact (Finset.sum_congr rfl fun i _ => by ring).trans h.symm
 
 -- `C(N, d) ≥ 2` for `0 < d < N`
-theorem aux_two_le_choose {N d : ℕ} (h1 : 1 ≤ d) (h2 : d < N) : -- --- CONCL ---
+private theorem aux_two_le_choose {N d : ℕ} (h1 : 1 ≤ d) (h2 : d < N) : -- --- CONCL ---
     2 ≤ N.choose d := by -- --- PROOF ---
   obtain ⟨n, rfl⟩ : ∃ n, N = n + 1 := ⟨N - 1, by omega⟩
   obtain ⟨e, rfl⟩ : ∃ e, d = e + 1 := ⟨d - 1, by omega⟩
@@ -68,14 +68,14 @@ theorem aux_two_le_choose {N d : ℕ} (h1 : 1 ≤ d) (h2 : d < N) : -- --- CONCL
   omega
 
 -- a family's σ-algebra is the join of its members'
-theorem aux_comap_pi_le {Ω κ Δ : Type} [MeasurableSpace Δ] (f : κ → Ω → Δ)
+private theorem aux_comap_pi_le {Ω κ Δ : Type} [MeasurableSpace Δ] (f : κ → Ω → Δ)
     {m : MeasurableSpace Ω} (h : ∀ i, MeasurableSpace.comap (f i) inferInstance ≤ m) :
     MeasurableSpace.comap (fun ω i => f i ω) inferInstance ≤ m := by
   rw [MeasurableSpace.pi, MeasurableSpace.comap_iSup]
   exact iSup_le fun i => by rw [MeasurableSpace.comap_comp]; exact h i
 
 -- a value at a time of `S` is measurable in the σ-algebra of the values at `S`
-theorem aux_comap_le_values {Ω Δ : Type} [MeasurableSpace Δ] (x : ℕ → Ω → Δ) (S : Finset ℕ)
+private theorem aux_comap_le_values {Ω Δ : Type} [MeasurableSpace Δ] (x : ℕ → Ω → Δ) (S : Finset ℕ)
     {t : ℕ} (ht : t ∈ S) :
     MeasurableSpace.comap (x t) inferInstance ≤
       MeasurableSpace.comap (fun ω (s : S) => x s ω) inferInstance := by

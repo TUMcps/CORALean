@@ -47,7 +47,7 @@ variable {α β γ : Type}
 
 /-- The result's monomial at a pair of columns: the two sets' monomials,
 multiplied. -/
-theorem PolyZonotope.aux_bilin_monomial (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
+private theorem PolyZonotope.aux_bilin_monomial (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β)
     (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (l₁ : Fin (pZ₁.h + 1))
     (l₂ : Fin (pZ₂.h + 1)) : -- --- CONCL ---
     monomial (bilinE pZ₁ pZ₂ hp) a (finProdFinEquiv (l₁, l₂))
@@ -69,7 +69,7 @@ variable [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
 /-- `f` at the two points, expanded over pairs of extended columns — the step
 that uses bilinearity and nothing else. -/
-theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
+private theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
     (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) : -- --- CONCL ---
     f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k))
       = ∑ l₁, ∑ l₂, (extM pZ₁ a l₁ * extM pZ₂ (fun k => a (Fin.cast hp.symm k)) l₂)

@@ -55,7 +55,7 @@ variable {m n : ℕ}
 /-- A leading block of all-zero generators changes nothing a zonotope denotes:
 its coefficients are free, and every one of them contributes nothing either
 way. -/
-theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m)
+private theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m)
     (G : Fin k → Vec ℝ m) : -- --- CONCL ---
     (⟨j + k, c, Fin.append (fun _ => (0 : Vec ℝ m)) G⟩ : Zonotope (Vec ℝ m)).construct
       = (⟨k, c, G⟩ : Zonotope (Vec ℝ m)).construct := by -- --- PROOF ---
@@ -76,7 +76,7 @@ theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m)
 /-- `Z.interval.zonotope` reaches exactly as far from the origin as `Z` does,
 coordinate by coordinate: its one nonzero generator per coordinate is `Z`'s own
 reach there, read off `Zonotope.interval`'s width. -/
-theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
+private theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Z.interval.zonotope).absBound = Z.absBound := by -- --- PROOF ---
   -- `Zonotope.interval`/`Interval.zonotope` unfold to these by `rfl`
   have hsup : Z.interval.sup = fun i => Z.c i + ∑ k, |Z.G k i| := rfl

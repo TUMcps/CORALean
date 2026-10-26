@@ -66,7 +66,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- [2, (20)]: `E(Δt, η) = e^{|A|Δt} - Σ_{i≤η} (|A|Δt)ⁱ/i! = 0` for `A = 0`, any `η`. -/
-theorem NonlinearSys.aux_expRemainderMat_zero {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
+private theorem NonlinearSys.aux_expRemainderMat_zero {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     Real.MatExp.expRemainderMat (0 : Mat ℝ n n) Δt η = 0 := by -- --- PROOF ---
   have habs : Real.MatExp.absMat (0 : Mat ℝ n n) = 0 := by
     ext i j; simp [Real.MatExp.absMat]
@@ -79,7 +79,7 @@ theorem NonlinearSys.aux_expRemainderMat_zero {n : ℕ} (Δt : ℝ) (η : ℕ) :
   rw [Real.MatExp.expRemainderMat, habs, smul_zero, NormedSpace.exp_zero, htay, sub_self]
 
 /-- (9): `L = [0, 0]` for a constant `f`, as `D²f ≡ 0`. -/
-theorem NonlinearSys.aux_innerLagrangeRemainder_const {n : ℕ} (w xstar : Vec ℝ n)
+private theorem NonlinearSys.aux_innerLagrangeRemainder_const {n : ℕ} (w xstar : Vec ℝ n)
     (X : Set (Vec ℝ n)) : -- --- CONCL ---
     NonlinearSys.innerLagrangeRemainder (fun _ : Vec ℝ n => w) xstar X = {0} := by -- --- PROOF ---
   have hD : fderiv ℝ (fderiv ℝ (fun _ : Vec ℝ n => w)) = 0 := by
@@ -94,7 +94,7 @@ theorem NonlinearSys.aux_innerLagrangeRemainder_const {n : ℕ} (w xstar : Vec �
   rw [hl, neg_zero, Set.Icc_self]
 
 /-- (13): `R̂_err(0) = {0}` for `A = 0` and any `η`. -/
-theorem NonlinearSys.aux_innerAbstrErr_zero {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
+private theorem NonlinearSys.aux_innerAbstrErr_zero {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     NonlinearSys.innerAbstrErr η Δt (0 : Mat ℝ n n) {0} = {0} := by -- --- PROOF ---
   have h0 : (0 : Mat ℝ n n) ∈ Real.MatExp.expRemainderInterval (0 : Mat ℝ n n) Δt η :=
     fun j k => by simp [NonlinearSys.aux_expRemainderMat_zero Δt η]
@@ -105,7 +105,7 @@ theorem NonlinearSys.aux_innerAbstrErr_zero {n : ℕ} (Δt : ℝ) (η : ℕ) : -
   exact Set.biUnion_const ⟨0, h0⟩ _
 
 /-- [2, (19), (28)]: `F = G = {0}` for `A = 0`, any `η`. -/
-theorem NonlinearSys.aux_zero_depCurvature {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
+private theorem NonlinearSys.aux_zero_depCurvature {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     (STL.depCurvatureF (0 : Mat ℝ n n) Δt η).construct = {0} ∧
       (STL.depCurvatureG (0 : Mat ℝ n n) Δt η).construct = {0} := by -- --- PROOF ---
   have hE := NonlinearSys.aux_expRemainderMat_zero (n := n) Δt η
@@ -123,7 +123,7 @@ theorem NonlinearSys.aux_zero_depCurvature {n : ℕ} (Δt : ℝ) (η : ℕ) : --
     · rintro rfl p; simp)
 
 /-- (17): `C = F box(X₀) ⊕ G w = {0}` for `A = 0`, any `η`, any `w` and a nonempty box. -/
-theorem NonlinearSys.aux_innerCurvatureError_zero {n : ℕ} (Δt : ℝ) (η : ℕ)
+private theorem NonlinearSys.aux_innerCurvatureError_zero {n : ℕ} (Δt : ℝ) (η : ℕ)
     {B : Set (Vec ℝ n)} (hB : B.Nonempty) (w : Vec ℝ n) :
     NonlinearSys.innerCurvatureError η Δt (0 : Mat ℝ n n) B w = {0} := by
   obtain ⟨hF, hG⟩ := NonlinearSys.aux_zero_depCurvature (n := n) Δt η

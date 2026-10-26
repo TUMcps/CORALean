@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- One entry of the residual lies between the two roundings, so its magnitude is under the
 larger of theirs. -/
-theorem Capsule.aux_residual_le (p c g t : 𝕋) : -- --- CONCL ---
+private theorem Capsule.aux_residual_le (p c g t : 𝕋) : -- --- CONCL ---
     |toReal p - (toReal c + toReal t * toReal g)| ≤
       |toReal (maximum (absolute (subDown (subDown p c) (mulUp t g)))
         (absolute (subUp (subUp p c) (mulDown t g))))| := by -- --- PROOF ---

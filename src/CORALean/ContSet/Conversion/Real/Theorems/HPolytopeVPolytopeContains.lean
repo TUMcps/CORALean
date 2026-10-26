@@ -53,7 +53,7 @@ section
 variable {n : ℕ}
 
 /-- Extreme points of a halfspace description. -/
-theorem HPolytope.aux_eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
+private theorem HPolytope.aux_eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct.extremePoints ℝ) {d : Vec ℝ n}
     (htight : ∀ i, P.A i x = P.b i → P.A i d = 0) (heq : ∀ i, P.Ae i d = 0) : -- --- CONCL ---
     d = 0 := by -- --- PROOF ---
@@ -112,8 +112,8 @@ end
 /-- The soundness half of vertex enumeration: a list holding every point the
 rows pin down encloses the polytope. An implementation must then show it found
 those points, never that its search was exhaustive in any other sense. -/
-theorem HPolytope.aux_contains_of_pinned (hc : IsCompact P.construct) (W : VPolytope (Vec ℝ n))
-    (hW : ∀ x ∈ P.construct,
+private theorem HPolytope.aux_contains_of_pinned (hc : IsCompact P.construct)
+    (W : VPolytope (Vec ℝ n)) (hW : ∀ x ∈ P.construct,
         (∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) →
         x ∈ Set.range W.V) : -- --- CONCL ---
     P.construct ⊆ W.construct := by -- --- PROOF ---
@@ -132,7 +132,7 @@ section
 variable {n : ℕ}
 
 /-- A point no direction is free at is the one its own tight rows name. -/
-theorem HPolytope.aux_basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
+private theorem HPolytope.aux_basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct)
     (hpin : ∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0)
     : -- --- CONCL ---

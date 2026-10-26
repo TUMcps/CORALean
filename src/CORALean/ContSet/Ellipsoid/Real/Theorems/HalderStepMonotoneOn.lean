@@ -46,7 +46,7 @@ variable {lam : ι → ℝ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_pair {a b x y : ℝ} (ha : 0 < a) (hb : 0 < b) (hx : 0 ≤ x)
+private theorem Ellipsoid.aux_pair {a b x y : ℝ} (ha : 0 < a) (hb : 0 < b) (hx : 0 ≤ x)
     (hxy : x ≤ y) : -- --- CONCL ---
     (1 / (1 + x * a) * (b / (1 + y * b)) - 1 / (1 + y * a) * (b / (1 + x * b)))
     + (1 / (1 + x * b) * (a / (1 + y * a)) - 1 / (1 + y * b) * (a / (1 + x * a)))
@@ -74,7 +74,7 @@ theorem Ellipsoid.aux_pair {a b x y : ℝ} (ha : 0 < a) (hb : 0 < b) (hx : 0 ≤
   have hn : 0 ≤ (y - x) * (a - b) ^ 2 := mul_nonneg (sub_nonneg.2 hxy) (sq_nonneg (a - b))
   exact div_nonpos_of_nonpos_of_nonneg (by linarith) (by positivity)
 
-theorem Ellipsoid.aux_cross_le (hlam : ∀ i, 0 < lam i) {x y : ℝ} (hx : 0 ≤ x)
+private theorem Ellipsoid.aux_cross_le (hlam : ∀ i, 0 < lam i) {x y : ℝ} (hx : 0 ≤ x)
     (hxy : x ≤ y) : -- --- CONCL ---
     Ellipsoid.halderInvSum lam x * Ellipsoid.halderLamSum lam y
       ≤ Ellipsoid.halderInvSum lam y * Ellipsoid.halderLamSum lam x := by -- --- PROOF ---

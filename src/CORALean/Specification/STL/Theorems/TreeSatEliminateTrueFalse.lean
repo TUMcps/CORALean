@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Tree.aux_sat_eliminateTrueFalseWith (ut : ℝ≥0 → ℝ≥0 → STL.Tree n → STL.Tree n)
+private theorem STL.Tree.aux_sat_eliminateTrueFalseWith (ut : ℝ≥0 → ℝ≥0 → STL.Tree n → STL.Tree n)
     (hut : ∀ a b φ ξ, (ut a b φ).Satisfies ξ ↔ (STL.Tree.until a b φ .tt).Satisfies ξ)
     (φ : STL.Tree n) (hφ : φ.IsWellFormed) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.eliminateTrueFalseWith ut).Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---

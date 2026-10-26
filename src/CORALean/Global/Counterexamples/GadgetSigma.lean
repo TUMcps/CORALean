@@ -52,7 +52,7 @@ open Matrix
 /-- `A = (2, 1)ᵀ ∈ ℝ^{2×1}`. -/
 def aux_A28 : Mat ℝ 2 1 := fun i _ => if i = 0 then 2 else 1
 
-theorem aux_mulVec28 (t : ℝ) (w : Fin 1 → ℝ) : -- --- CONCL ---
+private theorem aux_mulVec28 (t : ℝ) (w : Fin 1 → ℝ) : -- --- CONCL ---
     (t • aux_A28) *ᵥ w = ![2 * t * w 0, t * w 0] := by -- --- PROOF ---
   funext i
   simp only [mulVec, dotProduct, Fin.sum_univ_one, Matrix.smul_apply, smul_eq_mul, aux_A28]
@@ -61,7 +61,7 @@ theorem aux_mulVec28 (t : ℝ) (w : Fin 1 → ℝ) : -- --- CONCL ---
   · simp only [Fin.mk_one, one_ne_zero, if_false, cons_val_one, cons_val_zero]; ring
 
 /-- A bound on both entries bounds the supremum norm. -/
-theorem aux_norm_vec2_le {a b c : ℝ} (hc : 0 ≤ c) (ha : |a| ≤ c) (hb : |b| ≤ c) :
+private theorem aux_norm_vec2_le {a b c : ℝ} (hc : 0 ≤ c) (ha : |a| ≤ c) (hb : |b| ≤ c) :
     ‖(![a, b] : Vec ℝ 2)‖ ≤ c := by
   refine (pi_norm_le_iff_of_nonneg hc).mpr fun i => ?_
   fin_cases i
@@ -69,7 +69,7 @@ theorem aux_norm_vec2_le {a b c : ℝ} (hc : 0 ≤ c) (ha : |a| ≤ c) (hb : |b|
   · simpa using hb
 
 /-- `H = 2 (½H)`, so its norm is half. -/
-theorem aux_coeffNorm_gadgetH (x : Vec ℝ 2 × ℝ) : -- --- CONCL ---
+private theorem aux_coeffNorm_gadgetH (x : Vec ℝ 2 × ℝ) : -- --- CONCL ---
     coeffNorm (gadgetH 2) x = coeffNorm ((1 / 2 : ℝ) • gadgetH 2) x / 2 := by -- --- PROOF ---
   have hs := (coeffNorm_half_gadgetH (n := 2) (by norm_num)).1
   obtain ⟨β, hβ, hβn⟩ := exists_coeffNorm_eq _ (hs x)
@@ -92,7 +92,7 @@ theorem aux_coeffNorm_gadgetH (x : Vec ℝ 2 × ℝ) : -- --- CONCL ---
 
 /-- For `0 < t ≤ 1` the radius of `E_∞(G_{tA})` at `Z(½H)` is `(3t + 1)/2`, attained at
 `(1, -1)`. -/
-theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL ---
+private theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL ---
     IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 α)) ''
       Metric.closedBall 0 1) ((3 * t + 1) / 2) := by -- --- PROOF ---
   have hnorm := (coeffNorm_half_gadgetH (n := 2) (by norm_num)).2

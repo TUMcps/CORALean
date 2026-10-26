@@ -61,7 +61,8 @@ variable {n nu ny nw nv : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the four set variables of the state after `k` steps, in closed form
-theorem LinearSysDT.aux_intervalEstimateState_closed (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+private theorem LinearSysDT.aux_intervalEstimateState_closed (sys : LinearSysDT ℝ n)
+    (L : Mat ℝ n sys.q)
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
     (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     let s := LinearSysDT.intervalEstimateState sys L X₀ W V u y

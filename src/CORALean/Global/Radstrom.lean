@@ -62,7 +62,7 @@ omit [NormedSpace ℝ α] in
 /-- The two sequences the argument runs on: a point of `Y` and a fresh point of
 `E` at every step, chosen once and iterated, so the recursion is `Function.iterate`
 on the `E` component alone. -/
-theorem aux_radstrom_seq {a e₀ : α} {Y E : Set α} (he₀ : e₀ ∈ E)
+private theorem aux_radstrom_seq {a e₀ : α} {Y E : Set α} (he₀ : e₀ ∈ E)
     (hstep : ∀ u ∈ E, ∃ v ∈ Y, ∃ w ∈ E, a + u = v + w) : -- --- CONCL ---
     ∃ y e : ℕ → α, e 0 = e₀ ∧ (∀ k, e k ∈ E) ∧ (∀ k, y k ∈ Y) ∧
       ∀ k, a + e k = y k + e (k + 1) := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem aux_radstrom_seq {a e₀ : α} {Y E : Set α} (he₀ : e₀ ∈ E)
 
 /-- Summing `a + eₖ = yₖ + eₖ₊₁` over `k < n`: every `eₖ` in between cancels and
 `n • a + e₀ = ∑ yₖ + eₙ` is left. -/
-theorem aux_radstrom_telescope {a : α} {y e : ℕ → α}
+private theorem aux_radstrom_telescope {a : α} {y e : ℕ → α}
     (hrec : ∀ k, a + e k = y k + e (k + 1)) (n : ℕ) : -- --- CONCL ---
     (n : ℝ) • a + e 0 = (∑ k ∈ Finset.range n, y k) + e n := by -- --- PROOF ---
   induction n with

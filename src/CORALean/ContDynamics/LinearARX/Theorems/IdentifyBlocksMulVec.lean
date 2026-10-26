@@ -44,7 +44,7 @@ variable {dy du p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum over `Fin (p * d)` is the double sum over the blocks. -/
-theorem aux_sum_finProd {p d : ℕ} (f : Fin (p * d) → ℝ) :
+private theorem aux_sum_finProd {p d : ℕ} (f : Fin (p * d) → ℝ) :
     ∑ r, f r = ∑ i : Fin p, ∑ b : Fin d, f (finProdFinEquiv (i, b)) := by
   rw [← Equiv.sum_comp finProdFinEquiv f, Fintype.sum_prod_type]
 

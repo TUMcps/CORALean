@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_union_eq (l : List (VPolytope (Vec ℝ 2)))
+private theorem Polygon.aux_union_eq (l : List (VPolytope (Vec ℝ 2)))
     (h : l.Pairwise fun p q =>
       MeasureTheory.AEDisjoint MeasureTheory.volume
         (VPolytope.construct p) (VPolytope.construct q)) : -- --- CONCL ---

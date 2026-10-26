@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 -- file-local: only `evalPolySort_sorted` below needs it
 /-- Every tail is a `sortPlus`, or else empty. -/
-theorem PolyZonotope.aux_evalPolySortTail_sorted (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_evalPolySortTail_sorted (pZ : PolyZonotope (Vec ℝ n))
     (coeffs : List (Vec ℝ n)) (k : ℕ) :
     PolyZonotope.IsSorted (pZ.evalPolySortTailP coeffs k).1.E := by
   match coeffs with

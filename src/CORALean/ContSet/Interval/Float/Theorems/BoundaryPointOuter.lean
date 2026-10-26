@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Interval.boundaryRatioAt` brackets the coordinate's ratio. -/
-theorem Interval.aux_boundaryRatioAt_mem {I : Interval (Vec 𝕋 n)} {dir start : Vec 𝕋 n}
+private theorem Interval.aux_boundaryRatioAt_mem {I : Interval (Vec 𝕋 n)} {dir start : Vec 𝕋 n}
     {i : Fin n} : -- --- CONCL ---
     ∀ x ∈ Interval.boundaryRatioAt I dir start i,
       (0 < toReal (dir i) ∧

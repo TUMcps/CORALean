@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A product with a value of a sum of two intervals is between the sums of the two products'
 stored corners: each corner of `[alo, ahi] · [r₁ + e₁, r₂ + e₂]` splits into a corner of each. -/
-theorem Taylm.aux_mul_sum_between {alo ahi r₁ r₂ e₁ e₂ : 𝕋} {y x : ℝ}
+private theorem Taylm.aux_mul_sum_between {alo ahi r₁ r₂ e₁ e₂ : 𝕋} {y x : ℝ}
     (hy : toReal alo ≤ y ∧ y ≤ toReal ahi)
     (hx : toReal r₁ + toReal e₁ ≤ x ∧ x ≤ toReal r₂ + toReal e₂) : -- --- CONCL ---
     toReal (Interval.mulLo alo ahi r₁ r₂) + toReal (Interval.mulLo alo ahi e₁ e₂) ≤ y * x ∧

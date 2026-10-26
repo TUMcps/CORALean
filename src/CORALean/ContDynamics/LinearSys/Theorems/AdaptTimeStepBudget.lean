@@ -60,7 +60,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The order sweep reports only orders its own check cleared. -/
-theorem aux_adaptTimeStepOrder_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_adaptTimeStepOrder_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
     (εHmax εPi Δt : ℝ) : -- --- CONCL ---
     ∀ (k η η' : ℕ), LinearSys.adaptTimeStepOrder sys le X₀ U εHmax εPi Δt η k = some η' →
@@ -83,7 +83,7 @@ theorem aux_adaptTimeStepOrder_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ
 
 /-- The step sweep reports only steps at which the order sweep succeeded, the
 share being the one read at that very step. -/
-theorem aux_adaptTimeStepSearch_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_adaptTimeStepSearch_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
     (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) : -- --- CONCL ---
     ∀ (k : ℕ) (Δt Δti : ℝ) (ηi : ℕ),

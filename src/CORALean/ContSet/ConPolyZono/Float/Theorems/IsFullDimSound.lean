@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored indicator is the real monomial at the factors `0`. -/
-theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (k : Fin cPZ.cons.q) : -- --- CONCL ---
     toReal (cPZ.zeroMonomials k)
       = Real.PolyZonotope.monomial cPZ.cons.R (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
@@ -63,7 +63,7 @@ theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     exact (Finset.prod_eq_zero (Finset.mem_univ l) (by rw [zero_pow hl])).symm
 
 /-- The checked rows say the factors `0` meet the constraints within their slack. -/
-theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
+private theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (h : ∀ i, le (subUp (cPZ.cons.b i) (dotDown (cPZ.cons.A i) cPZ.zeroMonomials))
         (absolute (cPZ.cons.b_error i)) = true
       ∧ le (subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i))
@@ -87,8 +87,8 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
   constructor <;> linarith
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
-theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n} {B : 𝕋}
-    (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
+private theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n}
+    {B : 𝕋} (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
     (hsat : (fun _ => 0) ∈ cPZ.cons.construct) {y₀ : Vec ℝ n}
     (hy₀ : ∀ i, y₀ i = toReal (cPZ.c i)
       + ∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E (fun _ => 0) l)

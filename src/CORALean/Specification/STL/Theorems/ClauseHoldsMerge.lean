@@ -48,7 +48,7 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Inserting a branch in a clause. -/
-theorem STL.Clause.aux_holds_insert (c : ℝ≥0) (b : STL.Branch X) (cl : STL.Clause X)
+private theorem STL.Clause.aux_holds_insert (c : ℝ≥0) (b : STL.Branch X) (cl : STL.Clause X)
     (ξ : ℝ≥0 → X) : -- --- CONCL ---
     (∃ b' ∈ STL.Clause.insert b cl, b'.Holds c ξ) ↔
       b.Holds c ξ ∨ ∃ b' ∈ cl, b'.Holds c ξ := by -- --- PROOF ---

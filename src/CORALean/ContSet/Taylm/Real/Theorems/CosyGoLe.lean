@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Halving keeps a sub-box of the normalized box. -/
-theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.IsGoodBox B)
+private theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.IsGoodBox B)
     (β : Fin n) : -- --- CONCL ---
     Taylm.IsGoodBox (Taylm.halveBox B β).1 ∧
       Taylm.IsGoodBox (Taylm.halveBox B β).2 := by -- --- PROOF ---

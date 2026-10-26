@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ZonoBundle.aux_subset_interFrom {S : Set (Vec ℝ n)} : -- --- CONCL ---
+private theorem ZonoBundle.aux_subset_interFrom {S : Set (Vec ℝ n)} : -- --- CONCL ---
     ∀ {k : ℕ} (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (Z : Fin k → Zonotope (Vec 𝕋 n)),
       S ⊆ cZ.construct → (∀ i, S ⊆ (Z i).construct) →
       S ⊆ (ZonoBundle.interFrom cZ Z).construct := by -- --- PROOF ---

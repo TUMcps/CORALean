@@ -55,7 +55,7 @@ section
 variable {n : ℕ}
 
 /-- Choosing one of two per coordinate. -/
-theorem _root_.CORALean.aux_sum_prod_bool_prod (t u v : Fin n → ℝ) : -- --- CONCL ---
+private theorem _root_.CORALean.aux_sum_prod_bool_prod (t u v : Fin n → ℝ) : -- --- CONCL ---
     ∑ σ : Fin n → Bool,
         (∏ j, (if σ j then t j else 1 - t j)) * ∏ j, (if σ j then u j else v j)
       = ∏ j, (t j * u j + (1 - t j) * v j) := by -- --- PROOF ---
@@ -74,7 +74,7 @@ end
 /-- The corners enclose as soon as no exponent exceeds one, which is what makes
 the point multilinear in the factors — and then nothing is lost, as nothing is
 lost at a zonotope's corners. -/
-theorem PolyZonotope.aux_vPolytopeCorners_contains_of_binary (pZ : PolyZonotope α)
+private theorem PolyZonotope.aux_vPolytopeCorners_contains_of_binary (pZ : PolyZonotope α)
     (hE : ∀ k i, pZ.E k i ≤ 1) : -- --- CONCL ---
     pZ.construct ⊆ pZ.vPolytopeCorners.construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
@@ -209,14 +209,14 @@ theorem PolyZonotope.aux_vPolytopeCorners_contains_of_binary (pZ : PolyZonotope 
       hdep, hind]
 
 
-theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin pZ.binarize.p)
+private theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin pZ.binarize.p)
     (i : Fin pZ.binarize.h) : pZ.binarize.E k i ≤ 1 := by
   show (if ∀ k', pZ.E k' i ≤ 1 then pZ.E k i else 0) ≤ 1
   split_ifs with h
   · exact h k
   · exact Nat.zero_le 1
 
-theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) : -- --- CONCL ---
+private theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) : -- --- CONCL ---
     pZ.construct ⊆ pZ.binarize.construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
   -- what the given-up columns and the independent block reach is a zonotope's

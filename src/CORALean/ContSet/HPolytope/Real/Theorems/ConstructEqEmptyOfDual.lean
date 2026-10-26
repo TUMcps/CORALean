@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {m me : ℕ}
 
 /-- Farkas: weights that cancel the objective but not the right-hand side leave
 no feasible point at all. -/
-theorem _root_.CORALean.aux_eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
+private theorem _root_.CORALean.aux_eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ}
     {Ae : Fin me → (α →ₗ[ℝ] ℝ)} {be : Fin me → ℝ}
     (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
     (h0 : ∀ x : α, (∑ i, y i * A i x) + ∑ i, z i * Ae i x = 0)

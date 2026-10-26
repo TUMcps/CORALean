@@ -63,7 +63,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Over an empty window nothing is contributed, provided some input exists at
 all to contribute it. -/
-theorem LinearSys.aux_inputReach_zero (sys : LinearSys 𝕋 n) {U : S n}
+private theorem LinearSys.aux_inputReach_zero (sys : LinearSys 𝕋 n) {U : S n}
     (hne : (construct U).Nonempty) : -- --- CONCL ---
     sys.inputReach U 0 = {0} := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne

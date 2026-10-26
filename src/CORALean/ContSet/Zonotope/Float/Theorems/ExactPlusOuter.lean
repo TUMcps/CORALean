@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A pairwise sum stored rounded down is within the gap `subUp` of the sum rounded up. -/
-theorem Zonotope.aux_pairSum_gap (a b : 𝕋) : -- --- CONCL ---
+private theorem Zonotope.aux_pairSum_gap (a b : 𝕋) : -- --- CONCL ---
     |toReal a + toReal b - toReal (addDown a b)| ≤
       toReal (subUp (addUp a b) (addDown a b)) := by -- --- PROOF ---
   have h1 := addDown_le_add a b
@@ -57,7 +57,7 @@ theorem Zonotope.aux_pairSum_gap (a b : 𝕋) : -- --- CONCL ---
   constructor <;> linarith
 
 /-- A stored generator entry is within its gap of the exact column. -/
-theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) (i : Fin n)
+private theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) (i : Fin n)
     (j : Fin (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
       (Z₂.h - min (min Z₁.h Z₂.h) k))) : -- --- CONCL ---
     |((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i

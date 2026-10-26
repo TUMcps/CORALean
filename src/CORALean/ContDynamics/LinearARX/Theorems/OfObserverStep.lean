@@ -58,7 +58,7 @@ variable {n dy du : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The state after `m` observer steps back from `k`. -/
-theorem LinearARX.aux_observer_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
+private theorem LinearARX.aux_observer_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
     (Du : Mat ℝ dy du) (M : Mat ℝ n dy) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du}
     {y : ℕ → Vec ℝ dy} (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k)
     (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k) (k : ℕ) : -- --- CONCL ---

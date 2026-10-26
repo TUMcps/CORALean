@@ -38,7 +38,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A step starting in forward time stays there. -/
-theorem aux_step_subset {T : Set ℝ} {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (k : ℕ) :
+private theorem aux_step_subset {T : Set ℝ} {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (k : ℕ) :
     Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T :=
   fun _ hs => hT (le_trans (mul_nonneg (Nat.cast_nonneg k) hΔt) hs.1)
 

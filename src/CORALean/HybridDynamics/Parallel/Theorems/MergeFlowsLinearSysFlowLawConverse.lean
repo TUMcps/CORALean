@@ -56,7 +56,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)] in
 /-- `bindsAt` binds to a global input exactly where `binds` does. -/
-theorem aux_bindsAt_global {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 𝕋 n m}
+private theorem aux_bindsAt_global {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 𝕋 n m}
     {ℓ : ∀ i, L i} {i : Fin k} {j : Fin (P.sys ℓ i).m} {a : Fin m}
     (h : P.bindsAt ℓ i j = .global a) : -- --- CONCL ---
     P.binds i (Fin.cast (P.inputs_eq i (ℓ i)) j) = .global a := by -- --- PROOF ---
@@ -69,7 +69,7 @@ theorem aux_bindsAt_global {𝕋 : Type} {P : ParallelHybridAutomaton S G k L �
 
 omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)] in
 /-- `GlobalsDistinct` at the dimensions of the locations `ℓ`. -/
-theorem aux_bindsAt_distinct {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 𝕋 n m}
+private theorem aux_bindsAt_distinct {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 𝕋 n m}
     (hdist : P.GlobalsDistinct) (ℓ : ∀ i, L i) : -- --- CONCL ---
     ∀ i i' j j' a, P.bindsAt ℓ i j = .global a → P.bindsAt ℓ i' j' = .global a →
       (⟨i, j⟩ : Σ i, Fin (P.sys ℓ i).m) = ⟨i', j'⟩ := by -- --- PROOF ---

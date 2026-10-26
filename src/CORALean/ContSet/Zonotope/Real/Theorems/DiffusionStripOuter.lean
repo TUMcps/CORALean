@@ -69,7 +69,7 @@ section
 variable {n nq : ℕ}
 
 /-- The time update of the diffusion observers encloses the next state. -/
-theorem Zonotope.aux_diffusionTimeUpdate_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
+private theorem Zonotope.aux_diffusionTimeUpdate_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
     (Zt : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (hx : x ∈ Zt.construct) (β : Vec ℝ nq)
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     F *ᵥ x + Q *ᵥ β ∈ (Zonotope.diffusionTimeUpdate F Q Zt).construct := by -- --- PROOF ---
@@ -92,7 +92,8 @@ end
 
 
 /-- One instant of the strip-based diffusion observer holds the next state. -/
-theorem Zonotope.aux_diffusionStripStep_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n) (Q : Mat ℝ n nq)
+private theorem Zonotope.aux_diffusionStripStep_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n)
+    (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (nb : ∀ i, Fin (m i) → Fin N) (o : ℕ)
     (Zh : Fin N → Zonotope (Vec ℝ n)) (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1)
     (hx : ∀ i, x ∈ (Zh i).construct) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)

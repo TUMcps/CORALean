@@ -65,7 +65,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ → ℝ} {m : ℕ}
 
 /-- A sampled deviation's upper bound. -/
-theorem aux_le_sampleDevUp {E : Enclosure 𝕋} (hE : E.IsSound σ) (c : Fin (m + 1) → 𝕋)
+private theorem aux_le_sampleDevUp {E : Enclosure 𝕋} (hE : E.IsSound σ) (c : Fin (m + 1) → 𝕋)
     (x : 𝕋) : -- --- CONCL ---
     σ (toReal x) - Real.evalPoly (fun k => toReal (c k)) (toReal x)
       ≤ toReal (sampleDevUp E c x) := by -- --- PROOF ---
@@ -82,7 +82,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ σ' : ℝ → ℝ} {m : ℕ}
 
 /-- The fallback bracket is sound outright. -/
-theorem aux_coarse_bounds {E : Enclosure 𝕋} {c : Fin (m + 1) → 𝕋} {M l u : 𝕋} {t : ℝ}
+private theorem aux_coarse_bounds {E : Enclosure 𝕋} {c : Fin (m + 1) → 𝕋} {M l u : 𝕋} {t : ℝ}
     (hE : E.IsSound σ) (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hM : ∀ x, toReal l ≤ x → x ≤ toReal u →
       |σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x| ≤ toReal M)

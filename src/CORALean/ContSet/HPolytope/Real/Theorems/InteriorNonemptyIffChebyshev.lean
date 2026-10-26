@@ -51,7 +51,7 @@ variable {q n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A Euclidean ball lies in a halfspace exactly when its center does with `r ‖a‖₂` to spare. -/
-theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (β : ℝ) : -- --- CONCL ---
+private theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (β : ℝ) : -- --- CONCL ---
     (∀ x : Vec ℝ n, ‖x‖₂ ≤ r → a ⬝ᵥ (c + x) ≤ β) ↔ a ⬝ᵥ c + r * ‖a‖₂ ≤ β := by -- --- PROOF ---
   constructor
   · intro h

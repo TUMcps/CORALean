@@ -50,7 +50,7 @@ open scoped RealInnerProductSpace NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `E|g|^k = γ_k^k` for a standard normal `g`. -/
-theorem aux_integral_abs_rpow_gaussianReal {k : ℝ} (hk : 0 < k) : -- --- CONCL ---
+private theorem aux_integral_abs_rpow_gaussianReal {k : ℝ} (hk : 0 < k) : -- --- CONCL ---
     ∫ x, |x| ^ k ∂(gaussianReal 0 1) = gaussMomentRoot k ^ k := by -- --- PROOF ---
   rw [integral_gaussianReal_eq_integral_smul one_ne_zero]
   -- the integrand is even

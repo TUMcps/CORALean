@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 omit [ToRat 𝕋] in
 /-- The rounded shift of `R` by `m` periods encloses the shift by the real period `P`. -/
-theorem SyntaxTree.aux_shift_enclosesFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P : ℝ}
+private theorem SyntaxTree.aux_shift_enclosesFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P : ℝ}
     (hP : toReal (twoPi.inf 0) ≤ P ∧ P ≤ toReal (twoPi.sup 0)) (m : ℤ) : -- --- CONCL ---
     toReal ((SyntaxTree.aux_periodicFloat_shift twoPi R m).inf 0) ≤ toReal (R.inf 0) + m * P ∧
       toReal (R.sup 0) + m * P ≤ toReal
@@ -70,7 +70,7 @@ theorem SyntaxTree.aux_shift_enclosesFloat {twoPi R : Float.SyntaxTree.Dom 𝕋}
 
 omit [ToRat 𝕋] in
 /-- A solution in a copy at or below the index `m` of a certified shift cannot reach above `a`. -/
-theorem SyntaxTree.aux_lower_coreFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P s : ℝ} {a : 𝕋}
+private theorem SyntaxTree.aux_lower_coreFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P s : ℝ} {a : 𝕋}
     (hP : toReal (twoPi.inf 0) ≤ P ∧ P ≤ toReal (twoPi.sup 0)) (hp : 0 < P) (ind n : ℤ)
     (hn : toReal (R.inf 0) + n * P ≤ s ∧ s ≤ toReal (R.sup 0) + n * P)
     (has : toReal a ≤ s) : -- --- CONCL ---
@@ -92,7 +92,7 @@ theorem SyntaxTree.aux_lower_coreFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P 
 
 omit [ToRat 𝕋] in
 /-- A solution in a copy at or above the index `m` of a certified shift cannot reach below `b`. -/
-theorem SyntaxTree.aux_upper_coreFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P s : ℝ} {b : 𝕋}
+private theorem SyntaxTree.aux_upper_coreFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P s : ℝ} {b : 𝕋}
     (hP : toReal (twoPi.inf 0) ≤ P ∧ P ≤ toReal (twoPi.sup 0)) (hp : 0 < P) (ind n : ℤ)
     (hn : toReal (R.inf 0) + n * P ≤ s ∧ s ≤ toReal (R.sup 0) + n * P)
     (hsb : s ≤ toReal b) : -- --- CONCL ---

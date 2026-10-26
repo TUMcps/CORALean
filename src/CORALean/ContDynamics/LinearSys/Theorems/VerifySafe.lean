@@ -58,7 +58,7 @@ variable {n r w : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A safe verdict of one iteration of `Alg. 3` proves the specification. -/
-theorem LinearSys.aux_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
+private theorem LinearSys.aux_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
     {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ}
@@ -82,7 +82,7 @@ theorem LinearSys.aux_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
 
 
 /-- A `true` from the verification loop of `Alg. 3` proves the specification. -/
-theorem LinearSys.aux_verifySpec_of_verifyRun
+private theorem LinearSys.aux_verifySpec_of_verifyRun
     {Reach : Set (Vec ℝ n)} {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ} {le : ℝ → ℝ → Bool}

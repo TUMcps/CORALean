@@ -62,13 +62,13 @@ variable {T : Type} [LinearOrder T] [Zero T] {ι : Type} [FinEnum ι]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A valid signal has a time point. -/
-theorem PointSegmentSignal.aux_isValid_pos (s : PointSegmentSignal T) (hs : s.IsValid) :
+private theorem PointSegmentSignal.aux_isValid_pos (s : PointSegmentSignal T) (hs : s.IsValid) :
     1 ≤ s.length :=
   List.length_pos_iff.mpr hs.1
 
 omit [LinearOrder T] in
 /-- The time of an existing point is the point. -/
-theorem PointSegmentSignal.aux_timeOrInf_of_get (s : PointSegmentSignal T) (idx : ℕ)
+private theorem PointSegmentSignal.aux_timeOrInf_of_get (s : PointSegmentSignal T) (idx : ℕ)
     (hidx : 1 ≤ idx) (a : T) (ha : s.timePoints[idx - 1]? = some a) :
     s.timeOrInf idx = (a : WithTop T) := by
   have hlt : idx - 1 < s.timePoints.length := by
@@ -78,23 +78,23 @@ theorem PointSegmentSignal.aux_timeOrInf_of_get (s : PointSegmentSignal T) (idx 
 
 omit [LinearOrder T] in
 /-- Past the last point the time is `inf`. -/
-theorem PointSegmentSignal.aux_timeOrInf_of_lt (s : PointSegmentSignal T) (idx : ℕ)
+private theorem PointSegmentSignal.aux_timeOrInf_of_lt (s : PointSegmentSignal T) (idx : ℕ)
     (h : s.length < idx) : s.timeOrInf idx = ⊤ := by
   simp [PointSegmentSignal.timeOrInf, not_le.mpr h]
 
 omit [LinearOrder T] [Zero T] in
 /-- An index within the length has a time point. -/
-theorem PointSegmentSignal.aux_exists_get (s : PointSegmentSignal T) (idx : ℕ) (hidx : 1 ≤ idx)
-    (h : idx ≤ s.length) : ∃ a, s.timePoints[idx - 1]? = some a :=
+private theorem PointSegmentSignal.aux_exists_get (s : PointSegmentSignal T) (idx : ℕ)
+    (hidx : 1 ≤ idx) (h : idx ≤ s.length) : ∃ a, s.timePoints[idx - 1]? = some a :=
   ⟨_, List.getElem?_eq_getElem (by simp only [PointSegmentSignal.length] at h; omega)⟩
 
 /-- The next time `combine` will process: the smallest unconsumed time of the inputs. -/
-def aux_loopTime (sig : ι → PointSegmentSignal T) (inIdx : ι → ℕ) : WithTop T :=
+private def aux_loopTime (sig : ι → PointSegmentSignal T) (inIdx : ι → ℕ) : WithTop T :=
   Finset.univ.inf fun k => (sig k).timeOrInf (inIdx k)
 
 omit [Zero T] in
 /-- The smallest time found in the order of the inputs is their infimum. -/
-theorem aux_foldMin_eq_inf (f : ι → WithTop T) : -- --- CONCL ---
+private theorem aux_foldMin_eq_inf (f : ι → WithTop T) : -- --- CONCL ---
     (FinEnum.toList ι).foldr (fun k m => if f k ≤ m then f k else m) ⊤ =
       Finset.univ.inf f := by -- --- PROOF ---
   -- over any list, the fold is the infimum of its elements
@@ -112,7 +112,7 @@ theorem aux_foldMin_eq_inf (f : ι → WithTop T) : -- --- CONCL ---
   exact Finset.ext fun x => by simp [FinEnum.mem_toList]
 
 /-- What the loop keeps: the output so far is right before the next time to process. -/
-structure aux_LoopInv (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
+private structure aux_LoopInv (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
     (fuel : ℕ) (inIdx : ι → ℕ) (tp : List T) (val : List Bool) : Prop where
   idx_ge : ∀ k, 1 ≤ inIdx k
   idx_le : ∀ k, inIdx k ≤ (sig k).length + 1
@@ -125,7 +125,8 @@ structure aux_LoopInv (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSi
     (PointSegmentSignal.mk tp val).at t = op fun k => (sig k).at t
 
 /-- When every input is consumed the invariant is the claim. -/
-theorem aux_loopInv_final [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
+private theorem aux_loopInv_final [Nonempty ι] (op : (ι → Bool) → Bool)
+    (sig : ι → PointSegmentSignal T)
     (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) (inIdx : ι → ℕ) (tp : List T)
     (val : List Bool) (inv : aux_LoopInv op sig fuel inIdx tp val)
     (hc : ¬ ∃ k, inIdx k ≤ (sig k).length) : -- --- CONCL ---
@@ -145,19 +146,19 @@ theorem aux_loopInv_final [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι 
   · exact h
 
 /-- A time below a point's time is below the point. -/
-theorem aux_lt_of_lt_timeOrInf (s : PointSegmentSignal T) (j : ℕ) (hj : 1 ≤ j) (t b : T)
+private theorem aux_lt_of_lt_timeOrInf (s : PointSegmentSignal T) (j : ℕ) (hj : 1 ≤ j) (t b : T)
     (hlt : (t : WithTop T) < s.timeOrInf j) (hb : s.timePoints[j - 1]? = some b) : t < b := by
   rw [s.aux_timeOrInf_of_get j hj b hb] at hlt
   exact_mod_cast hlt
 
 /-- A signal consumed at this time contributes its point value. -/
-theorem aux_pv_min (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 1 ≤ idx)
+private theorem aux_pv_min (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 1 ≤ idx)
     (τ : T) (h : s.timePoints[idx - 1]? = some τ) : s.pointValue idx = s.at τ := by
   have := s.at_timePoint hs (idx - 1) τ h
   rw [this, show idx - 1 + 1 = idx by omega]
 
 /-- A signal not consumed at this time contributes the interval value before its next point. -/
-theorem aux_pv_nonmin (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 2 ≤ idx)
+private theorem aux_pv_nonmin (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 2 ≤ idx)
     (τ a : T) (ha : s.timePoints[idx - 2]? = some a) (haτ : a < τ)
     (h2 : ∀ b, s.timePoints[idx - 1]? = some b → τ < b) : -- --- CONCL ---
     s.precIntervalValue idx = s.at τ := by -- --- PROOF ---
@@ -168,21 +169,21 @@ theorem aux_pv_nonmin (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (h
   congr 1; omega
 
 /-- A signal consumed at this time contributes its interval value afterwards. -/
-theorem aux_iv_min (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 1 ≤ idx)
+private theorem aux_iv_min (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 1 ≤ idx)
     (τ t : T) (h : s.timePoints[idx - 1]? = some τ) (hτ : τ < t)
     (h2 : ∀ b, s.timePoints[idx]? = some b → t < b) : s.succIntervalValue idx = s.at t := by
   have := s.at_between hs (idx - 1) τ t h hτ (by rw [show idx - 1 + 1 = idx by omega]; exact h2)
   rw [this, show idx - 1 + 1 = idx by omega]
 
 /-- A signal not consumed at this time keeps its interval value afterwards. -/
-theorem aux_iv_nonmin (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 2 ≤ idx)
+private theorem aux_iv_nonmin (s : PointSegmentSignal T) (hs : s.IsValid) (idx : ℕ) (hidx : 2 ≤ idx)
     (t a : T) (ha : s.timePoints[idx - 2]? = some a) (hat : a < t)
     (h2 : ∀ b, s.timePoints[idx - 1]? = some b → t < b) :
     s.precIntervalValue idx = s.at t := aux_pv_nonmin s hs idx hidx t a ha hat h2
 
 /-- At a pass of the loop, the consumed signals and the others are as the step needs. -/
-theorem aux_loop_facts [Nonempty ι] (sig : ι → PointSegmentSignal T) (hv : ∀ k, (sig k).IsValid)
-    (inIdx : ι → ℕ) (hge : ∀ k, 1 ≤ inIdx k)
+private theorem aux_loop_facts [Nonempty ι] (sig : ι → PointSegmentSignal T)
+    (hv : ∀ k, (sig k).IsValid) (inIdx : ι → ℕ) (hge : ∀ k, 1 ≤ inIdx k)
     (hle : ∀ k, inIdx k ≤ (sig k).length + 1)
     (hcons : ∀ k j a, j + 1 < inIdx k → (sig k).timePoints[j]? = some a →
       (a : WithTop T) < aux_loopTime sig inIdx)
@@ -254,7 +255,7 @@ theorem aux_loop_facts [Nonempty ι] (sig : ι → PointSegmentSignal T) (hv : �
       rw [← hτ] at this; exact_mod_cast this
 
 /-- The next time is nonnegative. -/
-theorem aux_zero_le_loopTime (sig : ι → PointSegmentSignal T) (hv : ∀ k, (sig k).IsValid)
+private theorem aux_zero_le_loopTime (sig : ι → PointSegmentSignal T) (hv : ∀ k, (sig k).IsValid)
     (inIdx : ι → ℕ) (hge : ∀ k, 1 ≤ inIdx k) : -- --- CONCL ---
     (0 : WithTop T) ≤ aux_loopTime sig inIdx := by -- --- PROOF ---
   refine Finset.le_inf fun j _ => ?_
@@ -265,7 +266,8 @@ theorem aux_zero_le_loopTime (sig : ι → PointSegmentSignal T) (hv : ∀ k, (s
   · rw [(sig j).aux_timeOrInf_of_lt _ (by omega)]; exact le_top
 
 /-- One pass of the loop, with or without appending the point, keeps the invariant. -/
-theorem aux_loopInv_step [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
+private theorem aux_loopInv_step [Nonempty ι] (op : (ι → Bool) → Bool)
+    (sig : ι → PointSegmentSignal T)
     (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) (inIdx : ι → ℕ) (tp : List T)
     (val : List Bool) (inv : aux_LoopInv op sig (fuel + 1) inIdx tp val)
     (hc : ∃ k, inIdx k ≤ (sig k).length) : -- --- CONCL ---
@@ -479,8 +481,8 @@ theorem aux_loopInv_step [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι �
       · rw [PointSegmentSignal.at_snoc_gt tp val τ pv iv hlen hlt t h]; exact hiv t h htN
 
 /-- The loop from any state satisfying the invariant ends in the claim. -/
-theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
-    (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) : -- --- CONCL ---
+private theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool)
+    (sig : ι → PointSegmentSignal T) (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) : -- --- CONCL ---
     ∀ (inIdx : ι → ℕ) (tp : List T) (val : List Bool),
       aux_LoopInv op sig fuel inIdx tp val →
       (PointSegmentSignal.mk (PointSegmentSignal.combineLoop op sig fuel inIdx tp val).1
@@ -517,8 +519,8 @@ theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool) (sig : 
 
 
 /-- The invariant holds at the start. -/
-theorem aux_loopInv_init [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
-    (hv : ∀ k, (sig k).IsValid) : -- --- CONCL ---
+private theorem aux_loopInv_init [Nonempty ι] (op : (ι → Bool) → Bool)
+    (sig : ι → PointSegmentSignal T) (hv : ∀ k, (sig k).IsValid) : -- --- CONCL ---
     aux_LoopInv op sig (∑ k, (sig k).length + 1) (fun _ => 1) [] [] := by -- --- PROOF ---
   have hN : aux_loopTime sig (fun _ => 1) ≤ ((0 : T) : WithTop T) := by
     have hk0 : (sig (Classical.arbitrary ι)).timeOrInf 1 = ((0 : T) : WithTop T) := by

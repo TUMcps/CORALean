@@ -65,7 +65,7 @@ variable {n m : ℕ}
 
 /-- (3.1b) for a Krylov identity with `τ = 1` and next vector `u`, given `|δ(r)| ≤ cr^{m+1}/
 (m+1)!`: the exponential error is at most `‖u‖₂c s^{m+2}/(m+2)!`. -/
-theorem Krylov.aux_corrected_exp_error_le (A : Mat ℂ n n) (Vp : Mat ℂ n (m + 2))
+private theorem Krylov.aux_corrected_exp_error_le (A : Mat ℂ n n) (Vp : Mat ℂ n (m + 2))
     (Tp : Mat ℂ (m + 2) (m + 2)) (σ : ℂ) (u : Fin n → ℂ) {c : ℝ}
     (hK : A * Vp = Vp * Tp + (1 : ℂ) • vecMulVec u (Pi.single (Fin.last (m + 1)) 1))
     (hA : ∀ x : Fin n → ℂ, (star x ⬝ᵥ ((σ • A) *ᵥ x)).re ≤ 0) (hσ : ‖σ‖ = 1)

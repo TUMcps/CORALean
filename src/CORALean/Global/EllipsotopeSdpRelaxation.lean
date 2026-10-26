@@ -68,7 +68,7 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `x / (x - 2)` and `x / 2` are Hölder conjugates for `2 ≤ x < ∞`. -/
-theorem aux_sr_holderConjugate {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞) :
+private theorem aux_sr_holderConjugate {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞) :
     (x / (x - 2)).HolderConjugate (x / 2) := by
   have hx0 : x ≠ 0 := (lt_of_lt_of_le (by norm_num) hx).ne'
   rw [ENNReal.holderConjugate_iff, ENNReal.inv_div (Or.inl (ENNReal.sub_ne_top hxT))
@@ -76,7 +76,7 @@ theorem aux_sr_holderConjugate {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
     ENNReal.div_add_div_same, tsub_add_cancel_of_le hx, ENNReal.div_self hx0 hxT]
 
 /-- `‖(tᵢ²)ᵢ‖_{x/2} = ‖t‖_x²` for `2 ≤ x < ∞`. -/
-theorem aux_sr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
+private theorem aux_sr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
     (t : Fin k → ℝ) : -- --- CONCL ---
     ‖WithLp.toLp (x / 2) (fun i => t i ^ 2)‖ = ‖WithLp.toLp x t‖ ^ 2 := by -- --- PROOF ---
   have hc : 2 ≤ x.toReal := by
@@ -99,17 +99,17 @@ theorem aux_sr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ �
   field_simp
 
 /-- `q* ≥ 2` for `q ≤ 2`. -/
-theorem aux_sr_two_le_conj {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq2 : q ≤ 2) : 2 ≤ q' := by
+private theorem aux_sr_two_le_conj {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq2 : q ≤ 2) : 2 ≤ q' := by
   rw [← ENNReal.inv_le_inv, ← ENNReal.HolderConjugate.one_sub_inv q q', ← ENNReal.one_sub_inv_two]
   exact tsub_le_tsub_left (ENNReal.inv_le_inv.mpr hq2) 1
 
-theorem aux_sr_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomentRoot p := by
+private theorem aux_sr_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomentRoot p := by
   unfold gaussMomentRoot
   exact Real.rpow_nonneg (mul_nonneg (by positivity)
     (Real.Gamma_pos_of_pos (by linarith)).le) _
 
 /-- `E[⟨a, g⟩ ⟨b, g⟩] = ⟨a, b⟩`, the covariance of the standard Gaussian. -/
-theorem aux_sr_integral_inner_mul_inner {E : Type*} [NormedAddCommGroup E]
+private theorem aux_sr_integral_inner_mul_inner {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (a b : E) : -- --- CONCL ---
     Integrable (fun g => ⟪a, g⟫ * ⟪b, g⟫) (stdGaussian E) ∧
@@ -125,7 +125,7 @@ theorem aux_sr_integral_inner_mul_inner {E : Type*} [NormedAddCommGroup E]
     exact h.symm.trans (innerSL_apply_apply (𝕜 := ℝ) a b)
 
 /-- The radius is homogeneous: `‖G α‖_{E_q(H)} ≤ r ‖α‖_p`. -/
-theorem aux_sr_homogeneous (p q : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
+private theorem aux_sr_homogeneous (p q : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (hH : Function.Surjective H.mulVec) {r : ℝ}
     (hrle : ∀ α ∈ Metric.closedBall (0 : PiLp p (fun _ : Fin m => ℝ)) 1,
@@ -149,7 +149,7 @@ theorem aux_sr_homogeneous (p q : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
   linarith
 
 /-- The weak half: a pair of `K` bounds the norm of every point of `E_p(G)`. -/
-theorem aux_sr_weak (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_sr_weak (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] [q.HolderConjugate q']
     (hq1 : 1 < q) (hq2 : q ≤ 2) (hp2 : 2 ≤ p) (hpT : p ≠ ∞) (G : Matrix (Fin n) (Fin m) ℝ)
     (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec) (v : Fin m → ℝ)
     (w : Fin l → ℝ)
@@ -184,7 +184,7 @@ theorem aux_sr_weak (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] [q.H
 
 /-- The pointwise bound of the rounding: `ζᵀ G α ≤ r ‖α‖_p ‖Hᵀ ζ‖_{q*}` with the Gaussian
 images `αⱼ = ⟨cⱼ, g⟩`, `ζₖ = ⟨cₖ, g⟩`. -/
-theorem aux_sr_pointwise {d : ℕ} (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
+private theorem aux_sr_pointwise {d : ℕ} (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)]
     [q.HolderConjugate q'] (hpT : p ≠ ∞) (hq' : q' ≠ ∞) (G : Matrix (Fin n) (Fin m) ℝ)
     (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec) {r : ℝ}
     (hrle : ∀ α ∈ Metric.closedBall (0 : PiLp p (fun _ : Fin m => ℝ)) 1,
@@ -225,7 +225,7 @@ theorem aux_sr_pointwise {d : ℕ} (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact 
     _ = _ := mul_assoc _ _ _
 
 /-- Hölder and the moment bounds: `E[A B] ≤ γ_p γ_{q*}` for the two rounded norms. -/
-theorem aux_sr_expect_le {d : ℕ} {P Q : ℝ} (hP : 2 ≤ P) (hQ : 2 ≤ Q)
+private theorem aux_sr_expect_le {d : ℕ} {P Q : ℝ} (hP : 2 ≤ P) (hQ : 2 ≤ Q)
     (a : Fin m → EuclideanSpace ℝ (Fin d)) (b : Fin l → EuclideanSpace ℝ (Fin d))
     (ha : (∑ j, ‖a j‖ ^ P) ^ (1 / P) ≤ 1) (hb : (∑ i, ‖b i‖ ^ Q) ^ (1 / Q) ≤ 1) : -- --- CONCL ---
     Integrable (fun g => (∑ j, |⟪a j, g⟫| ^ P) ^ (1 / P) * (∑ i, |⟪b i, g⟫| ^ Q) ^ (1 / Q))
@@ -304,7 +304,7 @@ theorem aux_sr_expect_le {d : ℕ} {P Q : ℝ} (hP : 2 ≤ P) (hQ : 2 ≤ Q)
         mul_le_mul h1 h2 (by positivity) hγP
 
 /-- The Gram vectors: `‖Σₖ H_{ki} cₖ‖² = (Hᵀ X₂₂ H)ᵢᵢ`. -/
-theorem aux_sr_gram {d : ℕ} (H : Matrix (Fin n) (Fin l) ℝ)
+private theorem aux_sr_gram {d : ℕ} (H : Matrix (Fin n) (Fin l) ℝ)
     (X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ)
     (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (hc : ∀ p q, X p q = ⟪c p, c q⟫)
     (i : Fin l) : -- --- CONCL ---
@@ -316,7 +316,7 @@ theorem aux_sr_gram {d : ℕ} (H : Matrix (Fin n) (Fin l) ℝ)
   exact Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun k' _ => by ring
 
 /-- A family whose squared norms have `x/2`-norm at most `1` has `(Σ ‖·‖^x)^{1/x} ≤ 1`. -/
-theorem aux_sr_family_le_one {d k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
+private theorem aux_sr_family_le_one {d k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
     (a : Fin k → EuclideanSpace ℝ (Fin d))
     (h : ‖WithLp.toLp (x / 2) (fun i => ‖a i‖ ^ 2)‖ ≤ 1) : -- --- CONCL ---
     (∑ i, ‖a i‖ ^ x.toReal) ^ (1 / x.toReal) ≤ 1 := by -- --- PROOF ---
@@ -329,7 +329,7 @@ theorem aux_sr_family_le_one {d k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : 
   simpa using h'
 
 /-- The rounding: a certificate `X` gives `Σ G_{kj} X_{kj} ≤ r γ_p γ_{q*}`. -/
-theorem aux_sr_rounding (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_sr_rounding (p q q' : ℝ≥0∞) [Fact (1 ≤ p)] [Fact (1 ≤ q)] [q.HolderConjugate q']
     (hq1 : 1 < q) (hq2 : q ≤ 2) (hp2 : 2 ≤ p) (hpT : p ≠ ∞) (G : Matrix (Fin n) (Fin m) ℝ)
     (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec) {r : ℝ} (hr0 : 0 ≤ r)
     (hrle : ∀ α ∈ Metric.closedBall (0 : PiLp p (fun _ : Fin m => ℝ)) 1,

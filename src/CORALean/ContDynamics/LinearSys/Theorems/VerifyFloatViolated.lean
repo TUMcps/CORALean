@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r w : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One falsified iteration refutes the specification. -/
-theorem LinearSys.aux_not_verifySpecFloat_of_verifyStepFloat
+private theorem LinearSys.aux_not_verifySpecFloat_of_verifyStepFloat
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
@@ -80,7 +80,7 @@ theorem LinearSys.aux_not_verifySpecFloat_of_verifyStepFloat
 
 
 /-- A `false` from the float verification loop refutes the specification. -/
-theorem LinearSys.aux_not_verifySpecFloat_of_verifyRunFloat
+private theorem LinearSys.aux_not_verifySpecFloat_of_verifyRunFloat
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}

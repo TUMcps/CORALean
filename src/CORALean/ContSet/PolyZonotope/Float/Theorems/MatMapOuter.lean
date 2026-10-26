@@ -65,7 +65,7 @@ section
 variable {α β : Type} [RealImage α β]
 
 /-- The extended generators read back are the nominal set's. -/
-theorem PolyZonotope.aux_realImage_extGens (pZ : PolyZonotope α) (l : Fin (pZ.h + 1)) :
+private theorem PolyZonotope.aux_realImage_extGens (pZ : PolyZonotope α) (l : Fin (pZ.h + 1)) :
     RealImage.realImage (PolyZonotope.aux_extGens pZ l)
       = Real.PolyZonotope.extG (PolyZonotope.nominal pZ) l := by
   -- generator zero is the center, the rest the dependent generators
@@ -75,7 +75,7 @@ end
 
 
 /-- A point of the nominal set lies in the box of all its generators, the center included. -/
-theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n k))
+private theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n k))
     {a : Fin pZ.p → ℝ} (ha : ∀ i, |a i| ≤ 1) {β : Fin pZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (PolyZonotope.nominal pZ).point a + ∑ j, β j • (PolyZonotope.nominal pZ).GI j
@@ -104,7 +104,7 @@ theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n 
 
 /-- The exact `matMap` of the nominal sets: each point is a point of the float result's nominal
 set plus a share of the rounding box. -/
-theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
+private theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (pZ₂ : PolyZonotope (Mat 𝕋 k m)) (hp : pZ₁.p = pZ₂.p) {X : Mat ℝ n m}
     (hX : X ∈ (Real.PolyZonotope.matMap (PolyZonotope.nominal pZ₁)
       (PolyZonotope.nominal pZ₂) hp).construct) : -- --- CONCL ---

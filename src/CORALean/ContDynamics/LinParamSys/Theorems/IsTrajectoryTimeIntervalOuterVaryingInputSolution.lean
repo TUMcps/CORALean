@@ -79,7 +79,7 @@ variable [Mtimes ℐ S]
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- `t^{k+1}/(k+1)!` times the hull of order `k` lies in `inputTerm r k` applied
 to `U`, at `t ≤ r`, when that image is closed and convex and `0 ∈ U`. -/
-theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Mat ℝ n n}
+private theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Mat ℝ n n}
     (hM₀ : M₀ ∈ construct sys.A) (h0 : (0 : Vec ℝ n) ∈ construct U) {r t : ℝ} (hr : 0 < r)
     (ht0 : 0 ≤ t) (htr : t ≤ r) (k : ℕ)
     (hconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))

@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `maximumOver` of non-negative entries is non-negative, at every length. -/
-theorem aux_maximumOver_nonneg : ∀ {k : ℕ} (g : Fin k → 𝕋), (∀ i, 0 ≤ toReal (g i)) →
+private theorem aux_maximumOver_nonneg : ∀ {k : ℕ} (g : Fin k → 𝕋), (∀ i, 0 ≤ toReal (g i)) →
     0 ≤ toReal (maximumOver g) := by
   intro k
   cases k with
@@ -67,7 +67,7 @@ theorem aux_maximumOver_nonneg : ∀ {k : ℕ} (g : Fin k → 𝕋), (∀ i, 0 �
   | succ k => exact fun g hg => le_trans (hg 0) (le_maximumOver g 0)
 
 /-- The sup norm of a point of a box is at most the box's `bound`. -/
-theorem aux_norm_le_bound {I : Interval (Vec 𝕋 n)} {y : Vec ℝ n}
+private theorem aux_norm_le_bound {I : Interval (Vec 𝕋 n)} {y : Vec ℝ n}
     (hy : y ∈ I.construct) : -- --- CONCL ---
     ‖y‖ ≤ toReal (maximumOver fun i => maximum (absolute (I.inf i)) (absolute (I.sup i)))
       := by -- --- PROOF ---
@@ -80,7 +80,7 @@ theorem aux_norm_le_bound {I : Interval (Vec 𝕋 n)} {y : Vec ℝ n}
 
 /-- One Picard step: a run in `Ω` over `[a, a + Δt]`, from `X` at `a`, is in
 `X ⊕ [0, Δt] f(Ω × U)` over the same window. -/
-theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m}
+private theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m}
     (h : fm.Encloses sys) {Δt : 𝕋} {X Ω : Interval (Vec 𝕋 n)}
     {Ub : Interval (Vec 𝕋 m)} {T : Set ℝ} {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}

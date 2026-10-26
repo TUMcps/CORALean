@@ -60,12 +60,12 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `A = [[0, 0], [1, 0]]` squares to zero. -/
-theorem LinearSys.aux_sq_eq_zero_lower :
+private theorem LinearSys.aux_sq_eq_zero_lower :
     (!![0, 0; 1, 0] : Mat ℝ 2 2) ^ 2 = 0 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [sq, Matrix.mul_apply, Fin.sum_univ_two]
 
 /-- The flow of `A = [[0, 0], [1, 0]]` stops after its linear term: `e^{tA} = I + tA`. -/
-theorem LinearSys.aux_exp_smul_lower (t : ℝ) : -- --- CONCL ---
+private theorem LinearSys.aux_exp_smul_lower (t : ℝ) : -- --- CONCL ---
     exp (t • (!![0, 0; 1, 0] : Mat ℝ 2 2)) = 1 + t • !![0, 0; 1, 0] := by -- --- PROOF ---
   rw [exp_eq_tsum ℝ]
   show ∑' i : ℕ, ((i.factorial : ℝ)⁻¹) • (t • (!![0, 0; 1, 0] : Mat ℝ 2 2)) ^ i = _
@@ -75,7 +75,7 @@ theorem LinearSys.aux_exp_smul_lower (t : ℝ) : -- --- CONCL ---
   simp [Finset.sum_range_succ]
 
 /-- The points of `V = [-1, 1] × {0}`, coordinatewise. -/
-theorem LinearSys.aux_mem_segment (x : Vec ℝ 2) : -- --- CONCL ---
+private theorem LinearSys.aux_mem_segment (x : Vec ℝ 2) : -- --- CONCL ---
     x ∈ (⟨1, 0, fun _ => ![1, 0]⟩ : Real.Zonotope (Vec ℝ 2)).construct ↔
       |x 0| ≤ 1 ∧ x 1 = 0 := by -- --- PROOF ---
   constructor
@@ -87,7 +87,7 @@ theorem LinearSys.aux_mem_segment (x : Vec ℝ 2) : -- --- CONCL ---
     ext i; fin_cases i <;> simp [h1]
 
 /-- The sign switching at `r/2`, `1` before and `-1` after, is interval integrable. -/
-theorem LinearSys.aux_sign_integrable (r a b : ℝ) : -- --- CONCL ---
+private theorem LinearSys.aux_sign_integrable (r a b : ℝ) : -- --- CONCL ---
     IntervalIntegrable (fun s : ℝ => if s ≤ r / 2 then (1 : ℝ) else -1)
       volume a b := by -- --- PROOF ---
   have hm : Measurable (fun s : ℝ => if s ≤ r / 2 then (1 : ℝ) else -1) :=
@@ -97,7 +97,7 @@ theorem LinearSys.aux_sign_integrable (r a b : ℝ) : -- --- CONCL ---
   exact Filter.Eventually.of_forall fun s => by split_ifs <;> simp
 
 /-- The switching sign integrates to `0` over `[0, r]`, and against `r - s` to `r²/4`. -/
-theorem LinearSys.aux_integral_sign (r : ℝ) (hr : 0 < r) : -- --- CONCL ---
+private theorem LinearSys.aux_integral_sign (r : ℝ) (hr : 0 < r) : -- --- CONCL ---
     (∫ s in (0:ℝ)..r, (if s ≤ r / 2 then (1 : ℝ) else -1)) = 0 ∧
     (∫ s in (0:ℝ)..r, (r - s) * (if s ≤ r / 2 then (1 : ℝ) else -1)) =
       r ^ 2 / 4 := by -- --- PROOF ---
@@ -140,7 +140,7 @@ theorem LinearSys.aux_integral_sign (r : ℝ) (hr : 0 < r) : -- --- CONCL ---
     ring
 
 /-- The `l∞` norm of `rA` is at most `r` for `A = [[0, 0], [1, 0]]`. -/
-theorem LinearSys.aux_norm_smul_lower_le {r : ℝ} (hr : 0 < r) : -- --- CONCL ---
+private theorem LinearSys.aux_norm_smul_lower_le {r : ℝ} (hr : 0 < r) : -- --- CONCL ---
     ‖r • (!![0, 0; 1, 0] : Mat ℝ 2 2)‖ ≤ r := by -- --- PROOF ---
   rw [Matrix.linfty_opNorm_def]
   have : ((Finset.univ : Finset (Fin 2)).sup
@@ -156,7 +156,7 @@ theorem LinearSys.aux_norm_smul_lower_le {r : ℝ} (hr : 0 < r) : -- --- CONCL -
 
 /-- The entry of `E(r)rV` at `A = [[0, 0], [1, 0]]` is at most `6r³/11`, for `r ≤ 1/4` and
 `p ≥ 1`. -/
-theorem LinearSys.aux_inputRemainder_lower_le {η : ℕ} (hη : 1 ≤ η) {r : ℝ} (hr : 0 < r)
+private theorem LinearSys.aux_inputRemainder_lower_le {η : ℕ} (hη : 1 ≤ η) {r : ℝ} (hr : 0 < r)
     (hr1 : r ≤ 1 / 4) : -- --- CONCL ---
     r * MatExp.expRemainderBound (r • (!![0, 0; 1, 0] : Mat ℝ 2 2)) η ≤
       6 / 11 * r ^ 3 := by -- --- PROOF ---
@@ -191,7 +191,7 @@ theorem LinearSys.aux_inputRemainder_lower_le {η : ℕ} (hη : 1 ≤ η) {r : �
 
 /-- Two equations `r x + a y = 0` and `r² x / 2 + b y = r²/4` have no solution with `|y| ≤ 1`
 and `|a|, |b| ≤ δ ≤ 6r³/11`, for `0 < r ≤ 1/4`. -/
-theorem LinearSys.aux_no_solution {r δ x y a b : ℝ} (hr : 0 < r) (hr1 : r ≤ 1 / 4)
+private theorem LinearSys.aux_no_solution {r δ x y a b : ℝ} (hr : 0 < r) (hr1 : r ≤ 1 / 4)
     (hδ : δ ≤ 6 / 11 * r ^ 3) (hy : |y| ≤ 1) (ha : |a| ≤ δ) (hb : |b| ≤ δ)
     (e0 : r * x + a * y = 0) (e1 : 2⁻¹ * r ^ 2 * x + b * y = r ^ 2 / 4) : -- --- CONCL ---
     False := by -- --- PROOF ---
@@ -227,7 +227,7 @@ theorem LinearSys.aux_no_solution {r δ x y a b : ℝ} (hr : 0 < r) (hr1 : r ≤
 
 /-- The input `(w, 0)` with `w = 1` up to `r/2` and `-1` after drives `A = [[0, 0], [1, 0]]` to
 `(0, r²/4)`. -/
-theorem LinearSys.aux_integral_flow (r : ℝ) (hr : 0 < r) : -- --- CONCL ---
+private theorem LinearSys.aux_integral_flow (r : ℝ) (hr : 0 < r) : -- --- CONCL ---
     (![0, r ^ 2 / 4] : Vec ℝ 2) = ∫ s in (0:ℝ)..r,
       exp ((r - s) • toRealMat (LinearSys.canonical (!![0, 0; 1, 0] : Mat ℝ 2 2) :
         LinearSys ℝ 2).A) *ᵥ ![if s ≤ r / 2 then 1 else -1, 0] := by -- --- PROOF ---

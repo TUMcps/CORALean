@@ -50,7 +50,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The right-padded set denotes the padded nominal set. -/
-theorem PolyZonotope.aux_nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope (Vec 𝕋
+private theorem PolyZonotope.aux_nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope (Vec 𝕋
     n)) : -- --- CONCL ---
     nominal (pZ.blockPadRight n₁) =
       Real.PolyZonotope.map (CORALean.blockPadRight n₁ n) (nominal pZ) := by -- --- PROOF ---
@@ -81,7 +81,8 @@ end
 
 
 /-- A box point padded below by zero is a point of the padded box. -/
-theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₂ : ℕ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n))
+    (n₂ : ℕ) : -- --- CONCL ---
     CORALean.blockPadLeft n n₂ '' pZ.I_error.construct ⊆
       (pZ.blockPadLeft n₂).I_error.construct := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
@@ -98,7 +99,8 @@ theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₂ : �
     exact ⟨le_refl _, le_refl _⟩
 
 /-- A box point padded above by zero is a point of the padded box. -/
-theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₁ : ℕ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n))
+    (n₁ : ℕ) : -- --- CONCL ---
     CORALean.blockPadRight n₁ n '' pZ.I_error.construct ⊆
       (pZ.blockPadRight n₁).I_error.construct := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i

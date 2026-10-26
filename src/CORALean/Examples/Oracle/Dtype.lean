@@ -39,7 +39,7 @@ abbrev DyP (p : Nat) : Type := CORALean.Float.Dyadic p
 
 /-- `down`/`up`/`down`-or-`up` by `mode`, or an error naming a bad mode -- `pick` breaks a
 `nearest` tie, called only then. -/
-def aux_pickByMode {α : Type} (mode : String) (down up : α) (pick : Unit → Bool) :
+private def aux_pickByMode {α : Type} (mode : String) (down up : α) (pick : Unit → Bool) :
     Except String α :=
   match mode with
   | "down" => pure down
@@ -49,14 +49,14 @@ def aux_pickByMode {α : Type} (mode : String) (down up : α) (pick : Unit → B
 
 /-- `x` closer to `down` than to `up`, ties to even -- `down ≤ x ≤ up` is assumed, as every
 caller below has it from a pair of sound directed roundings. -/
-def aux_pickDown (down up x : ExactDyadic) : Bool :=
+private def aux_pickDown (down up x : ExactDyadic) : Bool :=
   match ExactDyadic.cmp (ExactDyadic.sub x down) (ExactDyadic.sub up x) with
   | .lt => true
   | .gt => false
   | .eq => down.mantissa % 2 = 0
 
 /-- The decimal counterpart: `down`, `up`, `x` aligned to their least common digit count. -/
-def aux_pickDownDec (downM upM xM : Int) (downD upD xD : Nat) : Bool :=
+private def aux_pickDownDec (downM upM xM : Int) (downD upD xD : Nat) : Bool :=
   let D := max xD (max downD upD)
   let xs := xM * 10 ^ (D - xD)
   let downs := downM * 10 ^ (D - downD)
@@ -88,7 +88,7 @@ structure DtypeOps (𝕋 : Type) [FloatOps 𝕋] where
 
 /-- The message every `ieee`/`dyadic` `.decNeg` rejection shares: a negative decimal exponent
 is generally not exact in binary, `1/50` again. -/
-def aux_decNegRefused (what : String) (m : Int) (d : Nat) : String :=
+private def aux_decNegRefused (what : String) (m : Int) (d : Nat) : String :=
   s!"{what}: {m}*10^-{d} is a decimal fraction, not exactly representable in binary; \
     only fixedpoint dtypes accept a negative decimal exponent"
 
@@ -155,7 +155,7 @@ def dyadicDtypeOps (label : String) (p : Nat) : DtypeOps (DyP p) where
 
 /-- `v`, at `FixedPoint f`, off-grid but exact -- `.dy` embeds through `ExactDyadic.toFixedPoint`
 at enough digits (`fitsDigits`'s own bound), `.decNeg` is already this shape, unconditionally. -/
-def aux_toFixedPointExact (f : Nat) : ExactScalar → Except String (FixedPoint f)
+private def aux_toFixedPointExact (f : Nat) : ExactScalar → Except String (FixedPoint f)
   | .decNeg m d => pure ⟨m, d⟩
   | .dy d => do
     -- enough decimal digits for an *exact* embedding of `d`, `fitsDigits`'s own bound

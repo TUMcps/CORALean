@@ -49,8 +49,8 @@ variable {k n q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Jacobian of a map affine in a parameter. -/
-theorem aux_jacobianMat_sub (g h : Vec ℝ k → Vec ℝ n) (x : Vec ℝ k) (hg : DifferentiableAt ℝ g x)
-    (hh : DifferentiableAt ℝ h x) : -- --- CONCL ---
+private theorem aux_jacobianMat_sub (g h : Vec ℝ k → Vec ℝ n) (x : Vec ℝ k)
+    (hg : DifferentiableAt ℝ g x) (hh : DifferentiableAt ℝ h x) : -- --- CONCL ---
     jacobianMat (fun z => g z - h z) x = jacobianMat g x - jacobianMat h x := by -- --- PROOF ---
   have h : HasFDerivAt (fun z => g z - h z) (fderiv ℝ g x - fderiv ℝ h x) x :=
     hg.hasFDerivAt.sub hh.hasFDerivAt
@@ -61,7 +61,7 @@ theorem aux_jacobianMat_sub (g h : Vec ℝ k → Vec ℝ n) (x : Vec ℝ k) (hg 
 
 /-- The Jacobian of a map affine in the parameter `p` is the Jacobian of `g0` plus the `p`-weighted
 Jacobians of the `gi`, where all are differentiable. -/
-theorem aux_jacobianMat_param (g0 : Vec ℝ k → Vec ℝ n) (gi : Fin q → Vec ℝ k → Vec ℝ n)
+private theorem aux_jacobianMat_param (g0 : Vec ℝ k → Vec ℝ n) (gi : Fin q → Vec ℝ k → Vec ℝ n)
     (p : Vec ℝ q) (x : Vec ℝ k) (h0 : DifferentiableAt ℝ g0 x)
     (hi : ∀ i, DifferentiableAt ℝ (gi i) x) : -- --- CONCL ---
     jacobianMat (fun z => g0 z + ∑ i, p i • gi i z) x

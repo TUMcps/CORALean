@@ -56,18 +56,18 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The functional `x ↦ d ⬝ᵥ x`. -/
-noncomputable def aux_dotFun (d : Vec ℝ n) : Vec ℝ n →ₗ[ℝ] ℝ where
+private noncomputable def aux_dotFun (d : Vec ℝ n) : Vec ℝ n →ₗ[ℝ] ℝ where
   toFun x := d ⬝ᵥ x
   map_add' x y := by simp [dotProduct_add]
   map_smul' r x := by simp [dotProduct_smul]
 
-theorem aux_dualVec_dotFun (d : Vec ℝ n) : dualVec (aux_dotFun d) = d := by
+private theorem aux_dualVec_dotFun (d : Vec ℝ n) : dualVec (aux_dotFun d) = d := by
   funext i
   simp [dualVec, aux_dotFun, dotProduct]
 
 /-- The support value of a sum is the sum of the support values. -/
-theorem aux_support_sum_eq (E E₁ E₂ : Ellipsoid n) (h : E₁.construct + E₂.construct = E.construct)
-    (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
+private theorem aux_support_sum_eq (E E₁ E₂ : Ellipsoid n)
+    (h : E₁.construct + E₂.construct = E.construct) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
     (E.supportBound c).val =
       (E₁.supportBound c).val + (E₂.supportBound c).val := by -- --- PROOF ---
   obtain ⟨⟨x, hx, hcx⟩, hub⟩ := E.isGreatest_support c
@@ -86,13 +86,13 @@ theorem aux_support_sum_eq (E E₁ E₂ : Ellipsoid n) (h : E₁.construct + E�
     linarith
 
 /-- `‖Gᵀd‖₂²` as a sum over the generators. -/
-theorem aux_pullback_sq (E : Ellipsoid n) (d : Vec ℝ n) :
+private theorem aux_pullback_sq (E : Ellipsoid n) (d : Vec ℝ n) :
     ‖E.pullback (aux_dotFun d)‖₂ ^ 2 = ∑ j, (∑ i, E.G i j * d i) ^ 2 := by
   rw [norm₂_sq, Ellipsoid.pullback, aux_dualVec_dotFun]
   simp [Matrix.mulVec, dotProduct]
 
 /-- The parallelogram law for the squared support lengths. -/
-theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) : -- --- CONCL ---
     ‖E.pullback (aux_dotFun (u + v))‖₂ ^ 2 + ‖E.pullback (aux_dotFun (u - v))‖₂ ^ 2
       = 2 * ‖E.pullback (aux_dotFun u)‖₂ ^ 2
         + 2 * ‖E.pullback (aux_dotFun v)‖₂ ^ 2 := by -- --- PROOF ---
@@ -103,25 +103,25 @@ theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) : -- --- CONCL ---
   ring
 
 /-- `diag(4, 1)` is positive definite. -/
-theorem aux_posDef_41 : (diagonal ![(4 : ℝ), 1]).PosDef := by
+private theorem aux_posDef_41 : (diagonal ![(4 : ℝ), 1]).PosDef := by
   rw [posDef_diagonal_iff]
   intro i
   fin_cases i <;> simp
 
 /-- `diag(1, 4)` is positive definite. -/
-theorem aux_posDef_14 : (diagonal ![(1 : ℝ), 4]).PosDef := by
+private theorem aux_posDef_14 : (diagonal ![(1 : ℝ), 4]).PosDef := by
   rw [posDef_diagonal_iff]
   intro i
   fin_cases i <;> simp
 
 /-- The first ellipse: semi-axes `2` and `1`. -/
-def aux_E₁ : Ellipsoid 2 := ⟨diagonal ![4, 1], 0, aux_posDef_41.posSemidef⟩
+private def aux_E₁ : Ellipsoid 2 := ⟨diagonal ![4, 1], 0, aux_posDef_41.posSemidef⟩
 
 /-- The second ellipse: semi-axes `1` and `2`. -/
-def aux_E₂ : Ellipsoid 2 := ⟨diagonal ![1, 4], 0, aux_posDef_14.posSemidef⟩
+private def aux_E₂ : Ellipsoid 2 := ⟨diagonal ![1, 4], 0, aux_posDef_14.posSemidef⟩
 
 /-- The first ellipse's support length. -/
-theorem aux_len₁ (d : Vec ℝ 2) :
+private theorem aux_len₁ (d : Vec ℝ 2) :
     ‖aux_E₁.pullback (aux_dotFun d)‖₂ = √((2 * d 0) ^ 2 + d 1 ^ 2) := by
   rw [Ellipsoid.norm₂_pullback, aux_dualVec_dotFun]
   congr 1
@@ -129,7 +129,7 @@ theorem aux_len₁ (d : Vec ℝ 2) :
   ring
 
 /-- The second ellipse's support length. -/
-theorem aux_len₂ (d : Vec ℝ 2) :
+private theorem aux_len₂ (d : Vec ℝ 2) :
     ‖aux_E₂.pullback (aux_dotFun d)‖₂ = √(d 0 ^ 2 + (2 * d 1) ^ 2) := by
   rw [Ellipsoid.norm₂_pullback, aux_dualVec_dotFun]
   congr 1
@@ -138,7 +138,7 @@ theorem aux_len₂ (d : Vec ℝ 2) :
 
 /-- The support length of the sum is the sum of the support lengths: the center cancels in
 `d` and `-d`. -/
-theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
+private theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
     (h : aux_E₁.construct + aux_E₂.construct = E.construct) : -- --- CONCL ---
     ‖E.pullback (aux_dotFun d)‖₂ =
       ‖aux_E₁.pullback (aux_dotFun d)‖₂ + ‖aux_E₂.pullback (aux_dotFun d)‖₂ := by -- --- PROOF ---

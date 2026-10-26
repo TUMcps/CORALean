@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Tree.aux_sum_filter (a x : Fin n → ℝ) : -- --- CONCL ---
+private theorem STL.Tree.aux_sum_filter (a x : Fin n → ℝ) : -- --- CONCL ---
     (((List.finRange n).filter (fun i => a i ≠ 0)).map (fun i => a i * x i)).sum
       = ∑ j, a j * x j := by -- --- PROOF ---
   rw [← List.sum_toFinset _ ((List.nodup_finRange n).filter _)]
@@ -53,14 +53,14 @@ theorem STL.Tree.aux_sum_filter (a x : Fin n → ℝ) : -- --- CONCL ---
   intro i _ h h0
   exact h (by simp [h0])
 
-theorem STL.Tree.aux_eval_term (a x : Fin n → ℝ) (i : Fin n) :
+private theorem STL.Tree.aux_eval_term (a x : Fin n → ℝ) (i : Fin n) :
     (if a i = 1 then STL.Expr.var i else STL.Expr.times (.num (a i)) (.var i)).eval x
       = a i * x i := by
   split_ifs with h
   · simp [STL.Expr.eval, h]
   · simp [STL.Expr.times, STL.Expr.eval]
 
-theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin n))
+private theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin n))
     (ind : Fin n) : -- --- CONCL ---
     (rest.foldl (fun rhs i => STL.Expr.plus rhs
         (if a i = 1 then STL.Expr.var i else STL.Expr.times (.num (a i)) (.var i)))

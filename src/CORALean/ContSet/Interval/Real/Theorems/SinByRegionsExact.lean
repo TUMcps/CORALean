@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the range by a multiple of the period does not move its image. -/
-theorem aux_image_sin_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
+private theorem aux_image_sin_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     Real.sin '' Set.Icc lo hi =
     Real.sin '' Set.Icc (lo - 2 * Real.pi * k) (hi - 2 * Real.pi * k) := by -- --- PROOF ---
   ext v
@@ -60,7 +60,7 @@ theorem aux_image_sin_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     ring_nf
 
 /-- Every value of the sine is taken within one period of any point. -/
-theorem aux_sin_exists_period (lo t : ℝ) : -- --- CONCL ---
+private theorem aux_sin_exists_period (lo t : ℝ) : -- --- CONCL ---
     ∃ c ∈ Set.Icc lo (lo + 2 * Real.pi), Real.sin c = Real.sin t := by -- --- PROOF ---
   have hpi := Real.pi_pos
   -- the first point `t + 2πk` at or above `lo`
@@ -71,22 +71,22 @@ theorem aux_sin_exists_period (lo t : ℝ) : -- --- CONCL ---
   rw [← sub_lt_iff_lt_add, lt_div_iff₀ (by positivity)] at h2
   refine ⟨t + k * (2 * Real.pi), ⟨by linarith, by linarith⟩, Real.sin_add_int_mul_two_pi t k⟩
 
-theorem aux_sin_three_pi_div_two : Real.sin (3 * Real.pi / 2) = -1 := by
+private theorem aux_sin_three_pi_div_two : Real.sin (3 * Real.pi / 2) = -1 := by
   rw [show 3 * Real.pi / 2 = Real.pi / 2 + Real.pi by ring, Real.sin_add_pi, Real.sin_pi_div_two]
 
-theorem aux_sin_five_pi_div_two : Real.sin (5 * Real.pi / 2) = 1 := by
+private theorem aux_sin_five_pi_div_two : Real.sin (5 * Real.pi / 2) = 1 := by
   rw [show 5 * Real.pi / 2 = Real.pi / 2 + 2 * Real.pi by ring, Real.sin_add_two_pi,
     Real.sin_pi_div_two]
 
-theorem aux_sin_seven_pi_div_two : Real.sin (7 * Real.pi / 2) = -1 := by
+private theorem aux_sin_seven_pi_div_two : Real.sin (7 * Real.pi / 2) = -1 := by
   rw [show 7 * Real.pi / 2 = 3 * Real.pi / 2 + 2 * Real.pi by ring, Real.sin_add_two_pi,
     aux_sin_three_pi_div_two]
 
-theorem aux_sin_monoOn_zero : MonotoneOn Real.sin (Set.Icc 0 (Real.pi / 2)) :=
+private theorem aux_sin_monoOn_zero : MonotoneOn Real.sin (Set.Icc 0 (Real.pi / 2)) :=
   Real.strictMonoOn_sin.monotoneOn.mono
     (Set.Icc_subset_Icc (by linarith [Real.pi_pos]) le_rfl)
 
-theorem aux_sin_monoOn_one : -- --- CONCL ---
+private theorem aux_sin_monoOn_one : -- --- CONCL ---
     MonotoneOn Real.sin (Set.Icc (3 * Real.pi / 2) (5 * Real.pi / 2)) := by -- --- PROOF ---
   intro x hx y hy hxy
   -- one period down, onto `[-π/2, π/2]`
@@ -94,13 +94,14 @@ theorem aux_sin_monoOn_one : -- --- CONCL ---
   exact Real.strictMonoOn_sin.monotoneOn ⟨by linarith [hx.1], by linarith [hx.2]⟩
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith)
 
-theorem aux_sin_antiOn_zero : AntitoneOn Real.sin (Set.Icc (Real.pi / 2) (3 * Real.pi / 2)) := by
+private theorem aux_sin_antiOn_zero : AntitoneOn Real.sin
+    (Set.Icc (Real.pi / 2) (3 * Real.pi / 2)) := by
   intro x hx y hy hxy
   rw [← Real.cos_sub_pi_div_two x, ← Real.cos_sub_pi_div_two y]
   exact Real.strictAntiOn_cos.antitoneOn ⟨by linarith [hx.1], by linarith [hx.2]⟩
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith)
 
-theorem aux_sin_antiOn_one : -- --- CONCL ---
+private theorem aux_sin_antiOn_one : -- --- CONCL ---
     AntitoneOn Real.sin (Set.Icc (5 * Real.pi / 2) (7 * Real.pi / 2)) := by -- --- PROOF ---
   intro x hx y hy hxy
   rw [← Real.sin_sub_two_pi x, ← Real.sin_sub_two_pi y, ← Real.cos_sub_pi_div_two,
@@ -109,7 +110,7 @@ theorem aux_sin_antiOn_one : -- --- CONCL ---
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith)
 
 /-- A range holding a point where the sine is `1` and one where it is `-1`. -/
-theorem aux_sin_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Icc a b)
+private theorem aux_sin_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Icc a b)
     (h1 : Real.sin c = 1) (h2 : Real.sin d = -1) : -- --- CONCL ---
     Real.sin '' Set.Icc a b = Set.Icc (-1) 1 := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
@@ -119,7 +120,7 @@ theorem aux_sin_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Ic
       ⟨d, hd, h2⟩ ⟨c, hc, h1⟩
 
 /-- The sine rising and then falling, with its maximum `1` in between. -/
-theorem aux_sin_peak {a m b : ℝ} (ham : a ≤ m) (hmb : m ≤ b) (h1 : Real.sin m = 1)
+private theorem aux_sin_peak {a m b : ℝ} (ham : a ≤ m) (hmb : m ≤ b) (h1 : Real.sin m = 1)
     (hmono : MonotoneOn Real.sin (Set.Icc a m)) (hanti : AntitoneOn Real.sin (Set.Icc m b)) :
     Real.sin '' Set.Icc a b = Set.Icc (min (Real.sin a) (Real.sin b)) 1 := by
   rw [← Set.Icc_union_Icc_eq_Icc ham hmb, Set.image_union,
@@ -128,7 +129,7 @@ theorem aux_sin_peak {a m b : ℝ} (ham : a ≤ m) (hmb : m ≤ b) (h1 : Real.si
     Set.Icc_union_Icc' (Real.sin_le_one b) (Real.sin_le_one a), max_self]
 
 /-- The sine falling and then rising, with its minimum `-1` in between. -/
-theorem aux_sin_valley {a m b : ℝ} (ham : a ≤ m) (hmb : m ≤ b) (h1 : Real.sin m = -1)
+private theorem aux_sin_valley {a m b : ℝ} (ham : a ≤ m) (hmb : m ≤ b) (h1 : Real.sin m = -1)
     (hanti : AntitoneOn Real.sin (Set.Icc a m)) (hmono : MonotoneOn Real.sin (Set.Icc m b)) :
     Real.sin '' Set.Icc a b = Set.Icc (-1) (max (Real.sin a) (Real.sin b)) := by
   rw [← Set.Icc_union_Icc_eq_Icc ham hmb, Set.image_union,
@@ -137,7 +138,7 @@ theorem aux_sin_valley {a m b : ℝ} (ham : a ≤ m) (hmb : m ≤ b) (h1 : Real.
     Set.Icc_union_Icc' (Real.neg_one_le_sin a) (Real.neg_one_le_sin b), min_self]
 
 /-- The first case of [1, Eq. 12], `[-1, 1]`, past the width test. -/
-theorem aux_sinByRegions_full {lo hi yl yu : ℝ}
+private theorem aux_sinByRegions_full {lo hi yl yu : ℝ}
     (hshift : Real.sin '' Set.Icc lo hi = Real.sin '' Set.Icc yl (yl + (hi - lo)))
     (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi) (hyu : 0 ≤ yu ∧ yu < 2 * Real.pi)
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu) (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
@@ -173,7 +174,7 @@ theorem aux_sinByRegions_full {lo hi yl yu : ℝ}
       aux_sin_five_pi_div_two aux_sin_seven_pi_div_two
 
 /-- The second case of [1, Eq. 12]: the sine rising across the range. -/
-theorem aux_sinByRegions_mono {lo hi yl yu : ℝ}
+private theorem aux_sinByRegions_mono {lo hi yl yu : ℝ}
     (hshift : Real.sin '' Set.Icc lo hi = Real.sin '' Set.Icc yl (yl + (hi - lo)))
     (hle : lo ≤ hi) (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi) (hyu : 0 ≤ yu ∧ yu < 2 * Real.pi)
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu) (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
@@ -199,7 +200,7 @@ theorem aux_sinByRegions_mono {lo hi yl yu : ℝ}
       (aux_sin_monoOn_one.mono (Set.Icc_subset_Icc h1.1 (by linarith [h2.2]))), hb]
 
 /-- The third case of [1, Eq. 12]: across a maximum. -/
-theorem aux_sinByRegions_peak {lo hi yl yu : ℝ}
+private theorem aux_sinByRegions_peak {lo hi yl yu : ℝ}
     (hshift : Real.sin '' Set.Icc lo hi = Real.sin '' Set.Icc yl (yl + (hi - lo)))
     (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi)
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu) (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
@@ -223,7 +224,7 @@ theorem aux_sinByRegions_peak {lo hi yl yu : ℝ}
       Real.sin_add_two_pi]
 
 /-- The fourth case of [1, Eq. 12]: across a minimum. -/
-theorem aux_sinByRegions_valley {lo hi yl yu : ℝ}
+private theorem aux_sinByRegions_valley {lo hi yl yu : ℝ}
     (hshift : Real.sin '' Set.Icc lo hi = Real.sin '' Set.Icc yl (yl + (hi - lo)))
     (hyu : 0 ≤ yu ∧ yu < 2 * Real.pi)
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu) (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
@@ -248,7 +249,7 @@ theorem aux_sinByRegions_valley {lo hi yl yu : ℝ}
       (aux_sin_monoOn_one.mono (Set.Icc_subset_Icc le_rfl (by linarith [h2.2]))), hb]
 
 /-- The last case of [1, Eq. 12], all the others excluded: the sine falling across the range. -/
-theorem aux_sinByRegions_anti {lo hi yl yu : ℝ}
+private theorem aux_sinByRegions_anti {lo hi yl yu : ℝ}
     (hshift : Real.sin '' Set.Icc lo hi = Real.sin '' Set.Icc yl (yl + (hi - lo)))
     (hle : lo ≤ hi)
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu)
@@ -261,7 +262,7 @@ theorem aux_sinByRegions_anti {lo hi yl yu : ℝ}
     (aux_sin_antiOn_zero.mono (Set.Icc_subset_Icc h1.1 (by linarith [h2.2]))), hb]
 
 /-- What the first four cases of [1, Eq. 12] leave: both reduced bounds in `R_s2`, unswapped. -/
-theorem aux_sinByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi)
+private theorem aux_sinByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi)
     (hyu : 0 ≤ yu ∧ yu < 2 * Real.pi)
     (hA : ¬((yl ∈ Set.Ico 0 (Real.pi / 2) ∧ yu ∈ Set.Ico 0 (Real.pi / 2) ∧ yu < yl) ∨
       (yl ∈ Set.Ico 0 (Real.pi / 2) ∧ yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi)) ∨

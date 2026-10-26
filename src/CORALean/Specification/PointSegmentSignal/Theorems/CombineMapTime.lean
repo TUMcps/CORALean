@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 
 omit [FinEnum ι] in
 /-- The smallest of a list of times read as reals is the smallest float one read as a real. -/
-theorem PointSegmentSignal.aux_foldMin_mapTime (f : ι → WithTop 𝕋)
+private theorem PointSegmentSignal.aux_foldMin_mapTime (f : ι → WithTop 𝕋)
     (l : List ι) : -- --- CONCL ---
     l.foldr (fun k m => if (f k).map toReal ≤ m then (f k).map toReal else m) ⊤ =
       (l.foldr (fun k m => if f k ≤ m then f k else m) ⊤).map toReal := by -- --- PROOF ---
@@ -68,7 +68,7 @@ theorem PointSegmentSignal.aux_foldMin_mapTime (f : ι → WithTop 𝕋)
 
 /-- One pass after another, the loop on the signals read as reals is the float loop read as
 reals. -/
-theorem PointSegmentSignal.aux_combineLoop_mapTime (op : (ι → Bool) → Bool)
+private theorem PointSegmentSignal.aux_combineLoop_mapTime (op : (ι → Bool) → Bool)
     (sig : ι → PointSegmentSignal 𝕋) (fuel : ℕ) : -- --- CONCL ---
     ∀ (inIdx : ι → ℕ) (tp : List 𝕋) (val : List Bool),
       PointSegmentSignal.combineLoop op (fun k => (sig k).mapTime toReal) fuel inIdx

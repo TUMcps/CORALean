@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 /-- The continuous image of a closed ball that is compact where it is stated,
 `EuclideanSpace ℝ (Fin n)` being finite-dimensional. -/
-theorem _root_.CORALean.aux_isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
+private theorem _root_.CORALean.aux_isCompact_unitBall₂ : IsCompact (unitBall₂ n) := by
   rw [unitBall₂_eq_image]
   exact (isCompact_closedBall _ _).image toEuclidean.symm.continuous
 

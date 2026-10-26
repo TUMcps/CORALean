@@ -80,7 +80,7 @@ def HPolytope.aux_emptyStrip : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
-theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
+private theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
     HPolytope.aux_emptyStrip.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]

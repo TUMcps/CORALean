@@ -49,7 +49,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
+private theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (f : Fin (cPZ₁.h + cPZ₂.h) → ℝ) :
     ∑ l : Fin (cPZ₁.plus cPZ₂).h, f l
       = ∑ l, f (Fin.castAdd cPZ₂.h l) + ∑ l, f (Fin.natAdd cPZ₁.h l) :=
@@ -57,13 +57,14 @@ theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
+private theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (f : Fin (cPZ₁.qI + cPZ₂.qI) → ℝ) :
     ∑ j : Fin (cPZ₁.plus cPZ₂).qI, f j
       = ∑ j, f (Fin.castAdd cPZ₂.qI j) + ∑ j, f (Fin.natAdd cPZ₁.qI j) :=
   Fin.sum_univ_add f
 
-theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem ConPolyZono.aux_plus_nominal
+    (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cPZ₁ + nominalSet cPZ₂ ⊆
       nominalSet (cPZ₁.plus cPZ₂)
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
@@ -102,7 +103,7 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋
     ring
 
 /-- The box absorbs the two incoming boxes and the center rounding. -/
-theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+private theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ₁.I_error.construct + cPZ₂.I_error.construct
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆
             (cPZ₁.plus cPZ₂).I_error.construct :=

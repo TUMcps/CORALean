@@ -54,7 +54,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every term is a magnitude, so the radius never goes below zero. -/
-theorem aux_polyDerivRadius_nonneg {k : ℕ} (c : Fin (k + 1) → ℝ) (l u : ℝ) : -- --- CONCL ---
+private theorem aux_polyDerivRadius_nonneg {k : ℕ} (c : Fin (k + 1) → ℝ)
+    (l u : ℝ) : -- --- CONCL ---
     0 ≤ polyDerivRadius c l u := by -- --- PROOF ---
   have hmax : (0 : ℝ) ≤ max |l| |u| := le_trans (abs_nonneg l) (le_max_left _ _)
   show (0:ℝ) ≤ ∑ i : Fin (k + 1), if (i : ℕ) = 1 then 0
@@ -67,7 +68,7 @@ theorem aux_polyDerivRadius_nonneg {k : ℕ} (c : Fin (k + 1) → ℝ) (l u : �
     exact mul_nonneg (mul_nonneg (abs_nonneg _) (Nat.cast_nonneg _)) (pow_nonneg hmax _)
 
 /-- A sub-box reaches no further from zero, so its radius is no larger. -/
-theorem aux_polyDerivRadius_mono {k : ℕ} (c : Fin (k + 1) → ℝ) {l u L U : ℝ}
+private theorem aux_polyDerivRadius_mono {k : ℕ} (c : Fin (k + 1) → ℝ) {l u L U : ℝ}
     (hl : L ≤ l) (hlu : l ≤ u) (hu : u ≤ U) : -- --- CONCL ---
     polyDerivRadius c l u ≤ polyDerivRadius c L U := by -- --- PROOF ---
   have hLm : |L| ≤ max |L| |U| := le_max_left _ _
@@ -96,7 +97,7 @@ theorem aux_polyDerivRadius_mono {k : ℕ} (c : Fin (k + 1) → ℝ) {l u L U : 
       (mul_nonneg (abs_nonneg _) (Nat.cast_nonneg _))
 
 /-- The bracket widened by a radius grows by at most that radius. -/
-theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad)
+private theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad)
     (hrad : rad ≤ r) : -- --- CONCL ---
     polyDerivDiff lo hi ctr rad ≤ max |lo - ctr| |hi - ctr| + r := by -- --- PROOF ---
   have hA : |lo - ctr| ≤ max |lo - ctr| |hi - ctr| := le_max_left _ _

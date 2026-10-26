@@ -68,7 +68,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of a zonotope reaches no further than its `ℓ¹` reach. -/
-theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+private theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.construct) : -- --- CONCL ---
     ‖x‖ ≤ ∑ j, Z.absBound j := by -- --- PROOF ---
   have habs : ∀ j, (0:ℝ) ≤ Z.absBound j := fun j => by
@@ -83,7 +83,7 @@ theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 
 /-- The Taylor part of the input solution is a Minkowski sum over the orders, so
 each order is free to pick its own input. -/
-theorem LinearSys.aux_inputTaylorSum_mem_exists (sys : LinearSys 𝕋 n) (r : ℝ)
+private theorem LinearSys.aux_inputTaylorSum_mem_exists (sys : LinearSys 𝕋 n) (r : ℝ)
     (U : Zonotope (Vec ℝ n)) (η : ℕ) {y : Vec ℝ n}
     (hy : y ∈ (sys.inputTaylorSum (S := 𝒵) r U η).construct) : -- --- CONCL ---
     ∃ u : ℕ → Vec ℝ n, (∀ i, u i ∈ U.construct) ∧

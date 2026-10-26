@@ -48,7 +48,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- Eq. 16 of [1, Thm. 1] at the instance: its negative has the form `x₁² + (2x₂ - x₄)² + 4x₃² + x₄²`
-theorem LinearSysDT.aux_hinfLmi_instance : -- --- CONCL ---
+private theorem LinearSysDT.aux_hinfLmi_instance : -- --- CONCL ---
     LinearSysDT.IsHinfLmi (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
       (fun _ _ => 2) (0 : Mat ℝ 1 1) 2 := by -- --- PROOF ---
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩

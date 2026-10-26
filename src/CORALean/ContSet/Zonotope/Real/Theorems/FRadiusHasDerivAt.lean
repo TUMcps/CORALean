@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The sum of squares along one entry: `S - G(i,j)² + t²`. -/
-theorem Zonotope.aux_sumSq_update (Y : Zonotope (Vec ℝ n)) (j : Fin Y.h) (i : Fin n)
+private theorem Zonotope.aux_sumSq_update (Y : Zonotope (Vec ℝ n)) (j : Fin Y.h) (i : Fin n)
     (t : ℝ) : -- --- CONCL ---
     ∑ i', ∑ j', (Function.update Y.G j (Function.update (Y.G j) i t) j' i') ^ 2 =
       ∑ i', ∑ j', Y.G j' i' ^ 2 + (t ^ 2 - Y.G j i ^ 2) := by -- --- PROOF ---

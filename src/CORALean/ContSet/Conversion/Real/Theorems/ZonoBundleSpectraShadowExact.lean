@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A left fold of `inter` is the intersection of what it starts from and what it folds in. -/
-theorem ZonoBundle.aux_foldl_inter (Ss : List (SpectraShadow (Vec ℝ n)))
+private theorem ZonoBundle.aux_foldl_inter (Ss : List (SpectraShadow (Vec ℝ n)))
     (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
     (Ss.foldl SpectraShadow.inter S).construct
       = S.construct ∩ {x | ∀ T ∈ Ss, x ∈ T.construct} := by -- --- PROOF ---

@@ -44,7 +44,8 @@ variable {lam : ι → ℝ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_term_lt {l a b : ℝ} (hl : 0 < l) (ha : 0 ≤ a) (hab : a < b) : -- --- CONCL ---
+private theorem Ellipsoid.aux_term_lt {l a b : ℝ} (hl : 0 < l) (ha : 0 ≤ a)
+    (hab : a < b) : -- --- CONCL ---
     (1 - b ^ 2 * l) / (1 + b * l) < (1 - a ^ 2 * l) / (1 + a * l) := by -- --- PROOF ---
   have h1 : 0 < 1 + a * l := by positivity
   have h2 : 0 < 1 + b * l := by nlinarith

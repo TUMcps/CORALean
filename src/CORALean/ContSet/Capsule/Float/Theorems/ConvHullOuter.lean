@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A value `x` between the roundings `d ≤ x ≤ u` of the same quantity: half of `x` is within
 half the gap of the stored half of `u`. -/
-theorem Capsule.aux_half_gap_le {x : ℝ} {u d : 𝕋} (hd : toReal d ≤ x) (hu : x ≤ toReal u) :
+private theorem Capsule.aux_half_gap_le {x : ℝ} {u d : 𝕋} (hd : toReal d ≤ x) (hu : x ≤ toReal u) :
     |x / 2 - toReal (half u)| ≤ toReal (half (subUp u d)) := by
   have h₃ := sub_le_subUp u d
   rw [toReal_half, toReal_half]

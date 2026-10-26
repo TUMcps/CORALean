@@ -58,8 +58,8 @@ variable {m n : ℕ}
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z : Zonotope (Vec ℝ n)}
-    (f : Fin (Z.h + m) → ℝ) :
+private theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
+    {Z : Zonotope (Vec ℝ n)} (f : Fin (Z.h + m) → ℝ) :
     ∑ j : Fin (Zonotope.mtimesIntervalMat IM Z).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd Z.h j) :=
   Fin.sum_univ_add f

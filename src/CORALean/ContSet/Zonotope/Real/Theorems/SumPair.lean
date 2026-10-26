@@ -51,7 +51,7 @@ omit [Module ℝ α] in
 /-- A block sum read over a longer range, the summand padded with zero. What
 lets the two paired blocks meet: neither closes on its own, and over a common
 range the identity is pointwise. -/
-theorem Zonotope.aux_sum_pad {k N : ℕ} (hk : k ≤ N) (f : Fin k → α) : -- --- CONCL ---
+private theorem Zonotope.aux_sum_pad {k N : ℕ} (hk : k ≤ N) (f : Fin k → α) : -- --- CONCL ---
     ∑ j, f j = ∑ i ∈ Finset.range N, (if h : i < k then f ⟨i, h⟩ else 0) := by -- --- PROOF ---
   have hfin : ∑ j, f j
       = ∑ i ∈ Finset.range k, (if h : i < k then f ⟨i, h⟩ else 0) := by
@@ -64,7 +64,7 @@ theorem Zonotope.aux_sum_pad {k N : ℕ} (hk : k ≤ N) (f : Fin k → α) : -- 
 
 /-- A weight pulled out of a block sum: `module` cannot do this for itself, a
 sum being one atom to it. -/
-theorem Zonotope.aux_sum_weighted {k : ℕ} (w : ℝ) (b : Fin k → ℝ) (g : Fin k → α) :
+private theorem Zonotope.aux_sum_weighted {k : ℕ} (w : ℝ) (b : Fin k → ℝ) (g : Fin k → α) :
     ∑ j, (w * b j) • g j = w • ∑ j, b j • g j := by
   rw [Finset.smul_sum]
   exact Finset.sum_congr rfl fun j _ => (smul_smul w (b j) (g j)).symm

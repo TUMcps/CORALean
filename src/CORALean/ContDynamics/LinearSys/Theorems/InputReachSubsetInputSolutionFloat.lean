@@ -66,11 +66,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Minkowski sum of plain sets, exactly. -/
-@[reducible] def aux_setPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+@[reducible] private def aux_setPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -78,7 +78,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
-@[reducible] noncomputable def aux_setMtimesInterval :
+@[reducible] private noncomputable def aux_setMtimesInterval :
     Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
@@ -86,8 +86,8 @@ remainder's product is the closed convex set the exact theorem asks for. -/
 attribute [local instance] aux_setPlus aux_setMtimes aux_setMtimesInterval
 
 /-- The exact orders, taken at plain sets, inside the float sum. -/
-theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋}
+    (hr : 0 ≤ toReal r) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ i, construct (sys.inputTaylorSum (S := 𝒮)
       (toReal r) V.construct i) ⊆ (sys.inputTaylorSumFloat r V i).construct := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so its image is in the float product

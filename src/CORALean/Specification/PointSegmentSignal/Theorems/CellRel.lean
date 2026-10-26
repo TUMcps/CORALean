@@ -43,7 +43,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The position data of `t`. -/
-theorem aux_cell_data {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+private theorem aux_cell_data {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
     (hs : s.IsValid) (t : T) (ht : 0 ≤ t) : -- --- CONCL ---
     ∃ p a, 1 ≤ p ∧ p ≤ s.timePoints.length ∧ s.timePoints[p - 1]? = some a ∧ a ≤ t ∧
       (∀ b, s.timePoints[p]? = some b → t < b) ∧

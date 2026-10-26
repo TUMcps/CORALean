@@ -52,13 +52,13 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_toRealMat_unitDiag {h : ℕ} (s : 𝕋) (j : Fin h) :
+private theorem Zonotope.aux_toRealMat_unitDiag {h : ℕ} (s : 𝕋) (j : Fin h) :
     toRealMat (Zonotope.unitDiag s j) = Matrix.diagonal (Pi.single j (toReal s)) := by
   ext p q
   simp only [toRealMat, Zonotope.unitDiag, Matrix.diagonal_apply, Pi.single_apply]
   split_ifs <;> simp [toReal_zero]
 
-theorem Zonotope.aux_toRealMat_one {h : ℕ} :
+private theorem Zonotope.aux_toRealMat_one {h : ℕ} :
     toRealMat (fun (i j : Fin h) => if i = j then (one : 𝕋) else zero) = 1 := by
   ext p q
   simp only [toRealMat, Matrix.one_apply]

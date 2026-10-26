@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- Squaring is monotone on magnitudes, so a coordinatewise bound on magnitudes is a bound on
 the Euclidean norm. -/
-theorem _root_.CORALean.aux_norm₂_le_of_abs_le_err {x y : Vec ℝ n}
+private theorem _root_.CORALean.aux_norm₂_le_of_abs_le_err {x y : Vec ℝ n}
     (h : ∀ i, |x i| ≤ |y i|) : ‖x‖₂ ≤ ‖y‖₂ := by
   refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun i _ => ?_)
   have hi := mul_self_le_mul_self (abs_nonneg (x i)) (h i)
@@ -62,7 +62,7 @@ theorem _root_.CORALean.aux_norm₂_le_of_abs_le_err {x y : Vec ℝ n}
 
 
 /-- A coordinatewise bound on the magnitudes of `S` is a Euclidean bound on `err S`. -/
-theorem _root_.CORALean.aux_err_le_norm₂_of_forall_abs_le {S : Set (Vec ℝ n)} {m : Vec ℝ n}
+private theorem _root_.CORALean.aux_err_le_norm₂_of_forall_abs_le {S : Set (Vec ℝ n)} {m : Vec ℝ n}
     (h : ∀ y ∈ S, ∀ i, |y i| ≤ |m i|) : -- --- CONCL ---
     err S ≤ ‖m‖₂ := by -- --- PROOF ---
   refine aux_norm₂_le_of_abs_le_err fun i => ?_

@@ -63,7 +63,7 @@ open MeasureTheory
 
 /-- A stay of the product at `ℓ` is a stay of the components, whose states are the blocks of the
 product's state. -/
-theorem ParallelHybridAutomaton.IsStay.aux_ofTrajectoryWith [ExactScalar 𝕋]
+private theorem ParallelHybridAutomaton.IsStay.aux_ofTrajectoryWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
     {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.IsFlowLawConverse F U W)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) {ℓ : ∀ i, L i} {τ : ℝ}

@@ -62,7 +62,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A box is the convex hull of its vertices, in `Vec ℝ n × ℝ` with the maximum norm. -/
-theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ : ℝ}
+private theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ : ℝ}
     (hρ : 0 < ρ) : -- --- CONCL ---
     closedBall c ρ ⊆ convexHull ℝ
       {q : Vec ℝ n × ℝ | (∀ i, |q.1 i - c.1 i| = ρ) ∧ |q.2 - c.2| = ρ} := by -- --- PROOF ---
@@ -103,7 +103,7 @@ theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ : ℝ}
   exact ⟨hp1, hp2⟩
 
 /-- The points of `Z*`, the image of the box `[0, 1]^{2n}` of weights. -/
-theorem aux_lift_eq_image (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
+private theorem aux_lift_eq_image (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
     {p | ∃ μ : Fin n ⊕ Fin n → ℝ, (∀ k, 0 ≤ μ k ∧ μ k ≤ 1) ∧ p = ∑ k, μ k • w k}
       = (fun μ : Fin n ⊕ Fin n → ℝ => ∑ k, μ k • w k) ''
           Set.pi Set.univ (fun _ => Set.Icc (0 : ℝ) 1) := by
@@ -113,14 +113,14 @@ theorem aux_lift_eq_image (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
   · rintro ⟨μ, hμ, rfl⟩; exact ⟨μ, fun k => hμ k (Set.mem_univ k), rfl⟩
 
 /-- `Z*` is compact, hence closed. -/
-theorem aux_lift_isClosed (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
+private theorem aux_lift_isClosed (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) :
     IsClosed {p | ∃ μ : Fin n ⊕ Fin n → ℝ, (∀ k, 0 ≤ μ k ∧ μ k ≤ 1) ∧ p = ∑ k, μ k • w k} := by
   rw [aux_lift_eq_image]
   refine ((isCompact_univ_pi fun _ => isCompact_Icc).image ?_).isClosed
   exact continuous_finsetSum _ fun k _ => (continuous_apply k).smul continuous_const
 
 /-- `Z*` is convex. -/
-theorem aux_lift_convex (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) : -- --- CONCL ---
+private theorem aux_lift_convex (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) : -- --- CONCL ---
     Convex ℝ {p | ∃ μ : Fin n ⊕ Fin n → ℝ, (∀ k, 0 ≤ μ k ∧ μ k ≤ 1) ∧
       p = ∑ k, μ k • w k} := by -- --- PROOF ---
   rw [aux_lift_eq_image]
@@ -132,7 +132,8 @@ theorem aux_lift_convex (w : Fin n ⊕ Fin n → Vec ℝ n × ℝ) : -- --- CONC
 
 /-- For `‖s‖ ≤ (n - 1)α`, the coefficients `s = ∑ aᵢzᵢ` have `∑|aᵢ| ≤ 1/2`: `∑|aᵢ| = sᵀx` for
 the `x ∈ Π` with `zᵢᵀx = sign aᵢ`, and `sᵀx ≤ n‖s‖‖x‖ ≤ n(n - 1)αR∞(Π)`. -/
-theorem aux_lift_exists_coeff (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : LinearIndependent ℝ z)
+private theorem aux_lift_exists_coeff (hn : 1 ≤ n) (z : Fin n → Vec ℝ n)
+    (hz : LinearIndependent ℝ z)
     {R : ℝ} (hR : IsGreatest ((fun x => ‖x‖) '' {x : Vec ℝ n | ∀ i, |z i ⬝ᵥ x| ≤ 1}) R)
     (hRpos : 0 < R) {s : Vec ℝ n} (hs : ‖s‖ ≤ (n - 1) * (1 / (2 * n ^ 2 * R))) : -- --- CONCL ---
     ∃ a : Fin n → ℝ, ∑ i, a i • z i = s ∧ ∑ i, |a i| ≤ 1 / 2 := by -- --- PROOF ---
@@ -194,7 +195,7 @@ theorem aux_lift_exists_coeff (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : Lin
 
 /-- The cube of radius `(n - 1)α` around `c` lies in `Z*`: weights with difference `aᵢ` on the
 pair `±zᵢ` and total `t/α ∈ [1, 2n - 1]`. -/
-theorem aux_cube_subset_lift (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : LinearIndependent ℝ z)
+private theorem aux_cube_subset_lift (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : LinearIndependent ℝ z)
     {R : ℝ} (hR : IsGreatest ((fun x => ‖x‖) '' {x : Vec ℝ n | ∀ i, |z i ⬝ᵥ x| ≤ 1}) R)
     (hRpos : 0 < R) : -- --- CONCL ---
     closedBall (((0 : Vec ℝ n), (n : ℝ) * (1 / (2 * n ^ 2 * R))) : Vec ℝ n × ℝ)

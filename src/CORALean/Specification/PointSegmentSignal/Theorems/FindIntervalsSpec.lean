@@ -45,8 +45,8 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A time reached from an interval through times satisfying `cond` is in the interval. -/
-theorem PointSegmentSignal.aux_findIntervalsBounds_maximal {T : Type} [LinearOrder T] [Zero T]
-    [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid)
+private theorem PointSegmentSignal.aux_findIntervalsBounds_maximal {T : Type} [LinearOrder T]
+    [Zero T] [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid)
     (cond : Bool → Bool) (b : T × WithTop T × Bool × Bool) (hb : b ∈ s.findIntervalsBounds cond)
     (t₁ t₂ : T) (ht₂ : 0 ≤ t₂) (h₁ : STLInterval.IsInBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₁)
     (hpath : ∀ t, 0 ≤ t → min t₁ t₂ ≤ t → t ≤ max t₁ t₂ → cond (s.at t) = true) : -- --- CONCL ---

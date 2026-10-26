@@ -56,14 +56,14 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `i = a, …, b - 1` written as the listing writes it. -/
-theorem LinearARX.aux_Icc_sub_one (a b : ℕ) (hb : 0 < b) :
+private theorem LinearARX.aux_Icc_sub_one (a b : ℕ) (hb : 0 < b) :
     Finset.Icc a (b - 1) = Finset.Ico a b := by
   ext x
   rw [Finset.mem_Icc, Finset.mem_Ico]
   omega
 
 /-- A matrix applied to a sum of linear images of sets, exactly. -/
-theorem LinearARX.aux_image_sum {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
+private theorem LinearARX.aux_image_sum {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
     (B : ℕ → Mat ℝ n du) (V : ℕ → Set (Vec ℝ du)) (a : Vec ℝ n) : -- --- CONCL ---
     (M *ᵥ ·) '' ({a} + ∑ i ∈ s, (B i *ᵥ ·) '' V i)
       = {M *ᵥ a} + ∑ i ∈ s, ((M * B i) *ᵥ ·) '' V i := by -- --- PROOF ---
@@ -77,7 +77,7 @@ theorem LinearARX.aux_image_sum {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
   rw [Matrix.mulVecLin_apply, mulVec_mulVec]
 
 /-- The loop invariant of Alg. 1: the step, the set `S`, and the stored parameters. -/
-theorem LinearARX.aux_alg1State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
+private theorem LinearARX.aux_alg1State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (U : ℕ → Set (Vec ℝ du)) {kinit : ℕ} (hp : 0 < p) (hk : p ≤ kinit) (m : ℕ) : -- --- CONCL ---
     (sys.aux_alg1State yinit U kinit m).1 = kinit + m * p ∧
     (sys.aux_alg1State yinit U kinit m).2.1 = {sys.Aext ^ (kinit + m * p) *ᵥ yinit}

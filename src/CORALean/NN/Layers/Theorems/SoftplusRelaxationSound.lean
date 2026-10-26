@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 namespace Real
 /-- Softplus is monotone. -/
-theorem aux_softplus_mono {β : ℝ} (hβ : 0 < β) : -- --- CONCL ---
+private theorem aux_softplus_mono {β : ℝ} (hβ : 0 < β) : -- --- CONCL ---
     Monotone (softplus β) := by -- --- PROOF ---
   intro a b hab
   have hpos : ∀ t, 0 < 1 + Real.exp (β * t) := fun t => by positivity
@@ -58,7 +58,7 @@ theorem aux_softplus_mono {β : ℝ} (hβ : 0 < β) : -- --- CONCL ---
 end Real
 
 
-theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
+private theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
     (h : IsSoftplusBox β k nl l u) : -- --- CONCL ---
     toReal ((softplusEnclosure β k nl kl).enclose l).inf ≤
       Real.softplus (toReal β) (toReal l) := by -- --- PROOF ---
@@ -83,7 +83,7 @@ theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
   show toReal (divDown (logDown nl kl D) β) ≤ _
   exact le_trans hdiv (div_le_div_of_nonneg_right hlog hβ.le)
 
-theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
+private theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
     (h : IsSoftplusBox β k nl l u) : -- --- CONCL ---
     Real.softplus (toReal β) (toReal u) ≤
       toReal ((softplusEnclosure β k nl kl).enclose u).sup := by -- --- PROOF ---

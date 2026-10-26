@@ -81,8 +81,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- An iteration from a state holding the invariant reaches one holding it `Δt` later, and
 its window holds every run over `[t_k, t_{k+1}]`. -/
-theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
-    {Δt : 𝕋}
+private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
+    {X₀ V : Zonotope (Vec 𝕋 n)} {Δt : 𝕋}
     {η ρ : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} (hΔt : 0 < toReal Δt)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (hinv : sys.IsManualInvariantFloat X₀ V s) : -- --- CONCL ---
@@ -232,7 +232,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `K` iterations from a state holding the invariant return `K` windows, the `j`-th holding
 every run over `[t_k + jΔt, t_k + (j+1)Δt]`. -/
-theorem LinearSys.aux_manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
+private theorem LinearSys.aux_manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋} {η ρ : ℕ} (hΔt : 0 < toReal Δt)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
     ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
@@ -271,7 +271,7 @@ end
 
 omit [ToRat 𝕋] in
 /-- `aux_manualInitFloat` holds what a state owes at `t₀ = 0`. -/
-theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n)
+private theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n)
     (X₀ V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.IsManualInvariantFloat X₀ V (LinearSys.aux_manualInitFloat X₀) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by

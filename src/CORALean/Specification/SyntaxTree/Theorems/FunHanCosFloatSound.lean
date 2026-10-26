@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A time with `cos s ∈ [lo,hi]` lies in a shifted branch of `acos`. -/
-theorem SyntaxTree.aux_exists_cos_branchFloat {s lo hi : ℝ} (h₁ : lo ≤ Real.cos s)
+private theorem SyntaxTree.aux_exists_cos_branchFloat {s lo hi : ℝ} (h₁ : lo ≤ Real.cos s)
     (h₂ : Real.cos s ≤ hi) : -- --- CONCL ---
     ∃ k : ℤ, (Real.arccos hi + k * (2 * Real.pi) ≤ s ∧
         s ≤ Real.arccos lo + k * (2 * Real.pi)) ∨

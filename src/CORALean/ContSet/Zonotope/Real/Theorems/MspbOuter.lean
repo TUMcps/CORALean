@@ -60,7 +60,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A corner of a box's zonotope is the box's corner. -/
-theorem Zonotope.aux_corner_interval_zonotope (I : Interval (Vec ℝ n))
+private theorem Zonotope.aux_corner_interval_zonotope (I : Interval (Vec ℝ n))
     (τ : Fin n → Bool) : -- --- CONCL ---
     I.zonotope.corner τ = fun i => if τ i then I.sup i else I.inf i := by -- --- PROOF ---
   funext i
@@ -73,7 +73,7 @@ theorem Zonotope.aux_corner_interval_zonotope (I : Interval (Vec ℝ n))
   · simp
 
 /-- The corners of `(A □[r]) ⊕ □[v]` are the potential vertices `A [r]± + [v]±`. -/
-theorem Zonotope.aux_corner_plus_map (A : Mat ℝ n n) (R V : Interval (Vec ℝ n))
+private theorem Zonotope.aux_corner_plus_map (A : Mat ℝ n n) (R V : Interval (Vec ℝ n))
     (σ : Fin (n + n) → Bool) : -- --- CONCL ---
     ((R.zonotope.map (Matrix.mulVecLin A)).plus V.zonotope).corner σ =
       A *ᵥ (fun i => if σ (Fin.castAdd n i) then R.sup i else R.inf i) +

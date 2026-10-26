@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row applied to a point is continuous in the point. -/
-theorem HPolytope.aux_continuous_row {m : ℕ} (M : Mat ℝ m n) (i : Fin m) :
+private theorem HPolytope.aux_continuous_row {m : ℕ} (M : Mat ℝ m n) (i : Fin m) :
     Continuous fun x : Vec ℝ n => (M *ᵥ x) i :=
   (continuous_finsetSum Finset.univ fun j _ =>
     (continuous_const : Continuous fun _ : Vec ℝ n => M i j).mul (continuous_apply j))

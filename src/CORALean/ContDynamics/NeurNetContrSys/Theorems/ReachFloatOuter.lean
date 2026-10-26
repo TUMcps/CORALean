@@ -86,7 +86,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Translating by `c` carries `Icc (a-c) (b-c)` onto `Icc a b` and preserves
 Lebesgue measure. -/
-theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
+private theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
     (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (c + σ))
       (volume.restrict (Set.Icc (a - c) (b - c))) := by -- --- PROOF ---
@@ -103,7 +103,7 @@ theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
 
 /-- Step `k`'s input contribution lies in `inputReach U Δt`, the domain covering
 that step alone. -/
-theorem LinearSys.IsCanonicalTrajectory.aux_stepInput_mem_inputReach {sys : LinearSys 𝕋 n}
+private theorem LinearSys.IsCanonicalTrajectory.aux_stepInput_mem_inputReach {sys : LinearSys 𝕋 n}
     {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u) (k : ℕ)
     (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- CONCL ---
@@ -129,7 +129,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Every sample `x (k Δt)`, `k ≤ K`, of a run on `[0, K Δt]` lies in the float-sampled
 system's `reach` under the float input solution of `U`. -/
-theorem LinearSys.IsCanonicalTrajectory.aux_discretizeEnclosureFloat_mem_reach_horizon
+private theorem LinearSys.IsCanonicalTrajectory.aux_discretizeEnclosureFloat_mem_reach_horizon
     {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)

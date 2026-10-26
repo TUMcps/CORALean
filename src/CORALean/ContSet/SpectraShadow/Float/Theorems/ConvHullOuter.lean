@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
 
-theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) : -- --- CONCL ---
+private theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) : -- --- CONCL ---
     toRealMat (arrowMat s t w)
       = Real.arrowMat (toReal s) (toReal t) (toRealVec w) := by -- --- PROOF ---
   -- each of the four cases of an entry
@@ -66,7 +66,7 @@ theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) : -- --- CONCL ---
   split_ifs <;> simp [toReal_zero]
 
 
-theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
+private theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
     InflatedContSet.nominal T.cone
       = Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding) := by -- --- PROOF ---
   -- the six fields: the sizes agree, the matrices, center and generators entry by entry
@@ -112,7 +112,8 @@ theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -
 
 
 /-- The float cone encloses the perspective cone. -/
-theorem SpectraShadow.aux_cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
+private theorem SpectraShadow.aux_cone_outer (hN : 0 < N)
+    (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
     {z : Vec ℝ N | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ T.construct, z = s • x}
       ⊆ T.cone.construct := by -- --- PROOF ---
   -- the point is in the nominal part, by the exact layer's description of the cone
@@ -135,7 +136,7 @@ theorem SpectraShadow.aux_cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 (Vec �
 end
 
 
-theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
+private theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ))
       ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).construct := by -- --- PROOF ---
   -- the one-dimensional set `{1}`, named once
@@ -157,7 +158,7 @@ theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
     exact Matrix.PosSemidef.zero
   · simp [S1, SpectraShadow.singletonOne, toReal_zero, toReal_one]
 
-theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) : -- --- CONCL ---
+private theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) : -- --- CONCL ---
     (Fin.append y (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
       ∈ (SpectraShadow.hyperplaneOne 𝕋 n).construct := by -- --- PROOF ---
   have hE : (0 : Vec ℝ (n + 1)) ∈ (SpectraShadow.hyperplaneOne 𝕋 n).I_error.construct := by

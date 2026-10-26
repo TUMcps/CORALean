@@ -57,11 +57,12 @@ variable {m l : ℕ} {W : Type} [NormedAddCommGroup W] [NormedSpace ℝ W]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `‖X‖_{L⊤₁,q}` as a function of the entries. -/
-noncomputable def aux_lrNorm (q : ℝ≥0∞) (X : Fin l → Fin m → ℝ) : ℝ :=
+private noncomputable def aux_lrNorm (q : ℝ≥0∞) (X : Fin l → Fin m → ℝ) : ℝ :=
   ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖
 
 /-- It bounds the supremum norm of the entries. -/
-theorem aux_norm_le_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] (X : Fin l → Fin m → ℝ) : -- --- CONCL ---
+private theorem aux_norm_le_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)]
+    (X : Fin l → Fin m → ℝ) : -- --- CONCL ---
     ‖X‖ ≤ aux_lrNorm q X := by -- --- PROOF ---
   have h0 : 0 ≤ aux_lrNorm q X := norm_nonneg _
   refine (pi_norm_le_iff_of_nonneg h0).mpr fun i => (pi_norm_le_iff_of_nonneg h0).mpr fun j => ?_
@@ -72,7 +73,7 @@ theorem aux_norm_le_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] (X : Fin l → Fin 
   rw [Real.norm_eq_abs]
   exact hrow.trans ((le_abs_self _).trans happ)
 
-theorem aux_continuous_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] :
+private theorem aux_continuous_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] :
     Continuous (aux_lrNorm (l := l) (m := m) q) :=
   continuous_norm.comp ((PiLp.continuous_toLp q _).comp (continuous_pi fun i =>
     continuous_finsetSum _ fun j _ => ((continuous_apply j).comp (continuous_apply i)).abs))

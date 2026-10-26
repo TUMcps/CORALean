@@ -53,7 +53,7 @@ variable {n ny nf : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the form of `-Φ` at `(e, f)` is the quantity of Eq. 24
-theorem LinearSysDT.aux_hMinusPhi_form (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
+private theorem LinearSysDT.aux_hMinusPhi_form (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
     (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ) (hQ : Qᵀ = Q) (e : Vec ℝ n)
     (f : Vec ℝ nf) : -- --- CONCL ---
     let Φ₁₁ : Mat ℝ n n := -(Cᵀ * Mᵀ * M * C) + (A - L * C)ᵀ * Q * (A - L * C) - Q

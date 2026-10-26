@@ -68,14 +68,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinate of an integral is the integral of the coordinate. -/
-theorem aux_pb_integral_apply {f : ℝ → Vec ℝ n} {a b : ℝ}
+private theorem aux_pb_integral_apply {f : ℝ → Vec ℝ n} {a b : ℝ}
     (hf : IntervalIntegrable f volume a b) (i : Fin n) :
     (∫ s in a..b, f s) i = ∫ s in a..b, f s i :=
   ((ContinuousLinearMap.proj (R := ℝ) (φ := fun _ : Fin n => ℝ) i).intervalIntegral_comp_comm
     hf).symm
 
 /-- A term applied to a fixed vector is continuous in time. -/
-theorem aux_pb_continuous_mulVec {A : ℝ → Mat ℝ n n}
+private theorem aux_pb_continuous_mulVec {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) (k : ℕ) (v : Vec ℝ n) :
     Continuous fun σ => MatExp.peanoBakerTerm A k σ *ᵥ v := by
   refine continuous_pi fun i => ?_
@@ -84,7 +84,7 @@ theorem aux_pb_continuous_mulVec {A : ℝ → Mat ℝ n n}
     (MatExp.continuous_peanoBakerTerm hA k i j).mul continuous_const
 
 /-- The recursion read on a vector: `P_{k+1}(s) v = ∫₀ˢ A(σ) (P_k(σ) v) dσ`. -/
-theorem aux_pb_succ_mulVec {A : ℝ → Mat ℝ n n}
+private theorem aux_pb_succ_mulVec {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) (k : ℕ) (s : ℝ)
     (v : Vec ℝ n) : -- --- CONCL ---
     MatExp.peanoBakerTerm A (k + 1) s *ᵥ v
@@ -100,13 +100,13 @@ theorem aux_pb_succ_mulVec {A : ℝ → Mat ℝ n n}
   exact Finset.sum_congr rfl fun j _ => (intervalIntegral.integral_mul_const _ _).symm
 
 /-- A member of the box stretches a vector by at most `‖B.absMax‖`. -/
-theorem aux_pb_norm_mulVec_le {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n}
+private theorem aux_pb_norm_mulVec_le {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n}
     (hM : M ∈ B.construct) (w : Vec ℝ n) : ‖M *ᵥ w‖ ≤ ‖B.absMax‖ * ‖w‖ :=
   le_trans (Matrix.linfty_opNorm_mulVec _ _)
     (mul_le_mul_of_nonneg_right (Interval.norm_le_absMax hM) (norm_nonneg _))
 
 /-- `‖P_k(s) v‖ ≤ s^k/k! · c^k ‖v‖`, the `k`-th term of the exponential of `c s`. -/
-theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
+private theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
     (hAB : ∀ s, A s ∈ B.construct) (v : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     ∀ s, 0 ≤ s → ‖MatExp.peanoBakerTerm A k s *ᵥ v‖
@@ -129,7 +129,7 @@ theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n 
 
 
 /-- `‖V_k(s)‖ ≤ s^{k+1}/(k+1)! · c^k ν`, the input's terms. -/
-theorem aux_pb_norm_input_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
+private theorem aux_pb_norm_input_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n} {t ν : ℝ}
     (hν : ∀ s ∈ Set.Icc 0 t, ‖u s‖ ≤ ν) (k : ℕ) : -- --- CONCL ---
     ∀ s ∈ Set.Icc 0 t, ‖MatExp.peanoBakerInputTerm A u k s‖
@@ -161,7 +161,7 @@ theorem aux_pb_norm_input_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n
       _ = _ := by ring
 
 /-- What `L + 1` orders of both series leave is `∫₀ˢ A(σ)` of what `L` orders leave. -/
-theorem aux_pb_remainder_succ {A : ℝ → Mat ℝ n n}
+private theorem aux_pb_remainder_succ {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) {u : ℝ → Vec ℝ n}
     (hu : ∀ a b, IntervalIntegrable u volume a b)
     {x : ℝ → Vec ℝ n} {t : ℝ} (hxc : ContinuousOn x (Set.Icc 0 t))
@@ -197,7 +197,7 @@ theorem aux_pb_remainder_succ {A : ℝ → Mat ℝ n n}
   abel
 
 /-- What `L` orders leave is at most `X (c s)^L / L!`, `X` bounding the run. -/
-theorem aux_pb_remainder_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
+private theorem aux_pb_remainder_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
     (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n}
     (hu : ∀ a b, IntervalIntegrable u volume a b)

@@ -64,7 +64,7 @@ variable {n m o : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `quadMapMixed` is exact, so it grows with either of its two ranges. -/
-theorem aux_quadMapMixed_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ B₁ B₂ : PolyZonotope (Vec ℝ o)}
+private theorem aux_quadMapMixed_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ B₁ B₂ : PolyZonotope (Vec ℝ o)}
     (hA : A₁.construct ⊆ A₂.construct) (hB : B₁.construct ⊆ B₂.construct) :
     (PolyZonotope.quadMapMixed Q A₁ B₁).construct
       ⊆ (PolyZonotope.quadMapMixed Q A₂ B₂).construct := by
@@ -72,7 +72,7 @@ theorem aux_quadMapMixed_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ B₁ B₂ :
   exact Set.image_mono (Set.prod_mono hA hB)
 
 /-- `quadMap` is exact, so it grows with the range it pairs with itself. -/
-theorem aux_quadMap_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ : PolyZonotope (Vec ℝ o)}
+private theorem aux_quadMap_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ : PolyZonotope (Vec ℝ o)}
     (hA : A₁.construct ⊆ A₂.construct) :
     (A₁.quadMap Q).construct ⊆ (A₂.quadMap Q).construct := by
   rw [← PolyZonotope.quadMap_exact, ← PolyZonotope.quadMap_exact]

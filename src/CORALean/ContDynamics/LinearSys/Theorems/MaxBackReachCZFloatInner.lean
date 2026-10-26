@@ -62,7 +62,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the tightened conversion is a point of `P`: its coefficients meet the exact rows
 because the tightening covers the carrying error. -/
-theorem HPolytope.aux_conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n))
+private theorem HPolytope.aux_conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n))
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (P.conZonotopeInnerOf Z).construct ⊆ P.construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, e, he, rfl⟩
@@ -100,7 +100,7 @@ theorem HPolytope.aux_conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n)
 
 
 /-- Inside `P`, whatever box the conversion is taken at. -/
-theorem HPolytope.aux_conZonotopeInner_subset (P : HPolytope 𝕋 (Vec 𝕋 n))
+private theorem HPolytope.aux_conZonotopeInner_subset (P : HPolytope 𝕋 (Vec 𝕋 n))
     (Bx : Interval (Vec 𝕋 n)) :
     (P.conZonotopeInner Bx).construct ⊆ P.construct :=
   P.aux_conZonotopeInnerOf_subset Bx.zonotope

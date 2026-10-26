@@ -62,7 +62,7 @@ variable {ny nu : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `B_ext,k,i` is zero outside `0 ≤ i ≤ n_p`. -/
-theorem aux_narxBext_eq_zero (np : ℕ) (B : ℕ → Mat ℝ ny nu) {i : ℤ}
+private theorem aux_narxBext_eq_zero (np : ℕ) (B : ℕ → Mat ℝ ny nu) {i : ℤ}
     (h : i < 0 ∨ (np : ℤ) < i) : -- --- CONCL ---
     Conform.narxBext np B i = 0 := by -- --- PROOF ---
   ext r c
@@ -72,7 +72,7 @@ theorem aux_narxBext_eq_zero (np : ℕ) (B : ℕ → Mat ℝ ny nu) {i : ℤ}
   omega
 
 /-- The input sums of the unrolled recursion, regrouped by the input they hit. -/
-theorem aux_regroup_inputs (np k : ℕ) (hk : np ≤ k) (E : Mat ℝ ny (np * ny))
+private theorem aux_regroup_inputs (np k : ℕ) (hk : np ≤ k) (E : Mat ℝ ny (np * ny))
     (P : ℕ → Mat ℝ (np * ny) (np * ny)) (B : ℕ → ℕ → Mat ℝ ny nu)
     (δ : ℕ → Vec ℝ nu) : -- --- CONCL ---
     ∑ j ∈ Finset.range (k - np + 1), ∑ i ∈ Finset.range (np + 1),
@@ -108,7 +108,7 @@ theorem aux_regroup_inputs (np k : ℕ) (hk : np ≤ k) (E : Mat ℝ ny (np * ny
     push_cast [Nat.cast_sub (by omega : i' ≤ k - j), Nat.cast_sub (by omega : j ≤ k)]; ring]
 
 /-- `E` reads `y_k - ȳ_k` off the deviation of the window that ends at `k - 1`. -/
-theorem aux_readout (np : ℕ) (hp : 0 < np) (y yb : ℕ → Vec ℝ ny) (m : ℕ) : -- --- CONCL ---
+private theorem aux_readout (np : ℕ) (hp : 0 < np) (y yb : ℕ → Vec ℝ ny) (m : ℕ) : -- --- CONCL ---
     Conform.narxE np ny *ᵥ (NonlinearARX.stack np y m - NonlinearARX.stack np yb m)
       = y (m + np - 1) - yb (m + np - 1) := by -- --- PROOF ---
   funext j
@@ -123,7 +123,8 @@ theorem aux_readout (np : ℕ) (hp : 0 < np) (y yb : ℕ → Vec ℝ ny) (m : �
   rw [if_pos ⟨by simp only; omega, rfl⟩, one_mul, show m + (np - 1) = m + np - 1 by omega]
 
 /-- Shifting the time origin by `n_p` leaves the product of the latest factors unchanged. -/
-theorem aux_prodJac_shift (np m0 j : ℕ) (hj : j ≤ m0 + 1) (A : ℕ → Mat ℝ ny ny) : -- --- CONCL ---
+private theorem aux_prodJac_shift (np m0 j : ℕ) (hj : j ≤ m0 + 1)
+    (A : ℕ → Mat ℝ ny ny) : -- --- CONCL ---
     Conform.prodJac (fun m => A (np + m)) (m0 + 1) j
       = Conform.prodJac A (np + m0 + 1) j := by -- --- PROOF ---
   simp only [Conform.prodJac]

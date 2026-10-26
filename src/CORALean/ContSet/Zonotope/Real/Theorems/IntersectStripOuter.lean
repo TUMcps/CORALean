@@ -62,7 +62,7 @@ variable {n p : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_mulVec_sum {m q : ℕ} {ι : Type} [Fintype ι] (M : Mat ℝ m q)
+private theorem Zonotope.aux_mulVec_sum {m q : ℕ} {ι : Type} [Fintype ι] (M : Mat ℝ m q)
     (f : ι → Vec ℝ q) : M *ᵥ ∑ a, f a = ∑ a, M *ᵥ f a :=
   map_sum (Matrix.mulVecLin M) f Finset.univ
 

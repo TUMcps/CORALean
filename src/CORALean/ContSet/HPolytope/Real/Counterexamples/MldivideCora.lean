@@ -60,7 +60,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The interval `[lo, hi]` of `ℝ¹` by two halfspaces. -/
-def HPolytope.aux_interval1 (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
+private def HPolytope.aux_interval1 (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
   m := 2
   A := ![(LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ), -(LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ)]
   b := ![hi, -lo]

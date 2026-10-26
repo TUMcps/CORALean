@@ -53,7 +53,7 @@ open Pointwise Matrix InflatedContSet
 
 /-- What the two error boxes let the two nominal points differ by, plus the centers' difference,
 lies in the stored agreement interval. -/
-theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {e₁ e₂ : Vec ℝ n}
+private theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {e₁ e₂ : Vec ℝ n}
     (h₁ : e₁ ∈ cPZ₁.I_error.construct) (h₂ : e₂ ∈ cPZ₂.I_error.construct)
     (i : Fin n) : -- --- CONCL ---
     toReal ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i)
@@ -75,7 +75,7 @@ theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)
 
 
 /-- `intersectionDep` over-approximates the intersection. -/
-theorem ConPolyZono.aux_intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq₁ : cPZ₁.qI = 0)
     (hq₂ : cPZ₂.qI = 0) : -- --- CONCL ---
     cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---

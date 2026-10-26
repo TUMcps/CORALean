@@ -61,7 +61,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A mean plus the covariance's square root applied to a cube lies in the confidence set. -/
-theorem ProbZonotope.aux_add_sqrt_mulVec_mem_zonotope (P : ProbZonotope n) {μ : Vec ℝ n}
+private theorem ProbZonotope.aux_add_sqrt_mulVec_mem_zonotope (P : ProbZonotope n) {μ : Vec ℝ n}
     (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 < m) {β : Vec ℝ n}
     (hβ : ∀ j, |β j| ≤ m) : -- --- CONCL ---
     μ + CFC.sqrt P.cov *ᵥ β ∈ (P.zonotope m).construct := by -- --- PROOF ---
@@ -78,7 +78,7 @@ theorem ProbZonotope.aux_add_sqrt_mulVec_mem_zonotope (P : ProbZonotope n) {μ :
 
 
 /-- The open `m`-sigma ellipsoid around a mean lies in the confidence set. -/
-theorem ProbZonotope.aux_mem_zonotope_of_quad_lt (P : ProbZonotope n) (hP : P.cov.PosDef)
+private theorem ProbZonotope.aux_mem_zonotope_of_quad_lt (P : ProbZonotope n) (hP : P.cov.PosDef)
     {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 ≤ m) {y : Vec ℝ n}
     (hy : (y - μ) ⬝ᵥ P.cov⁻¹ *ᵥ (y - μ) < m ^ 2) : -- --- CONCL ---
     y ∈ (P.zonotope m).construct := by -- --- PROOF ---
@@ -129,7 +129,7 @@ section
 open scoped _root_.Real
 
 /-- `ProbZonotope.max` falls with `m`. -/
-theorem ProbZonotope.aux_max_anti (P : ProbZonotope n) (hd : 0 ≤ P.cov.det) {m m' : ℝ}
+private theorem ProbZonotope.aux_max_anti (P : ProbZonotope n) (hd : 0 ≤ P.cov.det) {m m' : ℝ}
     (h0 : 0 ≤ m) (h : m ≤ m') : -- --- CONCL ---
     P.max m' ≤ P.max m := by -- --- PROOF ---
   unfold ProbZonotope.max
@@ -146,7 +146,7 @@ section
 open Finset
 
 /-- A value below every level that fails is below the telescoped layers. -/
-theorem aux_le_add_sum_levels : -- --- CONCL ---
+private theorem aux_le_add_sum_levels : -- --- CONCL ---
     ∀ {k : ℕ} (L : Fin (k + 1) → ℝ) (p : Fin k → Prop)
     [DecidablePred p] (v : ℝ), (∀ i : Fin k, L i.castSucc ≤ L i.succ) →
     (∀ i, ¬ p i → v ≤ L i.castSucc) → v ≤ L (Fin.last k) →
@@ -180,11 +180,11 @@ theorem aux_le_add_sum_levels : -- --- CONCL ---
 end
 
 
-theorem aux_measurableSet_image_zonotope (P : ProbZonotope n) (m : ℝ) :
+private theorem aux_measurableSet_image_zonotope (P : ProbZonotope n) (m : ℝ) :
     MeasurableSet (toLp 2 '' (P.zonotope m).construct : Set (EuclideanSpace ℝ (Fin n))) :=
   (((P.zonotope m).isCompact_construct.image (PiLp.continuous_toLp 2 _)).isClosed).measurableSet
 
-theorem aux_volume_image_zonotope_lt_top (P : ProbZonotope n) (m : ℝ) :
+private theorem aux_volume_image_zonotope_lt_top (P : ProbZonotope n) (m : ℝ) :
     volume (toLp 2 '' (P.zonotope m).construct : Set (EuclideanSpace ℝ (Fin n))) < ⊤ :=
   ((P.zonotope m).isCompact_construct.image (PiLp.continuous_toLp 2 _)).measure_lt_top
 

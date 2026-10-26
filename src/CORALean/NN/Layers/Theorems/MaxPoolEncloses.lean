@@ -60,7 +60,7 @@ section
 variable {n : ℕ}
 
 /-- The window's maximum above its pivot, for *any* `g` bounding the other taps' reach. -/
-theorem aux_maxPool_bounds {k : ℕ} (t : Fin (k + 1) → Fin n) (p : Fin (k + 1))
+private theorem aux_maxPool_bounds {k : ℕ} (t : Fin (k + 1) → Fin n) (p : Fin (k + 1))
     (lo hi x : Vec ℝ n) (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) {g : ℝ} (hg0 : 0 ≤ g)
     (hg : ∀ l, l ≠ p → hi (t l) - lo (t p) ≤ g) : -- --- CONCL ---
     0 ≤ windowMax (fun l => x (t l)) - x (t p) ∧
@@ -83,7 +83,8 @@ open Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 
 /-- A pooled window's gap is nonnegative. -/
-theorem aux_maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
+private theorem aux_maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n)
+    (p : Fin m → Fin (k + 1))
     (I : Interval (Vec 𝕋 n)) (j : Fin m) : 0 ≤ toReal (aux_maxPoolGapUp tap p I j) := by
   have h := le_maximumOver
     (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) (p j)
@@ -98,7 +99,7 @@ open Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 
 /-- A pooled window's gap bounds every other tap's reach. -/
-theorem aux_le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
+private theorem aux_le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval (Vec 𝕋 n)) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
     toReal (I.sup (tap j l)) - toReal (I.inf (tap j (p j)))
       ≤ toReal (aux_maxPoolGapUp tap p I j) := by

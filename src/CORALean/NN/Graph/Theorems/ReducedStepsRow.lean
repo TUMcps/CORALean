@@ -59,7 +59,7 @@ open Matrix
 
 /-- One step at a row inside the ball: the restricted product reads the same entries as the
 full one, every nonzero `P` entry of such a row landing in `S` and in the next ball out. -/
-theorem aux_reducedSteps_row_step {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (r : ℕ)
+private theorem aux_reducedSteps_row_step {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (r : ℕ)
     (T S : Finset (Fin N)) (hS : GNN.ball A v (r + 1) ⊆ S) (X : Mat ℝ N F)
     (Y : Matrix ↥S (Fin F) ℝ) (hY : ∀ a : ↥S, (a : Fin N) ∈ GNN.ball A v (r + 1) →
       Y a = X a) (b : ↥T) (hb : (b : Fin N) ∈ GNN.ball A v r) : -- --- CONCL ---

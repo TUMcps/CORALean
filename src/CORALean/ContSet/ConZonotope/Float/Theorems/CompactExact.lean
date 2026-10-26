@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum over all of `Fin h` that vanishes off `S` is the sum over the kept indices. -/
-theorem ConZonotope.aux_sum_kept {h : ℕ} (S : Finset (Fin h)) (f : Fin h → ℝ)
+private theorem ConZonotope.aux_sum_kept {h : ℕ} (S : Finset (Fin h)) (f : Fin h → ℝ)
     (hf : ∀ j, j ∉ S → f j = 0) :
     ∑ j, f j = ∑ l : Fin S.card, f (S.orderEmbOfFin rfl l) := by
   rw [← Finset.sum_subset (Finset.subset_univ S) fun j _ hj => hf j hj,

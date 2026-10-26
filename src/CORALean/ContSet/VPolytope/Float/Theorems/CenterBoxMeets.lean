@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `s / k` is above the smaller of `sD / kU` and `sD / kD` for `sD ≤ s` and `0 < kD ≤ k ≤ kU`. -/
-theorem VPolytope.aux_div_ge {s sD k kD kU : ℝ} (hs : sD ≤ s) (hD : 0 < kD) (hDk : kD ≤ k)
+private theorem VPolytope.aux_div_ge {s sD k kD kU : ℝ} (hs : sD ≤ s) (hD : 0 < kD) (hDk : kD ≤ k)
     (hkU : k ≤ kU) : -- --- CONCL ---
     min (sD / kU) (sD / kD) ≤ s / k := by -- --- PROOF ---
   have hk : 0 < k := lt_of_lt_of_le hD hDk
@@ -55,7 +55,7 @@ theorem VPolytope.aux_div_ge {s sD k kD kU : ℝ} (hs : sD ≤ s) (hD : 0 < kD) 
     nlinarith
 
 /-- `s / k` is below the larger of `sU / kU` and `sU / kD` for `s ≤ sU` and `0 < kD ≤ k ≤ kU`. -/
-theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 0 < kD) (hDk : kD ≤ k)
+private theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 0 < kD) (hDk : kD ≤ k)
     (hkU : k ≤ kU) : -- --- CONCL ---
     s / k ≤ max (sU / kU) (sU / kD) := by -- --- PROOF ---
   have hk : 0 < k := lt_of_lt_of_le hD hDk

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval (Vec 𝕋 n)}
+private theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval (Vec 𝕋 n)}
     (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (I.plus J).construct := by -- --- PROOF ---
   intro i
@@ -58,7 +58,7 @@ theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval (Vec 𝕋 n)}
 
 /-- `Interval.mtimes` keeps `0`: each row's rounded bound is charged against a
 term whose real value already sits on the sound side of `0`. -/
-theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval (Vec 𝕋 n)}
+private theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval (Vec 𝕋 n)}
     (hI : (0 : Vec ℝ n) ∈ I.construct) : -- --- CONCL ---
     (0 : Vec ℝ m) ∈ (Interval.mtimes M I).construct := by -- --- PROOF ---
   intro i
@@ -94,7 +94,7 @@ theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval (
 
 /-- The shape `centerResidual` and `mtimesResidual`'s center piece share: a
 value stored as its own lower bound always brackets `0`. -/
-theorem Zonotope.aux_zero_mem_residual_self {lo hi : Vec 𝕋 n}
+private theorem Zonotope.aux_zero_mem_residual_self {lo hi : Vec 𝕋 n}
     (hle : ∀ i, toReal (lo i) ≤ toReal (hi i)) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (Interval.residual lo hi lo).construct := by -- --- PROOF ---
   intro i
@@ -105,7 +105,7 @@ theorem Zonotope.aux_zero_mem_residual_self {lo hi : Vec 𝕋 n}
     exact le_trans (by linarith [hle i]) (sub_le_subUp _ _)
 
 /-- Symmetric outright: a magnitude bound brackets `0` in either direction. -/
-theorem Zonotope.aux_zero_mem_generatorError (G : Mat 𝕋 n h) : -- --- CONCL ---
+private theorem Zonotope.aux_zero_mem_generatorError (G : Mat 𝕋 n h) : -- --- CONCL ---
     (0 : Vec ℝ n) ∈ (Zonotope.generatorError G).construct := by -- --- PROOF ---
   intro i
   have hnonneg : (0:ℝ) ≤ toReal (radius G i) :=
@@ -116,7 +116,7 @@ theorem Zonotope.aux_zero_mem_generatorError (G : Mat 𝕋 n h) : -- --- CONCL -
     rw [toReal_neg]; linarith
   · exact hnonneg
 
-theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
+private theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
     (0 : Vec ℝ m) ∈ (Zonotope.mtimesResidual M Z).construct :=
   Zonotope.aux_zero_mem_interval_plus'
     (Zonotope.aux_zero_mem_residual_self

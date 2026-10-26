@@ -62,7 +62,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
 the projection because that is the form the goal has and simp will not rewrite a
 binder's type. Only the outermost split needs it. -/
-theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
+private theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → ℝ) :
     ∑ l : Fin (pZ₁.linComb pZ₂).h, f l
       = ∑ l, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) l)
@@ -73,12 +73,13 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- The independent count read off the projection, which is the only thing the
 goal and the pairing lemmas disagree about: the block is not split here, the
 pairing crossing the two halves rather than closing on each. -/
-theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
+private theorem PolyZonotope.aux_sum_univ_linComb_q {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ₁.q + pZ₂.q) → ℝ) :
     ∑ j : Fin (pZ₁.linComb pZ₂).q, f j = ∑ j : Fin (pZ₁.q + pZ₂.q), f j := rfl
 
 /-- The independent block `linComb` would store if nothing rounded. -/
-noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n) :
+private noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+    (i : Fin n) :
     Fin (pZ₁.q + pZ₂.q) → ℝ :=
   Fin.append
     (Real.Zonotope.pairSum (fun j => toReal (pZ₁.GI j i)) (fun j => toReal (pZ₂.GI j i)))
@@ -86,7 +87,7 @@ noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope (Ve
 
 /-- What the stored independent generators are wrong by, entrywise, which is
 what `linCombGIDiff` records. -/
-theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
+private theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (pZ₁.q + pZ₂.q)) : -- --- CONCL ---
     |PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         - toReal (PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂ i j)|
@@ -114,7 +115,7 @@ theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
 
 /-- One row of the exact independent generators against the coefficients the
 segment supplies: the pairing gives back the two sets' own sums. -/
-theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
+private theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) : -- --- CONCL ---
     (∑ j, PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
@@ -127,7 +128,7 @@ theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (fun j => toReal (pZ₂.GI j i)) β₁ β₂ lam
 
 /-- The two directed midpoints bracket the exact one, halving being exact. -/
-theorem PolyZonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
+private theorem PolyZonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
     (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (PolyZonotope.midpoint a b i))
       ∈ (PolyZonotope.midpointResidual a b).construct :=
   Interval.sub_mem_residual fun i => by
@@ -142,14 +143,14 @@ theorem PolyZonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
 omit [SoundFloatArithmetic 𝕋] in
 /-- A non-negative shortfall stays inside the symmetric box its own bound spans,
 whatever a coefficient in `[-1,1]` does with it. -/
-theorem PolyZonotope.aux_mul_mem_symmetric {q R s : ℝ} (hq0 : 0 ≤ q) (hqR : q ≤ R)
+private theorem PolyZonotope.aux_mul_mem_symmetric {q R s : ℝ} (hq0 : 0 ≤ q) (hqR : q ≤ R)
     (hs0 : -1 ≤ s) (hs1 : s ≤ 1) : -R ≤ q * s ∧ q * s ≤ R :=
   ⟨by nlinarith, by nlinarith⟩
 
 /-- The sliding generator rounds down, so its shortfall is non-negative and no
 larger than the gap between the two directed halvings; the fresh factor spreads
 it over `[-1,1]`. -/
-theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
+private theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
     (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) : -- --- CONCL ---
     (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i))
         * (2 * lam - 1))
@@ -184,18 +185,18 @@ which has to stay folded to cancel against its residual. `aux_sum_mul` strips a
 coefficient's common factor first, which is why the two halving lemmas are
 needed only in their bare form. -/
 
-theorem PolyZonotope.aux_sum_mul {k : ℕ} (t : ℝ) (g : Fin k → 𝕋) (b : Fin k → ℝ) :
+private theorem PolyZonotope.aux_sum_mul {k : ℕ} (t : ℝ) (g : Fin k → 𝕋) (b : Fin k → ℝ) :
     ∑ j, toReal (g j) * (t * b j) = t * ∑ j, toReal (g j) * b j := by
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun j _ => by ring
 
-theorem PolyZonotope.aux_sum_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k → ℝ) :
+private theorem PolyZonotope.aux_sum_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k → ℝ) :
     ∑ l, toReal (half (g l)) * m l = 1 / 2 * ∑ l, toReal (g l) * m l := by
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun l _ => by rw [toReal_half]; ring
 
 /-- The same at the negated block, which is the only place a sign is stored. -/
-theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k → ℝ) :
+private theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k → ℝ) :
     ∑ l, toReal (neg (half (g l))) * m l = -(1 / 2) * ∑ l, toReal (g l) * m l := by
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun l _ => by rw [toReal_neg, toReal_half]; ring

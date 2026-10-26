@@ -46,8 +46,8 @@ open Matrix
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N m : ℕ}
 
 /-- `HPolytope.liftCols` acts on the lifted point as `M` on the selected coordinates. -/
-theorem HPolytope.aux_mulVec_liftCols {dims : Fin n → Fin N} (hdims : Function.Injective dims)
-    (M : Mat 𝕋 m n) (x : Vec ℝ N) : -- --- CONCL ---
+private theorem HPolytope.aux_mulVec_liftCols {dims : Fin n → Fin N}
+    (hdims : Function.Injective dims) (M : Mat 𝕋 m n) (x : Vec ℝ N) : -- --- CONCL ---
     toRealMat (HPolytope.liftCols dims M) *ᵥ x =
       toRealMat M *ᵥ fun k => x (dims k) := by -- --- PROOF ---
   funext i

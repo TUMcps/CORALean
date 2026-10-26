@@ -43,7 +43,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The two embeddings, summed, are the concatenation. -/
-theorem SpectraShadow.aux_pad_add (x : Vec ℝ n) (y : Vec ℝ m) :
+private theorem SpectraShadow.aux_pad_add (x : Vec ℝ n) (y : Vec ℝ m) :
     blockPadLeft n m x + blockPadRight n m y = Fin.append x y := by
   funext j
   refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp [blockPadLeft, blockPadRight]

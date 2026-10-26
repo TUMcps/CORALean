@@ -55,8 +55,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A continuous matrix applied to a measurable vector, entry by entry. -/
-theorem aux_aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n} {μ : Measure ℝ}
-    (hM : Continuous M) (hv : AEStronglyMeasurable v μ) : -- --- CONCL ---
+private theorem aux_aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → Vec ℝ n}
+    {μ : Measure ℝ} (hM : Continuous M) (hv : AEStronglyMeasurable v μ) : -- --- CONCL ---
     AEStronglyMeasurable (fun s => M s *ᵥ v s) μ := by -- --- PROOF ---
   have hvk : ∀ k, AEStronglyMeasurable (fun s => v s k) μ := by
     intro k
@@ -77,7 +77,7 @@ theorem aux_aestronglyMeasurable_mulVec {M : ℝ → Mat ℝ n n} {v : ℝ → V
     ((hM.matrix_elem j k).aestronglyMeasurable).mul (hvk k)
 
 /-- The integrand of an input solution is continuous in its matrix factor. -/
-theorem aux_continuous_expSub (A : Mat ℝ n n) (c : ℝ) :
+private theorem aux_continuous_expSub (A : Mat ℝ n n) (c : ℝ) :
     Continuous fun s : ℝ => exp ((c - s) • A) :=
   exp_continuous.comp ((continuous_const.sub continuous_id).smul continuous_const)
 

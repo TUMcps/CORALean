@@ -108,7 +108,7 @@ open scoped NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- CORA's step on the example: two passes of the loop, then `Rti`'s upper end. -/
-theorem aux_linReachCora1D_step : -- --- CONCL ---
+private theorem aux_linReachCora1D_step : -- --- CONCL ---
     ∃ R, NonlinearSys.linReachCora1D (fun x : ℝ => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4)
       (fun x => -(1001 / 750) + 1001 / 750 * x ^ 3)
       (fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)) ⟨0, 0⟩ 2 2 = some R ∧
@@ -117,7 +117,7 @@ theorem aux_linReachCora1D_step : -- --- CONCL ---
   norm_num
 
 /-- A run of `ẋ = f(x)` from `0` on `[0, 1/4]` that is at least `1/20` at its end. -/
-theorem aux_linReachCora1D_run (f f' : ℝ → ℝ)
+private theorem aux_linReachCora1D_run (f f' : ℝ → ℝ)
     (hfd : f = fun x : ℝ => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4)
     (hf'd : f' = fun x : ℝ => -(1001 / 750) + 1001 / 750 * x ^ 3)
     (hf : ∀ x, HasDerivAt f (f' x) x) : -- --- CONCL ---

@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- The point named by coefficients `κ`, written through the three blocks' own
 coefficients. -/
-theorem Zonotope.aux_linComb_mtimes_eq (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n n)
+private theorem Zonotope.aux_linComb_mtimes_eq (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n n)
     (κ : Fin (Z.h + Z.h + 1) → ℝ) : -- --- CONCL ---
     (Z.linComb (Z.mtimes E)).c + ∑ j : Fin (Z.h + Z.h + 1), κ j • (Z.linComb (Z.mtimes E)).G j
       = (2:ℝ)⁻¹ • ((Z.c + ∑ j, κ (Fin.castAdd 1 (Fin.castAdd Z.h j)) • Z.G j)

@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The same monomial read against an extended factor vector: the extension
 gives the dropped factors a value, and no monomial looks at it. -/
-theorem PolyZonotope.aux_monomial_factorExtend {p h : ℕ} (E : Fin p → Fin h → ℕ)
+private theorem PolyZonotope.aux_monomial_factorExtend {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (a : Fin (PolyZonotope.usedFactors E).card → ℝ) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial E (PolyZonotope.factorExtend E a) i
       = PolyZonotope.monomial (fun k i => E (PolyZonotope.factorIdx E k) i)
@@ -62,7 +62,7 @@ theorem PolyZonotope.aux_monomial_factorExtend {p h : ℕ} (E : Fin p → Fin h 
 
 
 /-- The same sum read against the kept factors alone. -/
-theorem PolyZonotope.aux_sum_compactFactors (pZ : PolyZonotope α)
+private theorem PolyZonotope.aux_sum_compactFactors (pZ : PolyZonotope α)
     (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ i : Fin pZ.compactFactors.h, PolyZonotope.monomial pZ.compactFactors.E
@@ -77,7 +77,7 @@ theorem PolyZonotope.aux_sum_compactFactors (pZ : PolyZonotope α)
 /-- The same sum against an extended factor vector, which is what the reverse
 inclusion supplies. Stated separately, since obtaining it from
 `sum_compactFactors` would rewrite under a binder typed by a projection. -/
-theorem PolyZonotope.aux_sum_compactFactors_extend (pZ : PolyZonotope α)
+private theorem PolyZonotope.aux_sum_compactFactors_extend (pZ : PolyZonotope α)
     (a : Fin pZ.compactFactors.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E (PolyZonotope.factorExtend pZ.E a) i • pZ.G i)
       = ∑ i : Fin pZ.compactFactors.h,

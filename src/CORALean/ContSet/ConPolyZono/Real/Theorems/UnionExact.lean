@@ -69,7 +69,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The union's lower rows of two systems of equations, read as equations. -/
-theorem ConPolyZono.aux_holds_unionLower_iff {p₁ p₂ : ℕ} {P₁ : PolyLevelSet p₁}
+private theorem ConPolyZono.aux_holds_unionLower_iff {p₁ p₂ : ℕ} {P₁ : PolyLevelSet p₁}
     {P₂ : PolyLevelSet p₂} (h₁ : ∀ i, P₁.op i = .eq) (h₂ : ∀ i, P₂.op i = .eq)
     (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (∀ i, ((ConPolyZono.unionLower P₁ P₂).op i).holds ((ConPolyZono.unionLower P₁ P₂).eval a i))
@@ -80,7 +80,7 @@ theorem ConPolyZono.aux_holds_unionLower_iff {p₁ p₂ : ℕ} {P₁ : PolyLevel
 
 /-- A point of the closed form lies in one operand or the other: the branch
 `union_domain_iff` hands back says which, and pins the other one's block to `0`. -/
-theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
+private theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
     (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (hab : ∀ k, |a k| ≤ 1)
     (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)

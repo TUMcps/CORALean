@@ -61,7 +61,7 @@ variable {N F m : ℕ}
 
 /-- `L` message-passing steps at one uncertain graph multiply the generator
 count by at most `P.h + 2` each. -/
-theorem GNN.aux_gcnSteps_h_le (P : PolyZonotope (Mat ℝ N N)) (L : ℕ) : -- --- CONCL ---
+private theorem GNN.aux_gcnSteps_h_le (P : PolyZonotope (Mat ℝ N N)) (L : ℕ) : -- --- CONCL ---
     ∀ (W : Fin L → Mat ℝ F F) (H : PolyZonotope (Mat ℝ N F)) (hp : P.p = H.p),
       (GNN.gcnSteps P L W H hp).h + 1 ≤ (P.h + 2) ^ L * (H.h + 1) := by -- --- PROOF ---
   induction L with
@@ -85,7 +85,7 @@ theorem GNN.aux_gcnSteps_h_le (P : PolyZonotope (Mat ℝ N N)) (L : ℕ) : -- --
 
 /-- The chain's count against the cubic in `m`, before any cast: the constant
 collects the node count and the input set, the growth is the power of `m`. -/
-theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
+private theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
     (X : PolyZonotope (Mat ℝ N F)) (hm : 1 ≤ m) : -- --- CONCL ---
     (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack X.p) L W

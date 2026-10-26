@@ -53,7 +53,7 @@ open Filter Topology
 
 /-- Unwinds `Tendsto` at `𝓝[>] 0` into a genuine punctured-interval bound: past
 a ratio's limit, an explicit threshold beats any target. -/
-theorem aux_horizonErrorBudget_eventually_lt {εP : ℝ → ℝ}
+private theorem aux_horizonErrorBudget_eventually_lt {εP : ℝ → ℝ}
     (hratio : Tendsto (fun Δt => εP Δt / Δt) (𝓝[>] (0:ℝ)) (𝓝 0)) {c : ℝ}
     (hc : 0 < c) : -- --- CONCL ---
     ∃ δ : ℝ, 0 < δ ∧ ∀ x, 0 < x → x < δ → εP x < c * x := by -- --- PROOF ---
@@ -68,7 +68,7 @@ theorem aux_horizonErrorBudget_eventually_lt {εP : ℝ → ℝ}
 /-- The index `⌈tf/Δtstar⌉₊`, split off its predecessor `M`, with the two facts
 about `M` the construction needs: it undershoots `tf/Δtstar` and its successor
 does not. -/
-theorem aux_horizonErrorBudget_ceilPred {tf Δtstar : ℝ} (htf : 0 < tf)
+private theorem aux_horizonErrorBudget_ceilPred {tf Δtstar : ℝ} (htf : 0 < tf)
     (hΔtstar : 0 < Δtstar) : -- --- CONCL ---
     ∃ M : ℕ, (M : ℝ) < tf / Δtstar ∧ tf / Δtstar ≤ (M : ℝ) + 1 := by -- --- PROOF ---
   set N := ⌈tf / Δtstar⌉₊ with hN_def

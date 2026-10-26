@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Capsule.piStep` brackets `π / 499`. -/
-theorem Capsule.aux_piStep_mem (p k : ℕ) : -- --- CONCL ---
+private theorem Capsule.aux_piStep_mem (p k : ℕ) : -- --- CONCL ---
     toReal (Capsule.piStep (𝕋 := 𝕋) p k).inf ≤ Real.pi / 499 ∧
       Real.pi / 499 ≤ toReal (Capsule.piStep (𝕋 := 𝕋) p k).sup := by -- --- PROOF ---
   have hm : toReal (acosDown p k (zero : 𝕋)) ≤ Real.pi / 2 := by
@@ -99,7 +99,7 @@ theorem Capsule.aux_piStep_mem (p k : ℕ) : -- --- CONCL ---
 
 
 /-- `Capsule.arcBox` holds the sampled point. -/
-theorem Capsule.aux_arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ}
+private theorem Capsule.aux_arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ}
     (hs : toReal step.inf ≤ s ∧ s ≤ toReal step.sup) (ctr : Interval (Vec 𝕋 2))
     (a₀ : Interval (Vec 𝕋 1)) (r : 𝕋) (i : ℕ) {c : Vec ℝ 2} (hc : c ∈ ctr.construct) {a : ℝ}
     (ha : (fun _ => a : Vec ℝ 1) ∈ a₀.construct) : -- --- CONCL ---

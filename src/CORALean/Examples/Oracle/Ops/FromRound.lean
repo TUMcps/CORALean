@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `mode` applied to every entry of `data`, the field name of `data[i]` on failure. -/
-def aux_roundArray (dops : DtypeOps 𝕋) (mode field : String) (data : Array ExactScalar) :
+private def aux_roundArray (dops : DtypeOps 𝕋) (mode field : String) (data : Array ExactScalar) :
     Except String (Array (𝕋 × 𝕋 × 𝕋)) :=
   data.mapIdxM fun i d => match dops.roundToScalar mode d with
     | .ok t => pure t
@@ -49,7 +49,7 @@ def aux_roundArray (dops : DtypeOps 𝕋) (mode field : String) (data : Array Ex
 /-- `d`, rounded outward: `"down"` at a lower bound, `"up"` at an upper one -- `E`'s own
 still-off-grid box gets this rather than `mode`, whatever `mode` the request asked for the
 point values. -/
-def aux_roundOutward (dops : DtypeOps 𝕋) (dir : String) (field : String) (d : ExactScalar) :
+private def aux_roundOutward (dops : DtypeOps 𝕋) (dir : String) (field : String) (d : ExactScalar) :
     Except String 𝕋 :=
   match dops.roundToScalar dir d with
   | .ok t => pure t.1

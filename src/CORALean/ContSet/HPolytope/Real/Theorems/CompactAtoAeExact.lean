@@ -43,7 +43,7 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The set of `aux_moveToEq`. -/
-theorem HPolytope.aux_moveToEq_construct (P : HPolytope α) (S : Finset (Fin P.m))
+private theorem HPolytope.aux_moveToEq_construct (P : HPolytope α) (S : Finset (Fin P.m))
     (L : List (Fin P.m)) : -- --- CONCL ---
     (P.aux_moveToEq S L).construct
       = {x | (∀ i ∈ S, P.A i x ≤ P.b i) ∧ (∀ r, P.Ae r x = P.be r) ∧
@@ -75,7 +75,7 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- What the loop of `compact_(P, 'AtoAe')` guarantees. -/
-theorem HPolytope.aux_atoAeState_spec (Q : HPolytope α) : -- --- CONCL ---
+private theorem HPolytope.aux_atoAeState_spec (Q : HPolytope α) : -- --- CONCL ---
     (∀ k ∈ Q.aux_atoAeState.2, ∃ j, Q.A j = -Q.A k ∧ Q.b j = -Q.b k) ∧
     ∀ i ∈ Q.aux_atoAeState.1, ∃ k ∈ Q.aux_atoAeState.2,
       i = k ∨ (Q.A i = -Q.A k ∧ Q.b i = -Q.b k) := by -- --- PROOF ---

@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A vector whose squares sum to at most `r²` is in the ball of radius `r ≥ 0`, the ellipsoid of
 factor `r I` about the origin. -/
-theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n}
+private theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n}
     (he : ∑ i, e i ^ 2 ≤ r ^ 2) : -- --- CONCL ---
     e ∈ (Real.Ellipsoid.ofFactor (r • (1 : Mat ℝ n n)) 0).construct := by -- --- PROOF ---
   rw [Real.Ellipsoid.construct_ofFactor]
@@ -84,7 +84,7 @@ theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n}
 
 /-- The weights `a ≥ 1 + 1/β` and `c ≥ 1 + β` at any `β > 0` have reciprocals summing to at most
 one, which is what `plus_outer` asks of the squared scalings. -/
-theorem Ellipsoid.aux_weights_admissible {β a c : ℝ} (hβ : 0 < β) (ha : 1 + 1 / β ≤ a)
+private theorem Ellipsoid.aux_weights_admissible {β a c : ℝ} (hβ : 0 < β) (ha : 1 + 1 / β ≤ a)
     (hc : 1 + β ≤ c) : -- --- CONCL ---
     1 / a + 1 / c ≤ 1 := by -- --- PROOF ---
   have e₁ : 1 / a ≤ 1 / (1 + 1 / β) := one_div_le_one_div_of_le (by positivity) ha

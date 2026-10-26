@@ -60,7 +60,7 @@ variable {N g k : ℕ} {n m p : Fin k → ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Dotting a scattered vector with `x` reads `x` at the coordinates. -/
-theorem aux_scatter_dot {n : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) (x : Fin N → ℝ) :
+private theorem aux_scatter_dot {n : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) (x : Fin N → ℝ) :
     ∑ b, scatter σ v b * x b = ∑ r, v r * x (σ r) := by
   simp only [scatter, Finset.sum_mul]
   rw [Finset.sum_comm]
@@ -69,8 +69,8 @@ theorem aux_scatter_dot {n : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) (x 
 
 /-- Scattering the entries of a vector read at the coordinates gives the vector back, if it
 vanishes off the coordinates. -/
-theorem aux_scatter_apply {n : ℕ} (σ : Fin n → Fin N) (hσ : Function.Injective σ) (f : Fin N → ℝ)
-    (hf : ∀ a, f a ≠ 0 → ∃ r, σ r = a) (a : Fin N) : -- --- CONCL ---
+private theorem aux_scatter_apply {n : ℕ} (σ : Fin n → Fin N) (hσ : Function.Injective σ)
+    (f : Fin N → ℝ) (hf : ∀ a, f a ≠ 0 → ∃ r, σ r = a) (a : Fin N) : -- --- CONCL ---
     scatter σ (fun r => f (σ r)) a = f a := by -- --- PROOF ---
   unfold scatter
   by_cases h : ∃ r, σ r = a
@@ -84,7 +84,7 @@ theorem aux_scatter_apply {n : ℕ} (σ : Fin n → Fin N) (hσ : Function.Injec
     simp [this, h]
 
 /-- A matrix summing the columns bound to global input `u'`, applied to `u`. -/
-theorem aux_resolveGlobal_mulVec (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
+private theorem aux_resolveGlobal_mulVec (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
     (X : Fin N → (Σ i, Fin (m i)) → ℝ) (u : Vec ℝ g) (a : Fin N) : -- --- CONCL ---
     ((Matrix.of fun a u' => ∑ ij : (Σ i, Fin (m i)),
         if inputBinds ij.1 ij.2 = .global u' then X a ij else 0) *ᵥ u) a =

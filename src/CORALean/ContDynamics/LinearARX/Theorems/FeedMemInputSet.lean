@@ -45,13 +45,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 omit [ExactScalar 𝕋] [∀ n, Plus (S n) (Vec ℝ n)] in
 /-- A matrix times a point of `U` is in the `mtimes`. -/
-theorem LinearARX.aux_mulVec_mem (M : Mat 𝕋 (p * dy) du) (U : S du) {v : Vec ℝ du}
+private theorem LinearARX.aux_mulVec_mem (M : Mat 𝕋 (p * dy) du) (U : S du) {v : Vec ℝ du}
     (hv : v ∈ construct U) : toRealMat M *ᵥ v ∈ construct (mtimes M U) :=
   mtimes_outer M U (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))
 
 omit [ExactScalar 𝕋] in
 /-- The fold adds each listed term to a partial sum that is already enclosed. -/
-theorem LinearARX.aux_foldl_mem (M : Fin (p + 1) → Mat 𝕋 (p * dy) du) (U : S du)
+private theorem LinearARX.aux_foldl_mem (M : Fin (p + 1) → Mat 𝕋 (p * dy) du) (U : S du)
     (w : Fin (p + 1) → Vec ℝ du) (hw : ∀ j, w j ∈ construct U) : -- --- CONCL ---
     ∀ (l : List (Fin p)) (acc : S (p * dy)) (a : Vec ℝ (p * dy)), a ∈ construct acc →
       a + (l.map fun j => toRealMat (M j.succ) *ᵥ w j.succ).sum ∈

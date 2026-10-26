@@ -41,12 +41,12 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Tree.aux_isClause_of_isCnf (t : STL.Tree n) (h : t.IsCnf)
+private theorem STL.Tree.aux_isClause_of_isCnf (t : STL.Tree n) (h : t.IsCnf)
     (h' : ∀ l₁ l₂ : STL.Tree n, ¬ t = STL.Tree.and l₁ l₂) : t.IsClause := by
   cases t <;> simp_all [STL.Tree.IsCnf, STL.Tree.IsClause]
 
 
-theorem STL.Tree.aux_cnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
+private theorem STL.Tree.aux_cnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
     (φ.cnfRewrite).2 = 0 → (φ.cnfRewrite).1 = φ ∧ φ.IsCnf := by -- --- PROOF ---
   induction φ with
   | or φ ψ ihφ ihψ =>
@@ -68,13 +68,14 @@ theorem STL.Tree.aux_cnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
 
 
 /-- A pass that rewrites nothing leaves a conjunctive normal form. -/
-theorem STL.Tree.aux_isCnf_cnfRewrite_of_snd_eq_zero (φ : STL.Tree n) (h : (φ.cnfRewrite).2 = 0) :
+private theorem STL.Tree.aux_isCnf_cnfRewrite_of_snd_eq_zero (φ : STL.Tree n)
+    (h : (φ.cnfRewrite).2 = 0) :
     (φ.cnfRewrite).1.IsCnf := by
   obtain ⟨h₁, h₂⟩ := STL.Tree.aux_cnfRewrite_zero φ h
   rwa [h₁]
 
 
-theorem STL.Tree.aux_isCnf_cnfLoop (φ : STL.Tree n) : -- --- CONCL ---
+private theorem STL.Tree.aux_isCnf_cnfLoop (φ : STL.Tree n) : -- --- CONCL ---
     φ.cnfLoop.IsCnf := by -- --- PROOF ---
   induction φ using STL.Tree.cnfLoop.induct with
   | case1 φ cnt hc =>

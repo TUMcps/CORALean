@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_inner_toEuclidean (x y : Vec ℝ n) :
+private theorem aux_inner_toEuclidean (x y : Vec ℝ n) :
     inner ℝ (toEuclidean x) (toEuclidean y) = x ⬝ᵥ y := by
   rw [EuclideanSpace.inner_eq_star_dotProduct]
   simp [toEuclidean, dotProduct_comm]

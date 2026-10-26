@@ -55,7 +55,7 @@ variable {n m : ℕ}
 
 /-- A power of an entrywise analytic matrix is entrywise analytic: each entry is
 a finite sum of products of entries. -/
-theorem aux_analyticAt_pow_entry (A : ℝ → Mat ℝ n n)
+private theorem aux_analyticAt_pow_entry (A : ℝ → Mat ℝ n n)
     (hA : ∀ k l, AnalyticAt ℝ (fun t => A t k l) 0) (p : ℕ) (k l : Fin n) : -- --- CONCL ---
     AnalyticAt ℝ (fun t => (A t ^ p) k l) 0 := by -- --- PROOF ---
   induction p generalizing k l with
@@ -70,7 +70,7 @@ theorem aux_analyticAt_pow_entry (A : ℝ → Mat ℝ n n)
 
 /-- The `i`-th row of `Aᵖ(h)G(h)`, read as a vector-valued function of `h`, is
 analytic at `0`. -/
-theorem aux_analyticAt_row (A : ℝ → Mat ℝ n n) (G : ℝ → Mat ℝ n m)
+private theorem aux_analyticAt_row (A : ℝ → Mat ℝ n n) (G : ℝ → Mat ℝ n m)
     (hA : ∀ k l, AnalyticAt ℝ (fun t => A t k l) 0)
     (hG : ∀ k l, AnalyticAt ℝ (fun t => G t k l) 0) (p : ℕ) (i : Fin n) : -- --- CONCL ---
     AnalyticAt ℝ (fun t => (fun j => (A t ^ p * G t) i j : Vec ℝ m)) 0 := by -- --- PROOF ---

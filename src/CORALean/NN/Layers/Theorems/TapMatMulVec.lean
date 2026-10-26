@@ -56,7 +56,7 @@ open Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- An input no tap reads gets weight zero. -/
-theorem aux_tapEntry_eq_zero {n : ℕ} : -- --- CONCL ---
+private theorem aux_tapEntry_eq_zero {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (i : Fin n),
       (∀ l, t l ≠ i) → tapEntry t v i = FloatOps.zero := by -- --- PROOF ---
   intro k
@@ -77,7 +77,7 @@ open Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A stencil row against a vector is the weighted sum over its taps. -/
-theorem aux_tapEntry_dot {n : ℕ} : -- --- CONCL ---
+private theorem aux_tapEntry_dot {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (t : Fin k → Fin n) (v : Fin k → 𝕋) (x : Vec ℝ n), Function.Injective t →
       ∑ i, toReal (tapEntry t v i) * x i = ∑ l, toReal (v l) * x (t l) := by -- --- PROOF ---
   intro k

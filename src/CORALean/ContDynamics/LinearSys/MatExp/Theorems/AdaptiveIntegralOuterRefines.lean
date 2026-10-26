@@ -60,8 +60,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- At every member `M` of `A` and `Δt ≥ 0`, the exact `Σᵢ₌ᵢ₀^η Ãᵢ` is in the float sum. -/
-theorem MatExp.aux_particularCoeffSum_mem (A : Interval (Mat 𝕋 n n)) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (i0 η : ℕ) : -- --- CONCL ---
+private theorem MatExp.aux_particularCoeffSum_mem (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
+    (hr : 0 ≤ toReal r) {M : Mat ℝ n n} (hM : M ∈ A.construct) (i0 η : ℕ) : -- --- CONCL ---
     Real.MatExp.particularCoeffSum M (toReal r) i0 η
       ∈ (MatExp.particularCoeffSum A r i0 η).construct := by -- --- PROOF ---
   -- the point `0` holds the empty sum

@@ -42,7 +42,7 @@ variable {dy du p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The past outputs at `k + p` are the window at `k`, blocks reversed. -/
-theorem NonlinearARX.aux_pastOut_rev (y : ℕ → Vec ℝ dy) (k : ℕ) :
+private theorem NonlinearARX.aux_pastOut_rev (y : ℕ → Vec ℝ dy) (k : ℕ) :
     NonlinearARX.pastOut p y (k + p) = fun s => NonlinearARX.stack p y k
       (NonlinearARX.revBlocks s) := by
   funext s
@@ -50,7 +50,7 @@ theorem NonlinearARX.aux_pastOut_rev (y : ℕ → Vec ℝ dy) (k : ℕ) :
   congr 1; omega
 
 /-- The inputs at `k + p` are the input signal at `k`, blocks reversed. -/
-theorem NonlinearARX.aux_pastIn_rev (u : ℕ → Vec ℝ du) (k : ℕ) :
+private theorem NonlinearARX.aux_pastIn_rev (u : ℕ → Vec ℝ du) (k : ℕ) :
     NonlinearARX.pastIn p u (k + p) = fun s => NonlinearARX.feed p u k
       (NonlinearARX.revBlocks s) := by
   funext s

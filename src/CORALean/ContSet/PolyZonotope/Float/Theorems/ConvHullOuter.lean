@@ -53,12 +53,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The zero-centered zonotope of the independent block, as `convHull` builds it. -/
-abbrev PolyZonotope.aux_Z (P : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
+private abbrev PolyZonotope.aux_Z (P : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   ⟨P.q, fun _ => zero, P.GI, Interval.origin n⟩
 
 /-- The dependent value at `a`, plus an error, is a point of the operand without its independent
 block. -/
-theorem PolyZonotope.aux_dep_mem (P : PolyZonotope (Vec 𝕋 n)) {a : Fin P.p → ℝ}
+private theorem PolyZonotope.aux_dep_mem (P : PolyZonotope (Vec 𝕋 n)) {a : Fin P.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) {e : Vec ℝ n} (he : e ∈ P.I_error.construct) :
     (fun i => toReal (P.c i) + ∑ l, toReal (P.G l i) * Real.PolyZonotope.monomial P.E a l) + e
       ∈ P.noIndep.construct :=
@@ -67,7 +67,7 @@ theorem PolyZonotope.aux_dep_mem (P : PolyZonotope (Vec 𝕋 n)) {a : Fin P.p �
 
 
 /-- The independent value is a point of the zonotope of the independent block. -/
-theorem PolyZonotope.aux_ind_mem (P : PolyZonotope (Vec 𝕋 n)) {β : Fin P.q → ℝ}
+private theorem PolyZonotope.aux_ind_mem (P : PolyZonotope (Vec 𝕋 n)) {β : Fin P.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (fun i => ∑ j, toReal (P.GI j i) * β j)
       ∈ (PolyZonotope.aux_Z P).construct := by -- --- PROOF ---
@@ -84,19 +84,20 @@ theorem PolyZonotope.aux_ind_mem (P : PolyZonotope (Vec 𝕋 n)) {β : Fin P.q �
 
 
 /-- A point of an operand's dependent part is a chord of that part with itself. -/
-theorem PolyZonotope.aux_chord (P : PolyZonotope (Vec 𝕋 n)) {y : Vec ℝ n} (hy : y ∈ P.construct) :
+private theorem PolyZonotope.aux_chord (P : PolyZonotope (Vec 𝕋 n)) {y : Vec ℝ n}
+    (hy : y ∈ P.construct) :
     y ∈ (P.linComb P).construct :=
   PolyZonotope.linComb_outer P P ⟨y, hy, y, hy, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
 
 /-- A point of the first dependent part is in the chords of chords. -/
-theorem PolyZonotope.aux_left (A B : PolyZonotope (Vec 𝕋 n)) {y₁ y₂ : Vec ℝ n}
+private theorem PolyZonotope.aux_left (A B : PolyZonotope (Vec 𝕋 n)) {y₁ y₂ : Vec ℝ n}
     (h₁ : y₁ ∈ A.construct) (h₂ : y₂ ∈ B.construct) :
     y₁ ∈ ((A.linComb A).linComb (B.linComb B)).construct :=
   PolyZonotope.linComb_outer _ _ ⟨y₁, PolyZonotope.aux_chord A h₁, y₂,
     PolyZonotope.aux_chord B h₂, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
 
 /-- A point of the second dependent part is in the chords of chords. -/
-theorem PolyZonotope.aux_right (A B : PolyZonotope (Vec 𝕋 n)) {y₁ y₂ : Vec ℝ n}
+private theorem PolyZonotope.aux_right (A B : PolyZonotope (Vec 𝕋 n)) {y₁ y₂ : Vec ℝ n}
     (h₁ : y₁ ∈ A.construct) (h₂ : y₂ ∈ B.construct) :
     y₂ ∈ ((A.linComb A).linComb (B.linComb B)).construct :=
   PolyZonotope.linComb_outer _ _ ⟨y₁, PolyZonotope.aux_chord A h₁, y₂,
@@ -104,19 +105,19 @@ theorem PolyZonotope.aux_right (A B : PolyZonotope (Vec 𝕋 n)) {y₁ y₂ : Ve
 
 
 /-- A point of the first zonotope is in `enclose(Z1, Z2)`. -/
-theorem PolyZonotope.aux_zono_left (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
+private theorem PolyZonotope.aux_zono_left (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
     (hz : z ∈ Z₁.construct)
     (h0 : (0 : Vec ℝ n) ∈ Z₂.construct) : z ∈ (Z₁.linComb Z₂).construct :=
   Zonotope.linComb_outer Z₁ Z₂ ⟨z, hz, 0, h0, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
 
 /-- A point of the second zonotope is in `enclose(Z1, Z2)`. -/
-theorem PolyZonotope.aux_zono_right (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
+private theorem PolyZonotope.aux_zono_right (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
     (hz : z ∈ Z₂.construct)
     (h0 : (0 : Vec ℝ n) ∈ Z₁.construct) : z ∈ (Z₁.linComb Z₂).construct :=
   Zonotope.linComb_outer Z₁ Z₂ ⟨0, h0, z, hz, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
 
 /-- A point of the chords of chords plus a point of `enclose(Z1, Z2)` is a point of the result. -/
-theorem PolyZonotope.aux_assemble (P₁ P₂ : PolyZonotope (Vec 𝕋 n)) {d z : Vec ℝ n}
+private theorem PolyZonotope.aux_assemble (P₁ P₂ : PolyZonotope (Vec 𝕋 n)) {d z : Vec ℝ n}
     (hd : d ∈ ((P₁.noIndep.linComb P₁.noIndep).linComb (P₂.noIndep.linComb P₂.noIndep)).construct)
     (hz : z ∈ ((PolyZonotope.aux_Z P₁).linComb (PolyZonotope.aux_Z P₂)).construct)
     : -- --- CONCL ---
@@ -146,14 +147,14 @@ theorem PolyZonotope.aux_assemble (P₁ P₂ : PolyZonotope (Vec 𝕋 n)) {d z :
 
 
 /-- The origin is in the zonotope of the independent block. -/
-theorem PolyZonotope.aux_zero_mem (P : PolyZonotope (Vec 𝕋 n)) :
+private theorem PolyZonotope.aux_zero_mem (P : PolyZonotope (Vec 𝕋 n)) :
     (0 : Vec ℝ n) ∈ (PolyZonotope.aux_Z P).construct := by
   have h := PolyZonotope.aux_ind_mem P (β := fun _ => 0) (fun _ => by simp)
   simp only [mul_zero, Finset.sum_const_zero] at h
   exact h
 
 /-- A point of an operand is a dependent point with an error, plus an independent one. -/
-theorem PolyZonotope.aux_decomp (P : PolyZonotope (Vec 𝕋 n)) {x : Vec ℝ n}
+private theorem PolyZonotope.aux_decomp (P : PolyZonotope (Vec 𝕋 n)) {x : Vec ℝ n}
     (hx : x ∈ P.construct) : -- --- CONCL ---
     ∃ d z : Vec ℝ n, x = d + z ∧ d ∈ P.noIndep.construct ∧
       z ∈ (PolyZonotope.aux_Z P).construct := by -- --- PROOF ---

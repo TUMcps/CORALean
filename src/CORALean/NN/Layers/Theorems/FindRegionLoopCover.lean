@@ -47,7 +47,7 @@ section
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- The relaxation's region on `[l, u]` fits, given its error is at most the tolerance's. -/
-theorem RegionPoly.aux_ofRelaxation_fits {σ : ℝ → ℝ} {m : ℕ} {R : PolyRelaxation 𝕋 m}
+private theorem RegionPoly.aux_ofRelaxation_fits {σ : ℝ → ℝ} {m : ℕ} {R : PolyRelaxation 𝕋 m}
     (hR : R.IsSound σ) {tol l u : 𝕋} (h : toReal (R.error l u) ≤ toReal tol) :
     (RegionPoly.aux_ofRelaxation R l u).Fits σ tol l u :=
   ⟨rfl, rfl, fun _ ht => hR.sound (ht.1 l rfl) (ht.2 u rfl), h⟩
@@ -56,7 +56,7 @@ end
 
 
 /-- The loop's result fits `[l, u]` if the fit it starts from does. -/
-theorem aux_lowerRegionOrder_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
+private theorem aux_lowerRegionOrder_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
     (hF : ∀ o, (F o).IsSound σ) (tol l u : 𝕋) : -- --- CONCL ---
     ∀ (k : ℕ) (cur : RegionPoly 𝕋), cur.Fits σ tol l u →
       (aux_lowerRegionOrder F tol l u k cur).Fits σ tol l u := by -- --- PROOF ---
@@ -73,7 +73,7 @@ theorem aux_lowerRegionOrder_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRela
 
 
 /-- A returned left region fits `[l, u']`. -/
-theorem aux_findRegionLeft_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
+private theorem aux_findRegionLeft_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
     (hF : ∀ o, (F o).IsSound σ) (order : ℕ) (tol l : 𝕋) : -- --- CONCL ---
     ∀ (fuel : ℕ) (ui : 𝕋) (r : RegionPoly 𝕋) (u' : 𝕋),
       aux_findRegionLeft F order tol l fuel ui = some ⟨r, u'⟩ → r.Fits σ tol l u'
@@ -93,7 +93,7 @@ theorem aux_findRegionLeft_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxa
 
 
 /-- A returned right region fits `[l', u]`. -/
-theorem aux_findRegionRight_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
+private theorem aux_findRegionRight_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
     (hF : ∀ o, (F o).IsSound σ) (order : ℕ) (tol u : 𝕋) : -- --- CONCL ---
     ∀ (fuel : ℕ) (li : 𝕋) (r : RegionPoly 𝕋) (l' : 𝕋),
       aux_findRegionRight F order tol u fuel li = some ⟨r, l'⟩ →
@@ -112,7 +112,7 @@ theorem aux_findRegionRight_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelax
 
 
 /-- A region `[l, b]` found next to the covered part `t ≤ l` extends it to `t ≤ b`. -/
-theorem aux_cover_left {σ : ℝ → ℝ} {tol b l u : 𝕋} {r : RegionPoly 𝕋}
+private theorem aux_cover_left {σ : ℝ → ℝ} {tol b l u : 𝕋} {r : RegionPoly 𝕋}
     (hr : r.Fits σ tol l b) (ext acc : List (RegionPoly 𝕋))
     (h : ∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ q ∈ ext ++ acc, q.covers t) : -- --- CONCL ---
     ∀ t, (t ≤ toReal b ∨ toReal u ≤ t) → ∃ q ∈ ext ++ r :: acc, q.covers t := by -- --- PROOF ---
@@ -137,7 +137,7 @@ theorem aux_cover_left {σ : ℝ → ℝ} {tol b l u : 𝕋} {r : RegionPoly �
       exact ⟨q, hmono q hq, hc⟩
 
 /-- A region `[a, u]` found next to the covered part `u ≤ t` extends it to `a ≤ t`. -/
-theorem aux_cover_right {σ : ℝ → ℝ} {tol a l u : 𝕋} {r : RegionPoly 𝕋}
+private theorem aux_cover_right {σ : ℝ → ℝ} {tol a l u : 𝕋} {r : RegionPoly 𝕋}
     (hr : r.Fits σ tol a u) (ext acc : List (RegionPoly 𝕋))
     (h : ∀ t, (t ≤ toReal l ∨ toReal u ≤ t) → ∃ q ∈ ext ++ acc, q.covers t) : -- --- CONCL ---
     ∀ t, (t ≤ toReal l ∨ toReal a ≤ t) → ∃ q ∈ ext ++ r :: acc, q.covers t := by -- --- PROOF ---

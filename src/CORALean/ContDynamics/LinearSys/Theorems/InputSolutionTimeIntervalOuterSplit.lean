@@ -53,7 +53,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A plain matrix applied to a point of a set lands in the set's image. -/
-theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ construct W) :
+private theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ construct W) :
     M *ᵥ y ∈ construct (Mtimes.mtimes M W) := by
   refine Mtimes.mtimes_outer _ _ ?_
   simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -62,7 +62,7 @@ theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ c
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- The same for any matrix an interval matrix denotes. -/
-theorem aux_mtimesIM_mem [Mtimes ℐ S]
+private theorem aux_mtimesIM_mem [Mtimes ℐ S]
     {IM : Interval (Mat ℝ n n)} {W : S n}
     {M : Mat ℝ n n} (hM : M ∈ IM.construct) {y : Vec ℝ n} (hy : y ∈ construct W) :
     M *ᵥ y ∈ construct (Mtimes.mtimes (𝕄 := ℐ) IM W) := by

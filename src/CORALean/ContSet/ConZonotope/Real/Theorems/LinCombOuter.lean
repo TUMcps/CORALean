@@ -47,7 +47,7 @@ section
 variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Module ℝ γ]
 
 /-- A weighted point meets the weighted constraints. -/
-theorem HPolytope.aux_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ} {P : HPolytope α}
+private theorem HPolytope.aux_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ} {P : HPolytope α}
     {x : γ} {w : ℝ} {y : α} (hw : (t x + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct)
     (hf : f x = w • y) : -- --- CONCL ---
     x ∈ ((P.comap f).halfScaled t).construct := by -- --- PROOF ---

@@ -45,14 +45,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s variable count, stated through the projection
 because that is the form the goal has and simp will not rewrite a binder's type. -/
-theorem SpectraShadow.aux_sum_univ_plus {S₁ S₂ : SpectraShadow α} {M : Type}
+private theorem SpectraShadow.aux_sum_univ_plus {S₁ S₂ : SpectraShadow α} {M : Type}
     [AddCommMonoid M] (f : Fin (S₁.m + S₂.m) → M) :
     ∑ j : Fin (S₁.plus S₂).m, f j
       = ∑ j, f (Fin.castAdd S₂.m j) + ∑ j, f (Fin.natAdd S₁.m j) :=
   Fin.sum_univ_add f
 
 /-- The same for the generators. -/
-theorem SpectraShadow.aux_gen_plus (S₁ S₂ : SpectraShadow α) (β : Fin (S₁.m + S₂.m) → ℝ) :
+private theorem SpectraShadow.aux_gen_plus (S₁ S₂ : SpectraShadow α) (β : Fin (S₁.m + S₂.m) → ℝ) :
     (S₁.plus S₂).c + ∑ i : Fin (S₁.plus S₂).m, β i • (S₁.plus S₂).G i
       = (S₁.c + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i)
           + (S₂.c + ∑ j, β (Fin.natAdd S₁.m j) • S₂.G j) := by

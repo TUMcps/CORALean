@@ -59,7 +59,7 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sampled time formula at step 1 scales to step c. -/
-theorem STL.Samp.aux_toFormula_scale (c : ℝ≥0) (s : STL.Samp X) : -- --- CONCL ---
+private theorem STL.Samp.aux_toFormula_scale (c : ℝ≥0) (s : STL.Samp X) : -- --- CONCL ---
     (s.toFormula 1).scale c = s.toFormula c := by -- --- PROOF ---
   induction s with
   | lit ϱ => exact STL.Formula.scale_ofPform c ϱ

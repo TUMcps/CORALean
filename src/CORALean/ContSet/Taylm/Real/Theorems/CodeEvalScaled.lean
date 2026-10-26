@@ -61,7 +61,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A nonempty sum of models of one order has that order. -/
-theorem Taylm.aux_sum_maxOrder {m N : ℕ} (T : Fin (m + 1) → Taylm n)
+private theorem Taylm.aux_sum_maxOrder {m N : ℕ} (T : Fin (m + 1) → Taylm n)
     (hT : ∀ i, (T i).maxOrder = N) : -- --- CONCL ---
     (Taylm.sum T).maxOrder = N := by -- --- PROOF ---
   induction m with
@@ -73,7 +73,7 @@ theorem Taylm.aux_sum_maxOrder {m N : ℕ} (T : Fin (m + 1) → Taylm n)
 
 
 /-- An elementary function keeps the model's order. -/
-theorem Taylm.aux_taylor_maxOrder (T : Taylm n) (g : ℝ → ℝ) (c D : ℝ) :
+private theorem Taylm.aux_taylor_maxOrder (T : Taylm n) (g : ℝ → ℝ) (c D : ℝ) :
     (T.taylor g c D).maxOrder = T.maxOrder := by
   simp only [Taylm.taylor, Taylm.compose, Taylm.plus]
   rw [Taylm.aux_sum_maxOrder _ fun k => ?_]
@@ -82,7 +82,7 @@ theorem Taylm.aux_taylor_maxOrder (T : Taylm n) (g : ℝ → ℝ) (c D : ℝ) :
 
 
 /-- A constant is scaled by its magnitude. -/
-theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
+private theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
     (Taylm.const n c N).IsScaled h |c| := by -- --- PROOF ---
   have hp : 0 ≤ |c| * h ^ (N + 1) := mul_nonneg (abs_nonneg _) (pow_pos h0 _).le
   refine ⟨?_, ?_, ?_⟩

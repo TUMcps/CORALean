@@ -32,11 +32,11 @@ open Lean (Json)
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `q * base ^ e` for an integer exponent, exactly. -/
-def aux_scaleExp (q : ℚ) (base : ℕ) (e : ℤ) : ℚ :=
+private def aux_scaleExp (q : ℚ) (base : ℕ) (e : ℤ) : ℚ :=
   if 0 ≤ e then q * (base : ℚ) ^ e.toNat else q / (base : ℚ) ^ (-e).toNat
 
 /-- `[+-]digits[.digits][e[+-]digits]`, exactly. -/
-def aux_parseDecimal (s : String) : Option ℚ := do
+private def aux_parseDecimal (s : String) : Option ℚ := do
   let (neg, body) := if s.startsWith "-" then (true, (s.drop 1).toString)
     else if s.startsWith "+" then (false, (s.drop 1).toString) else (false, s)
   let (mant, ex) ← match (body.split (fun c => c = 'e' ∨ c = 'E')).toList.map (·.toString) with

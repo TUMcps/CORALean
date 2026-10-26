@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The float term range reads as the exact one. -/
-theorem Taylm.aux_toReal_termBounds (a : 𝕋 × (Fin n → ℕ)) :
+private theorem Taylm.aux_toReal_termBounds (a : 𝕋 × (Fin n → ℕ)) :
     (⟨toReal (Taylm.termBounds a).inf, toReal (Taylm.termBounds a).sup⟩ : Real.Interval ℝ)
       = Real.Taylm.termBounds (toReal a.1, a.2) := by
   unfold Taylm.termBounds Real.Taylm.termBounds

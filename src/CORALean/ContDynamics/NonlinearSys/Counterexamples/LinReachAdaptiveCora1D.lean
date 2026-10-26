@@ -243,21 +243,21 @@ open scoped NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Two passes of the error loop: the first does not fit, the second does. -/
-theorem aux_linReachAdaptiveCora1D_loop (Φ : ℝ → ℝ) (ae₀ prev : ℝ) (fuel : ℕ)
+private theorem aux_linReachAdaptiveCora1D_loop (Φ : ℝ → ℝ) (ae₀ prev : ℝ) (fuel : ℕ)
     (h1 : ae₀ < Φ ae₀)
     (h2 : Φ (11 / 10 * Φ ae₀) ≤ 11 / 10 * Φ ae₀) :
     NonlinearSys.adaptErrLoopCora1D Φ (fuel + 2) 1 ae₀ prev = some (Φ (11 / 10 * Φ ae₀)) := by
   simp [NonlinearSys.adaptErrLoopCora1D, not_le.mpr h1, h2]
 
 /-- MATLAB's first minimizer stays at `0` when no candidate beats it. -/
-theorem aux_linReachAdaptiveCora1D_firstMin (g : ℕ → ℝ) (h : ∀ j, g 0 ≤ g j) (l : List ℕ) :
+private theorem aux_linReachAdaptiveCora1D_firstMin (g : ℕ → ℝ) (h : ∀ j, g 0 ≤ g j) (l : List ℕ) :
     l.foldl (fun b j => if g j < g b then j else b) 0 = 0 := by
   induction l using List.reverseRecOn with
   | nil => rfl
   | append_singleton l a ih => simp [List.foldl_append, ih, not_lt.mpr (h a)]
 
 /-- With every later factor at least `1`, `cumprod` is at least its first two. -/
-theorem aux_linReachAdaptiveCora1D_varphiprod (φ : ℕ → ℝ) (h1 : ∀ i, 1 ≤ i → 1 ≤ φ i)
+private theorem aux_linReachAdaptiveCora1D_varphiprod (φ : ℕ → ℝ) (h1 : ∀ i, 1 ≤ i → 1 ≤ φ i)
     (h0 : 0 ≤ φ 0) : -- --- CONCL ---
     ∀ j, 1 ≤ j → φ 0 * φ 1 ≤ ∏ i ∈ Finset.range (j + 1), φ i := by -- --- PROOF ---
   intro j hj
@@ -274,7 +274,7 @@ theorem aux_linReachAdaptiveCora1D_varphiprod (φ : ℕ → ℝ) (h1 : ∀ i, 1 
 
 /-- `aux_optimaldeltat` from a point start (`rR = 0`) at `zetaP = 1` keeps the finite horizon when
 the gain is at least `3`: no shorter step lowers the estimate. -/
-theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 0 ≤ rerr1)
+private theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 0 ≤ rerr1)
     (hd : deltat ≠ 0) (hv : 3 ≤ varphimin) : -- --- CONCL ---
     NonlinearSys.optimalDeltatCora 0 rerr1 deltat varphimin 1 (9 / 10) (5 / 10000)
       = deltat := by -- --- PROOF ---
@@ -362,7 +362,7 @@ theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 
 
 /-- `priv_abstractionError_adaptive` on a box whose shift by `p` has the Hessian bound `f''` at
 its lower end. -/
-theorem aux_linReachAdaptiveCora1D_abstrErr (f'' : ℝ → ℝ) (hessIv : ℝ → ℝ → Real.Interval ℝ)
+private theorem aux_linReachAdaptiveCora1D_abstrErr (f'' : ℝ → ℝ) (hessIv : ℝ → ℝ → Real.Interval ℝ)
     (hH : ∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo →
       max |(hessIv lo hi).inf| |(hessIv lo hi).sup| = f'' lo)
     (p lo hi : ℝ) (h1 : lo + p ≤ hi + p) (h2 : lo + p ≤ 0)
@@ -372,8 +372,8 @@ theorem aux_linReachAdaptiveCora1D_abstrErr (f'' : ℝ → ℝ) (hessIv : ℝ �
   simp only [NonlinearSys.abstrErrAdaptiveCora1D, hH _ _ h1 h2 h3]
 
 /-- A pass in closed form is monotone in the applied error. -/
-theorem aux_linReachAdaptiveCora1D_mono (A B c u v : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B) (hc : 0 ≤ c)
-    (hu : 0 ≤ u) (huv : u ≤ v) : -- --- CONCL ---
+private theorem aux_linReachAdaptiveCora1D_mono (A B c u v : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B)
+    (hc : 0 ≤ c) (hu : 0 ≤ u) (huv : u ≤ v) : -- --- CONCL ---
     1 / 2 * (A + c * u) * (468559 / 7880 * (-(B + c * u)) ^ 4 - 122853 / 1970 * (-(B + c * u)) ^ 5)
         * (A + c * u) ≤
       1 / 2 * (A + c * v) * (468559 / 7880 * (-(B + c * v)) ^ 4
@@ -387,7 +387,7 @@ theorem aux_linReachAdaptiveCora1D_mono (A B c u v : ℝ) (hA : 0 ≤ A) (hB : 0
   gcongr
 
 /-- The horizon run's numbers. -/
-theorem aux_linReachAdaptiveCora1D_horizon (G : ℝ → ℝ)
+private theorem aux_linReachAdaptiveCora1D_horizon (G : ℝ → ℝ)
     (hG : G = fun ae => 1 / 2 * (165961 / 165480 + 2 * ae)
       * (468559 / 7880 * (-(481 / 165480 + 2 * ae)) ^ 4
         - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae))
@@ -398,7 +398,7 @@ theorem aux_linReachAdaptiveCora1D_horizon (G : ℝ → ℝ)
   norm_num
 
 /-- The numbers of the runs at `0.9` times the horizon. -/
-theorem aux_linReachAdaptiveCora1D_decr (G : ℝ → ℝ)
+private theorem aux_linReachAdaptiveCora1D_decr (G : ℝ → ℝ)
     (hG : G = fun ae => 1 / 2 * (2510328409443 / 2758000000000
       + 9 / 5 * ae) * (468559 / 7880 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 4
         - 122853 / 1970 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 5)
@@ -409,7 +409,7 @@ theorem aux_linReachAdaptiveCora1D_decr (G : ℝ → ℝ)
   norm_num
 
 /-- The horizon run's error loop settles on its second pass, below `2.2·10⁻⁹`. -/
-theorem aux_linReachAdaptiveCora1D_horizonLoop (Φ : ℝ → ℝ)
+private theorem aux_linReachAdaptiveCora1D_horizonLoop (Φ : ℝ → ℝ)
     (hΦ : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ ae = 1 / 2 * (165961 / 165480 + 2 * ae)
       * (468559 / 7880 * (-(481 / 165480 + 2 * ae)) ^ 4
         - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae))
@@ -439,7 +439,7 @@ theorem aux_linReachAdaptiveCora1D_horizonLoop (Φ : ℝ → ℝ)
 
 /-- The first run at `0.9` times the horizon, from `0.9` times the horizon's error, settles on
 its second pass, above `10⁻⁷`. -/
-theorem aux_linReachAdaptiveCora1D_decrLoop (Φ : ℝ → ℝ)
+private theorem aux_linReachAdaptiveCora1D_decrLoop (Φ : ℝ → ℝ)
     (hΦ : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ ae = 1 / 2 * (2510328409443 / 2758000000000
       + 9 / 5 * ae) * (468559 / 7880 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 4
         - 122853 / 1970 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 5)
@@ -475,7 +475,7 @@ theorem aux_linReachAdaptiveCora1D_decrLoop (Φ : ℝ → ℝ)
   rwa [e0, e1] at this
 
 /-- The second run at `0.9` times the horizon, from `0`, settles on its second pass. -/
-theorem aux_linReachAdaptiveCora1D_decrLoop₀ (Φ : ℝ → ℝ)
+private theorem aux_linReachAdaptiveCora1D_decrLoop₀ (Φ : ℝ → ℝ)
     (hΦ : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ ae = 1 / 2 * (2510328409443 / 2758000000000
       + 9 / 5 * ae) * (468559 / 7880 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 4
         - 122853 / 1970 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 5)
@@ -504,7 +504,7 @@ theorem aux_linReachAdaptiveCora1D_decrLoop₀ (Φ : ℝ → ℝ)
 set_option maxHeartbeats 100000 in
 /-- CORA's first adaptive step on the example: the tuned step is the horizon, and `Rti` ends
 below `1/50000`. -/
-theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → Real.Interval ℝ)
+private theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → Real.Interval ℝ)
     (hH : ∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo → max |(hessIv lo hi).inf| |(hessIv lo hi).sup|
       = (fun x : ℝ => 468559 / 7880 * x ^ 4 - 122853 / 1970 * x ^ 5) lo) : -- --- CONCL ---
     ∃ R, NonlinearSys.linReachAdaptiveCora1D
@@ -621,7 +621,7 @@ theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → Real.Interval 
   linarith only [heh1]
 
 /-- A run of `ẋ = f(x)` from `0` on `[0, 1/4]` that is at least `1/20` at its end. -/
-theorem aux_linReachAdaptiveCora1D_run (f f' : ℝ → ℝ)
+private theorem aux_linReachAdaptiveCora1D_run (f f' : ℝ → ℝ)
     (hfd : f = fun x : ℝ => 1 - 59049 / 39400 * x + 468559 / 236400 * x ^ 6
       - 40951 / 27580 * x ^ 7)
     (hf'd : f' = fun x : ℝ => -(59049 / 39400) + 468559 / 39400 * x ^ 5 - 40951 / 3940 * x ^ 6)

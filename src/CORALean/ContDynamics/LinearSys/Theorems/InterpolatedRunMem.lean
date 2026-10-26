@@ -78,7 +78,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- [1]'s Eq. (18) is linear in the initial state and the inputs together. -/
-theorem aux_heldSim_sum (sys : LinearSys 𝕋 n) (Δt : ℝ) {ι : Type} (s : Finset ι) (w : ι → ℝ)
+private theorem aux_heldSim_sum (sys : LinearSys 𝕋 n) (Δt : ℝ) {ι : Type} (s : Finset ι) (w : ι → ℝ)
     (x : ι → Vec ℝ n) (v : ι → ℕ → Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     sys.heldSim Δt (∑ j ∈ s, w j • x j) (fun i => ∑ j ∈ s, w j • v j i) k
       = ∑ j ∈ s, w j • sys.heldSim Δt (x j) (v j) k := by -- --- PROOF ---

@@ -57,7 +57,7 @@ end
 
 /-- The restatement `Fin.sum_univ_add` needs: the generator count is not
 syntactically `q + n` until `reduceKeepBy` unfolds. -/
-theorem ConZonotope.aux_sum_univ_reduceKeepBy {cZ : ConZonotope (Vec ℝ n)}
+private theorem ConZonotope.aux_sum_univ_reduceKeepBy {cZ : ConZonotope (Vec ℝ n)}
     {part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)} (f : Fin (q + n) → ℝ) :
     ∑ j : Fin (cZ.reduceKeepBy part).h, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=

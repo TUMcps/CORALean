@@ -43,7 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A real between two floats is under the larger of their magnitudes. -/
-theorem aux_abs_le_maximum_absolute {x : ℝ} {lo hi : 𝕋} (h1 : toReal lo ≤ x) (h2 : x ≤ toReal hi) :
+private theorem aux_abs_le_maximum_absolute {x : ℝ} {lo hi : 𝕋} (h1 : toReal lo ≤ x)
+    (h2 : x ≤ toReal hi) :
     |x| ≤ toReal (maximum (absolute lo) (absolute hi)) := by
   rw [toReal_maximum, toReal_absolute, toReal_absolute]
   rcases abs_cases x with ⟨heq, _⟩ | ⟨heq, _⟩

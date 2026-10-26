@@ -64,7 +64,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The first index whose cumulative weight passes `τ`, among those carrying weight. -/
-theorem Zonotope.aux_pick {ι : Type} [Fintype ι] (r : ι → ℤ) (hr : Function.Injective r)
+private theorem Zonotope.aux_pick {ι : Type} [Fintype ι] (r : ι → ℤ) (hr : Function.Injective r)
     (ω : ι → ℝ) (A : Finset ι) (hA : A.Nonempty) (hω : ∀ j, j ∉ A → ω j = 0) {τ : ℝ}
     (h0 : 0 ≤ τ) (hW : τ ≤ ∑ j, ω j) : -- --- CONCL ---
     ∃ a ∈ A, (∑ j, if r j < r a then ω j else 0) ≤ τ ∧
@@ -128,8 +128,8 @@ theorem Zonotope.aux_pick {ι : Type} [Fintype ι] (r : ι → ℤ) (hr : Functi
   exact absurd (hamin a' this) (not_le.mpr ha'lt)
 
 /-- The corner after `a` is the corner before it plus `2 g_a`. -/
-theorem Zonotope.aux_step (Z : Zonotope (Vec ℝ 2)) {r : Fin Z.h → ℤ} (hr : Function.Injective r)
-    (a : Fin Z.h) (k : Fin 2) : -- --- CONCL ---
+private theorem Zonotope.aux_step (Z : Zonotope (Vec ℝ 2)) {r : Fin Z.h → ℤ}
+    (hr : Function.Injective r) (a : Fin Z.h) (k : Fin 2) : -- --- CONCL ---
     Z.corner (fun j => decide (r j ≤ r a)) k
       = Z.corner (fun j => decide (r j < r a)) k + 2 * Z.G a k := by -- --- PROOF ---
   classical
@@ -149,7 +149,7 @@ theorem Zonotope.aux_step (Z : Zonotope (Vec ℝ 2)) {r : Fin Z.h → ℤ} (hr :
 
 /-- The abscissa of the corner before `a`, along `σ`, is the lowest corner's plus the weight before
 it, when no generator before `a` points against `σ`. -/
-theorem Zonotope.aux_prefix_abscissa (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (r : Fin Z.h → ℤ)
+private theorem Zonotope.aux_prefix_abscissa (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (r : Fin Z.h → ℤ)
     (a : Fin Z.h) (hpred : ∀ j, r j < r a → 0 ≤ σ * Z.G j 0) : -- --- CONCL ---
     σ * Z.corner (fun j => decide (r j < r a)) 0
       = σ * Z.corner (fun _ => false) 0
@@ -167,7 +167,7 @@ theorem Zonotope.aux_prefix_abscissa (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (r : 
 
 /-- The edge `[P_a; P_a + 2 g_a]` meets the line, and its point there is the lowest of the section,
 when the line is between the ends of the edge along `σ`. -/
-theorem Zonotope.aux_edge (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} (hσ : σ = 1 ∨ σ = -1)
+private theorem Zonotope.aux_edge (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} (hσ : σ = 1 ∨ σ = -1)
     {r : Fin Z.h → ℤ} (hr : Function.Injective r)
     (hord : ∀ i j, r i < r j → 0 ≤ σ * (Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0)) (γ : ℝ)
     (a : Fin Z.h) (haX : 0 < σ * Z.G a 0)

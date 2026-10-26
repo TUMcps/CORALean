@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A passed conjunction passes at every index. -/
-theorem aux_allOver_apply : -- --- CONCL ---
+private theorem aux_allOver_apply : -- --- CONCL ---
     ∀ {k : ℕ} (f : Fin k → Bool),
     allOver f = true → ∀ i, f i = true := by -- --- PROOF ---
   intro k
@@ -69,7 +69,7 @@ theorem aux_allOver_apply : -- --- CONCL ---
 
 
 /-- A checked grid samples inside the box. -/
-theorem aux_grid_mem_of_checked {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋}
+private theorem aux_grid_mem_of_checked {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋}
     (h : gridChecked p l u dx) (i : Fin (N + 1)) :
     toReal l ≤ toReal (p i) ∧ toReal (p i) ≤ toReal u := by
   simp only [gridChecked, Bool.and_eq_true] at h
@@ -79,7 +79,7 @@ theorem aux_grid_mem_of_checked {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋}
 
 
 /-- Every point of the box is near a checked sample. -/
-theorem aux_exists_grid_close {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋} {t : ℝ}
+private theorem aux_exists_grid_close {p : Fin (N + 1) → 𝕋} {l u dx : 𝕋} {t : ℝ}
     (h : gridChecked p l u dx) (hl : toReal l ≤ t) (hu : t ≤ toReal u) : -- --- CONCL ---
     ∃ i, |t - toReal (p i)| ≤ toReal dx := by -- --- PROOF ---
   simp only [gridChecked, Bool.and_eq_true] at h

@@ -46,7 +46,7 @@ namespace Cost
 /-- The sort is at most `k * (k + 1)`, since `Nat.log 2 k ≤ k`. A caller reading
 an asymptotic bound off a cost goes through this rather than the definition, so
 tightening the model again stops at this file. -/
-theorem aux_sort_le_mul_succ (k : ℕ) : (sort k).ops ≤ k * (k + 1) :=
+private theorem aux_sort_le_mul_succ (k : ℕ) : (sort k).ops ≤ k * (k + 1) :=
   Nat.mul_le_mul_left _ (Nat.succ_le_succ (Nat.log_le_self 2 k))
 end Cost
 
@@ -54,7 +54,7 @@ end Cost
 /-- The step bound against `C * n ^ 3`, in ℕ, with `C` written out: every term
 loses its lower powers of `n` to `1 ≤ n` and its `hU` to `hU ≤ hU * n`, and the
 sort enters as `Cost.aux_sort_le_mul_succ` rather than as its definition. -/
-theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) : -- --- CONCL ---
+private theorem LinearSysDT.aux_reachStepBound_ops_le (n hU o : ℕ) (hn : 1 ≤ n) : -- --- CONCL ---
     (LinearSysDT.reachStepBound n hU o).ops
       ≤ (3 * (o + 1) + (2 + o + hU) + 6 * (o + hU) + ((o + hU) * (o + hU) + (o + hU))
           + (2 * (o + hU) + (2 + (o + hU)))) * n ^ 3 := by -- --- PROOF ---

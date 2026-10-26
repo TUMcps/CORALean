@@ -52,7 +52,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of `{[T TR], c}`, its coefficient vector split at the two blocks. -/
-theorem Zonotope.aux_ofEchelon_sum {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
+private theorem Zonotope.aux_ofEchelon_sum {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
     (R : Fin k → Vec ℝ n) (β : Fin (n + k) → ℝ) : -- --- CONCL ---
     c + ∑ a, β a • Fin.append (fun i a => T a i) (fun l => T *ᵥ R l) a
       = c + T *ᵥ (fun i => β (Fin.castAdd k i))

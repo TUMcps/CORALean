@@ -61,7 +61,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The correction term of order `i` at the matrix the floats read as lies in the float term. -/
-theorem STL.aux_depCurvatureF_term (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 ≤ toReal r) {i : ℕ}
+private theorem STL.aux_depCurvatureF_term (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 ≤ toReal r) {i : ℕ}
     (hi : 2 ≤ i) (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.intervalCorrTerm (Interval.point A) r i).inf j k) ≤
         Real.MatExp.corrTerm (toRealMat A) (toReal r) i j k ∧

@@ -57,7 +57,7 @@ variable {n : ℕ}
 
 /-- Eq. 2.2 at one point: `exp(c + y)` is its degree-`k` expansion at `c` plus the Lagrange
 term `exp(c)·yᵏ⁺¹ exp(θy)/(k+1)!` at some `θ ∈ [0, 1]`. -/
-theorem Taylm.aux_exp_lagrange (c y : ℝ) (k : ℕ) : -- --- CONCL ---
+private theorem Taylm.aux_exp_lagrange (c y : ℝ) (k : ℕ) : -- --- CONCL ---
     ∃ θ ∈ Set.Icc (0 : ℝ) 1,
       Real.exp (c + y) - Real.exp c * ∑ j ∈ Finset.range (k + 1), y ^ j / (j.factorial : ℝ)
         = Real.exp c * (y ^ (k + 1) * Real.exp (θ * y))

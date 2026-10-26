@@ -53,7 +53,7 @@ variable {n dy du : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The state `q` steps on: the free response and the inputs in between. -/
-theorem aux_charpoly_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) {x : ℕ → Vec ℝ n}
+private theorem aux_charpoly_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) {x : ℕ → Vec ℝ n}
     {u : ℕ → Vec ℝ du} (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k) (t : ℕ) : -- --- CONCL ---
     ∀ q, x (t + q) = A ^ q *ᵥ x t
       + ∑ m ∈ Finset.range q, (A ^ (q - 1 - m) * Bu) *ᵥ u (t + m) := by -- --- PROOF ---
@@ -76,7 +76,7 @@ theorem aux_charpoly_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) {x : ℕ → V
 
 /-- The two triangular sums of the proof, one by the lag `j` and the step `m` after `k - n`, the
 other by the lag `s = n - m` of the input and the coefficient `i = j`. -/
-theorem aux_charpoly_triangle {α : Type} [AddCommMonoid α] (n : ℕ)
+private theorem aux_charpoly_triangle {α : Type} [AddCommMonoid α] (n : ℕ)
     (F : ℕ → ℕ → ℕ → α) : -- --- CONCL ---
     ∑ j ∈ Finset.range (n + 1), ∑ m ∈ Finset.range (n - j), F j m (n - j - 1 - m)
       = ∑ s ∈ Finset.range (n + 1), ∑ i ∈ Finset.range s,
@@ -108,7 +108,7 @@ theorem aux_charpoly_triangle {α : Type} [AddCommMonoid α] (n : ℕ)
     simp only [h1, h2]
 
 /-- Cayley-Hamilton in the order `a_j A^{n-j}`. -/
-theorem aux_charpoly_cayleyHamilton (A : Mat ℝ n n) : -- --- CONCL ---
+private theorem aux_charpoly_cayleyHamilton (A : Mat ℝ n n) : -- --- CONCL ---
     ∑ j ∈ Finset.range (n + 1), A.charpoly.coeff (n - j) • A ^ (n - j) = 0 := by -- --- PROOF ---
   have h := Matrix.aeval_self_charpoly A
   rw [Polynomial.aeval_eq_sum_range, Matrix.charpoly_natDegree_eq_dim] at h
@@ -120,7 +120,7 @@ theorem aux_charpoly_cayleyHamilton (A : Mat ℝ n n) : -- --- CONCL ---
 
 /-- The convolution of the coefficients with the outputs is that of the impulse response with the
 inputs. -/
-theorem aux_charpoly_convolution (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
+private theorem aux_charpoly_convolution (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
     (Du : Mat ℝ dy du) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy}
     (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k) (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k)
     (t : ℕ) : -- --- CONCL ---

@@ -58,7 +58,7 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The window part of a branch holds of every trace iff the set `S` does, by the interval lemma. -/
-theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
+private theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.IsFinRep T R)
     (hdiv : ReachSequence.IsCDivisible c T) (b : STL.Branch X) : -- --- CONCL ---
     (∀ ξ ∈ ReachSequence.traceSet R,
@@ -74,7 +74,7 @@ theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R
   · rw [add_comm (c / 2) _]; exact add_lt_add_of_le_of_lt le_rfl (half_lt_self hc)
 
 /-- One clause: some branch holds of every trace iff some branch holds outright. -/
-theorem STL.aux_clause {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
+private theorem STL.aux_clause {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ≥0} {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) (hT : ReachSequence.IsFinRep T R)
     (hdiv : ReachSequence.IsCDivisible c T) (clause : STL.Clause X)
     (hnd : (clause.map STL.Branch.j).Nodup) : -- --- CONCL ---

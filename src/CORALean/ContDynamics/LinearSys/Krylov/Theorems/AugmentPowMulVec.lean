@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The first `n` rows of `C̃ z`: `A` on the first `n` coordinates plus the last one times `u`. -/
-theorem Krylov.aux_augment_mulVec_castSucc (A : Mat ℝ n n) (u : Vec ℝ n)
+private theorem Krylov.aux_augment_mulVec_castSucc (A : Mat ℝ n n) (u : Vec ℝ n)
     (z : Fin (n + 1) → ℝ) (i : Fin n) :
     (Krylov.augment A u *ᵥ z) (Fin.castSucc i)
       = (A *ᵥ fun j => z (Fin.castSucc j)) i + z (Fin.last n) * u i := by
@@ -58,7 +58,7 @@ theorem Krylov.aux_augment_mulVec_castSucc (A : Mat ℝ n n) (u : Vec ℝ n)
   ring
 
 /-- The last row of `C̃` is zero. -/
-theorem Krylov.aux_augment_mulVec_last (A : Mat ℝ n n) (u : Vec ℝ n) (z : Fin (n + 1) → ℝ) :
+private theorem Krylov.aux_augment_mulVec_last (A : Mat ℝ n n) (u : Vec ℝ n) (z : Fin (n + 1) → ℝ) :
     (Krylov.augment A u *ᵥ z) (Fin.last n) = 0 := by
   simp [mulVec, dotProduct, Krylov.augment]
 

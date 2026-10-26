@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- Shifting a constrained zonotope's center shifts its construct by the same
 amount — the translation half of an affine image. -/
-theorem ConZonotope.aux_construct_shift (cZ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_construct_shift (cZ : ConZonotope (Vec ℝ n))
     (v : Vec ℝ n) : -- --- CONCL ---
     ({ cZ with c := v + cZ.c } : ConZonotope (Vec ℝ n)).construct
       = (fun y => v + y) '' cZ.construct := by -- --- PROOF ---

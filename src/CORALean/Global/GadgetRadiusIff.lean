@@ -62,7 +62,8 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The tangent of `t ↦ tᵠ` at `c > 0` lies below it, `q ≥ 1`. -/
-theorem aux_rpow_tangent_le {q c u : ℝ} (hq : 1 ≤ q) (hc : 0 < c) (hu : 0 ≤ u) : -- --- CONCL ---
+private theorem aux_rpow_tangent_le {q c u : ℝ} (hq : 1 ≤ q) (hc : 0 < c)
+    (hu : 0 ≤ u) : -- --- CONCL ---
     c ^ q + q * c ^ (q - 1) * (u - c) ≤ u ^ q := by -- --- PROOF ---
   have hb := one_add_mul_self_le_rpow_one_add (s := u / c - 1) (by
     have : 0 ≤ u / c := div_nonneg hu hc.le
@@ -75,7 +76,7 @@ theorem aux_rpow_tangent_le {q c u : ℝ} (hq : 1 ≤ q) (hc : 0 < c) (hu : 0 �
     _ ≤ u ^ q := hb
 
 /-- With Eq. 66 and 67, `a + L s ≤ n` on `aᵠ + sᵠ ≤ 1`. -/
-theorem aux_add_mul_le {q L ϱ N a s : ℝ} (hq : 1 < q) (hϱ : 0 < ϱ) (hLpos : 0 < L)
+private theorem aux_add_mul_le {q L ϱ N a s : ℝ} (hq : 1 < q) (hϱ : 0 < ϱ) (hLpos : 0 < L)
     (hx : 0 < (N - ϱ) / L) (h66 : 1 - ϱ ^ q = ((N - ϱ) / L) ^ q)
     (h67 : L = (1 - ((N - ϱ) / L) ^ q) ^ (1 / q - 1) * ((N - ϱ) / L) ^ (q - 1))
     (ha : 0 ≤ a) (hs : 0 ≤ s) (has : a ^ q + s ^ q ≤ 1) : -- --- CONCL ---
@@ -119,13 +120,13 @@ theorem aux_add_mul_le {q L ϱ N a s : ℝ} (hq : 1 < q) (hϱ : 0 < ϱ) (hLpos :
     _ = N := by rw [mul_one, hN]
 
 /-- The supremum norm is below the `1`-norm. -/
-theorem aux_norm_le_sum_abs' (y : Vec ℝ n) : ‖y‖ ≤ ∑ i, |y i| :=
+private theorem aux_norm_le_sum_abs' (y : Vec ℝ n) : ‖y‖ ≤ ∑ i, |y i| :=
   (pi_norm_le_iff_of_nonneg (Finset.sum_nonneg fun _ _ => abs_nonneg _)).mpr fun i =>
     (Real.norm_eq_abs _).trans_le
       (Finset.single_le_sum (f := fun i => |y i|) (fun _ _ => abs_nonneg _) (Finset.mem_univ i))
 
 /-- `‖A v‖₁ ≤ ξ ‖v‖_p` for `ξ` the maximum on the unit ball. -/
-theorem aux_sum_abs_le {p : ℝ≥0∞} [Fact (1 ≤ p)] (A : Mat ℝ n m) {ξ : ℝ}
+private theorem aux_sum_abs_le {p : ℝ≥0∞} [Fact (1 ≤ p)] (A : Mat ℝ n m) {ξ : ℝ}
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
       Metric.closedBall 0 1) ξ) (v : PiLp p (fun _ : Fin m => ℝ)) : -- --- CONCL ---
     ∑ i, |(A *ᵥ WithLp.ofLp v) i| ≤ ξ * ‖v‖ := by -- --- PROOF ---
@@ -142,13 +143,13 @@ theorem aux_sum_abs_le {p : ℝ≥0∞} [Fact (1 ≤ p)] (A : Mat ℝ n m) {ξ :
 
 
 /-- The hypotheses on the radii: Eq. 66 and 67 at finite `p`, `L = n - 1`, `ϱ = 1` at `p = ∞`. -/
-def aux_Radii (n : ℕ) (p : ℝ≥0∞) (L ϱ : ℝ) : Prop :=
+private def aux_Radii (n : ℕ) (p : ℝ≥0∞) (L ϱ : ℝ) : Prop :=
   (p = ∞ ∧ L = n - 1 ∧ ϱ = 1) ∨ (p ≠ ∞ ∧ n - 1 < L ∧ L < n ∧ 0 < ϱ ∧ ϱ < 1 ∧
     1 - ϱ ^ p.toReal = ((n - ϱ) / L) ^ p.toReal ∧
     L = (1 - ((n - ϱ) / L) ^ p.toReal) ^ (1 / p.toReal - 1) * ((n - ϱ) / L) ^ (p.toReal - 1))
 
 /-- Every coefficient in the ball has `‖α'‖ ≤ 1`, `|s| ≤ 1` and `‖α'‖ + L|s| ≤ n`. -/
-theorem aux_cons (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
+private theorem aux_cons (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
     (hL : aux_Radii n p L ϱ) (α : WithLp p (PiLp p (fun _ : Fin m => ℝ) × ℝ))
     (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
     ‖α.fst‖ ≤ 1 ∧ |α.snd| ≤ 1 ∧ ‖α.fst‖ + L * |α.snd| ≤ n := by -- --- PROOF ---
@@ -178,7 +179,7 @@ theorem aux_cons (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {
     exact (aux_add_mul_le hq hϱ hLpos hx h66 h67 (norm_nonneg _) (abs_nonneg _) hsum).1
 
 /-- The radii are positive and `L < n`. -/
-theorem aux_radii_pos (hn : 2 ≤ n) {p : ℝ≥0∞} {L ϱ : ℝ} (hL : aux_Radii n p L ϱ) :
+private theorem aux_radii_pos (hn : 2 ≤ n) {p : ℝ≥0∞} {L ϱ : ℝ} (hL : aux_Radii n p L ϱ) :
     0 < ϱ ∧ ϱ < n ∧ 0 < L ∧ L < n := by
   have hnr : (2 : ℝ) ≤ n := by exact_mod_cast hn
   rcases hL with ⟨-, rfl, rfl⟩ | ⟨-, h1, h2, h3, h4, -⟩
@@ -186,7 +187,7 @@ theorem aux_radii_pos (hn : 2 ≤ n) {p : ℝ≥0∞} {L ϱ : ℝ} (hL : aux_Rad
   · exact ⟨h3, by linarith, by linarith, h2⟩
 
 /-- The upper bounds at every coefficient of the ball. -/
-theorem aux_radius_upper (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
+private theorem aux_radius_upper (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
     (hL : aux_Radii n p L ϱ) (A : Mat ℝ n m) {ξ : ℝ}
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
       Metric.closedBall 0 1) ξ)
@@ -231,7 +232,7 @@ theorem aux_radius_upper (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 
       linarith
 
 /-- The lower bound, at `(ϱ v, -x)` for a maximizer `v` of `‖A v‖₁`. -/
-theorem aux_lower (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
+private theorem aux_lower (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
     (hL : aux_Radii n p L ϱ) (A : Mat ℝ n m) {ξ : ℝ}
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
       Metric.closedBall 0 1) ξ) : -- --- CONCL ---

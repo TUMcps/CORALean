@@ -75,7 +75,7 @@ variable {d n m : ℕ}
 
 /-- A function below a boundary at `0` whose slope stays below the boundary's
 stays below it on all of `[0, 1]`. -/
-theorem aux_le_of_deriv_le {g g' B B' : ℝ → ℝ}
+private theorem aux_le_of_deriv_le {g g' B B' : ℝ → ℝ}
     (hg : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt g (g' t) t) (hB : ∀ t, HasDerivAt B (B' t) t)
     (h0 : g 0 ≤ B 0) (hle : ∀ t ∈ Icc (0:ℝ) 1, g' t ≤ B' t) :
     ∀ t ∈ Icc (0:ℝ) 1, g t ≤ B t :=
@@ -88,7 +88,7 @@ theorem aux_le_of_deriv_le {g g' B B' : ℝ → ℝ}
 
 /-- Taylor at order one with the remainder bounded rather than evaluated: no
 mean value is named, so `φ''` is never asked for at an unknown point. -/
-theorem aux_abs_taylor_le {φ φ' φ'' : ℝ → ℝ} {K : ℝ}
+private theorem aux_abs_taylor_le {φ φ' φ'' : ℝ → ℝ} {K : ℝ}
     (hφ : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ (φ' t) t)
     (hφ' : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ' (φ'' t) t)
     (hK : ∀ t ∈ Icc (0:ℝ) 1, |φ'' t| ≤ K) : -- --- CONCL ---
@@ -124,7 +124,7 @@ theorem aux_abs_taylor_le {φ φ' φ'' : ℝ → ℝ} {K : ℝ}
   exact abs_le.2 ⟨by linarith, by linarith⟩
 
 /-- A map out of a coordinate space is its values on the standard basis. -/
-theorem aux_clm_sum_single {G : Type} [NormedAddCommGroup G] [NormedSpace ℝ G]
+private theorem aux_clm_sum_single {G : Type} [NormedAddCommGroup G] [NormedSpace ℝ G]
     (L : Vec ℝ d →L[ℝ] G) (v : Vec ℝ d) : L v = ∑ j, v j • L (Pi.single j 1) := by
   conv_lhs => rw [show v = ∑ j, v j • (Pi.single j 1 : Vec ℝ d) from by
     ext k; simp [Finset.sum_apply, Pi.single_apply]]
@@ -133,7 +133,7 @@ theorem aux_clm_sum_single {G : Type} [NormedAddCommGroup G] [NormedSpace ℝ G]
 
 /-- The thesis's `|z - z✱|ᵀ |Jᵢ| |z - z✱| ≤ γᵀ Mᵢ γ`: an entrywise bound on a
 bilinear map is a bound on the quadratic form it takes at anything `γ` covers. -/
-theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d) (M : Mat ℝ d d)
+private theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d) (M : Mat ℝ d d)
     (hM : ∀ j k, |T (Pi.single j 1) (Pi.single k 1)| ≤ M j k)
     (hv : ∀ j, |v j| ≤ γ j) : -- --- CONCL ---
     |T v v| ≤ γ ⬝ᵥ (M *ᵥ γ) := by -- --- PROOF ---
@@ -162,7 +162,7 @@ theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ 
 
 /-- [1, Prop. 1] at one coordinate: what is left of `F` once its affine part at
 `zs` is subtracted is `γᵀ M γ / 2`, over any `z` that `γ` covers. -/
-theorem aux_abs_remainder_le {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec ℝ d → ℝ}
+private theorem aux_abs_remainder_le {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec ℝ d → ℝ}
     {Ff : Vec ℝ d → (Vec ℝ d →L[ℝ] ℝ)}
     {Hf : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
     (hF : ∀ ξ ∈ C, HasFDerivAt F (Ff ξ) ξ) (hH : ∀ ξ ∈ C, HasFDerivAt Ff (Hf ξ) ξ)
@@ -194,7 +194,7 @@ theorem aux_abs_remainder_le {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec 
 
 /-- The thesis's `max_{z ∈ Ẑ} |z - z✱| ≤ |c - z✱| + Σⱼ |g⁽ʲ⁾|`, which is the `γ`
 that `abstrErrLin` computes. -/
-theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : Vec ℝ d}
+private theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : Vec ℝ d}
     (hz : z ∈ Z.construct) (j : Fin d) : -- --- CONCL ---
     |z j - zs j| ≤ |Z.c j - zs j| + ∑ k, |Z.G k j| := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
@@ -212,7 +212,7 @@ theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : V
 
 /-- Stacking commutes with a difference, so the deviation of `(x, u)` from the
 expansion point is the stacked pair of deviations. -/
-theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
+private theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
     Fin.append (x - xs) (u - us) = Fin.append x u - Fin.append xs us := by
   funext j
   refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp

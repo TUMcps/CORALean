@@ -51,7 +51,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Changing coordinate `i` of `v` from `0` to `a` adds `a` to the sum. -/
-theorem aux_sum_update_zero'' {v : Vec ℝ n} {i : Fin n} {a : ℝ} (hvi : v i = 0) : -- --- CONCL ---
+private theorem aux_sum_update_zero'' {v : Vec ℝ n} {i : Fin n} {a : ℝ}
+    (hvi : v i = 0) : -- --- CONCL ---
     ∑ k, Function.update v i a k = ∑ k, v k + a := by -- --- PROOF ---
   have : ∀ k, Function.update v i a k = v k + if k = i then a else 0 := fun k => by
     by_cases hk : k = i

@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Euclidean unit ball of `Vec ℝ n` has the volume of the unit `n`-ball. -/
-theorem Ellipsoid.aux_volume_unitBall : -- --- CONCL ---
+private theorem Ellipsoid.aux_volume_unitBall : -- --- CONCL ---
     MeasureTheory.volume {u : Vec ℝ n | ‖u‖₂ ≤ 1} =
       ENNReal.ofReal (Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1)) := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn

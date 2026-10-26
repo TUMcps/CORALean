@@ -63,14 +63,15 @@ variable {n nu ny nd m r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- `I - Λ(θ)C = Σᵢ ρᵢ (I - ΛᵢC)` at `Σᵢ ρᵢ = 1`
-theorem Zonotope.aux_one_sub_sum (ρ : Fin r → ℝ) (Λ : Fin r → Mat ℝ n ny) (C : Mat ℝ ny n)
+private theorem Zonotope.aux_one_sub_sum (ρ : Fin r → ℝ) (Λ : Fin r → Mat ℝ n ny) (C : Mat ℝ ny n)
     (hρ : ∑ i, ρ i = 1) :
     ∑ i, ρ i • (1 - Λ i * C) = 1 - (∑ i, ρ i • Λ i) * C := by
   simp only [smul_sub, Finset.sum_sub_distrib, Matrix.sum_mul, Matrix.smul_mul]
   rw [← Finset.sum_smul, hρ, one_smul]
 
 -- `(I - Λ(θ)C) T M(θ)` expanded over the vertices
-theorem Zonotope.aux_double_sum {k : ℕ} (T : Mat ℝ n n) (ρ : Fin r → ℝ) (Λ : Fin r → Mat ℝ n ny)
+private theorem Zonotope.aux_double_sum {k : ℕ} (T : Mat ℝ n n) (ρ : Fin r → ℝ)
+    (Λ : Fin r → Mat ℝ n ny)
     (C : Mat ℝ ny n) (M : Fin r → Mat ℝ n k) (hρ : ∑ i, ρ i = 1) : -- --- CONCL ---
     ∑ i, ∑ j, (ρ i * ρ j) • ((1 - Λ i * C) * T * M j) =
       (1 - (∑ i, ρ i • Λ i) * C) * T * (∑ j, ρ j • M j) := by -- --- PROOF ---

@@ -41,7 +41,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `HPolytope.stackProd`'s rows at a pair. -/
-theorem HPolytope.aux_stackProd_be (gs : ∀ i, HPolytope (Vec ℝ (n i))) (i : Fin k)
+private theorem HPolytope.aux_stackProd_be (gs : ∀ i, HPolytope (Vec ℝ (n i))) (i : Fin k)
     (s : Fin (gs i).me) :
     (HPolytope.stackProd gs).be (finSigmaFinEquiv ⟨i, s⟩) =
       (gs i).be s :=

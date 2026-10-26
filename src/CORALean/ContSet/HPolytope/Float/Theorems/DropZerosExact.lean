@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A certified zero row is the zero functional. -/
-theorem HPolytope.aux_isZeroVec_dot {v : Vec 𝕋 n} (h : HPolytope.isZeroVec v = true) (x : Vec ℝ n) :
+private theorem HPolytope.aux_isZeroVec_dot {v : Vec 𝕋 n} (h : HPolytope.isZeroVec v = true)
+    (x : Vec ℝ n) :
     ∑ j, toReal (v j) * x j = 0 := by
   refine Finset.sum_eq_zero fun j _ => ?_
   have hj := List.all_eq_true.mp h j (List.mem_finRange j)

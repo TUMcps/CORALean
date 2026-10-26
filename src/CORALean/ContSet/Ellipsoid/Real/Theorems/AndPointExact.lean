@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The ellipsoid of zero shape denotes the single point. -/
-theorem Ellipsoid.aux_construct_ofPoint (p : Vec ℝ n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_construct_ofPoint (p : Vec ℝ n) : -- --- CONCL ---
     (Ellipsoid.ofPoint p).construct = {p} := by -- --- PROOF ---
   have hG : (Ellipsoid.ofPoint p).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
   ext x

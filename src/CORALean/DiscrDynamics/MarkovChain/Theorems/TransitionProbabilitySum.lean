@@ -39,7 +39,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Counting each point under the first cell it lands in counts every point once. -/
-theorem MarkovChain.aux_count_sum (field : GridPartition n) (l : List (Vec ℝ n)) : -- --- CONCL ---
+private theorem MarkovChain.aux_count_sum (field : GridPartition n)
+    (l : List (Vec ℝ n)) : -- --- CONCL ---
     ∑ s : Fin (field.nrOfCells + 1),
       ((l.filter fun x => (field.intersectingCells ⟨x, x⟩).headD 0 = s).length : ℝ) = l.length
         := by -- --- PROOF ---

@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The homogenization of `x ↦ xᵀAx + 2aᵀx + α` expands as a quadratic form. -/
-theorem aux_hom_expand (A : Mat ℝ n n) (a : Fin n → ℝ) (α u v : ℝ)
+private theorem aux_hom_expand (A : Mat ℝ n n) (a : Fin n → ℝ) (α u v : ℝ)
     (z w : (Fin n → ℝ) × ℝ) : -- --- CONCL ---
     (u • z + v • w).1 ⬝ᵥ A *ᵥ (u • z + v • w).1 + 2 * (u • z + v • w).2 * (a ⬝ᵥ (u • z + v • w).1)
         + (u • z + v • w).2 ^ 2 * α =
@@ -69,7 +69,7 @@ theorem aux_hom_expand (A : Mat ℝ n n) (a : Fin n → ℝ) (α u v : ℝ)
   ring
 
 /-- Off `t = 0` the homogenization is `t² f (x / t)`. -/
-theorem aux_hom_eq (A : Mat ℝ n n) (a : Fin n → ℝ) (α : ℝ) (x : Fin n → ℝ) {t : ℝ}
+private theorem aux_hom_eq (A : Mat ℝ n n) (a : Fin n → ℝ) (α : ℝ) (x : Fin n → ℝ) {t : ℝ}
     (ht : t ≠ 0) :
     x ⬝ᵥ A *ᵥ x + 2 * t * (a ⬝ᵥ x) + t ^ 2 * α =
       t ^ 2 * ((t⁻¹ • x) ⬝ᵥ A *ᵥ (t⁻¹ • x) + 2 * (a ⬝ᵥ (t⁻¹ • x)) + α) := by
@@ -77,7 +77,7 @@ theorem aux_hom_eq (A : Mat ℝ n n) (a : Fin n → ℝ) (α : ℝ) (x : Fin n �
   field_simp
 
 /-- Along a ray `f (s x)` is a quadratic in `s`. -/
-theorem aux_smul_eq (A : Mat ℝ n n) (a : Fin n → ℝ) (α s : ℝ) (x : Fin n → ℝ) :
+private theorem aux_smul_eq (A : Mat ℝ n n) (a : Fin n → ℝ) (α s : ℝ) (x : Fin n → ℝ) :
     (s • x) ⬝ᵥ A *ᵥ (s • x) + 2 * (a ⬝ᵥ (s • x)) + α =
       (x ⬝ᵥ A *ᵥ x) * s ^ 2 + 2 * (a ⬝ᵥ x) * s + α := by
   simp only [mulVec_smul, dotProduct_smul, smul_dotProduct, smul_eq_mul]

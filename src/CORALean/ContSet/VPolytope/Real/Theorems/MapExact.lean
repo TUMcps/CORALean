@@ -38,7 +38,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem VPolytope.aux_range_map (f : α →ₗ[ℝ] β) (P : VPolytope α) :
+private theorem VPolytope.aux_range_map (f : α →ₗ[ℝ] β) (P : VPolytope α) :
     Set.range (P.map f).V = ⇑f '' Set.range P.V := Set.range_comp ⇑f P.V
 
 

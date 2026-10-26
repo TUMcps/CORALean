@@ -65,7 +65,7 @@ variable {n m : ℕ}
 
 /-- A coefficient that survives sits at an order of at least `qᵢ`, the infimum
 `gainOrderDim` takes. -/
-theorem aux_le_of_gainOrderDim {q : ℕ → Fin n → ℕ∞} {a : ℕ → Fin n → Vec ℝ m} {i : Fin n}
+private theorem aux_le_of_gainOrderDim {q : ℕ → Fin n → ℕ∞} {a : ℕ → Fin n → Vec ℝ m} {i : Fin n}
     {e : ℕ → ℕ} {qi : ℕ} (hqi : gainOrderDim q a i = (qi : ℕ∞))
     (he : ∀ p, a p i ≠ 0 → ((e p : ℕ∞) = (p : ℕ∞) + q p i)) {p : ℕ}
     (hp : a p i ≠ 0) : -- --- CONCL ---

@@ -53,7 +53,7 @@ section
 variable {n r : ℕ}
 
 /-- The selection matrices pick their block. -/
-theorem aux_stackFst_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
+private theorem aux_stackFst_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
     stackFst n r *ᵥ (Fin.append a b : Vec ℝ (n + r)) = a := by -- --- PROOF ---
   funext i
   -- split the sum over `Fin (n + r)` into its two halves
@@ -67,7 +67,7 @@ end
 
 
 /-- A recursion `Δ(k+1) = A_k Δ(k) + B_k δ(k) + L_k` in closed form. -/
-theorem aux_descProd_state (A : ℕ → Mat ℝ n n) (B : ℕ → Mat ℝ n m) (Δ : ℕ → Vec ℝ n)
+private theorem aux_descProd_state (A : ℕ → Mat ℝ n n) (B : ℕ → Mat ℝ n m) (Δ : ℕ → Vec ℝ n)
     (δ : ℕ → Vec ℝ m) (L : ℕ → Vec ℝ n)
     (h : ∀ k, Δ (k + 1) = A k *ᵥ Δ k + B k *ᵥ δ k + L k) (k : ℕ) : -- --- CONCL ---
     Δ (k + 1) = descProd A k (k + 1) *ᵥ Δ 0

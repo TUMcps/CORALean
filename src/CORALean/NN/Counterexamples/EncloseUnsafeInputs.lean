@@ -50,11 +50,11 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `ϕ(t) = -t` relaxed by slope `1` and errors `[0, 0]`. -/
-def aux_N : SetBasedNet 1 1 :=
+private def aux_N : SetBasedNet 1 1 :=
   .nonlinear (fun _ => 1) (fun _ => 0) (fun _ => 0) .output
 
 /-- `X = ⟨0, [1]⟩_Z = [-1, 1]`. -/
-abbrev aux_X : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩
+private abbrev aux_X : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

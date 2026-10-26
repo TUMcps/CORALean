@@ -139,7 +139,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : ℕ}
 
 /-- What a point of `halfScaledRight` says about its second block. -/
-theorem HPolytope.aux_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {z : Vec ℝ n₁}
+private theorem HPolytope.aux_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {z : Vec ℝ n₁}
     {y : Vec ℝ n₂} {t : ℝ}
     (h : Fin.append (Fin.append z y) (fun _ : Fin 1 => t)
       ∈ (HPolytope.halfScaledRight n₁ P).construct) : -- --- CONCL ---
@@ -180,7 +180,7 @@ theorem HPolytope.aux_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {
 
 
 /-- What a point of `halfScaledLeft` says about its first block. -/
-theorem HPolytope.aux_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁}
+private theorem HPolytope.aux_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁}
     {z : Vec ℝ n₂} {t : ℝ}
     (h : Fin.append (Fin.append y z) (fun _ : Fin 1 => t)
       ∈ (P.halfScaledLeft n₂).construct) : -- --- CONCL ---
@@ -229,7 +229,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A block meeting a polytope's rows and the unit box's at weight `lam` is `lam` times a
 coefficient vector of the polytope inside the unit box, the polytope being nonempty there. -/
-theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
+private theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
     (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct) {γ : Vec ℝ k} {lam : ℝ}
     {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.stackRows (HPolytope.unitBox 𝕋 k))
     (hl0 : 0 ≤ lam)
@@ -273,7 +273,7 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
 
 
 /-- `linCombSameCenter` is no larger than the hull. -/
-theorem ConZonotope.aux_linCombSameCenter_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
+private theorem ConZonotope.aux_linCombSameCenter_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
     (hc : cZ₂.c = cZ₁.c) (hs₁ : cZ₁.P.IsSlackFree) (hs₂ : cZ₂.P.IsSlackFree)
     (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) : -- --- CONCL ---
     nominalSet (cZ₁.linCombSameCenter cZ₂) ⊆
@@ -375,7 +375,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the tightened conversion reaches no further than `|c| + Σ|G|` of the zonotope it is
 taken at, whatever the polytope. -/
-theorem HPolytope.aux_abs_nominal_conZonotopeInnerOf_le (P : HPolytope 𝕋 (Vec 𝕋 n))
+private theorem HPolytope.aux_abs_nominal_conZonotopeInnerOf_le (P : HPolytope 𝕋 (Vec 𝕋 n))
     (Z : Zonotope (Vec 𝕋 n))
     {y : Vec ℝ n} (hy : y ∈ nominalSet (P.conZonotopeInnerOf Z)) (k : Fin n) : -- --- CONCL ---
     |y k| ≤

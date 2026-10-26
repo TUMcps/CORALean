@@ -66,7 +66,7 @@ private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} : -- --- 
 
 
 /-- Subtracting the piece `q` from `r` leaves pieces that cover every point of `r` outside `q`. -/
-theorem Polygon.aux_subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) : -- --- CONCL ---
+private theorem Polygon.aux_subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) : -- --- CONCL ---
     r.construct \ q.construct ⊆
       {x | ∃ s ∈ Polygon.aux_subtractPiece q r, x ∈ s.construct} := by -- --- PROOF ---
   rintro x ⟨hr, hq⟩
@@ -104,7 +104,7 @@ end
 
 
 /-- A point in a piece of the list and outside every `q` stays in the folded list. -/
-theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
+private theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
     (qs L : List (VPolytope (Vec 𝕋 2))) : -- --- CONCL ---
     (∃ r ∈ L, x ∈ r.construct) → (∀ q ∈ qs, x ∉ q.construct) →
       ∃ s ∈ qs.foldl (fun L q => L.flatMap (Polygon.aux_subtractPiece q)) L,

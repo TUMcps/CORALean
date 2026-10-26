@@ -50,7 +50,7 @@ variable {N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The invariant of the search at hop `r`. -/
-theorem aux_bfs_inv (A : Mat ℝ N N) (v : Fin N) (r : ℕ) : -- --- CONCL ---
+private theorem aux_bfs_inv (A : Mat ℝ N N) (v : Fin N) (r : ℕ) : -- --- CONCL ---
     (GNN.bfs A v r).1 = GNN.ball A v r ∧ (GNN.bfs A v r).2 ⊆ GNN.ball A v r ∧
       ∀ i ∈ GNN.ball A v r, i ∈ (GNN.bfs A v r).2 ∨
         ∃ r' < r, i ∈ GNN.ball A v r' := by -- --- PROOF ---

@@ -33,33 +33,35 @@ open Lean (Json)
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_aliasA := ["A", "a"]
-def aux_aliasB := ["B", "b"]
-def aux_aliasC := ["C", "c"]
-def aux_aliasX0 := ["X0", "x0", "R0", "r0"]
-def aux_aliasU := ["U", "u"]
-def aux_aliasT := ["tend", "tFinal", "tfinal", "t_final", "T", "tEnd"]
-def aux_aliasUnsafe := ["unsafeSet", "unsafe_set", "unsafeSets", "unsafe_sets", "unsafe", "spec"]
-def aux_loKeys := ["inf", "lb", "lower", "lowerbound", "lowerBound", "min", "lo", "infimum"]
-def aux_hiKeys := ["sup", "ub", "upper", "upperbound", "upperBound", "max", "hi", "supremum"]
+private def aux_aliasA := ["A", "a"]
+private def aux_aliasB := ["B", "b"]
+private def aux_aliasC := ["C", "c"]
+private def aux_aliasX0 := ["X0", "x0", "R0", "r0"]
+private def aux_aliasU := ["U", "u"]
+private def aux_aliasT := ["tend", "tFinal", "tfinal", "t_final", "T", "tEnd"]
+private def aux_aliasUnsafe :=
+    ["unsafeSet", "unsafe_set", "unsafeSets", "unsafe_sets", "unsafe", "spec"]
+private def aux_loKeys := ["inf", "lb", "lower", "lowerbound", "lowerBound", "min", "lo", "infimum"]
+private def aux_hiKeys :=
+    ["sup", "ub", "upper", "upperbound", "upperBound", "max", "hi", "supremum"]
 
 /-- The first of `names` that `j` has. -/
-def aux_find (j : Json) (names : List String) : Option Json :=
+private def aux_find (j : Json) (names : List String) : Option Json :=
   names.findSome? fun k => (j.getObjVal? k).toOption
 
 /-- A vector, or a scalar as a one-entry vector. -/
-def aux_vec : Json → Except String (Array ℚ)
+private def aux_vec : Json → Except String (Array ℚ)
   | .arr a => a.mapM parseRandJson
   | j => (fun q => #[q]) <$> parseRandJson j
 
-def aux_zipBox (lo hi : Array ℚ) : Except String (Array (ℚ × ℚ)) := do
+private def aux_zipBox (lo hi : Array ℚ) : Except String (Array (ℚ × ℚ)) := do
   if lo.size ≠ hi.size then throw "a box's lower and upper bounds differ in length"
   let b := lo.zip hi
   if b.any fun (l, h) => h < l then throw "a box has a lower bound above its upper bound"
   pure b
 
 /-- A box: `{lb, ub}` of vectors, or an array of `{lb, ub}` / `[lo, hi]`, one per dimension. -/
-def aux_box : Json → Except String (Array (ℚ × ℚ))
+private def aux_box : Json → Except String (Array (ℚ × ℚ))
   | .arr es => es.mapM fun
     | .arr #[l, h] => do
       let lq ← parseRandJson l
@@ -79,21 +81,21 @@ def aux_box : Json → Except String (Array (ℚ × ℚ))
     | _, _ => throw s!"`{j.compress}` is not a box (`lb`/`ub` or `inf`/`sup`)"
 
 /-- Whether `j` is one box of several, rather than the dimensions of a single one. -/
-def aux_isSet : Json → Bool
+private def aux_isSet : Json → Bool
   | .arr es => es.any fun | .arr _ => true | .obj _ => true | _ => false
   | j => match aux_find j aux_loKeys with
     | some (.arr _) => true
     | _ => false
 
-def aux_matrix (j : Json) : Except String (Array (Array ℚ)) := do (← j.getArr?).mapM aux_vec
+private def aux_matrix (j : Json) : Except String (Array (Array ℚ)) := do (← j.getArr?).mapM aux_vec
 
-def aux_need (j : Json) (what : String) (names : List String) : Except String Json :=
+private def aux_need (j : Json) (what : String) (names : List String) : Except String Json :=
   match aux_find j names with
   | some v => pure v
   | none => throw s!"field `{what}` (or {names}) is missing"
 
 /-- Everything the file carries beyond the system. -/
-def aux_extra (j : Json) : Json :=
+private def aux_extra (j : Json) : Json :=
   let known := aux_aliasA ++ aux_aliasB ++ aux_aliasC ++ aux_aliasX0 ++ aux_aliasU ++
     aux_aliasT ++ aux_aliasUnsafe
   match j with

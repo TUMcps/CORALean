@@ -80,7 +80,7 @@ variable (nrm : E → ℝ) (hadd : ∀ x y, nrm (x + y) ≤ nrm x + nrm y)
   (hsmul : ∀ (a : ℝ) x, nrm (a • x) = |a| * nrm x)
 
 include hadd hsmul in
-theorem aux_nrm_nonneg (x : E) : -- --- CONCL ---
+private theorem aux_nrm_nonneg (x : E) : -- --- CONCL ---
     0 ≤ nrm x := by -- --- PROOF ---
   have h0 : nrm 0 = 0 := by simpa using hsmul 0 x
   have h1 := hadd x (-x)
@@ -90,7 +90,7 @@ theorem aux_nrm_nonneg (x : E) : -- --- CONCL ---
 
 include hadd hsmul in
 /-- A functional in the dual ball is below the norm everywhere. -/
-theorem aux_le_nrm (hdef : ∀ x, nrm x = 0 → x = 0) (z : E →L[ℝ] ℝ)
+private theorem aux_le_nrm (hdef : ∀ x, nrm x = 0 → x = 0) (z : E →L[ℝ] ℝ)
     (hz : ∀ x, nrm x ≤ 1 → z x ≤ 1) (x : E) : -- --- CONCL ---
     z x ≤ nrm x := by -- --- PROOF ---
   rcases (aux_nrm_nonneg nrm hadd hsmul x).lt_or_eq with hpos | hzero
@@ -102,7 +102,7 @@ theorem aux_le_nrm (hdef : ∀ x, nrm x = 0 → x = 0) (z : E →L[ℝ] ℝ)
 
 include hsmul in
 /-- The ball of radius `r > 0` is `r` times the unit ball. -/
-theorem aux_ball_eq_smul {r : ℝ} (hr : 0 < r) : -- --- CONCL ---
+private theorem aux_ball_eq_smul {r : ℝ} (hr : 0 < r) : -- --- CONCL ---
     {x | nrm x ≤ r} = r • {x : E | nrm x ≤ 1} := by -- --- PROOF ---
   ext x
   rw [Set.mem_smul_set]
@@ -119,7 +119,7 @@ theorem aux_ball_eq_smul {r : ℝ} (hr : 0 < r) : -- --- CONCL ---
 
 include hadd hsmul in
 /-- A sample near `χ` puts its maximizer within `ε` of `1` at `χ`: the paper's Appendix A. -/
-theorem aux_dir_ge (z : E →L[ℝ] ℝ) (hle : ∀ x, z x ≤ nrm x) {χ y : E} (hχn : nrm χ = 1)
+private theorem aux_dir_ge (z : E →L[ℝ] ℝ) (hle : ∀ x, z x ≤ nrm x) {χ y : E} (hχn : nrm χ = 1)
     {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (hyS : nrm ((1 + ε / 2) • y - χ) ≤ ε / 2)
     (hyB : nrm y ≤ 1) (hzv' : z y = nrm y) : -- --- CONCL ---
     1 - ε ≤ z χ := by -- --- PROOF ---

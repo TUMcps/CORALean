@@ -60,14 +60,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A norm is nonnegative. -/
-theorem aux_l2_opNorm_nonneg {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) :
+private theorem aux_l2_opNorm_nonneg {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) :
     0 ≤ (Matrix.instL2OpNormedAddCommGroup (𝕜 := ℝ)).toNorm.norm A := by
   letI := Matrix.instL2OpNormedAddCommGroup (𝕜 := ℝ) (m := Fin m) (n := Fin h)
   exact norm_nonneg A
 
 /-- The spectral norm is at most the root of the sum of the squared entries: the operator norm
 of the Euclidean map is bounded by Cauchy-Schwarz on each output coordinate. -/
-theorem aux_l2_opNorm_le {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) {s : ℝ} (hs0 : 0 ≤ s)
+private theorem aux_l2_opNorm_le {m h : ℕ} (A : Matrix (Fin m) (Fin h) ℝ) {s : ℝ} (hs0 : 0 ≤ s)
     (hs : ∑ i, ∑ j, A i j ^ 2 ≤ s ^ 2) : -- --- CONCL ---
     (Matrix.instL2OpNormedAddCommGroup (𝕜 := ℝ)).toNorm.norm A ≤ s := by -- --- PROOF ---
   -- the norm is the operator norm of the Euclidean map, so bound it on each vector

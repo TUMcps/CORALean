@@ -47,7 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `absorbRounding`'s generator count, stated through the projection because
 that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_absorbRounding {Z : Zonotope (Vec 𝕋 n)} (f : Fin (Z.h + n) → ℝ) :
+private theorem Zonotope.aux_sum_univ_absorbRounding {Z : Zonotope (Vec 𝕋 n)}
+    (f : Fin (Z.h + n) → ℝ) :
     ∑ l : Fin Z.absorbRounding.h, f l
       = ∑ l, f (Fin.castAdd n l) + ∑ l, f (Fin.natAdd Z.h l) :=
   Fin.sum_univ_add f

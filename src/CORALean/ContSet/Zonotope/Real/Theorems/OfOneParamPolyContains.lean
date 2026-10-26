@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- The even powers among `1, …, N` are `2l` for `l = 1, …, ⌊N/2⌋`. -/
-theorem aux_sum_range_even (f : ℕ → α) (N : ℕ) : -- --- CONCL ---
+private theorem aux_sum_range_even (f : ℕ → α) (N : ℕ) : -- --- CONCL ---
     ∑ k ∈ Finset.range N, (if Even (k + 1) then f (k + 1) else 0) =
       ∑ l ∈ Finset.Icc 1 (N / 2), f (2 * l) := by -- --- PROOF ---
   induction N with
@@ -72,7 +72,7 @@ theorem aux_sum_range_even (f : ℕ → α) (N : ℕ) : -- --- CONCL ---
         · exact absurd ⟨t + 1, by omega⟩ h]
 
 /-- One power: `βᵏ v = (coefficient) • (generator) + (its share of the center)`. -/
-theorem aux_pow_smul_split (v : α) (β : ℝ) (k : ℕ) : -- --- CONCL ---
+private theorem aux_pow_smul_split (v : α) (β : ℝ) (k : ℕ) : -- --- CONCL ---
     β ^ k • v = (if Odd k then β ^ k else 2 * β ^ k - 1) •
         (if Odd k then v else (1 / 2 : ℝ) • v) +
       (if Even k then (1 / 2 : ℝ) • v else 0) := by -- --- PROOF ---

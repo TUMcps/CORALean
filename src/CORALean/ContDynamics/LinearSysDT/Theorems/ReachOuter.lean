@@ -49,8 +49,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] in
 /-- A total run restricted to its first `K` steps: nothing past step `K` is
 used, so nothing past it needs to hold. -/
-theorem LinearSysDT.IsCanonicalTrajectory.aux_toTrajectoryOn {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
-    {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (K : ℕ) :
+private theorem LinearSysDT.IsCanonicalTrajectory.aux_toTrajectoryOn {sys : LinearSysDT 𝕋 n}
+    {R₀ U : S n} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (K : ℕ) :
     sys.IsCanonicalTrajectoryOn R₀ U K x u where
   init := traj.init
   input k _ := traj.input k

@@ -53,46 +53,48 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The minuend, four generators in `ℝ³`. -/
-def aux_Am : Zonotope (Vec ℝ 3) := ⟨4, 0, ![![0, 1, -1], ![0, 1, 1], ![2, 0, -1], ![2, 0, 1]]⟩
+private def aux_Am : Zonotope (Vec ℝ 3) :=
+    ⟨4, 0, ![![0, 1, -1], ![0, 1, 1], ![2, 0, -1], ![2, 0, 1]]⟩
 
 /-- The subtrahend, a segment along the third axis. -/
-noncomputable def aux_As : Zonotope (Vec ℝ 3) := ⟨1, 0, ![![0, 0, 1 / 2]]⟩
+private noncomputable def aux_As : Zonotope (Vec ℝ 3) := ⟨1, 0, ![![0, 0, 1 / 2]]⟩
 
 /-- The six normals `polytope.m` builds, in `combinator`'s order. -/
-noncomputable def aux_AC : Mat ℝ 6 3 :=
+private noncomputable def aux_AC : Mat ℝ 6 3 :=
   !![1, 0, 0; -1/3, -2/3, -2/3; 1/3, -2/3, -2/3; -1/3, 2/3, -2/3; 1/3, 2/3, -2/3; 0, -1, 0]
 
 /-- The pairs of generators behind them. -/
-def aux_AS : Fin 6 → Fin 2 → Fin 4 := ![![0, 1], ![0, 2], ![0, 3], ![1, 2], ![1, 3], ![2, 3]]
+private def aux_AS : Fin 6 → Fin 2 → Fin 4 :=
+    ![![0, 1], ![0, 2], ![0, 3], ![1, 2], ![1, 3], ![2, 3]]
 
 /-- `|C G|`. -/
-noncomputable def aux_AA : Mat ℝ 6 4 :=
+private noncomputable def aux_AA : Mat ℝ 6 4 :=
   !![0, 0, 2, 2; 0, 4/3, 0, 4/3; 0, 4/3, 4/3, 0; 4/3, 0, 0, 4/3; 4/3, 0, 4/3, 0; 1, 1, 0, 0]
 
 /-- `(|C G|ᵀ |C G|)⁻¹`. -/
-noncomputable def aux_AMinv : Mat ℝ 4 4 :=
+private noncomputable def aux_AMinv : Mat ℝ 4 4 :=
   !![469/1856, -53/1856, -1/29, -1/29; -53/1856, 469/1856, -1/29, -1/29;
     -1/29, -1/29, 361/1856, -161/1856; -1/29, -1/29, -161/1856, 361/1856]
 
 /-- Each pair is listed in increasing order. -/
-theorem aux_S_strictMono (i : Fin 6) : StrictMono (aux_AS i) := by
+private theorem aux_S_strictMono (i : Fin 6) : StrictMono (aux_AS i) := by
   rw [Fin.strictMono_iff_lt_succ]
   intro j
   fin_cases i <;> fin_cases j <;> simp [aux_AS, Fin.lt_def]
 
 /-- No pair twice, so the six are all of `combinator(4, 2, 'c')`. -/
-theorem aux_S_injective : Function.Injective aux_AS := by
+private theorem aux_S_injective : Function.Injective aux_AS := by
   intro a b h
   have h0 := congrFun h 0
   have h1 := congrFun h 1
   fin_cases a <;> fin_cases b <;> simp_all [aux_AS]
 
 /-- The cross products behind them, unnormalised. -/
-noncomputable def aux_AV : Fin 6 → Vec ℝ 3 :=
+private noncomputable def aux_AV : Fin 6 → Vec ℝ 3 :=
   ![![2, 0, 0], ![-1, -2, -2], ![1, -2, -2], ![-1, 2, -2], ![1, 2, -2], ![0, -4, 0]]
 
 /-- `ndimCross` at each pair. -/
-theorem aux_facetNormal_eq (i : Fin 6) : -- --- CONCL ---
+private theorem aux_facetNormal_eq (i : Fin 6) : -- --- CONCL ---
     aux_Am.facetNormal (aux_AS i) = aux_AV i := by -- --- PROOF ---
   have h21 : Fin.succAbove (2 : Fin 3) 1 = 1 := rfl
   ext k
@@ -101,7 +103,7 @@ theorem aux_facetNormal_eq (i : Fin 6) : -- --- CONCL ---
     norm_num
 
 /-- The rows of `C` are those cross products over their Euclidean lengths `2, 3, 3, 3, 3, 4`. -/
-theorem aux_C_eq (i : Fin 6) :
+private theorem aux_C_eq (i : Fin 6) :
     aux_AC i = (√(aux_Am.facetNormal (aux_AS i) ⬝ᵥ aux_Am.facetNormal (aux_AS i)))⁻¹
       • aux_Am.facetNormal (aux_AS i) := by
   rw [aux_facetNormal_eq]
@@ -110,33 +112,34 @@ theorem aux_C_eq (i : Fin 6) :
     simp [aux_AC, aux_AV, dotProduct, Fin.sum_univ_three] <;> norm_num
 
 /-- `A_abs = |C G|`. -/
-theorem aux_A_eq : (Matrix.of fun i j => |aux_AC i ⬝ᵥ aux_Am.G j| : Mat ℝ 6 4) = aux_AA := by
+private theorem aux_A_eq : (Matrix.of fun i j => |aux_AC i ⬝ᵥ aux_Am.G j| : Mat ℝ 6 4) = aux_AA :=
+    by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [aux_AC, aux_Am, aux_AA, dotProduct, Fin.sum_univ_three]
     <;> norm_num [abs_of_nonneg, abs_of_nonpos]
 
 /-- The Gram matrix of `|C G|` is invertible, so `pinv` is `(AᵀA)⁻¹Aᵀ`. -/
-theorem aux_inv : (aux_AAᵀ * aux_AA)⁻¹ = aux_AMinv := by
+private theorem aux_inv : (aux_AAᵀ * aux_AA)⁻¹ = aux_AMinv := by
   refine Matrix.inv_eq_left_inv ?_
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [aux_AA, aux_AMinv, Matrix.mul_apply, Fin.sum_univ_succ] <;> norm_num
 
 /-- A sum over the minuend's generators, at `Fin 4`. -/
-theorem aux_sum_univ_Zm {M : Type} [AddCommMonoid M] (f : Fin aux_Am.h → M) :
+private theorem aux_sum_univ_Zm {M : Type} [AddCommMonoid M] (f : Fin aux_Am.h → M) :
     ∑ j, f j = f (0 : Fin 4) + f (1 : Fin 4) + f (2 : Fin 4) + f (3 : Fin 4) :=
   Fin.sum_univ_four f
 
 /-- A sum over the subtrahend's generator, at `Fin 1`. -/
-theorem aux_sum_univ_Zs {M : Type} [AddCommMonoid M] (f : Fin aux_As.h → M) :
+private theorem aux_sum_univ_Zs {M : Type} [AddCommMonoid M] (f : Fin aux_As.h → M) :
     ∑ j, f j = f (0 : Fin 1) :=
   Fin.sum_univ_one f
 
 /-- `Δd`. -/
-noncomputable def aux_Add : Vec ℝ 6 := ![4, 7/3, 7/3, 7/3, 7/3, 2]
+private noncomputable def aux_Add : Vec ℝ 6 := ![4, 7/3, 7/3, 7/3, 7/3, 2]
 
 /-- `delta_d = d - C c⁽ᵐ⁾ + C c⁽ˢ⁾`, the centers being `0`. -/
-theorem aux_dd_eq :
+private theorem aux_dd_eq :
     (fun i => aux_AC i ⬝ᵥ aux_Am.c + ∑ j : Fin 4, |aux_AC i ⬝ᵥ aux_Am.G j|
       - (aux_AC i ⬝ᵥ aux_As.c + ∑ k : Fin 1, |aux_AC i ⬝ᵥ aux_As.G k|)
       - aux_AC i ⬝ᵥ aux_Am.c + aux_AC i ⬝ᵥ aux_As.c : Vec ℝ 6) = aux_Add := by
@@ -146,7 +149,7 @@ theorem aux_dd_eq :
     norm_num [abs_of_nonneg, abs_of_nonpos]
 
 /-- The least-squares solution. -/
-theorem aux_alpha_eq :
+private theorem aux_alpha_eq :
     (aux_AAᵀ * aux_AA)⁻¹ *ᵥ (aux_AAᵀ *ᵥ aux_Add) = ![25/29, 25/29, 28/29, 28/29] := by
   rw [aux_inv]
   ext i
@@ -154,7 +157,7 @@ theorem aux_alpha_eq :
     norm_num
 
 /-- CORA's `α`: `pinv(|C G|) Δd = (25/29, 25/29, 28/29, 28/29)`. -/
-theorem aux_minkDiffApprox : -- --- CONCL ---
+private theorem aux_minkDiffApprox : -- --- CONCL ---
     aux_Am.minkDiffApprox aux_As aux_AC
       = aux_Am.minkDiffStretch aux_As ![25/29, 25/29, 28/29, 28/29] := by -- --- PROOF ---
   -- the matrix and the right-hand side, at `Fin 4` rather than `Fin aux_Am.h`

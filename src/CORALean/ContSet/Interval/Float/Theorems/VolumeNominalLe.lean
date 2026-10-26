@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_prod_le_prodUp : -- --- CONCL ---
+private theorem aux_prod_le_prodUp : -- --- CONCL ---
     ∀ {k : ℕ} (f : Fin k → 𝕋), (∀ i, 0 ≤ toReal (f i)) →
     ∏ i, toReal (f i) ≤ toReal (prodUp f) := by -- --- PROOF ---
   intro k
@@ -57,12 +57,12 @@ theorem aux_prod_le_prodUp : -- --- CONCL ---
     have h₁ := ih (fun i => f i.succ) (fun i => hf i.succ)
     exact le_trans (mul_le_mul_of_nonneg_left h₁ (hf 0)) (mul_le_mulUp _ _)
 
-theorem Interval.aux_widthUp_nonneg (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+private theorem Interval.aux_widthUp_nonneg (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     0 ≤ toReal (I.aux_widthUp i) := by
   rw [Interval.aux_widthUp, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
-theorem Interval.aux_widthUp_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+private theorem Interval.aux_widthUp_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     toReal (I.sup i) - toReal (I.inf i) ≤ toReal (I.aux_widthUp i) := by
   rw [Interval.aux_widthUp, toReal_maximum]
   exact le_trans (sub_le_subUp _ _) (le_max_right _ _)

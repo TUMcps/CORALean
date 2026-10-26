@@ -63,7 +63,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Line 8 in closed form: `d_k = ℓ ∘ e^{AΔt k}`. -/
-theorem aux_supportLower_d (sys : LinearSys 𝕋 n) (Δt : ℝ)
+private theorem aux_supportLower_d (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
     (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).d
@@ -77,7 +77,7 @@ theorem aux_supportLower_d (sys : LinearSys 𝕋 n) (Δt : ℝ)
     rw [ih, pow_succ, Matrix.mulVecLin_mul, LinearMap.comp_assoc]
 
 /-- Line 9 in closed form: `P_u(t_k) = ∑_{j<k} e^{AΔt j} T ũ`. -/
-theorem aux_supportLower_Pu (sys : LinearSys 𝕋 n) (Δt : ℝ)
+private theorem aux_supportLower_Pu (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
     (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).Pu
@@ -94,13 +94,14 @@ theorem aux_supportLower_Pu (sys : LinearSys 𝕋 n) (Δt : ℝ)
     rw [mulVec_mulVec, pow_succ']
 
 /-- The direction `ℓ` pulled back through `j` steps and the input integral, `d_j` of line 14. -/
-noncomputable def aux_supportDir (sys : LinearSys 𝕋 n) (Δt : ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (j : ℕ) :
+private noncomputable def aux_supportDir (sys : LinearSys 𝕋 n) (Δt : ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
+    (j : ℕ) :
     Vec ℝ n →ₗ[ℝ] ℝ :=
   (ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))).comp
     (mulVecLin (MatExp.expIntegral (toRealMat sys.A) Δt))
 
 /-- Line 14 in closed form: `ρ(P̌_U(t_k), ℓ) = ∑_{j<k} ρ(T U₀, d_j)`. -/
-theorem aux_supportLower_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ)
+private theorem aux_supportLower_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
     (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρP
@@ -122,7 +123,7 @@ theorem aux_supportLower_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ)
     rfl
 
 /-- Lines 10 and 15 at any step, the first step included. -/
-theorem aux_supportLower_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ)
+private theorem aux_supportLower_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ)
     (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρR

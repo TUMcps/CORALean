@@ -46,7 +46,7 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `PolyZonotope.shift` is exactly the translate. -/
-theorem PolyZonotope.aux_shift_exact (pZ : PolyZonotope α) (v : α) : -- --- CONCL ---
+private theorem PolyZonotope.aux_shift_exact (pZ : PolyZonotope α) (v : α) : -- --- CONCL ---
     (fun x => x + v) '' pZ.construct = (pZ.shift v).construct := by -- --- PROOF ---
   have key : ∀ (a : Fin pZ.p → ℝ) (b : Fin pZ.q → ℝ),
       pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, b j • pZ.GI j + v =

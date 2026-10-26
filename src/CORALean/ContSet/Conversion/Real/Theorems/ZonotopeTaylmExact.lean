@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_taylm_poly {m : ℕ} (Z : Zonotope (Vec ℝ m)) (N : ℕ) (i : Fin m)
+private theorem Zonotope.aux_taylm_poly {m : ℕ} (Z : Zonotope (Vec ℝ m)) (N : ℕ) (i : Fin m)
     (t : Vec ℝ Z.h) : (Z.taylm N i).poly t = Z.c i + ∑ j, t j * Z.G j i := by
   simp only [Zonotope.taylm, Taylm.poly, Taylm.polyOf_cons, Taylm.polyOf_ofFn,
     Taylm.monomial_zero, Taylm.monomial_single, mul_one]

@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A float vector read as reals is in its point box. -/
-theorem aux_mem_point {m : ℕ} (b : Vec 𝕋 m) :
+private theorem aux_mem_point {m : ℕ} (b : Vec 𝕋 m) :
     toRealVec b ∈ (⟨b, b⟩ : Interval (Vec 𝕋 m)).construct :=
   fun _ => ⟨le_rfl, le_rfl⟩
 

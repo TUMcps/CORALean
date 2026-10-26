@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [Module ℝ α] in
-theorem VPolytope.aux_range_plus (P₁ P₂ : VPolytope α) : -- --- CONCL ---
+private theorem VPolytope.aux_range_plus (P₁ P₂ : VPolytope α) : -- --- CONCL ---
     Set.range (P₁.plus P₂).V = Set.range P₁.V + Set.range P₂.V := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨l, rfl⟩

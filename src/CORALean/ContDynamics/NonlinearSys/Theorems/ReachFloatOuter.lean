@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `k` successful steps return `k` sets, and every run of `sys` on `[0, kΔt]` from
 `R` under inputs in `U` is, at every time of step `j`, in the `j`-th of them: the
 re-linearization loop at its own `linPointFloat`. -/
-theorem NonlinearSys.FloatModel.Encloses.aux_relinRunFloat_outer
+private theorem NonlinearSys.FloatModel.Encloses.aux_relinRunFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} :
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},

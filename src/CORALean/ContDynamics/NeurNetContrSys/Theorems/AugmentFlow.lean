@@ -63,7 +63,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- `augment`'s field at `[x; a]` under the external input `e` is the plant's,
 `A x + B_nn a + B_ext e + c`, over a zero input part. -/
-theorem NeurNetContrSys.aux_augment_mulVec_append (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
+private theorem NeurNetContrSys.aux_augment_mulVec_append
+    (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
     (x : Vec ℝ n) (a : Vec ℝ sys.m) (e : Vec ℝ sys.nExt) : -- --- CONCL ---
     sys.augment.A *ᵥ (Fin.append x a : Vec ℝ (n + sys.m)) + (sys.augment.B *ᵥ e + sys.augment.c) =
       Fin.append (toRealMat sys.plant.A *ᵥ x + leftCols sys.hm (toRealMat sys.plant.B) *ᵥ a +

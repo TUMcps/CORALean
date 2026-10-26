@@ -135,7 +135,7 @@ def HPolytope.aux_boxZeroRow : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
-theorem HPolytope.aux_boxZeroRow_construct : -- --- CONCL ---
+private theorem HPolytope.aux_boxZeroRow_construct : -- --- CONCL ---
     HPolytope.aux_boxZeroRow.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
@@ -145,7 +145,7 @@ theorem HPolytope.aux_boxZeroRow_construct : -- --- CONCL ---
   norm_num at h4
 
 -- a nonnegative offset gives an update `≥ 0` for `ub`
-theorem HPolytope.aux_rowUpper_nonneg (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ) (j : Fin 2)
+private theorem HPolytope.aux_rowUpper_nonneg (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ) (j : Fin 2)
     (hc : 0 ≤ c) : 0 ≤ HPolytope.rowUpperCora f c j := by
   unfold HPolytope.rowUpperCora
   split_ifs
@@ -153,7 +153,7 @@ theorem HPolytope.aux_rowUpper_nonneg (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c :
   · exact le_top
 
 -- a nonnegative offset gives an update `≤ 0` for `lb`
-theorem HPolytope.aux_rowLower_nonpos (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ) (j : Fin 2)
+private theorem HPolytope.aux_rowLower_nonpos (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ) (j : Fin 2)
     (hc : 0 ≤ c) : HPolytope.rowLowerCora f c j ≤ 0 := by
   unfold HPolytope.rowLowerCora
   split_ifs
@@ -161,20 +161,20 @@ theorem HPolytope.aux_rowLower_nonpos (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c :
   · exact bot_le
 
 -- the zero row changes neither bound
-theorem HPolytope.aux_rowUpper_zero (c : ℝ) (j : Fin 2) :
+private theorem HPolytope.aux_rowUpper_zero (c : ℝ) (j : Fin 2) :
     HPolytope.rowUpperCora (0 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) c j = ⊤ := by
   unfold HPolytope.rowUpperCora
   rw [if_neg]
   simp
 
-theorem HPolytope.aux_rowLower_zero (c : ℝ) (j : Fin 2) :
+private theorem HPolytope.aux_rowLower_zero (c : ℝ) (j : Fin 2) :
     HPolytope.rowLowerCora (0 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) c j = ⊥ := by
   unfold HPolytope.rowLowerCora
   rw [if_neg]
   simp
 
 /-- A row with one possibly nonzero coordinate `k` has no two nonzero entries. -/
-theorem HPolytope.aux_not_flagged (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (k : Fin 2)
+private theorem HPolytope.aux_not_flagged (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (k : Fin 2)
     (hf : ∀ i, f (Pi.single i 1) ≠ 0 → i = k) :
     ¬ ∃ i j, i ≠ j ∧ f (Pi.single i 1) ≠ 0 ∧ f (Pi.single j 1) ≠ 0 := by
   rintro ⟨i, j, hij, hi, hj⟩

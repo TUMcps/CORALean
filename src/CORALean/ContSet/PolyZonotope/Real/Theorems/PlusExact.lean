@@ -55,7 +55,7 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope α}
+private theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope α}
     (f : Fin (pZ₁.h + pZ₂.h) → α) :
     ∑ i : Fin (pZ₁.plus pZ₂).h, f i
       = ∑ i, f (Fin.castAdd pZ₂.h i) + ∑ i, f (Fin.natAdd pZ₁.h i) :=
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_sum_univ_plus_h {pZ₁ pZ₂ : PolyZonotope α}
 
 omit [Module ℝ α] in
 /-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope α}
+private theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope α}
     (f : Fin (pZ₁.q + pZ₂.q) → α) :
     ∑ j : Fin (pZ₁.plus pZ₂).q, f j
       = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=

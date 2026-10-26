@@ -55,7 +55,7 @@ variable {N F₁ F₂ : ℕ}
 
 /-- The padded pair at a joint factor vector, read back as the product each set
 contributes at its own half of it. -/
-theorem GNN.aux_gcnUncertain_apply (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
+private theorem GNN.aux_gcnUncertain_apply (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
     (H : PolyZonotope (Mat ℝ N F₁)) (a : Fin (P.p + H.p) → ℝ) : -- --- CONCL ---
     (P.padBack H.p).point a
         * (H.padFront P.p).point (fun k => a (Fin.cast (rfl : (P.p + H.p) = (P.p + H.p)) k)) * W

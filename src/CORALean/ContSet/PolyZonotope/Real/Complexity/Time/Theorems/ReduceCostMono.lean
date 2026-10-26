@@ -45,7 +45,8 @@ namespace CORALean.Real
 
 /-- Monotone in both generator counts, so a bound on the operand's size gives a
 bound on the cost. -/
-theorem PolyZonotope.aux_compactCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h') (hq : q ≤ q') :
+private theorem PolyZonotope.aux_compactCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h')
+    (hq : q ≤ q') :
     PolyZonotope.aux_compactCost n p h q ≤ PolyZonotope.aux_compactCost n p h' q' := by
   cost_mono [PolyZonotope.aux_compactCost]
 

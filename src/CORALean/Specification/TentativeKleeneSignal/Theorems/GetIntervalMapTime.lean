@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The times left of a float interval, read as reals, are those left of the interval it denotes. -/
-theorem STLInterval.aux_toLeft_toRealInterval (I : STLInterval 𝕋) : -- --- CONCL ---
+private theorem STLInterval.aux_toLeft_toRealInterval (I : STLInterval 𝕋) : -- --- CONCL ---
     I.toLeft.map STLInterval.toRealInterval = I.toRealInterval.toLeft := by -- --- PROOF ---
   cases I with
   | empty => rfl
@@ -59,7 +59,7 @@ theorem STLInterval.aux_toLeft_toRealInterval (I : STLInterval 𝕋) : -- --- CO
 
 /-- The times right of a float interval, read as reals, are those right of the interval it
 denotes. -/
-theorem STLInterval.aux_toRight_toRealInterval (I : STLInterval 𝕋) : -- --- CONCL ---
+private theorem STLInterval.aux_toRight_toRealInterval (I : STLInterval 𝕋) : -- --- CONCL ---
     I.toRight.map STLInterval.toRealInterval = I.toRealInterval.toRight := by -- --- PROOF ---
   rcases I with _ | ⟨l, _ | u, lc, rc, _, _, _⟩
   · rfl

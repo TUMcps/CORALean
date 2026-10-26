@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored zero matrix is the point `0`. -/
-theorem aux_zero_mem_point :
+private theorem aux_zero_mem_point :
     (0 : Mat ℝ n n) ∈ (Interval.point (α := Mat 𝕋 n n) fun _ _ => zero).construct := by
   have h : toRealMat (fun _ _ => zero : Mat 𝕋 n n) = 0 := by
     funext i j; simp [toRealMat, toReal_zero]

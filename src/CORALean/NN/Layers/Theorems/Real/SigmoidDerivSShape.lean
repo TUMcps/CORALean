@@ -37,24 +37,24 @@ namespace CORALean.Real
 
 -- file-local: only `sigmoidDeriv_sShape` below needs these
 /-- The denominator `2 + 2 cosh t` of the logistic derivative. -/
-noncomputable def aux_derivDenom (t : ℝ) : ℝ := 2 + 2 * Real.cosh t
+private noncomputable def aux_derivDenom (t : ℝ) : ℝ := 2 + 2 * Real.cosh t
 
-theorem aux_derivDenom_pos (t : ℝ) : 0 < aux_derivDenom t := by
+private theorem aux_derivDenom_pos (t : ℝ) : 0 < aux_derivDenom t := by
   unfold aux_derivDenom
   positivity
 
-theorem aux_derivDenom_neg (t : ℝ) : aux_derivDenom (-t) = aux_derivDenom t := by
+private theorem aux_derivDenom_neg (t : ℝ) : aux_derivDenom (-t) = aux_derivDenom t := by
   unfold aux_derivDenom
   rw [Real.cosh_neg]
 
-theorem aux_derivDenom_mono {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
+private theorem aux_derivDenom_mono {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     aux_derivDenom s ≤ aux_derivDenom t := by
   have hc : Real.cosh s ≤ Real.cosh t :=
     Real.cosh_le_cosh.mpr (by rw [abs_of_nonneg hs, abs_of_nonneg (hs.trans hst)]; exact hst)
   unfold aux_derivDenom
   linarith
 
-theorem aux_sigmoidDeriv_eq (t : ℝ) : -- --- CONCL ---
+private theorem aux_sigmoidDeriv_eq (t : ℝ) : -- --- CONCL ---
     sigmoidDeriv t = (aux_derivDenom t)⁻¹ := by -- --- PROOF ---
   show (1 + Real.exp (-t))⁻¹ * (1 + Real.exp (-(-t)))⁻¹ = _
   rw [neg_neg, ← mul_inv, aux_derivDenom, Real.cosh_eq]

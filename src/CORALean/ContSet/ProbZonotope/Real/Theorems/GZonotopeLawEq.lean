@@ -47,7 +47,7 @@ variable {n q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `⟨c + Gβ, t⟩ = cᵀt + ⟨β, Gᵀt⟩`. -/
-theorem aux_inner_affine (c : Vec ℝ n) (G : Mat ℝ n q) (β : EuclideanSpace ℝ (Fin q))
+private theorem aux_inner_affine (c : Vec ℝ n) (G : Mat ℝ n q) (β : EuclideanSpace ℝ (Fin q))
     (t : EuclideanSpace ℝ (Fin n)) :
     ⟪toLp 2 (c + G *ᵥ ofLp β), t⟫ = c ⬝ᵥ ofLp t + ⟪β, toLp 2 (Gᵀ *ᵥ ofLp t)⟫ := by
   simp only [EuclideanSpace.inner_eq_star_dotProduct, star_trivial]

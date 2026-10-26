@@ -60,7 +60,7 @@ variable {m : ℕ}
 
 /-- Splitting the threshold sum at `k`: the coordinates from `k` on are coordinate `k` and
 those from `k + 1` on. -/
-theorem aux_sum_ite_succ (L : Fin m → ℝ) (k : ℕ) (hk : k < m) : -- --- CONCL ---
+private theorem aux_sum_ite_succ (L : Fin m → ℝ) (k : ℕ) (hk : k < m) : -- --- CONCL ---
     ∑ j : Fin m, (if k ≤ j.val then L j else 0)
       = (∑ j : Fin m, if k + 1 ≤ j.val then L j else 0) + L ⟨k, hk⟩ := by -- --- PROOF ---
   have h : ∀ j : Fin m, (if k ≤ j.val then L j else 0)

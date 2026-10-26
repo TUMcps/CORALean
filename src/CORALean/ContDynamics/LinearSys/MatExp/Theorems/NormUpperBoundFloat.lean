@@ -44,12 +44,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_normUpperBound_nonneg (A : Interval (Mat 𝕋 n n)) :
+private theorem aux_normUpperBound_nonneg (A : Interval (Mat 𝕋 n n)) :
     0 ≤ toReal (MatExp.normUpperBound A) := by
   rw [MatExp.normUpperBound, toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
-theorem aux_row_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (i : Fin n) : -- --- CONCL ---
+private theorem aux_row_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (i : Fin n) : -- --- CONCL ---
     (∑ j, A.nominal.absMax i j) ≤ toReal (MatExp.normUpperBound A) := by -- --- PROOF ---
   set d : Mat 𝕋 n n := fun i j => maximum (absolute (A.inf i j)) (absolute (A.sup i j)) with hd
   have heq : ∀ j, |toReal (d i j)| = A.nominal.absMax i j := fun j => by

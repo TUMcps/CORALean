@@ -51,14 +51,14 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- ℝ-only, the weights being exact: a sum of absolute values. -/
-theorem aux_mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) :
+private theorem aux_mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) :
     0 ≤ mergeRowWeight W i :=
   Finset.sum_nonneg fun k _ => abs_nonneg (W i k)
 
 
 /-- A row's share of a budget scaled by the sum of every row's weight, plus one,
 never exceeds the budget itself. -/
-theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε) : -- --- CONCL ---
+private theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε) : -- --- CONCL ---
     w * (2 * (ε / (2 * (1 + S)))) ≤ ε := by -- --- PROOF ---
   have hD : (0:ℝ) < 1 + S := by linarith
   have hDne : (1 + S) ≠ 0 := hD.ne'

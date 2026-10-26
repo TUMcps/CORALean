@@ -44,7 +44,8 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n) (hr : E.rank < n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n)
+    (hr : E.rank < n) : -- --- CONCL ---
     E.Q.det = 0 := by -- --- PROOF ---
   by_contra hdet
   have hu : IsUnit E.Q := (Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hdet)

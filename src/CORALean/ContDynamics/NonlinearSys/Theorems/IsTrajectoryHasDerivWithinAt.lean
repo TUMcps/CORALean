@@ -60,7 +60,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The integral equation on `[a, b] ∋ 0`, its integrand continuous there, gives the derivative
 within `[a, b]` at every point. -/
-theorem aux_hasDerivWithinAt_of_eq_add_integral {a b : ℝ} {x g : ℝ → Vec ℝ n}
+private theorem aux_hasDerivWithinAt_of_eq_add_integral {a b : ℝ} {x g : ℝ → Vec ℝ n}
     (h0 : (0:ℝ) ∈ Set.Icc a b) (hg : ContinuousOn g (Set.Icc a b))
     (hx : ∀ t ∈ Set.Icc a b, x t = x 0 + ∫ s in (0:ℝ)..t, g s) {t : ℝ}
     (ht : t ∈ Set.Icc a b) : -- --- CONCL ---

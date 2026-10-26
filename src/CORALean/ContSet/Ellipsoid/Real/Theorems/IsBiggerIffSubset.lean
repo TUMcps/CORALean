@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_quad_eq_norm_sq (E : Ellipsoid n) (v : Vec ℝ n) :
+private theorem Ellipsoid.aux_quad_eq_norm_sq (E : Ellipsoid n) (v : Vec ℝ n) :
     v ⬝ᵥ (E.Q *ᵥ v) = ‖E.Gᵀ *ᵥ v‖₂ ^ 2 := by
   rw [← dotProduct_self, Ellipsoid.dot_transpose, ← E.G_mul_transpose, ← Matrix.mulVec_mulVec]
 

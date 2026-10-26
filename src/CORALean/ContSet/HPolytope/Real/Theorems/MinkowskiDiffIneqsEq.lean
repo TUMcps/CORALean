@@ -53,7 +53,7 @@ variable {q n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A real number below `b - ρ` in the extended reals: `ρ` below `b - a`, read on the reals. -/
-theorem aux_coe_le_sub_iff (a b : ℝ) (ρ : EReal) : -- --- CONCL ---
+private theorem aux_coe_le_sub_iff (a b : ℝ) (ρ : EReal) : -- --- CONCL ---
     (a : EReal) ≤ (b : EReal) - ρ ↔ ρ ≤ ((b - a : ℝ) : EReal) := by -- --- PROOF ---
   induction ρ using EReal.rec with
   | bot => simp

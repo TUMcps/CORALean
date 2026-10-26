@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The constraint the enclosure is built to keep, and a fact a specification may use directly. -/
-theorem aux_softmax_sum_eq_one (x : Vec ℝ n) (i : Fin n) : ∑ j, softmax x j = 1 := by
+private theorem aux_softmax_sum_eq_one (x : Vec ℝ n) (i : Fin n) : ∑ j, softmax x j = 1 := by
   show ∑ j, Real.exp (x j) / (∑ k, Real.exp (x k)) = 1
   rw [← Finset.sum_div]
   exact div_self (ne_of_gt (exp_sum_pos x i))

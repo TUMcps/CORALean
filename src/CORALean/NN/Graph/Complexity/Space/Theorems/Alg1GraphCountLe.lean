@@ -68,7 +68,7 @@ section
 variable {N : ℕ}
 
 /-- With a first set free of independent generators, the chain's set is too. -/
-theorem GNN.aux_gcnActSteps_q (L : ℕ) : -- --- CONCL ---
+private theorem GNN.aux_gcnActSteps_q (L : ℕ) : -- --- CONCL ---
     ∀ (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
       (P : PolyZonotope (Mat ℝ N N)) (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p),
       H.q = 0 → (GNN.gcnActSteps L c W acts P H hp).q = 0 := by -- --- PROOF ---
@@ -85,11 +85,11 @@ section
 variable {N F : ℕ}
 
 /-- The `h` count of `sumPool`'s result. -/
-theorem GNN.aux_sumPool_h (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).h = pZ.h := rfl
+private theorem GNN.aux_sumPool_h (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).h = pZ.h := rfl
 
 
 /-- The `q` count of `sumPool`'s result. -/
-theorem GNN.aux_sumPool_q (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).q = pZ.q := rfl
+private theorem GNN.aux_sumPool_q (pZ : PolyZonotope (Mat ℝ N F)) : (GNN.sumPool pZ).q = pZ.q := rfl
 
 end
 

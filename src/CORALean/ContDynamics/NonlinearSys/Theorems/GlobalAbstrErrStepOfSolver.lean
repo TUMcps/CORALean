@@ -74,7 +74,7 @@ variable {n : ℕ}
 
 /-- Two points of a bounded `S` never differ, at any one coordinate, by more
 than `S`'s own box diameter there. -/
-theorem aux_abs_sub_le_boxDiameter {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
+private theorem aux_abs_sub_le_boxDiameter {S : Set (Vec ℝ n)} (hS : Bornology.IsBounded S)
     {x y : Vec ℝ n} (hx : x ∈ S) (hy : y ∈ S) (i : Fin n) : -- --- CONCL ---
     |x i - y i| ≤ boxDiameter S i := by -- --- PROOF ---
   rw [abs_sub_le_iff]
@@ -96,8 +96,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 /-- Applying `M` scales a box diameter by at most `M`'s own operator norm. -/
-theorem aux_boxDiameter_mulVec_image_le {M : Mat ℝ n n} {S : Set (Vec ℝ n)} (hne : S.Nonempty)
-    (hS : Bornology.IsBounded S) : -- --- CONCL ---
+private theorem aux_boxDiameter_mulVec_image_le {M : Mat ℝ n n} {S : Set (Vec ℝ n)}
+    (hne : S.Nonempty) (hS : Bornology.IsBounded S) : -- --- CONCL ---
     ‖boxDiameter ((M *ᵥ ·) '' S)‖ ≤ ‖M‖ * ‖boxDiameter S‖ := by -- --- PROOF ---
   -- bound the widest column-`i` gap between two points of `S`, then sandwich `sSup`/`sInf`
   have hcoord : ∀ i : Fin n, boxDiameter ((M *ᵥ ·) '' S) i ≤ ‖M‖ * ‖boxDiameter S‖ := by
@@ -159,7 +159,7 @@ end
 
 
 /-- A Minkowski sum's box diameter is at most the sum of its summands' own. -/
-theorem aux_boxDiameter_add_le {X Y : Set (Vec ℝ n)} (hXne : X.Nonempty) (hYne : Y.Nonempty)
+private theorem aux_boxDiameter_add_le {X Y : Set (Vec ℝ n)} (hXne : X.Nonempty) (hYne : Y.Nonempty)
     (hX : Bornology.IsBounded X) (hY : Bornology.IsBounded Y) : -- --- CONCL ---
     ‖boxDiameter (X + Y)‖ ≤ ‖boxDiameter X‖ + ‖boxDiameter Y‖ := by -- --- PROOF ---
   have hne : (X + Y).Nonempty := hXne.add hYne
@@ -212,7 +212,7 @@ theorem aux_boxDiameter_add_le {X Y : Set (Vec ℝ n)} (hXne : X.Nonempty) (hYne
 
 /-- `R` stays `R̂`'s own run widened by an explicit, well-behaved error set: (B.1)-(B.2)'s
 content once the shared `P k` reassociates away, tracked forward instead of read off `⊖`. -/
-theorem aux_exists_solverError {A : Mat ℝ n n} {Δt : ℝ} {N : ℕ}
+private theorem aux_exists_solverError {A : Mat ℝ n n} {Δt : ℝ} {N : ℕ}
     {R Rhat Rabs P : ℕ → Set (Vec ℝ n)} (hR0 : R 0 = Rhat 0)
     (hB1 : ∀ k < N, R (k + 1) = (exp (Δt • A)).mulVec '' R k + P k + Rabs k)
     (hB2 : ∀ k < N, Rhat (k + 1) = (exp (Δt • A)).mulVec '' Rhat k + P k)

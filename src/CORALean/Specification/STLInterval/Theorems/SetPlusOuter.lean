@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 
 omit [ExactLe 𝕋] in
 /-- The sum of two upper bounds, rounded up, is at least the sum of the extended reals. -/
-theorem aux_toEReal_addUpTop_ge (u₁ u₂ : WithTop 𝕋) : -- --- CONCL ---
+private theorem aux_toEReal_addUpTop_ge (u₁ u₂ : WithTop 𝕋) : -- --- CONCL ---
     STLInterval.toEReal u₁ + STLInterval.toEReal u₂ ≤
       STLInterval.toEReal (STLInterval.addUpTop u₁ u₂) := by -- --- PROOF ---
   cases u₁ <;> cases u₂

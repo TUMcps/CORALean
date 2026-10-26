@@ -77,7 +77,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Line 8 in closed form: `d_k = ℓ ∘ e^{AΔt k}`. -/
-theorem aux_supportUpper_d (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
+private theorem aux_supportUpper_d (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).d
       = ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ k)) := by -- --- PROOF ---
@@ -90,7 +90,7 @@ theorem aux_supportUpper_d (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀
     rw [ih, pow_succ, Matrix.mulVecLin_mul, LinearMap.comp_assoc]
 
 /-- Line 9 in closed form: `P_u(t_k) = Γ(t_k) ũ`, `Γ(t) = ∫₀ᵗ e^{Aσ}dσ`. -/
-theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
+private theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
     (X₀ U : S n) (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).Pu
       = MatExp.expIntegral (toRealMat sys.A) ((k : ℝ) * Δt)
@@ -107,7 +107,7 @@ theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ �
       (mul_nonneg k.cast_nonneg hΔt) hΔt]
 
 /-- Line 11 in closed form: `ρ(P̂_U(t_k), ℓ) = ∑_{j<k} ρ(P̂_U(Δt), d_j)`. -/
-theorem aux_supportUpper_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
+private theorem aux_supportUpper_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).ρP
       = ∑ j ∈ Finset.range k, ρ (sys.inputSolution Δt η (Recenter.recenter U))
@@ -121,7 +121,7 @@ theorem aux_supportUpper_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X�
     rw [ih, aux_supportUpper_d, Finset.sum_range_succ]
 
 /-- Lines 10 and 1 together: `ρ(H(t_k), ℓ) = ρ(X₀, d_k) + ℓ P_u(t_k)`. -/
-theorem aux_supportUpper_ρH (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
+private theorem aux_supportUpper_ρH (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportUpper Δt η X₀ U ρ ℓ k).ρH
       = ρ X₀ (sys.supportUpper Δt η X₀ U ρ ℓ k).d
@@ -133,7 +133,7 @@ theorem aux_supportUpper_ρH (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X�
   | succ k => rfl
 
 /-- `e^{AΔt}` carried `j` times is the flow over `jΔt`. -/
-theorem aux_exp_smul_eq_pow (A : Mat ℝ n n) (Δt : ℝ) (j : ℕ) :
+private theorem aux_exp_smul_eq_pow (A : Mat ℝ n n) (Δt : ℝ) (j : ℕ) :
     exp (((j : ℝ) * Δt) • A) = exp (Δt • A) ^ j := by
   have h1 : ((j : ℝ) * Δt) • A = j • (Δt • A) := by
     rw [← Nat.cast_smul_eq_nsmul ℝ, smul_smul]
@@ -142,7 +142,7 @@ theorem aux_exp_smul_eq_pow (A : Mat ℝ n n) (Δt : ℝ) (j : ℕ) :
 
 /-- `P̂`'s propagation, bounded term by term: the `j`-th copy carried across `t_j` is read along
 `d_j`. -/
-theorem aux_propagate_le (sys : LinearSys 𝕋 n) (Δt : ℝ) {Z : Set (Vec ℝ n)}
+private theorem aux_propagate_le (sys : LinearSys 𝕋 n) (Δt : ℝ) {Z : Set (Vec ℝ n)}
     {ρZ : (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ} (hZ : ∀ z ∈ Z, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d z ≤ ρZ d)
     (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (m : ℕ) : -- --- CONCL ---
     ∀ y ∈ sys.propagateInputSolution Δt Z m,
@@ -163,7 +163,7 @@ theorem aux_propagate_le (sys : LinearSys 𝕋 n) (Δt : ℝ) {Z : Set (Vec ℝ 
     exact hZ z hz (ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ m)))
 
 /-- Line 12 is lines 10 and 11 added, at every step. -/
-theorem aux_supportUpper_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
+private theorem aux_supportUpper_ρR (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
     (sys.supportUpper Δt η X₀ U ρ ℓ k).ρR
       = (sys.supportUpper Δt η X₀ U ρ ℓ k).ρH + (sys.supportUpper Δt η X₀ U ρ ℓ k).ρP := by

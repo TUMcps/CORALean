@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hp : cPZ₁.p = cPZ₂.p) : -- --- CONCL ---
     ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
         (toRealVec cPZ₁.cons.b_error)).construct

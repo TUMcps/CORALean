@@ -44,21 +44,21 @@ open Lean (Json)
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An exact rational and its value, `{"exact": "num/den", "decimal": "..."}`. -/
-def aux_famRat (q : ℚ) : Json :=
+private def aux_famRat (q : ℚ) : Json :=
   Json.mkObj [("exact", Json.str s!"{q.num}/{q.den}"),
     ("decimal", Json.str (sciString (quotFloat q.num q.den)))]
 
 /-- `"1e-07"`, the name `10^-i` goes by. -/
-def aux_relName (i : ℕ) : String := if i < 10 then s!"1e-0{i}" else s!"1e-{i}"
+private def aux_relName (i : ℕ) : String := if i < 10 then s!"1e-0{i}" else s!"1e-{i}"
 
 /-- The box `S` translated by `δ ℓ`, `ℓ = p / q`, rounded outward at `2^-e`. -/
-def aux_placed (S : Array (ℚ × ℚ)) (p : ℤ × ℤ) (q : ℕ) (δ : ℚ) (e : ℕ) :
+private def aux_placed (S : Array (ℚ × ℚ)) (p : ℤ × ℤ) (q : ℕ) (δ : ℚ) (e : ℕ) :
     Array ((String × ℚ) × (String × ℚ)) :=
   (S.zip #[(p.1 : ℚ) / q, (p.2 : ℚ) / q]).map fun ((l, h), ℓi) =>
     (roundDyadicOut (l + δ * ℓi) e false, roundDyadicOut (h + δ * ℓi) e true)
 
 /-- The windows at `dt`, timed, or the reason there are none. -/
-def aux_famReference (I : RandInstance) (p : ℕ) (dt : ℚ) (η ρ : ℕ) :
+private def aux_famReference (I : RandInstance) (p : ℕ) (dt : ℚ) (η ρ : ℕ) :
     IO (List RandOutZono × Float) := do
   let t0 ← IO.monoNanosNow
   let Ys ← IO.ofExcept (referenceWindows I p dt η ρ |>.mapError fun e =>

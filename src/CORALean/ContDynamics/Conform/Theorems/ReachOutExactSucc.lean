@@ -52,7 +52,7 @@ variable {n p q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The state at `k` reads only the disturbances before `k`. -/
-theorem aux_state_congr (sys : Conform.Plant n p q) (x0 : Vec ℝ n) (u : ℕ → Vec ℝ p)
+private theorem aux_state_congr (sys : Conform.Plant n p q) (x0 : Vec ℝ n) (u : ℕ → Vec ℝ p)
     {w w' : ℕ → Vec ℝ n} : -- --- CONCL ---
     ∀ k, (∀ i < k, w i = w' i) →
       sys.state x0 u w k = sys.state x0 u w' k := by -- --- PROOF ---

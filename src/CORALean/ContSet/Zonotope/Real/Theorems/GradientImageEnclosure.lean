@@ -62,7 +62,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The scalar functions of a row, along its center and along a generator entry. -/
-theorem aux_hasDerivAt_row (f : Zonotope (Vec ℝ 1) → ℝ) (R : Zonotope (Vec ℝ 1))
+private theorem aux_hasDerivAt_row (f : Zonotope (Vec ℝ 1) → ℝ) (R : Zonotope (Vec ℝ 1))
     (hf : DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin R.h → Vec ℝ 1) => f ⟨R.h, p.1, p.2⟩)
       (R.c, R.G)) : -- --- CONCL ---
     HasDerivAt (fun t => f ⟨R.h, fun _ => t, R.G⟩) ((R.gradient f).c 0) (R.c 0) ∧
@@ -112,14 +112,14 @@ theorem aux_hasDerivAt_row (f : Zonotope (Vec ℝ 1) → ℝ) (R : Zonotope (Vec
     exact hd.hasDerivAt
 
 /-- The output's generators split into the input's `p` and the `n` error ones. -/
-theorem aux_sum_univ_imageEnclosure (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ) (H : Zonotope (Vec ℝ n))
-    (f : Fin (H.imageEnclosure m eLo eUp).h → ℝ) :
+private theorem aux_sum_univ_imageEnclosure (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ)
+    (H : Zonotope (Vec ℝ n)) (f : Fin (H.imageEnclosure m eLo eUp).h → ℝ) :
     ∑ l : Fin (H.imageEnclosure m eLo eUp).h, f l =
       ∑ j : Fin H.h, f (Fin.castAdd n j) + ∑ i : Fin n, f (Fin.natAdd H.h i) :=
   Fin.sum_univ_add f
 
 /-- A center entry of the gradient set: the chain rule through the output's row `i`. -/
-theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ)
+private theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ)
     (H : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ n × (Fin (H.h + n) → Vec ℝ n) =>
       ℒ ⟨H.h + n, p.1, p.2⟩) ((H.imageEnclosure m eLo eUp).c, (H.imageEnclosure m eLo eUp).G))
@@ -216,7 +216,7 @@ theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotop
   ring
 
 /-- A generator entry of the gradient set, the same way. -/
-theorem aux_gradient_G (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ)
+private theorem aux_gradient_G (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ)
     (H : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ n × (Fin (H.h + n) → Vec ℝ n) =>
       ℒ ⟨H.h + n, p.1, p.2⟩) ((H.imageEnclosure m eLo eUp).c, (H.imageEnclosure m eLo eUp).G))

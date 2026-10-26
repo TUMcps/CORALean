@@ -55,7 +55,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [Module ℝ α] in
 /-- Both translates at once: `x` lies in `A + {v}` and in `A - {v}` exactly when
 shifting it either way along `v` lands in `A`. -/
-theorem aux_mem_translates (A : Set α) (v x : α) : -- --- CONCL ---
+private theorem aux_mem_translates (A : Set α) (v x : α) : -- --- CONCL ---
     x ∈ (A + ({v} : Set α)) ∩ (A - ({v} : Set α)) ↔ x - v ∈ A ∧ x + v ∈ A := by -- --- PROOF ---
   constructor
   · rintro ⟨⟨a, ha, b, hb, hx⟩, a', ha', b', hb', hx'⟩
@@ -69,7 +69,7 @@ theorem aux_mem_translates (A : Set α) (v x : α) : -- --- CONCL ---
 
 /-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
-theorem aux_construct_succ (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
+private theorem aux_construct_succ (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
     (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
       = {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0}
           + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct := by -- --- PROOF ---
@@ -93,7 +93,7 @@ theorem aux_construct_succ (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
 
 /-- What [1, Thm. 1]'s proof calls eq. (8): a *convex* set's difference by the
 segment one generator spans is its intersection with both translates. -/
-theorem aux_minkowskiDiff_seg (A : Set α) (hA : Convex ℝ A) (v : α) : -- --- CONCL ---
+private theorem aux_minkowskiDiff_seg (A : Set α) (hA : Convex ℝ A) (v : α) : -- --- CONCL ---
     minkowskiDiff A {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • v}
       = (A + ({v} : Set α)) ∩ (A - ({v} : Set α)) := by -- --- PROOF ---
   ext x
@@ -116,7 +116,7 @@ theorem aux_minkowskiDiff_seg (A : Set α) (hA : Convex ℝ A) (v : α) : -- ---
 
 /-- The fold over `n` generators is the Minkowski difference by the zonotope they
 span, at every convex starting set — the induction the recursion needs. -/
-theorem aux_fold_eq_minkDiff (n : ℕ) : -- --- CONCL ---
+private theorem aux_fold_eq_minkDiff (n : ℕ) : -- --- CONCL ---
     ∀ (g : Fin n → α) (A : Set α), Convex ℝ A →
       Fin.foldl n (fun A i => (A + {g i}) ∩ (A - {g i})) A
         = minkowskiDiff A (⟨n, (0 : α), g⟩ : Zonotope α).construct := by -- --- PROOF ---

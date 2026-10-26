@@ -56,7 +56,8 @@ open scoped NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `⟦φ⟧_ξ(t) = ⊤` iff `φ` holds of `ξ` at `t`, [1, Sec. 2.5]. -/
-theorem FourValuedSTL.Formula.aux_satBool_eq_true_iff {X : Type} (φ : FourValuedSTL.Formula X)
+private theorem FourValuedSTL.Formula.aux_satBool_eq_true_iff {X : Type}
+    (φ : FourValuedSTL.Formula X)
     (ξ : ℝ≥0 → X) (t : ℝ≥0) : φ.satBool ξ t = true ↔ φ.Satisfies ξ t := by
   simp [FourValuedSTL.Formula.satBool]
 

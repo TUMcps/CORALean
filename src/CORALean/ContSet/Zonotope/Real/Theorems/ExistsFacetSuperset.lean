@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An annihilated generator is in the span of the face's generators. -/
-theorem Zonotope.aux_mem_span_face_efs (Z : Zonotope (Vec ℝ n)) (l : Vec ℝ n →ₗ[ℝ] ℝ)
+private theorem Zonotope.aux_mem_span_face_efs (Z : Zonotope (Vec ℝ n)) (l : Vec ℝ n →ₗ[ℝ] ℝ)
     {j : Fin Z.h} (hj : l (Z.G j) = 0) :
     Z.G j ∈ Submodule.span ℝ (Set.range (Z.face l).G) := by
   have h : (Z.face l).G j = Z.G j := by
@@ -64,7 +64,7 @@ theorem Zonotope.aux_mem_span_face_efs (Z : Zonotope (Vec ℝ n)) (l : Vec ℝ n
   exact Submodule.subset_span ⟨j, rfl⟩
 
 /-- A functional vanishing on the generators `l` annihilates vanishes on their span. -/
-theorem Zonotope.aux_apply_eq_zero_efs (Z : Zonotope (Vec ℝ n)) (l m : Vec ℝ n →ₗ[ℝ] ℝ)
+private theorem Zonotope.aux_apply_eq_zero_efs (Z : Zonotope (Vec ℝ n)) (l m : Vec ℝ n →ₗ[ℝ] ℝ)
     (hm : ∀ j, l (Z.G j) = 0 → m (Z.G j) = 0) {w : Vec ℝ n}
     (hw : w ∈ Submodule.span ℝ (Set.range (Z.face l).G)) : -- --- CONCL ---
     m w = 0 := by -- --- PROOF ---
@@ -77,7 +77,7 @@ theorem Zonotope.aux_apply_eq_zero_efs (Z : Zonotope (Vec ℝ n)) (l m : Vec ℝ
   exact hle hw
 
 /-- A functional vanishing on spanning generators vanishes. -/
-theorem Zonotope.aux_eq_zero_efs (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_eq_zero_efs (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (m : Vec ℝ n →ₗ[ℝ] ℝ)
     (hm : ∀ j, m (Z.G j) = 0) (y : Vec ℝ n) : -- --- CONCL ---
     m y = 0 := by -- --- PROOF ---
@@ -89,13 +89,13 @@ theorem Zonotope.aux_eq_zero_efs (Z : Zonotope (Vec ℝ n))
   exact hle Submodule.mem_top
 
 /-- Two reals with a positive product have the same sign. -/
-theorem Zonotope.aux_sign_eq_efs {a b : ℝ} (h : 0 < a * b) : Real.sign a = Real.sign b := by
+private theorem Zonotope.aux_sign_eq_efs {a b : ℝ} (h : 0 < a * b) : Real.sign a = Real.sign b := by
   rcases pos_and_pos_or_neg_and_neg_of_mul_pos h with ⟨ha, hb⟩ | ⟨ha, hb⟩
   · rw [Real.sign_of_pos ha, Real.sign_of_pos hb]
   · rw [Real.sign_of_neg ha, Real.sign_of_neg hb]
 
 /-- A functional agreeing in sign with `l` wherever it is nonzero has a face containing `l`'s. -/
-theorem Zonotope.aux_argmax_subset_efs (Z : Zonotope (Vec ℝ n)) (l l' : Vec ℝ n →ₗ[ℝ] ℝ)
+private theorem Zonotope.aux_argmax_subset_efs (Z : Zonotope (Vec ℝ n)) (l l' : Vec ℝ n →ₗ[ℝ] ℝ)
     (h : ∀ j, l' (Z.G j) ≠ 0 → 0 < l (Z.G j) * l' (Z.G j)) : -- --- CONCL ---
     {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x}
       ⊆ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l' y ≤ l' x} := by -- --- PROOF ---
@@ -109,7 +109,7 @@ theorem Zonotope.aux_argmax_subset_efs (Z : Zonotope (Vec ℝ n)) (l l' : Vec �
   rw [hpin j hl, aux_sign_eq_efs hp]
 
 /-- One step: a face of dimension at most `n - 2` lies in a face of larger dimension. -/
-theorem Zonotope.aux_step_efs (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_step_efs (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (l : Vec ℝ n →ₗ[ℝ] ℝ)
     (hdim : Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l).G)) + 2 ≤ n) : -- --- CONCL ---
     ∃ l' : Vec ℝ n →ₗ[ℝ] ℝ, (∃ j, l' (Z.G j) ≠ 0) ∧
@@ -221,7 +221,7 @@ theorem Zonotope.aux_step_efs (Z : Zonotope (Vec ℝ n))
     exact lt_of_le_of_ne hnn (mul_ne_zero hlj hj).symm
 
 /-- Iterating the step until the face has dimension at least `n - 1`. -/
-theorem Zonotope.aux_exists_top_efs (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_exists_top_efs (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (k : ℕ) : -- --- CONCL ---
     ∀ l : Vec ℝ n →ₗ[ℝ] ℝ,
       n - Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l).G)) = k →

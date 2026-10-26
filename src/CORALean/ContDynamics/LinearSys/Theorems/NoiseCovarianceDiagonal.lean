@@ -54,7 +54,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `∫₀ᵗ e^{a(t-τ)} dτ = (e^{at} - 1)/a`. -/
-theorem aux_integral_exp_sub (a t : ℝ) (ha : a ≠ 0) : -- --- CONCL ---
+private theorem aux_integral_exp_sub (a t : ℝ) (ha : a ≠ 0) : -- --- CONCL ---
     ∫ τ in (0 : ℝ)..t, Real.exp (a * (t - τ)) = (Real.exp (a * t) - 1) / a := by -- --- PROOF ---
   rw [intervalIntegral.integral_comp_sub_left (fun s => Real.exp (a * s)) t]
   simp only [sub_self, sub_zero]
@@ -63,7 +63,7 @@ theorem aux_integral_exp_sub (a t : ℝ) (ha : a ≠ 0) : -- --- CONCL ---
   field_simp
 
 /-- The exponential of a scaled diagonal matrix is diagonal. -/
-theorem aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
+private theorem aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
     NormedSpace.exp (s • diagonal l) = diagonal (fun i => Real.exp (s * l i)) := by
   rw [← diagonal_smul, Matrix.exp_diagonal]
   congr 1

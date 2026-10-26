@@ -43,7 +43,7 @@ variable {m N : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_lift_find (proj : Fin m → Fin N) (hp : Function.Injective proj)
+private theorem Interval.aux_lift_find (proj : Fin m → Fin N) (hp : Function.Injective proj)
     (j : Fin m) : -- --- CONCL ---
     ∀ l : List (Fin m), j ∈ l → l.find? (fun k => proj k = proj j) = some j := by -- --- PROOF ---
   intro l

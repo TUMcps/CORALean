@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_center_nominal (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+private theorem Interval.aux_center_nominal (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     I.nominal.center i = (toReal (I.inf i) + toReal (I.sup i)) / 2 := by
   show (2:ℝ)⁻¹ * (toReal (I.inf i) + toReal (I.sup i)) = _
   ring

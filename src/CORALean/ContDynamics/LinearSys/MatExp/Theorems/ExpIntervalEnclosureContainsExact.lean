@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- Above order two the two recursions peel the same term, so the uniform
 truncation is the order-two one plus the tail the exact truncation reuses. -/
-theorem aux_taylor_split (B : Interval (Mat ℝ n n)) (m : ℕ) (i j : Fin n) : -- --- CONCL ---
+private theorem aux_taylor_split (B : Interval (Mat ℝ n n)) (m : ℕ) (i j : Fin n) : -- --- CONCL ---
     (MatExp.expIntervalTaylor B (m + 2)).inf i j
         = (MatExp.expIntervalTaylor B 2).inf i j
           + (MatExp.expIntervalTaylorTail B (m + 2)).inf i j

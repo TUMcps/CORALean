@@ -55,7 +55,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `|⟨a, g⟩|^k` is integrable under the standard Gaussian. -/
-theorem aux_integrable_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 < k) :
+private theorem aux_integrable_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 < k) :
     Integrable (fun g => |⟪a, g⟫| ^ k) (stdGaussian E) := by
   have h := (IsGaussian.memLp_dual (stdGaussian E) (innerSL ℝ a) (ENNReal.ofReal k)
     ENNReal.ofReal_ne_top).integrable_norm_rpow'

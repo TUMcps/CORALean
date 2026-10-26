@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image, regrouped so the center and each generator appear once. -/
-theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
+private theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (β : Vec ℝ cZ.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * β j)
     (i : Fin m) : -- --- CONCL ---
@@ -70,7 +70,7 @@ theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
-theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
+private theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet cZ ⊆
       nominalSet (ConZonotope.mtimes M cZ)
@@ -121,7 +121,7 @@ theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
   linarith [hsum]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+private theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' (I_error cZ).construct + (Zonotope.mtimesResidual M cZ.zonotope).construct
       ⊆ (I_error (ConZonotope.mtimes M cZ)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cZ.I_error))

@@ -56,7 +56,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `d/ds [f(s)s^{-c}] = s^{-c-1}(f'(s)s - cf(s))` at `s > 0`. -/
-theorem Krylov.aux_hasDerivAt_mul_rpow_neg {f : ℝ → ℝ} {d c s : ℝ} (hs : 0 < s)
+private theorem Krylov.aux_hasDerivAt_mul_rpow_neg {f : ℝ → ℝ} {d c s : ℝ} (hs : 0 < s)
     (hd : HasDerivAt f d s) : -- --- CONCL ---
     HasDerivAt (fun x => f x * x ^ (-c)) (s ^ (-c - 1) * (d * s - c * f s)) s := by -- --- PROOF ---
   have h := hd.mul (Real.hasDerivAt_rpow_const (p := -c) (Or.inl hs.ne'))
@@ -69,7 +69,7 @@ theorem Krylov.aux_hasDerivAt_mul_rpow_neg {f : ℝ → ℝ} {d c s : ℝ} (hs :
 
 /-- Between `0 < s ≤ t ≤ T`, `f(s)s^{-c}` and `f(t)t^{-c}` compare as the sign of `ρ - c`
 says: `≤` when `ρ ≥ c`, `≥` when `ρ ≤ c`. -/
-theorem Krylov.aux_mul_rpow_neg_le {f f' : ℝ → ℝ} {T c : ℝ}
+private theorem Krylov.aux_mul_rpow_neg_le {f f' : ℝ → ℝ} {T c : ℝ}
     (hf : ContinuousOn f (Set.Icc 0 T)) (hd : ∀ s ∈ Set.Ioo 0 T, HasDerivAt f (f' s) s)
     (hpos : ∀ s ∈ Set.Ioc 0 T, 0 < f s) {s t : ℝ} (hs : 0 < s) (hst : s ≤ t)
     (ht : t ≤ T) : -- --- CONCL ---

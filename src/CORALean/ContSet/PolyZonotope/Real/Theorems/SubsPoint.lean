@@ -51,12 +51,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The value of a sum of monomials at `β`. -/
-noncomputable def PolyZonotope.aux_evalTerms {p : ℕ} (l : List (ℝ × (Fin p → ℕ))) (β : Fin p → ℝ) :
+private noncomputable def PolyZonotope.aux_evalTerms {p : ℕ} (l : List (ℝ × (Fin p → ℕ)))
+    (β : Fin p → ℝ) :
     ℝ :=
   (l.map fun t => t.1 * ∏ j, β j ^ t.2 j).sum
 
 /-- The value of a product of sums of monomials is the product of the values. -/
-theorem PolyZonotope.aux_evalTerms_subsMul {p : ℕ} (A B : List (ℝ × (Fin p → ℕ)))
+private theorem PolyZonotope.aux_evalTerms_subsMul {p : ℕ} (A B : List (ℝ × (Fin p → ℕ)))
     (β : Fin p → ℝ) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms (PolyZonotope.subsMul A B) β
       = PolyZonotope.aux_evalTerms A β * PolyZonotope.aux_evalTerms B β := by -- --- PROOF ---
@@ -78,15 +79,15 @@ theorem PolyZonotope.aux_evalTerms_subsMul {p : ℕ} (A B : List (ℝ × (Fin p 
     rw [h1, List.sum_map_mul_left, mul_comm]
 
 /-- The value of a power of a sum of monomials is the power of the value. -/
-theorem PolyZonotope.aux_evalTerms_subsPow {p : ℕ} (A : List (ℝ × (Fin p → ℕ))) (β : Fin p → ℝ)
-    (d : ℕ) : PolyZonotope.aux_evalTerms (PolyZonotope.subsPow A d) β
+private theorem PolyZonotope.aux_evalTerms_subsPow {p : ℕ} (A : List (ℝ × (Fin p → ℕ)))
+    (β : Fin p → ℝ) (d : ℕ) : PolyZonotope.aux_evalTerms (PolyZonotope.subsPow A d) β
       = PolyZonotope.aux_evalTerms A β ^ d := by
   induction d with
   | zero => simp [PolyZonotope.subsPow, PolyZonotope.aux_evalTerms]
   | succ d ih => rw [PolyZonotope.subsPow, PolyZonotope.aux_evalTerms_subsMul, ih, pow_succ']
 
 /-- The value of output `ii`'s polynomial is `pZin`'s point there. -/
-theorem PolyZonotope.aux_evalTerms_subsPoly {nu : ℕ} (pZin : PolyZonotope (Vec ℝ nu))
+private theorem PolyZonotope.aux_evalTerms_subsPoly {nu : ℕ} (pZin : PolyZonotope (Vec ℝ nu))
     (β : Fin pZin.p → ℝ) (ii : Fin nu) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms (pZin.subsPoly ii) β = pZin.point β ii := by -- --- PROOF ---
   -- the center term, then the generators one by one
@@ -100,7 +101,7 @@ theorem PolyZonotope.aux_evalTerms_subsPoly {nu : ℕ} (pZin : PolyZonotope (Vec
   ring
 
 /-- The value of the fold over the outputs is the product of the powers' values. -/
-theorem PolyZonotope.aux_evalTerms_foldl {nu p : ℕ} (Pol : Fin nu → List (ℝ × (Fin p → ℕ)))
+private theorem PolyZonotope.aux_evalTerms_foldl {nu p : ℕ} (Pol : Fin nu → List (ℝ × (Fin p → ℕ)))
     (e : Fin nu → ℕ) (β : Fin p → ℝ) (L : List (Fin nu))
     (acc : List (ℝ × (Fin p → ℕ))) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms
@@ -116,7 +117,7 @@ theorem PolyZonotope.aux_evalTerms_foldl {nu p : ℕ} (Pol : Fin nu → List (�
 
 omit [AddCommGroup α] [Module ℝ α] in
 /-- The value of generator `i`'s `Xprod` is the product of the outputs' powers. -/
-theorem PolyZonotope.aux_evalTerms_subsXprod (pZ : PolyZonotope α) {nu : ℕ}
+private theorem PolyZonotope.aux_evalTerms_subsXprod (pZ : PolyZonotope α) {nu : ℕ}
     (pZin : PolyZonotope (Vec ℝ nu)) (idu : Fin nu → Fin pZ.p) (β : Fin pZin.p → ℝ)
     (i : Fin pZ.h) : -- --- CONCL ---
     PolyZonotope.aux_evalTerms (pZ.subsXprod pZin idu i) β
@@ -132,8 +133,8 @@ theorem PolyZonotope.aux_evalTerms_subsXprod (pZ : PolyZonotope α) {nu : ℕ}
   rfl
 
 /-- The sum over the terms is the sum over the generators of the sums over their `Xprod`. -/
-theorem PolyZonotope.aux_sum_flatMap {h : ℕ} {γ β : Type} [AddCommMonoid β] (T : Fin h → List γ)
-    (L : List (Fin h)) (F : Fin h × γ → β) :
+private theorem PolyZonotope.aux_sum_flatMap {h : ℕ} {γ β : Type} [AddCommMonoid β]
+    (T : Fin h → List γ) (L : List (Fin h)) (F : Fin h × γ → β) :
     ((L.flatMap fun i => (T i).map fun t => (i, t)).map F).sum
       = (L.map fun i => ((T i).map fun t => F (i, t)).sum).sum := by
   induction L with

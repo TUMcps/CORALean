@@ -45,7 +45,7 @@ variable {m r : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_orderEmbOfFin_map (S : Finset (Fin r)) (k : ℕ) (hS : S.card = k)
+private theorem aux_orderEmbOfFin_map (S : Finset (Fin r)) (k : ℕ) (hS : S.card = k)
     (h' : (S.map Fin.castSuccEmb).card = k) :
     (S.map Fin.castSuccEmb).orderEmbOfFin h' = fun j => Fin.castSucc (S.orderEmbOfFin hS j) := by
   symm
@@ -53,7 +53,7 @@ theorem aux_orderEmbOfFin_map (S : Finset (Fin r)) (k : ℕ) (hS : S.card = k)
   exact Finset.orderEmbOfFin_unique h' (fun j => by simp)
     (fun a b hab => Fin.castSucc_lt_castSucc_iff.mpr ((S.orderEmbOfFin hS).strictMono hab))
 
-theorem aux_orderEmbOfFin_insert (T : Finset (Fin r)) (hT : T.card = m)
+private theorem aux_orderEmbOfFin_insert (T : Finset (Fin r)) (hT : T.card = m)
     (h' : (insert (Fin.last r) (T.map Fin.castSuccEmb)).card = m + 1) : -- --- CONCL ---
     (insert (Fin.last r) (T.map Fin.castSuccEmb)).orderEmbOfFin h' =
       Fin.snoc (α := fun _ => Fin (r+1))
@@ -71,7 +71,7 @@ theorem aux_orderEmbOfFin_insert (T : Finset (Fin r)) (hT : T.card = m)
         exact Fin.castSucc_lt_castSucc_iff.mpr ((T.orderEmbOfFin hT).strictMono
           (Fin.castSucc_lt_castSucc_iff.mp (by simpa using hab)))
 
-theorem aux_sum_powerset_map (g : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
+private theorem aux_sum_powerset_map (g : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
     ∑ t ∈ (Finset.univ.map Fin.castSuccEmb : Finset (Fin (r+1))).powerset, g t =
       ∑ S : Finset (Fin r), g (S.map Fin.castSuccEmb) := by -- --- PROOF ---
   symm
@@ -83,7 +83,7 @@ theorem aux_sum_powerset_map (g : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
   · obtain ⟨u, -, rfl⟩ := Finset.subset_map_iff.mp (Finset.mem_powerset.mp ht)
     exact ⟨u, Finset.mem_univ _, rfl⟩
 
-theorem aux_sum_split (f : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
+private theorem aux_sum_split (f : Finset (Fin (r+1)) → ℝ) : -- --- CONCL ---
     ∑ S : Finset (Fin (r+1)), f S =
       ∑ S : Finset (Fin r), f (S.map Fin.castSuccEmb) +
         ∑ S : Finset (Fin r), f (insert (Fin.last r) (S.map Fin.castSuccEmb)) := by -- --- PROOF ---

@@ -42,7 +42,7 @@ variable {n N : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_polytopeOuter_row (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
+private theorem aux_polytopeOuter_row (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
     (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) {x : Vec ℝ n} (hx : x ∈ S.construct) (i : Fin N)
     (hi : (S.translate (-c)).supportFunc (dirs i) ≠ ⊤ ∧
       (S.translate (-c)).supportFunc (dirs i) ≠ ⊥) : -- --- CONCL ---

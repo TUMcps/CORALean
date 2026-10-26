@@ -63,7 +63,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The sum is symmetric about the sum of the centers. -/
-theorem aux_sum_reflect {K : ℕ} (Qs : Fin K → Mat ℝ n n) (qs : Fin K → Vec ℝ n)
+private theorem aux_sum_reflect {K : ℕ} (Qs : Fin K → Mat ℝ n n) (qs : Fin K → Vec ℝ n)
     (hQs : ∀ k, (Qs k).PosDef) {x : Vec ℝ n}
     (hx : x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct) : -- --- CONCL ---
     (2 : ℝ) • ∑ k, qs k - x
@@ -81,7 +81,7 @@ theorem aux_sum_reflect {K : ℕ} (Qs : Fin K → Mat ℝ n n) (qs : Fin K → V
   · simp only [Finset.sum_sub_distrib, ← Finset.smul_sum]
 
 /-- The quadratic form is subadditive on the mirrored pair. -/
-theorem aux_quad_parallelogram (A : Mat ℝ n n) (y p : Vec ℝ n) :
+private theorem aux_quad_parallelogram (A : Mat ℝ n n) (y p : Vec ℝ n) :
     (y - p) ⬝ᵥ A *ᵥ (y - p) + (y + p) ⬝ᵥ A *ᵥ (y + p)
       = 2 * (y ⬝ᵥ A *ᵥ y) + 2 * (p ⬝ᵥ A *ᵥ p) := by
   simp only [Matrix.mulVec_sub, Matrix.mulVec_add, sub_dotProduct, dotProduct_sub, add_dotProduct,

@@ -66,7 +66,7 @@ variable {n m : ℕ}
 
 /-- `∫_{t₀}^{tₑ} e^{A(δ-t)}dt u = (∫₀^{δ-t₀} - ∫₀^{δ-tₑ}) e^{At}dt u`, the first line of [1]'s
 proof. -/
-theorem Krylov.aux_integral_eq_sub (A : Mat ℝ n n) (u : Vec ℝ n) {δ t₀ tₑ : ℝ}
+private theorem Krylov.aux_integral_eq_sub (A : Mat ℝ n n) (u : Vec ℝ n) {δ t₀ tₑ : ℝ}
     (h0 : t₀ ≤ δ) (he : tₑ ≤ δ) : -- --- CONCL ---
     (∫ t in t₀..tₑ, exp ((δ - t) • A) *ᵥ u)
       = MatExp.expIntegral A (δ - t₀) *ᵥ u

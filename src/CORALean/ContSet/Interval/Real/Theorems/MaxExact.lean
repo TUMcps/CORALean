@@ -42,7 +42,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_max_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b₁) (h₂ : a₂ ≤ b₂)
+private theorem aux_max_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b₁) (h₂ : a₂ ≤ b₂)
     (hl : Max.max a₁ a₂ ≤ z) (hu : z ≤ Max.max b₁ b₂) : -- --- CONCL ---
     ∃ x y : ℝ, (a₁ ≤ x ∧ x ≤ b₁) ∧ (a₂ ≤ y ∧ y ≤ b₂) ∧ Max.max x y = z := by -- --- PROOF ---
   have ha₁ : a₁ ≤ z := le_trans (le_max_left _ _) hl

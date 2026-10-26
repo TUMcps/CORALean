@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A point of `Z`, nominal part and error box together, reaches no further than
 `|c| + Σ|G| + |E|`, rounded up. -/
-theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ n}
+private theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ n}
     (hz : z ∈ nominalSet Z) (he : e ∈ Z.I_error.construct) (j : Fin n) : -- --- CONCL ---
     |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) ∧
       |z j + e j| ≤ toReal (addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
@@ -77,8 +77,8 @@ theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ
   exact ⟨hzb, le_trans (abs_add_le _ _) (le_trans (add_le_add hzb heb) (add_le_addUp _ _))⟩
 
 /-- `∑ⱼ |Rᵢⱼ| |xⱼ|` stays below the rounded-up `∑ⱼ rᵢⱼ ξⱼ` once each factor does. -/
-theorem Zonotope.aux_abs_mulVec_le {R : Mat ℝ m n} {x : Vec ℝ n} {r : Mat 𝕋 m n} {ξ : Vec 𝕋 n}
-    (hr : ∀ i j, |R i j| ≤ toReal (r i j)) (hx : ∀ j, |x j| ≤ toReal (ξ j))
+private theorem Zonotope.aux_abs_mulVec_le {R : Mat ℝ m n} {x : Vec ℝ n} {r : Mat 𝕋 m n}
+    {ξ : Vec 𝕋 n} (hr : ∀ i j, |R i j| ≤ toReal (r i j)) (hx : ∀ j, |x j| ≤ toReal (ξ j))
     (i : Fin m) : -- --- CONCL ---
     |(R *ᵥ x) i| ≤ toReal (sumUp fun j => mulUp (r i j) (ξ j)) := by -- --- PROOF ---
   show |∑ j, R i j * x j| ≤ _

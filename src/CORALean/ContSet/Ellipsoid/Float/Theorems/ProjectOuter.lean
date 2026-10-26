@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- At a positive semi-definite `Q` the projection's nominal ellipsoid is the exact projection. -/
-theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n)
+private theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n)
     (h : (toRealMat E.Q).PosSemidef) : -- --- CONCL ---
     (nominal (E.project dims)).ellipsoid = Real.Ellipsoid.project (nominal E).ellipsoid dims
     := by -- --- PROOF ---

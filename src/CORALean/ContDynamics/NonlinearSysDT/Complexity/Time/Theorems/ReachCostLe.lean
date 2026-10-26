@@ -73,7 +73,7 @@ private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : Zonotope (Vec 
 
 /-- Every set the run holds is at order `o`: one linear step ends in a
 `reduce`, and the caller's hypothesis covers the set before the first. -/
-theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
+private theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (Vec ℝ m)}
     {o : ℕ} (ho : 0 < o) (steps : ℕ → sys.LinStep ℝ (S := 𝒵) U) (R₀ : Zonotope (Vec ℝ n))
     (hR₀ : R₀.h ≤ o * n) : ∀ k, (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps).h ≤ o * n
   | 0 => by rw [aux_reach_zero_eq]; exact hR₀
@@ -81,7 +81,7 @@ theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (
 
 /-- The linear step bound is monotone in the input set's generator count, which
 is what lets one `hU` stand for every step's own input set. -/
-theorem NonlinearSysDT.aux_stepBound_mono (n o : ℕ) {hU hU' : ℕ} (h : hU ≤ hU') :
+private theorem NonlinearSysDT.aux_stepBound_mono (n o : ℕ) {hU hU' : ℕ} (h : hU ≤ hU') :
     LinearSysDT.reachStepBound n hU o ≤ LinearSysDT.reachStepBound n hU' o :=
   Cost.add_le_add (Cost.add_le_add le_rfl (Zonotope.plusCost_mono n le_rfl h))
     (Zonotope.reduceGirardCost_mono n (Nat.add_le_add_left h _))

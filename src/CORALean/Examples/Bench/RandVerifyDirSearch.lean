@@ -34,12 +34,12 @@ namespace CORALean.Bench
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A window as `Float`s: its center and generators. -/
-def aux_windowFloat (Y : RandOutZono) : (Float × Float) × Array (Float × Float) :=
+private def aux_windowFloat (Y : RandOutZono) : (Float × Float) × Array (Float × Float) :=
   ((quotFloat Y.c.1 Y.den, quotFloat Y.c.2 Y.den),
     Y.gens.map fun (a, b) => (quotFloat a Y.den, quotFloat b Y.den))
 
 /-- `h` at angle `θ`, in `Float`s; `S` as its bounds. -/
-def aux_gapFloat (Ws : Array ((Float × Float) × Array (Float × Float)))
+private def aux_gapFloat (Ws : Array ((Float × Float) × Array (Float × Float)))
     (S : (Float × Float) × (Float × Float)) (θ : Float) : Float :=
   let l₁ := Float.cos θ
   let l₂ := Float.sin θ

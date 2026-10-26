@@ -45,7 +45,7 @@ variable {T : Type} [LinearOrder T] [Zero T]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Reading a dropped list. -/
-theorem aux_getD_drop (l : List Bool) (n i : ℕ) :
+private theorem aux_getD_drop (l : List Bool) (n i : ℕ) :
     (l.drop n).getD i false = l.getD (n + i) false := by
   simp [List.getD_eq_getElem?_getD, List.getElem?_drop]
 

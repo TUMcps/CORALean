@@ -48,7 +48,7 @@ namespace CORALean.Real
 
 /-- `⬝ᵥ` as a bilinear pairing, so the enclosing half can be read off both a
 direction and its negation through `minkowskiDiff_apply_le`. -/
-def aux_dotBilin {n : ℕ} : Vec ℝ (n + 1) →ₗ[ℝ] Vec ℝ (n + 1) →ₗ[ℝ] ℝ :=
+private def aux_dotBilin {n : ℕ} : Vec ℝ (n + 1) →ₗ[ℝ] Vec ℝ (n + 1) →ₗ[ℝ] ℝ :=
   LinearMap.mk₂ ℝ (fun u v : Vec ℝ (n + 1) => u ⬝ᵥ v)
     (fun a b c => add_dotProduct a b c) (fun c a b => smul_dotProduct c a b)
     (fun a b c => dotProduct_add a b c) (fun c a b => dotProduct_smul c a b)

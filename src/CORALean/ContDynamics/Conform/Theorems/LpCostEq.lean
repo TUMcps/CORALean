@@ -65,7 +65,7 @@ variable {n p q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One step's norm, split into the blocks of (20) at `M = I_m`. -/
-theorem aux_step_cost (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
+private theorem aux_step_cost (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (GW : ιW → Vec ℝ n)
     (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (hαX : ∀ x, 0 ≤ αX x)
     (hαW : ∀ r, 0 ≤ αW r) (hαV : ∀ l, 0 ≤ αV l) (σ : Vec ℝ q) (k : ℕ) : -- --- CONCL ---

@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 /-- The angle of the pivot `(-6, 6)` against the generators `(-2, 1)` and `(-1, 2)`: the printed
 order has `g₂` below the pivot and `g₁` above it. -/
-theorem Zonotope.aux_bisect_args : -- --- CONCL ---
+private theorem Zonotope.aux_bisect_args : -- --- CONCL ---
     Complex.arg ⟨-1, 2⟩ < Complex.arg ⟨-6, 6⟩ ∧
       ¬ Complex.arg ⟨-2, 1⟩ < Complex.arg ⟨-6, 6⟩ := by -- --- PROOF ---
   constructor
@@ -60,7 +60,7 @@ theorem Zonotope.aux_bisect_args : -- --- CONCL ---
     norm_num at this
 
 /-- The converse comparisons, `Complex.arg ⟨-6, 6⟩ < Complex.arg ⟨-2, 1⟩` and not for `g₂`. -/
-theorem Zonotope.aux_bisect_args' : -- --- CONCL ---
+private theorem Zonotope.aux_bisect_args' : -- --- CONCL ---
     Complex.arg ⟨-6, 6⟩ < Complex.arg ⟨-2, 1⟩ ∧
       ¬ Complex.arg ⟨-6, 6⟩ < Complex.arg ⟨-1, 2⟩ := by -- --- PROOF ---
   constructor

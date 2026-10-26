@@ -41,8 +41,8 @@ variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Summing a weighted `zipWith` over the index summing each term. -/
-theorem MarkovChain.aux_sum_comm_zipWith {α ι : Type} [Fintype ι] (a : α → ι → ℝ) (R : List α)
-    (F : List ℝ) : -- --- CONCL ---
+private theorem MarkovChain.aux_sum_comm_zipWith {α ι : Type} [Fintype ι] (a : α → ι → ℝ)
+    (R : List α) (F : List ℝ) : -- --- CONCL ---
     ∑ s, (List.zipWith (fun r f => f * a r s) R F).sum =
       (List.zipWith (fun r f => f * ∑ s, a r s) R F).sum := by -- --- PROOF ---
   induction R generalizing F with

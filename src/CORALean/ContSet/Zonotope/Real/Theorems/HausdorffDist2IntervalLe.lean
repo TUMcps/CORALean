@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 /-- Squaring is monotone on magnitudes, so a coordinatewise bound on magnitudes
 is a bound on the Euclidean norm. -/
-theorem aux_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) : ‖x‖₂ ≤ ‖y‖₂ := by
+private theorem aux_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) : ‖x‖₂ ≤ ‖y‖₂ := by
   refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun i _ => ?_)
   have hi := mul_self_le_mul_self (abs_nonneg (x i)) (h i)
   rwa [abs_mul_abs_self, abs_mul_abs_self, ← pow_two, ← pow_two] at hi
@@ -61,7 +61,7 @@ theorem aux_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) 
 /-- A point of the box is within the generators' total length of the center:
 coordinatewise it is within their columnwise magnitude sum, and that vector is
 no longer than the generators are. -/
-theorem aux_norm₂_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+private theorem aux_norm₂_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.interval.construct) : -- --- CONCL ---
     ‖x - Z.c‖₂ ≤ ∑ p, ‖Z.G p‖₂ := by -- --- PROOF ---
   -- one vector per generator, read entrywise in magnitude

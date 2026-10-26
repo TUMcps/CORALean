@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The independent sum with one coefficient and one generator replaced. -/
-theorem PolyZonotope.aux_sum_update_smul {q : ℕ} (β : Fin q → ℝ) (GI : Fin q → Vec ℝ n)
+private theorem PolyZonotope.aux_sum_update_smul {q : ℕ} (β : Fin q → ℝ) (GI : Fin q → Vec ℝ n)
     (j : Fin q) (t : ℝ) (v : Vec ℝ n) :
     ∑ i, Function.update β j t i • Function.update GI j v i
       = t • v + ∑ i ∈ Finset.univ.erase j, β i • GI i := by

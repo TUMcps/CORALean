@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One step: `x` is in `(P + g) ∩ (P - g)` iff both `x - g` and `x + g` are in `P`. -/
-theorem ConPolyZono.aux_mem_minkDiffStep (X : ConPolyZono (Vec ℝ n))
+private theorem ConPolyZono.aux_mem_minkDiffStep (X : ConPolyZono (Vec ℝ n))
     (g x : Vec ℝ n) : -- --- CONCL ---
     x ∈ ((X.plus (ConPolyZono.ofPoint g)).intersection
         (X.plus (ConPolyZono.ofPoint (-g)))).construct
@@ -65,7 +65,7 @@ theorem ConPolyZono.aux_mem_minkDiffStep (X : ConPolyZono (Vec ℝ n))
   rw [hshift, hshift, sub_neg_eq_add]
 
 /-- The fold over `m` generators tests the minuend at every corner `x + Σⱼ ±Gⱼ`. -/
-theorem ConPolyZono.aux_foldl_minkDiff {m : ℕ} (G : Fin m → Vec ℝ n)
+private theorem ConPolyZono.aux_foldl_minkDiff {m : ℕ} (G : Fin m → Vec ℝ n)
     (X : ConPolyZono (Vec ℝ n)) : -- --- CONCL ---
     (Fin.foldl m (fun cPZ i => (cPZ.plus (ConPolyZono.ofPoint (G i))).intersection
         (cPZ.plus (ConPolyZono.ofPoint (-G i)))) X).construct

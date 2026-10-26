@@ -41,14 +41,14 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_sq_sub_smul (v g : Vec ℝ n) (t : ℝ) :
+private theorem aux_sq_sub_smul (v g : Vec ℝ n) (t : ℝ) :
     ‖v - t • g‖₂ ^ 2 = ‖v‖₂ ^ 2 - 2 * t * (v ⬝ᵥ g) + t ^ 2 * ‖g‖₂ ^ 2 := by
   rw [← dotProduct_self, ← dotProduct_self, ← dotProduct_self]
   simp only [sub_dotProduct, dotProduct_sub, smul_dotProduct, dotProduct_smul, smul_eq_mul,
     dotProduct_comm g v]
   ring
 
-theorem aux_norm₂_le_iff (x : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
+private theorem aux_norm₂_le_iff (x : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
     ‖x‖₂ ≤ r ↔ 0 ≤ r ∧ ‖x‖₂ ^ 2 ≤ r ^ 2 := by -- --- PROOF ---
   constructor
   · exact fun h => ⟨(norm₂_nonneg x).trans h, pow_le_pow_left₀ (norm₂_nonneg x) h 2⟩

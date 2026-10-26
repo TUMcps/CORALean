@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image, regrouped so the center and each generator appear once. -/
-theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
+private theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j)
     (i : Fin m) : -- --- CONCL ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
@@ -72,7 +72,8 @@ theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
 
 -- the image's nominal part, with the generator rounding charged to a box
-theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
+    (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
       nominalSet (Zonotope.mtimes M Z)
         + (Zonotope.mtimesResidual M Z).construct := by -- --- PROOF ---
@@ -121,7 +122,7 @@ theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n
   linarith [hsum]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem Zonotope.aux_mtimes_error (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
+private theorem Zonotope.aux_mtimes_error (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' (I_error Z).construct + (Zonotope.mtimesResidual M Z).construct ⊆
       (I_error (Zonotope.mtimes M Z)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M Z.I_error))

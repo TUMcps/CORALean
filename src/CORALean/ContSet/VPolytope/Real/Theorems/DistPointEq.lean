@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The squared Euclidean distance as the objective of the quadratic program, plus `x'x`. -/
-theorem aux_dist_sq (x y : Vec ℝ n) :
+private theorem aux_dist_sq (x y : Vec ℝ n) :
     dist (toEuclidean x) (toEuclidean y) ^ 2 =
       ∑ i, y i * y i - 2 * ∑ i, x i * y i + ∑ i, x i * x i := by
   rw [dist_eq_norm, ← map_sub, norm_toEuclidean, norm₂,

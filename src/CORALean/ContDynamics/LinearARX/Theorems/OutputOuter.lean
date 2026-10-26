@@ -53,8 +53,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The output equation reads `y(k)` off the window and adds nothing. -/
-theorem LinearARX.aux_outputEq_eval (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) (y : ℕ → Vec ℝ dy)
-    (v : Vec ℝ (p * dy)) (k : ℕ) : -- --- CONCL ---
+private theorem LinearARX.aux_outputEq_eval (sys : LinearARX 𝕋 dy du p) (hp : 0 < p)
+    (y : ℕ → Vec ℝ dy) (v : Vec ℝ (p * dy)) (k : ℕ) : -- --- CONCL ---
     sys.outputEq.eval (LinearARX.stack p y k) v = y k := by -- --- PROOF ---
   funext r
   have hD : toRealMat sys.outputEq.D = 0 := by

@@ -49,7 +49,7 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The rows' absolute sums of `Diag(s)⁻¹ Z'`: `Σᵢ |Z'ⱼᵢ| / sⱼ`. -/
-theorem aux_rowSum_diagonal_inv_mul (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
+private theorem aux_rowSum_diagonal_inv_mul (s : Fin m → ℝ) (hs : ∀ j, 0 < s j)
     (Z' : Matrix (Fin m) (Fin n) ℝ) (j : Fin m) :
     ∑ i, |(Matrix.diagonal (fun j => (s j)⁻¹) * Z') j i| = (∑ i, |Z' j i|) / s j := by
   simp only [Matrix.diagonal_mul, abs_mul, abs_inv, abs_of_pos (hs j), ← Finset.mul_sum]

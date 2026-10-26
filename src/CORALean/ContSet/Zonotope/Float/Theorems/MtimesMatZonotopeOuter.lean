@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One exact matrix-vector product of stored values, between its directed roundings. -/
-theorem Zonotope.aux_mulVec_bounds (A : Mat 𝕋 m n) (v : Vec 𝕋 n) (i : Fin m) :
+private theorem Zonotope.aux_mulVec_bounds (A : Mat 𝕋 m n) (v : Vec 𝕋 n) (i : Fin m) :
     toReal (mulVecDown A v i) ≤ Matrix.mulVecBilin ℝ ℝ (toRealMat A) (toRealVec v) i
       ∧ Matrix.mulVecBilin ℝ ℝ (toRealMat A) (toRealVec v) i ≤ toReal (mulVecUp A v i) := by
   rw [Matrix.mulVecBilin_apply]

@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- A centerless polynomial zonotope over `Vec ℝ m`'s point is its generators, read as the columns
 of a matrix, applied to the monomials. -/
-theorem PolyLevelSet.aux_mulVec_eq_point {m : ℕ} (Z : PolyZonotope (Vec ℝ m)) (hc : Z.c = 0)
+private theorem PolyLevelSet.aux_mulVec_eq_point {m : ℕ} (Z : PolyZonotope (Vec ℝ m)) (hc : Z.c = 0)
     (x : Fin Z.p → ℝ) :
     (fun i l => Z.G l i) *ᵥ PolyZonotope.monomial Z.E x = Z.point x := by
   funext i

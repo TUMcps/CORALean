@@ -51,13 +51,13 @@ structure System (𝕋 : Type) where
 
 /-- A row of the config's `x0.generators`, read into `𝕋` -- one generator `X0.G j`
 once `buildX0` reads it in. -/
-def aux_readVec (field : String) (inst : String → ExactDyadic → Except String 𝕋)
+private def aux_readVec (field : String) (inst : String → ExactDyadic → Except String 𝕋)
     (row : Array String) : Except String (Array 𝕋) :=
   row.mapM fun s => do inst field (← parseExact s)
 
 /-- The zero-input zonotope `reach` still takes: a single point at the origin,
 no generators, no error. -/
-def aux_zeroInput (z0 : 𝕋) : Zonotope (Vec 𝕋 2) :=
+private def aux_zeroInput (z0 : 𝕋) : Zonotope (Vec 𝕋 2) :=
   { h := 0, c := fun _ => z0, G := fun j => j.elim0, I_error := ⟨fun _ => z0, fun _ => z0⟩ }
 
 /-- `X0` from the config's center and generator rows, all read into `𝕋` through

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_dirac_miss {I : Interval (Vec 𝕋 m)} {i : Fin m}
+private theorem Interval.aux_dirac_miss {I : Interval (Vec 𝕋 m)} {i : Fin m}
     (h : (ltStrict zero (I.inf i) || ltStrict (I.sup i) zero) = true) :
     0 < toReal (I.inf i) ∨ toReal (I.sup i) < 0 := by
   rcases Bool.or_eq_true_iff.1 h with h | h

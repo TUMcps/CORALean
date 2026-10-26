@@ -46,11 +46,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The square of one factor: it denotes `[0,1]`, its generator reaching `[-1,1]`. -/
-abbrev PolyZonotope.aux_sq : PolyZonotope (Vec ℝ 1) :=
+private abbrev PolyZonotope.aux_sq : PolyZonotope (Vec ℝ 1) :=
   ⟨1, 1, 0, 0, fun _ _ => 1, fun _ _ => 2, Fin.elim0⟩
 
 /-- A wider interval written affinely, whose generator is already tight. -/
-abbrev PolyZonotope.aux_aff : PolyZonotope (Vec ℝ 1) :=
+private abbrev PolyZonotope.aux_aff : PolyZonotope (Vec ℝ 1) :=
   ⟨1, 1, 0, fun _ => 1, fun _ _ => 1, fun _ _ => 1, Fin.elim0⟩
 
 

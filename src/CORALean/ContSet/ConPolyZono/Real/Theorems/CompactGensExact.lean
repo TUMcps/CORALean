@@ -49,7 +49,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
-theorem ConPolyZono.aux_sum_compactGens (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_sum_compactGens (cPZ : ConPolyZono α)
+    (a : Fin cPZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i)
       = ∑ j : Fin cPZ.compactGens.h,
           PolyZonotope.monomial cPZ.compactGens.E a j • cPZ.compactGens.G j := by -- --- PROOF ---

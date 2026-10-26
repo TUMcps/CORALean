@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zoo.aux_ofInterval_poly (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n) (t : Vec ℝ Z.h) :
+private theorem Zoo.aux_ofInterval_poly (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n)
+    (t : Vec ℝ Z.h) :
     (Z.taylm N i).inflated.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
   simp only [Zonotope.taylm, Taylm.inflated, Real.Taylm.poly, List.map_cons, List.map_ofFn,
     Real.Taylm.polyOf_cons, Real.Taylm.polyOf_ofFn, Real.Taylm.monomial_zero,

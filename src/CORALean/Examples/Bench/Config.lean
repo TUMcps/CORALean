@@ -55,14 +55,14 @@ deriving Repr
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_obj (j : Json) (k : String) : Except String Json := j.getObjVal? k
-def aux_str (j : Json) (k : String) : Except String String := do (← aux_obj j k).getStr?
-def aux_nat (j : Json) (k : String) : Except String Nat := do (← aux_obj j k).getNat?
+private def aux_obj (j : Json) (k : String) : Except String Json := j.getObjVal? k
+private def aux_str (j : Json) (k : String) : Except String String := do (← aux_obj j k).getStr?
+private def aux_nat (j : Json) (k : String) : Except String Nat := do (← aux_obj j k).getNat?
 
-def aux_strArr (j : Json) : Except String (Array String) := do
+private def aux_strArr (j : Json) : Except String (Array String) := do
   (← j.getArr?).mapM Json.getStr?
 
-def aux_precisionSpec (j : Json) : Except String PrecisionSpec := do
+private def aux_precisionSpec (j : Json) : Except String PrecisionSpec := do
   let ty ← aux_str j "type"
   if ty = "dyadic" then pure ⟨ty, some (← aux_str j "format")⟩ else pure ⟨ty, none⟩
 

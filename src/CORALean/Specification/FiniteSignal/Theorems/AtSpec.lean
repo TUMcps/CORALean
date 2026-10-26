@@ -41,7 +41,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The cell semantics of `valueAt` on breakpoints after `a`, with last time `d`. -/
-theorem aux_valueAt_cellsFrom {T V : Type} [LinearOrder T] (d t : T) : -- --- CONCL ---
+private theorem aux_valueAt_cellsFrom {T V : Type} [LinearOrder T] (d t : T) : -- --- CONCL ---
     ∀ (a : T) (L : List (T × V)) (v : V), L ≠ [] → (L.map Prod.fst).Pairwise (· < ·) →
       (∀ x ∈ L, a ≤ x.1 ∧ x.1 ≤ d) → (∃ x ∈ L, x.1 = d) → a ≤ t → t ≤ d →
       (FiniteSignal.valueAt L t = some v ↔ ∃ c ∈ FiniteSignal.cellsFrom a L, c.2 = v ∧

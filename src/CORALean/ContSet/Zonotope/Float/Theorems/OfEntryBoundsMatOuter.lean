@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generators' gaps, scaled by coefficients in `[-1, 1]`, within the summed widths. -/
-theorem Zonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
+private theorem Zonotope.aux_abs_gap_le {h : ℕ} {GLo GHi : Fin h → Mat 𝕋 m n}
     {G : Fin h → Mat ℝ m n}
     (hG : ∀ k i j, toReal (GLo k i j) ≤ G k i j ∧ G k i j ≤ toReal (GHi k i j))
     {β : Fin h → ℝ} (hβ : ∀ k, |β k| ≤ 1) (i : Fin m) (j : Fin n) : -- --- CONCL ---

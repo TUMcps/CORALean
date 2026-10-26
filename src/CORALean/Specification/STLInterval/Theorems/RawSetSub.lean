@@ -45,7 +45,7 @@ open scoped Pointwise
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Negating `rawSet l u lc rc` gives `rawSet (-u) (-l) rc lc`. -/
-theorem STLInterval.aux_rawSet_neg (l u : EReal) (lc rc : Bool) : -- --- CONCL ---
+private theorem STLInterval.aux_rawSet_neg (l u : EReal) (lc rc : Bool) : -- --- CONCL ---
     -(rawSet l u lc rc) = rawSet (-u) (-l) rc lc := by -- --- PROOF ---
   ext t
   show -t ∈ rawSet l u lc rc ↔ _

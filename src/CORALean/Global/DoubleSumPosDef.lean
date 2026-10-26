@@ -57,7 +57,7 @@ variable {ι : Type} [Fintype ι]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the scalar form of the relaxation
-theorem aux_doubleSum_pos {r : ℕ} (q : Fin r → Fin r → ℝ) (μ : Fin r → ℝ)
+private theorem aux_doubleSum_pos {r : ℕ} (q : Fin r → Fin r → ℝ) (μ : Fin r → ℝ)
     (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∑ i, μ i = 1) (hd : ∀ i, 0 < q i i)
     (ho : ∀ i j, i ≠ j → 0 < 2 / ((r : ℝ) - 1) * q i i + q i j + q j i) : -- --- CONCL ---
     0 < ∑ i, ∑ j, μ i * μ j * q i j := by -- --- PROOF ---

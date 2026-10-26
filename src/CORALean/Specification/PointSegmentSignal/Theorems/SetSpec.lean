@@ -64,7 +64,7 @@ section
 variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- `aux_isNewPointOk` as a proposition. -/
-theorem PointSegmentSignal.aux_isNewPointOk_iff (s : PointSegmentSignal T) (i : ℕ) (p : T)
+private theorem PointSegmentSignal.aux_isNewPointOk_iff (s : PointSegmentSignal T) (i : ℕ) (p : T)
     (vals : List Bool) : -- --- CONCL ---
     s.aux_isNewPointOk i p vals = true ↔ (s.timePoints.getD (i - 1) 0 = p ∧
       (p = 0 ∨ vals.getD 0 false ≠
@@ -80,7 +80,7 @@ theorem PointSegmentSignal.aux_isNewPointOk_iff (s : PointSegmentSignal T) (i : 
 
 
 /-- The lower prefix of `set`: the points before `lb` and the new point at `lb`, if any. -/
-def aux_lowerPrefix (s : PointSegmentSignal T) (lb : T) (lc value : Bool) :
+private def aux_lowerPrefix (s : PointSegmentSignal T) (lb : T) (lc value : Bool) :
     PointSegmentSignal T :=
   let before := (s.atIdx (lb : WithTop T)).1
   let i := (s.atIdx (lb : WithTop T)).2
@@ -92,14 +92,14 @@ def aux_lowerPrefix (s : PointSegmentSignal T) (lb : T) (lc value : Bool) :
 
 
 /-- The index of the first point `set` drops or replaces at the lower end. -/
-def aux_lowerIdx (s : PointSegmentSignal T) (lb : T) : ℕ :=
+private def aux_lowerIdx (s : PointSegmentSignal T) (lb : T) : ℕ :=
   if s.timePoints.getD ((s.atIdx (lb : WithTop T)).2 - 1) 0 = lb then
     (s.atIdx (lb : WithTop T)).2 - 1
   else (s.atIdx (lb : WithTop T)).2
 
 
 /-- Facts about the lower end: the points before it, the new point and its neighbours. -/
-theorem aux_ls_key (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
+private theorem aux_ls_key (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
     (lc value : Bool) (before : Bool) (i : ℕ) (lVal : List Bool) (addL : Bool) (i' : ℕ)
     (P : List T) (VP : List Bool) (hb : before = (s.atIdx (lb : WithTop T)).1)
     (hi : i = (s.atIdx (lb : WithTop T)).2)
@@ -249,7 +249,7 @@ theorem aux_ls_key (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 
 
 
 /-- The lower prefix is valid and has the right values before, at and after `lb`. -/
-theorem aux_ls_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
+private theorem aux_ls_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
     (lc value : Bool) : -- --- CONCL ---
     (aux_lowerPrefix s lb lc value).IsValid ∧
       (∀ x ∈ (aux_lowerPrefix s lb lc value).timePoints, x ≤ lb) ∧
@@ -343,7 +343,7 @@ theorem aux_ls_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0
 
 
 /-- Facts about the points at or before the upper end. -/
-theorem aux_us_facts (s : PointSegmentSignal T) (hs : s.IsValid) (lb u : T) (hlb : 0 ≤ lb)
+private theorem aux_us_facts (s : PointSegmentSignal T) (hs : s.IsValid) (lb u : T) (hlb : 0 ≤ lb)
     (hlu : lb < u) (j : ℕ) (hj : j = (s.atIdx (u : WithTop T)).2) : -- --- CONCL ---
     1 ≤ j ∧ j ≤ s.timePoints.length ∧ (∀ x ∈ s.timePoints.take j, x ≤ u) ∧
       (∀ b, s.timePoints[j]? = some b → u < b) ∧ (∀ r ∈ s.timePoints.drop j, u < r) ∧
@@ -368,7 +368,7 @@ theorem aux_us_facts (s : PointSegmentSignal T) (hs : s.IsValid) (lb u : T) (hlb
 
 
 /-- The part from the lower prefix on is valid and has the right values around `ub`. -/
-theorem aux_us_spec (s : PointSegmentSignal T) (hs : s.IsValid) (Q : PointSegmentSignal T)
+private theorem aux_us_spec (s : PointSegmentSignal T) (hs : s.IsValid) (Q : PointSegmentSignal T)
     (lb u : T) (hlb : 0 ≤ lb) (hlu : lb < u) (rc value : Bool) (hQv : Q.IsValid)
     (hQle : ∀ x ∈ Q.timePoints, x ≤ lb) (hQabove : ∀ t, lb < t → Q.at t = value)
     (hQlast : Q.values.getD (Q.values.length - 1) false = value) (j : ℕ) (afterPoint after : Bool)
@@ -455,7 +455,7 @@ theorem aux_us_spec (s : PointSegmentSignal T) (hs : s.IsValid) (Q : PointSegmen
 
 
 /-- `set` on an interval with distinct ends. -/
-theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : WithTop T)
+private theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : WithTop T)
     (lc rc : Bool) (value : Bool) (h0 : 0 ≤ lb)
     (hne : STLInterval.emptyBounds lb up lc rc = false)
     (hlt : (lb : WithTop T) ≠ up) : -- --- CONCL ---
@@ -579,8 +579,8 @@ theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (up : Wi
 
 /-- `aux_setBounds` sets the interval to `value` and changes nothing else, and keeps the signal
 valid. -/
-theorem PointSegmentSignal.aux_setBounds_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T)
-    (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lb) (value : Bool) : -- --- CONCL ---
+private theorem PointSegmentSignal.aux_setBounds_spec (s : PointSegmentSignal T) (hs : s.IsValid)
+    (lb : T) (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lb) (value : Bool) : -- --- CONCL ---
     (s.aux_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
       (STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
       (¬ STLInterval.IsInBounds lb up lc rc t →

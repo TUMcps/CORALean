@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `sign r · r = |r|`. -/
-theorem Zonotope.aux_sign_mul_self_mai (r : ℝ) : Real.sign r * r = |r| := by
+private theorem Zonotope.aux_sign_mul_self_mai (r : ℝ) : Real.sign r * r = |r| := by
   rcases lt_trichotomy r 0 with h | h | h
   · rw [Real.sign_of_neg h, abs_of_neg h, neg_one_mul]
   · rw [h, Real.sign_zero, abs_zero, mul_zero]

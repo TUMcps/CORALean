@@ -62,7 +62,7 @@ theorem norm_toEuclidean (x : Vec ℝ n) : ‖toEuclidean x‖ = ‖x‖₂ := b
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_sum_sq_nonneg (x : Vec ℝ n) : 0 ≤ ∑ i, x i ^ 2 :=
+private theorem aux_sum_sq_nonneg (x : Vec ℝ n) : 0 ≤ ∑ i, x i ^ 2 :=
   Finset.sum_nonneg fun _ _ => sq_nonneg _
 
 theorem norm₂_nonneg (x : Vec ℝ n) : 0 ≤ ‖x‖₂ := Real.sqrt_nonneg _

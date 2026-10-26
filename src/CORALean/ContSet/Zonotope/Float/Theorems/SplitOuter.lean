@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of a real half, its center read off with the shift `s`, plus a point of the box,
 lies in the stored half: same coefficients, and the center rounding in the box. -/
-theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n)
+private theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n)
     {zn e : Vec ℝ n}
     (he : e ∈ Z.I_error.construct) (β : Vec ℝ Z.h) (hβ : ∀ k, |β k| ≤ 1)
     (hzn : ∀ i, zn i = toReal (Z.c i) + toReal (s i)

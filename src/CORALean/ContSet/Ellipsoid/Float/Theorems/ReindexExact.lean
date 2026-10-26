@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The relabelled nominal ellipsoid is the exact layer's `map` at the relabelling. -/
-theorem aux_reindex_nominal (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
+private theorem aux_reindex_nominal (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     (InflatedContSet.nominal (E.reindex e)).ellipsoid
       = Real.Ellipsoid.map (reindexLin e) (InflatedContSet.nominal E).ellipsoid
     := by -- --- PROOF ---

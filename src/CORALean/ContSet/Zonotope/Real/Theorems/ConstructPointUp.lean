@@ -39,7 +39,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Each generator of `pointUp` is a unit multiple of the original. -/
-theorem Zonotope.aux_pointUp_smul (Z : Zonotope (Vec ℝ 2)) (i : Fin Z.h) :
+private theorem Zonotope.aux_pointUp_smul (Z : Zonotope (Vec ℝ 2)) (i : Fin Z.h) :
     ∃ e : ℝ, |e| = 1 ∧ Z.pointUp.G i = e • Z.G i := by
   by_cases h : Z.G i 1 < 0 ∨ (Z.G i 1 = 0 ∧ Z.G i 0 < 0)
   · exact ⟨-1, by simp, by simp [Zonotope.pointUp, h]⟩

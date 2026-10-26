@@ -59,7 +59,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `A diag(ξr) δ` is `A` applied to the entrywise product `ξr ∘ δ`. -/
-theorem ConZonotope.aux_mulVec_diagonal {q h : ℕ} (A : Mat ℝ q h) (ξr δ : Vec ℝ h) :
+private theorem ConZonotope.aux_mulVec_diagonal {q h : ℕ} (A : Mat ℝ q h) (ξr δ : Vec ℝ h) :
     (A * Matrix.diagonal ξr) *ᵥ δ = A *ᵥ fun j => ξr j * δ j := by
   rw [← Matrix.mulVec_mulVec]
   congr 1
@@ -67,7 +67,7 @@ theorem ConZonotope.aux_mulVec_diagonal {q h : ℕ} (A : Mat ℝ q h) (ξr δ : 
   simp [Matrix.mulVec_diagonal]
 
 /-- Whatever the order of the endpoints, `ξm + ξr δ` is a convex combination of them. -/
-theorem ConZonotope.aux_abs_midpoint_le {a u δ : ℝ} (ha : |a| ≤ 1) (hu : |u| ≤ 1)
+private theorem ConZonotope.aux_abs_midpoint_le {a u δ : ℝ} (ha : |a| ≤ 1) (hu : |u| ≤ 1)
     (hδ : |δ| ≤ 1) : -- --- CONCL ---
     |(u + a) / 2 + (u - a) / 2 * δ| ≤ 1 := by -- --- PROOF ---
   obtain ⟨ha1, ha2⟩ := abs_le.mp ha

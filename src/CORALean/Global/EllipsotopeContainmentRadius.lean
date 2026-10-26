@@ -54,7 +54,7 @@ variable {E₁ E₂ W : Type} [NormedAddCommGroup E₁] [NormedSpace ℝ E₁] [
 
 omit [FiniteDimensional ℝ E₂] in
 /-- Through `H` onto its range the norm is the same. -/
-theorem aux_coeffNorm_rangeRestrict (H : E₂ →ₗ[ℝ] W) (x : W)
+private theorem aux_coeffNorm_rangeRestrict (H : E₂ →ₗ[ℝ] W) (x : W)
     (hx : x ∈ LinearMap.range H) : -- --- CONCL ---
     coeffNorm H x = coeffNorm H.rangeRestrict ⟨x, hx⟩ := by -- --- PROOF ---
   unfold coeffNorm
@@ -66,7 +66,7 @@ theorem aux_coeffNorm_rangeRestrict (H : E₂ →ₗ[ℝ] W) (x : W)
   · intro h; exact congrArg Subtype.val h
 
 /-- The maximum of Eq. 15 is attained where the inbody's offsets lie in `Im H`. -/
-theorem aux_exists_isGreatest (G : E₁ →ₗ[ℝ] W) (c : W) (H : E₂ →ₗ[ℝ] W) (d : W)
+private theorem aux_exists_isGreatest (G : E₁ →ₗ[ℝ] W) (c : W) (H : E₂ →ₗ[ℝ] W) (d : W)
     (hmem : ∀ α, G α + c - d ∈ LinearMap.range H) : -- --- CONCL ---
     ∃ r, IsGreatest ((fun α => coeffNorm H (G α + c - d)) '' Metric.closedBall 0 1)
       r := by -- --- PROOF ---

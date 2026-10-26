@@ -58,7 +58,7 @@ open Matrix
 
 /-- The stored generator covers the exact scaling, so no coordinate's
 coefficient exceeds `1/σ`. -/
-theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (i : Fin n) :
+private theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (i : Fin n) :
     toReal σ * toReal (I.radiusFrom i) ≤ toReal (I.ellipsoidG σ i i) := by
   show _ ≤ toReal (diagonalBlock (fun i => mulUp σ (I.radiusFrom i)) i i)
   rw [diagonalBlock, if_pos rfl]
@@ -66,8 +66,8 @@ theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (i : 
 
 
 /-- A box lies in its nominal ellipsoid. -/
-theorem Interval.aux_subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
-    (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
+private theorem Interval.aux_subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋)
+    (hσ : 0 < toReal σ) (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
     I.construct ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---
   intro x hx
   have hreach : ∀ i, toReal (I.center i) - toReal (I.radiusFrom i) ≤ x i

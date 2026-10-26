@@ -36,14 +36,14 @@ open CORALean.Float
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One hex digit's value, upper or lower case. -/
-def aux_hexVal (c : Char) : Except String UInt64 :=
+private def aux_hexVal (c : Char) : Except String UInt64 :=
   if '0' ≤ c ∧ c ≤ '9' then pure (c.toNat.toUInt64 - '0'.toNat.toUInt64)
   else if 'a' ≤ c ∧ c ≤ 'f' then pure (c.toNat.toUInt64 - 'a'.toNat.toUInt64 + 10)
   else if 'A' ≤ c ∧ c ≤ 'F' then pure (c.toNat.toUInt64 - 'A'.toNat.toUInt64 + 10)
   else throw s!"`{c}` is not a hex digit"
 
 /-- The inverse: a nibble `0`..`15` as a lowercase hex digit. -/
-def aux_hexChar (v : UInt64) : Char :=
+private def aux_hexChar (v : UInt64) : Char :=
   if v < 10 then Char.ofNat (v + '0'.toNat.toUInt64).toNat
   else Char.ofNat (v - 10 + 'a'.toNat.toUInt64).toNat
 

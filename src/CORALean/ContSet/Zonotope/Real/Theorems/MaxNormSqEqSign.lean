@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `‖·‖₂²` is convex. -/
-theorem aux_convexOn_sq_norm₂ : -- --- CONCL ---
+private theorem aux_convexOn_sq_norm₂ : -- --- CONCL ---
     ConvexOn ℝ Set.univ (fun x : Vec ℝ n => ‖x‖₂ ^ 2) := by -- --- PROOF ---
   have hc : ConvexOn ℝ Set.univ (fun x : Vec ℝ n => ‖toEuclidean x‖) := by
     have := (convexOn_norm (convex_univ (𝕜 := ℝ) (E := EuclideanSpace ℝ (Fin n)))).comp_linearMap

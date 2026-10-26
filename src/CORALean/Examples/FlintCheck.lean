@@ -49,41 +49,41 @@ def Stat.failures (s : Stat) : Nat := s.wrongDirection + s.notRepresentable + s.
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- SplitMix64, so a seed reproduces a run everywhere. -/
-def aux_next (s : UInt64) : UInt64 × UInt64 :=
+private def aux_next (s : UInt64) : UInt64 × UInt64 :=
   let s' := s + 0x9E3779B97F4A7C15
   let z := (s' ^^^ (s' >>> 30)) * 0xBF58476D1CE4E5B9
   let z := (z ^^^ (z >>> 27)) * 0x94D049BB133111EB
   (z ^^^ (z >>> 31), s')
 
 /-- Uniform in `[0, k)`, up to a modulo bias no test here can see. -/
-def aux_below (s : UInt64) (k : Nat) : Nat × UInt64 :=
+private def aux_below (s : UInt64) (k : Nat) : Nat × UInt64 :=
   let (u, s) := aux_next s
   (u.toNat % k, s)
 
 /-- `m * 2 ^ e` as an exact rational. -/
-def aux_dq (m e : Int) : Rat :=
+private def aux_dq (m e : Int) : Rat :=
   if 0 ≤ e then Rat.ofInt (m * 2 ^ e.toNat) else Rat.ofInt m / Rat.ofInt (2 ^ (-e).toNat)
 
 /-- `2 ^ k` as an exact rational. -/
-def aux_pow2 (k : Int) : Rat := aux_dq 1 k
+private def aux_pow2 (k : Int) : Rat := aux_dq 1 k
 
-def aux_value {p : ℕ} (a : Flint p) : Rat := aux_dq a.mantissa a.exponent
+private def aux_value {p : ℕ} (a : Flint p) : Rat := aux_dq a.mantissa a.exponent
 
 /-- `⌊log₂ |x|⌋` for `x ≠ 0`. -/
-def aux_log2 (x : Rat) : Int :=
+private def aux_log2 (x : Rat) : Int :=
   let k : Int := (x.num.natAbs.log2 : Int) - (x.den.log2 : Int)
   if |x| < aux_pow2 k then k - 1 else k
 
 /-- The model: the least (`up`) or greatest number with at most `p` significant bits on the
 right side of `x`: in the binade of `|x|`, a multiple of `2 ^ (⌊log₂ |x|⌋ - p + 1)`. -/
-def aux_round (up : Bool) (p : ℕ) (x : Rat) : Rat :=
+private def aux_round (up : Bool) (p : ℕ) (x : Rat) : Rat :=
   if x == 0 then 0 else
   let u := aux_log2 x - (p : Int) + 1
   let q := x / aux_pow2 u
   Rat.ofInt (if up then q.ceil else q.floor) * aux_pow2 u
 
 /-- Significant bits of `m * 2 ^ e`: the bit length of `m` with trailing zeros dropped. -/
-def aux_sigBits (m : Int) : Nat :=
+private def aux_sigBits (m : Int) : Nat :=
   if m == 0 then 0 else
   let a := m.natAbs
   let rec strip (a : Nat) (fuel : Nat) : Nat :=
@@ -93,7 +93,7 @@ def aux_sigBits (m : Int) : Nat :=
   (strip a (a.log2 + 1)).log2 + 1
 
 /-- `m * 2 ^ e` reduced to an odd mantissa (zero as `(0, 0)`), for comparing representations. -/
-def aux_norm (m e : Int) : Int × Int :=
+private def aux_norm (m e : Int) : Int × Int :=
   if m == 0 then (0, 0) else
   let rec go (a : Nat) (e : Int) (fuel : Nat) : Nat × Int :=
     match fuel with
@@ -112,7 +112,7 @@ def Stat.add (t : Stat) (desc : String) (dir ok repr tight : Bool) : Stat :=
     first := t.first.orElse fun _ => some desc }
 
 /-- One directed result `r` of `op` at `p`, with exact value `x`, against all three properties. -/
-def aux_check (t : Stat) (up : Bool) (p : ℕ) (a b r : Flint p) (x : Rat) : Stat :=
+private def aux_check (t : Stat) (up : Bool) (p : ℕ) (a b r : Flint p) (x : Rat) : Stat :=
   let v := aux_value r
   let ok := if up then x ≤ v else v ≤ x
   let repr := aux_sigBits r.mantissa ≤ max p 2
@@ -122,7 +122,7 @@ def aux_check (t : Stat) (up : Bool) (p : ℕ) (a b r : Flint p) (x : Rat) : Sta
 
 
 /-- A random natural of the given bit length (top bit set), zero for length `0`. -/
-def aux_bits (s : UInt64) (len : Nat) : Nat × UInt64 := Id.run do
+private def aux_bits (s : UInt64) (len : Nat) : Nat × UInt64 := Id.run do
   if len == 0 then return (0, s)
   let mut s := s
   let mut acc : Nat := 0
@@ -134,7 +134,7 @@ def aux_bits (s : UInt64) (len : Nat) : Nat × UInt64 := Id.run do
 
 /-- A mantissa for precision `p`: random, near `p` or `p + 1` bits, `2^k ± 1`, a power of two, or a
 tie (`p + 1` bits, the last set), signed by a further bit. -/
-def aux_mantissa (s : UInt64) (p : Nat) : Int × UInt64 :=
+private def aux_mantissa (s : UInt64) (p : Nat) : Int × UInt64 :=
   let (cls, s) := aux_below s 8
   let (r, s) := aux_below s (p + 70)
   let (sg, s) := aux_below s 2
@@ -152,7 +152,7 @@ def aux_mantissa (s : UInt64) (p : Nat) : Int × UInt64 :=
 
 /-- An exponent: close to the origin, or far from it (the gap between operands decides whether an
 addend is a sticky bit only). -/
-def aux_exponent (s : UInt64) : Int × UInt64 :=
+private def aux_exponent (s : UInt64) : Int × UInt64 :=
   let (c, s) := aux_below s 4
   let (r, s) := aux_below s 1000
   (if c == 0 then (r : Int) - 500 else (r % 41 : Nat) - 20, s)

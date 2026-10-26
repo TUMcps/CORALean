@@ -53,7 +53,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A derivative within a convex `T ∋ 0`, bounded on `[0, t]`, is integrable from `0` to `t`. -/
-theorem aux_intervalIntegrable_of_hasDerivWithinAt {T : Set ℝ} {x g : ℝ → Vec ℝ n} {C : ℝ}
+private theorem aux_intervalIntegrable_of_hasDerivWithinAt {T : Set ℝ} {x g : ℝ → Vec ℝ n} {C : ℝ}
     (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (hd : ∀ t ∈ T, HasDerivWithinAt x (g t) T t)
     {t : ℝ} (ht : t ∈ T) (hC : ∀ s ∈ Set.uIcc 0 t, ‖g s‖ ≤ C) : -- --- CONCL ---
     IntervalIntegrable g volume 0 t := by -- --- PROOF ---

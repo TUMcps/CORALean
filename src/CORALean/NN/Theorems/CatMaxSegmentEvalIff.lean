@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The guard is that `x P` dominates every `x (g q)`. -/
-theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) : -- --- CONCL ---
+private theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) : -- --- CONCL ---
     ∀ {j : ℕ} (g : Fin j → Fin N),
       x ∈ (Fin.foldr j (fun q acc => (CatCond.ge P (g q)).and_ acc) (CatCond.ge P P)).construct
         ↔ ∀ q, x (g q) ≤ x P := by -- --- PROOF ---
@@ -68,7 +68,7 @@ theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) : -- --- CONCL 
       ih (fun q => g q.succ), Fin.forall_fin_succ]
 
 /-- The selection of position `p`, read off coordinate by coordinate. -/
-theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1))
+private theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1))
     (x : Vec ℝ (a + (k + 1) + b)) : -- --- CONCL ---
     toRealMat (selectMat (𝕋 := 𝕋) fun r : Fin (a + 1 + b) =>
         (⟨if r.val < a then r.val else if r.val = a then a + p.val else r.val + k,

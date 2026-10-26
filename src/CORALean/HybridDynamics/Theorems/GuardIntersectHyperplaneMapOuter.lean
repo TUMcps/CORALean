@@ -80,7 +80,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `nᵀx − d` of a point of `Z` lies in the range `Zonotope.halfspaceRange` computes. -/
-theorem aux_hpMap_range {v : Vec ℝ n} {d : ℝ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+private theorem aux_hpMap_range {v : Vec ℝ n} {d : ℝ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.construct) : -- --- CONCL ---
     (Z.halfspaceRange v d).inf ≤ v ⬝ᵥ x - d ∧
       v ⬝ᵥ x - d ≤ (Z.halfspaceRange v d).sup := by -- --- PROOF ---
@@ -98,7 +98,7 @@ theorem aux_hpMap_range {v : Vec ℝ n} {d : ℝ} {Z : Zonotope (Vec ℝ n)} {x 
   constructor <;> linarith [(abs_le.mp hb).1, (abs_le.mp hb).2]
 
 /-- `1/y` of a point of an interval that excludes `0` lies in `[1/hi, 1/lo]`. -/
-theorem aux_hpMap_inv {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
+private theorem aux_hpMap_inv {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
     (h2 : y ≤ hi) : -- --- CONCL ---
     hi⁻¹ ≤ y⁻¹ ∧ y⁻¹ ≤ lo⁻¹ := by -- --- PROOF ---
   rcases h with h | h
@@ -109,7 +109,7 @@ theorem aux_hpMap_inv {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
 
 /-- `1/y²` of a point of an interval that excludes `0` lies in `[1/max, 1/min]` of the squared
 ends, CORA's `1/Lambda_int^2`. -/
-theorem aux_hpMap_sq {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
+private theorem aux_hpMap_sq {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
     (h2 : y ≤ hi) : -- --- CONCL ---
     1 / max (lo ^ 2) (hi ^ 2) ≤ 1 / y ^ 2 ∧
       1 / y ^ 2 ≤ 1 / min (lo ^ 2) (hi ^ 2) := by -- --- PROOF ---
@@ -125,7 +125,7 @@ theorem aux_hpMap_sq {lo hi y : ℝ} (h : 0 < lo ∨ hi < 0) (h1 : lo ≤ y)
     one_div_le_one_div_of_le hpos hlo⟩
 
 /-- A point of `[lo, hi]` is `(lo + hi)/2 + κ(hi − lo)/2` for some `|κ| ≤ 1`. -/
-theorem aux_hpMap_factor {lo hi y : ℝ} (h1 : lo ≤ y) (h2 : y ≤ hi) : -- --- CONCL ---
+private theorem aux_hpMap_factor {lo hi y : ℝ} (h1 : lo ≤ y) (h2 : y ≤ hi) : -- --- CONCL ---
     ∃ κ : ℝ, |κ| ≤ 1 ∧ y = (lo + hi) / 2 + κ * ((hi - lo) / 2) := by -- --- PROOF ---
   rcases eq_or_lt_of_le (h1.trans h2) with heq | hlt
   · exact ⟨0, by norm_num, by rw [← heq] at h2 ⊢; linarith⟩
@@ -135,7 +135,7 @@ theorem aux_hpMap_factor {lo hi y : ℝ} (h1 : lo ≤ y) (h2 : y ≤ hi) : -- --
     · field_simp; ring
 
 /-- `s I` for `s ∈ [a, b]` lies in CORA's interval matrix `[a, b] I`. -/
-theorem aux_hpMap_smul_one_mem {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) : -- --- CONCL ---
+private theorem aux_hpMap_smul_one_mem {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) : -- --- CONCL ---
     s • (1 : Mat ℝ n n) ∈ (⟨Matrix.of fun j k =>
       Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
       Matrix.of fun j k => Interval.mulHi ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b⟩ :
@@ -148,7 +148,7 @@ theorem aux_hpMap_smul_one_mem {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) : -- ---
   exact h
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`. -/
-theorem aux_hpMap_smul_mem_mtimes {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) {Z : Zonotope (Vec ℝ n)}
+private theorem aux_hpMap_smul_mem_mtimes {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) {Z : Zonotope (Vec ℝ n)}
     {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat ⟨Matrix.of fun j k =>
       Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
@@ -160,7 +160,7 @@ theorem aux_hpMap_smul_mem_mtimes {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) {Z : 
   exact h
 
 /-- Girard's reduction keeps the center. -/
-theorem aux_hpMap_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
+private theorem aux_hpMap_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
     (Z.reduceGirard o).c = Z.c := by
   unfold Zonotope.reduceGirard
   split_ifs
@@ -168,14 +168,15 @@ theorem aux_hpMap_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
   · rfl
 
 /-- `Ax + b` of a point of `Z` is in `AZ ⊕ b`. -/
-theorem aux_hpMap_flow_mem (A : Mat ℝ n n) (b : Vec ℝ n) {Z : Zonotope (Vec ℝ n)}
+private theorem aux_hpMap_flow_mem (A : Mat ℝ n n) (b : Vec ℝ n) {Z : Zonotope (Vec ℝ n)}
     {x : Vec ℝ n} (hx : x ∈ Z.construct) :
     A *ᵥ x + b ∈ ((Zonotope.mtimes A Z).plus (Zonotope.ofPoint b)).construct := by
   rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
   exact Set.add_mem_add ⟨x, hx, rfl⟩ (Zonotope.mem_ofPoint b)
 
 /-- `res1`: the hitting point `y_h(x₀)` of a point of `R₀`. -/
-theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0red : Zonotope (Vec ℝ n))
+private theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ)
+    (R₀ R0red : Zonotope (Vec ℝ n))
     (hcen : R0red.c = R₀.c) (hsub : ∀ x ∈ R₀.construct, x ∈ R0red.construct) {x₀ : Vec ℝ n}
     (hx₀ : x₀ ∈ R₀.construct) : -- --- CONCL ---
     -- the lets of `Location.guardIntersectHyperplaneMap` that `res1` reads
@@ -278,7 +279,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
     · linarith [hφm.2]
 
 /-- `res2`: `(−nᵀe₁/Λ(x₀))(Ax₀ + b) + e₂` for `x₀ ∈ R₀`, `e₁, e₂ ∈ E`. -/
-theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (Vec ℝ n))
+private theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (Vec ℝ n))
     {x₀ e₁ e₂ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) (he₁ : e₁ ∈ E.construct)
     (he₂ : e₂ ∈ E.construct) : -- --- CONCL ---
     let flowSet := (Zonotope.mtimes A R₀).plus (Zonotope.ofPoint b)

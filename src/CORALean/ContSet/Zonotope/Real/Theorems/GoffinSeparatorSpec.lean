@@ -68,7 +68,7 @@ variable {k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A vector orthogonal to every member of a family is orthogonal to its span. -/
-theorem Zonotope.aux_dot_eq_zero_of_mem_span {ι : Type} (v : Vec ℝ (k + 1))
+private theorem Zonotope.aux_dot_eq_zero_of_mem_span {ι : Type} (v : Vec ℝ (k + 1))
     (b : ι → Vec ℝ (k + 1)) (hb : ∀ i, v ⬝ᵥ b i = 0) {x : Vec ℝ (k + 1)}
     (hx : x ∈ Submodule.span ℝ (Set.range b)) : -- --- CONCL ---
     v ⬝ᵥ x = 0 := by -- --- PROOF ---
@@ -81,7 +81,7 @@ theorem Zonotope.aux_dot_eq_zero_of_mem_span {ι : Type} (v : Vec ℝ (k + 1))
   exact hle hx
 
 /-- `0 < xᵀx` for `x ≠ 0`. -/
-theorem Zonotope.aux_dot_self_pos {x : Vec ℝ (k + 1)} (hx : x ≠ 0) : 0 < x ⬝ᵥ x := by
+private theorem Zonotope.aux_dot_self_pos {x : Vec ℝ (k + 1)} (hx : x ≠ 0) : 0 < x ⬝ᵥ x := by
   have h0 : 0 ≤ x ⬝ᵥ x := Finset.sum_nonneg fun i _ => mul_self_nonneg (x i)
   rcases h0.lt_or_eq with h | h
   · exact h

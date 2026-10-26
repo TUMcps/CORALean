@@ -32,7 +32,7 @@ namespace CORALean.Bench
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `ρ_Y(p) = (p · c + Σ_j |p · g_j|) / den`, exactly. -/
-def aux_supportAt (Y : RandOutZono) (p : ℤ × ℤ) : ℚ :=
+private def aux_supportAt (Y : RandOutZono) (p : ℤ × ℤ) : ℚ :=
   let s := Y.gens.foldl (fun s (a, b) => s + (p.1 * a + p.2 * b).natAbs) (0 : ℕ)
   ((p.1 * Y.c.1 + p.2 * Y.c.2 + s : ℤ) : ℚ) / Y.den
 

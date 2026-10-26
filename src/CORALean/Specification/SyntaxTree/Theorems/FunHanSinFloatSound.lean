@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A time with `sin s ∈ [lo,hi]` lies in a shifted branch of `asin`. -/
-theorem SyntaxTree.aux_exists_sin_branchFloat {s lo hi : ℝ} (h₁ : lo ≤ Real.sin s)
+private theorem SyntaxTree.aux_exists_sin_branchFloat {s lo hi : ℝ} (h₁ : lo ≤ Real.sin s)
     (h₂ : Real.sin s ≤ hi) : -- --- CONCL ---
     ∃ k : ℤ, (Real.arcsin lo + k * (2 * Real.pi) ≤ s ∧ s ≤ Real.arcsin hi + k * (2 * Real.pi)) ∨
       (Real.pi - Real.arcsin hi + k * (2 * Real.pi) ≤ s ∧ s ≤ Real.pi - Real.arcsin lo + k * (2 *

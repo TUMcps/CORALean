@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
+private theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
     (toRealMat (fun (_ : Fin 1) (_ : Fin k) => (one : 𝕋)) *ᵥ β) i = ∑ j, β j := by
   show ∑ j, toReal (one : 𝕋) * β j = ∑ j, β j
   exact Finset.sum_congr rfl fun j _ => by rw [toReal_one, one_mul]

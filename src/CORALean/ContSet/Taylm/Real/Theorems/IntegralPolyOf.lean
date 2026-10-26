@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A monomial at `t` with `tᵢ := s` splits off the power of `s`. -/
-theorem Taylm.aux_monomial_update (e : Fin n → ℕ) (t : Vec ℝ n) (i : Fin n)
+private theorem Taylm.aux_monomial_update (e : Fin n → ℕ) (t : Vec ℝ n) (i : Fin n)
     (s : ℝ) : -- --- CONCL ---
     Taylm.monomial e (Function.update t i s) =
       (∏ k ∈ Finset.univ.erase i, t k ^ e k) * s ^ e i := by -- --- PROOF ---

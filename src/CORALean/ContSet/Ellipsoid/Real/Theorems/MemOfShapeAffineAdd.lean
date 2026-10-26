@@ -57,7 +57,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `2 aᵀ e ≤ k aᵀ P a + eᵀ P⁻¹ e / k` for positive-definite `P` and `k > 0`. -/
-theorem Ellipsoid.aux_two_dot_le {P : Mat ℝ n n} (hP : P.PosDef) (a e : Vec ℝ n) {k : ℝ}
+private theorem Ellipsoid.aux_two_dot_le {P : Mat ℝ n n} (hP : P.PosDef) (a e : Vec ℝ n) {k : ℝ}
     (hk : 0 < k) : -- --- CONCL ---
     2 * (a ⬝ᵥ e) ≤ k * (a ⬝ᵥ P *ᵥ a) + (e ⬝ᵥ P⁻¹ *ᵥ e) / k := by -- --- PROOF ---
   have hPu : IsUnit P.det := (isUnit_iff_isUnit_det P).1 hP.isUnit

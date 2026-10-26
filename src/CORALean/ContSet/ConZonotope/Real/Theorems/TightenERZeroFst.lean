@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A fold whose first component evolves on its own is the fold of that component. -/
-theorem ConZonotope.aux_foldl_fst {α β : Type} (n : ℕ) (f : α × β → Fin n → α × β)
+private theorem ConZonotope.aux_foldl_fst {α β : Type} (n : ℕ) (f : α × β → Fin n → α × β)
     (g : α → Fin n → α) (hfg : ∀ s i, (f s i).1 = g s.1 i) (x : α × β) : -- --- CONCL ---
     (Fin.foldl n f x).1 = Fin.foldl n g x.1 := by -- --- PROOF ---
   induction n generalizing x with

@@ -51,17 +51,17 @@ open scoped CORALean.Real
 
 /-- The zero function: cheap to relax at any slope, which is the freedom the
 counterexample exploits. -/
-def aux_encloseNotMonotone_sigma : ℝ → ℝ := fun _ => 0
+private def aux_encloseNotMonotone_sigma : ℝ → ℝ := fun _ => 0
 
 /-- Slope `1` below width `2`, slope `0` at or above it. -/
-noncomputable def aux_encloseNotMonotone_R : Relaxation ℝ where
+private noncomputable def aux_encloseNotMonotone_R : Relaxation ℝ where
   slope l u := if u - l < 2 then 1 else 0
   offset l u := if u - l < 2 then -(l + u) / 2 else 0
   error l u := if u - l < 2 then (u - l) / 2 else 0
 
 /-- Both branches are sound: the deviation from the chosen line never exceeds half the box's
 width. -/
-theorem aux_encloseNotMonotone_R_sound : -- --- CONCL ---
+private theorem aux_encloseNotMonotone_R_sound : -- --- CONCL ---
     aux_encloseNotMonotone_R.IsSound aux_encloseNotMonotone_sigma := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |0 - ((if u - l < 2 then (1 : ℝ) else 0) * t + (if u - l < 2 then -(l + u) / 2 else 0))|
@@ -75,12 +75,12 @@ theorem aux_encloseNotMonotone_R_sound : -- --- CONCL ---
     simp
 
 /-- The narrow box `[0, 1]`. -/
-def aux_encloseNotMonotone_s : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
+private def aux_encloseNotMonotone_s : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
 
 /-- The wide box `[0, 3]`, which contains `aux_encloseNotMonotone_s`. -/
-def aux_encloseNotMonotone_t : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 3⟩
+private def aux_encloseNotMonotone_t : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 3⟩
 
-theorem aux_encloseNotMonotone_subset :
+private theorem aux_encloseNotMonotone_subset :
     construct aux_encloseNotMonotone_s ⊆ construct aux_encloseNotMonotone_t := by
   intro x hx i
   have h1 : (0 : ℝ) ≤ x i := (hx i).1
@@ -89,7 +89,7 @@ theorem aux_encloseNotMonotone_subset :
 
 /-- At `ℝ`, the activation layer's propagation of a box is the box `mtimes` makes of the
 diagonal slopes, plus the relaxation's box, rounded nowhere. -/
-theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) : -- --- CONCL ---
+private theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) : -- --- CONCL ---
     (Layer.activation (S := ℐ𝒱) aux_encloseNotMonotone_R).enclose I
       = (Real.Interval.mtimes (Float.diagonalBlock fun i =>
           aux_encloseNotMonotone_R.slope (I.inf i) (I.sup i)) I).plus
@@ -103,7 +103,7 @@ theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) : -- --- 
   rfl
 
 /-- The constant `1` vector lies in the narrow box's own propagation, `[-1, 1]`. -/
-theorem aux_encloseNotMonotone_mem_s : -- --- CONCL ---
+private theorem aux_encloseNotMonotone_mem_s : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ)) ∈ construct
       ((Layer.activation (S := ℐ𝒱)
         aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_s) := by -- --- PROOF ---
@@ -116,7 +116,7 @@ theorem aux_encloseNotMonotone_mem_s : -- --- CONCL ---
 
 /-- The wide box's own propagation is the single point `0`: slope `0` drops every
 dependence on the input, so nothing at `1` survives. -/
-theorem aux_encloseNotMonotone_not_mem_t : -- --- CONCL ---
+private theorem aux_encloseNotMonotone_not_mem_t : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ)) ∉ construct
       ((Layer.activation (S := ℐ𝒱)
         aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_t) := by -- --- PROOF ---

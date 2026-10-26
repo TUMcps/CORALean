@@ -53,7 +53,7 @@ variable {V : Type*} [AddCommGroup V] [Module ℝ V]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Of two vectors of the plane, some unit vector makes a non-positive product with both. -/
-theorem aux_exists_unit_nonpos (p q r s : ℝ) : -- --- CONCL ---
+private theorem aux_exists_unit_nonpos (p q r s : ℝ) : -- --- CONCL ---
     ∃ κ μ : ℝ, κ ^ 2 + μ ^ 2 = 1 ∧ p * κ + q * μ ≤ 0 ∧ r * κ + s * μ ≤ 0 := by -- --- PROOF ---
   by_cases h0 : p ^ 2 + q ^ 2 = 0
   · have hp : p = 0 := by nlinarith [sq_nonneg p, sq_nonneg q]
@@ -78,7 +78,7 @@ theorem aux_exists_unit_nonpos (p q r s : ℝ) : -- --- CONCL ---
       rw [this]; linarith
 
 /-- A point `(κ, μ)` of the unit circle is `(u² - 1, u v)` on the circle `u² + v² = 2`. -/
-theorem aux_exists_uv {κ μ : ℝ} (h : κ ^ 2 + μ ^ 2 = 1) : -- --- CONCL ---
+private theorem aux_exists_uv {κ μ : ℝ} (h : κ ^ 2 + μ ^ 2 = 1) : -- --- CONCL ---
     ∃ u v : ℝ, u ^ 2 = 1 + κ ∧ v ^ 2 = 1 - κ ∧ u * v = μ := by -- --- PROOF ---
   have hκ : -1 ≤ κ := by nlinarith [sq_nonneg μ, sq_nonneg (κ + 1)]
   rcases hκ.lt_or_eq with hlt | heq
@@ -93,13 +93,13 @@ theorem aux_exists_uv {κ μ : ℝ} (h : κ ^ 2 + μ ^ 2 = 1) : -- --- CONCL ---
     rw [Real.sq_sqrt (by norm_num), ← heq]; ring
 
 /-- A form is homogeneous of degree two. -/
-theorem aux_map_smul (P : V → ℝ) (pP : V → V → ℝ)
+private theorem aux_map_smul (P : V → ℝ) (pP : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (s : ℝ) (x : V) : P (s • x) = s ^ 2 * P x := by
   simpa using hP s 0 x x
 
 /-- Dines: some `z` has `P z ≤ P x + P y` and `Q z ≤ Q x + Q y`. -/
-theorem aux_exists_le_add (P Q : V → ℝ) (pP pQ : V → V → ℝ)
+private theorem aux_exists_le_add (P Q : V → ℝ) (pP pQ : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (hQ : ∀ (u v : ℝ) (x y : V), Q (u • x + v • y) = u ^ 2 * Q x + v ^ 2 * Q y + u * v * pQ x y)
     (x y : V) : -- --- CONCL ---
@@ -112,7 +112,7 @@ theorem aux_exists_le_add (P Q : V → ℝ) (pP pQ : V → V → ℝ)
   · rw [hQ, hu, hv, huv]; linear_combination h2
 
 /-- The S-lemma with the strict hypothesis `Q z < 0 → 0 ≤ P z`. -/
-theorem aux_exists_delta (P Q : V → ℝ) (pP pQ : V → V → ℝ)
+private theorem aux_exists_delta (P Q : V → ℝ) (pP pQ : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (hQ : ∀ (u v : ℝ) (x y : V), Q (u • x + v • y) = u ^ 2 * Q x + v ^ 2 * Q y + u * v * pQ x y)
     (z₀ : V) (hz₀ : Q z₀ < 0) (h : ∀ z, Q z < 0 → 0 ≤ P z) : -- --- CONCL ---

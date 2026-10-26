@@ -62,13 +62,13 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `xᵀ X x` as a double sum. -/
-theorem aux_dbs_quad {ι : Type*} [Fintype ι] (X : Matrix ι ι ℝ) (x : ι → ℝ) :
+private theorem aux_dbs_quad {ι : Type*} [Fintype ι] (X : Matrix ι ι ℝ) (x : ι → ℝ) :
     x ⬝ᵥ (X *ᵥ x) = ∑ i, ∑ j, x i * X i j * x j := by
   simp only [dotProduct, mulVec, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 /-- A positive semidefinite real matrix has `|Xᵢⱼ| ≤ (Xᵢᵢ + Xⱼⱼ) / 2`. -/
-theorem aux_dbs_abs_le {ι : Type*} [Fintype ι] [DecidableEq ι] {X : Matrix ι ι ℝ}
+private theorem aux_dbs_abs_le {ι : Type*} [Fintype ι] [DecidableEq ι] {X : Matrix ι ι ℝ}
     (hX : X.PosSemidef) (i j : ι) : -- --- CONCL ---
     |X i j| ≤ (X i i + X j j) / 2 := by -- --- PROOF ---
   by_cases hij : i = j
@@ -88,7 +88,7 @@ theorem aux_dbs_abs_le {ι : Type*} [Fintype ι] [DecidableEq ι] {X : Matrix ι
   rw [abs_le]; constructor <;> nlinarith
 
 /-- A continuous linear functional on matrices is `X ↦ Σ Xᵢⱼ f(Eᵢⱼ)`. -/
-theorem aux_dbs_functional {ι : Type*} [Fintype ι] [DecidableEq ι]
+private theorem aux_dbs_functional {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : Matrix ι ι ℝ →L[ℝ] ℝ) (X : Matrix ι ι ℝ) : -- --- CONCL ---
     f X = ∑ i, ∑ j, X i j * f (single i j 1) := by -- --- PROOF ---
   conv_lhs => rw [matrix_eq_sum_single X]
@@ -98,7 +98,7 @@ theorem aux_dbs_functional {ι : Type*} [Fintype ι] [DecidableEq ι]
     rw [smul_single, smul_eq_mul, mul_one], map_smul, smul_eq_mul]
 
 /-- The uniformly positive definite matrices form an open set. -/
-theorem aux_dbs_isOpen {ι : Type*} [Fintype ι] : -- --- CONCL ---
+private theorem aux_dbs_isOpen {ι : Type*} [Fintype ι] : -- --- CONCL ---
     IsOpen {X : Matrix ι ι ℝ |
       ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)} := by -- --- PROOF ---
   rw [isOpen_iff_forall_mem_open]
@@ -153,7 +153,7 @@ theorem aux_dbs_isOpen {ι : Type*} [Fintype ι] : -- --- CONCL ---
 
 /-- The converse of Hölder for `u ≥ 0`: `Σ wᵢ uᵢ ≤ ‖w‖_s` for every `w ≥ 0` gives
 `‖u‖_{s*} ≤ 1`. -/
-theorem aux_dbs_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_dbs_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (u : Fin l → ℝ) (hu : ∀ i, 0 ≤ u i)
     (h : ∀ w : Fin l → ℝ, (∀ i, 0 ≤ w i) → ∑ i, w i * u i ≤ ‖WithLp.toLp q w‖) : -- --- CONCL ---
     ‖WithLp.toLp q' u‖ ≤ 1 := by -- --- PROOF ---
@@ -205,7 +205,7 @@ theorem aux_dbs_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjug
     simpa [Real.norm_eq_abs] using this
 
 /-- A bound `Σ vⱼ dⱼ ≤ 2a` on the ball `‖v‖_s ≤ 2t`, `d ≥ 0`, bounds `‖(t/a) d‖_{s*}` by `1`. -/
-theorem aux_dbs_scaled_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_dbs_scaled_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (d : Fin l → ℝ) (hd : ∀ i, 0 ≤ d i) {a t : ℝ} (ha : 0 < a) (ht : 0 < t)
     (h : ∀ v : Fin l → ℝ, ‖WithLp.toLp q v‖ ≤ 2 * t → ∑ i, v i * d i ≤ 2 * a) : -- --- CONCL ---
     ‖WithLp.toLp q' (fun i => t / a * d i)‖ ≤ 1 := by -- --- PROOF ---
@@ -234,8 +234,8 @@ theorem aux_dbs_scaled_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Holde
     simp [hw0]
 
 /-- A bound `Σ vⱼ dⱼ ≤ 0` near `v = 0`, `d ≥ 0`, forces `d = 0`. -/
-theorem aux_dbs_eq_zero (q : ℝ≥0∞) [Fact (1 ≤ q)] (d : Fin l → ℝ) (hd : ∀ i, 0 ≤ d i) {t : ℝ}
-    (ht : 0 < t)
+private theorem aux_dbs_eq_zero (q : ℝ≥0∞) [Fact (1 ≤ q)] (d : Fin l → ℝ) (hd : ∀ i, 0 ≤ d i)
+    {t : ℝ} (ht : 0 < t)
     (h : ∀ v : Fin l → ℝ, ‖WithLp.toLp q v‖ ≤ 2 * t → ∑ i, v i * d i ≤ 0)
     (i : Fin l) : -- --- CONCL ---
     d i = 0 := by -- --- PROOF ---
@@ -254,7 +254,7 @@ theorem aux_dbs_eq_zero (q : ℝ≥0∞) [Fact (1 ≤ q)] (d : Fin l → ℝ) (h
 
 
 /-- `[0, Gᵀ; G, 0] - [Diag(v), 0; 0, H Diag(w) Hᵀ]` is symmetric. -/
-theorem aux_dbs_symm (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
+private theorem aux_dbs_symm (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (v : Fin m → ℝ) (w : Fin l → ℝ) (a b : Fin m ⊕ Fin n) :
     (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)) b a =
       (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)) a b := by
@@ -263,7 +263,7 @@ theorem aux_dbs_symm (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l
   split_ifs with h <;> simp [h]
 
 /-- The uniformly positive definite matrices form a convex set. -/
-theorem aux_dbs_convex_cone {ι : Type*} [Fintype ι] : -- --- CONCL ---
+private theorem aux_dbs_convex_cone {ι : Type*} [Fintype ι] : -- --- CONCL ---
     Convex ℝ {X : Matrix ι ι ℝ |
       ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)} := by -- --- PROOF ---
   rintro X ⟨δ₁, hδ₁, h₁⟩ Y ⟨δ₂, hδ₂, h₂⟩ a b ha hb hab
@@ -283,7 +283,7 @@ theorem aux_dbs_convex_cone {ι : Type*} [Fintype ι] : -- --- CONCL ---
           (mul_le_mul_of_nonneg_left (m2.trans (h₂ x)) hb)
 
 /-- The relaxation's matrices at objective `≤ t` form a convex set. -/
-theorem aux_dbs_convex_B (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 ≤ s₂)]
+private theorem aux_dbs_convex_B (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 ≤ s₂)]
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ) (t : ℝ) : -- --- CONCL ---
     Convex ℝ {Q : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ | ∃ (v : Fin m → ℝ) (w : Fin l → ℝ),
       ‖WithLp.toLp s₁ v‖ + ‖WithLp.toLp s₂ w‖ ≤ 2 * t ∧
@@ -324,8 +324,8 @@ theorem aux_dbs_convex_B (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 �
 
 /-- A functional below `u` on the uniformly positive definite cone is `-⟨W, ·⟩` on symmetric
 matrices, `W ≽ 0`, with `u ≥ 0` and `-tr W < u`. -/
-theorem aux_dbs_sep {ι : Type*} [Fintype ι] [DecidableEq ι] (f : Matrix ι ι ℝ →L[ℝ] ℝ) (u : ℝ)
-    (hfO : ∀ X ∈ {X : Matrix ι ι ℝ | ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)},
+private theorem aux_dbs_sep {ι : Type*} [Fintype ι] [DecidableEq ι] (f : Matrix ι ι ℝ →L[ℝ] ℝ)
+    (u : ℝ) (hfO : ∀ X ∈ {X : Matrix ι ι ℝ | ∃ δ > 0, ∀ x : ι → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)},
       f X < u) : -- --- CONCL ---
     ∃ W : Matrix ι ι ℝ, W.PosSemidef ∧ (∀ i j, W j i = W i j) ∧ 0 ≤ u ∧
       (∀ Q : Matrix ι ι ℝ, (∀ i j, Q j i = Q i j) → f Q = -∑ i, ∑ j, Q i j * W i j) ∧
@@ -403,7 +403,7 @@ theorem aux_dbs_sep {ι : Type*} [Fintype ι] [DecidableEq ι] (f : Matrix ι ι
   linarith
 
 /-- The pairing `⟨[0, Gᵀ; G, 0] - [Diag(v), 0; 0, H Diag(w) Hᵀ], W⟩` by blocks. -/
-theorem aux_dbs_pair (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
+private theorem aux_dbs_pair (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (W : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hWsymm : ∀ i j, W j i = W i j)
     (v : Fin m → ℝ) (w : Fin l → ℝ) : -- --- CONCL ---
     ∑ a, ∑ b, (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)) a b *
@@ -445,7 +445,7 @@ theorem aux_dbs_pair (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l
   ring
 
 /-- With `a = -Σ G_{kj} W_{(n,k),(m,j)} > 0`, `X = (t / a) J W J` is the certificate. -/
-theorem aux_dbs_certificate (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 ≤ s₂)]
+private theorem aux_dbs_certificate (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 ≤ s₂)]
     [s₁.HolderConjugate s₁'] [s₂.HolderConjugate s₂']
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (W : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hWpsd : W.PosSemidef)
@@ -505,7 +505,7 @@ theorem aux_dbs_certificate (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1 ≤ s�
 
 /-- A positive semidefinite `W` with `Wⱼⱼ = 0` on the first block and `diag(Hᵀ W₂₂ H) = 0`,
 `H` onto, is `0`. -/
-theorem aux_dbs_W_zero (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec)
+private theorem aux_dbs_W_zero (H : Matrix (Fin n) (Fin l) ℝ) (hH : Function.Surjective H.mulVec)
     (W : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hWpsd : W.PosSemidef)
     (hd₁ : ∀ j, W (Sum.inl j) (Sum.inl j) = 0)
     (hd₂ : ∀ i, (Hᵀ * W.toBlocks₂₂ * H) i i = 0) : -- --- CONCL ---

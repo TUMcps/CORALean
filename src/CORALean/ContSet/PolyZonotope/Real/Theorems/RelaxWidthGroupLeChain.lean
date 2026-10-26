@@ -32,14 +32,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `eDiff` obeys the triangle inequality, parity being what carries it at `2`. -/
-theorem PolyZonotope.aux_eDiff_triangle (a b c : ℕ) :
+private theorem PolyZonotope.aux_eDiff_triangle (a b c : ℕ) :
     PolyZonotope.eDiff a c ≤ PolyZonotope.eDiff a b + PolyZonotope.eDiff b c := by
   simp only [PolyZonotope.eDiff]
   split_ifs <;> omega
 
 /-- Along a chain: a walk from `f 0` to `f n` never costs less than the step
 straight across. -/
-theorem PolyZonotope.aux_eDiff_chain (f : ℕ → ℕ) (n : ℕ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_eDiff_chain (f : ℕ → ℕ) (n : ℕ) : -- --- CONCL ---
     PolyZonotope.eDiff (f 0) (f n)
       ≤ ∑ s ∈ Finset.range n, PolyZonotope.eDiff (f s) (f (s + 1)) := by -- --- PROOF ---
   induction n with

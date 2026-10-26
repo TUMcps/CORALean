@@ -48,8 +48,8 @@ section
 open Pointwise InflatedContSet
 
 /-- A `true` from `Zonotope.interiorPoint` proves the point interior. -/
-theorem Zonotope.aux_interiorPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {p : Vec 𝕋 n}
-    (h : Z.interiorPoint H p = true) : -- --- CONCL ---
+private theorem Zonotope.aux_interiorPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n}
+    {p : Vec 𝕋 n} (h : Z.interiorPoint H p = true) : -- --- CONCL ---
     toRealVec p ∈ interior Z.construct := by -- --- PROOF ---
   simp only [Zonotope.interiorPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

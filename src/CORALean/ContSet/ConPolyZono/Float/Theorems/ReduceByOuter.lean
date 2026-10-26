@@ -54,7 +54,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
+private theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (cPZ.reduceBy partD partI).qI, f j
@@ -65,7 +65,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- The dependent count needs no splitting, only its binder read back at `d`:
 `ring` treats a sum over `Fin (cPZ.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
-theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
+private theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (cPZ.reduceBy partD partI).h, f l = ∑ l, f l :=
@@ -74,7 +74,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
 /-- What the dropped dependent generators contribute, so what the box must
 cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
 they lie in `[-1, 1]`. -/
-theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin cPZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
     |∑ l, toReal (cPZ.G (partD.right l) i)
@@ -85,7 +85,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
 
 /-- The same for the dropped independent generators, whose coefficients are
 free to begin with. -/
-theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.qI → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, toReal (cPZ.GI (partI.right j) i) * β (partI.right j)|
@@ -94,7 +94,7 @@ theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (fun j => hβ (partI.right j)) i
 
 /-- One box for the two dropped blocks: their radii, added upward. -/
-theorem ConPolyZono.aux_abs_dropped_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_abs_dropped_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {a : Fin cPZ.p → ℝ}
     {β : Fin cPZ.qI → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- CONCL ---
@@ -111,7 +111,7 @@ theorem ConPolyZono.aux_abs_dropped_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   linarith
 
 -- the dropped columns become one diagonal block, at the coefficient that reaches them
-theorem ConPolyZono.aux_reduceBy_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_reduceBy_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : -- --- CONCL ---
     nominalSet cPZ ⊆ nominalSet (cPZ.reduceBy partD partI) := by -- --- PROOF ---

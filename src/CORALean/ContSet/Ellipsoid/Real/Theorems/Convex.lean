@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Euclidean norm of a vector. -/
-theorem _root_.CORALean.aux_convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
+private theorem _root_.CORALean.aux_convex_unitBall₂ : Convex ℝ (unitBall₂ n) := by
   rw [unitBall₂_eq_image]
   exact (convex_closedBall _ _).linear_image toEuclidean.symm.toLinearEquiv.toLinearMap
 

@@ -58,7 +58,7 @@ variable {n m q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The state in closed form: (3a) unrolled. -/
-theorem LinearARX.aux_ss_closed (A : Mat ℝ n n) (B : Mat ℝ n m) {x : ℕ → Vec ℝ n}
+private theorem LinearARX.aux_ss_closed (A : Mat ℝ n n) (B : Mat ℝ n m) {x : ℕ → Vec ℝ n}
     {u : ℕ → Vec ℝ m} {w : ℕ → Vec ℝ n} (hx : ∀ i, x (i + 1) = A *ᵥ x i + B *ᵥ u i + w i)
     (k : ℕ) : -- --- CONCL ---
     x k = A ^ k *ᵥ x 0

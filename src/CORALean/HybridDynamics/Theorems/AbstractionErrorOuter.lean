@@ -80,7 +80,7 @@ variable {n : ℕ}
 
 /-- A point matrix scaled by a point of `[a, b]` lies in the entrywise product
 `[lo, hi] * [a, b]`. -/
-theorem aux_absErr_smul_mem {lo hi M : Mat ℝ n n} {a b s : ℝ}
+private theorem aux_absErr_smul_mem {lo hi M : Mat ℝ n n} {a b s : ℝ}
     (hM : ∀ j k, lo j k ≤ M j k ∧ M j k ≤ hi j k) (hs : a ≤ s ∧ s ≤ b) : -- --- CONCL ---
     s • M ∈ (⟨Matrix.of fun j k => Interval.mulLo (lo j k) (hi j k) a b,
       Matrix.of fun j k => Interval.mulHi (lo j k) (hi j k) a b⟩ :
@@ -92,7 +92,7 @@ theorem aux_absErr_smul_mem {lo hi M : Mat ℝ n n} {a b s : ℝ}
   exact h
 
 /-- A point of the interval matrix applied to a point of the zonotope. -/
-theorem aux_absErr_mulVec_mem {IM : Interval (Mat ℝ n n)} {Z : Zonotope (Vec ℝ n)}
+private theorem aux_absErr_mulVec_mem {IM : Interval (Mat ℝ n n)} {Z : Zonotope (Vec ℝ n)}
     {M : Mat ℝ n n} {v : Vec ℝ n} (hM : M ∈ IM.construct) (hv : v ∈ Z.construct) :
     M *ᵥ v ∈ (Zonotope.mtimesIntervalMat IM Z).construct :=
   Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ hv))

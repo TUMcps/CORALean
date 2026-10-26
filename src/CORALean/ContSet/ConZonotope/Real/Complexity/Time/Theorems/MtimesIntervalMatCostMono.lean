@@ -48,7 +48,7 @@ namespace CORALean.Real
 
 /-- Monotone in the generator count, so a bound on the operand's size gives a
 bound on the cost. -/
-theorem Zonotope.aux_mtimesIntervalMatCost_mono {h h' : ℕ} (m n : ℕ) (hh : h ≤ h') :
+private theorem Zonotope.aux_mtimesIntervalMatCost_mono {h h' : ℕ} (m n : ℕ) (hh : h ≤ h') :
     Zonotope.mtimesIntervalMatCost m n h ≤
       Zonotope.mtimesIntervalMatCost m n h' := by
   cost_mono [Zonotope.mtimesIntervalMatCost]

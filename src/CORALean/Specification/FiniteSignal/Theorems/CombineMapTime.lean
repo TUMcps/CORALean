@@ -45,13 +45,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 
 omit [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋] in
 /-- Mapping the time stamps maps the first component of each breakpoint. -/
-theorem aux_pairs_mapTime {T' V : Type} (f : 𝕋 → T') (s : FiniteSignal 𝕋 V) :
+private theorem aux_pairs_mapTime {T' V : Type} (f : 𝕋 → T') (s : FiniteSignal 𝕋 V) :
     (s.mapTime f).pairs = s.pairs.map (Prod.map f id) := List.zip_map_left
 
 omit [ExactLe 𝕋] in
 /-- `combineEmit` reads no time stamp: it commutes with mapping them. -/
-theorem aux_combineEmit_mapTime {V W : Type} [DecidableEq W] (op : V → V → W) (t : 𝕋) (v : W)
-    (ls rs : List (𝕋 × V)) (rest : List (𝕋 × W)) : -- --- CONCL ---
+private theorem aux_combineEmit_mapTime {V W : Type} [DecidableEq W] (op : V → V → W) (t : 𝕋)
+    (v : W) (ls rs : List (𝕋 × V)) (rest : List (𝕋 × W)) : -- --- CONCL ---
     (FiniteSignal.combineEmit op t v ls rs rest).map (Prod.map toReal id) =
       FiniteSignal.combineEmit op (toReal t) v (ls.map (Prod.map toReal id))
         (rs.map (Prod.map toReal id)) (rest.map (Prod.map toReal id)) := by -- --- PROOF ---
@@ -61,7 +61,7 @@ theorem aux_combineEmit_mapTime {V W : Type} [DecidableEq W] (op : V → V → W
   split_ifs <;> simp_all
 
 /-- The loop takes the same branch on the float breakpoints as on the reals they denote. -/
-theorem aux_combineLoop_mapTime {V W : Type} [DecidableEq W] (op : V → V → W)
+private theorem aux_combineLoop_mapTime {V W : Type} [DecidableEq W] (op : V → V → W)
     (ls rs : List (𝕋 × V)) : -- --- CONCL ---
     (FiniteSignal.combineLoop op ls rs).map (Prod.map toReal id) =
       FiniteSignal.combineLoop op (ls.map (Prod.map toReal id))

@@ -48,7 +48,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A run of bounded duration is a run. -/
-theorem HybridAutomaton.IsRunUntil.aux_toIsRunOn {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ} {k : ℕ}
+private theorem HybridAutomaton.IsRunUntil.aux_toIsRunOn {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ}
+    {k : ℕ}
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRunUntil T k ℓ x ℓ' y) : HA.IsRunOn k ℓ x ℓ' y := by
   induction run with
   | flow h => exact .flow h
@@ -56,7 +57,7 @@ theorem HybridAutomaton.IsRunUntil.aux_toIsRunOn {HA : HybridAutomaton S G L �
 
 
 /-- A budget some run fits is not negative, its first stay being no longer. -/
-theorem aux_runUntil_nonneg {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ} {k : ℕ} {ℓ ℓ' : L}
+private theorem aux_runUntil_nonneg {HA : HybridAutomaton S G L 𝕋 n} {T : ℝ} {k : ℕ} {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.IsRunUntil T k ℓ x ℓ' y) : 0 ≤ T := by
   cases run with
   | flow h hτ => exact h.nonneg.trans hτ

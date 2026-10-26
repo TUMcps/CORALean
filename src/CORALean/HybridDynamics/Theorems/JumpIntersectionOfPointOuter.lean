@@ -54,7 +54,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `aux_jumpOfPoint Rg`. -/
-theorem Transition.aux_jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
+private theorem Transition.aux_jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
     (hinter : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
     (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) : -- --- CONCL ---
     e.reset z ∈ construct (e.aux_jumpOfPoint Rg) := by -- --- PROOF ---

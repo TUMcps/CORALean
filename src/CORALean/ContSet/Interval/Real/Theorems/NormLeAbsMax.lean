@@ -47,7 +47,7 @@ variable {m n : ℕ}
 
 /-- A point between two endpoints never exceeds the max of their absolute
 values, whichever endpoint is bigger. -/
-theorem aux_abs_le_max_abs {lo hi x : ℝ} (h1 : lo ≤ x) (h2 : x ≤ hi) :
+private theorem aux_abs_le_max_abs {lo hi x : ℝ} (h1 : lo ≤ x) (h2 : x ≤ hi) :
     |x| ≤ max |lo| |hi| := by
   refine abs_le.mpr ⟨?_, h2.trans ((le_abs_self hi).trans (le_max_right _ _))⟩
   linarith [(neg_abs_le lo).trans h1, neg_le_neg (le_max_left |lo| |hi|)]

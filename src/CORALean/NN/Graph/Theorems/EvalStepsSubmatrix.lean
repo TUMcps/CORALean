@@ -56,7 +56,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A right multiplication never touches rows, so restricting them commutes past it. -/
-theorem GNN.aux_submatrix_mul_right {N K F : ℕ} (A : Mat ℝ N F) (κ : Fin K → Fin N)
+private theorem GNN.aux_submatrix_mul_right {N K F : ℕ} (A : Mat ℝ N F) (κ : Fin K → Fin N)
     (W : Mat ℝ F F) : (A * W).submatrix κ id = A.submatrix κ id * W := by
   funext i j
   simp [Matrix.mul_apply]

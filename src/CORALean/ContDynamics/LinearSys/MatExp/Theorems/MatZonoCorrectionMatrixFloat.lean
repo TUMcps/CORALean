@@ -66,7 +66,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every member's correction term lies in the float matrix-zonotope term. -/
-theorem MatExp.aux_corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
+private theorem MatExp.aux_corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {A : Mat ℝ n n} (hA : A ∈ M.construct)
     (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.matZonoCorrTerm M r i).inf j k) ≤ Real.MatExp.corrTerm A (toReal r) i j k

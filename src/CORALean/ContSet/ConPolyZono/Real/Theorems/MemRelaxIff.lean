@@ -44,7 +44,7 @@ variable {α : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator monomials ignore the slack factors. -/
-theorem ConPolyZono.aux_monomial_relax (cPZ : ConPolyZono α) (s : Vec ℝ cPZ.cons.m)
+private theorem ConPolyZono.aux_monomial_relax (cPZ : ConPolyZono α) (s : Vec ℝ cPZ.cons.m)
     (a : Fin (cPZ.p + cPZ.cons.m) → ℝ) :
     PolyZonotope.monomial (cPZ.relax s).E a
       = PolyZonotope.monomial cPZ.E (fun k => a (Fin.castAdd cPZ.cons.m k)) :=

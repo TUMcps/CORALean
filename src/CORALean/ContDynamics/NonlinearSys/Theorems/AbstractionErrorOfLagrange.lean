@@ -82,7 +82,7 @@ variable {d n m : ℕ}
 
 /-- A function below a boundary at `0` whose slope stays below the boundary's
 stays below it on all of `[0, 1]`. -/
-theorem aux_le_of_deriv_le {g g' B B' : ℝ → ℝ}
+private theorem aux_le_of_deriv_le {g g' B B' : ℝ → ℝ}
     (hg : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt g (g' t) t) (hB : ∀ t, HasDerivAt B (B' t) t)
     (h0 : g 0 ≤ B 0) (hle : ∀ t ∈ Icc (0:ℝ) 1, g' t ≤ B' t) :
     ∀ t ∈ Icc (0:ℝ) 1, g t ≤ B t :=
@@ -95,7 +95,7 @@ theorem aux_le_of_deriv_le {g g' B B' : ℝ → ℝ}
 
 /-- Taylor at order two with the remainder bounded rather than evaluated: no
 third derivative is named at an unknown point, only bounded. -/
-theorem aux_abs_taylor_le2 {φ φ' φ'' φ''' : ℝ → ℝ} {K : ℝ}
+private theorem aux_abs_taylor_le2 {φ φ' φ'' φ''' : ℝ → ℝ} {K : ℝ}
     (hφ : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ (φ' t) t)
     (hφ' : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ' (φ'' t) t)
     (hφ'' : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ'' (φ''' t) t)
@@ -153,7 +153,7 @@ theorem aux_abs_taylor_le2 {φ φ' φ'' φ''' : ℝ → ℝ} {K : ℝ}
   exact abs_le.2 ⟨by linarith, by linarith⟩
 
 /-- A map out of a coordinate space is its values on the standard basis. -/
-theorem aux_clm_sum_single {G : Type} [NormedAddCommGroup G] [NormedSpace ℝ G]
+private theorem aux_clm_sum_single {G : Type} [NormedAddCommGroup G] [NormedSpace ℝ G]
     (L : Vec ℝ d →L[ℝ] G) (v : Vec ℝ d) : L v = ∑ j, v j • L (Pi.single j 1) := by
   conv_lhs => rw [show v = ∑ j, v j • (Pi.single j 1 : Vec ℝ d) from by
     ext k; simp [Finset.sum_apply, Pi.single_apply]]
@@ -163,7 +163,7 @@ theorem aux_clm_sum_single {G : Type} [NormedAddCommGroup G] [NormedSpace ℝ G]
 /-- The same, at a codomain written out as one more `→L[ℝ]` rather than as a
 generic `NormedAddCommGroup`: what `T`'s own type actually is, so unifying `G`
 against it does not have to cross the diamond between the two. -/
-theorem aux_clm_sum_single2 {H : Type} [NormedAddCommGroup H] [NormedSpace ℝ H]
+private theorem aux_clm_sum_single2 {H : Type} [NormedAddCommGroup H] [NormedSpace ℝ H]
     (L : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] H) (v : Vec ℝ d) :
     L v = ∑ j, v j • L (Pi.single j 1) := by
   conv_lhs => rw [show v = ∑ j, v j • (Pi.single j 1 : Vec ℝ d) from by
@@ -173,7 +173,7 @@ theorem aux_clm_sum_single2 {H : Type} [NormedAddCommGroup H] [NormedSpace ℝ H
 
 /-- The thesis's `|z - z✱|ᵀ |Jᵢ| |z - z✱| ≤ γᵀ Mᵢ γ`: an entrywise bound on a
 bilinear map is a bound on the quadratic form it takes at anything `γ` covers. -/
-theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d) (M : Mat ℝ d d)
+private theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d) (M : Mat ℝ d d)
     (hM : ∀ j k, |T (Pi.single j 1) (Pi.single k 1)| ≤ M j k)
     (hv : ∀ j, |v j| ≤ γ j) : -- --- CONCL ---
     |T v v| ≤ γ ⬝ᵥ (M *ᵥ γ) := by -- --- PROOF ---
@@ -200,7 +200,7 @@ theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ 
 
 /-- `aux_abs_quad_le`, read once more at `T` with its first argument already
 fixed: an entrywise bound on a trilinear map is a bound on the cubic form. -/
-theorem aux_abs_cubic_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d)
+private theorem aux_abs_cubic_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d)
     (M : Fin d → Mat ℝ d d)
     (hM : ∀ j k l, |T (Pi.single j 1) (Pi.single k 1) (Pi.single l 1)| ≤ M j k l)
     (hv : ∀ j, |v j| ≤ γ j) : -- --- CONCL ---
@@ -221,7 +221,7 @@ theorem aux_abs_cubic_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] Vec ℝ d 
 
 /-- The thesis's `max_{z ∈ Ẑ} |z - z✱| ≤ |c - z✱| + Σⱼ |g⁽ʲ⁾|`, which is the `γ`
 that `lagrangeRemainder` computes. -/
-theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : Vec ℝ d}
+private theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : Vec ℝ d}
     (hz : z ∈ Z.construct) (j : Fin d) : -- --- CONCL ---
     |z j - zs j| ≤ |Z.c j - zs j| + ∑ k, |Z.G k j| := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
@@ -238,7 +238,7 @@ theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : V
 
 /-- Stacking commutes with a difference, so the deviation of `(x, u)` from the
 expansion point is the stacked pair of deviations. -/
-theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
+private theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
     Fin.append (x - xs) (u - us) = Fin.append x u - Fin.append xs us := by
   funext j
   refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp
@@ -246,7 +246,7 @@ theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
 /-- [1, Sec. 4.1] at one coordinate: what is left of `F` once its affine part
 and its exact quadratic part at `zs` are subtracted is `γᵀ(Στ)γ/6`-shaped —
 `aux_abs_remainder_le` (the order-one file) carried one order further. -/
-theorem aux_abs_remainder_le2 {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec ℝ d → ℝ}
+private theorem aux_abs_remainder_le2 {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec ℝ d → ℝ}
     {Ff : Vec ℝ d → (Vec ℝ d →L[ℝ] ℝ)} {Hf : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
     {Ef : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
     (hF : ∀ ξ ∈ C, HasFDerivAt F (Ff ξ) ξ) (hH : ∀ ξ ∈ C, HasFDerivAt Ff (Hf ξ) ξ)

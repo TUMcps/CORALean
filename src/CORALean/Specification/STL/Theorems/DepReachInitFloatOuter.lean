@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The float `interval(Z)` holds every point of `Z`. -/
-theorem STL.aux_subset_depBoxFloat (Z : Float.Zonotope (Vec 𝕋 n)) :
+private theorem STL.aux_subset_depBoxFloat (Z : Float.Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ (STL.depBoxFloat Z).construct := fun x hx =>
   STL.depBoxFloat_outer (Zr := Real.Zonotope.ofPoint x)
     (fun y hy => (Real.Zonotope.mem_ofPoint_iff x y).1 hy ▸ hx)

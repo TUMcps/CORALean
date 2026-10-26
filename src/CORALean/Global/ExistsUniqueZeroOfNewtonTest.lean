@@ -56,7 +56,7 @@ variable {k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinate of `M v` is at most the row's absolute sum times the sup norm of `v`. -/
-theorem aux_abs_mulVec_le (M : Mat ℝ k k) (v : Vec ℝ k) (i : Fin k) : -- --- CONCL ---
+private theorem aux_abs_mulVec_le (M : Mat ℝ k k) (v : Vec ℝ k) (i : Fin k) : -- --- CONCL ---
     |(M *ᵥ v) i| ≤ (∑ j, |M i j|) * ‖v‖ := by -- --- PROOF ---
   calc |(M *ᵥ v) i| = |∑ j, M i j * v j| := rfl
     _ ≤ ∑ j, |M i j * v j| := Finset.abs_sum_le_sum_abs _ _
@@ -68,7 +68,8 @@ theorem aux_abs_mulVec_le (M : Mat ℝ k k) (v : Vec ℝ k) (i : Fin k) : -- ---
     _ = (∑ j, |M i j|) * ‖v‖ := by rw [Finset.sum_mul]
 
 /-- `R J` is injective when the rows of `|1 - R J|` sum below `1`. -/
-theorem aux_injective (R J : Mat ℝ k k) (q : Vec ℝ k) (hJ : ∀ i, ∑ j, |(1 - R * J) i j| ≤ q i)
+private theorem aux_injective (R J : Mat ℝ k k) (q : Vec ℝ k)
+    (hJ : ∀ i, ∑ j, |(1 - R * J) i j| ≤ q i)
     (hq : ∀ i, q i < 1) : Function.Injective (R * J).mulVec :=
   mulVec_injective_of_residual 1 (R * J) fun i => by
     rw [Matrix.one_mul]; exact lt_of_le_of_lt (hJ i) (hq i)

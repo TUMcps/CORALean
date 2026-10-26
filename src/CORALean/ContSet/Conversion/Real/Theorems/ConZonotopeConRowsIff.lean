@@ -38,7 +38,8 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConZonotope.aux_apply_eq_sum {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) (β : Vec ℝ h) : -- --- CONCL ---
+private theorem ConZonotope.aux_apply_eq_sum {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ)
+    (β : Vec ℝ h) : -- --- CONCL ---
     f β = ∑ j, ConZonotope.coeffs f j * β j := by -- --- PROOF ---
   have hsingle : ∀ j k : Fin h, (Pi.single j (1:ℝ) : Vec ℝ h) k = if k = j then 1 else 0 :=
     fun j k => Pi.single_apply j (1:ℝ) k
@@ -57,7 +58,7 @@ theorem ConZonotope.aux_apply_eq_sum {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) (
 
 /-- What a row can reach over the unit cube, which is what the supplied lower
 bound has to clear. -/
-theorem ConZonotope.aux_abs_sum_le {h : ℕ} (c β : Vec ℝ h) (hβ : ∀ j, |β j| ≤ 1) :
+private theorem ConZonotope.aux_abs_sum_le {h : ℕ} (c β : Vec ℝ h) (hβ : ∀ j, |β j| ≤ 1) :
     |∑ j, c j * β j| ≤ ∑ j, |c j| :=
   calc |∑ j, c j * β j| ≤ ∑ j, |c j * β j| := Finset.abs_sum_le_sum_abs _ _
     _ ≤ ∑ j, |c j| := Finset.sum_le_sum fun j _ => by

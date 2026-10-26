@@ -81,7 +81,7 @@ section
 variable {n : ℕ}
 
 /-- Each level of the family is accurate on its range. -/
-theorem aux_polyRelaxationFamily_error_lt {σ σ' : ℝ → ℝ} {Mσ : ℝ}
+private theorem aux_polyRelaxationFamily_error_lt {σ σ' : ℝ → ℝ} {Mσ : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) (o : ℕ) {l u : ℝ}
     (hl : -(o : ℝ) ≤ l) (hlu : l ≤ u) (hu : u ≤ (o : ℝ)) :
     ((polyRelaxationFamily hd hσ).rel o).error l u < 1 / ((o : ℝ) + 1) :=
@@ -97,14 +97,15 @@ open Pointwise ContSet
 variable {σ : ℝ → ℝ} {m n : ℕ}
 
 -- the polynomial part, one neuron's own fit per coordinate, read without the scalar
-theorem aux_coeffListCoord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n)) (i : Fin n) :
+private theorem aux_coeffListCoord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n))
+    (i : Fin n) :
     ((P.coeffList J).map fun v => v i) = List.ofFn fun k => (P i).coeffs (J.inf i) (J.sup i) k :=
   LayerRelaxation.coeffList_coord P J i
 
 
 /-- The enclosed set is inside the image inflated by `ε`, at any `ε` the neurons' doubled errors
 fit under. -/
-theorem Layer.aux_activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
+private theorem Layer.aux_activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
     (hPs : ∀ i, (P i).IsSound σ) (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) : -- --- CONCL ---
     construct ((Layer.activationPoly P).enclose s)
@@ -192,7 +193,7 @@ section
 variable {n : ℕ}
 
 /-- The level one neuron needs: past both ends of its own box, and past `2 / ε`. -/
-theorem aux_exists_level_one (l u : ℝ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
+private theorem aux_exists_level_one (l u : ℝ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ o : ℕ, (-(o : ℝ) ≤ l ∧ u ≤ (o : ℝ)) ∧ 2 * (1 / ((o : ℝ) + 1)) ≤ ε := by -- --- PROOF ---
   obtain ⟨M, hM⟩ := exists_nat_gt (2 / ε)
   -- one level past `M` and past both ceilings serves this neuron
@@ -213,7 +214,7 @@ theorem aux_exists_level_one (l u : ℝ) {ε : ℝ} (hε : 0 < ε) : -- --- CONC
 
 
 /-- A level per neuron, each covering that neuron's own box and leaving `2 · error` under `ε`. -/
-theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε) :
+private theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε) :
     ∃ t : OrderPattern n, ∀ i,
       (-((t i : ℕ) : ℝ) ≤ s.interval.inf i ∧ s.interval.sup i ≤ ((t i : ℕ) : ℝ))
         ∧ 2 * (1 / (((t i : ℕ) : ℝ) + 1)) ≤ ε :=
@@ -222,7 +223,7 @@ theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε
 
 
 /-- Raising the pattern puts the enclosed set inside any inflation of the exact image. -/
-theorem Layer.aux_activationPolyRefinable_convergent {σ σ' : ℝ → ℝ} {Mσ : ℝ}
+private theorem Layer.aux_activationPolyRefinable_convergent {σ σ' : ℝ → ℝ} {Mσ : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) : -- --- CONCL ---
     (Layer.activationPolyRefinable (n := n) (polyRelaxationFamily hd hσ)
       (polyRelaxationFamily_sound hd hσ)).IsConvergent := by -- --- PROOF ---

@@ -62,8 +62,8 @@ variable {n p q k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A translated stretched template. -/
-theorem Conform.aux_singleton_add_templateZono {m : ℕ} {ι : Type} [Fintype ι] (d c : Vec ℝ m)
-    (G : ι → Vec ℝ m) (α : ι → ℝ) : -- --- CONCL ---
+private theorem Conform.aux_singleton_add_templateZono {m : ℕ} {ι : Type} [Fintype ι]
+    (d c : Vec ℝ m) (G : ι → Vec ℝ m) (α : ι → ℝ) : -- --- CONCL ---
     {d} + Conform.templateZono c G α = Conform.templateZono (d + c) G α := by -- --- PROOF ---
   rw [Set.singleton_add]
   ext y

@@ -44,7 +44,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem VPolytope.aux_bilin_V (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : VPolytope α) (Q : VPolytope β)
+private theorem VPolytope.aux_bilin_V (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : VPolytope α) (Q : VPolytope β)
     (m : Fin (P.k * Q.k)) :
     (VPolytope.bilin f P Q).V m
       = f (P.V (finProdFinEquiv.symm m).1) (Q.V (finProdFinEquiv.symm m).2) :=

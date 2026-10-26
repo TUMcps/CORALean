@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the fold keeps of the coordinates it has processed. -/
-def Interval.aux_ratioInv (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n))
+private def Interval.aux_ratioInv (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n))
     (acc : Option (Interval 𝕋)) : Prop :=
   (acc = none ↔ ∀ i ∈ idx, f i = none) ∧
     ∀ a, acc = some a →
@@ -51,8 +51,8 @@ def Interval.aux_ratioInv (f : Fin n → Option (Interval 𝕋)) (idx : List (Fi
         ∀ y : ℝ, (∀ i ∈ idx, ∀ x, f i = some x → y ≤ toReal x.sup) → y ≤ toReal a.sup
 
 /-- One step keeps the invariant for the coordinates up to `i`. -/
-theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n)) (i : Fin n)
-    (acc : Option (Interval 𝕋)) (h : Interval.aux_ratioInv f idx acc) : -- --- CONCL ---
+private theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n))
+    (i : Fin n) (acc : Option (Interval 𝕋)) (h : Interval.aux_ratioInv f idx acc) : -- --- CONCL ---
     Interval.aux_ratioInv f (idx ++ [i])
       (Interval.aux_boundaryRatioStep acc (f i)) := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := h
@@ -115,7 +115,7 @@ theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : Li
         · rw [toReal_minimum]
           exact le_min (h4 y fun j hj x hx => hy j (by simp [hj]) x hx) (hy i (by simp) r hfi)
 
-theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) : -- --- CONCL ---
+private theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) : -- --- CONCL ---
     ∀ (l : List (Fin n)) (acc : Option (Interval 𝕋)) (idx : List (Fin n)),
       Interval.aux_ratioInv f idx acc →
       Interval.aux_ratioInv f (idx ++ l)

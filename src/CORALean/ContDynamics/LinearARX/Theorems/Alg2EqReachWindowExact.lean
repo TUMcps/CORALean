@@ -55,14 +55,14 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `i = a, …, b - 1` written as the listing writes it. -/
-theorem LinearARX.aux_Icc_pred (a b : ℕ) (hb : 0 < b) :
+private theorem LinearARX.aux_Icc_pred (a b : ℕ) (hb : 0 < b) :
     Finset.Icc a (b - 1) = Finset.Ico a b := by
   ext x
   rw [Finset.mem_Icc, Finset.mem_Ico]
   omega
 
 /-- A matrix applied to a sum of linear images of one set, exactly. -/
-theorem LinearARX.aux_image_sum_set {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
+private theorem LinearARX.aux_image_sum_set {n m : ℕ} (M : Mat ℝ m n) (s : Finset ℕ)
     (B : ℕ → Mat ℝ n du) (V : Set (Vec ℝ du)) : -- --- CONCL ---
     (M *ᵥ ·) '' (∑ i ∈ s, (B i *ᵥ ·) '' V) = ∑ i ∈ s, ((M * B i) *ᵥ ·) '' V := by -- --- PROOF ---
   have hM : (M *ᵥ · : Vec ℝ n → Vec ℝ m) = ⇑(Matrix.mulVecLin M) := rfl
@@ -74,7 +74,7 @@ theorem LinearARX.aux_image_sum_set {n m : ℕ} (M : Mat ℝ m n) (s : Finset �
   rw [Matrix.mulVecLin_apply, mulVec_mulVec]
 
 /-- The constant parameters moved on by `p` steps, Lemma 1 summed over a block of indices. -/
-theorem LinearARX.aux_shift_sum (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (hab : p ≤ a)
+private theorem LinearARX.aux_shift_sum (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (hab : p ≤ a)
     (V : ℕ → Set (Vec ℝ du)) : -- --- CONCL ---
     ∑ i ∈ Finset.Ico a b, ((sys.Aext ^ p * sys.Btilde k i) *ᵥ ·) '' V i
       = ∑ i ∈ Finset.Ico (a + p) (b + p),
@@ -86,7 +86,7 @@ theorem LinearARX.aux_shift_sum (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (ha
     show ((↑(i + p) : ℤ) - p) = i by push_cast; ring, Nat.add_sub_cancel]
 
 /-- The same for the points of `s_v`. -/
-theorem LinearARX.aux_shift_sum_vec (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (hab : p ≤ a)
+private theorem LinearARX.aux_shift_sum_vec (sys : LinearARX 𝕋 dy du p) (k a b : ℕ) (hab : p ≤ a)
     (v : ℕ → Vec ℝ du) : -- --- CONCL ---
     ∑ i ∈ Finset.Ico a b, (sys.Aext ^ p * sys.Btilde k i) *ᵥ v i
       = ∑ i ∈ Finset.Ico (a + p) (b + p), sys.Btilde (k + p) i *ᵥ v (i - p) := by -- --- PROOF ---
@@ -97,7 +97,7 @@ theorem LinearARX.aux_shift_sum_vec (sys : LinearARX 𝕋 dy du p) (k a b : ℕ)
     show ((↑(i + p) : ℤ) - p) = i by push_cast; ring, Nat.add_sub_cancel]
 
 /-- The loop invariant of Alg. 2, started at `k_init = p`. -/
-theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
+private theorem LinearARX.aux_alg2State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (Uc : Set (Vec ℝ du)) (uv : ℕ → Vec ℝ du) (hp : 0 < p) (m : ℕ) : -- --- CONCL ---
     (sys.aux_alg2State yinit Uc uv p m).1 = p + m * p ∧
     (sys.aux_alg2State yinit Uc uv p m).2.1

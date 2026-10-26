@@ -51,8 +51,8 @@ variable {n : ℕ}
 -- file-local: only `evalPoly_exact` below needs it
 /-- `evalPolyP`'s point, at the factor vector its own `p`-proof casts back to
 `pZ`'s. Proved by induction, `evalPolyStep_point` carrying the Horner step. -/
-theorem PolyZonotope.aux_evalPolyP_point (pZ : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
-    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_evalPolyP_point (pZ : PolyZonotope (Vec ℝ n))
+    (coeffs : List (Vec ℝ n)) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (pZ.evalPolyP coeffs).1.point (fun k => a (Fin.cast (pZ.evalPolyP coeffs).2 k))
       = fun i =>
         PolyZonotope.evalPolyReal (coeffs.map fun v => v i) (pZ.point a i) := by -- --- PROOF ---

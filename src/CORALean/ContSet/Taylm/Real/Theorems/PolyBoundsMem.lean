@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One term stays in `termBounds` on the box. -/
-theorem Taylm.aux_termBounds_mem (a : ℝ × (Fin n → ℕ)) {t : Vec ℝ n}
+private theorem Taylm.aux_termBounds_mem (a : ℝ × (Fin n → ℕ)) {t : Vec ℝ n}
     (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     (Taylm.termBounds a).inf ≤ a.1 * Taylm.monomial a.2 t ∧
       a.1 * Taylm.monomial a.2 t ≤ (Taylm.termBounds a).sup := by -- --- PROOF ---

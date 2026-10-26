@@ -39,7 +39,8 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Expr.aux_isLinear_mul {e₁ e₂ : STL.Expr n} (h : (STL.Expr.mul e₁ e₂).isLinear = true) :
+private theorem STL.Expr.aux_isLinear_mul {e₁ e₂ : STL.Expr n}
+    (h : (STL.Expr.mul e₁ e₂).isLinear = true) :
     (∃ c, e₁ = .num c ∧ e₂.isLinear = true) ∨ (∃ c, e₂ = .num c ∧ e₁.isLinear = true) := by
   cases e₁ <;> cases e₂ <;> simp_all [STL.Expr.isLinear]
 

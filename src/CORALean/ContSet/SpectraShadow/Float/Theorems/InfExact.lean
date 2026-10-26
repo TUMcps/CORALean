@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The nominal inequality of `Inf`, whatever the coefficients. -/
-theorem SpectraShadow.aux_inf_lmi (n : ℕ)
+private theorem SpectraShadow.aux_inf_lmi (n : ℕ)
     (β : Fin (SpectraShadow.Inf (𝕋 := 𝕋) n).m → ℝ) : -- --- CONCL ---
     (toRealMat (SpectraShadow.Inf (𝕋 := 𝕋) n).A₀
       + ∑ i, β i • toRealMat ((SpectraShadow.Inf (𝕋 := 𝕋) n).A i)) = 1 := by -- --- PROOF ---

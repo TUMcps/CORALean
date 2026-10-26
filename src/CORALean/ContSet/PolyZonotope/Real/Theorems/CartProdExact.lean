@@ -53,7 +53,7 @@ omit [Module ℝ α] [Module ℝ β] in
 /-- `Fin.sum_univ_add` at `cartProd`'s dependent generator count, stated through
 the projection because that is the form the goal has and simp will not rewrite
 a binder's type. -/
-theorem PolyZonotope.aux_sum_univ_cartProd_h {pZ₁ : PolyZonotope α} {pZ₂ : PolyZonotope β}
+private theorem PolyZonotope.aux_sum_univ_cartProd_h {pZ₁ : PolyZonotope α} {pZ₂ : PolyZonotope β}
     (f : Fin (pZ₁.h + pZ₂.h) → α × β) :
     ∑ i : Fin (pZ₁.cartProd pZ₂).h, f i
       = ∑ i, f (Fin.castAdd pZ₂.h i) + ∑ i, f (Fin.natAdd pZ₁.h i) :=
@@ -61,7 +61,7 @@ theorem PolyZonotope.aux_sum_univ_cartProd_h {pZ₁ : PolyZonotope α} {pZ₂ : 
 
 omit [Module ℝ α] [Module ℝ β] in
 /-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_sum_univ_cartProd_q {pZ₁ : PolyZonotope α} {pZ₂ : PolyZonotope β}
+private theorem PolyZonotope.aux_sum_univ_cartProd_q {pZ₁ : PolyZonotope α} {pZ₂ : PolyZonotope β}
     (f : Fin (pZ₁.q + pZ₂.q) → α × β) :
     ∑ j : Fin (pZ₁.cartProd pZ₂).q, f j
       = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=

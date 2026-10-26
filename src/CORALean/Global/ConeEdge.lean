@@ -54,13 +54,13 @@ variable {N : ℕ} {ι : Type} [Fintype ι]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Pairing with `u`, as a linear functional of the left argument. -/
-def aux_dotL (u : Vec ℝ N) : Vec ℝ N →ₗ[ℝ] ℝ where
+private def aux_dotL (u : Vec ℝ N) : Vec ℝ N →ₗ[ℝ] ℝ where
   toFun v := v ⬝ᵥ u
   map_add' v w := add_dotProduct v w u
   map_smul' r v := smul_dotProduct r v u
 
 /-- Fewer than `N` constraints leave a direction annihilating every one. -/
-theorem aux_exists_annihilator {k : ℕ} (b : Fin k → Vec ℝ N) (hk : k < N) : -- --- CONCL ---
+private theorem aux_exists_annihilator {k : ℕ} (b : Fin k → Vec ℝ N) (hk : k < N) : -- --- CONCL ---
     ∃ u : Vec ℝ N, u ≠ 0 ∧ ∀ i, b i ⬝ᵥ u = 0 := by -- --- PROOF ---
   have hsrc : finrank ℝ (Vec ℝ N) = N := by
     show finrank ℝ (Fin N → ℝ) = N
@@ -77,7 +77,7 @@ theorem aux_exists_annihilator {k : ℕ} (b : Fin k → Vec ℝ N) (hk : k < N) 
 
 /-- The pivot, repeated: while fewer than `N - 1` independent constraints are
 active, walk to where one more is, keeping `w ⬝ᵥ ·` positive. -/
-theorem aux_coneWalk (a : ι → Vec ℝ N) (w : Vec ℝ N)
+private theorem aux_coneWalk (a : ι → Vec ℝ N) (w : Vec ℝ N)
     (hpt : ∀ y : Vec ℝ N, (∀ j, a j ⬝ᵥ y = 0) → y = 0) : -- --- CONCL ---
     ∀ (m k : ℕ) (S : Fin k → ι) (z : Vec ℝ N), N ≤ m + k →
       LinearIndependent ℝ (fun i => a (S i)) → (∀ i, a (S i) ⬝ᵥ z = 0) →

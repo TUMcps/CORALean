@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_scalarRat (nonFinite : 𝕋 → Bool) (x : 𝕋) : Json :=
+private def aux_scalarRat (nonFinite : 𝕋 → Bool) (x : 𝕋) : Json :=
   if nonFinite x then Json.null else ratJson (ToRat.toRat x)
 
 

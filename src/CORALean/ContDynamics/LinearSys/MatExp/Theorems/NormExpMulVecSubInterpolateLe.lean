@@ -58,7 +58,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Both `t^k` and `t r^{k-1}` lie in `[0, r^k]`, so they differ by at most `r^k`. -/
-theorem aux_abs_pow_sub_div_mul_pow_le {t r : ℝ} (ht : 0 ≤ t) (htr : t ≤ r)
+private theorem aux_abs_pow_sub_div_mul_pow_le {t r : ℝ} (ht : 0 ≤ t) (htr : t ≤ r)
     (k : ℕ) : -- --- CONCL ---
     |t ^ k - t / r * r ^ k| ≤ r ^ k := by -- --- PROOF ---
   have hr : 0 ≤ r := ht.trans htr

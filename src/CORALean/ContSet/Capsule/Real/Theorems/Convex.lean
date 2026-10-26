@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A finite sum of even powers of linear functionals, so convex on all of `Vec ℝ n`. -/
-theorem aux_convexOn_sumSq : -- --- CONCL ---
+private theorem aux_convexOn_sumSq : -- --- CONCL ---
     ConvexOn ℝ (Set.univ : Set (Vec ℝ n)) (fun y => ∑ i, y i ^ 2) := by -- --- PROOF ---
   have heq : (fun y : Vec ℝ n => ∑ i, y i ^ 2) = ∑ i : Fin n, fun y : Vec ℝ n => y i ^ 2 :=
     (Finset.sum_fn Finset.univ (fun (i : Fin n) (y : Vec ℝ n) => y i ^ 2)).symm

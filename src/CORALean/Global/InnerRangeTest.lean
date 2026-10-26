@@ -74,7 +74,7 @@ variable {r s : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `g'(x)(w, 0) = J₁(x) w`, `J₁(x)` the columns `g'(x)(eⱼ, 0)`. -/
-theorem aux_apply_inl_eq_mulVec (L : (Fin r → ℝ) × (Fin s → ℝ) →L[ℝ] (Fin r → ℝ))
+private theorem aux_apply_inl_eq_mulVec (L : (Fin r → ℝ) × (Fin s → ℝ) →L[ℝ] (Fin r → ℝ))
     (w : Fin r → ℝ) : -- --- CONCL ---
     L (w, 0) = (Matrix.of fun i j => L (Pi.single j 1, 0) i) *ᵥ w := by -- --- PROOF ---
   have hw : (w, (0 : Fin s → ℝ)) = ∑ j, w j • ((Pi.single j 1 : Fin r → ℝ), (0 : Fin s → ℝ)) := by

@@ -51,7 +51,7 @@ section
 variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Module ℝ γ]
 
 /-- The weighted rows a scaled membership gives back. -/
-theorem HPolytope.aux_rows_of_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ}
+private theorem HPolytope.aux_rows_of_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ}
     {P : HPolytope α} {x : γ} {w : ℝ} (hw : (t x + 1) / 2 = w)
     (hx : x ∈ ((P.comap f).halfScaled t).construct) :
     (∀ i, P.A i (f x) ≤ w * P.b i) ∧ ∀ i, P.Ae i (f x) = w * P.be i := by
@@ -66,7 +66,7 @@ section
 variable {n : ℕ}
 
 /-- The box read at a weight. -/
-theorem HPolytope.aux_abs_le_of_unitBox_rows {u : Vec ℝ n} {w : ℝ} (hw : 0 ≤ w)
+private theorem HPolytope.aux_abs_le_of_unitBox_rows {u : Vec ℝ n} {w : ℝ} (hw : 0 ≤ w)
     (h : ∀ i, (HPolytope.unitBox n).A i u ≤ w * (HPolytope.unitBox n).b i)
     (j : Fin n) : -- --- CONCL ---
     |u j| ≤ w := by -- --- PROOF ---
@@ -91,7 +91,7 @@ end
 
 /-- A weighted coefficient block is a point of the set, weighted: `w⁻¹` where
 there is something to divide by, and the origin where there is not. -/
-theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonempty) {w : ℝ}
+private theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonempty) {w : ℝ}
     (hw : 0 ≤ w) {u : Vec ℝ cZ.h} (hrows : ∀ i, cZ.domain.A i u ≤ w * cZ.domain.b i)
     (heqs : ∀ i, cZ.domain.Ae i u = w * cZ.domain.be i) : -- --- CONCL ---
     ∃ y ∈ cZ.construct, w • y = w • cZ.c + ∑ j, u j • cZ.G j := by -- --- PROOF ---

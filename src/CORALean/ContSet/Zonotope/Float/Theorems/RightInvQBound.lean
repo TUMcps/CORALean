@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_rightInvResidual_bound (G : Mat 𝕋 n h) (H : Mat 𝕋 h n)
+private theorem Zonotope.aux_rightInvResidual_bound (G : Mat 𝕋 n h) (H : Mat 𝕋 h n)
     (i j : Fin n) : -- --- CONCL ---
     |((1 : Mat ℝ n n) - toRealMat G * toRealMat H) i j|
       ≤ toReal (Zonotope.aux_rightInvResidual G H i j) := by -- --- PROOF ---

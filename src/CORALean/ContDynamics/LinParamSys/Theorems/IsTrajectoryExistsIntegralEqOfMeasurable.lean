@@ -58,7 +58,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A measurable parameter inside a box is integrable over every window. -/
-theorem aux_param_intervalIntegrable {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
+private theorem aux_param_intervalIntegrable {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j, Measurable fun s => A s i j) (hAB : ∀ s, A s ∈ B.construct) (i j : Fin n)
     (a b : ℝ) : -- --- CONCL ---
     IntervalIntegrable (fun s => A s i j) volume a b := by -- --- PROOF ---

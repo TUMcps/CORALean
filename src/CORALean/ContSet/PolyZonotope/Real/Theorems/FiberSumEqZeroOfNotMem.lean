@@ -30,7 +30,7 @@ omit [Module ℝ α] in
 /-- Membership through the classical instance `compactKeep` fixes, which
 instance search cannot rediscover at a use site. File-local: only
 `fiberSum_eq_zero_of_notMem` below needs it. -/
-theorem PolyZonotope.aux_mem_compactKeep_iff {p h : ℕ} (E : Fin p → Fin h → ℕ)
+private theorem PolyZonotope.aux_mem_compactKeep_iff {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (G : Fin h → α) (j : Fin h) :
     j ∈ PolyZonotope.compactKeep E G ↔ PolyZonotope.fiberSum (PolyZonotope.rep E) G j ≠ 0 := by
   rw [PolyZonotope.compactKeep]

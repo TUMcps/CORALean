@@ -47,14 +47,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum over the kept columns, read against a plain count. -/
-theorem PolyZonotope.aux_sum_keep (s : Finset (Fin h)) (f : Fin h → ℝ) :
+private theorem PolyZonotope.aux_sum_keep (s : Finset (Fin h)) (f : Fin h → ℝ) :
     ∑ j ∈ s, f j = ∑ j : Fin s.card, f (s.orderIsoOfFin rfl j) := by
   rw [← Finset.sum_coe_sort s f]
   exact (Equiv.sum_comp (s.orderIsoOfFin rfl).toEquiv fun x => f x).symm
 
 /-- The exact layer's regrouping at this layer's stored generators, the merged
 columns still exact reals. -/
-theorem PolyZonotope.aux_merge (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p → ℝ)
+private theorem PolyZonotope.aux_merge (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p → ℝ)
     (i : Fin n) : -- --- CONCL ---
     (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
       = ∑ j : Fin (PolyZonotope.repKeep pZ.E).card,
@@ -85,7 +85,7 @@ theorem PolyZonotope.aux_merge (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p �
 
 /-- A merged column is off by at most the gap between the two directed masked
 sums. -/
-theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
+private theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep pZ.E).card) : -- --- CONCL ---
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep pZ.E)
         (fun l => toReal (pZ.G l i)) (PolyZonotope.keepIdx pZ.E j)
@@ -106,7 +106,8 @@ theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
   constructor <;> linarith
 
 -- the merged column is stored downward, and that gap is what the box pays for
-theorem PolyZonotope.aux_compactGens_nominal (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem PolyZonotope.aux_compactGens_nominal
+    (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet pZ.compactGens
       + (PolyZonotope.generatorError (PolyZonotope.compactGap pZ)).construct := by -- --- PROOF ---
   intro x hx

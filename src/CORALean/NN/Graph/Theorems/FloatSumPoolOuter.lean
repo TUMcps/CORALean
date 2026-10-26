@@ -51,7 +51,7 @@ section
 open Matrix
 
 /-- `aux_sumPoolMat` reads back as the pooling map. -/
-theorem GNN.aux_sumPoolMat_mulVec (H : Mat ℝ N F) : -- --- CONCL ---
+private theorem GNN.aux_sumPoolMat_mulVec (H : Mat ℝ N F) : -- --- CONCL ---
     toRealMat (GNN.aux_sumPoolMat (𝕋 := 𝕋) N F) *ᵥ GNN.flatten H
       = Real.GNN.sumPoolLin N F H := by -- --- PROOF ---
   funext j

@@ -57,7 +57,7 @@ open Matrix
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
 
 /-- `aux_leftMat` reads back as `H ↦ P H`. -/
-theorem GNN.aux_leftMat_mulVec (P : Mat 𝕋 N N) (H : Mat ℝ N F) :
+private theorem GNN.aux_leftMat_mulVec (P : Mat 𝕋 N N) (H : Mat ℝ N F) :
     toRealMat (GNN.aux_leftMat P F) *ᵥ GNN.flatten H = GNN.flatten (toRealMat P * H) := by
   funext r
   simp only [Matrix.mulVec, dotProduct, GNN.flatten, toRealMat, GNN.aux_leftMat, Matrix.mul_apply]

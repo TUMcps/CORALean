@@ -59,7 +59,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `νᵀQ⁽ⁱ⁾(ξ)ν = 2(Θᵀν)(Aν)ᵢ − 2(Θᵀν)(Υν)(Aξ + b)ᵢ/Λ`: `Ω` is skew. -/
-theorem aux_hitPointAdd_quad (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (ξ ν : Vec ℝ n)
+private theorem aux_hitPointAdd_quad (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (ξ ν : Vec ℝ n)
     (i : Fin n) : -- --- CONCL ---
     ν ⬝ᵥ (GuardMap.hitHessianNum A b nv d ξ i *ᵥ ν) =
       2 * (A *ᵥ ν) i * ((-((nv ⬝ᵥ (A *ᵥ ξ + b)) • nv) - (d - nv ⬝ᵥ ξ) • (nv ᵥ* A)) ⬝ᵥ ν)

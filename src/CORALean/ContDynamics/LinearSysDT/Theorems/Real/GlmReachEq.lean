@@ -55,7 +55,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `k` passes of a loop that steps its state by `f` and appends `g` of the new state. -/
-theorem LinearSysDT.aux_glmReach_foldl {α β : Type} (f : α → α) (g : α → β) (a : α)
+private theorem LinearSysDT.aux_glmReach_foldl {α β : Type} (f : α → α) (g : α → β) (a : α)
     (l : List β) (k : ℕ) : -- --- CONCL ---
     (List.range k).foldl (fun (s : α × List β) (_ : ℕ) => (f s.1, s.2 ++ [g (f s.1)])) (a, l)
       = (f^[k] a, l ++ (List.range k).map fun i => g (f^[i + 1] a)) := by -- --- PROOF ---
@@ -66,7 +66,7 @@ theorem LinearSysDT.aux_glmReach_foldl {α β : Type} (f : α → α) (g : α �
     simp [Function.iterate_succ_apply']
 
 /-- The loop invariant: `Xᵢ ⊕ Sᵢ = Ωᵢ` and `Sᵢ ⊕ Vᵢ = ΦSᵢ ⊕ U`. -/
-theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
+private theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
     (k : ℕ) : -- --- CONCL ---
     let f := fun (s : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)) =>
       (s.1.mtimes (toRealMat sys.A), s.2.1.plus s.2.2, s.2.2.mtimes (toRealMat sys.A))

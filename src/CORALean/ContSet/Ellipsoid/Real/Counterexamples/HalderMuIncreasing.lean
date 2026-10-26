@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_e1 :
+private theorem Ellipsoid.aux_e1 :
     Ellipsoid.halderElemSymm (fun i : Fin 3 => ((![1, 1, 10] : Fin 3 → ℝ) i)⁻¹) 1
       = 21 / 10 := by
   unfold Ellipsoid.halderElemSymm
@@ -49,7 +49,7 @@ theorem Ellipsoid.aux_e1 :
   simp
   norm_num
 
-theorem Ellipsoid.aux_e2 : -- --- CONCL ---
+private theorem Ellipsoid.aux_e2 : -- --- CONCL ---
     Ellipsoid.halderElemSymm (fun i : Fin 3 => ((![1, 1, 10] : Fin 3 → ℝ) i)⁻¹) 2
       = 6 / 5 := by -- --- PROOF ---
   unfold Ellipsoid.halderElemSymm

@@ -65,7 +65,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The coefficient that free generator is given, so that what the center already
 holds plus this much of the generator is the monomial. -/
-noncomputable def PolyZonotope.aux_evenCoeff {p h : ℕ} (E : Fin p → Fin h → ℕ)
+private noncomputable def PolyZonotope.aux_evenCoeff {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (a : Fin p → ℝ) (i : Fin h) : ℝ :=
   if ∀ k, E k i = 0 then 0
   else if ∀ k, E k i % 2 = 0 then 2 * PolyZonotope.monomial E a i - 1
@@ -73,19 +73,19 @@ noncomputable def PolyZonotope.aux_evenCoeff {p h : ℕ} (E : Fin p → Fin h �
 
 /-- A column of zeros reads every factor at exponent zero, so its monomial is
 `1` whatever the factors are. -/
-theorem PolyZonotope.aux_monomial_eq_one {p h : ℕ} {E : Fin p → Fin h → ℕ} {i : Fin h}
+private theorem PolyZonotope.aux_monomial_eq_one {p h : ℕ} {E : Fin p → Fin h → ℕ} {i : Fin h}
     (hE : ∀ k, E k i = 0) (a : Fin p → ℝ) : PolyZonotope.monomial E a i = 1 :=
   Finset.prod_eq_one fun k _ => by rw [hE k, pow_zero]
 
 /-- An all-even column's monomial is a product of even powers, so it never goes
 below zero — which is what lets its generator be halved. -/
-theorem PolyZonotope.aux_monomial_nonneg {p h : ℕ} {E : Fin p → Fin h → ℕ} {i : Fin h}
+private theorem PolyZonotope.aux_monomial_nonneg {p h : ℕ} {E : Fin p → Fin h → ℕ} {i : Fin h}
     (hE : ∀ k, E k i % 2 = 0) (a : Fin p → ℝ) : 0 ≤ PolyZonotope.monomial E a i :=
   Finset.prod_nonneg fun k _ => Even.pow_nonneg (Nat.even_iff.mpr (hE k)) (a k)
 
 /-- What the center keeps plus what the free generator reaches is the monomial,
 in each of the three cases. -/
-theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
+private theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (i : Fin h) : -- --- CONCL ---
     (1 - PolyZonotope.evenWeight E i)
         + PolyZonotope.aux_evenCoeff E a i * PolyZonotope.evenWeight E i
@@ -102,7 +102,7 @@ theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → �
 
 /-- Every coefficient a free generator is given is admissible, an all-even
 column because its monomial lies in `[0,1]`. -/
-theorem PolyZonotope.aux_abs_evenCoeff_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
+private theorem PolyZonotope.aux_abs_evenCoeff_le_one {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i : Fin h) : -- --- CONCL ---
     |PolyZonotope.aux_evenCoeff E a i| ≤ 1 := by -- --- PROOF ---
   rw [PolyZonotope.aux_evenCoeff]
@@ -118,7 +118,7 @@ theorem PolyZonotope.aux_abs_evenCoeff_le_one {p h : ℕ} (E : Fin p → Fin h �
 
 /-- `Fin.sum_univ_add` at the generator count the tighter conversion produces,
 the binder ascribed so that it matches the goal. -/
-theorem PolyZonotope.aux_sum_univ_zonotopeEven {pZ : PolyZonotope α}
+private theorem PolyZonotope.aux_sum_univ_zonotopeEven {pZ : PolyZonotope α}
     (f : Fin (pZ.h + pZ.q) → α) :
     ∑ l : Fin pZ.zonotopeEven.h, f l
       = ∑ i, f (Fin.castAdd pZ.q i) + ∑ j, f (Fin.natAdd pZ.h j) :=

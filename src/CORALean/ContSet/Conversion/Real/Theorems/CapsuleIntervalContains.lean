@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One coordinate never exceeds the whole Euclidean distance. -/
-theorem aux_abs_le_sqrt_sumSq (y : Vec ℝ n) (i : Fin n) :
+private theorem aux_abs_le_sqrt_sumSq (y : Vec ℝ n) (i : Fin n) :
     |y i| ≤ Real.sqrt (∑ j, y j ^ 2) := by
   have h : y i ^ 2 ≤ ∑ j, y j ^ 2 :=
     Finset.single_le_sum (f := fun j => y j ^ 2) (fun _ _ => sq_nonneg _) (Finset.mem_univ i)

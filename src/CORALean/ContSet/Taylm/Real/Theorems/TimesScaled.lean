@@ -57,7 +57,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Filtering a list only drops weight. -/
-theorem Taylm.aux_weight_filter_le (L : List (ℝ × (Fin n → ℕ))) (p : ℝ × (Fin n → ℕ) → Bool)
+private theorem Taylm.aux_weight_filter_le (L : List (ℝ × (Fin n → ℕ))) (p : ℝ × (Fin n → ℕ) → Bool)
     {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
     Taylm.weight (L.filter p) h ≤ Taylm.weight L h := by -- --- PROOF ---
   induction L with
@@ -68,7 +68,7 @@ theorem Taylm.aux_weight_filter_le (L : List (ℝ × (Fin n → ℕ))) (p : ℝ 
     split_ifs <;> simp only [Taylm.weight, List.map_cons, List.sum_cons] at ih ⊢ <;> linarith
 
 /-- Terms of degree at least `d` have magnitudes at most `hᵈ` times their weight. -/
-theorem Taylm.aux_sum_abs_le_pow_mul_weight (L : List (ℝ × (Fin n → ℕ))) {h : ℝ} {d : ℕ}
+private theorem Taylm.aux_sum_abs_le_pow_mul_weight (L : List (ℝ × (Fin n → ℕ))) {h : ℝ} {d : ℕ}
     (h0 : 0 < h) (h1 : h ≤ 1) (hd : ∀ a ∈ L, d ≤ Taylm.degree a.2) : -- --- CONCL ---
     (L.map fun a => |a.1|).sum ≤ h ^ d * Taylm.weight L h := by -- --- PROOF ---
   induction L with
@@ -82,7 +82,8 @@ theorem Taylm.aux_sum_abs_le_pow_mul_weight (L : List (ℝ × (Fin n → ℕ))) 
     exact mul_le_mul_of_nonneg_right hp (abs_nonneg _)
 
 /-- The weight of the product's terms is the product of the weights. -/
-theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (h : ℝ) : -- --- CONCL ---
+private theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ)))
+    (h : ℝ) : -- --- CONCL ---
     Taylm.weight (Taylm.mulTerms L₁ L₂) h =
       Taylm.weight L₁ h * Taylm.weight L₂ h := by -- --- PROOF ---
   induction L₁ with

@@ -50,8 +50,8 @@ open ContSet Matrix Pointwise Set
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A run of the constant field `w` on `[0, t]` is `x s = x 0 + s w`. -/
-theorem NonlinearSys.aux_eq_add_smul_of_hasDerivWithinAt {x : ℝ → Vec ℝ 2} {w : Vec ℝ 2} {t : ℝ}
-    (hd : ∀ s ∈ Icc 0 t, HasDerivWithinAt x w (Icc 0 t) s) : -- --- CONCL ---
+private theorem NonlinearSys.aux_eq_add_smul_of_hasDerivWithinAt {x : ℝ → Vec ℝ 2} {w : Vec ℝ 2}
+    {t : ℝ} (hd : ∀ s ∈ Icc 0 t, HasDerivWithinAt x w (Icc 0 t) s) : -- --- CONCL ---
     ∀ s ∈ Icc 0 t, x s = x 0 + s • w := by -- --- PROOF ---
   -- `x s - s w` has derivative zero, so it is constant
   have hz : ∀ s ∈ Icc 0 t, HasDerivWithinAt (fun s => x s - s • w) 0 (Icc 0 t) s := fun s hs => by
@@ -66,7 +66,7 @@ theorem NonlinearSys.aux_eq_add_smul_of_hasDerivWithinAt {x : ℝ → Vec ℝ 2}
   rw [← this]; abel
 
 /-- The `Π`-shaped initial set, coordinatewise: a left leg, a right leg and a bar on top. -/
-theorem NonlinearSys.aux_mem_piShape (y : Vec ℝ 2) :
+private theorem NonlinearSys.aux_mem_piShape (y : Vec ℝ 2) :
     y ∈ Icc ![0, 0] ![1, 3] ∪ Icc ![2, 0] ![3, 3] ∪ Icc ![0, 2] ![3, 3] ↔
       (0 ≤ y 0 ∧ y 0 ≤ 1 ∧ 0 ≤ y 1 ∧ y 1 ≤ 3) ∨ (2 ≤ y 0 ∧ y 0 ≤ 3 ∧ 0 ≤ y 1 ∧ y 1 ≤ 3) ∨
         (0 ≤ y 0 ∧ y 0 ≤ 3 ∧ 2 ≤ y 1 ∧ y 1 ≤ 3) := by

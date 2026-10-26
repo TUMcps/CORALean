@@ -33,14 +33,14 @@ namespace CORALean.Bench
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_cross (g h : ℤ × ℤ) : ℤ := g.1 * h.2 - g.2 * h.1
+private def aux_cross (g h : ℤ × ℤ) : ℤ := g.1 * h.2 - g.2 * h.1
 
 /-- `g` or `-g`, whichever lies in the upper half-plane `b > 0 ∨ (b = 0 ∧ a > 0)`. -/
-def aux_upper (g : ℤ × ℤ) : ℤ × ℤ :=
+private def aux_upper (g : ℤ × ℤ) : ℤ × ℤ :=
   if 0 < g.2 ∨ (g.2 = 0 ∧ 0 < g.1) then g else (-g.1, -g.2)
 
 /-- `ρ_Y(n)` and `ρ_Y(-n)`, given `Σ_i |n · g_i|`, with the length of `n`. -/
-def aux_pushPair (den : ℕ) (acc : Array (ℤ × ℤ × ℤ × ℕ × Float)) (c : ℤ × ℤ) (n : ℤ × ℤ)
+private def aux_pushPair (den : ℕ) (acc : Array (ℤ × ℤ × ℤ × ℕ × Float)) (c : ℤ × ℤ) (n : ℤ × ℤ)
     (s : ℤ) : Array (ℤ × ℤ × ℤ × ℕ × Float) :=
   let nc := n.1 * c.1 + n.2 * c.2
   let N := (n.1 * n.1 + n.2 * n.2).toNat

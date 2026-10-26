@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The lower end keeps a nonnegative value whose power is at most `x`. -/
-theorem SyntaxTree.aux_downIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
+private theorem SyntaxTree.aux_downIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     ∀ (n : ℕ) (lo hi : 𝕋), 0 ≤ toReal lo → toReal lo ^ k ≤ toReal x → 0 ≤ toReal
       (SyntaxTree.aux_nthrootFloat_downIter x k n lo hi) ∧ toReal
       (SyntaxTree.aux_nthrootFloat_downIter x k n lo hi) ^ k ≤ toReal x := by -- --- PROOF ---
@@ -63,7 +63,7 @@ theorem SyntaxTree.aux_downIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     · exact ih _ _ h0 h1
 
 /-- The upper end keeps a nonnegative value whose power is at least `x`. -/
-theorem SyntaxTree.aux_upIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
+private theorem SyntaxTree.aux_upIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     ∀ (n : ℕ) (lo hi : 𝕋), 0 ≤ toReal hi → toReal x ≤ toReal hi ^ k → 0 ≤ toReal
       (SyntaxTree.aux_nthrootFloat_upIter x k n lo hi) ∧ toReal x ≤ toReal
       (SyntaxTree.aux_nthrootFloat_upIter x k n lo hi) ^ k := by -- --- PROOF ---
@@ -82,7 +82,7 @@ theorem SyntaxTree.aux_upIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     · exact ih _ _ h0 h1
 
 /-- For a nonnegative `x` and a degree at least one, the lower end is at most the root. -/
-theorem SyntaxTree.aux_down_leFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
+private theorem SyntaxTree.aux_down_leFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
     (hx : 0 ≤ toReal x) : -- --- CONCL ---
     toReal (SyntaxTree.aux_nthrootFloat_down steps x k) ≤
       toReal x ^ ((1 : ℝ) / k) := by -- --- PROOF ---
@@ -93,7 +93,7 @@ theorem SyntaxTree.aux_down_leFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
   exact h.2
 
 /-- For a nonnegative `x` and a degree at least one, the upper end is at least the root. -/
-theorem SyntaxTree.aux_le_upFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
+private theorem SyntaxTree.aux_le_upFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
     (hx : 0 ≤ toReal x) : -- --- CONCL ---
     toReal x ^ ((1 : ℝ) / k) ≤
       toReal (SyntaxTree.aux_nthrootFloat_up steps x k) := by -- --- PROOF ---
@@ -107,7 +107,7 @@ theorem SyntaxTree.aux_le_upFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
   exact h.2
 
 /-- The real root of a nonpositive number reflects the root of its negative. -/
-theorem SyntaxTree.aux_nthroot_of_nonposFloat {x : ℝ} (hx : x ≤ 0) (k : ℕ)
+private theorem SyntaxTree.aux_nthroot_of_nonposFloat {x : ℝ} (hx : x ≤ 0) (k : ℕ)
     (hk : 0 < k) : -- --- CONCL ---
     SyntaxTree.nthroot x k = -((-x) ^ ((1 : ℝ) / k)) := by -- --- PROOF ---
   unfold SyntaxTree.nthroot

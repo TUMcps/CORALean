@@ -45,7 +45,7 @@ variable {N : ℕ}
 
 /-- `ball`'s successor case reads the previous radius only through its set, so
 equal sets at radii `k`, `k'` give equal balls at `k + 1`, `k' + 1`. -/
-theorem aux_ball_succ_congr (A : Mat ℝ N N) (v : Fin N) {k k' : ℕ}
+private theorem aux_ball_succ_congr (A : Mat ℝ N N) (v : Fin N) {k k' : ℕ}
     (h : GNN.ball A v k = GNN.ball A v k') :
     GNN.ball A v (k + 1) = GNN.ball A v (k' + 1) := by
   simp only [GNN.ball, h]

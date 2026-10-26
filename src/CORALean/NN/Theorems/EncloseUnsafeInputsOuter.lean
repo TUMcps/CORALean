@@ -56,7 +56,7 @@ variable {n k p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The sum over `[q_κ]` split into the first `q₀` indices and `[q_κ]\[q₀]`. -/
-theorem aux_sum_castLE_add {q₀ q : ℕ} (hq : q₀ ≤ q) (f : Fin q → ℝ) : -- --- CONCL ---
+private theorem aux_sum_castLE_add {q₀ q : ℕ} (hq : q₀ ≤ q) (f : Fin q → ℝ) : -- --- CONCL ---
     ∑ l, f l = ∑ j : Fin q₀, f (Fin.castLE hq j) +
       ∑ l ∈ Finset.univ.filter (fun l : Fin q => q₀ ≤ l.val), f l := by -- --- PROOF ---
   rw [← Finset.sum_filter_not_add_sum_filter Finset.univ (fun l : Fin q => q₀ ≤ l.val)]

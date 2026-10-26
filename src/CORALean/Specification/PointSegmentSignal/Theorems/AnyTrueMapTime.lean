@@ -48,14 +48,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 
 omit [ExactLe 𝕋] in
 /-- The `k`-th time point, `0` past the end, read as a real. -/
-theorem PointSegmentSignal.aux_getD_mapTime' (s : PointSegmentSignal 𝕋) (k : ℕ) :
+private theorem PointSegmentSignal.aux_getD_mapTime' (s : PointSegmentSignal 𝕋) (k : ℕ) :
     (s.mapTime toReal).timePoints.getD k 0 = toReal (s.timePoints.getD k 0) := by
   rw [← toReal_zero_eq (𝕋 := 𝕋), List.getD_eq_getElem?_getD, List.getD_eq_getElem?_getD]
   simp only [PointSegmentSignal.mapTime, List.getElem?_map]
   cases s.timePoints[k]? <;> rfl
 
 /-- The first relevant value is found alike on the float and the real time points. -/
-theorem PointSegmentSignal.aux_relevantStart_mapTime (s : PointSegmentSignal 𝕋) (lb : 𝕋)
+private theorem PointSegmentSignal.aux_relevantStart_mapTime (s : PointSegmentSignal 𝕋) (lb : 𝕋)
     (lc : Bool) : -- --- CONCL ---
     (s.mapTime toReal).relevantStart (toReal lb) lc = s.relevantStart lb lc := by -- --- PROOF ---
   -- as many points are at most the bound, the last one compared exactly
@@ -71,8 +71,8 @@ theorem PointSegmentSignal.aux_relevantStart_mapTime (s : PointSegmentSignal �
   simp only [hn, PointSegmentSignal.aux_getD_mapTime', hv]
 
 /-- The last relevant value is found alike on the float and the real time points. -/
-theorem PointSegmentSignal.aux_relevantStop_mapTime (s : PointSegmentSignal 𝕋) (ub : WithTop 𝕋)
-    (rc : Bool) : -- --- CONCL ---
+private theorem PointSegmentSignal.aux_relevantStop_mapTime (s : PointSegmentSignal 𝕋)
+    (ub : WithTop 𝕋) (rc : Bool) : -- --- CONCL ---
     (s.mapTime toReal).relevantStop (ub.map toReal) rc = s.relevantStop ub rc := by -- --- PROOF ---
   -- a point is below the bound exactly when the real it denotes is
   have hle : ∀ x : 𝕋, ((toReal x : ℝ) : WithTop ℝ) ≤ ub.map toReal ↔ (x : WithTop 𝕋) ≤ ub :=

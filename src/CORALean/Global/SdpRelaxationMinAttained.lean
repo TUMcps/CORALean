@@ -53,7 +53,7 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The quadratic form of `[0, Gᵀ; G, 0] - [Diag(v), 0; 0, H Diag(w) Hᵀ]` at `(α, z)`. -/
-theorem aux_srm_quad (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
+private theorem aux_srm_quad (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (v : Fin m → ℝ) (w : Fin l → ℝ) (x : Fin m ⊕ Fin n → ℝ) : -- --- CONCL ---
     x ⬝ᵥ ((fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)) *ᵥ x) =
       2 * ((x ∘ Sum.inr) ⬝ᵥ (G *ᵥ (x ∘ Sum.inl))) - ∑ j, v j * (x (Sum.inl j)) ^ 2 -
@@ -77,7 +77,7 @@ theorem aux_srm_quad (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l
   ring
 
 /-- `|vⱼ|` is at most `‖v‖_s`. -/
-theorem aux_srm_abs_le (s : ℝ≥0∞) [Fact (1 ≤ s)] {k : ℕ} (v : Fin k → ℝ) (j : Fin k) :
+private theorem aux_srm_abs_le (s : ℝ≥0∞) [Fact (1 ≤ s)] {k : ℕ} (v : Fin k → ℝ) (j : Fin k) :
     |v j| ≤ ‖WithLp.toLp s v‖ := by
   simpa [Real.norm_eq_abs] using PiLp.norm_apply_le (WithLp.toLp s v) j
 

@@ -44,7 +44,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The first index where `true` is followed by `false`. -/
-theorem List.aux_first_falling_edge (v : List Bool) : -- --- CONCL ---
+private theorem List.aux_first_falling_edge (v : List Bool) : -- --- CONCL ---
     ((List.matlabFind id (List.zipWith (fun a b => !b && a) v v.tail)).head? = none →
       ∀ p, 1 ≤ p → p < v.length → v.getD (p - 1) false = true → v.getD p false = true) ∧
     ∀ i, (List.matlabFind id (List.zipWith (fun a b => !b && a) v v.tail)).head? = some i →
@@ -98,7 +98,7 @@ theorem List.aux_first_falling_edge (v : List Bool) : -- --- CONCL ---
 
 
 /-- The points of a prefix that are `≤ t` are a prefix of those of the list. -/
-theorem aux_takeWhile_take {α : Type} (p : α → Bool) (l : List α) (k : ℕ) : -- --- CONCL ---
+private theorem aux_takeWhile_take {α : Type} (p : α → Bool) (l : List α) (k : ℕ) : -- --- CONCL ---
     ((l.take k).takeWhile p).length = min (l.takeWhile p).length k := by -- --- PROOF ---
   induction l generalizing k with
   | nil => simp
@@ -113,7 +113,7 @@ theorem aux_takeWhile_take {α : Type} (p : α → Bool) (l : List α) (k : ℕ)
 
 
 /-- After cutting to the first `k` time points `cell` is capped at the last value. -/
-theorem PointSegmentSignal.aux_cell_take {T : Type} [LinearOrder T] [Zero T]
+private theorem PointSegmentSignal.aux_cell_take {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T)
     (hs : s.IsValid) (k : ℕ) (hk1 : 1 ≤ k) (hk2 : k ≤ s.timePoints.length) (vals : List Bool)
     (t : T) (ht : 0 ≤ t) : -- --- CONCL ---
@@ -153,7 +153,7 @@ theorem PointSegmentSignal.aux_cell_take {T : Type} [LinearOrder T] [Zero T]
 
 
 /-- Stepwise rise up to `M` is monotone up to `M`. -/
-theorem aux_mono_of_step (v : List Bool) (M : ℕ)
+private theorem aux_mono_of_step (v : List Bool) (M : ℕ)
     (hstep : ∀ c, c + 1 ≤ M → v.getD c false = true → v.getD (c + 1) false = true) :
     ∀ c₁ c₂, c₁ ≤ c₂ → c₂ ≤ M → v.getD c₁ false = true → v.getD c₂ false = true := by
   intro c₁ c₂ h12

@@ -57,9 +57,9 @@ def aux_stateBinds : ∀ i : Fin 2, Fin (aux_dims i) → Fin 2 := fun i _ => i
 def aux_binds : ∀ i : Fin 2, Fin (aux_dims i) → ResolveSource 2 aux_dims 2 :=
   fun i _ => .global (if i = 0 then 1 else 0)
 
-theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
+private theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
 
-theorem aux_rank : NonlinearReset.globalRank aux_binds ⟨0, 0⟩ = 0 := rfl
+private theorem aux_rank : NonlinearReset.globalRank aux_binds ⟨0, 0⟩ = 0 := rfl
 
 end ResolveSwapExample
 

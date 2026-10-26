@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 /-- `image_subset`, generalized to an arbitrary starting set: a subset of
 `construct b` is carried through the recursion the same way `b` is, applying
 `Layer.image_subset` at each layer instead of `enclose_outer` pointwise. -/
-theorem NeuralNetwork.Encloses.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n m}
+private theorem NeuralNetwork.Encloses.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) : -- --- CONCL ---
     ∀ (A : Set (Vec ℝ n)) (b : S n), A ⊆ construct b →
       f '' A ⊆ construct (nn.enclose b) := by -- --- PROOF ---

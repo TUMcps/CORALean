@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `x` is exactly `FloatOps.zero` -- `showExact`'s own normal form makes this a string
 comparison, needing no `DecidableEq 𝕋`. -/
-def aux_isZeroT (dops : DtypeOps 𝕋) (x : 𝕋) : Bool :=
+private def aux_isZeroT (dops : DtypeOps 𝕋) (x : 𝕋) : Bool :=
   dops.showExact x = dops.showExact FloatOps.zero
 
 
@@ -58,7 +58,7 @@ def handleInterval (dops : DtypeOps 𝕋) (req : Json) : Except String (List (St
 /-- `Zp`'s residual box, row `i`, folded into a generator radius `r_i := maximum (neg lo_i)
 hi_i` -- see the module docstring for why `[lo_i,hi_i] ⊆ [-r_i,r_i]`. `none` at a row already
 `[0,0]`, so a zero generator is never appended. -/
-def aux_foldRow {n : ℕ} (dops : DtypeOps 𝕋) (Zp : Zonotope (Vec 𝕋 n)) (i : Fin n) :
+private def aux_foldRow {n : ℕ} (dops : DtypeOps 𝕋) (Zp : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     Option (Fin n × 𝕋) :=
   let r := FloatOps.maximum (FloatOps.neg (Zp.I_error.inf i)) (Zp.I_error.sup i)
   if aux_isZeroT dops r then none else some (i, r)

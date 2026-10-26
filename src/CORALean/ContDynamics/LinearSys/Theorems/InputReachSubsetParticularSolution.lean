@@ -71,7 +71,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- The recursion encloses the propagation of the one-step set, window by
 window: `plus` absorbs one propagated copy at a time, as the operation builds it. -/
-theorem LinearSys.aux_propagate_subset_particularSolution (sys : LinearSys 𝕋 n) (Δt : ℝ)
+private theorem LinearSys.aux_propagate_subset_particularSolution (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (η : ℕ) (U : S n) : ∀ k : ℕ,
     sys.propagateInputSolution Δt (construct (sys.inputSolution Δt η U)) (k + 1)
       ⊆ construct (sys.particularSolution Δt η U k)

@@ -41,38 +41,41 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `(E.sup - E.inf) / 2` at dimension `i` -- the box's radius, half of
 `Output.csvRow`'s full-width `Eradius` column. -/
-def aux_eRadius (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
+private def aux_eRadius (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
   (toD (Z.I_error.sup i) - toD (Z.I_error.inf i)) / 2.0
 
 /-- `Σ_j |G_ij|` at dimension `i` -- the nominal hull's half-width, CORA's own
 formula halved. -/
-def aux_nominalHalfWidth (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
+private def aux_nominalHalfWidth (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
   (Array.ofFn fun j => (toD (Z.G j i)).abs).foldl (· + ·) 0.0
 
 /-- The larger of the two dimensions' values of `f`, `0.0` on an empty run. -/
-def aux_maxOverDims (f : Zonotope (Vec 𝕋 2) → Fin 2 → Float) (Z : Zonotope (Vec 𝕋 2)) : Float :=
+private def aux_maxOverDims (f : Zonotope (Vec 𝕋 2) → Fin 2 → Float) (Z : Zonotope (Vec 𝕋 2)) :
+    Float :=
   let v0 := f Z 0
   let v1 := f Z 1
   if v0 < v1 then v1 else v0
 
 /-- The first index `i < steps.size` at which `p steps[i]` holds, `none` if it
 never does -- `Array.findIdx?`, named for what this file uses it for. -/
-def aux_firstIndexWhere (p : Zonotope (Vec 𝕋 2) → Bool) (steps : Array (Zonotope (Vec 𝕋 2))) :
+private def aux_firstIndexWhere (p : Zonotope (Vec 𝕋 2) → Bool)
+    (steps : Array (Zonotope (Vec 𝕋 2))) :
     Option ℕ :=
   steps.findIdx? p
 
 /-- `x` is `NaN` or `±Inf` -- IEEE `>`/`<` never holds against either, which
 otherwise hides a genuine blow-up once both sides of a comparison saturate. -/
-def aux_notFinite (x : Float) : Bool := x.isNaN || x.isInf
+private def aux_notFinite (x : Float) : Bool := x.isNaN || x.isInf
 
 /-- A step is error-dominant once `e`/`w` (its own max-over-dim error radius
 and nominal half-width) makes the comparison meaningless (either non-finite)
 or `e` genuinely exceeds `w` -- never `false` just because both saturated. -/
-def aux_isDominant (e w : Float) : Bool := decide (e > w) || aux_notFinite e || aux_notFinite w
+private def aux_isDominant (e w : Float) : Bool := decide (e > w) || aux_notFinite e ||
+    aux_notFinite w
 
 /-- A step is a blow-up once its own max-over-dim error radius `e` is
 non-finite or genuinely exceeds `1`. -/
-def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
+private def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
 
 -- Regression for the IEEE-`>`-never-holds trap above (`9.0 / 0.0`/`0.0 / 0.0` are `Inf`/`NaN`).
 #guard aux_isDominant (9.0 / 0.0) (9.0 / 0.0) = true

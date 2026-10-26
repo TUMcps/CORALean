@@ -69,7 +69,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- One pass of `reachFloatInput`'s loop keeps what its state owes. -/
-theorem LinearSys.aux_reachFloatInputStep_invariant (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt)
+private theorem LinearSys.aux_reachFloatInputStep_invariant (sys : LinearSys 𝕋 n) {Δt : ℝ}
+    (hΔt : 0 ≤ Δt)
     {X₀ : Set (Vec ℝ n)} {ũ : Vec ℝ n} {Ũ : Zonotope (Vec 𝕋 n)} {eAΔt : Interval (Mat 𝕋 n n)}
     {Pu : Zonotope (Vec 𝕋 n)} (ρ : ℕ) (heA : exp (Δt • Scalar.toRealMat sys.A) ∈ eAΔt.construct)
     (hPu : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) Δt *ᵥ ũ ∈ Pu.construct) {k : ℕ}

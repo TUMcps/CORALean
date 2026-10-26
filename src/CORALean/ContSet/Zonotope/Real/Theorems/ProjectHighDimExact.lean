@@ -39,7 +39,7 @@ variable {n N : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_embed_apply (proj : Fin n → Fin N) (hproj : Function.Injective proj)
+private theorem Zonotope.aux_embed_apply (proj : Fin n → Fin N) (hproj : Function.Injective proj)
     (y : Vec ℝ n) (i : Fin N) : -- --- CONCL ---
     Zonotope.embed proj y i = if h : ∃ k, proj k = i then y h.choose else 0 := by -- --- PROOF ---
   classical

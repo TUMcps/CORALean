@@ -55,7 +55,7 @@ variable {n : ℕ}
 
 /-- One coordinate's move gains at least the first endpoint of the Kaucher product, and
 loses at most the second: `∂ⱼφᵢ ∈ [a, b]` on the box, moved from `x₀ⱼ` to its bound. -/
-theorem aux_kaucher_gain {f : (Fin n → ℝ) → ℝ} (hf : Differentiable ℝ f) {lo hi : Fin n → ℝ}
+private theorem aux_kaucher_gain {f : (Fin n → ℝ) → ℝ} (hf : Differentiable ℝ f) {lo hi : Fin n → ℝ}
     {a b : ℝ} (j : Fin n)
     (hab : ∀ y ∈ Icc lo hi, fderiv ℝ f y (Pi.single j 1) ∈ Icc a b) (p : Fin n → ℝ)
     (hp : p ∈ Icc lo hi) (s t : ℝ) (hs : s ∈ Icc (lo j) (hi j)) (ht : t ∈ Icc (lo j) (hi j))

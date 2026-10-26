@@ -53,25 +53,25 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `tr(Aᵀ B) = Σₖ Σⱼ A_{kj} B_{kj}`. -/
-theorem aux_trace_transpose_mul (A B : Matrix (Fin n) (Fin m) ℝ) :
+private theorem aux_trace_transpose_mul (A B : Matrix (Fin n) (Fin m) ℝ) :
     trace (Aᵀ * B) = ∑ k, ∑ j, A k j * B k j := by
   simp only [trace, diag, mul_apply, transpose_apply]
   exact Finset.sum_comm
 
 /-- The sign of a real, as `±1`. -/
-noncomputable def aux_sgnPM (x : ℝ) : ℝ := if 0 ≤ x then 1 else -1
+private noncomputable def aux_sgnPM (x : ℝ) : ℝ := if 0 ≤ x then 1 else -1
 
-theorem aux_sgn_mul (x : ℝ) : x * aux_sgnPM x = |x| := by
+private theorem aux_sgn_mul (x : ℝ) : x * aux_sgnPM x = |x| := by
   unfold aux_sgnPM
   split_ifs with h
   · rw [mul_one, abs_of_nonneg h]
   · rw [mul_neg_one, abs_of_neg (lt_of_not_ge h)]
 
-theorem aux_abs_sgn (x : ℝ) : |aux_sgnPM x| = 1 := by
+private theorem aux_abs_sgn (x : ℝ) : |aux_sgnPM x| = 1 := by
   unfold aux_sgnPM; split_ifs <;> simp
 
 /-- `Σⱼ Z_{kj} M_{kj} ≤ (Σⱼ |M_{kj}|) maxⱼ |Z_{kj}|`, row by row. -/
-theorem aux_row_le (M Z : Matrix (Fin n) (Fin m) ℝ) (k : Fin n) : -- --- CONCL ---
+private theorem aux_row_le (M Z : Matrix (Fin n) (Fin m) ℝ) (k : Fin n) : -- --- CONCL ---
     ∑ j, M k j * Z k j ≤ (∑ j, |M k j|) * ⨆ j, |Z k j| := by -- --- PROOF ---
   rw [Finset.sum_mul]
   refine Finset.sum_le_sum fun j _ => ?_
@@ -80,7 +80,7 @@ theorem aux_row_le (M Z : Matrix (Fin n) (Fin m) ℝ) (k : Fin n) : -- --- CONCL
         (le_ciSup (f := fun j => |Z k j|) (Set.finite_range _).bddAbove j) (abs_nonneg _)
 
 /-- At an invertible `H`, the norm of `G α` is `‖H⁻¹ G α‖_∞`: the preimage is unique. -/
-theorem aux_coeffNorm_eq (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin n) ℝ)
+private theorem aux_coeffNorm_eq (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin n) ℝ)
     (hH : IsUnit H.det) (α : Fin m → ℝ) : -- --- CONCL ---
     coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv ∞ ℝ (Fin n → ℝ)).toLinearMap)
       (G *ᵥ α) = ‖(H⁻¹ * G) *ᵥ α‖ := by -- --- PROOF ---
@@ -99,7 +99,7 @@ theorem aux_coeffNorm_eq (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (F
   rw [← hβn, huniq, PiLp.norm_toLp]
 
 /-- On the cube, `‖M α‖_∞` is at most the largest row sum. -/
-theorem aux_norm_mulVec_le_rowSum (M : Matrix (Fin n) (Fin m) ℝ) {R : ℝ} (hR0 : 0 ≤ R)
+private theorem aux_norm_mulVec_le_rowSum (M : Matrix (Fin n) (Fin m) ℝ) {R : ℝ} (hR0 : 0 ≤ R)
     (hk : ∀ i, ∑ j, |M i j| ≤ R) (α : Fin m → ℝ) (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
     ‖M *ᵥ α‖ ≤ R := by -- --- PROOF ---
   refine (pi_norm_le_iff_of_nonneg hR0).mpr fun i => ?_

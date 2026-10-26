@@ -59,8 +59,8 @@ variable {n m k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The rows `i ≠ ρ t` of the constraint's sum reach every other picked position. -/
-theorem aux_sum_picked_le {x : Matrix (Fin n) (Fin m) ℝ} {ρ : Fin k → Fin n} (hρ : Injective ρ)
-    {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1) (f : Fin n → Fin m → ℝ)
+private theorem aux_sum_picked_le {x : Matrix (Fin n) (Fin m) ℝ} {ρ : Fin k → Fin n}
+    (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1) (f : Fin n → Fin m → ℝ)
     (hf : ∀ i j, 0 ≤ x i j * f i j) (t : Fin k) : -- --- CONCL ---
     ∑ t' ∈ univ.erase t, f (ρ t') (κ t')
       ≤ ∑ i ∈ univ.erase (ρ t), ∑ j, x i j * f i j := by -- --- PROOF ---
@@ -77,7 +77,8 @@ theorem aux_sum_picked_le {x : Matrix (Fin n) (Fin m) ℝ} {ρ : Fin k → Fin n
         exact mem_erase.mpr ⟨fun h => (ne_of_mem_erase ht') (hρ h), mem_univ _⟩
 
 /-- Column dominance at the picked positions makes every real matrix in `A` regular there. -/
-theorem aux_det_submatrix_ne_zero_of_col {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀ i j, 0 ≤ x i j)
+private theorem aux_det_submatrix_ne_zero_of_col {x : Matrix (Fin n) (Fin m) ℝ}
+    (hx : ∀ i j, 0 ≤ x i j)
     {ρ : Fin k → Fin n} (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1)
     {mig mag : Matrix (Fin n) (Fin m) ℝ}
     (hcol : ∀ t, ∑ i ∈ univ.erase (ρ t), ∑ j, x i j * mag i (κ t) < mig (ρ t) (κ t))

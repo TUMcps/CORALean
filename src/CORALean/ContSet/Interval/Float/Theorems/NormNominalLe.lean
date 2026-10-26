@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_normMag_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+private theorem Interval.aux_normMag_ge (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     max |toReal (I.inf i)| |toReal (I.sup i)| ≤ toReal (I.normMag i) := by
   rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute]
 

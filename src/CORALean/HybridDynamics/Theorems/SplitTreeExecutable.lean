@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A boundary point of a polytope is on one of its bounding hyperplanes. -/
-theorem aux_eq_of_mem_frontier (cs : List (Vec ℝ n × ℝ)) {x : Vec ℝ n}
+private theorem aux_eq_of_mem_frontier (cs : List (Vec ℝ n × ℝ)) {x : Vec ℝ n}
     (hx : x ∈ frontier ((IdentHA.polytope cs).construct)) : -- --- CONCL ---
     ∃ p ∈ cs, p.1 ⬝ᵥ x = p.2 := by -- --- PROOF ---
   have hcont : ∀ c : Vec ℝ n, Continuous fun y : Vec ℝ n => c ⬝ᵥ y := fun c =>
@@ -80,7 +80,7 @@ theorem aux_eq_of_mem_frontier (cs : List (Vec ℝ n × ℝ)) {x : Vec ℝ n}
   exact hx.2 hin
 
 /-- The leaves' invariants cover the state space. -/
-theorem aux_exists_region (T : IdentHA.SplitTree n) (x : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_exists_region (T : IdentHA.SplitTree n) (x : Vec ℝ n) : -- --- CONCL ---
     ∃ cs ∈ T.regions, x ∈ (IdentHA.polytope cs).construct := by -- --- PROOF ---
   induction T with
   | leaf =>

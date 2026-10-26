@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The stored vertices differ from the exact pairwise sums by no more than the
 gap between the two roundings. -/
-theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet P₁ + nominalSet P₂ ⊆
       nominalSet (P₁.plus P₂) + (VPolytope.columnGap
         (VPolytope.pairSum addDown P₁ P₂)
@@ -62,7 +62,7 @@ theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope (Vec 𝕋 n)) : -- ---
   exact VPolytope.mem_columnGap fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
 
 -- the box absorbs the two incoming boxes and that pairwise-sum gap
-theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
+private theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
     (I_error P₁).construct + (I_error P₂).construct
       + (VPolytope.columnGap (VPolytope.pairSum addDown P₁ P₂)
           (VPolytope.pairSum addUp P₁ P₂)).construct ⊆ (I_error (P₁.plus P₂)).construct :=

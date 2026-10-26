@@ -54,32 +54,32 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_optRat : Option ℚ → Json
+private def aux_optRat : Option ℚ → Json
   | some q => ratJson q
   | none => Json.null
 
 /-- A separation result: the sign of the distance, its value, the closest window. -/
-def aux_sepJson : Option (Bool × Float × ℕ) → Json
+private def aux_sepJson : Option (Bool × Float × ℕ) → Json
   | some (_, v, k) => Json.mkObj [("sign", Json.str (if v > 0 then "+" else if v < 0 then "-"
       else "0")), ("value", Json.str (sciString v)), ("window", Lean.toJson k)]
   | none => Json.null
 
-def aux_sepPos : Option (Bool × Float × ℕ) → Bool
+private def aux_sepPos : Option (Bool × Float × ℕ) → Bool
   | some (s, _, _) => s
   | none => false
 
 /-- The `params` the record echoes. -/
-def aux_paramsJson (J : RandJob) : Json :=
+private def aux_paramsJson (J : RandJob) : Json :=
   Json.mkObj [("dt", Json.str J.dt), ("eta", Lean.toJson J.eta), ("order", Lean.toJson J.rho),
     ("tend", ratJson J.inst.tend)]
 
 /-- Every stored number of `R`. -/
-def aux_entries (R : Zonotope (Vec 𝕋 5)) : List 𝕋 :=
+private def aux_entries (R : Zonotope (Vec 𝕋 5)) : List 𝕋 :=
   (List.finRange 5).flatMap fun i =>
     [R.c i, R.I_error.inf i, R.I_error.sup i] ++ (List.finRange R.h).map fun j => R.G j i
 
 /-- The windows, whether any is past the range, the exact windows and the hulls over ℚ. -/
-def aux_reachAll (nonFinite : 𝕋 → Bool) (J : RandJob) (S : RandSystem 𝕋) :
+private def aux_reachAll (nonFinite : 𝕋 → Bool) (J : RandJob) (S : RandSystem 𝕋) :
     Except String (ℕ × Bool × List RandWindow × List (Array (ℚ × ℚ))) := do
   let Rs ← randVerifyReach J.alg S J.inst.tend J.eta J.rho
   let hulls := outputHulls S.C Rs

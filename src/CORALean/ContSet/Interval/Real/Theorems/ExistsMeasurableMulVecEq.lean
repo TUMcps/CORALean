@@ -54,26 +54,26 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The endpoint of entry `(i, l)` that minimises its product with `y l`. -/
-noncomputable def aux_cornerLo (B : Interval (Mat ℝ n n)) (y : Vec ℝ n) (i l : Fin n) : ℝ :=
+private noncomputable def aux_cornerLo (B : Interval (Mat ℝ n n)) (y : Vec ℝ n) (i l : Fin n) : ℝ :=
   if 0 ≤ y l then B.inf i l else B.sup i l
 
 /-- The endpoint that maximises it. -/
-noncomputable def aux_cornerHi (B : Interval (Mat ℝ n n)) (y : Vec ℝ n) (i l : Fin n) : ℝ :=
+private noncomputable def aux_cornerHi (B : Interval (Mat ℝ n n)) (y : Vec ℝ n) (i l : Fin n) : ℝ :=
   if 0 ≤ y l then B.sup i l else B.inf i l
 
 /-- Where `w i` sits between the two corner rows' values against `y`. -/
-noncomputable def aux_weight (B : Interval (Mat ℝ n n)) (y w : Vec ℝ n) (i : Fin n) : ℝ :=
+private noncomputable def aux_weight (B : Interval (Mat ℝ n n)) (y w : Vec ℝ n) (i : Fin n) : ℝ :=
   if ∑ l, aux_cornerHi B y i l * y l = ∑ l, aux_cornerLo B y i l * y l then 0
   else (w i - ∑ l, aux_cornerLo B y i l * y l)
     / (∑ l, aux_cornerHi B y i l * y l - ∑ l, aux_cornerLo B y i l * y l)
 
 /-- The selected member: each row the weighted combination of its corner rows. -/
-noncomputable def aux_select (B : Interval (Mat ℝ n n)) (y w : Vec ℝ n) : Mat ℝ n n :=
+private noncomputable def aux_select (B : Interval (Mat ℝ n n)) (y w : Vec ℝ n) : Mat ℝ n n :=
   fun i l => aux_cornerLo B y i l
     + aux_weight B y w i * (aux_cornerHi B y i l - aux_cornerLo B y i l)
 
 /-- Every member's row lies between the corner rows against `y`. -/
-theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
+private theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
     (y : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     ∑ l, aux_cornerLo B y i l * y l ≤ (M *ᵥ y) i ∧
       (M *ᵥ y) i ≤ ∑ l, aux_cornerHi B y i l * y l := by -- --- PROOF ---
@@ -87,7 +87,7 @@ theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : 
   · exact mul_le_mul_of_nonpos_right (h i l).1 (le_of_lt (not_le.mp hy))
 
 /-- The weight lies in `[0, 1]` whenever `w i` lies between the corner values. -/
-theorem aux_weight_mem {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n} {i : Fin n}
+private theorem aux_weight_mem {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n} {i : Fin n}
     (hlo : ∑ l, aux_cornerLo B y i l * y l ≤ w i)
     (hhi : w i ≤ ∑ l, aux_cornerHi B y i l * y l) : -- --- CONCL ---
     0 ≤ aux_weight B y w i ∧ aux_weight B y w i ≤ 1 := by -- --- PROOF ---
@@ -99,7 +99,7 @@ theorem aux_weight_mem {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n} {i : Fin n
     exact ⟨div_nonneg (by linarith) hpos.le, (div_le_one hpos).mpr (by linarith)⟩
 
 /-- The selection maps `y` to `w`, `w` between the corner values row by row. -/
-theorem aux_select_mulVec {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n}
+private theorem aux_select_mulVec {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n}
     (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l)
     : -- --- CONCL ---
     aux_select B y w *ᵥ y = w := by -- --- PROOF ---
@@ -120,7 +120,7 @@ theorem aux_select_mulVec {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n}
     ring
 
 /-- The selection lies in the box, the box being non-empty. -/
-theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
+private theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
     {y w : Vec ℝ n}
     (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l)
     : -- --- CONCL ---
@@ -136,7 +136,7 @@ theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M �
   · constructor <;> nlinarith [hB i l]
 
 /-- Measurable in time, given measurable `y` and `w`. -/
-theorem aux_select_measurable (B : Interval (Mat ℝ n n)) {y w : ℝ → Vec ℝ n}
+private theorem aux_select_measurable (B : Interval (Mat ℝ n n)) {y w : ℝ → Vec ℝ n}
     (hy : Measurable y) (hw : Measurable w) (i l : Fin n) : -- --- CONCL ---
     Measurable fun s => aux_select B (y s) (w s) i l := by -- --- PROOF ---
   have hyl : ∀ l, Measurable fun s => y s l := fun l => (measurable_pi_apply l).comp hy

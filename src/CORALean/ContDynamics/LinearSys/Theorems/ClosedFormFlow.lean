@@ -62,7 +62,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A matrix moving with an everywhere-derivative carries that derivative
 through `*ᵥ` at any fixed vector, `mulVecL` turning the product rule's other
 term into `0`. -/
-theorem aux_hasDerivAt_mulVec_const {M : ℝ → Mat ℝ n n} {M' : Mat ℝ n n} {ρ : ℝ}
+private theorem aux_hasDerivAt_mulVec_const {M : ℝ → Mat ℝ n n} {M' : Mat ℝ n n} {ρ : ℝ}
     (hM : HasDerivAt M M' ρ) (v : Vec ℝ n) : -- --- CONCL ---
     HasDerivAt (fun r => M r *ᵥ v) (M' *ᵥ v) ρ := by -- --- PROOF ---
   have hC : HasDerivAt (fun r => mulVecL (M r)) (mulVecL M') ρ :=
@@ -74,7 +74,7 @@ theorem aux_hasDerivAt_mulVec_const {M : ℝ → Mat ℝ n n} {M' : Mat ℝ n n}
 /-- `d/dρ [exp((ρ-σ)A) v] = A e^{(ρ-σ)A} v`, at a fixed vector `v` — the shift
 absorbed by `exp((r-σ)A) = exp(rA)e^{-σA}` before ever differentiating, every
 rewrite through `*ᵥ` rather than raw matrix multiplication. -/
-theorem aux_hasDerivAt_expSub_mulVec (A : Mat ℝ n n) (σ : ℝ) (v : Vec ℝ n)
+private theorem aux_hasDerivAt_expSub_mulVec (A : Mat ℝ n n) (σ : ℝ) (v : Vec ℝ n)
     (ρ : ℝ) : -- --- CONCL ---
     HasDerivAt (fun r : ℝ => exp ((r - σ) • A) *ᵥ v)
       (A *ᵥ (exp ((ρ - σ) • A) *ᵥ v)) ρ := by -- --- PROOF ---
@@ -94,7 +94,7 @@ theorem aux_hasDerivAt_expSub_mulVec (A : Mat ℝ n n) (σ : ℝ) (v : Vec ℝ n
 /-- A continuous matrix-valued factor applied to a measurable vector-valued
 one, entry by entry — the domain generalised from `ℝ` to any measurable space,
 for the product-measure rectangle the Duhamel swap runs over. -/
-theorem aux_aestronglyMeasurable_mulVec2 {γ : Type} [MeasurableSpace γ] [TopologicalSpace γ]
+private theorem aux_aestronglyMeasurable_mulVec2 {γ : Type} [MeasurableSpace γ] [TopologicalSpace γ]
     [OpensMeasurableSpace γ] {M : γ → Mat ℝ n n} {v : γ → Vec ℝ n} {μ : Measure γ}
     (hM : Continuous M) (hv : AEStronglyMeasurable v μ) : -- --- CONCL ---
     AEStronglyMeasurable (fun s => M s *ᵥ v s) μ := by -- --- PROOF ---
@@ -117,7 +117,7 @@ theorem aux_aestronglyMeasurable_mulVec2 {γ : Type} [MeasurableSpace γ] [Topol
 /-- The Duhamel identity: what `A` applied to the input-integral part of
 `closedForm`, plus the input itself, integrates to — proved by folding the
 triangle `0 ≤ σ ≤ ρ ≤ τ` into a rectangle and swapping the iterated integral. -/
-theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_ht : 0 ≤ t)
+private theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_ht : 0 ≤ t)
     (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) {τ : ℝ}

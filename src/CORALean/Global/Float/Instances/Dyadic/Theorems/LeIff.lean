@@ -42,7 +42,7 @@ variable {p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `leShl` decides `m ≤ n * 2 ^ g`. -/
-theorem aux_leShl_iff (m n : ℤ) (g : ℕ) : -- --- CONCL ---
+private theorem aux_leShl_iff (m n : ℤ) (g : ℕ) : -- --- CONCL ---
     leShl m n g = true ↔ m ≤ n * 2 ^ g := by -- --- PROOF ---
   unfold leShl
   by_cases hn : n = 0
@@ -70,7 +70,8 @@ theorem aux_leShl_iff (m n : ℤ) (g : ℕ) : -- --- CONCL ---
 
 
 /-- The aligned comparison agrees with ℝ. -/
-theorem aux_leAligned_iff (a b : Dyadic p) : leAligned a b = true ↔ toReal a ≤ toReal b := by
+private theorem aux_leAligned_iff (a b : Dyadic p) : leAligned a b = true ↔ toReal a ≤ toReal b :=
+    by
   rw [leAligned, decide_eq_true_eq, toReal_align a (min_le_left a.exponent b.exponent),
     toReal_align b (min_le_right a.exponent b.exponent)]
   exact ⟨fun h => mul_le_mul_of_nonneg_right (Int.cast_le.mpr h) (le_of_lt (zpow_pos two_pos _)),

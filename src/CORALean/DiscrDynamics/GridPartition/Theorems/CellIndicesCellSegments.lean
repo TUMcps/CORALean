@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `s2i (i2s c) = c` for a cell `c` in `1 … N`: MATLAB's `ind2sub` followed by `sub2ind`. -/
-theorem GridPartition.aux_s2i_i2s (siz : Fin n → ℕ) {c : ℕ} (h1 : 1 ≤ c)
+private theorem GridPartition.aux_s2i_i2s (siz : Fin n → ℕ) {c : ℕ} (h1 : 1 ≤ c)
     (h2 : c ≤ ∏ j, siz j) : -- --- CONCL ---
     GridPartition.s2i siz (GridPartition.i2s siz c) = c := by -- --- PROOF ---
   have hin := GridPartition.i2s_mem siz h2 h1

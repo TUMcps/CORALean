@@ -29,7 +29,7 @@ namespace CORALean.Bench
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `m · 2^-e` with the factors of two moved from `m` into the exponent. -/
-def aux_dyadicString (m : ℤ) (e : ℕ) : String :=
+private def aux_dyadicString (m : ℤ) (e : ℕ) : String :=
   if m = 0 then "0" else
   let rec go (m : ℤ) (e : ℕ) (fuel : ℕ) : ℤ × ℕ :=
     match fuel with

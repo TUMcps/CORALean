@@ -55,7 +55,7 @@ section
 variable {n₁ n₂ : ℕ}
 
 /-- Appending sums coordinatewise. -/
-theorem _root_.CORALean.aux_append_image_prod_add (A₁ B₁ : Set (Vec ℝ n₁))
+private theorem _root_.CORALean.aux_append_image_prod_add (A₁ B₁ : Set (Vec ℝ n₁))
     (A₂ B₂ : Set (Vec ℝ n₂)) : -- --- CONCL ---
     (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) '' (A₁ ×ˢ A₂) +
         (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) '' (B₁ ×ˢ B₂) =

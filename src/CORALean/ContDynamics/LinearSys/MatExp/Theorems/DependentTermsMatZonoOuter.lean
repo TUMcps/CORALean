@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 /-- Every ordered pair is below the diagonal, on it or above it: the double sum is the diagonal plus
 each unordered pair once, in both orders. -/
-theorem MatExp.aux_double_sum {α : Type} [AddCommMonoid α] {h : ℕ}
+private theorem MatExp.aux_double_sum {α : Type} [AddCommMonoid α] {h : ℕ}
     (f : Fin h → Fin h → α) : -- --- CONCL ---
     ∑ i, ∑ j, f i j = ∑ i, f i i +
       ∑ p ∈ Finset.univ.filter (fun p : Fin h × Fin h => p.1 < p.2),

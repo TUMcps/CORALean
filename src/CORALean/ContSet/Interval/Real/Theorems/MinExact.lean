@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_min_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b₁) (h₂ : a₂ ≤ b₂)
+private theorem aux_min_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b₁) (h₂ : a₂ ≤ b₂)
     (hl : Min.min a₁ a₂ ≤ z) (hu : z ≤ Min.min b₁ b₂) : -- --- CONCL ---
     ∃ x y : ℝ, (a₁ ≤ x ∧ x ≤ b₁) ∧ (a₂ ≤ y ∧ y ≤ b₂) ∧ Min.min x y = z := by -- --- PROOF ---
   have hb₁ : z ≤ b₁ := le_trans hu (min_le_left _ _)

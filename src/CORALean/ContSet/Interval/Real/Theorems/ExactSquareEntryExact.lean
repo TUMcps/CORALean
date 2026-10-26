@@ -48,14 +48,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A corner is a member of the interval between the ends. -/
-theorem aux_corner_mem {lo hi v : ℝ} (h : v = lo ∨ v = hi) (hle : lo ≤ hi) :
+private theorem aux_corner_mem {lo hi v : ℝ} (h : v = lo ∨ v = hi) (hle : lo ≤ hi) :
     lo ≤ v ∧ v ≤ hi := by
   rcases h with rfl | rfl
   · exact ⟨le_rfl, hle⟩
   · exact ⟨hle, le_rfl⟩
 
 /-- `mulLo` is the product of two corners. -/
-theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
+private theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧
       y * x = Interval.mulLo a b c d := by -- --- PROOF ---
   unfold Interval.mulLo
@@ -68,7 +68,7 @@ theorem aux_mulLo_corner (a b c d : ℝ) : -- --- CONCL ---
     · exact ⟨b, d, Or.inr rfl, Or.inr rfl, rfl⟩
 
 /-- `mulHi` is the product of two corners. -/
-theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
+private theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
     ∃ y x, (y = a ∨ y = b) ∧ (x = c ∨ x = d) ∧
       y * x = Interval.mulHi a b c d := by -- --- PROOF ---
   unfold Interval.mulHi
@@ -81,7 +81,7 @@ theorem aux_mulHi_corner (a b c d : ℝ) : -- --- CONCL ---
     · exact ⟨b, d, Or.inr rfl, Or.inr rfl, rfl⟩
 
 /-- The least value of `x ^ 2` on `[a, b]` is taken. -/
-theorem aux_sq_lo {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
+private theorem aux_sq_lo {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     ∃ x, a ≤ x ∧ x ≤ b ∧
       x ^ 2 = if a < 0 ∧ 0 < b then 0 else min (a ^ 2) (b ^ 2) := by -- --- PROOF ---
   by_cases h : a < 0 ∧ 0 < b
@@ -92,7 +92,7 @@ theorem aux_sq_lo {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     · exact ⟨b, hab, le_rfl, rfl⟩
 
 /-- The greatest value of `x ^ 2` on `[a, b]` is taken. -/
-theorem aux_sq_hi {a b : ℝ} (hab : a ≤ b) :
+private theorem aux_sq_hi {a b : ℝ} (hab : a ≤ b) :
     ∃ x, a ≤ x ∧ x ≤ b ∧ x ^ 2 = max (a ^ 2) (b ^ 2) := by
   rcases max_choice (a ^ 2) (b ^ 2) with h' | h' <;> rw [h']
   · exact ⟨a, le_rfl, hab, rfl⟩
@@ -100,7 +100,7 @@ theorem aux_sq_hi {a b : ℝ} (hab : a ≤ b) :
 
 /-- Off the diagonal the entry `(i, j)` of a square takes the value built from a free choice of
 the entries it uses, each once: `M i j`, the two diagonal ones, row `i` and column `j`. -/
-theorem aux_offDiag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
+private theorem aux_offDiag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     {i j : Fin n} (hij : i ≠ j) {y u v : ℝ} (hy : A.inf i j ≤ y ∧ y ≤ A.sup i j)
     (hu : A.inf i i ≤ u ∧ u ≤ A.sup i i) (hv : A.inf j j ≤ v ∧ v ≤ A.sup j j)
     {d e : Fin n → ℝ} (hd : ∀ k, A.inf i k ≤ d k ∧ d k ≤ A.sup i k)
@@ -150,7 +150,7 @@ theorem aux_offDiag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p 
 
 /-- On the diagonal the entry `(i, i)` of a square takes the value built from a free choice of
 `M i i`, row `i` and column `i`. -/
-theorem aux_diag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
+private theorem aux_diag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     {i : Fin n} {a : ℝ} (ha : A.inf i i ≤ a ∧ a ≤ A.sup i i)
     {d e : Fin n → ℝ} (hd : ∀ k, A.inf i k ≤ d k ∧ d k ≤ A.sup i k)
     (he : ∀ k, A.inf k i ≤ e k ∧ e k ≤ A.sup k i) : -- --- CONCL ---

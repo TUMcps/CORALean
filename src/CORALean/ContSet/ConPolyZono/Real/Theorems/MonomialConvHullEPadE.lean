@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One copy's block, at the padded exponents and at the plain ones. -/
-theorem ConPolyZono.aux_prod_repBlockDiag_padE {a p h m : ℕ} (E : Fin p → Fin h → ℕ)
+private theorem ConPolyZono.aux_prod_repBlockDiag_padE {a p h m : ℕ} (E : Fin p → Fin h → ℕ)
     (v : Fin (a * (p + m)) → ℝ) (y : Fin (a * h)) : -- --- CONCL ---
     (∏ x, v x ^ repBlockDiag 0 a (ConPolyZono.padE E m) x y)
       = ∏ x : Fin (a * p), v (finProdFinEquiv ((finProdFinEquiv.symm x).1,

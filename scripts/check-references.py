@@ -622,9 +622,8 @@ def fix_decl_links(say):
     is what keeps them when a declaration moves between its own file and `Basic.lean`."""
     index = {}
     for f in SRC.rglob("*.lean"):
-        for n, _, priv in lean_decls(f):
-            if not priv:
-                index.setdefault(n, set()).add(f.resolve())
+        for n, _, _ in lean_decls(f):  # a `private` declaration is one a page may link (#269)
+            index.setdefault(n, set()).add(f.resolve())
     pages = sorted(REFS.rglob("*.md"))
     for page in pages:
         text = page.read_text(encoding="utf-8")
@@ -632,7 +631,7 @@ def fix_decl_links(say):
         def repl(m):
             name, link = m.group(1), m.group(2)
             target = (page.parent / link).resolve()
-            if target.exists() and any(n == name and not priv for n, _, priv in lean_decls(target)):
+            if target.exists() and any(n == name for n, _, _ in lean_decls(target)):
                 return m.group(0)
             homes = index.get(name, set())
             near = [h for h in homes if h.parent == target.parent]
@@ -784,7 +783,7 @@ class CoraTable:
             if not target.exists():
                 say(f"{tag}: links {link}, which does not exist")
                 continue
-            kinds = [k for n, k, priv in lean_decls(target) if n == name and not priv]
+            kinds = [k for n, k, _ in lean_decls(target) if n == name]
             if not kinds:
                 say(f"{tag}: `{name}` is not declared in {target.name}")
                 continue
@@ -1039,7 +1038,8 @@ def linked_files(papers):
 
 
 def theorem_categories(papers):
-    """Every public `theorem`/`lemma` under `src/CORALean`, in exactly one of: a float
+    """Every `theorem`/`lemma` under `src/CORALean`, `private` ones included (visibility is not
+    meaning, #269), in exactly one of: a float
     refinement (a `Float/` path, or `Float` in the file or declaration name; wins over
     everything), a proof helper (an `aux_*` name), a paper theorem (anything else in a file
     some row links) or a lemma (the rest). `Examples/` is counted apart, not classified."""
@@ -1047,7 +1047,7 @@ def theorem_categories(papers):
     cat = {"paper": 0, "float": 0, "helper": 0, "lemma": 0}
     examples = 0
     for path in sorted(SRC_LEAN.rglob("*.lean")):
-        decls = [(n, k) for n, k, priv in lean_decls(path) if k in ("theorem", "lemma") and not priv]
+        decls = [(n, k) for n, k, priv in lean_decls(path) if k in ("theorem", "lemma")]
         if "Examples" in path.relative_to(SRC_LEAN).parts:
             examples += len(decls)
             continue

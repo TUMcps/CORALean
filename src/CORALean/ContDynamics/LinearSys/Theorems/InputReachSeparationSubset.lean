@@ -62,7 +62,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Translating by `c` carries `Icc (a-c) (b-c)` onto `Icc a b` and preserves
 Lebesgue measure. -/
-theorem aux_aestronglyMeasurable_comp_add_left {f : ℝ → Vec ℝ n} {a b c : ℝ}
+private theorem aux_aestronglyMeasurable_comp_add_left {f : ℝ → Vec ℝ n} {a b c : ℝ}
     (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (c + σ))
       (volume.restrict (Set.Icc (a - c) (b - c))) := by -- --- PROOF ---

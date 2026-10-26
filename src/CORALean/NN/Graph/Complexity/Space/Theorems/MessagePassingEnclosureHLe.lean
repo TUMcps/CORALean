@@ -50,7 +50,7 @@ variable {N m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The `h` count of `messagePassingEnclosure`'s result. -/
-theorem GNN.aux_messagePassingEnclosure_h (R : Relaxation ℝ) (A : Mat ℝ N N)
+private theorem GNN.aux_messagePassingEnclosure_h (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) : (GNN.messagePassingEnclosure R A U).h
       = ((m + N + 1) * (m + N + 1) + 1) * (m + N + 1) := rfl
 

@@ -48,7 +48,7 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A raised power reads the shifted trace. -/
-theorem STL.Branch.aux_holds_shift (c : ℝ≥0) (b : STL.Branch X) (ξ : ℝ≥0 → X) :
+private theorem STL.Branch.aux_holds_shift (c : ℝ≥0) (b : STL.Branch X) (ξ : ℝ≥0 → X) :
     ({ b with j := b.j + 1 } : STL.Branch X).Holds c ξ ↔ b.Holds c (Time.shift ξ c) := by
   -- the argument `t + (j + 1) c` is `t + j c + c`
   have e₀ : ((b.j + 1 : ℕ) : ℝ≥0) * c = b.j * c + c := by push_cast; ring

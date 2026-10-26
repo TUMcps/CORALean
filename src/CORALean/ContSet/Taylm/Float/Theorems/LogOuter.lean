@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Taylor coefficients of `log` at a positive point. -/
-theorem Taylm.aux_log_coef {c : ℝ} (hc : 0 < c) (k : ℕ) : -- --- CONCL ---
+private theorem Taylm.aux_log_coef {c : ℝ} (hc : 0 < c) (k : ℕ) : -- --- CONCL ---
     iteratedDeriv (k + 1) Real.log c / ((k + 1).factorial : ℝ)
       = (-1) ^ k * (1 / c) ^ (k + 1) / ((k + 1 : ℕ) : ℝ) := by -- --- PROOF ---
   rw [iteratedDeriv_succ', Real.deriv_log', iteratedDeriv_eq_iterate, iter_deriv_inv,
@@ -61,7 +61,8 @@ theorem Taylm.aux_log_coef {c : ℝ} (hc : 0 < c) (k : ℕ) : -- --- CONCL ---
 
 
 /-- `aux_logCoef` encloses the Taylor coefficients of `log`. -/
-theorem Taylm.aux_logCoef_mem (q s : ℕ) {c : 𝕋} (hc : 0 < toReal c) (k : ℕ) : -- --- CONCL ---
+private theorem Taylm.aux_logCoef_mem (q s : ℕ) {c : 𝕋} (hc : 0 < toReal c)
+    (k : ℕ) : -- --- CONCL ---
     toReal (Taylm.aux_logCoef q s c k).inf ≤ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
       ∧ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
         ≤ toReal (Taylm.aux_logCoef q s c k).sup := by -- --- PROOF ---

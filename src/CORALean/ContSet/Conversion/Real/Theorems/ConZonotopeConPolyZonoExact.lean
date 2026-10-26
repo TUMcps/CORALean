@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row's interval is never crossed: `min(-Σ|aⱼ|, b) ≤ b`, and `be ≤ be`. -/
-theorem ConZonotope.aux_conLo_le_conHi (cZ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_conLo_le_conHi (cZ : ConZonotope (Vec ℝ n))
     (i : Fin (cZ.P.m + cZ.P.me)) : ConZonotope.conLo cZ i ≤ ConZonotope.conHi cZ i := by
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
   · simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_left]
@@ -53,7 +53,7 @@ theorem ConZonotope.aux_conLo_le_conHi (cZ : ConZonotope (Vec ℝ n))
   · simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_right, le_refl]
 
 /-- Within the radius of the midpoint is within the interval. -/
-theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ hi) : -- --- CONCL ---
+private theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ hi) : -- --- CONCL ---
     |v - (lo + hi) / 2| ≤ |(hi - lo) / 2| ↔ lo ≤ v ∧ v ≤ hi := by -- --- PROOF ---
   rw [abs_of_nonneg (by linarith : (0:ℝ) ≤ (hi - lo) / 2), abs_le]
   constructor

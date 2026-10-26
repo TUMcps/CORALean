@@ -55,27 +55,27 @@ variable {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_row_coord (ℓ : Fin m → Vec ℝ n) (i : Fin n) :
+private theorem aux_row_coord (ℓ : Fin m → Vec ℝ n) (i : Fin n) :
     HPolytope.simplexRows ℓ (Fin.castAdd m (Fin.castAdd 1 i)) = Pi.single i 1 := by
   show Fin.append (Fin.append (fun i => (Pi.single i 1 : Vec ℝ n)) ![fun _ => -(1 / √(n : ℝ))]) ℓ
     (Fin.castAdd m (Fin.castAdd 1 i)) = _
   rw [Fin.append_left, Fin.append_left]
 
-theorem aux_row_sum (ℓ : Fin m → Vec ℝ n) :
+private theorem aux_row_sum (ℓ : Fin m → Vec ℝ n) :
     HPolytope.simplexRows ℓ (Fin.castAdd m (Fin.natAdd n 0)) = fun _ => -(1 / √n) := by
   show Fin.append (Fin.append (fun i => (Pi.single i 1 : Vec ℝ n)) ![fun _ => -(1 / √(n : ℝ))]) ℓ
     (Fin.castAdd m (Fin.natAdd n 0)) = _
   rw [Fin.append_left, Fin.append_right]
   rfl
 
-theorem aux_row_dir (ℓ : Fin m → Vec ℝ n) (j : Fin m) :
+private theorem aux_row_dir (ℓ : Fin m → Vec ℝ n) (j : Fin m) :
     HPolytope.simplexRows ℓ (Fin.natAdd (n + 1) j) = ℓ j := by
   show Fin.append (Fin.append (fun i => (Pi.single i 1 : Vec ℝ n)) ![fun _ => -(1 / √(n : ℝ))]) ℓ
     (Fin.natAdd (n + 1) j) = _
   rw [Fin.append_right]
 
 /-- Every row has Euclidean length at most one. -/
-theorem aux_rows_le (ℓ : Fin m → Vec ℝ n) (hn : 0 < n) (hℓ : ∀ j, ‖ℓ j‖₂ ≤ 1)
+private theorem aux_rows_le (ℓ : Fin m → Vec ℝ n) (hn : 0 < n) (hℓ : ∀ j, ‖ℓ j‖₂ ≤ 1)
     (r : Fin (n + 1 + m)) : -- --- CONCL ---
     ‖HPolytope.simplexRows ℓ r‖₂ ≤ 1 := by -- --- PROOF ---
   refine Fin.addCases (fun r₀ => ?_) (fun j => ?_) r

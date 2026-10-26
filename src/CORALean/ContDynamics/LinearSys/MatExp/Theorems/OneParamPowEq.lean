@@ -51,14 +51,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `F_i^{(l)}` vanishes outside `1 ≤ l ≤ i`. -/
-theorem aux_oneParamF_eq_zero (C G : Mat ℝ n n) :
+private theorem aux_oneParamF_eq_zero (C G : Mat ℝ n n) :
     ∀ i l, (l = 0 ∨ i < l) → MatExp.oneParamF C G i l = 0
   | 0, _, _ => rfl
   | i + 1, l, h => by
     rw [MatExp.oneParamF, if_neg (by omega), if_neg (by omega), if_neg (by omega)]
 
 /-- The printed rules as one: `F_{i+1}^{(l)} = P_i^{(l-1)} G + P_i^{(l)} C` for `l ≥ 1`. -/
-theorem aux_oneParamF_succ (C G : Mat ℝ n n) (i l : ℕ) (hl : 1 ≤ l) : -- --- CONCL ---
+private theorem aux_oneParamF_succ (C G : Mat ℝ n n) (i l : ℕ) (hl : 1 ≤ l) : -- --- CONCL ---
     MatExp.oneParamF C G (i + 1) l =
       (if l - 1 = 0 then MatExp.oneParamD C i else MatExp.oneParamF C G i (l - 1)) * G +
         (if l = 0 then MatExp.oneParamD C i else MatExp.oneParamF C G i l) *
@@ -80,7 +80,7 @@ theorem aux_oneParamF_succ (C G : Mat ℝ n n) (i l : ℕ) (hl : 1 ≤ l) : -- -
       aux_oneParamF_eq_zero C G i l (Or.inr (by omega)), zero_mul, zero_mul, add_zero]
 
 /-- `(C + βG)ⁱ = Σ_{l=0}^i βˡ P_i^{(l)}`. -/
-theorem aux_pow_eq_sum_range (C G : Mat ℝ n n) (β : ℝ) (i : ℕ) : -- --- CONCL ---
+private theorem aux_pow_eq_sum_range (C G : Mat ℝ n n) (β : ℝ) (i : ℕ) : -- --- CONCL ---
     (C + β • G) ^ i = ∑ l ∈ Finset.range (i + 1), β ^ l •
       (if l = 0 then MatExp.oneParamD C i else MatExp.oneParamF C G i l) := by -- --- PROOF ---
   induction i with
@@ -106,7 +106,7 @@ theorem aux_pow_eq_sum_range (C G : Mat ℝ n n) (β : ℝ) (i : ℕ) : -- --- C
     abel
 
 /-- `Σ_{l=1}^i f l = Σ_{l=0}^{i-1} f (l + 1)`. -/
-theorem aux_sum_Icc_one {M : Type} [AddCommMonoid M] (f : ℕ → M) (i : ℕ) :
+private theorem aux_sum_Icc_one {M : Type} [AddCommMonoid M] (f : ℕ → M) (i : ℕ) :
     ∑ l ∈ Finset.Icc 1 i, f l = ∑ l ∈ Finset.range i, f (l + 1) := by
   induction i with
   | zero => simp

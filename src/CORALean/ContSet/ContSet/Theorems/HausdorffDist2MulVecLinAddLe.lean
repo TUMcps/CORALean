@@ -55,7 +55,7 @@ section
 variable {n : ℕ}
 
 /-- Every member of a bounded set lies within `d_H(0,S)` of the origin, read at `‖·‖₂`. -/
-theorem _root_.CORALean.aux_norm₂_le_hausdorffDist₂_zero {S : Set (Vec ℝ n)}
+private theorem _root_.CORALean.aux_norm₂_le_hausdorffDist₂_zero {S : Set (Vec ℝ n)}
     (hS : Bornology.IsBounded S) {y : Vec ℝ n} (hy : y ∈ S) : -- --- CONCL ---
     ‖y‖₂ ≤ hausdorffDist₂ {0} S := by -- --- PROOF ---
   have hSb : Bornology.IsBounded (toEuclidean '' S) := by

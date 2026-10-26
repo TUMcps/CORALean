@@ -49,7 +49,7 @@ variable {X : Type}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Comp.aux_sat_eval_of {n : ℕ} {φ φ' : Fin n → STL.Formula X}
+private theorem STL.Comp.aux_sat_eval_of {n : ℕ} {φ φ' : Fin n → STL.Formula X}
     (h : ∀ i ξ, (φ' i).Satisfies ξ → (φ i).Satisfies ξ) (f : STL.Comp n) (ξ : ℝ≥0 → X)
     (hf : (f.eval φ').Satisfies ξ) : -- --- CONCL ---
     (f.eval φ).Satisfies ξ := by -- --- PROOF ---

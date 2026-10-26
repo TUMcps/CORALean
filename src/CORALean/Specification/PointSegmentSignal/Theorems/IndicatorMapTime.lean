@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The indicator of float bounds, read as reals, is the indicator of the bounds they denote. -/
-theorem PointSegmentSignal.aux_indicatorBounds_mapTime (lb : 𝕋) (ub : WithTop 𝕋)
+private theorem PointSegmentSignal.aux_indicatorBounds_mapTime (lb : 𝕋) (ub : WithTop 𝕋)
     (lc rc val default : Bool) : -- --- CONCL ---
     (PointSegmentSignal.indicatorBounds lb ub lc rc val default).mapTime toReal =
       PointSegmentSignal.indicatorBounds (toReal lb) (ub.map toReal) lc rc val

@@ -44,7 +44,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A rank below `n` says the generators do not span the space. -/
-theorem Zonotope.aux_span_ne_top (Z : Zonotope (Vec ℝ n)) (hr : Z.rank < n) : -- --- CONCL ---
+private theorem Zonotope.aux_span_ne_top (Z : Zonotope (Vec ℝ n))
+    (hr : Z.rank < n) : -- --- CONCL ---
     Submodule.span ℝ (Set.range Z.G) ≠ ⊤ := by -- --- PROOF ---
   intro h
   have : Z.rank = n := by
@@ -53,7 +54,7 @@ theorem Zonotope.aux_span_ne_top (Z : Zonotope (Vec ℝ n)) (hr : Z.rank < n) : 
   omega
 
 /-- `n` generators with an invertible matrix span the space. -/
-theorem Zonotope.aux_det_eq_zero (Z : Zonotope (Vec ℝ n)) (hr : Z.rank < n) {q : ℕ}
+private theorem Zonotope.aux_det_eq_zero (Z : Zonotope (Vec ℝ n)) (hr : Z.rank < n) {q : ℕ}
     (e : Fin n → Fin q) (G : Fin q → Vec ℝ n) (hG : Set.range G ⊆ Set.range Z.G) : -- --- CONCL ---
     (Matrix.of fun i k => G (e k) i : Mat ℝ n n).det = 0 := by -- --- PROOF ---
   by_contra hdet

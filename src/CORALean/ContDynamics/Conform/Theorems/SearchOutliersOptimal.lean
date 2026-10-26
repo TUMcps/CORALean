@@ -55,7 +55,7 @@ variable {ι : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A finite family of positive reals has a positive lower bound. -/
-theorem aux_exists_pos_le {X : Type} (s : Finset X) (f : X → ℝ) (hf : ∀ x ∈ s, 0 < f x) :
+private theorem aux_exists_pos_le {X : Type} (s : Finset X) (f : X → ℝ) (hf : ∀ x ∈ s, 0 < f x) :
     ∃ η > 0, ∀ x ∈ s, η ≤ f x := by
   rcases s.eq_empty_or_nonempty with hs | hs
   · exact ⟨1, one_pos, fun x hx => by simp [hs] at hx⟩

@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `⌊x⌋` and `⌈x⌉` of the exact value `exactIn d`, in the format. -/
-def aux_downUp (exactIn : ExactDyadic → 𝕋) (d : String) : Except String (𝕋 × 𝕋) := do
+private def aux_downUp (exactIn : ExactDyadic → 𝕋) (d : String) : Except String (𝕋 × 𝕋) := do
   let x := exactIn (← parseExact d)
   pure (FloatOps.addDown x FloatOps.zero, FloatOps.addUp x FloatOps.zero)
 

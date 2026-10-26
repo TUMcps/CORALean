@@ -57,14 +57,14 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Columns add where monomials multiply. -/
-theorem ConPolyZono.aux_prod_addCol {p : ℕ} (a : Fin p → ℝ) (c d : Fin p → ℕ) :
+private theorem ConPolyZono.aux_prod_addCol {p : ℕ} (a : Fin p → ℝ) (c d : Fin p → ℕ) :
     (∏ k, a k ^ (c k + d k)) = (∏ k, a k ^ c k) * ∏ k, a k ^ d k := by
   rw [← Finset.prod_mul_distrib]
   exact Finset.prod_congr rfl fun k _ => pow_add (a k) (c k) (d k)
 
 
 /-- The monomial of a column carrying the selector. -/
-theorem ConPolyZono.aux_prod_unionWithSel {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ)
+private theorem ConPolyZono.aux_prod_unionWithSel {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ)
     (c : Fin (p₁ + p₂ + 2) → ℕ) :
     (∏ k, a k ^ ConPolyZono.unionWithSel p₁ p₂ c k)
       = a (ConPolyZono.unionSel p₁ p₂) * ∏ k, a k ^ c k := by
@@ -73,7 +73,8 @@ theorem ConPolyZono.aux_prod_unionWithSel {p₁ p₂ : ℕ} (a : Fin (p₁ + p�
 
 
 /-- What the selector constraint's row evaluates to. -/
-theorem ConPolyZono.aux_unionCon_value {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_unionCon_value {p₁ p₂ : ℕ}
+    (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (∑ l, ConPolyZono.unionConCoef p₁ p₂ l * ∏ k, a k ^ ConPolyZono.unionConCol p₁ p₂ l k)
       = (1 + a (ConPolyZono.unionSel p₁ p₂)
             + 2⁻¹ * ConPolyZono.unionMeanSq (fun j => a (Fin.castAdd 2 (Fin.castAdd p₂ j)))

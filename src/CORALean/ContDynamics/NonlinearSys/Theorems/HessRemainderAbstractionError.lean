@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
-theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
+private theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
       (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
@@ -69,7 +69,7 @@ theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
   rwa [he] at h
 
 /-- The same for a vector. -/
-theorem aux_hessRem_neg_vec {k : ℕ} (v : Vec 𝕋 k) :
+private theorem aux_hessRem_neg_vec {k : ℕ} (v : Vec 𝕋 k) :
     -toRealVec v ∈ (Interval.point (α := Vec 𝕋 k) (-v)).construct := by
   have h := Interval.mem_point (α := Vec 𝕋 k) (-v)
   have he : (RealImage.realImage (α := Vec 𝕋 k) (-v) : Vec ℝ k) = -toRealVec v :=
@@ -77,14 +77,14 @@ theorem aux_hessRem_neg_vec {k : ℕ} (v : Vec 𝕋 k) :
   rwa [he] at h
 
 /-- `y - ys` lies in the box `Y - ys`. -/
-theorem aux_hessRem_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
+private theorem aux_hessRem_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
     (hy : y ∈ Y.construct) :
     y - toRealVec ys ∈ (Interval.plus Y (Interval.point (-ys))).construct := by
   have hd := Interval.plus_outer Y _ (Set.add_mem_add hy (aux_hessRem_neg_vec ys))
   rwa [← sub_eq_add_neg] at hd
 
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
-theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
+private theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
     (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
     (hy : y ∈ Y.construct) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
@@ -97,14 +97,14 @@ theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Inte
     (Set.mem_biUnion hM (Set.mem_image_of_mem _ (aux_hessRem_sub_mem ys hy)))
 
 /-- A point of a box is no larger in magnitude than the box's `normMag`. -/
-theorem aux_hessRem_abs_le {k : ℕ} {I : Interval (Vec 𝕋 k)} {y : Vec ℝ k} (hy : y ∈ I.construct)
-    (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
+private theorem aux_hessRem_abs_le {k : ℕ} {I : Interval (Vec 𝕋 k)} {y : Vec ℝ k}
+    (hy : y ∈ I.construct) (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
   obtain ⟨h1, h2⟩ := hy j
   rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute]
   exact abs_le_max_abs_abs h1 h2
 
 /-- A matrix of a box is entrywise no larger in magnitude than the larger end. -/
-theorem aux_hessRem_abs_le_mat {k : ℕ} {I : Interval (Mat 𝕋 k k)} {M : Mat ℝ k k}
+private theorem aux_hessRem_abs_le_mat {k : ℕ} {I : Interval (Mat 𝕋 k k)} {M : Mat ℝ k k}
     (hM : M ∈ I.construct) (j l : Fin k) :
     |M j l| ≤ toReal (maximum (absolute (I.inf j l)) (absolute (I.sup j l))) := by
   have h := hM (j, l)
@@ -113,13 +113,13 @@ theorem aux_hessRem_abs_le_mat {k : ℕ} {I : Interval (Mat 𝕋 k k)} {M : Mat 
   exact abs_le_max_abs_abs h.1 h.2
 
 /-- Bounds on two blocks bound their concatenation. -/
-theorem aux_hessRem_abs_append {v : Vec ℝ n} {w : Vec ℝ m} {a : Vec 𝕋 n} {b : Vec 𝕋 m}
+private theorem aux_hessRem_abs_append {v : Vec ℝ n} {w : Vec ℝ m} {a : Vec 𝕋 n} {b : Vec 𝕋 m}
     (hv : ∀ j, |v j| ≤ toReal (a j)) (hw : ∀ j, |w j| ≤ toReal (b j)) :
     ∀ j, |Fin.append v w j| ≤ toReal ((Fin.append a b : Vec 𝕋 (n + m)) j) :=
   Fin.addCases (fun j => by simpa using hv j) (fun j => by simpa using hw j)
 
 /-- What `|q| ≤ L` says of `q / 2` against the symmetric box at `½ L`. -/
-theorem aux_hessRem_half_mem {q : ℝ} {L : 𝕋} (hq : |q| ≤ toReal L) :
+private theorem aux_hessRem_half_mem {q : ℝ} {L : 𝕋} (hq : |q| ≤ toReal L) :
     toReal (neg (half L)) ≤ q / 2 ∧ q / 2 ≤ toReal (half L) := by
   rw [toReal_neg, toReal_half]
   obtain ⟨h1, h2⟩ := abs_le.mp hq

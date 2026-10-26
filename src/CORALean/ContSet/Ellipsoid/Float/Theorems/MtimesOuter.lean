@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The image's nominal part, with the center's rounding charged to a box. -/
-theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
       nominalSet (Ellipsoid.mtimes M E)
         + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---
@@ -93,7 +93,7 @@ theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
   ring
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
+private theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     (toRealMat M *ᵥ ·) '' (I_error E).construct + (Ellipsoid.mtimesResidual M E).construct ⊆
       (I_error (Ellipsoid.mtimes M E)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M E.I_error))

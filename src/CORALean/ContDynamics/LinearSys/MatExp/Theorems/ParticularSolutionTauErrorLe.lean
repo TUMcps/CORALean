@@ -57,7 +57,7 @@ variable {n : ℕ}
 /-- Every point `e^{Atk}` sends `bPU(Δt)` to is within `particularSolutionTauErrorBound`'s reach
 of the origin: `norm₂_mulVec_le` carries `norm₂_le_of_mem_particularSolutionOuter`'s bound through
 the fixed matrix `e^{Atk}`, and `Finset.Ico 0 (η+1) = Finset.range (η+1)` matches `bPU` to it. -/
-theorem aux_norm₂_le_of_mem_particularSolutionTauError_set (A : Mat ℝ n n) (tk : ℝ)
+private theorem aux_norm₂_le_of_mem_particularSolutionTauError_set (A : Mat ℝ n n) (tk : ℝ)
     {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
     ∀ z ∈ (fun x => (exp (tk • A)).mulVec x) '' MatExp.particularSolutionOuter A U0 0 Δt η,
       ‖z‖₂ ≤ MatExp.particularSolutionTauErrorBound A tk U0 Δt η := by -- --- PROOF ---

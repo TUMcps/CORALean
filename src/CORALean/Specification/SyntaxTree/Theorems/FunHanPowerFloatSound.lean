@@ -48,14 +48,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The root of a power of a nonnegative number. -/
-theorem SyntaxTree.aux_nthroot_pow_nonneg {k : ℕ} (hk : k ≠ 0) {x : ℝ} (hx : 0 ≤ x) :
+private theorem SyntaxTree.aux_nthroot_pow_nonneg {k : ℕ} (hk : k ≠ 0) {x : ℝ} (hx : 0 ≤ x) :
     nthroot (x ^ k) k = x := by
   have h0 : 0 ≤ x ^ k := pow_nonneg hx k
   simp only [nthroot, h0, if_true, one_div]
   exact Real.pow_rpow_inv_natCast hx hk
 
 /-- The root of an odd power. -/
-theorem SyntaxTree.aux_nthroot_pow_odd {k : ℕ} (hk : k % 2 = 1) (x : ℝ) : -- --- CONCL ---
+private theorem SyntaxTree.aux_nthroot_pow_odd {k : ℕ} (hk : k % 2 = 1) (x : ℝ) : -- --- CONCL ---
     nthroot (x ^ k) k = x := by -- --- PROOF ---
   have hodd : Odd k := Nat.odd_iff.2 hk
   have hk0 : k ≠ 0 := fun h => by simp [h] at hk
@@ -69,14 +69,14 @@ theorem SyntaxTree.aux_nthroot_pow_odd {k : ℕ} (hk : k % 2 = 1) (x : ℝ) : --
     ring
 
 /-- The root is monotone on the nonnegative numbers. -/
-theorem SyntaxTree.aux_nthroot_mono_nonneg (k : ℕ) {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) :
+private theorem SyntaxTree.aux_nthroot_mono_nonneg (k : ℕ) {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) :
     nthroot a k ≤ nthroot b k := by
   have hz : (0 : ℝ) ≤ 1 / k := by positivity
   simp only [nthroot, ha, ha.trans hab, if_true]
   exact Real.rpow_le_rpow ha hab hz
 
 /-- The root is monotone. -/
-theorem SyntaxTree.aux_nthroot_mono (k : ℕ) {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
+private theorem SyntaxTree.aux_nthroot_mono (k : ℕ) {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     nthroot a k ≤ nthroot b k := by -- --- PROOF ---
   have hz : (0 : ℝ) ≤ 1 / k := by positivity
   by_cases ha : 0 ≤ a
@@ -89,7 +89,7 @@ theorem SyntaxTree.aux_nthroot_mono (k : ℕ) {a b : ℝ} (hab : a ≤ b) : -- -
       exact Real.rpow_le_rpow (by linarith [not_le.1 hb]) (by linarith) hz
 
 /-- The root of an even power is the absolute value. -/
-theorem SyntaxTree.aux_nthroot_pow_even {k : ℕ} (hk : k % 2 = 0) (hk0 : k ≠ 0) (x : ℝ) :
+private theorem SyntaxTree.aux_nthroot_pow_even {k : ℕ} (hk : k % 2 = 0) (hk0 : k ≠ 0) (x : ℝ) :
     nthroot (x ^ k) k = |x| := by
   have h : x ^ k = |x| ^ k := ((Nat.even_iff.2 hk).pow_abs x).symm
   rw [h]

@@ -61,12 +61,12 @@ variable {n p nq nr : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The sum of products of entries is a trace. -/
-theorem Zonotope.aux_sum_mul_eq_trace {a b : ℕ} (M N : Mat ℝ a b) :
+private theorem Zonotope.aux_sum_mul_eq_trace {a b : ℕ} (M N : Mat ℝ a b) :
     ∑ i, ∑ j, M i j * N i j = trace (M * Nᵀ) := by
   simp [Matrix.trace, Matrix.mul_apply, Matrix.transpose_apply]
 
 /-- Eq. 32: the squared Frobenius norm of `Ḡ` is the three blocks' squared entries. -/
-theorem Zonotope.aux_frobSq_luenbergerUpdate (F : Mat ℝ n n) (Γ : Mat ℝ p n) (Λ : Mat ℝ n p)
+private theorem Zonotope.aux_frobSq_luenbergerUpdate (F : Mat ℝ n n) (Γ : Mat ℝ p n) (Λ : Mat ℝ n p)
     (Q : Mat ℝ n nq) (R : Mat ℝ p nr) (y : Vec ℝ p) (X : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∑ i, ∑ k, ((Zonotope.luenbergerUpdate F Γ Λ Q R y X).G k i) ^ 2 =
       (∑ i, ∑ k, (((F - Λ * Γ) * Matrix.of fun i j => X.G j i) i k) ^ 2) +
@@ -85,7 +85,7 @@ theorem Zonotope.aux_frobSq_luenbergerUpdate (F : Mat ℝ n n) (Γ : Mat ℝ p n
     _ = _ := by simp only [Finset.sum_add_distrib]
 
 /-- The cost of `X - Y` splits into the costs of `X` and `Y` and a cross term. -/
-theorem Zonotope.aux_sq_sub {a b : ℕ} (X Y : Mat ℝ a b) :
+private theorem Zonotope.aux_sq_sub {a b : ℕ} (X Y : Mat ℝ a b) :
     ∑ i, ∑ j, (X i j - Y i j) ^ 2 =
       (∑ i, ∑ j, X i j ^ 2) - 2 * (∑ i, ∑ j, X i j * Y i j) + ∑ i, ∑ j, Y i j ^ 2 := by
   have : ∀ i j, (X i j - Y i j) ^ 2 = X i j ^ 2 - 2 * (X i j * Y i j) + Y i j ^ 2 :=
@@ -93,7 +93,7 @@ theorem Zonotope.aux_sq_sub {a b : ℕ} (X Y : Mat ℝ a b) :
   simp only [this, Finset.sum_add_distrib, Finset.sum_sub_distrib, ← Finset.mul_sum]
 
 /-- The cost of `X + Y`, the same. -/
-theorem Zonotope.aux_sq_add {a b : ℕ} (X Y : Mat ℝ a b) :
+private theorem Zonotope.aux_sq_add {a b : ℕ} (X Y : Mat ℝ a b) :
     ∑ i, ∑ j, (X i j + Y i j) ^ 2 =
       (∑ i, ∑ j, X i j ^ 2) + 2 * (∑ i, ∑ j, X i j * Y i j) + ∑ i, ∑ j, Y i j ^ 2 := by
   have : ∀ i j, (X i j + Y i j) ^ 2 = X i j ^ 2 + 2 * (X i j * Y i j) + Y i j ^ 2 :=

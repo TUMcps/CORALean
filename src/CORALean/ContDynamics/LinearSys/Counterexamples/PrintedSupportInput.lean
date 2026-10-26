@@ -55,7 +55,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `T = I + A/2` for the nilpotent `A = [[0, 1], [0, 0]]` and `Δt = 1`: the series stops. -/
-theorem aux_expIntegral_nilpotent : -- --- CONCL ---
+private theorem aux_expIntegral_nilpotent : -- --- CONCL ---
     MatExp.expIntegral (!![0, 1; 0, 0] : Mat ℝ 2 2) 1
       = 1 + (1 / 2 : ℝ) • !![0, 1; 0, 0] := by -- --- PROOF ---
   have hA2 : (!![0, 1; 0, 0] : Mat ℝ 2 2) ^ 2 = 0 := by
@@ -67,7 +67,8 @@ theorem aux_expIntegral_nilpotent : -- --- CONCL ---
   simp [Finset.sum_range_succ]
 
 /-- The box `[-1, 1]²`'s support vector: each coordinate's sign along `d`. -/
-theorem aux_box_support (d : Vec ℝ 2 →ₗ[ℝ] ℝ) (y : Vec ℝ 2) (hy : ∀ i, |y i| ≤ 1) : -- --- CONCL ---
+private theorem aux_box_support (d : Vec ℝ 2 →ₗ[ℝ] ℝ) (y : Vec ℝ 2)
+    (hy : ∀ i, |y i| ≤ 1) : -- --- CONCL ---
     d y ≤ d ![if 0 ≤ d (Pi.single 0 1) then 1 else -1,
       if 0 ≤ d (Pi.single 1 1) then 1 else -1] := by -- --- PROOF ---
   have hsplit : ∀ z : Vec ℝ 2, d z = z 0 * d (Pi.single 0 1) + z 1 * d (Pi.single 1 1) := by

@@ -51,7 +51,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator sum read against the kept factors alone. -/
-theorem ConPolyZono.aux_sum_compactFactors (cPZ : ConPolyZono α)
+private theorem ConPolyZono.aux_sum_compactFactors (cPZ : ConPolyZono α)
     (a : Fin cPZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i)
       = ∑ i : Fin cPZ.compactFactors.h, PolyZonotope.monomial cPZ.compactFactors.E
@@ -66,7 +66,7 @@ theorem ConPolyZono.aux_sum_compactFactors (cPZ : ConPolyZono α)
 /-- The same sum against an extended factor vector, which is what the reverse
 inclusion supplies. Stated separately, since obtaining it from
 `sum_compactFactors` would rewrite under a binder typed by a projection. -/
-theorem ConPolyZono.aux_sum_compactFactors_extend (cPZ : ConPolyZono α)
+private theorem ConPolyZono.aux_sum_compactFactors_extend (cPZ : ConPolyZono α)
     (a : Fin cPZ.compactFactors.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial cPZ.E (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) i • cPZ.G i)
       = ∑ i : Fin cPZ.compactFactors.h,
@@ -80,7 +80,7 @@ theorem ConPolyZono.aux_sum_compactFactors_extend (cPZ : ConPolyZono α)
 
 -- the constraint monomials restrict alongside the generator ones, the box projects with them
 omit [AddCommGroup α] [Module ℝ α] in
-theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) {a : Fin cPZ.p → ℝ}
+private theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) {a : Fin cPZ.p → ℝ}
     (ha : a ∈ cPZ.cons.construct) :
     (fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.cons.R k))
       ∈ cPZ.compactFactors.cons.construct :=
@@ -90,7 +90,7 @@ theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) {a : Fin
 
 -- and the same the other way, a dropped factor coming back as zero, inside the unit box
 omit [AddCommGroup α] [Module ℝ α] in
-theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZono α)
+private theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZono α)
     {a : Fin cPZ.compactFactors.p → ℝ}
     (ha : a ∈ cPZ.compactFactors.cons.construct) : -- --- CONCL ---
     (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) ∈ cPZ.cons.construct := by -- --- PROOF ---

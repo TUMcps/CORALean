@@ -53,13 +53,13 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `xᵀ M x` as a double sum. -/
-theorem aux_sdpDual_quad (M : Matrix (Fin m) (Fin m) ℝ) (x : Fin m → ℝ) :
+private theorem aux_sdpDual_quad (M : Matrix (Fin m) (Fin m) ℝ) (x : Fin m → ℝ) :
     x ⬝ᵥ (M *ᵥ x) = ∑ i, ∑ j, x i * M i j * x j := by
   simp only [dotProduct, mulVec, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 /-- The quadratic form at `eᵢ + s eⱼ`. -/
-theorem aux_sdpDual_quad_pair (M : Matrix (Fin m) (Fin m) ℝ) (i j : Fin m) (s : ℝ) :
+private theorem aux_sdpDual_quad_pair (M : Matrix (Fin m) (Fin m) ℝ) (i j : Fin m) (s : ℝ) :
     (Pi.single i 1 + Pi.single j s : Fin m → ℝ) ⬝ᵥ (M *ᵥ (Pi.single i 1 + Pi.single j s)) =
       M i i + s * M i j + s * M j i + s * s * M j j := by
   rw [aux_sdpDual_quad]
@@ -68,7 +68,7 @@ theorem aux_sdpDual_quad_pair (M : Matrix (Fin m) (Fin m) ℝ) (i j : Fin m) (s 
   ring
 
 /-- A positive semidefinite real matrix has `|Mᵢⱼ| ≤ (Mᵢᵢ + Mⱼⱼ) / 2`. -/
-theorem aux_sdpDual_abs_le {M : Matrix (Fin m) (Fin m) ℝ} (hM : M.PosSemidef)
+private theorem aux_sdpDual_abs_le {M : Matrix (Fin m) (Fin m) ℝ} (hM : M.PosSemidef)
     (i j : Fin m) : -- --- CONCL ---
     |M i j| ≤ (M i i + M j j) / 2 := by -- --- PROOF ---
   by_cases hij : i = j
@@ -84,7 +84,7 @@ theorem aux_sdpDual_abs_le {M : Matrix (Fin m) (Fin m) ℝ} (hM : M.PosSemidef)
   rw [abs_le]; constructor <;> nlinarith
 
 /-- The positive semidefinite matrices form a closed set. -/
-theorem aux_sdpDual_isClosed_posSemidef : -- --- CONCL ---
+private theorem aux_sdpDual_isClosed_posSemidef : -- --- CONCL ---
     IsClosed {M : Matrix (Fin m) (Fin m) ℝ | M.PosSemidef} := by -- --- PROOF ---
   have : {M : Matrix (Fin m) (Fin m) ℝ | M.PosSemidef} =
       {M | Mᴴ = M} ∩ ⋂ x : Fin m → ℝ, {M | 0 ≤ x ⬝ᵥ (M *ᵥ x)} := by
@@ -95,7 +95,7 @@ theorem aux_sdpDual_isClosed_posSemidef : -- --- CONCL ---
   exact isClosed_le continuous_const (by fun_prop)
 
 /-- `⟨M, U⟩ ≥ 0` for positive semidefinite `M` and `U`. -/
-theorem aux_sdpDual_trace_mul_nonneg {M U : Matrix (Fin m) (Fin m) ℝ} (hM : M.PosSemidef)
+private theorem aux_sdpDual_trace_mul_nonneg {M U : Matrix (Fin m) (Fin m) ℝ} (hM : M.PosSemidef)
     (hU : U.PosSemidef) : -- --- CONCL ---
     0 ≤ (M * U).trace := by -- --- PROOF ---
   obtain ⟨k, v, rfl⟩ := Matrix.posSemidef_iff_eq_sum_vecMulVec.mp hU
@@ -109,7 +109,7 @@ theorem aux_sdpDual_trace_mul_nonneg {M U : Matrix (Fin m) (Fin m) ℝ} (hM : M.
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 /-- Weak duality: `⟨A, U⟩ ≤ 1ᵀλ`. -/
-theorem aux_sdpDual_weak {A U : Matrix (Fin m) (Fin m) ℝ} {lam : Fin m → ℝ}
+private theorem aux_sdpDual_weak {A U : Matrix (Fin m) (Fin m) ℝ} {lam : Fin m → ℝ}
     (hU : U.PosSemidef) (hdiag : ∀ i, U i i = 1)
     (hlam : (diagonal lam - A).PosSemidef) : -- --- CONCL ---
     (A * U).trace ≤ ∑ i, lam i := by -- --- PROOF ---
@@ -120,7 +120,7 @@ theorem aux_sdpDual_weak {A U : Matrix (Fin m) (Fin m) ℝ} {lam : Fin m → ℝ
   linarith
 
 /-- A linear functional on matrices is `X ↦ ∑ Xᵢⱼ f(Eᵢⱼ)`. -/
-theorem aux_sdpDual_functional (f : Matrix (Fin m) (Fin m) ℝ →L[ℝ] ℝ)
+private theorem aux_sdpDual_functional (f : Matrix (Fin m) (Fin m) ℝ →L[ℝ] ℝ)
     (X : Matrix (Fin m) (Fin m) ℝ) : -- --- CONCL ---
     f X = ∑ i, ∑ j, X i j * f (single i j 1) := by -- --- PROOF ---
   conv_lhs => rw [matrix_eq_sum_single X]
@@ -130,7 +130,7 @@ theorem aux_sdpDual_functional (f : Matrix (Fin m) (Fin m) ℝ →L[ℝ] ℝ)
     rw [smul_single, smul_eq_mul, mul_one], map_smul, smul_eq_mul]
 
 /-- The uniformly positive definite matrices form an open set. -/
-theorem aux_sdpDual_isOpen (hm : 0 < m) : -- --- CONCL ---
+private theorem aux_sdpDual_isOpen (hm : 0 < m) : -- --- CONCL ---
     IsOpen {X : Matrix (Fin m) (Fin m) ℝ |
       ∃ δ > 0, ∀ x : Fin m → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)} := by -- --- PROOF ---
   rw [isOpen_iff_forall_mem_open]
@@ -180,7 +180,7 @@ theorem aux_sdpDual_isOpen (hm : 0 < m) : -- --- CONCL ---
       isOpen_lt (by fun_prop) continuous_const
 
 /-- The separating functional cannot exist: it would make `W / w` beat the primal maximum. -/
-theorem aux_sdpDual_contra (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm : 0 < m) (p : ℝ)
+private theorem aux_sdpDual_contra (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm : 0 < m) (p : ℝ)
     (hp : ∀ U : Matrix (Fin m) (Fin m) ℝ, U.PosSemidef → (∀ i, U i i = 1) → (A * U).trace ≤ p)
     {ε : ℝ} (hε : 0 < ε) (f : Matrix (Fin m) (Fin m) ℝ →L[ℝ] ℝ) (u : ℝ)
     (hfO : ∀ X ∈ {X : Matrix (Fin m) (Fin m) ℝ |
@@ -358,7 +358,7 @@ theorem aux_sdpDual_contra (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm 
 
 
 /-- The separation step: for `ε > 0` some `λ` with `1ᵀλ = p + ε` is dual feasible. -/
-theorem aux_sdpDual_exists (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm : 0 < m) (p : ℝ)
+private theorem aux_sdpDual_exists (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm : 0 < m) (p : ℝ)
     (hp : ∀ U : Matrix (Fin m) (Fin m) ℝ, U.PosSemidef → (∀ i, U i i = 1) → (A * U).trace ≤ p)
     {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ lam : Fin m → ℝ, (diagonal lam - A).PosSemidef ∧ ∑ i, lam i = p + ε := by -- --- PROOF ---

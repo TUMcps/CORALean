@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) : -- --- CONCL ---
     (I₁.nominal.linComb I₂.nominal).construct ⊆ (I₁.linComb I₂).construct := by -- --- PROOF ---
   intro x hx i
   refine ⟨?_, ?_⟩

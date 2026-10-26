@@ -74,7 +74,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- `Lemma 2` against eq. (37): a quadratic error eventually fits under a share that falls
 only linearly, once eq. (36) puts what is already accumulated inside its own share. -/
-theorem aux_eventually_particularSolutionError_le (A : Mat ℝ n n) (tk : ℝ)
+private theorem aux_eventually_particularSolutionError_le (A : Mat ℝ n n) (tk : ℝ)
     {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) {tend εmax ζ εaAcc : ℝ}
     (htend : 0 < tend) (hεmax : 0 < εmax) (hζ1 : ζ < 1)
     (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) : -- --- CONCL ---
@@ -100,7 +100,7 @@ theorem aux_eventually_particularSolutionError_le (A : Mat ℝ n n) (tk : ℝ)
 
 /-- `Lemma 3` and `Lemma 4` against eq. (38): a vanishing error eventually fits under a
 share that approaches a positive constant, `t_k < t_end` being what makes it positive. -/
-theorem aux_eventually_nonAccumulating_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
+private theorem aux_eventually_nonAccumulating_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (tk : ℝ) {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ)
     {tend εmax ζ εaAcc : ℝ} (htk : 0 < tend) (htend : tk < tend) (hεmax : 0 < εmax)
     (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) : -- --- CONCL ---
@@ -128,7 +128,7 @@ theorem aux_eventually_nonAccumulating_le (A : Mat ℝ n n) (H : Zonotope (Vec �
 
 /-- The order sweep reports its coarsest candidate where that candidate's own check
 clears, `1 ≤ ηmax` being what leaves it an iteration to report in. -/
-theorem aux_autoTuneOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_autoTuneOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk : ℝ) (U₀ : Zonotope (Vec ℝ n))
     (Δt εaτ εnτ : ℝ) {ηmax : ℕ} (hηmax : 1 ≤ ηmax)
     (hc : (le (MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δt 2) εaτ
@@ -146,7 +146,7 @@ theorem aux_autoTuneOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → 
 
 /-- Every step the halving sweep walks is `Δt₀/2^(j+1)`, so an order clearing both shares
 anywhere along that sequence is one the sweep's own fuel reaches. -/
-theorem aux_autoTuneSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_autoTuneSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk tend εmax ζ εaAcc : ℝ) (ηmax : ℕ)
     (U₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∀ (j : ℕ) (Δt : ℝ) (η : ℕ),
@@ -174,7 +174,7 @@ theorem aux_autoTuneSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ →
 
 /-- Every candidate the sweep can report is a halving of a positive step, so it is
 positive — which is what the time `t_{k+1}` of the step after it rests on. -/
-theorem aux_autoTuneSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_autoTuneSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk tend εmax ζ εaAcc : ℝ) (ηmax : ℕ)
     (U₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∀ (k : ℕ) (Δt : ℝ) (p : ℝ × ℕ), 0 < Δt →

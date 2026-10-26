@@ -52,13 +52,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point between two endpoints never exceeds the max of their magnitudes. -/
-theorem aux_boxRadius_abs_le {lo x hi : ℝ} (h1 : lo ≤ x) (h2 : x ≤ hi) : |x| ≤ max |lo| |hi| :=
+private theorem aux_boxRadius_abs_le {lo x hi : ℝ} (h1 : lo ≤ x) (h2 : x ≤ hi) : |x| ≤ max |lo|
+    |hi| :=
   abs_le.mpr ⟨by linarith [neg_abs_le lo, neg_le_neg (le_max_left |lo| |hi|)],
     h2.trans ((le_abs_self hi).trans (le_max_right _ _))⟩
 
 /-- Squaring is monotone on magnitudes, so a coordinatewise bound on magnitudes
 is a bound on the Euclidean norm. -/
-theorem aux_boxRadius_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) :
+private theorem aux_boxRadius_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) :
     ‖x‖₂ ≤ ‖y‖₂ := by
   refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun i _ => ?_)
   have hi := mul_self_le_mul_self (abs_nonneg (x i)) (h i)
@@ -66,7 +67,7 @@ theorem aux_boxRadius_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| �
 
 /-- Every member of a box is within its farthest corner's length of the
 origin. -/
-theorem aux_boxRadius_norm₂_le_of_mem {B : Interval (Vec ℝ n)} {p : Vec ℝ n}
+private theorem aux_boxRadius_norm₂_le_of_mem {B : Interval (Vec ℝ n)} {p : Vec ℝ n}
     (hp : p ∈ B.construct) : ‖p‖₂ ≤ ‖fun i => max |B.inf i| |B.sup i|‖₂ := by
   refine aux_boxRadius_norm₂_le_of_abs_le fun i => ?_
   have h := hp i

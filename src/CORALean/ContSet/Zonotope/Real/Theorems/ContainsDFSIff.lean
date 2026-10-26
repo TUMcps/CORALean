@@ -59,10 +59,10 @@ section Search
 variable {V : Type} [AddCommGroup V] [Module ℝ V]
 
 /-- The partial sum a node `σ` stands for, `∑_{i < |σ|} σᵢ gᵢ`. -/
-noncomputable def aux_S (g : ℕ → V) (σ : List Bool) : V :=
+private noncomputable def aux_S (g : ℕ → V) (σ : List Bool) : V :=
   ∑ i ∈ Finset.range σ.length, (if σ.getD i false then (1 : ℝ) else -1) • g i
 
-theorem aux_S_append (g : ℕ → V) (σ ρ : List Bool) : -- --- CONCL ---
+private theorem aux_S_append (g : ℕ → V) (σ ρ : List Bool) : -- --- CONCL ---
     aux_S g (σ ++ ρ) = aux_S g σ + ∑ i ∈ Finset.Ico σ.length (σ.length + ρ.length),
       (if (σ ++ ρ).getD i false then (1 : ℝ) else -1) • g i := by -- --- PROOF ---
   unfold aux_S
@@ -73,7 +73,7 @@ theorem aux_S_append (g : ℕ → V) (σ ρ : List Bool) : -- --- CONCL ---
   rw [Finset.mem_Ico] at hi
   rw [List.getD_append _ _ _ _ hi.2]
 
-theorem aux_S_snoc (g : ℕ → V) (σ : List Bool) (b : Bool) :
+private theorem aux_S_snoc (g : ℕ → V) (σ : List Bool) (b : Bool) :
     aux_S g (σ ++ [b]) = aux_S g σ + (if b then (1 : ℝ) else -1) • g σ.length := by
   rw [aux_S_append]
   simp
@@ -82,12 +82,12 @@ variable (nrm : V → ℝ) (hadd : ∀ x y, nrm (x + y) ≤ nrm x + nrm y)
   (hsmul : ∀ (a : ℝ) x, nrm (a • x) = |a| * nrm x) (b : V) (g : ℕ → V) (m : ℕ)
 
 /-- Every full-length extension of `σ` has value at most `1`. -/
-def aux_Good (σ : List Bool) : Prop :=
+private def aux_Good (σ : List Bool) : Prop :=
   ∀ τ : List Bool, σ <+: τ → τ.length = m → nrm (b + aux_S g τ) ≤ 1
 
 include hadd hsmul in
 /-- `[1, Eq. 9]`: an extension's value is below the prune bound. -/
-theorem aux_prune {σ τ : List Bool} (hpre : σ <+: τ) (hτ : τ.length ≤ m) : -- --- CONCL ---
+private theorem aux_prune {σ τ : List Bool} (hpre : σ <+: τ) (hτ : τ.length ≤ m) : -- --- CONCL ---
     nrm (b + aux_S g τ) ≤
       nrm (b + aux_S g σ) + ∑ i ∈ Finset.Ico σ.length m, nrm (g i) := by -- --- PROOF ---
   obtain ⟨ρ, rfl⟩ := hpre
@@ -109,7 +109,7 @@ theorem aux_prune {σ τ : List Bool} (hpre : σ <+: τ) (hτ : τ.length ≤ m)
 
 include hadd hsmul in
 /-- A node's value is at most the value of some full-length extension. -/
-theorem aux_exists_leaf (k : ℕ) : -- --- CONCL ---
+private theorem aux_exists_leaf (k : ℕ) : -- --- CONCL ---
     ∀ σ : List Bool, σ.length + k = m →
     ∃ τ, σ <+: τ ∧ τ.length = m ∧
       nrm (b + aux_S g σ) ≤ nrm (b + aux_S g τ) := by -- --- PROOF ---
@@ -140,7 +140,7 @@ theorem aux_exists_leaf (k : ℕ) : -- --- CONCL ---
         (hle.trans (max_le hc le_rfl)).trans hτv⟩
 
 /-- A node is good iff both its children are. -/
-theorem aux_good_iff {σ : List Bool} (hσ : σ.length < m) : -- --- CONCL ---
+private theorem aux_good_iff {σ : List Bool} (hσ : σ.length < m) : -- --- CONCL ---
     aux_Good nrm b g m σ ↔
       aux_Good nrm b g m (σ ++ [true]) ∧ aux_Good nrm b g m (σ ++ [false]) := by -- --- PROOF ---
   constructor
@@ -158,10 +158,10 @@ theorem aux_good_iff {σ : List Bool} (hσ : σ.length < m) : -- --- CONCL ---
       · exact hp _ (List.prefix_append _ _) hτ
 
 /-- The fuel a stack still needs: each node weighs the size of its subtree. -/
-def aux_w (σ : List Bool) : ℕ := 2 ^ (m + 1 - σ.length) - 1
+private def aux_w (σ : List Bool) : ℕ := 2 ^ (m + 1 - σ.length) - 1
 
 include hadd hsmul in
-theorem aux_loop (f : ℕ) : -- --- CONCL ---
+private theorem aux_loop (f : ℕ) : -- --- CONCL ---
     ∀ stack : List (List Bool),
     (∀ σ ∈ stack, σ.length ≤ m ∧ nrm (b + aux_S g σ) ≤ 1) →
     (stack.map (aux_w m)).sum < f →

@@ -54,7 +54,7 @@ variable {n d r dI rI : ℕ}
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono (Vec ℝ n)}
+private theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono (Vec ℝ n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (cPZ.reduceBy partD partI).qI, f j
@@ -64,7 +64,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono (Vec ℝ n)}
 /-- The dependent count needs no splitting, only its binder read back at `d`:
 `ring` treats a sum over `Fin (cPZ.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
-theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono (Vec ℝ n)}
+private theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono (Vec ℝ n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (cPZ.reduceBy partD partI).h, f l = ∑ l, f l :=
@@ -72,7 +72,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono (Vec ℝ n)}
 
 /-- What the dropped dependent generators contribute: a monomial scales each,
 and never by more than one. -/
-theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
+private theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin cPZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l)|
@@ -92,7 +92,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
 
 /-- The same for the dropped independent generators, where the coefficient is
 already free. -/
-theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
+private theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.qI → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|

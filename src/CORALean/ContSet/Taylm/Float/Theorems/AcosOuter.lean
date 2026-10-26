@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Derivatives of `arccos` are those of `arcsin`, negated. -/
-theorem _root_.CORALean.aux_iteratedDeriv_arccos_succ (j : ℕ) :
+private theorem _root_.CORALean.aux_iteratedDeriv_arccos_succ (j : ℕ) :
     iteratedDeriv (j + 1) Real.arccos = -iteratedDeriv (j + 1) Real.arcsin := by
   rw [iteratedDeriv_succ', iteratedDeriv_succ', Real.deriv_arccos, Real.deriv_arcsin]
   funext x

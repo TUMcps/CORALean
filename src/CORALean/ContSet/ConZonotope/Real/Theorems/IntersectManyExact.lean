@@ -51,8 +51,8 @@ variable {n d : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A fold of `intersection` is every polytope at once. -/
-theorem ConZonotope.aux_mem_foldl_intersection {α : Type} [AddCommGroup α] [Module ℝ α] {m : ℕ}
-    (g : Fin m → HPolytope α) (init : HPolytope α) (x : α) : -- --- CONCL ---
+private theorem ConZonotope.aux_mem_foldl_intersection {α : Type} [AddCommGroup α] [Module ℝ α]
+    {m : ℕ} (g : Fin m → HPolytope α) (init : HPolytope α) (x : α) : -- --- CONCL ---
     x ∈ (Fin.foldl m (fun P i => P.intersection (g i)) init).construct ↔
       x ∈ init.construct ∧ ∀ i, x ∈ (g i).construct := by -- --- PROOF ---
   induction m generalizing init with
@@ -63,12 +63,12 @@ theorem ConZonotope.aux_mem_foldl_intersection {α : Type} [AddCommGroup α] [Mo
     tauto
 
 /-- The coefficients of set `j + 1` inside the stacked vector. -/
-def ConZonotope.aux_block (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
+private def ConZonotope.aux_block (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
     (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) (j : Fin d) : Vec ℝ (cs j.succ).h :=
   fun t => β (Fin.natAdd (cs 0).h (finSigmaFinEquiv (⟨j, t⟩ : (j : Fin d) × Fin (cs j.succ).h)))
 
 /-- Row `(j, a)` of the agreement block reads the first point against the `j`-th. -/
-theorem ConZonotope.aux_row (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_row (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
     (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) (j : Fin d) (a : Fin n) : -- --- CONCL ---
     ∑ u : Fin (∑ j : Fin d, (cs j.succ).h),
         (-(if (finSigmaFinEquiv.symm u).1 = j then (1 : ℝ) else 0)
@@ -93,7 +93,7 @@ theorem ConZonotope.aux_row (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
     simp [F, hj']
   · intro h; exact absurd (Finset.mem_univ j) h
 
-theorem ConZonotope.aux_mem_intersectMany_P_iff (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_mem_intersectMany_P_iff (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
     (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) : -- --- CONCL ---
     β ∈ (ConZonotope.intersectMany cs).P.construct ↔
       ((fun t => β (Fin.castAdd _ t)) ∈ (cs 0).P.construct ∧
@@ -129,7 +129,7 @@ theorem ConZonotope.aux_mem_intersectMany_P_iff (cs : Fin (d + 1) → ConZonotop
     exact hq _ _
 
 /-- Only the first generator block survives; the others are pinned to it. -/
-theorem ConZonotope.aux_value_intersectMany (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_value_intersectMany (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
     (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) : -- --- CONCL ---
     (ConZonotope.intersectMany cs).c
         + ∑ l : Fin ((cs 0).h + ∑ j : Fin d, (cs j.succ).h),

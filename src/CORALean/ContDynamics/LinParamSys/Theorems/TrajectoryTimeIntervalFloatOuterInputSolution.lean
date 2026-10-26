@@ -74,7 +74,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `t^{k+1}/(k+1)!` times the hull of order `k` over the nominal box lies in the
 float input term applied to `U`, at `t ≤ r`, when `0 ∈ U`. -/
-theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n)
+private theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n)
     {U : Zonotope (Vec 𝕋 n)} {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ sys.A.construct)
     (h0 : (0 : Vec ℝ n) ∈ construct U) {r : 𝕋} {t : ℝ} (hr : 0 < toReal r) (ht0 : 0 ≤ t)
     (htr : t ≤ toReal r) (k : ℕ) {y : Vec ℝ n}

@@ -55,7 +55,7 @@ variable {α : Type*} [TopologicalSpace α] {C1 C2 : Set α} {f : α → α → 
 /-- Berge's parametrized-infimum fragment: `x ↦ min_{y∈C2} f(x,y)` is continuous
 from joint continuity of `f` on `C1 ×ˢ C2` and compactness of `C2` alone —
 `C1` needs neither compactness nor nonemptiness here. -/
-theorem aux_continuousOn_sInf_image (hC2 : IsCompact C2)
+private theorem aux_continuousOn_sInf_image (hC2 : IsCompact C2)
     (hf : ContinuousOn (Function.uncurry f) (C1 ×ˢ C2)) : -- --- CONCL ---
     ContinuousOn (fun x => sInf (f x '' C2)) C1 := by -- --- PROOF ---
   rw [continuousOn_iff_continuous_restrict]

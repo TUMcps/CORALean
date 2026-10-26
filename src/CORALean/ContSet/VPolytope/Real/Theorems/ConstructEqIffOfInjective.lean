@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point outside the hull of the others is an extreme point of the hull of all. -/
-theorem aux_mem_extremePoints {E : Type} [AddCommGroup E] [Module ℝ E] {x : E} {t : Set E}
+private theorem aux_mem_extremePoints {E : Type} [AddCommGroup E] [Module ℝ E] {x : E} {t : Set E}
     (hx : x ∉ convexHull ℝ t) : -- --- CONCL ---
     x ∈ (convexHull ℝ (insert x t)).extremePoints ℝ := by -- --- PROOF ---
   rcases t.eq_empty_or_nonempty with rfl | ht
@@ -93,13 +93,14 @@ theorem aux_mem_extremePoints {E : Type} [AddCommGroup E] [Module ℝ E] {x : E}
       (by rw [← add_div, ← hc, div_self hcpos.ne'])
 
 /-- A dropped index is never the one dropped. -/
-theorem aux_dropIdx_ne {k : ℕ} (j : Fin k) (i : Fin (k - 1)) : dropIdx j i ≠ j := fun h => by
+private theorem aux_dropIdx_ne {k : ℕ} (j : Fin k) (i : Fin (k - 1)) : dropIdx j i ≠ j := fun h =>
+    by
   have := insertIdx_dropIdx j true (fun _ => false) i
   rw [h, insertIdx_self] at this
   exact Bool.noConfusion this
 
 /-- The point `j` and the others make up the whole list. -/
-theorem aux_insert_range {α : Type} {k : ℕ} (V : Fin k → α) (j : Fin k) : -- --- CONCL ---
+private theorem aux_insert_range {α : Type} {k : ℕ} (V : Fin k → α) (j : Fin k) : -- --- CONCL ---
     insert (V j) (Set.range fun i => V (dropIdx j i)) = Set.range V := by -- --- PROOF ---
   ext y
   constructor
@@ -112,7 +113,7 @@ theorem aux_insert_range {α : Type} {k : ℕ} (V : Fin k → α) (j : Fin k) : 
       (Set.range fun i => V (dropIdx j i)))).mpr ⟨Or.inl rfl, fun i => Or.inr ⟨i, rfl⟩⟩
 
 /-- With distinct points, a point is non-redundant exactly when it is extreme. -/
-theorem aux_notMem_iff_extreme (P : VPolytope (Vec ℝ n)) (hP : Function.Injective P.V)
+private theorem aux_notMem_iff_extreme (P : VPolytope (Vec ℝ n)) (hP : Function.Injective P.V)
     (j : Fin P.k) : -- --- CONCL ---
     P.V j ∉ (⟨P.k - 1, fun i => P.V (dropIdx j i)⟩ : VPolytope (Vec ℝ n)).construct ↔
       P.V j ∈ P.construct.extremePoints ℝ := by -- --- PROOF ---
@@ -129,7 +130,7 @@ theorem aux_notMem_iff_extreme (P : VPolytope (Vec ℝ n)) (hP : Function.Inject
     exact ⟨subset_convexHull ℝ _ ⟨_, rfl⟩, fun he => aux_dropIdx_ne j i (hP he)⟩
 
 /-- Every extreme point of `P₁` in `P₂` puts `P₁` in `P₂`. -/
-theorem aux_subset_of_extreme (P₁ P₂ : VPolytope (Vec ℝ n))
+private theorem aux_subset_of_extreme (P₁ P₂ : VPolytope (Vec ℝ n))
     (h : P₁.construct.extremePoints ℝ ⊆ P₂.construct) : P₁.construct ⊆ P₂.construct := by
   rw [← closure_convexHull_extremePoints P₁.isCompact_construct P₁.convex_construct]
   exact closure_minimal (convexHull_min h P₂.convex_construct) P₂.isClosed_construct

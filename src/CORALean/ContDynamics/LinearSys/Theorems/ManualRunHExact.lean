@@ -62,7 +62,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Zonotope.ofPoint v`'s own set, read off `mem_ofPoint_iff` rather than membership alone. -/
-theorem aux_construct_ofPoint {α : Type} [AddCommGroup α] [Module ℝ α] (v : α) :
+private theorem aux_construct_ofPoint {α : Type} [AddCommGroup α] [Module ℝ α] (v : α) :
     (Zonotope.ofPoint v).construct = {v} :=
   Set.ext fun x => (Zonotope.mem_ofPoint_iff v x).trans Set.mem_singleton_iff.symm
 

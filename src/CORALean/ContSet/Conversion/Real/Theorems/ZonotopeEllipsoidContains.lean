@@ -58,7 +58,7 @@ variable {n : ℕ}
 
 /-- Each coefficient contributes at most `1/h` of the ball's budget, so `h` of
 them fit exactly. -/
-theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → ℝ}
+private theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (j : Fin Z.h) : -- --- CONCL ---
     (β j / Real.sqrt Z.h) ^ 2 ≤ 1 / (Z.h : ℝ) := by -- --- PROOF ---
   have hh : (0:ℝ) < (Z.h : ℝ) := by exact_mod_cast j.pos

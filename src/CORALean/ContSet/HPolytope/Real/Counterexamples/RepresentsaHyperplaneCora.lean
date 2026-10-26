@@ -78,7 +78,7 @@ def HPolytope.aux_noRows : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
-theorem HPolytope.aux_noRows_construct :
+private theorem HPolytope.aux_noRows_construct :
     HPolytope.aux_noRows.construct = Set.univ := by
   ext x
   simp only [Set.mem_univ, iff_true]

@@ -53,8 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ} {ra
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_pow_iterate_up_le {B : ScaleRounding 𝕋} (hB : B.IsSound rb) (hb : 0 < rb) (x : 𝕋)
-    (k : ℕ) : -- --- CONCL ---
+private theorem aux_pow_iterate_up_le {B : ScaleRounding 𝕋} (hB : B.IsSound rb) (hb : 0 < rb)
+    (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     rb ^ k * toReal x ≤ toReal (B.up^[k] x) := by -- --- PROOF ---
   induction k with
   | zero => simp
@@ -64,8 +64,8 @@ theorem aux_pow_iterate_up_le {B : ScaleRounding 𝕋} (hB : B.IsSound rb) (hb :
     have h2 := mul_le_mul_of_nonneg_left ih hb.le
     nlinarith
 
-theorem aux_iterate_down_le_pow {B : ScaleRounding 𝕋} (hB : B.IsSound rb) (hb : 0 < rb) (x : 𝕋)
-    (k : ℕ) : -- --- CONCL ---
+private theorem aux_iterate_down_le_pow {B : ScaleRounding 𝕋} (hB : B.IsSound rb) (hb : 0 < rb)
+    (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     toReal (B.down^[k] x) ≤ rb ^ k * toReal x := by -- --- PROOF ---
   induction k with
   | zero => simp
@@ -75,7 +75,7 @@ theorem aux_iterate_down_le_pow {B : ScaleRounding 𝕋} (hB : B.IsSound rb) (hb
     have h2 := mul_le_mul_of_nonneg_left ih hb.le
     nlinarith
 
-theorem aux_abs_le_tBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
+private theorem aux_abs_le_tBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
     (hu : t ≤ toReal u) : -- --- CONCL ---
     |t| ≤ toReal (Relaxation.conjTBound l u) := by -- --- PROOF ---
   rw [Relaxation.conjTBound, toReal_maximum, toReal_absolute, toReal_absolute, abs_le]
@@ -86,7 +86,8 @@ theorem aux_abs_le_tBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
   exact ⟨by linarith, by linarith⟩
 
 /-- The exact conjugated coefficients lie between the two roundings. -/
-theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.IsSound ra) (hB : B.IsSound rb)
+private theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.IsSound ra)
+    (hB : B.IsSound rb)
     (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) (i : Fin (m + 1)) : -- --- CONCL ---
     toReal (conjCoeffsDown A B c p i)
         ≤ Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i
@@ -108,8 +109,8 @@ theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.IsSound ra) (h
     constructor <;> nlinarith
 
 /-- What rounding the coefficients can move the polynomial by, over the box. -/
-theorem aux_evalPoly_conjCoeffs_le {A B : ScaleRounding 𝕋} (hA : A.IsSound ra) (hB : B.IsSound rb)
-    (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) {t : ℝ} {T : 𝕋}
+private theorem aux_evalPoly_conjCoeffs_le {A B : ScaleRounding 𝕋} (hA : A.IsSound ra)
+    (hB : B.IsSound rb) (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) {t : ℝ} {T : 𝕋}
     (hT : |t| ≤ toReal T) : -- --- CONCL ---
     |Real.evalPoly (fun k => toReal (aux_conjCoeffsUp A B c p k)) t
         - (ra * Real.evalPoly (fun k => toReal (p k)) (rb * t) + toReal c)|

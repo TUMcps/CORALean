@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `A v` as the sum of the coefficient columns weighted by `v`. -/
-theorem PolyLevelSet.aux_mulVec_eq_sum {m q : ℕ} (A : Mat ℝ m q) (v : Vec ℝ q) :
+private theorem PolyLevelSet.aux_mulVec_eq_sum {m q : ℕ} (A : Mat ℝ m q) (v : Vec ℝ q) :
     A *ᵥ v = ∑ l, v l • (fun i => A i l) := by
   funext i
   show (∑ l, A i l * v l) = (∑ l, v l • (fun i => A i l)) i

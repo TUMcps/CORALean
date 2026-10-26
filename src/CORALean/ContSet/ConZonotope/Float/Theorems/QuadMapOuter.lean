@@ -63,7 +63,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The two roundings bracket the bilinear form. -/
-theorem ConZonotope.aux_quadBil_bracket (Q : Mat 𝕋 n n) (u v : Vec 𝕋 n) : -- --- CONCL ---
+private theorem ConZonotope.aux_quadBil_bracket (Q : Mat 𝕋 n n) (u v : Vec 𝕋 n) : -- --- CONCL ---
     toReal (ConZonotope.quadBilDown Q u v)
         ≤ toRealVec u ⬝ᵥ (toRealMat Q *ᵥ toRealVec v)
       ∧ toRealVec u ⬝ᵥ (toRealMat Q *ᵥ toRealVec v)
@@ -81,7 +81,7 @@ section
 open Pointwise
 
 /-- The exact layer's generators on the read-back operand, at this layer's index type. -/
-noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n)
+private noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Fin m → Fin (cZ.h + cZ.h + cZ.h * cZ.h) → ℝ :=
   fun i l => Fin.append
@@ -100,7 +100,8 @@ noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n)
 
 
 /-- The exact generator lies between the two stored roundings. -/
-theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
+private theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (i : Fin m) (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) : -- --- CONCL ---
     toReal (ConZonotope.quadMapGDown Q cZ i l) ≤ ConZonotope.aux_quadMapGReal Q cZ i l
       ∧ ConZonotope.aux_quadMapGReal Q cZ i l
@@ -149,7 +150,7 @@ theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZ
 
 
 /-- A stored generator of `quadMap` is within its gap of the exact one. -/
-theorem ConZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n)
+private theorem ConZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin m)
     (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) : -- --- CONCL ---
     |(Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i
@@ -167,8 +168,8 @@ theorem ConZonotope.aux_quadMapG_close (Q : Fin m → Mat 𝕋 n n)
 
 
 /-- The exact center of `quadMap` lies between the two stored roundings. -/
-theorem ConZonotope.aux_quadMapC_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
-    (i : Fin m) : -- --- CONCL ---
+private theorem ConZonotope.aux_quadMapC_between (Q : Fin m → Mat 𝕋 n n)
+    (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin m) : -- --- CONCL ---
     toReal (ConZonotope.quadMapCDown Q cZ i)
         ≤ (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
       ∧ (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
@@ -203,7 +204,7 @@ theorem ConZonotope.aux_quadMapC_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZ
 
 
 /-- The quadratic image of the nominal set, on the factors of `quadMapDep`. -/
-theorem ConZonotope.aux_quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n)
+private theorem ConZonotope.aux_quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) '' nominalSet cZ
       ⊆ nominalSet (ConZonotope.quadMapDep Q cZ)

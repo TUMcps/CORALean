@@ -68,7 +68,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 omit [∀ n, ContSet (G n) (Vec ℝ n)] in
 /-- The loop moves `k` forward, and stops before `N` only at a piece `isEmpty` rejects. -/
-theorem aux_reachGuard_while (RH : ℕ → G n) (isEmpty : G n → Bool) (N : ℕ) : -- --- CONCL ---
+private theorem aux_reachGuard_while (RH : ℕ → G n) (isEmpty : G n → Bool)
+    (N : ℕ) : -- --- CONCL ---
     let step := fun k => if !isEmpty (RH k) && decide (k < N) then k + 1 else k
     ∀ m k, N ≤ k + m → k ≤ step^[m] k ∧
       (step^[m] k < N → isEmpty (RH (step^[m] k)) = true) := by -- --- PROOF ---

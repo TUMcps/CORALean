@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A vector reached by the bordered matrix has weights summing to zero and the vertex rows
 reached: the last row is the sum of the weights. -/
-theorem VPolytope.aux_weights (P : VPolytope (Vec 𝕋 n)) (z : Vec ℝ n) (w : Vec ℝ P.k)
+private theorem VPolytope.aux_weights (P : VPolytope (Vec 𝕋 n)) (z : Vec ℝ n) (w : Vec ℝ P.k)
     (h : toRealMat P.bordered *ᵥ w = fun i => if hi : i.val < n then z ⟨i.val, hi⟩ else 0)
     : -- --- CONCL ---
     ∑ j, w j = 0 ∧ ∀ i : Fin n, ∑ j, toReal (P.V j i) * w j = z i := by -- --- PROOF ---

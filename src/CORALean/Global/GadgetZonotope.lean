@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coefficient pair is in the unit ball iff every entry is in `[-1, 1]`. -/
-theorem aux_norm_le_one_iff (β : Vec ℝ n × Vec ℝ n) :
+private theorem aux_norm_le_one_iff (β : Vec ℝ n × Vec ℝ n) :
     ‖β‖ ≤ 1 ↔ ∀ i, |β.1 i| ≤ 1 ∧ |β.2 i| ≤ 1 := by
   rw [Prod.norm_def, max_le_iff, pi_norm_le_iff_of_nonneg zero_le_one,
     pi_norm_le_iff_of_nonneg zero_le_one]
@@ -56,13 +56,13 @@ theorem aux_norm_le_one_iff (β : Vec ℝ n × Vec ℝ n) :
   exact ⟨fun ⟨h1, h2⟩ i => ⟨h1 i, h2 i⟩, fun h => ⟨fun i => (h i).1, fun i => (h i).2⟩⟩
 
 /-- The supremum norm is below the `1`-norm. -/
-theorem aux_norm_le_sum_abs (y : Vec ℝ n) : ‖y‖ ≤ ∑ i, |y i| :=
+private theorem aux_norm_le_sum_abs (y : Vec ℝ n) : ‖y‖ ≤ ∑ i, |y i| :=
   (pi_norm_le_iff_of_nonneg (Finset.sum_nonneg fun _ _ => abs_nonneg _)).mpr fun i =>
     (Real.norm_eq_abs _).trans_le
       (Finset.single_le_sum (f := fun i => |y i|) (fun _ _ => abs_nonneg _) (Finset.mem_univ i))
 
 /-- Membership in `Z(½H, n e_{n+1})` through the closed-form norm. -/
-theorem aux_mem_iff (hn : 1 ≤ n) (y : Vec ℝ n) (t : ℝ) : -- --- CONCL ---
+private theorem aux_mem_iff (hn : 1 ≤ n) (y : Vec ℝ n) (t : ℝ) : -- --- CONCL ---
     (∃ β : Vec ℝ n × Vec ℝ n, ‖β‖ ≤ 1 ∧ (y, t) = ((0 : Vec ℝ n), (n : ℝ)) +
         ((1 / 2 : ℝ) • gadgetH n) β) ↔
       ‖y‖ ≤ 1 ∧ ∑ i, |y i| + |t - n| ≤ n := by -- --- PROOF ---

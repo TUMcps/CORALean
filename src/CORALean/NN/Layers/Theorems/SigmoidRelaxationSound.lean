@@ -46,7 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋} (hE : E.IsSound Real.sigmoid) :
+private theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋}
+    (hE : E.IsSound Real.sigmoid) :
     (sigmoidCurvatureRelaxation E).IsSound Real.sigmoid :=
   Relaxation.ofDeriv_sound Real.sigmoidDeriv Real.hasDerivAt_sigmoid hE
     (sigmoidDerivLo_le hE) (le_sigmoidDerivHi hE) fun l u h => by

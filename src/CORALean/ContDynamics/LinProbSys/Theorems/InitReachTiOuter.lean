@@ -87,13 +87,13 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `0` is in every confidence zonotope, its center. -/
-theorem LinProbSys.aux_zero_mem_confidenceZonotope (G : Mat ℝ n n) (γ : ℝ) :
+private theorem LinProbSys.aux_zero_mem_confidenceZonotope (G : Mat ℝ n n) (γ : ℝ) :
     (0 : Vec ℝ n) ∈ (confidenceZonotope G γ).construct :=
   ⟨fun _ => 0, fun _ => by simp, by simp [confidenceZonotope]⟩
 
 /-- A mean of a probabilistic zonotope is in its `γ`-zonotope. -/
-theorem LinProbSys.aux_mem_zonotope {P : ProbZonotope n} {x : Vec ℝ n} (hx : x ∈ P.Z.construct)
-    (γ : ℝ) : x ∈ (P.zonotope γ).construct := by
+private theorem LinProbSys.aux_mem_zonotope {P : ProbZonotope n} {x : Vec ℝ n}
+    (hx : x ∈ P.Z.construct) (γ : ℝ) : x ∈ (P.zonotope γ).construct := by
   have h := Set.add_mem_add hx (LinProbSys.aux_zero_mem_confidenceZonotope (CFC.sqrt P.cov) γ)
   rw [add_zero, Zonotope.plus_exact] at h
   exact h

@@ -48,7 +48,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One evaluated point moved by `f`, the independent block included. -/
-theorem PolyZonotope.aux_map_eval (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ)
+private theorem PolyZonotope.aux_map_eval (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ)
     (γ : Fin pZ.q → ℝ) :
     (pZ.map f).point a + ∑ j, γ j • (pZ.map f).GI j
       = f (pZ.point a + ∑ j, γ j • pZ.GI j) := by

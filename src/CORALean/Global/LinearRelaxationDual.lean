@@ -63,7 +63,7 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A `PiLp` norm is the `q`-norm of the components' norms. -/
-theorem aux_lrDual_norm_eq {β : Fin l → Type*} [∀ i, SeminormedAddCommGroup (β i)]
+private theorem aux_lrDual_norm_eq {β : Fin l → Type*} [∀ i, SeminormedAddCommGroup (β i)]
     (q : ℝ≥0∞) [Fact (1 ≤ q)] (x : PiLp q β) : -- --- CONCL ---
     ‖x‖ = ‖WithLp.toLp q (fun i => ‖x i‖)‖ := by -- --- PROOF ---
   by_cases hq : q = ∞
@@ -74,7 +74,7 @@ theorem aux_lrDual_norm_eq {β : Fin l → Type*} [∀ i, SeminormedAddCommGroup
     simp [PiLp.norm_eq_sum hq0]
 
 /-- The converse for `u ≥ 0`: `Σ wᵢ uᵢ ≤ ‖w‖_q` for every `w ≥ 0` gives `‖u‖_{q'} ≤ 1`. -/
-theorem aux_lrDual_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_lrDual_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (u : Fin l → ℝ) (hu : ∀ i, 0 ≤ u i)
     (h : ∀ w : Fin l → ℝ, (∀ i, 0 ≤ w i) → ∑ i, w i * u i ≤ ‖WithLp.toLp q w‖) : -- --- CONCL ---
     ‖WithLp.toLp q' u‖ ≤ 1 := by -- --- PROOF ---
@@ -127,7 +127,7 @@ theorem aux_lrDual_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderCon
 
 /-- The same for matrices: a functional `X ↦ Σ Zᵢⱼ Xᵢⱼ` of `L⊤₁,q`-norm at most `1` has
 `‖Z‖_{L⊤∞,q'} ≤ 1`. -/
-theorem aux_lrDual_matrix_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_lrDual_matrix_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (Z : Matrix (Fin l) (Fin m) ℝ)
     (h : ∀ X : Matrix (Fin l) (Fin m) ℝ,
       ∑ i, ∑ j, Z i j * X i j ≤ ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖) : -- --- CONCL ---

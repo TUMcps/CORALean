@@ -51,7 +51,7 @@ open Polynomial
 
 -- `acos⁽ʲ⁺¹⁾` is its negation, the same magnitude
 /-- The `(j+1)`-th derivative of arccosine on `|x| ≤ m < 1` has the same bound as arcsine's. -/
-theorem _root_.CORALean.aux_abs_iteratedDeriv_acos_le (j : ℕ) {x m : ℝ}
+private theorem _root_.CORALean.aux_abs_iteratedDeriv_acos_le (j : ℕ) {x m : ℝ}
     (hx : |x| ≤ m) (hm : m < 1) : -- --- CONCL ---
     |iteratedDeriv (j + 1) Real.arccos x|
       ≤ (asinDom j).eval m * ((√(1 - m ^ 2))⁻¹) ^ (2 * j + 1) := by -- --- PROOF ---

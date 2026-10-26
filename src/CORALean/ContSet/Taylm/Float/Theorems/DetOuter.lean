@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_toReal_sign (j : ℕ) :
+private theorem aux_toReal_sign (j : ℕ) :
     toReal (if j % 2 = 0 then (one : 𝕋) else neg one) = (-1) ^ j := by
   by_cases h : j % 2 = 0
   · rw [if_pos h, toReal_one, (Nat.even_iff.mpr h).neg_one_pow]

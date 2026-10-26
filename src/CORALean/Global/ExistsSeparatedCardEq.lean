@@ -49,7 +49,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- two times of one residue class modulo `M + 1` are more than `M` apart
-theorem aux_sep_of_mod_eq {a b M : ℕ} (hab : a < b) (h : a % (M + 1) = b % (M + 1)) :
+private theorem aux_sep_of_mod_eq {a b M : ℕ} (hab : a < b) (h : a % (M + 1) = b % (M + 1)) :
     a + M < b := by
   have hd : (M + 1) ∣ b - a := Nat.dvd_of_mod_eq_zero (Nat.sub_mod_eq_zero_of_mod_eq h.symm)
   have := Nat.le_of_dvd (by omega) hd

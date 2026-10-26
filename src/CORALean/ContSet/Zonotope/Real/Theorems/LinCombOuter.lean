@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope α}
+private theorem Zonotope.aux_sum_univ_linComb {Z₁ Z₂ : Zonotope α}
     (f : Fin (Z₁.h + Z₂.h + 1) → α) :
     ∑ j : Fin (Z₁.linComb Z₂).h, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (Z₁.h + Z₂.h) j) :=

@@ -57,7 +57,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The form of `[[C, c], [cᵀ, γ]]` at `(x, y)`. -/
-theorem aux_blocks_form (C : Mat ℝ n n) (c : Fin n → ℝ) (γ : ℝ) (x : Fin n → ℝ)
+private theorem aux_blocks_form (C : Mat ℝ n n) (c : Fin n → ℝ) (γ : ℝ) (x : Fin n → ℝ)
     (y : Fin 1 → ℝ) : -- --- CONCL ---
     Sum.elim x y ⬝ᵥ fromBlocks C (replicateCol (Fin 1) c) (replicateRow (Fin 1) c)
         (of fun _ _ => γ) *ᵥ Sum.elim x y =
@@ -71,7 +71,7 @@ theorem aux_blocks_form (C : Mat ℝ n n) (c : Fin n → ℝ) (γ : ℝ) (x : Fi
   ring
 
 /-- A symmetric `[[C, c], [cᵀ, γ]]` is positive semidefinite iff `xᵀCx + 2cᵀx + γ ≥ 0`. -/
-theorem aux_blocks_posSemidef_iff (C : Mat ℝ n n) (hC : C.IsSymm) (c : Fin n → ℝ)
+private theorem aux_blocks_posSemidef_iff (C : Mat ℝ n n) (hC : C.IsSymm) (c : Fin n → ℝ)
     (γ : ℝ) : -- --- CONCL ---
     (fromBlocks C (replicateCol (Fin 1) c) (replicateRow (Fin 1) c)
         (of fun _ _ => γ)).PosSemidef ↔
@@ -111,7 +111,7 @@ theorem aux_blocks_posSemidef_iff (C : Mat ℝ n n) (hC : C.IsSymm) (c : Fin n �
     exact mul_nonneg (sq_nonneg t) this
 
 /-- The certificate's matrix is the block matrix of `f + δ g`. -/
-theorem aux_blocks_add (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β δ : ℝ) : -- --- CONCL ---
+private theorem aux_blocks_add (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β δ : ℝ) : -- --- CONCL ---
     fromBlocks A (replicateCol (Fin 1) a) (replicateRow (Fin 1) a) (of fun _ _ => α)
         + δ • fromBlocks B (replicateCol (Fin 1) b) (replicateRow (Fin 1) b) (of fun _ _ => β) =
       fromBlocks (A + δ • B) (replicateCol (Fin 1) (a + δ • b)) (replicateRow (Fin 1) (a + δ • b))

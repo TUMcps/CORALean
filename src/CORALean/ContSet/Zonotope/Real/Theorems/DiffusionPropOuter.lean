@@ -67,7 +67,8 @@ section
 variable {n nq N : ℕ} {p : Fin N → ℕ}
 
 -- the strip residual as noise coefficients of the diagonal `R = diag r`
-theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k) (h : ∀ j, |a j| ≤ r j) : -- --- CONCL ---
+private theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k)
+    (h : ∀ j, |a j| ≤ r j) : -- --- CONCL ---
     ∃ γ : Vec ℝ k, (∀ j, |γ j| ≤ 1) ∧
       Matrix.diagonal r *ᵥ γ = a := by -- --- PROOF ---
   refine ⟨fun j => a j / r j, fun j => ?_, ?_⟩
@@ -85,7 +86,7 @@ theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k) (h : ∀ j, |a j| �
 
 
 /-- The Luenberger update of the diffusion observer holds the next state. -/
-theorem Zonotope.aux_diffusionPropLuenberger_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
+private theorem Zonotope.aux_diffusionPropLuenberger_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (Zh : Fin N → Zonotope (Vec ℝ n))
     (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1) (i : Fin N) (hx : x ∈ (Zh i).construct)
     (hy : ∀ j, |(Γ i *ᵥ x - yb i) j| ≤ r i j) : -- --- CONCL ---
@@ -105,7 +106,8 @@ end
 
 
 /-- One instant of the set-propagation diffusion observer holds the next state. -/
-theorem Zonotope.aux_diffusionPropStep_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n) (Q : Mat ℝ n nq)
+private theorem Zonotope.aux_diffusionPropStep_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n)
+    (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (nb : ∀ i, Fin (m i) → Fin N) (o : ℕ)
     (Zh : Fin N → Zonotope (Vec ℝ n)) (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1)
     (hx : ∀ i, x ∈ (Zh i).construct) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)

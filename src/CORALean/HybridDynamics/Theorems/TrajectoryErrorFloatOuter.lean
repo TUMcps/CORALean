@@ -87,7 +87,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
-theorem aux_trajErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
+private theorem aux_trajErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
     {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
       (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
@@ -104,7 +104,7 @@ theorem aux_trajErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s)
   exact h
 
 /-- A point of the interval matrix applied to a point of the zonotope. -/
-theorem aux_trajErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope (Vec 𝕋 n)}
+private theorem aux_trajErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope (Vec 𝕋 n)}
     {M : Mat ℝ n n} {v : Vec ℝ n} (hM : M ∈ IM.construct) (hv : v ∈ Z.construct) :
     M *ᵥ v ∈ (Zonotope.mtimesIntervalMat IM Z).construct :=
   Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hM ⟨v, hv, rfl⟩)

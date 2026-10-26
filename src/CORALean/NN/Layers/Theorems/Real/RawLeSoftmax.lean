@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
+private theorem aux_one_add_exp_sum_pos (v : Vec ℝ n) (i : Fin n) (a : ℝ) :
     0 < 1 + ∑ j ∈ Finset.univ.erase i, Real.exp (v j - a) := by
   have h : (0:ℝ) ≤ ∑ j ∈ Finset.univ.erase i, Real.exp (v j - a) :=
     Finset.sum_nonneg fun j _ => (Real.exp_pos (v j - a)).le

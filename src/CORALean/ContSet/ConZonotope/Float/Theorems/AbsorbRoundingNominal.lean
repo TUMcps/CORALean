@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `absorbRounding`'s generator count, stated through the projection because
 that is the form the goal has. -/
-theorem ConZonotope.aux_sum_univ_absorbRounding {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
+private theorem ConZonotope.aux_sum_univ_absorbRounding {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     (f : Fin (cZ.h + n) → ℝ) :
     ∑ l : Fin cZ.absorbRounding.h, f l
       = ∑ l, f (Fin.castAdd n l) + ∑ l, f (Fin.natAdd cZ.h l) :=

@@ -36,12 +36,12 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The shift by `2πk` does not move the cosine. -/
-theorem aux_cos_sub_two_pi_mul (x : ℝ) (k : ℤ) :
+private theorem aux_cos_sub_two_pi_mul (x : ℝ) (k : ℤ) :
     Real.cos (x - 2 * Real.pi * k) = Real.cos x := by
   rw [← Real.cos_sub_int_mul_two_pi x k]; ring_nf
 
 /-- `maxCos lb ub` is the greatest cosine on `[lb, ub]`. -/
-theorem aux_maxCos_isGreatest {lb ub : ℝ} (hab : lb ≤ ub) : -- --- CONCL ---
+private theorem aux_maxCos_isGreatest {lb ub : ℝ} (hab : lb ≤ ub) : -- --- CONCL ---
     IsGreatest (Real.cos '' Set.Icc lb ub) (Interval.maxCos lb ub) := by -- --- PROOF ---
   have hpi := Real.pi_pos
   set k := ⌈lb / (2 * Real.pi)⌉ with hk

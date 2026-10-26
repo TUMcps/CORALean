@@ -43,7 +43,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One DNF pass keeps the meaning. -/
-theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
+private theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree n)
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.dnfRewrite).1.Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
   | and φ ψ ihφ ihψ =>
@@ -54,7 +55,7 @@ theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n �
 
 
 /-- The DNF loop keeps the meaning. -/
-theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+private theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
     φ.dnfLoop.Satisfies ξ ↔ φ.Satisfies ξ := by
   induction φ using STL.Tree.dnfLoop.induct generalizing ξ with
   | case1 φ cnt hc => rw [STL.Tree.dnfLoop, dif_pos hc]; exact STL.Tree.aux_sat_dnfRewrite φ ξ

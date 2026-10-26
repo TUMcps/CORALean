@@ -63,7 +63,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- No list on one open side of a hyperplane through the origin has it in its hull. -/
-theorem aux_inHull_false {inHull : List (Vec ℝ n) → Bool}
+private theorem aux_inHull_false {inHull : List (Vec ℝ n) → Bool}
     (hhull : ∀ V, inHull V = true → (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V})
     (φ : Vec ℝ n →ₗ[ℝ] ℝ) (V : List (Vec ℝ n))
     (hV : (∀ v ∈ V, φ v < 0) ∨ ∀ v ∈ V, 0 < φ v) : -- --- CONCL ---
@@ -78,7 +78,7 @@ theorem aux_inHull_false {inHull : List (Vec ℝ n) → Bool}
 
 /-- [1, Alg. 3 (search)] never exits while lines 19 and 23 keep returning `ℓ`, along which the
 safe test fails and the outer and inner vertices lie on opposite sides of `φ = 0`. -/
-theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S n) (η : ℕ)
+private theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S n) (η : ℕ)
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ν₀ νU νL : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n)
     (νhat : ℝ → (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) (ρL : (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ)
     {inHull : List (Vec ℝ n) → Bool}

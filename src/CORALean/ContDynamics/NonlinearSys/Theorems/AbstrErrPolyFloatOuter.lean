@@ -83,7 +83,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
-theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
+private theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
       (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
@@ -94,7 +94,7 @@ theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
   rwa [he] at h
 
 /-- `y - ys` lies in the box `Y - ys`. -/
-theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
+private theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
     (hy : y ∈ Y.construct) : -- --- CONCL ---
     y - toRealVec ys ∈
       (Interval.plus Y (Interval.point (-ys))).construct := by -- --- PROOF ---
@@ -106,7 +106,7 @@ theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋
   rwa [← sub_eq_add_neg] at hd
 
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
-theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
+private theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
     (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
     (hy : y ∈ Y.construct) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
@@ -119,34 +119,34 @@ theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Inte
     (Set.mem_biUnion hM (Set.mem_image_of_mem _ (aux_polyErr_sub_mem ys hy)))
 
 /-- A point of a box is no larger in magnitude than the box's `normMag`. -/
-theorem aux_polyErr_abs_le {k : ℕ} {I : Interval (Vec 𝕋 k)} {y : Vec ℝ k} (hy : y ∈ I.construct)
-    (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
+private theorem aux_polyErr_abs_le {k : ℕ} {I : Interval (Vec 𝕋 k)} {y : Vec ℝ k}
+    (hy : y ∈ I.construct) (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
   obtain ⟨h1, h2⟩ := hy j
   rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute]
   exact abs_le_max_abs_abs h1 h2
 
 /-- Bounds on two blocks bound their concatenation. -/
-theorem aux_polyErr_abs_append {v : Vec ℝ n} {w : Vec ℝ m} {a : Vec 𝕋 n} {b : Vec 𝕋 m}
+private theorem aux_polyErr_abs_append {v : Vec ℝ n} {w : Vec ℝ m} {a : Vec 𝕋 n} {b : Vec 𝕋 m}
     (hv : ∀ j, |v j| ≤ toReal (a j)) (hw : ∀ j, |w j| ≤ toReal (b j)) :
     ∀ j, |Fin.append v w j| ≤ toReal ((Fin.append a b : Vec 𝕋 (n + m)) j) :=
   Fin.addCases (fun j => by simpa using hv j) (fun j => by simpa using hw j)
 
 /-- A quadratic form at a vector padded by zeros reads only the leading block. -/
-theorem aux_polyErr_append_zero (v : Vec ℝ n) (M : Mat ℝ (n + m) (n + m)) :
+private theorem aux_polyErr_append_zero (v : Vec ℝ n) (M : Mat ℝ (n + m) (n + m)) :
     Fin.append v (0 : Vec ℝ m) ⬝ᵥ (M *ᵥ Fin.append v (0 : Vec ℝ m))
       = v ⬝ᵥ (M.submatrix (Fin.castAdd m) (Fin.castAdd m) *ᵥ v) := by
   simp only [dotProduct, mulVec, Fin.sum_univ_add, Fin.append_left, Fin.append_right,
     Pi.zero_apply, mul_zero, zero_mul, Finset.sum_const_zero, add_zero, submatrix_apply]
 
 /-- What `|q| ≤ L` says of `q / 2` against the symmetric box at `½ L`. -/
-theorem aux_polyErr_half_mem {q : ℝ} {L : 𝕋} (hq : |q| ≤ toReal L) :
+private theorem aux_polyErr_half_mem {q : ℝ} {L : 𝕋} (hq : |q| ≤ toReal L) :
     toReal (neg (half L)) ≤ q / 2 ∧ q / 2 ≤ toReal (half L) := by
   rw [toReal_neg, toReal_half]
   obtain ⟨h1, h2⟩ := abs_le.mp hq
   constructor <;> linarith
 
 /-- Four magnitudes bounded, their sum bounded by the sum rounded up. -/
-theorem aux_polyErr_abs_sum4 {q₁ q₂ q₃ q₄ : ℝ} {b₁ b₂ b₃ b₄ : 𝕋} (h₁ : |q₁| ≤ toReal b₁)
+private theorem aux_polyErr_abs_sum4 {q₁ q₂ q₃ q₄ : ℝ} {b₁ b₂ b₃ b₄ : 𝕋} (h₁ : |q₁| ≤ toReal b₁)
     (h₂ : |q₂| ≤ toReal b₂) (h₃ : |q₃| ≤ toReal b₃) (h₄ : |q₄| ≤ toReal b₄) : -- --- CONCL ---
     |q₁ + q₂ + (q₃ + q₄)| ≤ toReal (addUp (addUp b₁ b₂) (addUp b₃ b₄)) := by -- --- PROOF ---
   have e₁ := add_le_addUp b₁ b₂

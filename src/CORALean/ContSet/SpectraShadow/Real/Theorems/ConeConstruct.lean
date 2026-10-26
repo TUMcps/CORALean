@@ -44,7 +44,7 @@ variable {N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The arrowhead matrix at `s > 0`. -/
-theorem aux_arrowMat_posSemidef_of_pos {s t : ℝ} {w : Vec ℝ N} (hs : 0 < s)
+private theorem aux_arrowMat_posSemidef_of_pos {s t : ℝ} {w : Vec ℝ N} (hs : 0 < s)
     (ht : w ⬝ᵥ w ≤ s * t) : -- --- CONCL ---
     (arrowMat s t w).PosSemidef := by -- --- PROOF ---
   refine PosSemidef.of_dotProduct_mulVec_nonneg (arrowMat_isHermitian s t w) fun x => ?_
@@ -63,7 +63,7 @@ theorem aux_arrowMat_posSemidef_of_pos {s t : ℝ} {w : Vec ℝ N} (hs : 0 < s)
 
 
 /-- What a positive semidefinite arrowhead matrix needs. -/
-theorem aux_arrowMat_posSemidef_necessary {s t : ℝ} {w : Vec ℝ N} (hN : 0 < N)
+private theorem aux_arrowMat_posSemidef_necessary {s t : ℝ} {w : Vec ℝ N} (hN : 0 < N)
     (h : (arrowMat s t w).PosSemidef) : -- --- CONCL ---
     0 ≤ s ∧ (s = 0 → w = 0) := by -- --- PROOF ---
   have hQ := fun x => h.dotProduct_mulVec_nonneg x
@@ -86,7 +86,7 @@ theorem aux_arrowMat_posSemidef_necessary {s t : ℝ} {w : Vec ℝ N} (hN : 0 < 
 
 
 /-- The arrowhead matrix of a sum is the sum of the arrowhead matrices. -/
-theorem aux_arrowMat_add (s s' t t' : ℝ) (w w' : Vec ℝ N) :
+private theorem aux_arrowMat_add (s s' t t' : ℝ) (w w' : Vec ℝ N) :
     arrowMat (s + s') (t + t') (w + w') = arrowMat s t w + arrowMat s' t' w' := by
   ext p q
   refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
@@ -94,19 +94,19 @@ theorem aux_arrowMat_add (s s' t t' : ℝ) (w w' : Vec ℝ N) :
   · split_ifs <;> ring
 
 /-- The arrowhead matrix of a scaled triple is the scaled arrowhead matrix. -/
-theorem aux_arrowMat_smul (r s t : ℝ) (w : Vec ℝ N) :
+private theorem aux_arrowMat_smul (r s t : ℝ) (w : Vec ℝ N) :
     arrowMat (r * s) (r * t) (r • w) = r • arrowMat s t w := by
   ext p q
   refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
     simp [arrowMat]
 
 /-- The arrowhead matrix of the zero triple is zero. -/
-theorem aux_arrowMat_zero : arrowMat 0 0 (0 : Vec ℝ N) = 0 := by
+private theorem aux_arrowMat_zero : arrowMat 0 0 (0 : Vec ℝ N) = 0 := by
   ext p q
   refine Fin.cases ?_ (fun i => ?_) p <;> refine Fin.cases ?_ (fun j => ?_) q <;>
     simp [arrowMat]
 
-theorem aux_arrowMat_sum {ι : Type} (u : Finset ι) (a b : ι → ℝ)
+private theorem aux_arrowMat_sum {ι : Type} (u : Finset ι) (a b : ι → ℝ)
     (w : ι → Vec ℝ N) : -- --- CONCL ---
     arrowMat (∑ i ∈ u, a i) (∑ i ∈ u, b i) (∑ i ∈ u, w i)
       = ∑ i ∈ u, arrowMat (a i) (b i) (w i) := by -- --- PROOF ---
@@ -117,7 +117,7 @@ theorem aux_arrowMat_sum {ι : Type} (u : Finset ι) (a b : ι → ℝ)
     rw [Finset.sum_insert hi, Finset.sum_insert hi, Finset.sum_insert hi, Finset.sum_insert hi,
       aux_arrowMat_add, ih]
 
-theorem SpectraShadow.aux_lmi_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
+private theorem SpectraShadow.aux_lmi_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
     (β : Fin T.m → ℝ) : -- --- CONCL ---
     (0 : Mat ℝ (T.k + (N + 1)) (T.k + (N + 1))) + ∑ i : Fin (1 + T.m + 1),
         (Fin.append (Fin.append (fun _ : Fin 1 => s) β) (fun _ : Fin 1 => t) :
@@ -152,7 +152,7 @@ theorem SpectraShadow.aux_lmi_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
     rw [← this, ← aux_arrowMat_add, ← aux_arrowMat_add]
     simp
 
-theorem SpectraShadow.aux_gen_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
+private theorem SpectraShadow.aux_gen_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
     (β : Fin T.m → ℝ) : -- --- CONCL ---
     (0 : Vec ℝ N) + ∑ i : Fin (1 + T.m + 1),
         (Fin.append (Fin.append (fun _ : Fin 1 => s) β) (fun _ : Fin 1 => t) :
@@ -163,7 +163,7 @@ theorem SpectraShadow.aux_gen_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ)
   rw [Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, Fin.sum_univ_one, smul_zero, add_zero, zero_add]
 
-theorem aux_eq_append3 {m : ℕ} (b : Fin (1 + m + 1) → ℝ) : -- --- CONCL ---
+private theorem aux_eq_append3 {m : ℕ} (b : Fin (1 + m + 1) → ℝ) : -- --- CONCL ---
     b = Fin.append (Fin.append (fun _ : Fin 1 => b (Fin.castAdd 1 (Fin.castAdd m 0)))
       (fun j => b (Fin.castAdd 1 (Fin.natAdd 1 j))))
       (fun _ : Fin 1 => b (Fin.natAdd (1 + m) 0)) := by -- --- PROOF ---

@@ -67,7 +67,7 @@ variable {σ : ℝ → ℝ} {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the polynomial part, one neuron's own fit per coordinate, read without the scalar
-theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n)) (i : Fin n) :
+private theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec ℝ n)) (i : Fin n) :
     ((P.coeffList J).map fun v => v i) = List.ofFn fun k => (P i).coeffs (J.inf i) (J.sup i) k :=
   LayerRelaxation.coeffList_coord P J i
 

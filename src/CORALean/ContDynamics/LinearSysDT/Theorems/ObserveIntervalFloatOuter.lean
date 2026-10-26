@@ -74,7 +74,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- `R_x` after `k` steps holds the initial error under `(A - L C)^k`
-theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+private theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
@@ -89,7 +89,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (L : 
     exact Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_iUnion₂.mpr ⟨M, hM, _, ih, rfl⟩)
 
 -- `D` after `k` steps holds the disturbance terms under `(A - L C)^k`
-theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+private theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
@@ -104,7 +104,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : M
     exact Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_iUnion₂.mpr ⟨M, hM, _, ih, rfl⟩)
 
 -- the boxed disturbance terms hold every sum `∑ (A - L C)^m d_m`
-theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+private theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)

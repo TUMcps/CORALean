@@ -53,7 +53,7 @@ section
 variable {n r : ℕ}
 
 /-- The second selection matrix applied to a stacked vector gives its second block. -/
-theorem aux_stackSnd_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
+private theorem aux_stackSnd_mulVec (a : Vec ℝ n) (b : Vec ℝ r) : -- --- CONCL ---
     stackSnd n r *ᵥ (Fin.append a b : Vec ℝ (n + r)) = b := by -- --- PROOF ---
   funext i
   simp only [Matrix.mulVec, dotProduct, stackSnd, Matrix.of_apply, Fin.sum_univ_add,

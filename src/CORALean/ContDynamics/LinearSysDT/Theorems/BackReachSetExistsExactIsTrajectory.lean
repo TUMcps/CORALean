@@ -52,7 +52,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- One step of `simulate` taken off the front: running `u` from `x₀` is running
 its tail from the state the first input produced. -/
-theorem LinearSysDT.aux_simulate_cons (sys : LinearSysDT 𝕋 n) (x₀ : Vec ℝ n)
+private theorem LinearSysDT.aux_simulate_cons (sys : LinearSysDT 𝕋 n) (x₀ : Vec ℝ n)
     (u : ℕ → Vec ℝ n) (j : ℕ) : sys.simulate x₀ u (j + 1) =
       sys.simulate (toRealMat sys.A *ᵥ x₀ + u 0) (fun i => u (i + 1)) j := by
   induction j with
@@ -62,7 +62,7 @@ theorem LinearSysDT.aux_simulate_cons (sys : LinearSysDT 𝕋 n) (x₀ : Vec ℝ
 /-- The signal alone, with no `R₀` and so nothing tying the start state to a
 set: what the induction on `k` needs, since the state one step in lies in no set
 the statement mentions. -/
-theorem LinearSysDT.aux_backReachSetExistsExact_input (sys : LinearSysDT 𝕋 n) (T U : S n)
+private theorem LinearSysDT.aux_backReachSetExistsExact_input (sys : LinearSysDT 𝕋 n) (T U : S n)
     (k : ℕ) : -- --- CONCL ---
     ∀ x₀ ∈ sys.backReachSetExistsExact T U k, ∃ u : ℕ → Vec ℝ n,
       (∀ j < k, u j ∈ construct U) ∧ sys.simulate x₀ u k ∈ construct T := by -- --- PROOF ---

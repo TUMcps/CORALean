@@ -47,19 +47,19 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An entry of `diff` is the difference of two neighbours. -/
-theorem aux_diff_getElem (l : List Bool) (i : ℕ) (h : i + 1 < l.length) :
+private theorem aux_diff_getElem (l : List Bool) (i : ℕ) (h : i + 1 < l.length) :
     (List.matlabDiff l)[i]? = some ((l[i+1].toNat : ℤ) - l[i].toNat) := by
   simp [List.matlabDiff, List.getElem?_zipWith, List.getElem?_tail, List.getElem?_eq_getElem h,
     List.getElem?_eq_getElem (show i < l.length by omega)]
 
 
 /-- `diff` has one entry fewer than the array. -/
-theorem aux_diff_length (l : List Bool) : (List.matlabDiff l).length = l.length - 1 := by
+private theorem aux_diff_length (l : List Bool) : (List.matlabDiff l).length = l.length - 1 := by
   simp [List.matlabDiff]
 
 
 /-- An entry of `diff`, by index. -/
-theorem aux_diff_getElem' (l : List Bool) (i : ℕ) (h : i < (List.matlabDiff l).length) :
+private theorem aux_diff_getElem' (l : List Bool) (i : ℕ) (h : i < (List.matlabDiff l).length) :
     (List.matlabDiff l)[i] = ((l[i+1]'(by have := aux_diff_length l; omega)).toNat : ℤ) -
       (l[i]'(by have := aux_diff_length l; omega)).toNat := by
   have h1 := aux_diff_length l
@@ -69,7 +69,7 @@ theorem aux_diff_getElem' (l : List Bool) (i : ℕ) (h : i < (List.matlabDiff l)
 
 
 /-- The falling edges are the positions where `true` is followed by `false`. -/
-theorem aux_mem_fall (tk : List Bool) (f : ℕ) : -- --- CONCL ---
+private theorem aux_mem_fall (tk : List Bool) (f : ℕ) : -- --- CONCL ---
     f ∈ List.matlabFind (· == (-1 : ℤ)) (List.matlabDiff tk) ↔
       1 ≤ f ∧ f < tk.length ∧ tk.getD (f - 1) false = true ∧
         tk.getD f true = false := by -- --- PROOF ---
@@ -103,7 +103,7 @@ theorem aux_mem_fall (tk : List Bool) (f : ℕ) : -- --- CONCL ---
 
 
 /-- The rising edges are the positions where `false` is followed by `true`. -/
-theorem aux_mem_rise (tk : List Bool) (r : ℕ) : -- --- CONCL ---
+private theorem aux_mem_rise (tk : List Bool) (r : ℕ) : -- --- CONCL ---
     r ∈ (List.matlabFind (· == (1 : ℤ)) (List.matlabDiff tk)).map (· + 1) ↔
       2 ≤ r ∧ r ≤ tk.length ∧ tk.getD (r - 2) true = false ∧
         tk.getD (r - 1) false = true := by -- --- PROOF ---
@@ -145,7 +145,7 @@ theorem aux_mem_rise (tk : List Bool) (r : ℕ) : -- --- CONCL ---
 
 
 /-- Counting the entries `≤ m + 1` adds those equal to `m + 1`. -/
-theorem aux_countP_succ (L : List ℕ) (m : ℕ) : -- --- CONCL ---
+private theorem aux_countP_succ (L : List ℕ) (m : ℕ) : -- --- CONCL ---
     L.countP (fun x => decide (x ≤ m + 1)) = L.countP (fun x => decide (x ≤ m)) +
       L.countP (fun x => decide (x = m + 1)) := by -- --- PROOF ---
   induction L with
@@ -162,7 +162,7 @@ theorem aux_countP_succ (L : List ℕ) (m : ℕ) : -- --- CONCL ---
 
 
 /-- In an increasing list an entry is counted at most once. -/
-theorem aux_countP_eq (L : List ℕ) (hL : L.Pairwise (· < ·)) (x : ℕ) : -- --- CONCL ---
+private theorem aux_countP_eq (L : List ℕ) (hL : L.Pairwise (· < ·)) (x : ℕ) : -- --- CONCL ---
     L.countP (fun y => decide (y = x)) = if x ∈ L then 1 else 0 := by -- --- PROOF ---
   induction L with
   | nil => simp
@@ -178,7 +178,7 @@ theorem aux_countP_eq (L : List ℕ) (hL : L.Pairwise (· < ·)) (x : ℕ) : -- 
 
 
 /-- In an increasing list the first entries are those `≤ m`. -/
-theorem aux_getElem_le_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ)
+private theorem aux_getElem_le_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ)
     (hi : i < L.length) : -- --- CONCL ---
     L[i] ≤ m ↔ i < L.countP (fun x => decide (x ≤ m)) := by -- --- PROOF ---
   induction L generalizing i with
@@ -208,7 +208,7 @@ theorem aux_getElem_le_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ
 
 
 /-- In an increasing list the first entries are those `< m`. -/
-theorem aux_getElem_lt_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ)
+private theorem aux_getElem_lt_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ)
     (hi : i < L.length) : -- --- CONCL ---
     L[i] < m ↔ i < L.countP (fun x => decide (x < m)) := by -- --- PROOF ---
   have := aux_getElem_le_iff L hL (m - 1) i hi
@@ -220,7 +220,7 @@ theorem aux_getElem_lt_iff (L : List ℕ) (hL : L.Pairwise (· < ·)) (m i : ℕ
 
 
 /-- Counting the entries `< m + 1` adds those equal to `m`. -/
-theorem aux_countP_succ' (L : List ℕ) (m : ℕ) (hm : 1 ≤ m) : -- --- CONCL ---
+private theorem aux_countP_succ' (L : List ℕ) (m : ℕ) (hm : 1 ≤ m) : -- --- CONCL ---
     L.countP (fun x => decide (x < m + 1)) = L.countP (fun x => decide (x < m)) +
       L.countP (fun x => decide (x = m)) := by -- --- PROOF ---
   have h := aux_countP_succ L (m - 1)
@@ -233,13 +233,13 @@ theorem aux_countP_succ' (L : List ℕ) (m : ℕ) (hm : 1 ≤ m) : -- --- CONCL 
 
 
 /-- Inside the list the default of `getD` does not matter. -/
-theorem aux_getD_eq (tk : List Bool) (i : ℕ) (hi : i < tk.length) (d d' : Bool) :
+private theorem aux_getD_eq (tk : List Bool) (i : ℕ) (hi : i < tk.length) (d d' : Bool) :
     tk.getD i d = tk.getD i d' := by
   simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hi]
 
 
 /-- The number of runs begun by `m` less the number ended before it is the entry at `m`. -/
-theorem aux_D (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
+private theorem aux_D (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
     (hFm : ∀ f, f ∈ F ↔ 1 ≤ f ∧ f < tk.length ∧ tk.getD (f - 1) false = true ∧
       tk.getD f true = false)
     (hR : R.Pairwise (· < ·))
@@ -294,7 +294,7 @@ theorem aux_D (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
 
 
 /-- The runs of `true`, as the rising edges paired with the falling edges. -/
-theorem aux_runs (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
+private theorem aux_runs (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
     (hFm : ∀ f, f ∈ F ↔ 1 ≤ f ∧ f < tk.length ∧ tk.getD (f - 1) false = true ∧
       tk.getD f true = false)
     (hR : R.Pairwise (· < ·))
@@ -414,7 +414,7 @@ theorem aux_runs (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
 
 
 /-- The runs found by `find` and `diff` are the maximal runs of `true`. -/
-theorem List.aux_runs_of_matlabDiff (tk : List Bool) (hne : tk ≠ []) (F R R' : List ℕ)
+private theorem List.aux_runs_of_matlabDiff (tk : List Bool) (hne : tk ≠ []) (F R R' : List ℕ)
     (hF : F = List.matlabFind (· == (-1 : ℤ)) (List.matlabDiff tk))
     (hR : R = (List.matlabFind (· == (1 : ℤ)) (List.matlabDiff tk)).map (· + 1))
     (hR' : R' = if tk.head? = some true then 1 :: R else R) : -- --- CONCL ---
@@ -476,18 +476,18 @@ theorem List.aux_runs_of_matlabDiff (tk : List Bool) (hne : tk ≠ []) (F R R' :
 
 
 /-- Inside the array the entry of a mapped array is the map of the entry. -/
-theorem aux_map_getD {T : Type} (s : PointSegmentSignal T) (cond : Bool → Bool) (i : ℕ)
+private theorem aux_map_getD {T : Type} (s : PointSegmentSignal T) (cond : Bool → Bool) (i : ℕ)
     (hi : i < s.values.length) :
     (s.values.map cond).getD i false = cond (s.values.getD i false) := by
   simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hi]
 
 /-- Inside the array the default of `getD` does not matter. -/
-theorem aux_getD_default (tk : List Bool) (i : ℕ) (hi : i < tk.length) (d d' : Bool) :
+private theorem aux_getD_default (tk : List Bool) (i : ℕ) (hi : i < tk.length) (d d' : Bool) :
     tk.getD i d = tk.getD i d' := by
   simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hi]
 
 /-- Pairing the rising edges with the falling edges, then the last rising edge with the end. -/
-theorem aux_zip_trail {α : Type} (g : ℕ → ℕ → α) (trail : ℕ → α) (N : ℕ)
+private theorem aux_zip_trail {α : Type} (g : ℕ → ℕ → α) (trail : ℕ → α) (N : ℕ)
     (htrail : ∀ r, g r N = trail r) : -- --- CONCL ---
     ∀ (F R : List ℕ), R.length ≤ F.length + 1 →
     (R.zip F).map (fun x => g x.1 x.2) ++
@@ -519,7 +519,7 @@ theorem aux_zip_trail {α : Type} (g : ℕ → ℕ → α) (trail : ℕ → α) 
         simpa using this
 
 /-- The first point of a valid signal is `0`. -/
-theorem aux_prec_one {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+private theorem aux_prec_one {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
     (hs : s.IsValid) : -- --- CONCL ---
     s.precTimeAtValIdx 1 = (0, true) := by -- --- PROOF ---
   have h := hs.2.2.1
@@ -530,7 +530,7 @@ theorem aux_prec_one {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal
   simpa [PointSegmentSignal.precTimeAtValIdx] using this
 
 /-- Past the last value the time is `inf`, which is open. -/
-theorem aux_succ_len {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+private theorem aux_succ_len {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
     (hs : s.IsValid) : -- --- CONCL ---
     s.succTimeAtValIdx s.values.length = (⊤, false) := by -- --- PROOF ---
   have h := hs.2.1
@@ -540,8 +540,8 @@ theorem aux_succ_len {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal
   omega
 
 /-- `findIntervals` is the runs paired off, as bounds. -/
-theorem aux_findIntervalsBounds_eq {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
-    (hs : s.IsValid) (cond : Bool → Bool) (F R R' : List ℕ)
+private theorem aux_findIntervalsBounds_eq {T : Type} [LinearOrder T] [Zero T]
+    (s : PointSegmentSignal T) (hs : s.IsValid) (cond : Bool → Bool) (F R R' : List ℕ)
     (hF : F = List.matlabFind (· == (-1 : ℤ)) (List.matlabDiff (s.values.map cond)))
     (hR : R = (List.matlabFind (· == (1 : ℤ)) (List.matlabDiff (s.values.map cond))).map (· + 1))
     (hR' : R' = if (s.values.map cond).head? = some true then 1 :: R else R)

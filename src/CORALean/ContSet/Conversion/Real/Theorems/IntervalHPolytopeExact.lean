@@ -42,14 +42,14 @@ variable {n : ℕ}
 
 /-- `Fin.addCases` does not reduce on a variable index, so which half of the
 constraint list an index falls in takes a rewrite. -/
-theorem Interval.aux_hPolytope_A_castAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
+private theorem Interval.aux_hPolytope_A_castAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
     (Interval.hPolytope I).A (Fin.castAdd n j) = LinearMap.proj j := by
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.castAdd n j) = _
   rw [Fin.append_left]
 
 
-theorem Interval.aux_hPolytope_A_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
+private theorem Interval.aux_hPolytope_A_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
     (Interval.hPolytope I).A (Fin.natAdd n j) = -LinearMap.proj j := by
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _
@@ -57,20 +57,21 @@ theorem Interval.aux_hPolytope_A_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
 
 
 -- and the bounds, the same append read on either half
-theorem Interval.aux_hPolytope_b_castAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
+private theorem Interval.aux_hPolytope_b_castAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
     (Interval.hPolytope I).b (Fin.castAdd n j) = I.sup j := by
   show Fin.append I.sup (fun j => -I.inf j) (Fin.castAdd n j) = _
   rw [Fin.append_left]
 
 
-theorem Interval.aux_hPolytope_b_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
+private theorem Interval.aux_hPolytope_b_natAdd (I : Interval (Vec ℝ n)) (j : Fin n) :
     (Interval.hPolytope I).b (Fin.natAdd n j) = -I.inf j := by
   show Fin.append I.sup (fun j => -I.inf j) (Fin.natAdd n j) = _
   rw [Fin.append_right]
 
 
 /-- Membership is those two halves read back as the box's two bounds. -/
-theorem Interval.aux_mem_hPolytope_iff {I : Interval (Vec ℝ n)} {x : Vec ℝ n} : -- --- CONCL ---
+private theorem Interval.aux_mem_hPolytope_iff {I : Interval (Vec ℝ n)}
+    {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ (Interval.hPolytope I).construct ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, -⟩ j

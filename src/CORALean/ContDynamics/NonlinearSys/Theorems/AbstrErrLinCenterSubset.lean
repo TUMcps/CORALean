@@ -52,7 +52,7 @@ variable {d n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A quadratic form with nonnegative entries grows with its argument. -/
-theorem aux_quad_mono {M : Mat ℝ d d} (hM : ∀ j k, 0 ≤ M j k) {γ δ : Vec ℝ d}
+private theorem aux_quad_mono {M : Mat ℝ d d} (hM : ∀ j k, 0 ≤ M j k) {γ δ : Vec ℝ d}
     (hγ : ∀ j, 0 ≤ γ j) (h : ∀ j, γ j ≤ δ j) : γ ⬝ᵥ (M *ᵥ γ) ≤ δ ⬝ᵥ (M *ᵥ δ) := by
   simp only [dotProduct, mulVec]
   refine Finset.sum_le_sum fun j _ => ?_

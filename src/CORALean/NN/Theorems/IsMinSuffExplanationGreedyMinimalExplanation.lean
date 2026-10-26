@@ -56,8 +56,8 @@ variable {n m : ℕ}
 /-- The loop's invariant: the running set stays sufficient, and every feature
 no longer waiting in `todo` already has a witness — carried forward by
 `IsSuffExplanation.mono` — that dropping it breaks sufficiency. -/
-theorem aux_greedyFold_inv {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : ℝ} (hε : 0 ≤ ε) {l : Fin m}
-    {suff : Finset (Fin n) → Bool}
+private theorem aux_greedyFold_inv {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : ℝ} (hε : 0 ≤ ε)
+    {l : Fin m} {suff : Finset (Fin n) → Bool}
     (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l) :
     ∀ (todo : List (Fin n)) {E : Finset (Fin n)}, IsSuffExplanation f x ε E l →
       (∀ j ∈ E, j ∉ todo → ¬ IsSuffExplanation f x ε (E \ {j}) l) →

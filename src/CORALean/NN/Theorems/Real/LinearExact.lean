@@ -61,7 +61,7 @@ variable {n m : ℕ}
 
 /-- A zero-width box denotes its point and nothing else, through both conversion
 steps: every generator vanishes and the center is the point. -/
-theorem aux_construct_point_polyZonotope (b : Vec ℝ m) : -- --- CONCL ---
+private theorem aux_construct_point_polyZonotope (b : Vec ℝ m) : -- --- CONCL ---
     ((Interval.point b).polyZonotope).construct = ({b} : Set (Vec ℝ m)) := by -- --- PROOF ---
   have hc : (Interval.point b).zonotope.c = b := by
     funext i

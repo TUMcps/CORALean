@@ -43,12 +43,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The value a pattern's new factor takes. -/
-noncomputable def PolyZonotope.aux_patValue {p : ℕ} (V : Finset (Fin p)) (a : Fin p → ℝ)
+private noncomputable def PolyZonotope.aux_patValue {p : ℕ} (V : Finset (Fin p)) (a : Fin p → ℝ)
     (π : Fin p → ℕ) : ℝ :=
   if ∀ k ∈ V, π k % 2 = 0 then 2 * ∏ k ∈ V, a k ^ π k - 1 else ∏ k ∈ V, a k ^ π k
 
 /-- A pattern's new factor stays in `[-1, 1]`. -/
-theorem PolyZonotope.aux_abs_patValue_le {p : ℕ} (V : Finset (Fin p)) {a : Fin p → ℝ}
+private theorem PolyZonotope.aux_abs_patValue_le {p : ℕ} (V : Finset (Fin p)) {a : Fin p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (π : Fin p → ℕ) : -- --- CONCL ---
     |PolyZonotope.aux_patValue V a π| ≤ 1 := by -- --- PROOF ---
   -- the monomial of the pattern is at most one in absolute value
@@ -69,15 +69,15 @@ theorem PolyZonotope.aux_abs_patValue_le {p : ℕ} (V : Finset (Fin p)) {a : Fin
   · exact h1
 
 /-- The two blocks of generators of `partZonotope`. -/
-theorem PolyZonotope.aux_sum_univ_partZonotope_h {pZ : PolyZonotope α} {V : Finset (Fin pZ.p)}
-    (f : Fin (pZ.h + pZ.h) → α) :
+private theorem PolyZonotope.aux_sum_univ_partZonotope_h {pZ : PolyZonotope α}
+    {V : Finset (Fin pZ.p)} (f : Fin (pZ.h + pZ.h) → α) :
     ∑ j : Fin (pZ.partZonotope V).h, f j
       = ∑ i, f (Fin.castAdd pZ.h i) + ∑ i, f (Fin.natAdd pZ.h i) :=
   Fin.sum_univ_add f
 
 /-- The old and the new factors of `partZonotope`. -/
-theorem PolyZonotope.aux_prod_univ_partZonotope_p {pZ : PolyZonotope α} {V : Finset (Fin pZ.p)}
-    (f : Fin (pZ.p + (pZ.partPatterns V).length) → ℝ) :
+private theorem PolyZonotope.aux_prod_univ_partZonotope_p {pZ : PolyZonotope α}
+    {V : Finset (Fin pZ.p)} (f : Fin (pZ.p + (pZ.partPatterns V).length) → ℝ) :
     ∏ r : Fin (pZ.partZonotope V).p, f r
       = (∏ k, f (Fin.castAdd _ k)) * ∏ g, f (Fin.natAdd pZ.p g) :=
   Fin.prod_univ_add f

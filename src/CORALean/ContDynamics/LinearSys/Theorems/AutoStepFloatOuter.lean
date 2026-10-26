@@ -87,12 +87,12 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The Minkowski sum of plain sets, exactly. -/
-@[reducible] def aux_setPlusTail (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+@[reducible] private def aux_setPlusTail (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_setMtimesTail : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_setMtimesTail : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -110,7 +110,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 attribute [local instance] aux_setPlusTail aux_setMtimesTail
 
 /-- At `r ≥ 0`, every order count `i`: the exact tail at plain sets is in the float tail. -/
-theorem LinearSys.aux_inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
+private theorem LinearSys.aux_inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ i,
     construct (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.construct i)
@@ -151,12 +151,12 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The Minkowski sum of plain sets, exactly. -/
-@[reducible] def aux_setPlusSplit (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+@[reducible] private def aux_setPlusSplit (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_setMtimesSplit : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_setMtimesSplit : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -164,7 +164,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
-@[reducible] noncomputable def aux_setMtimesIntervalSplit :
+@[reducible] private noncomputable def aux_setMtimesIntervalSplit :
     Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
@@ -181,7 +181,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 attribute [local instance] aux_setPlusSplit aux_setMtimesSplit aux_setMtimesIntervalSplit
 
 /-- From order `1` on, the exact sum is order `0` and the exact tail. -/
-theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (r : ℝ)
+private theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (r : ℝ)
     (U : Set (Vec ℝ n)) (m : ℕ) : -- --- CONCL ---
     sys.inputTaylorSum (S := 𝒮) r U (m + 1)
       = (sys.inputTerm r 0 *ᵥ ·) '' U
@@ -198,7 +198,7 @@ theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (
 
 
 /-- The input's share over a step lies in `bPU_0 ⊕ bPU_∞`. -/
-theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
+private theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)

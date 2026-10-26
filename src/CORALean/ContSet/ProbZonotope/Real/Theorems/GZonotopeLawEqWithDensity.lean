@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `x ↦ c + Bx` maps Lebesgue measure to `|det B|⁻¹` times itself. -/
-theorem aux_map_affine (c : Vec ℝ n) (B : Mat ℝ n n) (hB : B.det ≠ 0) : -- --- CONCL ---
+private theorem aux_map_affine (c : Vec ℝ n) (B : Mat ℝ n n) (hB : B.det ≠ 0) : -- --- CONCL ---
     Measure.map (fun β : EuclideanSpace ℝ (Fin n) => toLp 2 (c + B *ᵥ ofLp β)) volume
       = ENNReal.ofReal |B.det⁻¹| • volume := by -- --- PROOF ---
   have h1 : (fun β : EuclideanSpace ℝ (Fin n) => toLp 2 (c + B *ᵥ ofLp β))

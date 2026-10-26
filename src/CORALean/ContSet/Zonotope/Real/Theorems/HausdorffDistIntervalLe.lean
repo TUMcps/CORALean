@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- A coordinate of the box is within the generators' total length of the
 center's, each generator entry being at most that generator's norm. -/
-theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+private theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.interval.construct) (i : Fin n) : -- --- CONCL ---
     |x i - Z.c i| ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
   have hb := hx i
