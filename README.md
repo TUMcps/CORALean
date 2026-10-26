@@ -63,7 +63,7 @@ src/CORALean/
 └── Examples/         runnable examples, benchmarks, the oracle
 references/           one page per publication: its results and where they are formalized
 experiments/          the paper's experiments
-scripts/              convention checks and tooling
+scripts/              convention checks and tooling (see scripts/README.md)
 ```
 
 The structure and naming mirror CORA. 
@@ -103,8 +103,8 @@ lake exe bench <experiment> --type ieee|dyadic|hardware|nearest|fixed
 The `Flint` backend uses the [FLINT library](https://flintlib.org) to run the code at arbitrary precision. 
 This can be optionally enabled by running:
 ```
-bash scripts/install-flint.sh       # once: GMP, MPFR, FLINT into $HOME/.local/flint-prefix
-bash scripts/build-flint-shim.sh    # into .lake/flint/libcoralean_flint.a
+bash scripts/build/install-flint.sh       # once: GMP, MPFR, FLINT into $HOME/.local/flint-prefix
+bash scripts/build/build-flint-shim.sh    # into .lake/flint/libcoralean_flint.a
 lake build bench-flint
 ```
 

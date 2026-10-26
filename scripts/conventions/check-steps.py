@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """A step of exactly one algorithm is an `aux_` declaration of that algorithm's file (#227).
 
-    python3 scripts/check-steps.py [--root DIR]
+    python3 scripts/conventions/check-steps.py [--root DIR]
 
 An `Operations/` definition that exactly one other `Operations/` file reads, and that besides
-that user is read only by the user's satellite theorem files (`scripts/satellites.py`), is a
+that user is read only by the user's satellite theorem files (`scripts/conventions/satellites.py`), is a
 step of that one algorithm: it belongs in the user's file as an `aux_` declaration, under the
 `AUXILIARY` banner. It keeps its own file when
 
@@ -37,7 +37,7 @@ sys.path.insert(0, str(HERE))
 import satellites  # noqa: E402
 
 
-ROOT = HERE.parent
+ROOT = HERE.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()
@@ -83,12 +83,7 @@ def main():
     rel = {p: p.relative_to(ROOT).as_posix() for p in paths}
     code_files, defs = {}, []
     reviewed = set()
-    outside = ""
-    for base in (ROOT / "references", ROOT / "experiments" / "paper"):
-        if base.is_dir():
-            for q in sorted(base.rglob("*")):
-                if q.suffix in (".md", ".tex", ".json", ".txt") and q.is_file():
-                    outside += q.read_text(encoding="utf-8", errors="replace") + "\n"
+    outside = satellites.outside_text(ROOT)
     for p in paths:
         lines = p.read_text(encoding="utf-8").split("\n")
         code = split_code(lines)

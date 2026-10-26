@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Checks the `Basic.lean` bundles (CONTRIBUTING, "Small declarations"; issue #137).
 
-    python3 scripts/check-basic-bundles.py
+    python3 scripts/conventions/check-basic-bundles.py
 
 A declaration of at most `MAX_CODE` code lines lives in a section of its directory's
 `Basic.lean`, not in a file of its own. Called from `check-conventions.sh`, which handles the
@@ -33,7 +33,7 @@ code markers, declaration docstrings included; `namespace`, `section`, `end`, `o
 
 The parsing is the shallow kind `check-conventions.sh` does: comments stripped by a
 two-character scanner, commands matched at the start of a line. `scripts/review.py` and
-`scripts/author-blocks.py` read sections through `sections()` here.
+`scripts/tools/author-blocks.py` read sections through `sections()` here.
 """
 import heapq
 import importlib.util
@@ -41,10 +41,10 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
 # The CORA-bug appendix links the counterexample and the fix of each bug by file; those files
-# keep their own (see `scripts/cora-bugs-table.py`, which writes it from `cora-bugs.json`).
+# keep their own (see `scripts/paper/cora-bugs-table.py`, which writes it from `cora-bugs.json`).
 CORA_BUGS_TEX = ROOT / "experiments" / "paper" / "latex" / "appendix-cora-bugs.tex"
 
 MAX_CODE = 5

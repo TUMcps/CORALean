@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Reports a declaration that spells one long subterm out three times (issues #157, #159).
 
-    python3 scripts/check-repeated-subterms.py
+    python3 scripts/conventions/check-repeated-subterms.py
 
 A subterm used more than once in a statement or a proof gets a name: `have h : … := …` for a fact,
 `set x := … with hx` or an `obtain ⟨x, hx⟩ : ∃ x, x = … := ⟨_, rfl⟩` for a term in a proof, and a
@@ -17,7 +17,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
 
 MIN_LEN = 70

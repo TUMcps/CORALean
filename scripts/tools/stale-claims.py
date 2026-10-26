@@ -5,7 +5,7 @@ Deliberately not wired into CI. Every check here is a heuristic, and a hit needs
 reading rather than obeying — the point is to put a human in front of a sentence
 that may have outlived what it describes.
 
-    python3 scripts/stale-claims.py
+    python3 scripts/tools/stale-claims.py
 
 Seven such sentences were found by hand on 2026-09-06 and 07. Three claimed a
 float layer that the very same commit had added, the Real/Float split having
@@ -16,7 +16,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
 
 

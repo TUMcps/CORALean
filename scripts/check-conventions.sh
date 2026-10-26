@@ -21,12 +21,12 @@
 # ones given: reachability, the layout, the collectors' completeness, the float
 # layer's type names, layering, the import guards, the stale-entry reports and the
 # import cycles of the `Basic.lean` rule. It is not a way to
-# check less: `.githooks/pre-commit` decides, with `scripts/precommit-scope.py`,
+# check less: `.githooks/pre-commit` decides, with `scripts/conventions/precommit-scope.py`,
 # when one of those rules could notice the commit, and then runs the whole tree.
 #
 # POSIX sh and awk, so it runs in CI and in Git Bash on Windows alike, and one
-# Python helper for the `Basic.lean` bundles, `scripts/check-basic-bundles.py`,
-# found by `scripts/find-python.sh`.
+# Python helper for the `Basic.lean` bundles, `scripts/conventions/check-basic-bundles.py`,
+# found by `scripts/conventions/find-python.sh`.
 
 set -eu
 
@@ -50,7 +50,7 @@ esac
 
 # The interpreter for the Python helper, found before any check runs: a missing
 # one is an error here, never an empty report.
-. "$repo/scripts/find-python.sh"
+. "$repo/scripts/conventions/find-python.sh"
 
 # The numeric limits, gathered here because every one of them is a judgement
 # call and the tree is the evidence for it. Each is at or just above the trimmed
@@ -86,7 +86,7 @@ FLINT_AXIOM_FILE=src/CORALean/Global/Float/Instances/Flint/Definitions/Axioms.le
 FLINT_AXIOM=trustedFlint
 BENCH_DIR=src/CORALean/Examples/Bench/
 
-# `noncomputable` is checked by `scripts/check-noncomputable.py` (#257): free in a real layer, for
+# `noncomputable` is checked by `scripts/conventions/check-noncomputable.py` (#257): free in a real layer, for
 # a `Set`, a `Prop` or an ℝ-valued type, or with a docstring that says why; never in the float
 # layer. There is no list. `noncomputable section` is refused below.
 
@@ -474,12 +474,12 @@ function closeBlock(e,   len) {
   blockKind = ""
 }
 
-# #227: the `Theorems/` file of an algorithm (its satellite, see scripts/satellites.py) may read
+# #227: the `Theorems/` file of an algorithm (its satellite, see scripts/conventions/satellites.py) may read
 # the `aux_` declarations of that algorithm'"'"'s `Operations/` file; no other file may.
 function satelliteDeclares(f, a,   cmd) {
   if (f !~ /\/Theorems\//) return 0
   # from `REPO`: `--staged` runs inside a checkout of the staged files alone
-  cmd = PYTHON " \"" REPO "/scripts/satellites.py\" declares " f " " a
+  cmd = PYTHON " \"" REPO "/scripts/conventions/satellites.py\" declares " f " " a
   return system(cmd) == 0
 }
 
@@ -1654,15 +1654,15 @@ bundle_err=$(mktemp)
 if [ -n "$STAGED" ]; then
   # Run at the repository, which has the directories the exclusions look at, on
   # the index versions already checked out here.
-  out=$(cd "$repo" && $PYTHON scripts/check-basic-bundles.py --files "$list" --stage "$stage" \
+  out=$(cd "$repo" && $PYTHON scripts/conventions/check-basic-bundles.py --files "$list" --stage "$stage" \
     2> "$bundle_err") && bundle_rc=0 || bundle_rc=$?
 else
-  out=$($PYTHON scripts/check-basic-bundles.py 2> "$bundle_err") && bundle_rc=0 || bundle_rc=$?
+  out=$($PYTHON scripts/conventions/check-basic-bundles.py 2> "$bundle_err") && bundle_rc=0 || bundle_rc=$?
 fi
 if [ "$bundle_rc" -gt 1 ] || { [ "$bundle_rc" -eq 1 ] && [ -z "$out" ]; }; then
   cat "$bundle_err" >&2
   rm -f "$bundle_err"
-  echo "check-conventions.sh: scripts/check-basic-bundles.py failed (status $bundle_rc) —" \
+  echo "check-conventions.sh: scripts/conventions/check-basic-bundles.py failed (status $bundle_rc) —" \
     "the Basic.lean bundles were not checked" >&2
   exit 2
 fi
@@ -1685,10 +1685,10 @@ report "$out"
 # instead of the paper (#255), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
 # instead of through the component's operations without saying why in its docstring (#174), and
-# a real-only `Specification` operation that does not say why (scripts/check-float-refinement.py),
+# a real-only `Specification` operation that does not say why (scripts/conventions/check-float-refinement.py),
 # and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
 # `aux_` step (#227), and an `aux_` that no other file reads and that Lean would take as `private`
-# (scripts/check-private-aux.py, #269).
+# (scripts/conventions/check-private-aux.py, #269).
 # Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
@@ -1698,11 +1698,11 @@ if [ -z "$STAGED" ]; then
     check-component-reuse.py check-float-refinement.py check-steps.py check-noncomputable.py \
     check-private-aux.py; do
     helper_err=$(mktemp)
-    out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
+    out=$($PYTHON "scripts/conventions/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then
       cat "$helper_err" >&2
       rm -f "$helper_err"
-      echo "check-conventions.sh: scripts/$helper failed (status $helper_rc) —" \
+      echo "check-conventions.sh: scripts/conventions/$helper failed (status $helper_rc) —" \
         "it was not checked" >&2
       exit 2
     fi
@@ -1713,7 +1713,7 @@ fi
 
 # Every declaration is documented in words once (#257). A content file's MAIN declaration (the
 # first declaration under its `MAIN THEOREM` / `MAIN DEFINITION` banner, the one
-# `scripts/check-io-doc.py` reads) is documented by the module docstring's #251 sections, so a
+# `scripts/conventions/check-io-doc.py` reads) is documented by the module docstring's #251 sections, so a
 # `/--` on it is optional. Every OTHER declaration (`def`, `abbrev`, `theorem`, `lemma`,
 # `structure`, `class`, `inductive`, `instance`) under a `MAIN THEOREM` / `MAIN DEFINITION` /
 # `MAIN TYPE` / `MAIN INSTANCE` banner needs its own `/--` docstring: every declaration in the
@@ -1991,7 +1991,7 @@ END { flush() }' $files | sort)
 report "$out"
 if [ -z "$STAGED" ]; then
 
-# The Python checks read and write UTF-8 on every platform (#230): in `scripts/*.py` a
+# The Python checks read and write UTF-8 on every platform (#230): in `scripts/**/*.py` a
 # `read_text(`, `write_text(` or `open(` names `encoding=` (a binary mode `"rb"`/`"wb"` needs none).
 # Windows otherwise decodes with the console's code page, and the first `ℝ` raises. The call is
 # read to its closing parenthesis, so an argument on the next line counts.
@@ -2021,7 +2021,7 @@ FNR == 1 { if (file != "") flush(); file = FILENAME }
 /^[ \t]*#/ { text = text "\n"; next }
 { text = text $0 "\n" }
 END { if (file != "") flush() }
-' scripts/*.py)
+' scripts/*.py scripts/*/*.py)
 report "$out"
 
 # Layering: no file imports a directory the table forbids it, except the listed

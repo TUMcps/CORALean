@@ -8,8 +8,8 @@ it, as `hardwarecheck` does `IsTrustedHardware`, against exact rationals with th
 out from the definition. For each directed operation, precision `p` and operand pair (bit lengths
 about `p`, ties, cancellation, zeros, a positive divisor), with `x` the exact result, `r` must lie
 on the claimed side of `x`, have at most `p` significant bits, and be the nearest such number. Run
-`lake exe flintcheck [--seed N] [--n N]` after `scripts/install-flint.sh` and
-`scripts/build-flint-shim.sh`; it exits `1` on any violation (CI job `flint-check`).
+`lake exe flintcheck [--seed N] [--n N]` after `scripts/build/install-flint.sh` and
+`scripts/build/build-flint-shim.sh`; it exits `1` on any violation (CI job `flint-check`).
 
 ## Inputs
 * `t` – statistics so far

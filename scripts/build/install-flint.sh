@@ -4,8 +4,8 @@
 # (optional)"). Nothing else in the tree needs it: the default `lake build` and
 # CI never link FLINT.
 #
-#   bash scripts/install-flint.sh            # into $HOME/.local/flint-prefix
-#   FLINT_PREFIX=/opt/flint bash scripts/install-flint.sh
+#   bash scripts/build/install-flint.sh            # into $HOME/.local/flint-prefix
+#   FLINT_PREFIX=/opt/flint bash scripts/build/install-flint.sh
 #
 # Then `lake -K flint=on build bench-flint`, with the same FLINT_PREFIX in the
 # environment if it is not the default.

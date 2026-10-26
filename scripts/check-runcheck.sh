@@ -24,7 +24,7 @@ cd "$(dirname "$0")/.."
 
 runnable=src/CORALean/Examples/RunnableFloat.lean
 runcheck=src/CORALean/Examples/RunCheck.lean
-expected=scripts/runcheck-expected.txt
+expected=scripts/expected/runcheck-expected.txt
 
 missing=0
 for name in $(sed -n 's/^def \([^ ]*\).*/\1/p' "$runnable"); do

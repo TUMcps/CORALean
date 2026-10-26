@@ -11,7 +11,7 @@ One row per `## Results` row of `references/<year>/*.md` classed `false` or `fix
 table. Four columns:
 
 * the reference, `\\errorcite[<result>]{<key>}`, with the page's key from
-  BibTeX entry of the page (`scripts/refentry.py`), followed by an `[Audit]` link to the row's page under
+  BibTeX entry of the page (`scripts/paper/refentry.py`), followed by an `[Audit]` link to the row's page under
   `references/`; a `false` row is marked with a dagger. The table
   `\\providecommand`s `\\errorcite` as `\\cite`; the paper defines it to cite into the
   appendix's own reference list unless the main text cites the paper too;

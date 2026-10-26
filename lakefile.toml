@@ -71,7 +71,7 @@ root = "CORALean.Examples.Bench"
 # needed to elaborate them) is checked on every commit, and an executable,
 # outside `defaultTargets`, so plain `lake build` never links FLINT. Only
 # `lake build bench-flint` / `lake exe bench-flint` does, against the archive
-# `scripts/build-flint-shim.sh` produces (README, "FLINT backend (optional)").
+# `scripts/build/build-flint-shim.sh` produces (README, "FLINT backend (optional)").
 # Two roots, not one: `main` sits in `BenchFlintMain.lean` alone, so
 # `scripts/check-axioms.lean` can import `BenchFlint.lean`'s
 # `reachFloat_outer_flint` beside `Examples/Bench.lean` without two top-level
@@ -105,7 +105,7 @@ root = "CORALean.Examples.Oracle"
 # `Examples/RunnableFloat.lean` proves each algorithm compiles at a float scalar; this runs them.
 # A library, in `defaultTargets`, so `lake build` elaborates it, and an executable for
 # `lake exe runcheck`. `scripts/check-runcheck.sh` runs it through the interpreter instead, for
-# the reason `check-demo.sh` does, and diffs it against `scripts/runcheck-expected.txt`.
+# the reason `check-demo.sh` does, and diffs it against `scripts/expected/runcheck-expected.txt`.
 [[lean_lib]]
 name = "RunCheck"
 srcDir = "src"

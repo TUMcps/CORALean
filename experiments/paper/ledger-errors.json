@@ -1,5 +1,5 @@
 {
-  "_comment": "One short description per `false`/`fixed` row of references/<year>/*.md, keyed by page and result label as printed in the row (without backticks): what is wrong, from the row's Class cell and the page's Findings. Text is LaTeX-escaped by the generator except inside $...$. The optional `fix` names the linked Lean file that carries the corrected theorem when it is not the first linked theorem file that is not a counterexample. Read by scripts/errors-table.py for experiments/paper/latex/appendix-errors.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
+  "_comment": "One short description per `false`/`fixed` row of references/<year>/*.md, keyed by page and result label as printed in the row (without backticks): what is wrong, from the row's Class cell and the page's Findings. Text is LaTeX-escaped by the generator except inside $...$. The optional `fix` names the linked Lean file that carries the corrected theorem when it is not the first linked theorem file that is not a counterexample. Read by scripts/paper/errors-table.py for experiments/paper/latex/appendix-errors.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
   "2003/makino-ijpam-taylor-models": {
     "Def. 3 (arcsin)": {
       "description": "addition formula needs $|\\arcsin f - \\arcsin c_f| \\le \\pi/2$"

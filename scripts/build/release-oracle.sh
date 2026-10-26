@@ -7,13 +7,13 @@
 # Then, unless DRY_RUN is set, uploads all four files to the project's Generic Package
 # Registry as `oracle/$CI_COMMIT_TAG`, which needs CI_JOB_TOKEN, CI_API_V4_URL, CI_PROJECT_ID.
 #
-#   DRY_RUN=1 OUT=/some/scratch sh scripts/release-oracle.sh
+#   DRY_RUN=1 OUT=/some/scratch sh scripts/build/release-oracle.sh
 #
 # Linux only: `ldd` and `objdump -T` read ELF. OUT defaults to `release/`.
 
 set -eu
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
 OUT="${OUT:-release}"
 TAG="${CI_COMMIT_TAG:-untagged}"

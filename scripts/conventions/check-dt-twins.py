@@ -13,7 +13,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()

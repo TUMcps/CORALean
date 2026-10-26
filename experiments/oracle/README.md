@@ -39,7 +39,7 @@ A release, cut by pushing a tag `vX.Y.Z`, carries the linked Linux x86_64 execut
 
 On a tag pipeline `.gitlab-ci.yml`'s `release-oracle-build` links both, runs both self-tests against
 the linked binaries, and uploads the four files to the project's Generic Package Registry
-(`scripts/release-oracle.sh`; `DRY_RUN=1 OUT=<dir> sh scripts/release-oracle.sh` runs it locally
+(`scripts/build/release-oracle.sh`; `DRY_RUN=1 OUT=<dir> sh scripts/build/release-oracle.sh` runs it locally
 without the upload). `release-oracle` then creates the GitLab release linking them, its description
 listing each binary's `ldd` output, sha256 and the minimum glibc it needs.
 

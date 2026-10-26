@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A `noncomputable` declaration is justified in the file, not on a list (issue #257).
 
-    python3 scripts/check-noncomputable.py
+    python3 scripts/conventions/check-noncomputable.py
 
 Keep `noncomputable` to a minimum: a definition computes wherever it can, and where the real
 version cannot, there is at least a float variant that does. A `noncomputable` declaration is
@@ -24,7 +24,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
 
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)*((?:(?:private|protected|noncomputable|nonrec|partial|unsafe)\s+)*)"

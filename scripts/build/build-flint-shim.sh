@@ -11,15 +11,15 @@
 # every other global into local, so the two GMPs coexist in one binary without
 # meeting.
 #
-#   bash scripts/install-flint.sh          # once, builds FLINT/MPFR/GMP
-#   bash scripts/build-flint-shim.sh        # this script, into .lake/flint/
+#   bash scripts/build/install-flint.sh          # once, builds FLINT/MPFR/GMP
+#   bash scripts/build/build-flint-shim.sh        # this script, into .lake/flint/
 #   lake build bench-flint                  # or: lake exe bench-flint ...
 #
 # `FLINT_PREFIX` must match install-flint.sh's (default $HOME/.local/flint-prefix).
 
 set -eu
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
 PREFIX=${FLINT_PREFIX:-$HOME/.local/flint-prefix}
 OUT=.lake/flint
@@ -27,7 +27,7 @@ mkdir -p "$OUT"
 
 for lib in libflint.a libmpfr.a libgmp.a; do
   if [ ! -f "$PREFIX/lib/$lib" ]; then
-    echo "build-flint-shim: $PREFIX/lib/$lib not found -- run scripts/install-flint.sh first" >&2
+    echo "build-flint-shim: $PREFIX/lib/$lib not found -- run scripts/build/install-flint.sh first" >&2
     exit 1
   fi
 done

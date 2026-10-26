@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A public theorem with one user file that nothing else points at is that file's own lemma (#189).
 
-    python3 scripts/check-single-use.py [--root DIR]
+    python3 scripts/conventions/check-single-use.py [--root DIR]
 
 A `theorem` or `lemma` that no other file reads at all is a guarantee nobody builds on; one that
 exactly one other file reads, and that is not outward-facing, is an auxiliary lemma of that file
@@ -32,7 +32,7 @@ field of a value (`h.foo`). A theorem is *not* single-use, and is left alone, wh
 * it is `private` or `aux_`, or it is declared in `Counterexamples/`, `Examples/`,
   `Instances.lean` or an `API.lean`.
 
-An operation and its satellite theorem files (`scripts/satellites.py`, #227) count as one unit: a
+An operation and its satellite theorem files (`scripts/conventions/satellites.py`, #227) count as one unit: a
 theorem whose one user file lies in its own unit has no user outside it and is left alone.
 
 There is no allowlist: a finding is fixed by moving the theorem into its user, or, where the user
@@ -49,7 +49,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import satellites  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()
@@ -131,12 +131,7 @@ def main():
     def same_unit(a, b):
         return bool(unit.get(a, {a}) & unit.get(b, {b}))
 
-    outside = ""
-    for base in (ROOT / "references", ROOT / "experiments" / "paper"):
-        if base.is_dir():
-            for q in sorted(base.rglob("*")):
-                if q.suffix in (".md", ".tex", ".json", ".txt") and q.is_file():
-                    outside += q.read_text(encoding="utf-8", errors="replace") + "\n"
+    outside = satellites.outside_text(ROOT)
     outside_tokens = components(outside)
 
     flagged = {}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A `## References` entry names a paper, never a thesis (#224-era review rule, "cite papers").
 
-    python3 scripts/check-thesis-refs.py [--root DIR]
+    python3 scripts/conventions/check-thesis-refs.py [--root DIR]
 
 A thesis or dissertation reproduces results that appeared in papers, and the paper is the source
 to cite, with its own numbering. This rejects a numbered entry of a module docstring's
@@ -13,7 +13,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()

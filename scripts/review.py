@@ -219,7 +219,7 @@ def findings(classes, any_):
     in `classes`, the Lean files being the counterexample and the fix as the paper's errors table
     picks them (`errors-table.py`). Only rows with a Lean file still to review, unless `any_`."""
     cr = load_script("check_references", "check-references.py")
-    et = load_script("errors_table", "errors-table.py")
+    et = load_script("errors_table", "paper/errors-table.py")
     descs = json.loads(et.paths(cr)["errors"].read_text(encoding="utf-8"))
     out = []
     for row in et.ledger_rows(cr):
