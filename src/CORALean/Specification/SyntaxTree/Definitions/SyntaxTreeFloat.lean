@@ -23,8 +23,9 @@ are one-dimensional, with no infinite bound.
 
 ## References
 
-None: CORA's `syntaxTree`, a software class: no publication introduces it, and the CORA manual page
-for it could not be read.
+None: CORA's `syntaxTree.m` cites no source. The CORA manual (v2026, Table 29) cites Jaulin et al.,
+*Applied Interval Analysis*, Ch. 4.2.4, for the forward-backward contractor, a book that was not
+read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

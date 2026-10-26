@@ -69,7 +69,7 @@ variable {N m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: the exact graph-level output is in `Alg. 1`'s enclosure. -/
-theorem GNN.alg1Graph_sound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+theorem GNN.alg1Graph_isSound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L T : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
@@ -83,7 +83,7 @@ theorem GNN.alg1Graph_sound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : M
           GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x) 0 j)
       ∈ (GNN.alg1Graph R A U L T c W acts f X).construct := by -- --- PROOF ---
   -- the pooled graph layers are a point of the pooled enclosure
-  have hnode := GNN.alg1Node_sound R hR A U hA lam hlam L c σ W acts hσ X hx
+  have hnode := GNN.alg1Node_isSound R hR A U hA lam hlam L c σ W acts hσ X hx
   have hpool : (fun j => (GNN.onesRow N *
       GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x) 0 j)
       ∈ (GNN.sumPool (GNN.alg1Node R A U L c W acts X)).construct := by

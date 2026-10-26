@@ -105,13 +105,13 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyRelaxation.ofSampling_sound {E : Enclosure 𝕋} {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋}
+theorem PolyRelaxation.ofSampling_isSound {E : Enclosure 𝕋} {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋}
     {M dx : 𝕋 → 𝕋 → 𝕋} {p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋} (hE : E.IsSound σ)
     (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hM : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u →
       |σ' x - Real.evalPolyDeriv (fun k => toReal (c l u k)) x| ≤ toReal (M l u)) :
     (PolyRelaxation.ofSampling E c M dx p).IsSound σ :=
-  PolyRelaxation.ofBracket_sound (c := c) (lo := fitLo E c M dx p)
+  PolyRelaxation.ofBracket_isSound (c := c) (lo := fitLo E c M dx p)
     (hi := fitHi E c M dx p) fun l u t hl hu => by
       -- the fit is a polynomial, so the deviation differentiates termwise
       have hg : ∀ x, HasDerivAt (fun y => σ y - Real.evalPoly (fun k => toReal (c l u k)) y)

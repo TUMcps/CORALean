@@ -18,8 +18,8 @@ computable where ℝ's are not. `toReal_def` is the number it denotes.
 
 ## References
 
-None: decimal fixed-point numbers as CORA's rounding to a target precision uses them; no public
-source defines this type.
+None: a CORALean scalar type for CORA's rounding to `N` digits, `interval/round.m`, which cites no
+source.
 -/
 
 -- Authors:       Claude Opus 5.5

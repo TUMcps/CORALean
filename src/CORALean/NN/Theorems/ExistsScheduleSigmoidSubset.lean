@@ -49,9 +49,9 @@ open Pointwise ContSet
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The network statement, at a network that exists. -/
-private theorem aux_sigmoidRefinableNetwork_convergent (n : ℕ) :
+private theorem aux_sigmoidRefinableNetwork_isConvergent (n : ℕ) :
     (Real.sigmoidRefinableNetwork n).IsConvergent :=
-  ⟨Real.Layer.activationPolySigmoid_convergent n, ⟨1, LipschitzWith.id⟩, trivial⟩
+  ⟨Real.Layer.activationPolySigmoid_isConvergent n, ⟨1, LipschitzWith.id⟩, trivial⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -61,7 +61,7 @@ theorem exists_schedule_sigmoid_subset {n : ℕ} (X : Real.PolyZonotope (Vec ℝ
       construct ((Real.sigmoidRefinableNetwork n).encloseAt sch X)
         ⊆ (Real.sigmoidRefinableNetwork n).image (construct X) + Metric.closedBall 0 ε :=
   (Real.sigmoidRefinableNetwork n).exists_schedule_encloseAt_subset
-    (aux_sigmoidRefinableNetwork_convergent n) X ε hε
+    (aux_sigmoidRefinableNetwork_isConvergent n) X ε hε
 
 end CORALean
 

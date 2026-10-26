@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.Product
 
 `IsRun.ofProductWith` at `mergeFlowsLinearSys`, whose converse flow law holds at `ℝ` under
 `IsFeedthroughFree`, `GlobalsDistinct`, an exact `Lifting` and nonempty input sets
-(`mergeFlowsLinearSys_flowLawConverse`): the converse of `IsRun.toProduct`. Without
+(`mergeFlowsLinearSys_isFlowLawConverse`): the converse of `IsRun.toProduct`. Without
 `GlobalsDistinct` or nonempty input sets the product may have more runs than the parallel
 automaton (#40).
 
@@ -60,7 +60,7 @@ theorem ParallelHybridAutomaton.IsRun.ofProduct {P : ParallelHybridAutomaton S G
     {z w : Vec ℝ (∑ i, n i)} (run : (P.product lift).IsRun ℓ z ℓ' w) :
     P.IsRun ℓ (unstack z) ℓ' (unstack w) :=
   ParallelHybridAutomaton.IsRun.ofProductWith
-    (P.mergeFlowsLinearSys_flowLawConverse hfeed hdist hne hex) hex run
+    (P.mergeFlowsLinearSys_isFlowLawConverse hfeed hdist hne hex) hex run
 
 end CORALean
 

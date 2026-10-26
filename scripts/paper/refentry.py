@@ -28,6 +28,8 @@ TYPES = {
     "article": ("author", "title", "journal", "year"),
     "inproceedings": ("author", "title", "booktitle", "year"),
     "incollection": ("author", "title", "booktitle", "publisher", "year"),
+    # A manual or a specification: the venue is the body that publishes it.
+    "manual": ("author", "title", "publisher", "year"),
 }
 ORDER = ("author", "title", "journal", "booktitle", "publisher", "year")
 # `**In the paper's bibliography.**`: the key is an entry of the paper's own references.bib,
@@ -109,6 +111,8 @@ def authors_line(entry):
 
 
 def venue(entry):
+    if entry["type"] == "manual":
+        return unbrace(entry.get("publisher", ""))
     return unbrace(entry.get("journal") or entry.get("booktitle") or "")
 
 

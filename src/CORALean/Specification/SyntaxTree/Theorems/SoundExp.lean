@@ -41,8 +41,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `exp` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_exp (h : IsSound B t) : IsSound B (t.exp) :=
-  ⟨h, encloses_exp (encloses_of_sound h), exp_sound t.value⟩
+theorem SyntaxTree.isSound_exp (h : IsSound B t) : IsSound B (t.exp) :=
+  ⟨h, encloses_exp (encloses_of_isSound h), exp_sound t.value⟩
 
 end CORALean
 

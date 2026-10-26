@@ -91,7 +91,7 @@ private theorem aux_row_iff (sys : Conform.Plant n p (q + 1)) {ιW ιV : Type} [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: conformance up to `K` is (19), linear in `(c_W, c_V, α_W, α_V)`. -/
-theorem Conform.Plant.conformant_iff_hRep {M κ : Type} (sys : Conform.Plant n p (q + 1))
+theorem Conform.Plant.isConformant_iff_hRep {M κ : Type} (sys : Conform.Plant n p (q + 1))
     {ιW ιV : Type} [Fintype ιW] [Fintype ιV] (cW : Vec ℝ n) (GW : ιW → Vec ℝ n)
     (αW : ιW → ℝ) (cV : Vec ℝ (q + 1)) (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ)
     (hαW : ∀ r, 0 ≤ αW r) (hαV : ∀ l, 0 ≤ αV l) (T : M → Conform.TestCase n p (q + 1)) (K : ℕ)
@@ -106,7 +106,7 @@ theorem Conform.Plant.conformant_iff_hRep {M κ : Type} (sys : Conform.Plant n p
         ≤ (∑ j : Fin k, N k i ⬝ᵥ ((sys.C * sys.A ^ (j : ℕ)) *ᵥ cW)) + N k i ⬝ᵥ cV
           + ∑ r, (∑ j : Fin k, |N k i ⬝ᵥ ((sys.C * sys.A ^ (j : ℕ)) *ᵥ GW r)|) * αW r
           + ∑ l, |N k i ⬝ᵥ GV l| * αV l := by -- --- PROOF ---
-  rw [sys.conformant_iff_devSet]
+  rw [sys.isConformant_iff_devSet]
   refine forall_congr' fun k => forall_congr' fun hk => ?_
   rw [sys.devSet_zero_templateZono, Set.iUnion_subset_iff]
   refine forall_congr' fun m => ?_

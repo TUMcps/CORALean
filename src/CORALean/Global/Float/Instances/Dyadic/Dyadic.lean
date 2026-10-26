@@ -18,8 +18,7 @@ it denotes.
 
 ## References
 
-None: dyadic numbers with a mantissa held to `p` bits, defined here for a runnable scalar; no
-publication defines this type.
+None: a CORALean scalar type, defined here to make the library runnable; CORA has no such class.
 -/
 
 -- Authors:       Claude Opus 5

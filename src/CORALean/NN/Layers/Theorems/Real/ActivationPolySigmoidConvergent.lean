@@ -223,14 +223,14 @@ private theorem aux_exists_level (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε 
 
 
 /-- Raising the pattern puts the enclosed set inside any inflation of the exact image. -/
-private theorem Layer.aux_activationPolyRefinable_convergent {σ σ' : ℝ → ℝ} {Mσ : ℝ}
+private theorem Layer.aux_activationPolyRefinable_isConvergent {σ σ' : ℝ → ℝ} {Mσ : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) : -- --- CONCL ---
     (Layer.activationPolyRefinable (n := n) (polyRelaxationFamily hd hσ)
-      (polyRelaxationFamily_sound hd hσ)).IsConvergent := by -- --- PROOF ---
+      (polyRelaxationFamily_isSound hd hσ)).IsConvergent := by -- --- PROOF ---
   intro s ε hε
   obtain ⟨t, ht⟩ := aux_exists_level s hε
   refine ⟨t, Layer.aux_activationPoly_subset_inflate
-    ((polyRelaxationFamily hd hσ).atPattern_sound (polyRelaxationFamily_sound hd hσ) t)
+    ((polyRelaxationFamily hd hσ).atPattern_isSound (polyRelaxationFamily_isSound hd hσ) t)
     s hε.le fun i => ?_⟩
   -- padding leaves the error alone, so the neuron's own level is what counts
   have hpad : ((polyRelaxationFamily hd hσ).atPattern t i).error
@@ -245,10 +245,10 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.activationPolySigmoid_convergent (n : ℕ) :
-    (Layer.activationPolyRefinable (n := n) sigmoidPolyFamily sigmoidPolyFamily_sound).IsConvergent
-        :=
-  Layer.aux_activationPolyRefinable_convergent hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
+theorem Layer.activationPolySigmoid_isConvergent (n : ℕ) :
+    (Layer.activationPolyRefinable (n := n) sigmoidPolyFamily
+      sigmoidPolyFamily_isSound).IsConvergent :=
+  Layer.aux_activationPolyRefinable_isConvergent hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
 
 end CORALean.Real
 

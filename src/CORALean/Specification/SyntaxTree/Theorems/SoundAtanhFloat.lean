@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `atanh` node over a sound float tree whose operand stays inside `(-1,1)` is sound. -/
-theorem SyntaxTree.sound_atanhFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_atanhFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hI : 0 < toReal (subDown one (t.value.sup 0)) ∧ 0 < toReal (subDown one (neg (t.value.inf 0)))
       ∧ (0 ≤ toReal (t.value.inf 0) → (1 + toReal (t.value.inf 0)) / (1 - toReal (t.value.inf 0)) ≤
       2 ^ p / 2))

@@ -8,7 +8,8 @@ public import Mathlib.Analysis.Real.Sqrt
 /-!
 # Capsules: the representation
 
-CORA's `capsule`: a segment thickened by a Euclidean ball, `{c + t g | t ∈ [-1, 1]} ⊕ ball(0, r)`.
+CORA's `capsule`: a segment thickened by a Euclidean ball, `{c + t g | t ∈ [-1, 1]} ⊕ ball(0, r)`
+[1, Sec. 2.2.1.7].
 
 At `Vec ℝ n`, not a general module: the ball is Euclidean. The distance is written out as
 `Real.sqrt (∑ …)`, because the ambient norm of `Fin n → ℝ` is the supremum norm and `EuclideanSpace`
@@ -17,8 +18,8 @@ a crossed box, which is why the structure has no `0 ≤ r` field.
 
 ## References
 
-None: CORA's `capsule`, a software class: no publication introduces it, and the CORA manual page for
-it could not be read.
+* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.
 -/
 
 -- Authors:       Claude Opus 5

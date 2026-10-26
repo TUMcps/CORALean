@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Properties that agree at times `≥ 0` have the same maximal runs. -/
-theorem STLInterval.maximalRuns_congr (L : List (STLInterval 𝕋)) (P Q : ℝ → Prop)
+theorem STLInterval.isMaximalRuns_congr (L : List (STLInterval 𝕋)) (P Q : ℝ → Prop)
     (h : ∀ t : ℝ, 0 ≤ t → (P t ↔ Q t)) : -- --- CONCL ---
     STLInterval.IsMaximalRuns L P ↔ STLInterval.IsMaximalRuns L Q := by -- --- PROOF ---
   unfold STLInterval.IsMaximalRuns

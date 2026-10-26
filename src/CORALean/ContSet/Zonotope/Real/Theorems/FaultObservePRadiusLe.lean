@@ -12,7 +12,7 @@ public import Mathlib.Data.Matrix.Basic
 
 [1, Eq. 14] asks `ℓ_{k+1} ≤ γ ℓ_k + ε` of the P-radius `ℓ_k = max_b ‖H_k b‖²_P` [1, Eq. 13], with
 `ε = max_{s₁} ‖D_xH_w s₁‖²₂ + max_{s₂} ‖D_yH_v s₂‖²₂` [1, Eq. 15]. If the step inequality holds
-for all `θ, s₁, s₂` ([1, Eq. 16, 17], `LinearSysDT.quadForm_le_of_faultRadiusLmi`), then the
+for all `θ, s₁, s₂` ([1, Eq. 16, 17], `LinearSysDT.quadForm_le_of_isFaultRadiusLmi`), then the
 zonotope of [1, Eq. 10] (`Zonotope.faultObserve`) has P-radius at most `γ ℓ + ε` for every bound
 `ℓ` of the P-radius of `X`, the zonotope **after** the reduction `↓_q`: a point of the new
 zonotope is its center plus `(A - LC)θ + D_xH_w s₁ - L D_yH_v s₂`, `p + θ` a point of `X`. `θ`

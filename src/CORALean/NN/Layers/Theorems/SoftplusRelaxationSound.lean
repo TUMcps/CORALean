@@ -108,7 +108,7 @@ private theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋}
 theorem softplusRelaxation_sound (β : 𝕋) (k nl kl : ℕ) :
     (softplusRelaxation β k nl kl).IsSoundWhere (Real.softplus (toReal β))
       (IsSoftplusBox β k nl) :=
-  Relaxation.ofMonotone_soundWhere (E := softplusEnclosure β k nl kl)
+  Relaxation.ofMonotone_isSoundWhere (E := softplusEnclosure β k nl kl)
     (fun _ _ h => Real.aux_softplus_mono h.1) (fun _ _ h => aux_softplus_lo_le h)
     fun _ _ h => aux_softplus_le_hi h
 

@@ -58,7 +58,7 @@ variable {n r w : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A safe verdict of one iteration of `Alg. 3` proves the specification. -/
-private theorem LinearSys.aux_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
+private theorem LinearSys.aux_isVerifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
     {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ}
@@ -82,7 +82,7 @@ private theorem LinearSys.aux_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
 
 
 /-- A `true` from the verification loop of `Alg. 3` proves the specification. -/
-private theorem LinearSys.aux_verifySpec_of_verifyRun
+private theorem LinearSys.aux_isVerifySpec_of_verifyRun
     {Reach : Set (Vec ℝ n)} {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ} {le : ℝ → ℝ → Bool}
@@ -104,7 +104,7 @@ private theorem LinearSys.aux_verifySpec_of_verifyRun
           && !le (LinearSys.verifyStep reachFn innerApprox distG distF G F le εmax).1.νFout 0)
             = true := Option.some.inj hrun
       simp only [Bool.and_eq_true, Bool.not_eq_true', ← Bool.not_eq_true, h.le_iff] at hv
-      exact LinearSys.aux_verifySpec_of_verifyStep h G F εmax hv.1 (not_le.1 hv.2)
+      exact LinearSys.aux_isVerifySpec_of_verifyStep h G F εmax hv.1 (not_le.1 hv.2)
     · -- no verdict yet: the answer comes from the next iteration
       exact ih _ hrun
 
@@ -121,7 +121,7 @@ theorem LinearSys.verify_safe
     (hv : LinearSys.verify reachFn innerApprox distG distF G F le εmax₀ fuel = some true)
     :
     LinearSys.IsVerifySpec G F Reach :=
-  LinearSys.aux_verifySpec_of_verifyRun h G F εmax₀ fuel hv
+  LinearSys.aux_isVerifySpec_of_verifyRun h G F εmax₀ fuel hv
 
 end CORALean
 

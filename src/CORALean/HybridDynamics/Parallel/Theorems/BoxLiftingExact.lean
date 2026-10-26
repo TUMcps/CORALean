@@ -43,7 +43,7 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ParallelHybridAutomaton.boxLifting_exact :
+theorem ParallelHybridAutomaton.boxLifting_isExact :
     (ParallelHybridAutomaton.boxLifting (k := k) (n := n) (m := m)).IsExact where
   inv_inv gs x hx := by
     -- the lifted invariant is exactly the blocks'

@@ -21,7 +21,7 @@ so does the resulting Taylor model for `g`". By induction over the code list fro
 lemmas: inputs scaled by `C` at order `N` give a result scaled by `codeScale N e C`, a constant
 that does not depend on `h`. Shown for `IsScalingFragment`, the code lists whose intrinsics are
 `exp`, `sin` and `cos`; the others need a uniform bound on their derivative bound away from
-the edge of their domain, which `taylor_scaled` takes as a hypothesis.
+the edge of their domain, which `taylor_isScaled` takes as a hypothesis.
 
 ## Inputs
 * `m` – number of variables
@@ -82,7 +82,7 @@ private theorem Taylm.aux_taylor_maxOrder (T : Taylm n) (g : ℝ → ℝ) (c D :
 
 
 /-- A constant is scaled by its magnitude. -/
-private theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
+private theorem Taylm.aux_const_isScaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) : -- --- CONCL ---
     (Taylm.const n c N).IsScaled h |c| := by -- --- PROOF ---
   have hp : 0 ≤ |c| * h ^ (N + 1) := mul_nonneg (abs_nonneg _) (pow_pos h0 _).le
   refine ⟨?_, ?_, ?_⟩
@@ -93,7 +93,7 @@ private theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C : ℝ} (h0 : 0 < h)
+theorem Taylm.codeEval_isScaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C : ℝ} (h0 : 0 < h)
     (h1 : h ≤ 1) (hN : ∀ i, (F i).maxOrder = N) (hF : ∀ i, (F i).IsScaled h C) : -- --- CONCL ---
     ∀ (e : Taylm.CodeList ℝ m), e.IsScalingFragment → ∀ {T : Taylm n},
       Taylm.codeEval N F e = some T →
@@ -108,7 +108,7 @@ theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C :
   | const c =>
     intro _ T hT
     simp only [Taylm.codeEval, Option.some.injEq] at hT
-    exact hT ▸ ⟨rfl, Taylm.aux_const_scaled c N h0⟩
+    exact hT ▸ ⟨rfl, Taylm.aux_const_isScaled c N h0⟩
   -- the two binary operations, at the order both operands keep
   | add a b iha ihb =>
     intro hfr T hT
@@ -116,21 +116,21 @@ theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C :
     obtain ⟨A, hA, B, hB, rfl⟩ := hT
     obtain ⟨oA, sA⟩ := iha hfr.1 hA
     obtain ⟨oB, sB⟩ := ihb hfr.2 hB
-    exact ⟨by simp [Taylm.plus, oA, oB], Taylm.plus_scaled (oA.trans oB.symm) sA sB⟩
+    exact ⟨by simp [Taylm.plus, oA, oB], Taylm.plus_isScaled (oA.trans oB.symm) sA sB⟩
   | mul a b iha ihb =>
     intro hfr T hT
     simp only [Taylm.codeEval, Option.bind_eq_some_iff, Option.map_eq_some_iff] at hT
     obtain ⟨A, hA, B, hB, rfl⟩ := hT
     obtain ⟨oA, sA⟩ := iha hfr.1 hA
     obtain ⟨oB, sB⟩ := ihb hfr.2 hB
-    exact ⟨by simp [Taylm.times, oA, oB], Taylm.times_scaled h0 h1 (oA.trans oB.symm) sA sB⟩
+    exact ⟨by simp [Taylm.times, oA, oB], Taylm.times_isScaled h0 h1 (oA.trans oB.symm) sA sB⟩
   -- negation keeps everything; an intrinsic is one of the three
   | neg a iha =>
     intro hfr T hT
     simp only [Taylm.codeEval, Option.map_eq_some_iff] at hT
     obtain ⟨A, hA, rfl⟩ := hT
     obtain ⟨oA, sA⟩ := iha hfr hA
-    exact ⟨by simp [Taylm.uminus, oA], Taylm.uminus_scaled sA⟩
+    exact ⟨by simp [Taylm.uminus, oA], Taylm.uminus_isScaled sA⟩
   | intr s a iha =>
     intro hfr T hT
     simp only [Taylm.codeEval, Option.bind_eq_some_iff] at hT
@@ -140,13 +140,13 @@ theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C :
       simp only [Taylm.intrinsic, Option.some.injEq] at hs <;> subst hs
     -- each keeps the order, and its `_scaled` theorem gives the constant
     · refine ⟨by simp [Taylm.exp, Taylm.aux_taylor_maxOrder, oA], ?_⟩
-      have := Taylm.exp_scaled h0 h1 sA
+      have := Taylm.exp_isScaled h0 h1 sA
       rwa [oA] at this
     · refine ⟨by simp [Taylm.sin, Taylm.aux_taylor_maxOrder, oA], ?_⟩
-      have := Taylm.sin_scaled h0 h1 sA
+      have := Taylm.sin_isScaled h0 h1 sA
       rwa [oA] at this
     · refine ⟨by simp [Taylm.cos, Taylm.aux_taylor_maxOrder, oA], ?_⟩
-      have := Taylm.cos_scaled h0 h1 sA
+      have := Taylm.cos_isScaled h0 h1 sA
       rwa [oA] at this
 
 end CORALean.Real

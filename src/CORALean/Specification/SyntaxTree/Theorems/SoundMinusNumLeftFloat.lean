@@ -42,7 +42,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `minus` node of a number and a sound float tree is sound. -/
-theorem SyntaxTree.sound_minusNumLeftFloat (c : 𝕋) (h : SyntaxTree.IsSoundFloat B t) :
+theorem SyntaxTree.isSound_minusNumLeftFloat (c : 𝕋) (h : SyntaxTree.IsSoundFloat B t) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.minusNumLeftFloat c t) :=
   ⟨h, fun x hx => SyntaxTree.contains_minusFloat SyntaxTree.contains_intervalFloat
     (SyntaxTree.encloses_of_soundFloat h x hx), SyntaxTree.funHanMinusFloat_sound _ _ _⟩

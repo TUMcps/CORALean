@@ -150,7 +150,7 @@ theorem exists_polyRelaxation_error_lt {σ σ' : ℝ → ℝ} {L U Mσ ε : ℝ}
     linarith
   refine ⟨k, PolyRelaxation.ofSampling σ (fun _ _ => c₀)
     (fun l u => polyDerivDiff (-Mσ) Mσ (polyDerivCenter c₀) (polyDerivRadius c₀ l u))
-    (fun _ _ => N), PolyRelaxation.ofSampling_sound hd _ _ _ hM (fun _ _ => hN), ?_⟩
+    (fun _ _ => N), PolyRelaxation.ofSampling_isSound hd _ _ _ hM (fun _ _ => hN), ?_⟩
   intro l u hl hlu hu
   -- every sample of a sub-box is a point of `[L, U]`, so the fit's own bound caps it
   have hgrid : ∀ i : Fin (N + 1),

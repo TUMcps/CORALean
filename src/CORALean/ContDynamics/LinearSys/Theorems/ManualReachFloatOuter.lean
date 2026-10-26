@@ -271,7 +271,7 @@ end
 
 omit [ToRat 𝕋] in
 /-- `aux_manualInitFloat` holds what a state owes at `t₀ = 0`. -/
-private theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n)
+private theorem LinearSys.aux_isManualInvariantFloat_init (sys : LinearSys 𝕋 n)
     (X₀ V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.IsManualInvariantFloat X₀ V (LinearSys.aux_manualInitFloat X₀) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
@@ -317,7 +317,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
   have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   set V := sys.inputSetFloat U with hV
   obtain ⟨hlen, hsnd⟩ := sys.aux_manualRunFloat_outer hΔt hadm h
-    (sys.aux_manualInvariantFloat_init X₀ V)
+    (sys.aux_isManualInvariantFloat_init X₀ V)
   refine ⟨N, hNΔt, hlen, fun {x u} traj k hk t ht => ?_⟩
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''

@@ -39,9 +39,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem invSqrtRootRelaxation_sound (p : ℕ) : -- --- CONCL ---
+theorem invSqrtRootRelaxation_isSound (p : ℕ) : -- --- CONCL ---
     (invSqrtRootRelaxation (𝕋 := 𝕋) p).IsSound Real.invSqrt := by -- --- PROOF ---
-  refine Relaxation.ofAntitone_sound Real.antitone_invSqrt ⟨fun a => ?_, fun a => ?_⟩
+  refine Relaxation.ofAntitone_isSound Real.antitone_invSqrt ⟨fun a => ?_, fun a => ?_⟩
   · -- lower end: the divisor is above the root, which is at least `1`
     have hm : toReal (maximum a one) = max (toReal a) 1 := by rw [toReal_maximum, toReal_one]
     have hup := le_sqrtUp p (maximum a one)

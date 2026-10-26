@@ -27,7 +27,7 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredIsExe
 
 `directConversion_overapprox` is [1, Lemma 1]. For [1, Lemma 2],
 `scalingConversion_not_zeroError` is the counterexample to the printed zero-error claim and
-`scalingConversion_zeroError` the corrected statement. `finalConversion_contOverapprox` is
+`scalingConversion_zeroError` the corrected statement. `finalConversion_isContOverapprox` is
 [1, Cor. 1] and `finalConversion_not_error_lt` the counterexample to [1, Thm. 1]. The ODE facts
 below them: `lipschitzSolution` (existence for every horizon), `lipschitzSolution_unique`,
 `scaledSolution_unscale` (the reparametrization), `scaledSolution_clock_le` (the scaled run

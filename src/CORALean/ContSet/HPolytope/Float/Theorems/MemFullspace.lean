@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Every point is in `HPolytope.fullspace` -/
 theorem HPolytope.mem_fullspace (x : Vec ℝ n) :
     x ∈ (HPolytope.fullspace 𝕋 n).construct :=
-  (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mpr
+  (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
     ⟨fun i => i.elim0, fun i => i.elim0⟩
 
 end CORALean.Float

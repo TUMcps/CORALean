@@ -50,7 +50,7 @@ theorem KleeneSignal.findIntervals_spec (s : KleeneSignal ℝ) (hs : s.IsValid)
     -- the unknown intervals are those of `isUnknown`
     have e : s.findIntervals Kleene.uu = s.isUnknown.findIntervals := rfl
     rw [e]
-    refine (STLInterval.maximalRuns_congr _ _ _ fun t _ => ?_).1
+    refine (STLInterval.isMaximalRuns_congr _ _ _ fun t _ => ?_).1
       (s.isUnknown.findIntervals_spec hs.2 id)
     rw [KleeneSignal.at_eq_uu_iff]
     rfl
@@ -59,7 +59,7 @@ theorem KleeneSignal.findIntervals_spec (s : KleeneSignal ℝ) (hs : s.IsValid)
     obtain ⟨hv, hb⟩ := KleeneSignal.toBoolSignal_spec s hs false
     have e : s.findIntervals Kleene.tt = (s.toBoolSignal false).findIntervals := rfl
     rw [e]
-    refine (STLInterval.maximalRuns_congr _ _ _ fun t ht => ?_).1
+    refine (STLInterval.isMaximalRuns_congr _ _ _ fun t ht => ?_).1
       ((s.toBoolSignal false).findIntervals_spec hv id)
     obtain ⟨h1, h2⟩ := hb t ht
     by_cases hu : s.at t = Kleene.uu
@@ -74,7 +74,7 @@ theorem KleeneSignal.findIntervals_spec (s : KleeneSignal ℝ) (hs : s.IsValid)
     obtain ⟨hv, hb⟩ := KleeneSignal.toBoolSignal_spec s hs true
     have e : s.findIntervals Kleene.ff = (s.toBoolSignal true).findIntervals (fun x => !x) := rfl
     rw [e]
-    refine (STLInterval.maximalRuns_congr _ _ _ fun t ht => ?_).1
+    refine (STLInterval.isMaximalRuns_congr _ _ _ fun t ht => ?_).1
       ((s.toBoolSignal true).findIntervals_spec hv (fun x => !x))
     obtain ⟨h1, h2⟩ := hb t ht
     by_cases hu : s.at t = Kleene.uu

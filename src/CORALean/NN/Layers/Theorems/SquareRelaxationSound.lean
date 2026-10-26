@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Calculus.Deriv.Pow
 /-!
 # The square relaxation is sound
 
-`Relaxation.ofDeriv_sound` at `σ' x = 2x`: the stored ends `2l` and `2u` bracket it on the box,
+`Relaxation.ofDeriv_isSound` at `σ' x = 2x`: the stored ends `2l` and `2u` bracket it on the box,
 the enclosure `a·a` brackets `x²` at every stored value, and the clamp lands the slope in the
 bracket.
 
@@ -53,9 +53,9 @@ private theorem aux_le_squareDerivHi (l u : 𝕋) : 2 * toReal u ≤ toReal (squ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem squareRelaxation_sound : -- --- CONCL ---
+theorem squareRelaxation_isSound : -- --- CONCL ---
     (squareRelaxation (𝕋 := 𝕋)).IsSound fun x => x ^ 2 := by -- --- PROOF ---
-  refine Relaxation.ofDeriv_sound (fun x => 2 * x) (fun x => ?_)
+  refine Relaxation.ofDeriv_isSound (fun x => 2 * x) (fun x => ?_)
     ⟨fun a => ?_, fun a => ?_⟩ (fun l u x hl _ => ?_) (fun l u x _ hu => ?_) (fun l u h => ?_)
   · simpa using hasDerivAt_pow 2 x
   · exact mulDown_le_mul a a |>.trans_eq (by ring)

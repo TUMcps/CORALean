@@ -17,7 +17,7 @@ extends the matrix and module ambient types too.
 
 ## References
 
-None: CORALean's own wrapper, `Option` in shape, with no counterpart in CORA or in a publication.
+None: a CORALean wrapper, `Option` in shape; CORA has no class for it.
 -/
 
 -- Authors:       Claude Opus 5

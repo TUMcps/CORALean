@@ -50,7 +50,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HybridAutomaton.IsRun.mem_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
+theorem HybridAutomaton.IsRun.mem_of_isInvariant {HA : HybridAutomaton S G L 𝕋 n}
     {R : L → S n} (hinv : HA.IsInvariant R) {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRun ℓ x ℓ' y) : x ∈ construct (R ℓ) → y ∈ construct (R ℓ') := by
   induction run with

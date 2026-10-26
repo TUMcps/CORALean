@@ -9,7 +9,7 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 /-!
 # `Taylm.exp` keeps the `(n+1)`-st order scaling
 
-[1, Thm. 1], eq. (2.9), at the source's first intrinsic ([1, Def. 3 (exp)]). `taylor_scaled`
+[1, Thm. 1], eq. (2.9), at the source's first intrinsic ([1, Def. 3 (exp)]). `taylor_isScaled`
 asks for a bound on the coefficients and one on the derivative bound; for `exp` both come from
 the scaling itself: the center is at most `C`, so each `exp(c)/k!` is at most `exp C`, and the
 top of the range is within `2C·h ≤ 2C` of the center, so `D ≤ exp (3C)`.
@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.exp_scaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
+theorem Taylm.exp_isScaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
     (hT : T.IsScaled h C) : -- --- CONCL ---
     T.exp.IsScaled h (Real.exp C * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
       + Real.exp (3 * C) * (2 * C) ^ (T.maxOrder + 1)) := by -- --- PROOF ---
@@ -56,7 +56,7 @@ theorem Taylm.exp_scaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
   have hC : |T.constCoef| ≤ C := le_trans hc hT.1
   have hCnn : 0 ≤ C := le_trans (abs_nonneg _) hC
   -- the coefficients: `exp c / k! ≤ exp c ≤ exp C`
-  refine Taylm.taylor_scaled h0 h1 hT (fun k _ => ?_) ?_
+  refine Taylm.taylor_isScaled h0 h1 hT (fun k _ => ?_) ?_
   · rw [iteratedDeriv_eq_iterate, Real.iter_deriv_exp, abs_div, abs_of_pos (Real.exp_pos _),
       Nat.abs_cast]
     have hf : (1 : ℝ) ≤ (Nat.factorial k : ℝ) := by exact_mod_cast Nat.factorial_pos _

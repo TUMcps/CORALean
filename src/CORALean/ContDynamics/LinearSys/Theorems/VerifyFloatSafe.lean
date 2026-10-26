@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r w : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One verified iteration proves the specification. -/
-private theorem LinearSys.aux_verifySpecFloat_of_verifyStepFloat
+private theorem LinearSys.aux_isVerifySpecFloat_of_verifyStepFloat
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
@@ -84,7 +84,7 @@ private theorem LinearSys.aux_verifySpecFloat_of_verifyStepFloat
 
 
 /-- A `true` from the float verification loop proves the specification. -/
-private theorem LinearSys.aux_verifySpecFloat_of_verifyRunFloat
+private theorem LinearSys.aux_isVerifySpecFloat_of_verifyRunFloat
     {Reach : Set (Vec ℝ n)} {reachFn : 𝕋 → Zonotope (Vec 𝕋 n)}
     {innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n)}
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
@@ -107,7 +107,7 @@ private theorem LinearSys.aux_verifySpecFloat_of_verifyRunFloat
               :=
         Option.some.inj hrun
       rw [Bool.and_eq_true] at hv
-      refine LinearSys.aux_verifySpecFloat_of_verifyStepFloat h G F εmax ?_ ?_
+      refine LinearSys.aux_isVerifySpecFloat_of_verifyStepFloat h G F εmax ?_ ?_
       · simpa [toReal_zero] using toReal_le_of_le hv.1
       · simpa [toReal_zero] using toReal_lt_of_ltStrict hv.2
     · -- no verdict yet: the answer comes from the next iteration
@@ -126,7 +126,7 @@ theorem LinearSys.verifyFloat_safe
     (hv : LinearSys.verifyFloat reachFn innerApprox distG distF G F εmax₀ fuel = some true)
     :
     LinearSys.IsVerifySpecFloat G F Reach :=
-  LinearSys.aux_verifySpecFloat_of_verifyRunFloat h G F εmax₀ fuel hv
+  LinearSys.aux_isVerifySpecFloat_of_verifyRunFloat h G F εmax₀ fuel hv
 
 end CORALean
 

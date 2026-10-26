@@ -16,7 +16,7 @@ public import Mathlib.Tactic.Ring
 (23): `trace(G(t_k)^T P G(t_k)) = ∑ⱼ αⱼ² gⱼ^T P gⱼ` (35), the stretch factors
 squared against the diagonal of the template's Gram matrix, one block per template.
 The program minimizes `½ z^T H z`, half the cost, with the same minimizers; its
-constraints are [1, Thm. 1]'s, so a feasible point is conformant by `conformant_iff_lp`.
+constraints are [1, Thm. 1]'s, so a feasible point is conformant by `isConformant_iff_lp`.
 No sign condition on `α` and no definiteness of `P` is needed for the identity.
 
 ## Inputs

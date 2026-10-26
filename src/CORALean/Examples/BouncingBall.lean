@@ -20,7 +20,7 @@ The textbook automaton: one location, one transition back into it. The state is
 representations at once (#39): the reachable set is a `Zonotope`, the guard and the invariant are
 `HPolytope`s, the guard the unbounded halfspace description `p = 0 ∧ v ≤ 0`. `ballZono` is the
 invariant said again as a zonotope, `bounceCut` the guard intersection `jump_outer` asks for. The
-result is `bouncingBall_invariant`: the box `[0, p] × [-v, v]` is kept at every dwell time and
+result is `bouncingBall_isInvariant`: the box `[0, p] × [-v, v]` is kept at every dwell time and
 across every bounce, exactly when the damping is at most one.
 
 ## Inputs
@@ -174,11 +174,11 @@ theorem Example.ballZono_inter_guard (hv : 0 < v) : -- --- CONCL ---
 
 /-- The criterion at this automaton: the box is an inductive invariant, the flow
 half discharged by the cut and the jump half by the damping being at most one. -/
-theorem Example.bouncingBall_invariant (g : ℝ) (hp : 0 < p) (hv : 0 < v)
+theorem Example.bouncingBall_isInvariant (g : ℝ) (hp : 0 < p) (hv : 0 < v)
     (hd0 : 0 ≤ d) (hd1 : d ≤ 1) : -- --- CONCL ---
     (Example.bouncingBall g d p v).IsInvariant
       (fun _ => Example.ballZono p v) := by -- --- PROOF ---
-  refine HybridAutomaton.invariant_of_enclosure_cut _ _ (fun ℓ τ _ => ?_) (fun ℓ e he => ?_)
+  refine HybridAutomaton.isInvariant_of_enclosure_cut _ _ (fun ℓ τ _ => ?_) (fun ℓ e he => ?_)
   · -- the cut is the whole flow obligation: whatever the dwell time, the part
     -- of the enclosure still inside the invariant is inside the box
     refine ⟨⌈‖τ • toRealMat ((Example.bouncingBall g d p v).loc ℓ).dynamics.A‖⌉₊, ?_,

@@ -14,7 +14,7 @@ public import Mathlib.Order.PiLex
 classically, the ordering being over a well-founded index rather than over a
 finite comparison. So is `compact`, for the same kind of reason.
 
-The permutation is named on its own because `sort` applies it and `sort_sorted`
+The permutation is named on its own because `sort` applies it and `sort_isSorted`
 argues about it, and because `reindex` is deliberately indifferent to which
 permutation it is given.
 

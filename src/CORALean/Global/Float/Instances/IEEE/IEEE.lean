@@ -12,14 +12,14 @@ finite grid of `fmt`: `p` significand bits, and never a step finer than the smal
 qmin`. On every value in range that is IEEE 754's round-toward-±∞, subnormals included. The exponent
 stays unbounded, so a value past `maxFinite` is representable here where the format would hold `±∞`
 or saturate; `overflows` detects it. `half` alone leaves the grid: it only lowers the exponent, so
-it is exact, as the class demands, and below the smallest subnormal its result is finer than any
-number of `fmt`; the next rounded operation rounds it back. `toReal` is `Dyadic`'s, through
-`toDyadic`, so the exact steps and their proofs are too.
+it is exact, as the class demands, and below the smallest subnormal finer than any number of `fmt`
+until the next rounded operation. `toReal` is `Dyadic`'s, through `toDyadic`, so the exact steps and
+their proofs are too. `e4m3` and `e2m1` are [1, Table 2] and [1, Table 5]; IEEE 754 is closed.
 
 ## References
 
-None: IEEE 754 is not freely available, and the OCP MX specification that defines the other formats
-could not be read.
+* [1] Open Compute Project. "OCP Microscaling Formats (MX) Specification, Version 1.0". Open Compute
+      Project, 2023.
 -/
 
 -- Authors:       Claude Opus 5.5

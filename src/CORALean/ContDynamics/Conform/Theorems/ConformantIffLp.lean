@@ -106,7 +106,7 @@ private theorem aux_lp_row_iff (sys : Conform.Plant n p (q + 1)) {ιX ιW ιV : 
 
 /-- [2, Thm. 1]: a point `z = (c, α)`, `α ≥ 0`, meets every constraint of (12)
 exactly when the model is reachset conformant up to `K`, i.e. [2, Eq. 8] at every step. -/
-theorem Conform.Plant.conformant_iff_lp {M κ : Type} (sys : Conform.Plant n p (q + 1))
+theorem Conform.Plant.isConformant_iff_lp {M κ : Type} (sys : Conform.Plant n p (q + 1))
     {ιX ιW ιV : Type} [Fintype ιX] [Fintype ιW] [Fintype ιV] (cX : Vec ℝ n)
     (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ)
     (cV : Vec ℝ (q + 1)) (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ) (hαX : ∀ x, 0 ≤ αX x)
@@ -126,7 +126,7 @@ theorem Conform.Plant.conformant_iff_lp {M κ : Type} (sys : Conform.Plant n p (
           + ∑ x, |N k i ⬝ᵥ ((sys.C * sys.A ^ k) *ᵥ GX x)| * αX x
           + ∑ r, (∑ j : Fin k, |N k i ⬝ᵥ ((sys.C * sys.A ^ (j : ℕ)) *ᵥ GW r)|) * αW r
           + ∑ l, |N k i ⬝ᵥ GV l| * αV l := by -- --- PROOF ---
-  rw [sys.conformant_iff_devSet]
+  rw [sys.isConformant_iff_devSet]
   refine forall_congr' fun k => forall_congr' fun hk => ?_
   rw [sys.devSet_templateZono, Set.iUnion_subset_iff]
   refine forall_congr' fun m => ?_

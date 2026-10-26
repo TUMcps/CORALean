@@ -42,7 +42,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `times` node of a number and a sound float tree is sound. -/
-theorem SyntaxTree.sound_timesNumLeftFloat (c : 𝕋) (h : SyntaxTree.IsSoundFloat B t) :
+theorem SyntaxTree.isSound_timesNumLeftFloat (c : 𝕋) (h : SyntaxTree.IsSoundFloat B t) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.timesNumLeftFloat c t) :=
   ⟨h, fun x hx => SyntaxTree.contains_timesFloat SyntaxTree.contains_intervalFloat
     (SyntaxTree.encloses_of_soundFloat h x hx), SyntaxTree.funHanTimesFloat_sound _ _ _⟩

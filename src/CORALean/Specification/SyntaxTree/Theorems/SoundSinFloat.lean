@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `sin` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_sinFloat [Float.ToRat 𝕋] (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t) :
+theorem SyntaxTree.isSound_sinFloat [Float.ToRat 𝕋] (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.sinFloat p k t) :=
   ⟨h, fun x hx => SyntaxTree.contains_of_outerFloat
     (Float.Interval.sin_outer p _)

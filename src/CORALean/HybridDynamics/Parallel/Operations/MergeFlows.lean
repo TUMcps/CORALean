@@ -13,7 +13,7 @@ CORA's `aux_mergeFlowsLinearSys` at components whose inputs and outputs are thei
 `C` identities, `D` and `k` zero. Every entry of the merged system is an existing entry, `0` or
 `1`, chosen by `if`, with no arithmetic, so the result is exact at every scalar with an exact `0`
 and `1`, rounded ones included (#117). It reads `A`, `c`, `E`, `F` and the bindings; the flow law
-`mergeFlows_flowLaw` holds where the rest is as said (`HasStateBound`). Restriction: CORA's
+`mergeFlows_isFlowLaw` holds where the rest is as said (`HasStateBound`). Restriction: CORA's
 `Amerged += B * C` adds the `1`, and an addition rounds; where an input is bound to its own
 component's output the `1` replaces `A_ij`, which is `Amerged` exactly when `A_ij = 0`
 (`IsSelfBindFree`). At a commutative ring the merge is `mergeFlowsLinearSys`.

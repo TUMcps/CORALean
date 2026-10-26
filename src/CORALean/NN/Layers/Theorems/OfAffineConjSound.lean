@@ -109,7 +109,7 @@ private theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ 
 
 /-- `g t = ra f (rb t) + c` inherits `f`'s soundness, and this is where the two real scales
 arrive: `ofAffineConj` itself stores only scalars. -/
-theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding 𝕋} {c : 𝕋}
+theorem Relaxation.ofAffineConj_isSound {R : Relaxation 𝕋} {A B : ScaleRounding 𝕋} {c : 𝕋}
     (hR : R.IsSound f) (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 < ra) (hb : 0 < rb)
     (hg : ∀ t, g t = ra * f (rb * t) + toReal c) : -- --- CONCL ---
     (Relaxation.ofAffineConj R A B c).IsSound g := by -- --- PROOF ---

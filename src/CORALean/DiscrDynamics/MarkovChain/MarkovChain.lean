@@ -8,19 +8,19 @@ public import Mathlib.Data.Matrix.Basic
 /-!
 # A Markov chain over a grid partition: the representation
 
-CORA's `markovchain` (`discrDynamics/@markovchain`): a `GridPartition` `field` and the
-transition probabilities `T` between its cells, one pair of matrices per discrete input.
-Row and column `0` of each matrix are the outside, and a column `s` holds the probabilities
-`P(cell r | cell s)`, so a built column sums to one. `T.T` is the transition after the sampling
-time, `T.OT` the one averaged over it.
+CORA's `markovchain` (`discrDynamics/@markovchain`): a `GridPartition` `field` and the transition
+probabilities `T` between its cells, one pair of matrices per discrete input. Row and column `0` of
+each matrix are the outside, and a column `s` holds the probabilities `P(cell r | cell s)`
+[1, Sec. 5.2], so a built column sums to one. `T.T` is the transition after the sampling time,
+`T.OT` the one averaged over it.
 
 Before `convertTransitionMatrix` the matrices are a cell array over the inputs (`Transitions`);
 after it and in `stretch` one matrix over the pairs of cell and input (`Stacked`).
 
 ## References
 
-None: CORA's `markovchain`, a software class: no publication introduces it, and the CORA manual page
-for it could not be read.
+* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

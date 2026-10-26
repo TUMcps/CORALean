@@ -10,7 +10,8 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 /-!
 # The square root relaxation over ℝ is sound
 
-`Real.sqrt` is monotone and the exact enclosure is sound, so `Relaxation.ofMonotone_sound` applies.
+`Real.sqrt` is monotone and the exact enclosure is sound, so `Relaxation.ofMonotone_isSound`
+applies.
 
 ## Inputs
 * none
@@ -35,8 +36,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem rootRelaxation_sound : rootRelaxation.IsSound Real.sqrt :=
-  Relaxation.ofMonotone_sound (fun _ _ h => Real.sqrt_le_sqrt h) (enclosure_exact_sound _)
+theorem rootRelaxation_isSound : rootRelaxation.IsSound Real.sqrt :=
+  Relaxation.ofMonotone_isSound (fun _ _ h => Real.sqrt_le_sqrt h) (enclosure_exact_sound _)
 
 end CORALean.Real
 

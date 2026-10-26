@@ -134,13 +134,13 @@ public import CORALean.Specification.SyntaxTree.Theorems.UminusSound
 encloses
 that function, the `*_sound` theorems that its `funHan` is sound, `sound_*` that a constructor
 keeps a
-tree `IsSound`, and `backpropagation_sound` that `backpropagation` of a sound tree keeps every
+tree `IsSound`, and `backpropagation_isSound` that `backpropagation` of a sound tree keeps every
 solution.
 `sinhCora_counterexample`, `tanCora_counterexample` and `powerOddCora_counterexample` are the
 places CORA's `funHan` is not sound.
 
 The float layer repeats them for `Float.SyntaxTree`: the `funHan*Float_sound` theorems (among them
-`funHanUminusFloat_sound`), `sound_*Float` for each constructor (`sound_plusFloat`,
-`sound_timesFloat`, `sound_powerFloat`, ...), `backpropagationFloat_sound`, and the lemmas the
+`funHanUminusFloat_sound`), `sound_*Float` for each constructor (`isSound_plusFloat`,
+`isSound_timesFloat`, `isSound_powerFloat`, ...), `backpropagationFloat_sound`, and the lemmas the
 rounded `periodicFloat`, `signedRootsFloat`, `nthrootFloat` and `piFloat` rest on.
 -/

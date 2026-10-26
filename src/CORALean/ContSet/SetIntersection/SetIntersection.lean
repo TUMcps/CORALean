@@ -16,8 +16,7 @@ arity, and `List` lets a caller append rather than reindex.
 
 ## References
 
-None: CORALean's own generalization of `ZonoBundle`'s intersection, with no counterpart in a
-publication.
+None: a CORALean generalization of `ZonoBundle`'s intersection; CORA has no class for it.
 -/
 
 -- Authors:       Claude Sonnet 5

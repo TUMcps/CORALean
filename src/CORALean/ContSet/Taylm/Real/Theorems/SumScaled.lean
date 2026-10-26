@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.sum_scaled {m : ℕ} {T : Fin m → Taylm n} {h : ℝ} {C : Fin m → ℝ} {N : ℕ}
+theorem Taylm.sum_isScaled {m : ℕ} {T : Fin m → Taylm n} {h : ℝ} {C : Fin m → ℝ} {N : ℕ}
     (hN : ∀ i, (T i).maxOrder = N) (hT : ∀ i, (T i).IsScaled h (C i)) : -- --- CONCL ---
     Taylm.weight (Taylm.sum T).terms h ≤ ∑ i, C i ∧
       |(Taylm.sum T).rem.inf| ≤ (∑ i, C i) * h ^ (N + 1) ∧

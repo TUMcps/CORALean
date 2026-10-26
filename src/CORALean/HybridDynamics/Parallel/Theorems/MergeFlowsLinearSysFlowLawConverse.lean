@@ -83,7 +83,7 @@ private theorem aux_bindsAt_distinct {𝕋 : Type} {P : ParallelHybridAutomaton 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flowLawConverse
+theorem ParallelHybridAutomaton.mergeFlowsLinearSys_isFlowLawConverse
     {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.IsFeedthroughFree)
     (hdist : P.GlobalsDistinct)
     (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)

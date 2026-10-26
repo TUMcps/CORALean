@@ -54,16 +54,16 @@ public import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
 /-!
 # What reachset conformance and its identification guarantee, collected
 
-The linear model: `mem_reachOutExact_iff` subtracts the nominal run, `conformant_iff_devSet`
-turns conformance into one inclusion per step, and `conformant_iff_hRep` and
-`conformant_iff_lp` make that inclusion linear in the identified centers and stretch
+The linear model: `mem_reachOutExact_iff` subtracts the nominal run, `isConformant_iff_devSet`
+turns conformance into one inclusion per step, and `isConformant_iff_hRep` and
+`isConformant_iff_lp` make that inclusion linear in the identified centers and stretch
 factors, so that every feasible point of the identification programs is conformant;
-`lpCost_eq` and `qpCost_eq` are their objectives. `conformant_of_recording` gives
+`lpCost_eq` and `qpCost_eq` are their objectives. `isConformant_of_recording` gives
 conformance at every horizon from one-step residuals.
 
 Any model: `reachSetOfExact_glo` and `reachSetOfExact_subset` reach through the general linear
 output approximation, `mem_gloSet_iff_hRep` and `mem_gloSet_iff_gen` are the two
-constraint forms, `passesBF_of_conformant` the brute-force check's soundness, `white_conformant`
+constraint forms, `passesBF_of_isConformant` the brute-force check's soundness, `white_conformant`
 the soundness of the white-box program and `costU_le` its cheap lower bound. The
 `*Counterexample`, `*Ne*` files are the printed statements that do not hold.
 

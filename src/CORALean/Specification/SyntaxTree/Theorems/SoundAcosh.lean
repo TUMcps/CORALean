@@ -42,8 +42,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `acosh` of an operand `≥ 1` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_acosh (h : IsSound B t) (hd : 1 ≤ t.value.inf 0) : IsSound B (t.acosh) :=
-  ⟨h, encloses_acosh (encloses_of_sound h) hd, funHanAcosh_sound t.value hd⟩
+theorem SyntaxTree.isSound_acosh (h : IsSound B t) (hd : 1 ≤ t.value.inf 0) : IsSound B (t.acosh) :=
+  ⟨h, encloses_acosh (encloses_of_isSound h) hd, funHanAcosh_sound t.value hd⟩
 
 end CORALean
 

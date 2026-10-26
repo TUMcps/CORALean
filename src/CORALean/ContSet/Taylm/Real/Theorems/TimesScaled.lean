@@ -102,7 +102,7 @@ private theorem Taylm.aux_weight_mulTerms (L₁ L₂ : List (ℝ × (Fin n → �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.times_scaled {T₁ T₂ : Taylm n} {h C₁ C₂ : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
+theorem Taylm.times_isScaled {T₁ T₂ : Taylm n} {h C₁ C₂ : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
     (hN : T₁.maxOrder = T₂.maxOrder) (h₁ : T₁.IsScaled h C₁) (h₂ : T₂.IsScaled h C₂)
         : -- --- CONCL ---
     (T₁.times T₂).IsScaled h (4 * (C₁ * C₂)) := by -- --- PROOF ---

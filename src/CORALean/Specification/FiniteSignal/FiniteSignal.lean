@@ -7,15 +7,15 @@ public import Mathlib.Data.Nat.Notation
 /-!
 # Piecewise-constant signals on a finite horizon
 
-CORA's `finiteSignal` (`specification/signals/@finiteSignal`): a signal on `[0, duration]` stored
-as strictly increasing `time` and, for each, the `value` held up to it (the last one up to and
+CORA's `finiteSignal` (`specification/signals/@finiteSignal`): a signal on `[0, duration]` stored as
+strictly increasing `time` and, for each, the `value` held up to it (the last one up to and
 including it). CORA's constructor checks the array shape (`IsValid`); here the data is a pair of
 lists, over any ordered time type `T` and value type `V`.
 
 ## References
 
-None: CORA's `finiteSignal`, a software class: no publication introduces it, and the CORA manual
-page for it could not be read.
+None: CORA's `finiteSignal.m` cites no source, and the CORA manual (v2026) does not mention the
+class.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -523,8 +523,10 @@ the page's only bibliographic record (#265):
 ````
 
 The fields are `author` (`Last, F. M.` joined by ` and `), `title`, `journal` or `booktitle`
-(`publisher` too in an `@incollection`) and `year`, in that order, and no others: no volume,
-pages, DOI, note or URL. The type is `article`, `inproceedings` or `incollection`. The key is
+(`publisher` too in an `@incollection`, and a `@manual` has `publisher` instead of a venue) and
+`year`, in that order, and no others: no volume, pages, DOI, note or URL. The type is `article`,
+`inproceedings`, `incollection`, or `manual` for a public manual or specification that defines a
+construction (the CORA manual, the OCP MX specification). The key is
 the one the paper cites. Non-ASCII letters are written as such (`Černý`); `scripts/paper/refentry.py`
 turns them into LaTeX commands for the `.bib`. Braces protect a capital (`{Minkowski}`) and are
 dropped wherever the entry is printed. The venue is the publication's own name for it: the

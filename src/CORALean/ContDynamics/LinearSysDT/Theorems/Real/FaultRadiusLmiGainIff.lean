@@ -53,7 +53,7 @@ variable {n ny nw nv rw rv : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.faultRadiusLmiGain_iff (A : Mat ℝ n n) (C : Mat ℝ ny n) (Dx : Mat ℝ n nw)
+theorem LinearSysDT.isFaultRadiusLmiGain_iff (A : Mat ℝ n n) (C : Mat ℝ ny n) (Dx : Mat ℝ n nw)
     (Hw : Mat ℝ nw rw) (Dy : Mat ℝ ny nv) (Hv : Mat ℝ nv rv) (P : Mat ℝ n n) (L : Mat ℝ n ny)
     (γ : ℝ) (hP : Pᵀ = P) : -- --- CONCL ---
     LinearSysDT.IsFaultRadiusLmiGain A C Dx Hw Dy Hv P L γ ↔

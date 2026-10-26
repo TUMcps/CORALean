@@ -51,23 +51,23 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
--- file-local: only `evalPolySort_sorted` below needs it
+-- file-local: only `evalPolySort_isSorted` below needs it
 /-- Every tail is a `sortPlus`, or else empty. -/
-private theorem PolyZonotope.aux_evalPolySortTail_sorted (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_evalPolySortTail_isSorted (pZ : PolyZonotope (Vec ℝ n))
     (coeffs : List (Vec ℝ n)) (k : ℕ) :
     PolyZonotope.IsSorted (pZ.evalPolySortTailP coeffs k).1.E := by
   match coeffs with
   | [] => exact fun a _ _ => Fin.elim0 a
-  | _ :: rest => exact PolyZonotope.sortPlus_sorted _ _ _
+  | _ :: rest => exact PolyZonotope.sortPlus_isSorted _ _ _
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.evalPolySort_sorted (pZ : PolyZonotope (Vec ℝ n))
+theorem PolyZonotope.evalPolySort_isSorted (pZ : PolyZonotope (Vec ℝ n))
     (coeffs : List (Vec ℝ n)) : PolyZonotope.IsSorted (pZ.evalPolySort coeffs).E := by
   match coeffs with
   | [] => exact fun a _ _ => Fin.elim0 a
-  | _ :: rest => exact PolyZonotope.aux_evalPolySortTail_sorted pZ rest 0
+  | _ :: rest => exact PolyZonotope.aux_evalPolySortTail_isSorted pZ rest 0
 
 end CORALean.Real
 

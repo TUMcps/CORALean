@@ -62,7 +62,7 @@ variable {n ny nw nv rw rv : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.quadForm_le_of_faultRadiusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
+theorem LinearSysDT.quadForm_le_of_isFaultRadiusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (Dx : Mat ℝ n nw) (Hw : Mat ℝ nw rw) (Dy : Mat ℝ ny nv) (Hv : Mat ℝ nv rv) (P : Mat ℝ n n)
     (W : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef) (h : LinearSysDT.IsFaultRadiusLmi A C Dx Hw Dy Hv P W
         γ)

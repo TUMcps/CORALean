@@ -105,7 +105,7 @@ private theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ 
 
 omit [ToRat 𝕋] in
 /-- `autoInitFloat` holds what a state owes at `t₀ = 0`. -/
-private theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n)
+private theorem LinearSys.aux_isAutoInvariantFloat_init (sys : LinearSys 𝕋 n)
     (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋) : -- --- CONCL ---
     sys.IsAutoInvariantFloat X₀ V (LinearSys.autoInitFloat X₀ tend) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
@@ -146,7 +146,7 @@ theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonoto
     split_ifs at h with hend
     obtain rfl := Option.some.inj h
     obtain ⟨-, -, hcov⟩ := sys.aux_autoRunFloat_outer hrun
-      (sys.aux_autoInvariantFloat_init X₀ V tend)
+      (sys.aux_isAutoInvariantFloat_init X₀ V tend)
     intro traj hUV t ht htT
     have hlt : (LinearSys.autoInitFloat X₀ tend).t < s.t := lt_of_lt_of_le hpos.1 hend
     refine hcov traj hUV hlt t ⟨by simpa [LinearSys.autoInitFloat] using ht.1,

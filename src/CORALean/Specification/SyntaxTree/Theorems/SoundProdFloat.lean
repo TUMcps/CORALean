@@ -42,14 +42,14 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `prod` of sound float trees is sound. -/
-theorem SyntaxTree.sound_prodFloat {rest : List (Float.SyntaxTree 𝕋 n)}
+theorem SyntaxTree.isSound_prodFloat {rest : List (Float.SyntaxTree 𝕋 n)}
     (h : SyntaxTree.IsSoundFloat B t)
     (hr : ∀ r ∈ rest, SyntaxTree.IsSoundFloat B r) : -- --- CONCL ---
     SyntaxTree.IsSoundFloat B (SyntaxTree.prodFloat t rest) := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => exact h
   | cons r rs ih =>
-    exact ih (SyntaxTree.sound_timesFloat h (hr r List.mem_cons_self))
+    exact ih (SyntaxTree.isSound_timesFloat h (hr r List.mem_cons_self))
       (fun r' hr' => hr r' (List.mem_cons_of_mem _ hr'))
 
 end CORALean

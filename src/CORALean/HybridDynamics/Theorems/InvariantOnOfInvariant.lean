@@ -43,7 +43,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The constant family at `R` satisfies `IsInvariantOn` whenever `R` satisfies
 `IsInvariant`. -/
-theorem HybridAutomaton.IsInvariant.invariantOn {HA : HybridAutomaton S G L 𝕋 n} {R : L → S n}
+theorem HybridAutomaton.IsInvariant.isInvariantOn {HA : HybridAutomaton S G L 𝕋 n} {R : L → S n}
     (hinv : HA.IsInvariant R) : HA.IsInvariantOn (fun _ => R) where
   flow h h₀ _ ht := hinv.flow h h₀ ht
   jump hmem _ hz hguard := hinv.jump hmem hz hguard

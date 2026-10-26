@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `asin` node over a sound float tree whose operand stays inside `[-1,1]` is sound. -/
-theorem SyntaxTree.sound_asinFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_asinFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hd₁ : -1 ≤ toReal (t.value.inf 0)) (hd₂ : toReal (t.value.sup 0) ≤ 1) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.asinFloat p k t) :=
   ⟨h, fun x hx => SyntaxTree.contains_of_outerFloat

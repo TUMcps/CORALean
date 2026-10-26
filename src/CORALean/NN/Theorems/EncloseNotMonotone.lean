@@ -61,7 +61,7 @@ private noncomputable def aux_encloseNotMonotone_R : Relaxation ℝ where
 
 /-- Both branches are sound: the deviation from the chosen line never exceeds half the box's
 width. -/
-private theorem aux_encloseNotMonotone_R_sound : -- --- CONCL ---
+private theorem aux_encloseNotMonotone_R_isSound : -- --- CONCL ---
     aux_encloseNotMonotone_R.IsSound aux_encloseNotMonotone_sigma := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |0 - ((if u - l < 2 then (1 : ℝ) else 0) * t + (if u - l < 2 then -(l + u) / 2 else 0))|
@@ -140,7 +140,7 @@ theorem Layer.enclose_not_monotone : -- --- CONCL ---
               R).enclose t) := by -- --- PROOF ---
   intro h
   exact aux_encloseNotMonotone_not_mem_t
-    (h aux_encloseNotMonotone_R aux_encloseNotMonotone_R_sound aux_encloseNotMonotone_s
+    (h aux_encloseNotMonotone_R aux_encloseNotMonotone_R_isSound aux_encloseNotMonotone_s
       aux_encloseNotMonotone_t aux_encloseNotMonotone_subset aux_encloseNotMonotone_mem_s)
 
 end CORALean

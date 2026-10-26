@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Relaxation.ofAntitone_sound {E : Enclosure 𝕋} (hσ : Antitone σ)
+theorem Relaxation.ofAntitone_isSound {E : Enclosure 𝕋} (hσ : Antitone σ)
     (hE : E.IsSound σ) : -- --- CONCL ---
     (Relaxation.ofAntitone E).IsSound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩

@@ -8,17 +8,17 @@ public import CORALean.ContSet.ContSet.ContSet
 # What a computed set is checked against
 
 CORA's `specification`: a set, stored as any representation, with what it means. A safe set is one
-every point must lie in, an unsafe set one no point may lie in; an invariant is checked as a safe
-set (`check.m` and `robustness.m` run the same test), so `Holds` is one match. Only the
-specification's set is a representation; what it is checked on stays a `Set α`, and
+every point must lie in, an unsafe set one no point may lie in [1, Sec. 7.3]; an invariant is
+checked as a safe set (`check.m` and `robustness.m` run the same test), so `Holds` is one match.
+Only the specification's set is a representation; what it is checked on stays a `Set α`, and
 `Theorems.HoldsOfOuter` carries a verdict on an outer approximation. `custom` is not a fourth kind:
 it provably survives an outer approximation, pinned down to a safe set. `logic` is out of scope:
 satisfying one is model checking.
 
 ## References
 
-None: CORA's `specification`, a software class: no publication introduces it, and the CORA manual
-page for it could not be read.
+* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.
 -/
 
 -- Authors:       Claude Opus 5

@@ -84,7 +84,7 @@ private theorem aux_leakyReluEndUp_ge (α m a : 𝕋) : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem leakyReluRelaxation_sound (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) : -- --- CONCL ---
+theorem leakyReluRelaxation_isSound (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) : -- --- CONCL ---
     (leakyReluRelaxation α lam).IsSound (Real.leakyRelu (toReal α)) := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   set m := maximum α (minimum one (lam l u)) with hm

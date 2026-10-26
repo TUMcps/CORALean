@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem deepZSShape_sound {f df : ℝ → ℝ} {x' : ℝ} (hd : ∀ x, HasDerivAt f (df x) x)
+theorem deepZSShape_isSound {f df : ℝ → ℝ} {x' : ℝ} (hd : ∀ x, HasDerivAt f (df x) x)
     (hmono : MonotoneOn df (Set.Iic x')) (hanti : AntitoneOn df (Set.Ici x')) : -- --- CONCL ---
     (deepZSShape f df).IsSound f := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩

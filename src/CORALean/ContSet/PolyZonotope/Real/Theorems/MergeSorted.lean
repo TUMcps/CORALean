@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- The kept columns are named in increasing order. File-local: only
-`merge_sorted` below needs it. -/
+`merge_isSorted` below needs it. -/
 private theorem PolyZonotope.aux_mergeIdx_monotone {p h : ℕ} (E : Fin p → Fin h → ℕ) :
     Monotone (PolyZonotope.aux_mergeIdx E) :=
   fun _ _ hab => ((PolyZonotope.mergeKeep E).orderIsoOfFin rfl).monotone hab
@@ -47,7 +47,7 @@ private theorem PolyZonotope.aux_mergeIdx_monotone {p h : ℕ} (E : Fin p → Fi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem PolyZonotope.merge_sorted {pZ : PolyZonotope α} (hS : PolyZonotope.IsSorted pZ.E) :
+theorem PolyZonotope.merge_isSorted {pZ : PolyZonotope α} (hS : PolyZonotope.IsSorted pZ.E) :
     PolyZonotope.IsSorted pZ.merge.E :=
   hS.comp (PolyZonotope.aux_mergeIdx_monotone pZ.E)
 

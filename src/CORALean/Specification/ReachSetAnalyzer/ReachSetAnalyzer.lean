@@ -9,7 +9,7 @@ public import CORALean.Specification.FiniteKleeneSignalBuilder.FiniteKleeneSigna
 # Three-valued signals of atomic propositions over reachable sets
 
 CORA's `reachSetAnalyzer` (`specification/reachSetAnalyzer.m`): the sets reached in each time
-interval are tested against atomic propositions, and for each proposition a
+interval are tested against atomic propositions [1, Sec. 3 (predicate)], and for each proposition a
 `finiteKleeneSignalBuilder` records where it can be true and where it can be false. The three
 `containers.Map`s of CORA, keyed by the name of the proposition, are lists of pairs in the order of
 `keys(aps)`; `aps` holds the propositions, `sigBuilder` their builders and `masks` the times at
@@ -19,8 +19,8 @@ type `T`: ℝ, or the float scalar the reach sets were computed in, compared exa
 
 ## References
 
-None: CORA's `reachSetAnalyzer`, a software class: no publication introduces it, and the CORA manual
-page for it could not be read.
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". Computer Aided Verification, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -52,7 +52,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ParallelHybridAutomaton.mergeFlows_flowLaw [ExactScalar 𝕋]
+theorem ParallelHybridAutomaton.mergeFlows_isFlowLaw [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hst : P.HasStateBound) (hself : P.IsSelfBindFree)
     (lift : ParallelHybridAutomaton.Lifting S G n m) : -- --- CONCL ---
     P.IsFlowLaw P.mergeFlows (P.mergeInputSets lift) (P.mergeDistSets lift) := by -- --- PROOF ---

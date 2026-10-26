@@ -67,7 +67,7 @@ private theorem aux_sigmoid_eq (t : ℝ) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `sigmoidEnclosure` brackets `Real.sigmoid` at every stored value. -/
-theorem sigmoidEnclosure_sound (k : ℕ) :
+theorem sigmoidEnclosure_isSound (k : ℕ) :
     (sigmoidEnclosure (𝕋 := 𝕋) k).IsSound Real.sigmoid where
   lo_le a := by
     have hb := one_div_le_divUp (aux_one_le_onePlusExpDown k a) (aux_onePlusExpDown_le k a)

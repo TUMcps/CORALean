@@ -16,7 +16,7 @@ public import CORALean.NN.Layers.Theorems.SigmoidEnclosureSound
 # The sigmoid relaxation is sound
 
 Both halves are sound at the sound enclosure, so the tighter one is too. The curvature half is
-`aux_sigmoidCurvatureRelaxation_sound`: `Relaxation.ofDeriv_sound` at the bracket's two bounds,
+`aux_sigmoidCurvatureRelaxation_isSound`: `Relaxation.ofDeriv_isSound` at the bracket's two bounds,
 the clamped slope landing in the bracket by `maximum`/`minimum`, both exact.
 
 ## Inputs
@@ -46,10 +46,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋}
+private theorem aux_sigmoidCurvatureRelaxation_isSound {E : Enclosure 𝕋}
     (hE : E.IsSound Real.sigmoid) :
     (sigmoidCurvatureRelaxation E).IsSound Real.sigmoid :=
-  Relaxation.ofDeriv_sound Real.sigmoidDeriv Real.hasDerivAt_sigmoid hE
+  Relaxation.ofDeriv_isSound Real.sigmoidDeriv Real.hasDerivAt_sigmoid hE
     (sigmoidDerivLo_le hE) (le_sigmoidDerivHi hE) fun l u h => by
       refine ⟨by rw [sigmoidSlope, toReal_maximum]; exact le_max_left _ _, ?_⟩
       rw [sigmoidSlope, toReal_maximum, toReal_minimum]
@@ -60,10 +60,10 @@ private theorem aux_sigmoidCurvatureRelaxation_sound {E : Enclosure 𝕋}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Both halves are sound at the sound enclosure, so the tighter is too. -/
-theorem sigmoidRelaxation_sound (k : ℕ) :
+theorem sigmoidRelaxation_isSound (k : ℕ) :
     (sigmoidRelaxation (𝕋 := 𝕋) k).IsSound Real.sigmoid :=
-  Relaxation.tighter_sound (aux_sigmoidCurvatureRelaxation_sound (sigmoidEnclosure_sound k))
-    (Relaxation.ofMonotone_sound Real.sigmoid_mono (sigmoidEnclosure_sound k))
+  Relaxation.tighter_isSound (aux_sigmoidCurvatureRelaxation_isSound (sigmoidEnclosure_isSound k))
+    (Relaxation.ofMonotone_isSound Real.sigmoid_mono (sigmoidEnclosure_isSound k))
 
 end CORALean
 

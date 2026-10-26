@@ -41,9 +41,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [Module ℝ α] in
-theorem PolyZonotope.sortPlus_sorted (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p) :
+theorem PolyZonotope.sortPlus_isSorted (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p) :
     PolyZonotope.IsSorted (pZ₁.sortPlus pZ₂ hp).E :=
-  PolyZonotope.merge_sorted (pZ₁.exactPlus pZ₂ hp).sort_sorted
+  PolyZonotope.merge_isSorted (pZ₁.exactPlus pZ₂ hp).sort_isSorted
 
 end CORALean.Real
 

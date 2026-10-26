@@ -12,7 +12,7 @@ public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 to some `x'` and falls after it, which is `f'' ≥ 0` left of `x'` and `f'' ≤ 0` right of it, the
 sigmoid's shape: `f'` then stays above its smaller end value on the box, so `f - λ x` does not
 fall there, and its values at the two ends bound it. The paper's footnote prints the opposite
-curvature; `deepZSShape_cube_not_sound` is what that gives.
+curvature; `deepZSShape_cube_not_isSound` is what that gives.
 
 ## Inputs
 * `f` – activation function

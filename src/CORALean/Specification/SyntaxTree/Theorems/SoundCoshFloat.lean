@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `cosh` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_coshFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_coshFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hI : toReal (t.value.sup 0) ≤ 2 ^ p / 2 ∧ -toReal (t.value.inf 0) ≤ 2 ^ p / 2)
     (hv : 2 * toReal ((Float.Interval.cosh p t.value).sup 0) ≤ 2 ^ p / 2) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.coshFloat p k t) :=

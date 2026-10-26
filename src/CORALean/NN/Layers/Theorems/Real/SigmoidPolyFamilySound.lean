@@ -33,8 +33,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sigmoidPolyFamily_sound : sigmoidPolyFamily.IsSound sigmoid :=
-  polyRelaxationFamily_sound hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
+theorem sigmoidPolyFamily_isSound : sigmoidPolyFamily.IsSound sigmoid :=
+  polyRelaxationFamily_isSound hasDerivAt_sigmoid abs_sigmoidDeriv_le_one
 
 end CORALean.Real
 

@@ -45,7 +45,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyRelaxation.ofSampling_sound {σ σ' : ℝ → ℝ} {n : ℕ}
+theorem PolyRelaxation.ofSampling_isSound {σ σ' : ℝ → ℝ} {n : ℕ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (c : ℝ → ℝ → Fin (n + 1) → ℝ)
     (M : ℝ → ℝ → ℝ) (N : ℝ → ℝ → ℕ)
     (hM : ∀ l u x, l ≤ x → x ≤ u → |σ' x - evalPolyDeriv (c l u) x| ≤ M l u)

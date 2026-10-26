@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem expRelaxation_sound (k : ℕ) :
     (expRelaxation (𝕋 := 𝕋) k).IsSoundWhere Real.exp fun _ u => toReal u ≤ 2 ^ k / 2 :=
-  Relaxation.ofMonotone_soundWhere (fun _ _ _ => Real.exp_monotone) (fun l _ _ => expDown_le k l)
+  Relaxation.ofMonotone_isSoundWhere (fun _ _ _ => Real.exp_monotone) (fun l _ _ => expDown_le k l)
     fun _ u hP => le_expUp k u hP
 
 end CORALean

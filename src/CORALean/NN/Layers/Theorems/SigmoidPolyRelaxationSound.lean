@@ -45,14 +45,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sigmoidPolyRelaxation_sound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
+theorem sigmoidPolyRelaxation_isSound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
     (dx : 𝕋 → 𝕋 → 𝕋) (p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
     (sigmoidPolyRelaxation k c dx p).IsSound Real.sigmoid :=
-  PolyRelaxation.ofSampling_sound (E := sigmoidEnclosure k) (c := c)
-    (M := aux_sigmoidPolyDerivBound k c) (dx := dx) (p := p) (sigmoidEnclosure_sound k)
+  PolyRelaxation.ofSampling_isSound (E := sigmoidEnclosure k) (c := c)
+    (M := aux_sigmoidPolyDerivBound k c) (dx := dx) (p := p) (sigmoidEnclosure_isSound k)
     Real.hasDerivAt_sigmoid fun l u x hx hx' => abs_sub_evalPolyDeriv_le
-      (sigmoidDerivLo_le (sigmoidEnclosure_sound k) l u x hx hx')
-      (le_sigmoidDerivHi (sigmoidEnclosure_sound k) l u x hx hx') hx hx'
+      (sigmoidDerivLo_le (sigmoidEnclosure_isSound k) l u x hx hx')
+      (le_sigmoidDerivHi (sigmoidEnclosure_isSound k) l u x hx hx') hx hx'
 
 end CORALean
 

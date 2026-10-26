@@ -13,14 +13,14 @@ result are tested against atomic propositions, and for each proposition a Boolea
 records where it holds. The `containers.Map` of propositions is a list of pairs in the order of
 `keys(aps)`. `Trajectory` is the part of CORA's `trajectory` it reads, its time points in the time
 type `T` and its points in the scalar `𝕋` the simulation is stored in (ℝ, or a float scalar for
-both): the time points `t`, the points `x l s` of the realization `s` at the
-time with index `l` (both numbered from `1`, as in MATLAB), and the locations `loc` of a hybrid
-automaton, one for each time (empty if the system is not hybrid).
+both): the time points `t`, the points `x l s` of the realization `s` at the time with index `l`
+(both numbered from `1`, as in MATLAB), and the locations `loc` of a hybrid automaton, one for each
+time (empty if the system is not hybrid).
 
 ## References
 
-None: CORA's `trajectoryAnalyzer`, a software class: no publication introduces it, and the CORA
-manual page for it could not be read.
+None: CORA's `trajectoryAnalyzer.m` cites no source, and the CORA manual (v2026) does not mention
+the class.
 -/
 
 -- Authors:       Claude Sonnet 5.5

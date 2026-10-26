@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.plus_scaled {T₁ T₂ : Taylm n} {h C₁ C₂ : ℝ} (hN : T₁.maxOrder = T₂.maxOrder)
+theorem Taylm.plus_isScaled {T₁ T₂ : Taylm n} {h C₁ C₂ : ℝ} (hN : T₁.maxOrder = T₂.maxOrder)
     (h₁ : T₁.IsScaled h C₁) (h₂ : T₂.IsScaled h C₂) : -- --- CONCL ---
     (T₁.plus T₂).IsScaled h (C₁ + C₂) := by -- --- PROOF ---
   obtain ⟨w₁, i₁, s₁⟩ := h₁

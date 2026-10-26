@@ -12,7 +12,7 @@ public import CORALean.HybridDynamics.Theorems.IsRunIffExistsIsRunUntil
 # The float run of the product encloses every run of the parallel automaton
 
 A run of the parallel automaton from initial states in `X₀` (stacked) is a run of the product at
-`mergeFlows` (`IsRun.toProductWith`, by `mergeFlows_flowLaw` at state-bound components without
+`mergeFlows` (`IsRun.toProductWith`, by `mergeFlows_isFlowLaw` at state-bound components without
 self-binding), so it has a duration and a jump count there (`isRun_iff_exists_isRunUntil`), and when
 those fit the horizon `tFinal` and the bound `K`, its stacked end state lies in a set
 `ParallelHybridAutomaton.reachFloat` computed for its final location tuple. An outer statement.
@@ -71,7 +71,7 @@ theorem ParallelHybridAutomaton.reachFloat_outer
   intro out (h : P.reachFloat lift tFinal options K ℓ₀ X₀ = some out)
   -- the parallel run is a run of the product, which has a duration and a jump count
   obtain ⟨T, j, hrun⟩ := HybridAutomaton.isRun_iff_exists_isRunUntil.mp
-    (run.toProductWith (P.mergeFlows_flowLaw hst hself lift) lift)
+    (run.toProductWith (P.mergeFlows_isFlowLaw hst hself lift) lift)
   exact ⟨T, j, hrun, fun hT hj => HybridAutomaton.reachFloat_outer _ hrun hT hj hx _ h⟩
 
 end CORALean

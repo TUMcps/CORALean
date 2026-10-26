@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `tanh` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_tanhFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_tanhFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hI : toReal (t.value.sup 0) ≤ 2 ^ p / 2)
     (hv : toReal ((Float.Interval.tanh p t.value).sup 0) < 1 ∧ (1 + toReal ((Float.Interval.tanh p
       t.value).sup 0)) / (1 - toReal ((Float.Interval.tanh p t.value).sup 0)) ≤ 2 ^ p / 2) :
