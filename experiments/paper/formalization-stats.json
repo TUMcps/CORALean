@@ -28,29 +28,29 @@
       "not-covered": 95
     },
     "by_class": {
-      "correct": 800,
+      "correct": 799,
       "underspecified": 258,
-      "proof-gap": 33,
+      "proof-gap": 32,
       "fixed": 109,
-      "false": 12
+      "false": 14
     },
     "claims": {
       "in_scope": 489,
       "formalized": 451,
       "correct": 265,
       "underspecified": 96,
-      "proof-gap": 33,
+      "proof-gap": 32,
       "fixed": 50,
-      "false": 7
+      "false": 8
     },
     "definitions": {
       "in_scope": 810,
       "formalized": 761,
-      "correct": 535,
+      "correct": 534,
       "underspecified": 162,
       "proof-gap": 0,
       "fixed": 59,
-      "false": 5
+      "false": 6
     }
   },
   "papers": [
@@ -5858,7 +5858,7 @@
         {
           "result": "Prop. 2",
           "class": "false",
-          "reason": "false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes; true with the hull replaced by the chords of single initial states, the Minkowski differences taken at each t, but that union over every t is no computable set (Findings)"
+          "reason": "false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes; true with the hull replaced by the chords of single initial states, the Minkowski differences taken at each t, but that union over every t is no computable set; ⊖ over the whole chord union is false too, and true where the covering start and time can be chosen continuously (Findings)"
         },
         {
           "result": "Alg. 1",
@@ -6480,29 +6480,29 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 4,
+        "correct": 3,
         "underspecified": 5,
-        "proof-gap": 2,
+        "proof-gap": 1,
         "fixed": 0,
-        "false": 1
+        "false": 3
       },
       "claims": {
         "in_scope": 7,
         "formalized": 7,
         "correct": 3,
         "underspecified": 2,
-        "proof-gap": 2,
+        "proof-gap": 1,
         "fixed": 0,
-        "false": 0
+        "false": 1
       },
       "definitions": {
         "in_scope": 5,
         "formalized": 5,
-        "correct": 1,
+        "correct": 0,
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 0,
-        "false": 1
+        "false": 2
       },
       "findings": [
         {
@@ -6542,8 +6542,13 @@
         },
         {
           "result": "Thm. 2",
-          "class": "proof-gap",
-          "reason": "erodes a union slice by slice, which holds one way only (counterexample in ℝ); the conclusion is not refuted"
+          "class": "false",
+          "reason": "(54) holds states from which no run reaches X_end: the per-t form of (21) the proof needs is false, and its proof erodes a union slice by slice besides; no correction is known (Findings)"
+        },
+        {
+          "result": "Alg. 3",
+          "class": "false",
+          "reason": "the output R̂^∃∀(-τ) the listing ensures is no inner approximation: lines 11-12 are `Thm. 2`'s (54), false (counterexample); `ρ` is typed for every `HPolytope`, unbounded ones included, so no oracle can be supplied and the theorems over it hold vacuously (Findings)"
         }
       ]
     }
@@ -7206,11 +7211,11 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 48,
+          "correct": 47,
           "underspecified": 23,
-          "proof-gap": 8,
+          "proof-gap": 7,
           "fixed": 9,
-          "false": 2
+          "false": 4
         }
       },
       {
@@ -8635,11 +8640,11 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 176,
+          "correct": 175,
           "underspecified": 62,
-          "proof-gap": 15,
+          "proof-gap": 14,
           "fixed": 28,
-          "false": 4
+          "false": 6
         }
       },
       "hybrid": {
@@ -8761,11 +8766,11 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 716,
+        "correct": 715,
         "underspecified": 227,
-        "proof-gap": 29,
+        "proof-gap": 28,
         "fixed": 92,
-        "false": 11
+        "false": 13
       }
     },
     "findings_not_on_a_class": {
@@ -8785,11 +8790,11 @@
       }
     },
     "theorems": {
-      "paper": 1868,
+      "paper": 1871,
       "float": 2081,
-      "helper": 2046,
+      "helper": 2056,
       "lemma": 3261,
-      "total": 9256,
+      "total": 9269,
       "examples": 129
     }
   }
