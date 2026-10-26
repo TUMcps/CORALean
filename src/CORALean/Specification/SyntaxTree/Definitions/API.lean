@@ -1,11 +1,16 @@
 module
 
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
-public import CORALean.Specification.SyntaxTree.Definitions.IsBinarySound
 public import CORALean.Specification.SyntaxTree.Definitions.Dom
+public import CORALean.Specification.SyntaxTree.Definitions.DomFloat
 public import CORALean.Specification.SyntaxTree.Definitions.DomWithin
+public import CORALean.Specification.SyntaxTree.Definitions.IsBinarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsBinarySoundFloat
 public import CORALean.Specification.SyntaxTree.Definitions.IsSound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSoundFloat
 public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySound
+public import CORALean.Specification.SyntaxTree.Definitions.IsUnarySoundFloat
+public import CORALean.Specification.SyntaxTree.Definitions.SyntaxTreeFloat
 
 /-!
 # Syntax trees: the definitions

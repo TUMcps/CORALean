@@ -14,7 +14,8 @@ box to `value & int(id)` (throwing `CORA:emptySet` if they do not meet); a node 
 for the interval each operand must take, narrows the box by each, and a binary node meets the two
 boxes. The errors `CORA:emptySet` and `CORA:outOfDomain` are `Outcome.emptySet` and
 `Outcome.outOfDomain`, the first operand's first; a numeric operand is a point interval.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it narrows a box of real numbers exactly; its rounded refinement is
+`SyntaxTree.backpropagationFloat`.
 
 ## Inputs
 * none

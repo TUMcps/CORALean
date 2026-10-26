@@ -14,8 +14,8 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 met
 with `intPrev`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: it computes with real numbers exactly; its rounded refinement is
+`SyntaxTree.funHanTanhFloat`.
 
 ## Inputs
 * `int` – target interval

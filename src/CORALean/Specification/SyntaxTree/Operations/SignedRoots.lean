@@ -14,8 +14,8 @@ interval
 nonnegative, the
 negative one otherwise. `preInf` and `preSup` are the roots of the two bounds of the target.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: it computes with real numbers exactly; its rounded refinement is
+`SyntaxTree.signedRootsFloat`.
 
 ## Inputs
 * `prev` – previous interval

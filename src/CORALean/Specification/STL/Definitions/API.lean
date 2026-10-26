@@ -31,6 +31,8 @@ public import CORALean.Specification.STL.Definitions.TreeIsCube
 public import CORALean.Specification.STL.Definitions.TreeIsDnf
 public import CORALean.Specification.STL.Definitions.TreeIsNextCombined
 public import CORALean.Specification.STL.Definitions.TreeWellFormed
+public import CORALean.Specification.STL.Definitions.DepReachConstsFloat
+public import CORALean.Specification.STL.Definitions.DepReachStateFloat
 
 /-!
 # Signal and reachset temporal logic: the definitions

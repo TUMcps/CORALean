@@ -18,8 +18,8 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 `H(t_{i+1}) ← e^{AΔt} H(t_i) ⊕ T ũ` and `D_{i+1} ← interval(e^{AΔt} D_i ⊕ D)`; line 7,
 `P_c(t_{i+1}) ← e^{AΔt} P_c(t_i) ⊕ T U₀`. The new generators of `P_c` are appended after the old.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
-computation over `𝕋` with directed rounding) is not yet written.
+Real-only, a specification: the sets and matrices are real; the rounded refinement is
+`STL.depReachStepFloat`.
 
 ## Inputs
 * `A` – dynamics matrix

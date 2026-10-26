@@ -1345,8 +1345,8 @@ docstring, in one sentence that opens with a marker. `Real-only, a specification
 it specifies — a `Set`, a truth value, a formula or another object no machine runs, so there
 is nothing to round. A computable definition that does arithmetic on real values CORA
 computes in doubles is not that: it is `Refinement pending:`, with the refinement generic
-over `𝕋` it is waiting for, and its path goes on `scripts/float-refinement-pending.txt`, a
-list that only shrinks — writing the refinement removes the entry.
+over `𝕋` it is waiting for; writing the refinement removes the sentence. The check is by form
+alone, with no list.
 
 ### The error box and `absorbRounding`
 
