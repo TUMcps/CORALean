@@ -8,7 +8,7 @@ public import CORALean.NN.Layers.Theorems.AbsSubLeSpread
 /-!
 # A monotone function's slope-zero relaxation is sound where its enclosure is
 
-`Relaxation.ofMonotone_sound` for an enclosure that brackets `σ` only on some boxes, as `expUp`
+`Relaxation.ofMonotone_isSound` for an enclosure that brackets `σ` only on some boxes, as `expUp`
 does only under `2ⁿ/2`.
 
 ## Inputs
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 
 /-- The same, where the enclosure brackets `σ` only on the boxes `P` holds on: the lower end at
 the box's left end, the upper one at its right. -/
-theorem Relaxation.ofMonotone_soundWhere {E : Enclosure 𝕋} {P : 𝕋 → 𝕋 → Prop}
+theorem Relaxation.ofMonotone_isSoundWhere {E : Enclosure 𝕋} {P : 𝕋 → 𝕋 → Prop}
     (hσ : ∀ l u, P l u → Monotone σ)
     (hlo : ∀ l u, P l u → toReal (E.enclose l).inf ≤ σ (toReal l))
     (hhi : ∀ l u, P l u → σ (toReal u) ≤ toReal (E.enclose u).sup) : -- --- CONCL ---

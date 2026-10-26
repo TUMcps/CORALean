@@ -79,14 +79,14 @@ theorem clampUnit_nonneg (c : 𝕋) : 0 ≤ toReal (clampUnit c) := by
   exact le_max_left _ _
 
 
--- ==================================  `doubleRounding_sound`  ================================== --
+-- =================================  `doubleRounding_isSound`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
 
 /-- Each direction of the self-sum is on its side of `x + x = 2x`. -/
-theorem doubleRounding_sound : (doubleRounding (𝕋 := 𝕋)).IsSound 2 where
+theorem doubleRounding_isSound : (doubleRounding (𝕋 := 𝕋)).IsSound 2 where
   up_ge x := by have h := add_le_addUp x x; show _ ≤ toReal (addUp x x); linarith
   down_le x := by have h := addDown_le_add x x; show toReal (addDown x x) ≤ _; linarith
 
@@ -101,7 +101,7 @@ theorem doubleRounding_sound : (doubleRounding (𝕋 := 𝕋)).IsSound 2 where
 theorem Layer.sigmoidPoly_encloses (k : ℕ) (c : Fin n → 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
     (dx : Fin n → 𝕋 → 𝕋 → 𝕋) (p : Fin n → 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
     (Layer.sigmoidPoly k c dx p).Encloses fun x i => Real.sigmoid (x i) :=
-  Layer.activationPoly_encloses fun i => sigmoidPolyRelaxation_sound k (c i) (dx i) (p i)
+  Layer.activationPoly_encloses fun i => sigmoidPolyRelaxation_isSound k (c i) (dx i) (p i)
 
 
 -- ===============================  `PolyRelaxation.padTo_error`  =============================== --
@@ -127,7 +127,7 @@ theorem PolyRelaxationFamily.deg_le_degOf (F : PolyRelaxationFamily 𝕋)
   Finset.le_sup (f := fun j => F.deg (t j)) (Finset.mem_univ i)
 
 
--- ==========================  `PolyRelaxationFamily.atPattern_sound`  ========================== --
+-- =========================  `PolyRelaxationFamily.atPattern_isSound`  ========================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
@@ -135,19 +135,19 @@ theorem PolyRelaxationFamily.deg_le_degOf (F : PolyRelaxationFamily 𝕋)
 
 /-- Padding is where each neuron's own degree bound is spent, and it is the only thing the common
 degree costs. -/
-theorem PolyRelaxationFamily.atPattern_sound {F : PolyRelaxationFamily 𝕋} (hF : F.IsSound σ)
+theorem PolyRelaxationFamily.atPattern_isSound {F : PolyRelaxationFamily 𝕋} (hF : F.IsSound σ)
     (t : OrderPattern n) (i : Fin n) : (F.atPattern t i).IsSound σ :=
-  PolyRelaxation.padTo_sound (F.deg_le_degOf t i) (hF.rel_sound (t i))
+  PolyRelaxation.padTo_isSound (F.deg_le_degOf t i) (hF.rel_sound (t i))
 
 
--- ================================  `Relaxation.toPoly_sound`  ================================= --
+-- ===============================  `Relaxation.toPoly_isSound`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
 
 /-- `sound` read through `evalPoly_one`: the same inequality. -/
-theorem Relaxation.toPoly_sound {R : Relaxation 𝕋} (hR : R.IsSound σ) : R.toPoly.IsSound σ := by
+theorem Relaxation.toPoly_isSound {R : Relaxation 𝕋} (hR : R.IsSound σ) : R.toPoly.IsSound σ := by
   refine ⟨fun {l u t} hl hu => ?_⟩
   rw [Real.evalPoly_one]
   exact hR.sound hl hu
@@ -165,7 +165,7 @@ theorem Relaxation.toPoly_toRelaxation (R : Relaxation 𝕋) :
     R.toPoly.toRelaxation = R := rfl
 
 
--- ==================================  `rootRelaxation_sound`  ================================== --
+-- =================================  `rootRelaxation_isSound`  ================================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
@@ -173,21 +173,21 @@ theorem Relaxation.toPoly_toRelaxation (R : Relaxation 𝕋) :
 
 /-- `sqrtDown` and `sqrtUp` bracket `Real.sqrt` at every stored value, whatever the fuel `p`,
 and `Real.sqrt` is monotone. -/
-theorem rootRelaxation_sound (p : ℕ) : (rootRelaxation (𝕋 := 𝕋) p).IsSound Real.sqrt :=
-  Relaxation.ofMonotone_sound (fun _ _ h => Real.sqrt_le_sqrt h)
+theorem rootRelaxation_isSound (p : ℕ) : (rootRelaxation (𝕋 := 𝕋) p).IsSound Real.sqrt :=
+  Relaxation.ofMonotone_isSound (fun _ _ h => Real.sqrt_le_sqrt h)
     ⟨fun a => sqrtDown_le p a, fun a => le_sqrtUp p a⟩
 
 
--- ==================================  `tanhRelaxation_sound`  ================================== --
+-- =================================  `tanhRelaxation_isSound`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
 
 /-- The sigmoid relaxation's soundness, transported along the conjugation identity. -/
-theorem tanhRelaxation_sound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).IsSound Real.tanh :=
-  Relaxation.ofAffineConj_sound (sigmoidRelaxation_sound k) doubleRounding_sound
-    doubleRounding_sound (by norm_num) (by norm_num)
+theorem tanhRelaxation_isSound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).IsSound Real.tanh :=
+  Relaxation.ofAffineConj_isSound (sigmoidRelaxation_isSound k) doubleRounding_isSound
+    doubleRounding_isSound (by norm_num) (by norm_num)
     (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)
 
 end
@@ -305,7 +305,7 @@ variable [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
 /-- `Real.invSqrt` coordinatewise, for every point of every set. -/
 theorem Layer.invSqrtRoot_encloses (p : ℕ) :
     (Layer.invSqrtRoot (𝕋 := 𝕋) (S := S) (n := n) p).Encloses fun x i => Real.invSqrt (x i) :=
-  Layer.activation_encloses (invSqrtRootRelaxation_sound p)
+  Layer.activation_encloses (invSqrtRootRelaxation_isSound p)
 
 
 -- ================================  `Layer.leakyRelu_encloses`  ================================ --
@@ -317,7 +317,7 @@ theorem Layer.invSqrtRoot_encloses (p : ℕ) :
 /-- `Real.leakyRelu` at the stored `α`, coordinatewise, at every slope, for `α ≤ 1`. -/
 theorem Layer.leakyRelu_encloses (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) :
     (Layer.leakyRelu (S := S) (n := n) α lam).Encloses fun x i => Real.leakyRelu (toReal α) (x i) :=
-  Layer.activation_encloses (leakyReluRelaxation_sound α hα lam)
+  Layer.activation_encloses (leakyReluRelaxation_isSound α hα lam)
 
 
 -- ==================================  `Layer.root_encloses`  =================================== --
@@ -329,7 +329,7 @@ theorem Layer.leakyRelu_encloses (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋
 /-- `Real.sqrt` coordinatewise, for every point of every set. -/
 theorem Layer.root_encloses (p : ℕ) :
     (Layer.root (𝕋 := 𝕋) (S := S) (n := n) p).Encloses fun x i => Real.sqrt (x i) :=
-  Layer.activation_encloses (rootRelaxation_sound p)
+  Layer.activation_encloses (rootRelaxation_isSound p)
 
 
 -- =================================  `Layer.sigmoid_encloses`  ================================= --
@@ -341,7 +341,7 @@ theorem Layer.root_encloses (p : ℕ) :
 /-- `Real.sigmoid` coordinatewise, at every reduction depth. -/
 theorem Layer.sigmoid_encloses (k : ℕ) :
     (Layer.sigmoid (𝕋 := 𝕋) (S := S) (n := n) k).Encloses fun x i => Real.sigmoid (x i) :=
-  Layer.activation_encloses (sigmoidRelaxation_sound k)
+  Layer.activation_encloses (sigmoidRelaxation_isSound k)
 
 
 -- =================================  `Layer.square_encloses`  ================================== --
@@ -353,7 +353,7 @@ theorem Layer.sigmoid_encloses (k : ℕ) :
 /-- `x ↦ x²` coordinatewise. -/
 theorem Layer.square_encloses :
     (Layer.square (𝕋 := 𝕋) (S := S) (n := n)).Encloses fun x i => x i ^ 2 :=
-  Layer.activation_encloses (σ := fun x : ℝ => x ^ 2) squareRelaxation_sound
+  Layer.activation_encloses (σ := fun x : ℝ => x ^ 2) squareRelaxation_isSound
 
 
 -- ==================================  `Layer.tanh_encloses`  =================================== --
@@ -365,7 +365,7 @@ theorem Layer.square_encloses :
 /-- `Real.tanh` coordinatewise, at every reduction depth. -/
 theorem Layer.tanh_encloses (k : ℕ) :
     (Layer.tanh (𝕋 := 𝕋) (S := S) (n := n) k).Encloses fun x i => Real.tanh (x i) :=
-  Layer.activation_encloses (tanhRelaxation_sound k)
+  Layer.activation_encloses (tanhRelaxation_isSound k)
 
 end
 

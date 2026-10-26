@@ -39,13 +39,13 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `prod` of sound trees is sound. -/
-theorem SyntaxTree.sound_prod (h : IsSound B t) (rest : List (SyntaxTree n))
+theorem SyntaxTree.isSound_prod (h : IsSound B t) (rest : List (SyntaxTree n))
     (hs : ∀ u ∈ rest, IsSound B u) : -- --- CONCL ---
     IsSound B (prod t rest) := by -- --- PROOF ---
   induction rest generalizing t with
   | nil => exact h
   | cons u us ih =>
-    exact ih (sound_times h (hs u (List.mem_cons_self))) (fun v hv => hs v (List.mem_cons_of_mem _
+    exact ih (isSound_times h (hs u (List.mem_cons_self))) (fun v hv => hs v (List.mem_cons_of_mem _
         hv))
 
 end CORALean

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `plus` node over two sound float trees is sound. -/
-theorem SyntaxTree.sound_plusFloat (h₁ : SyntaxTree.IsSoundFloat B t₁)
+theorem SyntaxTree.isSound_plusFloat (h₁ : SyntaxTree.IsSoundFloat B t₁)
     (h₂ : SyntaxTree.IsSoundFloat B t₂) : SyntaxTree.IsSoundFloat B (SyntaxTree.plusFloat t₁ t₂) :=
   ⟨h₁, h₂, fun x hx => SyntaxTree.contains_plusFloat (SyntaxTree.encloses_of_soundFloat h₁ x hx)
     (SyntaxTree.encloses_of_soundFloat h₂ x hx), SyntaxTree.funHanPlusFloat_sound _ _ _⟩

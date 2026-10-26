@@ -65,7 +65,7 @@ variable {N m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: the exact output of the node-level network is in `Alg. 1`'s enclosure. -/
-theorem GNN.alg1Node_sound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+theorem GNN.alg1Node_isSound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))

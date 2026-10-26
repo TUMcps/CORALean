@@ -15,7 +15,7 @@ public import Mathlib.Tactic.FinCases
 error system and makes both sides `0`, so no `α`, `β` work. The instance `A = 0`, `C = E = F = 1`,
 `γ = 2`, `P = 2`, `Y = 0` satisfies Eq. 16 of [1, Thm. 1] (its negative has the form
 `x₁² + (2x₂ - x₄)² + 4x₃² + x₄²`), so the claim is not vacuous there. The proof's strict steps
-need `(e_k, d_k) ≠ 0`; with `≤` the bound holds (`errorBound_of_hinfLmi`).
+need `(e_k, d_k) ≠ 0`; with `≤` the bound holds (`errorBound_of_isHinfLmi`).
 
 ## Inputs
 * none
@@ -48,7 +48,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- Eq. 16 of [1, Thm. 1] at the instance: its negative has the form `x₁² + (2x₂ - x₄)² + 4x₃² + x₄²`
-private theorem LinearSysDT.aux_hinfLmi_instance : -- --- CONCL ---
+private theorem LinearSysDT.aux_isHinfLmi_instance : -- --- CONCL ---
     LinearSysDT.IsHinfLmi (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
       (fun _ _ => 2) (0 : Mat ℝ 1 1) 2 := by -- --- PROOF ---
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
@@ -103,7 +103,7 @@ theorem LinearSysDT.errorBound_of_hinfLmi_counterexample : -- --- CONCL ---
           ∀ k, 1 ≤ k → Real.sqrt (e k ⬝ᵥ e k) < Real.sqrt (β * (α ^ k * (e 0 ⬝ᵥ (P *ᵥ e 0)) +
             γ ^ 2 * (⨆ k, w k ⬝ᵥ w k + v k ⬝ᵥ v k) / (1 - α))) := by -- --- PROOF ---
   intro A C E F P Y γ
-  refine ⟨?_, LinearSysDT.aux_hinfLmi_instance, ?_⟩
+  refine ⟨?_, LinearSysDT.aux_isHinfLmi_instance, ?_⟩
   · -- `P = 2`
     refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
     · ext i j; fin_cases i; fin_cases j; simp [P]

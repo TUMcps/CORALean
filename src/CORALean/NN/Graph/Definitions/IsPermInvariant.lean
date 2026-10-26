@@ -13,7 +13,7 @@ public import Mathlib.Logic.Equiv.Defs
 feature vector by an aggregation `ψ` over the nodes, any `ψ` that is permutation invariant —
 relabelling the nodes, permuting the rows of `H`, leaves `ψ(H)` unchanged. `IsPermInvariant ψ`
 is that condition; the layer is `ψ` itself. Eq. (1)'s sum is one such `ψ`, `GNN.sumPoolLin`
-(`sumPoolLin_permInvariant`), and the one the tree propagates sets through.
+(`sumPoolLin_isPermInvariant`), and the one the tree propagates sets through.
 
 ## Inputs
 * `ψ` – aggregation of node features into a vector

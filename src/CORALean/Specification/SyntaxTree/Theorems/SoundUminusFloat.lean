@@ -42,7 +42,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `uminus` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_uminusFloat (h : SyntaxTree.IsSoundFloat B t) :
+theorem SyntaxTree.isSound_uminusFloat (h : SyntaxTree.IsSoundFloat B t) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.uminusFloat t) :=
   ⟨h, fun x hx => SyntaxTree.contains_uminusFloat (SyntaxTree.encloses_of_soundFloat h x hx),
     SyntaxTree.funHanUminusFloat_sound _ _⟩

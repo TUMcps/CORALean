@@ -53,7 +53,7 @@ theorem ParallelHybridAutomaton.IsRun.toProduct {P : ParallelHybridAutomaton S G
     (hfeed : P.IsFeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
     {ℓ ℓ' : ∀ i, L i} {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y) :
     (P.product lift).IsRun ℓ (stack x) ℓ' (stack y) :=
-  ParallelHybridAutomaton.IsRun.toProductWith (P.mergeFlowsLinearSys_flowLaw hfeed lift) lift run
+  ParallelHybridAutomaton.IsRun.toProductWith (P.mergeFlowsLinearSys_isFlowLaw hfeed lift) lift run
 
 end CORALean
 

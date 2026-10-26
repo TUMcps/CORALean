@@ -9,15 +9,15 @@ public import Mathlib.Data.Real.Basic
 # Builder of a three-valued signal
 
 CORA's `finiteKleeneSignalBuilder` (`specification/finiteKleeneSignalBuilder.m`): a three-valued
-signal of Kleene logic is built from two Boolean `finiteSignal`s, the times where the property
-`possiblyTrueSignal` can be true and where it `possiblyFalseSignal` can be false. CORA's builder is
-a handle object that its methods mutate; here a method returns the new builder. The signals are
-over a time type `T`: ℝ, or the scalar a float layer computes in.
+signal of Kleene logic [1, Sec. 2.2 (values)] is built from two Boolean `finiteSignal`s, the times
+where the property `possiblyTrueSignal` can be true and where it `possiblyFalseSignal` can be false.
+CORA's builder is a handle object that its methods mutate; here a method returns the new builder.
+The signals are over a time type `T`: ℝ, or the scalar a float layer computes in.
 
 ## References
 
-None: CORA's `finiteKleeneSignalBuilder`, a software class: no publication introduces it, and the
-CORA manual page for it could not be read.
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". Computer Aided Verification, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

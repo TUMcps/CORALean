@@ -105,7 +105,7 @@ private theorem LinearSysDT.aux_hMinusPhi_form (A : Mat ℝ n n) (C : Mat ℝ ny
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.hMinusStepPositive_iff_phi (A : Mat ℝ n n) (C : Mat ℝ ny n)
+theorem LinearSysDT.isHMinusStepPositive_iff_phi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (E : Mat ℝ ny nf) (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ)
     (hQ : Qᵀ = Q) : -- --- CONCL ---
     LinearSysDT.IsHMinusStepPositive A C E L Q M β ↔

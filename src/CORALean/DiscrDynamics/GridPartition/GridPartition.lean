@@ -9,18 +9,18 @@ public import Mathlib.Data.Real.Basic
 /-!
 # A uniform grid on a box: the representation
 
-CORA's `partition` (`discrDynamics/@partition`): a box, the state space, cut into `nrOfSegments j`
-segments along dimension `j`, and so into `∏ j, nrOfSegments j` cells. The cells are numbered
-`1, …, N` with the first dimension running fastest, as MATLAB's `ind2sub` does; the number `0`
-stands for everything outside the box. `dividers j k` is CORA's `dividers{j}(k + 1)`; `ofInterval`
-cuts evenly, `ofDividers` anywhere, and `IsWellFormed` asks the dividers not to decrease. Written
-once over ℝ, with no float layer: the cells are boxes whose float enclosure would be a separate
-object.
+CORA's `partition` (`discrDynamics/@partition`): a box, the state space, cut axis-aligned
+[1, Sec. 5.1] into `nrOfSegments j` segments along dimension `j`, and so into `∏ j, nrOfSegments j`
+cells. The cells are numbered `1, …, N` with the first dimension running fastest, as MATLAB's
+`ind2sub` does; the number `0` stands for everything outside the box. `dividers j k` is CORA's
+`dividers{j}(k + 1)`; `ofInterval` cuts evenly, `ofDividers` anywhere, and `IsWellFormed` asks the
+dividers not to decrease. Written once over ℝ, with no float layer: the cells are boxes whose float
+enclosure would be a separate object.
 
 ## References
 
-None: CORA's `partition`, a software class: no publication introduces it, and the CORA manual page
-for it could not be read.
+* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

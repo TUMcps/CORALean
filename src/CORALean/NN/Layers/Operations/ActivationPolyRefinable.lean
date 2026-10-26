@@ -58,7 +58,7 @@ def Layer.activationPolyRefinable {F : PolyRelaxationFamily 𝕋} (hF : F.IsSoun
     RefinableLayer 𝒫𝒵[𝕋] n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose
-  enclose_outer t := (Layer.activationPoly_encloses (F.atPattern_sound hF t)).enclose_outer
+  enclose_outer t := (Layer.activationPoly_encloses (F.atPattern_isSound hF t)).enclose_outer
 
 end CORALean
 

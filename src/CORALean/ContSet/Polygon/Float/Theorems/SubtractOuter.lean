@@ -55,14 +55,14 @@ section
 open Matrix
 
 /-- `innerHRep` returns the plain inequalities its edges give, with no error box. -/
-private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
+private theorem Polygon.innerHRep_isErrFree {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
     ∀ H ∈ Polygon.innerHRep p,
       H.IsErrFree := by -- --- PROOF ---
   intro H (h : Polygon.innerHRep p = some H)
   simp only [Polygon.innerHRep] at h
   split_ifs at h
   cases h
-  exact HPolytope.errFree_of_origin rfl rfl rfl
+  exact HPolytope.isErrFree_of_origin rfl rfl rfl
 
 
 /-- Subtracting the piece `q` from `r` leaves pieces that cover every point of `r` outside `q`. -/
@@ -83,7 +83,7 @@ private theorem Polygon.aux_subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :
   · rw [if_pos hme]
     -- outside `q`, some row of the inner description fails
     have hxH : x ∉ H.construct := fun h => hq (Polygon.innerHRep_inner _ hH h)
-    rw [HPolytope.mem_construct_iff (Polygon.innerHRep_errFree _ hH)] at hxH
+    rw [HPolytope.mem_construct_iff (Polygon.innerHRep_isErrFree _ hH)] at hxH
     have hex : ∃ i, toReal (H.b i) < (toRealMat H.A *ᵥ x) i := by
       by_contra hno
       push Not at hno

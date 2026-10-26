@@ -52,7 +52,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- ℝ-only, the linear layer being exact at the polynomial zonotope only there. -/
-theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
+theorem Layer.linear_refinable_isConvergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     ((CORALean.Layer.linear (S := 𝒫𝒵) W b).refinable
       (CORALean.Layer.linear_encloses W b)).IsConvergent := by -- --- PROOF ---
   intro s ε hε

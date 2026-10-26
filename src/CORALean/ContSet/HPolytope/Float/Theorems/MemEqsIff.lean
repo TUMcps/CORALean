@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 
 theorem HPolytope.mem_eqs_iff {Ae : Mat 𝕋 q n} {be : Vec 𝕋 q} {x : Vec ℝ n} :
     x ∈ (HPolytope.eqs Ae be).construct ↔ ∀ i, (toRealMat Ae *ᵥ x) i = toReal (be i) :=
-  ⟨fun h => ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mp h).2,
-   fun h => (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mpr
+  ⟨fun h => ((HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp h).2,
+   fun h => (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
      ⟨fun i => i.elim0, h⟩⟩
 
 end CORALean.Float

@@ -20,7 +20,7 @@ public import Mathlib.Tactic.Positivity
 bound `D`: a linear combination of powers of `T - c_f`, plus `D·reachᴺ⁺¹/(N+1)!`. With the
 coefficients `g⁽ᵏ⁾(c_f)/k!` at most `A` and `|D| ≤ E`, a model scaled by `C` gives one scaled by
 a constant in `A`, `E`, `C` and `N` alone — not in `h`. `T - c_f` weighs at most `2C`, its powers
-`(8C)ᵏ` (`pow_scaled`), and `reach ≤ 2C·h` (`reach_le`) makes the last term `O(hᴺ⁺¹)`: the
+`(8C)ᵏ` (`pow_isScaled`), and `reach ≤ 2C·h` (`reach_le`) makes the last term `O(hᴺ⁺¹)`: the
 source's "additional interval, the width of which scales at least with the `(n+1)`-st power".
 
 ## Inputs
@@ -64,7 +64,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `T - c` at a center no larger than `C` weighs at most twice `T`. -/
-private theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
+private theorem Taylm.aux_minus_const_isScaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
     (hT : T.IsScaled h C) : -- --- CONCL ---
     (T.minus (Taylm.const n c T.maxOrder)).IsScaled h (2 * C) := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT
@@ -84,7 +84,7 @@ private theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h0 : 0 < h)
+theorem Taylm.taylor_isScaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h0 : 0 < h)
     (h1 : h ≤ 1) (hT : T.IsScaled h C)
     (hA : ∀ k ≤ T.maxOrder, |iteratedDeriv k g T.constCoef / (Nat.factorial k : ℝ)| ≤ A)
     (hD : |D| ≤ E) : -- --- CONCL ---
@@ -97,7 +97,7 @@ theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h
   have hE : 0 ≤ E := le_trans (abs_nonneg _) hD
   have hA0 : 0 ≤ A := le_trans (abs_nonneg _) (hA 0 (Nat.zero_le _))
   -- `T - c` and its powers, each times its coefficient
-  have hm := Taylm.aux_minus_const_scaled c (le_trans (Taylm.abs_constCoef_le T h0) hT.1) hT
+  have hm := Taylm.aux_minus_const_isScaled c (le_trans (Taylm.abs_constCoef_le T h0) hT.1) hT
   have hmo : (T.minus (Taylm.const n c N)).maxOrder = N := by
     simp [Taylm.minus, Taylm.plus, Taylm.uminus, Taylm.const, N]
   have hk : ∀ k : Fin (N + 1),
@@ -105,8 +105,8 @@ theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h
         (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))).IsScaled h (A * (8 * C) ^ (k : ℕ)) :=
             by
     intro k
-    have hs := Taylm.smul_scaled (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))
-      (Taylm.pow_scaled h0 h1 hm k)
+    have hs := Taylm.smul_isScaled (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))
+      (Taylm.pow_isScaled h0 h1 hm k)
     obtain ⟨w, i, s⟩ := hs
     have hak := hA k (Nat.lt_succ_iff.1 k.isLt)
     have h8 : (4 * (2 * C)) ^ (k : ℕ) = (8 * C) ^ (k : ℕ) := by ring_nf
@@ -120,7 +120,7 @@ theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h
         (iteratedDeriv k g c / (Nat.factorial (k : ℕ) : ℝ))).maxOrder = N := by
     intro k
     simp only [Taylm.smul, Taylm.pow_maxOrder, hmo]
-  obtain ⟨w, i, s, o⟩ := Taylm.sum_scaled hkN hk
+  obtain ⟨w, i, s, o⟩ := Taylm.sum_isScaled hkN hk
   -- the Lagrange remainder carries `reachᴺ⁺¹ ≤ (2Ch)ᴺ⁺¹`
   have hr := Taylm.reach_le h0 h1 hT
   have hr0 : 0 ≤ T.reach c := le_trans (abs_nonneg _) (le_max_left _ _)

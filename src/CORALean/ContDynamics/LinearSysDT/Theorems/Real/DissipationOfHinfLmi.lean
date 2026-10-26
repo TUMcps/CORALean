@@ -134,7 +134,7 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.dissipation_of_hinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
+theorem LinearSysDT.dissipation_of_isHinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
     (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef)
     (h : LinearSysDT.IsHinfLmi A C E F P Y γ) : -- --- CONCL ---
     ∃ ε > 0, ∀ (a : Vec ℝ n) (b : Vec ℝ nw) (c : Vec ℝ nv),

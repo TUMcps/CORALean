@@ -105,7 +105,7 @@ theorem BHI.hinv : BHI.HA.IsInvariantOn BHI.R where
 count lands where `IsInvariantOn`, read at the count reached, says it must. -/
 example {m k : ℕ} {ℓ ℓ' : Bool} {x y : Vec ℝ 1} (run : BHI.HA.IsRunOn m ℓ x ℓ' y)
     (hx : x ∈ construct (BHI.R k ℓ)) : y ∈ construct (BHI.R (k + m) ℓ') :=
-  run.mem_of_invariantOn BHI.hinv hx
+  run.mem_of_isInvariantOn BHI.hinv hx
 
 end CORALean.Real
 

@@ -143,7 +143,7 @@ private theorem aux_evalPoly_conjCoeffs_le {A B : ScaleRounding 𝕋} (hA : A.Is
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `g t = ra f (rb t) + c` inherits `f`'s polynomial soundness. -/
-theorem PolyRelaxation.ofAffineConj_sound {P : PolyRelaxation 𝕋 m} {A B : ScaleRounding 𝕋}
+theorem PolyRelaxation.ofAffineConj_isSound {P : PolyRelaxation 𝕋 m} {A B : ScaleRounding 𝕋}
     {c : 𝕋} {f g : ℝ → ℝ} (hP : P.IsSound f) (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 < ra)
     (hb : 0 < rb) (hg : ∀ t, g t = ra * f (rb * t) + toReal c) : -- --- CONCL ---
     (PolyRelaxation.ofAffineConj P A B c).IsSound g := by -- --- PROOF ---

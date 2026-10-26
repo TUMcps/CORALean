@@ -14,17 +14,18 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 # CORA's `syntaxTree`: an expression for forward-backward contraction
 
 `specification/syntaxTree.m`: the tree `contractForwardBackward` (hence `levelSet.tightenDomain`)
-builds from a function of the variables, to narrow a box to the points where the function can take
-a given value. It is unrelated to `stl`: a `syntaxTree` carries at every node the `interval`
-enclosing its value over the box (`value`) and the `funHan` narrowing the interval of an operand.
-A leaf is a variable (`id`), a node an `operator` (its function `fn`), `value`, `funHan` and
-operands `nodes`; `eval` is the function a tree denotes. Intervals are one-dimensional real-layer
-`Interval`s: no infinite bound.
+builds from a function of the variables, to narrow a box to the points where the function can take a
+given value. It is unrelated to `stl`: a `syntaxTree` carries at every node the `interval` enclosing
+its value over the box (`value`) and the `funHan` narrowing the interval of an operand. A leaf is a
+variable (`id`), a node an `operator` (its function `fn`), `value`, `funHan` and operands `nodes`;
+`eval` is the function a tree denotes. Intervals are one-dimensional real-layer `Interval`s: no
+infinite bound.
 
 ## References
 
-None: CORA's `syntaxTree`, a software class: no publication introduces it, and the CORA manual page
-for it could not be read.
+None: CORA's `syntaxTree.m` cites no source. The CORA manual (v2026, Table 29) cites Jaulin et al.,
+*Applied Interval Analysis*, Ch. 4.2.4, for the forward-backward contractor, a book that was not
+read.
 -/
 
 -- Authors:       Claude Sonnet 5.5

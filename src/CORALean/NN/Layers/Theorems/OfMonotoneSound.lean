@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Relaxation.ofMonotone_sound {E : Enclosure 𝕋} (hσ : Monotone σ)
+theorem Relaxation.ofMonotone_isSound {E : Enclosure 𝕋} (hσ : Monotone σ)
     (hE : E.IsSound σ) : -- --- CONCL ---
     (Relaxation.ofMonotone E).IsSound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩

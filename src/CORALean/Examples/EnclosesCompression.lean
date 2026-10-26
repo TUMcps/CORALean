@@ -99,7 +99,7 @@ def Example.compressPart : Split (Fin 3) into (Fin 1) ⊕ (Fin 2) :=
 identity kernel, sandwiching one ReLU. -/
 noncomputable def Example.compressNetwork : NeuralNetwork 𝒵 3 3 :=
   .layer (LinearLayer.mk Example.compressW 0)
-    (.layer (ActivationLayer.of (n := 3) (reluRelaxation_sound (𝕋 := ℝ) reluSlope))
+    (.layer (ActivationLayer.of (n := 3) (reluRelaxation_isSound (𝕋 := ℝ) reluSlope))
       (.ofLayer (LinearLayer.mk Example.compressW 0)))
 
 /-- The kernel computes the identity on both sides, so the whole network
@@ -115,7 +115,7 @@ theorem Example.compressNetwork_encloses : -- --- CONCL ---
       show x = Example.compressW *ᵥ x + 0
       rw [add_zero, Example.compressW_apply]
   have hrelu := ActivationLayer.of_encloses (S := 𝒵) (n := 3)
-    (reluRelaxation_sound (𝕋 := ℝ) reluSlope)
+    (reluRelaxation_isSound (𝕋 := ℝ) reluSlope)
   -- composing `id ∘ relu ∘ id` and simplifying the two identities away
   exact .layer hconv (.layer hrelu (.layer hconv (.output fun _ => rfl) fun _ => rfl)
     fun _ => rfl) fun _ => rfl
@@ -140,7 +140,7 @@ theorem Example.exists_compressed_network_contains (X : 𝒵 3)
   have hred : NeuralNetwork.ReducesAt X Example.compressNetwork
       (.layer (LinearLayer.mk (Example.compressW.submatrix Example.compressPart.left id)
           ((0 : Vec ℝ 3) ∘ Example.compressPart.left))
-        (.layer (ActivationLayer.of (reluRelaxation_sound (𝕋 := ℝ) reluSlope))
+        (.layer (ActivationLayer.of (reluRelaxation_isSound (𝕋 := ℝ) reluSlope))
           (.ofLayer (LinearWithErrorLayer.mk
             (Example.compressW.submatrix id Example.compressPart.left) (0 : Vec ℝ 3)
             (Float.Interval.mtimes (Example.compressW.submatrix id Example.compressPart.right)
@@ -149,7 +149,7 @@ theorem Example.exists_compressed_network_contains (X : 𝒵 3)
       (fun x i => Real.relu (x i)) := by
     unfold Example.compressNetwork NeuralNetwork.ofLayer
     exact NeuralNetwork.ReducesAt.merge (S := 𝒵) X Example.compressPart Example.compressW 0
-      (reluRelaxation reluSlope) (reluRelaxation_sound reluSlope)
+      (reluRelaxation reluSlope) (reluRelaxation_isSound reluSlope)
       Example.compressW 0 (Float.IntervalOuter.interval (S := 𝒵) X) hY
       (h := id) (hf := fun x => by
         -- the identity matrix twice over, wrapping the elementwise `relu`

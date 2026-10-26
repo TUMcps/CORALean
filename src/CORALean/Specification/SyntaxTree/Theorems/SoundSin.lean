@@ -41,8 +41,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `sin` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_sin (h : IsSound B t) : IsSound B (t.sin) :=
-  ⟨h, encloses_sin (encloses_of_sound h), sin_sound t.value⟩
+theorem SyntaxTree.isSound_sin (h : IsSound B t) : IsSound B (t.sin) :=
+  ⟨h, encloses_sin (encloses_of_isSound h), sin_sound t.value⟩
 
 end CORALean
 

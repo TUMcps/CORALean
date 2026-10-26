@@ -56,7 +56,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `backpropagation` of a sound tree returns a box holding every solution. -/
-theorem SyntaxTree.backpropagation_sound {B : Real.Interval (Vec ℝ n)} (t : SyntaxTree n)
+theorem SyntaxTree.backpropagation_isSound {B : Real.Interval (Vec ℝ n)} (t : SyntaxTree n)
     (h : IsSound B t) {int : Real.Interval (Vec ℝ n)} {x : Fin n → ℝ} (v : Dom)
     (hv : Dom.IsWithin v t.value) (hB : IsInBox B x) (hx : IsInBox int x)
     (hs : Dom.contains v (t.eval x)) : -- --- CONCL ---
@@ -80,27 +80,27 @@ theorem SyntaxTree.backpropagation_sound {B : Real.Interval (Vec ℝ n)} (t : Sy
   -- the next step
   | unary op w funHan t' ih =>
     obtain ⟨hsub, _, hu⟩ := h
-    obtain ⟨val, hval, hc, hw⟩ := hu v hv (t'.eval x) (encloses_of_sound hsub x hB) hs
+    obtain ⟨val, hval, hc, hw⟩ := hu v hv (t'.eval x) (encloses_of_isSound hsub x hB) hs
     obtain ⟨r, hr, hxr⟩ := ih hsub val hw hc
     exact ⟨r, by simp only [backpropagation, hval]; exact hr, hxr⟩
   | binary op w funHan t₁ t₂ ih₁ ih₂ =>
     obtain ⟨h₁, h₂, _, hb⟩ := h
-    obtain ⟨c₁, c₂, w₁, w₂⟩ := hb v hv (t₁.eval x) (t₂.eval x) (encloses_of_sound h₁ x hB)
-      (encloses_of_sound h₂ x hB) hs
+    obtain ⟨c₁, c₂, w₁, w₂⟩ := hb v hv (t₁.eval x) (t₂.eval x) (encloses_of_isSound h₁ x hB)
+      (encloses_of_isSound h₂ x hB) hs
     obtain ⟨r₁, hr₁, hx₁⟩ := ih₁ h₁ _ w₁ c₁
     obtain ⟨r₂, hr₂, hx₂⟩ := ih₂ h₂ _ w₂ c₂
-    exact ⟨_, by simp only [backpropagation, hr₁, hr₂], inBox_intersection hx₁ hx₂⟩
+    exact ⟨_, by simp only [backpropagation, hr₁, hr₂], isInBox_intersection hx₁ hx₂⟩
   -- the next step
   | numLeft op w funHan c t' ih =>
     obtain ⟨hsub, _, hb⟩ := h
-    obtain ⟨_, c₂, _, w₂⟩ := hb v hv c (t'.eval x) SyntaxTree.contains_interval (encloses_of_sound
+    obtain ⟨_, c₂, _, w₂⟩ := hb v hv c (t'.eval x) SyntaxTree.contains_interval (encloses_of_isSound
         hsub x hB) hs
     obtain ⟨r, hr, hxr⟩ := ih hsub _ w₂ c₂
     exact ⟨r, by simp only [backpropagation]; exact hr, hxr⟩
   | numRight op w funHan t' c ih =>
     -- take apart the hypothesis
     obtain ⟨hsub, _, hb⟩ := h
-    obtain ⟨c₁, _, w₁, _⟩ := hb v hv (t'.eval x) c (encloses_of_sound hsub x hB)
+    obtain ⟨c₁, _, w₁, _⟩ := hb v hv (t'.eval x) c (encloses_of_isSound hsub x hB)
         SyntaxTree.contains_interval hs
     obtain ⟨r, hr, hxr⟩ := ih hsub _ w₁ c₁
     exact ⟨r, by simp only [backpropagation]; exact hr, hxr⟩

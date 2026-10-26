@@ -15,7 +15,7 @@ its column and no factor is dropped, because `sortPlus` needs the join and nothi
 merges neighbours in one pass over a *sorted* matrix (`O(p h)`); the specification here joins
 every equal column at once and states no hypothesis. [1] calls the result regular; in general
 it is not: equal columns are gone (`merge_col_injective`) but an all-zero one is not. Sorted it
-stays sorted (`merge_sorted`).
+stays sorted (`merge_isSorted`).
 
 ## Inputs
 * `pZ` – polynomial zonotope

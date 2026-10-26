@@ -45,7 +45,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `sqrt` node over a sound float tree whose operand is nonnegative is sound. -/
-theorem SyntaxTree.sound_sqrtFloat (p : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_sqrtFloat (p : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hd : 0 ≤ toReal (t.value.inf 0)) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.sqrtFloat p t) :=
   ⟨h, fun x hx => SyntaxTree.contains_of_outerFloat

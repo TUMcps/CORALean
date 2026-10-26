@@ -14,7 +14,7 @@ knows what a hybrid automaton is, and this does not need them to — all three
 only produce a superset of something not computable.
 
 Checked per location, since that is what the invariant is indexed by. A
-requirement on the whole automaton is `holdsAll_of_invariant`, over a list of
+requirement on the whole automaton is `holdsAll_of_isInvariant`, over a list of
 specifications rather than one.
 
 ## Inputs
@@ -57,11 +57,11 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 /-- The check passed on the location the run ends in is passed by the state it
 ends at. -/
-theorem HybridAutomaton.holds_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
+theorem HybridAutomaton.holds_of_isInvariant {HA : HybridAutomaton S G L 𝕋 n}
     {R : L → S n} (hinv : HA.IsInvariant R) (spec : Specification ContSet)
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
-  spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_invariant hinv hx)) h
+  spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_isInvariant hinv hx)) h
 
 end CORALean
 

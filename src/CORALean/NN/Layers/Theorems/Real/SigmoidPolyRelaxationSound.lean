@@ -39,9 +39,9 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sigmoidPolyRelaxation_sound {n : ℕ} (c : ℝ → ℝ → Fin (n + 1) → ℝ) (N : ℝ → ℝ → ℕ)
+theorem sigmoidPolyRelaxation_isSound {n : ℕ} (c : ℝ → ℝ → Fin (n + 1) → ℝ) (N : ℝ → ℝ → ℕ)
     (hN : ∀ l u, 0 < N l u) : (sigmoidPolyRelaxation c N).IsSound sigmoid :=
-  PolyRelaxation.ofSampling_sound hasDerivAt_sigmoid c _ N
+  PolyRelaxation.ofSampling_isSound hasDerivAt_sigmoid c _ N
     (fun _ _ _ hx hx' => abs_sub_evalPolyDeriv_le (sigmoidDerivLo_le hx hx')
       (le_sigmoidDerivHi hx hx') hx hx') hN
 

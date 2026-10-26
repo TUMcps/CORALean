@@ -215,8 +215,8 @@ it to a polynomial per coordinate and `evalPolyReal_ofFn` matches Horner to the 
 `relaxExp_outer` holds at every partition naming two generators, `relaxExpEven_outer` adds evenness,
 `relaxExpMulti_outer` asks nothing and `relaxExpGroup_outer` nothing of a whole group, priced by
 `relaxWidthGroup_le_chain`. `sub_monomial_mem_eDrift` brackets the drift out of `sub_pow_nonpos` and
-`sub_monomial_nonpos_of_pow`, letting `relaxExpMid_outer` shift at any parity. `expEdge_acyclic` has
-no cycles, `relaxExpEven_outer_of_edge` reads an edge, `relaxExpGreedy_outer` at any selection.
+`sub_monomial_nonpos_of_pow`, letting `relaxExpMid_outer` shift at any parity. `isExpEdge_acyclic`
+has no cycles, `relaxExpEven_outer_of_edge` reads an edge, `relaxExpGreedy_outer` at any selection.
 
 `quadMap_exact` distinguishes the representation: no convex one here can state it. `compact_exact`
 is what an order bound rests on: the generator count may fall without the set moving, which

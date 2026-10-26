@@ -47,7 +47,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flowLaw
+theorem ParallelHybridAutomaton.mergeFlowsLinearSys_isFlowLaw
     {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.IsFeedthroughFree)
     (lift : ParallelHybridAutomaton.Lifting S G n m) : -- --- CONCL ---
     P.IsFlowLaw (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ)) (P.mergeInputSets lift)

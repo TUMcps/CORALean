@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 # The bisection of [1, Alg. 4] finds the lowest point of the section
 
 For `Z ∩ L_γ` nonempty, `bisectLow` is the least `y` with `(γ, y) ∈ Z`. The loop keeps
-`IsBisectInv` (`bisectInv_step`) from the start, with `B = ∅` and `G` all the generators along the
+`IsBisectInv` (`isBisectInv_step`) from the start, with `B = ∅` and `G` all the generators along the
 side searched, whose reach contains the line since the zonogon meets it; `|G| ≤ r` and it shrinks
 each pass, so after `r` passes one generator `a` is left. Then `[P; P + 2 g_a]` is an edge with the
 zonogon on one side (`edge_point_least`), and its point on the line is the lowest of the section.
@@ -78,7 +78,7 @@ private theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
   | succ n ih =>
     rw [Function.iterate_succ_apply']
     obtain ⟨hi, hc⟩ := ih
-    obtain ⟨h1, h2, h3⟩ := Zonotope.bisectInv_step Z hH γ right hσ _ hi
+    obtain ⟨h1, h2, h3⟩ := Zonotope.isBisectInv_step Z hH γ right hσ _ hi
     refine ⟨h1, ?_⟩
     by_cases h : 1 < ((Z.bisectStep γ right)^[n] st).2.1.card
     · have := h2 h

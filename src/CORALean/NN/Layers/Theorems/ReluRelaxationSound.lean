@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem reluRelaxation_sound (lam : 𝕋 → 𝕋 → 𝕋) : -- --- CONCL ---
+theorem reluRelaxation_isSound (lam : 𝕋 → 𝕋 → 𝕋) : -- --- CONCL ---
     (reluRelaxation lam).IsSound Real.relu := by -- --- PROOF ---
   refine ⟨fun {l u _t} hl hu => ?_⟩
   obtain ⟨hlow, hhigh⟩ := Real.relu_bounds_of_slope (clampUnit_nonneg (lam l u))

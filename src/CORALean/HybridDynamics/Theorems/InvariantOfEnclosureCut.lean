@@ -57,7 +57,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Mtimes (Mat 𝕋) S] [OfInterval S
 /-- `IsInvariant.flow` is `FlowOuterSplit` at `hflow`, an order `m` per dwell
 time and the enclosure cut to `ℓ.inv`; `IsInvariant.jump` is `JumpOuter` at
 `hjump`, one enclosure per transition met. -/
-theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec ℝ n)]
+theorem HybridAutomaton.isInvariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec ℝ n)]
     [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
     (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n)

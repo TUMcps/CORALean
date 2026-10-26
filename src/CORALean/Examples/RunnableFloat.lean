@@ -774,7 +774,7 @@ compiling and running checks. -/
 def mixedNet : NeuralNetwork 𝒵[D] 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨2, rfl⟩ : SigmoidLayer D 2 2)
-      (.layer (ActivationLayer.of (sigmoidRelaxation_sound (𝕋 := D) 2))
+      (.layer (ActivationLayer.of (sigmoidRelaxation_isSound (𝕋 := D) 2))
         (.layer (Enclose.pack (S := 𝒵[D]) net)
           (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
 

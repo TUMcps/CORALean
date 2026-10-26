@@ -50,7 +50,7 @@ variable {n p q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 16]: conformance is `⋃ₘ {y_a⁽ᵐ⁾(k)} ⊆ R_a(k)` at every step. -/
-theorem Conform.Plant.conformant_iff_devSet {M : Type} (sys : Conform.Plant n p q)
+theorem Conform.Plant.isConformant_iff_devSet {M : Type} (sys : Conform.Plant n p q)
     (X0 W : Set (Vec ℝ n)) (V : Set (Vec ℝ q)) (T : M → Conform.TestCase n p q)
     (K : ℕ) : -- --- CONCL ---
     sys.IsConformant X0 W V T K ↔

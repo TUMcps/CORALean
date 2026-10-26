@@ -10,14 +10,14 @@ public import CORALean.Specification.PointSegmentSignal.PointSegmentSignal
 CORA's `tentativeKleeneSignal` (`specification/signals/tentativeKleeneSignal.m`): what an
 observation of a signal leaves possible, stored as two Boolean `pointSegmentSignal`s, `canBeTrue`
 and `canBeFalse`. A time where only the first holds is `True`, only the second `False`, both
-`Unknown`, neither `Inconclusive` (nothing observed there yet). The constructor checks nothing;
-`TentativeKleeneSignal.at` is the value they
+`Unknown`, neither `Inconclusive` (nothing observed there yet), the values of
+[1, Sec. 2.2 (values)]. The constructor checks nothing; `TentativeKleeneSignal.at` is the value they
 denote.
 
 ## References
 
-None: CORA's `tentativeKleeneSignal`, a software class: no publication introduces it, and the CORA
-manual page for it could not be read.
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". Computer Aided Verification, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

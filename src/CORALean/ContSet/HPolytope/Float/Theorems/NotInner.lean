@@ -53,8 +53,8 @@ theorem HPolytope.not_inner {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : 𝕋}
     -- a point in both would satisfy `-a x ≤ -bU - ε` and `a x ≤ bU`
     intro x hx hxP
     have hxQ := HPolytope.absorbRounding_outer P hxP
-    have hE : (P.absorbRounding).IsErrFree := HPolytope.errFree_of_origin rfl rfl rfl
-    have h1 := ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mp hx).1 0
+    have hE : (P.absorbRounding).IsErrFree := HPolytope.isErrFree_of_origin rfl rfl rfl
+    have h1 := ((HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hx).1 0
     have h2 := ((HPolytope.mem_construct_iff hE).mp hxQ).1 (Fin.cast hm.1.symm 0)
     have hd := subDown_le_sub (neg (P.absorbRounding.b (Fin.cast hm.1.symm 0))) ε
     simp only [toReal_neg] at hd

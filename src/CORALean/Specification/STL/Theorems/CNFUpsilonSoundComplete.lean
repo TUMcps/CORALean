@@ -69,7 +69,7 @@ private theorem STL.aux_forall_window {c : ℝ≥0} (hc : 0 < c) {T : Finset ℝ
         r := by -- --- PROOF ---
   refine ReachSequence.forall_finals_or_globals_iff hne hc (fun x hx₁ hx₂ => ?_) b.K b.L
   -- the midpoint of the window and `x` lie in the same open block
-  refine ReachSequence.eq_of_cDivisible hT hdiv b.j ⟨hx₁, hx₂⟩ ⟨?_, ?_⟩
+  refine ReachSequence.eq_of_isCDivisible hT hdiv b.j ⟨hx₁, hx₂⟩ ⟨?_, ?_⟩
   · exact lt_add_of_pos_left _ (half_pos hc)
   · rw [add_comm (c / 2) _]; exact add_lt_add_of_le_of_lt le_rfl (half_lt_self hc)
 

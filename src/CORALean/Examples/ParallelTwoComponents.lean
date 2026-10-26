@@ -14,7 +14,7 @@ Two one-dimensional components, each a `linearSys` with output `y = x`. Componen
 Invariants are boxes `x₀ ∈ [0, 2]` and `x₁ ∈ [-1, 1]`. The lifting is `boxLifting`: the product's
 invariant is the box as halfspaces and the lifted guard `x₀ ≥ 1` is free in `x₁`. The product's
 flow is `mergeFlowsLinearSys`, `A + B C`, the `1` being component `0`'s `B` times component `1`'s
-`C`. The box is a product `IsInvariant`, so `reachSetExact_subset_invariant` puts every reachable
+`C`. The box is a product `IsInvariant`, so `reachSetExact_subset_isInvariant` puts every reachable
 tuple in it; the invariant proof is by hand.
 
 ## Inputs
@@ -111,7 +111,7 @@ theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1}
   exact ⟨h1, h2⟩
 
 /-- The box is an inductive invariant of the product. -/
-theorem PTC.invariant : PTC.product.IsInvariant PTC.R where
+theorem PTC.isInvariant : PTC.product.IsInvariant PTC.R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     -- in the location, so in each component's invariant, so in each component's box
     have hx := h.invariant t ht
@@ -153,22 +153,22 @@ theorem PTC.invariant : PTC.product.IsInvariant PTC.R where
     · simpa [Function.update_of_ne] using hz 1
 
 /-- No output that feeds an input has a feedthrough: both components' `D` are zero. -/
-theorem PTC.feedthroughFree : PTC.parallel.IsFeedthroughFree := by
+theorem PTC.isFeedthroughFree : PTC.parallel.IsFeedthroughFree := by
   intro ℓ i j c s _ j' c' s' _
   fin_cases c <;> rfl
 
 /-- A parallel run is a run of the product, stacked. -/
 theorem PTC.isRun_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 2, Vec ℝ 1}
     (run : PTC.parallel.IsRun ℓ x ℓ' y) : PTC.product.IsRun ℓ (stack x) ℓ' (stack y) :=
-  ParallelHybridAutomaton.IsRun.toProduct (P := PTC.parallel) PTC.feedthroughFree
+  ParallelHybridAutomaton.IsRun.toProduct (P := PTC.parallel) PTC.isFeedthroughFree
     ParallelHybridAutomaton.boxLifting run
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/
 theorem PTC.reachSetExact_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) : -- --- CONCL ---
     stack '' PTC.parallel.reachSetExact PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
-  refine ParallelHybridAutomaton.reachSetExact_subset_invariant
-    (P := PTC.parallel) PTC.feedthroughFree (lift := ParallelHybridAutomaton.boxLifting)
-    PTC.invariant (fun x hx => ?_) ℓ
+  refine ParallelHybridAutomaton.reachSetExact_subset_isInvariant
+    (P := PTC.parallel) PTC.isFeedthroughFree (lift := ParallelHybridAutomaton.boxLifting)
+    PTC.isInvariant (fun x hx => ?_) ℓ
   -- a stack of points of the boxes is in the stacked box
   change stack x ∈ (Interval.stackProd PTC.box).construct
   rw [Interval.stackProd_exact]

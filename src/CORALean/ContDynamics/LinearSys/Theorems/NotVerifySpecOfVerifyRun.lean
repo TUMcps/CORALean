@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySound
 # `Alg. 3`'s loop: `false` is sound
 
 Lines 2-27 of [1, Alg. 3]. `verifyRun` returning `some false` means its last iteration passed the
-falsified test and not the verified one, which `aux_not_verifySpec_of_verifyStep` turns into a
+falsified test and not the verified one, which `aux_not_isVerifySpec_of_verifyStep` turns into a
 violation.
 
 ## Inputs
@@ -56,7 +56,7 @@ variable {n r w : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem LinearSys.aux_not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
+private theorem LinearSys.aux_not_isVerifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
     {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ}
@@ -80,7 +80,7 @@ private theorem LinearSys.aux_not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.not_verifySpec_of_verifyRun
+theorem LinearSys.not_isVerifySpec_of_verifyRun
     {Reach : Set (Vec ℝ n)} {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ} {le : ℝ → ℝ → Bool}
@@ -103,7 +103,7 @@ theorem LinearSys.not_verifySpec_of_verifyRun
       rw [hv] at hcond
       simp only [Bool.false_or, Bool.or_eq_true, Bool.not_eq_true', ← Bool.not_eq_true,
         h.le_iff, not_le] at hcond
-      exact LinearSys.aux_not_verifySpec_of_verifyStep h G F εmax hcond
+      exact LinearSys.aux_not_isVerifySpec_of_verifyStep h G F εmax hcond
     · -- no verdict yet: the answer comes from the next iteration
       exact ih _ hrun
 

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `power` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_powerFloat (steps k : ℕ) (h : SyntaxTree.IsSoundFloat B t) :
+theorem SyntaxTree.isSound_powerFloat (steps k : ℕ) (h : SyntaxTree.IsSoundFloat B t) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.powerFloat steps k t) :=
   ⟨h, fun x hx => SyntaxTree.contains_of_outerFloat (f := fun y : ℝ => y ^ k)
     (Float.Interval.power_outer _ k) (SyntaxTree.encloses_of_soundFloat h x hx),

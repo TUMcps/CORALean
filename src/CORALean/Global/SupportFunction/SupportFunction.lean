@@ -19,8 +19,8 @@ the dual: a value with a point attaining it; no `ofEmpty`.
 
 ## References
 
-None: a bound on a linear objective as a number with its proof, CORALean's own interface; no
-publication defines it.
+None: a CORALean interface, a bound on a linear objective as a number with its proof; CORA's
+`supportFunc` returns a value without a proof.
 -/
 
 -- Authors:       Claude Opus 5

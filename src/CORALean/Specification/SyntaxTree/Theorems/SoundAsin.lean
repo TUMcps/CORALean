@@ -43,9 +43,9 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `asin` of an operand inside `[-1,1]` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_asin (h : IsSound B t) (hd₁ : -1 ≤ t.value.inf 0) (hd₂ : t.value.sup 0 ≤ 1)
-    : IsSound B (t.asin) :=
-  ⟨h, encloses_asin (encloses_of_sound h) hd₁ hd₂, funHanAsin_sound t.value hd₁ hd₂⟩
+theorem SyntaxTree.isSound_asin (h : IsSound B t) (hd₁ : -1 ≤ t.value.inf 0)
+    (hd₂ : t.value.sup 0 ≤ 1) : IsSound B (t.asin) :=
+  ⟨h, encloses_asin (encloses_of_isSound h) hd₁ hd₂, funHanAsin_sound t.value hd₁ hd₂⟩
 
 end CORALean
 

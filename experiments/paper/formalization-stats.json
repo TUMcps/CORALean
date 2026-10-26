@@ -14,10 +14,10 @@
     "not-covered"
   ],
   "totals": {
-    "papers": 101,
+    "papers": 103,
     "papers_with_findings": 90,
-    "in_scope": 1299,
-    "formalized": 1212,
+    "in_scope": 1310,
+    "formalized": 1223,
     "not_formalized": 87,
     "out_of_scope": 1157,
     "out_of_scope_by_reason": {
@@ -28,7 +28,7 @@
       "not-covered": 95
     },
     "by_class": {
-      "correct": 799,
+      "correct": 810,
       "underspecified": 258,
       "proof-gap": 32,
       "fixed": 109,
@@ -44,9 +44,9 @@
       "false": 8
     },
     "definitions": {
-      "in_scope": 810,
-      "formalized": 761,
-      "correct": 534,
+      "in_scope": 821,
+      "formalized": 772,
+      "correct": 545,
       "underspecified": 162,
       "proof-gap": 0,
       "fixed": 59,
@@ -5201,6 +5201,49 @@
       ]
     },
     {
+      "page": "2023/ocp-mx-specification.md",
+      "label": "Ocp 2023",
+      "year": 2023,
+      "title": "OCP Microscaling Formats (MX) Specification, Version 1.0",
+      "in_scope": 2,
+      "formalized": 2,
+      "not_formalized": 0,
+      "out_of_scope": 0,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 2,
+        "formalized": 2,
+        "correct": 2,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
       "page": "2023/wetzlinger-fully-automated-verification.md",
       "label": "Wetzlinger 2023 (fully)",
       "year": 2023,
@@ -6326,6 +6369,49 @@
       ]
     },
     {
+      "page": "2026/althoff-cora-manual.md",
+      "label": "Althoff 2026",
+      "year": 2026,
+      "title": "CORA Manual (v2026)",
+      "in_scope": 9,
+      "formalized": 9,
+      "not_formalized": 0,
+      "out_of_scope": 0,
+      "out_of_scope_by_reason": {
+        "restated": 0,
+        "mathlib": 0,
+        "not-a-claim": 0,
+        "done-differently": 0,
+        "not-covered": 0
+      },
+      "by_class": {
+        "correct": 9,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "claims": {
+        "in_scope": 0,
+        "formalized": 0,
+        "correct": 0,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "definitions": {
+        "in_scope": 9,
+        "formalized": 9,
+        "correct": 9,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "findings": []
+    },
+    {
       "page": "2026/koller-iclr-latent-space.md",
       "label": "Koller 2026",
       "year": 2026,
@@ -6617,7 +6703,7 @@
         },
         "cora_issues": 9,
         "findings": {
-          "correct": 0,
+          "correct": 1,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 1,
@@ -6698,7 +6784,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 56,
+          "correct": 57,
           "underspecified": 20,
           "proof-gap": 0,
           "fixed": 10,
@@ -6752,7 +6838,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 0,
+          "correct": 1,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
@@ -6779,7 +6865,7 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 0,
+          "correct": 1,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
@@ -7103,7 +7189,7 @@
         },
         "cora_issues": 4,
         "findings": {
-          "correct": 44,
+          "correct": 45,
           "underspecified": 7,
           "proof-gap": 1,
           "fixed": 3,
@@ -7400,7 +7486,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 4,
+          "correct": 5,
           "underspecified": 2,
           "proof-gap": 0,
           "fixed": 0,
@@ -8048,7 +8134,7 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 17,
+          "correct": 18,
           "underspecified": 11,
           "proof-gap": 0,
           "fixed": 0,
@@ -8615,7 +8701,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 414,
+          "correct": 418,
           "underspecified": 125,
           "proof-gap": 8,
           "fixed": 50,
@@ -8640,7 +8726,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 175,
+          "correct": 177,
           "underspecified": 62,
           "proof-gap": 14,
           "fixed": 28,
@@ -8715,7 +8801,7 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 41,
+          "correct": 42,
           "underspecified": 21,
           "proof-gap": 2,
           "fixed": 9,
@@ -8766,7 +8852,7 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 715,
+        "correct": 722,
         "underspecified": 227,
         "proof-gap": 28,
         "fixed": 92,
@@ -8775,7 +8861,7 @@
     },
     "findings_not_on_a_class": {
       "global": {
-        "correct": 83,
+        "correct": 85,
         "underspecified": 31,
         "proof-gap": 4,
         "fixed": 17,
@@ -8783,6 +8869,13 @@
       },
       "examples": {
         "correct": 1,
+        "underspecified": 0,
+        "proof-gap": 0,
+        "fixed": 0,
+        "false": 0
+      },
+      "other": {
+        "correct": 2,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,

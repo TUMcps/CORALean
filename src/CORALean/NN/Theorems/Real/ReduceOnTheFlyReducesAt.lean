@@ -137,7 +137,7 @@ theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ : ReducibleNetwork �
         ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
   intro Φhat Y (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
   -- the output set is the reduced network's enclosure at every scalar
-  refine ⟨?_, (reduceOnTheFly_outer (instance_of_instanceNetwork hΦ) _ _ hrun).2⟩
+  refine ⟨?_, (reduceOnTheFly_outer (isInstance_of_isInstanceNetwork hΦ) _ _ hrun).2⟩
   cases hΦ with
   | nil hid =>
     simp only [reduceOnTheFly, Option.some.injEq, Prod.mk.injEq] at hrun

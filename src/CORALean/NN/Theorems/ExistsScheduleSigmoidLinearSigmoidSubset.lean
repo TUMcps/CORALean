@@ -51,7 +51,7 @@ theorem exists_schedule_sigmoidLinearSigmoid_subset (W : Mat ℝ m n) (b : Vec �
       construct ((Real.sigmoidLinearSigmoidNetwork W b).encloseAt sch X)
         ⊆ (Real.sigmoidLinearSigmoidNetwork W b).image (construct X) + Metric.closedBall 0 ε :=
   (Real.sigmoidLinearSigmoidNetwork W b).exists_schedule_encloseAt_subset
-    (sigmoidLinearSigmoidNetwork_convergent W b) X ε hε
+    (sigmoidLinearSigmoidNetwork_isConvergent W b) X ε hε
 
 end CORALean
 

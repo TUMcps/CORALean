@@ -14,8 +14,8 @@ scalar. Everything a round-to-nearest scalar gets right is proved in `Instances`
 
 ## References
 
-None: a false property that CORALean states only for its round-to-nearest baseline, with no
-publication behind it.
+None: a CORALean statement, a false property of its round-to-nearest baseline; it formalizes no CORA
+file or publication.
 -/
 
 -- Authors:       Claude Opus 5.5

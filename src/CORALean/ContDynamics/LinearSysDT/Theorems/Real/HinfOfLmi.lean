@@ -16,7 +16,7 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 every eigenvalue of `A_e` lies in the open unit disc (so `zI - A_e` is invertible on `|z| = 1`),
 and some `γ' < γ` has `‖e‖ ≤ γ' ‖d‖` whenever `z e = A_e e + B_e d`, `|z| = 1`, which is
 `σ_max(G_ed(z)) ≤ γ'` on the unit circle. The paper goes through the bounded real lemma
-[1, Lemma 1]; here the dissipation inequality its Eq. 17 (`dissipation_of_hinfLmi`) is applied to
+[1, Lemma 1]; here the dissipation inequality its Eq. 17 (`dissipation_of_isHinfLmi`) is applied to
 the real and imaginary parts of `(e, d)`, where `|z| = 1` turns `(z e)ᴴ P (z e)` into `eᴴ P e`.
 
 ## Inputs
@@ -139,7 +139,7 @@ theorem LinearSysDT.hinf_of_lmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat �
         z • e = Ae *ᵥ e + Ec *ᵥ dw - Gc *ᵥ dv →
           ∑ i, ‖e i‖ ^ 2 ≤ γ' ^ 2 * (∑ j, ‖dw j‖ ^ 2 + ∑ j, ‖dv j‖ ^ 2) := by -- --- PROOF ---
   intro Ae Ec Gc
-  obtain ⟨ε, hε, hd⟩ := LinearSysDT.dissipation_of_hinfLmi A C E F P Y γ hP h
+  obtain ⟨ε, hε, hd⟩ := LinearSysDT.dissipation_of_isHinfLmi A C E F P Y γ hP h
   -- `aᵀPa + a'ᵀPa' ≥ 0`, `P ≻ 0`
   have hPpos : ∀ x : Vec ℝ n, 0 ≤ x ⬝ᵥ (P *ᵥ x) := fun x => by
     have := (posSemidef_iff_dotProduct_mulVec.mp hP.posSemidef).2 x

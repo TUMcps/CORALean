@@ -51,7 +51,7 @@ variable {n ny nf : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.hMinusLmiGain_iff_hMinusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
+theorem LinearSysDT.isHMinusLmiGain_iff_isHMinusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (E : Mat ℝ ny nf) (L : Mat ℝ n ny) (P : Mat ℝ n n) (M : Mat ℝ ny ny) (α β : ℝ) :
     LinearSysDT.IsHMinusLmiGain A C E L (α • P) M β ↔
       LinearSysDT.IsHMinusLmi A C E P (P * L) (Mᵀ * M) α β := by

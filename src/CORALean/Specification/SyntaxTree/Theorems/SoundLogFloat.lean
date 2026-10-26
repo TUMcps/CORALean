@@ -46,7 +46,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `log` node over a sound float tree whose operand is at least `1` is sound. -/
-theorem SyntaxTree.sound_logFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_logFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hI : 1 ≤ toReal (t.value.inf 0) ∧ toReal (t.value.inf 0) ≤ 2 ^ p / 2)
     (hv : toReal ((Float.Interval.log p k t.value).sup 0) ≤ 2 ^ p / 2) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.logFloat p k t) :=

@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `exp` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_expFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_expFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hI : toReal (t.value.sup 0) ≤ 2 ^ p / 2)
     (hv : toReal ((Float.Interval.exp p t.value).sup 0) ≤ 2 ^ p / 2) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.expFloat p k t) :=

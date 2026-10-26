@@ -18,7 +18,7 @@ some component `c`, whose guard comes back through `Lifting.IsExact` and whose r
 by `liftTransition_reset`, of the blocks of the stacked state. The conditions are those under which
 the product loses nothing: `Lifting.IsExact` and the converse flow law, which for
 `mergeFlowsLinearSys` asks `GlobalsDistinct` and nonempty input sets as well
-(`mergeFlowsLinearSys_flowLawConverse`).
+(`mergeFlowsLinearSys_isFlowLawConverse`).
 
 ## Inputs
 * `P` – parallel automaton

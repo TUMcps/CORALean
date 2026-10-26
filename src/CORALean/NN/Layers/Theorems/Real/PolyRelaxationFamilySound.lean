@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem polyRelaxationFamily_sound {σ σ' : ℝ → ℝ} {Mσ : ℝ}
+theorem polyRelaxationFamily_isSound {σ σ' : ℝ → ℝ} {Mσ : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) :
     (polyRelaxationFamily hd hσ).IsSound σ :=
   ⟨fun o => (exists_polyRelaxation_error_lt (L := -(o : ℝ)) (U := (o : ℝ)) hd hσ

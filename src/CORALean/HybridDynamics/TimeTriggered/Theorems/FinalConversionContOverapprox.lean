@@ -54,7 +54,7 @@ variable {X : Type} [NormedAddCommGroup X] [InnerProductSpace ℝ X] [CompleteSp
 -- the proof builds the execution of `H_final` in three modes, by cases, in one declaration
 set_option maxHeartbeats 100000 in
 /-- `H_final` with time bound `T + t_scaling` overapproximates `H` with time bound `T`. -/
-theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ : X → X}
+theorem DiffInclAutomaton.finalConversion_isContOverapprox {I : Set X} {f₁ f₂ : X → X}
     {fe : X → Set X} {a : X} {b : ℝ} {t₁ t₂ ts : ℝ} {K₁ K₂ K' : ℝ≥0}
     (hf₁ : LipschitzWith K₁ f₁) (hf₂ : LipschitzWith K₂ f₂)
     (hF : LipschitzWith K' fun x => ((b - inner ℝ a x) / ‖a‖) • f₁ x)

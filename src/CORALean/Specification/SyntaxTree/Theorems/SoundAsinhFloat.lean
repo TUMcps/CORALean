@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `asinh` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_asinhFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_asinhFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hn : 0 ≤ toReal (t.value.inf 0) → 2 * toReal (t.value.inf 0) + 1 ≤ 2 ^ p / 2)
     (hv : toReal ((Float.Interval.asinh p k t.value).sup 0) ≤ 2 ^ p / 2 ∧ -toReal
       ((Float.Interval.asinh p k t.value).inf 0) ≤ 2 ^ p / 2) :

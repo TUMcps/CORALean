@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem PolyZonotope.sort_sorted (pZ : PolyZonotope α) : PolyZonotope.IsSorted pZ.sort.E :=
+theorem PolyZonotope.sort_isSorted (pZ : PolyZonotope α) : PolyZonotope.IsSorted pZ.sort.E :=
   Tuple.monotone_sort (PolyZonotope.colLex pZ.E)
 
 end CORALean.Real

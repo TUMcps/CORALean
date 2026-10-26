@@ -10,7 +10,7 @@ public import CORALean.Specification.Theorems.Basic
 # A list of specifications checked on the invariant holds along every run
 
 The requirement stated once for the automaton rather than once per
-`holds_of_invariant` call: checked at every location, `holdsAll_of_invariant`
+`holds_of_isInvariant` call: checked at every location, `holdsAll_of_isInvariant`
 answers wherever a run ends, which is what a caller with several locations and
 one list of requirements actually wants.
 
@@ -54,13 +54,13 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 /-- The requirement stated once for the automaton: checked at every location, it
 answers wherever a run ends. -/
-theorem HybridAutomaton.holdsAll_of_invariant {HA : HybridAutomaton S G L 𝕋 n}
+theorem HybridAutomaton.holdsAll_of_isInvariant {HA : HybridAutomaton S G L 𝕋 n}
     {R : L → S n} (hinv : HA.IsInvariant R) (specs : List (Specification ContSet))
     {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : ∀ ℓ : L, Specification.HoldsAll specs (construct (R ℓ))) :
     Specification.HoldsAll specs {y} :=
   Specification.holdsAll_of_outer specs
-    (Set.singleton_subset_iff.mpr (run.mem_of_invariant hinv hx)) (h ℓ')
+    (Set.singleton_subset_iff.mpr (run.mem_of_isInvariant hinv hx)) (h ℓ')
 
 end CORALean
 

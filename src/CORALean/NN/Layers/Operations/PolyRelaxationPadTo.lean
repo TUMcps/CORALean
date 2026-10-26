@@ -10,7 +10,7 @@ public import CORALean.NN.Layers.Operations.PadCoeffs
 
 An order pattern [1, Eq. 23] gives each neuron its own order while one activation layer
 evaluates one coefficient list, so the fits meet at a common degree; nothing rounds and the error
-is untouched. `k ≤ M` is a hypothesis of `padTo_sound` and not an argument here: padding is data,
+is untouched. `k ≤ M` is a hypothesis of `padTo_isSound` and not an argument here: padding is data,
 and truncating would be data too, merely unsound.
 
 ## Inputs

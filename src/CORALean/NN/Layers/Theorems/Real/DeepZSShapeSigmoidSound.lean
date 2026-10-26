@@ -12,7 +12,7 @@ public import CORALean.NN.Layers.Theorems.SShapeUnimodal
 
 [1, Thm. 3.2] at `f = σ`, `f' = σ(t) σ(-t)`, the paper's example and its [1, Fig. 2]:
 the derivative is even and falls away from `0`, so it rises to `0` and falls after it, and
-`deepZSShape_sound` applies at `x' = 0`.
+`deepZSShape_isSound` applies at `x' = 0`.
 
 ## Inputs
 * none
@@ -42,8 +42,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem deepZSShape_sigmoid_sound : (deepZSShape sigmoid sigmoidDeriv).IsSound sigmoid :=
-  deepZSShape_sound hasDerivAt_sigmoid sigmoidDeriv_sShape.unimodal.1
+theorem deepZSShape_sigmoid_isSound : (deepZSShape sigmoid sigmoidDeriv).IsSound sigmoid :=
+  deepZSShape_isSound hasDerivAt_sigmoid sigmoidDeriv_sShape.unimodal.1
     sigmoidDeriv_sShape.unimodal.2
 
 end CORALean.Real

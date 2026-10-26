@@ -40,7 +40,7 @@ it took and wherever it stopped. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
     (hinv : HA.IsInvariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
     (hx : x ∈ construct (R ℓ)) : y ∈ construct (R ℓ') :=
-  run.mem_of_invariant hinv hx
+  run.mem_of_isInvariant hinv hx
 
 /-- The floor as a requirement rather than as a guard: checked on the invariant
 of the location a run ends in, it is answered for the state it ends at. -/
@@ -49,7 +49,7 @@ example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (V
     (hx : x ∈ construct (R ℓ))
     (h : (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds (construct (R ℓ'))) :
     (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds {y} :=
-  HA.holds_of_invariant hinv _ run hx h
+  HA.holds_of_isInvariant hinv _ run hx h
 
 /-- A stay is enclosed by the linear time-interval step, which is what holding
 `LinearSys` dynamics in a location buys. -/

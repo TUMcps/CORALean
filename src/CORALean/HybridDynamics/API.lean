@@ -29,7 +29,7 @@ alone ask the guard to be in `S`. Without one there is still `Theorems.JumpOuter
 
 Time-triggered only in the sense that nothing here is: a stay runs for a dwell
 time the run chooses, and a bounded-horizon reading is `IsRunOn`/`IsInvariantOn`,
-the same run and invariant indexed by the jump count — `IsInvariant.invariantOn`
+the same run and invariant indexed by the jump count — `IsInvariant.isInvariantOn`
 its constant-family case. `ReachSetExact` names what `IsRun` quantifies over: `reachSetExact`
 at a location ([1, Def. 2]'s `R_e`), `reachLocationsExact` over all.
 

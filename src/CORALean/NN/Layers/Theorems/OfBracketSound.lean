@@ -67,7 +67,7 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyRelaxation.ofBracket_sound {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋} {lo hi : 𝕋 → 𝕋 → 𝕋}
+theorem PolyRelaxation.ofBracket_isSound {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋} {lo hi : 𝕋 → 𝕋 → 𝕋}
     (hb : ∀ (l u : 𝕋) (t : ℝ), toReal l ≤ t → t ≤ toReal u →
       toReal (lo l u) ≤ σ t - Real.evalPoly (fun k => toReal (c l u k)) t
         ∧ σ t - Real.evalPoly (fun k => toReal (c l u k)) t ≤ toReal (hi l u)) : -- --- CONCL ---

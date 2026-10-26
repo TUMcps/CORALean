@@ -65,7 +65,7 @@ theorem HPolytope.normalizeConstraints_outer (P : HPolytope 𝕋 (Vec 𝕋 n))
     P.construct ∩ dom.construct ⊆ (P.normalizeConstraints dom).construct ∩ dom.construct :=
   fun _ hx => HPolytope.scaleRows_outer (if P.isErrFree then P else P.absorbRounding)
     (by split <;> rename_i h
-        exacts [HPolytope.errFree_of_isErrFree h, HPolytope.errFree_of_origin rfl rfl rfl]) _ _
+        exacts [HPolytope.errFree_of_isErrFree h, HPolytope.isErrFree_of_origin rfl rfl rfl]) _ _
     (fun _ => HPolytope.recipUp_pos _) dom
     ⟨by split
         exacts [hx.1, HPolytope.absorbRounding_outer P hx.1], hx.2⟩

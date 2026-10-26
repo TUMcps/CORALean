@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Def. 3]: an index-for-index scaling of `Z₁`'s generators onto `Z₂`'s is
 an alignment witness. -/
-theorem Zonotope.alignedWith_of_smul (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
+theorem Zonotope.isAlignedWith_of_smul (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
     (μ : Fin Z₁.h → ℝ) (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) :
     Z₁.IsAlignedWith Z₂ := by
   intro i

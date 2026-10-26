@@ -48,7 +48,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `acosh` node over a sound float tree whose operand is at least `1` is sound. -/
-theorem SyntaxTree.sound_acoshFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_acoshFloat (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hd : 1 ≤ toReal (t.value.inf 0)) (hn : 2 * toReal (t.value.inf 0) ≤ 2 ^ p / 2)
     (hv : toReal ((Float.Interval.acosh p k t.value).sup 0) ≤ 2 ^ p / 2) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.acoshFloat p k t) :=

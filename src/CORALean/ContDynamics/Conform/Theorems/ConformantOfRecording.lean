@@ -57,7 +57,7 @@ variable {n p q : ℕ}
 
 /-- [1, Cor. 1]: (20) and (21) on a recording make the model conformant on
 its sequential test cases, at every horizon. -/
-theorem Conform.Plant.conformant_of_recording (sys : Conform.Plant n p q) (W : Set (Vec ℝ n))
+theorem Conform.Plant.isConformant_of_recording (sys : Conform.Plant n p q) (W : Set (Vec ℝ n))
     (V : Set (Vec ℝ q)) (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ p) (y : ℕ → Vec ℝ q)
     (hW : ∀ t, x (t + 1) - (sys.A *ᵥ x t + sys.B *ᵥ u t) ∈ W)
     (hV : ∀ t, y t - sys.C *ᵥ x t - sys.D *ᵥ u t ∈ V) (K : ℕ) : -- --- CONCL ---

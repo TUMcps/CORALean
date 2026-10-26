@@ -14,7 +14,7 @@ with `E = generators(W)` for `D_xH_w`, `F = generators(V)` for `D_yH_v` and `Y` 
 its block `(3, 4)` to `F*Y'`, that is `D_yH_v Wᵀ`, where Eq. 17 has `H_vᵀD_yᵀWᵀ` (the transpose
 of `F`). With `n_x = 1`, two outputs, no disturbance, `A = C = 0`, `F = [1 1/2; 0 1]`, `P = 9/10`,
 `W = [0 1]` and `γ = 1/2`, CORA's matrix is negative definite while Eq. 17 is not: at the gain
-`L = P⁻¹W` the step inequality (`LinearSysDT.quadForm_le_of_faultRadiusLmi`) fails at `θ = 0`,
+`L = P⁻¹W` the step inequality (`LinearSysDT.quadForm_le_of_isFaultRadiusLmi`) fails at `θ = 0`,
 `s₂ = (-1/2, 1)`. A gain CORA accepts need not have the P-radius property; the observer's
 enclosure does not depend on the gain (`LinearSysDT.faultObserve_outer`), so only tightness is lost.
 
@@ -154,7 +154,7 @@ theorem LinearSysDT.faultRadiusLmi_cora_counterexample : -- --- CONCL ---
       nlinarith [sq_pos_of_ne_zero hx0]
   refine ⟨hP, LinearSysDT.aux_faultRadiusLmiCora_posDef, fun h => ?_⟩
   -- Eq. 17 would bound the step at `θ = 0`, `s₂ = (-1/2, 1)`; it is `10/9 > 1` there
-  have hle := LinearSysDT.quadForm_le_of_faultRadiusLmi A C Dx Hw Dy Hv P W γ hP h 0 0
+  have hle := LinearSysDT.quadForm_le_of_isFaultRadiusLmi A C Dx Hw Dy Hv P W γ hP h 0 0
     ![-1 / 2, 1]
   have hinv : P⁻¹ = !![10 / 9] := Matrix.inv_eq_left_inv (by
     ext i j; fin_cases i; fin_cases j; simp [P])

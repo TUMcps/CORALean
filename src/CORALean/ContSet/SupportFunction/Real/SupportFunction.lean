@@ -7,19 +7,19 @@ public import CORALean.ContSet.ContSet.Definitions.SupportFunc
 /-!
 # Support functions: the representation
 
-A set held as its support function `h(ℓ) = sup {ℓ x | x ∈ S}` over the linear functionals `ℓ`, the
-set being what every functional allows: `{x | ∀ ℓ, ℓ x ≤ h ℓ}`. `h` takes values in the extended
-reals, `+∞` for a functional the set is unbounded in and `-∞` everywhere for the empty set, so every
-closed convex set has one, and the sets denoted are exactly the closed convex ones
-(`SupportFunction.ofSet_exact`). Over any real module. A function on all functionals is nothing
-finite to store, so there is no `Float/` layer: what an algorithm computes of a support function is
-its value in a direction, `SupportBound`, and every conversion needing one asks for it as a
-certificate.
+A set held as its support function `h(ℓ) = sup {ℓ x | x ∈ S}` [1, Sec. 2.1.4.9] over the linear
+functionals `ℓ`, the set being what every functional allows: `{x | ∀ ℓ, ℓ x ≤ h ℓ}`. `h` takes
+values in the extended reals, `+∞` for a functional the set is unbounded in and `-∞` everywhere for
+the empty set, so every closed convex set has one, and the sets denoted are exactly the closed
+convex ones (`SupportFunction.ofSet_exact`). Over any real module. A function on all functionals is
+nothing finite to store, so there is no `Float/` layer: what an algorithm computes of a support
+function is its value in a direction, `SupportBound`, and every conversion needing one asks for it
+as a certificate.
 
 ## References
 
-None: the support function of convex analysis, defined here from the definition; no public source
-was read for it.
+* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

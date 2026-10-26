@@ -65,7 +65,7 @@ theorem LinearSys.verify_violated
     (hv : LinearSys.verify reachFn innerApprox distG distF G F le εmax₀ fuel = some false)
     :
     ¬ LinearSys.IsVerifySpec G F Reach :=
-  LinearSys.not_verifySpec_of_verifyRun h G F εmax₀ fuel hv
+  LinearSys.not_isVerifySpec_of_verifyRun h G F εmax₀ fuel hv
 
 end CORALean
 

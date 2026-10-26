@@ -50,8 +50,8 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tanhRelaxation_sound : tanhRelaxation.IsSound Real.tanh :=
-  Relaxation.ofAffineConj_sound sigmoidRelaxation_sound (aux_scaleRounding_exact_sound 2)
+theorem tanhRelaxation_isSound : tanhRelaxation.IsSound Real.tanh :=
+  Relaxation.ofAffineConj_isSound sigmoidRelaxation_isSound (aux_scaleRounding_exact_sound 2)
     (aux_scaleRounding_exact_sound 2) (by norm_num) (by norm_num)
     (fun t => by
       show Real.tanh t = 2 * sigmoid (2 * t) + -1

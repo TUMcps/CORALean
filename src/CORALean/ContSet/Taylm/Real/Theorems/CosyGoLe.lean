@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Halving keeps a sub-box of the normalized box. -/
-private theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.IsGoodBox B)
+private theorem Taylm.aux_isGoodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.IsGoodBox B)
     (β : Fin n) : -- --- CONCL ---
     Taylm.IsGoodBox (Taylm.halveBox B β).1 ∧
       Taylm.IsGoodBox (Taylm.halveBox B β).2 := by -- --- PROOF ---
@@ -71,7 +71,7 @@ private theorem Taylm.aux_goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm
 theorem Taylm.cosyGo_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     {X : Fin n → Interval ℝ} (hX : Taylm.IsGoodBox X) (ε : ℝ) (ldbFuel fuel : ℕ) {t : Vec ℝ n}
     (ht : Taylm.IsInBox X t) : (T.cosyGo X ε ldbFuel fuel).inf ≤ f t :=
-  Taylm.globalMin_le (fun _ β hB => Taylm.aux_goodBox_halve hB β)
+  Taylm.globalMin_le (fun _ β hB => Taylm.aux_isGoodBox_halve hB β)
     (fun _ hB _ ht => Taylm.goLowerBound_le h ε ldbFuel hB ht) hX fuel ht
 
 end CORALean.Real

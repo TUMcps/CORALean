@@ -9,7 +9,7 @@ public import CORALean.Specification.Theorems.HoldsOfOuter
 # A specification checked on the closed loop's reachable set holds along it
 
 `reach_outer` handed to `Specification.holds_of_outer`, exactly as
-`LinearSysDT.holds_of_reach` and `HybridAutomaton.holds_of_invariant` do it. That the
+`LinearSysDT.holds_of_reach` and `HybridAutomaton.holds_of_isInvariant` do it. That the
 set was produced by a plant and a network alternating is not visible here, and
 that is the point of the pivot being one theorem: it only ever sees a superset.
 

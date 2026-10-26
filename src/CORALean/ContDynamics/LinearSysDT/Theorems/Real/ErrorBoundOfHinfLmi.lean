@@ -83,7 +83,7 @@ private theorem LinearSysDT.aux_quad_le_sum_abs (P : Mat ℝ n n) (x : Vec ℝ n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.errorBound_of_hinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
+theorem LinearSysDT.errorBound_of_isHinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
     (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef)
     (h : LinearSysDT.IsHinfLmi A C E F P Y γ) : -- --- CONCL ---
     ∃ α β : ℝ, 0 < α ∧ α < 1 ∧ 0 < β ∧ β < 1 ∧
@@ -93,7 +93,7 @@ theorem LinearSysDT.errorBound_of_hinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (
         ∀ k, 1 ≤ k → Real.sqrt (e k ⬝ᵥ e k) ≤
           Real.sqrt (β * (α ^ k * (e 0 ⬝ᵥ (P *ᵥ e 0)) +
             γ ^ 2 * D / (1 - α))) := by -- --- PROOF ---
-  obtain ⟨ε, hε, hd⟩ := LinearSysDT.dissipation_of_hinfLmi A C E F P Y γ hP h
+  obtain ⟨ε, hε, hd⟩ := LinearSysDT.dissipation_of_isHinfLmi A C E F P Y γ hP h
   have hPpos : ∀ x : Vec ℝ n, 0 ≤ x ⬝ᵥ (P *ᵥ x) := fun x => by
     simpa using (posSemidef_iff_dotProduct_mulVec.mp hP.posSemidef).2 x
   have hxx : ∀ {m : ℕ} (x : Vec ℝ m), 0 ≤ x ⬝ᵥ x := fun x =>

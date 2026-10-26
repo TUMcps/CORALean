@@ -54,7 +54,7 @@ theorem FourValuedSignal.findIntervals_spec (s : FourValuedSignal ℝ) (hs : s.I
     -- the inconclusive intervals are those of `isInconclusive`
     have e : s.findIntervals FourValued.ii = s.isInconclusive.findIntervals := rfl
     rw [e]
-    refine (STLInterval.maximalRuns_congr _ _ _ fun t _ => ?_).1
+    refine (STLInterval.isMaximalRuns_congr _ _ _ fun t _ => ?_).1
       (s.isInconclusive.findIntervals_spec hs.2 id)
     rw [FourValuedSignal.at_eq_ii_iff]
     rfl
@@ -63,7 +63,7 @@ theorem FourValuedSignal.findIntervals_spec (s : FourValuedSignal ℝ) (hs : s.I
     have e : s.findIntervals FourValued.tt = (s.toKleeneSignal Kleene.ff).findIntervals Kleene.tt :=
       rfl
     rw [e]
-    exact (STLInterval.maximalRuns_congr _ _ _ fun t ht =>
+    exact (STLInterval.isMaximalRuns_congr _ _ _ fun t ht =>
       (s.toKleeneSignal_at_iff hs t ht).1).1
       ((s.toKleeneSignal Kleene.ff).findIntervals_spec hvf Kleene.tt)
   -- the false intervals are those of the refinement with inconclusive as `True`
@@ -71,7 +71,7 @@ theorem FourValuedSignal.findIntervals_spec (s : FourValuedSignal ℝ) (hs : s.I
     have e : s.findIntervals FourValued.ff = (s.toKleeneSignal Kleene.tt).findIntervals Kleene.ff :=
       rfl
     rw [e]
-    exact (STLInterval.maximalRuns_congr _ _ _ fun t ht =>
+    exact (STLInterval.isMaximalRuns_congr _ _ _ fun t ht =>
       (s.toKleeneSignal_at_iff hs t ht).2.2.2.2.1).1
       ((s.toKleeneSignal Kleene.tt).findIntervals_spec hvt Kleene.ff)
   -- so are the unknown ones
@@ -79,7 +79,7 @@ theorem FourValuedSignal.findIntervals_spec (s : FourValuedSignal ℝ) (hs : s.I
     have e : s.findIntervals FourValued.uu = (s.toKleeneSignal Kleene.tt).findIntervals Kleene.uu :=
       rfl
     rw [e]
-    exact (STLInterval.maximalRuns_congr _ _ _ fun t ht =>
+    exact (STLInterval.isMaximalRuns_congr _ _ _ fun t ht =>
       (s.toKleeneSignal_at_iff hs t ht).2.2.2.2.2).1
       ((s.toKleeneSignal Kleene.tt).findIntervals_spec hvt Kleene.uu)
 

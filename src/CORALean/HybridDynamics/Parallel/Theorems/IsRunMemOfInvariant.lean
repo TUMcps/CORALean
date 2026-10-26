@@ -8,7 +8,7 @@ public import CORALean.HybridDynamics.Theorems.IsRunOuter
 /-!
 # An invariant of the product bounds a parallel run
 
-`HybridAutomaton.IsRun.mem_of_invariant` at the product, through `IsRun.toProduct`: whatever
+`HybridAutomaton.IsRun.mem_of_isInvariant` at the product, through `IsRun.toProduct`: whatever
 `IsInvariant` the single automaton is given, discharged by the single automaton's own theorems
 (`FlowOuter`, `JumpOuter`), encloses every run of the parallel one, stacked. The outer
 reachable set of a parallel automaton is the single automaton's, with no new analysis.
@@ -51,13 +51,13 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stack of a parallel run's end state is in the invariant's set, given its start. -/
-theorem ParallelHybridAutomaton.IsRun.mem_of_invariant {P : ParallelHybridAutomaton S G k L ℝ n m}
+theorem ParallelHybridAutomaton.IsRun.mem_of_isInvariant {P : ParallelHybridAutomaton S G k L ℝ n m}
     (hfeed : P.IsFeedthroughFree) {lift : ParallelHybridAutomaton.Lifting S G n m}
     {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).IsInvariant R)
     {ℓ ℓ' : ∀ i, L i} {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y)
     (hx : stack x ∈ construct (R ℓ)) :
     stack y ∈ construct (R ℓ') :=
-  (run.toProduct hfeed lift).mem_of_invariant hinv hx
+  (run.toProduct hfeed lift).mem_of_isInvariant hinv hx
 
 end CORALean
 

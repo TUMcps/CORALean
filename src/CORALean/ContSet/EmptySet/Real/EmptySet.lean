@@ -8,17 +8,17 @@ public import Mathlib.Data.Real.Basic
 /-!
 # The empty set: the representation
 
-CORA's `emptySet`, a set class of its own rather than a degenerate case of another: `Interval` says
-`∅` with a crossed box and `HPolytope` with an unsatisfiable row, each spending data on a fact that
-carries none. No fields at all. The dimension is the index and not a field, as
-`ContSet (EmptySet n) (Vec ℝ n)` needs it to pin the ambient type, and CORA's `emptySet` carries its
-dimension the same way. Real layer only: the representation holds no scalar to round, so a `Float`
-copy would be the same type twice.
+CORA's `emptySet` [1, Sec. 2.2.2.1], a set class of its own rather than a degenerate case of
+another: `Interval` says `∅` with a crossed box and `HPolytope` with an unsatisfiable row, each
+spending data on a fact that carries none. No fields at all. The dimension is the index and not a
+field, as `ContSet (EmptySet n) (Vec ℝ n)` needs it to pin the ambient type, and CORA's `emptySet`
+carries its dimension the same way. Real layer only: the representation holds no scalar to round, so
+a `Float` copy would be the same type twice.
 
 ## References
 
-None: the empty set, a set class of CORA's own with no publication; it holds no data to take from
-one.
+* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.
 -/
 
 -- Authors:       Claude Opus 5

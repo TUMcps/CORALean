@@ -41,8 +41,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `tanh` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_tanh (h : IsSound B t) : IsSound B (t.tanh) :=
-  ⟨h, encloses_tanh (encloses_of_sound h), tanh_sound t.value⟩
+theorem SyntaxTree.isSound_tanh (h : IsSound B t) : IsSound B (t.tanh) :=
+  ⟨h, encloses_tanh (encloses_of_isSound h), tanh_sound t.value⟩
 
 end CORALean
 

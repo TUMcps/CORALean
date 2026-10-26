@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.pow_scaled {T : Taylm n} {h B : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
+theorem Taylm.pow_isScaled {T : Taylm n} {h B : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
     (hT : T.IsScaled h B) (k : ℕ) : -- --- CONCL ---
     (T.pow k).IsScaled h ((4 * B) ^ k) := by -- --- PROOF ---
   induction k with
@@ -56,7 +56,7 @@ theorem Taylm.pow_scaled {T : Taylm n} {h B : ℝ} (h0 : 0 < h) (h1 : h ≤ 1)
     refine ⟨by simp [Taylm.pow, Taylm.const, Taylm.weight, Taylm.degree], ?_, ?_⟩ <;>
       simp [Taylm.pow, Taylm.const, (pow_pos h0 _).le]
   | succ k ih =>
-    have := Taylm.times_scaled h0 h1 (Taylm.pow_maxOrder T k) ih hT
+    have := Taylm.times_isScaled h0 h1 (Taylm.pow_maxOrder T k) ih hT
     rw [show 4 * ((4 * B) ^ k * B) = (4 * B) ^ (k + 1) by ring] at this
     exact this
 

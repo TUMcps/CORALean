@@ -33,7 +33,7 @@ example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
     (hinv : HA.IsInvariant R) (spec : Specification (Set (Vec ℝ n))) {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
     (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
-  HA.holds_of_invariant hinv spec run hx h
+  HA.holds_of_isInvariant hinv spec run hx h
 
 /-- The same, checked: the invariant at the location the run ends in, against a box. -/
 example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}

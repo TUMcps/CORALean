@@ -96,7 +96,7 @@ end Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyRelaxation.padTo_sound {P : PolyRelaxation 𝕋 k} (h : k ≤ M)
+theorem PolyRelaxation.padTo_isSound {P : PolyRelaxation 𝕋 k} (h : k ≤ M)
     (hP : P.IsSound σ) : -- --- CONCL ---
     (P.padTo M).IsSound σ := by -- --- PROOF ---
   refine ⟨fun {l u _t} hl hu => ?_⟩

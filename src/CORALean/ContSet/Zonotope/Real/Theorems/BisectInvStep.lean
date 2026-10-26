@@ -59,7 +59,7 @@ private theorem Zonotope.aux_sum_horizontal (Z : Zonotope (Vec ℝ 2)) {σ : ℝ
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.bisectInv_step (Z : Zonotope (Vec ℝ 2))
+theorem Zonotope.isBisectInv_step (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) (right : Bool) {σ : ℝ}
     (hσ : σ = if right then 1 else -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
     (hinv : Z.IsBisectInv γ σ st) : -- --- CONCL ---

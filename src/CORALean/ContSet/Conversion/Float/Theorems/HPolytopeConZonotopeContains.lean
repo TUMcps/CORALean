@@ -107,7 +107,7 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
     rw [hsplit] at h
     constructor <;> linarith [herr.1, herr.2]
   -- with a box: the rows with the box folded in, which hold at `x`
-  · obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mp
+  · obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp
       (HPolytope.absorbRounding_outer P hx)
     exact Set.add_mem_add (ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ,
       HPolytope.mem_nominal_iff.mpr

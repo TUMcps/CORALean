@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
 
 The product automaton: one location per tuple of component locations, `locationProduct` at each,
 its flow `mergeFlowsLinearSys`. A `HybridAutomaton`, so everything proved of one —
-`IsRun.mem_of_invariant`, `reachSetExact` — applies; `Theorems.IsRunToProduct` says a parallel run
+`IsRun.mem_of_isInvariant`, `reachSetExact` — applies; `Theorems.IsRunToProduct` says a parallel run
 is a run of it. It is `productWith` at `mergeFlowsLinearSys`, `mergeInputSets` and `mergeDistSets`.
 
 ## Inputs

@@ -42,9 +42,9 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `mpower` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_mpowerFloat (steps k : ℕ) (h : SyntaxTree.IsSoundFloat B t) :
+theorem SyntaxTree.isSound_mpowerFloat (steps k : ℕ) (h : SyntaxTree.IsSoundFloat B t) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.mpowerFloat steps k t) :=
-  SyntaxTree.sound_powerFloat steps k h
+  SyntaxTree.isSound_powerFloat steps k h
 
 end CORALean
 

@@ -66,16 +66,16 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem linearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
+theorem linearSigmoidNetwork_isConvergent (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     (Real.linearSigmoidNetwork W b).IsConvergent := by -- --- PROOF ---
   -- the activation on its own, which is the whole tail behind the matrix
   have h : (RefinableNetwork.cons (S := 𝒫𝒵)
       (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
-        Real.sigmoidPolyFamily_sound) .nil).HasLipschitzLayers :=
+        Real.sigmoidPolyFamily_isSound) .nil).HasLipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
-  exact ⟨Layer.linear_refinable_convergent W b,
+  exact ⟨Layer.linear_refinable_isConvergent W b,
     RefinableNetwork.exists_lipschitzWith_eval _ h,
-    Real.Layer.activationPolySigmoid_convergent m, ⟨1, LipschitzWith.id⟩, trivial⟩
+    Real.Layer.activationPolySigmoid_isConvergent m, ⟨1, LipschitzWith.id⟩, trivial⟩
 
 end CORALean
 

@@ -87,10 +87,10 @@ private theorem aux_continuous_invSqrt : Continuous invSqrt := by
   exact lt_of_lt_of_le one_pos (le_max_right _ _)
 
 
-private theorem aux_invSqrtRelaxationRange_sound : invSqrtRelaxationRange.IsSound invSqrt :=
-  Relaxation.ofAntitone_sound antitone_invSqrt (enclosure_exact_sound invSqrt)
+private theorem aux_invSqrtRelaxationRange_isSound : invSqrtRelaxationRange.IsSound invSqrt :=
+  Relaxation.ofAntitone_isSound antitone_invSqrt (enclosure_exact_sound invSqrt)
 
-private theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
+private theorem aux_invSqrtRelaxationDeriv_isSound : -- --- CONCL ---
     invSqrtRelaxationDeriv.IsSound invSqrt := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |invSqrt t - (invSqrtRelaxationDeriv.slope l u * t + invSqrtRelaxationDeriv.offset l u)|
@@ -114,13 +114,13 @@ private theorem aux_invSqrtRelaxationDeriv_sound : -- --- CONCL ---
     exact ⟨by nlinarith [h₁], by nlinarith [h₂]⟩
   · -- below the clamp: the box straddles the kink, so fall back
     simp only [invSqrtRelaxationDeriv, if_neg hl1]
-    exact aux_invSqrtRelaxationRange_sound.sound hl hu
+    exact aux_invSqrtRelaxationRange_isSound.sound hl hu
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem invSqrtRelaxation_sound : invSqrtRelaxation.IsSound invSqrt :=
-  Relaxation.tighter_sound aux_invSqrtRelaxationRange_sound aux_invSqrtRelaxationDeriv_sound
+theorem invSqrtRelaxation_isSound : invSqrtRelaxation.IsSound invSqrt :=
+  Relaxation.tighter_isSound aux_invSqrtRelaxationRange_isSound aux_invSqrtRelaxationDeriv_isSound
 
 end CORALean.Real
 

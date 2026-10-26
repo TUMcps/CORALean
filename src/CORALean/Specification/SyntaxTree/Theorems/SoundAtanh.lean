@@ -43,10 +43,10 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `atanh` of an operand inside `(-1,1)` node over a sound tree is sound. -/
-theorem SyntaxTree.sound_atanh (h : IsSound B t) (hd₁ : -1 < t.value.inf 0) (hd₂ : t.value.sup 0 <
+theorem SyntaxTree.isSound_atanh (h : IsSound B t) (hd₁ : -1 < t.value.inf 0) (hd₂ : t.value.sup 0 <
     1)
     : IsSound B (t.atanh) :=
-  ⟨h, encloses_atanh (encloses_of_sound h) hd₁ hd₂, funHanAtanh_sound t.value hd₁ hd₂⟩
+  ⟨h, encloses_atanh (encloses_of_isSound h) hd₁ hd₂, funHanAtanh_sound t.value hd₁ hd₂⟩
 
 end CORALean
 

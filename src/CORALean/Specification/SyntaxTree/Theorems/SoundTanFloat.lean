@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The `tan` node over a sound float tree is sound. -/
-theorem SyntaxTree.sound_tanFloat [Float.ToRat 𝕋] (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
+theorem SyntaxTree.isSound_tanFloat [Float.ToRat 𝕋] (p k : ℕ) (h : SyntaxTree.IsSoundFloat B t)
     (hI : -(Real.pi / 2) < toReal (t.value.inf 0) ∧ toReal (t.value.sup 0) < Real.pi / 2)
     (hc : 0 < toReal (cosDown p (t.value.inf 0)) ∧ 0 < toReal (cosDown p (t.value.sup 0))) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.tanFloat p k t) :=

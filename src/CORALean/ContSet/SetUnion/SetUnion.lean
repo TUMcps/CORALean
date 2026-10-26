@@ -7,8 +7,8 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # `SetUnion`: the union of a list of representations
 
-The finite union CORA has no fixed combinator for: a caller lists branches and `SetUnion` denotes
-`⋃ s ∈ sets, construct s`, `∅` at the empty list, matching `Set.iUnion` over an empty index. Generic
+The finite union CORA has no fixed combinator for: a caller lists branches and `SetUnion` denotes `⋃
+s ∈ sets, construct s`, `∅` at the empty list, matching `Set.iUnion` over an empty index. Generic
 over the member representation `S`, not split into `Real/` and `Float/`: the type stores nothing but
 a `List S`, so no arithmetic of its own sits here, and a float member type already routes every
 number through `S`. Not a fixed-size `Fin k → S` as `ZonoBundle` uses for its intersection: a union
@@ -17,7 +17,7 @@ append.
 
 ## References
 
-None: CORALean's own finite union of representations, which CORA has no class for.
+None: a CORALean finite union of representations; CORA has no class for it.
 -/
 
 -- Authors:       Claude Sonnet 5

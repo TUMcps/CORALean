@@ -13,7 +13,7 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 `IsSound B t` holds when every node of `t` stores an interval that encloses its function over the
 box `B` and has a `funHan` that is sound for it. The nodes the constructors of `syntaxTree.m` build
-are sound under the domain conditions of their operator (`sound_exp`, ...), except `sinhCora` and
+are sound under the domain conditions of their operator (`isSound_exp`, ...), except `sinhCora` and
 `tanCora`, whose printed `funHan` is not (`sinhCora_counterexample`, `tanCora_counterexample`).
 
 ## Inputs

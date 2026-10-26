@@ -14,7 +14,8 @@ public import CORALean.HybridDynamics.Definitions.ReachSetExact
 initial set whose stacks are exactly the tuples of the components' initial sets, is the image under
 `stack` of the parallel automaton's exact reachable set. An *equality of reachable sets*, under the
 conditions of `IsRun.toProductWith` and `IsRun.ofProductWith`; the outer theorems
-(`reachFloat_outer`, `reachSetExact_subset_invariant`) enclose either side and are inclusions only.
+(`reachFloat_outer`, `reachSetExact_subset_isInvariant`) enclose either side and are inclusions
+only.
 
 ## Inputs
 * `P` – parallel automaton

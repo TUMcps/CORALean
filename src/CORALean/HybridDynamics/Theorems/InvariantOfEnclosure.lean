@@ -69,7 +69,7 @@ noncomputable def aux_remainder [∀ n, OfPoint (S n) (Vec ℝ n)] (ℓ : Locati
 /-- `IsInvariant.jump` is `JumpIntersectionOuter` at `hjump`; `IsInvariant.flow` is
 `FlowOuterInputSolution` at `hflow`, an order `m` chosen per dwell time `τ`
 since `hε` cannot hold at one order for every one of them. -/
-theorem HybridAutomaton.invariant_of_enclosure [∀ n, Intersection (S n) (Vec ℝ n)]
+theorem HybridAutomaton.isInvariant_of_enclosure [∀ n, Intersection (S n) (Vec ℝ n)]
     [∀ n, OfPoint (S n) (Vec ℝ n)]
     (HA : HybridAutomaton S S L 𝕋 n) (R : L → S n)
     (hconv : ∀ ℓ : L, Convex ℝ (construct (HA.loc ℓ).inputSet))
