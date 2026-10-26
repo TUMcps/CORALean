@@ -55,7 +55,7 @@ variable {n s : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConZonotope.aux_value_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
+private theorem ConZonotope.aux_value_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
     (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.h + s)) : -- --- CONCL ---
     (cZ.intersectStrip C φ y Λ).c
         + ∑ j : Fin (cZ.h + s), β j • (cZ.intersectStrip C φ y Λ).G j
@@ -81,7 +81,7 @@ theorem ConZonotope.aux_value_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C :
 
 
 /-- `aux_value_intersectStrip` at the coefficient type `construct` uses. -/
-theorem ConZonotope.aux_value_intersectStrip' (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
+private theorem ConZonotope.aux_value_intersectStrip' (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
     (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) :
     (cZ.intersectStrip C φ y Λ).c
         + ∑ j : Fin (cZ.intersectStrip C φ y Λ).h, β j • (cZ.intersectStrip C φ y Λ).G j
@@ -90,7 +90,7 @@ theorem ConZonotope.aux_value_intersectStrip' (cZ : ConZonotope (Vec ℝ n)) (C 
                 + fun i => φ i * β (Fin.natAdd cZ.h i)) :=
   ConZonotope.aux_value_intersectStrip cZ C φ y Λ β
 
-theorem ConZonotope.aux_row_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
+private theorem ConZonotope.aux_row_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
     (φ : Vec ℝ s) (β : Vec ℝ (cZ.h + s)) (i : Fin s) : -- --- CONCL ---
     (cZ.stripMat C φ *ᵥ β) i
       = (C *ᵥ ∑ j, β (Fin.castAdd s j) • cZ.G j) i
@@ -104,14 +104,15 @@ theorem ConZonotope.aux_row_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : M
   congr 1
   exact Finset.sum_congr rfl fun j _ => by ring
 
-theorem ConZonotope.aux_mulVec_value (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
+private theorem ConZonotope.aux_mulVec_value (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
     (β : Vec ℝ (cZ.h + s)) (i : Fin s) :
     (C *ᵥ (cZ.c + ∑ j, β (Fin.castAdd s j) • cZ.G j)) i
       = (C *ᵥ cZ.c) i + (C *ᵥ ∑ j, β (Fin.castAdd s j) • cZ.G j) i := by
   rw [Matrix.mulVec_add]; rfl
 
 /-- The row condition says exactly that the gain's argument vanishes. -/
-theorem ConZonotope.aux_mem_intersectStrip_P_iff (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
+private theorem ConZonotope.aux_mem_intersectStrip_P_iff (cZ : ConZonotope (Vec ℝ n))
+    (C : Mat ℝ s n)
     (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) : -- --- CONCL ---
     β ∈ (cZ.intersectStrip C φ y Λ).P.construct ↔
       blockLeft cZ.h s β ∈ cZ.P.construct

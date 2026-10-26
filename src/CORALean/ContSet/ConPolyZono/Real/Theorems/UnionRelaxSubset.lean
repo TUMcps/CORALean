@@ -63,7 +63,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The union's rows, the selector rows exactly met and each operand's within its slack. -/
-theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec ℝ cPZ₁.cons.m)
+private theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec ℝ cPZ₁.cons.m)
     (s₂ : Vec ℝ cPZ₂.cons.m) (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ)
     (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)
     (hlow₁ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a

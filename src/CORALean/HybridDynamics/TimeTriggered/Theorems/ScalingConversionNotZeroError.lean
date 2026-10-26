@@ -48,7 +48,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A flow with derivative one moves the state by the dwell time. -/
-theorem aux_flows_one {x x' t : ℝ}
+private theorem aux_flows_one {x x' t : ℝ}
     (h : (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).Flows () x t x')
     : -- --- CONCL ---
     x' = x + t := by -- --- PROOF ---
@@ -70,7 +70,7 @@ theorem aux_flows_one {x x' t : ℝ}
   linarith
 
 /-- Every state of the original automaton is its duration. -/
-theorem aux_exec_eq {d x : ℝ} {m : Unit}
+private theorem aux_exec_eq {d x : ℝ} {m : Unit}
     (h : (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).IsExec d m x) :
     x = d := by
   induction h with
@@ -79,7 +79,7 @@ theorem aux_exec_eq {d x : ℝ} {m : Unit}
   | jump _ e he => simp [DiffInclAutomaton.singleMode] at he
 
 /-- The unit-speed flow of the original automaton over one time unit. -/
-theorem aux_flows_unit (x : ℝ) :
+private theorem aux_flows_unit (x : ℝ) :
     (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).Flows () x 1 (x + 1) :=
   ⟨one_pos, fun δ => x + δ, by fun_prop, by simp, rfl, fun δ _ => by
     have : deriv (fun δ : ℝ => x + δ) δ = 1 := by
@@ -87,7 +87,7 @@ theorem aux_flows_unit (x : ℝ) :
     simp [DiffInclAutomaton.singleMode, this]⟩
 
 -- The scaled automaton, at `g ≡ 1` and `t_begin = t_scaling = 1`, runs `x` up to `x + 1` in a mode.
-theorem aux_scaling_flow {k : Fin 3} (hk : k = 0 ∨ k = 1) (x : ℝ) : -- --- CONCL ---
+private theorem aux_scaling_flow {k : Fin 3} (hk : k = 0 ∨ k = 1) (x : ℝ) : -- --- CONCL ---
     (DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ)) (fun _ => (1 : ℝ))
       1 1).Flows k (x, 0) 1 (x + 1, 0 + 1) := by -- --- PROOF ---
   refine DiffInclAutomaton.flows_timer (c := 1) (aux_flows_unit x) ?_ ?_ (by norm_num)
@@ -98,7 +98,7 @@ theorem aux_scaling_flow {k : Fin 3} (hk : k = 0 ∨ k = 1) (x : ℝ) : -- --- C
     rcases hk with rfl | rfl <;> simp [DiffInclAutomaton.scalingConversion, hτ]
 
 /-- The scaled automaton reaches `2` in duration `2`. -/
-theorem aux_reaches_two : -- --- CONCL ---
+private theorem aux_reaches_two : -- --- CONCL ---
     (2 : ℝ) ∈ Prod.fst '' (DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ))
       (fun _ => (1 : ℝ)) 1 1).reachLE (1 + 1) := by -- --- PROOF ---
   set H := DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ))

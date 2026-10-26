@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 /-- Powers of `x²`, the shape both powers take once their common parity
 remainder is split off. -/
-theorem PolyZonotope.aux_sq_pow_mem {x : ℝ} (hx : |x| ≤ 1) (m : ℕ) :
+private theorem PolyZonotope.aux_sq_pow_mem {x : ℝ} (hx : |x| ≤ 1) (m : ℕ) :
     0 ≤ (x ^ 2) ^ m ∧ (x ^ 2) ^ m ≤ 1 := by
   have hsq : x ^ 2 ≤ 1 := by
     have h : |x| ^ 2 ≤ 1 := pow_le_one₀ (abs_nonneg x) hx
@@ -55,7 +55,7 @@ theorem PolyZonotope.aux_sq_pow_mem {x : ℝ} (hx : |x| ≤ 1) (m : ℕ) :
   exact ⟨pow_nonneg (sq_nonneg x) m, pow_le_one₀ (sq_nonneg x) hsq⟩
 
 /-- Two powers of equal parity differ by at most one on `[-1,1]`. -/
-theorem PolyZonotope.aux_abs_sub_pow_le_one {x : ℝ} (hx : |x| ≤ 1) {a b : ℕ}
+private theorem PolyZonotope.aux_abs_sub_pow_le_one {x : ℝ} (hx : |x| ≤ 1) {a b : ℕ}
     (hab : a % 2 = b % 2) : -- --- CONCL ---
     |x ^ a - x ^ b| ≤ 1 := by -- --- PROOF ---
   -- a power splits into a power of `x²` and the parity remainder

@@ -41,10 +41,10 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The matrix that picks the coordinates `dims`. -/
-def aux_selection (dims : Fin m → Fin n) : Mat ℝ m n :=
+private def aux_selection (dims : Fin m → Fin n) : Mat ℝ m n :=
   Matrix.of fun i j => if j = dims i then 1 else 0
 
-theorem aux_project_eq_mtimes (P : ProbZonotope n) (dims : Fin m → Fin n) : -- --- CONCL ---
+private theorem aux_project_eq_mtimes (P : ProbZonotope n) (dims : Fin m → Fin n) : -- --- CONCL ---
     P.project dims = P.mtimes (aux_selection dims) := by -- --- PROOF ---
   have hv : ∀ x : Vec ℝ n, aux_selection dims *ᵥ x = fun k => x (dims k) := by
     intro x; funext i

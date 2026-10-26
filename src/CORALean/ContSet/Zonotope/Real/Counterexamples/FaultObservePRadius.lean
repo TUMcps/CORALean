@@ -50,7 +50,7 @@ open Matrix CORALean
 
 -- simp evaluates the form of Eq. 17's concrete `4 × 4` block matrix entry by entry
 set_option maxHeartbeats 100000 in
-theorem Zonotope.aux_faultRadiusCounterexample_lmi : -- --- CONCL ---
+private theorem Zonotope.aux_faultRadiusCounterexample_lmi : -- --- CONCL ---
     LinearSysDT.IsFaultRadiusLmi (n := 2) (ny := 1) (nw := 0) (nv := 0) (rw := 0) (rv := 0)
       ((9 / 10 : ℝ) • 1) 0 0 0 0 0 1 0 (9 / 10) := by -- --- PROOF ---
   refine posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => ?_⟩
@@ -93,7 +93,7 @@ theorem Zonotope.aux_faultRadiusCounterexample_lmi : -- --- CONCL ---
   nlinarith [hpos]
 
 -- the instance's state zonotope `⟨0, [(2, 0) (1, 1) (1, -1)]⟩` at the coefficients `b`
-theorem Zonotope.aux_faultRadiusCounterexample_sumK (b : Fin 3 → ℝ) :
+private theorem Zonotope.aux_faultRadiusCounterexample_sumK (b : Fin 3 → ℝ) :
     let Xk : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![2, 0], ![1, 1], ![1, -1]]⟩
     ∑ j, b j • Xk.G j = ![2 * b 0 + b 1 + b 2, b 1 - b 2] := by
   intro Xk
@@ -101,7 +101,8 @@ theorem Zonotope.aux_faultRadiusCounterexample_sumK (b : Fin 3 → ℝ) :
   fin_cases i <;> simp [Xk, Fin.sum_univ_three] <;> ring
 
 -- the next zonotope: `↓_1` keeps `(2, 0)` and boxes the rest into `diag(2, 2)`, then `A = 9/10`
-theorem Zonotope.aux_faultRadiusCounterexample_sumP (b : Fin (1 + 2 + 0 + 0) → ℝ) : -- --- CONCL ---
+private theorem Zonotope.aux_faultRadiusCounterexample_sumP
+    (b : Fin (1 + 2 + 0 + 0) → ℝ) : -- --- CONCL ---
     let A : Mat ℝ 2 2 := (9 / 10 : ℝ) • 1
     let Xk : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![2, 0], ![1, 1], ![1, -1]]⟩
     let Xp := (Xk.reduceBy (Partition.split 1 2)).faultObserve A (0 : Mat ℝ 2 1)

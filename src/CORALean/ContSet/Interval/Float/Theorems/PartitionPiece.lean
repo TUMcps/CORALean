@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A numerator rounded down over a count rounded up is below the ratio. -/
-theorem Interval.aux_ratioLo_le (k s : ℕ) (hs : 0 < s) : -- --- CONCL ---
+private theorem Interval.aux_ratioLo_le (k s : ℕ) (hs : 0 < s) : -- --- CONCL ---
     toReal (divDown (nsmulDown k (one : 𝕋)) (nsmulUp s (one : 𝕋))) ≤
       (k : ℝ) / s := by -- --- PROOF ---
   -- the denominator is at least `s`, the numerator at most `k`
@@ -62,7 +62,7 @@ theorem Interval.aux_ratioLo_le (k s : ℕ) (hs : 0 < s) : -- --- CONCL ---
     _ ≤ (k : ℝ) / s := by gcongr
 
 /-- The ratio is below `1` less the lower bound of its complement. -/
-theorem Interval.aux_le_ratioHi (k s : ℕ) (hs : 0 < s) (hk : k ≤ s) : -- --- CONCL ---
+private theorem Interval.aux_le_ratioHi (k s : ℕ) (hs : 0 < s) (hk : k ≤ s) : -- --- CONCL ---
     (k : ℝ) / s ≤ toReal (subUp (one : 𝕋)
       (divDown (nsmulDown (s - k) (one : 𝕋)) (nsmulUp s (one : 𝕋)))) := by -- --- PROOF ---
   have hs' : (0 : ℝ) < s := Nat.cast_pos.mpr hs
@@ -76,7 +76,7 @@ theorem Interval.aux_le_ratioHi (k s : ℕ) (hs : 0 < s) (hk : k ≤ s) : -- ---
 
 /-- One coordinate: the real piece `[a + k d, a + (k + 1) d]`, `d = (b - a) / s`, is inside the
 float one. -/
-theorem Interval.aux_partition_piece (a b : 𝕋) (s k : ℕ) (hs : 0 < s)
+private theorem Interval.aux_partition_piece (a b : 𝕋) (s k : ℕ) (hs : 0 < s)
     (hk : k < s) : -- --- CONCL ---
     toReal (addDown a (Interval.mulLo
         (divDown (nsmulDown k (one : 𝕋)) (nsmulUp s (one : 𝕋)))

@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- One term of `exp x - 1`'s tail, bounded by the matching term of
 `Real.exp ‖x‖ - 1`. -/
-theorem aux_norm_exp_tail_term_le (x : Mat ℝ n n) (i : ℕ) :
+private theorem aux_norm_exp_tail_term_le (x : Mat ℝ n n) (i : ℕ) :
     ‖(((Nat.factorial (i + 1) : ℝ))⁻¹) • x ^ (i + 1)‖
       ≤ ((Nat.factorial (i + 1) : ℝ))⁻¹ * ‖x‖ ^ (i + 1) := by
   rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg (by positivity)]

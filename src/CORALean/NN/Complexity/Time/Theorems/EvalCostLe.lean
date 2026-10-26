@@ -50,7 +50,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The input width is one of the widths `maxWidth` ranges over. -/
-theorem aux_le_maxWidth : ∀ {n k : ℕ} (net : SetBasedNet n k), n ≤ net.maxWidth
+private theorem aux_le_maxWidth : ∀ {n k : ℕ} (net : SetBasedNet n k), n ≤ net.maxWidth
   | _, _, .output => le_rfl
   | _, _, .linear _ _ _ => le_max_left _ _
   | _, _, .nonlinear _ _ _ _ => le_max_left _ _

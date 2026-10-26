@@ -77,7 +77,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 
 /-- An `unsafe` answer came from a finite set of accumulated `O - U` points
 whose hull already reaches the origin. -/
-theorem aux_exists_convexHull_of_verifyConvex_eq_unsafe (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
+private theorem aux_exists_convexHull_of_verifyConvex_eq_unsafe
+    (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
     (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ)
     (h : verifyConvex bO bU wO wU ℓ fuel = .violated) :

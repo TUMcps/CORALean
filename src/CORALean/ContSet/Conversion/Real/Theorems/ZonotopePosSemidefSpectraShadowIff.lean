@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The inequality, entry by entry: `1 + βⱼ` on the first block and `1 - βⱼ` on the
 second. Stated at plain dimensions, so every index is a sum and `simp` reads it. -/
-theorem Zonotope.aux_lmi_spectraShadow {h : ℕ} (β : Fin h → ℝ) : -- --- CONCL ---
+private theorem Zonotope.aux_lmi_spectraShadow {h : ℕ} (β : Fin h → ℝ) : -- --- CONCL ---
     blockDiag 0 (1 : Mat ℝ h h) 1 + ∑ j, β j • blockDiag 0 (diagonal (Pi.single j 1))
         (diagonal (Pi.single j (-1) : Fin h → ℝ))
       = blockDiag 0 (diagonal fun i => 1 + β i) (diagonal fun i => 1 - β i) := by -- --- PROOF ---

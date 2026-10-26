@@ -52,7 +52,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `compactGens`'s regrouping of the dependent sum, at one factor vector. -/
-theorem PolyZonotope.aux_compactGens_sum (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_compactGens_sum (pZ : PolyZonotope (Vec ℝ n))
     (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ j : Fin pZ.compactGens.h,
@@ -64,7 +64,7 @@ theorem PolyZonotope.aux_compactGens_sum (pZ : PolyZonotope (Vec ℝ n))
   rfl
 
 /-- `compactFactors`'s same sum, read against the factors it keeps. -/
-theorem PolyZonotope.aux_compactFactors_sum (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_compactFactors_sum (pZ : PolyZonotope (Vec ℝ n))
     (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ i : Fin pZ.compactFactors.h, PolyZonotope.monomial pZ.compactFactors.E
@@ -79,7 +79,7 @@ theorem PolyZonotope.aux_compactFactors_sum (pZ : PolyZonotope (Vec ℝ n))
 
 /-- `compact` keeps the point it denotes, read through the renumbering of the
 factors it still uses. -/
-theorem PolyZonotope.aux_compact_point (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
+private theorem PolyZonotope.aux_compact_point (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
     pZ.compact.point (fun k => a (PolyZonotope.factorIdx pZ.compactGens.E k))
       = pZ.point a :=
   congrArg (pZ.c + ·) ((PolyZonotope.aux_compactFactors_sum pZ.compactGens a).symm.trans
@@ -87,7 +87,7 @@ theorem PolyZonotope.aux_compact_point (pZ : PolyZonotope (Vec ℝ n)) (a : Fin 
 
 /-- `compact` evaluated at the carried factor vector, which is the whole of what
 the merging and the dropping of factors do to a dependency. -/
-theorem PolyZonotope.aux_compact_evalOn (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_compact_evalOn (pZ : PolyZonotope (Vec ℝ n))
     {B : Set (Fin pZ.p → ℝ)} :
     pZ.evalOn B ⊆ pZ.compact.evalOn ((fun (a : Fin pZ.p → ℝ) (k : Fin pZ.compact.p) =>
       a (PolyZonotope.factorIdx pZ.compactGens.E k)) '' B) := by
@@ -97,7 +97,7 @@ theorem PolyZonotope.aux_compact_evalOn (pZ : PolyZonotope (Vec ℝ n))
 
 /-- Girard's rule leaves the factors alone: past the order bound it boxes
 generators into the independent block, below it nothing happens. -/
-theorem PolyZonotope.aux_reduceGirard_evalOn (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ)
+private theorem PolyZonotope.aux_reduceGirard_evalOn (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ)
     {B : Set (Fin pZ.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     pZ.evalOn B ⊆ (pZ.reduceGirard o).evalOn
       {a' | ∃ a ∈ B, ∀ (k : Fin (pZ.reduceGirard o).p) (k' : Fin pZ.p),

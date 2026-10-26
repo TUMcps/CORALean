@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A column's exact multiple is off from the stored one by at most the gap. -/
-theorem PolyZonotope.aux_jacobianGap_bound (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (r : Fin n)
-    (i : Fin pZ.h) : -- --- CONCL ---
+private theorem PolyZonotope.aux_jacobianGap_bound (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p)
+    (r : Fin n) (i : Fin pZ.h) : -- --- CONCL ---
     |(pZ.E k i : ℝ) * toReal (pZ.G i r) - toReal ((pZ.jacobian k).G i r)|
       ≤ toReal (pZ.aux_jacobianGap k r i) := by -- --- PROOF ---
   have hlo := sumDown_le_sum (fun _ : Fin (pZ.E k i) => pZ.G i r)

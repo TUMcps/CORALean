@@ -51,7 +51,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
-theorem PolyZonotope.aux_sum_compactGens (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_sum_compactGens (pZ : PolyZonotope α)
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ j : Fin pZ.compactGens.h,
           PolyZonotope.monomial pZ.compactGens.E a j • pZ.compactGens.G j := by -- --- PROOF ---

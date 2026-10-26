@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 omit [ToRat 𝕋] in
 /-- A product with a factor between two corners is at most the larger corner product. -/
-theorem SpectraShadow.aux_mul_le_corner (a lo hi : 𝕋) {e : ℝ} (he₁ : toReal lo ≤ e)
+private theorem SpectraShadow.aux_mul_le_corner (a lo hi : 𝕋) {e : ℝ} (he₁ : toReal lo ≤ e)
     (he₂ : e ≤ toReal hi) : -- --- CONCL ---
     toReal a * e ≤ toReal (maximum (mulUp a lo) (mulUp a hi)) := by -- --- PROOF ---
   rw [toReal_maximum]

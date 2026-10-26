@@ -60,14 +60,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `inputTerm` is the order the integrated exponential's series has there. -/
-theorem LinearSys.aux_inputTerm_eq (sys : LinearSys 𝕋 n) (Δt : ℝ) (i : ℕ) :
+private theorem LinearSys.aux_inputTerm_eq (sys : LinearSys 𝕋 n) (Δt : ℝ) (i : ℕ) :
     sys.inputTerm Δt i = ((Nat.factorial (i + 1) : ℝ)⁻¹ * Δt ^ (i + 1)) • toRealMat sys.A ^ i := by
   rw [LinearSys.inputTerm]
   congr 1
   field_simp
 
 /-- One point of `U` held over every summand at once. -/
-theorem LinearSys.aux_sum_mulVec_mem (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
+private theorem LinearSys.aux_sum_mulVec_mem (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
     {s : Vec ℝ n} (hs : s ∈ construct U) (m : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.range m, sys.inputTerm Δt i) *ᵥ s
       ∈ ∑ i ∈ Finset.range m,

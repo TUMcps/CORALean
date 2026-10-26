@@ -60,21 +60,21 @@ variable {n ny nw nv : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- a real matrix acts on real and imaginary parts separately
-theorem LinearSysDT.aux_re_im_mulVec {m k : ℕ} (M : Mat ℝ m k) (x : Fin k → ℂ) :
+private theorem LinearSysDT.aux_re_im_mulVec {m k : ℕ} (M : Mat ℝ m k) (x : Fin k → ℂ) :
     (fun i => ((M.map Complex.ofReal) *ᵥ x) i |>.re) = M *ᵥ (fun j => (x j).re) ∧
       (fun i => ((M.map Complex.ofReal) *ᵥ x) i |>.im) = M *ᵥ (fun j => (x j).im) := by
   refine ⟨funext fun i => ?_, funext fun i => ?_⟩ <;>
     simp [mulVec, dotProduct, Complex.re_sum, Complex.im_sum]
 
 -- the squared norm of a complex vector is that of its real and imaginary parts
-theorem LinearSysDT.aux_sum_sq_norm {k : ℕ} (x : Fin k → ℂ) :
+private theorem LinearSysDT.aux_sum_sq_norm {k : ℕ} (x : Fin k → ℂ) :
     ∑ i, ‖x i‖ ^ 2 = (fun j => (x j).re) ⬝ᵥ (fun j => (x j).re) +
       (fun j => (x j).im) ⬝ᵥ (fun j => (x j).im) := by
   simp only [dotProduct, ← Finset.sum_add_distrib, Complex.sq_norm, Complex.normSq_apply]
 
 -- its Eq. 17 on the real and imaginary parts of a complex solution of `z e = A_e e + B_e d`
-theorem LinearSysDT.aux_complex_dissipation (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
-    (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ ε : ℝ) (hP : P.PosDef)
+private theorem LinearSysDT.aux_complex_dissipation (A : Mat ℝ n n) (C : Mat ℝ ny n)
+    (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ ε : ℝ) (hP : P.PosDef)
     (hd : ∀ (a : Vec ℝ n) (b : Vec ℝ nw) (c : Vec ℝ nv),
       let q := (A - P⁻¹ * Y * C) *ᵥ a + E *ᵥ b - (P⁻¹ * Y * F) *ᵥ c
       q ⬝ᵥ (P *ᵥ q) + a ⬝ᵥ a - a ⬝ᵥ (P *ᵥ a) - γ ^ 2 * (b ⬝ᵥ b + c ⬝ᵥ c) ≤

@@ -18,7 +18,7 @@ numbers are the tables' numbers and nothing is counted twice. Three counts:
    result looser than or different from CORA's), not yet, and out of scope (by
    reason), the float backlog (`needs_float`: `proved` with no float refinement
    yet) and the methods where CORA itself is wrong (`cora_issues`);
-3. theorem categories: every public `theorem`/`lemma` under `src/CORALean`, in
+3. theorem categories: every `theorem`/`lemma` (`private` ones too) under `src/CORALean`, in
    exactly one of paper theorems, float refinements, proof helpers and lemmas;
    `Examples/` theorems are counted apart.
 

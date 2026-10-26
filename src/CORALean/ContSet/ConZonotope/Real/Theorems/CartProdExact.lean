@@ -42,7 +42,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 omit [Module ℝ α] [Module ℝ β] in
 /-- `Fin.sum_univ_add` at `cartProd`'s generator count, stated through the projection. -/
-theorem ConZonotope.aux_sum_univ_cartProd {cZ₁ : ConZonotope α} {cZ₂ : ConZonotope β}
+private theorem ConZonotope.aux_sum_univ_cartProd {cZ₁ : ConZonotope α} {cZ₂ : ConZonotope β}
     (f : Fin (cZ₁.h + cZ₂.h) → α × β) :
     ∑ j : Fin (cZ₁.cartProd cZ₂).h, f j
       = ∑ j, f (Fin.castAdd cZ₂.h j) + ∑ j, f (Fin.natAdd cZ₁.h j) :=
@@ -50,14 +50,14 @@ theorem ConZonotope.aux_sum_univ_cartProd {cZ₁ : ConZonotope α} {cZ₂ : ConZ
 
 omit [Module ℝ α] [Module ℝ β] in
 /-- Each block answers to its own polytope, as `ConZonotope.aux_mem_plus_P_iff`. -/
-theorem ConZonotope.aux_mem_cartProd_P_iff (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
+private theorem ConZonotope.aux_mem_cartProd_P_iff (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
     (β' : Vec ℝ (cZ₁.cartProd cZ₂).h) :
     β' ∈ (cZ₁.cartProd cZ₂).P.construct ↔
       blockLeft cZ₁.h cZ₂.h β' ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β' ∈ cZ₂.P.construct :=
   HPolytope.mem_intersection_iff
 
-theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
+private theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
     (γ : Fin (cZ₁.h + cZ₂.h) → ℝ) : -- --- CONCL ---
     (cZ₁.cartProd cZ₂).c + ∑ j : Fin (cZ₁.cartProd cZ₂).h, γ j • (cZ₁.cartProd cZ₂).G j
       = (cZ₁.c + ∑ j, γ (Fin.castAdd cZ₂.h j) • cZ₁.G j,

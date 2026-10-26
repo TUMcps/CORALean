@@ -100,7 +100,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
 
 /-- The run from `(1/(2g), 0)` stays in `R` and in the invariant and reaches the guard at
 `t = 1/g`. -/
-theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
+private theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hc : ℓ.dynamics.c = ![0, -g])
     (hU : 0 ∈ ContSet.construct ℓ.U) (hW : 0 ∈ ContSet.construct ℓ.W)
     (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) : -- --- CONCL ---

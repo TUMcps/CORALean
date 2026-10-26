@@ -67,7 +67,7 @@ section
 variable {M X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- A continuous successor over `t` is one over `s` followed by one over `t - s` ([1, Def. 4]). -/
-theorem DiffInclAutomaton.aux_flows_split {H : DiffInclAutomaton M X} {m : M} {x x' : X}
+private theorem DiffInclAutomaton.aux_flows_split {H : DiffInclAutomaton M X} {m : M} {x x' : X}
     {t s : ℝ} (h : H.Flows m x t x') (hs : 0 < s) (hst : s < t) : -- --- CONCL ---
     ∃ y, H.Flows m x s y ∧ H.Flows m y (t - s) x' := by -- --- PROOF ---
   obtain ⟨_, g, hd, h0, ht, hg⟩ := h

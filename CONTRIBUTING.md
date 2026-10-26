@@ -1029,6 +1029,15 @@ never imported before; such a proof states the lemmas and cases it needs.
 What a file needs and nothing else uses carries the `aux_` prefix, as in CORA.
 The test is mechanical: used outside its own file, or not.
 
+An `aux_` declaration that no other file reads is `private` (#269), so the compiler rejects any
+use from another file; it stays public only where its own file needs it public: in a theorem's
+statement (a `let` in it included) or in the body of a public definition, where Lean rejects a
+`private` name, and for an `@[csimp]` lemma. A step that a satellite theorem file reads stays public
+`aux_` (#227), and an `aux_` that later gains a reader drops `private` again. `private`
+declarations count like public ones in the paper's theorem total, and
+`scripts/check-private-aux.py` reports a public `aux_` that no other file reads and that its own
+file uses only in `private` declarations or in proofs.
+
 #### A step of one algorithm is `aux_` (#227)
 
 What a file needs and nothing else uses is `aux_`, and the file may be an algorithm's. A step

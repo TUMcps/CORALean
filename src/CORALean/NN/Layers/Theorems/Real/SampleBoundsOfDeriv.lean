@@ -48,7 +48,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every point of the box is near an exact sample. -/
-theorem aux_exists_sampleGrid_close {l u t : ℝ} {N : ℕ} (hN : 0 < N) (hl : l ≤ t)
+private theorem aux_exists_sampleGrid_close {l u t : ℝ} {N : ℕ} (hN : 0 < N) (hl : l ≤ t)
     (hu : t ≤ u) : -- --- CONCL ---
     ∃ i : Fin (N + 1), |t - sampleGrid l u N i| ≤ (u - l) / N := by -- --- PROOF ---
   have hNpos : (0 : ℝ) < N := Nat.cast_pos.mpr hN

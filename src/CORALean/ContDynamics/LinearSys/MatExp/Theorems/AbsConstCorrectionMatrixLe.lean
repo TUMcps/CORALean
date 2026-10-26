@@ -62,7 +62,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One order of the integrated interpolation error, in `r` and `‖A‖`. -/
-theorem MatExp.aux_abs_constCorrTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) (i : ℕ)
+private theorem MatExp.aux_abs_constCorrTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) (i : ℕ)
     (j k : Fin n) : -- --- CONCL ---
     |MatExp.constCorrTerm A r i j k|
       ≤ r * ((Nat.factorial (i + 1) : ℝ)⁻¹ * (r * ‖A‖) ^ (i + 1)) := by -- --- PROOF ---

@@ -45,7 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A combination of the stored independent generators is their matrix applied to the weights. -/
-theorem PolyZonotope.aux_sum_gi (pZ : PolyZonotope (Vec 𝕋 n)) (β : Vec ℝ pZ.q) : -- --- CONCL ---
+private theorem PolyZonotope.aux_sum_gi (pZ : PolyZonotope (Vec 𝕋 n))
+    (β : Vec ℝ pZ.q) : -- --- CONCL ---
     (∑ j, β j • (nominal pZ).GI j)
       = toRealMat (fun i j => pZ.GI j i) *ᵥ β := by -- --- PROOF ---
   funext i
@@ -55,7 +56,7 @@ theorem PolyZonotope.aux_sum_gi (pZ : PolyZonotope (Vec 𝕋 n)) (β : Vec ℝ p
     ring
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
-theorem PolyZonotope.aux_box_subset {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat 𝕋 pZ.q n} {B : 𝕋}
+private theorem PolyZonotope.aux_box_subset {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat 𝕋 pZ.q n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => pZ.GI j i) H B one = true) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal pZ).c
       + ∑ i, Real.PolyZonotope.monomial (nominal pZ).E (fun _ => 0) i • (nominal pZ).G i)

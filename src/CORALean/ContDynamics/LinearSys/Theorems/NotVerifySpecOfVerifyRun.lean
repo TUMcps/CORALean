@@ -56,7 +56,7 @@ variable {n r w : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem LinearSys.aux_not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
+private theorem LinearSys.aux_not_verifySpec_of_verifyStep {Reach : Set (Vec ℝ n)}
     {reachFn : ℝ → Zonotope (Vec ℝ n)}
     {innerApprox : Zonotope (Vec ℝ n) → ℝ → ConZonotope (Vec ℝ n)}
     {distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ}

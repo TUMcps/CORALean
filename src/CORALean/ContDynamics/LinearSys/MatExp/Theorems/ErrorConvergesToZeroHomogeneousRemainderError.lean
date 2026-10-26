@@ -60,14 +60,14 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix entrywise within `b` of `0` scales the Euclidean norm by at most `Σᵢ Σⱼ b_{ij}`. -/
-theorem aux_norm₂_mulVec_le_of_abs_entry_le (M b : Mat ℝ n n) (hM : ∀ i j, |M i j| ≤ b i j)
+private theorem aux_norm₂_mulVec_le_of_abs_entry_le (M b : Mat ℝ n n) (hM : ∀ i j, |M i j| ≤ b i j)
     (x : Vec ℝ n) : ‖M.mulVec x‖₂ ≤ (∑ i, ∑ j, b i j) * ‖x‖₂ := by
   refine (norm₂_mulVec_le M x).trans (mul_le_mul_of_nonneg_right ?_ (norm₂_nonneg x))
   exact Finset.sum_le_sum fun i _ =>
     (norm₂_le_sum_abs _).trans (Finset.sum_le_sum fun j _ => hM i j)
 
 /-- A Taylor interval `[c_k Δt^k, 0]` with `k ≥ 2`, scaling a fixed entry, vanishes with `Δt`. -/
-theorem aux_tendsto_taylor_term {k : ℕ} (hk : k ≠ 0) (b : ℝ) : -- --- CONCL ---
+private theorem aux_tendsto_taylor_term {k : ℕ} (hk : k ≠ 0) (b : ℝ) : -- --- CONCL ---
     Tendsto (fun Δt : ℝ => |MatExp.corrCoeff k * Δt ^ k| * b) (𝓝[>] (0 : ℝ))
       (𝓝 0) := by -- --- PROOF ---
   have hc : Continuous fun Δt : ℝ => |MatExp.corrCoeff k * Δt ^ k| * b :=

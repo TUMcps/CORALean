@@ -46,7 +46,8 @@ variable {lam : ι → ℝ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `∑ᵢ 1/(1+βλᵢ)` is positive at `β ≥ 0` when every `λᵢ` is. [1, Eq. 26] -/
-theorem Ellipsoid.aux_halderInvSum_pos [Nonempty ι] (hlam : ∀ i, 0 < lam i) {β : ℝ} (hβ : 0 ≤ β) :
+private theorem Ellipsoid.aux_halderInvSum_pos [Nonempty ι] (hlam : ∀ i, 0 < lam i) {β : ℝ}
+    (hβ : 0 ≤ β) :
     0 < Ellipsoid.halderInvSum lam β := by
   refine Finset.sum_pos (fun i _ => ?_) Finset.univ_nonempty
   have := hlam i

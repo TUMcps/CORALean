@@ -79,7 +79,7 @@ variable {n : ℕ}
 
 namespace Real
 /-- `[a, b] ⊗ Z` encloses every product. -/
-theorem Zonotope.aux_scalarIntervalMul_outer (a b : ℝ) (Z : Zonotope (Vec ℝ n)) {s : ℝ}
+private theorem Zonotope.aux_scalarIntervalMul_outer (a b : ℝ) (Z : Zonotope (Vec ℝ n)) {s : ℝ}
     (hs : s ∈ Set.Icc a b) {z : Vec ℝ n} (hz : z ∈ Z.construct) : -- --- CONCL ---
     s • z ∈ (Zonotope.scalarIntervalMul a b Z).construct := by -- --- PROOF ---
   -- the center's part `c z`
@@ -115,7 +115,7 @@ end Real
 
 
 /-- The error, split into the parts `E_err` holds: the exact orders `2…η`, the remainders. -/
-theorem aux_trajectoryError_split (A : Mat ℝ n n) (u ξ x₀ : Vec ℝ n) (t tc : ℝ)
+private theorem aux_trajectoryError_split (A : Mat ℝ n n) (u ξ x₀ : Vec ℝ n) (t tc : ℝ)
     (η : ℕ) : -- --- CONCL ---
     exp (t • A) *ᵥ x₀ + MatExp.expIntegral A t *ᵥ u
         - GuardMap.sdcFlow A (GuardMap.sdcInput A u tc (η + 1) ξ) x₀ t

@@ -85,7 +85,7 @@ private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u)
 
 /-- What makes the reciprocals above it total: a lower bound on an exponential
 is never negative, so `1 + expDown a` is never below one. -/
-theorem aux_expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
+private theorem aux_expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
   squareDownIter_nonneg n (seedDown_nonneg _)
 
 end

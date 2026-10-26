@@ -47,7 +47,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- On positive values the reciprocal takes every value from `1/hi` up. -/
-theorem aux_inv_image_Ioc (hi : ℝ) (hhi : 0 < hi) : -- --- CONCL ---
+private theorem aux_inv_image_Ioc (hi : ℝ) (hhi : 0 < hi) : -- --- CONCL ---
     (·⁻¹) '' (Set.Icc 0 hi ∩ {y | y ≠ 0}) = Set.Ici hi⁻¹ := by -- --- PROOF ---
   ext v
   constructor

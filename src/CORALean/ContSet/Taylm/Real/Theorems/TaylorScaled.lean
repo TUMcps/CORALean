@@ -64,7 +64,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `T - c` at a center no larger than `C` weighs at most twice `T`. -/
-theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
+private theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
     (hT : T.IsScaled h C) : -- --- CONCL ---
     (T.minus (Taylm.const n c T.maxOrder)).IsScaled h (2 * C) := by -- --- PROOF ---
   obtain ⟨w, i, s⟩ := hT

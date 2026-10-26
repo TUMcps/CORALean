@@ -65,7 +65,7 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 /-- Translating by `c` carries `Icc a b` onto `Icc (a+c) (b+c)` and preserves
 Lebesgue measure. -/
-theorem aux_aestronglyMeasurable_comp_sub_right {f : ℝ → Vec ℝ n} {a b c : ℝ}
+private theorem aux_aestronglyMeasurable_comp_sub_right {f : ℝ → Vec ℝ n} {a b c : ℝ}
     (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (σ - c))
       (volume.restrict (Set.Icc (a + c) (b + c))) := by -- --- PROOF ---
@@ -81,7 +81,7 @@ theorem aux_aestronglyMeasurable_comp_sub_right {f : ℝ → Vec ℝ n} {a b c :
 
 /-- Two inputs run back to back: the first over `[0,a]`, the second over the `b`
 that follows. Strict `<` so each piece is exact on its own half-open window. -/
-noncomputable def aux_concat (u₁ u₂ : ℝ → Vec ℝ n) (a : ℝ) : ℝ → Vec ℝ n :=
+private noncomputable def aux_concat (u₁ u₂ : ℝ → Vec ℝ n) (a : ℝ) : ℝ → Vec ℝ n :=
   fun s => if a < s then u₂ (s - a) else u₁ s
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]

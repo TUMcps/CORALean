@@ -58,7 +58,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Scaling column `j` by `d j` scales the cross product by `∏ d`. -/
-theorem aux_nCross_scale {n : ℕ} (H : Mat ℝ (n + 1) n) (d : Fin n → ℝ) : -- --- CONCL ---
+private theorem aux_nCross_scale {n : ℕ} (H : Mat ℝ (n + 1) n) (d : Fin n → ℝ) : -- --- CONCL ---
     nCross (Matrix.of fun i j => d j * H i j) = (∏ j, d j) • nCross H := by -- --- PROOF ---
   funext i
   have hsub : (Matrix.of fun i j => d j * H i j).submatrix i.succAbove id
@@ -70,13 +70,13 @@ theorem aux_nCross_scale {n : ℕ} (H : Mat ℝ (n + 1) n) (d : Fin n → ℝ) :
   ring
 
 /-- Pairing with `v`, as the linear form `hRep_lin_subset` takes. -/
-noncomputable def aux_dotLin {n : ℕ} (v : Vec ℝ n) : Vec ℝ n →ₗ[ℝ] ℝ where
+private noncomputable def aux_dotLin {n : ℕ} (v : Vec ℝ n) : Vec ℝ n →ₗ[ℝ] ℝ where
   toFun y := v ⬝ᵥ y
   map_add' y z := dotProduct_add v y z
   map_smul' r y := dotProduct_smul r v y
 
 /-- Every stretch by `ε > 0` of a point the template halfspaces admit contains it. -/
-theorem aux_mem_stretch {n : ℕ} {κ : Type} (Z : Zonotope (Vec ℝ (n + 1)))
+private theorem aux_mem_stretch {n : ℕ} {κ : Type} (Z : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) (N : κ → Vec ℝ (n + 1))
     (hN : ∀ S : Fin n → Fin Z.h, ∃ (i₁ i₂ : κ) (lam : ℝ), 0 < lam ∧
       N i₁ = lam • Z.facetNormal S ∧ N i₂ = -(lam • Z.facetNormal S))

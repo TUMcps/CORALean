@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_min_mul_le {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w ≤ hi) :
+private theorem PolyZonotope.aux_min_mul_le {a lo hi w : ℝ} (h1 : lo ≤ w) (h2 : w ≤ hi) :
     min (a * lo) (a * hi) ≤ a * w := by
   rcases le_total 0 a with ha | ha
   · exact le_trans (min_le_left _ _) (mul_le_mul_of_nonneg_left h1 ha)

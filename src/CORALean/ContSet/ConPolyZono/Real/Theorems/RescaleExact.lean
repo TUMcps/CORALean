@@ -53,12 +53,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The factor vector after the first `n` factors have been sent to `cen ± rad`. -/
-def ConPolyZono.aux_rescaleSub (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → ℝ) : ℕ → ℝ :=
+private def ConPolyZono.aux_rescaleSub (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → ℝ) : ℕ → ℝ :=
   fun k => if k < n then cen k + rad k * a k else a k
 
 /-- What `n` steps of `rescaleStep` leave: the factor counts, the independent block, and
 the constraint rows and generators as the original's, read at `rescaleSub`. -/
-def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ) : Prop :=
+private def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ) : Prop :=
   acc.p = cPZ.p ∧ acc.qI = cPZ.qI
   ∧ (∀ β : ℕ → ℝ, ∑ j : Fin acc.qI, β j • acc.GI j = ∑ j : Fin cPZ.qI, β j • cPZ.GI j)
   ∧ (∀ a : ℕ → ℝ, (∀ i, (acc.cons.op i).holds (acc.cons.eval (fun k : Fin acc.p => a k) i))
@@ -68,7 +68,8 @@ def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ
       = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E
           (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad n a k) i • cPZ.G i)
 
-theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → ℝ) (n : ℕ)
+    (a : ℕ → ℝ) : -- --- CONCL ---
     ConPolyZono.aux_rescaleSub cen rad (n + 1) a
       = ConPolyZono.aux_rescaleSub cen rad n
           (Function.update a n (cen n + rad n * a n)) := by -- --- PROOF ---
@@ -81,7 +82,8 @@ theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → ℝ) (n : ℕ) (a : �
     rw [if_pos (by omega), if_neg (by omega), Function.update_self]
   · rw [if_neg (by omega), if_neg (by omega), Function.update_of_ne (by omega)]
 
-theorem ConPolyZono.aux_fin_update {m n : ℕ} (h : n < m) (a : ℕ → ℝ) (y : ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_fin_update {m n : ℕ} (h : n < m) (a : ℕ → ℝ)
+    (y : ℝ) : -- --- CONCL ---
     (fun k : Fin m => Function.update a n y (k : ℕ))
       = Function.update (fun k : Fin m => a k) ⟨n, h⟩ y := by -- --- PROOF ---
   -- the coordinate `n` is the updated one, the others are read off `a`
@@ -92,14 +94,14 @@ theorem ConPolyZono.aux_fin_update {m n : ℕ} (h : n < m) (a : ℕ → ℝ) (y 
     intro h'
     exact hk (Fin.ext h')
 
-theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono α) (cen rad : ℕ → ℝ) :
+private theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono α) (cen rad : ℕ → ℝ) :
     ConPolyZono.aux_RescaleInv cPZ cPZ cen rad 0 := by
   -- nothing has been substituted yet: the invariant's substitution is the identity
   refine ⟨rfl, rfl, fun _ => rfl, fun a => ?_, fun a => ?_⟩
   · simp [ConPolyZono.aux_rescaleSub]
   · simp [ConPolyZono.aux_rescaleSub]
 
-theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ)
+private theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ)
     (hn : n < cPZ.p) (hinv : ConPolyZono.aux_RescaleInv cPZ acc cen rad n) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ (ConPolyZono.rescaleStep cen rad acc n) cen rad
       (n + 1) := by -- --- PROOF ---
@@ -125,7 +127,7 @@ theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono α) (cen rad : �
     rw [ConPolyZono.aux_fin_update h] at h2
     exact h1.trans h2
 
-theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ)
+private theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ)
     (hn : n ≤ cPZ.p) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ ((List.range n).foldl (ConPolyZono.rescaleStep cen rad) cPZ)
       cen rad n := by -- --- PROOF ---
@@ -138,7 +140,7 @@ theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ �
 
 /-- Membership, with factor vectors on `ℕ` so that the counts need no casts, and the factor box
 and the constraint rows apart. -/
-theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- --- CONCL ---
+private theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- --- CONCL ---
     x ∈ acc.construct ↔ ∃ a β : ℕ → ℝ, (∀ k, k < acc.p → |a k| ≤ 1)
       ∧ (∀ j, j < acc.qI → |β j| ≤ 1)
       ∧ (∀ i, (acc.cons.op i).holds (acc.cons.eval (fun k : Fin acc.p => a k) i))
@@ -159,7 +161,7 @@ theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) : -- -
 
 /-- Any box `dom` inside `[-1,1]ᵖ` that keeps every factor vector satisfying the constraints
 leaves the set unchanged when the factors are rescaled onto it. -/
-theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
+private theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
     (dom : Interval (Vec ℝ cPZ.p))
     (hb : ∀ k, -1 ≤ dom.inf k ∧ dom.inf k ≤ dom.sup k ∧ dom.sup k ≤ 1)
     (hk : ∀ a : Fin cPZ.p → ℝ, (∀ k, |a k| ≤ 1) → a ∈ cPZ.cons.construct →

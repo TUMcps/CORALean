@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Taylor coefficients of `1/x`. -/
-theorem Taylm.aux_inv_coef (c : ℝ) (k : ℕ) :
+private theorem Taylm.aux_inv_coef (c : ℝ) (k : ℕ) :
     iteratedDeriv k (fun x : ℝ => x⁻¹) c / (k.factorial : ℝ) = (-1) ^ k / c ^ (k + 1) := by
   rw [iteratedDeriv_eq_iterate, show (fun x : ℝ => x⁻¹) = Inv.inv from rfl, iter_deriv_inv]
   have hf : (k.factorial : ℝ) ≠ 0 := by positivity

@@ -58,8 +58,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The builder after `if c, setPossiblyTrue(int)`. -/
-theorem aux_stepTrue (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT PF : ℝ → Prop) (lo hi : ℝ)
-    (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) : -- --- CONCL ---
+private theorem aux_stepTrue (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT PF : ℝ → Prop)
+    (lo hi : ℝ) (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) : -- --- CONCL ---
     ∃ b1, (if c = true then b.setPossiblyTrue? lo hi else some b) = some b1 ∧
       b1.Represents d (fun t => PT t ∨ (c = true ∧ Covers d t lo hi)) PF := by -- --- PROOF ---
   by_cases hc : c = true
@@ -72,8 +72,8 @@ theorem aux_stepTrue (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT PF : ℝ 
     simp [hc]
 
 /-- The builder after `if c, setPossiblyFalse(int)`. -/
-theorem aux_stepFalse (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT PF : ℝ → Prop) (lo hi : ℝ)
-    (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) : -- --- CONCL ---
+private theorem aux_stepFalse (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT PF : ℝ → Prop)
+    (lo hi : ℝ) (hlh : lo < hi) (hb : b.Represents d PT PF) (c : Bool) : -- --- CONCL ---
     ∃ b1, (if c = true then b.setPossiblyFalse? lo hi else some b) = some b1 ∧
       b1.Represents d PT (fun t => PF t ∨ (c = true ∧ Covers d t lo hi)) := by -- --- PROOF ---
   by_cases hc : c = true
@@ -88,7 +88,7 @@ theorem aux_stepFalse (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT PF : ℝ
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- Replacing the builder of key `k` changes what the analyzer says of `k` only. -/
-theorem aux_represents_setBuilder (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+private theorem aux_represents_setBuilder (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF) (k : String)
     (hk : ∃ q ∈ obj.aps, q.1 = k) (b' : FiniteKleeneSignalBuilder ℝ) (X Y : ℝ → Prop)
     (hb' : b'.Represents d X Y) : -- --- CONCL ---

@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The point reflection of a sign corner is the opposite sign corner. -/
-theorem Zonotope.aux_corner_symm (Z : Zonotope α) (s : Fin Z.h → Bool) : -- --- CONCL ---
+private theorem Zonotope.aux_corner_symm (Z : Zonotope α) (s : Fin Z.h → Bool) : -- --- CONCL ---
     (2 : ℝ) • Z.c - Z.corner s = Z.corner (fun j => !s j) := by -- --- PROOF ---
   simp only [Zonotope.corner]
   have : ∀ j, (if (!s j) = true then (1 : ℝ) else -1) • Z.G j
@@ -55,7 +55,7 @@ theorem Zonotope.aux_corner_symm (Z : Zonotope α) (s : Fin Z.h → Bool) : -- -
   module
 
 /-- The point reflection maps a segment onto the segment of the reflected ends. -/
-theorem Zonotope.aux_segment_symm (c A B x : α) (hx : x ∈ segment ℝ A B) :
+private theorem Zonotope.aux_segment_symm (c A B x : α) (hx : x ∈ segment ℝ A B) :
     (2 : ℝ) • c - x ∈ segment ℝ ((2 : ℝ) • c - A) ((2 : ℝ) • c - B) := by
   obtain ⟨a, b, ha, hb, hab, rfl⟩ := hx
   refine ⟨a, b, ha, hb, hab, ?_⟩

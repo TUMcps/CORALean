@@ -58,7 +58,7 @@ open Matrix
 
 /-- Row `i` never tightens a feasible coefficient out of its box: solving that row of
 `Aξ = b` for `βⱼ` places it between the same endpoints `tightenCoeff` computes. -/
-theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
     (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
     β ∈ (ConZonotope.tightenCoeff A b i j E).construct := by -- --- PROOF ---
@@ -114,7 +114,7 @@ theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b 
 
 /-- Every row of `Aξ = b`, applied in turn, still leaves a feasible coefficient inside
 the running box. -/
-theorem ConZonotope.aux_tightenRow_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenRow_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
     (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) :
     β ∈ (ConZonotope.tightenRow A b i E).construct := by

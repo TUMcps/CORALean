@@ -69,7 +69,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- Eq. (10)/(11)'s telescoping, at one step: an error grown by a share of what
 is left of the budget, proportional to the step, stays under the fraction of
 the budget the elapsed time has spent. -/
-theorem aux_tunedStep_le {ε a a' tf ti Δt : ℝ} (htf : 0 < tf)
+private theorem aux_tunedStep_le {ε a a' tf ti Δt : ℝ} (htf : 0 < tf)
     (hΔt : 0 < Δt) (hsum : ti + Δt ≤ tf) (ha : a ≤ ε * (ti / tf))
     (ha' : a' ≤ a + (ε - a) / (tf - ti) * Δt) : -- --- CONCL ---
     a' ≤ ε * ((ti + Δt) / tf) := by -- --- PROOF ---
@@ -95,7 +95,7 @@ theorem aux_tunedStep_le {ε a a' tf ti Δt : ℝ} (htf : 0 < tf)
 
 /-- Every step the sweep of `Alg. 2` can report is the one it came in with,
 shrunk by `μ` finitely often, so both being positive leaves it positive. -/
-theorem aux_adaptTimeStepSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_adaptTimeStepSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ)
     (hμ : 0 < μ) : -- --- CONCL ---
     ∀ (k : ℕ) (Δt Δti : ℝ) (ηi : ℕ), 0 < Δt →
@@ -118,7 +118,7 @@ theorem aux_adaptTimeStepSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ �
     · exact ih _ _ _ (mul_pos hΔt hμ) h
 
 /-- The step `Alg. 2` reports is positive, the one it starts from being so. -/
-theorem aux_adaptTimeStep_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_adaptTimeStep_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ)
     (hμ : 0 < μ) (hΔtprev : 0 < Δtprev) {Δti εP : ℝ} {ηi : ℕ}
     (h : sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel
@@ -136,7 +136,7 @@ theorem aux_adaptTimeStep_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Boo
 /-- The run's invariant: the time only grows, the step stays positive, each
 accumulated error stays under the fraction of its budget the elapsed time has
 spent, and once a step has been taken its `ε_H` is inside `ε_H,max`. -/
-theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
+private theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (hn : 0 < n) (X₀ U : Zonotope (Vec ℝ n))
     {εHmax εPmax εSmax tf μ : ℝ} (hμ : 0 < μ) (htf : 0 < tf)
     (hεSmax : 0 ≤ εSmax) (ηmax fuel : ℕ) : -- --- CONCL ---

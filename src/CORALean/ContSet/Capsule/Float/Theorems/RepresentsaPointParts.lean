@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Both ends `0` in every coordinate, each certified both ways: the box is the origin. -/
-theorem Capsule.aux_error_eq_origin {C : Capsule 𝕋 n}
+private theorem Capsule.aux_error_eq_origin {C : Capsule 𝕋 n}
     (h : ∀ i, ((le (C.I_error.inf i) zero = true ∧ le zero (C.I_error.inf i) = true) ∧
       le (C.I_error.sup i) zero = true) ∧ le zero (C.I_error.sup i) = true) : -- --- CONCL ---
     C.I_error.construct = {0} := by -- --- PROOF ---

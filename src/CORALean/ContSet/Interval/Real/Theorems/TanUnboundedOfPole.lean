@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The tangent takes the value `t` at `arctan t + jπ`, where the cosine does not vanish. -/
-theorem aux_tan_arctan_add (t : ℝ) (j : ℤ) :
+private theorem aux_tan_arctan_add (t : ℝ) (j : ℤ) :
     Real.tan (Real.arctan t + j * Real.pi) = t ∧
       Real.cos (Real.arctan t + j * Real.pi) ≠ 0 := by
   refine ⟨by rw [Real.tan_add_int_mul_pi, Real.tan_arctan], ?_⟩

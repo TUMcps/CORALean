@@ -52,7 +52,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The integrand over `u = t - τ`, a continuous matrix function. -/
-theorem aux_noiseIntegrand_continuous (A : Mat ℝ n n) (C : Mat ℝ n m)
+private theorem aux_noiseIntegrand_continuous (A : Mat ℝ n n) (C : Mat ℝ n m)
     (i j : Fin n) : -- --- CONCL ---
     Continuous fun u : ℝ =>
       (exp (u • A) * (C * C.transpose) * exp (u • A.transpose)) i j := by -- --- PROOF ---

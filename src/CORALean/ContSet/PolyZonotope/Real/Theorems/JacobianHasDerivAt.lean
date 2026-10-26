@@ -46,7 +46,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One monomial along the line is `tᵉ` times the other factors' powers. -/
-theorem PolyZonotope.aux_monomial_update {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
+private theorem PolyZonotope.aux_monomial_update {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (k : Fin p) (t : ℝ) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial E (Function.update a k t) i
       = t ^ E k i * ∏ k' ∈ Finset.univ.erase k, a k' ^ E k' i := by -- --- PROOF ---
@@ -57,7 +57,7 @@ theorem PolyZonotope.aux_monomial_update {p h : ℕ} (E : Fin p → Fin h → �
     rw [Function.update_of_ne (Finset.ne_of_mem_erase hk')])
 
 /-- The lowered exponent matrix's monomial is the derivative's factor. -/
-theorem PolyZonotope.aux_monomial_jacobian {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
+private theorem PolyZonotope.aux_monomial_jacobian {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (k : Fin p) (i : Fin h) : -- --- CONCL ---
     PolyZonotope.monomial (fun k' i => if k' = k then E k i - 1 else E k' i) a i
       = a k ^ (E k i - 1) * ∏ k' ∈ Finset.univ.erase k, a k' ^ E k' i := by -- --- PROOF ---

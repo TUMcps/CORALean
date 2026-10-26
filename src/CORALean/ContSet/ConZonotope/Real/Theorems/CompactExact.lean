@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum over all of `Fin h` that vanishes off `S` is the sum over the kept indices. -/
-theorem ConZonotope.aux_sum_kept {M : Type} [AddCommMonoid M] {h : ℕ} (S : Finset (Fin h))
+private theorem ConZonotope.aux_sum_kept {M : Type} [AddCommMonoid M] {h : ℕ} (S : Finset (Fin h))
     (f : Fin h → M) (hf : ∀ j, j ∉ S → f j = 0) :
     ∑ j, f j = ∑ l : Fin S.card, f (S.orderIsoOfFin rfl l).1 := by
   rw [← Finset.sum_subset (Finset.subset_univ S) fun j _ hj => hf j hj,
@@ -48,7 +48,7 @@ theorem ConZonotope.aux_sum_kept {M : Type} [AddCommMonoid M] {h : ℕ} (S : Fin
   exact (Equiv.sum_comp (S.orderIsoOfFin rfl).toEquiv fun x => f x).symm
 
 /-- The embedding puts a kept coefficient where its generator is. -/
-theorem ConZonotope.aux_embed_apply {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.card)
+private theorem ConZonotope.aux_embed_apply {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.card)
     (l : Fin S.card) : -- --- CONCL ---
     ConZonotope.aux_compactEmbed S v (S.orderIsoOfFin rfl l).1 = v l := by -- --- PROOF ---
   show (∑ l', v l' • (Pi.single (S.orderIsoOfFin rfl l').1 (1 : ℝ) : Vec ℝ h))
@@ -66,8 +66,8 @@ theorem ConZonotope.aux_embed_apply {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ 
   · exact fun h => absurd (Finset.mem_univ l) h
 
 /-- A dropped coordinate is zero. -/
-theorem ConZonotope.aux_embed_off {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.card) (j : Fin h)
-    (hj : j ∉ S) : -- --- CONCL ---
+private theorem ConZonotope.aux_embed_off {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.card)
+    (j : Fin h) (hj : j ∉ S) : -- --- CONCL ---
     ConZonotope.aux_compactEmbed S v j = 0 := by -- --- PROOF ---
   show (∑ l', v l' • (Pi.single (S.orderIsoOfFin rfl l').1 (1 : ℝ) : Vec ℝ h)) j = 0
   rw [Finset.sum_apply]
@@ -77,7 +77,7 @@ theorem ConZonotope.aux_embed_off {h : ℕ} (S : Finset (Fin h)) (v : Vec ℝ S.
   rw [Pi.single_eq_of_ne this, smul_zero]
 
 /-- A functional that ignores the dropped coordinates reads the embedded kept ones alike. -/
-theorem ConZonotope.aux_functional_embed {h : ℕ} (S : Finset (Fin h)) (φ : Vec ℝ h →ₗ[ℝ] ℝ)
+private theorem ConZonotope.aux_functional_embed {h : ℕ} (S : Finset (Fin h)) (φ : Vec ℝ h →ₗ[ℝ] ℝ)
     (hφ : ∀ j, j ∉ S → φ (Pi.single j (1 : ℝ) : Vec ℝ h) = 0) (β : Vec ℝ h) : -- --- CONCL ---
     φ (ConZonotope.aux_compactEmbed S fun l => β (S.orderIsoOfFin rfl l).1)
       = φ β := by -- --- PROOF ---

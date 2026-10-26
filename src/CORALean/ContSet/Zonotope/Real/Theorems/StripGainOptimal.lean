@@ -52,7 +52,7 @@ variable {n p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The strip update and the Luenberger step at `F = I` have the same squared generators. -/
-theorem Zonotope.aux_frobSq_intersectStrip (Γ : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
+private theorem Zonotope.aux_frobSq_intersectStrip (Γ : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (X : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∑ i, ∑ k, ((Zonotope.intersectStrip Γ φ y Λ X).G k i) ^ 2 =
       ∑ i, ∑ k, ((Zonotope.luenbergerUpdate 1 Γ Λ (0 : Mat ℝ n 0) (Matrix.diagonal φ) y X).G k i)

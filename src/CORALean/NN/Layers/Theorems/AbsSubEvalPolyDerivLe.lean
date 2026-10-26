@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A stored center reads back exactly. -/
-theorem aux_toReal_polyDerivCenter (c : Fin (n + 1) → 𝕋) : -- --- CONCL ---
+private theorem aux_toReal_polyDerivCenter (c : Fin (n + 1) → 𝕋) : -- --- CONCL ---
     toReal (polyDerivCenter c)
       = Real.polyDerivCenter (fun k => toReal (c k)) := by -- --- PROOF ---
   show toReal (if h : 1 < n + 1 then c ⟨1, h⟩ else zero)
@@ -74,7 +74,7 @@ theorem aux_toReal_polyDerivCenter (c : Fin (n + 1) → 𝕋) : -- --- CONCL ---
 
 
 /-- A stored radius bounds the exact one. -/
-theorem aux_polyDerivRadius_le (c : Fin (n + 1) → 𝕋) (l u : 𝕋) : -- --- CONCL ---
+private theorem aux_polyDerivRadius_le (c : Fin (n + 1) → 𝕋) (l u : 𝕋) : -- --- CONCL ---
     Real.polyDerivRadius (fun k => toReal (c k)) (toReal l) (toReal u)
       ≤ toReal (polyDerivRadiusUp c l u) := by -- --- PROOF ---
   show (∑ i : Fin (n + 1), if (i : ℕ) = 1 then (0 : ℝ)

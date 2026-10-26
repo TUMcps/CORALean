@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What rounding a scaled row costs, bounded over a domain. -/
-theorem HPolytope.aux_scaleDev_between (v : Vec 𝕋 n) (s : 𝕋) (dom : Interval (Vec 𝕋 n))
+private theorem HPolytope.aux_scaleDev_between (v : Vec 𝕋 n) (s : 𝕋) (dom : Interval (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ dom.construct) : -- --- CONCL ---
     toReal (HPolytope.aux_scaleDevLo v s dom)
         ≤ ∑ j, (toReal s * toReal (v j) - toReal (mulDown (v j) s)) * x j

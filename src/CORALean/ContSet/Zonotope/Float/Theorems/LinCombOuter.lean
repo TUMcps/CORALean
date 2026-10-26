@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h₁ h₂ 
 
 /-- The generator row `linComb` would store if nothing rounded: the exact
 pairing over the real values the stored floats denote. -/
-noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n) :
+private noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     Fin (Z₁.h + Z₂.h + 1) → ℝ :=
   Fin.append
     (Fin.append
@@ -67,7 +67,8 @@ noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) 
 /-- Every stored generator sits at the low end of a bracket around its exact
 value: the two blocks pair, and the center generator is one directed
 difference. -/
-theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
+private theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
+    (i : Fin n) : -- --- CONCL ---
     ∀ j : Fin (Z₁.h + Z₂.h + 1),
       toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)
           ≤ Zonotope.aux_linCombGReal Z₁ Z₂ i j
@@ -90,7 +91,7 @@ theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : F
 
 /-- What the stored generators are wrong by, entrywise, which is what
 `linCombGDiff` records. -/
-theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
+private theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (Z₁.h + Z₂.h + 1)) : -- --- CONCL ---
     |Zonotope.aux_linCombGReal Z₁ Z₂ i j
         - toReal (Zonotope.linCombG addDown subDown Z₁ Z₂ i j)|
@@ -105,7 +106,7 @@ theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin
 /-- One row of the exact generators against the coefficients the segment
 supplies: the paired blocks give back the two sets' own sums, and the center
 generator carries what is left. -/
-theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
+private theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
     (β₁ : Fin Z₁.h → ℝ) (β₂ : Fin Z₂.h → ℝ) (lam : ℝ) : -- --- CONCL ---
     (∑ j, Zonotope.aux_linCombGReal Z₁ Z₂ i j
         * Fin.append (Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
@@ -121,7 +122,7 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
 
 /-- The nominal part spills only by what the center and the generators
 rounded. -/
-theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb (nominalSet Z₁) (nominalSet Z₂) ⊆
       nominalSet (Z₁.linComb Z₂)
         + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
@@ -176,7 +177,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --
 
 /-- The box absorbs the two incoming boxes, the center rounding and the
 generator roundings. -/
-theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
+private theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
     Set.linComb Z₁.I_error.construct Z₂.I_error.construct
         + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
             + (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)).construct)

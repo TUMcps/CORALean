@@ -46,7 +46,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {k : ℕ}
 
 /-- Padded coefficients read back as the exact padding. -/
-theorem aux_toReal_padCoeffs (c : Fin (k + 1) → 𝕋) (M : ℕ) (j : Fin (M + 1)) : -- --- CONCL ---
+private theorem aux_toReal_padCoeffs (c : Fin (k + 1) → 𝕋) (M : ℕ)
+    (j : Fin (M + 1)) : -- --- CONCL ---
     toReal (padCoeffs c M j) = Real.padCoeffs (fun i => toReal (c i)) M j := by -- --- PROOF ---
   show toReal (if h : (j : ℕ) < k + 1 then c ⟨(j : ℕ), h⟩ else zero)
     = if h : (j : ℕ) < k + 1 then toReal (c ⟨(j : ℕ), h⟩) else 0
@@ -60,7 +61,7 @@ end
 
 namespace Real
 /-- Padding changes no value of a polynomial. -/
-theorem aux_evalPoly_padCoeffs {k M : ℕ} (c : Fin (k + 1) → ℝ) (h : k ≤ M)
+private theorem aux_evalPoly_padCoeffs {k M : ℕ} (c : Fin (k + 1) → ℝ) (h : k ≤ M)
     (t : ℝ) : -- --- CONCL ---
     evalPoly (padCoeffs c M) t = evalPoly c t := by -- --- PROOF ---
   -- both sides are one sum over ℕ, cut at a different length

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 
 /-- A row's dropped part, against coordinates in `[-1, 1]`, reads at most the row's rounded
 absolute sum over the dropped columns either way. -/
-theorem HPolytope.aux_abs_dropped_le {k : ℕ} (M : Mat 𝕋 k n)
+private theorem HPolytope.aux_abs_dropped_le {k : ℕ} (M : Mat 𝕋 k n)
     (part : Split (Fin n) into (Fin q) ⊕ (Fin r)) {x : Vec ℝ n}
     (hx : ∀ l, |x (part.right l)| ≤ 1) (i : Fin k) : -- --- CONCL ---
     |∑ l, toReal (M i (part.right l)) * x (part.right l)|

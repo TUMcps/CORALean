@@ -126,22 +126,22 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of `Z₁ ⊕ Z₂` is a sum of points of each. -/
-theorem NonlinDASys.aux_linReachCompCora_mem_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} {v : Vec ℝ n}
+private theorem NonlinDASys.aux_linReachCompCora_mem_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} {v : Vec ℝ n}
     (hv : v ∈ (Z₁.plus Z₂).construct) :
     ∃ a ∈ Z₁.construct, ∃ b ∈ Z₂.construct, v = a + b := by
   obtain ⟨a, ha, b, hb, rfl⟩ := (Zonotope.plus_exact _ _).symm.subset hv
   exact ⟨a, ha, b, hb, rfl⟩
 
 /-- A point of `M Z` is `M` times a point of `Z`. -/
-theorem NonlinDASys.aux_linReachCompCora_mem_mtimes {m : ℕ} {M : Mat ℝ m n}
+private theorem NonlinDASys.aux_linReachCompCora_mem_mtimes {m : ℕ} {M : Mat ℝ m n}
     {Z : Zonotope (Vec ℝ n)} {v : Vec ℝ m} (hv : v ∈ (Zonotope.mtimes M Z).construct) :
     ∃ w ∈ Z.construct, v = M *ᵥ w := by
   obtain ⟨w, hw, rfl⟩ := (Zonotope.mtimes_exact _ _).symm.subset hv
   exact ⟨w, hw, rfl⟩
 
 /-- At `A = 0` the remainder of an input solution, `E(r)·r U`, is `{0}`. -/
-theorem NonlinDASys.aux_linReachCompCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A = 0) (r : ℝ)
-    (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
+private theorem NonlinDASys.aux_linReachCompCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A = 0)
+    (r : ℝ) (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
     (hv : v ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) Z).construct)
     : -- --- CONCL ---
     v = 0 := by -- --- PROOF ---
@@ -164,8 +164,8 @@ theorem NonlinDASys.aux_linReachCompCora_remainder_eq_zero {A : Mat ℝ n n} (hA
   induction j using Fin.addCases <;> simp
 
 /-- At `A = 0` an input solution is the step times the input set. -/
-theorem NonlinDASys.aux_linReachCompCora_inputSolution {sys : LinearSys ℝ n} (hA : sys.A = 0)
-    (r : ℝ) (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
+private theorem NonlinDASys.aux_linReachCompCora_inputSolution {sys : LinearSys ℝ n}
+    (hA : sys.A = 0) (r : ℝ) (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
     (hv : v ∈ (sys.inputSolution (S := 𝒵) r η Z).construct) : -- --- CONCL ---
     ∃ w ∈ Z.construct, v = r • w := by -- --- PROOF ---
   -- the Taylor orders past `0` vanish
@@ -188,7 +188,7 @@ theorem NonlinDASys.aux_linReachCompCora_inputSolution {sys : LinearSys ℝ n} (
   exact hsum η a ha
 
 /-- A zonotope whose center and generators vanish at `i` has only points vanishing at `i`. -/
-theorem NonlinDASys.aux_linReachCompCora_mem_coord {Z : Zonotope (Vec ℝ n)} {i : Fin n}
+private theorem NonlinDASys.aux_linReachCompCora_mem_coord {Z : Zonotope (Vec ℝ n)} {i : Fin n}
     (hc : Z.c i = 0) (hG : ∀ j, Z.G j i = 0) {v : Vec ℝ n} (hv : v ∈ Z.construct) :
     v i = 0 := by
   obtain ⟨β, -, h⟩ := Zonotope.mem_construct_iff.mp hv
@@ -196,7 +196,7 @@ theorem NonlinDASys.aux_linReachCompCora_mem_coord {Z : Zonotope (Vec ℝ n)} {i
   simp [hG]
 
 /-- Girard's `reduce` keeps a coordinate at which center and generators vanish. -/
-theorem NonlinDASys.aux_linReachCompCora_reduce_coord {Z : Zonotope (Vec ℝ n)} (o : ℕ)
+private theorem NonlinDASys.aux_linReachCompCora_reduce_coord {Z : Zonotope (Vec ℝ n)} (o : ℕ)
     {i : Fin n} (hc : Z.c i = 0) (hG : ∀ j, Z.G j i = 0) : -- --- CONCL ---
     (Z.reduce o).c i = 0 ∧ ∀ j, (Z.reduce o).G j i = 0 := by -- --- PROOF ---
   unfold Zonotope.reduce Zonotope.reduceGirard
@@ -215,7 +215,7 @@ theorem NonlinDASys.aux_linReachCompCora_reduce_coord {Z : Zonotope (Vec ℝ n)}
     exact ⟨hc, hG⟩
 
 /-- `Z₁ ⊕ Z₂` keeps a coordinate at which both vanish. -/
-theorem NonlinDASys.aux_linReachCompCora_plus_coord {Z₁ Z₂ : Zonotope (Vec ℝ n)} {i : Fin n}
+private theorem NonlinDASys.aux_linReachCompCora_plus_coord {Z₁ Z₂ : Zonotope (Vec ℝ n)} {i : Fin n}
     (h₁ : Z₁.c i = 0 ∧ ∀ j, Z₁.G j i = 0) (h₂ : Z₂.c i = 0 ∧ ∀ j, Z₂.G j i = 0) : -- --- CONCL ---
     (Z₁.plus Z₂).c i = 0 ∧ ∀ j, (Z₁.plus Z₂).G j i = 0 := by -- --- PROOF ---
   refine ⟨by simp [Zonotope.plus, h₁.1, h₂.1], fun j => ?_⟩

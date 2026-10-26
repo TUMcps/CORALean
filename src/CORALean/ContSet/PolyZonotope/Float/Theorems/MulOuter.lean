@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+private theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (Real.PolyZonotope.mul (nominal pZ₁) (nominal pZ₂) hp).construct
       ⊆ (PolyZonotope.mul pZ₁ pZ₂ hp).construct := by -- --- PROOF ---

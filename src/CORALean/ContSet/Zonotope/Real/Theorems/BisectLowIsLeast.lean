@@ -53,8 +53,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A generator pointing along `σ` has a nonnegative cross product with one that does not. -/
-theorem Zonotope.aux_cross_nonneg_of_horizontal {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w : Vec ℝ 2}
-    (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0)) (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0))
+private theorem Zonotope.aux_cross_nonneg_of_horizontal {σ : ℝ} (hσ : σ = 1 ∨ σ = -1)
+    {u w : Vec ℝ 2} (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0)) (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0))
     (hux : 0 < σ * u 0) (hwx : σ * w 0 ≤ 0) : -- --- CONCL ---
     0 ≤ σ * (u 0 * w 1 - u 1 * w 0) := by -- --- PROOF ---
   rcases hwx.lt_or_eq with h | h
@@ -67,7 +67,7 @@ theorem Zonotope.aux_cross_nonneg_of_horizontal {σ : ℝ} (hσ : σ = 1 ∨ σ 
 
 
 /-- The passes keep the invariant and have shrunk `G` to at most one generator after `r` of them. -/
-theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
+private theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) (right : Bool) {σ : ℝ}
     (hσ : σ = if right then 1 else -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
     (hinv : Z.IsBisectInv γ σ st) (n : ℕ) : -- --- CONCL ---
@@ -87,7 +87,7 @@ theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
       omega
 
 /-- With at most one generator left, the point of the last edge on the line is the lowest. -/
-theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
+private theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) {σ : ℝ}
     (hσ : σ = 1 ∨ σ = -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
     (hinv : Z.IsBisectInv γ σ st) (hcard : st.2.1.card ≤ 1) : -- --- CONCL ---
@@ -175,7 +175,7 @@ theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
     exact hleast
 
 /-- The whole search, from the state `lines 1-14` leave to the one after `r` passes. -/
-theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
+private theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ)
     (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) (P : Vec ℝ 2) (hP : P = Z.c - ∑ i, Z.G i)
     (right : Bool) (hright : right = decide (P 0 < γ)) (G : Finset (Fin Z.h))

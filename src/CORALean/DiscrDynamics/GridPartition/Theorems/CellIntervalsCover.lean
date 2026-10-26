@@ -39,8 +39,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every cell of a well-formed partition is inside its state space. -/
-theorem GridPartition.aux_cell_subset_intervals (P : GridPartition n) (hP : P.IsWellFormed) {c : ℕ}
-    (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) : -- --- CONCL ---
+private theorem GridPartition.aux_cell_subset_intervals (P : GridPartition n) (hP : P.IsWellFormed)
+    {c : ℕ} (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) : -- --- CONCL ---
     (P.cellInterval c).construct ⊆ P.intervals.construct := by -- --- PROOF ---
   intro x hx
   rw [GridPartition.mem_interval_iff] at hx ⊢

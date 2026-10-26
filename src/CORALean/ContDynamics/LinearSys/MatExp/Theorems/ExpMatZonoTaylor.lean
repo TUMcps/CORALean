@@ -51,7 +51,7 @@ variable {n : ℕ}
 
 /-- One order of the series: the power, scaled, which is `map_exact` at the
 scaling and `matPow_outer` at the power. -/
-theorem MatExp.aux_term_mem (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n n}
+private theorem MatExp.aux_term_mem (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n n}
     (hA : A ∈ M.construct) (i : ℕ) :
     ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).construct := by
   rw [MatExp.expMatZonoTerm, ← Zonotope.map_exact]

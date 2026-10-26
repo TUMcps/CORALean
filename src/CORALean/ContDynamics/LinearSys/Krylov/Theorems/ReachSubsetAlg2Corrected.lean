@@ -73,7 +73,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `e^{(a + b)A} x = e^{bA} e^{aA} x`. -/
-theorem Krylov.aux_exp_add_mulVec (A : Mat ℝ n n) (a b : ℝ) (x : Vec ℝ n) : -- --- CONCL ---
+private theorem Krylov.aux_exp_add_mulVec (A : Mat ℝ n n) (a b : ℝ) (x : Vec ℝ n) : -- --- CONCL ---
     exp ((a + b) • A) *ᵥ x = exp (b • A) *ᵥ (exp (a • A) *ᵥ x) := by -- --- PROOF ---
   have hc : Commute (b • A) (a • A) := ((Commute.refl A).smul_left b).smul_right a
   have h := (exp_add_of_commute hc).symm
@@ -82,7 +82,7 @@ theorem Krylov.aux_exp_add_mulVec (A : Mat ℝ n n) (a b : ℝ) (x : Vec ℝ n) 
   exact congrArg (· *ᵥ x) h.symm
 
 /-- The time `t ∈ [0, t_f]` lies in the step `[mδ, (m + 1)δ]` of some pass `m < ⌈t_f/δ⌉`. -/
-theorem Krylov.aux_exists_step {δ tf t : ℝ} (hδ : 0 < δ) (htf : 0 < tf)
+private theorem Krylov.aux_exists_step {δ tf t : ℝ} (hδ : 0 < δ) (htf : 0 < tf)
     (ht : t ∈ Set.Icc 0 tf) : -- --- CONCL ---
     ∃ m < ⌈tf / δ⌉₊, ∃ s ∈ Set.Icc 0 δ, t = m * δ + s := by -- --- PROOF ---
   have hK : 0 < ⌈tf / δ⌉₊ := Nat.ceil_pos.2 (div_pos htf hδ)

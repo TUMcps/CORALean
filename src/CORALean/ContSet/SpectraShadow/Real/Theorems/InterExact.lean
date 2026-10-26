@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `inter`'s inequality: `plus`'s, and the diagonal block at the difference of the two points. -/
-theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
+private theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
     (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     let dd := (S₁.c - S₂.c) + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i - ∑ j, β (Fin.natAdd S₁.m j) •
       S₂.G j
@@ -85,7 +85,7 @@ theorem SpectraShadow.aux_lmi_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
 
 /-- A point is described exactly when both halves of `β` are in their sets' inequalities and the
 two points they read off agree. -/
-theorem SpectraShadow.aux_posSemidef_inter_iff (S₁ S₂ : SpectraShadow (Vec ℝ n))
+private theorem SpectraShadow.aux_posSemidef_inter_iff (S₁ S₂ : SpectraShadow (Vec ℝ n))
     (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     ((S₁.inter S₂).A₀ + ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).A i).PosSemidef
       ↔ ((S₁.A₀ + ∑ i, β (Fin.castAdd S₂.m i) • S₁.A i).PosSemidef
@@ -113,7 +113,7 @@ theorem SpectraShadow.aux_posSemidef_inter_iff (S₁ S₂ : SpectraShadow (Vec �
     simp
 
 /-- The point of `inter` is `S₁`'s, read at the first half of the variables. -/
-theorem SpectraShadow.aux_gen_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
+private theorem SpectraShadow.aux_gen_inter (S₁ S₂ : SpectraShadow (Vec ℝ n))
     (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     (S₁.inter S₂).c + ∑ i : Fin (S₁.inter S₂).m, β i • (S₁.inter S₂).G i
       = S₁.c + ∑ i, β (Fin.castAdd S₂.m i) • S₁.G i := by -- --- PROOF ---

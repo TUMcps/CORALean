@@ -53,13 +53,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A monomial split at one variable. -/
-theorem Taylm.aux_monomial_split (e : Fin n → ℕ) (t : Vec ℝ n) (k : Fin n) :
+private theorem Taylm.aux_monomial_split (e : Fin n → ℕ) (t : Vec ℝ n) (k : Fin n) :
     Real.Taylm.monomial e t = t k ^ e k * ∏ i ∈ Finset.univ.erase k, t i ^ e i :=
   (Finset.mul_prod_erase Finset.univ (fun i => t i ^ e i) (Finset.mem_univ k)).symm
 
 
 /-- One term, expanded: the binomial theorem in the exponent of the variable. -/
-theorem Taylm.aux_term_expand (a : ℝ) (e : Fin n → ℕ) (s : Vec ℝ n) (k : Fin n)
+private theorem Taylm.aux_term_expand (a : ℝ) (e : Fin n → ℕ) (s : Vec ℝ n) (k : Fin n)
     (m r : ℝ) : -- --- CONCL ---
     a * Real.Taylm.monomial e (Function.update s k (m + r * s k)) =
       ∑ j ∈ Finset.range (e k + 1),
@@ -86,7 +86,7 @@ theorem Taylm.aux_term_expand (a : ℝ) (e : Fin n → ℕ) (s : Vec ℝ n) (k :
 
 
 /-- One variable's re-expansion is exact. -/
-theorem Taylm.aux_polyOf_reexpPairs (L : List (𝕋 × (Fin n → ℕ))) (k : Fin n) (m r : 𝕋)
+private theorem Taylm.aux_polyOf_reexpPairs (L : List (𝕋 × (Fin n → ℕ))) (k : Fin n) (m r : 𝕋)
     (s : Vec ℝ n) : -- --- CONCL ---
     Real.Taylm.polyOf ((L.flatMap fun a => (List.range (a.2 k + 1)).map fun j => (a, j)).map
         fun q => (toReal q.1.1 * (((q.1.2 k).choose q.2 : ℝ) * toReal m ^ (q.1.2 k - q.2)

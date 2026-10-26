@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U V : Set α}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The hull of `V` stays inside `O - U`, `O - U` being convex. -/
-theorem aux_zero_mem_sub_of_convex (hO : Convex ℝ O) (hU : Convex ℝ U) (hV : V ⊆ O - U)
+private theorem aux_zero_mem_sub_of_convex (hO : Convex ℝ O) (hU : Convex ℝ U) (hV : V ⊆ O - U)
     (h0 : (0 : α) ∈ convexHull ℝ V) : (0 : α) ∈ O - U :=
   convexHull_min hV (hO.sub hU) h0
 

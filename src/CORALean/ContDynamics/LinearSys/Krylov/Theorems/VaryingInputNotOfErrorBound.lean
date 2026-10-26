@@ -57,7 +57,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix whose cube vanishes: `e^{tM} = I + tM + (t²/2)M²`. -/
-theorem Krylov.aux_exp_of_pow_three_eq_zero {m : ℕ} (M : Mat ℝ m m) (hM : M ^ 3 = 0)
+private theorem Krylov.aux_exp_of_pow_three_eq_zero {m : ℕ} (M : Mat ℝ m m) (hM : M ^ 3 = 0)
     (t : ℝ) : -- --- CONCL ---
     exp (t • M) = 1 + t • M + (t ^ 2 / 2) • M ^ 2 := by -- --- PROOF ---
   have hpow : ∀ k, 3 ≤ k → (t • M) ^ k = 0 := fun k hk => by
@@ -73,13 +73,13 @@ theorem Krylov.aux_exp_of_pow_three_eq_zero {m : ℕ} (M : Mat ℝ m m) (hM : M 
   ring_nf
 
 /-- The augmented matrix of `A = [0 1; 0 0]` and `u`. -/
-theorem Krylov.aux_augment_nil (u : Vec ℝ 2) :
+private theorem Krylov.aux_augment_nil (u : Vec ℝ 2) :
     Krylov.augment !![(0 : ℝ), 1; 0, 0] u = !![0, 1, u 0; 0, 0, u 1; 0, 0, 0] := by
   ext i j
   fin_cases i <;> fin_cases j <;> rfl
 
 /-- `e^{tC̃}ṽ - ṽ = (t u₁ + (t²/2) u₂, t u₂, 0)` for the augmented nilpotent matrix. -/
-theorem Krylov.aux_exp_augment_nil_mulVec (u : Vec ℝ 2) (t : ℝ) : -- --- CONCL ---
+private theorem Krylov.aux_exp_augment_nil_mulVec (u : Vec ℝ 2) (t : ℝ) : -- --- CONCL ---
     exp (t • Krylov.augment !![(0 : ℝ), 1; 0, 0] u) *ᵥ ![0, 0, 1]
       = ![t * u 0 + t ^ 2 / 2 * u 1, t * u 1, 1] := by -- --- PROOF ---
   rw [Krylov.aux_augment_nil]
@@ -93,7 +93,7 @@ theorem Krylov.aux_exp_augment_nil_mulVec (u : Vec ℝ 2) (t : ℝ) : -- --- CON
     simp [sq, mulVec, dotProduct, Fin.sum_univ_three]
 
 /-- The first coordinate of `e^{(8 - s)A}(c w)`, `A = [0 1; 0 0]`, `w = (1, -1/2)`. -/
-theorem Krylov.aux_exp_nil_mulVec (c s : ℝ) : -- --- CONCL ---
+private theorem Krylov.aux_exp_nil_mulVec (c s : ℝ) : -- --- CONCL ---
     (exp ((8 - s) • !![(0 : ℝ), 1; 0, 0]) *ᵥ (c • ![1, -1 / 2])) 0
       = c * (s / 2 - 3) := by -- --- PROOF ---
   have h2 : (!![(0 : ℝ), 1; 0, 0]) ^ 3 = 0 := by
@@ -104,7 +104,7 @@ theorem Krylov.aux_exp_nil_mulVec (c s : ℝ) : -- --- CONCL ---
   ring
 
 /-- `∫₀⁸ |s/2 - 3| ds = 10`. -/
-theorem Krylov.aux_integral_abs : -- --- CONCL ---
+private theorem Krylov.aux_integral_abs : -- --- CONCL ---
     ∫ s in (0 : ℝ)..8, |s / 2 - 3| = 10 := by -- --- PROOF ---
   have hc : Continuous fun s : ℝ => |s / 2 - 3| := by fun_prop
   rw [← intervalIntegral.integral_add_adjacent_intervals (b := 6) (hc.intervalIntegrable _ _)

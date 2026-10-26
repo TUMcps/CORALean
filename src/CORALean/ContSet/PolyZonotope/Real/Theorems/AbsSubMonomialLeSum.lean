@@ -51,14 +51,14 @@ namespace CORALean.Real
 
 /-- One step of the chain, at bare exponent vectors: two products that agree off
 `k₀` are two columns of a two-column matrix. -/
-theorem PolyZonotope.aux_abs_sub_prod_le {p : ℕ} {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1)
+private theorem PolyZonotope.aux_abs_sub_prod_le {p : ℕ} {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1)
     (A B : Fin p → ℕ) {k₀ : Fin p} (hsim : ∀ k, k ≠ k₀ → A k = B k) :
     |(∏ k, a k ^ A k) - ∏ k, a k ^ B k| ≤ (PolyZonotope.eDiff (A k₀) (B k₀) : ℝ) :=
   PolyZonotope.abs_sub_monomial_le (fun k => ![A k, B k]) ha (i := 0) (j := 1) hsim
 
 /-- The hybrid that reads column `j` on `s` and column `i` off it is within the
 `eDiff`s of `s` of the monomial at `i`. -/
-theorem PolyZonotope.aux_abs_sub_hybrid_le {p h : ℕ} (E : Fin p → Fin h → ℕ)
+private theorem PolyZonotope.aux_abs_sub_hybrid_le {p h : ℕ} (E : Fin p → Fin h → ℕ)
     {a : Fin p → ℝ} (ha : ∀ k, |a k| ≤ 1) (i j : Fin h) (s : Finset (Fin p)) : -- --- CONCL ---
     |PolyZonotope.monomial E a i - ∏ k, a k ^ (if k ∈ s then E k j else E k i)|
       ≤ ∑ k ∈ s, (PolyZonotope.eDiff (E k i) (E k j) : ℝ) := by -- --- PROOF ---

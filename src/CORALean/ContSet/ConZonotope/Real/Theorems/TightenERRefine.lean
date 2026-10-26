@@ -50,12 +50,12 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `S'` is no wider than `S`, in `E` and in `R`, coordinate by coordinate. -/
-def ConZonotope.aux_Tighter {ng : ℕ} (S' S : Interval (Vec ℝ ng) × ((Fin ng → EReal) ×
+private def ConZonotope.aux_Tighter {ng : ℕ} (S' S : Interval (Vec ℝ ng) × ((Fin ng → EReal) ×
     (Fin ng → EReal))) : Prop :=
   ∀ j, S.1.inf j ≤ S'.1.inf j ∧ S'.1.sup j ≤ S.1.sup j ∧ S.2.1 j ≤ S'.2.1 j ∧ S'.2.2 j ≤ S.2.2 j
 
 /-- `aux_Tighter` composes. -/
-theorem ConZonotope.aux_tighter_trans {ng : ℕ}
+private theorem ConZonotope.aux_tighter_trans {ng : ℕ}
     {S'' S' S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
     (h₁ : ConZonotope.aux_Tighter S'' S') (h₂ : ConZonotope.aux_Tighter S' S) :
     ConZonotope.aux_Tighter S'' S := fun j =>
@@ -63,7 +63,7 @@ theorem ConZonotope.aux_tighter_trans {ng : ℕ}
     (h₁ j).2.2.2.trans (h₂ j).2.2.2⟩
 
 /-- Lines 3-5 only ever meet `E_j` and `R_j` with something. -/
-theorem ConZonotope.aux_tightenCoeffER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenCoeffER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng)
     (S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))) : -- --- CONCL ---
     ConZonotope.aux_Tighter (ConZonotope.tightenCoeffER A b i j S) S := by -- --- PROOF ---
@@ -80,7 +80,7 @@ theorem ConZonotope.aux_tightenCoeffER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng)
     exact ⟨le_rfl, le_rfl, le_rfl, le_rfl⟩
 
 /-- A whole pass of lines 2-10 is no wider than its start. -/
-theorem ConZonotope.aux_tightenPassER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenPassER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))) : -- --- CONCL ---
     ConZonotope.aux_Tighter (ConZonotope.tightenPassER A b S) S := by -- --- PROOF ---
   unfold ConZonotope.tightenPassER

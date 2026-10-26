@@ -55,7 +55,7 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono α}
+private theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono α}
     (f : Fin (cPZ₁.h + cPZ₂.h) → α) :
     ∑ i : Fin (cPZ₁.plus cPZ₂).h, f i
       = ∑ i, f (Fin.castAdd cPZ₂.h i) + ∑ i, f (Fin.natAdd cPZ₁.h i) :=
@@ -63,7 +63,7 @@ theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono α}
 
 omit [Module ℝ α] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono α}
+private theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono α}
     (f : Fin (cPZ₁.qI + cPZ₂.qI) → α) :
     ∑ j : Fin (cPZ₁.plus cPZ₂).qI, f j
       = ∑ j, f (Fin.castAdd cPZ₂.qI j) + ∑ j, f (Fin.natAdd cPZ₁.qI j) :=

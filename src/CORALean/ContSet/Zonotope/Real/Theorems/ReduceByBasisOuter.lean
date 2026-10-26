@@ -55,7 +55,7 @@ variable {n q r : ℕ}
 
 /-- `Fin.sum_univ_add` at `reduceByBasis`'s generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sumUnivReduceByBasis {Z : Zonotope (Vec ℝ n)}
+private theorem Zonotope.aux_sumUnivReduceByBasis {Z : Zonotope (Vec ℝ n)}
     {part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)} {P : Mat ℝ n n} (f : Fin (q + n) → ℝ) :
     ∑ j : Fin (Z.reduceByBasis part P).h, f j =
       ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=

@@ -55,7 +55,7 @@ namespace CORALean
 
 /-- Each halving keeps a passing end and a failing end and halves what lies
 between them. -/
-theorem aux_estimateGainSearch_bracket (le : ℝ → ℝ → Bool) (g : ℝ → ℝ)
+private theorem aux_estimateGainSearch_bracket (le : ℝ → ℝ → Bool) (g : ℝ → ℝ)
     (target : ℝ) : -- --- CONCL ---
     ∀ (fuel : ℕ) (lo hi : ℝ), lo ≤ hi → le (g lo) target = true → le (g hi) target = false →
       ∃ a b : ℝ, le (g a) target = true ∧ le (g b) target = false ∧

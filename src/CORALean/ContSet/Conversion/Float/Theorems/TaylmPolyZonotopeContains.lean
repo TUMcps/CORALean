@@ -49,7 +49,8 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dependent part of the polynomial zonotope is the polynomial of each coordinate. -/
-theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fin m) : -- --- CONCL ---
+private theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n)
+    (i : Fin m) : -- --- CONCL ---
     ∑ l, toReal ((Taylm.polyZonotope T).G l i) *
         Real.PolyZonotope.monomial (Taylm.polyZonotope T).E t l
       = (T i).nominal.poly t := by -- --- PROOF ---

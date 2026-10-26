@@ -48,21 +48,21 @@ open scoped NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The atom `ξ(0) = true`. -/
-def STL.aux_p : STL.Formula Bool := .atom fun b => b = true
+private def STL.aux_p : STL.Formula Bool := .atom fun b => b = true
 
 /-- `ϕ₂ = F(0,1) ¬p`. -/
-def STL.aux_phi2 : STL.Formula Bool := .finOpen 1 (.not STL.aux_p)
+private def STL.aux_phi2 : STL.Formula Bool := .finOpen 1 (.not STL.aux_p)
 
 /-- `ϕ₁ = ¬X₁(p ∨ F(0,1) p) ∧ G(0,1) F(0,1) p`. -/
-def STL.aux_phi1 : STL.Formula Bool :=
+private def STL.aux_phi1 : STL.Formula Bool :=
   .and (.not (.next 1 (.or STL.aux_p (.finOpen 1 STL.aux_p))))
     (.globOpen 1 (.finOpen 1 STL.aux_p))
 
-theorem STL.aux_phi2_sat (ξ : ℝ≥0 → Bool) :
+private theorem STL.aux_phi2_sat (ξ : ℝ≥0 → Bool) :
     STL.aux_phi2.Satisfies ξ ↔ ∃ t, 0 < t ∧ t < 1 ∧ ξ t = false := by
   simp [STL.aux_phi2, STL.aux_p, STL.Formula.Satisfies, Time.shift]
 
-theorem STL.aux_phi1_sat (ξ : ℝ≥0 → Bool) : -- --- CONCL ---
+private theorem STL.aux_phi1_sat (ξ : ℝ≥0 → Bool) : -- --- CONCL ---
     STL.aux_phi1.Satisfies ξ ↔ (ξ 1 = false ∧ ∀ s, 0 < s → s < 1 → ξ (s + 1) = false) ∧
       ∀ t, 0 < t → t < 1 → ∃ u, t < u ∧ u < 1 + t ∧ ξ u = true := by -- --- PROOF ---
   -- the window `(0,1)` after `t` is the interval `(t, 1 + t)` of points `u = s + t`
@@ -103,12 +103,12 @@ theorem STL.aux_phi1_sat (ξ : ℝ≥0 → Bool) : -- --- CONCL ---
       subst this
       simp [h2 t ht0 ht1] at ht
 
-theorem STL.aux_one_add_lt_two {a : ℝ≥0} (ha : a < 1) : 1 + a < 2 :=
+private theorem STL.aux_one_add_lt_two {a : ℝ≥0} (ha : a < 1) : 1 + a < 2 :=
   calc 1 + a < 1 + 1 := (add_lt_add_iff_left 1).2 ha
     _ = 2 := one_add_one_eq_two
 
 /-- Changing one point outside `[1,2)` keeps `ϕ₁` true. -/
-theorem STL.aux_phi1_sat_of_ne {t : ℝ≥0} (ht : t < 1 ∨ 2 ≤ t) {ξ ξ' : ℝ≥0 → Bool}
+private theorem STL.aux_phi1_sat_of_ne {t : ℝ≥0} (ht : t < 1 ∨ 2 ≤ t) {ξ ξ' : ℝ≥0 → Bool}
     (hag : ∀ t', t' ≠ t → ξ t' = ξ' t') (h : STL.aux_phi1.Satisfies ξ) : -- --- CONCL ---
     STL.aux_phi1.Satisfies ξ' := by -- --- PROOF ---
   rw [STL.aux_phi1_sat] at h ⊢
@@ -156,7 +156,7 @@ theorem STL.aux_phi1_sat_of_ne {t : ℝ≥0} (ht : t < 1 ∨ 2 ≤ t) {ξ ξ' : 
       exact ⟨u, hu1, hu2, by rw [← hag u hne, hu3]⟩
 
 /-- `tsupp(ϕ₁) ⊆ [1,2)`. -/
-theorem STL.aux_phi1_tsupp_subset {t : ℝ≥0} (h : t ∈ STL.aux_phi1.tsupp) : -- --- CONCL ---
+private theorem STL.aux_phi1_tsupp_subset {t : ℝ≥0} (h : t ∈ STL.aux_phi1.tsupp) : -- --- CONCL ---
     1 ≤ t ∧ t < 2 := by -- --- PROOF ---
   by_contra hnot
   have ht : t < 1 ∨ 2 ≤ t := by
@@ -166,7 +166,7 @@ theorem STL.aux_phi1_tsupp_subset {t : ℝ≥0} (h : t ∈ STL.aux_phi1.tsupp) :
   exact hn (STL.aux_phi1_sat_of_ne ht hag hs)
 
 /-- `tsupp(ϕ₂) ⊆ (0,1)`. -/
-theorem STL.aux_phi2_tsupp_subset {t : ℝ≥0} (h : t ∈ STL.aux_phi2.tsupp) : -- --- CONCL ---
+private theorem STL.aux_phi2_tsupp_subset {t : ℝ≥0} (h : t ∈ STL.aux_phi2.tsupp) : -- --- CONCL ---
     0 < t ∧ t < 1 := by -- --- PROOF ---
   by_contra hnot
   obtain ⟨ξ, ξ', hs, hn, hag⟩ := h
@@ -176,7 +176,7 @@ theorem STL.aux_phi2_tsupp_subset {t : ℝ≥0} (h : t ∈ STL.aux_phi2.tsupp) :
   rw [← hag s (fun hst => hnot (hst ▸ ⟨h0, h1⟩)), hs]
 
 /-- `tsupp(ϕ₁)` and `tsupp(ϕ₂)` are disjoint. -/
-theorem STL.aux_cexTsupp_disjoint : Disjoint STL.aux_phi1.tsupp STL.aux_phi2.tsupp :=
+private theorem STL.aux_cexTsupp_disjoint : Disjoint STL.aux_phi1.tsupp STL.aux_phi2.tsupp :=
   Set.disjoint_left.2 fun _ h1 h2 =>
     absurd (STL.aux_phi2_tsupp_subset h2).2 (not_lt.2 (STL.aux_phi1_tsupp_subset h1).1)
 

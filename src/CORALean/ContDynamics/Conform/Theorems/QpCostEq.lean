@@ -65,7 +65,7 @@ variable {n p q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- (35): the stretch comes out of the trace squared. -/
-theorem aux_frobNormSq_smul {m : ℕ} {ι : Type} [Fintype ι] (P : Mat ℝ m m) (G : ι → Vec ℝ m)
+private theorem aux_frobNormSq_smul {m : ℕ} {ι : Type} [Fintype ι] (P : Mat ℝ m m) (G : ι → Vec ℝ m)
     (α : ι → ℝ) :
     Conform.frobNormSq P (fun j => α j • G j)
       = ∑ j, (G j ⬝ᵥ (P *ᵥ G j)) * α j ^ 2 := by
@@ -75,7 +75,7 @@ theorem aux_frobNormSq_smul {m : ℕ} {ι : Type} [Fintype ι] (P : Mat ℝ m m)
   ring
 
 /-- One step's `trace(G(t_k)^T P G(t_k))`, split into the blocks of (25). -/
-theorem aux_step_frob (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
+private theorem aux_step_frob (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (GW : ιW → Vec ℝ n)
     (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (P : Mat ℝ q q) (k : ℕ) : -- --- CONCL ---
     Conform.frobNormSq P (fun j => Sum.elim (Sum.elim αX fun r : Fin k × ιW => αW r.2) αV j

@@ -89,7 +89,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes 𝕄𝒵 S] [Mtimes ℐ S]
 omit [Mtimes 𝕄𝒵 S] in
 /-- The tail, by induction on the order past two: `plus` absorbs one term at a
 time, exactly as `inputTaylorSumTail` builds it. -/
-theorem LinParamSys.aux_inputTaylorSumTail_outer (sys : LinParamSys ℐ n) (r : ℝ) (U : S n)
+private theorem LinParamSys.aux_inputTaylorSumTail_outer (sys : LinParamSys ℐ n) (r : ℝ) (U : S n)
     (x : ℕ → Vec ℝ n) : ∀ (m : ℕ),
     (∀ i, 2 ≤ i → i ≤ m + 2 →
       x i ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r i) U)) →

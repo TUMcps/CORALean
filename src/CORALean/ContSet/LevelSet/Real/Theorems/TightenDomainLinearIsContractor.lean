@@ -58,11 +58,11 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Membership in a vector box, in coordinates. -/
-theorem LevelSet.aux_mem_vecBox (I : Interval (Vec ℝ n)) (x : Vec ℝ n) :
+private theorem LevelSet.aux_mem_vecBox (I : Interval (Vec ℝ n)) (x : Vec ℝ n) :
     x ∈ I.construct ↔ ∀ i, I.inf i ≤ x i ∧ x i ≤ I.sup i := Iff.rfl
 
 /-- A coordinate step only narrows the box. -/
-theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
+private theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
     (j : Fin n) (int : Interval (Vec ℝ n)) : -- --- CONCL ---
     (LevelSet.aux_linearCoord fm m k j int).construct ⊆ int.construct := by -- --- PROOF ---
   unfold LevelSet.aux_linearCoord
@@ -80,8 +80,8 @@ theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval
   · exact fun x hx => hx
 
 /-- A coordinate step keeps every solution whose mean value form holds with a gradient in `k`. -/
-theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (Vec ℝ n)} {j : Fin n}
-    {int : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ int.construct) (κ : Vec ℝ n)
+private theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (Vec ℝ n)}
+    {j : Fin n} {int : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ int.construct) (κ : Vec ℝ n)
     (hκ : ∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i)
     (heq : fm + ∑ i, κ i * (x i - m i) = 0) : -- --- CONCL ---
     x ∈ (LevelSet.aux_linearCoord fm m k j int).construct := by -- --- PROOF ---
@@ -141,7 +141,8 @@ theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (V
   · simpa only [Function.update_of_ne hij] using hxi
 
 /-- The coordinate steps in turn narrow the box and keep every such solution. -/
-theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n)) : -- --- CONCL ---
+private theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n)
+    (k : Interval (Vec ℝ n)) : -- --- CONCL ---
     ∀ (l : List (Fin n)) (X : Interval (Vec ℝ n)),
       (l.foldl (fun X j => aux_linearCoord fm m k j X) X).construct ⊆ X.construct ∧
       ∀ x ∈ X.construct, ∀ κ : Vec ℝ n, (∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) →
@@ -157,7 +158,7 @@ theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec �
       fun x hx κ hκ heq => h₂ x (LevelSet.aux_linearCoord_mem hx κ hκ heq) κ hκ heq⟩
 
 /-- The mean value form of `f` along the segment from `m` to `x`. -/
-theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
+private theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
     (m x : Vec ℝ n) : -- --- CONCL ---
     ∃ t ∈ Set.Ioo (0 : ℝ) 1,
       f x - f m = ∑ i, taylorGrad f (m + t • (x - m)) i * (x i - m i) := by -- --- PROOF ---
@@ -182,7 +183,7 @@ theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ 
   exact Finset.sum_congr rfl fun i _ => by ring
 
 /-- One sweep narrows the box and keeps every solution. -/
-theorem LevelSet.aux_linearSweep_spec {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
+private theorem LevelSet.aux_linearSweep_spec {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
     {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)} (hg : IsGradEnclosure f grad)
     (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     (LevelSet.aux_linearSweep f grad I).construct ⊆ I.construct ∧
@@ -207,7 +208,7 @@ theorem LevelSet.aux_linearSweep_spec {f : Vec ℝ n → ℝ} (hf : Differentiab
   linarith
 
 /-- The sweeps keep narrowing and keep every solution. -/
-theorem LevelSet.aux_tightenDomainLinear {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
+private theorem LevelSet.aux_tightenDomainLinear {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
     {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)}
     (hg : IsGradEnclosure f grad) : -- --- CONCL ---
     ∀ (k : ℕ) (I : Interval (Vec ℝ n)),

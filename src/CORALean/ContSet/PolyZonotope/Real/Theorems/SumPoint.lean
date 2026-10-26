@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {m : ℕ}
 
 omit [Module ℝ α] in
 /-- A summand's column keeps its monomial, read at its own factor indices. -/
-theorem PolyZonotope.aux_monomial_sum (pZ : PolyZonotope α) (L : Fin m → PolyZonotope α)
+private theorem PolyZonotope.aux_monomial_sum (pZ : PolyZonotope α) (L : Fin m → PolyZonotope α)
     (hp : ∀ i, (L i).p = pZ.p) (a : Fin pZ.p → ℝ) (j : Fin (∑ i, (L i).h)) : -- --- CONCL ---
     PolyZonotope.monomial (pZ.sum L hp).E a (Fin.natAdd pZ.h j)
       = PolyZonotope.monomial (L (finSigmaFinEquiv.symm j).1).E

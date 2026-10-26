@@ -78,8 +78,8 @@ variable {n nu nw ny nv : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The matrix inequality read at `(θ, -d, ϖ, σ)`: the Schur complement of the block `P`. -/
-theorem Zonotope.aux_pRadius_lmi_form (P R₁ : Mat ℝ n n) (Rd : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ)
-    (γ : ℝ) (Γ : Vec ℝ nw) (Υ : Vec ℝ nv)
+private theorem Zonotope.aux_pRadius_lmi_form (P R₁ : Mat ℝ n n)
+    (Rd : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ) (γ : ℝ) (Γ : Vec ℝ nw) (Υ : Vec ℝ nv)
     (hM : (fromBlocks (fromBlocks (γ • P) R₁ᵀ R₁ P)
       (fromRows (0 : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ) Rd)
       (fromRows (0 : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ) Rd)ᵀ (diagonal (Sum.elim Γ Υ))).PosSemidef)

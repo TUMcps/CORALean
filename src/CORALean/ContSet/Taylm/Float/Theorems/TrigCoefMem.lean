@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A value between `l` and `u`, divided by `k + 1` between its two roundings. -/
-theorem Taylm.aux_div_succ_mem {l u : 𝕋} {v : ℝ} (hl : toReal l ≤ v) (hu : v ≤ toReal u)
+private theorem Taylm.aux_div_succ_mem {l u : 𝕋} {v : ℝ} (hl : toReal l ≤ v) (hu : v ≤ toReal u)
     (k : ℕ) : -- --- CONCL ---
     toReal (minimum (divDown l (nsmulUp (k + 1) one))
         (divDown l (maximum one (nsmulDown (k + 1) one)))) ≤ v / ((k + 1 : ℕ) : ℝ) ∧

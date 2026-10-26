@@ -62,7 +62,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `∫₀^τ e^{(τ-s)a} μ ds = (e^{τa} - 1)/a · μ`, by the fundamental theorem of calculus. -/
-theorem aux_integral_exp_sub_mul {a τ : ℝ} (ha : 0 < a) (μ : ℝ) : -- --- CONCL ---
+private theorem aux_integral_exp_sub_mul {a τ : ℝ} (ha : 0 < a) (μ : ℝ) : -- --- CONCL ---
     ∫ s in (0:ℝ)..τ, Real.exp ((τ - s) * a) * μ
       = (Real.exp (τ * a) - 1) / a * μ := by -- --- PROOF ---
   have hderiv : ∀ s ∈ Set.uIcc (0:ℝ) τ,

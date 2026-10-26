@@ -58,7 +58,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point split into a member of `S` and the rest, which lies in `T`. -/
-theorem aux_mem_add_of_sub {α : Type} [AddCommGroup α] {S T : Set α} {e v : α}
+private theorem aux_mem_add_of_sub {α : Type} [AddCommGroup α] {S T : Set α} {e v : α}
     (hv : v ∈ S) (he : e - v ∈ T) : e ∈ S + T := by
   have h := Set.add_mem_add hv he
   rwa [show v + (e - v) = e from by abel] at h

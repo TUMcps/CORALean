@@ -61,13 +61,13 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The shift `A = [0 1 0; 0 0 1; 0 0 0]` is nilpotent: `Aⁱ = 0` for `i ≥ 3`. -/
-theorem LinearSys.aux_shift3_pow_eq_zero {i : ℕ} (hi : 3 ≤ i) :
+private theorem LinearSys.aux_shift3_pow_eq_zero {i : ℕ} (hi : 3 ≤ i) :
     (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) ^ i = 0 :=
   pow_eq_zero_of_le hi (by
     ext j k; fin_cases j <;> fin_cases k <;> simp [pow_succ, Matrix.mul_apply, Fin.sum_univ_three])
 
 /-- The shift's flow, coordinatewise: `e^{tA}x = (x₁ + t x₂ + (t²/2) x₃, x₂ + t x₃, x₃)`. -/
-theorem LinearSys.aux_exp_smul_shift3_mulVec (t : ℝ) (x : Vec ℝ 3) : -- --- CONCL ---
+private theorem LinearSys.aux_exp_smul_shift3_mulVec (t : ℝ) (x : Vec ℝ 3) : -- --- CONCL ---
     exp (t • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)) *ᵥ x =
       ![x 0 + t * x 1 + t ^ 2 / 2 * x 2, x 1 + t * x 2, x 2] := by -- --- PROOF ---
   -- the series stops after its quadratic term
@@ -88,7 +88,8 @@ theorem LinearSys.aux_exp_smul_shift3_mulVec (t : ℝ) (x : Vec ℝ 3) : -- --- 
 
 /-- The correction matrix (19) of the shift at `Δt = 1/8`, `η ≥ 2`: its center is `-1/1024` at
 `(1, 3)` and zero elsewhere, its radius `1/1024` there plus the remainder bound `E` everywhere. -/
-theorem LinearSys.aux_correctionMatrix_shift3 {η : ℕ} (hη : 2 ≤ η) (j k : Fin 3) : -- --- CONCL ---
+private theorem LinearSys.aux_correctionMatrix_shift3 {η : ℕ} (hη : 2 ≤ η)
+    (j k : Fin 3) : -- --- CONCL ---
     (MatExp.correctionMatrix (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) (1 / 8) η).center j k =
       (!![0, 0, -1 / 1024; 0, 0, 0; 0, 0, 0] : Mat ℝ 3 3) j k ∧
     (MatExp.correctionMatrix (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) (1 / 8) η).radius j k =
@@ -128,7 +129,7 @@ theorem LinearSys.aux_correctionMatrix_shift3 {η : ℕ} (hη : 2 ≤ η) (j k :
 
 /-- The remainder bound of the correction matrix at `Δt = 1/8`, `η ≥ 2`, lies in
 `[0, 1/2976]`. -/
-theorem LinearSys.aux_expRemainderBound_shift3 {η : ℕ} (hη : 2 ≤ η) : -- --- CONCL ---
+private theorem LinearSys.aux_expRemainderBound_shift3 {η : ℕ} (hη : 2 ≤ η) : -- --- CONCL ---
     0 ≤ MatExp.expRemainderBound ((1 / 8 : ℝ) • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)) η ∧
       MatExp.expRemainderBound ((1 / 8 : ℝ) • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)) η ≤
         1 / 2976 := by -- --- PROOF ---
@@ -171,7 +172,7 @@ theorem LinearSys.aux_expRemainderBound_shift3 {η : ℕ} (hη : 2 ≤ η) : -- 
 
 /-- `F box(X_end)` (19) of the shift and the box, `η ≥ 2`, answers a direction `a` with at most
 `-a(e₁)/4 + 27/80 |a(e₁)| + 9/100 (|a(e₂)| + |a(e₃)|)`. -/
-theorem LinearSys.aux_supportBound_shift3 {η : ℕ} (hη : 2 ≤ η)
+private theorem LinearSys.aux_supportBound_shift3 {η : ℕ} (hη : 2 ≤ η)
     (a : Vec ℝ 3 →ₗ[ℝ] ℝ) : -- --- CONCL ---
     ((Zonotope.mtimesIntervalMat
       (MatExp.correctionMatrix (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) (1 / 8) η)
@@ -245,7 +246,7 @@ theorem LinearSys.aux_supportBound_shift3 {η : ℕ} (hη : 2 ≤ η)
 
 /-- `µ` (22), line 3, for the shift and the box at `Δt = 1/8` is at most `1/9`: the images of the
 generators have lengths `0`, `1/32` and at most `157/5000`. -/
-theorem LinearSys.aux_maxBackReachMu_shift3 : -- --- CONCL ---
+private theorem LinearSys.aux_maxBackReachMu_shift3 : -- --- CONCL ---
     (LinearSys.canonical (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)).maxBackReachMu (1 / 8)
       (⟨![-1, -1 / 4, 1023 / 4], ![1, 1 / 4, 1025 / 4]⟩ : Interval (Vec ℝ 3)).zonotope ≤
         1 / 9 := by -- --- PROOF ---
@@ -290,9 +291,10 @@ theorem LinearSys.aux_maxBackReachMu_shift3 : -- --- CONCL ---
 
 /-- A point lies in `(X ⊖ F box) ⊖ B_µ`, lines 4-5, when every row `a` of `X` leaves room for the
 bound `g a` on `F box` and for `µ ≤ 1/9` times `101/100 ≥ ‖a‖₂`. -/
-theorem LinearSys.aux_mem_maxBackReachPoly (X : HPolytope (Vec ℝ 3)) (FB : Zonotope (Vec ℝ 3))
-    (g : (Vec ℝ 3 →ₗ[ℝ] ℝ) → ℝ) (hFB : ∀ a, (FB.supportBound a).val ≤ g a) {μ : ℝ}
-    (hμ : μ ≤ 1 / 9) (x : Vec ℝ 3) (heq : ∀ i, X.Ae i x = X.be i)
+private theorem LinearSys.aux_mem_maxBackReachPoly (X : HPolytope (Vec ℝ 3))
+    (FB : Zonotope (Vec ℝ 3)) (g : (Vec ℝ 3 →ₗ[ℝ] ℝ) → ℝ)
+    (hFB : ∀ a, (FB.supportBound a).val ≤ g a) {μ : ℝ} (hμ : μ ≤ 1 / 9) (x : Vec ℝ 3)
+    (heq : ∀ i, X.Ae i x = X.be i)
     (hnorm : ∀ i, ∑ j, X.A i (Pi.single j 1) ^ 2 ≤ (101 / 100) ^ 2)
     (hrow : ∀ i, X.A i x + g (X.A i) + 101 / 900 ≤ X.b i) : -- --- CONCL ---
     let XF := X.minkDiffOf FB.construct fun i => FB.supportBound (X.A i)
@@ -312,7 +314,7 @@ theorem LinearSys.aux_mem_maxBackReachPoly (X : HPolytope (Vec ℝ 3)) (FB : Zon
 
 /-- No run from `(7/4, -16, 256)` with zero input and disturbance meets the box in `[0, 1/8]`: its
 first coordinate is `5/4 + 128(t - 1/16)² > 1`. -/
-theorem LinearSys.aux_not_mem_timeIntervalBackReach_shift3 (Xend : HPolytope (Vec ℝ 3))
+private theorem LinearSys.aux_not_mem_timeIntervalBackReach_shift3 (Xend : HPolytope (Vec ℝ 3))
     (hX : ∀ x ∈ Xend.construct, x 0 ≤ 1) : -- --- CONCL ---
     ![7 / 4, -16, 256] ∉ LinearSys.timeIntervalBackReachSetExistsForallExact (S := 𝒮)
       (LinearSys.canonical (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3))

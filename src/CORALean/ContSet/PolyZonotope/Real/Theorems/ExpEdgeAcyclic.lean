@@ -51,7 +51,7 @@ namespace CORALean.Real
 
 /-- The column sum strictly drops across an edge: every other exponent is
 shared, and the one the edge moves falls. -/
-theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
+private theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
     {i j : Fin h} (hij : PolyZonotope.IsExpEdge E η i j) : -- --- CONCL ---
     ∑ k, E k j < ∑ k, E k i := by -- --- PROOF ---
   obtain ⟨k₀, hsim, -, -, hlt⟩ := hij
@@ -62,7 +62,7 @@ theorem PolyZonotope.aux_sum_lt_of_expEdge {p h : ℕ} (E : Fin p → Fin h → 
   · exact le_of_eq (hsim k hk).symm
 
 /-- The same along a path, the measure dropping at every step. -/
-theorem PolyZonotope.aux_sum_lt_of_path {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
+private theorem PolyZonotope.aux_sum_lt_of_path {p h : ℕ} (E : Fin p → Fin h → ℕ) {η : ℕ}
     {i j : Fin h} (hij : Relation.TransGen (PolyZonotope.IsExpEdge E η) i j) :
     ∑ k, E k j < ∑ k, E k i := by
   induction hij with

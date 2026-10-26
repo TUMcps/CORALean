@@ -46,7 +46,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every point of the set is in some piece after any number of rounds. -/
-theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec ℝ n))
+    (k : ℕ) : -- --- CONCL ---
     ∀ x ∈ pZ.construct, ∃ q ∈ pZ.splitMany k, x ∈ q.construct := by -- --- PROOF ---
   induction k with
   | zero => exact fun x hx => ⟨pZ, List.mem_singleton_self _, hx⟩

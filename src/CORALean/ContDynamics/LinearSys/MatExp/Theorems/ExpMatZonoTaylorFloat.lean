@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One order of the series: the member's power, scaled. -/
-theorem MatExp.aux_term_mem_expMatZonoTerm (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
+private theorem MatExp.aux_term_mem_expMatZonoTerm (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
     (hA : A ∈ M.construct) (i : ℕ) :
     ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).construct :=
   Zonotope.matSmul_outer (MatExp.invFactorialBounds_mem i).1 (MatExp.invFactorialBounds_mem i).2

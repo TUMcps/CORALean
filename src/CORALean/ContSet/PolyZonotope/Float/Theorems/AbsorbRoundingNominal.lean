@@ -52,7 +52,7 @@ omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `absorbRounding`'s generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem PolyZonotope.aux_sum_univ_absorbRounding {pZ : PolyZonotope (Vec 𝕋 n)}
+private theorem PolyZonotope.aux_sum_univ_absorbRounding {pZ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ.h + (pZ.q + n)) → ℝ) :
     ∑ l : Fin pZ.absorbRounding.h, f l
       = ∑ l, f (Fin.castAdd (pZ.q + n) l) + ∑ l, f (Fin.natAdd pZ.h l) :=

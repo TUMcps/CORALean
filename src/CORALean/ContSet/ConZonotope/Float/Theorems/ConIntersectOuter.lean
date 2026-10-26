@@ -56,8 +56,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact image of `c + G β + e`, regrouped so the center and each generator appear once. -/
-theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
-    (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
+private theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n)
+    (G : Fin h → Vec 𝕋 n) (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
     (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin m) : -- --- CONCL ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (G j k)) * β j

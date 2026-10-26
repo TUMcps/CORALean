@@ -50,7 +50,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A specification checked on the output set holds of the output. -/
-theorem OutputEq.aux_holds_of_outputSet (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
+private theorem OutputEq.aux_holds_of_outputSet (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
     (spec : Specification ContSet) {x : Vec ℝ n} {u : Vec ℝ m}
     (hx : x ∈ construct R) (hu : u ∈ construct U)
     (h : spec.Holds (construct (out.outputSet R U))) : spec.Holds {out.eval x u} :=

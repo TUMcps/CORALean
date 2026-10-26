@@ -52,19 +52,19 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The shift of `ℝ³`. -/
-def aux_absErrCoraCex_A : Mat ℝ 3 3 := !![0, 1, 0; 0, 0, 1; 0, 0, 0]
+private def aux_absErrCoraCex_A : Mat ℝ 3 3 := !![0, 1, 0; 0, 0, 1; 0, 0, 0]
 
-theorem aux_absErrCoraCex_sq : aux_absErrCoraCex_A ^ 2 = !![0, 0, 1; 0, 0, 0; 0, 0, 0] := by
+private theorem aux_absErrCoraCex_sq : aux_absErrCoraCex_A ^ 2 = !![0, 0, 1; 0, 0, 0; 0, 0, 0] := by
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [sq, Matrix.mul_apply, Fin.sum_univ_three, aux_absErrCoraCex_A]
 
-theorem aux_absErrCoraCex_cube : aux_absErrCoraCex_A ^ 3 = 0 := by
+private theorem aux_absErrCoraCex_cube : aux_absErrCoraCex_A ^ 3 = 0 := by
   rw [pow_succ, aux_absErrCoraCex_sq]
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_three, aux_absErrCoraCex_A]
 
 /-- A matrix with `M³ = 0` has `e^M` its Taylor polynomial of order `3`. -/
-theorem aux_absErrCoraCex_exp {M : Mat ℝ 3 3} (hM : M ^ 3 = 0) :
+private theorem aux_absErrCoraCex_exp {M : Mat ℝ 3 3} (hM : M ^ 3 = 0) :
     exp M = MatExp.expTaylor M 3 := by
   rw [exp_eq_tsum ℝ, MatExp.expTaylor]
   refine tsum_eq_sum fun k hk => ?_

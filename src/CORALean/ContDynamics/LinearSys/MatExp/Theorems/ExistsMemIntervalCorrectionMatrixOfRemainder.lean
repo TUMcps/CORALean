@@ -69,7 +69,7 @@ variable {n : ℕ}
 
 /-- `1/k!` times a member of the `k`-th power of `r • B`, weighted by
 `κ ∈ [corrCoeff k, 0]`, lies between the order's correction term and zero. -/
-theorem aux_corr_entry {B : Interval (Mat ℝ n n)} {r κ : ℝ} {k : ℕ} {N : Mat ℝ n n}
+private theorem aux_corr_entry {B : Interval (Mat ℝ n n)} {r κ : ℝ} {k : ℕ} {N : Mat ℝ n n}
     (hr : 0 ≤ r) (hN : N ∈ (Interval.matPow (Interval.smul r B) k).construct)
     (hκ1 : MatExp.corrCoeff k ≤ κ) (hκ2 : κ ≤ 0) (i j : Fin n) : -- --- CONCL ---
     min ((MatExp.intervalCorrTerm B r k).inf i j) 0

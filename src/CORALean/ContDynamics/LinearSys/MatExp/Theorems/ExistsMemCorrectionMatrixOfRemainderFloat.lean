@@ -76,7 +76,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A positive scaling of a non-empty nominal box sits inside the float scaling. -/
-theorem aux_smul_subset (A : Interval (Mat 𝕋 n n)) {r : 𝕋} (hr : 0 < toReal r)
+private theorem aux_smul_subset (A : Interval (Mat 𝕋 n n)) {r : 𝕋} (hr : 0 < toReal r)
     {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ A.construct) : -- --- CONCL ---
     (Real.Interval.smul (toReal r) A.nominal).construct
       ⊆ (Interval.smul r r A).construct := by -- --- PROOF ---

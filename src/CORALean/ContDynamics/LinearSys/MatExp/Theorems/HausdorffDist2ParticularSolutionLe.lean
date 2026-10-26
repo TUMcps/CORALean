@@ -64,7 +64,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A uniform `‖·‖₂` bound is boundedness, the supremum norm being the smaller of the two. -/
-theorem aux_isBounded_of_forall_norm₂_le {S : Set (Vec ℝ n)} {r : ℝ}
+private theorem aux_isBounded_of_forall_norm₂_le {S : Set (Vec ℝ n)} {r : ℝ}
     (h : ∀ y ∈ S, ‖y‖₂ ≤ r) : Bornology.IsBounded S := by
   refine isBounded_iff_forall_norm_le.mpr ⟨max r 0, fun y hy => ?_⟩
   refine (pi_norm_le_iff_of_nonneg (le_max_right r 0)).mpr fun i => ?_
@@ -72,7 +72,7 @@ theorem aux_isBounded_of_forall_norm₂_le {S : Set (Vec ℝ n)} {r : ℝ}
   exact ((abs_le_norm₂ y i).trans (h y hy)).trans (le_max_left r 0)
 
 /-- And a matrix image of such a set is bounded too. -/
-theorem aux_isBounded_mulVec_image {S : Set (Vec ℝ n)} {r : ℝ} (M : Mat ℝ n n)
+private theorem aux_isBounded_mulVec_image {S : Set (Vec ℝ n)} {r : ℝ} (M : Mat ℝ n n)
     (h : ∀ y ∈ S, ‖y‖₂ ≤ r) : Bornology.IsBounded ((fun x => M.mulVec x) '' S) := by
   refine aux_isBounded_of_forall_norm₂_le (r := (∑ i, ‖(fun j => M i j)‖₂) * max r 0) ?_
   rintro _ ⟨y, hy, rfl⟩
@@ -80,14 +80,14 @@ theorem aux_isBounded_mulVec_image {S : Set (Vec ℝ n)} {r : ℝ} (M : Mat ℝ 
     (Finset.sum_nonneg fun i _ => norm₂_nonneg _))
 
 /-- The triangle inequality on a difference, `norm₂_add_le` through `(-1) •`. -/
-theorem aux_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by
+private theorem aux_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by
   rw [sub_eq_add_neg, ← neg_one_smul ℝ y]
   refine (norm₂_add_le _ _).trans_eq ?_
   rw [norm₂_smul]
   norm_num
 
 /-- Eq. (20)'s order-`0` block split off: `bPU(Δt) = ΔtU0 ⊕ bPU_∞(Δt)`, eq. (27). -/
-theorem aux_mem_particularSolutionOuter_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : ℝ}
+private theorem aux_mem_particularSolutionOuter_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : ℝ}
     {η : ℕ} {y : Vec ℝ n} (hy : y ∈ MatExp.particularSolutionOuter A U0 0 Δt η) : -- --- CONCL ---
     ∃ x₀ ∈ U0, ∃ r ∈ MatExp.particularSolutionOuter A U0 1 Δt η,
       y = Δt • x₀ + r := by -- --- PROOF ---
@@ -102,8 +102,8 @@ theorem aux_mem_particularSolutionOuter_zero {A : Mat ℝ n n} {U0 : Set (Vec �
 
 /-- The gap between `qP^U`'s point at `x₀` and eq. (27)'s `Δtx₀` is eq. (25)'s correlated summand:
 orders `1` to `η` exactly, and everything past `η` inside `E(Δt,η)Δt`. -/
-theorem aux_mem_particularSolutionOuterCorrelated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)} {Δt : ℝ}
-    (hΔt : 0 < Δt) (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) : -- --- CONCL ---
+private theorem aux_mem_particularSolutionOuterCorrelated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
+    {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - MatExp.particularCoeff A Δt 0).mulVec x₀
       ∈ MatExp.particularSolutionOuterCorrelated A U0 1 Δt η := by -- --- PROOF ---
   set T := MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i

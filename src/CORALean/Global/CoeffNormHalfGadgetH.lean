@@ -55,7 +55,7 @@ theorem half_gadgetH_apply (β : Vec ℝ n × Vec ℝ n) :
       ((1 / 2 : ℝ) • (β.1 - β.2), (1 / 2 : ℝ) * (∑ i, β.1 i + ∑ i, β.2 i)) := rfl
 
 /-- A preimage of `(y, h)` whose norm is the closed form. -/
-theorem aux_exists_preimage (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) : -- --- CONCL ---
+private theorem aux_exists_preimage (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) : -- --- CONCL ---
     ∃ β : Vec ℝ n × Vec ℝ n, ((1 / 2 : ℝ) • gadgetH n) β = (y, h) ∧
       ‖β‖ ≤ max ‖y‖ ((∑ i, |y i| + |h|) / n) := by -- --- PROOF ---
   set μ := max ‖y‖ ((∑ i, |y i| + |h|) / n) with hμ
@@ -102,7 +102,7 @@ theorem aux_exists_preimage (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) : -- --- CO
     · exact (abs_add_le _ _).trans (by rw [abs_neg]; linarith [ht i])
 
 /-- Every preimage is at least as long as the closed form. -/
-theorem aux_le_norm_of_apply (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) (β : Vec ℝ n × Vec ℝ n)
+private theorem aux_le_norm_of_apply (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) (β : Vec ℝ n × Vec ℝ n)
     (hβ : ((1 / 2 : ℝ) • gadgetH n) β = (y, h)) : -- --- CONCL ---
     max ‖y‖ ((∑ i, |y i| + |h|) / n) ≤ ‖β‖ := by -- --- PROOF ---
   rw [half_gadgetH_apply, Prod.ext_iff] at hβ

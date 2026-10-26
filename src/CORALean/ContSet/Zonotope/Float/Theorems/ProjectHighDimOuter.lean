@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exact padding map reads the first (only) preimage, as `projectHighDim_` does. -/
-theorem Zonotope.aux_embed_find (proj : Fin n → Fin N) (hproj : Function.Injective proj)
+private theorem Zonotope.aux_embed_find (proj : Fin n → Fin N) (hproj : Function.Injective proj)
     (y : Vec ℝ n) (j : Fin N) : -- --- CONCL ---
     Real.Zonotope.embed proj y j = if h : ∃ k, proj k = j then
       y (Fin.find (fun k => proj k = j) h) else 0 := by -- --- PROOF ---
@@ -64,7 +64,7 @@ theorem Zonotope.aux_embed_find (proj : Fin n → Fin N) (hproj : Function.Injec
     refine Finset.sum_eq_zero fun k _ => ?_
     rw [if_neg fun hk => h ⟨k, hk⟩, zero_mul]
 
-theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
+private theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
     (hproj : Function.Injective proj) : -- --- CONCL ---
     nominal (Z.projectHighDim_ N proj)
       = Real.Zonotope.projectHighDim_ (nominal Z) proj := by -- --- PROOF ---
@@ -85,8 +85,8 @@ theorem Zonotope.aux_nominal_projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (proj :
     · rw [dif_neg h, dif_neg h, toReal_zero]
 
 /-- Padding reads as the exact layer's `embed`. -/
-theorem Zonotope.aux_extend_eq_embed (proj : Fin n → Fin N) (hproj : Function.Injective proj)
-    (y : Vec ℝ n) : -- --- CONCL ---
+private theorem Zonotope.aux_extend_eq_embed (proj : Fin n → Fin N)
+    (hproj : Function.Injective proj) (y : Vec ℝ n) : -- --- CONCL ---
     Function.extend proj y 0 = Real.Zonotope.embed proj y := by -- --- PROOF ---
   funext j
   rw [Zonotope.aux_embed_find proj hproj]

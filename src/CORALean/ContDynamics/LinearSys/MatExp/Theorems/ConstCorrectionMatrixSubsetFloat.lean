@@ -60,8 +60,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every member's integrated correction term lies in the float box. -/
-theorem MatExp.aux_constCorrTerm_mem_intervalConstCorrTerm (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
-    (hr : 0 ≤ toReal r) (i : ℕ) {M : Mat ℝ n n} (hM : M ∈ A.construct)
+private theorem MatExp.aux_constCorrTerm_mem_intervalConstCorrTerm (A : Interval (Mat 𝕋 n n))
+    {r : 𝕋} (hr : 0 ≤ toReal r) (i : ℕ) {M : Mat ℝ n n} (hM : M ∈ A.construct)
     (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.intervalConstCorrTerm A r i).inf j k)
         ≤ Real.MatExp.constCorrTerm M (toReal r) i j k

@@ -68,10 +68,10 @@ namespace CORALean.Real
 /-- `c = 0`, `g = 0`, `r = 1`: the interval `[-1, 1]`. -/
 def Capsule.aux_unitSegment : Capsule 1 := ⟨fun _ => 0, fun _ => 0, 1⟩
 
-theorem Capsule.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Capsule.aux_unitSegment.construct :=
+private theorem Capsule.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Capsule.aux_unitSegment.construct :=
   ⟨0, by norm_num, by simp [Capsule.aux_unitSegment]⟩
 
-theorem Capsule.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Capsule.aux_unitSegment.construct :=
+private theorem Capsule.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Capsule.aux_unitSegment.construct :=
   ⟨0, by norm_num, by simp [Capsule.aux_unitSegment]⟩
 
 

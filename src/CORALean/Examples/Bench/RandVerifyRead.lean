@@ -43,11 +43,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `q` in the format, exactly, `field` naming it in the error. -/
-def aux_exact (inst : String → ExactDyadic → Except String 𝕋) (field : String) (q : ℚ) :
+private def aux_exact (inst : String → ExactDyadic → Except String 𝕋) (field : String) (q : ℚ) :
     Except String 𝕋 := do inst field (← ratExact q)
 
 /-- A `rows × cols` matrix, entry by entry, in the format. -/
-def aux_gridMatrix (inst : String → ExactDyadic → Except String 𝕋) (name : String)
+private def aux_gridMatrix (inst : String → ExactDyadic → Except String 𝕋) (name : String)
     (rows cols : ℕ) (M : Array (Array ℚ)) : Except String (Array (Array 𝕋)) := do
   if M.size ≠ rows then throw s!"`{name}` has {M.size} rows, expected {rows}"
   let mut out := #[]
@@ -60,8 +60,8 @@ def aux_gridMatrix (inst : String → ExactDyadic → Except String 𝕋) (name 
 
 /-- The center and radius of `[l, h]` in the format: exact, or else enclosing it, with whether they
 had to be rounded. -/
-def aux_centerRadius (inst : String → ExactDyadic → Except String 𝕋) (exactIn : ExactDyadic → 𝕋)
-    (field : String) (l h : ℚ) : Except String (𝕋 × 𝕋 × Bool) := do
+private def aux_centerRadius (inst : String → ExactDyadic → Except String 𝕋)
+    (exactIn : ExactDyadic → 𝕋) (field : String) (l h : ℚ) : Except String (𝕋 × 𝕋 × Bool) := do
   let c := (l + h) / 2
   let r := (h - l) / 2
   match aux_exact inst s!"{field} center" c, aux_exact inst s!"{field} radius" r with
@@ -76,7 +76,8 @@ def aux_centerRadius (inst : String → ExactDyadic → Except String 𝕋) (exa
     pure (cv, rv, true)
 
 /-- A box of dimension `n`, as its `(center, radius)`, or as its two bounds. -/
-def aux_dimBox (name : String) (n : ℕ) (b : Array (ℚ × ℚ)) : Except String (Array (ℚ × ℚ)) :=
+private def aux_dimBox (name : String) (n : ℕ) (b : Array (ℚ × ℚ)) : Except String
+    (Array (ℚ × ℚ)) :=
   if b.size = n then pure b else throw s!"`{name}` has dimension {b.size}, expected {n}"
 
 

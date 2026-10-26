@@ -43,7 +43,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- In the half-plane, a generator parallel to one that `f` is positive on is not negative. -/
-theorem Zonotope.aux_par (p q : ℝ) (u w : Vec ℝ 2) (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0))
+private theorem Zonotope.aux_par (p q : ℝ) (u w : Vec ℝ 2) (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0))
     (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0)) (hc : u 0 * w 1 - u 1 * w 0 = 0)
     (hf : 0 < p * u 0 + q * u 1) : -- --- CONCL ---
     0 ≤ p * w 0 + q * w 1 := by -- --- PROOF ---
@@ -76,7 +76,8 @@ theorem Zonotope.aux_par (p q : ℝ) (u w : Vec ℝ 2) (hu : 0 ≤ u 1 ∧ (0 < 
     rw [hw1]; nlinarith
 
 /-- No sign pattern `+ - +` or `- + -` along sorted generators. -/
-theorem Zonotope.aux_noalt (p q : ℝ) (gi gj gl : Vec ℝ 2) (hi : 0 ≤ gi 1 ∧ (0 < gi 1 ∨ 0 ≤ gi 0))
+private theorem Zonotope.aux_noalt (p q : ℝ) (gi gj gl : Vec ℝ 2)
+    (hi : 0 ≤ gi 1 ∧ (0 < gi 1 ∨ 0 ≤ gi 0))
     (hj : 0 ≤ gj 1 ∧ (0 < gj 1 ∨ 0 ≤ gj 0)) (_hl : 0 ≤ gl 1 ∧ (0 < gl 1 ∨ 0 ≤ gl 0))
     (cij : 0 ≤ gi 0 * gj 1 - gi 1 * gj 0) (cjl : 0 ≤ gj 0 * gl 1 - gj 1 * gl 0)
     (cil : 0 ≤ gi 0 * gl 1 - gi 1 * gl 0) : -- --- CONCL ---
@@ -110,7 +111,7 @@ theorem Zonotope.aux_noalt (p q : ℝ) (gi gj gl : Vec ℝ 2) (hi : 0 ≤ gi 1 �
     linarith
 
 /-- With no positive before a negative, the values are `≤ 0` then `≥ 0`. -/
-theorem Zonotope.aux_pattern1 {h : ℕ} (a : Fin h → ℝ)
+private theorem Zonotope.aux_pattern1 {h : ℕ} (a : Fin h → ℝ)
     (hP : ∀ p n : Fin h, 0 < a p → a n < 0 → ¬ p < n) : -- --- CONCL ---
     ∃ k : ℕ, k ≤ h ∧ (∀ j : Fin h, j.val < k → a j ≤ 0) ∧
       (∀ j : Fin h, k ≤ j.val → 0 ≤ a j) := by -- --- PROOF ---
@@ -135,7 +136,7 @@ theorem Zonotope.aux_pattern1 {h : ℕ} (a : Fin h → ℝ)
       exact hP p j hap hneg' hlt
 
 /-- The sign pattern along sorted generators, either way round. -/
-theorem Zonotope.aux_pattern {h : ℕ} (a : Fin h → ℝ)
+private theorem Zonotope.aux_pattern {h : ℕ} (a : Fin h → ℝ)
     (hno : ∀ i j l : Fin h, i < j → j < l →
       ¬(0 < a i ∧ a j < 0 ∧ 0 < a l) ∧ ¬(a i < 0 ∧ 0 < a j ∧ a l < 0)) : -- --- CONCL ---
     ∃ k : ℕ, k ≤ h ∧

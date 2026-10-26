@@ -64,7 +64,7 @@ section
 variable {ι : Type} [Fintype ι]
 
 /-- A positive definite form is bounded below by a multiple of the square. -/
-theorem aux_exists_pos_le_of_posDef (M : Matrix ι ι ℝ) (hM : M.PosDef) : -- --- CONCL ---
+private theorem aux_exists_pos_le_of_posDef (M : Matrix ι ι ℝ) (hM : M.PosDef) : -- --- CONCL ---
     ∃ ε > 0, ∀ x : ι → ℝ, ε * (x ⬝ᵥ x) ≤ x ⬝ᵥ (M *ᵥ x) := by -- --- PROOF ---
   have hpos := (posDef_iff_dotProduct_mulVec.mp hM).2
   set S : Set (ι → ℝ) := {x | x ⬝ᵥ x = 1} with hSdef

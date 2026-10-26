@@ -54,7 +54,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `Fin.sum_univ_add` at `linComb`'s dependent generator count, stated through
 the projection because that is the form the goal has. Only the outermost split
 needs it; every block it produces has a plain count. -/
-theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
+private theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
     (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) :
     ∑ i : Fin (pZ₁.linComb pZ₂).h, f i
       = ∑ i, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) i)
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
 
 /-- A generator block scaled by a constant, with the constant pulled out of the
 sum: `module` cannot do this for itself, a sum being one atom to it. -/
-theorem PolyZonotope.aux_sum_scaled {k : ℕ} (s : ℝ) (m : Fin k → ℝ) (G : Fin k → α) :
+private theorem PolyZonotope.aux_sum_scaled {k : ℕ} (s : ℝ) (m : Fin k → ℝ) (G : Fin k → α) :
     ∑ i, m i • (s • G i) = s • ∑ i, m i • G i := by
   rw [Finset.smul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
@@ -71,7 +71,7 @@ theorem PolyZonotope.aux_sum_scaled {k : ℕ} (s : ℝ) (m : Fin k → ℝ) (G :
 
 /-- The same where the coefficients also carry a common factor, which is the
 shape the second dependent block has. -/
-theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ)
+private theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ)
     (G : Fin k → α) : -- --- CONCL ---
     ∑ i, (t * m i) • (s • G i) = (t * s) • ∑ i, m i • G i := by -- --- PROOF ---
   rw [Finset.smul_sum]

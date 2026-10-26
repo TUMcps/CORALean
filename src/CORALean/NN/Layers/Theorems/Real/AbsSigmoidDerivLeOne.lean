@@ -37,7 +37,7 @@ section
 variable {n : ℕ}
 
 /-- `sigmoid_pos` read at the mirrored argument. -/
-theorem aux_sigmoid_lt_one (t : ℝ) : sigmoid t < 1 := by
+private theorem aux_sigmoid_lt_one (t : ℝ) : sigmoid t < 1 := by
   have h := sigmoid_pos (-t)
   rw [sigmoid_neg] at h
   linarith

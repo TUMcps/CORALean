@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every member's correction term lies in the float box. -/
-theorem MatExp.aux_corrTerm_mem_intervalCorrTerm (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
+private theorem MatExp.aux_corrTerm_mem_intervalCorrTerm (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {M : Mat ℝ n n} (hM : M ∈ A.construct)
     (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.intervalCorrTerm A r i).inf j k) ≤ Real.MatExp.corrTerm M (toReal r) i j k

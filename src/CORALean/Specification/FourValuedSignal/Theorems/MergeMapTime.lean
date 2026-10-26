@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Setting a value on a list of intervals commutes with reading the time points as reals. -/
-theorem FourValuedSignal.aux_foldl_set_mapTime (sig : FourValuedSignal 𝕋)
+private theorem FourValuedSignal.aux_foldl_set_mapTime (sig : FourValuedSignal 𝕋)
     (L : List (STLInterval 𝕋)) (v : FourValued) : -- --- CONCL ---
     (L.foldl (fun sig I => sig.set I v) sig).mapTime toReal =
       (L.map STLInterval.toRealInterval).foldl (fun sig I => sig.set I v)

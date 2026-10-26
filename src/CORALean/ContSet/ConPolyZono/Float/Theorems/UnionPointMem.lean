@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The stored generator sum at a factor vector, split into the selector's own and the two
 operands'. -/
-theorem ConPolyZono.aux_sum_union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_sum_union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (i : Fin n) : -- --- CONCL ---
     (∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
@@ -86,7 +86,7 @@ theorem ConPolyZono.aux_sum_union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)
 
 
 /-- The two directed midpoints bracket the exact one, halving being exact. -/
-theorem ConPolyZono.aux_midpoint_mem (a b : Vec 𝕋 n) :
+private theorem ConPolyZono.aux_midpoint_mem (a b : Vec 𝕋 n) :
     (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (PolyZonotope.midpoint a b i))
       ∈ (PolyZonotope.midpointResidual a b).construct :=
   Interval.sub_mem_residual fun i => by
@@ -100,7 +100,8 @@ theorem ConPolyZono.aux_midpoint_mem (a b : Vec 𝕋 n) :
 
 /-- The sliding generator rounds down, so its shortfall is non-negative and at most the gap
 between the two directed halvings; the selector spreads it over `[-1,1]`. -/
-theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 1) : -- --- CONCL ---
+private theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ}
+    (ht : |t| ≤ 1) : -- --- CONCL ---
     let dd := fun i : Fin n => (toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a
       b i)
     (fun i => (dd i) * t)
@@ -135,7 +136,7 @@ theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 
 
 /-- The stored nominal point at factors the exact union satisfies, which the stored union
 satisfies too. -/
-theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (hsat : ∀ i, |((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).cons.A
         *ᵥ Real.PolyZonotope.monomial

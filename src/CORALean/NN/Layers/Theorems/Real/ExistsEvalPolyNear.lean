@@ -42,7 +42,7 @@ section
 variable {n : ℕ}
 
 /-- ℝ-only, as `evalPoly` is: coefficients indexed by degree, up to the natural degree. -/
-theorem aux_evalPoly_coeff (p : Polynomial ℝ) (t : ℝ) :
+private theorem aux_evalPoly_coeff (p : Polynomial ℝ) (t : ℝ) :
     evalPoly (fun i : Fin (p.natDegree + 1) => p.coeff (i : ℕ)) t = Polynomial.eval t p := by
   rw [Polynomial.eval_eq_sum_range]
   exact Fin.sum_univ_eq_sum_range (fun i => p.coeff i * t ^ i) (p.natDegree + 1)

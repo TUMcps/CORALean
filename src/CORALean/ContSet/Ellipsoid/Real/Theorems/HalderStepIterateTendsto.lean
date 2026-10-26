@@ -54,7 +54,7 @@ variable {lam : ι → ℝ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_limit_root [Nonempty ι] (hlam : ∀ i, 0 < lam i) {r L : ℝ} (hr : 0 < r)
+private theorem Ellipsoid.aux_limit_root [Nonempty ι] (hlam : ∀ i, 0 < lam i) {r L : ℝ} (hr : 0 < r)
     (hroot : Ellipsoid.halderStationarity lam r = 0) (hL : 0 < L) {b : ℕ → ℝ}
     (hb : ∀ n, b (n + 1) = Ellipsoid.halderStep lam (b n))
     (hlim : Filter.Tendsto b Filter.atTop (nhds L)) : -- --- CONCL ---

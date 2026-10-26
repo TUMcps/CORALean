@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- a bounded set has bounded coordinates
-theorem Interval.aux_hull_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBounded S)
+private theorem Interval.aux_hull_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBounded S)
     (i : Fin n) : -- --- CONCL ---
     BddAbove ((fun x : Vec ℝ n => x i) '' S) ∧
       BddBelow ((fun x : Vec ℝ n => x i) '' S) := by -- --- PROOF ---

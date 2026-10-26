@@ -57,7 +57,7 @@ variable {n : ℕ}
 
 /-- Every set the run holds is at order `o`: `reach_order_le` past the first
 step, and the caller's hypothesis at it. -/
-theorem LinearSysDT.aux_reach_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
+private theorem LinearSysDT.aux_reach_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) :
     ∀ k, (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h ≤ o * n
   | 0 => hR₀
@@ -65,7 +65,7 @@ theorem LinearSysDT.aux_reach_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 <
 
 /-- One step at any input size within the order bound costs at most
 `reachStepBound`, by monotonicity of the three counts that see a size. -/
-theorem LinearSysDT.aux_step_le (n hU o hIn : ℕ) (h : hIn ≤ o * n) :
+private theorem LinearSysDT.aux_step_le (n hU o hIn : ℕ) (h : hIn ≤ o * n) :
     Zonotope.mtimesCost n n hIn + Zonotope.plusCost n hIn hU
         + Zonotope.reduceGirardCost n (hIn + hU) ≤ LinearSysDT.reachStepBound n hU o :=
   Cost.add_le_add (Cost.add_le_add (Zonotope.mtimesCost_mono n n h)

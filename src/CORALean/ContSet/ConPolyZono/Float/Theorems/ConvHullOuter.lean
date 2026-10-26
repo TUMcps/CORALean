@@ -69,8 +69,8 @@ section
 open Matrix
 
 /-- The stored hull's constraints hold wherever the copies' and the weights' do. -/
-theorem ConPolyZono.aux_convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (v : Fin (a * cPZ.p + a) → ℝ)
+private theorem ConPolyZono.aux_convHullSingle_satisfies_of_real (a : ℕ)
+    (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (v : Fin (a * cPZ.p + a) → ℝ)
     (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
     (hv : ∀ j, |v (Fin.natAdd (a * cPZ.p) j)| ≤ 1)
     (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- CONCL ---
@@ -90,7 +90,7 @@ theorem ConPolyZono.aux_convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPol
 
 
 /-- Read back, a stored generator is the exact layer's. -/
-theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
+private theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
     (l : Fin (a + (a * h + a * h))) (i : Fin n) : -- --- CONCL ---
     toReal (ConPolyZono.convHullG a c G l i)
       = Real.ConPolyZono.convHullG a (toRealVec c) (fun l i => toReal (G l i))
@@ -104,7 +104,7 @@ theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G
 
 /-- The stored nominal point at factors whose copies the stored operand's constraints admit and
 whose weights add up to `1 - a`. -/
-theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
     (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
     (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- CONCL ---
@@ -121,7 +121,7 @@ theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Ve
 
 
 /-- `ConPolyZono.convHullSingle` contains the convex hull. -/
-theorem ConPolyZono.aux_convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq : cPZ.qI = 0)
     (ha : n + 1 ≤ a) : -- --- CONCL ---
     convexHull ℝ cPZ.construct ⊆ (cPZ.convHullSingle a).construct := by -- --- PROOF ---

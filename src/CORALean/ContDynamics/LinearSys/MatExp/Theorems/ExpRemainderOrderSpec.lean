@@ -56,7 +56,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- One more order never costs precision: raising `η` never raises the bound,
 given the side condition the lower order already needs. -/
-theorem MatExp.aux_expRemainderBound_antitone_succ {x : Mat ℝ n n} (η : ℕ)
+private theorem MatExp.aux_expRemainderBound_antitone_succ {x : Mat ℝ n n} (η : ℕ)
     (hx : ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.expRemainderBound x (η + 1) ≤ MatExp.expRemainderBound x η := by -- --- PROOF ---
   have hnn : (0 : ℝ) ≤ ‖x‖ := norm_nonneg _
@@ -95,7 +95,7 @@ end
 
 /-- One more order keeps both halves: the bound falls, and the side condition
 only has a larger denominator to divide by. -/
-theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
+private theorem aux_expRemainderBound_lt_succ {x : Mat ℝ n n} {ε : ℝ} {η : ℕ}
     (h : MatExp.expRemainderBound x η < ε ∧ ‖x‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     MatExp.expRemainderBound x (η + 1) < ε ∧
       ‖x‖ / (((η + 1 : ℕ) : ℝ) + 2) < 1 := by -- --- PROOF ---

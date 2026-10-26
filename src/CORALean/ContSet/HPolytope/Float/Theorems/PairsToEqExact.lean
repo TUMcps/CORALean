@@ -43,7 +43,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- An inverted pair is inverted both ways. -/
-theorem HPolytope.aux_isInvertedPair_symm {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
+private theorem HPolytope.aux_isInvertedPair_symm {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
     (h : HPolytope.aux_isInvertedPair Q i j = true) :
     HPolytope.aux_isInvertedPair Q j i = true := by
   simp only [HPolytope.aux_isInvertedPair, Bool.and_eq_true] at h ⊢
@@ -53,7 +53,7 @@ end
 
 
 /-- An inverted pair of rows has opposite values. -/
-theorem HPolytope.aux_isInvertedPair_dot {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
+private theorem HPolytope.aux_isInvertedPair_dot {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
     (h : HPolytope.aux_isInvertedPair Q i j = true) (x : Vec ℝ n) : -- --- CONCL ---
     (toRealMat Q.A *ᵥ x) j = -(toRealMat Q.A *ᵥ x) i ∧
       toReal (Q.b j) = -toReal (Q.b i) := by -- --- PROOF ---

@@ -146,19 +146,19 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The shift of `ℝ³`. -/
-def aux_hpMapCoraCex_A : Mat ℝ 3 3 := !![0, 1, 0; 0, 0, 1; 0, 0, 0]
+private def aux_hpMapCoraCex_A : Mat ℝ 3 3 := !![0, 1, 0; 0, 0, 1; 0, 0, 0]
 
-theorem aux_hpMapCoraCex_sq : aux_hpMapCoraCex_A ^ 2 = !![0, 0, 1; 0, 0, 0; 0, 0, 0] := by
+private theorem aux_hpMapCoraCex_sq : aux_hpMapCoraCex_A ^ 2 = !![0, 0, 1; 0, 0, 0; 0, 0, 0] := by
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [sq, Matrix.mul_apply, Fin.sum_univ_three, aux_hpMapCoraCex_A]
 
-theorem aux_hpMapCoraCex_cube : aux_hpMapCoraCex_A ^ 3 = 0 := by
+private theorem aux_hpMapCoraCex_cube : aux_hpMapCoraCex_A ^ 3 = 0 := by
   rw [pow_succ, aux_hpMapCoraCex_sq]
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_three, aux_hpMapCoraCex_A]
 
 /-- `W = e^{2|A|} − T₃(2|A|) = 0`: `|A| = A` and `(2A)³ = 0`. -/
-theorem aux_hpMapCoraCex_W : -- --- CONCL ---
+private theorem aux_hpMapCoraCex_W : -- --- CONCL ---
     MatExp.expRemainderMat aux_hpMapCoraCex_A 2 3 = 0 := by -- --- PROOF ---
   have habs : MatExp.absMat aux_hpMapCoraCex_A = aux_hpMapCoraCex_A := by
     ext i j; fin_cases i <;> fin_cases j <;> simp [MatExp.absMat, aux_hpMapCoraCex_A]
@@ -170,24 +170,24 @@ theorem aux_hpMapCoraCex_W : -- --- CONCL ---
     zero_mul, smul_zero]
 
 /-- `b = Θ(1)x₀ = ½A²x₀`. -/
-theorem aux_hpMapCoraCex_b :
+private theorem aux_hpMapCoraCex_b :
     GuardMap.sdcInput aux_hpMapCoraCex_A 0 1 3 ![0, 0, 1] = ![1 / 2, 0, 0] := by
   simp only [GuardMap.sdcInput, Finset.sum_Ico_eq_sum_range, Finset.sum_range_succ,
     Finset.sum_range_zero, Nat.reduceAdd, aux_hpMapCoraCex_sq, aux_hpMapCoraCex_cube,
     smul_zero, add_zero, zero_add, mulVec_zero]
   ext i; fin_cases i <;> simp [mulVec, dotProduct, Fin.sum_univ_three, Nat.factorial]
 
-theorem aux_hpMapCoraCex_reduceGirard_ofPoint (v : Vec ℝ n) (o : ℕ) :
+private theorem aux_hpMapCoraCex_reduceGirard_ofPoint (v : Vec ℝ n) (o : ℕ) :
     (Zonotope.ofPoint v).reduceGirard o = Zonotope.ofPoint v := by
   unfold Zonotope.reduceGirard
   rw [dif_neg (by simp [Zonotope.ofPoint])]
 
-theorem aux_hpMapCoraCex_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
+private theorem aux_hpMapCoraCex_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
     (Z.reduceGirard o).c = Z.c := by
   unfold Zonotope.reduceGirard
   split_ifs <;> rfl
 
-theorem aux_hpMapCoraCex_reduceGirard {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
+private theorem aux_hpMapCoraCex_reduceGirard {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
     (o : ℕ) : -- --- CONCL ---
     ∀ j, (Z.reduceGirard o).G j = 0 := by -- --- PROOF ---
   by_cases hlt : o * n < Z.h
@@ -199,19 +199,19 @@ theorem aux_hpMapCoraCex_reduceGirard {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G
   · rw [show Z.reduceGirard o = Z from dif_neg hlt]
     exact h
 
-theorem aux_hpMapCoraCex_ofPoint (v : Vec ℝ n) : ∀ j, (Zonotope.ofPoint v).G j = 0 :=
+private theorem aux_hpMapCoraCex_ofPoint (v : Vec ℝ n) : ∀ j, (Zonotope.ofPoint v).G j = 0 :=
   fun j => j.elim0
 
-theorem aux_hpMapCoraCex_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} (h₁ : ∀ j, Z₁.G j = 0)
+private theorem aux_hpMapCoraCex_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} (h₁ : ∀ j, Z₁.G j = 0)
     (h₂ : ∀ j, Z₂.G j = 0) : ∀ j, (Z₁.plus Z₂).G j = 0 := fun j => by
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j <;> simp [Zonotope.plus, h₁, h₂]
 
-theorem aux_hpMapCoraCex_mtimes (M : Mat ℝ n n) {Z : Zonotope (Vec ℝ n)}
+private theorem aux_hpMapCoraCex_mtimes (M : Mat ℝ n n) {Z : Zonotope (Vec ℝ n)}
     (h : ∀ j, Z.G j = 0) : ∀ j, (Zonotope.mtimes M Z).G j = 0 := fun j => by
   simp [Zonotope.mtimes, h]
 
 /-- An interval matrix applied to `{0}`, or `[0, 0]` applied to a point. -/
-theorem aux_hpMapCoraCex_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec ℝ n)}
+private theorem aux_hpMapCoraCex_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec ℝ n)}
     (h : ∀ j, Z.G j = 0) (h0 : ∀ i j, IM.radius i j * |Z.c j| = 0) : -- --- CONCL ---
     ∀ j, (Zonotope.mtimesIntervalMat IM Z).G j = 0 := by -- --- PROOF ---
   intro j
@@ -222,13 +222,13 @@ theorem aux_hpMapCoraCex_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (V
   · simp [Zonotope.mtimesIntervalMat, h]
   · ext i; simp [Zonotope.mtimesIntervalMat, hr]
 
-theorem aux_hpMapCoraCex_append_zero {a b m : ℕ} (x : Fin (a + b)) :
+private theorem aux_hpMapCoraCex_append_zero {a b m : ℕ} (x : Fin (a + b)) :
     Fin.append (fun (_ : Fin a) (_ : Fin m) => (0 : ℝ)) (fun (_ : Fin b) (_ : Fin m) => (0 : ℝ))
       x = fun _ => 0 := by
   refine Fin.addCases (fun j => ?_) (fun j => ?_) x <;> simp
 
 /-- `quadMap` of `{0}` is `{0}`. -/
-theorem aux_hpMapCoraCex_quadMap {m : ℕ} (D : Fin m → Mat ℝ n n) {Z : Zonotope (Vec ℝ n)}
+private theorem aux_hpMapCoraCex_quadMap {m : ℕ} (D : Fin m → Mat ℝ n n) {Z : Zonotope (Vec ℝ n)}
     (hc : Z.c = 0) (h : ∀ j, Z.G j = 0) :
     (Z.quadMap D).c = 0 ∧ ∀ j, (Z.quadMap D).G j = 0 := by
   refine ⟨by ext i; simp [Zonotope.quadMap, hc, h], fun j => ?_⟩
@@ -236,12 +236,12 @@ theorem aux_hpMapCoraCex_quadMap {m : ℕ} (D : Fin m → Mat ℝ n n) {Z : Zono
   · ext i; simp [Zonotope.quadMap, hc, h, aux_hpMapCoraCex_append_zero]
   · ext i; simp [Zonotope.quadMap, h]
 
-theorem aux_hpMapCoraCex_unitIntervalMul {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0)
+private theorem aux_hpMapCoraCex_unitIntervalMul {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0)
     (h : ∀ j, Z.G j = 0) : ∀ j, Z.unitIntervalMul.G j = 0 := fun j => by
   refine Fin.cases ?_ (fun j => ?_) j <;> simp [Zonotope.unitIntervalMul, hc, h]
 
 /-- `R_quad` of `{0}` is `{0}`. -/
-theorem aux_hpMapCoraCex_quadMapMatZono {m ν : ℕ} (D : Fin m → Mat ℝ n n)
+private theorem aux_hpMapCoraCex_quadMapMatZono {m ν : ℕ} (D : Fin m → Mat ℝ n n)
     (K : Fin ν → Fin m → Mat ℝ n n) {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0)
     (h : ∀ j, Z.G j = 0) : -- --- CONCL ---
     (Zonotope.quadMapMatZono D K Z).c = 0 ∧
@@ -255,14 +255,14 @@ theorem aux_hpMapCoraCex_quadMapMatZono {m ν : ℕ} (D : Fin m → Mat ℝ n n)
       (aux_hpMapCoraCex_quadMap _ hc h).2 _
 
 /-- A point of a zonotope whose generators are `0` is its center. -/
-theorem aux_hpMapCoraCex_mem {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
+private theorem aux_hpMapCoraCex_mem {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
     {x : Vec ℝ n} (hx : x ∈ Z.construct) : x = Z.c := by
   obtain ⟨β, -, rfl⟩ := hx
   simp [h]
 
 
 /-- The projection onto `cᵀx = d` of a zonotope whose generators are `0` is a point. -/
-theorem aux_hpMapCoraCex_proj {R : Zonotope (Vec ℝ n)} (h : ∀ j, R.G j = 0) (c : Vec ℝ n)
+private theorem aux_hpMapCoraCex_proj {R : Zonotope (Vec ℝ n)} (h : ∀ j, R.G j = 0) (c : Vec ℝ n)
     (d : ℝ) {x : Vec ℝ n}
     (hx : x ∈ (ContSet.projectOnHyperplane (S := 𝒵) R c d).construct) : -- --- CONCL ---
     x = (1 - vecMulVec c c) *ᵥ R.c + d • c := by -- --- PROOF ---
@@ -274,7 +274,7 @@ theorem aux_hpMapCoraCex_proj {R : Zonotope (Vec ℝ n)} (h : ∀ j, R.G j = 0) 
 
 
 /-- The location's combined input set is the point `0`: `B = I` at `U = {0}`, `c = 0`, `E = 0`. -/
-theorem aux_hpMapCoraCex_inputSet (inv : Zonotope (Vec ℝ 3)) :
+private theorem aux_hpMapCoraCex_inputSet (inv : Zonotope (Vec ℝ 3)) :
     (⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, Zonotope.ofPoint 0, []⟩ :
       Location 𝒵 𝒵 Unit ℝ 3).inputSet = Zonotope.ofPoint 0 := by
   simp only [Location.inputSet, Plus.plus, Mtimes.mtimes, OfPoint.ofPoint, Zonotope.plus,

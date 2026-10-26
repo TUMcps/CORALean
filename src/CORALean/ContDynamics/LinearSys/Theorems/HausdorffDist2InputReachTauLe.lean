@@ -83,7 +83,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Holding the input at the origin is admissible when `U` contains it, and contributes nothing —
 `InputReachMono.lean`'s own helper of the same name, restated here since that one is file-local. -/
-theorem LinearSys.aux_zero_mem_reach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
+private theorem LinearSys.aux_zero_mem_reach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
     (h0 : (0 : Vec ℝ n) ∈ construct U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp

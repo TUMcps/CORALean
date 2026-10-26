@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) : -- --- CONCL ---
+private theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) : -- --- CONCL ---
     VPolytope.construct p = ∅ ↔ p.k = 0 := by -- --- PROOF ---
   constructor
   · intro h

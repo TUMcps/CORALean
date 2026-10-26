@@ -49,7 +49,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes 𝕄 S] in
 /-- A total run restricted to its first `K` steps: nothing past step `K` is
 used, so nothing past it needs to hold. -/
-theorem LinParamSysDT.IsCanonicalTrajectory.aux_toCanonicalTrajectoryOn
+private theorem LinParamSysDT.IsCanonicalTrajectory.aux_toCanonicalTrajectoryOn
     {sys : LinParamSysDT 𝕄 n} {R₀ U : S n} {x u : ℕ → Vec ℝ n}
     (traj : sys.IsCanonicalTrajectory R₀ U x u) (K : ℕ) :
     sys.IsCanonicalTrajectoryOn R₀ U K x u where

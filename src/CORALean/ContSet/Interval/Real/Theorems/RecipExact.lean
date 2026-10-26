@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Conversely, a value between the reciprocals is the reciprocal of a point between. -/
-theorem Interval.aux_inv_mem {a b z : ℝ} (hab : a ≤ b) (h : 0 < a ∨ b < 0) (h₁ : b⁻¹ ≤ z)
+private theorem Interval.aux_inv_mem {a b z : ℝ} (hab : a ≤ b) (h : 0 < a ∨ b < 0) (h₁ : b⁻¹ ≤ z)
     (h₂ : z ≤ a⁻¹) : -- --- CONCL ---
     ∃ y, (a ≤ y ∧ y ≤ b) ∧ y⁻¹ = z := by -- --- PROOF ---
   rcases h with ha | hb

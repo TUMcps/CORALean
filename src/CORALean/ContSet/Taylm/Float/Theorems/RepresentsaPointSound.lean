@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- With every positive-degree coefficient zero, the polynomial is its value at `0`. -/
-theorem Taylm.aux_polyOf_const (L : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n)
+private theorem Taylm.aux_polyOf_const (L : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n)
     (h : ∀ a ∈ L, (∀ k, a.2 k = 0) ∨ a.1 = 0) : -- --- CONCL ---
     Real.Taylm.polyOf L t = Real.Taylm.polyOf L 0 := by -- --- PROOF ---
   induction L with

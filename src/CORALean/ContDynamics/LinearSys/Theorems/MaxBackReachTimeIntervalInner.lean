@@ -93,7 +93,8 @@ variable {Zw : ℝ → Zonotope (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
 
 /-- The `k`-th iteration starts at `t_k = t₀ + k Δt`, line 7 read off the
 recursion. -/
-theorem LinearSys.aux_maxBackReachRun_t (sys : LinearSys 𝕋 n) (t₀ : ℝ) (k : ℕ) : -- --- CONCL ---
+private theorem LinearSys.aux_maxBackReachRun_t (sys : LinearSys 𝕋 n) (t₀ : ℝ)
+    (k : ℕ) : -- --- CONCL ---
     (sys.maxBackReachRun ρ P₁ P₂ Uz W₀ Zw t₀ Δt η k).t = t₀ + k * Δt := by -- --- PROOF ---
   induction k with
   | zero => simp [LinearSys.maxBackReachRun, LinearSys.maxBackReachInit]
@@ -105,7 +106,7 @@ theorem LinearSys.aux_maxBackReachRun_t (sys : LinearSys 𝕋 n) (t₀ : ℝ) (k
 /-- [1, Prop. 2] for `R^{∃∀}`, over runs whose domain reaches `t_end`: the
 input found for time `t` is extended past `t` by a constant, which superposition
 shows changes nothing at `t`. -/
-theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U W Xend : S n}
+private theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {tend t : ℝ} (ht : 0 ≤ t) (hle : t ≤ tend) {τ : Set ℝ} (hτ : t ∈ τ)
     (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
     {c : Vec ℝ n} (hc : c ∈ construct U) : -- --- CONCL ---
@@ -150,7 +151,7 @@ theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U 
 
 /-- One iteration of [1, Alg. 3] lands inside the time-point solutions over
 `τ_k`, which is (54). -/
-theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
+private theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {s : LinearSys.MaxBackReachState n} (hs : 0 ≤ s.t)
     (hZW : (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).ZW = ZW)
     (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))

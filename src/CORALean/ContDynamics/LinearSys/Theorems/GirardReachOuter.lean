@@ -63,7 +63,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A time in `[0, T]` lies in the window `[i r, (i+1) r]` of some `i < ⌈T/r⌉`, or of `i = 0`. -/
-theorem aux_exists_window {r T t : ℝ} (hr : 0 < r) (ht0 : 0 ≤ t) (htT : t ≤ T) : -- --- CONCL ---
+private theorem aux_exists_window {r T t : ℝ} (hr : 0 < r) (ht0 : 0 ≤ t)
+    (htT : t ≤ T) : -- --- CONCL ---
     ∃ i < ⌈T / r⌉₊ - 1 + 1, (i : ℝ) * r ≤ t ∧ t ≤ ((i : ℝ) + 1) * r := by -- --- PROOF ---
   set N := ⌈T / r⌉₊
   have hfl := Nat.floor_le (div_nonneg ht0 hr.le)

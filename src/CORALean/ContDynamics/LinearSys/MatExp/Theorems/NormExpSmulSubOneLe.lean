@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `e^x - 1 ≤ x e^x` for every real `x`, read off `1 - x ≤ e^{-x}` multiplied by `e^x`. -/
-theorem aux_real_exp_sub_one_le_mul_exp (x : ℝ) : -- --- CONCL ---
+private theorem aux_real_exp_sub_one_le_mul_exp (x : ℝ) : -- --- CONCL ---
     Real.exp x - 1 ≤ x * Real.exp x := by -- --- PROOF ---
   have h1 : 1 + (-x) ≤ Real.exp (-x) := by linarith [Real.add_one_le_exp (-x)]
   have h2 : Real.exp x * (1 - x) ≤ Real.exp x * Real.exp (-x) := by

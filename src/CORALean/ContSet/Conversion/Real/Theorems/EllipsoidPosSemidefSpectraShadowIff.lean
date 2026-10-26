@@ -89,7 +89,7 @@ private theorem aux_M_form (Q : Mat ℝ n n) (q u : Vec ℝ n) (x : Fin (n + 1) 
   ring
 
 /-- `(y·z)² ≤ zᵀ Q z` for every `z` is the point `q + y` in the ellipsoid. -/
-theorem Ellipsoid.aux_sq_le_iff (E : Ellipsoid n) (y : Vec ℝ n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_sq_le_iff (E : Ellipsoid n) (y : Vec ℝ n) : -- --- CONCL ---
     (∀ z : Vec ℝ n, (y ⬝ᵥ z) ^ 2 ≤ z ⬝ᵥ (E.Q *ᵥ z)) ↔ E.q + y ∈ E.construct := by -- --- PROOF ---
   rw [Ellipsoid.mem_construct_iff]
   have hGG : E.G * E.G = E.Q := by

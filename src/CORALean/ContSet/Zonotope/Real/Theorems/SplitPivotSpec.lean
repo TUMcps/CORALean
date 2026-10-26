@@ -54,7 +54,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The three order facts at the pivot, uniformly in the direction `σ`. -/
-theorem Zonotope.aux_pivot_order {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w v : Vec ℝ 2}
+private theorem Zonotope.aux_pivot_order {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w v : Vec ℝ 2}
     (hu : 0 ≤ u 1 ∧ (0 < u 1 ∨ 0 ≤ u 0)) (hw : 0 ≤ w 1 ∧ (0 < w 1 ∨ 0 ≤ w 0))
     (hv : 0 ≤ v 1 ∧ (0 < v 1 ∨ 0 ≤ v 0)) (hu0 : u ≠ 0) (hv0 : v ≠ 0) : -- --- CONCL ---
     (σ * Complex.arg ⟨u 0, u 1⟩ < σ * Complex.arg ⟨v 0, v 1⟩ →
@@ -80,7 +80,7 @@ theorem Zonotope.aux_pivot_order {σ : ℝ} (hσ : σ = 1 ∨ σ = -1) {u w v : 
       linarith
 
 /-- The pivot is in the upper half-plane and points along `σ`. -/
-theorem Zonotope.aux_pivot_half_plane (Z : Zonotope (Vec ℝ 2)) {σ : ℝ}
+private theorem Zonotope.aux_pivot_half_plane (Z : Zonotope (Vec ℝ 2)) {σ : ℝ}
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (G : Finset (Fin Z.h))
     (hG : ∀ i ∈ G, 0 < σ * Z.G i 0) (hne : G.Nonempty) {s : Vec ℝ 2}
     (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) : -- --- CONCL ---

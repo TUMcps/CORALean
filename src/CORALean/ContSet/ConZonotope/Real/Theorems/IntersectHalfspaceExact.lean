@@ -54,8 +54,8 @@ variable {n : ℕ}
 
 /-- `Fin.sum_univ_add`/`Fin.sum_univ_one` at the one row `interHalfspace`'s constraint matrix
 carries. -/
-theorem Zonotope.aux_mulVec_interHalfspace (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ) (f : ℝ)
-    (ξ : Fin (Z.h + 1) → ℝ) : -- --- CONCL ---
+private theorem Zonotope.aux_mulVec_interHalfspace (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
+    (f : ℝ) (ξ : Fin (Z.h + 1) → ℝ) : -- --- CONCL ---
     ((fun _ : Fin 1 => Fin.append (fun i => h (Z.G i))
         (fun _ : Fin 1 => (f - h Z.c + ∑ i, |h (Z.G i)|) / 2)) *ᵥ ξ) 0
       = (∑ i, h (Z.G i) * ξ (Fin.castAdd 1 i))
@@ -67,7 +67,7 @@ theorem Zonotope.aux_mulVec_interHalfspace (Z : Zonotope (Vec ℝ n)) (h : Vec �
 
 /-- The fresh generator is `0`: only `Z`'s own generators, at `Z`'s own coefficients, contribute
 to the value. -/
-theorem Zonotope.aux_value_interHalfspace (Z : Zonotope (Vec ℝ n)) (ξ : Fin (Z.h + 1) → ℝ) :
+private theorem Zonotope.aux_value_interHalfspace (Z : Zonotope (Vec ℝ n)) (ξ : Fin (Z.h + 1) → ℝ) :
     Z.c + ∑ j, ξ j • (Fin.append Z.G (fun _ : Fin 1 => (0 : Vec ℝ n))) j
       = Z.c + ∑ i, ξ (Fin.castAdd 1 i) • Z.G i := by
   congr 1
@@ -76,7 +76,7 @@ theorem Zonotope.aux_value_interHalfspace (Z : Zonotope (Vec ℝ n)) (ξ : Fin (
 
 /-- Membership in `Z.interHalfspace h f`, unpacked into `Z`'s own coefficients and the one fresh
 one, [1]'s `(6)`. -/
-theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
+private theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
     (f : ℝ) (x : Vec ℝ n) : -- --- CONCL ---
     x ∈ (Z.interHalfspace h f).construct ↔
       ∃ (ξ : Fin Z.h → ℝ) (t : ℝ), (∀ i, |ξ i| ≤ 1) ∧ |t| ≤ 1 ∧
@@ -108,7 +108,7 @@ theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (h : Vec 
 /-- `h`'s value over `Z`'s generators, at any admissible coefficient, never drops below minus the
 generators' own total — the triangle inequality both `aux_interHalfspace_dm_nonneg` and the
 `⊇`-direction's witness for `t` at `dm = 0` need. -/
-theorem Zonotope.aux_sum_ge_neg_sum_abs (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
+private theorem Zonotope.aux_sum_ge_neg_sum_abs (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
     (ξ : Fin Z.h → ℝ) (hξ : ∀ i, |ξ i| ≤ 1) : -- --- CONCL ---
     -∑ i, |h (Z.G i)| ≤ ∑ i, h (Z.G i) * ξ i := by -- --- PROOF ---
   have hterm : ∀ i ∈ Finset.univ, -|h (Z.G i)| ≤ h (Z.G i) * ξ i := by
@@ -121,7 +121,7 @@ theorem Zonotope.aux_sum_ge_neg_sum_abs (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ 
 
 /-- The paper's own first step: `Z` meeting the hyperplane, with the triangle inequality over its
 generators, forces `dm ≥ 0`. -/
-theorem Zonotope.aux_interHalfspace_dm_nonneg (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
+private theorem Zonotope.aux_interHalfspace_dm_nonneg (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
     (f : ℝ) (hZH : ∃ x ∈ Z.construct, h x = f) : -- --- CONCL ---
     0 ≤ f - h Z.c + ∑ i, |h (Z.G i)| := by -- --- PROOF ---
   obtain ⟨x, ⟨ξ, hξ, rfl⟩, hx⟩ := hZH

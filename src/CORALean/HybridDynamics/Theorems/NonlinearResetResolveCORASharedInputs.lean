@@ -44,7 +44,7 @@ abbrev aux_dims : Fin 2 → ℕ := fun _ => 1
 -- both inputs are bound to the global input `0`
 def aux_binds : ∀ i : Fin 2, Fin (aux_dims i) → ResolveSource 2 aux_dims 1 := fun _ _ => .global 0
 
-theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
+private theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
 
 end ResolveSharedExample
 

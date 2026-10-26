@@ -57,7 +57,7 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- For `H` onto, `H⁺x` solves `Hβ = x` with the least `βᵀβ`. -/
-theorem aux_pinv_least (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) (Hp : Mat ℝ l n)
+private theorem aux_pinv_least (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) (Hp : Mat ℝ l n)
     (hHp : IsPinv H Hp) (x : Fin n → ℝ) : -- --- CONCL ---
     H *ᵥ (Hp *ᵥ x) = x ∧
       ∀ β, H *ᵥ β = x → (Hp *ᵥ x) ⬝ᵥ (Hp *ᵥ x) ≤ β ⬝ᵥ β := by -- --- PROOF ---
@@ -83,7 +83,7 @@ theorem aux_pinv_least (H : Mat ℝ n l) (hH : Function.Surjective H.mulVec) (Hp
   linarith
 
 /-- The unit ball `αᵀα ≤ 1` is compact. -/
-theorem aux_isCompact_ball : -- --- CONCL ---
+private theorem aux_isCompact_ball : -- --- CONCL ---
     IsCompact {α : Fin m → ℝ | α ⬝ᵥ α ≤ 1} := by -- --- PROOF ---
   refine Metric.isCompact_of_isClosed_isBounded
     (isClosed_le (continuous_id.dotProduct continuous_id) continuous_const)
@@ -98,7 +98,7 @@ theorem aux_isCompact_ball : -- --- CONCL ---
   constructor <;> nlinarith
 
 /-- The form of the S-lemma's `f` at `A = -ΘᵀΘ`, `a = -Θᵀθ`, `α = ρ - θᵀθ` is `ρ - ‖Θα + θ‖²`. -/
-theorem aux_form_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ : ℝ) (x : Fin m → ℝ) :
+private theorem aux_form_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ : ℝ) (x : Fin m → ℝ) :
     x ⬝ᵥ (-(Θᵀ * Θ)) *ᵥ x + 2 * (-(Θᵀ *ᵥ θ) ⬝ᵥ x) + (ρ - θ ⬝ᵥ θ) =
       ρ - (Θ *ᵥ x + θ) ⬝ᵥ (Θ *ᵥ x + θ) := by
   rw [neg_mulVec, dotProduct_neg, neg_dotProduct, ← mulVec_mulVec, dotProduct_mulVec,
@@ -107,7 +107,7 @@ theorem aux_form_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ : ℝ) (x : Fin 
   ring
 
 /-- Eq. 23's matrix is the certificate of `s_lemma_posSemidef` for `f` and `αᵀα - 1`. -/
-theorem aux_lmi_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ δ : ℝ) : -- --- CONCL ---
+private theorem aux_lmi_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ δ : ℝ) : -- --- CONCL ---
     δ • fromBlocks (1 : Mat ℝ m m) 0 0 (-1 : Mat ℝ 1 1) -
         (fromBlocks (Θᵀ * Θ) (replicateCol (Fin 1) (Θᵀ *ᵥ θ)) (replicateRow (Fin 1) (θ ᵥ* Θ))
           (of fun _ _ => θ ⬝ᵥ θ) - ρ • fromBlocks (0 : Mat ℝ m m) 0 0 (1 : Mat ℝ 1 1)) =

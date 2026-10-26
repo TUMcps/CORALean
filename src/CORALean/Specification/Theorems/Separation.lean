@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α} {c : α �
 
 /-- `O` does not reach as far along `c` as `U` has to come back, so no point is
 in both. -/
-theorem aux_disjoint_of_separating (u : SupportBound O c) (v : SupportBound U (-c))
+private theorem aux_disjoint_of_separating (u : SupportBound O c) (v : SupportBound U (-c))
     (h : u.val + v.val < 0) : -- --- CONCL ---
     Disjoint O U := by -- --- PROOF ---
   rw [Set.disjoint_left]

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `q` if binary, else the dyadic at `2^-60` just below (`up = false`) or above it. -/
-def aux_bracket (q : ℚ) (up : Bool) : ExactDyadic :=
+private def aux_bracket (q : ℚ) (up : Bool) : ExactDyadic :=
   match ratExact q with
   | .ok d => d
   | .error _ =>

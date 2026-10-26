@@ -54,12 +54,12 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `‖-x‖₂ = ‖x‖₂`. -/
-theorem aux_norm₂_neg (x : Vec ℝ n) : ‖-x‖₂ = ‖x‖₂ := by
+private theorem aux_norm₂_neg (x : Vec ℝ n) : ‖-x‖₂ = ‖x‖₂ := by
   rw [show -x = (-1 : ℝ) • x by simp, norm₂_smul]
   simp
 
 /-- The least value of `lᵀ x` on an ellipsoid, from the largest of `-lᵀ x`. -/
-theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) : -- --- CONCL ---
     IsLeast ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l))) := by -- --- PROOF ---
   obtain ⟨⟨x, hx, hxv⟩, hub⟩ := E.isGreatest_dot (-l)
   have hsq : (-l) ⬝ᵥ (E.Q *ᵥ -l) = l ⬝ᵥ (E.Q *ᵥ l) := by

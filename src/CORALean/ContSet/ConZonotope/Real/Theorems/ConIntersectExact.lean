@@ -50,7 +50,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The image rows are all that `conIntersect` adds over the two blocks' own constraints. -/
-theorem ConZonotope.aux_mem_conIntersect_P_iff (cZ₁ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_mem_conIntersect_P_iff (cZ₁ : ConZonotope (Vec ℝ n))
     (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n)
     (β : Vec ℝ (cZ₁.conIntersect cZ₂ M).h) : -- --- CONCL ---
     β ∈ (cZ₁.conIntersect cZ₂ M).P.construct ↔
@@ -77,7 +77,7 @@ theorem ConZonotope.aux_mem_conIntersect_P_iff (cZ₁ : ConZonotope (Vec ℝ n))
     simp only [Fin.append_left, Fin.append_right, neg_mul, Finset.sum_neg_distrib, sub_eq_add_neg]
 
 /-- Only the first generator block survives; the second is pinned to it. -/
-theorem ConZonotope.aux_value_conIntersect (cZ₁ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_value_conIntersect (cZ₁ : ConZonotope (Vec ℝ n))
     (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n) (β : Fin (cZ₁.h + cZ₂.h) → ℝ) : -- --- CONCL ---
     (cZ₁.conIntersect cZ₂ M).c
         + ∑ j : Fin (cZ₁.conIntersect cZ₂ M).h, β j • (cZ₁.conIntersect cZ₂ M).G j
@@ -88,7 +88,7 @@ theorem ConZonotope.aux_value_conIntersect (cZ₁ : ConZonotope (Vec ℝ n))
     smul_zero, Finset.sum_const_zero, add_zero]
 
 /-- Coordinate `i` of the image of a point of `cZ₁`. -/
-theorem ConZonotope.aux_image_coord (cZ : ConZonotope (Vec ℝ n)) (M : Mat ℝ m n)
+private theorem ConZonotope.aux_image_coord (cZ : ConZonotope (Vec ℝ n)) (M : Mat ℝ m n)
     (β : Fin cZ.h → ℝ) (i : Fin m) :
     (M *ᵥ (cZ.c + ∑ j, β j • cZ.G j)) i
       = (M *ᵥ cZ.c) i + ∑ j, (M *ᵥ cZ.G j) i * β j := by

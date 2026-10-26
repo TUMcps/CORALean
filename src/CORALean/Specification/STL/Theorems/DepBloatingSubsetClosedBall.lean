@@ -57,7 +57,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Minkowski sum of the first `κ` images stays in the sum of their balls. -/
-theorem STL.aux_foldl_subset_closedBall (A : Mat ℝ n n) (U₀ : Zonotope (Vec ℝ n)) (Δt r : ℝ)
+private theorem STL.aux_foldl_subset_closedBall (A : Mat ℝ n n) (U₀ : Zonotope (Vec ℝ n)) (Δt r : ℝ)
     (hU : U₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (κ : ℕ) : -- --- CONCL ---
     ((List.range κ).foldl
       (fun Z j => Z.plus (Zonotope.mtimes (MatExp.particularCoeff A Δt (j + 1)) U₀))

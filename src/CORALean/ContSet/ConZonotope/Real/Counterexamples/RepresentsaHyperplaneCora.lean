@@ -69,7 +69,7 @@ namespace CORALean.Real
 def ConZonotope.aux_unitSegment : ConZonotope (Vec ℝ 1) :=
   ⟨1, fun _ => 0, fun _ _ => 1, ⟨0, Fin.elim0, Fin.elim0, 0, Fin.elim0, Fin.elim0⟩⟩
 
-theorem ConZonotope.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
+private theorem ConZonotope.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
     (fun _ => t) ∈ ConZonotope.aux_unitSegment.construct := by
   refine ⟨fun _ => t, fun _ => ht, ⟨fun i => i.elim0, fun i => i.elim0⟩, ?_⟩
   ext i

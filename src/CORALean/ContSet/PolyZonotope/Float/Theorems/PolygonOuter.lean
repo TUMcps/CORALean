@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A round keeps the cover. -/
-theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec 𝕋 2) → Bool)
+private theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec 𝕋 2) → Bool)
     (L : List (PolyZonotope (Vec 𝕋 2))) {x : Vec ℝ 2}
     (hx : ∃ q ∈ L, x ∈ q.construct) : -- --- CONCL ---
     ∃ q ∈ PolyZonotope.polygonRound pick L, x ∈ q.construct := by -- --- PROOF ---
@@ -61,7 +61,7 @@ theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec 𝕋 2) �
   · exact ⟨q, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, hxq⟩
 
 /-- Every round, so the pieces cover. -/
-theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec 𝕋 2))
+private theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec 𝕋 2))
     (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) (k : ℕ) {x : Vec ℝ 2}
     (hx : x ∈ pZ.construct) : -- --- CONCL ---
     ∃ q ∈ pZ.polygonPieces k pick, x ∈ q.construct := by -- --- PROOF ---

@@ -53,8 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A symmetric matrix whose Gershgorin discs lie right of `g ≥ 0` has determinant at least
 `gⁿ`: every eigenvalue lies in a disc, and the determinant is their product. -/
-theorem ProbZonotope.aux_pow_le_det {S : Mat ℝ n n} (hS : S.IsHermitian) {g : ℝ} (hg0 : 0 ≤ g)
-    (hg : ∀ i, g ≤ S i i - ∑ j ∈ Finset.univ.erase i, |S i j|) : -- --- CONCL ---
+private theorem ProbZonotope.aux_pow_le_det {S : Mat ℝ n n} (hS : S.IsHermitian) {g : ℝ}
+    (hg0 : 0 ≤ g) (hg : ∀ i, g ≤ S i i - ∑ j ∈ Finset.univ.erase i, |S i j|) : -- --- CONCL ---
     g ^ n ≤ S.det := by -- --- PROOF ---
   have hev : ∀ i, g ≤ hS.eigenvalues i := by
     intro i
@@ -71,7 +71,7 @@ theorem ProbZonotope.aux_pow_le_det {S : Mat ℝ n n} (hS : S.IsHermitian) {g : 
     _ = ∏ i, (hS.eigenvalues i : ℝ) := rfl
 
 /-- The core: from the bounds of the computed quantities to the bound on the real `max`. -/
-theorem ProbZonotope.aux_max_le_of_bounds {S : Mat ℝ n n} (hS : S.IsHermitian)
+private theorem ProbZonotope.aux_max_le_of_bounds {S : Mat ℝ n n} (hS : S.IsHermitian)
     (Z : Real.Zonotope (Vec ℝ n)) (m : ℝ) {g twoPi q d e : 𝕋} (hg : 0 < toReal g)
     (hgS : ∀ i, toReal g ≤ S i i - ∑ j ∈ Finset.univ.erase i, |S i j|)
     (htp : toReal twoPi ≤ 2 * π) (hq0 : 0 ≤ toReal q) (hq : toReal q ≤ toReal twoPi * toReal g)

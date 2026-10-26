@@ -63,7 +63,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- `Zonotope.matPlusInterval` over-approximates the sum. -/
-theorem Zonotope.aux_matPlusInterval_outer (Z : Zonotope (Mat 𝕋 m n)) (I : Interval (Mat 𝕋 m n)) :
+private theorem Zonotope.aux_matPlusInterval_outer (Z : Zonotope (Mat 𝕋 m n))
+    (I : Interval (Mat 𝕋 m n)) :
     Z.construct + I.construct ⊆ (Zonotope.matPlusInterval Z I).construct := by
   rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, x, hx, rfl⟩
   refine ⟨a, ha, e + x, Interval.matPlus_outer _ _ he hx, ?_⟩

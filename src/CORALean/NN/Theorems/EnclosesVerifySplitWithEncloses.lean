@@ -57,7 +57,7 @@ section
 variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X Y : Set α}
 
 /-- A specification holds of a union when it holds of each part. -/
-theorem Specification.aux_holds_union (spec : Specification ContSet) (hX : spec.Holds X)
+private theorem Specification.aux_holds_union (spec : Specification ContSet) (hX : spec.Holds X)
     (hY : spec.Holds Y) : -- --- CONCL ---
     spec.Holds (X ∪ Y) := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec

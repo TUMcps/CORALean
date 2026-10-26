@@ -65,7 +65,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of a zonotope, and its generators, against its `ℓ¹` reach. -/
-theorem aux_norm_add_sum_le_absBound_sum (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
+private theorem aux_norm_add_sum_le_absBound_sum (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ‖Z.c‖ + ∑ j, ‖Z.G j‖ ≤ ∑ i, Z.absBound i := by -- --- PROOF ---
   have hpi : ∀ v : Vec ℝ n, ‖v‖ ≤ ∑ i, |v i| := by
     intro v
@@ -83,13 +83,13 @@ theorem aux_norm_add_sum_le_absBound_sum (Z : Zonotope (Vec ℝ n)) : -- --- CON
   rw [habs, ← hswap]
   linarith
 
-theorem aux_sum_univ_linCombPaired {h : ℕ} {c₁ c₂ : Vec ℝ n} {G₁ G₂ : Fin h → Vec ℝ n}
+private theorem aux_sum_univ_linCombPaired {h : ℕ} {c₁ c₂ : Vec ℝ n} {G₁ G₂ : Fin h → Vec ℝ n}
     (f : Fin (h + h + 1) → Vec ℝ n) :
     ∑ j : Fin (Zonotope.linComb (⟨h, c₁, G₁⟩ : Zonotope (Vec ℝ n)) ⟨h, c₂, G₂⟩).h, f j
       = ∑ j : Fin (h + h), f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd (h + h) j) :=
   Fin.sum_univ_add f
 
-theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n)
+private theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n)
     (G₁ G₂ : Fin h → Vec ℝ n) : -- --- CONCL ---
     (Zonotope.linComb ⟨h, c₁, G₁⟩ ⟨h, c₂, G₂⟩).construct
       ⊆ (Zonotope.mk h c₁ G₁).construct

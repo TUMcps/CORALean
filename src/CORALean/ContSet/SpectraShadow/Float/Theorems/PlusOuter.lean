@@ -54,14 +54,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `plus`'s variable count, stated through the projection
 because that is the form the goal has and simp will not rewrite a binder's type. -/
-theorem SpectraShadow.aux_sum_append {S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)}
+private theorem SpectraShadow.aux_sum_append {S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)}
     (f : Fin (S₁.m + S₂.m) → ℝ) :
     ∑ j : Fin (S₁.plus S₂).m, f j
       = ∑ j, f (Fin.castAdd S₂.m j) + ∑ j, f (Fin.natAdd S₁.m j) :=
   Fin.sum_univ_add f
 
 /-- The stored inequality of the sum holds exactly when both inequalities do. -/
-theorem SpectraShadow.aux_posSemidef_plus (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n))
+private theorem SpectraShadow.aux_posSemidef_plus (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n))
     (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- CONCL ---
     (toRealMat (S₁.plus S₂).A₀ + ∑ i : Fin (S₁.plus S₂).m, β i • toRealMat ((S₁.plus S₂).A i)
       ).PosSemidef
@@ -88,7 +88,8 @@ theorem SpectraShadow.aux_posSemidef_plus (S₁ S₂ : SpectraShadow 𝕋 (Vec �
   exact (Iff.of_eq (congrArg Matrix.PosSemidef e)).trans (posSemidef_blockDiag_iff _ _)
 
 /-- The concatenated generators account for everything but the center rounding. -/
-theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem SpectraShadow.aux_plus_nominal
+    (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (nominalSet S₁) + (nominalSet S₂) ⊆
       (nominalSet (S₁.plus S₂))
         + (SpectraShadow.centerResidual S₁.c S₂.c).construct := by -- --- PROOF ---
@@ -111,7 +112,7 @@ theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋
     ring
 
 /-- The box absorbs the two incoming boxes and the center rounding. -/
-theorem SpectraShadow.aux_plus_error (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
+private theorem SpectraShadow.aux_plus_error (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     S₁.I_error.construct + S₂.I_error.construct +
         (SpectraShadow.centerResidual S₁.c S₂.c).construct ⊆
       (S₁.plus S₂).I_error.construct :=

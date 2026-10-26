@@ -65,13 +65,13 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The chain `A = [0 1 0; 0 0 1; 0 0 0]` is nilpotent: `Aⁱ = 0` for `i ≥ 3`. -/
-theorem LinearSys.aux_chain_pow_eq_zero {i : ℕ} (hi : 3 ≤ i) :
+private theorem LinearSys.aux_chain_pow_eq_zero {i : ℕ} (hi : 3 ≤ i) :
     (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) ^ i = 0 :=
   pow_eq_zero_of_le hi (by
     ext j k; fin_cases j <;> fin_cases k <;> simp [pow_succ, Matrix.mul_apply, Fin.sum_univ_three])
 
 /-- The chain's exponential stops after its quadratic term: `e^{tA} = I + tA + (t²/2)A²`. -/
-theorem LinearSys.aux_exp_smul_chain (t : ℝ) : -- --- CONCL ---
+private theorem LinearSys.aux_exp_smul_chain (t : ℝ) : -- --- CONCL ---
     exp (t • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)) =
       1 + t • !![0, 1, 0; 0, 0, 1; 0, 0, 0] +
         (t ^ 2 / 2) • !![0, 1, 0; 0, 0, 1; 0, 0, 0] ^ 2 := by -- --- PROOF ---
@@ -83,7 +83,7 @@ theorem LinearSys.aux_exp_smul_chain (t : ℝ) : -- --- CONCL ---
   simp [Nat.factorial, smul_smul, div_eq_inv_mul, add_assoc]
 
 /-- The chain's flow, coordinatewise: `e^{tA}x = (x₁ + t x₂ + (t²/2) x₃, x₂ + t x₃, x₃)`. -/
-theorem LinearSys.aux_exp_smul_chain_mulVec (t : ℝ) (x : Vec ℝ 3) :
+private theorem LinearSys.aux_exp_smul_chain_mulVec (t : ℝ) (x : Vec ℝ 3) :
     exp (t • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)) *ᵥ x =
       ![x 0 + t * x 1 + t ^ 2 / 2 * x 2, x 1 + t * x 2, x 2] := by
   rw [LinearSys.aux_exp_smul_chain]
@@ -92,7 +92,7 @@ theorem LinearSys.aux_exp_smul_chain_mulVec (t : ℝ) (x : Vec ℝ 3) :
 
 /-- `E(Δt, η) = 0` (20) for the chain and `η ≥ 2`: `|A| = A`, and `e^{AΔt}` is its own quadratic
 Taylor polynomial. -/
-theorem LinearSys.aux_expRemainderMat_chain (Δt : ℝ) {η : ℕ} (hη : 2 ≤ η) : -- --- CONCL ---
+private theorem LinearSys.aux_expRemainderMat_chain (Δt : ℝ) {η : ℕ} (hη : 2 ≤ η) : -- --- CONCL ---
     Real.MatExp.expRemainderMat (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) Δt η =
       0 := by -- --- PROOF ---
   -- `|A| = A`
@@ -117,7 +117,7 @@ theorem LinearSys.aux_expRemainderMat_chain (Δt : ℝ) {η : ℕ} (hη : 2 ≤ 
 
 /-- The `i = 2` term of `F` (19) for the chain is `-Δt²/8` times `A²`, and every later one is
 zero. -/
-theorem LinearSys.aux_corrTerm_chain (Δt : ℝ) (i : ℕ) (j k : Fin 3) : -- --- CONCL ---
+private theorem LinearSys.aux_corrTerm_chain (Δt : ℝ) (i : ℕ) (j k : Fin 3) : -- --- CONCL ---
     Real.MatExp.corrTerm (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3) Δt (i + 2) j k =
       if i = 0 then -(Δt ^ 2 / 8) * (!![0, 0, 1; 0, 0, 0; 0, 0, 0] : Mat ℝ 3 3) j k
       else 0 := by -- --- PROOF ---
@@ -137,7 +137,7 @@ theorem LinearSys.aux_corrTerm_chain (Δt : ℝ) (i : ℕ) (j k : Fin 3) : -- --
 
 /-- A matrix of the chain's `F` (19), `η ≥ 2`, maps `x` to `(N₁₃ x₃, 0, 0)`, with `N₁₃` in
 `[-Δt²/8, 0]`. -/
-theorem LinearSys.aux_mulVec_of_mem_depCurvatureF_chain (Δt : ℝ) {η : ℕ} (hη : 2 ≤ η)
+private theorem LinearSys.aux_mulVec_of_mem_depCurvatureF_chain (Δt : ℝ) {η : ℕ} (hη : 2 ≤ η)
     (N : Mat ℝ 3 3) (hN : N ∈ (STL.depCurvatureF !![0, 1, 0; 0, 0, 1; 0, 0, 0] Δt η).construct)
     (x : Vec ℝ 3) : -- --- CONCL ---
     N *ᵥ x = ![N 0 2 * x 2, 0, 0] ∧ -(Δt ^ 2 / 8) ≤ N 0 2 ∧ N 0 2 ≤ 0 := by -- --- PROOF ---
@@ -182,7 +182,7 @@ theorem LinearSys.aux_mulVec_of_mem_depCurvatureF_chain (Δt : ℝ) {η : ℕ} (
       hzero 2 1 (by simp), hzero 2 2 (by simp)]
 
 /-- The box `⟨(0, 0, 256), diag(1, 1/4, 1/4)⟩`, coordinatewise. -/
-theorem LinearSys.aux_mem_chainBox (x : Vec ℝ 3) : -- --- CONCL ---
+private theorem LinearSys.aux_mem_chainBox (x : Vec ℝ 3) : -- --- CONCL ---
     x ∈ (⟨3, ![0, 0, 256], ![![1, 0, 0], ![0, 1 / 4, 0], ![0, 0, 1 / 4]]⟩ :
       Real.Zonotope (Vec ℝ 3)).construct ↔
       |x 0| ≤ 1 ∧ |x 1| ≤ 1 / 4 ∧ |x 2 - 256| ≤ 1 / 4 := by -- --- PROOF ---
@@ -197,7 +197,7 @@ theorem LinearSys.aux_mem_chainBox (x : Vec ℝ 3) : -- --- CONCL ---
 
 /-- `µ` (22) for the chain's box and `Δt = 1/8` is at most `1/9`: the images of the generators
 have lengths `0`, `1/32` and at most `157/5000`. -/
-theorem LinearSys.aux_mu_chainBox_le : -- --- CONCL ---
+private theorem LinearSys.aux_mu_chainBox_le : -- --- CONCL ---
     Real.sqrt 3 * genOpNorm₂ (fun j => (exp ((1 / 8 : ℝ) • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] :
       Mat ℝ 3 3)) - 1) *ᵥ (![![1, 0, 0], ![0, 1 / 4, 0], ![0, 0, 1 / 4]] : Fin 3 → Vec ℝ 3) j) ≤
       1 / 9 := by -- --- PROOF ---
@@ -221,7 +221,7 @@ theorem LinearSys.aux_mu_chainBox_le : -- --- CONCL ---
 
 /-- (21)'s set holds `(7/4, 16, 256)`: shifted by `y ∈ B_µ` and `z ∈ F H(0)`, it is the midpoint of
 the chord of a point of the box `S` under the step `M = e^{AΔt}`. -/
-theorem LinearSys.aux_mem_convexHull_chainBox (S : Set (Vec ℝ 3))
+private theorem LinearSys.aux_mem_convexHull_chainBox (S : Set (Vec ℝ 3))
     (hS : ∀ x, x ∈ S ↔ |x 0| ≤ 1 ∧ |x 1| ≤ 1 / 4 ∧ |x 2 - 256| ≤ 1 / 4) (M : Mat ℝ 3 3)
     (hM : ∀ x, M *ᵥ x = ![x 0 + x 1 / 8 + x 2 / 128, x 1 + x 2 / 8, x 2]) (y z : Vec ℝ 3)
     (hy : ∀ i, |y i| ≤ 1 / 9) (hz0 : -1025 / 2048 ≤ z 0) (hz0' : z 0 ≤ 0) (hz1 : z 1 = 0)
@@ -254,7 +254,7 @@ theorem LinearSys.aux_mem_convexHull_chainBox (S : Set (Vec ℝ 3))
 
 /-- The erode-first set holds `(7/4, 16, 256)` too: `x₀ = (3/4, 0, 256)` and `Mx₀`, `M = e^{AΔt}`,
 stay in the box `S` and its image when shifted by `y ∈ B_µ` and `z ∈ F H(0)`. -/
-theorem LinearSys.aux_add_mem_chainBox (S : Set (Vec ℝ 3))
+private theorem LinearSys.aux_add_mem_chainBox (S : Set (Vec ℝ 3))
     (hS : ∀ x, x ∈ S ↔ |x 0| ≤ 1 ∧ |x 1| ≤ 1 / 4 ∧ |x 2 - 256| ≤ 1 / 4) (M : Mat ℝ 3 3)
     (hM : ∀ x, M *ᵥ x = ![x 0 + x 1 / 8 + x 2 / 128, x 1 + x 2 / 8, x 2]) (y z : Vec ℝ 3)
     (hy : ∀ i, |y i| ≤ 1 / 9) (hz0 : -1025 / 2048 ≤ z 0) (hz0' : z 0 ≤ 0) (hz1 : z 1 = 0)
@@ -296,7 +296,7 @@ theorem LinearSys.aux_add_mem_chainBox (S : Set (Vec ℝ 3))
 
 /-- No run of the chain from the box `S` passes `(7/4, 16, 256)`: its start would have first
 coordinate `5/4 + 128(t - 1/16)²`. -/
-theorem LinearSys.aux_ne_of_mem_chainBox (S : Set (Vec ℝ 3))
+private theorem LinearSys.aux_ne_of_mem_chainBox (S : Set (Vec ℝ 3))
     (hS : ∀ x, x ∈ S ↔ |x 0| ≤ 1 ∧ |x 1| ≤ 1 / 4 ∧ |x 2 - 256| ≤ 1 / 4) (t : ℝ) (x : Vec ℝ 3)
     (hx : x ∈ S) : -- --- CONCL ---
     exp (t • (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3)) *ᵥ x ≠

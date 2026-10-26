@@ -71,7 +71,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The integer selector row is the exact one, scaled. -/
-theorem ConPolyZono.aux_unionConInt_eq (p₁ p₂ : ℕ)
+private theorem ConPolyZono.aux_unionConInt_eq (p₁ p₂ : ℕ)
     (l : Fin (2 + (p₁ + p₁ + (p₂ + p₂ + (p₁ * p₂ + p₁ * p₂))))) : -- --- CONCL ---
     (4 * ((max 1 p₁ : ℕ) : ℝ) * ((max 1 p₂ : ℕ) : ℝ)) * Real.ConPolyZono.unionConCoef p₁ p₂ l
       = (ConPolyZono.unionConInt p₁ p₂ l : ℝ) := by -- --- PROOF ---
@@ -118,7 +118,7 @@ theorem ConPolyZono.aux_unionConInt_eq (p₁ p₂ : ℕ)
 
 
 /-- The stored row's value is within the summed gaps of the integer row's. -/
-theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
+private theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
     (ha : ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     |(∑ l, toReal (ConPolyZono.unionConCoef p₁ p₂ l : 𝕋)
           * ∏ k, a k ^ Real.ConPolyZono.unionConCol p₁ p₂ l k)
@@ -145,7 +145,7 @@ theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ +
 
 
 /-- The stored selector rows hold wherever the exact ones do. -/
-theorem ConPolyZono.aux_holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
+private theorem ConPolyZono.aux_holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
     (ha : ∀ k, |a k| ≤ 1) (h : a ∈ (Real.ConPolyZono.unionUpper p₁ p₂).construct) : -- --- CONCL ---
     a ∈ (ConPolyZono.unionUpper (𝕋 := 𝕋) p₁ p₂).construct := by -- --- PROOF ---
   -- both stacks split into their two rows, each an equation
@@ -198,7 +198,7 @@ end
 
 
 /-- The stored operand rows, read back, are the exact layer's at the read-back operands. -/
-theorem ConPolyZono.aux_eval_nominalCore_unionLower {p₁ p₂ : ℕ} (P₁ : PolyLevelSet 𝕋 p₁)
+private theorem ConPolyZono.aux_eval_nominalCore_unionLower {p₁ p₂ : ℕ} (P₁ : PolyLevelSet 𝕋 p₁)
     (P₂ : PolyLevelSet 𝕋 p₂) (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
     (ConPolyZono.unionLower P₁ P₂).nominalCore.eval a
       = (Real.ConPolyZono.unionLower P₁.nominalCore P₂.nominalCore).eval a := by -- --- PROOF ---

@@ -65,7 +65,7 @@ noncomputable def ConZonotope.aux_cubCexCora : ConZonotope (Vec ℝ 1) where
   P := HPolytope.eqs (!![1, 0, 0] : Mat ℝ 1 3) ![0]
 
 /-- The point `β = (1, -1)` of the input, `x = (2, -1)`. -/
-theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
+private theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
     (![(2 : ℝ), -1] : Vec ℝ 2) ∈ ConZonotope.aux_cubCexIn.construct := by -- --- PROOF ---
   refine ⟨![1, -1], ?_, ?_, ?_⟩
   -- both factors lie in `[-1, 1]`
@@ -86,7 +86,7 @@ theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
     exact this j
 
 /-- The same point is in `ConZonotope.cubMap`, which keeps the linear generator of `β₂`. -/
-theorem ConZonotope.aux_cubMap_cex_mem :
+private theorem ConZonotope.aux_cubMap_cex_mem :
     PolyZonotope.cubEval ConZonotope.aux_cubCexTensor ![2, -1]
       ∈ (ConZonotope.aux_cubCexIn.cubMap ConZonotope.aux_cubCexTensor).construct :=
   ConZonotope.cubMap_outer _ _ ⟨![2, -1], ConZonotope.aux_cubCex_mem, rfl⟩

@@ -55,13 +55,13 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A mean of squares is never negative. -/
-theorem ConPolyZono.aux_meanSq_nonneg {p : ℕ} (a : Fin p → ℝ) :
+private theorem ConPolyZono.aux_meanSq_nonneg {p : ℕ} (a : Fin p → ℝ) :
     0 ≤ ConPolyZono.unionMeanSq a := by
   apply mul_nonneg (by positivity)
   exact Finset.sum_nonneg fun k _ => sq_nonneg _
 
 /-- Over the unit cube it is at most one, the empty block giving `0`. -/
-theorem ConPolyZono.aux_meanSq_le_one {p : ℕ} {a : Fin p → ℝ}
+private theorem ConPolyZono.aux_meanSq_le_one {p : ℕ} {a : Fin p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) : -- --- CONCL ---
     ConPolyZono.unionMeanSq a ≤ 1 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos p with hp | hp
@@ -78,7 +78,7 @@ theorem ConPolyZono.aux_meanSq_le_one {p : ℕ} {a : Fin p → ℝ}
     linarith
 
 /-- It vanishes only where the whole block does. -/
-theorem ConPolyZono.aux_meanSq_eq_zero {p : ℕ} {a : Fin p → ℝ}
+private theorem ConPolyZono.aux_meanSq_eq_zero {p : ℕ} {a : Fin p → ℝ}
     (h : ConPolyZono.unionMeanSq a = 0) (k : Fin p) : -- --- CONCL ---
     a k = 0 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos p with hp | hp

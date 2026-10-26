@@ -67,7 +67,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
-theorem LinearSys.aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
+private theorem LinearSys.aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
     (h0 : (0 : Vec ℝ n) ∈ construct U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp

@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Where `R` has no independent generators, a point of `R` and a point of a zero-centered zonotope
 add to a point of `R` with the zonotope's generators in its independent block. -/
-theorem PolyZonotope.aux_replaceGI_mem (R : PolyZonotope α) (hq : R.q = 0) (Z : Zonotope α)
+private theorem PolyZonotope.aux_replaceGI_mem (R : PolyZonotope α) (hq : R.q = 0) (Z : Zonotope α)
     (hc : Z.c = 0) {d z : α} (hd : d ∈ R.construct) (hz : z ∈ Z.construct) : -- --- CONCL ---
     d + z ∈ ({ R with q := Z.h, GI := Z.G } : PolyZonotope α).construct := by -- --- PROOF ---
   haveI : IsEmpty (Fin R.q) := by rw [hq]; infer_instance
@@ -55,19 +55,19 @@ theorem PolyZonotope.aux_replaceGI_mem (R : PolyZonotope α) (hq : R.q = 0) (Z :
   simp only [hc, zero_add, Finset.univ_eq_empty, Finset.sum_empty, add_zero]
 
 /-- A point of a dependent part is a chord of the part with itself. -/
-theorem PolyZonotope.aux_point_mem_linComb (P : PolyZonotope α) {a : Fin P.p → ℝ}
+private theorem PolyZonotope.aux_point_mem_linComb (P : PolyZonotope α) {a : Fin P.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) : P.point a ∈ (P.linComb P).construct := by
   refine PolyZonotope.linComb_outer P P ⟨P.point a, P.point_mem_construct ha, P.point a,
     P.point_mem_construct ha, 1, ⟨zero_le_one, le_rfl⟩, ?_⟩
   simp
 
 /-- A zero-centered zonotope is in the chords with another one. -/
-theorem PolyZonotope.aux_mem_linComb_left {Z₁ Z₂ : Zonotope α} (h₂ : (0 : α) ∈ Z₂.construct)
+private theorem PolyZonotope.aux_mem_linComb_left {Z₁ Z₂ : Zonotope α} (h₂ : (0 : α) ∈ Z₂.construct)
     {z : α} (hz : z ∈ Z₁.construct) : z ∈ (Z₁.linComb Z₂).construct :=
   Zonotope.linComb_outer Z₁ Z₂ ⟨z, hz, 0, h₂, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
 
-theorem PolyZonotope.aux_mem_linComb_right {Z₁ Z₂ : Zonotope α} (h₁ : (0 : α) ∈ Z₁.construct)
-    {z : α} (hz : z ∈ Z₂.construct) : z ∈ (Z₁.linComb Z₂).construct :=
+private theorem PolyZonotope.aux_mem_linComb_right {Z₁ Z₂ : Zonotope α}
+    (h₁ : (0 : α) ∈ Z₁.construct) {z : α} (hz : z ∈ Z₂.construct) : z ∈ (Z₁.linComb Z₂).construct :=
   Zonotope.linComb_outer Z₁ Z₂ ⟨0, h₁, z, hz, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
 
 

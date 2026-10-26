@@ -37,13 +37,13 @@ variable {n : ℕ}
 
 /-- `Fin.addCases` does not reduce on a variable index, so which half of the
 constraint list an index falls in takes a rewrite. -/
-theorem HPolytope.aux_unitBox_A_castAdd (j : Fin n) :
+private theorem HPolytope.aux_unitBox_A_castAdd (j : Fin n) :
     (HPolytope.unitBox n).A (Fin.castAdd n j) = LinearMap.proj j := by
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.castAdd n j) = _
   rw [Fin.append_left]
 
-theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
+private theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
     (HPolytope.unitBox n).A (Fin.natAdd n j) = -LinearMap.proj j := by
   show Fin.append (fun j : Fin n => (LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ))
     (fun j : Fin n => -(LinearMap.proj j : Vec ℝ n →ₗ[ℝ] ℝ)) (Fin.natAdd n j) = _

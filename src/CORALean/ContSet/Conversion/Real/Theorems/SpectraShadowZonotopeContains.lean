@@ -48,13 +48,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem SpectraShadow.aux_sum_single {m : ℕ} (γ : Fin m → ℝ) :
+private theorem SpectraShadow.aux_sum_single {m : ℕ} (γ : Fin m → ℝ) :
     (0 + ∑ i, γ i • (Pi.single i (1 : ℝ) : Vec ℝ m) : Vec ℝ m) = γ := by
   funext j
   simp [Finset.sum_apply, Pi.single_apply]
 
 omit [AddCommGroup α] [Module ℝ α] in
-theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α) (β : Vec ℝ S.m) : -- --- CONCL ---
+private theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α)
+    (β : Vec ℝ S.m) : -- --- CONCL ---
     β ∈ S.base.construct ↔ (S.A₀ + ∑ i, β i • S.A i).PosSemidef := by -- --- PROOF ---
   constructor
   · rintro ⟨γ, hγ, hx⟩
@@ -65,7 +66,7 @@ theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α) (β : Vec ℝ S.m)
     exact ⟨β, h, (SpectraShadow.aux_sum_single (m := S.m) β).symm⟩
 
 /-- The coordinates of the zonotope of a box. -/
-theorem Interval.aux_zonotope_coord {n : ℕ} (I : Interval (Vec ℝ n)) (γ : Fin n → ℝ)
+private theorem Interval.aux_zonotope_coord {n : ℕ} (I : Interval (Vec ℝ n)) (γ : Fin n → ℝ)
     (i : Fin n) : -- --- CONCL ---
     (I.zonotope.c + ∑ j : Fin n, γ j • I.zonotope.G j) i
       = (I.inf i + I.sup i) / 2 + γ i * ((I.sup i - I.inf i) / 2) := by -- --- PROOF ---

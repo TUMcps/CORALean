@@ -56,7 +56,7 @@ omit [Module ℝ α] [Module ℝ β] in
 /-- `Fin.sum_univ_add` at `cartProd`'s dependent generator count, stated through
 the projection because that is the form the goal has and simp will not rewrite
 a binder's type. -/
-theorem ConPolyZono.aux_sum_univ_cartProd_h {cPZ₁ : ConPolyZono α} {cPZ₂ : ConPolyZono β}
+private theorem ConPolyZono.aux_sum_univ_cartProd_h {cPZ₁ : ConPolyZono α} {cPZ₂ : ConPolyZono β}
     (f : Fin (cPZ₁.h + cPZ₂.h) → α × β) :
     ∑ i : Fin (cPZ₁.cartProd cPZ₂).h, f i
       = ∑ i, f (Fin.castAdd cPZ₂.h i) + ∑ i, f (Fin.natAdd cPZ₁.h i) :=
@@ -64,7 +64,7 @@ theorem ConPolyZono.aux_sum_univ_cartProd_h {cPZ₁ : ConPolyZono α} {cPZ₂ : 
 
 omit [Module ℝ α] [Module ℝ β] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_cartProd_qI {cPZ₁ : ConPolyZono α} {cPZ₂ : ConPolyZono β}
+private theorem ConPolyZono.aux_sum_univ_cartProd_qI {cPZ₁ : ConPolyZono α} {cPZ₂ : ConPolyZono β}
     (f : Fin (cPZ₁.qI + cPZ₂.qI) → α × β) :
     ∑ j : Fin (cPZ₁.cartProd cPZ₂).qI, f j
       = ∑ j, f (Fin.castAdd cPZ₂.qI j) + ∑ j, f (Fin.natAdd cPZ₁.qI j) :=

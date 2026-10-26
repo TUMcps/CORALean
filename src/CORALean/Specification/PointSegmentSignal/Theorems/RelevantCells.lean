@@ -60,7 +60,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The point value of the `k`-th time point. -/
-theorem PointSegmentSignal.aux_cell_timePoint {T : Type} [LinearOrder T] [Zero T]
+private theorem PointSegmentSignal.aux_cell_timePoint {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (k : ℕ) (hk : k < s.timePoints.length)
     (h0 : 0 ≤ s.timePoints[k]) : -- --- CONCL ---
     s.cell s.timePoints[k] = 2 * k := by -- --- PROOF ---
@@ -81,7 +81,7 @@ theorem PointSegmentSignal.aux_cell_timePoint {T : Type} [LinearOrder T] [Zero T
 
 
 /-- The interval value after the `k`-th time point. -/
-theorem PointSegmentSignal.aux_cell_between {T : Type} [LinearOrder T] [Zero T]
+private theorem PointSegmentSignal.aux_cell_between {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (k : ℕ) (hk : k < s.timePoints.length) (t : T)
     (h0 : 0 ≤ t) (h1 : s.timePoints[k] < t)
     (h2 : ∀ h : k + 1 < s.timePoints.length, t < s.timePoints[k + 1]) : -- --- CONCL ---
@@ -101,7 +101,7 @@ theorem PointSegmentSignal.aux_cell_between {T : Type} [LinearOrder T] [Zero T]
 
 
 /-- The last value of an interval is the one read at its right end, or just before it. -/
-theorem PointSegmentSignal.aux_relevantStop_spec {T : Type} [LinearOrder T] [Zero T]
+private theorem PointSegmentSignal.aux_relevantStop_spec {T : Type} [LinearOrder T] [Zero T]
     [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (ub : WithTop T)
     (hub0 : ((0 : T) : WithTop T) ≤ ub) (rc : Bool) : -- --- CONCL ---
     s.relevantStop ub rc ≤ s.values.length ∧
@@ -240,7 +240,7 @@ theorem PointSegmentSignal.aux_relevantStop_spec {T : Type} [LinearOrder T] [Zer
 
 
 /-- The first value of an interval is the one read at its left end, or just after it. -/
-theorem PointSegmentSignal.aux_relevantStart_spec {T : Type} [LinearOrder T] [Zero T]
+private theorem PointSegmentSignal.aux_relevantStart_spec {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) (h0 : 0 ≤ lb)
     (lc : Bool) : -- --- CONCL ---
     1 ≤ s.relevantStart lb lc ∧ s.relevantStart lb lc ≤ s.values.length ∧

@@ -44,7 +44,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Monotone in the factor count. -/
-theorem PolyZonotope.aux_relaxWidthMultiCost_mono {p p' : ℕ} (h : p ≤ p') :
+private theorem PolyZonotope.aux_relaxWidthMultiCost_mono {p p' : ℕ} (h : p ≤ p') :
     PolyZonotope.aux_relaxWidthMultiCost p ≤ PolyZonotope.aux_relaxWidthMultiCost p' := by
   simp only [PolyZonotope.aux_relaxWidthMultiCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul]
   have := Nat.mul_le_mul_right PolyZonotope.eDiffCost.ops h
@@ -52,7 +52,7 @@ theorem PolyZonotope.aux_relaxWidthMultiCost_mono {p p' : ℕ} (h : p ≤ p') :
 
 
 /-- The merge is monotone in the factor count and the kept and independent counts. -/
-theorem PolyZonotope.aux_relaxExpMultiCost_mono {p p' d d' q q' : ℕ} (n : ℕ) (h : p ≤ p')
+private theorem PolyZonotope.aux_relaxExpMultiCost_mono {p p' d d' q q' : ℕ} (n : ℕ) (h : p ≤ p')
     (hd : d ≤ d') (hq : q ≤ q') :
     PolyZonotope.aux_relaxExpMultiCost n p d q ≤
       PolyZonotope.aux_relaxExpMultiCost n p' d' q' := by

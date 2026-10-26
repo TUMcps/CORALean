@@ -49,25 +49,25 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Z.c = 0` and every generator `0`: the representation of `{0}`. -/
-def aux_absErrCora_Zero (Z : Zonotope (Vec ℝ n)) : Prop := Z.c = 0 ∧ ∀ j, Z.G j = 0
+private def aux_absErrCora_Zero (Z : Zonotope (Vec ℝ n)) : Prop := Z.c = 0 ∧ ∀ j, Z.G j = 0
 
-theorem aux_absErrCora_ofPoint : aux_absErrCora_Zero (Zonotope.ofPoint (0 : Vec ℝ n)) :=
+private theorem aux_absErrCora_ofPoint : aux_absErrCora_Zero (Zonotope.ofPoint (0 : Vec ℝ n)) :=
   ⟨rfl, fun j => j.elim0⟩
 
-theorem aux_absErrCora_recenter {Z : Zonotope (Vec ℝ n)} (h : aux_absErrCora_Zero Z) :
+private theorem aux_absErrCora_recenter {Z : Zonotope (Vec ℝ n)} (h : aux_absErrCora_Zero Z) :
     aux_absErrCora_Zero Z.recenter := ⟨rfl, h.2⟩
 
-theorem aux_absErrCora_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} (h₁ : aux_absErrCora_Zero Z₁)
+private theorem aux_absErrCora_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} (h₁ : aux_absErrCora_Zero Z₁)
     (h₂ : aux_absErrCora_Zero Z₂) : aux_absErrCora_Zero (Z₁.plus Z₂) := by
   refine ⟨by simp [Zonotope.plus, h₁.1, h₂.1], fun j => ?_⟩
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j <;> simp [Zonotope.plus, h₁.2, h₂.2]
 
-theorem aux_absErrCora_mtimes_zero (Z : Zonotope (Vec ℝ n)) :
+private theorem aux_absErrCora_mtimes_zero (Z : Zonotope (Vec ℝ n)) :
     aux_absErrCora_Zero (Zonotope.mtimes (0 : Mat ℝ n n) Z) :=
   ⟨by simp [Zonotope.mtimes], fun j => by simp [Zonotope.mtimes]⟩
 
 /-- An interval matrix applied to `{0}`: `IM.center 0` and radii `rad(IM)|0| = 0`. -/
-theorem aux_absErrCora_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec ℝ n)}
+private theorem aux_absErrCora_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec ℝ n)}
     (h : aux_absErrCora_Zero Z) : -- --- CONCL ---
     aux_absErrCora_Zero (Zonotope.mtimesIntervalMat IM Z) := by -- --- PROOF ---
   have hr : ∀ i, Zonotope.radiusReach IM Z i = 0 := fun i => by
@@ -79,7 +79,7 @@ theorem aux_absErrCora_mtimesIM (IM : Interval (Mat ℝ n n)) {Z : Zonotope (Vec
     simp [Zonotope.mtimesIntervalMat, hr]
 
 /-- The interval matrix `[0, 0]` applied to any zonotope. -/
-theorem aux_absErrCora_mtimesIM_zero {IM : Interval (Mat ℝ n n)} (hi : IM.inf = 0)
+private theorem aux_absErrCora_mtimesIM_zero {IM : Interval (Mat ℝ n n)} (hi : IM.inf = 0)
     (hs : IM.sup = 0) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     aux_absErrCora_Zero (Zonotope.mtimesIntervalMat IM Z) := by -- --- PROOF ---
   have hr : ∀ i, Zonotope.radiusReach IM Z i = 0 := fun i => by
@@ -90,7 +90,7 @@ theorem aux_absErrCora_mtimesIM_zero {IM : Interval (Mat ℝ n n)} (hi : IM.inf 
   · ext i
     simp [Zonotope.mtimesIntervalMat, hr]
 
-theorem aux_absErrCora_sumTerms {f : ℕ → Zonotope (Vec ℝ n)}
+private theorem aux_absErrCora_sumTerms {f : ℕ → Zonotope (Vec ℝ n)}
     (h : ∀ m, aux_absErrCora_Zero (f m)) (k : ℕ) :
     aux_absErrCora_Zero (Zonotope.sumTerms f k) := by
   induction k with
@@ -98,7 +98,7 @@ theorem aux_absErrCora_sumTerms {f : ℕ → Zonotope (Vec ℝ n)}
   | succ k ih => exact aux_absErrCora_plus ih (h k)
 
 /-- A fold that overwrites ends at its last element. -/
-theorem aux_absErrCora_foldl {β : Type} (f : ℕ → β) (init : β) (k : ℕ) :
+private theorem aux_absErrCora_foldl {β : Type} (f : ℕ → β) (init : β) (k : ℕ) :
     (List.range (k + 1)).foldl (fun _ m => f m) init = f k := by
   rw [List.range_succ, List.foldl_append]
   rfl

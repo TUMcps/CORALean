@@ -69,7 +69,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A uniform `‖·‖₂` bound is boundedness. -/
-theorem aux_hd_isBounded_of_norm₂_le {T : Set (Vec ℝ n)} {r : ℝ} (h : ∀ y ∈ T, ‖y‖₂ ≤ r) :
+private theorem aux_hd_isBounded_of_norm₂_le {T : Set (Vec ℝ n)} {r : ℝ} (h : ∀ y ∈ T, ‖y‖₂ ≤ r) :
     Bornology.IsBounded T := by
   refine isBounded_iff_forall_norm_le.mpr ⟨max r 0, fun y hy => ?_⟩
   refine (pi_norm_le_iff_of_nonneg (le_max_right r 0)).mpr fun i => ?_
@@ -77,7 +77,7 @@ theorem aux_hd_isBounded_of_norm₂_le {T : Set (Vec ℝ n)} {r : ℝ} (h : ∀ 
   exact ((abs_le_norm₂ y i).trans (h y hy)).trans (le_max_left r 0)
 
 /-- Eq. (20)'s order-`0` block split off: `P̂^U(Δt) = ΔtU₀ ⊕ P̂^U_∞(Δt)`. -/
-theorem aux_hd_mem_outer_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
+private theorem aux_hd_mem_outer_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
     {y : Vec ℝ n} (hy : y ∈ MatExp.particularSolutionOuter A U0 0 Δt η) : -- --- CONCL ---
     ∃ x₀ ∈ U0, ∃ r ∈ MatExp.particularSolutionOuter A U0 1 Δt η,
       y = Δt • x₀ + r := by -- --- PROOF ---
@@ -92,7 +92,7 @@ theorem aux_hd_mem_outer_zero {A : Mat ℝ n n} {U0 : Set (Vec ℝ n)} {Δt : �
 
 /-- The gap between the constant input's point at `x₀` and `Δtx₀` is in eq. (25)'s correlated
 set. -/
-theorem aux_hd_mem_correlated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)} {Δt : ℝ} (hΔt : 0 < Δt)
+private theorem aux_hd_mem_correlated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)} {Δt : ℝ} (hΔt : 0 < Δt)
     (η : ℕ) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ U0) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - MatExp.particularCoeff A Δt 0).mulVec x₀
       ∈ MatExp.particularSolutionOuterCorrelated A U0 1 Δt η := by -- --- PROOF ---
@@ -122,7 +122,7 @@ theorem aux_hd_mem_correlated (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)} {Δt : �
   rw [Matrix.smul_mulVec, Matrix.mulVec_smul, smul_smul, inv_mul_cancel₀ hΔt.ne', one_smul]
 
 /-- The triangle inequality on a difference. -/
-theorem aux_hd_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by
+private theorem aux_hd_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖x‖₂ + ‖y‖₂ := by
   rw [sub_eq_add_neg, ← neg_one_smul ℝ y]
   refine (norm₂_add_le _ _).trans_eq ?_
   rw [norm₂_smul]

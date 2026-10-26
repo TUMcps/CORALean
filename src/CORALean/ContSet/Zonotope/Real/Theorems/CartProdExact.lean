@@ -43,7 +43,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 omit [Module ℝ α] [Module ℝ β] in
 /-- `Fin.sum_univ_add` at `cartProd`'s generator count, stated through the projection
 because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_cartProd {Z₁ : Zonotope α} {Z₂ : Zonotope β}
+private theorem Zonotope.aux_sum_univ_cartProd {Z₁ : Zonotope α} {Z₂ : Zonotope β}
     (f : Fin (Z₁.h + Z₂.h) → α × β) :
     ∑ j : Fin (Z₁.cartProd Z₂).h, f j
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=

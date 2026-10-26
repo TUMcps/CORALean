@@ -58,7 +58,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 omit [NormedSpace ℝ α] in
 /-- Translating both points by `x` keeps their distance, so a summand shared by
 both sides can only bring the sets closer: every `a + x` has `b + x` in reach. -/
-theorem aux_infEDist_add_le {a x : α} {B X : Set α} (hx : x ∈ X) :
+private theorem aux_infEDist_add_le {a x : α} {B X : Set α} (hx : x ∈ X) :
     infEDist (a + x) (B + X) ≤ infEDist a B := by
   refine le_infEDist.2 fun b hb => ?_
   calc infEDist (a + x) (B + X)
@@ -68,7 +68,7 @@ theorem aux_infEDist_add_le {a x : α} {B X : Set α} (hx : x ∈ X) :
 /-- Below any finite `c` above `d(B + X, A + X)`, every point of `B` is within
 `c` of `A`. The sums put `B + X` inside `(A + cS) + X`, and cancelling `X` puts
 `B` inside `A + cS`. -/
-theorem aux_infEDist_le_of_hausdorffEDist_add_lt {A B X : Set α} (hAconv : Convex ℝ A)
+private theorem aux_infEDist_le_of_hausdorffEDist_add_lt {A B X : Set α} (hAconv : Convex ℝ A)
     (hAcl : ∀ r : ℝ, 0 ≤ r → IsClosed (A + Metric.closedBall (0 : α) r))
     (hX : X.Nonempty) (hXb : Bornology.IsBounded X) {c : ENNReal} (hct : c ≠ ⊤)
     (hc : hausdorffEDist (B + X) (A + X) < c) : -- --- CONCL ---

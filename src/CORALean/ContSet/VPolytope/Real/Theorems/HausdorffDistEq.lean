@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The distance to a compact convex set is a convex function. -/
-theorem aux_infDist_convexOn {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Q : Set E}
+private theorem aux_infDist_convexOn {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Q : Set E}
     (hQ : Convex ℝ Q) (hc : IsCompact Q) (hne : Q.Nonempty) : -- --- CONCL ---
     ConvexOn ℝ Set.univ (fun x => Metric.infDist x Q) := by -- --- PROOF ---
   refine ⟨convex_univ, ?_⟩
@@ -70,7 +70,7 @@ theorem aux_infDist_convexOn {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ 
         simp only [smul_eq_mul, h₁, h₂]
 
 /-- A loop `val = max(val, d_i)` stays below `r` iff its start and every `d_i` do. -/
-theorem aux_foldl_max_le {α : Type} (d : α → ℝ) :
+private theorem aux_foldl_max_le {α : Type} (d : α → ℝ) :
     ∀ (l : List α) (a r : ℝ),
       l.foldl (fun v i => max v (d i)) a ≤ r ↔ a ≤ r ∧ ∀ i ∈ l, d i ≤ r
   | [], a, r => by simp
@@ -80,7 +80,7 @@ theorem aux_foldl_max_le {α : Type} (d : α → ℝ) :
     tauto
 
 /-- If every vertex of `P` is within `r` of `S`, every point of `P` is. -/
-theorem aux_exists_near (P S : VPolytope (Vec ℝ n)) (hS : S.k ≠ 0) {r : ℝ}
+private theorem aux_exists_near (P S : VPolytope (Vec ℝ n)) (hS : S.k ≠ 0) {r : ℝ}
     (h : ∀ i, VPolytope.distPoint S.construct (P.V i) ≤ r) : -- --- CONCL ---
     ∀ x ∈ P.construct, ∃ y ∈ S.construct, ‖x - y‖₂ ≤ r := by -- --- PROOF ---
   intro x hx

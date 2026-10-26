@@ -45,21 +45,21 @@ variable {n : ℕ}
 /-- Lebesgue measure is invariant under negation. Taken from the scaling law at
 `-1`: the negation-invariance instance itself sits behind Haar uniqueness, an
 import far heavier than the one fact needed here. -/
-theorem aux_measurePreserving_neg : MeasurePreserving (fun x : ℝ => -x) volume volume := by
+private theorem aux_measurePreserving_neg : MeasurePreserving (fun x : ℝ => -x) volume volume := by
   refine ⟨measurable_neg, ?_⟩
   have h := Real.map_volume_mul_left (a := (-1 : ℝ)) (by norm_num)
   simpa using h
 
 /-- Reflection is negation followed by a translation, and both preserve the
 measure. -/
-theorem aux_measurePreserving_sub_left (c : ℝ) :
+private theorem aux_measurePreserving_sub_left (c : ℝ) :
     MeasurePreserving (fun σ : ℝ => c - σ) volume volume := by
   have h := (measurePreserving_add_left volume c).comp aux_measurePreserving_neg
   simpa [Function.comp_def, sub_eq_add_neg] using h
 
 /-- Reflecting about `c` carries `Icc a b` onto `Icc (c-b) (c-a)` and preserves
 Lebesgue measure. -/
-theorem aux_aestronglyMeasurable_comp_sub_left {f : ℝ → Vec ℝ n} {a b c : ℝ}
+private theorem aux_aestronglyMeasurable_comp_sub_left {f : ℝ → Vec ℝ n} {a b c : ℝ}
     (hf : AEStronglyMeasurable f (volume.restrict (Set.Icc a b))) : -- --- CONCL ---
     AEStronglyMeasurable (fun σ => f (c - σ))
       (volume.restrict (Set.Icc (c - b) (c - a))) := by -- --- PROOF ---

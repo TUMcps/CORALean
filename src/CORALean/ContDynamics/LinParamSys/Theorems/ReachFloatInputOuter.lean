@@ -70,7 +70,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What the constant `ũ` contributes by `t_k = k Δt`, at any member `A` of `sys.A`, lies in
 `constPropagateFloat Δt η ρ ũ k`, at an order admissible for `Δt`. -/
-theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
+private theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) : -- --- CONCL ---

@@ -49,7 +49,8 @@ open Matrix Pointwise Set
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- [2, (19)]: `F = ⊕_{i=2}^η […] Aⁱ/i! ⊕ E = {0}` for the shear and `η ≥ 1`. -/
-theorem NonlinearSys.aux_shear_depCurvatureF (Δt : ℝ) {η : ℕ} (hη : 1 ≤ η) : -- --- CONCL ---
+private theorem NonlinearSys.aux_shear_depCurvatureF (Δt : ℝ) {η : ℕ}
+    (hη : 1 ≤ η) : -- --- CONCL ---
     (STL.depCurvatureF !![0, 1; 0, 0] Δt η).construct = {0} := by -- --- PROOF ---
   have hT : ∀ i j k, Real.MatExp.corrTerm !![0, 1; 0, 0] Δt (i + 2) j k = 0 := fun i j k => by
     simp [Real.MatExp.corrTerm, NonlinearSys.shear_pow_eq_zero (i := i + 2) (by omega)]

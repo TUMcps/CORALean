@@ -54,13 +54,13 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Evaluating a matrix at one entry, as an additive homomorphism. -/
-def aux_expRemainderMatEntryHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
+private def aux_expRemainderMatEntryHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
   toFun M := M j k
   map_zero' := rfl
   map_add' _ _ := rfl
 
 /-- Reading one entry is continuous, being `1`-Lipschitz. -/
-theorem aux_continuous_expRemainderMatEntryHom (j k : Fin n) :
+private theorem aux_continuous_expRemainderMatEntryHom (j k : Fin n) :
     Continuous (aux_expRemainderMatEntryHom (n := n) j k) := by
   refine (LipschitzWith.of_dist_le_mul (K := 1) fun M N => ?_).continuous
   rw [NNReal.coe_one, one_mul, Real.dist_eq, dist_eq_norm]

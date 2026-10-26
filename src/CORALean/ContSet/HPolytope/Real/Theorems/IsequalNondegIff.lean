@@ -66,7 +66,7 @@ variable {q q' q₁ q₂ n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row tight at an interior point would let a step along it leave the polytope. -/
-theorem aux_strict_of_interior (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ⬝ᵥ A i = 1)
+private theorem aux_strict_of_interior (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ⬝ᵥ A i = 1)
     {x : Vec ℝ n} (hx : x ∈ interior (HPolytope.ineqs A b).construct) (i : Fin q) : -- --- CONCL ---
     (A *ᵥ x) i < b i := by -- --- PROOF ---
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp (mem_interior_iff_mem_nhds.mp hx)
@@ -86,7 +86,7 @@ theorem aux_strict_of_interior (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A 
   linarith
 
 /-- Unit vectors bounding the same directions are equal. -/
-theorem aux_eq_of_dir {a a' : Vec ℝ n} (ha : a ⬝ᵥ a = 1) (ha' : a' ⬝ᵥ a' = 1)
+private theorem aux_eq_of_dir {a a' : Vec ℝ n} (ha : a ⬝ᵥ a = 1) (ha' : a' ⬝ᵥ a' = 1)
     (h : ∀ d : Vec ℝ n, a ⬝ᵥ d ≤ 0 → a' ⬝ᵥ d ≤ 0) : -- --- CONCL ---
     a' = a := by -- --- PROOF ---
   set μ := a' ⬝ᵥ a with hμ
@@ -109,7 +109,7 @@ theorem aux_eq_of_dir {a a' : Vec ℝ n} (ha : a ⬝ᵥ a = 1) (ha' : a' ⬝ᵥ 
   exact sub_eq_zero.mp (dotProduct_self_eq_zero.mp hsq)
 
 /-- A non-redundant row of a non-degenerate polytope is a row of every representation. -/
-theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) (b' : Vec ℝ q')
+private theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) (b' : Vec ℝ q')
     (hA : ∀ i, A i ⬝ᵥ A i = 1) (hA' : ∀ k, A' k ⬝ᵥ A' k = 1)
     (hint : (interior (HPolytope.ineqs A b).construct).Nonempty) (j : Fin q)
     (hred : (HPolytope.ineqs A b).construct ≠
@@ -212,7 +212,7 @@ theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) (b' : Ve
   rw [hkj]
 
 /-- Line 1 leaves the set alone. -/
-theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) : -- --- CONCL ---
+private theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) : -- --- CONCL ---
     (HPolytope.ineqs (Matrix.of fun j => ‖A j‖₂⁻¹ • A j) fun j => b j / ‖A j‖₂).construct =
       (HPolytope.ineqs A b).construct := by -- --- PROOF ---
   have hpos : ∀ j, 0 < ‖A j‖₂ := fun j => by
@@ -231,7 +231,7 @@ theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) 
   rw [this, div_eq_inv_mul, mul_le_mul_iff_of_pos_left (inv_pos.mpr (hpos j))]
 
 /-- Normalized rows have unit length. -/
-theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) : -- --- CONCL ---
+private theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) : -- --- CONCL ---
     (Matrix.of fun j => ‖A j‖₂⁻¹ • A j : Mat ℝ q n) j ⬝ᵥ
       (Matrix.of fun j => ‖A j‖₂⁻¹ • A j : Mat ℝ q n) j = 1 := by -- --- PROOF ---
   have hpos : 0 < ‖A j‖₂ := by
@@ -247,7 +247,7 @@ theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) : -- --- 
 
 /-- A row is redundant, in the support-function sense of line 4, exactly when dropping it
 leaves the set. -/
-theorem aux_redundant_iff (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) : -- --- CONCL ---
+private theorem aux_redundant_iff (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) : -- --- CONCL ---
     supportFunc (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct
         (HPolytope.rowLin A j) ≤ (b j : EReal) ↔
       (HPolytope.ineqs A b).construct =

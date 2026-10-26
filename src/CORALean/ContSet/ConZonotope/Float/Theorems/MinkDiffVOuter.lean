@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of the start and of every intersected set is a point of the fold. -/
-theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
+private theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
     ∀ {m : ℕ} (g : Fin m → ConZonotope 𝕋 (Vec 𝕋 n)) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)), x ∈
     cZ.construct →
       (∀ i, x ∈ (g i).construct) →

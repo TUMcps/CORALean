@@ -52,7 +52,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- Cauchy-Schwarz in the inner products of `P⁻¹` and `P`
-theorem aux_abs_dotProduct_le_weighted (P : Mat ℝ n n) (hP : P.PosDef)
+private theorem aux_abs_dotProduct_le_weighted (P : Mat ℝ n n) (hP : P.PosDef)
     (ρ ϕ : Vec ℝ n) : -- --- CONCL ---
     |ρ ⬝ᵥ ϕ| ≤ Real.sqrt (ρ ⬝ᵥ (P⁻¹ *ᵥ ρ)) * Real.sqrt (ϕ ⬝ᵥ (P *ᵥ ϕ)) := by -- --- PROOF ---
   haveI : Invertible P := hP.isUnit.invertible

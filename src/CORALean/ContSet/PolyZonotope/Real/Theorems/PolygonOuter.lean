@@ -47,7 +47,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A round keeps the cover. -/
-theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec ℝ 2) → Bool)
+private theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec ℝ 2) → Bool)
     (L : List (PolyZonotope (Vec ℝ 2))) {x : Vec ℝ 2}
     (hx : ∃ q ∈ L, x ∈ q.construct) : -- --- CONCL ---
     ∃ q ∈ PolyZonotope.polygonRound pick L, x ∈ q.construct := by -- --- PROOF ---
@@ -60,7 +60,7 @@ theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec ℝ 2) →
     · exact ⟨q.splitLongestGen.snd, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, h⟩
   · exact ⟨q, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, hxq⟩
 
-theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec ℝ 2))
+private theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec ℝ 2))
     (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) (k : ℕ) {x : Vec ℝ 2}
     (hx : x ∈ pZ.construct) : -- --- CONCL ---
     ∃ q ∈ pZ.polygonPieces k pick, x ∈ q.construct := by -- --- PROOF ---

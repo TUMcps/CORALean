@@ -50,7 +50,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `⟨M, u uᵀ⟩ = uᵀ M u`. -/
-theorem aux_maxNormSqSdp_trace_vecMulVec {m : ℕ} (M : Mat ℝ m m) (u : Vec ℝ m) :
+private theorem aux_maxNormSqSdp_trace_vecMulVec {m : ℕ} (M : Mat ℝ m m) (u : Vec ℝ m) :
     (M * vecMulVec u u).trace = u ⬝ᵥ (M *ᵥ u) := by
   simp only [trace, diag, mul_apply, vecMulVec_apply, dotProduct, mulVec, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring

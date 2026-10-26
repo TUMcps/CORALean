@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Cutting at the first falling edge commutes with reading the time points as reals. -/
-theorem PointSegmentSignal.aux_cutAtFirstFallingEdge_mapTime (s : PointSegmentSignal 𝕋) :
+private theorem PointSegmentSignal.aux_cutAtFirstFallingEdge_mapTime (s : PointSegmentSignal 𝕋) :
     s.cutAtFirstFallingEdge.mapTime toReal = (s.mapTime toReal).cutAtFirstFallingEdge := by
   -- the edge is found on the values, which reading as reals keeps
   unfold PointSegmentSignal.cutAtFirstFallingEdge
@@ -52,7 +52,7 @@ theorem PointSegmentSignal.aux_cutAtFirstFallingEdge_mapTime (s : PointSegmentSi
   split <;> (try split_ifs) <;> simp [List.map_take]
 
 /-- The last time of a value in the signal read as reals is the float one read as a real. -/
-theorem PointSegmentSignal.aux_findLast_mapTime (s : PointSegmentSignal 𝕋)
+private theorem PointSegmentSignal.aux_findLast_mapTime (s : PointSegmentSignal 𝕋)
     (value : Bool) : -- --- CONCL ---
     (s.mapTime toReal).findLast value =
       ((s.findLast value).1.map toReal, (s.findLast value).2) := by -- --- PROOF ---

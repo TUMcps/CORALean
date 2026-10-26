@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Zonotope.aux_interval_center (Z : Zonotope (Vec ℝ n)) :
+private theorem Zonotope.aux_interval_center (Z : Zonotope (Vec ℝ n)) :
     Z.interval.center = Z.c := by
   funext i
   simp only [Interval.center, Zonotope.interval, Pi.smul_apply, Pi.add_apply, smul_eq_mul]

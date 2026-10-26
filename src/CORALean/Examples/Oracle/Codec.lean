@@ -73,11 +73,11 @@ def ExactScalar.isZero : ExactScalar → Bool
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_nonFinite (s : String) : Bool := s = "inf" || s = "-inf" || s = "nan" || s = "-nan"
+private def aux_nonFinite (s : String) : Bool := s = "inf" || s = "-inf" || s = "nan" || s = "-nan"
 
 /-- `m`, its every trailing digit of zero dropped, `d` falling by the same count -- fuelled by
 `d` itself, which is exactly how many times it can still fall. -/
-def aux_stripDecFuel : Nat → Int → Nat → Int × Nat
+private def aux_stripDecFuel : Nat → Int → Nat → Int × Nat
   | 0, m, d => (m, d)
   | fuel + 1, m, d => if d > 0 ∧ m % 10 = 0 then aux_stripDecFuel fuel (m / 10) (d - 1) else (m, d)
 
@@ -90,7 +90,7 @@ def normalizeDecNeg (m : Int) (d : Nat) : ExactScalar :=
 
 /-- `m * 10 ^ e` at `e ≥ 0`, onto `ExactScalar`: always `.dy`, `10^e = 5^e * 2^e` folded into
 the mantissa and the exponent left as `e`. -/
-def aux_mkDecimal (m e : Int) : ExactScalar :=
+private def aux_mkDecimal (m e : Int) : ExactScalar :=
   if e ≥ 0 then .dy (normalizeExact ⟨m * 5 ^ e.toNat, e⟩) else normalizeDecNeg m (-e).toNat
 
 def parseScalarStr (s : String) : Except String ExactScalar :=
@@ -191,11 +191,11 @@ def parseZonotopeScalar (j : Json) : Except String DynZonotopeScalar := do
 variable {𝕋 : Type} [FloatOps 𝕋] (readD : String → ExactScalar → Except String 𝕋)
 
 /-- `vals`, row-major, as an `r × c` matrix -- shared by every `parseMat*` below. -/
-def aux_mkMat (r c : Nat) (vals : Array 𝕋) : Mat 𝕋 r c :=
+private def aux_mkMat (r c : Nat) (vals : Array 𝕋) : Mat 𝕋 r c :=
   Matrix.of fun (i : Fin r) (l : Fin c) => vals.getD (i.val * c + l.val) FloatOps.zero
 
 /-- Every entry of `data`, read through `readD`, the field name of `data[i]` on failure. -/
-def aux_parseData (data : Array Json) : Except String (Array 𝕋) :=
+private def aux_parseData (data : Array Json) : Except String (Array 𝕋) :=
   data.mapIdxM fun i v => do
     match parseScalar v with
     | .error e => throw s!"data[{i}]: {e}"

@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The substitution at the variables of a list of distinct ones. -/
-theorem Taylm.aux_reexpand_foldl (m r : Vec 𝕋 n)
+private theorem Taylm.aux_reexpand_foldl (m r : Vec 𝕋 n)
     (hmr : ∀ k, |toReal (m k)| + |toReal (r k)| ≤ 1) : -- --- CONCL ---
     ∀ (l : List (Fin n)), l.Nodup → ∀ (T : Taylm 𝕋 n) (g : Vec ℝ n → ℝ), T.Encloses g →
       (l.foldl (fun T k => T.reexpandAt k (m k) (r k)) T).Encloses fun s =>

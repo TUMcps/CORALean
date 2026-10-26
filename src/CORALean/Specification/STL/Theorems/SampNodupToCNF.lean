@@ -45,7 +45,7 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A power of `insert b cl` is `b`'s or one of `cl`'s. -/
-theorem STL.Clause.aux_mem_map_j_insert (b : STL.Branch X) (cl : STL.Clause X) (x : ℕ)
+private theorem STL.Clause.aux_mem_map_j_insert (b : STL.Branch X) (cl : STL.Clause X) (x : ℕ)
     (h : x ∈ (STL.Clause.insert b cl).map STL.Branch.j) : -- --- CONCL ---
     x = b.j ∨ x ∈ cl.map STL.Branch.j := by -- --- PROOF ---
   induction cl with
@@ -64,7 +64,7 @@ theorem STL.Clause.aux_mem_map_j_insert (b : STL.Branch X) (cl : STL.Clause X) (
 
 
 /-- Inserting keeps the powers distinct. -/
-theorem STL.Clause.aux_nodup_insert (b : STL.Branch X) (cl : STL.Clause X)
+private theorem STL.Clause.aux_nodup_insert (b : STL.Branch X) (cl : STL.Clause X)
     (h : (cl.map STL.Branch.j).Nodup) : -- --- CONCL ---
     ((STL.Clause.insert b cl).map STL.Branch.j).Nodup := by -- --- PROOF ---
   induction cl with
@@ -82,7 +82,8 @@ theorem STL.Clause.aux_nodup_insert (b : STL.Branch X) (cl : STL.Clause X)
 
 
 /-- Merging two clauses keeps the powers distinct. -/
-theorem STL.Clause.aux_nodup_merge (cl₁ cl₂ : STL.Clause X) (h : (cl₁.map STL.Branch.j).Nodup) :
+private theorem STL.Clause.aux_nodup_merge (cl₁ cl₂ : STL.Clause X)
+    (h : (cl₁.map STL.Branch.j).Nodup) :
     ((STL.Clause.merge cl₁ cl₂).map STL.Branch.j).Nodup := by
   induction cl₂ with
   | nil => simpa [STL.Clause.merge] using h

@@ -45,7 +45,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the range by a multiple of the period does not move its image. -/
-theorem aux_image_cos_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
+private theorem aux_image_cos_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     Real.cos '' Set.Icc lo hi =
     Real.cos '' Set.Icc (lo - 2 * Real.pi * k) (hi - 2 * Real.pi * k) := by -- --- PROOF ---
   ext v
@@ -59,7 +59,7 @@ theorem aux_image_cos_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     ring_nf
 
 /-- Every value of the cosine is taken within one period of any point. -/
-theorem aux_cos_exists_period (lo t : ℝ) : -- --- CONCL ---
+private theorem aux_cos_exists_period (lo t : ℝ) : -- --- CONCL ---
     ∃ c ∈ Set.Icc lo (lo + 2 * Real.pi), Real.cos c = Real.cos t := by -- --- PROOF ---
   have hpi := Real.pi_pos
   -- the first point `t + 2πk` at or above `lo`
@@ -70,13 +70,13 @@ theorem aux_cos_exists_period (lo t : ℝ) : -- --- CONCL ---
   rw [← sub_lt_iff_lt_add, lt_div_iff₀ (by positivity)] at h2
   refine ⟨t + k * (2 * Real.pi), ⟨by linarith, by linarith⟩, Real.cos_add_int_mul_two_pi t k⟩
 
-theorem aux_cos_three_pi : Real.cos (3 * Real.pi) = -1 := by
+private theorem aux_cos_three_pi : Real.cos (3 * Real.pi) = -1 := by
   rw [show 3 * Real.pi = Real.pi + 2 * Real.pi by ring, Real.cos_add_two_pi, Real.cos_pi]
 
-theorem aux_cos_antiOn_zero : AntitoneOn Real.cos (Set.Icc 0 Real.pi) :=
+private theorem aux_cos_antiOn_zero : AntitoneOn Real.cos (Set.Icc 0 Real.pi) :=
   Real.strictAntiOn_cos.antitoneOn
 
-theorem aux_cos_monoOn_zero : -- --- CONCL ---
+private theorem aux_cos_monoOn_zero : -- --- CONCL ---
     MonotoneOn Real.cos (Set.Icc Real.pi (2 * Real.pi)) := by -- --- PROOF ---
   intro x hx y hy hxy
   -- `cos x = -cos (x - π)`, falling on `[0, π]`
@@ -84,13 +84,13 @@ theorem aux_cos_monoOn_zero : -- --- CONCL ---
   exact neg_le_neg (Real.strictAntiOn_cos.antitoneOn ⟨by linarith [hx.1], by linarith [hx.2]⟩
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith))
 
-theorem aux_cos_antiOn_one : AntitoneOn Real.cos (Set.Icc (2 * Real.pi) (3 * Real.pi)) := by
+private theorem aux_cos_antiOn_one : AntitoneOn Real.cos (Set.Icc (2 * Real.pi) (3 * Real.pi)) := by
   intro x hx y hy hxy
   rw [← Real.cos_sub_two_pi x, ← Real.cos_sub_two_pi y]
   exact Real.strictAntiOn_cos.antitoneOn ⟨by linarith [hx.1], by linarith [hx.2]⟩
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith)
 
-theorem aux_cos_monoOn_one :
+private theorem aux_cos_monoOn_one :
     MonotoneOn Real.cos (Set.Icc (3 * Real.pi) (4 * Real.pi)) := by
   intro x hx y hy hxy
   rw [← Real.cos_sub_two_pi x, ← Real.cos_sub_two_pi y]
@@ -98,7 +98,7 @@ theorem aux_cos_monoOn_one :
     ⟨by linarith [hy.1], by linarith [hy.2]⟩ (by linarith)
 
 /-- A range holding a point where the cosine is `1` and one where it is `-1`. -/
-theorem aux_cos_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Icc a b)
+private theorem aux_cos_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Icc a b)
     (h1 : Real.cos c = 1) (h2 : Real.cos d = -1) : -- --- CONCL ---
     Real.cos '' Set.Icc a b = Set.Icc (-1) 1 := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
@@ -108,7 +108,7 @@ theorem aux_cos_full {a b c d : ℝ} (hc : c ∈ Set.Icc a b) (hd : d ∈ Set.Ic
       ⟨d, hd, h2⟩ ⟨c, hc, h1⟩
 
 /-- The first case of [1, Eq. 13], `[-1, 1]`, past the width test. -/
-theorem aux_cosByRegions_full {lo hi yl yu : ℝ}
+private theorem aux_cosByRegions_full {lo hi yl yu : ℝ}
     (hshift : Real.cos '' Set.Icc lo hi = Real.cos '' Set.Icc yl (yl + (hi - lo)))
     (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
     (h : (yl ∈ Set.Ico 0 Real.pi ∧ yu ∈ Set.Ico 0 Real.pi ∧ yu < yl) ∨
@@ -130,7 +130,7 @@ theorem aux_cosByRegions_full {lo hi yl yu : ℝ}
       Real.cos_two_pi aux_cos_three_pi
 
 /-- What the first four cases of [1, Eq. 13] leave: both reduced bounds in `R_c1`, unswapped. -/
-theorem aux_cosByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi)
+private theorem aux_cosByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi)
     (hyu : 0 ≤ yu ∧ yu < 2 * Real.pi)
     (hA : ¬((yl ∈ Set.Ico 0 Real.pi ∧ yu ∈ Set.Ico 0 Real.pi ∧ yu < yl) ∨
       (yl ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu ∈ Set.Ico Real.pi (2 * Real.pi) ∧ yu < yl)))

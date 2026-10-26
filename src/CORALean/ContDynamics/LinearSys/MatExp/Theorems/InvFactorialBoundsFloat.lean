@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `MatExp.aux_factorialUp` bounds a factorial from above. -/
-theorem MatExp.aux_factorial_le_factorialUp (k : ℕ) : -- --- CONCL ---
+private theorem MatExp.aux_factorial_le_factorialUp (k : ℕ) : -- --- CONCL ---
     (Nat.factorial k : ℝ) ≤ toReal (MatExp.aux_factorialUp (𝕋 := 𝕋) k) := by -- --- PROOF ---
   induction k with
   | zero => rw [MatExp.aux_factorialUp, toReal_one, Nat.factorial_zero, Nat.cast_one]

@@ -61,7 +61,7 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One order's scalar factor: `|tᵏ - (t/δ)δᵏ| ≤ δᵏ` on `[0, δ]`. -/
-theorem Krylov.aux_abs_coeff_le {δ t : ℝ} (hδ : 0 < δ) (ht0 : 0 ≤ t) (htδ : t ≤ δ)
+private theorem Krylov.aux_abs_coeff_le {δ t : ℝ} (hδ : 0 < δ) (ht0 : 0 ≤ t) (htδ : t ≤ δ)
     (k : ℕ) : -- --- CONCL ---
     |t ^ k - (t / δ) * δ ^ k| ≤ δ ^ k := by -- --- PROOF ---
   have h1 : 0 ≤ t ^ k := pow_nonneg ht0 k
@@ -72,7 +72,8 @@ theorem Krylov.aux_abs_coeff_le {δ t : ℝ} (hδ : 0 < δ) (ht0 : 0 ≤ t) (ht�
   exact abs_sub_le_of_nonneg_of_le h1 h2 h3 h4
 
 /-- `i = 2, …, η` is `2 + i` over `i < η - 1`. -/
-theorem Krylov.aux_sum_Icc_two {M : Type} [AddCommMonoid M] (η : ℕ) (hη : 1 ≤ η) (g : ℕ → M) :
+private theorem Krylov.aux_sum_Icc_two {M : Type} [AddCommMonoid M] (η : ℕ) (hη : 1 ≤ η)
+    (g : ℕ → M) :
     ∑ i ∈ Finset.Icc 2 η, g i = ∑ i ∈ Finset.range (η - 1), g (i + 2) := by
   have h : Finset.Icc 2 η = Finset.Ico 2 (η - 1 + 2) := by
     ext x; rw [Finset.mem_Icc, Finset.mem_Ico]; omega

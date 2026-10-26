@@ -46,7 +46,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop over the time intervals `l` of the entry. -/
-theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer ℝ S n) (d : ℝ) (loc : ℕ) : -- --- CONCL ---
+private theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+    (loc : ℕ) : -- --- CONCL ---
     ∀ l : List (ReachSetAnalyzer.TimedSet ℝ S n), (∀ s ∈ l, s.time.inf < s.time.sup) →
     ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer ℝ S n), obj0.aps = obj.aps →
       obj0.masks = obj.masks → obj0.Represents d PT PF → ∃ obj', l.foldlM

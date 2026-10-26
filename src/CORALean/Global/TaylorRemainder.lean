@@ -44,7 +44,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The same at `x = c + y`, the form the case split is easier in. -/
-theorem aux_taylor_remainder_abs_le {g : ℝ → ℝ} {N : ℕ} {c y D : ℝ}
+private theorem aux_taylor_remainder_abs_le {g : ℝ → ℝ} {N : ℕ} {c y D : ℝ}
     (hg : ∀ ξ ∈ Set.uIcc c (c + y), ContDiffAt ℝ (N + 1) g ξ)
     (hD : ∀ ξ ∈ Set.uIcc c (c + y), |iteratedDeriv (N + 1) g ξ| ≤ D) : -- --- CONCL ---
     |g (c + y) - ∑ k ∈ Finset.range (N + 1),

@@ -44,7 +44,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The count itself, at most eight times the bound, from `p = 1` on. -/
-theorem aux_relaxGreedyCost_ops_le (h q n p : ℕ) (hp : 1 ≤ p) : -- --- CONCL ---
+private theorem aux_relaxGreedyCost_ops_le (h q n p : ℕ) (hp : 1 ≤ p) : -- --- CONCL ---
     (PolyZonotope.relaxGreedyCost h q n p).ops
       ≤ 8 * ((h + q) * h * n + h ^ 2 * p) := by -- --- PROOF ---
   simp only [PolyZonotope.relaxGreedyCost, Cost.ops_add, Cost.ops_smul]

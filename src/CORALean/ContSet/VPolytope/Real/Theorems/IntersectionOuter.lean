@@ -56,7 +56,7 @@ variable {n q₁ q₂ : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `VPolytope.intersectionH` is compact. -/
-theorem VPolytope.aux_intersectionH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
+private theorem VPolytope.aux_intersectionH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
     IsCompact (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct := by
   refine HPolytope.isCompact_of_contains (W := P₁.interval.vPolytope) fun x hx => ?_

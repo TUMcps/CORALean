@@ -64,37 +64,38 @@ open scoped CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The constant `(0, 1)` network: class `1` always strictly wins. -/
-noncomputable def aux_suffExplanationConverseFails_nn :
+private noncomputable def aux_suffExplanationConverseFails_nn :
     NeuralNetwork ℐ𝒱 1 2 :=
   NeuralNetwork.ofLayer (LinearLayer.mk (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
 
 /-- The symmetric `±1` error box: centered at `0`, wide enough to tie. -/
-def aux_suffExplanationConverseFails_box : Float.Interval (Vec ℝ 2) := ⟨fun _ => -1, fun _ => 1⟩
+private def aux_suffExplanationConverseFails_box : Float.Interval (Vec ℝ 2) :=
+    ⟨fun _ => -1, fun _ => 1⟩
 
 -- the committed error is the center of the box the layer runs, the box itself, so `0`
-theorem aux_suffExplanationConverseFails_box_center :
+private theorem aux_suffExplanationConverseFails_box_center :
     aux_suffExplanationConverseFails_box.nonemptyHull.nominal.center = 0 := by
   funext i
   show (2 : ℝ)⁻¹ * ((-1 : ℝ) + max (-1) 1) = 0
   norm_num
 
 /-- What both networks compute, which neither of them stores. -/
-def aux_suffExplanationConverseFails_f : Vec ℝ 1 → Vec ℝ 2 :=
+private def aux_suffExplanationConverseFails_f : Vec ℝ 1 → Vec ℝ 2 :=
   fun x => (0 : Mat ℝ 2 1) *ᵥ x + fun k => if k = 1 then (1 : ℝ) else 0
 
-theorem aux_suffExplanationConverseFails_nn_sound :
+private theorem aux_suffExplanationConverseFails_nn_sound :
     aux_suffExplanationConverseFails_nn.Encloses aux_suffExplanationConverseFails_f :=
   NeuralNetwork.ofLayer_encloses (Layer.linear_encloses _ _)
 
 /-- `nn`'s abstraction: the same weights and bias, over-approximated by the
 `±1` box. -/
-noncomputable def aux_suffExplanationConverseFails_nnAbs :
+private noncomputable def aux_suffExplanationConverseFails_nnAbs :
     NeuralNetwork ℐ𝒱 1 2 :=
   NeuralNetwork.ofLayer (LinearWithErrorLayer.mk (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
 -- the box's error is committed at its own center, `0`, so the exact networks agree
-theorem aux_suffExplanationConverseFails_nnAbs_sound : -- --- CONCL ---
+private theorem aux_suffExplanationConverseFails_nnAbs_sound : -- --- CONCL ---
     aux_suffExplanationConverseFails_nnAbs.Encloses
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---
   refine (NeuralNetwork.ofLayer_encloses (S := ℐ𝒱)

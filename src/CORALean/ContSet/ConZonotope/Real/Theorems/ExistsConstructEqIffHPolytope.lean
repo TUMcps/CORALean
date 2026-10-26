@@ -60,7 +60,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constrained zonotope is a halfspace description: the shadow of the lifted polytope. -/
-theorem ConZonotope.aux_exists_hPolytope (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
+private theorem ConZonotope.aux_exists_hPolytope (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     ∃ P : HPolytope (Vec ℝ n), P.construct = cZ.construct := by -- --- PROOF ---
   -- `x = c + Gξ`, one equality per coordinate
   let graph : HPolytope (Vec ℝ n × Vec ℝ cZ.h) :=

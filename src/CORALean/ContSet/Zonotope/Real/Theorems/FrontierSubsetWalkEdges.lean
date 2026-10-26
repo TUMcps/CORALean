@@ -52,7 +52,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The shear keeps the generators in the upper half-plane. -/
-theorem Zonotope.aux_shear_half_plane (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
+private theorem Zonotope.aux_shear_half_plane (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (j : Fin Z.h) : -- --- CONCL ---
     0 ≤ (Z.shear κ).G j 1 ∧ (0 < (Z.shear κ).G j 1 ∨ 0 ≤ (Z.shear κ).G j 0) := by -- --- PROOF ---
   obtain ⟨h0, h1⟩ := hH j
@@ -68,7 +68,7 @@ theorem Zonotope.aux_shear_half_plane (Z : Zonotope (Vec ℝ 2)) (κ : ℝ)
 
 
 /-- The shear keeps the cross product of the generators. -/
-theorem Zonotope.aux_shear_cross (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (i j : Fin Z.h) :
+private theorem Zonotope.aux_shear_cross (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (i j : Fin Z.h) :
     (Z.shear κ).G i 0 * (Z.shear κ).G j 1 - (Z.shear κ).G i 1 * (Z.shear κ).G j 0
       = Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0 := by
   simp only [Zonotope.shear, Matrix.cons_val_zero, Matrix.cons_val_one]
@@ -76,7 +76,7 @@ theorem Zonotope.aux_shear_cross (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (i j : Fi
 
 
 /-- A point of the zonogon off the walk edges has a stretch of every non-horizontal line in it. -/
-theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
+private theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (κ : ℝ)
     {q : Vec ℝ 2} (hq : q ∈ Z.construct) (hnE : q ∉ Z.walkEdges) : -- --- CONCL ---

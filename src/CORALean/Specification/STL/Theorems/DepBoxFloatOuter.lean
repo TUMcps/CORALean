@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of a float zonotope stays within the stored center, the rounded-up radius and the error
 box in each coordinate. -/
-theorem STL.aux_depBoxFloat_bounds {Z : Float.Zonotope (Vec 𝕋 n)} {x : Vec ℝ n}
+private theorem STL.aux_depBoxFloat_bounds {Z : Float.Zonotope (Vec 𝕋 n)} {x : Vec ℝ n}
     (hx : x ∈ Z.construct) (i : Fin n) : -- --- CONCL ---
     toReal (Z.c i) - toReal (sumUp (fun j => absolute (Z.G j i))) + toReal (Z.I_error.inf i) ≤ x i ∧
       x i ≤ toReal (Z.c i) + toReal (sumUp (fun j => absolute (Z.G j i))) +

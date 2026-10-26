@@ -58,7 +58,7 @@ section
 variable {n : ℕ}
 
 /-- The value at `a` is the second-order term at the state `a` names. -/
-theorem aux_precompStatError_point (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n)
+private theorem aux_precompStatError_point (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n)
     (pZ : Real.PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (precompStatError Q xs pZ).point a = quadEval Q (pZ.point a - xs) := by -- --- PROOF ---
   -- the shifted set has `pZ`'s monomials and generators, so only the center moves

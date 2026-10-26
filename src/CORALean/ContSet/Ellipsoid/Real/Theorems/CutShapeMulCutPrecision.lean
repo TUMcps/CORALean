@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_P_mul (c : Vec ℝ n) (hc : c ⬝ᵥ c = 1) : -- --- CONCL ---
+private theorem Ellipsoid.aux_P_mul (c : Vec ℝ n) (hc : c ⬝ᵥ c = 1) : -- --- CONCL ---
     (vecMulVec c c : Mat ℝ n n) * vecMulVec c c = vecMulVec c c := by -- --- PROOF ---
   ext i j
   simp only [Matrix.mul_apply, vecMulVec_apply]

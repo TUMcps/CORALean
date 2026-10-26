@@ -53,8 +53,8 @@ universe v
 variable {α α' κ M : Type*} {β : κ → Type*} {βₗ βᵣ : Type v}
 
 /-- Every surviving index fails the predicate that cut out the bucket. -/
-theorem _root_.CORALean.Partition.aux_ofPred_left {n : ℕ} (p : Fin n → Prop) [DecidablePred p]
-    (l : Fin (Fintype.card {i : Fin n // ¬ p i})) :
+private theorem _root_.CORALean.Partition.aux_ofPred_left {n : ℕ} (p : Fin n → Prop)
+    [DecidablePred p] (l : Fin (Fintype.card {i : Fin n // ¬ p i})) :
     ¬ p ((Partition.ofPred p).left l) :=
   (Partition.finSubtypeEquiv (fun i => ¬ p i) l).property
 
@@ -62,7 +62,8 @@ end
 
 
 /-- `Fin.sum_univ_add` at `boxOut`'s independent generator count, through the projection. -/
-theorem PolyZonotope.aux_sum_univ_boxOut_q {pZ : PolyZonotope (Vec ℝ n)} {removed : Fin pZ.h → Prop}
+private theorem PolyZonotope.aux_sum_univ_boxOut_q {pZ : PolyZonotope (Vec ℝ n)}
+    {removed : Fin pZ.h → Prop}
     {taken : Fin pZ.q → Prop} [DecidablePred removed] [DecidablePred taken]
     (f : Fin (pZ.q + n) → ℝ) :
     ∑ j : Fin (pZ.boxOut removed taken).q, f j
@@ -70,14 +71,15 @@ theorem PolyZonotope.aux_sum_univ_boxOut_q {pZ : PolyZonotope (Vec ℝ n)} {remo
   Fin.sum_univ_add f
 
 /-- The dependent generator count of `boxOut`, read back at the kept ones. -/
-theorem PolyZonotope.aux_sum_univ_boxOut_h {pZ : PolyZonotope (Vec ℝ n)} {removed : Fin pZ.h → Prop}
+private theorem PolyZonotope.aux_sum_univ_boxOut_h {pZ : PolyZonotope (Vec ℝ n)}
+    {removed : Fin pZ.h → Prop}
     {taken : Fin pZ.q → Prop} [DecidablePred removed] [DecidablePred taken]
     (f : Fin (Fintype.card {i : Fin pZ.h // ¬ removed i}) → ℝ) :
     ∑ l : Fin (pZ.boxOut removed taken).h, f l = ∑ l, f l :=
   rfl
 
 /-- What the removed dependent generators reach in a coordinate is at most their absolute sum. -/
-theorem PolyZonotope.aux_abs_removed_le (pZ : PolyZonotope (Vec ℝ n)) {r : ℕ}
+private theorem PolyZonotope.aux_abs_removed_le (pZ : PolyZonotope (Vec ℝ n)) {r : ℕ}
     (right : Fin r → Fin pZ.h) {a : Fin pZ.p → ℝ} (ha : ∀ k, |a k| ≤ 1)
     (i : Fin n) : -- --- CONCL ---
     |∑ l, pZ.G (right l) i * PolyZonotope.monomial pZ.E a (right l)|

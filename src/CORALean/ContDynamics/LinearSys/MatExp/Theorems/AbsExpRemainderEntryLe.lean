@@ -60,7 +60,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The remainder at `t • B`, entry `(j, k)`, as the exponential series from order `η + 1`. -/
-theorem MatExp.aux_expRemainder_entry_eq (B : Mat ℝ n n) (t : ℝ) (η : ℕ)
+private theorem MatExp.aux_expRemainder_entry_eq (B : Mat ℝ n n) (t : ℝ) (η : ℕ)
     (j k : Fin n) : -- --- CONCL ---
     (exp (t • B) - MatExp.expTaylor (t • B) η) j k
       = ∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ)⁻¹ * t ^ (i + (η + 1)))

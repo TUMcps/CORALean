@@ -49,8 +49,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of the edge from `corner l` raising `j`, coordinate by coordinate. -/
-theorem aux_edge_apply {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin n} (hlj : l j = false)
-    (t : ℝ) (k : Fin n) :
+private theorem aux_edge_apply {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin n}
+    (hlj : l j = false) (t : ℝ) (k : Fin n) :
     (I.corner l + t • (I.corner (Function.update l j true) - I.corner l)) k =
       if k = j then I.inf j + t * (I.sup j - I.inf j) else I.corner l k := by
   simp only [Pi.add_apply, Pi.smul_apply, Pi.sub_apply, smul_eq_mul, Interval.corner]
@@ -59,7 +59,7 @@ theorem aux_edge_apply {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin 
   · simp [hk]
 
 /-- The edge's length is the denominator of `t⋆`. -/
-theorem aux_edge_den {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin n}
+private theorem aux_edge_den {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j : Fin n}
     (hlj : l j = false) : -- --- CONCL ---
     ∑ i, (I.corner (Function.update l j true) i - I.corner l i) =
       I.sup j - I.inf j := by -- --- PROOF ---

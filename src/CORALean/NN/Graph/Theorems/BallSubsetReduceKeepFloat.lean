@@ -47,7 +47,7 @@ variable {N : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem GNN.aux_ball_subset_ballFloat (A : Mat ℝ N N) (E : Fin N → Fin N → Bool)
+private theorem GNN.aux_ball_subset_ballFloat (A : Mat ℝ N N) (E : Fin N → Fin N → Bool)
     (hE : ∀ i j, A i j ≠ 0 → E i j = true) (v : Fin N) (r : ℕ) : -- --- CONCL ---
     Real.GNN.ball A v r ⊆ GNN.ballFloat E v r := by -- --- PROOF ---
   induction r with
@@ -58,7 +58,7 @@ theorem GNN.aux_ball_subset_ballFloat (A : Mat ℝ N N) (E : Fin N → Fin N →
       exact Finset.mem_filter.mpr ⟨Finset.mem_univ j, i, ih hi, hij.imp id (hE i j)⟩
 
 
-theorem GNN.aux_ballFloat_subset_succ (E : Fin N → Fin N → Bool) (v : Fin N) (r : ℕ) :
+private theorem GNN.aux_ballFloat_subset_succ (E : Fin N → Fin N → Bool) (v : Fin N) (r : ℕ) :
     GNN.ballFloat E v r ⊆ GNN.ballFloat E v (r + 1) := by
   intro j hj
   exact Finset.mem_filter.mpr ⟨Finset.mem_univ j, j, hj, Or.inl rfl⟩

@@ -41,7 +41,7 @@ variable {m n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_exists_sum {ι : Type} [Fintype ι] {a b : ι → ℝ} (hab : ∀ i, a i ≤ b i) {y : ℝ}
+private theorem aux_exists_sum {ι : Type} [Fintype ι] {a b : ι → ℝ} (hab : ∀ i, a i ≤ b i) {y : ℝ}
     (h₁ : ∑ i, a i ≤ y) (h₂ : y ≤ ∑ i, b i) : -- --- CONCL ---
     ∃ x : ι → ℝ, (∀ i, a i ≤ x i ∧ x i ≤ b i) ∧ ∑ i, x i = y := by -- --- PROOF ---
   have hW : 0 ≤ ∑ i, (b i - a i) := Finset.sum_nonneg fun i _ => sub_nonneg.2 (hab i)

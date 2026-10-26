@@ -59,7 +59,7 @@ variable {n q r : ℕ}
 
 /-- Coordinate `i`'s extreme is attained: the point whose coefficients are the
 signs of row `i` of the dropped generators reaches `∑_l |G_red(i,l)|` there. -/
-theorem Zonotope.aux_dropped_le_sSup (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_dropped_le_sSup (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (i : Fin n) : -- --- CONCL ---
     ∑ l, |Z.G (part.right l) i|
       ≤ sSup ((fun z : Vec ℝ n => z i) ''
@@ -85,7 +85,7 @@ theorem Zonotope.aux_dropped_le_sSup (Z : Zonotope (Vec ℝ n))
 /-- Everything the substituted box reaches is within `err` of the dropped
 generators' own zonotope: each coordinate is under that coordinate's row sum,
 which `aux_dropped_le_sSup` puts under the box `err` reads. -/
-theorem Zonotope.aux_norm₂_le_err_reduceByDropped (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_norm₂_le_err_reduceByDropped (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {x : Vec ℝ n}
     (hx : x ∈ (Z.reduceByBox part).construct) : -- --- CONCL ---
     ‖x‖₂ ≤ err (Z.reduceByDropped part).construct := by -- --- PROOF ---

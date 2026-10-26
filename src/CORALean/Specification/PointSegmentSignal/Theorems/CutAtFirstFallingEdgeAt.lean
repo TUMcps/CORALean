@@ -42,7 +42,8 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An earlier value is read at an earlier time. -/
-theorem PointSegmentSignal.aux_exists_cell_le {T : Type} [LinearOrder T] [Zero T] [DenselyOrdered T]
+private theorem PointSegmentSignal.aux_exists_cell_le {T : Type} [LinearOrder T] [Zero T]
+    [DenselyOrdered T]
     [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (t : T) (ht : 0 ≤ t) (c : ℕ)
     (hc : c ≤ s.cell t) : -- --- CONCL ---
     ∃ t', 0 ≤ t' ∧ t' ≤ t ∧ s.cell t' = c := by -- --- PROOF ---

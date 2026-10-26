@@ -50,7 +50,7 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the projection
 because that is the form the goal has and simp will not rewrite a binder's
 type. -/
-theorem ConZonotope.aux_sum_univ_plus {M : Type} [AddCommMonoid M] {cZ₁ cZ₂ : ConZonotope α}
+private theorem ConZonotope.aux_sum_univ_plus {M : Type} [AddCommMonoid M] {cZ₁ cZ₂ : ConZonotope α}
     (f : Fin (cZ₁.h + cZ₂.h) → M) :
     ∑ j : Fin (cZ₁.plus cZ₂).h, f j
       = ∑ j, f (Fin.castAdd cZ₂.h j) + ∑ j, f (Fin.natAdd cZ₁.h j) :=
@@ -60,21 +60,23 @@ omit [Module ℝ α] in
 /-- Each block answers to its own polytope. `β` is ascribed at the projection
 spelling of the count: at `Vec ℝ (cZ₁.h + cZ₂.h)` the module instance `HPolytope`
 needs is not found, the two spellings being distinct terms. -/
-theorem ConZonotope.aux_mem_plus_P_iff (cZ₁ cZ₂ : ConZonotope α) (β : Vec ℝ (cZ₁.plus cZ₂).h) :
+private theorem ConZonotope.aux_mem_plus_P_iff (cZ₁ cZ₂ : ConZonotope α)
+    (β : Vec ℝ (cZ₁.plus cZ₂).h) :
     β ∈ (cZ₁.plus cZ₂).P.construct ↔
       blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct :=
   HPolytope.mem_intersection_iff
 
-theorem ConZonotope.aux_value_plus' (cZ₁ cZ₂ : ConZonotope α) (β : Fin (cZ₁.h + cZ₂.h) → ℝ) :
+private theorem ConZonotope.aux_value_plus' (cZ₁ cZ₂ : ConZonotope α) (β : Fin (cZ₁.h + cZ₂.h) →
+    ℝ) : -- --- CONCL ---
     (cZ₁.plus cZ₂).c + ∑ j : Fin (cZ₁.plus cZ₂).h, β j • (cZ₁.plus cZ₂).G j
       = (cZ₁.c + ∑ j, β (Fin.castAdd cZ₂.h j) • cZ₁.G j)
-        + (cZ₂.c + ∑ j, β (Fin.natAdd cZ₁.h j) • cZ₂.G j) := by
+        + (cZ₂.c + ∑ j, β (Fin.natAdd cZ₁.h j) • cZ₂.G j) := by -- --- PROOF ---
   rw [ConZonotope.aux_sum_univ_plus]
   simp only [ConZonotope.plus, Fin.append_left, Fin.append_right]
   abel
 
-theorem ConZonotope.aux_value_plus (cZ₁ cZ₂ : ConZonotope α)
+private theorem ConZonotope.aux_value_plus (cZ₁ cZ₂ : ConZonotope α)
     (β₁ : Fin cZ₁.h → ℝ) (β₂ : Fin cZ₂.h → ℝ) :
     (cZ₁.plus cZ₂).c + ∑ j : Fin (cZ₁.plus cZ₂).h, Fin.append β₁ β₂ j • (cZ₁.plus cZ₂).G j
       = (cZ₁.c + ∑ j, β₁ j • cZ₁.G j) + (cZ₂.c + ∑ j, β₂ j • cZ₂.G j) := by

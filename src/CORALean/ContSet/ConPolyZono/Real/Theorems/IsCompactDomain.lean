@@ -48,7 +48,7 @@ variable {α : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constraint row is a polynomial in the factors. -/
-theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α)
+private theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α)
     (i : Fin cPZ.cons.m) : -- --- CONCL ---
     Continuous fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
       (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i := by -- --- PROOF ---
@@ -61,7 +61,7 @@ theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α)
 
 /-- Three families of conditions, each an inequality or an equation between continuous
 functions, so the domain is a finite intersection of closed sets. -/
-theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) : -- --- CONCL ---
+private theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) : -- --- CONCL ---
     IsClosed cPZ.domain := by -- --- PROOF ---
   have hdom : cPZ.domain
       = (⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})

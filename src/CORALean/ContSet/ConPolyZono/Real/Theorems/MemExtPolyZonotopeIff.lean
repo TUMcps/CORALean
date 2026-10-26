@@ -45,7 +45,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The extended generators' sum splits into the two blocks. -/
-theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n))
+    (a : Fin cPZ.p → ℝ) : -- --- CONCL ---
     ∑ i : Fin cPZ.extPolyZonotope.h,
         PolyZonotope.monomial cPZ.extPolyZonotope.E a i • cPZ.extPolyZonotope.G i
       = (∑ i : Fin cPZ.h, PolyZonotope.monomial cPZ.E a i • ((cPZ.G i,

@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Both witness points lie in their own sets, so the difference lies in `O - U`. -/
-theorem aux_diffPoint_mem_sub (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
+private theorem aux_diffPoint_mem_sub (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
     (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (d : α →ₗ[ℝ] ℝ) :
     diffPoint wO wU d ∈ O - U :=
   Set.sub_mem_sub (wO d).mem.choose_spec.1 (wU (-d)).mem.choose_spec.1

@@ -61,15 +61,15 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_isPolytopeCex_sign {x : ℝ} (h : x = 1 ∨ x = -1) :
+private theorem aux_isPolytopeCex_sign {x : ℝ} (h : x = 1 ∨ x = -1) :
     ((SignType.sign x : SignType) : ℝ) = x := by
   rcases h with rfl | rfl <;> simp
 
 
 /-- For corners with factors `±1`, the difference of two corner images is in the cone as soon as
 `b` and `a c` of the first corner have the opposite signs of the two coordinates of it. -/
-theorem PolyZonotope.aux_isPolytopeCex_inCone (I J : Fin 3 → ℝ) (hI : ∀ i, I i = 1 ∨ I i = -1)
-    (hdx : I 1 * (2 * J 0 + J 1 - (2 * I 0 + I 1)) ≤ 0)
+private theorem PolyZonotope.aux_isPolytopeCex_inCone (I J : Fin 3 → ℝ)
+    (hI : ∀ i, I i = 1 ∨ I i = -1) (hdx : I 1 * (2 * J 0 + J 1 - (2 * I 0 + I 1)) ≤ 0)
     (hdy : I 0 * I 2 * (J 0 * J 2 - I 0 * I 2) ≤ 0) : -- --- CONCL ---
     IsInCone (PolyZonotope.isPolytopeCex.coraNormalCone I)
       (PolyZonotope.isPolytopeCex.coraVertex J -

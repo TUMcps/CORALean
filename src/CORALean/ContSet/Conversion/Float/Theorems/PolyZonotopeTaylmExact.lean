@@ -50,7 +50,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n)
+private theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n)
     (t : Vec ℝ (pZ.p + pZ.q)) : -- --- CONCL ---
     (pZ.taylm N i).inflated.poly t = toReal (pZ.c i)
       + ∑ j, toReal (pZ.G j i)

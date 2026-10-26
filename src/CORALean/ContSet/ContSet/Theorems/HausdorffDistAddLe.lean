@@ -55,7 +55,7 @@ variable {α : Type} [NormedAddCommGroup α]
 
 /-- One direction: a point of `S + V` has a point of `S + W` within `d_H(V, W)`
 of it, the summand from `S` kept and only the other one moved. -/
-theorem aux_exists_mem_add_dist_le {S V W : Set α} (hW : IsCompact W) (hWne : W.Nonempty)
+private theorem aux_exists_mem_add_dist_le {S V W : Set α} (hW : IsCompact W) (hWne : W.Nonempty)
     (hfin : Metric.hausdorffEDist V W ≠ ⊤) {x : α} (hx : x ∈ S + V) : -- --- CONCL ---
     ∃ y ∈ S + W, dist x y ≤ Metric.hausdorffDist V W := by -- --- PROOF ---
   obtain ⟨s, hs, v, hv, rfl⟩ := Set.mem_add.mp hx

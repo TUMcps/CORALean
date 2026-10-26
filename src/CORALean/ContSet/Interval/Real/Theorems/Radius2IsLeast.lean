@@ -42,7 +42,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The corner `sup` is `radius` from the center. -/
-theorem Interval.aux_sup_sub_center (I : Interval (Vec ℝ n)) : I.sup - I.center = I.radius := by
+private theorem Interval.aux_sup_sub_center (I : Interval (Vec ℝ n)) : I.sup - I.center =
+    I.radius := by
   have h := Interval.center_add_radius I
   rw [← h]
   abel

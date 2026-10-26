@@ -43,7 +43,7 @@ variable {h n : ℕ}
 
 /-- `Matrix.mulVec` against the transposed family is exactly the generators' linear
 combination, entry by entry. -/
-theorem aux_mulVec_genMat_eq (G : Fin h → Vec ℝ n) (v : Vec ℝ h) :
+private theorem aux_mulVec_genMat_eq (G : Fin h → Vec ℝ n) (v : Vec ℝ h) :
     (Matrix.of fun i j => G j i : Mat ℝ n h).mulVec v = ∑ j, v j • G j := by
   funext i
   simp only [Matrix.mulVec, Matrix.of_apply, dotProduct, Finset.sum_apply, Pi.smul_apply,

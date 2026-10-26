@@ -65,11 +65,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Minkowski sum of plain sets, exactly. -/
-@[reducible] def aux_paramSetPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+@[reducible] private def aux_paramSetPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_paramSetMtimes : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_paramSetMtimes : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -77,7 +77,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
-@[reducible] noncomputable def aux_paramSetMtimesInterval :
+@[reducible] private noncomputable def aux_paramSetMtimesInterval :
     Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
@@ -85,7 +85,7 @@ remainder's product is the closed convex set the exact theorem asks for. -/
 attribute [local instance] aux_paramSetPlus aux_paramSetMtimes aux_paramSetMtimesInterval
 
 /-- The member's exact orders, taken at plain sets, inside the float sum. -/
-theorem LinParamSys.aux_inputTaylorSum_subset
+private theorem LinParamSys.aux_inputTaylorSum_subset
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ i, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
@@ -112,7 +112,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset
       (Plus.plus_outer (sys.inputTaylorSumFloat r V i) _)
 
 /-- The member's remainder, closed and convexified, inside the float product. -/
-theorem LinParamSys.aux_inputRemainder_subset
+private theorem LinParamSys.aux_inputRemainder_subset
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---

@@ -59,7 +59,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `Interval.descProd` encloses the product of any matrices in the boxes. -/
-theorem Interval.aux_descProd_outer (A : ℕ → Interval (Mat 𝕋 n n)) {M : ℕ → Mat ℝ n n}
+private theorem Interval.aux_descProd_outer (A : ℕ → Interval (Mat 𝕋 n n)) {M : ℕ → Mat ℝ n n}
     (hM : ∀ k, M k ∈ (A k).construct) (hi d : ℕ) : -- --- CONCL ---
     CORALean.descProd M hi d ∈ (Interval.descProd A hi d).construct := by -- --- PROOF ---
   induction d generalizing hi with

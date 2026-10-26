@@ -58,13 +58,13 @@ variable {dy du p N r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The matrix `[A B]` of a system, the inverse of `identifyBlocks`. -/
-def aux_arxStack (sys : LinearARX ℝ dy du p) : Mat ℝ dy (p * dy + (p + 1) * du) :=
+private def aux_arxStack (sys : LinearARX ℝ dy du p) : Mat ℝ dy (p * dy + (p + 1) * du) :=
   fun a c => Fin.addCases
     (fun r => sys.Abar (finProdFinEquiv.symm r).1 a (finProdFinEquiv.symm r).2)
     (fun r => sys.Bbar (finProdFinEquiv.symm r).1 a (finProdFinEquiv.symm r).2) c
 
 /-- The blocks of the stacked matrix are the system. -/
-theorem aux_identifyBlocks_stack (sys : LinearARX ℝ dy du p) :
+private theorem aux_identifyBlocks_stack (sys : LinearARX ℝ dy du p) :
     LinearARX.identifyBlocks sys.dt (aux_arxStack sys) = sys := by
   cases sys
   simp only [LinearARX.identifyBlocks, aux_arxStack, Fin.addCases_left, Fin.addCases_right,

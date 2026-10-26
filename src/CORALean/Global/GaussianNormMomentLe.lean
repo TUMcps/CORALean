@@ -55,7 +55,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `|⟨a, g⟩|^k` is integrable under the standard Gaussian. -/
-theorem aux_gnm_integrable_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 < k) :
+private theorem aux_gnm_integrable_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 < k) :
     Integrable (fun g => |⟪a, g⟫| ^ k) (stdGaussian E) := by
   have h := (IsGaussian.memLp_dual (stdGaussian E) (innerSL ℝ a) (ENNReal.ofReal k)
     ENNReal.ofReal_ne_top).integrable_norm_rpow'
@@ -63,18 +63,18 @@ theorem aux_gnm_integrable_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 < k) :
   exact h
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
-theorem aux_gnm_continuous_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 ≤ k) :
+private theorem aux_gnm_continuous_abs_inner_rpow (a : E) {k : ℝ} (hk : 0 ≤ k) :
     Continuous (fun g : E => |⟪a, g⟫| ^ k) :=
   ((continuous_const.inner continuous_id).abs).rpow_const fun _ => Or.inr hk
 
 /-- `t ≤ 1 + t^p` for `t ≥ 0` and `p ≥ 1`. -/
-theorem aux_gnm_le_one_add_rpow {t p : ℝ} (ht : 0 ≤ t) (hp : 1 ≤ p) : t ≤ 1 + t ^ p := by
+private theorem aux_gnm_le_one_add_rpow {t p : ℝ} (ht : 0 ≤ t) (hp : 1 ≤ p) : t ≤ 1 + t ^ p := by
   rcases le_or_gt t 1 with h | h
   · linarith [Real.rpow_nonneg ht p]
   · have : t ≤ t ^ p := by simpa using Real.rpow_le_rpow_of_exponent_le h.le hp
     linarith
 
-theorem aux_gnm_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomentRoot p := by
+private theorem aux_gnm_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomentRoot p := by
   unfold gaussMomentRoot
   exact Real.rpow_nonneg (mul_nonneg (by positivity)
     (Real.Gamma_pos_of_pos (by linarith)).le) _

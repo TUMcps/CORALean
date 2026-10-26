@@ -67,13 +67,13 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Reading one entry, as an additive homomorphism. -/
-def Krylov.aux_entryHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
+private def Krylov.aux_entryHom (j k : Fin n) : Mat ℝ n n →+ ℝ where
   toFun M := M j k
   map_zero' := rfl
   map_add' _ _ := rfl
 
 /-- Reading one entry carries summability across. -/
-theorem Krylov.aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f)
+private theorem Krylov.aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f)
     (j k : Fin n) : -- --- CONCL ---
     Summable (fun i => (f i) j k) := by -- --- PROOF ---
   have hlip : LipschitzWith 1 (Krylov.aux_entryHom (n := n) j k) := by
@@ -84,7 +84,7 @@ theorem Krylov.aux_summable_entry {f : ℕ → Mat ℝ n n} (hf : Summable f)
   exact hf.map (Krylov.aux_entryHom j k) hlip.continuous
 
 /-- `|e^{At}| ≤ e^{|A|t}` entrywise, for `t ≥ 0`. -/
-theorem Krylov.aux_abs_exp_entry_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t)
+private theorem Krylov.aux_abs_exp_entry_le (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t)
     (j k : Fin n) : -- --- CONCL ---
     |(exp (t • A)) j k| ≤ (exp (t • MatExp.absMat A)) j k := by -- --- PROOF ---
   have hsA := summable_exp_smul A t

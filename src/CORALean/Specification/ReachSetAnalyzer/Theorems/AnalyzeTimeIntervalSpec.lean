@@ -51,7 +51,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop over the propositions of a list `l` of those of `obj`. -/
-theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+private theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (set : S n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) : -- --- CONCL ---
     ∀ (l : List (String × AtomicProposition S n)), (∀ q ∈ l, q ∈ obj.aps) →
     ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer ℝ S n), obj0.aps = obj.aps →

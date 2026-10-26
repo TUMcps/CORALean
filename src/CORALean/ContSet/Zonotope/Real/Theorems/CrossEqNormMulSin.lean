@@ -41,7 +41,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A vector is its norm times the cosine and sine of its argument. -/
-theorem Zonotope.aux_polar (u : Vec ℝ 2) :
+private theorem Zonotope.aux_polar (u : Vec ℝ 2) :
     u 0 = ‖(⟨u 0, u 1⟩ : ℂ)‖ * Real.cos (Complex.arg ⟨u 0, u 1⟩) ∧
     u 1 = ‖(⟨u 0, u 1⟩ : ℂ)‖ * Real.sin (Complex.arg ⟨u 0, u 1⟩) :=
   ⟨(Complex.norm_mul_cos_arg ⟨u 0, u 1⟩).symm, (Complex.norm_mul_sin_arg ⟨u 0, u 1⟩).symm⟩

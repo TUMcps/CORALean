@@ -44,7 +44,7 @@ variable {n m N M : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A fold of updates along a duplicate-free list writes each coordinate's own value. -/
-theorem NonlinearReset.aux_foldl_update_mem {g : Fin n → Fin N} (hg : Function.Injective g)
+private theorem NonlinearReset.aux_foldl_update_mem {g : Fin n → Fin N} (hg : Function.Injective g)
     (v : Fin n → ℝ) (j : Fin n) : -- --- CONCL ---
     ∀ (l : List (Fin n)) (base : Fin N → ℝ), l.Nodup → j ∈ l →
       l.foldl (fun acc k => Function.update acc (g k) (v k)) base (g j) = v j := by -- --- PROOF ---

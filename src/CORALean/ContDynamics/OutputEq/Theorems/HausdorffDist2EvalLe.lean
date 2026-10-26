@@ -64,18 +64,18 @@ noncomputable def aux_toEuclideanCLM (M : Mat ℝ r n) :
   toEuclidean.toContinuousLinearMap.comp
     ((LinearMap.toContinuousLinearMap (mulVecLin M)).comp toEuclidean.symm.toContinuousLinearMap)
 
-@[simp] theorem aux_toEuclideanCLM_apply (M : Mat ℝ r n) (x : Vec ℝ n) :
+@[simp] private theorem aux_toEuclideanCLM_apply (M : Mat ℝ r n) (x : Vec ℝ n) :
     aux_toEuclideanCLM M (toEuclidean x) = toEuclidean (mulVecLin M x) := by
   simp [aux_toEuclideanCLM]
 
 /-- `toEuclidean`'s image of a matrix's image is the conjugated map's image of `toEuclidean`'s. -/
-theorem aux_toEuclidean_image_mulVecLin (M : Mat ℝ r n) (X : Set (Vec ℝ n)) :
+private theorem aux_toEuclidean_image_mulVecLin (M : Mat ℝ r n) (X : Set (Vec ℝ n)) :
     toEuclidean '' (mulVecLin M '' X) = aux_toEuclideanCLM M '' (toEuclidean '' X) := by
   rw [Set.image_image, Set.image_image]
   exact Set.image_congr fun x _ => (aux_toEuclideanCLM_apply M x).symm
 
 /-- `hausdorffDist_image_le`, read at `‖·‖₂` on both the state and the output side. -/
-theorem aux_hausdorffDist₂_mulVecLin_le (M : Mat ℝ r n) {X1 X2 : Set (Vec ℝ n)}
+private theorem aux_hausdorffDist₂_mulVecLin_le (M : Mat ℝ r n) {X1 X2 : Set (Vec ℝ n)}
     (hX1 : IsCompact X1) (hX1ne : X1.Nonempty) (hX2 : IsCompact X2) (hX2ne : X2.Nonempty) :
     hausdorffDist₂ (mulVecLin M '' X1) (mulVecLin M '' X2)
       ≤ ‖aux_toEuclideanCLM M‖ * hausdorffDist₂ X1 X2 := by
@@ -86,7 +86,7 @@ theorem aux_hausdorffDist₂_mulVecLin_le (M : Mat ℝ r n) {X1 X2 : Set (Vec �
 
 /-- `hausdorffDist_add_le`, read at `‖·‖₂`: a fixed set added to both sides cannot move them
 apart, whichever set that is. -/
-theorem aux_hausdorffDist₂_add_le {S : Set (Vec ℝ r)} {V W : Set (Vec ℝ r)}
+private theorem aux_hausdorffDist₂_add_le {S : Set (Vec ℝ r)} {V W : Set (Vec ℝ r)}
     (hV : IsCompact V) (hVne : V.Nonempty) (hW : IsCompact W) (hWne : W.Nonempty) :
     hausdorffDist₂ (S + V) (S + W) ≤ hausdorffDist₂ V W := by
   rw [hausdorffDist₂, hausdorffDist₂, Set.image_add, Set.image_add]
@@ -94,7 +94,7 @@ theorem aux_hausdorffDist₂_add_le {S : Set (Vec ℝ r)} {V W : Set (Vec ℝ r)
     (hW.image toEuclidean.continuous) (hWne.image _)
 
 /-- [1]'s eq. (43): the output map splits into `C`'s part and the part `D` and `k` make, added. -/
-theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec ℝ n))
+private theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec ℝ n))
     (V : Set (Vec ℝ m)) : -- --- CONCL ---
     Set.image2 out.eval X V = mulVecLin (toRealMat out.C) '' X
       + (fun u => toRealMat out.D *ᵥ u + toRealVec out.k) '' V := by -- --- PROOF ---

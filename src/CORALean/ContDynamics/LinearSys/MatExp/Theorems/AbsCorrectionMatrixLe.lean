@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One order of the interpolation error, in `r` and `‖A‖`. -/
-theorem MatExp.aux_abs_corrTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) (i : ℕ)
+private theorem MatExp.aux_abs_corrTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) (i : ℕ)
     (j k : Fin n) : -- --- CONCL ---
     |MatExp.corrTerm A r (i + 2) j k|
       ≤ (Nat.factorial (i + 2) : ℝ)⁻¹ * (r * ‖A‖) ^ (i + 2) := by -- --- PROOF ---
@@ -79,7 +79,7 @@ theorem MatExp.aux_abs_corrTerm_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) (i
   ring
 
 /-- Clamping at zero never grows a value in absolute terms, either way round. -/
-theorem aux_abs_clamp_le (t : ℝ) : -- --- CONCL ---
+private theorem aux_abs_clamp_le (t : ℝ) : -- --- CONCL ---
     |min t 0| ≤ |t| ∧ |max t 0| ≤ |t| := by -- --- PROOF ---
   rcases le_total t 0 with ht | ht
   · rw [min_eq_left ht, max_eq_right ht]

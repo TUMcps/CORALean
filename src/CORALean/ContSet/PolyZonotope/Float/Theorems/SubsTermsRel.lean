@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 
 /-- If the float term lists `A`, `B` enclose the real lists `A'`, `B'` term by term (`subsRel`),
 then the float product `subsMul A B` encloses the real product `subsMul A' B'` term by term. -/
-theorem PolyZonotope.aux_subsMul_rel {A B : List ((Interval 𝕋) × (Fin p → ℕ))}
+private theorem PolyZonotope.aux_subsMul_rel {A B : List ((Interval 𝕋) × (Fin p → ℕ))}
     {A' B' : List (ℝ × (Fin p → ℕ))} (hA : PolyZonotope.subsRel A A')
     (hB : PolyZonotope.subsRel B B') : -- --- CONCL ---
     PolyZonotope.subsRel (PolyZonotope.subsMul A B)
@@ -81,7 +81,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 
 /-- `subsPow` keeps the bracket. -/
-theorem PolyZonotope.aux_subsPow_rel {A : List ((Interval 𝕋) × (Fin p → ℕ))}
+private theorem PolyZonotope.aux_subsPow_rel {A : List ((Interval 𝕋) × (Fin p → ℕ))}
     {A' : List (ℝ × (Fin p → ℕ))} (hA : PolyZonotope.subsRel A A') (d : ℕ) :
     PolyZonotope.subsRel (PolyZonotope.subsPow A d) (Real.PolyZonotope.subsPow A' d) := by
   induction d with
@@ -96,7 +96,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `subsPoly` is the stored polynomial of an output. -/
-theorem PolyZonotope.aux_subsPoly_rel {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
+private theorem PolyZonotope.aux_subsPoly_rel {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
     (ii : Fin nu) : -- --- CONCL ---
     PolyZonotope.subsRel (pZin.subsPoly ii)
       (Real.PolyZonotope.subsPoly (InflatedContSet.nominal pZin) ii) := by -- --- PROOF ---
@@ -110,7 +110,7 @@ end
 
 
 /-- `subsXprod` keeps the bracket. -/
-theorem PolyZonotope.aux_subsXprod_rel (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
+private theorem PolyZonotope.aux_subsXprod_rel (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) (i : Fin pZ.h) : -- --- CONCL ---
     PolyZonotope.subsRel (pZ.subsXprod pZin idu i)

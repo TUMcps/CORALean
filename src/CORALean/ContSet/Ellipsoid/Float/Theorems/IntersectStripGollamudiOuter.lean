@@ -63,7 +63,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A product of two bracketed factors lies between the float corner hulls. -/
-theorem Ellipsoid.aux_mul_mem_corners {a b c d : 𝕋} {y x : ℝ} (hy₁ : toReal a ≤ y)
+private theorem Ellipsoid.aux_mul_mem_corners {a b c d : 𝕋} {y x : ℝ} (hy₁ : toReal a ≤ y)
     (hy₂ : y ≤ toReal b) (hx₁ : toReal c ≤ x) (hx₂ : x ≤ toReal d) :
     toReal (Interval.mulLo a b c d) ≤ y * x ∧ y * x ≤ toReal (Interval.mulHi a b c d) := by
   have h := Real.Interval.mul_between_corners hy₁ hy₂ hx₁ hx₂
@@ -71,7 +71,7 @@ theorem Ellipsoid.aux_mul_mem_corners {a b c d : 𝕋} {y x : ℝ} (hy₁ : toRe
 
 /-- A quotient of bracketed numerator by a positive bracketed divisor lies between the corner
 quotients of the numerator's ends. -/
-theorem Ellipsoid.aux_div_between {aLo a aHi sLo s sHi : ℝ} (hs₀ : 0 < sLo) (hs₁ : sLo ≤ s)
+private theorem Ellipsoid.aux_div_between {aLo a aHi sLo s sHi : ℝ} (hs₀ : 0 < sLo) (hs₁ : sLo ≤ s)
     (hs₂ : s ≤ sHi) (ha₁ : aLo ≤ a) (ha₂ : a ≤ aHi) : -- --- CONCL ---
     min (aLo / sLo) (aLo / sHi) ≤ a / s
       ∧ a / s ≤ max (aHi / sLo) (aHi / sHi) := by -- --- PROOF ---
@@ -92,7 +92,7 @@ theorem Ellipsoid.aux_div_between {aLo a aHi sLo s sHi : ℝ} (hs₀ : 0 < sLo) 
       nlinarith
 
 /-- `S ≤ r² a` from a rounded-up quotient and a rounded-up root of it. -/
-theorem Ellipsoid.aux_le_sq_mul {S a q r : ℝ} (ha : 0 < a) (hq : S / a ≤ q)
+private theorem Ellipsoid.aux_le_sq_mul {S a q r : ℝ} (ha : 0 < a) (hq : S / a ≤ q)
     (hr : Real.sqrt q ≤ r) : -- --- CONCL ---
     S ≤ r ^ 2 * a := by -- --- PROOF ---
   rcases le_or_gt S 0 with hS | hS
@@ -109,8 +109,8 @@ theorem Ellipsoid.aux_le_sq_mul {S a q r : ℝ} (ha : 0 < a) (hq : S / a ≤ q)
 /-- The strip in the factor vector: `x = q + G u + e` with `|c x - y| ≤ φ` gives
 `|vᵀ u - δ| ≤ φ'` for `v = G cᵀ` (`G` symmetric) and the stored `δ`, `φ` widened by the box and
 the rounding gap of `δ`. -/
-theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y : 𝕋) {G : Mat ℝ n n}
-    (hG : Gᵀ = G) {u e : Vec ℝ n}
+private theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y : 𝕋)
+    {G : Mat ℝ n n} (hG : Gᵀ = G) {u e : Vec ℝ n}
     (he : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i))
     (hx : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y| ≤ toReal φ)
     : -- --- CONCL ---
@@ -158,7 +158,7 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
 
 /-- `λ`, `s = 1 - λ + λ ν` and `sigma_sq` against their directed roundings, `ν` between its
 own. -/
-theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo sHi corr
+private theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo sHi corr
     S : 𝕋} (hl0 : 0 ≤ toReal lam) (hom : 0 < toReal om) (h_om : om = subDown FloatOps.one lam)
     (h_omHi : omHi = subUp FloatOps.one lam) (hν0 : 0 ≤ ν) (hνLo : toReal νLo ≤ ν)
     (hνHi : ν ≤ toReal νHi)
@@ -235,7 +235,7 @@ theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo
 
 /-- The generator factor's conditions, from the two upward square roots and the check
 `g ≤ γ_lo`, `0 < γ_lo`: `0 < α`, `0 < α + β ν`, `S ≤ α² (1 - λ)`, `S ≤ (α + β ν)² s`. -/
-theorem Ellipsoid.aux_strip_factor {S om sLo νHi g α β γLo : 𝕋} {l ν s : ℝ} (steps : ℕ)
+private theorem Ellipsoid.aux_strip_factor {S om sLo νHi g α β γLo : 𝕋} {l ν s : ℝ} (steps : ℕ)
     (hom : 0 < toReal om) (hom₁ : toReal om ≤ 1 - l) (hν0 : 0 ≤ ν) (hνHi : ν ≤ toReal νHi)
     (hsLo₀ : 0 < toReal sLo) (hsLo : toReal sLo ≤ s)
     (h_α : α = sqrtUp steps (divUp S om)) (h_g : g = sqrtUp steps (divUp S sLo))
@@ -265,7 +265,7 @@ theorem Ellipsoid.aux_strip_factor {S om sLo νHi g α β γLo : 𝕋} {l ν s :
 
 /-- The factor `G N`, `N = α I + β v vᵀ`, `v = G cᵀ`: its value at `w` is `α G w + β (vᵀ w) W`,
 and its Gram matrix `α² Q + (2αβ + β² vᵀv) W Wᵀ`, `W = G v = Q cᵀ`. -/
-theorem Ellipsoid.aux_strip_shape {G Q : Mat ℝ n n} (hG : Gᵀ = G) (hGG : G * G = Q)
+private theorem Ellipsoid.aux_strip_shape {G Q : Mat ℝ n n} (hG : Gᵀ = G) (hGG : G * G = Q)
     (cr : Vec ℝ n) (α β : ℝ) : -- --- CONCL ---
     let v := G *ᵥ cr
     let W := Q *ᵥ cr

@@ -58,7 +58,8 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Different sides of the same partition never coincide. -/
-theorem PolyZonotope.aux_dropIndep_ne {h r n : ℕ} (partD : Split (Fin h) into (Fin n) ⊕ (Fin r))
+private theorem PolyZonotope.aux_dropIndep_ne {h r n : ℕ}
+    (partD : Split (Fin h) into (Fin n) ⊕ (Fin r))
     (j : Fin n) (j' : Fin r) : partD.right j' ≠ partD.left j := by
   simp only [Partition.right, Partition.left, Partition.on, ne_eq]
   intro heq

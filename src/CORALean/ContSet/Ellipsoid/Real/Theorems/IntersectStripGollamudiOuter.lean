@@ -57,12 +57,12 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A real positive-definite matrix is symmetric. -/
-theorem Ellipsoid.aux_transpose_eq {A : Mat ℝ n n} (hA : A.PosDef) : Aᵀ = A := by
+private theorem Ellipsoid.aux_transpose_eq {A : Mat ℝ n n} (hA : A.PosDef) : Aᵀ = A := by
   have h := hA.isHermitian.eq
   simpa [conjTranspose_eq_transpose_of_trivial] using h
 
 /-- The quadratic form of a symmetric matrix is symmetric in its two arguments. -/
-theorem Ellipsoid.aux_dot_symm {A : Mat ℝ n n} (hA : Aᵀ = A) (u v : Vec ℝ n) :
+private theorem Ellipsoid.aux_dot_symm {A : Mat ℝ n n} (hA : Aᵀ = A) (u v : Vec ℝ n) :
     u ⬝ᵥ A *ᵥ v = v ⬝ᵥ A *ᵥ u := by
   rw [← Ellipsoid.dot_transpose, hA, dotProduct_comm]
 

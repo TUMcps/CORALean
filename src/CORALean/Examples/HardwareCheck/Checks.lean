@@ -34,21 +34,21 @@ open CORALean.Float CORALean.Bench
 /-- A failure: its kind and the report line. -/
 abbrev Fail := String × String
 
-def aux_hex (b : UInt64) : String := uint64ToHex b
+private def aux_hex (b : UInt64) : String := uint64ToHex b
 
-def aux_hexF (f : Float) : String := uint64ToHex f.toBits
+private def aux_hexF (f : Float) : String := uint64ToHex f.toBits
 
-def aux_soft (x : IEEE IEEEFormat.binary64) : String :=
+private def aux_soft (x : IEEE IEEEFormat.binary64) : String :=
   match bitsOf x with
   | some b => uint64ToHex b
   | none => "overflow"
 
-def aux_expect (o : Option UInt64) : String :=
+private def aux_expect (o : Option UInt64) : String :=
   match o with
   | some b => uint64ToHex b
   | none => "nan"
 
-def aux_nan (f : Float) : Bool := f.isNaN
+private def aux_nan (f : Float) : Bool := f.isNaN
 
 
 -- ========================================  MAIN TYPE  ========================================= --

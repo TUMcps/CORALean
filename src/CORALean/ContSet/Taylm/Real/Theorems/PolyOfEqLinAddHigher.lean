@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An exponent of degree one is a unit vector. -/
-theorem Taylm.aux_degree_eq_one {e : Fin n → ℕ} (h : Taylm.degree e = 1) : -- --- CONCL ---
+private theorem Taylm.aux_degree_eq_one {e : Fin n → ℕ} (h : Taylm.degree e = 1) : -- --- CONCL ---
     ∃ k, e = Pi.single k 1 := by -- --- PROOF ---
   unfold Taylm.degree at h
   obtain ⟨k, -, hk⟩ : ∃ k ∈ Finset.univ, e k ≠ 0 := by

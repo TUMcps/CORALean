@@ -56,7 +56,7 @@ section
 variable {α : Type} [AddCommGroup α]
 
 /-- A sum over the kept columns is a sum over the plain count. -/
-theorem PolyZonotope.aux_sum_mergeKeep {p h : ℕ} (E : Fin p → Fin h → ℕ) (f : Fin h → α) :
+private theorem PolyZonotope.aux_sum_mergeKeep {p h : ℕ} (E : Fin p → Fin h → ℕ) (f : Fin h → α) :
     (∑ j ∈ PolyZonotope.mergeKeep E, f j) = ∑ j, f (PolyZonotope.aux_mergeIdx E j) := by
   rw [← Finset.sum_coe_sort (PolyZonotope.mergeKeep E) f]
   exact (Equiv.sum_comp ((PolyZonotope.mergeKeep E).orderIsoOfFin rfl).toEquiv
@@ -69,7 +69,7 @@ section
 variable {α : Type} [AddCommGroup α]
 
 /-- A column `merge` drops gathers nothing. -/
-theorem PolyZonotope.aux_fiberSum_eq_zero_of_notMem_merge {p h : ℕ} (E : Fin p → Fin h → ℕ)
+private theorem PolyZonotope.aux_fiberSum_eq_zero_of_notMem_merge {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (G : Fin h → α) {j : Fin h} (hj : j ∉ PolyZonotope.mergeKeep E) : -- --- CONCL ---
     PolyZonotope.fiberSum (PolyZonotope.rep E) G j = 0 := by -- --- PROOF ---
   rw [PolyZonotope.fiberSum]
@@ -87,7 +87,8 @@ end
 
 -- file-local: only `merge_point` below needs it
 /-- The dependent generator sum, regrouped onto the columns that survive. -/
-theorem PolyZonotope.aux_sum_merge (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_sum_merge (pZ : PolyZonotope α)
+    (a : Fin pZ.p → ℝ) : -- --- CONCL ---
     (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i)
       = ∑ j : Fin pZ.merge.h,
           PolyZonotope.monomial pZ.merge.E a j • pZ.merge.G j := by -- --- PROOF ---

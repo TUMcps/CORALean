@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinate is at most the Euclidean norm. -/
-theorem Capsule.aux_abs_le_norm₂ (v : Vec ℝ n) (i : Fin n) : |v i| ≤ ‖v‖₂ := by
+private theorem Capsule.aux_abs_le_norm₂ (v : Vec ℝ n) (i : Fin n) : |v i| ≤ ‖v‖₂ := by
   refine Real.abs_le_sqrt ?_
   exact Finset.single_le_sum (f := fun j => v j ^ 2) (fun j _ => sq_nonneg (v j))
     (Finset.mem_univ i)

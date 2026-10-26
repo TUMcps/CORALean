@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The appended factors sit at exponent zero, so each monomial is the one the
 original exponent matrix gives at the factors it already had. -/
-theorem PolyZonotope.aux_monomial_padBack {p s : ℕ} (E : Fin p → Fin s → ℕ) (r : ℕ)
+private theorem PolyZonotope.aux_monomial_padBack {p s : ℕ} (E : Fin p → Fin s → ℕ) (r : ℕ)
     (a : Fin (p + r) → ℝ) (i : Fin s) : -- --- CONCL ---
     PolyZonotope.monomial (PolyZonotope.padE E r) a i
       = PolyZonotope.monomial E (a ∘ Fin.castAdd r) i := by -- --- PROOF ---

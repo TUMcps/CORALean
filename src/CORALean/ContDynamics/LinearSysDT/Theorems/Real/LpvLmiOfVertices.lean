@@ -65,7 +65,7 @@ variable {n ny nd r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- a weighted double sum of block matrices is the block matrix of the sums
-theorem LinearSysDT.aux_sum_fromBlocks {a b c d : Type} [Fintype a] [Fintype b] [Fintype c]
+private theorem LinearSysDT.aux_sum_fromBlocks {a b c d : Type} [Fintype a] [Fintype b] [Fintype c]
     [Fintype d] (w : Fin r → Fin r → ℝ) (M₁ : Fin r → Fin r → Matrix a c ℝ)
     (M₂ : Fin r → Fin r → Matrix a d ℝ) (M₃ : Fin r → Fin r → Matrix b c ℝ)
     (M₄ : Fin r → Fin r → Matrix b d ℝ) : -- --- CONCL ---
@@ -75,7 +75,7 @@ theorem LinearSysDT.aux_sum_fromBlocks {a b c d : Type} [Fintype a] [Fintype b] 
   ext (x | x) (y | y) <;> simp [Matrix.sum_apply, fromBlocks]
 
 -- the same for columns
-theorem LinearSysDT.aux_sum_fromCols {a c d : Type} [Fintype c] [Fintype d]
+private theorem LinearSysDT.aux_sum_fromCols {a c d : Type} [Fintype c] [Fintype d]
     (w : Fin r → Fin r → ℝ) (M₁ : Fin r → Fin r → Matrix a c ℝ)
     (M₂ : Fin r → Fin r → Matrix a d ℝ) : -- --- CONCL ---
     ∑ i, ∑ j, w i j • fromCols (M₁ i j) (M₂ i j) =
@@ -83,7 +83,7 @@ theorem LinearSysDT.aux_sum_fromCols {a c d : Type} [Fintype c] [Fintype d]
   ext x (y | y) <;> simp [Matrix.sum_apply]
 
 -- a double sum of `ρᵢρⱼ Kᵢ Mⱼ` factors
-theorem LinearSysDT.aux_sum_mul {k l : ℕ} (ρ : Fin r → ℝ) (K : Fin r → Mat ℝ n k)
+private theorem LinearSysDT.aux_sum_mul {k l : ℕ} (ρ : Fin r → ℝ) (K : Fin r → Mat ℝ n k)
     (M : Fin r → Mat ℝ k l) : -- --- CONCL ---
     ∑ i, ∑ j, (ρ i * ρ j) • (K i * M j) =
       (∑ i, ρ i • K i) * (∑ j, ρ j • M j) := by -- --- PROOF ---

@@ -54,7 +54,7 @@ variable {m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec ℝ m)) (N : ℕ) (i : Fin m)
+private theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec ℝ m)) (N : ℕ) (i : Fin m)
     (t : Vec ℝ (pZ.p + pZ.q)) : -- --- CONCL ---
     (pZ.taylm N i).poly t = pZ.c i
       + ∑ j, PolyZonotope.monomial pZ.E (fun k => t (Fin.castAdd pZ.q k)) j * pZ.G j i

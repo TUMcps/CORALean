@@ -57,7 +57,8 @@ section
 variable {α : Type}
 
 /-- A point of `X` outside `S` refutes the safe-set specification for `X`. -/
-theorem Specification.aux_not_holds_safeSet_of_mem {S X : Set α} {x : α} (hx : x ∈ X) (hS : x ∉ S) :
+private theorem Specification.aux_not_holds_safeSet_of_mem {S X : Set α} {x : α} (hx : x ∈ X)
+    (hS : x ∉ S) :
     ¬ (Specification.safeSet S).Holds X :=
   fun h => hS (h hx)
 

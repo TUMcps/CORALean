@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- The sweep reports as soon as its fuel reaches an order coarse enough to drop no
 generator, and every earlier candidate it accepts reports too. -/
-theorem aux_autoTuneSetOrder_exists {le : ℝ → ℝ → Bool}
+private theorem aux_autoTuneSetOrder_exists {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, a ≤ b → le a b = true) (Z : Zonotope (Vec ℝ n)) {εrτ : ℝ}
     (hεrτ : 0 ≤ εrτ) : -- --- CONCL ---
     ∀ (m ρ : ℕ), Z.h ≤ (ρ + 1 + m) * n →

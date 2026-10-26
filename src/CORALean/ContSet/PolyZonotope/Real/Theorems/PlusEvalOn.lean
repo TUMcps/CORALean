@@ -56,20 +56,22 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s dependent generator count, read through the
 projection because that is the form the goal has. -/
-theorem PolyZonotope.aux_plus_sum_h {pZ₁ pZ₂ : PolyZonotope α} (f : Fin (pZ₁.h + pZ₂.h) → α) :
+private theorem PolyZonotope.aux_plus_sum_h {pZ₁ pZ₂ : PolyZonotope α}
+    (f : Fin (pZ₁.h + pZ₂.h) → α) :
     ∑ i : Fin (pZ₁.plus pZ₂).h, f i
       = ∑ i, f (Fin.castAdd pZ₂.h i) + ∑ i, f (Fin.natAdd pZ₁.h i) :=
   Fin.sum_univ_add f
 
 omit [Module ℝ α] in
 /-- The same at the independent generator count. -/
-theorem PolyZonotope.aux_plus_sum_q {pZ₁ pZ₂ : PolyZonotope α} (f : Fin (pZ₁.q + pZ₂.q) → α) :
+private theorem PolyZonotope.aux_plus_sum_q {pZ₁ pZ₂ : PolyZonotope α}
+    (f : Fin (pZ₁.q + pZ₂.q) → α) :
     ∑ j : Fin (pZ₁.plus pZ₂).q, f j
       = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=
   Fin.sum_univ_add f
 
 /-- The sum's evaluated point, split along the two blocks the append makes. -/
-theorem PolyZonotope.aux_plus_eval (pZ₁ pZ₂ : PolyZonotope α) (a₁ : Fin pZ₁.p → ℝ)
+private theorem PolyZonotope.aux_plus_eval (pZ₁ pZ₂ : PolyZonotope α) (a₁ : Fin pZ₁.p → ℝ)
     (a₂ : Fin pZ₂.p → ℝ) (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) : -- --- CONCL ---
     (pZ₁.plus pZ₂).point (Fin.append a₁ a₂)
         + ∑ j, Fin.append β₁ β₂ j • (pZ₁.plus pZ₂).GI j

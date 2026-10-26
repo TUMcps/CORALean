@@ -55,7 +55,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- `stepInputConst`, read back as the propagator integrated against `c` on the
 step's own clock: `expIntegral_mulVec` composed with the substitution that
 turns `Δt - σ` back into `σ`. -/
-theorem aux_stepInputConst_eq_shifted (sys : LinearSys 𝕋 n) (c : Vec ℝ n) {Δt : ℝ}
+private theorem aux_stepInputConst_eq_shifted (sys : LinearSys 𝕋 n) (c : Vec ℝ n) {Δt : ℝ}
     (hΔt : 0 ≤ Δt) :
     sys.stepInputConst c Δt
       = ∫ σ in (0:ℝ)..Δt, exp ((Δt - σ) • toRealMat sys.A) *ᵥ c := by

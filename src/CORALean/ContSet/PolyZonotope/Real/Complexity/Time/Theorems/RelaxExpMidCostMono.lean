@@ -44,14 +44,14 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Monotone in the factor count. -/
-theorem PolyZonotope.aux_eDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
+private theorem PolyZonotope.aux_eDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
     PolyZonotope.aux_eDriftCost p ≤ PolyZonotope.aux_eDriftCost p' := by
   simp only [PolyZonotope.aux_eDriftCost, Cost.le_iff, Cost.ops_add]
   omega
 
 
 /-- Monotone in the factor count. -/
-theorem PolyZonotope.aux_relaxDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
+private theorem PolyZonotope.aux_relaxDriftCost_mono {p p' : ℕ} (h : p ≤ p') :
     PolyZonotope.aux_relaxDriftCost p ≤ PolyZonotope.aux_relaxDriftCost p' := by
   have := PolyZonotope.aux_eDriftCost_mono h
   simp only [PolyZonotope.aux_relaxDriftCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢

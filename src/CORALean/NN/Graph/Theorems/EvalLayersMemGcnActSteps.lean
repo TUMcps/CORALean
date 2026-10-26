@@ -63,7 +63,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The point of `dependent` at `(a, b)` is the old point at `a` plus the weighted independent
 generators. -/
-theorem PolyZonotope.aux_dependent_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ)
+private theorem PolyZonotope.aux_dependent_point (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ)
     (b : Fin pZ.q → ℝ) : -- --- CONCL ---
     pZ.dependent.point (Fin.append a b) = pZ.point a + ∑ j, b j • pZ.GI j := by -- --- PROOF ---
   show pZ.c + ∑ i : Fin (pZ.h + pZ.q), PolyZonotope.monomial
@@ -83,7 +83,7 @@ end
 
 
 /-- Appending after a cast of the first block is casting the append. -/
-theorem aux_append_cast {m m' n : ℕ} (e : m' = m) (a : Fin m → ℝ) (β : Fin n → ℝ)
+private theorem aux_append_cast {m m' n : ℕ} (e : m' = m) (a : Fin m → ℝ) (β : Fin n → ℝ)
     (e' : m' + n = m + n) :
     (fun k : Fin (m' + n) => (Fin.append a β : Fin (m + n) → ℝ) (Fin.cast e' k))
       = Fin.append (fun k : Fin m' => a (Fin.cast e k)) β := by

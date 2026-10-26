@@ -74,7 +74,7 @@ open Matrix
 variable {m n : ℕ}
 
 /-- A selected coordinate reads `v`. -/
-theorem _root_.CORALean.aux_jacobiSlice_apply_ind (xc : Fin m → ℝ) {ind : Fin n → Fin m}
+private theorem _root_.CORALean.aux_jacobiSlice_apply_ind (xc : Fin m → ℝ) {ind : Fin n → Fin m}
     (hind : Function.Injective ind) (v : Fin n → ℝ) (i : Fin n) :
     jacobiSlice xc ind v (ind i) = v i := by
   simp only [jacobiSlice, Pi.add_apply, mulVec, dotProduct, of_apply, Pi.sub_apply]
@@ -84,7 +84,7 @@ theorem _root_.CORALean.aux_jacobiSlice_apply_ind (xc : Fin m → ℝ) {ind : Fi
 
 
 /-- A coordinate not selected reads `xc`. -/
-theorem _root_.CORALean.aux_jacobiSlice_apply_of_ne (xc : Fin m → ℝ) {ind : Fin n → Fin m}
+private theorem _root_.CORALean.aux_jacobiSlice_apply_of_ne (xc : Fin m → ℝ) {ind : Fin n → Fin m}
     (v : Fin n → ℝ)
     {k : Fin m} (hk : ∀ i, ind i ≠ k) : jacobiSlice xc ind v k = xc k := by
   simp [jacobiSlice, mulVec, dotProduct, hk]
@@ -93,8 +93,8 @@ end
 
 
 /-- `jacobianBox` encloses the Jacobian. -/
-theorem PolyZonotope.aux_jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (X : Interval (Vec 𝕋 pZ.p))
-    {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) : -- --- CONCL ---
+private theorem PolyZonotope.aux_jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 n))
+    (X : Interval (Vec 𝕋 pZ.p)) {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) : -- --- CONCL ---
     Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a ∈
       (PolyZonotope.jacobianBox pZ X).construct := by -- --- PROOF ---
   rw [PolyZonotope.jacobianBox, Interval.materialiseMat_eq]
@@ -123,7 +123,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 
 /-- The slice through a point lies in `aux_sliceBox`. -/
-theorem PolyZonotope.aux_jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p)) {ind : Fin n → Fin p}
+private theorem PolyZonotope.aux_jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p))
+    {ind : Fin n → Fin p}
     (hind : Function.Injective ind) (U : Interval (Vec 𝕋 n)) {xc : Vec ℝ p} {v : Vec ℝ n}
     (hv : v ∈ U.construct)
     (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k))
@@ -150,7 +151,7 @@ end
 
 
 /-- The dependent point map is a polynomial, so `C¹`. -/
-theorem PolyZonotope.aux_contDiff_point (pZ : CORALean.Real.PolyZonotope (Vec ℝ n)) :
+private theorem PolyZonotope.aux_contDiff_point (pZ : CORALean.Real.PolyZonotope (Vec ℝ n)) :
     ContDiff ℝ 1 pZ.point := by
   unfold CORALean.Real.PolyZonotope.point CORALean.Real.PolyZonotope.monomial
   refine contDiff_const.add (ContDiff.sum fun l _ => ?_)

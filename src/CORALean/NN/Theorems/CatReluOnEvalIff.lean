@@ -51,7 +51,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A `0`/`1` matrix read into ℝ, times `x`: the coordinates its diagonal keeps. -/
-theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p] (x : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p]
+    (x : Vec ℝ n) : -- --- CONCL ---
     toRealMat (fun r c => if r = c ∧ p r then (one : 𝕋) else zero) *ᵥ x
       = fun j => if p j then x j else 0 := by -- --- PROOF ---
   funext j
@@ -62,7 +63,7 @@ theorem aux_mulVec_diag (p : Fin n → Prop) [DecidablePred p] (x : Vec ℝ n) :
   by_cases hp : p j <;> simp [hp, toReal_one, toReal_zero]
 
 /-- One `ReLUᵢ` replaces coordinate `i` by `max(xᵢ, 0)`. -/
-theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
     Cat.Evaluates (𝕋 := 𝕋) (.cases 2 ![.nonneg i, .neg i]
       ![.affine (fun r c => if r = c then one else zero) (fun _ => zero),
         .affine (fun r c => if r = c ∧ r ≠ i then one else zero) (fun _ => zero)]) x y
@@ -127,7 +128,7 @@ theorem aux_eval_step_iff (i : Fin n) (x y : Vec ℝ n) : -- --- CONCL ---
         exact Cat.Evaluates.affine _ _ x
 
 /-- Over a list, the coordinates it names. -/
-theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_reluOn_eval_iff (l : List (Fin n)) (x y : Vec ℝ n) : -- --- CONCL ---
     (Cat.reluOn (𝕋 := 𝕋) l).Evaluates x y
       ↔ y = fun j => if j ∈ l then Real.relu (x j) else x j := by -- --- PROOF ---
   induction l generalizing x y with

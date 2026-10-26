@@ -47,13 +47,13 @@ section
 variable {T : Type} [LinearOrder T] [Zero T]
 
 /-- The signal with the single time point `0`. -/
-theorem aux_at_one (p v : Bool) (t : T) (ht : 0 ≤ t) :
+private theorem aux_at_one (p v : Bool) (t : T) (ht : 0 ≤ t) :
     (PointSegmentSignal.mk [0] [p, v]).at t = if t = 0 then p else v := by
   simp [PointSegmentSignal.at, List.takeWhile, ht, eq_comm]
 
 
 /-- The signal with time points `0` and `a`. -/
-theorem aux_at_two (a : T) (p0 v0 p1 v1 : Bool) (t : T) (ht : 0 ≤ t) :
+private theorem aux_at_two (a : T) (p0 v0 p1 v1 : Bool) (t : T) (ht : 0 ≤ t) :
     (PointSegmentSignal.mk [0, a] [p0, v0, p1, v1]).at t =
       if t < a then (if t = 0 then p0 else v0) else if t = a then p1 else v1 := by
   by_cases h1 : a ≤ t
@@ -62,7 +62,7 @@ theorem aux_at_two (a : T) (p0 v0 p1 v1 : Bool) (t : T) (ht : 0 ≤ t) :
 
 
 /-- The signal with time points `0`, `a` and `b`. -/
-theorem aux_at_three (a b : T) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool) (t : T)
+private theorem aux_at_three (a b : T) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool) (t : T)
     (ht : 0 ≤ t) : -- --- CONCL ---
     (PointSegmentSignal.mk [0, a, b] [p0, v0, p1, v1, p2, v2]).at t =
       if t < a then (if t = 0 then p0 else v0) else if t = a then p1
@@ -77,14 +77,15 @@ theorem aux_at_three (a b : T) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool) (t : T)
 
 
 /-- The one-point signal is valid. -/
-theorem aux_valid_one (p v : Bool) :
+private theorem aux_valid_one (p v : Bool) :
     (PointSegmentSignal.mk [0] [p, v] : PointSegmentSignal T).IsValid := by
   refine ⟨by simp, by simp, by simp, by simp, ?_⟩
   intro i hi hi'; simp at hi'; omega
 
 
 /-- The two-point signal is valid when its second point is not redundant. -/
-theorem aux_valid_two (a : T) (ha : 0 < a) (p0 v0 p1 v1 : Bool) (h : ¬ (p1 = v1 ∧ p1 = v0)) :
+private theorem aux_valid_two (a : T) (ha : 0 < a) (p0 v0 p1 v1 : Bool)
+    (h : ¬ (p1 = v1 ∧ p1 = v0)) :
     (PointSegmentSignal.mk [0, a] [p0, v0, p1, v1]).IsValid := by
   refine ⟨by simp, by simp, by simp, by simp [ha], ?_⟩
   intro i hi hi'; simp at hi'; obtain rfl : i = 1 := by omega
@@ -92,7 +93,7 @@ theorem aux_valid_two (a : T) (ha : 0 < a) (p0 v0 p1 v1 : Bool) (h : ¬ (p1 = v1
 
 
 /-- The three-point signal is valid when its inner points are not redundant. -/
-theorem aux_valid_three (a b : T) (ha : 0 < a) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool)
+private theorem aux_valid_three (a b : T) (ha : 0 < a) (hab : a < b) (p0 v0 p1 v1 p2 v2 : Bool)
     (h1 : ¬ (p1 = v1 ∧ p1 = v0)) (h2 : ¬ (p2 = v2 ∧ p2 = v1)) : -- --- CONCL ---
     (PointSegmentSignal.mk [0, a, b] [p0, v0, p1, v1, p2, v2]).IsValid := by -- --- PROOF ---
   refine ⟨by simp, by simp, by simp, by simp [ha, hab, ha.trans hab], ?_⟩
@@ -103,14 +104,14 @@ theorem aux_valid_three (a b : T) (ha : 0 < a) (hab : a < b) (p0 v0 p1 v1 p2 v2 
 
 
 /-- The claim of `indicator_spec` for one explicit signal. -/
-def aux_Spec (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
+private def aux_Spec (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
     (s : PointSegmentSignal T) : Prop :=
   s.IsValid ∧ ∀ t : T, 0 ≤ t → (STLInterval.IsInBounds lb ub lc rc t → s.at t = val) ∧
     (¬ STLInterval.IsInBounds lb ub lc rc t → s.at t = default)
 
 
 /-- An empty interval or equal values: the constant signal. -/
-theorem aux_empty (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
+private theorem aux_empty (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
     (h : val = default ∨ STLInterval.emptyBounds lb ub lc rc = true) : -- --- CONCL ---
     aux_Spec lb ub lc rc val default ⟨[0], [default, default]⟩ := by -- --- PROOF ---
   refine ⟨aux_valid_one _ _, fun t ht => ?_⟩
@@ -123,7 +124,7 @@ theorem aux_empty (lb : T) (ub : WithTop T) (lc rc : Bool) (val default : Bool)
 
 
 /-- An interval starting after `0` and unbounded: two time points. -/
-theorem aux_top_pos (lo : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
+private theorem aux_top_pos (lo : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
     (hlo : 0 < lo) : -- --- CONCL ---
     aux_Spec lo ⊤ lc rc val default
       ⟨[0, lo], [default, default, if lc = true then val else default, val]⟩ := by -- --- PROOF ---
@@ -135,7 +136,7 @@ theorem aux_top_pos (lo : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ 
 
 
 /-- An interval starting at `0` and unbounded: one time point. -/
-theorem aux_top_zero (lc rc : Bool) (val default : Bool) (hne : val ≠ default) :
+private theorem aux_top_zero (lc rc : Bool) (val default : Bool) (hne : val ≠ default) :
     aux_Spec (0 : T) ⊤ lc rc val default
       ⟨[0], [if lc = true then val else default, val]⟩ := by
   refine ⟨aux_valid_one _ _, fun t ht => ?_⟩
@@ -145,7 +146,7 @@ theorem aux_top_zero (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
 
 
 /-- A single time after `0`: two time points. -/
-theorem aux_eq_pos (lo : T) (val default : Bool) (hne : val ≠ default)
+private theorem aux_eq_pos (lo : T) (val default : Bool) (hne : val ≠ default)
     (hlo : 0 < lo) : -- --- CONCL ---
     aux_Spec lo (lo : WithTop T) true true val default
       ⟨[0, lo], [default, default, val, default]⟩ := by -- --- PROOF ---
@@ -157,7 +158,7 @@ theorem aux_eq_pos (lo : T) (val default : Bool) (hne : val ≠ default)
 
 
 /-- The time `0` alone: one time point. -/
-theorem aux_eq_zero (val default : Bool) (hne : val ≠ default) :
+private theorem aux_eq_zero (val default : Bool) (hne : val ≠ default) :
     aux_Spec (0 : T) ((0 : T) : WithTop T) true true val default
       ⟨[0], [val, default]⟩ := by
   refine ⟨aux_valid_one _ _, fun t ht => ?_⟩
@@ -172,7 +173,7 @@ section
 variable {T : Type} [LinearOrder T] [Zero T]
 set_option maxHeartbeats 120000 in -- many cases
 /-- A bounded interval starting after `0`: three time points. -/
-theorem aux_lt_pos (lo s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
+private theorem aux_lt_pos (lo s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
     (hlo : 0 < lo) (hls : lo < s) : -- --- CONCL ---
     aux_Spec lo (s : WithTop T) lc rc val default
       ⟨[0, lo, s], [default, default, if lc = true then val else default, val,
@@ -191,7 +192,7 @@ theorem aux_lt_pos (lo s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠
 
 
 /-- A bounded interval starting at `0`: two time points. -/
-theorem aux_lt_zero (s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
+private theorem aux_lt_zero (s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ default)
     (hs : 0 < s) : -- --- CONCL ---
     aux_Spec (0 : T) (s : WithTop T) lc rc val default
       ⟨[0, s], [if lc = true then val else default, val,
@@ -205,8 +206,8 @@ theorem aux_lt_zero (s : T) (lc rc : Bool) (val default : Bool) (hne : val ≠ d
 
 
 /-- An indicator signal is the indicator. -/
-theorem PointSegmentSignal.aux_indicatorBounds_spec {T : Type} [LinearOrder T] [Zero T] (lo : T)
-    (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lo) (val default : Bool) : -- --- CONCL ---
+private theorem PointSegmentSignal.aux_indicatorBounds_spec {T : Type} [LinearOrder T] [Zero T]
+    (lo : T) (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lo) (val default : Bool) : -- --- CONCL ---
     (PointSegmentSignal.indicatorBounds lo up lc rc val default).IsValid ∧ ∀ t : T, 0 ≤ t →
       (STLInterval.IsInBounds lo up lc rc t →
         (PointSegmentSignal.indicatorBounds lo up lc rc val default).at t = val) ∧

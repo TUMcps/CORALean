@@ -73,7 +73,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 
 /-- Eq. (47) chooses between two orders, and eq. (46) may keep the one in hand:
 those are the only three values line 13 can report. -/
-theorem aux_tuneAbstrOrder_mem (le : ℝ → ℝ → Bool) (ζK φstar rabs rabsLast : ℝ)
+private theorem aux_tuneAbstrOrder_mem (le : ℝ → ℝ → Bool) (ζK φstar rabs rabsLast : ℝ)
     (d1 d2 : Fin n → ℝ) {κ : ℕ} (hκ : κ = 1 ∨ κ = 2) : -- --- CONCL ---
     aux_tuneAbstrOrder le ζK φstar rabs rabsLast d1 d2 κ = 1 ∨
       aux_tuneAbstrOrder le ζK φstar rabs rabsLast d1 d2 κ = 2 := by -- --- PROOF ---

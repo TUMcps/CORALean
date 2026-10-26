@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The count arithmetic, and all of it: two budgets summing to at most `K`,
 each clamped to the block it cuts, plus the `m` the box adds. -/
-theorem ConPolyZono.aux_order_arith {d K h qI m : ℕ} (hd : d ≤ K) :
+private theorem ConPolyZono.aux_order_arith {d K h qI m : ℕ} (hd : d ≤ K) :
     min d h + (min (K - d) qI + m) ≤ K + m := by omega
 
 

@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Zonotope.reduceBy` carries the coefficients of the kept generators over. -/
-theorem Zonotope.aux_reduceBy_coeff (Z : Zonotope (Vec 𝕋 n))
+private theorem Zonotope.aux_reduceBy_coeff (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (β : Fin Z.h → ℝ)
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     ∃ ξ : Fin (q + n) → ℝ, (∀ j, |ξ j| ≤ 1) ∧ (∀ l, ξ (Fin.castAdd n l) = β (part.left l))

@@ -54,13 +54,13 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the coordinate `⟨c, b⟩` of a stack is coordinate `b` of block `c`
-theorem aux_stack_apply {d : Fin k → ℕ} (z : ∀ i, Vec ℝ (d i)) (c : Fin k) (b : Fin (d c)) :
+private theorem aux_stack_apply {d : Fin k → ℕ} (z : ∀ i, Vec ℝ (d i)) (c : Fin k) (b : Fin (d c)) :
     stack z (finSigmaFinEquiv ⟨c, b⟩) = z c b := by
   unfold stack
   rw [Equiv.symm_apply_apply]
 
 -- a matrix over the stacked coordinates, applied to a stack, as a double sum over the blocks
-theorem aux_reindex_mulVec_stack {d e : Fin k → ℕ}
+private theorem aux_reindex_mulVec_stack {d e : Fin k → ℕ}
     (M : Matrix (Σ i, Fin (d i)) (Σ i, Fin (e i)) ℝ) (z : ∀ i, Vec ℝ (e i))
     (p : Σ i, Fin (d i)) : -- --- CONCL ---
     (Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv M *ᵥ stack z) (finSigmaFinEquiv p) =
@@ -71,7 +71,7 @@ theorem aux_reindex_mulVec_stack {d e : Fin k → ℕ}
   simp only [Equiv.symm_apply_apply, aux_stack_apply]
 
 -- a matrix over the stacked rows, applied to a vector
-theorem aux_reindex_mulVec {d : Fin k → ℕ} (M : Matrix (Σ i, Fin (d i)) (Fin m) ℝ)
+private theorem aux_reindex_mulVec {d : Fin k → ℕ} (M : Matrix (Σ i, Fin (d i)) (Fin m) ℝ)
     (g : Vec ℝ m) (p : Σ i, Fin (d i)) :
     (Matrix.reindex finSigmaFinEquiv (Equiv.refl _) M *ᵥ g) (finSigmaFinEquiv p) =
       ∑ a, M p a * g a := by

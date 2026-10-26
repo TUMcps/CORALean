@@ -51,7 +51,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A diagonal inequality read as reals: the diagonal of the slacks. -/
-theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin k → 𝕋)
+private theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin k → 𝕋)
     (x : Vec ℝ n) : -- --- CONCL ---
     (toRealMat (fun p q => if p = q then d p else zero) +
       ∑ i, x i • toRealMat (fun p q => if p = q then neg (C i p) else zero) : Mat ℝ k k)

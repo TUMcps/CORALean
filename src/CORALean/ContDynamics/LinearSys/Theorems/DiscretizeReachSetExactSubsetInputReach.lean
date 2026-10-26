@@ -61,14 +61,15 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- `e^{cA}e^{dA} = e^{(c+d)A}`: the two exponentials commute, both being
 powers of the same matrix. -/
-theorem aux_exp_add (A : Mat ℝ n n) (c d : ℝ) : exp (c • A) * exp (d • A) = exp ((c + d) • A) := by
+private theorem aux_exp_add (A : Mat ℝ n n) (c d : ℝ) : exp (c • A) * exp (d • A) = exp
+    ((c + d) • A) := by
   have hc : Commute (c • A) (d • A) := ((Commute.refl A).smul_left c).smul_right d
   rw [add_smul]
   exact (exp_add_of_commute hc).symm
 
 /-- Over `[0, 0]` any admissible input contributes the empty integral, and a
 nonempty `U` has one: hold it at any of its points. -/
-theorem aux_zero_mem_inputReach_zero (sys : LinearSys 𝕋 n) (U : S n)
+private theorem aux_zero_mem_inputReach_zero (sys : LinearSys 𝕋 n) (U : S n)
     (hne : (construct U).Nonempty) : (0 : Vec ℝ n) ∈ sys.inputReach U 0 :=
   ⟨fun _ => hne.some, fun _ _ => hne.some_mem, aestronglyMeasurable_const, by simp⟩
 

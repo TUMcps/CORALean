@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row applied to a short vector moves by at most its absolute sum times the bound. -/
-theorem HPolytope.aux_row_move {m : ℕ} (M : Mat 𝕋 m n) (v : Vec ℝ n) {δ : ℝ} (hδ : 0 ≤ δ)
+private theorem HPolytope.aux_row_move {m : ℕ} (M : Mat 𝕋 m n) (v : Vec ℝ n) {δ : ℝ} (hδ : 0 ≤ δ)
     (hv : ∀ j, |v j| ≤ δ) (i : Fin m) : -- --- CONCL ---
     |(toRealMat M *ᵥ v) i| ≤ δ * toReal (radius M i) := by -- --- PROOF ---
   calc |(toRealMat M *ᵥ v) i| = |∑ j, toReal (M i j) * v j| := rfl

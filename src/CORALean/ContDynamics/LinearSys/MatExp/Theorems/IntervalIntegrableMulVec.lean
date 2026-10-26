@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A vector-valued map is integrable if each coordinate is. -/
-theorem aux_intervalIntegrable_of_coord {f : ℝ → Vec ℝ n} {a b : ℝ}
+private theorem aux_intervalIntegrable_of_coord {f : ℝ → Vec ℝ n} {a b : ℝ}
     (hf : ∀ i, IntervalIntegrable (fun s => f s i) volume a b) :
     IntervalIntegrable f volume a b :=
   ⟨Integrable.of_eval fun i => (hf i).1, Integrable.of_eval fun i => (hf i).2⟩

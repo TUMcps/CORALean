@@ -60,7 +60,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [∀ n, OfPoint (S
 
 /-- The state deviation from the nominal run: the initial one carried through, and the
 disturbances. -/
-theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
+private theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
     {x : ℕ → Vec ℝ n} {w : ℕ → Vec ℝ sys.r}
     (hx : ∀ j, x (j + 1) = sys.A *ᵥ x j + sys.B *ᵥ u j + sys.c + sys.E *ᵥ w j)
     (j : ℕ) : -- --- CONCL ---
@@ -87,7 +87,7 @@ theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u : ℕ �
     abel
 
 /-- The disturbances' part of the deviation set holds the sum, one member of `W` per term. -/
-theorem aux_conform_add (sys : LinearSysDT ℝ n) (W : S sys.r)
+private theorem aux_conform_add (sys : LinearSysDT ℝ n) (W : S sys.r)
     (ω : ℕ → Vec ℝ sys.r) (hω : ∀ j, ω j ∈ construct W) (k : ℕ) : -- --- CONCL ---
     ∑ j ∈ Finset.range k, (sys.C * sys.A ^ j) *ᵥ (sys.E *ᵥ ω j)
       ∈ construct (sys.conformAdd W k) := by -- --- PROOF ---

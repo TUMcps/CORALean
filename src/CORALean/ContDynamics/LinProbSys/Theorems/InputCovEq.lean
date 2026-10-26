@@ -59,7 +59,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exponential of a scaled diagonal matrix is diagonal. -/
-theorem LinProbSys.aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
+private theorem LinProbSys.aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
     exp (s • diagonal l) = diagonal (fun i => Real.exp (s * l i)) := by
   rw [← diagonal_smul, Matrix.exp_diagonal]
   congr 1
@@ -67,8 +67,8 @@ theorem LinProbSys.aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
   simp [Real.exp_eq_exp_ℝ]
 
 /-- An entry of the noise covariance of a diagonal system, the case `λ_i + λ_j = 0` included. -/
-theorem LinProbSys.aux_noiseCovariance_diagonal_apply (l : Fin n → ℝ) (C : Mat ℝ n m) (t : ℝ)
-    (i j : Fin n) : -- --- CONCL ---
+private theorem LinProbSys.aux_noiseCovariance_diagonal_apply (l : Fin n → ℝ) (C : Mat ℝ n m)
+    (t : ℝ) (i j : Fin n) : -- --- CONCL ---
     noiseCovariance (diagonal l) C t i j
       = if l i + l j = 0 then (C * C.transpose) i j * t
         else (C * C.transpose) i j / (l i + l j)
@@ -87,7 +87,7 @@ theorem LinProbSys.aux_noiseCovariance_diagonal_apply (l : Fin n → ℝ) (C : M
   · exact noiseCovariance_diagonal l C t i j h
 
 /-- The noise covariance under a change of coordinates `A = V Λ V⁻¹`. -/
-theorem LinProbSys.aux_noiseCovariance_conj (V Λ : Mat ℝ n n) (hV : IsUnit V.det)
+private theorem LinProbSys.aux_noiseCovariance_conj (V Λ : Mat ℝ n n) (hV : IsUnit V.det)
     (C : Mat ℝ n n) (t : ℝ) : -- --- CONCL ---
     noiseCovariance (V * Λ * V⁻¹) C t
       = V * noiseCovariance Λ (V⁻¹ * C) t * Vᵀ := by -- --- PROOF ---

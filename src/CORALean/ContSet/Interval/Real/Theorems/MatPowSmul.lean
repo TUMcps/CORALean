@@ -45,26 +45,26 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The least corner product scales by both factors' non-negative scales. -/
-theorem aux_mulLo_scale {a b c d x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
+private theorem aux_mulLo_scale {a b c d x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
     Interval.mulLo (x * a) (x * b) (y * c) (y * d) = x * y * Interval.mulLo a b c d := by
   have e : ∀ p q : ℝ, x * p * (y * q) = x * y * (p * q) := fun p q => by ring
   simp only [Interval.mulLo, e, mul_min_of_nonneg _ _ (mul_nonneg hx hy)]
 
 /-- The greatest likewise. -/
-theorem aux_mulHi_scale {a b c d x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
+private theorem aux_mulHi_scale {a b c d x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
     Interval.mulHi (x * a) (x * b) (y * c) (y * d) = x * y * Interval.mulHi a b c d := by
   have e : ∀ p q : ℝ, x * p * (y * q) = x * y * (p * q) := fun p q => by ring
   simp only [Interval.mulHi, e, mul_max_of_nonneg _ _ (mul_nonneg hx hy)]
 
 /-- Ordering the first pair changes no corner product's value. -/
-theorem aux_mulLo_minmax (a b c d : ℝ) :
+private theorem aux_mulLo_minmax (a b c d : ℝ) :
     Interval.mulLo (min a b) (max a b) c d = Interval.mulLo a b c d := by
   rcases le_total a b with h | h
   · rw [min_eq_left h, max_eq_right h]
   · rw [min_eq_right h, max_eq_left h]; simp only [Interval.mulLo]; exact min_comm _ _
 
 /-- The greatest likewise. -/
-theorem aux_mulHi_minmax (a b c d : ℝ) :
+private theorem aux_mulHi_minmax (a b c d : ℝ) :
     Interval.mulHi (min a b) (max a b) c d = Interval.mulHi a b c d := by
   rcases le_total a b with h | h
   · rw [min_eq_left h, max_eq_right h]

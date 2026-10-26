@@ -68,7 +68,7 @@ variable {n p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- `R_x` after `k` steps is the initial set under `(A - L C)^k`
-theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+private theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     (sys.observeIntervalState L R₀ W V u y k).Rx.construct =
@@ -83,7 +83,7 @@ theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n) (L : M
     simp [Matrix.mulVec_mulVec, pow_succ']
 
 -- `D` after `k` steps is the disturbance set under `(A - L C)^k`
-theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+private theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     (sys.observeIntervalState L R₀ W V u y k).D.construct =
@@ -99,7 +99,7 @@ theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n) (L : Ma
     simp [Matrix.mulVec_mulVec, pow_succ']
 
 -- the boxed disturbance terms hold every sum `∑ (A - L C)^m d_m`
-theorem LinearSysDT.aux_observeIntervalState_Rwv (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+private theorem LinearSysDT.aux_observeIntervalState_Rwv (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (d : ℕ → Vec ℝ n)
     (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- CONCL ---
@@ -118,8 +118,8 @@ theorem LinearSysDT.aux_observeIntervalState_Rwv (sys : LinearSysDT ℝ n) (L : 
     exact Interval.plus_outer _ _ ⟨_, ih, _, hk, rfl⟩
 
 -- one step of the error `x - x̂`
-theorem LinearSysDT.aux_observeInterval_error (A : Mat ℝ n n) (L : Mat ℝ n p) (C : Mat ℝ p n)
-    (x x' xh u w : Vec ℝ n) (v : Vec ℝ p) (hx : x' = A *ᵥ x + u + w) :
+private theorem LinearSysDT.aux_observeInterval_error (A : Mat ℝ n n) (L : Mat ℝ n p)
+    (C : Mat ℝ p n) (x x' xh u w : Vec ℝ n) (v : Vec ℝ p) (hx : x' = A *ᵥ x + u + w) :
     x' - (A *ᵥ xh + u + L *ᵥ ((C *ᵥ x + v) - C *ᵥ xh)) =
       (A - L * C) *ᵥ (x - xh) + (w - L *ᵥ v) := by
   subst hx

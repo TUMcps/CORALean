@@ -64,7 +64,7 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N : ℕ}
 
 /-- A nonzero entry is on the float support. -/
-theorem GNN.aux_support_of_ne_zero (A : Mat 𝕋 N N) (i j : Fin N)
+private theorem GNN.aux_support_of_ne_zero (A : Mat 𝕋 N N) (i j : Fin N)
     (h : toReal (A i j) ≠ 0) : -- --- CONCL ---
     GNN.support A i j = true := by -- --- PROOF ---
   by_contra hf

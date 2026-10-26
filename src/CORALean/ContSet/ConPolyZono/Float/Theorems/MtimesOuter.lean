@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
+private theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
     (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet cPZ ⊆
       nominalSet (ConPolyZono.mtimes M cPZ)
@@ -100,7 +100,7 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
   linarith [hdep, hind]
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
-theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+private theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (toRealMat M *ᵥ ·) '' (I_error cPZ).construct + (ConPolyZono.mtimesResidual M cPZ).construct ⊆
       (I_error (ConPolyZono.mtimes M cPZ)).construct :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cPZ.I_error))

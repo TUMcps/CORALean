@@ -40,7 +40,7 @@ variable {m : ℕ}
 
 /-- The share of the bound that entry `(i, j)` takes, zero where there is none
 to take. -/
-noncomputable def MatExp.aux_remCoeff (b : ℝ) (D : Mat ℝ m m) (k : Fin (m * m)) : ℝ :=
+private noncomputable def MatExp.aux_remCoeff (b : ℝ) (D : Mat ℝ m m) (k : Fin (m * m)) : ℝ :=
   if b = 0 then 0 else D (finProdFinEquiv.symm k).1 (finProdFinEquiv.symm k).2 / b
 
 

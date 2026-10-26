@@ -116,7 +116,7 @@ def forceBox {m : ℕ} (toD : 𝕋 → Float) (H : Interval (Vec 𝕋 m)) (radii
 /-- Runs one image `reps` times, timing each with `IO.monoNanosNow` and
 forcing the result through `forceBox`; returns the median of the `reps`
 samples and the last propagation (every rep computes the same). -/
-def aux_timeImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
+private def aux_timeImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
     (overflows : Option (𝕋 → Bool)) (layers : List MnistAffine) (reps : ℕ) (img : MnistImage) :
     IO (ℕ × Interval (Vec 𝕋 (finalDim layers img.pixels.size)) × Array Float × Bool) := do
   let mut samples := #[]
@@ -139,7 +139,7 @@ def aux_timeImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
 /-- One image's full record, plus its per-layer radii for `-layers.dat` --
 `lo`/`hi` and the argmax read off the doubles, `certified` off `𝕋`'s own
 bounds instead, through `ltStrict`. -/
-def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
+private def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → Float)
     (overflows : Option (𝕋 → Bool)) (layers : List MnistAffine) (reps : ℕ) (img : MnistImage) :
     IO (ImageResult × Array Float) := do
   let (medianNs, H, radii, over) ← aux_timeImage instUnchecked toD overflows layers reps img

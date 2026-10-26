@@ -45,18 +45,18 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A real number times its own sign is its absolute value. -/
-theorem aux_mul_sign_eq_abs (x : ℝ) : x * (if 0 ≤ x then (1 : ℝ) else -1) = |x| := by
+private theorem aux_mul_sign_eq_abs (x : ℝ) : x * (if 0 ≤ x then (1 : ℝ) else -1) = |x| := by
   split
   · rw [mul_one, abs_of_nonneg]; assumption
   · rw [mul_neg_one, abs_of_neg (not_le.mp (by assumption))]
 
 /-- The sign used throughout, squared, is `1`. -/
-theorem aux_sign_mul_self (x : ℝ) :
+private theorem aux_sign_mul_self (x : ℝ) :
     (if 0 ≤ x then (1 : ℝ) else -1) * (if 0 ≤ x then (1 : ℝ) else -1) = 1 := by
   split <;> ring
 
 /-- The sign's absolute value is always `1`. -/
-theorem aux_abs_sign (x : ℝ) : |if 0 ≤ x then (1 : ℝ) else -1| = 1 := by
+private theorem aux_abs_sign (x : ℝ) : |if 0 ≤ x then (1 : ℝ) else -1| = 1 := by
   split <;> norm_num
 
 

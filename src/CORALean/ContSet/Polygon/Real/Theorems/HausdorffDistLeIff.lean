@@ -32,7 +32,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A running maximum stays below `r` iff its start and every term do. -/
-theorem Polygon.aux_foldl_max_le {α : Type} (d : α → ℝ) :
+private theorem Polygon.aux_foldl_max_le {α : Type} (d : α → ℝ) :
     ∀ (l : List α) (a r : ℝ),
       l.foldl (fun v i => max v (d i)) a ≤ r ↔ a ≤ r ∧ ∀ i ∈ l, d i ≤ r
   | [], a, r => by simp
@@ -42,7 +42,7 @@ theorem Polygon.aux_foldl_max_le {α : Type} (d : α → ℝ) :
     tauto
 
 /-- The distance from an outside point to a compact set is the distance to its frontier. -/
-theorem Polygon.aux_infDist_frontier {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
+private theorem Polygon.aux_infDist_frontier {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {R : Set E} (hc : IsCompact R) (hne : R.Nonempty) {x : E} (hx : x ∉ R) : -- --- CONCL ---
     Metric.infDist x (frontier R) = Metric.infDist x R := by -- --- PROOF ---
   obtain ⟨y, hyR, hy⟩ := hc.exists_infDist_eq_dist hne x

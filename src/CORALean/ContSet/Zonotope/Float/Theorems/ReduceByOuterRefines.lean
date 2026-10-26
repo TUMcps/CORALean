@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `reduceBy`'s generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_reduceBy {Z : Zonotope (Vec 𝕋 n)}
+private theorem Zonotope.aux_sum_univ_reduceBy {Z : Zonotope (Vec 𝕋 n)}
     {part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)} (f : Fin (q + n) → ℝ) :
     ∑ j : Fin (Z.reduceBy part).h, f j = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd q j) :=
   Fin.sum_univ_add f

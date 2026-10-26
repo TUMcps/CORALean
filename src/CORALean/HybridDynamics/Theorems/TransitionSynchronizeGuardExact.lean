@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- A polytope with the origin box and certified-zero slacks passes the check, when `zero = zero`
 is certified. -/
-theorem aux_isErrFree_of_origin (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
-    {P : HPolytope 𝕋 (Vec 𝕋 n)} (hP : P.I_error = Interval.origin n)
+private theorem aux_isErrFree_of_origin (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋)
+    FloatOps.zero = true) {P : HPolytope 𝕋 (Vec 𝕋 n)} (hP : P.I_error = Interval.origin n)
     (hb : HPolytope.isZeroVec P.b_error = true) (he : HPolytope.isZeroVec P.be_error = true) :
     P.isErrFree = true := by
   rw [HPolytope.isErrFree, hb, he, hP]
@@ -55,7 +55,7 @@ theorem aux_isErrFree_of_origin (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) 
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- Two vectors certified zero, appended, are certified zero. -/
-theorem aux_isZeroVec_append {k l : ℕ} {u : Vec 𝕋 k} {v : Vec 𝕋 l}
+private theorem aux_isZeroVec_append {k l : ℕ} {u : Vec 𝕋 k} {v : Vec 𝕋 l}
     (hu : HPolytope.isZeroVec u = true) (hv : HPolytope.isZeroVec v = true) : -- --- CONCL ---
     HPolytope.isZeroVec (Fin.append u v) = true := by -- --- PROOF ---
   simp only [HPolytope.isZeroVec, List.all_eq_true, List.mem_finRange, true_implies] at hu hv ⊢
@@ -65,7 +65,7 @@ theorem aux_isZeroVec_append {k l : ℕ} {u : Vec 𝕋 k} {v : Vec 𝕋 l}
   · rw [Fin.append_right]; exact hv i
 
 /-- The accumulator of the guard fold stays error-free and is the intersection so far. -/
-theorem aux_synchronizeGuard_fold_eq
+private theorem aux_synchronizeGuard_fold_eq
     (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
     (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) (l : List (Fin q))
     (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.isErrFree = true) : -- --- CONCL ---

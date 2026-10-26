@@ -46,8 +46,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `v^s (1 - v) ≤ (l/(l+c))^s · (c/(l+c))` for `s = l/c`, by the weighted mean inequality. -/
-theorem PolyZonotope.aux_pow_mul_le (l c : ℕ) (hl : 0 < l) (hc : 0 < c) (v : ℝ) (hv0 : 0 ≤ v)
-    (hv1 : v ≤ 1) : -- --- CONCL ---
+private theorem PolyZonotope.aux_pow_mul_le (l c : ℕ) (hl : 0 < l) (hc : 0 < c) (v : ℝ)
+    (hv0 : 0 ≤ v) (hv1 : v ≤ 1) : -- --- CONCL ---
     v ^ ((l : ℝ) / c) * (1 - v)
       ≤ ((l : ℝ) / (l + c)) ^ ((l : ℝ) / c) * ((c : ℝ) / (l + c)) := by -- --- PROOF ---
   -- the exponent `s = l/c`, and the weighted mean inequality at `s/(s+1)` and `1/(s+1)`
@@ -94,7 +94,7 @@ theorem PolyZonotope.aux_pow_mul_le (l c : ℕ) (hl : 0 < l) (hc : 0 < c) (v : �
   exact hK ▸ h3
 
 /-- On `u ∈ [0,1]` the drift of `u^l` and `u^(l+c)` is at most the closed form. -/
-theorem PolyZonotope.aux_pow_sub_le (u : ℝ) (hu0 : 0 ≤ u) (hu1 : u ≤ 1) (l c : ℕ)
+private theorem PolyZonotope.aux_pow_sub_le (u : ℝ) (hu0 : 0 ≤ u) (hu1 : u ≤ 1) (l c : ℕ)
     (hc : 0 < c) : -- --- CONCL ---
     |u ^ (l + c) - u ^ l| ≤ if l = 0 then 1 else
       ((l : ℝ) / ((l + c : ℕ) : ℝ)) ^ ((l : ℝ) / (c : ℝ))

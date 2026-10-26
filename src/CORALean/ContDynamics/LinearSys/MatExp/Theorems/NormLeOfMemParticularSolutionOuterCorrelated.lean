@@ -57,7 +57,7 @@ variable {n : ℕ}
 /-- The correlated summand's own matrix, bounded pointwise exactly like the decorrelated sum's:
 `Matrix.sum_mulVec` turns the one application into the same sum of images, and `norm₂_sum_le`
 plus `aux_norm₂_le_of_mem_particularCoeff_image`'s per-term bound do the rest. -/
-theorem aux_norm₂_le_of_mem_particularCoeffSum_image (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
+private theorem aux_norm₂_le_of_mem_particularCoeffSum_image (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
     (hU0 : Bornology.IsBounded U0) (i0 η : ℕ) (Δt : ℝ) : -- --- CONCL ---
     ∀ y ∈ (fun x => (MatExp.particularCoeffSum A Δt i0 η).mulVec x) '' U0,
       ‖y‖₂ ≤ (∑ i ∈ Finset.Ico i0 (η + 1), (∑ j, ‖(fun k => (A ^ i) j k)‖₂)

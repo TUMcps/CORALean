@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `aux_roundAwayInt` is `roundAway`. -/
-theorem aux_roundAwayInt_cast (q : ℚ) : -- --- CONCL ---
+private theorem aux_roundAwayInt_cast (q : ℚ) : -- --- CONCL ---
     ((aux_roundAwayInt q : ℤ) : ℝ) = CORALean.Real.roundAway (q : ℝ) := by -- --- PROOF ---
   unfold aux_roundAwayInt CORALean.Real.roundAway
   by_cases h : 0 ≤ q

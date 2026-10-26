@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 namespace Real
 /-- Leaky ReLU between a line and the line raised. -/
-theorem aux_leakyRelu_bounds_of_slope {α m l u t : ℝ} (h0 : α ≤ m) (h1 : m ≤ 1)
+private theorem aux_leakyRelu_bounds_of_slope {α m l u t : ℝ} (h0 : α ≤ m) (h1 : m ≤ 1)
     (hl : l ≤ t) (hu : t ≤ u) : -- --- CONCL ---
     0 ≤ leakyRelu α t - m * t ∧
       leakyRelu α t - m * t ≤
@@ -69,7 +69,7 @@ theorem aux_leakyRelu_bounds_of_slope {α m l u t : ℝ} (h0 : α ≤ m) (h1 : m
 end Real
 
 
-theorem aux_leakyReluEndUp_ge (α m a : 𝕋) : -- --- CONCL ---
+private theorem aux_leakyReluEndUp_ge (α m a : 𝕋) : -- --- CONCL ---
     Real.leakyRelu (toReal α) (toReal a) - toReal m * toReal a ≤
       toReal (leakyReluEndUp α m a) := by -- --- PROOF ---
   have h1 := sub_le_subUp (maximum (mulUp α a) a) (mulDown m a)

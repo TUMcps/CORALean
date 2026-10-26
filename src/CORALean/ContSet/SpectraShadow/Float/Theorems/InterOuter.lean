@@ -47,7 +47,8 @@ section
 open FloatOps InflatedContSet
 
 /-- `SpectraShadow.aux_tieInter` contains the intersection of the nominal shadows. -/
-theorem SpectraShadow.aux_tieInter_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem SpectraShadow.aux_tieInter_outer
+    (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet S₁ ∩ nominalSet S₂ ⊆ (S₁.aux_tieInter S₂).construct := by -- --- PROOF ---
   rintro x ⟨h₁, h₂⟩
   obtain ⟨β₁, hP₁, hx₁⟩ := SpectraShadow.mem_nominalSet_iff.mp h₁

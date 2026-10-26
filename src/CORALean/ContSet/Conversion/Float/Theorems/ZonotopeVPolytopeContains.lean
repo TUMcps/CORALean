@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the exact layer's corner is, in this layer's own fields. -/
-theorem Zonotope.aux_signed_toReal (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h → Bool) (i : Fin n)
+private theorem Zonotope.aux_signed_toReal (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h → Bool) (i : Fin n)
     (j : Fin Z.h) :
     toReal (Z.signed σ i j) = (if σ j then (1:ℝ) else -1) * toReal (Z.G j i) := by
   rw [Zonotope.signed]
@@ -64,7 +64,7 @@ theorem Zonotope.aux_signed_toReal (Z : Zonotope (Vec 𝕋 n)) (σ : Fin Z.h →
   · rw [if_pos h, if_pos h, one_mul]
   · rw [if_neg h, if_neg h, toReal_neg, neg_one_mul]
 
-theorem Zonotope.aux_corner_mem (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h))
+private theorem Zonotope.aux_corner_mem (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h))
     (i : Fin n) : -- --- CONCL ---
     toReal (Z.cornerLo l i)
         ≤ (InflatedContSet.nominal Z).corner (signEquiv Z.h l) i

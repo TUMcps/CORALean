@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_mask_nominal (keep : Fin m → Fin n → Prop) [∀ i j, Decidable (keep i j)]
-    (I : Interval (Mat 𝕋 m n)) :
+private theorem Interval.aux_mask_nominal (keep : Fin m → Fin n → Prop)
+    [∀ i j, Decidable (keep i j)] (I : Interval (Mat 𝕋 m n)) :
     (I.mask keep).nominal = Real.Interval.mask keep I.nominal := by
   unfold Interval.nominal Interval.mask Real.Interval.mask
   congr 1 <;> funext i j <;> by_cases h : keep i j <;>

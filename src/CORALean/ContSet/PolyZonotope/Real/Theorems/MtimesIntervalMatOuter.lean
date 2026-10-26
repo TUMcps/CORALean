@@ -58,7 +58,7 @@ variable {m n : ℕ}
 
 /-- `Fin.sum_univ_add` at this operation's independent generator count, stated
 through the projection because that is the form the goal has. -/
-theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
+private theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)}
     {pZ : PolyZonotope (Vec ℝ n)} (f : Fin (pZ.q + m) → ℝ) :
     ∑ j : Fin (PolyZonotope.mtimesIntervalMat IM pZ).q, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd pZ.q j) :=
@@ -67,7 +67,7 @@ theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)
 /-- The dependent block keeps `pZ.h` generators, but the goal still reads the
 count through the operation's own projection; `rfl` is what identifies the two,
 the same gap `aux_sum_univ_mtimesIntervalMat` closes for the independent one. -/
-theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (Mat ℝ m n)}
+private theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (Mat ℝ m n)}
     {pZ : PolyZonotope (Vec ℝ n)} (f : Fin pZ.h → ℝ) :
     ∑ l : Fin (PolyZonotope.mtimesIntervalMat IM pZ).h, f l = ∑ l, f l :=
   rfl

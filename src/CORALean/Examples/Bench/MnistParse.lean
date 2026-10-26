@@ -113,7 +113,7 @@ structure MnistNet where
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- one weight row, `inDim` hex tokens
-def aux_parseRow (inDim : Nat) (t : TokStream) :
+private def aux_parseRow (inDim : Nat) (t : TokStream) :
     Except String (Array ExactDyadic × TokStream) := do
   let mut t := t
   let mut row := #[]
@@ -124,7 +124,7 @@ def aux_parseRow (inDim : Nat) (t : TokStream) :
   pure (row, t)
 
 -- dims and the relu flag, then `outDim` rows of `W` and one row of `b`
-def aux_parseLayer (t : TokStream) : Except String (MnistAffine × TokStream) := do
+private def aux_parseLayer (t : TokStream) : Except String (MnistAffine × TokStream) := do
   let (outDim, t) ← t.nextNat
   let (inDim, t) ← t.nextNat
   let (reluTok, t) ← t.next
@@ -144,7 +144,7 @@ def aux_parseLayer (t : TokStream) : Except String (MnistAffine × TokStream) :=
 /-- Each layer's `inDim` is the previous one's `outDim`, and only the last
 layer's `relu` is `false` -- checked once so a scrambled file fails with a
 message rather than quietly computing something other than `mnistfc`. -/
-def aux_checkShape (net : MnistNet) : Except String Unit := do
+private def aux_checkShape (net : MnistNet) : Except String Unit := do
   let mut expected := net.inputDim
   for h : i in [0:net.layers.size] do
     let l := net.layers[i]
@@ -182,13 +182,13 @@ structure MnistImage where
   pixels : Array Nat
 
 /-- Reads a pixel byte: a natural number below `256`, else an error naming the field. -/
-def aux_parsePixel (s : String) : Except String ℕ :=
+private def aux_parsePixel (s : String) : Except String ℕ :=
   match s.toNat? with
   | some n => if n < 256 then pure n else throw s!"pixel `{n}` is not a byte"
   | none => throw s!"`{s}` is not a pixel byte"
 
 /-- One data line: `label` then 784 decimal pixel bytes. -/
-def aux_parseImageLine (line : String) : Except String MnistImage := do
+private def aux_parseImageLine (line : String) : Except String MnistImage := do
   let toks := ((line.splitOn " ").filter (·.length > 0)).toArray
   if toks.size ≠ 785 then throw s!"data line has {toks.size} tokens, expected 785" else
   let label ← match toks[0]!.toNat? with

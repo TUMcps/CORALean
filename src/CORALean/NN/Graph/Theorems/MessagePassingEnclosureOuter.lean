@@ -64,31 +64,31 @@ variable {N m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the relaxation's affine map misses at node `j`'s actual degree. -/
-noncomputable def GNN.aux_residual (R : Relaxation ℝ) (A : Mat ℝ N N)
+private noncomputable def GNN.aux_residual (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (j : Fin N) : ℝ :=
   invSqrt (GNN.degreeAt A U lam j)
     - (GNN.sqrtSlope R A U j * GNN.degreeAt A U lam j + GNN.sqrtOffset R A U j)
 
 /-- The residual as a factor of its own: normalised by the bound it came with,
 or zero, there being nothing to normalise by and nothing to carry. -/
-noncomputable def GNN.aux_resFactor (R : Relaxation ℝ) (A : Mat ℝ N N)
+private noncomputable def GNN.aux_resFactor (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (j : Fin N) : ℝ :=
   if GNN.aux_sqrtError R A U j = 0 then 0
   else GNN.aux_residual R A U lam j / GNN.aux_sqrtError R A U j
 
 /-- The factor vector the whole enclosure is read at: the edge weights rescaled,
 then the residuals. -/
-noncomputable def GNN.aux_factors (R : Relaxation ℝ) (A : Mat ℝ N N)
+private noncomputable def GNN.aux_factors (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) : Fin (m + N) → ℝ :=
   Fin.addCases (fun e => 2 * lam e - 1) (GNN.aux_resFactor R A U lam)
 
 /-- The entrywise product at `Mat`, read at one entry. -/
-theorem GNN.aux_hadamard_apply (X Y : Mat ℝ N N) (i j : Fin N) :
+private theorem GNN.aux_hadamard_apply (X Y : Mat ℝ N N) (i j : Fin N) :
     (Entrywise.hadamardLin X) Y i j = X i j * Y i j := rfl
 
 /-- `Fin.sum_univ_add` at the padded generator count, stated through the
 projection because that is the form the goal has. -/
-theorem GNN.aux_sum_univ_uncertainAdjPad {β : Type} [AddCommMonoid β] {A : Mat ℝ N N}
+private theorem GNN.aux_sum_univ_uncertainAdjPad {β : Type} [AddCommMonoid β] {A : Mat ℝ N N}
     {U : Fin m → Fin N × Fin N} (f : Fin (m + N) → β) :
     ∑ k : Fin (GNN.aux_uncertainAdjPad A U).h, f k
       = ∑ e, f (Fin.castAdd N e) + ∑ t, f (Fin.natAdd m t) :=
@@ -96,7 +96,7 @@ theorem GNN.aux_sum_univ_uncertainAdjPad {β : Type} [AddCommMonoid β] {A : Mat
 
 /-- The same at a broadcast's generator count, which is the same number read
 through a different projection. -/
-theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relaxation ℝ}
+private theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relaxation ℝ}
     {A : Mat ℝ N N} {U : Fin m → Fin N × Fin N} {idx : Fin N → Fin N → Fin N}
     (f : Fin (m + N) → β) :
     ∑ k : Fin (GNN.aux_sqrtBroadcast R A U idx).h, f k
@@ -104,7 +104,7 @@ theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relax
   Fin.sum_univ_add f
 
 /-- `R.sound` at the degree bracket: the residual never leaves its error. -/
-theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
     |GNN.aux_residual R A U lam j| ≤ GNN.aux_sqrtError R A U j := by
@@ -113,7 +113,8 @@ theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : M
 
 /-- The residual factor is spent exactly, in both branches: dividing by the
 error and multiplying back, or a zero error forcing a zero residual. -/
-theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.IsSound invSqrt)
+    (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) : -- --- CONCL ---
     GNN.aux_sqrtError R A U j * GNN.aux_resFactor R A U lam j
@@ -129,7 +130,7 @@ theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.IsSound invSqrt
 
 /-- Every factor is admissible: `2λ - 1` because `λ` is a weight, and a residual
 factor because its numerator is bounded by its denominator. -/
-theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (k : Fin (m + N)) : -- --- CONCL ---
     |GNN.aux_factors R A U lam k| ≤ 1 := by -- --- PROOF ---
@@ -150,7 +151,7 @@ theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A 
 
 /-- The padded adjacency at those factors is `Ã` itself: the residual half of
 the generators is zero, and the edge half is `smul_edge_half` again. -/
-theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
+private theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) : -- --- CONCL ---
     (GNN.aux_uncertainAdjPad A U).point (GNN.aux_factors R A U lam)
       = GNN.adjAt A U lam + 1 := by -- --- PROOF ---
@@ -170,7 +171,7 @@ theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
 
 /-- Either broadcast at those factors: node `idx i j`'s inverse square root,
 exactly, which is `sqrt_affine` plus the residual the factor spends. -/
-theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (idx : Fin N → Fin N → Fin N) : -- --- CONCL ---
     (GNN.aux_sqrtBroadcast R A U idx).point (GNN.aux_factors R A U lam)

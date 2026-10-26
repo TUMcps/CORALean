@@ -51,7 +51,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the range by a multiple of the period moves neither the values nor the poles. -/
-theorem aux_image_tan_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
+private theorem aux_image_tan_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) =
       Real.tan '' (Set.Icc (lo - Real.pi * k) (hi - Real.pi * k) ∩
         {x | Real.cos x ≠ 0}) := by -- --- PROOF ---
@@ -70,8 +70,8 @@ theorem aux_image_tan_shift (lo hi : ℝ) (k : ℤ) : -- --- CONCL ---
     rw [Real.tan_add_int_mul_pi]
 
 /-- Between two consecutive poles the tangent rises: its range is the end values. -/
-theorem aux_image_tan_piece {a b : ℝ} (j : ℤ) (hab : a ≤ b) (ha : j * Real.pi - Real.pi / 2 < a)
-    (hb : b < j * Real.pi + Real.pi / 2) : -- --- CONCL ---
+private theorem aux_image_tan_piece {a b : ℝ} (j : ℤ) (hab : a ≤ b)
+    (ha : j * Real.pi - Real.pi / 2 < a) (hb : b < j * Real.pi + Real.pi / 2) : -- --- CONCL ---
     Real.tan '' (Set.Icc a b ∩ {x | Real.cos x ≠ 0}) =
       Set.Icc (Real.tan a) (Real.tan b) := by -- --- PROOF ---
   rw [aux_image_tan_shift a b j]
@@ -87,12 +87,12 @@ theorem aux_image_tan_piece {a b : ℝ} (j : ℤ) (hab : a ≤ b) (ha : j * Real
     show a - Real.pi * j = a - j * Real.pi by ring, show b - Real.pi * j = b - j * Real.pi by ring,
     Real.tan_sub_int_mul_pi, Real.tan_sub_int_mul_pi]
 
-theorem aux_cos_three_pi_div_two : Real.cos (3 * Real.pi / 2) = 0 := by
+private theorem aux_cos_three_pi_div_two : Real.cos (3 * Real.pi / 2) = 0 := by
   rw [show 3 * Real.pi / 2 = Real.pi / 2 + Real.pi by ring, Real.cos_add_pi,
     Real.cos_pi_div_two, neg_zero]
 
 /-- The `]-∞, ∞[` cases of [1, Eq. 14] past the width test: a pole inside. -/
-theorem aux_tanByRegions_none {lo hi zl zu : ℝ}
+private theorem aux_tanByRegions_none {lo hi zl zu : ℝ}
     (hshift : Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) =
       Real.tan '' (Set.Icc zl (zl + (hi - lo)) ∩ {x | Real.cos x ≠ 0}))
     (hzu2 : zu ≠ Real.pi / 2) (hb1 : zl ≤ zu → zl + (hi - lo) = zu)
@@ -120,7 +120,7 @@ theorem aux_tanByRegions_none {lo hi zl zu : ℝ}
       (by linarith)
 
 /-- The finite case of [1, Eq. 14]: unswapped within one region, no pole inside. -/
-theorem aux_tanByRegions_some {lo hi zl zu : ℝ}
+private theorem aux_tanByRegions_some {lo hi zl zu : ℝ}
     (hshift : Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) =
       Real.tan '' (Set.Icc zl (zl + (hi - lo)) ∩ {x | Real.cos x ≠ 0}))
     (hzl2 : zl ≠ Real.pi / 2) (hb1 : zl ≤ zu → zl + (hi - lo) = zu)
@@ -139,7 +139,7 @@ theorem aux_tanByRegions_some {lo hi zl zu : ℝ}
     exact aux_image_tan_piece 1 h3 (by push_cast; linarith) (by push_cast; linarith [h2.2])
 
 /-- What the printed cases of [1, Eq. 14] leave: from `R_t2` past `π` into `R_t1`. -/
-theorem aux_tanByRegions_wrap {zl zu : ℝ} (hzl : 0 ≤ zl ∧ zl < Real.pi)
+private theorem aux_tanByRegions_wrap {zl zu : ℝ} (hzl : 0 ≤ zl ∧ zl < Real.pi)
     (hzu : 0 ≤ zu ∧ zu < Real.pi) (hzl2 : zl ≠ Real.pi / 2)
     (hA : ¬((zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico 0 (Real.pi / 2) ∧ zu < zl) ∨
       (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu < zl) ∨

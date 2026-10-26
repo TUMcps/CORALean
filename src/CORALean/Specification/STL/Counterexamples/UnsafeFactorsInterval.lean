@@ -55,7 +55,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generators of `R(τ₀)` of the example: `(0, 1, 0, 0)`, read off the weighted sums. -/
-theorem STL.aux_interval_G (k : Fin (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
+private theorem STL.aux_interval_G (k : Fin (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1)
     (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1)) (⟨1, 0, fun _ => fun _ => 1⟩ : Zonotope (Vec ℝ 1))
     1 1 0).2.h) : -- --- CONCL ---
     (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1))
@@ -71,7 +71,7 @@ theorem STL.aux_interval_G (k : Fin (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ
     simp [this]
   · simp
 
-theorem STL.aux_interval_c :
+private theorem STL.aux_interval_c :
     (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1))
       (⟨1, 0, fun _ => fun _ => 1⟩ : Zonotope (Vec ℝ 1)) 1 1 0).2.c = 0 := by
   simp [STL.depReach, STL.depReachInterval, STL.depReachAt, STL.depReachStep, STL.depReachInit,
@@ -79,7 +79,7 @@ theorem STL.aux_interval_c :
     Zonotope.linComb, Zonotope.mtimesIntervalMat, STL.expIntegral_zero_one]
   exact STL.depBloating_c _ _ _ _ rfl
 
-theorem STL.aux_interval_h : -- --- CONCL ---
+private theorem STL.aux_interval_h : -- --- CONCL ---
     1 < (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1))
       (⟨1, 0, fun _ => fun _ => 1⟩ : Zonotope (Vec ℝ 1)) 1 1 0).2.h := by -- --- PROOF ---
   -- the indicator of `1` sums to `1 ≠ 0`, so there is a generator `1`

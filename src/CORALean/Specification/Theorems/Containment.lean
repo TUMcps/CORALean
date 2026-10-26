@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O : Set α}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A safe set cut out by directions, checked in each of them. -/
-theorem aux_subset_halfspaces {ι : Type} (c : ι → α →ₗ[ℝ] ℝ) (d : ι → ℝ)
+private theorem aux_subset_halfspaces {ι : Type} (c : ι → α →ₗ[ℝ] ℝ) (d : ι → ℝ)
     (u : ∀ i, SupportBound O (c i)) (h : ∀ i, (u i).val ≤ d i) :
     O ⊆ {x | ∀ i, c i x ≤ d i} :=
   fun _ hx i => le_trans ((u i).le _ hx) (h i)

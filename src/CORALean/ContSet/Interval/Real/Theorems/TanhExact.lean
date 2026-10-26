@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_tanh_strictMono : -- --- CONCL ---
+private theorem aux_tanh_strictMono : -- --- CONCL ---
     StrictMono Real.tanh := by -- --- PROOF ---
   intro a b hab
   rw [Real.tanh_eq_sinh_div_cosh, Real.tanh_eq_sinh_div_cosh,
@@ -54,7 +54,7 @@ theorem aux_tanh_strictMono : -- --- CONCL ---
   rw [Real.sinh_sub] at h
   linarith
 
-theorem aux_tanh_continuous : Continuous Real.tanh := by
+private theorem aux_tanh_continuous : Continuous Real.tanh := by
   have : Real.tanh = fun x => Real.sinh x / Real.cosh x := funext Real.tanh_eq_sinh_div_cosh
   rw [this]
   exact Real.continuous_sinh.div Real.continuous_cosh (fun x => (Real.cosh_pos x).ne')

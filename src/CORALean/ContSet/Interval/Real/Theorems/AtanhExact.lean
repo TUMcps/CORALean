@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- On `(-1, 1)`, `artanh` is `½ log ((1 + x) / (1 - x))`, a composite of continuous maps. -/
-theorem Interval.aux_continuousOn_artanh : -- --- CONCL ---
+private theorem Interval.aux_continuousOn_artanh : -- --- CONCL ---
     ContinuousOn Real.artanh (Set.Ioo (-1) 1) := by -- --- PROOF ---
   have h : ContinuousOn (fun x : ℝ => 1 / 2 * Real.log ((1 + x) / (1 - x))) (Set.Ioo (-1) 1) := by
     refine continuousOn_const.mul (ContinuousOn.log ?_ ?_)

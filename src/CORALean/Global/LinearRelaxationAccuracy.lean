@@ -62,7 +62,7 @@ variable {n m l : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The dual form (Eq. 21) as an inequality: `‖Gᵀ z‖₁ ≤ r ‖Hᵀ z‖_{q*}`. -/
-theorem aux_lrAcc_dual_bound (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_lrAcc_dual_bound (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (hH : Function.Surjective H.mulVec) {r : ℝ}
     (hr : ∀ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, coeffNorm ((Matrix.mulVecLin H) ∘ₗ
@@ -87,7 +87,7 @@ theorem aux_lrAcc_dual_bound (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConju
         mul_le_mul_of_nonneg_right (hr σ hσ) (norm_nonneg _)
 
 /-- A row's Euclidean norm is at most `√m` times its largest entry. -/
-theorem aux_lrAcc_norm_le_sqrt_mul (v : Fin m → ℝ) : -- --- CONCL ---
+private theorem aux_lrAcc_norm_le_sqrt_mul (v : Fin m → ℝ) : -- --- CONCL ---
     ‖WithLp.toLp 2 v‖ ≤ Real.sqrt m * ⨆ j, |v j| := by -- --- PROOF ---
   have hM : ∀ j, |v j| ≤ ⨆ j, |v j| := fun j =>
     le_ciSup (f := fun j => |v j|) (Set.finite_range _).bddAbove j

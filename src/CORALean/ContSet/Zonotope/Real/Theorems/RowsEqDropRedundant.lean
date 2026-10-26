@@ -52,7 +52,7 @@ variable {ι E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A neighbourhood of `z` holds a positive step along every direction. -/
-theorem Zonotope.aux_exists_pos_mem_rdr {U : Set E} {z : E} (hU : U ∈ nhds z)
+private theorem Zonotope.aux_exists_pos_mem_rdr {U : Set E} {z : E} (hU : U ∈ nhds z)
     (v : E) : -- --- CONCL ---
     ∃ s : ℝ, 0 < s ∧ z + s • v ∈ U := by -- --- PROOF ---
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp hU
@@ -64,7 +64,7 @@ theorem Zonotope.aux_exists_pos_mem_rdr {U : Set E} {z : E} (hU : U ∈ nhds z)
   nlinarith
 
 /-- A row some point breaks is strict at an interior point. -/
-theorem Zonotope.aux_strict_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) {p : ι → Prop} {z y : E}
+private theorem Zonotope.aux_strict_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) {p : ι → Prop} {z y : E}
     (hz : z ∈ interior {x | ∀ j, p j → C j x ≤ d j}) {j : ι} (hj : p j)
     (hy : d j < C j y) : -- --- CONCL ---
     C j z < d j := by -- --- PROOF ---
@@ -76,7 +76,7 @@ theorem Zonotope.aux_strict_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) 
 
 /-- Two crossing parameters that differ: past the first, before the second, only the first row is
 broken. -/
-theorem Zonotope.aux_one_side_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) {p : ι → Prop} {j k : ι}
+private theorem Zonotope.aux_one_side_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) {p : ι → Prop} {j k : ι}
     {z y : E} (hzP : ∀ i, p i → C i z ≤ d i) (hzj : C j z < d j) (hzk : C k z < d k)
     (hy : ∀ i, p i → i ≠ j → i ≠ k → C i y ≤ d i) (hyj : d j < C j y) (hyk : d k < C k y)
     (hlt : (d j - C j z) * (C k y - d k) < (d k - C k z) * (C j y - d j)) : -- --- CONCL ---
@@ -122,7 +122,7 @@ theorem Zonotope.aux_one_side_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ
 
 /-- With full dimension and no repeated proper halfspace, a redundant row stays redundant once
 another redundant row is dropped. -/
-theorem Zonotope.aux_pair_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) (p : ι → Prop)
+private theorem Zonotope.aux_pair_rdr (C : ι → E →ₗ[ℝ] ℝ) (d : ι → ℝ) (p : ι → Prop)
     (hint : (interior {x | ∀ j, p j → C j x ≤ d j}).Nonempty)
     (hdist : ∀ j k, p j → p k → j ≠ k → {x | C j x ≤ d j} = {x | C k x ≤ d k} →
       {x : E | C j x ≤ d j} = Set.univ)

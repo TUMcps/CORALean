@@ -43,7 +43,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A signal built from explicit lists: valid, of the given duration, with the given values. -/
-theorem aux_indicator_finish (dur : ℝ) (L : List ℝ) (W : List Bool) (F : ℝ → Bool)
+private theorem aux_indicator_finish (dur : ℝ) (L : List ℝ) (W : List Bool) (F : ℝ → Bool)
     (hv : (⟨L, W⟩ : FiniteSignal ℝ Bool).IsValid)
     (hd : (⟨L, W⟩ : FiniteSignal ℝ Bool).duration = dur)
     (hat : ∀ t : ℝ, 0 ≤ t → t ≤ dur → FiniteSignal.valueAt (L.zip W) t = some (F t))

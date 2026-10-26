@@ -58,7 +58,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `0 ≤ B ≤ C` entrywise gives `0 ≤ Bᵏ ≤ Cᵏ` entrywise. -/
-theorem MatExp.aux_pow_entry_le_pow_entry {B C : Mat ℝ n n} (hB : ∀ i j, 0 ≤ B i j)
+private theorem MatExp.aux_pow_entry_le_pow_entry {B C : Mat ℝ n n} (hB : ∀ i j, 0 ≤ B i j)
     (h : ∀ i j, B i j ≤ C i j) (k : ℕ) (i j : Fin n) : -- --- CONCL ---
     0 ≤ (B ^ k) i j ∧ (B ^ k) i j ≤ (C ^ k) i j := by -- --- PROOF ---
   induction k generalizing i j with

@@ -56,14 +56,14 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `e^{tA} z` at the one coordinate, `A = 100`. -/
-theorem aux_exp_diag_mulVec (t : ℝ) (z : Vec ℝ 1) :
+private theorem aux_exp_diag_mulVec (t : ℝ) (z : Vec ℝ 1) :
     (exp (t • (Matrix.diagonal (fun _ : Fin 1 => (100:ℝ)) : Mat ℝ 1 1)) *ᵥ z) 0
       = Real.exp (t * 100) * z 0 := by
   rw [← Matrix.diagonal_smul, Matrix.exp_diagonal, Matrix.mulVec_diagonal]
   simp [Real.exp_eq_exp_ℝ]
 
 /-- The sup norm in dimension one is the absolute value. -/
-theorem aux_norm_vec1 (v : Vec ℝ 1) : ‖v‖ = |v 0| := by
+private theorem aux_norm_vec1 (v : Vec ℝ 1) : ‖v‖ = |v 0| := by
   have h : v = fun _ => v 0 := funext fun i => by rw [Subsingleton.elim i 0]
   rw [h, pi_norm_const, Real.norm_eq_abs]
 

@@ -63,7 +63,8 @@ variable {n : ℕ}
 
 /-- The interpolation error of the integrated exponential, as one series from
 order `1` up. -/
-theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0) : -- --- CONCL ---
+private theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ)
+    (hr : r ≠ 0) : -- --- CONCL ---
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
           * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by -- --- PROOF ---
@@ -94,7 +95,7 @@ theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ) (hr : r ≠ 0)
   rw [← htsum, ← hshift, hfirst, zero_add]
 
 /-- The same series, shifted past `η`, is summable. -/
-theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) : -- --- CONCL ---
+private theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) : -- --- CONCL ---
     Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
       * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by -- --- PROOF ---
   have hst := MatExp.summable_expIntegral A t
@@ -109,7 +110,7 @@ theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) : -- --- CONC
 
 /-- Every tail term carries `r^{i+2}` in its scalar factor; pulling one `r` out
 leaves the exponential's own remainder series. -/
-theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ)
+private theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     ‖∑' i : ℕ, (((Nat.factorial (i + η + 2) : ℝ))⁻¹
         * (t ^ (i + η + 2) - (t / r) * r ^ (i + η + 2))) • A ^ (i + η + 1)‖

@@ -53,7 +53,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The trilinear expansion of the mixed cubic map over the three families of extended columns. -/
-theorem Zonotope.aux_cubMapMixed_expand (T : Fin m → Fin n → Mat ℝ n n) {N₁ N₂ N₃ : ℕ}
+private theorem Zonotope.aux_cubMapMixed_expand (T : Fin m → Fin n → Mat ℝ n n) {N₁ N₂ N₃ : ℕ}
     (β₁ : Fin N₁ → ℝ) (β₂ : Fin N₂ → ℝ) (β₃ : Fin N₃ → ℝ) (u₁ : Fin N₁ → Vec ℝ n)
     (u₂ : Fin N₂ → Vec ℝ n) (u₃ : Fin N₃ → Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     PolyZonotope.cubEvalMixed T (∑ a, β₁ a • u₁ a) (∑ b, β₂ b • u₂ b) (∑ j, β₃ j • u₃ j) i
@@ -81,7 +81,7 @@ theorem Zonotope.aux_cubMapMixed_expand (T : Fin m → Fin n → Mat ℝ n n) {N
     Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun k _ => by ring
 
 /-- With every extended factor `1` at index `0`, the `((0, 0), 0)` term is the center. -/
-theorem Zonotope.aux_cubMapMixed_center {h₁ h₂ h₃ : ℕ} (β₁ : Fin (h₁ + 1) → ℝ)
+private theorem Zonotope.aux_cubMapMixed_center {h₁ h₂ h₃ : ℕ} (β₁ : Fin (h₁ + 1) → ℝ)
     (β₂ : Fin (h₂ + 1) → ℝ) (β₃ : Fin (h₃ + 1) → ℝ) (e₁ : β₁ 0 = 1) (e₂ : β₂ 0 = 1)
     (e₃ : β₃ 0 = 1) (Q : Fin (h₃ + 1) → Fin (h₂ + 1) → Fin (h₁ + 1) → ℝ) : -- --- CONCL ---
     ∑ j, ∑ b, ∑ a, β₃ j * β₂ b * β₁ a * Q j b a

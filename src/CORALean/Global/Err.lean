@@ -49,13 +49,15 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point between two endpoints never exceeds the max of their magnitudes. -/
-theorem aux_err_abs_between {lo x hi : ℝ} (h1 : lo ≤ x) (h2 : x ≤ hi) : |x| ≤ max |lo| |hi| :=
+private theorem aux_err_abs_between {lo x hi : ℝ} (h1 : lo ≤ x) (h2 : x ≤ hi) : |x| ≤ max |lo|
+    |hi| :=
   abs_le.mpr ⟨by linarith [neg_abs_le lo, neg_le_neg (le_max_left |lo| |hi|)],
     h2.trans ((le_abs_self hi).trans (le_max_right _ _))⟩
 
 /-- Squaring is monotone on magnitudes, so a coordinatewise bound on magnitudes is a bound on the
 Euclidean norm. -/
-theorem aux_err_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) : ‖x‖₂ ≤ ‖y‖₂ := by
+private theorem aux_err_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) : ‖x‖₂ ≤ ‖y‖₂ :=
+    by
   refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun i _ => ?_)
   have hi := mul_self_le_mul_self (abs_nonneg (x i)) (h i)
   rwa [abs_mul_abs_self, abs_mul_abs_self, ← pow_two, ← pow_two] at hi

@@ -70,7 +70,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The unreduced accumulation is a finite Minkowski sum of propagated zonotopes, so it is
 compact and nonempty at every step — what the triangle inequality asks of it. -/
-theorem aux_isCompact_sum_range_mulVec (Z : Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n)
+private theorem aux_isCompact_sum_range_mulVec (Z : Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n)
     (k : ℕ) : -- --- CONCL ---
     IsCompact (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' Z.construct) ∧
       (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' Z.construct).Nonempty := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem aux_isCompact_sum_range_mulVec (Z : Zonotope (Vec ℝ n)) (Φ : ℕ → 
       ih.2.add (Set.Nonempty.image _ ⟨Z.c, Zonotope.center_mem_construct Z⟩)⟩
 
 /-- `d_H` ignores a summand both sides share: `hausdorffDist₂_add_le` at `d_H(X,X) = 0`. -/
-theorem aux_hausdorffDist₂_add_right {S T X : Set (Vec ℝ n)} (hS : IsCompact S)
+private theorem aux_hausdorffDist₂_add_right {S T X : Set (Vec ℝ n)} (hS : IsCompact S)
     (hSne : S.Nonempty) (hT : IsCompact T) (hTne : T.Nonempty) (hX : IsCompact X)
     (hXne : X.Nonempty) :
     hausdorffDist₂ (S + X) (T + X) ≤ hausdorffDist₂ S T := by

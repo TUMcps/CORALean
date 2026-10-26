@@ -46,7 +46,7 @@ section
 variable {A : Type}
 
 /-- The invariant survives a change of edges. -/
-theorem OnlineReachSetAnalyzer.aux_nodesInv_of_ext (dp : Bool)
+private theorem OnlineReachSetAnalyzer.aux_nodesInv_of_ext (dp : Bool)
     (nodes nodes' : List (OnlineAnalyzerNode ℝ A)) (hl : nodes'.length = nodes.length)
     (he : OnlineReachSetAnalyzer.IsExt nodes nodes')
     (h : OnlineReachSetAnalyzer.NodesInv dp nodes) : -- --- CONCL ---
@@ -70,8 +70,8 @@ section
 variable {A : Type}
 
 /-- Updating a node keeps the list. -/
-theorem OnlineReachSetAnalyzer.aux_ext_updateNode (nodes : List (OnlineAnalyzerNode ℝ A)) (i : ℕ)
-    (f : OnlineAnalyzerNode ℝ A → Option (OnlineAnalyzerNode ℝ A))
+private theorem OnlineReachSetAnalyzer.aux_ext_updateNode (nodes : List (OnlineAnalyzerNode ℝ A))
+    (i : ℕ) (f : OnlineAnalyzerNode ℝ A → Option (OnlineAnalyzerNode ℝ A))
     (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.IsSame n n') : -- --- CONCL ---
     ∀ nodes' ∈ OnlineReachSetAnalyzer.updateNode nodes i f,
       OnlineReachSetAnalyzer.IsExt nodes nodes' ∧ nodes'.length =
@@ -96,7 +96,7 @@ section
 variable {A : Type}
 
 /-- `IsExt` is transitive. -/
-theorem OnlineReachSetAnalyzer.aux_ext_trans {a b c : List (OnlineAnalyzerNode ℝ A)}
+private theorem OnlineReachSetAnalyzer.aux_ext_trans {a b c : List (OnlineAnalyzerNode ℝ A)}
     (h1 : OnlineReachSetAnalyzer.IsExt a b) (h2 : OnlineReachSetAnalyzer.IsExt b c) :
     OnlineReachSetAnalyzer.IsExt a c :=
   ⟨h1.1.trans h2.1, fun j h h' => OnlineReachSetAnalyzer.same_trans
@@ -109,7 +109,7 @@ section
 variable {A : Type}
 
 /-- The invariant survives a new node. -/
-theorem OnlineReachSetAnalyzer.aux_nodesInv_append (dp : Bool)
+private theorem OnlineReachSetAnalyzer.aux_nodesInv_append (dp : Bool)
     (nodes : List (OnlineAnalyzerNode ℝ A)) (node : OnlineAnalyzerNode ℝ A)
     (h : OnlineReachSetAnalyzer.NodesInv dp nodes)
     (hidx : node.idx = nodes.length + 1) (hd : node.dropPropagated = dp)
@@ -133,7 +133,7 @@ end
 
 
 /-- What a new subformula adds. -/
-theorem OnlineReachSetAnalyzer.aux_parseNew_spec (dp : Bool)
+private theorem OnlineReachSetAnalyzer.aux_parseNew_spec (dp : Bool)
     (φ : OnlineReachSetAnalyzer.Formula ℝ (AtomicProposition S d)) (parent : ℕ)
     (st : OnlineReachSetAnalyzer.ParseState ℝ S d)
     (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes) : -- --- CONCL ---
@@ -169,8 +169,8 @@ theorem OnlineReachSetAnalyzer.aux_parseNew_spec (dp : Bool)
 
 
 /-- The branch of a subformula that already has a node: two edges are added. -/
-theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState ℝ S d) (c parent : ℕ)
-    (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes)
+private theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState ℝ S d)
+    (c parent : ℕ) (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes)
     (h : ((OnlineReachSetAnalyzer.updateNode st.nodes c
         (fun n => some (n.addParent parent))).bind fun nodes =>
           (OnlineReachSetAnalyzer.updateNode nodes parent (fun n => some (n.addChild c))).map
@@ -200,7 +200,7 @@ theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState �
 
 
 /-- The first node made is the root: it keeps its type and its first parent. -/
-theorem aux_parse_root (st st1 st' : OnlineReachSetAnalyzer.ParseState ℝ S d) (parent : ℕ)
+private theorem aux_parse_root (st st1 st' : OnlineReachSetAnalyzer.ParseState ℝ S d) (parent : ℕ)
     (k : OnlineAnalyzerNode.Kind)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
       node.parents = [parent]) (hnil : st.nodes = [])
@@ -218,8 +218,8 @@ theorem aux_parse_root (st st1 st' : OnlineReachSetAnalyzer.ParseState ℝ S d) 
 
 
 /-- The conclusion for a subformula without operands. -/
-theorem aux_parse_leaf (dp : Bool) (st st1 : OnlineReachSetAnalyzer.ParseState ℝ S d) (parent : ℕ)
-    (k : OnlineAnalyzerNode.Kind) (hi1 : OnlineReachSetAnalyzer.NodesInv dp st1.nodes)
+private theorem aux_parse_leaf (dp : Bool) (st st1 : OnlineReachSetAnalyzer.ParseState ℝ S d)
+    (parent : ℕ) (k : OnlineAnalyzerNode.Kind) (hi1 : OnlineReachSetAnalyzer.NodesInv dp st1.nodes)
     (he1 : OnlineReachSetAnalyzer.IsExt st.nodes st1.nodes)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
       node.parents = [parent]) :
@@ -231,7 +231,8 @@ theorem aux_parse_leaf (dp : Bool) (st st1 : OnlineReachSetAnalyzer.ParseState �
 
 
 /-- The conclusion once the node and its two operands are parsed. -/
-theorem aux_parse_chain (dp : Bool) (st st1 st2 st' : OnlineReachSetAnalyzer.ParseState ℝ S d)
+private theorem aux_parse_chain (dp : Bool)
+    (st st1 st2 st' : OnlineReachSetAnalyzer.ParseState ℝ S d)
     (parent : ℕ) (k : OnlineAnalyzerNode.Kind)
     (he1 : OnlineReachSetAnalyzer.IsExt st.nodes st1.nodes)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧

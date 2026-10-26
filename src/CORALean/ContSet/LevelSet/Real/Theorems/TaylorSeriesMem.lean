@@ -54,7 +54,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A box with a point in it contains its center. -/
-theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.construct) :
+private theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.construct) :
     I.center ∈ I.construct := by
   intro i
   have h : I.inf i ≤ x i ∧ x i ≤ I.sup i := hx i
@@ -62,7 +62,7 @@ theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.
   constructor <;> linarith [h.1, h.2]
 
 /-- The first-order term, read through the gradient's coordinates. -/
-theorem aux_fderiv_eq_sum (f : Vec ℝ n → ℝ) (c v : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_fderiv_eq_sum (f : Vec ℝ n → ℝ) (c v : Vec ℝ n) : -- --- CONCL ---
     fderiv ℝ f c v = ∑ i, taylorGrad f c i * v i := by -- --- PROOF ---
   have hv : v = ∑ i, v i • (Pi.single i (1 : ℝ) : Vec ℝ n) := by
     ext j; simp [Finset.sum_apply, Pi.single_apply]

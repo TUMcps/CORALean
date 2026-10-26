@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
 
 /-- One step at a row inside the ball: the restricted product reads the same entries as the
 full one. -/
-theorem aux_reducedStepsFloat_row_step {c0 c1 : ℕ} (A : Mat ℝ N N) (v : Fin N) (r : ℕ)
+private theorem aux_reducedStepsFloat_row_step {c0 c1 : ℕ} (A : Mat ℝ N N) (v : Fin N) (r : ℕ)
     (κ0 : Fin c0 → Fin N) (κ1 : Fin c1 → Fin N) (hinj : Function.Injective κ0)
     (hS : ∀ x ∈ Real.GNN.ball A v (r + 1), ∃ a, κ0 a = x) (X : Mat ℝ N F) (Y : Mat ℝ c0 F)
     (hY : ∀ a, κ0 a ∈ Real.GNN.ball A v (r + 1) → Y a = X (κ0 a)) (b : Fin c1)

@@ -61,16 +61,18 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The `(i, j)` partial derivative of `F` at `p`. -/
-noncomputable def aux_pd (F : (Fin n → ℝ) → (Fin n → ℝ)) (p : Fin n → ℝ) (i j : Fin n) : ℝ :=
+private noncomputable def aux_pd (F : (Fin n → ℝ) → (Fin n → ℝ)) (p : Fin n → ℝ) (i j : Fin n) :
+    ℝ :=
   fderiv ℝ F p (Pi.single j 1) i
 
 /-- Partial derivatives of a `C¹` map are continuous. -/
-theorem aux_pd_continuous {F : (Fin n → ℝ) → (Fin n → ℝ)} (hF : ContDiff ℝ 1 F) (i j : Fin n) :
+private theorem aux_pd_continuous {F : (Fin n → ℝ) → (Fin n → ℝ)} (hF : ContDiff ℝ 1 F)
+    (i j : Fin n) :
     Continuous fun p => aux_pd F p i j :=
   (continuous_apply i).comp ((hF.continuous_fderiv one_ne_zero).clm_apply continuous_const)
 
 /-- A derivative applied to `w`, entry by entry. -/
-theorem aux_fderiv_apply_eq_sum (F : (Fin n → ℝ) → (Fin n → ℝ)) (p w : Fin n → ℝ)
+private theorem aux_fderiv_apply_eq_sum (F : (Fin n → ℝ) → (Fin n → ℝ)) (p w : Fin n → ℝ)
     (i : Fin n) : -- --- CONCL ---
     fderiv ℝ F p w i = ∑ j, aux_pd F p i j * w j := by -- --- PROOF ---
   have h := LinearMap.pi_apply_eq_sum_univ (fderiv ℝ F p : (Fin n → ℝ) →ₗ[ℝ] (Fin n → ℝ)) w
@@ -83,8 +85,8 @@ theorem aux_fderiv_apply_eq_sum (F : (Fin n → ℝ) → (Fin n → ℝ)) (p w :
 
 /-- The mean-value slope: `F x - F xc = A x (x - xc)` for `A x` the average Jacobian on the
 segment. -/
-theorem aux_sub_eq_sum {F : (Fin n → ℝ) → (Fin n → ℝ)} (hF : ContDiff ℝ 1 F) (c x : Fin n → ℝ)
-    (i : Fin n) : -- --- CONCL ---
+private theorem aux_sub_eq_sum {F : (Fin n → ℝ) → (Fin n → ℝ)} (hF : ContDiff ℝ 1 F)
+    (c x : Fin n → ℝ) (i : Fin n) : -- --- CONCL ---
     F x i - F c i =
       ∑ j, (∫ s in (0 : ℝ)..1, aux_pd F (c + s • (x - c)) i j) * (x j - c j) := by -- --- PROOF ---
   set γ : ℝ → (Fin n → ℝ) := fun s => c + s • (x - c)

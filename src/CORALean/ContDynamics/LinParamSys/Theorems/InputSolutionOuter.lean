@@ -78,7 +78,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 /-- The Taylor part, by induction on the order: `plus` absorbs one term at a
 time, exactly as the operation builds it. -/
-theorem LinParamSys.aux_inputTaylorSum_outer (sys : LinParamSys ℐ n) (r : ℝ) (U : S n)
+private theorem LinParamSys.aux_inputTaylorSum_outer (sys : LinParamSys ℐ n) (r : ℝ) (U : S n)
     (x : ℕ → Vec ℝ n) : ∀ (η : ℕ),
     (∀ i, i ≤ η → x i ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r i) U)) →
     (∑ i ∈ Finset.range (η + 1), x i) ∈ construct (sys.inputTaylorSum r U η)

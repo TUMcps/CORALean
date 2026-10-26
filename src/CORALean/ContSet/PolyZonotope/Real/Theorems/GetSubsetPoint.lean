@@ -49,7 +49,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The binomial theorem over a range padded past the degree: the surplus terms
 carry `Nat.choose e j = 0` and so contribute nothing. -/
-theorem PolyZonotope.aux_getSubset_binom (x y : ℝ) {e d : ℕ} (hed : e ≤ d) : -- --- CONCL ---
+private theorem PolyZonotope.aux_getSubset_binom (x y : ℝ) {e d : ℕ}
+    (hed : e ≤ d) : -- --- CONCL ---
     ∑ j : Fin (d + 1), ((e.choose j : ℝ) * x ^ (e - (j : ℕ)) * y ^ (j : ℕ))
       = (x + y) ^ e := by -- --- PROOF ---
   rw [Fin.sum_univ_eq_sum_range (fun j => ((e.choose j : ℝ) * x ^ (e - j) * y ^ j)) (d + 1),
@@ -67,7 +68,7 @@ theorem PolyZonotope.aux_getSubset_binom (x y : ℝ) {e d : ℕ} (hed : e ≤ d)
 
 /-- One expanded column, its monomial and its generator: the substituted factor
 pulled out of both, the rest of the monomial left standing. -/
-theorem PolyZonotope.aux_getSubset_col (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
+private theorem PolyZonotope.aux_getSubset_col (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
     (b : Fin pZ.p → ℝ) (i : Fin pZ.h) (j : Fin (pZ.maxExp k + 1)) : -- --- CONCL ---
     monomial (pZ.getSubsetE k) b (finProdFinEquiv (i, j))
         • pZ.getSubsetG k cen rad (finProdFinEquiv (i, j))

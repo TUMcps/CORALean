@@ -45,13 +45,13 @@ variable {h : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The fold's invariant: what the best edge so far is among the targets seen. -/
-def aux_GreedyInv (G : Fin h → Fin h → Prop) (w : Fin h → Fin h → ℕ) (i : Fin h)
+private def aux_GreedyInv (G : Fin h → Fin h → Prop) (w : Fin h → Fin h → ℕ) (i : Fin h)
     (done : List (Fin h)) (best : Option (Fin h)) : Prop :=
   (∀ b, best = some b → b ∈ done ∧ G i b ∧ ∀ j ∈ done, G i j → w i b ≤ w i j) ∧
     (best = none → ∀ j ∈ done, ¬ G i j)
 
 /-- One target considered: it replaces the best if it is an edge and lighter. -/
-def aux_greedyStep (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
+private def aux_greedyStep (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
     (i : Fin h) (best : Option (Fin h)) (j : Fin h) : Option (Fin h) :=
   if G i j then
     match best with
@@ -60,7 +60,7 @@ def aux_greedyStep (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h �
   else best
 
 /-- One more target either leaves the best alone or replaces it. -/
-theorem aux_greedy_step (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
+private theorem aux_greedy_step (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
     (i : Fin h) (done : List (Fin h)) (best : Option (Fin h)) (j : Fin h)
     (hinv : aux_GreedyInv G w i done best) : -- --- CONCL ---
     aux_GreedyInv G w i (done ++ [j]) (aux_greedyStep G w i best j) := by -- --- PROOF ---
@@ -110,7 +110,7 @@ theorem aux_greedy_step (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin
       · rw [List.mem_singleton.mp hj']; exact hG
 
 /-- The invariant survives the whole fold. -/
-theorem aux_greedy_fold (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
+private theorem aux_greedy_fold (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin h → Fin h → ℕ)
     (i : Fin h) (l done : List (Fin h)) (best : Option (Fin h))
     (hinv : aux_GreedyInv G w i done best) : -- --- CONCL ---
     aux_GreedyInv G w i (done ++ l) (l.foldl (aux_greedyStep G w i) best) := by -- --- PROOF ---

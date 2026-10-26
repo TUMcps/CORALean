@@ -56,14 +56,14 @@ variable {m n : ℕ}
 
 /-- `Fin.sum_univ_add` at this operation's generator count, stated through the
 projection because that is the form the goal has. -/
-theorem Zonotope.aux_sum_univ_mtimesIntervalMatBall {IM : Interval (Mat ℝ m n)}
+private theorem Zonotope.aux_sum_univ_mtimesIntervalMatBall {IM : Interval (Mat ℝ m n)}
     {Z : Zonotope (Vec ℝ n)} (f : Fin (Z.h + m) → ℝ) :
     ∑ j : Fin (Zonotope.mtimesIntervalMat IM Z).h, f j
       = ∑ j, f (Fin.castAdd m j) + ∑ j, f (Fin.natAdd Z.h j) :=
   Fin.sum_univ_add f
 
 /-- A diagonal block read down a column, under an absolute value. -/
-theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) : -- --- CONCL ---
+private theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) : -- --- CONCL ---
     ∑ l, |Matrix.diagonal v l i| = |v i| := by -- --- PROOF ---
   rw [Finset.sum_eq_single i, Matrix.diagonal_apply_eq]
   · intro b _ hb
@@ -72,7 +72,7 @@ theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) : -- --- CONCL
     exact absurd (Finset.mem_univ i) hi
 
 /-- A row of the center against a vector, in terms of that vector's `ℓ¹` size. -/
-theorem Zonotope.aux_abs_center_mulVec_le {ρc : ℝ} {IM : Interval (Mat ℝ m n)}
+private theorem Zonotope.aux_abs_center_mulVec_le {ρc : ℝ} {IM : Interval (Mat ℝ m n)}
     (hc : ∀ i j, |IM.center i j| ≤ ρc) (v : Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     |(IM.center *ᵥ v) i| ≤ ρc * ∑ j, |v j| := by -- --- PROOF ---
   have hrow : (IM.center *ᵥ v) i = ∑ j, IM.center i j * v j := rfl
@@ -86,7 +86,7 @@ theorem Zonotope.aux_abs_center_mulVec_le {ρc : ℝ} {IM : Interval (Mat ℝ m 
 
 /-- Every coordinate of the product reaches no further than the two entry
 bounds together, against the operand's `ℓ¹` reach. -/
-theorem Zonotope.aux_absBound_mtimesIntervalMat_le {ρc ρr : ℝ} {IM : Interval (Mat ℝ m n)}
+private theorem Zonotope.aux_absBound_mtimesIntervalMat_le {ρc ρr : ℝ} {IM : Interval (Mat ℝ m n)}
     {Z : Zonotope (Vec ℝ n)}
     (hc : ∀ i j, |IM.center i j| ≤ ρc) (hr : ∀ i j, |IM.radius i j| ≤ ρr)
     (i : Fin m) : -- --- CONCL ---

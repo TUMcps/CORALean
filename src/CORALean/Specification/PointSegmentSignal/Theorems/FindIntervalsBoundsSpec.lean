@@ -42,7 +42,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A time point, or the default, is `≥ 0`. -/
-theorem aux_getD_nonneg {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
+private theorem aux_getD_nonneg {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSignal T)
     (hs : s.IsValid) (i : ℕ) : 0 ≤ s.timePoints.getD i 0 := by
   rcases lt_or_ge i s.timePoints.length with h | h
   · rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem h, Option.getD_some]

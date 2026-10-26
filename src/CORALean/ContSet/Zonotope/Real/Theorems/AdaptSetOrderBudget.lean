@@ -59,7 +59,7 @@ variable {n : ℕ}
 /-- Lines 3-7 keep an admissible order admissible: every decrement the loop
 takes is one the check cleared, and every exit hands back what it came in
 with. -/
-theorem aux_adaptSetOrderLoop_le {le : ℝ → ℝ → Bool} (hle : ∀ a b, le a b = true → a ≤ b)
+private theorem aux_adaptSetOrderLoop_le {le : ℝ → ℝ → Bool} (hle : ∀ a b, le a b = true → a ≤ b)
     (Z : Zonotope (Vec ℝ n)) {εSi : ℝ} : -- --- CONCL ---
     ∀ (k Φset : ℕ), Z.reduceBoxError Φset ≤ εSi →
       Z.reduceBoxError (Zonotope.adaptSetOrderLoop le Z εSi Φset k) ≤ εSi := by -- --- PROOF ---

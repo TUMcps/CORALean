@@ -76,7 +76,7 @@ variable {n p q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One row of `Ã(t_k) z ≤ b̃(t_k)`, the offset split into (20)'s three blocks. -/
-theorem aux_lp_row_iff (sys : Conform.Plant n p (q + 1)) {ιX ιW ιV : Type} [Fintype ιX]
+private theorem aux_lp_row_iff (sys : Conform.Plant n p (q + 1)) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (cX : Vec ℝ n) (GX : ιX → Vec ℝ n) (αX : ιX → ℝ)
     (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ) (cV : Vec ℝ (q + 1))
     (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ) (k : ℕ) (v y : Vec ℝ (q + 1)) : -- --- CONCL ---

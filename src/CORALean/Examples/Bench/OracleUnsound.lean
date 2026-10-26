@@ -37,16 +37,17 @@ open CORALean CORALean.Float CORALean.Oracle CORALean.Bench.NearestUnsound
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `x` as an exact dyadic: the number its bits denote. -/
-def aux_dyadicOf (x : Float) : ExactDyadic :=
+private def aux_dyadicOf (x : Float) : ExactDyadic :=
   let d := Binary64.toDyadic x
   ⟨d.mantissa, d.exponent⟩
 
 /-- `roundTo` is not offered for `nearest`, which has no exact rounding of its own. -/
-def aux_nativeRoundTo {𝕋 : Type} : String → Oracle.ExactScalar → Except String (𝕋 × 𝕋 × 𝕋) :=
+private def aux_nativeRoundTo {𝕋 : Type} : String → Oracle.ExactScalar → Except String
+    (𝕋 × 𝕋 × 𝕋) :=
   fun _ _ => throw "roundTo: not supported for nearest"
 
 /-- The message for a negative decimal exponent: `1/50` is no binary number. -/
-def aux_decNegRefused (field : String) (m : Int) (d : Nat) : String :=
+private def aux_decNegRefused (field : String) (m : Int) (d : Nat) : String :=
   s!"field `{field}`: {m}*10^-{d} is a decimal fraction, not exactly representable in binary"
 
 

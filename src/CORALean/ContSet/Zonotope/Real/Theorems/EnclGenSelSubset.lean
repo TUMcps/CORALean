@@ -54,7 +54,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Dropping generators only shrinks: the ones left out get coefficient zero. -/
-theorem aux_genSelection_subset {α : Type} [AddCommGroup α] [Module ℝ α]
+private theorem aux_genSelection_subset {α : Type} [AddCommGroup α] [Module ℝ α]
     (Z : Zonotope α) (σ : Equiv.Perm (Fin Z.h)) (ξ : ℕ) : -- --- CONCL ---
     (Z.aux_genSelection σ Z.c ξ).construct ⊆ Z.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩

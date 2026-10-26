@@ -44,11 +44,11 @@ open Lean (Json)
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- The range guard's fixed quiet-NaN bit pattern (`Binary64/Operations/InRange.lean`), hex.
-def aux_nanHex : String := "7ff8000000000000"
+private def aux_nanHex : String := "7ff8000000000000"
 
 /-- The five variants of a sum or dot product, each a thunk producing its hex string or the
 reason it could not (`ieee64ToHex`'s overflow check). -/
-def aux_sumThunks (xs : Array Float) (xsI : Array (IEEE IEEEFormat.binary64)) :
+private def aux_sumThunks (xs : Array Float) (xsI : Array (IEEE IEEEFormat.binary64)) :
     List (String × (Unit → Except String String)) :=
   [ ("hardware_nearest", fun _ => pure (floatToHex (seqSumNearest xs))),
     ("hardware_down", fun _ => pure (floatToHex (seqSumFO true xs))),
@@ -57,7 +57,7 @@ def aux_sumThunks (xs : Array Float) (xsI : Array (IEEE IEEEFormat.binary64)) :
     ("ieee_up", fun _ => ieee64ToHex (seqSumFO false xsI)) ]
 
 /-- `aux_sumThunks`'s dot-product counterpart. -/
-def aux_dotThunks (xs ys : Array Float) (xsI ysI : Array (IEEE IEEEFormat.binary64)) :
+private def aux_dotThunks (xs ys : Array Float) (xsI ysI : Array (IEEE IEEEFormat.binary64)) :
     List (String × (Unit → Except String String)) :=
   [ ("hardware_nearest", fun _ => pure (floatToHex (seqDotNearest xs ys))),
     ("hardware_down", fun _ => pure (floatToHex (seqDotFO true xs ys))),
@@ -66,7 +66,7 @@ def aux_dotThunks (xs ys : Array Float) (xsI ysI : Array (IEEE IEEEFormat.binary
     ("ieee_up", fun _ => ieee64ToHex (seqDotFO false xsI ysI)) ]
 
 /-- The five variants of `A * B`, `n × n`, each a thunk producing the row-major hex array. -/
-def aux_mtimesThunks (numChunks n : Nat) (A B : Array Float)
+private def aux_mtimesThunks (numChunks n : Nat) (A B : Array Float)
     (AI BI : Array (IEEE IEEEFormat.binary64)) :
     List (String × (Unit → Except String (Array String))) :=
   [ ("hardware_nearest", fun _ => pure ((matMulNearest numChunks n A B).map floatToHex)),
@@ -77,7 +77,7 @@ def aux_mtimesThunks (numChunks n : Nat) (A B : Array Float)
 
 /-- Runs every thunk of a scalar quantity, timed: the hex values object, the seconds-per-variant
 object, and how many of the five came back the range guard's NaN. -/
-def aux_runScalar (thunks : List (String × (Unit → Except String String))) :
+private def aux_runScalar (thunks : List (String × (Unit → Except String String))) :
     IO (Json × Json × Nat) := do
   let mut valsJ : List (String × Json) := []
   let mut timesJ : List (String × Json) := []
@@ -92,7 +92,7 @@ def aux_runScalar (thunks : List (String × (Unit → Except String String))) :
   pure (Json.mkObj valsJ, Json.mkObj timesJ, nanCount)
 
 /-- `aux_runScalar`'s matrix counterpart: each variant is a whole `n²` hex array. -/
-def aux_runMatrix (thunks : List (String × (Unit → Except String (Array String)))) :
+private def aux_runMatrix (thunks : List (String × (Unit → Except String (Array String)))) :
     IO (Json × Json × Nat) := do
   let mut valsJ : List (String × Json) := []
   let mut timesJ : List (String × Json) := []

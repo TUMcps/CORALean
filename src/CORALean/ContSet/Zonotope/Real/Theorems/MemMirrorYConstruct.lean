@@ -44,7 +44,8 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The mirrored combination is the mirror image of the combination. -/
-theorem Zonotope.aux_mirrorY_comb (Z : Zonotope (Vec ℝ 2)) (β : Fin Z.h → ℝ) : -- --- CONCL ---
+private theorem Zonotope.aux_mirrorY_comb (Z : Zonotope (Vec ℝ 2))
+    (β : Fin Z.h → ℝ) : -- --- CONCL ---
     Z.mirrorY.c + ∑ j, β j • Z.mirrorY.G j
       = ![(Z.c + ∑ j, β j • Z.G j) 0, -(Z.c + ∑ j, β j • Z.G j) 1] := by -- --- PROOF ---
   ext k

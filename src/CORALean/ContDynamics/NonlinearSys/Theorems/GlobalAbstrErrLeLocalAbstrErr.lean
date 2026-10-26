@@ -62,7 +62,7 @@ variable {n : ℕ}
 /-- The discrete Grönwall step: a sequence growing by at most a fixed factor
 `1 + LΔt` each step, plus a per-step addition bounded by `M`, stays under the
 geometric sum that recursion unrolls to. -/
-theorem aux_gronwall {L Δt M : ℝ} (hL : 0 < L) (hΔt : 0 < Δt)
+private theorem aux_gronwall {L Δt M : ℝ} (hL : 0 < L) (hΔt : 0 < Δt)
     (global loc : ℕ → ℝ) (hzero : global 0 = 0) (N : ℕ)
     (hrec : ∀ k < N, global (k + 1) ≤ (1 + L * Δt) * global k + loc (k + 1))
     (hloc : ∀ k < N, loc (k + 1) ≤ M) : -- --- CONCL ---

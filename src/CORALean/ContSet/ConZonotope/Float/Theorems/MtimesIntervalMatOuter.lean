@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of a constrained zonotope's nominal part is one of its unconstrained zonotope's. -/
-theorem ConZonotope.aux_nominal_zonotope {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {z : Vec ℝ n}
+private theorem ConZonotope.aux_nominal_zonotope {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {z : Vec ℝ n}
     (hz : z ∈ nominalSet cZ) : z ∈ nominalSet cZ.zonotope := by
   obtain ⟨β, hβ, -, hzβ⟩ := ConZonotope.mem_nominalSet_iff.mp hz
   exact Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, hzβ⟩

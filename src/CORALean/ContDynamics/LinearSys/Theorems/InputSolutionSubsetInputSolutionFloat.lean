@@ -91,14 +91,14 @@ section
 variable {n : ℕ}
 
 /-- A real number times its own sign is its absolute value. -/
-theorem aux_absLe_mul_sign (x : ℝ) : x * (if 0 ≤ x then (1 : ℝ) else -1) = |x| := by
+private theorem aux_absLe_mul_sign (x : ℝ) : x * (if 0 ≤ x then (1 : ℝ) else -1) = |x| := by
   split
   · rw [mul_one, abs_of_nonneg]; assumption
   · rw [mul_neg_one, abs_of_neg (not_le.mp (by assumption))]
 
 
 /-- A coordinate's `absBound` is the largest `|x j|` a zonotope reaches. -/
-theorem Zonotope.aux_absBound_le_of_abs_le {Z : Zonotope (Vec ℝ n)} {r : ℝ} {j : Fin n}
+private theorem Zonotope.aux_absBound_le_of_abs_le {Z : Zonotope (Vec ℝ n)} {r : ℝ} {j : Fin n}
     (h : ∀ x ∈ Z.construct, |x j| ≤ r) : -- --- CONCL ---
     Z.absBound j ≤ r := by -- --- PROOF ---
   -- the center's sign on every generator at coordinate `j`
@@ -141,7 +141,7 @@ open InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A zonotope whose error box is the point `0` is its nominal part. -/
-theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
+private theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
     (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
     {y : Vec ℝ n} (hy : y ∈ V.construct) : -- --- CONCL ---
     y ∈ nominalSet V := by -- --- PROOF ---
@@ -159,7 +159,7 @@ theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
 
 
 /-- A point of the nominal part reaches no further than `|c| + Σ|G|`, rounded up. -/
-theorem aux_abs_nominal_le (V : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
+private theorem aux_abs_nominal_le (V : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
     (hz : z ∈ nominalSet V) (j : Fin n) : -- --- CONCL ---
     |z j| ≤ toReal (addUp (absolute (V.c j)) (radius (fun i j => V.G j i) j)) := by -- --- PROOF ---
   obtain ⟨β, hβ, hval⟩ := Zonotope.mem_nominalSet_iff.mp hz
@@ -173,7 +173,7 @@ theorem aux_abs_nominal_le (V : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
 
 /-- The two ends of the exact interval at a residual `Rs` of the float one: the center's distance
 from the stored center plus the radius is at most the residual's larger end. -/
-theorem aux_mid_add_rad_le {lo hi C M : ℝ} (hlo : |lo - C| ≤ M) (hhi : |hi - C| ≤ M) :
+private theorem aux_mid_add_rad_le {lo hi C M : ℝ} (hlo : |lo - C| ≤ M) (hhi : |hi - C| ≤ M) :
     |(lo + hi) / 2 - C| + (hi - lo) / 2 ≤ M := by
   obtain ⟨h1, h2⟩ := abs_le.mp hlo
   obtain ⟨h3, h4⟩ := abs_le.mp hhi
@@ -181,7 +181,8 @@ theorem aux_mid_add_rad_le {lo hi C M : ℝ} (hlo : |lo - C| ≤ M) (hhi : |hi -
 
 
 /-- The exact `mtimesIntervalMat` is inside the float one. -/
-theorem Zonotope.aux_real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Mat ℝ m n)}
+private theorem Zonotope.aux_real_mtimesIntervalMat_subset
+    {IMr : CORALean.Real.Interval (Mat ℝ m n)}
     {IMf : Interval (Mat 𝕋 m n)} (hlo : IMr.inf ∈ IMf.construct) (hhi : IMr.sup ∈ IMf.construct)
     (hle : ∀ i j, IMr.inf i j ≤ IMr.sup i j) {Zr : CORALean.Real.Zonotope (Vec ℝ n)}
     {V : Zonotope (Vec 𝕋 n)} (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
@@ -356,8 +357,8 @@ end Float
 
 
 /-- The exact orders, over `Real.Zonotope`, inside the float sum. -/
-theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {Wr : CORALean.Real.Zonotope (Vec ℝ n)} {V : Zonotope (Vec 𝕋 n)}
+private theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r : 𝕋}
+    (hr : 0 ≤ toReal r) {Wr : CORALean.Real.Zonotope (Vec ℝ n)} {V : Zonotope (Vec 𝕋 n)}
     (hW : Wr.construct ⊆ V.construct) : -- --- CONCL ---
     ∀ i, construct (sys.inputTaylorSum (S := 𝒵)
         (toReal r) Wr i) ⊆ (sys.inputTaylorSumFloat r V i).construct := by -- --- PROOF ---

@@ -47,13 +47,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The factor vector after the first `t` factors have been sent to `cen ± rad`. -/
-def ConPolyZono.aux_rescaleSub (cen rad : ℕ → 𝕋) (t : ℕ) (a : ℕ → ℝ) : ℕ → ℝ :=
+private def ConPolyZono.aux_rescaleSub (cen rad : ℕ → 𝕋) (t : ℕ) (a : ℕ → ℝ) : ℕ → ℝ :=
   fun k => if k < t then toReal (cen k) + toReal (rad k) * a k else a k
 
 /-- What `t` steps of `rescaleStep` leave: the factor counts, the center and the independent
 block, and, at every factor vector in `[-1,1]ᵖ` whose substitution is in `[-1,1]ᵖ` and meets
 the original constraint, the constraint and the generator sum up to the error boxes. -/
-def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
+private def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
     (t : ℕ) : Prop :=
   acc.p = cPZ.p ∧ acc.qI = cPZ.qI ∧ acc.c = cPZ.c
   ∧ (∀ (β : ℕ → ℝ) (i : Fin n), ∑ j : Fin acc.qI, toReal (acc.GI j i) * β j
@@ -68,7 +68,8 @@ def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen ra
           = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
               (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k) l) + e i
 
-theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → 𝕋) (t : ℕ) (a : ℕ → ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → 𝕋) (t : ℕ)
+    (a : ℕ → ℝ) : -- --- CONCL ---
     ConPolyZono.aux_rescaleSub cen rad (t + 1) a
       = ConPolyZono.aux_rescaleSub cen rad t
           (Function.update a t (toReal (cen t) + toReal (rad t) * a t)) := by -- --- PROOF ---
@@ -81,7 +82,8 @@ theorem ConPolyZono.aux_rescaleSub_succ (cen rad : ℕ → 𝕋) (t : ℕ) (a : 
     rw [if_pos (by omega), if_neg (by omega), Function.update_self]
   · rw [if_neg (by omega), if_neg (by omega), Function.update_of_ne (by omega)]
 
-theorem ConPolyZono.aux_fin_update {m t : ℕ} (h : t < m) (a : ℕ → ℝ) (y : ℝ) : -- --- CONCL ---
+private theorem ConPolyZono.aux_fin_update {m t : ℕ} (h : t < m) (a : ℕ → ℝ)
+    (y : ℝ) : -- --- CONCL ---
     (fun k : Fin m => Function.update a t y (k : ℕ))
       = Function.update (fun k : Fin m => a k) ⟨t, h⟩ y := by -- --- PROOF ---
   -- the coordinate `t` is the updated one, the others are read off `a`
@@ -92,7 +94,7 @@ theorem ConPolyZono.aux_fin_update {m t : ℕ} (h : t < m) (a : ℕ → ℝ) (y 
     intro h'
     exact hk (Fin.ext h')
 
-theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (cen rad : ℕ → 𝕋) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ cPZ cen rad 0 := by -- --- PROOF ---
   -- nothing has been substituted yet: the substitution is the identity, the error box the same
@@ -104,7 +106,7 @@ theorem ConPolyZono.aux_rescaleInv_zero (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   rw [hid] at hs
   exact ⟨hs, fun e he => ⟨e, he, fun i => by rw [hid]⟩⟩
 
-theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n))
+private theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n))
     (cen rad : ℕ → 𝕋) (t : ℕ)
     (ht : t < cPZ.p) (hinv : ConPolyZono.aux_RescaleInv cPZ acc cen rad t) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ (ConPolyZono.rescaleStep cen rad acc t) cen rad
@@ -144,8 +146,8 @@ theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)
   rw [hsub]
   exact h₁i
 
-theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋) (t : ℕ)
-    (ht : t ≤ cPZ.p) : -- --- CONCL ---
+private theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
+    (t : ℕ) (ht : t ≤ cPZ.p) : -- --- CONCL ---
     ConPolyZono.aux_RescaleInv cPZ ((List.range t).foldl (ConPolyZono.rescaleStep cen rad) cPZ)
       cen rad t := by -- --- PROOF ---
   induction t with
@@ -157,7 +159,7 @@ theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (c
 
 /-- The rounded midpoint of `[lo, hi]`, with the radius rounded up from it to both ends,
 covers the interval. -/
-theorem ConPolyZono.aux_cover (lo hi : 𝕋) (v : ℝ)
+private theorem ConPolyZono.aux_cover (lo hi : 𝕋) (v : ℝ)
     (h : toReal lo ≤ v ∧ v ≤ toReal hi) : -- --- CONCL ---
     |v - toReal (half (addDown hi lo))| ≤
       toReal (maximum (subUp hi (half (addDown hi lo)))
@@ -174,8 +176,8 @@ theorem ConPolyZono.aux_cover (lo hi : 𝕋) (v : ℝ)
 
 /-- Any midpoints and radii whose boxes cover every factor vector of `[-1,1]ᵖ` satisfying the
 constraints: the fold onto them encloses the set. -/
-theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
-    (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → x ∈ cPZ.cons.construct →
+private theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
+    (cen rad : ℕ → 𝕋) (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → x ∈ cPZ.cons.construct →
       ∀ k : Fin cPZ.p, |x k - toReal (cen k)| ≤ toReal (rad k)) : -- --- CONCL ---
     cPZ.construct ⊆ ConPolyZono.construct
       ((List.range cPZ.p).foldl (ConPolyZono.rescaleStep cen rad) cPZ) := by -- --- PROOF ---

@@ -50,7 +50,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The ordered pairs split into the diagonal and one term per unordered pair `a < b`. -/
-theorem Zonotope.aux_cubMap_pairs {N : ℕ} (g : Fin N → Fin N → ℝ) : -- --- CONCL ---
+private theorem Zonotope.aux_cubMap_pairs {N : ℕ} (g : Fin N → Fin N → ℝ) : -- --- CONCL ---
     ∑ a, ∑ b, g a b
       = ∑ a, ∑ b,
           (if a < b then g a b + g b a else if a = b then g a a else 0) := by -- --- PROOF ---
@@ -80,7 +80,7 @@ theorem Zonotope.aux_cubMap_pairs {N : ℕ} (g : Fin N → Fin N → ℝ) : -- -
 /-- The ordered triples `(c; a, b)` of a cubic polynomial whose coefficient `L c a b` vanishes
 below the diagonal, and the sorted triples `x ≤ y ≤ z`: `c ≤ a` stays, `a < c ≤ b` and `b < c`
 move `c` into its place. -/
-theorem Zonotope.aux_cubMap_regroup {N : ℕ} (β : Fin N → ℝ) (L : Fin N → Fin N → Fin N → ℝ)
+private theorem Zonotope.aux_cubMap_regroup {N : ℕ} (β : Fin N → ℝ) (L : Fin N → Fin N → Fin N → ℝ)
     (hL : ∀ c a b, b < a → L c a b = 0) : -- --- CONCL ---
     ∑ c, ∑ a, ∑ b, β c * β a * β b * L c a b
       = ∑ x, ∑ y, ∑ z, (if x ≤ y ∧ y ≤ z then β x * β y * β z *
@@ -165,7 +165,7 @@ theorem Zonotope.aux_cubMap_regroup {N : ℕ} (β : Fin N → ℝ) (L : Fin N �
   ring
 
 /-- The quadratic form of a combination of the extended columns. -/
-theorem Zonotope.aux_cubMap_dot {N : ℕ} (A : Mat ℝ n n) (β : Fin N → ℝ)
+private theorem Zonotope.aux_cubMap_dot {N : ℕ} (A : Mat ℝ n n) (β : Fin N → ℝ)
     (u : Fin N → Vec ℝ n) : -- --- CONCL ---
     (∑ a, β a • u a) ⬝ᵥ (A *ᵥ ∑ b, β b • u b)
       = ∑ a, ∑ b, β a * β b * (u a ⬝ᵥ (A *ᵥ u b)) := by -- --- PROOF ---
@@ -176,7 +176,7 @@ theorem Zonotope.aux_cubMap_dot {N : ℕ} (A : Mat ℝ n n) (β : Fin N → ℝ)
   exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
 
 /-- The cubic map of a combination of the extended columns, as a sum over the ordered triples. -/
-theorem Zonotope.aux_cubMap_expand (T : Fin m → Fin n → Mat ℝ n n) {N : ℕ} (β : Fin N → ℝ)
+private theorem Zonotope.aux_cubMap_expand (T : Fin m → Fin n → Mat ℝ n n) {N : ℕ} (β : Fin N → ℝ)
     (u : Fin N → Vec ℝ n) (i : Fin m) : -- --- CONCL ---
     PolyZonotope.cubEval T (∑ a, β a • u a) i
       = ∑ c, ∑ a, ∑ b, β c * β a * β b * ∑ k, (u a ⬝ᵥ (T i k *ᵥ u b)) * u c k := by -- --- PROOF ---
@@ -201,7 +201,7 @@ theorem Zonotope.aux_cubMap_expand (T : Fin m → Fin n → Mat ℝ n n) {N : �
     Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun k _ => by ring
 
 /-- The sorted triples as the center, the halved squares and the generators of `cubMap`. -/
-theorem Zonotope.aux_cubMap_assemble (h : ℕ) (β : Fin (h + 1) → ℝ) (hβ : β 0 = 1)
+private theorem Zonotope.aux_cubMap_assemble (h : ℕ) (β : Fin (h + 1) → ℝ) (hβ : β 0 = 1)
     (F : Fin (h + 1) → Fin (h + 1) → Fin (h + 1) → ℝ) : -- --- CONCL ---
     ∑ x, ∑ y, ∑ z, (if x ≤ y ∧ y ≤ z then β x * β y * β z * F x y z else 0)
       = (F 0 0 0 + 1 / 2 * ∑ y : Fin h, F 0 y.succ y.succ)
@@ -246,7 +246,7 @@ theorem Zonotope.aux_cubMap_assemble (h : ℕ) (β : Fin (h + 1) → ℝ) (hβ :
     simp [Finset.mul_sum]
 
 /-- `cubFold` over the pair coefficients `L c a b = listQuad{c}(a, b)`. -/
-theorem Zonotope.aux_cubMap_fold (T : Fin m → Fin n → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_cubMap_fold (T : Fin m → Fin n → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
     (i : Fin m) (Zext : Fin (Z.h + 1) → Vec ℝ n) (hZ : Zext = Fin.cons Z.c Z.G)
     (L : Fin (Z.h + 1) → Fin (Z.h + 1) → Fin (Z.h + 1) → ℝ)
     (hL : ∀ c a b, L c a b

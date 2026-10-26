@@ -58,7 +58,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Row `i` of `Z̃`'s system at `β`, written out in `A`, `b` and row `r`. -/
-theorem ConZonotope.aux_partialSolve_row {q h : ℕ} (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q)
+private theorem ConZonotope.aux_partialSolve_row {q h : ℕ} (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q)
     (j : Fin h) (β : Vec ℝ h) (i : Fin q) : -- --- CONCL ---
     ((A - ConZonotope.partialSolveΛA A r j * A) *ᵥ β) i
         = (b - ConZonotope.partialSolveΛA A r j *ᵥ b) i ↔
@@ -68,7 +68,7 @@ theorem ConZonotope.aux_partialSolve_row {q h : ℕ} (A : Mat ℝ q h) (b : Vec 
     ConZonotope.partialSolveΛA_mulVec, ConZonotope.partialSolveΛA_mulVec]
 
 /-- `Z̃`'s point at `β`, written out in `c`, `G` and row `r`. -/
-theorem ConZonotope.aux_partialSolve_point {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
+private theorem ConZonotope.aux_partialSolve_point {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h) (β : Vec ℝ h) : -- --- CONCL ---
     c + ConZonotope.partialSolveΛG G A r j *ᵥ b
         + ∑ l, β l • (G l - ConZonotope.partialSolveΛG G A r j *ᵥ fun k => A k l)

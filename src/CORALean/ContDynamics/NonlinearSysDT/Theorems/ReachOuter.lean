@@ -55,7 +55,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A total run restricted to its first `K` steps. -/
-theorem NonlinearSysDT.IsTrajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} {R₀ : S n}
+private theorem NonlinearSysDT.IsTrajectory.aux_toTrajectoryOn {sys : NonlinearSysDT n m} {R₀ : S n}
     {U : S m} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     {y : ℕ → Vec ℝ sys.q} (traj : sys.IsTrajectory R₀ U x u y) (K : ℕ) :
     sys.IsTrajectoryOn R₀ U K x u y where

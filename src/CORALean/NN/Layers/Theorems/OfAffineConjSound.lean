@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {f g : ℝ �
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- `ra ≥ 0` is what lets the outer rounding preserve the inner one's direction
-theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
+private theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
     (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
     toReal (Relaxation.conjSlopeLow R A B l u)
       ≤ ra * rb * toReal (R.slope (B.down l) (B.up u)) := by -- --- PROOF ---
@@ -61,7 +61,7 @@ theorem aux_conjSlopeLow_le (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
         mul_le_mul_of_nonneg_left (hB.down_le (R.slope (B.down l) (B.up u))) ha
     _ = ra * rb * toReal (R.slope (B.down l) (B.up u)) := by ring
 
-theorem aux_le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
+private theorem aux_le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
     (hA : A.IsSound ra) (hB : B.IsSound rb) (ha : 0 ≤ ra) (l u : 𝕋) : -- --- CONCL ---
     ra * rb * toReal (R.slope (B.down l) (B.up u))
       ≤ toReal (Relaxation.conjSlopeHigh R A B l u) := by -- --- PROOF ---
@@ -73,7 +73,7 @@ theorem aux_le_conjSlopeHigh (R : Relaxation 𝕋) {A B : ScaleRounding 𝕋}
     _ ≤ toReal (A.up (B.up (R.slope (B.down l) (B.up u)))) :=
         hA.up_ge (B.up (R.slope (B.down l) (B.up u)))
 
-theorem aux_conjOffsetLow_le (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
+private theorem aux_conjOffsetLow_le (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
     (hA : A.IsSound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
     toReal (Relaxation.conjOffsetLow R A B c l u)
       ≤ ra * toReal (R.offset (B.down l) (B.up u)) + toReal c := by
@@ -83,7 +83,7 @@ theorem aux_conjOffsetLow_le (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
   linarith
 
 -- the mirrored bound, no sign hypothesis needed here either
-theorem aux_le_conjOffsetHigh (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
+private theorem aux_le_conjOffsetHigh (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
     (hA : A.IsSound ra) (B : ScaleRounding 𝕋) (c l u : 𝕋) :
     ra * toReal (R.offset (B.down l) (B.up u)) + toReal c
       ≤ toReal (Relaxation.conjOffsetHigh R A B c l u) := by
@@ -92,7 +92,7 @@ theorem aux_le_conjOffsetHigh (R : Relaxation 𝕋) {A : ScaleRounding 𝕋}
   have h2 := add_le_addUp (A.up (R.offset (B.down l) (B.up u))) c
   linarith
 
-theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
+private theorem aux_abs_le_conjTBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t)
     (hu : t ≤ toReal u) : -- --- CONCL ---
     |t| ≤ toReal (Relaxation.conjTBound l u) := by -- --- PROOF ---
   rw [Relaxation.conjTBound, toReal_maximum, toReal_absolute, toReal_absolute, abs_le]

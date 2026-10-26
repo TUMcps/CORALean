@@ -58,7 +58,7 @@ variable {n d r dI rI : ℕ}
 
 /-- `mem_construct_iff` at an evaluation: one coordinate of the defining
 equation, both generator blocks transposed. -/
-theorem PolyZonotope.aux_mem_evalOn_iff {pZ : PolyZonotope (Vec ℝ n)}
+private theorem PolyZonotope.aux_mem_evalOn_iff {pZ : PolyZonotope (Vec ℝ n)}
     {B : Set (Fin pZ.p → ℝ)} {x : Vec ℝ n} : -- --- CONCL ---
     x ∈ pZ.evalOn B ↔ ∃ a ∈ B, ∃ β : Fin pZ.q → ℝ, (∀ j, |β j| ≤ 1)
       ∧ ∀ i, x i = pZ.c i + (∑ l, pZ.G l i * PolyZonotope.monomial pZ.E a l)
@@ -82,7 +82,7 @@ theorem PolyZonotope.aux_mem_evalOn_iff {pZ : PolyZonotope (Vec ℝ n)}
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec ℝ n)}
+private theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec ℝ n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
     ∑ j : Fin (pZ.reduceBy partD partI).q, f j
@@ -92,7 +92,7 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec ℝ n)}
 /-- The dependent count needs no splitting, only its binder read back at `d`:
 `ring` treats a sum over `Fin (pZ.reduceBy partD partI).h` and one over `Fin d`
 as two atoms, defeq or not. -/
-theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec ℝ n)}
+private theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec ℝ n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
     {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (pZ.reduceBy partD partI).h, f l = ∑ l, f l :=
@@ -100,7 +100,7 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec ℝ n)}
 
 /-- What the dropped dependent generators contribute: a monomial scales each,
 and never by more than one. -/
-theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |∑ l, pZ.G (partD.right l) i * PolyZonotope.monomial pZ.E a (partD.right l)|
@@ -119,7 +119,7 @@ theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
 
 /-- The same for the dropped independent generators, where the coefficient is
 already free. -/
-theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec ℝ n))
+private theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec ℝ n))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, pZ.GI (partI.right j) i * β (partI.right j)|

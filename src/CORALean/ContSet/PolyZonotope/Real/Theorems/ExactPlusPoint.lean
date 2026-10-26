@@ -55,7 +55,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at the generator count `exactPlus` produces, the binder
 ascribed so that it matches the goal. -/
-theorem PolyZonotope.aux_sum_univ_exactPlus {pZ₁ pZ₂ : PolyZonotope α} {hp : pZ₁.p = pZ₂.p}
+private theorem PolyZonotope.aux_sum_univ_exactPlus {pZ₁ pZ₂ : PolyZonotope α} {hp : pZ₁.p = pZ₂.p}
     (f : Fin (pZ₁.h + pZ₂.h) → α) :
     ∑ l : Fin (pZ₁.exactPlus pZ₂ hp).h, f l
       = ∑ i, f (Fin.castAdd pZ₂.h i) + ∑ j, f (Fin.natAdd pZ₁.h j) :=
@@ -64,7 +64,7 @@ theorem PolyZonotope.aux_sum_univ_exactPlus {pZ₁ pZ₂ : PolyZonotope α} {hp 
 omit [Module ℝ α] in
 /-- A column from the left operand keeps its own monomial, the appended columns
 standing to its right. -/
-theorem PolyZonotope.aux_monomial_exactPlus_left (pZ₁ pZ₂ : PolyZonotope α)
+private theorem PolyZonotope.aux_monomial_exactPlus_left (pZ₁ pZ₂ : PolyZonotope α)
     (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (i : Fin pZ₁.h) :
     monomial (pZ₁.exactPlus pZ₂ hp).E a (Fin.castAdd pZ₂.h i) = monomial pZ₁.E a i :=
   Finset.prod_congr rfl fun k _ => by rw [show (pZ₁.exactPlus pZ₂ hp).E k (Fin.castAdd pZ₂.h i)
@@ -73,7 +73,7 @@ theorem PolyZonotope.aux_monomial_exactPlus_left (pZ₁ pZ₂ : PolyZonotope α)
 omit [Module ℝ α] in
 /-- A column from the right operand keeps its own monomial, read at `pZ₂`'s
 factor indices: the two products run over one factor set renamed. -/
-theorem PolyZonotope.aux_monomial_exactPlus_right (pZ₁ pZ₂ : PolyZonotope α)
+private theorem PolyZonotope.aux_monomial_exactPlus_right (pZ₁ pZ₂ : PolyZonotope α)
     (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) (i : Fin pZ₂.h) : -- --- CONCL ---
     monomial (pZ₁.exactPlus pZ₂ hp).E a (Fin.natAdd pZ₁.h i)
       = monomial pZ₂.E (fun k => a (Fin.cast hp.symm k)) i := by -- --- PROOF ---

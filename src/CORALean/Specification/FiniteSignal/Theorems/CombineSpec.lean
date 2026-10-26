@@ -52,7 +52,7 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One step of the combination loop. -/
-theorem FiniteSignal.aux_combineLoop_step {T V W : Type} [LinearOrder T] [DecidableEq W]
+private theorem FiniteSignal.aux_combineLoop_step {T V W : Type} [LinearOrder T] [DecidableEq W]
     (op : V → V → W) (l r : T × V) (ls rs : List (T × V)) (hls : ∀ y ∈ ls, l.1 < y.1)
     (hrs : ∀ y ∈ rs, r.1 < y.1) : -- --- CONCL ---
     ∃ (t₀ : T) (ls' rs' : List (T × V)),
@@ -87,9 +87,10 @@ theorem FiniteSignal.aux_combineLoop_step {T V W : Type} [LinearOrder T] [Decida
 
 
 /-- `e` is the last of the times `l`: one of them, and no time exceeds it. -/
-def aux_IsLast {T : Type} [LinearOrder T] (e : T) (l : List T) : Prop := e ∈ l ∧ ∀ x ∈ l, x ≤ e
+private def aux_IsLast {T : Type} [LinearOrder T] (e : T) (l : List T) : Prop := e ∈ l ∧ ∀ x ∈ l, x
+    ≤ e
 
-theorem aux_isLast_tail {T : Type} [LinearOrder T] (e a : T) (as : List T)
+private theorem aux_isLast_tail {T : Type} [LinearOrder T] (e a : T) (as : List T)
     (hs : ∀ y ∈ as, a < y) (h : aux_IsLast e (a :: as)) (hne : as ≠ []) : -- --- CONCL ---
     aux_IsLast e as := by -- --- PROOF ---
   obtain ⟨hm, hle⟩ := h
@@ -100,7 +101,8 @@ theorem aux_isLast_tail {T : Type} [LinearOrder T] (e a : T) (as : List T)
   · exact hm
 
 /-- With a later breakpoint or none at all, the first breakpoint's value holds. -/
-theorem aux_valueAt_first {T V : Type} [LinearOrder T] (p : T × V) (q : List (T × V)) (t : T)
+private theorem aux_valueAt_first {T V : Type} [LinearOrder T] (p : T × V) (q : List (T × V))
+    (t : T)
     (y : V) (h : t < p.1 ∨ q = []) (hy : FiniteSignal.valueAt (p :: q) t = some y) : y = p.2 := by
   rcases h with h | rfl
   · rw [FiniteSignal.valueAt_cons_of_lt p q t h] at hy; exact (Option.some.inj hy).symm
@@ -108,8 +110,8 @@ theorem aux_valueAt_first {T V : Type} [LinearOrder T] (p : T × V) (q : List (T
     rw [this] at hy; exact (Option.some.inj hy).symm
 
 /-- The singleton case of the loop: one of the signals is used up. -/
-theorem aux_combineLoop_single {T V : Type} [LinearOrder T] (l r : T × V) (ls rs : List (T × V))
-    (hL : ((l :: ls).map Prod.fst).Pairwise (· < ·))
+private theorem aux_combineLoop_single {T V : Type} [LinearOrder T] (l r : T × V)
+    (ls rs : List (T × V)) (hL : ((l :: ls).map Prod.fst).Pairwise (· < ·))
     (hR : ((r :: rs).map Prod.fst).Pairwise (· < ·)) (eL eR t₀ : T)
     (heL : aux_IsLast eL ((l :: ls).map Prod.fst)) (heR : aux_IsLast eR ((r :: rs).map Prod.fst))
     (hmin : t₀ = min l.1 r.1) (ls' rs' : List (T × V))
@@ -174,8 +176,8 @@ theorem aux_combineLoop_single {T V : Type} [LinearOrder T] (l r : T × V) (ls r
 
 /-- The properties of the loop: the first value, validity of the result, its last time and its
 value at every time up to the end of the shorter signal. -/
-theorem aux_combineLoop_props {T V W : Type} [LinearOrder T] [DecidableEq W] (op : V → V → W)
-    (n : ℕ) : -- --- CONCL ---
+private theorem aux_combineLoop_props {T V W : Type} [LinearOrder T] [DecidableEq W]
+    (op : V → V → W) (n : ℕ) : -- --- CONCL ---
     ∀ (l r : T × V) (ls rs : List (T × V)), ls.length + rs.length + 2 = n →
       ((l :: ls).map Prod.fst).Pairwise (· < ·) → ((r :: rs).map Prod.fst).Pairwise (· < ·) →
       ∀ eL eR : T, aux_IsLast eL ((l :: ls).map Prod.fst) →
@@ -326,14 +328,14 @@ theorem aux_combineLoop_props {T V W : Type} [LinearOrder T] [DecidableEq W] (op
           rw [hw2, hv']
         · exact hon t x y ht hx hy hok
 
-theorem aux_zip_map_fst_snd {α β : Type} (O : List (α × β)) :
+private theorem aux_zip_map_fst_snd {α β : Type} (O : List (α × β)) :
     (O.map Prod.fst).zip (O.map Prod.snd) = O := by
   induction O with
   | nil => rfl
   | cons p q ih => simp [ih]
 
 /-- The pairs of a valid signal are a non-empty list with sorted times ending at the duration. -/
-theorem aux_valid_pairs {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
+private theorem aux_valid_pairs {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
     (hs : s.IsValid) : -- --- CONCL ---
     ∃ p ps, s.pairs = p :: ps ∧ ((p :: ps).map Prod.fst).Pairwise (· < ·) ∧
       aux_IsLast s.duration ((p :: ps).map Prod.fst) ∧ 0 ≤ p.1 := by -- --- PROOF ---

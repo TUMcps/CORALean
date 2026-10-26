@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point every row holds at stays in the box through the whole fold. -/
-theorem aux_mem_foldl_contractHalfspace {x : Vec ℝ n} :
+private theorem aux_mem_foldl_contractHalfspace {x : Vec ℝ n} :
     ∀ (rows : List (Vec 𝕋 n × 𝕋)), (∀ r ∈ rows, ∑ j, toReal (r.1 j) * x j ≤ toReal r.2) →
       ∀ J : Interval (Vec 𝕋 n), x ∈ J.construct →
         x ∈ (rows.foldl (fun J r => (J.contractHalfspace r.1 r.2).materialise) J).construct

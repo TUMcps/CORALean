@@ -1687,14 +1687,16 @@ report "$out"
 # instead of through the component's operations without saying why in its docstring (#174), and
 # a real-only `Specification` operation that does not say why (scripts/check-float-refinement.py),
 # and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
-# `aux_` step (#227).
+# `aux_` step (#227), and an `aux_` that no other file reads and that Lean would take as `private`
+# (scripts/check-private-aux.py, #269).
 # Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
     check-exact-names.py check-option-hyps.py check-thesis-refs.py check-io-doc.py \
-    check-component-reuse.py check-float-refinement.py check-steps.py check-noncomputable.py; do
+    check-component-reuse.py check-float-refinement.py check-steps.py check-noncomputable.py \
+    check-private-aux.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

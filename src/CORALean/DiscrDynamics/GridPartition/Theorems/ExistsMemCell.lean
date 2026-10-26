@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Inside one dimension: a point between the first and last divider is between two neighbours. -/
-theorem GridPartition.aux_exists_cell (d : ℕ → ℝ) {m : ℕ} (hm : 1 ≤ m)
+private theorem GridPartition.aux_exists_cell (d : ℕ → ℝ) {m : ℕ} (hm : 1 ≤ m)
     (hd : ∀ a b, a ≤ b → b ≤ m → d a ≤ d b) {t : ℝ} (h0 : d 0 ≤ t) (h1 : t ≤ d m) : -- --- CONCL ---
     ∃ k, 1 ≤ k ∧ k ≤ m ∧ d (k - 1) ≤ t ∧ t ≤ d k := by -- --- PROOF ---
   induction m, hm using Nat.le_induction with

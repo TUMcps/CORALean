@@ -59,7 +59,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `γ(a)` lies in `quadTerm t a`. -/
-theorem MatExp.aux_quadTerm_mem (t a : 𝕋) : -- --- CONCL ---
+private theorem MatExp.aux_quadTerm_mem (t a : 𝕋) : -- --- CONCL ---
     toReal (MatExp.quadTerm t a).inf ≤ Real.MatExp.quadTerm (toReal t) (toReal a)
       ∧ Real.MatExp.quadTerm (toReal t) (toReal a) ≤
         toReal (MatExp.quadTerm t a).sup := by -- --- PROOF ---
@@ -86,14 +86,14 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- `γ x + 1/2 = (x t + 1)² / 2`. -/
-theorem aux_quadTerm_ge (t x : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTerm t x := by
+private theorem aux_quadTerm_ge (t x : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTerm t x := by
   have : (0:ℝ) ≤ (x * t + 1) ^ 2 := sq_nonneg _
   simp only [Real.MatExp.quadTerm]
   nlinarith
 
 
 /-- `-1/2` is below the exact lower bound, whichever branch it takes. -/
-theorem aux_quadTermLo_ge (t a b : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTermLo t a b := by
+private theorem aux_quadTermLo_ge (t a b : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTermLo t a b := by
   rw [Real.MatExp.quadTermLo]
   split
   · exact le_rfl
@@ -101,7 +101,7 @@ theorem aux_quadTermLo_ge (t a b : ℝ) : -(1 / 2) ≤ Real.MatExp.quadTermLo t 
 
 
 /-- A positive `t + c t²` puts `c` right of the vertex, so the vertex test fails. -/
-theorem aux_not_straddle_left {t a b : ℝ} (h : 0 < t + a * t ^ 2) :
+private theorem aux_not_straddle_left {t a b : ℝ} (h : 0 < t + a * t ^ 2) :
     ¬ (a ≤ -1 / t ∧ -1 / t ≤ b) := by
   rintro ⟨ha, -⟩
   rw [Real.MatExp.vertex_sign] at h
@@ -109,7 +109,7 @@ theorem aux_not_straddle_left {t a b : ℝ} (h : 0 < t + a * t ^ 2) :
 
 
 /-- A negative `t + c t²` puts `c` left of the vertex. -/
-theorem aux_not_straddle_right {t a b : ℝ} (h : t + b * t ^ 2 < 0) :
+private theorem aux_not_straddle_right {t a b : ℝ} (h : t + b * t ^ 2 < 0) :
     ¬ (a ≤ -1 / t ∧ -1 / t ≤ b) := by
   rintro ⟨-, hb⟩
   rw [Real.MatExp.vertex_sign] at h
@@ -117,7 +117,7 @@ theorem aux_not_straddle_right {t a b : ℝ} (h : t + b * t ^ 2 < 0) :
 
 
 /-- The float `quadTermLo` is at most the exact one. -/
-theorem MatExp.aux_quadTermLo_le (t a b : 𝕋) : -- --- CONCL ---
+private theorem MatExp.aux_quadTermLo_le (t a b : 𝕋) : -- --- CONCL ---
     toReal (MatExp.quadTermLo t a b)
       ≤ Real.MatExp.quadTermLo (toReal t) (toReal a) (toReal b) := by -- --- PROOF ---
   -- `a t²` and `b t²` are bracketed by the corner hull of the directed `t²`
@@ -157,7 +157,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- The float `quadTermHi` is at least the exact one. -/
-theorem MatExp.aux_quadTermHi_ge (t a b : 𝕋) :
+private theorem MatExp.aux_quadTermHi_ge (t a b : 𝕋) :
     Real.MatExp.quadTermHi (toReal t) (toReal a) (toReal b) ≤
       toReal (MatExp.quadTermHi t a b) := by
   rw [MatExp.quadTermHi, toReal_maximum, Real.MatExp.quadTermHi]
@@ -167,7 +167,7 @@ end
 
 
 /-- A sum with two indices zeroed is the sum over the rest. -/
-theorem aux_sum_ite_excl (g : Fin n → ℝ) (i j : Fin n) :
+private theorem aux_sum_ite_excl (g : Fin n → ℝ) (i j : Fin n) :
     ∑ k, (if k = i ∨ k = j then 0 else g k)
       = ∑ k ∈ Finset.univ \ ({i, j} : Finset (Fin n)), g k := by
   rw [Finset.sum_ite, Finset.sum_const_zero, zero_add]
@@ -176,7 +176,7 @@ theorem aux_sum_ite_excl (g : Fin n → ℝ) (i j : Fin n) :
   simp
 
 /-- The leading summand: a single-use product off the diagonal, the parabola on it. -/
-theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Mat ℝ n n}
+private theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Mat ℝ n n}
     (hm : ∀ i j, toReal (A.inf i j) ≤ M i j ∧ M i j ≤ toReal (A.sup i j))
     {fLo fHi : 𝕋} {i j : Fin n}
     (hf : toReal fLo ≤ toReal t + toReal t ^ 2 / 2 * (M i i + M j j))
@@ -201,7 +201,7 @@ theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Mat ℝ n 
 
 
 /-- The directed sums of the corner hulls bracket the `k ≠ i, j` row-column sum. -/
-theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n} (hM : M ∈ A.construct)
+private theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n} (hM : M ∈ A.construct)
     (i j : Fin n) : -- --- CONCL ---
     toReal (sumDown fun k => if k = i ∨ k = j then (zero : 𝕋)
         else Interval.mulLo (A.inf i k) (A.sup i k) (A.inf k j) (A.sup k j))

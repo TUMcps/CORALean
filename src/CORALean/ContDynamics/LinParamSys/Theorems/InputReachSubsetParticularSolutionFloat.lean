@@ -69,7 +69,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The recursion encloses the member's propagation of the one-step set, window
 by window. -/
-theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
+private theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
     (h2 : 2 ≤ η) (U : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n}
     (hA : A ∈ sys.A.construct) :

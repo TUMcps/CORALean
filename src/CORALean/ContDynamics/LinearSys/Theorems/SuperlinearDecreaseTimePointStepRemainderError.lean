@@ -59,7 +59,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- `timePointStepRemainderError` is nonnegative wherever its side condition
 holds and the step is nonnegative. -/
-theorem aux_timePointStepRemainderError_nonneg (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 ≤ r)
+private theorem aux_timePointStepRemainderError_nonneg (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 ≤ r)
     (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (0:ℝ) ≤ sys.timePointStepRemainderError r η U := by -- --- PROOF ---

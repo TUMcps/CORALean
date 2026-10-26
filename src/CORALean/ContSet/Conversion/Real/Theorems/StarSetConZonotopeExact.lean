@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A row applied to the rescaled factors is the rescaled row applied to them. -/
-theorem StarSet.aux_row_rescale (s : StarSet ℋ𝒫 n) (a β : Fin s.m → ℝ) :
+private theorem StarSet.aux_row_rescale (s : StarSet ℋ𝒫 n) (a β : Fin s.m → ℝ) :
     ∑ k, a k * (((s.dom.inf k + s.dom.sup k) / 2) + ((s.dom.sup k - s.dom.inf k) / 2) * β k)
       = ∑ k, a k * ((s.dom.inf k + s.dom.sup k) / 2)
         + ∑ k, (a k * ((s.dom.sup k - s.dom.inf k) / 2)) * β k := by

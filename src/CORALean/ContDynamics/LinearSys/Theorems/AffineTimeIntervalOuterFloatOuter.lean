@@ -67,8 +67,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- At `Δt > 0` and an admissible `η`, `e^{AΔt} h + ∫₀^Δt e^{Aσ}dσ ũ` is in the float
 `H(t_{k+1})` for every `h` the float `H(t_k)` holds. -/
-theorem LinearSys.aux_affineTimePointNextFloat_outer (sys : LinearSys 𝕋 n) {H : Zonotope (Vec 𝕋 n)}
-    {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
+private theorem LinearSys.aux_affineTimePointNextFloat_outer (sys : LinearSys 𝕋 n)
+    {H : Zonotope (Vec 𝕋 n)} {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
         : -- --- CONCL ---
     exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ h

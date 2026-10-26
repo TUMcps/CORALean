@@ -59,11 +59,11 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the loop keeps true: orthogonal, nonzero columns in the span of `P - c`. -/
-def aux_Inv (S : Submodule ℝ (Vec ℝ n)) (r : ℕ) (B : Fin r → Vec ℝ n) : Prop :=
+private def aux_Inv (S : Submodule ℝ (Vec ℝ n)) (r : ℕ) (B : Fin r → Vec ℝ n) : Prop :=
   (∀ i j, i ≠ j → B i ⬝ᵥ B j = 0) ∧ (∀ i, B i ≠ 0) ∧ ∀ i, B i ∈ S
 
 /-- Pairwise orthogonal nonzero vectors are linearly independent. -/
-theorem aux_linearIndependent {r : ℕ} {B : Fin r → Vec ℝ n}
+private theorem aux_linearIndependent {r : ℕ} {B : Fin r → Vec ℝ n}
     (horth : ∀ i j, i ≠ j → B i ⬝ᵥ B j = 0) (hne : ∀ i, B i ≠ 0) : -- --- CONCL ---
     LinearIndependent ℝ B := by -- --- PROOF ---
   rw [linearIndependent_iff']
@@ -75,7 +75,7 @@ theorem aux_linearIndependent {r : ℕ} {B : Fin r → Vec ℝ n}
   exact (mul_eq_zero.mp h).resolve_right hii
 
 /-- The part of `u` along orthogonal nonzero columns, and what is left is perpendicular. -/
-theorem aux_proj {r : ℕ} {B : Fin r → Vec ℝ n} (horth : ∀ i j, i ≠ j → B i ⬝ᵥ B j = 0)
+private theorem aux_proj {r : ℕ} {B : Fin r → Vec ℝ n} (horth : ∀ i j, i ≠ j → B i ⬝ᵥ B j = 0)
     (hne : ∀ i, B i ≠ 0) (u : Vec ℝ n) : -- --- CONCL ---
     (∑ i, (u ⬝ᵥ B i / B i ⬝ᵥ B i) • B i) ∈ Submodule.span ℝ (Set.range B) ∧
       ∀ j, B j ⬝ᵥ (u - ∑ i, (u ⬝ᵥ B i / B i ⬝ᵥ B i) • B i) = 0 := by -- --- PROOF ---

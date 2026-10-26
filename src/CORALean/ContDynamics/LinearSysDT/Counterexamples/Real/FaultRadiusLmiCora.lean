@@ -49,7 +49,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The negated form of the block matrix is a sum of squares, positive off `0`. -/
-theorem LinearSysDT.aux_faultRadiusLmiCora_sos (θ s₀ s₁ w : ℝ)
+private theorem LinearSysDT.aux_faultRadiusLmiCora_sos (θ s₀ s₁ w : ℝ)
     (hx' : θ ≠ 0 ∨ s₀ ≠ 0 ∨ s₁ ≠ 0 ∨ w ≠ 0) : -- --- CONCL ---
     0 < 9 / 20 * θ ^ 2 + 9 / 10 * (w - 10 / 9 * (s₀ / 2 + s₁)) ^ 2 +
       (5 * (s₁ - 2 / 5 * s₀) ^ 2 + 126 / 5 * s₀ ^ 2) / 36 := by -- --- PROOF ---
@@ -76,7 +76,7 @@ theorem LinearSysDT.aux_faultRadiusLmiCora_sos (θ s₀ s₁ w : ℝ)
         · have := sq_pos_of_ne_zero h0; linarith
 
 
-theorem LinearSysDT.aux_faultRadiusLmiCora_posDef : -- --- CONCL ---
+private theorem LinearSysDT.aux_faultRadiusLmiCora_posDef : -- --- CONCL ---
     let A : Mat ℝ 1 1 := 0
     let C : Mat ℝ 2 1 := 0
     let Dx : Mat ℝ 1 0 := 0                                   -- no disturbance

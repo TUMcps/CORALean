@@ -55,7 +55,7 @@ section
 variable {N F₁ F₂ : ℕ}
 
 /-- The `q` count of `gcnShared`'s result. -/
-theorem GNN.aux_gcnShared_q (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
+private theorem GNN.aux_gcnShared_q (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
     (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) : (GNN.gcnShared W P H hp).q = 0 := rfl
 
 end

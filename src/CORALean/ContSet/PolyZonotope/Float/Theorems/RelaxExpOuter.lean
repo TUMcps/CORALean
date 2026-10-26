@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n d : ℕ}
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `relaxExp`'s dependent count, stated through the
 projection because that is the form the goal has. -/
-theorem PolyZonotope.aux_sum_univ_relaxExp_h {pZ : PolyZonotope (Vec 𝕋 n)}
+private theorem PolyZonotope.aux_sum_univ_relaxExp_h {pZ : PolyZonotope (Vec 𝕋 n)}
     {part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)} {k₀ : Fin pZ.p} (f : Fin (d + 1) → ℝ) :
     ∑ l : Fin (pZ.relaxExp part k₀).h, f l
       = ∑ l, f (Fin.castAdd 1 l) + ∑ l : Fin 1, f (Fin.natAdd d l) :=
@@ -62,7 +62,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExp_h {pZ : PolyZonotope (Vec 𝕋 n)}
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent count. -/
-theorem PolyZonotope.aux_sum_univ_relaxExp_q {pZ : PolyZonotope (Vec 𝕋 n)}
+private theorem PolyZonotope.aux_sum_univ_relaxExp_q {pZ : PolyZonotope (Vec 𝕋 n)}
     {part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)} {k₀ : Fin pZ.p} (f : Fin (pZ.q + 1) → ℝ) :
     ∑ j : Fin (pZ.relaxExp part k₀).q, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j : Fin 1, f (Fin.natAdd pZ.q j) :=
@@ -70,7 +70,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExp_q {pZ : PolyZonotope (Vec 𝕋 n)}
 
 /-- The new independent column is `ξ_E` copies added downward, so it too is off
 by at most its gap to the upward fold. -/
-theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
+private theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- CONCL ---
     |(pZ.relaxWidth part k₀ : ℝ) * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.aux_relaxGen part k₀ i)|
@@ -86,7 +86,7 @@ theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
   constructor <;> linarith
 
 -- the two stored columns and their two gaps, the drift carried by the second
-theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n))
+private theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExp part k₀)

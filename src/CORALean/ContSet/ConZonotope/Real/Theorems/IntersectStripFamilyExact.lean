@@ -51,7 +51,8 @@ variable {n p m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stacked strip: the `H_j` below one another, the radii repeated, the gains side by side. -/
-theorem ConZonotope.aux_family_eq_stacked (cZ : ConZonotope (Vec ℝ n)) (H : Fin m → Mat ℝ p n)
+private theorem ConZonotope.aux_family_eq_stacked (cZ : ConZonotope (Vec ℝ n))
+    (H : Fin m → Mat ℝ p n)
     (r : Fin m → ℝ) (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p) : -- --- CONCL ---
     cZ.intersectStripFamily H r y lam =
       cZ.intersectStrip

@@ -64,8 +64,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `C + κG = C̲ + E + κG̲` with `E` in `[−(Ḡ − G̲), (C̄ − C̲) + (Ḡ − G̲)]`, for `C`, `G` in their
 interval matrices and `|κ| ≤ 1`. -/
-theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n} (hC : Cr ∈ C.construct)
-    (hG : Gr ∈ G.construct) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- CONCL ---
+private theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n}
+    (hC : Cr ∈ C.construct) (hG : Gr ∈ G.construct) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- CONCL ---
     ∃ E ∈ (⟨fun l m => neg (subUp (G.sup l m) (G.inf l m)),
         fun l m => addUp (subUp (C.sup l m) (C.inf l m)) (subUp (G.sup l m) (G.inf l m))⟩ :
           Interval (Mat 𝕋 n n)).construct,

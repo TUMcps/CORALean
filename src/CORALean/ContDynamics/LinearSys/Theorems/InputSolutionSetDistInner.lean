@@ -64,7 +64,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of a finite Minkowski sum of images names one point per summand. -/
-theorem LinearSys.aux_exists_of_mem_sum (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
+private theorem LinearSys.aux_exists_of_mem_sum (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
     (hne : (construct U).Nonempty) (m : ℕ) : -- --- CONCL ---
     ∀ x ∈ ∑ i ∈ Finset.range m, (fun v => sys.inputTerm Δt i *ᵥ v) '' construct U,
       ∃ s : ℕ → Vec ℝ n, (∀ i, s i ∈ construct U) ∧
@@ -91,7 +91,7 @@ theorem LinearSys.aux_exists_of_mem_sum (sys : LinearSys 𝕋 n) {U : S n} (Δt 
     · simp
 
 /-- Every entry bounded gives a bound on the image, `n` entries per row. -/
-theorem aux_norm_mulVec_le {M : Mat ℝ n n} {w : Vec ℝ n} {c ρ : ℝ} (hc : 0 ≤ c) (hρ : 0 ≤ ρ)
+private theorem aux_norm_mulVec_le {M : Mat ℝ n n} {w : Vec ℝ n} {c ρ : ℝ} (hc : 0 ≤ c) (hρ : 0 ≤ ρ)
     (hM : ∀ j k, |M j k| ≤ c) (hw : ‖w‖ ≤ ρ) : -- --- CONCL ---
     ‖M *ᵥ w‖ ≤ (n : ℝ) * c * ρ := by -- --- PROOF ---
   refine (pi_norm_le_iff_of_nonneg (by positivity)).mpr fun j => ?_
@@ -106,7 +106,7 @@ theorem aux_norm_mulVec_le {M : Mat ℝ n n} {w : Vec ℝ n} {c ρ : ℝ} (hc : 
     _ = (n : ℝ) * c * ρ := by rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin]; ring_nf
 
 /-- The remainder is second order in the step once `Δt‖A‖ ≤ 1`. -/
-theorem aux_expRemainderBound_le {A : Mat ℝ n n} {Δt : ℝ} (hΔt : 0 ≤ Δt)
+private theorem aux_expRemainderBound_le {A : Mat ℝ n n} {Δt : ℝ} (hΔt : 0 ≤ Δt)
     (hAΔ : Δt * ‖A‖ ≤ 1) (η : ℕ) : -- --- CONCL ---
     Δt * MatExp.expRemainderBound (Δt • A) η ≤ 2 * (Δt ^ 2 * ‖A‖) := by -- --- PROOF ---
   have hnorm : ‖Δt • A‖ = Δt * ‖A‖ := by
@@ -137,7 +137,7 @@ theorem aux_expRemainderBound_le {A : Mat ℝ n n} {Δt : ℝ} (hΔt : 0 ≤ Δt
 
 
 /-- Order `i+1` of the step's Taylor part, against the exponential's series. -/
-theorem LinearSys.aux_tail_term_le (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt)
+private theorem LinearSys.aux_tail_term_le (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ Δt)
     (i : ℕ) : -- --- CONCL ---
     ‖sys.inputTerm Δt (i + 1)‖
       ≤ Δt ^ 2 * ‖toRealMat sys.A‖

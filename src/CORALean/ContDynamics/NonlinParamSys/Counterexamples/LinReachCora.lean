@@ -142,7 +142,7 @@ theorem LinParamSys.IsNullZono.mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
 
 /-- For the identity `B`, the deviation of `B` from its center is the zero zonotope, so the
 independent input `initReachInputDependence` adds for it is the zero set. -/
-theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1 1))
+private theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1 1))
     (UG : Fin zA.h → Vec ℝ 1) (Uc : Vec ℝ 1) (r : ℝ) (S : Zonotope (Vec ℝ 1) → ℝ)
     (hS : ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0|) : -- --- CONCL ---
     let X := (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).inputSolutionZono (S := 𝒵) r 2

@@ -47,16 +47,16 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_cosh_mono {x y : ℝ} (h0 : 0 ≤ x) (h : x ≤ y) :
+private theorem Interval.aux_cosh_mono {x y : ℝ} (h0 : 0 ≤ x) (h : x ≤ y) :
     Real.cosh x ≤ Real.cosh y := by
   rw [Real.cosh_le_cosh, abs_of_nonneg h0, abs_of_nonneg (h0.trans h)]; exact h
 
-theorem Interval.aux_cosh_anti {x y : ℝ} (h : y ≤ x) (h0 : x ≤ 0) :
+private theorem Interval.aux_cosh_anti {x y : ℝ} (h : y ≤ x) (h0 : x ≤ 0) :
     Real.cosh x ≤ Real.cosh y := by
   rw [Real.cosh_le_cosh, abs_of_nonpos h0, abs_of_nonpos (h.trans h0)]; linarith
 
 /-- One coordinate: the image of `[a, b]` is `[coshLo a b, coshHi a b]`. -/
-theorem Interval.aux_cosh_Icc {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
+private theorem Interval.aux_cosh_Icc {a b : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     Set.Icc (Interval.coshLo a b) (Interval.coshHi a b) =
       Real.cosh '' Set.Icc a b := by -- --- PROOF ---
   have hc : ∀ c d : ℝ, ContinuousOn Real.cosh (Set.Icc c d) := fun _ _ =>

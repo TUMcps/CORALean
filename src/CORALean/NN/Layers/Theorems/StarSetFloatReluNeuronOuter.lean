@@ -55,7 +55,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 /-- The nominal part: a point of the nominal star set has the ReLU of neuron `j` in the nominal
 star set of the result. -/
-theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
+private theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
     (hb : ∀ x ∈ nominalSet s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) (x : Vec ℝ n)
     (hx : x ∈ nominalSet s) : -- --- CONCL ---
     (Function.update x j (Real.relu (x j)) : Vec ℝ n) ∈

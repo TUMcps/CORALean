@@ -50,7 +50,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The sum of generators pointing along `σ` points along `σ`. -/
-theorem Zonotope.aux_sum_horizontal (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} {H : Finset (Fin Z.h)}
+private theorem Zonotope.aux_sum_horizontal (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} {H : Finset (Fin Z.h)}
     (hH : ∀ i ∈ H, 0 < σ * Z.G i 0) (hne : H.Nonempty) :
     0 < σ * (∑ i ∈ H, (2 : ℝ) • Z.G i) 0 := by
   simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]

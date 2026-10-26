@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A zonotope centered at the origin is closed under scaling by `[-1, 1]`. -/
-theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) {z : Vec ℝ n}
+private theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) {z : Vec ℝ n}
     (hz : z ∈ Z.construct) {γ : ℝ} (hγ : |γ| ≤ 1) : γ • z ∈ Z.construct := by
   obtain ⟨β, hβ, rfl⟩ := hz
   refine ⟨fun j => γ * β j, fun j => ?_, ?_⟩
@@ -61,7 +61,7 @@ theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) {z : Vec
   · simp only [hc, zero_add, Finset.smul_sum, smul_smul]
 
 /-- The fold of Minkowski sums holds the sum of one point from each summand. -/
-theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope (Vec ℝ n))
     (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).construct) : -- --- CONCL ---
     ∀ (acc : Zonotope (Vec ℝ n)) (y : Vec ℝ n), y ∈ acc.construct →
       y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).construct := by -- --- PROOF ---

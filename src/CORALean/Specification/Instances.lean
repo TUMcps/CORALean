@@ -138,7 +138,7 @@ theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)}
   · linarith [toReal_lt_of_ltStrict hj]
 
 /-- The negated direction's bound, read as a lower bound along `a`. -/
-theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
+private theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a)) (a : Vec 𝕋 n)
     {x : Vec ℝ n} (hx : x ∈ X) :
     toReal (neg (bnd (-a))) ≤ ∑ j, toReal (a j) * x j := by

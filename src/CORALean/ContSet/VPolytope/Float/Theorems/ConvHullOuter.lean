@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The joined list's nominal part is the real hull of the two nominal parts. -/
-theorem VPolytope.aux_convHull_nominal (P Q : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
+private theorem VPolytope.aux_convHull_nominal (P Q : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet (P.convHull Q) = convexHull ℝ (nominalSet P ∪ nominalSet Q) := by -- --- PROOF ---
   have h : nominal (P.convHull Q) = (nominal P).convHull (nominal Q) := by
     rw [VPolytope.nominal_eq, VPolytope.nominal_eq, VPolytope.nominal_eq]

@@ -39,7 +39,7 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The entries of a list of length `N` sum to its sum. -/
-theorem GridPartition.aux_sum_getD_eq (l : List ℝ) {N : ℕ} (h : l.length = N) :
+private theorem GridPartition.aux_sum_getD_eq (l : List ℝ) {N : ℕ} (h : l.length = N) :
     ∑ i : Fin N, l.getD i 0 = l.sum := by
   subst h
   rw [← Fin.sum_univ_getElem]

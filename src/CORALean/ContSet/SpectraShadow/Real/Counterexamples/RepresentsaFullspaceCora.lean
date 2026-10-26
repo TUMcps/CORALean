@@ -67,8 +67,8 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A functional unbounded above on a shadow has support function `⊤`. -/
-theorem SpectraShadow.aux_supportFunc_eq_top_of_unbounded (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ)
-    (h : ∀ M : ℝ, ∃ x ∈ S.construct, M < c x) : S.supportFunc c = ⊤ := by
+private theorem SpectraShadow.aux_supportFunc_eq_top_of_unbounded (S : SpectraShadow α)
+    (c : α →ₗ[ℝ] ℝ) (h : ∀ M : ℝ, ∃ x ∈ S.construct, M < c x) : S.supportFunc c = ⊤ := by
   by_contra hne
   obtain ⟨M, hM⟩ := (S.supportFunc_ne_top_iff c).mp hne
   obtain ⟨x, hx, hlt⟩ := h M
@@ -78,7 +78,7 @@ end
 
 
 /-- The diagonal point `(t, t)` lies in the line example. -/
-theorem SpectraShadow.aux_lineExample_mem (t : ℝ) : -- --- CONCL ---
+private theorem SpectraShadow.aux_lineExample_mem (t : ℝ) : -- --- CONCL ---
     (fun _ => t : Vec ℝ 2) ∈ SpectraShadow.lineExample.construct := by -- --- PROOF ---
   refine ⟨fun j : Fin 2 => if j = 0 then t else 0, ?_, ?_⟩
   · -- `A₀ = I` and the second coefficient is `0`, where `A₁ = 0`

@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The agreement rows are all that `intersection` adds over `plus`. -/
-theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
     (β : Vec ℝ (cZ₁.intersection cZ₂).h) : -- --- CONCL ---
     β ∈ (cZ₁.intersection cZ₂).P.construct ↔
       (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
@@ -66,7 +66,7 @@ theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotope (Vec �
     exact HPolytope.mem_intersection_iff.mpr
       ⟨HPolytope.mem_intersection_iff.mpr hblocks, HPolytope.mem_eqs_iff.mpr heqs⟩
 
-theorem ConZonotope.aux_mulVec_agree (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_mulVec_agree (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
     (β : Fin (cZ₁.h + cZ₂.h) → ℝ) (i : Fin n) : -- --- CONCL ---
     (ConZonotope.aux_agreeMat cZ₁ cZ₂ *ᵥ β) i
       = (∑ j, cZ₁.G j i * β (Fin.castAdd cZ₂.h j))
@@ -77,7 +77,7 @@ theorem ConZonotope.aux_mulVec_agree (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
   rw [Finset.sum_neg_distrib, ← sub_eq_add_neg]
 
 /-- Only the first generator block survives; the second is pinned to it. -/
-theorem ConZonotope.aux_value_intersection (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_value_intersection (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
     (β : Fin (cZ₁.h + cZ₂.h) → ℝ) :
     (cZ₁.intersection cZ₂).c + ∑ j : Fin (cZ₁.intersection cZ₂).h, β j • (cZ₁.intersection cZ₂).G j
       = cZ₁.c + ∑ j, β (Fin.castAdd cZ₂.h j) • cZ₁.G j := by

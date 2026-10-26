@@ -63,7 +63,7 @@ variable {n p q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The run from `x0 + x̃` is the nominal run from `x0` plus the deviation. -/
-theorem Conform.Plant.aux_state_add_dev (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
+private theorem Conform.Plant.aux_state_add_dev (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
     (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     sys.state (x0 + xt) u w k = sys.state x0 u 0 k
       + ((sys.A ^ k) *ᵥ xt + ∑ i : Fin k, (sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i)) := by -- --- PROOF ---
@@ -83,7 +83,7 @@ theorem Conform.Plant.aux_state_add_dev (sys : Conform.Plant n p q) (x0 xt : Vec
 
 
 /-- The output of the run from `x0 + x̃`, the nominal output subtracted. -/
-theorem aux_output_sub_nominal (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
+private theorem aux_output_sub_nominal (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
     (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     sys.output (x0 + xt) u w k - sys.nominal x0 u k
       = (sys.C * sys.A ^ k) *ᵥ xt

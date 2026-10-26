@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_circle_infinite : -- --- CONCL ---
+private theorem Polygon.aux_circle_infinite : -- --- CONCL ---
     {x : Vec ℝ 2 | x 0 ^ 2 + x 1 ^ 2 = 1}.Infinite := by -- --- PROOF ---
   refine Set.infinite_of_injective_forall_mem
     (f := fun n : ℕ => (fun i : Fin 2 =>

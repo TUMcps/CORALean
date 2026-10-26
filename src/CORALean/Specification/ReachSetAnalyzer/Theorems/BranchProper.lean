@@ -39,8 +39,8 @@ variable {S : ℕ → Type} {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The children are entries. -/
-theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry ℝ S n)) (i j : ℕ)
-    (h : j ∈ ReachSetAnalyzer.children R i) : -- --- CONCL ---
+private theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry ℝ S n))
+    (i j : ℕ) (h : j ∈ ReachSetAnalyzer.children R i) : -- --- CONCL ---
     1 ≤ j ∧ ∃ e, R[j - 1]? = some e ∧ e.parent = i := by -- --- PROOF ---
   unfold ReachSetAnalyzer.children at h
   obtain ⟨idx, -, hidx⟩ := List.mem_filterMap.mp h
@@ -54,7 +54,7 @@ theorem ReachSetAnalyzer.aux_children_mem (R : List (ReachSetAnalyzer.Entry ℝ 
 
 
 /-- A branch names entries. -/
-theorem ReachSetAnalyzer.aux_branch_entries
+private theorem ReachSetAnalyzer.aux_branch_entries
     (R : List (ReachSetAnalyzer.Entry ℝ S n)) : -- --- CONCL ---
     ∀ (i : ℕ) (w : List ℕ), ReachSetAnalyzer.IsBranch (ReachSetAnalyzer.children R) i w →
       (i = 0 ∨ ∃ e, R[i - 1]? = some e) → ∀ j ∈ w, ∃ e, R[j - 1]? = some e := by -- --- PROOF ---

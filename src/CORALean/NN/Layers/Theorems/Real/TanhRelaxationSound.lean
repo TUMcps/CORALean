@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- ℝ-only, as `ScaleRounding.exact` is: only ℝ stores `r · x` exactly. Both directions are the
 product itself. -/
-theorem aux_scaleRounding_exact_sound (r : ℝ) : (ScaleRounding.exact r).IsSound r :=
+private theorem aux_scaleRounding_exact_sound (r : ℝ) : (ScaleRounding.exact r).IsSound r :=
   ⟨fun _ => le_rfl, fun _ => le_rfl⟩
 
 end

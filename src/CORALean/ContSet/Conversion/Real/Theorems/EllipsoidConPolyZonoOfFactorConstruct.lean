@@ -59,7 +59,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `G u` read as a generator sum over the columns of `G`. -/
-theorem Ellipsoid.aux_mulVec_eq_sum {m q : ℕ} (G : Mat ℝ m q) (u : Vec ℝ q) :
+private theorem Ellipsoid.aux_mulVec_eq_sum {m q : ℕ} (G : Mat ℝ m q) (u : Vec ℝ q) :
     G *ᵥ u = ∑ l, u l • ConPolyZono.consCol G l := by
   funext i
   show (∑ l, G i l * u l) = (∑ l, u l • ConPolyZono.consCol G l) i
@@ -68,7 +68,7 @@ theorem Ellipsoid.aux_mulVec_eq_sum {m q : ℕ} (G : Mat ℝ m q) (u : Vec ℝ q
 
 /-- A diagonal exponent matrix's monomial is its one nonzero factor, to the
 diagonal's own power. -/
-theorem Ellipsoid.aux_monomial_conPolyZonoR {k : ℕ} (a : Fin (k + 1) → ℝ)
+private theorem Ellipsoid.aux_monomial_conPolyZonoR {k : ℕ} (a : Fin (k + 1) → ℝ)
     (j : Fin (k + 1)) : -- --- CONCL ---
     PolyZonotope.monomial (Ellipsoid.conPolyZonoR k) a j
       = a j ^ (if j.val < k then 2 else 1) := by -- --- PROOF ---

@@ -62,7 +62,7 @@ variable {k : ℕ}
 
 /-- The squared length the two conditions bound: `γ² D - 2 β γ p² + β² ν p² ≤ α² γ²` from the
 completed Gollamudi inequality, Cauchy–Schwarz `p² ≤ ν D`, and `γ = α + β ν`. -/
-theorem Ellipsoid.aux_strip_factor_le {D p ν lam α β S : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1)
+private theorem Ellipsoid.aux_strip_factor_le {D p ν lam α β S : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1)
     (hD : 0 ≤ D) (hν : 0 ≤ ν) (hCS : p ^ 2 ≤ ν * D) (hα : 0 < α) (hγ : 0 < α + β * ν)
     (hkey : (1 - lam) * D + lam * p ^ 2 ≤ S) (hSα : S ≤ α ^ 2 * (1 - lam))
     (hSγ : S ≤ (α + β * ν) ^ 2 * (1 - lam + lam * ν)) : -- --- CONCL ---

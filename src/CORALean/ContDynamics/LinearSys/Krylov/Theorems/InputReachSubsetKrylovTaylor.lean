@@ -68,18 +68,18 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Minkowski sum of plain sets, exactly. -/
-@[reducible] def Krylov.aux_setPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+@[reducible] private def Krylov.aux_setPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def Krylov.aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def Krylov.aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact le_rfl
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
-@[reducible] noncomputable def Krylov.aux_setMtimesInterval :
+@[reducible] private noncomputable def Krylov.aux_setMtimesInterval :
     Mtimes (ℐ) 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
@@ -87,7 +87,7 @@ variable {n : ℕ}
 attribute [local instance] Krylov.aux_setPlus Krylov.aux_setMtimes Krylov.aux_setMtimesInterval
 
 /-- The images of a bounded set under the matrices of an interval matrix are bounded. -/
-theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set (Vec ℝ n)}
+private theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set (Vec ℝ n)}
     (hU : Bornology.IsBounded U) : -- --- CONCL ---
     Bornology.IsBounded (⋃ M ∈ I.construct, (M *ᵥ ·) '' U) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hU.exists_norm_le
@@ -116,7 +116,7 @@ theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set 
 
 /-- Order `j` of [2, Prop. 2]'s corrected Taylor sum is the Krylov term
 `P Ṽ H̃^{j+1} e₁ δ^{j+1}/(j+1)!`. -/
-theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (δ : ℝ) (m : ℕ)
+private theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (δ : ℝ) (m : ℕ)
     {j : ℕ} (hj : j + 1 ≤ m) : -- --- CONCL ---
     ((LinearSys.canonical A : LinearSys ℝ n).inputTerm δ j *ᵥ ·) '' U
       = (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>

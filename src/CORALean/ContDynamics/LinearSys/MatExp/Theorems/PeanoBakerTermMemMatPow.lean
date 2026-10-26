@@ -53,19 +53,19 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Scaling the second pair scales the least corner product. -/
-theorem aux_mulLo_scale_snd {a b c d y : ℝ} (hy : 0 ≤ y) :
+private theorem aux_mulLo_scale_snd {a b c d y : ℝ} (hy : 0 ≤ y) :
     Interval.mulLo a b (y * c) (y * d) = y * Interval.mulLo a b c d := by
   have e : ∀ p q : ℝ, p * (y * q) = y * (p * q) := fun p q => by ring
   simp only [Interval.mulLo, e, mul_min_of_nonneg _ _ hy]
 
 /-- The greatest likewise. -/
-theorem aux_mulHi_scale_snd {a b c d y : ℝ} (hy : 0 ≤ y) :
+private theorem aux_mulHi_scale_snd {a b c d y : ℝ} (hy : 0 ≤ y) :
     Interval.mulHi a b (y * c) (y * d) = y * Interval.mulHi a b c d := by
   have e : ∀ p q : ℝ, p * (y * q) = y * (p * q) := fun p q => by ring
   simp only [Interval.mulHi, e, mul_max_of_nonneg _ _ hy]
 
 /-- Every entry of `P_k(s)` between `s^k/k!` times `matPow B k`'s endpoints. -/
-theorem aux_peanoBakerTerm_between {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
+private theorem aux_peanoBakerTerm_between {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
     (hAB : ∀ s, A s ∈ B.construct) (k : ℕ) : -- --- CONCL ---
     ∀ s, 0 ≤ s → ∀ i j,

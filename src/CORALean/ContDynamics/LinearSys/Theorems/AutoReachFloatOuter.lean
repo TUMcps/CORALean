@@ -63,7 +63,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Up to `K` iterations from a state holding the invariant reach one holding it, no earlier,
 and if time advanced, every run over any time it covers is in one of the returned windows. -/
-theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
+private theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
     {tend : 𝕋}
     {εmax ζ : ℚ} {ηmax fuel : ℕ} : -- --- CONCL ---
     ∀ {K : ℕ} {s s' : LinearSys.AutoStateFloat 𝕋 n} {Ws : List (ℚ × ℚ × Zonotope (Vec 𝕋 n))},
@@ -105,8 +105,8 @@ theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zono
 
 omit [ToRat 𝕋] in
 /-- `autoInitFloat` holds what a state owes at `t₀ = 0`. -/
-theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n))
-    (tend : 𝕋) : -- --- CONCL ---
+private theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n)
+    (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋) : -- --- CONCL ---
     sys.IsAutoInvariantFloat X₀ V (LinearSys.autoInitFloat X₀ tend) := by -- --- PROOF ---
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))

@@ -64,7 +64,7 @@ variable {n : ℕ}
 
 /-- Every set the run holds is at order `o`: `reach_order_le` past the first
 step, and the caller's hypothesis at it. -/
-theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
+private theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
     (U_ext : Zonotope (Vec ℝ sys.nExt)) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) :
     ∀ k, (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h ≤ o * n
@@ -73,7 +73,7 @@ theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT �
 
 /-- One step at any input size within the order bound, and any enclosure size
 within `hEnc`, costs at most `reachStepBound`. -/
-theorem NeurNetContrSysDT.aux_step_le (n hEnc o hIn hOut : ℕ) (hi : hIn ≤ o * n)
+private theorem NeurNetContrSysDT.aux_step_le (n hEnc o hIn hOut : ℕ) (hi : hIn ≤ o * n)
     (houu : hOut ≤ hEnc) :
     Zonotope.mtimesCost n n hIn + Zonotope.plusCost n hIn hOut
         + Zonotope.reduceGirardCost n (hIn + hOut) ≤ LinearSysDT.reachStepBound n hEnc o :=

@@ -53,7 +53,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- With `m = M`, `[a; e]` is `a`. -/
-theorem aux_joinInput_full {M : ℕ} (a : Vec ℝ M) (e : Vec ℝ (M - M)) :
+private theorem aux_joinInput_full {M : ℕ} (a : Vec ℝ M) (e : Vec ℝ (M - M)) :
     joinInput (le_refl M) a e = a := by
   funext i
   simp [joinInput, i.isLt]

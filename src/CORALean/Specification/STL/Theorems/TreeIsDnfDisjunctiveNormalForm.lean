@@ -41,12 +41,12 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Tree.aux_isCube_of_isDnf (t : STL.Tree n) (h : t.IsDnf)
+private theorem STL.Tree.aux_isCube_of_isDnf (t : STL.Tree n) (h : t.IsDnf)
     (h' : ∀ l₁ l₂ : STL.Tree n, ¬ t = STL.Tree.or l₁ l₂) : t.IsCube := by
   cases t <;> simp_all [STL.Tree.IsDnf, STL.Tree.IsCube]
 
 
-theorem STL.Tree.aux_dnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
+private theorem STL.Tree.aux_dnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
     (φ.dnfRewrite).2 = 0 → (φ.dnfRewrite).1 = φ ∧ φ.IsDnf := by -- --- PROOF ---
   induction φ with
   | and φ ψ ihφ ihψ =>
@@ -68,13 +68,14 @@ theorem STL.Tree.aux_dnfRewrite_zero (φ : STL.Tree n) : -- --- CONCL ---
 
 
 /-- A pass that rewrites nothing leaves a disjunctive normal form. -/
-theorem STL.Tree.aux_isDnf_dnfRewrite_of_snd_eq_zero (φ : STL.Tree n) (h : (φ.dnfRewrite).2 = 0) :
+private theorem STL.Tree.aux_isDnf_dnfRewrite_of_snd_eq_zero (φ : STL.Tree n)
+    (h : (φ.dnfRewrite).2 = 0) :
     (φ.dnfRewrite).1.IsDnf := by
   obtain ⟨h₁, h₂⟩ := STL.Tree.aux_dnfRewrite_zero φ h
   rwa [h₁]
 
 
-theorem STL.Tree.aux_isDnf_dnfLoop (φ : STL.Tree n) : -- --- CONCL ---
+private theorem STL.Tree.aux_isDnf_dnfLoop (φ : STL.Tree n) : -- --- CONCL ---
     φ.dnfLoop.IsDnf := by -- --- PROOF ---
   induction φ using STL.Tree.dnfLoop.induct with
   | case1 φ cnt hc =>

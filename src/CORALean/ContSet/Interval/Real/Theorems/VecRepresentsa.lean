@@ -44,12 +44,12 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stacked lower bound at the position of `(i, j)`. -/
-theorem aux_vec_inf (A : Interval (Mat ℝ m n)) (i : Fin m) (j : Fin n) :
+private theorem aux_vec_inf (A : Interval (Mat ℝ m n)) (i : Fin m) (j : Fin n) :
     A.vec.inf (finProdFinEquiv (j, i)) = A.inf i j := by
   simp only [Interval.vec, Equiv.symm_apply_apply]
 
 /-- The stacked upper bound at the position of `(i, j)`. -/
-theorem aux_vec_sup (A : Interval (Mat ℝ m n)) (i : Fin m) (j : Fin n) :
+private theorem aux_vec_sup (A : Interval (Mat ℝ m n)) (i : Fin m) (j : Fin n) :
     A.vec.sup (finProdFinEquiv (j, i)) = A.sup i j := by
   simp only [Interval.vec, Equiv.symm_apply_apply]
 

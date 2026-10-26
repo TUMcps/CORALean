@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `e^{nrm} ≤ expNormUpFloat r η`, `nrm` the float bound on `‖r A‖`, at an admissible `η`. -/
-theorem LinearSys.aux_exp_le_expNormUpFloat (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
+private theorem LinearSys.aux_exp_le_expNormUpFloat (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
     (hη : sys.IsOrderAdmissibleFloat r r η) : -- --- CONCL ---
     Real.exp (toReal (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))))
       ≤ toReal (sys.expNormUpFloat r η) := by -- --- PROOF ---

@@ -54,7 +54,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 
 /-- `Set.linComb` is Mathlib's convex join: the segment parameter runs over `[0,1]`
 either way, one written as `λ` and the other as `1 - λ`. -/
-theorem VPolytope.aux_setLinComb_eq_convexJoin (X Y : Set α) : -- --- CONCL ---
+private theorem VPolytope.aux_setLinComb_eq_convexJoin (X Y : Set α) : -- --- CONCL ---
     Set.linComb X Y = convexJoin ℝ X Y := by -- --- PROOF ---
   ext x
   simp only [Set.linComb, Set.mem_setOf_eq, mem_convexJoin, segment_eq_image, Set.mem_image,
@@ -66,7 +66,7 @@ theorem VPolytope.aux_setLinComb_eq_convexJoin (X Y : Set α) : -- --- CONCL ---
     exact ⟨y₁, h₁, y₂, h₂, 1 - θ, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
 
 /-- A point's polynomial zonotope denotes that point and nothing else. -/
-theorem VPolytope.aux_ofPoint_construct (v : α) : -- --- CONCL ---
+private theorem VPolytope.aux_ofPoint_construct (v : α) : -- --- CONCL ---
     (PolyZonotope.ofPoint v).construct = {v} := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · -- neither generator block has a column, so nothing is added to the center
@@ -80,14 +80,14 @@ theorem VPolytope.aux_ofPoint_construct (v : α) : -- --- CONCL ---
     exact PolyZonotope.mem_ofPoint v
 
 /-- The hull of the first `r + 1` vertices, one `linComb` per vertex added. -/
-noncomputable def VPolytope.aux_hullPZ : (r : ℕ) → (V : Fin (r + 1) → α) → PolyZonotope α
+private noncomputable def VPolytope.aux_hullPZ : (r : ℕ) → (V : Fin (r + 1) → α) → PolyZonotope α
   | 0, V => PolyZonotope.ofPoint (V 0)
   | r + 1, V => (VPolytope.aux_hullPZ r fun i => V i.castSucc).linComb
       (PolyZonotope.ofPoint (V (Fin.last (r + 1))))
 
 /-- It never acquires an independent generator, which is the hypothesis
 `linComb_exact_of_dependent` runs on. -/
-theorem VPolytope.aux_hullPZ_q : -- --- CONCL ---
+private theorem VPolytope.aux_hullPZ_q : -- --- CONCL ---
     ∀ (r : ℕ) (V : Fin (r + 1) → α),
     (VPolytope.aux_hullPZ r V).q = 0 := by -- --- PROOF ---
   intro r
@@ -104,7 +104,7 @@ theorem VPolytope.aux_hullPZ_q : -- --- CONCL ---
 omit [AddCommGroup α] [Module ℝ α] in
 /-- The vertex list split at its last entry, which is how the recursion reads
 it. -/
-theorem VPolytope.aux_range_lastCases {k : ℕ} (V : Fin (k + 1 + 1) → α) : -- --- CONCL ---
+private theorem VPolytope.aux_range_lastCases {k : ℕ} (V : Fin (k + 1 + 1) → α) : -- --- CONCL ---
     Set.range V = insert (V (Fin.last (k + 1)))
       (Set.range fun i : Fin (k + 1) => V i.castSucc) := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
@@ -116,7 +116,7 @@ theorem VPolytope.aux_range_lastCases {k : ℕ} (V : Fin (k + 1 + 1) → α) : -
     · exact ⟨j.castSucc, rfl⟩
 
 /-- What the recursion denotes: the convex hull of the vertices it has read. -/
-theorem VPolytope.aux_hullPZ_construct : -- --- CONCL ---
+private theorem VPolytope.aux_hullPZ_construct : -- --- CONCL ---
     ∀ (r : ℕ) (V : Fin (r + 1) → α),
     (VPolytope.aux_hullPZ r V).construct = convexHull ℝ (Set.range V) := by -- --- PROOF ---
   intro r

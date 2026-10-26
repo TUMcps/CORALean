@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 /-- The curve `(t, t², t⁴)`, `t ∈ [-1, 1]`, as a polynomial zonotope: one factor, three
 generators, and no independent ones. -/
-theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) : -- --- CONCL ---
+private theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) : -- --- CONCL ---
     x ∈ (⟨1, 3, 0, 0, ![Pi.single 0 1, Pi.single 1 1, Pi.single 2 1],
         fun _ j => ![1, 2, 4] j, Fin.elim0⟩ : PolyZonotope (Fin 3 → ℝ)).construct
       ↔ ∃ t : ℝ, |t| ≤ 1 ∧ x = ![t, t ^ 2, t ^ 4] := by -- --- PROOF ---
@@ -63,7 +63,7 @@ theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) : -- --- CONCL ---
 
 /-- No chord of the curve reaches `(0, 2/3, 2/3)`: the third coordinate forces every atom to
 `-1`, `0` or `1`, and then the first two coordinates cannot match. -/
-theorem PolyZonotope.aux_no_chord (s t lam : ℝ) (hs : |s| ≤ 1) (ht : |t| ≤ 1) (h0 : 0 ≤ lam)
+private theorem PolyZonotope.aux_no_chord (s t lam : ℝ) (hs : |s| ≤ 1) (ht : |t| ≤ 1) (h0 : 0 ≤ lam)
     (h1 : lam ≤ 1) (hx : lam * s + (1 - lam) * t = 0) (hy : lam * s ^ 2 + (1 - lam) * t ^ 2 = 2 / 3)
     (hz : lam * s ^ 4 + (1 - lam) * t ^ 4 = 2 / 3) : -- --- CONCL ---
     False := by -- --- PROOF ---

@@ -75,7 +75,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The sum of the real coefficients lies in the float sum over the point box. -/
-theorem STL.aux_depBloating_sum (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 ≤ toReal r)
+private theorem STL.aux_depBloating_sum (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 ≤ toReal r)
     (η : ℕ) : -- --- CONCL ---
     ∑ j ∈ Finset.Icc 1 η, Real.MatExp.particularCoeff (toRealMat A) (toReal r) j
       ∈ (MatExp.particularCoeffSum (Interval.point A) r 1 η).construct := by -- --- PROOF ---
@@ -102,7 +102,7 @@ theorem STL.aux_depBloating_sum (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 ≤ toReal
     exact Interval.matPlus_outer _ _ ih (hterm (η + 1))
 
 /-- The reach of a real zonotope is under the float `absBoundError` of one holding it. -/
-theorem STL.aux_absBound_le_absBoundError {Zr : Real.Zonotope (Vec ℝ n)}
+private theorem STL.aux_absBound_le_absBoundError {Zr : Real.Zonotope (Vec ℝ n)}
     {Zf : Float.Zonotope (Vec 𝕋 n)} (h : Zr.construct ⊆ Zf.construct) (i : Fin n) : -- --- CONCL ---
     Zr.absBound i ≤ toReal (Zf.absBoundError i) := by -- --- PROOF ---
   obtain ⟨⟨x₁, hx₁, e₁⟩, ⟨x₂, hx₂, e₂⟩⟩ := STL.zonotope_extremes Zr i

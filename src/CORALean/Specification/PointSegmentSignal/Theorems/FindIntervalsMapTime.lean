@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 
 /-- The bounds `findIntervalsBounds` reads off the signal read as reals are the float ones read as
 reals. -/
-theorem PointSegmentSignal.aux_findIntervalsBounds_mapTime (s : PointSegmentSignal 𝕋)
+private theorem PointSegmentSignal.aux_findIntervalsBounds_mapTime (s : PointSegmentSignal 𝕋)
     (cond : Bool → Bool) : -- --- CONCL ---
     (s.mapTime toReal).findIntervalsBounds cond = (s.findIntervalsBounds cond).map
       (fun b => (toReal b.1, b.2.1.map toReal, b.2.2.1, b.2.2.2)) := by -- --- PROOF ---

@@ -50,12 +50,12 @@ variable {N : ℕ} {β : Type} [LinearOrder β] (w : Finset (Fin N) → β)
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_mem_supportConstraints (F : Finset (Fin N)) (l : Fin N) :
+private theorem aux_mem_supportConstraints (F : Finset (Fin N)) (l : Fin N) :
     l ∈ supportConstraints w F ↔ l ∈ F ∧ w (F.erase l) < w F := by
   simp [supportConstraints]
 
 -- the tree under `F`, root first: one subtree for each support constraint of the root
-theorem aux_discardTree_succ (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
+private theorem aux_discardTree_succ (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
     discardTree w F (j + 1) =
       (supportConstraints w F).flatMap fun l => discardTree w (F.erase l) j := by -- --- PROOF ---
   induction j generalizing F with
@@ -67,14 +67,14 @@ theorem aux_discardTree_succ (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
     rfl
 
 -- a problem under the subtree of a support constraint is one level lower under `F`
-theorem aux_mem_discardTree_erase {F G : Finset (Fin N)} {l : Fin N} {d : ℕ}
+private theorem aux_mem_discardTree_erase {F G : Finset (Fin N)} {l : Fin N} {d : ℕ}
     (hl : l ∈ supportConstraints w F) (hG : G ∈ discardTree w (F.erase l) d) :
     G ∈ discardTree w F (d + 1) := by
   rw [aux_discardTree_succ]
   exact List.mem_flatMap.mpr ⟨l, hl, hG⟩
 
 -- every problem at level `j` has `j` constraints fewer
-theorem aux_discardTree_sub (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
+private theorem aux_discardTree_sub (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
     ∀ G ∈ discardTree w F j, G ⊆ F ∧ G.card + j = F.card := by -- --- PROOF ---
   induction j generalizing F with
   | zero => intro G hG; simp [discardTree] at hG; simp [hG]
@@ -89,7 +89,7 @@ theorem aux_discardTree_sub (F : Finset (Fin N)) (j : ℕ) : -- --- CONCL ---
     omega
 
 -- a tree whose problems all have a support constraint reaches level `j`
-theorem aux_discardTree_ne_nil (j : ℕ) : -- --- CONCL ---
+private theorem aux_discardTree_ne_nil (j : ℕ) : -- --- CONCL ---
     ∀ F : Finset (Fin N), (∀ d < j, ∀ G ∈ discardTree w F d, supportConstraints w G ≠ []) →
       discardTree w F j ≠ [] := by -- --- PROOF ---
   induction j with
@@ -103,7 +103,7 @@ theorem aux_discardTree_ne_nil (j : ℕ) : -- --- CONCL ---
     exact List.ne_nil_of_mem (aux_mem_discardTree_erase w hl hG)
 
 -- some problem at level `j` is below `F \ K`, for any `K` of `j` constraints
-theorem aux_discardTree_exists_le (D : Finset (Fin N)) (hmono : ∀ G H, G ⊆ H → w G ≤ w H)
+private theorem aux_discardTree_exists_le (D : Finset (Fin N)) (hmono : ∀ G H, G ⊆ H → w G ≤ w H)
     (hnd : ∀ G ⊆ D, w (supportConstraints w G).toFinset = w G) (j : ℕ) : -- --- CONCL ---
     ∀ F ⊆ D, ∀ K ⊆ F, K.card = j →
       (∀ d < j, ∀ G ∈ discardTree w F d, supportConstraints w G ≠ []) →

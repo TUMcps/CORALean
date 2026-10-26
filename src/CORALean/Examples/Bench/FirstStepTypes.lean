@@ -51,7 +51,7 @@ open Lean (Json)
 
 /-- `d` at `FixedPoint f`, exactly and off the grid: `m * 5^k / 10^k` for `d = m * 2^-k`, so
 that `addDown`/`addUp` round it to `f` digits (`toFixedPointUnchecked` floors it instead). -/
-def aux_fixedExact {f : ℕ} (d : ExactDyadic) : FixedPoint f :=
+private def aux_fixedExact {f : ℕ} (d : ExactDyadic) : FixedPoint f :=
   if 0 ≤ d.exponent then ⟨d.mantissa * 2 ^ d.exponent.toNat, 0⟩
   else ⟨d.mantissa * 5 ^ (-d.exponent).toNat, (-d.exponent).toNat⟩
 

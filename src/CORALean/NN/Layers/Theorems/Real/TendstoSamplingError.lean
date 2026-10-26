@@ -47,7 +47,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Sampling costs one padding over the true half-range. -/
-theorem aux_samplingError_bracket {g g' : ℝ → ℝ} {M l u : ℝ} {N : ℕ}
+private theorem aux_samplingError_bracket {g g' : ℝ → ℝ} {M l u : ℝ} {N : ℕ}
     (hd : ∀ x, HasDerivAt g (g' x) x) (hM : ∀ x, l ≤ x → x ≤ u → |g' x| ≤ M)
     (hN : 0 < N) (hlu : l ≤ u) : -- --- CONCL ---
     boxHalfRange g l u ≤ samplingError g M l u N ∧

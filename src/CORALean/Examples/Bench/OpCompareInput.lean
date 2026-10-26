@@ -54,7 +54,7 @@ structure Inputs where
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_hexArr (j : Json) (k : String) : Except String (Array String) := do
+private def aux_hexArr (j : Json) (k : String) : Except String (Array String) := do
   (← (← j.getObjVal? k).getArr?).mapM Json.getStr?
 
 

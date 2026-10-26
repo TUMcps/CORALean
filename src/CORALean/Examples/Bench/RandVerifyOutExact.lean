@@ -39,13 +39,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `q · den` as an integer, `den` a multiple of `q.den`. -/
-def aux_scaleTo (den : ℕ) (q : ℚ) : ℤ := q.num * ((den / q.den : ℕ) : ℤ)
+private def aux_scaleTo (den : ℕ) (q : ℚ) : ℤ := q.num * ((den / q.den : ℕ) : ℤ)
 
 /-- The least common denominator of `qs`. -/
-def aux_lcmDen (qs : Array ℚ) : ℕ := qs.foldl (fun d q => Nat.lcm d q.den) 1
+private def aux_lcmDen (qs : Array ℚ) : ℕ := qs.foldl (fun d q => Nat.lcm d q.den) 1
 
 /-- `C v` in integers, row by row, `C` as `5` entries per row. -/
-def aux_apply (C : Array ℤ) (v : Array ℤ) : ℤ × ℤ :=
+private def aux_apply (C : Array ℤ) (v : Array ℤ) : ℤ × ℤ :=
   let row (i : ℕ) : ℤ := (List.range 5).foldl (fun s k => s + C.getD (5 * i + k) 0 * v.getD k 0) 0
   (row 0, row 1)
 

@@ -108,21 +108,21 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of `Z₁ ⊕ Z₂` is a sum of points of each. -/
-theorem NonlinDASys.aux_linReachCora_mem_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} {v : Vec ℝ n}
+private theorem NonlinDASys.aux_linReachCora_mem_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} {v : Vec ℝ n}
     (hv : v ∈ (Z₁.plus Z₂).construct) :
     ∃ a ∈ Z₁.construct, ∃ b ∈ Z₂.construct, v = a + b := by
   obtain ⟨a, ha, b, hb, rfl⟩ := (Zonotope.plus_exact _ _).symm.subset hv
   exact ⟨a, ha, b, hb, rfl⟩
 
 /-- A point of `M Z` is `M` times a point of `Z`. -/
-theorem NonlinDASys.aux_linReachCora_mem_mtimes {m : ℕ} {M : Mat ℝ m n}
+private theorem NonlinDASys.aux_linReachCora_mem_mtimes {m : ℕ} {M : Mat ℝ m n}
     {Z : Zonotope (Vec ℝ n)} {v : Vec ℝ m} (hv : v ∈ (Zonotope.mtimes M Z).construct) :
     ∃ w ∈ Z.construct, v = M *ᵥ w := by
   obtain ⟨w, hw, rfl⟩ := (Zonotope.mtimes_exact _ _).symm.subset hv
   exact ⟨w, hw, rfl⟩
 
 /-- At `A = 0` the remainder of an input solution, `E(r)·r U`, is `{0}`. -/
-theorem NonlinDASys.aux_linReachCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A = 0) (r : ℝ)
+private theorem NonlinDASys.aux_linReachCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A = 0) (r : ℝ)
     (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
     (hv : v ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) Z).construct)
     : -- --- CONCL ---
@@ -146,7 +146,7 @@ theorem NonlinDASys.aux_linReachCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A
   induction j using Fin.addCases <;> simp
 
 /-- At `A = 0` an input solution is the step times the input set. -/
-theorem NonlinDASys.aux_linReachCora_inputSolution {sys : LinearSys ℝ n} (hA : sys.A = 0)
+private theorem NonlinDASys.aux_linReachCora_inputSolution {sys : LinearSys ℝ n} (hA : sys.A = 0)
     (r : ℝ) (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
     (hv : v ∈ (sys.inputSolution (S := 𝒵) r η Z).construct) : -- --- CONCL ---
     ∃ w ∈ Z.construct, v = r • w := by -- --- PROOF ---
@@ -170,7 +170,7 @@ theorem NonlinDASys.aux_linReachCora_inputSolution {sys : LinearSys ℝ n} (hA :
   exact hsum η a ha
 
 /-- CORA's error set over `[-1, 1]` for `ẋ = y`, `0 = y - u²` lies in `v ≤ 0`. -/
-theorem NonlinDASys.aux_linReachCora_error_nonpos {w : Vec ℝ 1}
+private theorem NonlinDASys.aux_linReachCora_error_nonpos {w : Vec ℝ 1}
     (hw : w ∈ (NonlinDASys.linErrorCora (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1
       ⟨1, 0, fun _ => ![1]⟩).construct) : -- --- CONCL ---
     w 0 ≤ 0 := by -- --- PROOF ---

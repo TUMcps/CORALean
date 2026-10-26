@@ -53,7 +53,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `K(r)` is the polynomial zonotope of the coefficients `G̃_K^{(l)}`. -/
-theorem aux_expmOneParam_eq (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) : -- --- CONCL ---
+private theorem aux_expmOneParam_eq (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) : -- --- CONCL ---
     MatExp.expmOneParam C G r η = Zonotope.ofOneParamPoly (fun l => if l = 0 then
       ∑ i ∈ Finset.range (η + 1), (r ^ i / i.factorial) • MatExp.oneParamD C i
       else ∑ i ∈ Finset.Icc l η, (r ^ i / i.factorial) • MatExp.oneParamF C G i l)
@@ -68,7 +68,7 @@ theorem aux_expmOneParam_eq (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) : -- --- CO
     rw [if_neg (Nat.not_odd_iff_even.2 (even_two_mul l)), if_neg (by omega)]
 
 /-- The Taylor polynomial, by the powers of `β` (`MatExp.oneParam_sum_pow_eq` at `rⁱ/i!`). -/
-theorem aux_expTaylor_oneParam (C G : Mat ℝ n n) (r β : ℝ) (η : ℕ) :
+private theorem aux_expTaylor_oneParam (C G : Mat ℝ n n) (r β : ℝ) (η : ℕ) :
     MatExp.expTaylor (r • (C + β • G)) η = ∑ k ∈ Finset.range (η + 1), β ^ k •
       (if k = 0 then ∑ i ∈ Finset.range (η + 1), (r ^ i / i.factorial) • MatExp.oneParamD C i
       else ∑ i ∈ Finset.Icc k η, (r ^ i / i.factorial) • MatExp.oneParamF C G i k) := by

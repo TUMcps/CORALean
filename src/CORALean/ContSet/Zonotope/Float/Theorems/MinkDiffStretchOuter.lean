@@ -60,7 +60,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The float stretch encloses the real one at the nominal operands and `μ` read as reals. -/
-theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
+private theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
     (μ : Fin Z₁.h → 𝕋) : -- --- CONCL ---
     (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).construct
       ⊆ (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---

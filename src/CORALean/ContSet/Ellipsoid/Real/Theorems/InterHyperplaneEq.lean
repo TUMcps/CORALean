@@ -53,11 +53,11 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Inside the unit ball, by the squared length. -/
-theorem aux_norm₂_le_one_iff {k : ℕ} (u : Vec ℝ k) : ‖u‖₂ ≤ 1 ↔ u ⬝ᵥ u ≤ 1 := by
+private theorem aux_norm₂_le_one_iff {k : ℕ} (u : Vec ℝ k) : ‖u‖₂ ≤ 1 ↔ u ⬝ᵥ u ≤ 1 := by
   rw [dotProduct_self, pow_le_one_iff_of_nonneg (norm₂_nonneg u) two_ne_zero]
 
 /-- The projection `I - w wᵀ / s` applied. -/
-theorem aux_proj_mulVec {k : ℕ} (w z : Vec ℝ k) (s : ℝ) : -- --- CONCL ---
+private theorem aux_proj_mulVec {k : ℕ} (w z : Vec ℝ k) (s : ℝ) : -- --- CONCL ---
     ((1 : Mat ℝ k k) - s⁻¹ • vecMulVec w w) *ᵥ z = z - (s⁻¹ * (w ⬝ᵥ z)) • w := by -- --- PROOF ---
   funext i
   rw [Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.smul_mulVec]

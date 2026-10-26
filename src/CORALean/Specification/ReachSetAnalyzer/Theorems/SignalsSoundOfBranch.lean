@@ -55,7 +55,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the entries of a branch record. -/
-theorem ReachSetAnalyzer.aux_analyzeBranch_spec (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
+private theorem ReachSetAnalyzer.aux_analyzeBranch_spec (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)
     (R : List (ReachSetAnalyzer.Entry ℝ S n)) : -- --- CONCL ---
     ∀ (w : List ℕ), (∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
       ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) →

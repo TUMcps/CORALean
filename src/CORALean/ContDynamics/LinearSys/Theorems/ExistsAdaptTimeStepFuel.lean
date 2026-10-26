@@ -75,7 +75,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The geometric sequence of steps the sweep walks reaches into the punctured
 neighbourhood both convergence facts are stated over. -/
-theorem aux_tendsto_geometric_nhdsGT {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ)
+private theorem aux_tendsto_geometric_nhdsGT {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ)
     (hμ1 : μ < 1) : -- --- CONCL ---
     Tendsto (fun k : ℕ => Δt * μ ^ k) atTop (𝓝[>] (0 : ℝ)) := by -- --- PROOF ---
   refine tendsto_nhdsWithin_of_tendsto_nhds_of_eventually_within _ ?_ ?_
@@ -86,7 +86,7 @@ theorem aux_tendsto_geometric_nhdsGT {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 <
 
 /-- The step sweep reaches every `Δt μ^j` its fuel allows, so an order clearing
 both bounds anywhere along that sequence is one it finds. -/
-theorem aux_adaptTimeStepSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_adaptTimeStepSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) : -- --- CONCL ---
     ∀ (j : ℕ) (Δt : ℝ) (η : ℕ),
       LinearSys.adaptTimeStepOrder sys le X₀ U εHmax ((εPmax - εPacc) / (tf - ti) * (Δt * μ ^ j))
@@ -112,7 +112,7 @@ theorem aux_adaptTimeStepSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → �
 
 /-- One step of the order sweep: a candidate its own check clears is reported,
 and `2 ≤ Φ_prop,max` is what leaves the sweep an iteration to report it in. -/
-theorem aux_adaptTimeStepOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+private theorem aux_adaptTimeStepOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPi Δt : ℝ) {ηmax : ℕ} (hηmax : 2 ≤ ηmax)
     (hc : (le (sys.timeIntervalStepCurvatureError Δt 2 X₀) εHmax
       && le (sys.timePointStepRemainderError Δt 2 U) εPi) = true) : -- --- CONCL ---
@@ -128,7 +128,7 @@ theorem aux_adaptTimeStepOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ
 
 /-- `ε_P`'s cofactor past the `Δt_i` it carries vanishes along the sweep, which
 is what lets a *linear* share eventually cover it. -/
-theorem aux_tendsto_remainderCofactor (sys : LinearSys 𝕋 n) (U : Zonotope (Vec ℝ n))
+private theorem aux_tendsto_remainderCofactor (sys : LinearSys 𝕋 n) (U : Zonotope (Vec ℝ n))
     {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ) (hμ1 : μ < 1) : -- --- CONCL ---
     Tendsto (fun k : ℕ => 2 * (∑ j, U.absBound j)
       * MatExp.expRemainderBound ((Δt * μ ^ k) • toRealMat sys.A) 2)

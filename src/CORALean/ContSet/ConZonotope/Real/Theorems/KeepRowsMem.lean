@@ -46,7 +46,7 @@ variable {h q r : ℕ}
 
 /-- A row splits along a partition: kept coordinates through `keepEmbed`, dropped ones
 as a weighted sum. -/
-theorem ConZonotope.aux_apply_split (part : Split (Fin h) into (Fin q) ⊕ (Fin r))
+private theorem ConZonotope.aux_apply_split (part : Split (Fin h) into (Fin q) ⊕ (Fin r))
     (f : Vec ℝ h →ₗ[ℝ] ℝ) (β : Vec ℝ h) : -- --- CONCL ---
     f β = f (ConZonotope.keepEmbed part (fun l => β (part.left l)))
       + ∑ l, β (part.right l)
@@ -62,7 +62,7 @@ theorem ConZonotope.aux_apply_split (part : Split (Fin h) into (Fin q) ⊕ (Fin 
   simp [ConZonotope.keepEmbed, map_sum]
 
 /-- The dropped part of a row is bounded by its slack when the coordinates are. -/
-theorem ConZonotope.aux_abs_dropped_le (part : Split (Fin h) into (Fin q) ⊕ (Fin r))
+private theorem ConZonotope.aux_abs_dropped_le (part : Split (Fin h) into (Fin q) ⊕ (Fin r))
     (f : Vec ℝ h →ₗ[ℝ] ℝ) {β : Vec ℝ h} (hbox : ∀ l, |β (part.right l)| ≤ 1) :
     |∑ l, β (part.right l) * f (Pi.single (part.right l) (1 : ℝ) : Vec ℝ h)|
       ≤ ConZonotope.keepSlack part f := by

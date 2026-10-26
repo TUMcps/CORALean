@@ -51,7 +51,7 @@ variable {S : ℕ → Type} {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Replacing a key keeps the keys. -/
-theorem aux_map_fst_replaceKey {β : Type} (l : List (String × β)) (k : String)
+private theorem aux_map_fst_replaceKey {β : Type} (l : List (String × β)) (k : String)
     (v : β) : -- --- CONCL ---
     (replaceKey l k v).map Prod.fst = l.map Prod.fst := by -- --- PROOF ---
   induction l with

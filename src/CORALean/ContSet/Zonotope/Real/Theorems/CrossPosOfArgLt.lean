@@ -46,7 +46,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A nonzero vector has positive norm as a complex number. -/
-theorem Zonotope.aux_norm_pos {u : Vec ℝ 2} (hu : u ≠ 0) : -- --- CONCL ---
+private theorem Zonotope.aux_norm_pos {u : Vec ℝ 2} (hu : u ≠ 0) : -- --- CONCL ---
     0 < ‖(⟨u 0, u 1⟩ : ℂ)‖ := by -- --- PROOF ---
   rw [norm_pos_iff]
   intro hc

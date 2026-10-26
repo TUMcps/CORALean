@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A unit vector along `g`, with `g` its multiple by `‖g‖₂`. -/
-theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) : -- --- CONCL ---
+private theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) : -- --- CONCL ---
     ∃ u : Vec ℝ n, ‖u‖₂ = 1 ∧ g = ‖g‖₂ • u := by -- --- PROOF ---
   by_cases hg : g = 0
   · subst hg

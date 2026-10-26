@@ -73,7 +73,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
-theorem aux_linReach_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
+private theorem aux_linReach_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
       Zonotope (Vec 𝕋 k)).construct := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,
@@ -84,7 +84,8 @@ theorem aux_linReach_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
 
 omit [ToRat 𝕋] in
 /-- A box widened to a point holds the box and the point. -/
-theorem aux_linReach_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec 𝕋 k) : -- --- CONCL ---
+private theorem aux_linReach_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k))
+    (v : Vec 𝕋 k) : -- --- CONCL ---
     I.construct ⊆ (⟨fun i => minimum (I.inf i) (v i), fun i => maximum (I.sup i) (v i)⟩ :
       Interval (Vec 𝕋 k)).construct ∧ toRealVec v ∈ (⟨fun i => minimum (I.inf i) (v i),
         fun i => maximum (I.sup i) (v i)⟩ : Interval (Vec 𝕋 k)).construct := by -- --- PROOF ---
@@ -99,7 +100,7 @@ theorem aux_linReach_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec �
 
 omit [ToRat 𝕋] in
 /-- `f(x, u) - A(x - x✱)` is in `f(z✱) ⊕ B(U - u✱) ⊕ L` once the remainder is in `L`. -/
-theorem aux_linReach_input {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m}
+private theorem aux_linReach_input {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m}
     (h : fm.Encloses sys) (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) {U : Zonotope (Vec 𝕋 m)}
     {L : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n} {u : Vec ℝ m} (hu : u ∈ U.construct)
     (hL : sys.f x u - (sys.f (toRealVec xs) (toRealVec U.c) + Scalar.toRealMat A *ᵥ

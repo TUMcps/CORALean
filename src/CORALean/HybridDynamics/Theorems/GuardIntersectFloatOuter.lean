@@ -56,7 +56,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of the start or of any box folded in is a point of the hull. -/
-theorem aux_mem_foldl_or {x : Vec ℝ n} :
+private theorem aux_mem_foldl_or {x : Vec ℝ n} :
     ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)),
       (x ∈ J.construct ∨ ∃ I ∈ Is, x ∈ I.construct) → x ∈ (Is.foldl Interval.or J).construct
   | [], _, h => h.resolve_right (by simp)

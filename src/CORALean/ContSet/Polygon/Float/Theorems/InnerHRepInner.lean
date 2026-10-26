@@ -48,12 +48,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The orientation `(b - a) × (c - a)` of three real points of the plane. -/
-def Polygon.aux_orient (a b c : Vec ℝ 2) : ℝ :=
+private def Polygon.aux_orient (a b c : Vec ℝ 2) : ℝ :=
   (b 0 - a 0) * (c 1 - a 1) - (b 1 - a 1) * (c 0 - a 0)
 
 /-- Three nonnegative edge orientations in a counterclockwise triangle are barycentric
 coordinates, up to the triangle's orientation. -/
-theorem Polygon.aux_barycentric {a b c x : Vec ℝ 2} (hD : 0 < Polygon.aux_orient a b c)
+private theorem Polygon.aux_barycentric {a b c x : Vec ℝ 2} (hD : 0 < Polygon.aux_orient a b c)
     (ha : 0 ≤ Polygon.aux_orient b c x) (hb : 0 ≤ Polygon.aux_orient c a x)
     (hc : 0 ≤ Polygon.aux_orient a b x) : -- --- CONCL ---
     ∃ α β γ : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 ≤ γ ∧ α + β + γ = 1 ∧
@@ -75,7 +75,7 @@ theorem Polygon.aux_barycentric {a b c x : Vec ℝ 2} (hD : 0 < Polygon.aux_orie
       field_simp <;> ring
 
 /-- A sequence that starts nonnegative and ends nonpositive crosses over between neighbours. -/
-theorem Polygon.aux_crossing (f : ℕ → ℝ) (N : ℕ) : -- --- CONCL ---
+private theorem Polygon.aux_crossing (f : ℕ → ℝ) (N : ℕ) : -- --- CONCL ---
     ∀ d j, j + d + 1 = N → 0 ≤ f j → f N ≤ 0 →
       ∃ i, j ≤ i ∧ i + 1 ≤ N ∧ 0 ≤ f i ∧ f (i + 1) ≤ 0 := by -- --- PROOF ---
   intro d
@@ -92,7 +92,7 @@ theorem Polygon.aux_crossing (f : ℕ → ℝ) (N : ℕ) : -- --- CONCL ---
 
 /-- A point left of every edge of a loop whose fan from the first vertex turns left lies in a
 fan triangle. -/
-theorem Polygon.aux_fan {k : ℕ} (u : Fin k → Vec ℝ 2) (x : Vec ℝ 2) (hk : 3 ≤ k)
+private theorem Polygon.aux_fan {k : ℕ} (u : Fin k → Vec ℝ 2) (x : Vec ℝ 2) (hk : 3 ≤ k)
     (hfan : ∀ i : Fin k, i.val ≠ 0 → i.val + 1 ≠ k →
       0 < Polygon.aux_orient (u ⟨0, i.pos⟩) (u i) (u (finRotate k i)))
     (hedge : ∀ i : Fin k, 0 ≤ Polygon.aux_orient (u i) (u (finRotate k i)) x) : -- --- CONCL ---

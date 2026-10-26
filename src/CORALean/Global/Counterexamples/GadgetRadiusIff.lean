@@ -51,12 +51,12 @@ open Matrix
 /-- `A = e₁ ∈ ℝ^{2×1}`. -/
 def aux_A27 : Mat ℝ 2 1 := fun i _ => if i = 0 then 1 else 0
 
-theorem aux_mulVec (w : Fin 1 → ℝ) : aux_A27 *ᵥ w = ![w 0, 0] := by
+private theorem aux_mulVec (w : Fin 1 → ℝ) : aux_A27 *ᵥ w = ![w 0, 0] := by
   funext i
   fin_cases i <;> simp [aux_A27, mulVec, dotProduct]
 
 /-- Every point of the inbody is `H β` with `‖β‖ ≤ 3/4`. -/
-theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ))
+private theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ))
     (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
     coeffNorm (gadgetH 2) (gadgetGA ∞ aux_A27 1 α) ≤ 3 / 4 := by -- --- PROOF ---
   rw [WithLp.prod_norm_eq_sup, max_le_iff, Real.norm_eq_abs] at hα

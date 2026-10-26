@@ -67,7 +67,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A generator family reached through `Γ`, at any admissible coefficients, regroups into `G`'s
 own — the double-sum swap `eq. (28a)`'s and `(28b)`'s substitutions both need. -/
-theorem Zonotope.aux_regroup_scaled_rpi {ng m : ℕ} (G : Fin ng → α) (Γ : Fin ng → Fin m → ℝ)
+private theorem Zonotope.aux_regroup_scaled_rpi {ng m : ℕ} (G : Fin ng → α) (Γ : Fin ng → Fin m → ℝ)
     (H : Fin m → α) (hΓ : ∀ k, H k = ∑ i, Γ i k • G i) (w : Fin m → ℝ) :
     ∑ k, w k • H k = ∑ i, (∑ k, Γ i k * w k) • G i := by
   simp_rw [hΓ, Finset.smul_sum, smul_smul, mul_comm (w _)]

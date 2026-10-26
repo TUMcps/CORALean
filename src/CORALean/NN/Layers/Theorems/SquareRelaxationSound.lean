@@ -40,12 +40,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_squareDerivLo_le (l u : 𝕋) : toReal (squareDerivLo l u) ≤ 2 * toReal l := by
+private theorem aux_squareDerivLo_le (l u : 𝕋) : toReal (squareDerivLo l u) ≤ 2 * toReal l := by
   have := addDown_le_add l l
   rw [squareDerivLo]
   linarith
 
-theorem aux_le_squareDerivHi (l u : 𝕋) : 2 * toReal u ≤ toReal (squareDerivHi l u) := by
+private theorem aux_le_squareDerivHi (l u : 𝕋) : 2 * toReal u ≤ toReal (squareDerivHi l u) := by
   have := add_le_addUp u u
   rw [squareDerivHi]
   linarith

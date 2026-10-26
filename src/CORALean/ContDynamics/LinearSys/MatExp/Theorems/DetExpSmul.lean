@@ -56,7 +56,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The entries of `e^{tA}` have derivative `A` at `t = 0`. -/
-theorem aux_hasDerivAt_exp_entry (A : Mat ℝ n n) (i j : Fin n) :
+private theorem aux_hasDerivAt_exp_entry (A : Mat ℝ n n) (i j : Fin n) :
     HasDerivAt (fun t : ℝ => (exp (t • A)) i j) (A i j) 0 := by
   have h := hasDerivAt_exp_smul_const A (0 : ℝ)
   simp only [zero_smul, exp_zero, one_mul] at h
@@ -64,7 +64,7 @@ theorem aux_hasDerivAt_exp_entry (A : Mat ℝ n n) (i j : Fin n) :
   exact (hasDerivAt_pi.mp hi) j
 
 /-- `d/dt det(e^{tA}) = tr(A)` at `t = 0`. -/
-theorem aux_hasDerivAt_det_exp (A : Mat ℝ n n) : -- --- CONCL ---
+private theorem aux_hasDerivAt_det_exp (A : Mat ℝ n n) : -- --- CONCL ---
     HasDerivAt (fun t : ℝ => det (exp (t • A))) (trace A) 0 := by -- --- PROOF ---
   simp only [det_apply']
   have hterm : ∀ σ : Equiv.Perm (Fin n), HasDerivAt

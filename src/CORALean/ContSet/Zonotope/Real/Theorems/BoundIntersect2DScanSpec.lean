@@ -55,7 +55,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The first loop's vertices are the first block of the walk. -/
-theorem Zonotope.aux_up_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
+private theorem Zonotope.aux_up_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
     (Z.c - ∑ j, Z.G j) + (∑ i, if i < k then (2 : ℝ) • Z.G i else 0)
       = Z.corner (fun j => decide (j.val < k.val)) := by -- --- PROOF ---
   rw [Zonotope.corner_eq_bottom_add, Finset.smul_sum]
@@ -66,7 +66,7 @@ theorem Zonotope.aux_up_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- ---
   · simp [h]
 
 /-- The second loop's vertices are the second block of the walk. -/
-theorem Zonotope.aux_down_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
+private theorem Zonotope.aux_down_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- --- CONCL ---
     ((Z.c - ∑ j, Z.G j) + ∑ i, (2 : ℝ) • Z.G i)
         + (∑ i, if i < k then -((2 : ℝ) • Z.G i) else 0)
       = Z.corner (fun j => !decide (j.val < k.val)) := by -- --- PROOF ---
@@ -82,7 +82,7 @@ theorem Zonotope.aux_down_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) : -- -
   module
 
 /-- The two loops, on a sorted zonogon with the generators upward, end with the section's ends. -/
-theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
+private theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
     (P₀ : Vec ℝ 2) (hP₀ : P₀ = Z.c - ∑ j, Z.G j) (up down : Vec ℝ 2 × Interval EReal)

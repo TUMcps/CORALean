@@ -48,7 +48,7 @@ open Polynomial
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the derivatives of the first `k + 1` Bernstein polynomials telescope
-theorem aux_derivative_sum_bernstein (m k : ℕ) : -- --- CONCL ---
+private theorem aux_derivative_sum_bernstein (m k : ℕ) : -- --- CONCL ---
     derivative (∑ i ∈ Finset.range (k + 1), bernsteinPolynomial ℝ m i) =
       -(m : ℝ[X]) * bernsteinPolynomial ℝ (m - 1) k := by -- --- PROOF ---
   induction k with
@@ -58,7 +58,7 @@ theorem aux_derivative_sum_bernstein (m k : ℕ) : -- --- CONCL ---
     ring
 
 -- the sum is the polynomial's value
-theorem aux_eval_sum_bernstein (m k : ℕ) (p : ℝ) :
+private theorem aux_eval_sum_bernstein (m k : ℕ) (p : ℝ) :
     (∑ i ∈ Finset.range (k + 1), bernsteinPolynomial ℝ m i).eval p =
       ∑ i ∈ Finset.range (k + 1), (m.choose i : ℝ) * p ^ i * (1 - p) ^ (m - i) := by
   simp [eval_finsetSum, bernsteinPolynomial]

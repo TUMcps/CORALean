@@ -70,7 +70,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A set measured against itself carries no error at all. -/
-theorem aux_globalAbstrErr_self {X : Set (Vec ℝ n)} (hne : X.Nonempty)
+private theorem aux_globalAbstrErr_self {X : Set (Vec ℝ n)} (hne : X.Nonempty)
     (hb : Bornology.IsBounded X) : -- --- CONCL ---
     globalAbstrErr X X = 0 := by -- --- PROOF ---
   have hXz : X + ({0} : Set (Vec ℝ n)) = X := by simp

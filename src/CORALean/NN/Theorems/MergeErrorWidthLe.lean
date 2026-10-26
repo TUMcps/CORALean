@@ -61,7 +61,7 @@ section
 variable {n m : ℕ}
 
 /-- `Interval.mtimes`'s width, row by row. -/
-theorem Interval.aux_mtimes_width (M : Mat ℝ m n) (I : Interval (Vec ℝ n))
+private theorem Interval.aux_mtimes_width (M : Mat ℝ m n) (I : Interval (Vec ℝ n))
     (i : Fin m) : -- --- CONCL ---
     (Interval.mtimes M I).sup i - (Interval.mtimes M I).inf i
       = ∑ k, |M i k| * |I.sup k - I.inf k| := by -- --- PROOF ---

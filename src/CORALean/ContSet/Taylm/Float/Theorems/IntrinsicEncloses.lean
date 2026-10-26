@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What `belowPow` certifies. -/
-theorem Taylm.aux_toReal_le_of_belowPow {p : ℕ} {x : 𝕋}
+private theorem Taylm.aux_toReal_le_of_belowPow {p : ℕ} {x : 𝕋}
     (h : Taylm.belowPow p x = true) : -- --- CONCL ---
     toReal x ≤ 2 ^ p / 2 := by -- --- PROOF ---
   have hit : ∀ k : ℕ, toReal (half^[k] x) = toReal x / 2 ^ k := by

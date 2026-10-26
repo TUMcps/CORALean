@@ -49,7 +49,7 @@ variable {m n p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The two corners a symmetric term `[-s, s] * t` reaches. -/
-theorem aux_corners_symm_mul (s t : ℝ) (hs : 0 ≤ s) : -- --- CONCL ---
+private theorem aux_corners_symm_mul (s t : ℝ) (hs : 0 ≤ s) : -- --- CONCL ---
     min (-(s * t)) (s * t) = -(s * |t|) ∧ max (-(s * t)) (s * t) = s * |t| := by -- --- PROOF ---
   rcases le_total 0 t with ht | ht
   · rw [abs_of_nonneg ht]

@@ -87,7 +87,7 @@ section
 variable {n : ℕ}
 
 /-- A point of the strip intersection is `κ` of a point before it plus `φ η λ`. -/
-theorem Zonotope.aux_intersectStrip_dev (c l : Vec ℝ n) (φ y : ℝ) (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_intersectStrip_dev (c l : Vec ℝ n) (φ y : ℝ) (Z : Zonotope (Vec ℝ n))
     {z : Vec ℝ n}
     (hz : z ∈ (Z.intersectStrip (Matrix.of fun _ => c : Mat ℝ 1 n) (fun _ => φ) (fun _ => y)
       (Matrix.of fun r _ => l r : Mat ℝ n 1)).construct) : -- --- CONCL ---
@@ -120,20 +120,20 @@ end
 
 
 /-- The deviation after `s` strips: each applies `κₛ` and adds `ηₛ uₛ`. -/
-def aux_stripDev (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η : ℕ → ℝ) : ℕ → Vec ℝ n → Vec ℝ n
+private def aux_stripDev (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η : ℕ → ℝ) : ℕ → Vec ℝ n → Vec ℝ n
   | 0, d => d
   | s + 1, d => κ s *ᵥ aux_stripDev κ u η s d + η s • u s
 
 /-- The first `s` strips of the sequence, met one after another. -/
-def aux_stripsUpTo (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p) (Z : Zonotope (Vec ℝ n))
+private def aux_stripsUpTo (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p) (Z : Zonotope (Vec ℝ n))
     (s : ℕ) : Zonotope (Vec ℝ n) :=
   ((List.finRange p).take s).foldl
     (fun X i => X.intersectStrip (Matrix.of fun _ => C i : Mat ℝ 1 n) (fun _ => φ i)
       (fun _ => y i) (Matrix.of fun r _ => Λ r i : Mat ℝ n 1)) Z
 
 /-- The deviation of a strip chain depends only on the coefficients it uses. -/
-theorem aux_stripDev_congr (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η η' : ℕ → ℝ) (d : Vec ℝ n)
-    (s : ℕ) (h : ∀ r < s, η r = η' r) : -- --- CONCL ---
+private theorem aux_stripDev_congr (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η η' : ℕ → ℝ)
+    (d : Vec ℝ n) (s : ℕ) (h : ∀ r < s, η r = η' r) : -- --- CONCL ---
     aux_stripDev κ u η s d = aux_stripDev κ u η' s d := by -- --- PROOF ---
   induction s with
   | zero => rfl
@@ -142,7 +142,7 @@ theorem aux_stripDev_congr (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (�
     rw [ih fun r hr => h r (by omega), h s (by omega)]
 
 /-- The deviation of a strip chain is the product form of the recursion. -/
-theorem aux_stripDev_eq (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η : ℕ → ℝ) (d : Vec ℝ n)
+private theorem aux_stripDev_eq (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η : ℕ → ℝ) (d : Vec ℝ n)
     (s : ℕ) : -- --- CONCL ---
     aux_stripDev κ u η s d = Conform.prodJac κ s s *ᵥ d
       + ∑ i ∈ Finset.range s, η i • (Conform.prodJac κ s (s - i - 1) *ᵥ u i) := by -- --- PROOF ---
@@ -153,7 +153,7 @@ theorem aux_stripDev_eq (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n) (η :
   simp only [mulVec_smul]
 
 /-- The first `s + 1` strips are the first `s` and then strip `s`. -/
-theorem aux_stripsUpTo_succ (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
+private theorem aux_stripsUpTo_succ (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (Z : Zonotope (Vec ℝ n)) (s : ℕ) (hs : s < p) : -- --- CONCL ---
     aux_stripsUpTo C φ y Λ Z (s + 1)
       = (aux_stripsUpTo C φ y Λ Z s).intersectStrip (Matrix.of fun _ => C ⟨s, hs⟩ : Mat ℝ 1 n)
@@ -164,7 +164,7 @@ theorem aux_stripsUpTo_succ (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n
   simp [List.getElem?_eq_getElem (by simpa using hs : s < (List.finRange p).length)]
 
 /-- The strips of `intersectStripSeq` at constant gains are the `p` strips of the chain. -/
-theorem aux_stripsUpTo_full (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
+private theorem aux_stripsUpTo_full (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (Z : Zonotope (Vec ℝ n)) :
     aux_stripsUpTo C φ y Λ Z p = ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ) Z := by
   unfold aux_stripsUpTo ContSet.intersectStripSeq
@@ -172,7 +172,7 @@ theorem aux_stripsUpTo_full (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n
   rfl
 
 /-- A point after `s` strips is the deviation chain of a point of the zonotope before them. -/
-theorem aux_stripsUpTo_dev (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
+private theorem aux_stripsUpTo_dev (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n)
     (hκ : ∀ s : Fin p, κ s = 1 - vecMulVec (fun r => Λ r s) (C s))
     (hu : ∀ s : Fin p, u s = φ s • fun r => Λ r s) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---

@@ -57,7 +57,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem NeurNetContrSysDT.IsTrajectory.aux_eq_simulate
+private theorem NeurNetContrSysDT.IsTrajectory.aux_eq_simulate
     {sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {π : Vec ℝ n → Vec ℝ sys.m} {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}

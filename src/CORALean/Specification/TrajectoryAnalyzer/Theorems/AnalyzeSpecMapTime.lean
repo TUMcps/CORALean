@@ -56,7 +56,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)] in
 /-- Marking a float signal true on an interval, read as reals, is the real marking. -/
-theorem aux_markKey_mapTime (dur lo hi : T) (sigs : List (String × FiniteSignal T Bool))
+private theorem aux_markKey_mapTime (dur lo hi : T) (sigs : List (String × FiniteSignal T Bool))
     (k : String) : -- --- CONCL ---
     (TrajectoryAnalyzer.markKey dur lo hi sigs k).map
         (List.map fun p => (p.1, p.2.mapTime toReal)) =
@@ -79,7 +79,7 @@ theorem aux_markKey_mapTime (dur lo hi : T) (sigs : List (String × FiniteSignal
       | some sig' => simp only [Option.map_some, replaceKey_map_snd]
 
 /-- One interval of a float trajectory analyzed, read as reals, is the real analysis. -/
-theorem aux_analyzeInterval_mapTime (obj : TrajectoryAnalyzer T 𝕋 S n) (s : ℕ) (dur : T)
+private theorem aux_analyzeInterval_mapTime (obj : TrajectoryAnalyzer T 𝕋 S n) (s : ℕ) (dur : T)
     (sigs : List (String × FiniteSignal T Bool)) (l : ℕ) : -- --- CONCL ---
     (obj.analyzeInterval s dur sigs l).map (List.map fun p => (p.1, p.2.mapTime toReal)) =
       (obj.mapTime toReal).analyzeInterval s (toReal dur)
@@ -111,7 +111,7 @@ theorem aux_analyzeInterval_mapTime (obj : TrajectoryAnalyzer T 𝕋 S n) (s : �
 
 /-- A float trajectory analyzed, read as reals, is the real analysis of the trajectory read as
 reals. -/
-theorem aux_analyze_mapTime (obj : TrajectoryAnalyzer T 𝕋 S n) (s : ℕ) : -- --- CONCL ---
+private theorem aux_analyze_mapTime (obj : TrajectoryAnalyzer T 𝕋 S n) (s : ℕ) : -- --- CONCL ---
     (obj.analyze s).map (List.map fun p => (p.1, p.2.mapTime toReal)) =
       (obj.mapTime toReal).analyze s := by -- --- PROOF ---
   unfold TrajectoryAnalyzer.analyze

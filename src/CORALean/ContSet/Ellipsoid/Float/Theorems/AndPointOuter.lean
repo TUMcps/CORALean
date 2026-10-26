@@ -55,7 +55,7 @@ section
 open Pointwise
 
 /-- `Ellipsoid.ofPoint` is exactly the point. -/
-theorem Ellipsoid.aux_ofPoint_exact (p : Vec 𝕋 n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_ofPoint_exact (p : Vec 𝕋 n) : -- --- CONCL ---
     (Ellipsoid.ofPoint p).construct = {toRealVec p} := by -- --- PROOF ---
   have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=
     funext fun _ => funext fun _ => toReal_zero

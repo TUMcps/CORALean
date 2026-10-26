@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 omit [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] in
 /-- Over ℝ and with plain dimensions: the inequality is the old one beside a zero block as soon as
 the equalities' diagonal vanishes. -/
-theorem SpectraShadow.aux_lmi_block {k a b : ℕ} (A₀ : Mat ℝ k k) (A : Fin a → Mat ℝ k k)
+private theorem SpectraShadow.aux_lmi_block {k a b : ℕ} (A₀ : Mat ℝ k k) (A : Fin a → Mat ℝ k k)
     (d₀ : Vec ℝ (n + n)) (dβ : Fin a → Vec ℝ (n + n)) (dz : Fin b → Vec ℝ (n + n))
     (β : Fin a → ℝ) (z : Fin b → ℝ)
     (hD : d₀ + ∑ j, β j • dβ j + ∑ i, z i • dz i = 0) : -- --- CONCL ---
@@ -74,14 +74,14 @@ theorem SpectraShadow.aux_lmi_block {k a b : ℕ} (A₀ : Mat ℝ k k) (A : Fin 
 omit [SoundFloatArithmetic 𝕋] in
 /-- `Fin.sum_univ_add` at `mtimes`'s variable count, stated through the projection because
 that is the form the goal has. -/
-theorem SpectraShadow.aux_sum_mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
+private theorem SpectraShadow.aux_sum_mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
     {R : Type} [AddCommMonoid R] (f : Fin (S.mtimes M).m → R) :
     ∑ l : Fin (S.mtimes M).m, f l = ∑ j, f (Fin.castAdd n j) + ∑ i, f (Fin.natAdd S.m i) :=
   Fin.sum_univ_add (a := S.m) (b := n) f
 
 /-- At the variables `(β, z)` with `z` the shadow's own point, the stored inequality is the old
 one beside a zero block. -/
-theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
+private theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
     (v : Fin (S.mtimes M).m → ℝ) (z : Vec ℝ n)
     (hz : ∀ i, z i = toReal (S.c i) + ∑ j, toReal (S.G j i) * v (Fin.castAdd n j))
     (hv : ∀ i, v (Fin.natAdd S.m i) = z i) : -- --- CONCL ---

@@ -73,7 +73,7 @@ section
 open Matrix
 
 /-- What a linear layer does to a distance. -/
-theorem Layer.aux_lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
+private theorem Layer.aux_lipschitzWith_linear_eval (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CONCL ---
     LipschitzWith (Finset.univ.sup fun i => ∑ j, ‖W i j‖₊)
       (fun x : Vec ℝ n => W *ᵥ x + b) := by -- --- PROOF ---
   refine LipschitzWith.of_dist_le_mul fun x y => ?_

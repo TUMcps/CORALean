@@ -45,8 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The lower boundary of `set` is found at the same index, its new time stamp mapped. -/
-theorem aux_setLower_mapTime {V : Type} [DecidableEq V] (s : FiniteSignal 𝕋 V) (a : 𝕋) (value : V)
-    (k : ℕ) : -- --- CONCL ---
+private theorem aux_setLower_mapTime {V : Type} [DecidableEq V] (s : FiniteSignal 𝕋 V) (a : 𝕋)
+    (value : V) (k : ℕ) : -- --- CONCL ---
     (s.mapTime toReal).aux_setLower (toReal a) value k =
       ((s.aux_setLower a value k).1, (s.aux_setLower a value k).2.1.map toReal,
         (s.aux_setLower a value k).2.2) := by -- --- PROOF ---

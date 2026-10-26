@@ -59,7 +59,7 @@ variable {n : ℕ}
 
 /-- A weighted integral of points of a closed convex set is the total weight
 times a point of it. -/
-theorem aux_integral_mem_smul_of_mem_smul {K : Set (Vec ℝ n)} (hK : Convex ℝ K)
+private theorem aux_integral_mem_smul_of_mem_smul {K : Set (Vec ℝ n)} (hK : Convex ℝ K)
     (hKc : IsClosed K) {f : ℝ → Vec ℝ n} {w : ℝ → ℝ} {s : ℝ} (hs : 0 ≤ s)
     (hf : IntervalIntegrable f volume 0 s) (hw : IntervalIntegrable w volume 0 s)
     (hw0 : ∀ σ ∈ Set.Icc 0 s, 0 ≤ w σ) (hfK : ∀ σ ∈ Set.Icc 0 s, f σ ∈ w σ • K)
@@ -89,7 +89,7 @@ theorem aux_integral_mem_smul_of_mem_smul {K : Set (Vec ℝ n)} (hK : Convex ℝ
 
 
 /-- A member of `B` maps the hull of order `k` into the hull of order `k + 1`. -/
-theorem aux_mulVec_mem_hull {B : Interval (Mat ℝ n n)} {U : Set (Vec ℝ n)} {M : Mat ℝ n n}
+private theorem aux_mulVec_mem_hull {B : Interval (Mat ℝ n n)} {U : Set (Vec ℝ n)} {M : Mat ℝ n n}
     (hM : M ∈ B.construct) {k : ℕ} {y : Vec ℝ n}
     (hy : y ∈ closure (convexHull ℝ
       {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v})) : -- --- CONCL ---

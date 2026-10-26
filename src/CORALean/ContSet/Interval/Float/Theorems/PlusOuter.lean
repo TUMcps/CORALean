@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_plus_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
+private theorem Interval.aux_plus_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
     (I₁.nominal.plus I₂.nominal).construct ⊆ (I₁.plus I₂).construct := by
   intro x hx i
   exact ⟨le_trans (addDown_le_add _ _) (hx i).1, le_trans (hx i).2 (add_le_addUp _ _)⟩

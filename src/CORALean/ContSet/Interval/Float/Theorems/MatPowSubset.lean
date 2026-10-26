@@ -55,7 +55,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n p : ℕ}
 
 /-- The least corner product is attained at a pair of endpoints. -/
-theorem aux_mulLo_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- --- CONCL ---
+private theorem aux_mulLo_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- --- CONCL ---
     ∃ y x, (a ≤ y ∧ y ≤ b) ∧ (c ≤ x ∧ x ≤ d) ∧
       y * x = Real.Interval.mulLo a b c d := by -- --- PROOF ---
   unfold Real.Interval.mulLo
@@ -69,7 +69,7 @@ theorem aux_mulLo_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- 
 
 
 /-- The greatest likewise. -/
-theorem aux_mulHi_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- --- CONCL ---
+private theorem aux_mulHi_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- --- CONCL ---
     ∃ y x, (a ≤ y ∧ y ≤ b) ∧ (c ≤ x ∧ x ≤ d) ∧
       y * x = Real.Interval.mulHi a b c d := by -- --- PROOF ---
   unfold Real.Interval.mulHi
@@ -84,7 +84,7 @@ theorem aux_mulHi_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) : -- 
 
 /-- A real product entry attained at chosen row and column entries is bounded by
 the float product's endpoints. -/
-theorem aux_entry_bound {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Mat ℝ n p)}
+private theorem aux_entry_bound {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Mat ℝ n p)}
     {X' : Interval (Mat 𝕋 m n)} {Y' : Interval (Mat 𝕋 n p)} {M₀ : Mat ℝ m n} {N₀ : Mat ℝ n p}
     (hM₀ : M₀ ∈ X.construct) (hN₀ : N₀ ∈ Y.construct) (hX : X.construct ⊆ X'.construct)
     (hY : Y.construct ⊆ Y'.construct) (i : Fin m) (j : Fin p) {y x : Fin n → ℝ}
@@ -111,7 +111,8 @@ theorem aux_entry_bound {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Ma
 
 /-- Non-empty real boxes inside float ones have their real product box inside the
 float product. -/
-theorem Interval.aux_matMul_subset {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Mat ℝ n p)}
+private theorem Interval.aux_matMul_subset {X : Real.Interval (Mat ℝ m n)}
+    {Y : Real.Interval (Mat ℝ n p)}
     {X' : Interval (Mat 𝕋 m n)} {Y' : Interval (Mat 𝕋 n p)} {M₀ : Mat ℝ m n} {N₀ : Mat ℝ n p}
     (hM₀ : M₀ ∈ X.construct) (hN₀ : N₀ ∈ Y.construct) (hX : X.construct ⊆ X'.construct)
     (hY : Y.construct ⊆ Y'.construct) : -- --- CONCL ---

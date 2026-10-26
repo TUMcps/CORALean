@@ -56,14 +56,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `sign r · r = |r|`. -/
-theorem Zonotope.aux_sign_mul_self_cesm (r : ℝ) : Real.sign r * r = |r| := by
+private theorem Zonotope.aux_sign_mul_self_cesm (r : ℝ) : Real.sign r * r = |r| := by
   rcases lt_trichotomy r 0 with h | h | h
   · rw [Real.sign_of_neg h, abs_of_neg h, neg_one_mul]
   · rw [h, Real.sign_zero, abs_zero, mul_zero]
   · rw [Real.sign_of_pos h, abs_of_pos h, one_mul]
 
 /-- A coefficient of modulus at most one contributes at most `|r|`. -/
-theorem Zonotope.aux_term_le_cesm {b r : ℝ} (hb : |b| ≤ 1) : b * r ≤ |r| :=
+private theorem Zonotope.aux_term_le_cesm {b r : ℝ} (hb : |b| ≤ 1) : b * r ≤ |r| :=
   calc b * r ≤ |b * r| := le_abs_self _
     _ = |b| * |r| := abs_mul _ _
     _ ≤ 1 * |r| := mul_le_mul_of_nonneg_right hb (abs_nonneg _)

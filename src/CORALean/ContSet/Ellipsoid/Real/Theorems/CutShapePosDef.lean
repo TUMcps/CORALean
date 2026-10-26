@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_quad (a κ : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_quad (a κ : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
     x ⬝ᵥ ((a • (1 - κ • vecMulVec c c : Mat ℝ n n)) *ᵥ x)
       = a * (x ⬝ᵥ x - κ * (c ⬝ᵥ x) ^ 2) := by -- --- PROOF ---
   rw [Matrix.smul_mulVec, Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
@@ -63,7 +63,7 @@ theorem Ellipsoid.aux_quad (a κ : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
   rw [dotProduct_comm x c]
   ring
 
-theorem Ellipsoid.aux_cs (c x : Vec ℝ n) (hc : c ⬝ᵥ c = 1) : (c ⬝ᵥ x) ^ 2 ≤ x ⬝ᵥ x := by
+private theorem Ellipsoid.aux_cs (c x : Vec ℝ n) (hc : c ⬝ᵥ c = 1) : (c ⬝ᵥ x) ^ 2 ≤ x ⬝ᵥ x := by
   have := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ c x
   have h1 : ∑ i, c i ^ 2 = 1 := by simpa [dotProduct, sq] using hc
   rw [h1, one_mul] at this

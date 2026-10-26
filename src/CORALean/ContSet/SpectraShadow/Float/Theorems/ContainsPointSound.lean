@@ -44,7 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An entry of the combination at `β`, as a sum of stored floats read as reals. -/
-theorem SpectraShadow.aux_entry (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (β : Vec 𝕋 S.m) (i j : Fin S.k) :
+private theorem SpectraShadow.aux_entry (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (β : Vec 𝕋 S.m)
+    (i j : Fin S.k) :
     (toRealMat S.A₀ + ∑ l, toRealVec β l • toRealMat (S.A l)) i j
       = toReal (S.A₀ i j) + ∑ l, toReal (β l) * toReal (S.A l i j) := by
   simp [Matrix.add_apply, Matrix.sum_apply, toRealMat, toRealVec]

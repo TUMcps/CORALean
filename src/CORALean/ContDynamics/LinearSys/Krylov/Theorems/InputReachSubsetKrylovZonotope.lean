@@ -72,8 +72,8 @@ noncomputable abbrev Krylov.aux_krylovTerm (A : Mat ℝ n n) (δ : ℝ) (m j : �
 
 /-- Below the Krylov order the Krylov term maps the zonotope `Z` onto the zonotope of the
 images of its center and generators. -/
-theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (δ : ℝ) {m j : ℕ}
-    (hj : j + 1 ≤ m) : -- --- CONCL ---
+private theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (δ : ℝ)
+    {m j : ℕ} (hj : j + 1 ≤ m) : -- --- CONCL ---
     Krylov.aux_krylovTerm A δ m j '' Z.construct = (⟨Z.h, Krylov.aux_krylovTerm A δ m j Z.c,
       fun i => Krylov.aux_krylovTerm A δ m j (Z.G i)⟩ :
         Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---

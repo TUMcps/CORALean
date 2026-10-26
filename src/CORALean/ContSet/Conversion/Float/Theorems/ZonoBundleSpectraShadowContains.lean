@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A point of the start and of every shadow folded in is a point of the left fold of `inter`. -/
-theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
+private theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
     ∀ (Ss : List (SpectraShadow 𝕋 (Vec 𝕋 n))) (S : SpectraShadow 𝕋 (Vec 𝕋 n)), x ∈ S.construct →
       (∀ T ∈ Ss, x ∈ T.construct) → x ∈ (Ss.foldl SpectraShadow.inter S).construct
   | [], _, h, _ => h

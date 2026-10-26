@@ -46,7 +46,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_div_between {k d₁ d₂ d : ℝ} (hd₁ : 0 < d₁) (hd₁' : d₁ ≤ d)
+private theorem aux_div_between {k d₁ d₂ d : ℝ} (hd₁ : 0 < d₁) (hd₁' : d₁ ≤ d)
     (hd₂ : d ≤ d₂) : -- --- CONCL ---
     min (k / d₁) (k / d₂) ≤ k / d ∧ k / d ≤ max (k / d₁) (k / d₂) := by -- --- PROOF ---
   have hd : 0 < d := lt_of_lt_of_le hd₁ hd₁'

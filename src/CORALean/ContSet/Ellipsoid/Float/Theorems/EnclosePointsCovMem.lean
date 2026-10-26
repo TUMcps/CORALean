@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 /-- A point is in the set when the stored shape dominates `G Gᵀ` and some factor vector of length
 at most `1` leaves a remainder whose two roundings lie in the error box. -/
-theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat 𝕋 n n)
+private theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat 𝕋 n n)
     (hG : (toRealMat E.Q - toRealMat G * (toRealMat G)ᵀ).PosSemidef) (p u : Vec 𝕋 n)
     (hsq : ∑ j, toReal (u j) ^ 2 ≤ 1)
     (hlo : ∀ i, toReal (E.I_error.inf i)

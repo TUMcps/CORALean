@@ -52,13 +52,13 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Applying a fixed vector, as a continuous linear map on matrices. -/
-noncomputable def aux_mulVecR (v : Vec ℝ n) : Mat ℝ n n →L[ℝ] Vec ℝ n := mulVecL.flip v
+private noncomputable def aux_mulVecR (v : Vec ℝ n) : Mat ℝ n n →L[ℝ] Vec ℝ n := mulVecL.flip v
 
-theorem aux_mulVecR_apply (v : Vec ℝ n) (M : Mat ℝ n n) : aux_mulVecR v M = M *ᵥ v := rfl
+private theorem aux_mulVecR_apply (v : Vec ℝ n) (M : Mat ℝ n n) : aux_mulVecR v M = M *ᵥ v := rfl
 
 /-- `‖A^i v‖ ≤ ‖A‖^i ‖v‖`, the `i = 0` case included, where the power is the
 identity rather than something the operator norm bounds. -/
-theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
+private theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
     ‖A ^ i *ᵥ v‖ ≤ ‖A‖ ^ i * ‖v‖ := by
   rcases Nat.eq_zero_or_pos i with rfl | hi
   · simp
@@ -66,7 +66,7 @@ theorem aux_norm_pow_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (i : ℕ) :
       (mul_le_mul_of_nonneg_right (norm_pow_le' A hi) (norm_nonneg _))
 
 /-- The exponential series carried through to a vector. -/
-theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
+private theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     exp (σ • A) *ᵥ v = ∑' i : ℕ, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v) := by
   rw [← aux_mulVecR_apply v, Real.exp_smul_tsum A σ,
     ContinuousLinearMap.map_tsum (aux_mulVecR v) (Real.summable_exp_smul A σ)]
@@ -74,7 +74,7 @@ theorem aux_exp_mulVec_tsum (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
 
 /-- Applying a vector only shrinks the terms, by `‖A^i v‖ ≤ ‖A^i‖ ‖v‖`, so
 summability of a matrix series carries to it. -/
-theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec ℝ n)
+private theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec ℝ n)
     (h : Summable (fun i : ℕ => ‖c i • A ^ i‖)) : -- --- CONCL ---
     Summable (fun i : ℕ => c i • (A ^ i *ᵥ v)) := by -- --- PROOF ---
   refine Summable.of_norm_bounded (g := fun i : ℕ => ‖v‖ * ‖c i • A ^ i‖)
@@ -86,20 +86,20 @@ theorem aux_summable_smul_mulVec {c : ℕ → ℝ} (A : Mat ℝ n n) (v : Vec �
     _ = ‖v‖ * (‖c i‖ * ‖A ^ i‖) := by ring
 
 /-- Each order of the exponential series, applied to a vector, is summable. -/
-theorem aux_summable_exp_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
+private theorem aux_summable_exp_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (σ : ℝ) :
     Summable (fun i : ℕ => (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v)) := by
   refine aux_summable_smul_mulVec A v ?_
   refine (norm_expSeries_summable' (𝕂 := ℝ) (σ • A)).congr fun i => ?_
   rw [smul_pow, smul_smul]
 
 /-- The same with the extra order integration adds. -/
-theorem aux_summable_expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (t : ℝ) :
+private theorem aux_summable_expIntegral_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) (t : ℝ) :
     Summable (fun i : ℕ =>
       (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • (A ^ i *ᵥ v)) :=
   aux_summable_smul_mulVec A v (Real.MatExp.summable_norm_expIntegral A t)
 
 /-- Each partial sum of the exponential series is continuous in the time. -/
-theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
+private theorem aux_continuous_expPartial (A : Mat ℝ n n) (v : Vec ℝ n) (N : ℕ) :
     Continuous fun σ : ℝ =>
       ∑ i ∈ Finset.range N, (((Nat.factorial i : ℝ))⁻¹ * σ ^ i) • (A ^ i *ᵥ v) :=
   continuous_finsetSum _ fun i _ =>

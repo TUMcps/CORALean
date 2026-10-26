@@ -61,7 +61,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The same with any expansion of `g` that encloses it on the box. -/
-theorem aux_guardIntersectUnsolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
+private theorem aux_guardIntersectUnsolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
     {g : Vec ℝ n → ℝ} (b : ℝ) (a c : Vec ℝ n) (v : Vec ℝ n → ℝ) (l u : ℝ)
     (hT : ∀ x ∈ I.construct, g x - (b + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc l u)
     (ha : a k ≠ 0) (pk Dp : Vec ℝ n → ℝ)

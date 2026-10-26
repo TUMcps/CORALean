@@ -35,12 +35,12 @@ open Lean (Json JsonNumber)
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- How many decimal digits `n` has, `n ≠ 0`. -/
-def aux_digitCount (n : Nat) : Nat := (toString n).length
+private def aux_digitCount (n : Nat) : Nat := (toString n).length
 
 /-- `N` rounded to at most `sig` significant digits, as `(R, extra)` with
 `N ≈ R * 10 ^ extra` -- round-half-up, the tie itself never reached by a
 binary64's exact decimal expansion at a rounding boundary that matters here. -/
-def aux_roundSig (N sig : Nat) : Nat × Nat :=
+private def aux_roundSig (N sig : Nat) : Nat × Nat :=
   let D := aux_digitCount N
   if D ≤ sig then (N, 0) else
   let extra := D - sig
@@ -50,7 +50,7 @@ def aux_roundSig (N sig : Nat) : Nat × Nat :=
 /-- `x` (finite, nonzero) as `(sign, R, S)` with `x ≈ sign * R * 10 ^ S`, `R`
 rounded to at most 17 significant decimal digits (`aux_roundSig`) --
 `Binary64.toDyadic`'s own two cases (`e ≥ 0`/`e < 0`) collapse to one shape. -/
-def aux_sigDigits (x : Float) : Int × Nat × Int :=
+private def aux_sigDigits (x : Float) : Int × Nat × Int :=
   let d := CORALean.Float.Binary64.toDyadic x
   let am := d.mantissa.natAbs
   let sgn : Int := if d.mantissa < 0 then -1 else 1
@@ -63,12 +63,12 @@ def aux_sigDigits (x : Float) : Int × Nat × Int :=
     (sgn, R, (extra : Int) - (k : Int))
 
 /-- `s` with every trailing `'0'` dropped (`""` unchanged). -/
-def aux_stripTrailingZeros (s : String) : String := (s.dropEndWhile (· = '0')).toString
+private def aux_stripTrailingZeros (s : String) : String := (s.dropEndWhile (· = '0')).toString
 
 /-- The plain decimal expansion of `sign * R * 10 ^ S` (`R > 0`) -- an
 integer when `S ≥ 0`, else a `0.`-prefixed fraction, trailing zeros dropped
 either way. No exponent, ever -- `aux_canonicalString` only calls this in range. -/
-def aux_plainDecimal (sgn : Int) (R : Nat) (S : Int) : String :=
+private def aux_plainDecimal (sgn : Int) (R : Nat) (S : Int) : String :=
   let sign := if sgn < 0 then "-" else ""
   let digits := toString R
   if S ≥ 0 then
@@ -88,7 +88,7 @@ def aux_plainDecimal (sgn : Int) (R : Nat) (S : Int) : String :=
 /-- The scientific-notation expansion `d.ddd…e±XX` of `sign * R * 10 ^ S`
 (`R > 0`): one leading digit, `.` and the rest only if a nonzero digit
 remains after stripping trailing zeros, exponent signed only when negative. -/
-def aux_sciNotation (sgn : Int) (R : Nat) (S : Int) : String :=
+private def aux_sciNotation (sgn : Int) (R : Nat) (S : Int) : String :=
   let sign := if sgn < 0 then "-" else ""
   let digits := toString R
   let e10 : Int := (aux_digitCount R : Int) - 1 + S
@@ -101,14 +101,14 @@ def aux_sciNotation (sgn : Int) (R : Nat) (S : Int) : String :=
 /-- `sign * R * 10 ^ S` (`R > 0`) as a canonical string, `%.17g`'s own
 convention: scientific notation once the decimal exponent is below `-4` or
 at least `17`, plain decimal in between -- see the module docstring. -/
-def aux_canonicalString (sgn : Int) (R : Nat) (S : Int) : String :=
+private def aux_canonicalString (sgn : Int) (R : Nat) (S : Int) : String :=
   let e10 : Int := (aux_digitCount R : Int) - 1 + S
   if e10 < -4 ∨ e10 ≥ 17 then aux_sciNotation sgn R S else aux_plainDecimal sgn R S
 
 /-- `sign * R * 10 ^ S` as a `JsonNumber` -- correct for any `S`, but only
 printed the same way `aux_plainDecimal` would by `Lean.JsonNumber.toString`
 within `aux_canonicalString`'s own plain-decimal range, the only one `floatToJson` uses it in. -/
-def aux_plainJsonNumber (sgn : Int) (R : Nat) (S : Int) : JsonNumber :=
+private def aux_plainJsonNumber (sgn : Int) (R : Nat) (S : Int) : JsonNumber :=
   if S ≥ 0 then ⟨sgn * (R : Int) * 10 ^ S.toNat, 0⟩ else ⟨sgn * (R : Int), (-S).toNat⟩
 
 

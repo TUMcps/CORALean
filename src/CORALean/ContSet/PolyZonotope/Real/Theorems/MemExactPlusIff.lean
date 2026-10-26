@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The independent block of `exactPlus`, split at the seam into the two operands'. -/
-theorem PolyZonotope.aux_sum_indep_exactPlus (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p)
+private theorem PolyZonotope.aux_sum_indep_exactPlus (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p)
     (β : Fin (pZ₁.q + pZ₂.q) → ℝ) : -- --- CONCL ---
     ∑ j : Fin (pZ₁.exactPlus pZ₂ hp).q, β j • (pZ₁.exactPlus pZ₂ hp).GI j
       = ∑ j, β (Fin.castAdd pZ₂.q j) • pZ₁.GI j

@@ -50,10 +50,10 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The hexagon `Z`: generators `(1, 0)`, `(0, 1)`, `(1, 1)` around `0`. -/
-abbrev aux_hex : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![1, 0], ![0, 1], ![1, 1]]⟩
+private abbrev aux_hex : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![1, 0], ![0, 1], ![1, 1]]⟩
 
 /-- A point of the hexagon has `|z₀|, |z₁|, |z₀ - z₁| ≤ 2`. -/
-theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) : -- --- CONCL ---
+private theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) : -- --- CONCL ---
     -2 ≤ z 0 ∧ z 0 ≤ 2 ∧ -2 ≤ z 1 ∧ z 1 ≤ 2 ∧ -2 ≤ z 0 - z 1 ∧ z 0 - z 1 ≤ 2 := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   have h0 := abs_le.mp (hβ 0)
@@ -66,7 +66,7 @@ theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) : -- --- C
 
 /-- Conversely `|z₀|, |z₁|, |z₀ - z₁| ≤ 2` puts `z` in the hexagon, with
 `θ₂ = max(z₀, z₁, 0) - 1`. -/
-theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2)
+private theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2)
     (h01 : |z 0 - z 1| ≤ 2) : -- --- CONCL ---
     z ∈ aux_hex.construct := by -- --- PROOF ---
   obtain ⟨h0l, h0u⟩ := abs_le.mp h0
@@ -98,19 +98,19 @@ theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2)
     fin_cases i <;> simp [aux_hex, Fin.sum_univ_three]
 
 /-- `u ∈ Z ⊖ conv V` once `u + v ∈ Z` at each of the three vertices. -/
-theorem aux_mem_minkowskiDiff {u : Vec ℝ 2} {V : Set (Vec ℝ 2)}
+private theorem aux_mem_minkowskiDiff {u : Vec ℝ 2} {V : Set (Vec ℝ 2)}
     (hV : ∀ v ∈ V, u + v ∈ aux_hex.construct) :
     u ∈ minkowskiDiff aux_hex.construct (convexHull ℝ V) := fun _ hs =>
   convexHull_min hV ((Zonotope.convex_construct aux_hex).translate_preimage_right u) hs
 
 /-- `θ a` for `|θ| ≤ 1` and `a ≥ 0` lies in `[-a, a]`. -/
-theorem aux_mul_bounds {θ a : ℝ} (hθ : |θ| ≤ 1) (ha : 0 ≤ a) : -a ≤ θ * a ∧ θ * a ≤ a := by
+private theorem aux_mul_bounds {θ a : ℝ} (hθ : |θ| ≤ 1) (ha : 0 ≤ a) : -a ≤ θ * a ∧ θ * a ≤ a := by
   obtain ⟨h1, h2⟩ := abs_le.mp hθ
   constructor <;> nlinarith
 
 
 /-- A point of the aligned hexagon, by coordinates. -/
-theorem aux_aligned_coords {c : Vec ℝ 2} {a : Fin 3 → ℝ} {y : Vec ℝ 2}
+private theorem aux_aligned_coords {c : Vec ℝ 2} {a : Fin 3 → ℝ} {y : Vec ℝ 2}
     (hy : y ∈ (aux_hex.aligned c a).construct) : ∃ θ : Fin 3 → ℝ, (∀ j, |θ j| ≤ 1) ∧
       y 0 = c 0 + θ 0 * a 0 + θ 2 * a 2 ∧ y 1 = c 1 + θ 1 * a 1 + θ 2 * a 2 := by
   obtain ⟨θ, hθ, rfl⟩ := hy
@@ -118,7 +118,7 @@ theorem aux_aligned_coords {c : Vec ℝ 2} {a : Fin 3 → ℝ} {y : Vec ℝ 2}
     simp <;> ring
 
 /-- The corner of the aligned hexagon at coefficients `θ`. -/
-theorem aux_aligned_corner (c : Vec ℝ 2) (a θ : Fin 3 → ℝ) (hθ : ∀ j, |θ j| ≤ 1) :
+private theorem aux_aligned_corner (c : Vec ℝ 2) (a θ : Fin 3 → ℝ) (hθ : ∀ j, |θ j| ≤ 1) :
     ![c 0 + θ 0 * a 0 + θ 2 * a 2, c 1 + θ 1 * a 1 + θ 2 * a 2]
       ∈ (aux_hex.aligned c a).construct := by
   refine ⟨θ, hθ, ?_⟩

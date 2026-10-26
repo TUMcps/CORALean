@@ -56,7 +56,7 @@ namespace CORALean
 
 /-- The walk only moves upward, and every step it takes is one the check
 cleared, so the endpoint's cost is under every cost it passed. -/
-theorem aux_optDeltatSearch_descent {le : ℝ → ℝ → Bool}
+private theorem aux_optDeltatSearch_descent {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (cost : ℕ → ℝ) : -- --- CONCL ---
     ∀ (fuel s : ℕ), s ≤ aux_optDeltatSearch le cost s fuel ∧
       ∀ j, s ≤ j → j ≤ aux_optDeltatSearch le cost s fuel →

@@ -64,7 +64,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A time of the horizon `[0, N Δ]`, `N ≥ 1`, lies in one of its `N` windows. -/
-theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (ht0 : 0 ≤ t)
+private theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (ht0 : 0 ≤ t)
     (htN : t ≤ N * Δ) : -- --- CONCL ---
     ∃ k < N, (k : ℝ) * Δ ≤ t ∧ t ≤ ((k : ℝ) + 1) * Δ := by -- --- PROOF ---
   have hq : 0 ≤ t / Δ := div_nonneg ht0 hΔ.le

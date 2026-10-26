@@ -51,7 +51,8 @@ namespace CORALean
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A nonempty list of breakpoints holds a value everywhere. -/
-theorem aux_valueAt_isSome {T V : Type} [LinearOrder T] : ∀ (L : List (T × V)) (t : T), L ≠ [] →
+private theorem aux_valueAt_isSome {T V : Type} [LinearOrder T] : ∀ (L : List (T × V)) (t : T), L ≠
+    [] →
     ∃ v, FiniteSignal.valueAt L t = some v
   | [], _, h => absurd rfl h
   | [p], t, _ => ⟨p.2, FiniteSignal.valueAt_singleton p t⟩
@@ -63,7 +64,8 @@ theorem aux_valueAt_isSome {T V : Type} [LinearOrder T] : ∀ (L : List (T × V)
 
 
 /-- A signal has a value in its range. -/
-theorem FiniteSignal.aux_at?_isSome {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
+private theorem FiniteSignal.aux_at?_isSome {T V : Type} [LinearOrder T] [Zero T]
+    (s : FiniteSignal T V)
     (hs : s.IsValid) (t : T) (h0 : 0 ≤ t) (h1 : t ≤ s.duration) : ∃ v, s.at? t = some v := by
   obtain ⟨b, v, rest, hq, -, -, -⟩ := FiniteSignal.pairs_of_valid s hs
   rw [FiniteSignal.at?_eq_valueAt s hs.2.1 t, if_pos ⟨h0, h1⟩, hq]
@@ -71,7 +73,7 @@ theorem FiniteSignal.aux_at?_isSome {T V : Type} [LinearOrder T] [Zero T] (s : F
 
 
 /-- The loop of `until`: every pair of runs adds the times of its piece to the true times. -/
-theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
+private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
     ∀ (prs : List (Real.Interval ℝ × Real.Interval ℝ)) (sig : FiniteSignal ℝ Bool), sig.IsValid →
       sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧
         r.IsValid ∧ r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧

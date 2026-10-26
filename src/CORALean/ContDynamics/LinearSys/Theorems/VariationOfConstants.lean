@@ -71,12 +71,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The exponential is continuous, so it is bounded over a compact step. -/
-theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
+private theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
   exp_continuous.comp (continuous_neg.smul continuous_const)
 
 /-- A continuous matrix times the measurable input is measurable. -/
-theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable_expNeg {sys : LinearSys 𝕋 n}
-    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
+private theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable_expNeg
+    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) :
     AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       (volume.restrict (Set.Ioc a b)) :=
@@ -87,7 +87,7 @@ theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable_expNeg {sys : L
 
 /-- What `variation_of_constants` asks for, given only that the input set is
 bounded — which every representation of a set of points is. -/
-theorem LinearSys.IsCanonicalTrajectory.aux_intervalIntegrable_input {sys : LinearSys 𝕋 n}
+private theorem LinearSys.IsCanonicalTrajectory.aux_intervalIntegrable_input {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) (hab : a ≤ b)
     (hU : Bornology.IsBounded (construct U)) : -- --- CONCL ---
@@ -107,7 +107,7 @@ theorem LinearSys.IsCanonicalTrajectory.aux_intervalIntegrable_input {sys : Line
         (hCU _ (traj.input s (hT ⟨hs.1.le, hs.2⟩))) (norm_nonneg _) hCE0
 
 /-- The substituted form at one time: `closedForm`, with `e^{ρA}` cancelled. -/
-theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
+private theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
     {x u : ℝ → Vec ℝ n} {b ρ : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hT : Set.Icc 0 b ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hρ : ρ ∈ Set.Icc 0 b) : -- --- CONCL ---
@@ -127,7 +127,7 @@ theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S 
   rw [hone, Matrix.one_mulVec]
 
 /-- The substituted form over a window: the difference of the two primitives. -/
-theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
+private theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
     {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hT : Set.Icc 0 b ⊆ T) (ha : 0 ≤ a) (hab : a ≤ b)
     (hU : Bornology.IsBounded (construct U)) : -- --- CONCL ---

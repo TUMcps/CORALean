@@ -56,7 +56,7 @@ open Matrix
 /-- Row `i`'s bound on a coordinate `j ∈ S` is sound, given the running box only at
 coordinates in `S` and `S` closed under what row `i` (or any earlier row) reads
 from a coordinate of `S`. -/
-theorem ConZonotope.aux_tightenCoeff_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenCoeff_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (S : Set (Fin ng))
     (hclosed : ∀ j ∈ S, ∀ i : Fin nc, A i j ≠ 0 → ∀ l : Fin ng, l ≠ j → A i l ≠ 0 → l ∈ S)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
@@ -122,7 +122,7 @@ theorem ConZonotope.aux_tightenCoeff_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng
 
 /-- Every row of `Aξ = b`, applied in turn, still leaves a feasible coefficient
 inside the running box at every coordinate of `S`. -/
-theorem ConZonotope.aux_tightenRow_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenRow_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (S : Set (Fin ng))
     (hclosed : ∀ j ∈ S, ∀ i : Fin nc, A i j ≠ 0 → ∀ l : Fin ng, l ≠ j → A i l ≠ 0 → l ∈ S)
     (i : Fin nc) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}

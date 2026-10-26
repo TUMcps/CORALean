@@ -36,7 +36,7 @@ open Matrix
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_unitMean_generators : ProbZonotope.unitMean.generators = 0 := by
+private theorem aux_unitMean_generators : ProbZonotope.unitMean.generators = 0 := by
   -- `G Gᵀ = 0` forces `G = 0`
   have h := ProbZonotope.unitMean.generators_mul_transpose Matrix.PosSemidef.zero
   exact Matrix.self_mul_conjTranspose_eq_zero.1 (by simpa [ProbZonotope.unitMean] using h)

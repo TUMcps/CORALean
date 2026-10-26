@@ -54,17 +54,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N g k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum rounded down is below the sum of upper bounds of its terms. -/
-theorem aux_sumDown_le_of_le {l : ℕ} (f : Fin l → 𝕋) (r : Fin l → ℝ)
+private theorem aux_sumDown_le_of_le {l : ℕ} (f : Fin l → 𝕋) (r : Fin l → ℝ)
     (h : ∀ i, toReal (f i) ≤ r i) : toReal (sumDown f) ≤ ∑ i, r i :=
   (sumDown_le_sum f).trans (Finset.sum_le_sum fun i _ => h i)
 
 /-- A sum rounded up is above the sum of lower bounds of its terms. -/
-theorem aux_le_sumUp_of_le {l : ℕ} (f : Fin l → 𝕋) (r : Fin l → ℝ)
+private theorem aux_le_sumUp_of_le {l : ℕ} (f : Fin l → 𝕋) (r : Fin l → ℝ)
     (h : ∀ i, r i ≤ toReal (f i)) : ∑ i, r i ≤ toReal (sumUp f) :=
   (Finset.sum_le_sum fun i _ => h i).trans (sum_le_sumUp f)
 
 /-- The product of two scattered entries, as the rounded-down double sum of products. -/
-theorem aux_sumDown_ite_mul {n₁ n₂ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
+private theorem aux_sumDown_ite_mul {n₁ n₂ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
     (Q : Fin n₂ → Prop) [DecidablePred Q] (x : Fin n₁ → 𝕋) (y : Fin n₂ → 𝕋) :
     toReal (sumDown fun r => sumDown fun s => if P r ∧ Q s then mulDown (x r) (y s) else zero) ≤
       (∑ r, if P r then toReal (x r) else 0) * ∑ s, if Q s then toReal (y s) else 0 := by
@@ -73,7 +73,7 @@ theorem aux_sumDown_ite_mul {n₁ n₂ : ℕ} (P : Fin n₁ → Prop) [Decidable
   by_cases hP : P r <;> by_cases hQ : Q s <;> simp [hP, hQ, toReal_zero, mulDown_le_mul]
 
 /-- The product of two scattered entries, as the rounded-up double sum of products. -/
-theorem aux_ite_mul_le_sumUp {n₁ n₂ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
+private theorem aux_ite_mul_le_sumUp {n₁ n₂ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
     (Q : Fin n₂ → Prop) [DecidablePred Q] (x : Fin n₁ → 𝕋) (y : Fin n₂ → 𝕋) :
     (∑ r, if P r then toReal (x r) else 0) * (∑ s, if Q s then toReal (y s) else 0) ≤
       toReal (sumUp fun r => sumUp fun s => if P r ∧ Q s then mulUp (x r) (y s) else zero) := by
@@ -82,7 +82,7 @@ theorem aux_ite_mul_le_sumUp {n₁ n₂ : ℕ} (P : Fin n₁ → Prop) [Decidabl
   by_cases hP : P r <;> by_cases hQ : Q s <;> simp [hP, hQ, toReal_zero, mul_le_mulUp]
 
 /-- A scattered entry times a stored one, rounded down. -/
-theorem aux_sumDown_ite_mul_const {n₁ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
+private theorem aux_sumDown_ite_mul_const {n₁ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
     (x : Fin n₁ → 𝕋) (y : 𝕋) :
     toReal (sumDown fun r => if P r then mulDown (x r) y else zero) ≤
       (∑ r, if P r then toReal (x r) else 0) * toReal y := by
@@ -91,7 +91,7 @@ theorem aux_sumDown_ite_mul_const {n₁ : ℕ} (P : Fin n₁ → Prop) [Decidabl
   by_cases hP : P r <;> simp [hP, toReal_zero, mulDown_le_mul]
 
 /-- A scattered entry times a stored one, rounded up. -/
-theorem aux_ite_mul_const_le_sumUp {n₁ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
+private theorem aux_ite_mul_const_le_sumUp {n₁ : ℕ} (P : Fin n₁ → Prop) [DecidablePred P]
     (x : Fin n₁ → 𝕋) (y : 𝕋) :
     (∑ r, if P r then toReal (x r) else 0) * toReal y ≤
       toReal (sumUp fun r => if P r then mulUp (x r) y else zero) := by
@@ -100,12 +100,12 @@ theorem aux_ite_mul_const_le_sumUp {n₁ : ℕ} (P : Fin n₁ → Prop) [Decidab
   by_cases hP : P r <;> simp [hP, toReal_zero, mul_le_mulUp]
 
 /-- Membership in a float interval vector, entry by entry. -/
-theorem aux_mem_vec_iff {l : ℕ} {I : Interval (Vec 𝕋 l)} {v : Vec ℝ l} :
+private theorem aux_mem_vec_iff {l : ℕ} {I : Interval (Vec 𝕋 l)} {v : Vec ℝ l} :
     v ∈ I.construct ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
   ⟨fun h i => h i, fun h i => h i⟩
 
 /-- A stored entry plus a sum over the inputs of all components, rounded down. -/
-theorem aux_addDown_sum_le (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i, Fin (m i)) → ℝ)
+private theorem aux_addDown_sum_le (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i, Fin (m i)) → ℝ)
     (h : ∀ i j, toReal (f i j) ≤ r ⟨i, j⟩) :
     toReal (addDown x (sumDown fun i => sumDown fun j => f i j)) ≤ toReal x + ∑ ij, r ij := by
   rw [Fintype.sum_sigma]
@@ -113,7 +113,7 @@ theorem aux_addDown_sum_le (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i
     (aux_sumDown_le_of_le _ _ fun i => aux_sumDown_le_of_le _ _ fun j => h i j))
 
 /-- A stored entry plus a sum over the inputs of all components, rounded up. -/
-theorem aux_sum_le_addUp (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i, Fin (m i)) → ℝ)
+private theorem aux_sum_le_addUp (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i, Fin (m i)) → ℝ)
     (h : ∀ i j, r ⟨i, j⟩ ≤ toReal (f i j)) :
     toReal x + ∑ ij, r ij ≤ toReal (addUp x (sumUp fun i => sumUp fun j => f i j)) := by
   rw [Fintype.sum_sigma]
@@ -122,7 +122,7 @@ theorem aux_sum_le_addUp (x : 𝕋) (f : ∀ i, Fin (m i) → 𝕋) (r : (Σ i, 
     (add_le_addUp _ _)
 
 /-- The float update of one input encloses the real one, entry by entry. -/
-theorem aux_resolveUpdateFloat_outer (B : Mat 𝕋 N (∑ i, m i))
+private theorem aux_resolveUpdateFloat_outer (B : Mat 𝕋 N (∑ i, m i))
     (C : ∀ i, Mat 𝕋 (p i) (n i)) (D : ∀ i, Mat 𝕋 (p i) (m i)) (q : ∀ i, Vec 𝕋 (p i))
     (stateBinds : ∀ i, Fin (n i) → Fin N) (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
     (ij : Σ i, Fin (m i)) : -- --- CONCL ---

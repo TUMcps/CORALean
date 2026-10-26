@@ -59,7 +59,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A solution of `ḟ = M f` is `e^{tM} f(0)`. -/
-theorem Krylov.aux_exp_mulVec_eq_of_hasDerivAt {m : ℕ} (M : Mat ℝ m m) (f : ℝ → Vec ℝ m)
+private theorem Krylov.aux_exp_mulVec_eq_of_hasDerivAt {m : ℕ} (M : Mat ℝ m m) (f : ℝ → Vec ℝ m)
     (hf : ∀ t, HasDerivAt f (M *ᵥ f t) t) (t : ℝ) : -- --- CONCL ---
     exp (t • M) *ᵥ f 0 = f t := by -- --- PROOF ---
   -- `e^{-sM} f(s)` has derivative `0`
@@ -88,7 +88,7 @@ theorem Krylov.aux_exp_mulVec_eq_of_hasDerivAt {m : ℕ} (M : Mat ℝ m m) (f : 
   rw [hmul, one_mulVec]
 
 /-- `e^{τA}w` for the coupled oscillators, `w = (1/10, 0, 0, 0)`. -/
-theorem Krylov.aux_exp_rot_mulVec (τ : ℝ) : -- --- CONCL ---
+private theorem Krylov.aux_exp_rot_mulVec (τ : ℝ) : -- --- CONCL ---
     exp (τ • !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0])
         *ᵥ ![1 / 10, 0, 0, 0]
       = ![Real.cos τ * Real.cos (40 * τ) / 10, Real.cos τ * Real.sin (40 * τ) / 10,
@@ -125,7 +125,7 @@ theorem Krylov.aux_exp_rot_mulVec (τ : ℝ) : -- --- CONCL ---
     ring
 
 /-- `e^{tH}e₁ = (1, a sin(rt)/r, a(1 - cos(rt))/r)` for `H = [0 0 0; a 0 -r; 0 r 0]`. -/
-theorem Krylov.aux_exp_hess_mulVec (a r t : ℝ) (hr : r ≠ 0) : -- --- CONCL ---
+private theorem Krylov.aux_exp_hess_mulVec (a r t : ℝ) (hr : r ≠ 0) : -- --- CONCL ---
     exp (t • !![(0 : ℝ), 0, 0; a, 0, -r; 0, r, 0]) *ᵥ ![1, 0, 0]
       = ![1, a * Real.sin (r * t) / r, a * (1 - Real.cos (r * t)) / r] := by -- --- PROOF ---
   set f : ℝ → Vec ℝ 3 := fun t => ![1, a * Real.sin (r * t) / r,
@@ -153,7 +153,7 @@ theorem Krylov.aux_exp_hess_mulVec (a r t : ℝ) (hr : r ≠ 0) : -- --- CONCL -
     field_simp
 
 /-- `∫₀^π cos(2ks) ds = 0` for `k ≠ 0`. -/
-theorem Krylov.aux_integral_cos_two_mul (k : ℕ) (hk : k ≠ 0) : -- --- CONCL ---
+private theorem Krylov.aux_integral_cos_two_mul (k : ℕ) (hk : k ≠ 0) : -- --- CONCL ---
     ∫ s in (0 : ℝ)..Real.pi, Real.cos (2 * k * s) = 0 := by -- --- PROOF ---
   have hk' : (2 * k : ℝ) ≠ 0 := by positivity
   rw [intervalIntegral.integral_comp_mul_left (fun x => Real.cos x) hk', integral_cos]
@@ -162,7 +162,7 @@ theorem Krylov.aux_integral_cos_two_mul (k : ℕ) (hk : k ≠ 0) : -- --- CONCL 
     Real.sin_nat_mul_pi, smul_zero]
 
 /-- `∫₀^π (sin s sin 40s)² ds = π/4`. -/
-theorem Krylov.aux_integral_sin_mul_sin_sq : -- --- CONCL ---
+private theorem Krylov.aux_integral_sin_mul_sin_sq : -- --- CONCL ---
     ∫ s in (0 : ℝ)..Real.pi, (Real.sin s * Real.sin (40 * s)) ^ 2
       = Real.pi / 4 := by -- --- PROOF ---
   -- `(sin s sin 40s)² = 1/4 - cos 2s/4 - cos 80s/4 + cos 78s/8 + cos 82s/8`
@@ -189,7 +189,7 @@ theorem Krylov.aux_integral_sin_mul_sin_sq : -- --- CONCL ---
   all_goals exact Continuous.intervalIntegrable (by fun_prop) _ _
 
 /-- The augmented matrix of the coupled oscillators and `u = (a, 0, 0, 0)`, applied. -/
-theorem Krylov.aux_augment_rot_mulVec (a : ℝ) (x : Fin 5 → ℝ) : -- --- CONCL ---
+private theorem Krylov.aux_augment_rot_mulVec (a : ℝ) (x : Fin 5 → ℝ) : -- --- CONCL ---
     Krylov.augment !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0]
         ![a, 0, 0, 0] *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2,
@@ -204,7 +204,7 @@ theorem Krylov.aux_augment_rot_mulVec (a : ℝ) (x : Fin 5 → ℝ) : -- --- CON
   fin_cases i <;> simp [mulVec, dotProduct, Fin.sum_univ_five] <;> ring
 
 /-- A pass keeps the vectors stored before it. -/
-theorem Krylov.aux_arnoldi_fst_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ}
+private theorem Krylov.aux_arnoldi_fst_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) {p q i : ℕ}
     (hpq : p ≤ q) (hi : i ≤ p) : -- --- CONCL ---
     (Krylov.arnoldi C v q).1 i = (Krylov.arnoldi C v p).1 i := by -- --- PROOF ---
   induction q, hpq using Nat.le_induction with
@@ -214,7 +214,7 @@ theorem Krylov.aux_arnoldi_fst_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n
     exact Function.update_of_ne (by omega) _ _
 
 /-- A pass keeps the Hessenberg columns stored before it. -/
-theorem Krylov.aux_arnoldi_snd_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) {p q k : ℕ}
+private theorem Krylov.aux_arnoldi_snd_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) {p q k : ℕ}
     (hpq : p ≤ q) (hk : k < p) (i : ℕ) : -- --- CONCL ---
     (Krylov.arnoldi C v q).2 i k = (Krylov.arnoldi C v p).2 i k := by -- --- PROOF ---
   induction q, hpq using Nat.le_induction with
@@ -224,7 +224,8 @@ theorem Krylov.aux_arnoldi_snd_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n
     exact if_neg (by omega)
 
 /-- Pass `k + 1` of Alg. 1 stores `v⁽ᵏ⁺²⁾ = w/‖w‖`, `w` the swept `C v⁽ᵏ⁺¹⁾`. -/
-theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
+private theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n)
+    (k : ℕ) : -- --- CONCL ---
     (Krylov.arnoldi C v (k + 1)).1 (k + 1)
       = ‖(Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k) (Krylov.arnoldi C v k).1
           (k + 1)).1‖₂⁻¹ • (Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
@@ -233,7 +234,7 @@ theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) 
   exact Function.update_self ..
 
 /-- Pass `k + 1` of Alg. 1 stores the column `k` of `H`. -/
-theorem Krylov.aux_arnoldi_succ_snd {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n)
+private theorem Krylov.aux_arnoldi_succ_snd {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n)
     (k i : ℕ) : -- --- CONCL ---
     (Krylov.arnoldi C v (k + 1)).2 i k
       = if i ≤ k then (Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
@@ -244,12 +245,12 @@ theorem Krylov.aux_arnoldi_succ_snd {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n)
   simp
 
 /-- `‖x‖₂` in five coordinates. -/
-theorem Krylov.aux_norm₂_five (x : Fin 5 → ℝ) :
+private theorem Krylov.aux_norm₂_five (x : Fin 5 → ℝ) :
     ‖x‖₂ = √(x 0 ^ 2 + x 1 ^ 2 + x 2 ^ 2 + x 3 ^ 2 + x 4 ^ 2) := by
   simp [norm₂, Fin.sum_univ_five]
 
 /-- Alg. 1 starts from `v⁽¹⁾ = ṽ = e₅`. -/
-theorem Krylov.aux_rot_vec0 (C : Mat ℝ 5 5) (i : ℕ) : -- --- CONCL ---
+private theorem Krylov.aux_rot_vec0 (C : Mat ℝ 5 5) (i : ℕ) : -- --- CONCL ---
     (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 0).1 i = ![0, 0, 0, 0, 1] := by -- --- PROOF ---
   have hv : (Pi.single (Fin.last 4) 1 : Fin 5 → ℝ) = ![0, 0, 0, 0, 1] := by
     ext j
@@ -260,7 +261,7 @@ theorem Krylov.aux_rot_vec0 (C : Mat ℝ 5 5) (i : ℕ) : -- --- CONCL ---
     one_smul]
 
 /-- The first sweep: `C̃e₅ = (a, 0, 0, 0, 0)`, orthogonal to `e₅`. -/
-theorem Krylov.aux_rot_sweep1 (a : ℝ) (C : Mat ℝ 5 5)
+private theorem Krylov.aux_rot_sweep1 (a : ℝ) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     : -- --- CONCL ---
@@ -276,7 +277,7 @@ theorem Krylov.aux_rot_sweep1 (a : ℝ) (C : Mat ℝ 5 5)
     split_ifs <;> simp [dotProduct, Fin.sum_univ_five]
 
 /-- After the first pass: `v⁽¹⁾ = e₅`, `v⁽²⁾ = σe₁`, `σ = a/|a|`. -/
-theorem Krylov.aux_rot_vec1 (a : ℝ) (C : Mat ℝ 5 5)
+private theorem Krylov.aux_rot_vec1 (a : ℝ) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (i : ℕ) (hi : i ≤ 1) : -- --- CONCL ---
@@ -293,7 +294,7 @@ theorem Krylov.aux_rot_vec1 (a : ℝ) (C : Mat ℝ 5 5)
     fin_cases j <;> simp [div_eq_inv_mul]
 
 /-- The second sweep: `C̃σe₁ = σ(0, 40, 1, 0, 0)`, orthogonal to `e₅` and `e₁`. -/
-theorem Krylov.aux_rot_sweep2 (a σ : ℝ) (C : Mat ℝ 5 5)
+private theorem Krylov.aux_rot_sweep2 (a σ : ℝ) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (hV : ∀ i ≤ 1, (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 i
@@ -310,7 +311,7 @@ theorem Krylov.aux_rot_sweep2 (a σ : ℝ) (C : Mat ℝ 5 5)
     split_ifs <;> simp [dotProduct, Fin.sum_univ_five]
 
 /-- After the second pass: `v⁽³⁾ = σ(0, 40, 1, 0, 0)/√1601`. -/
-theorem Krylov.aux_rot_vec2 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5)
+private theorem Krylov.aux_rot_vec2 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (hV : ∀ i ≤ 1, (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 i
@@ -336,7 +337,7 @@ theorem Krylov.aux_rot_vec2 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5)
     fin_cases j <;> simp <;> field_simp
 
 /-- The third sweep: `C̃v⁽³⁾ + √1601 v⁽²⁾ = (0, 0, 0, 80σ/√1601, 0)`, `h₂,₃ = -√1601`. -/
-theorem Krylov.aux_rot_sweep3 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5)
+private theorem Krylov.aux_rot_sweep3 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (hV : ∀ i ≤ 2, (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 2).1 i
@@ -362,7 +363,7 @@ theorem Krylov.aux_rot_sweep3 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5
 
 /-- Alg. 1 at `ξ = 3`, `u = (a, 0, 0, 0)`, `a ≠ 0`: fourth row of the basis `0`,
 `H = [0 0 0; |a| 0 -√1601; 0 √1601 0]`, `h₄,₃ = 80/√1601`. -/
-theorem Krylov.aux_arnoldi_rot (a : ℝ) (ha : a ≠ 0) (C : Mat ℝ 5 5)
+private theorem Krylov.aux_arnoldi_rot (a : ℝ) (ha : a ≠ 0) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     : -- --- CONCL ---
@@ -412,7 +413,7 @@ theorem Krylov.aux_arnoldi_rot (a : ℝ) (ha : a ≠ 0) (C : Mat ℝ 5 5)
       simp [hs1, hs2, hs3, hn1, hn2]
 
 /-- Alg. 1 at `ξ = 3` with `u = 0`: the vectors after `e₅` and `h₄,₃` are `0`. -/
-theorem Krylov.aux_arnoldi_rot_zero (C : Mat ℝ 5 5)
+private theorem Krylov.aux_arnoldi_rot_zero (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + 0 * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     : -- --- CONCL ---
@@ -446,7 +447,7 @@ theorem Krylov.aux_arnoldi_rot_zero (C : Mat ℝ 5 5)
     simp [norm₂]
 
 /-- `ν ≤ 1/20` for `ν = xᵀC̃x/‖x‖₂²`, `u = (a, 0, 0, 0)`, `|a| ≤ 1/10`: `xᵀC̃x = a x₁x₅`. -/
-theorem Krylov.aux_rot_nu_le {a ν : ℝ} (ha : |a| ≤ 1 / 10) {x : Fin 5 → ℝ} (hx0 : x ≠ 0)
+private theorem Krylov.aux_rot_nu_le {a ν : ℝ} (ha : |a| ≤ 1 / 10) {x : Fin 5 → ℝ} (hx0 : x ≠ 0)
     (hx : x ⬝ᵥ (Krylov.augment !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0]
       ![a, 0, 0, 0] *ᵥ x) = ν * ‖x‖₂ ^ 2) : -- --- CONCL ---
     ν ≤ 1 / 20 := by -- --- PROOF ---
@@ -479,7 +480,7 @@ theorem Krylov.aux_rot_nu_le {a ν : ℝ} (ha : |a| ≤ 1 / 10) {x : Fin 5 → �
   linarith
 
 /-- `ϕ ≤ 5/4` at `δ = π` for `ν ≤ 1/20`, and `ϕ ≥ 0`. -/
-theorem Krylov.aux_phi_le {ν : ℝ} (hν : ν ≤ 1 / 20) : -- --- CONCL ---
+private theorem Krylov.aux_phi_le {ν : ℝ} (hν : ν ≤ 1 / 20) : -- --- CONCL ---
     0 ≤ (if 0 < ν then (Real.exp (ν * Real.pi) - 1) / (ν * Real.pi) else 1)
       ∧ (if 0 < ν then (Real.exp (ν * Real.pi) - 1) / (ν * Real.pi) else 1)
         ≤ 5 / 4 := by -- --- PROOF ---
@@ -498,7 +499,8 @@ theorem Krylov.aux_phi_le {ν : ℝ} (hν : ν ≤ 1 / 20) : -- --- CONCL ---
 
 /-- `ε̃(u) = h₄,₃ ω ϕ ≤ 1/50` for `u = (β/10, 0, 0, 0)`, `|β| ≤ 1`; the fourth row of `P Ṽ(u)`
 is `0`. -/
-theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ) 1) : -- --- CONCL ---
+private theorem Krylov.aux_rot_errorBound_le {β : ℝ}
+    (hβ : β ∈ Set.Icc (-1 : ℝ) 1) : -- --- CONCL ---
     let C := Krylov.augment !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0]
       ![β / 10, 0, 0, 0]
     (∀ k : Fin 3, Krylov.arnoldiBasis C (Pi.single (Fin.last 4) 1) 3 (Fin.castSucc 3) k = 0)
@@ -552,7 +554,7 @@ theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ)
     _ ≤ 1 / 50 := by norm_num
 
 /-- The input `-sin s sin 40s · w` reaches `y` with `y₄ = π/40`. -/
-theorem Krylov.aux_rot_mem_inputReach : -- --- CONCL ---
+private theorem Krylov.aux_rot_mem_inputReach : -- --- CONCL ---
     ∃ y ∈ (LinearSys.canonical !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0] :
         LinearSys ℝ 4).inputReach (S := 𝒮)
         {u | ∃ β ∈ Set.Icc (-1 : ℝ) 1, u = β • ![1 / 10, 0, 0, 0]} Real.pi,

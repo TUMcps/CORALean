@@ -113,7 +113,7 @@ open Entrywise
 /-- The unit square `[0,1]²`. -/
 def Interval.aux_unitSquare : Interval (Vec ℝ 2) := ⟨![0, 0], ![1, 1]⟩
 
-theorem Interval.aux_mem_unitSquare (x : Vec ℝ 2) : -- --- CONCL ---
+private theorem Interval.aux_mem_unitSquare (x : Vec ℝ 2) : -- --- CONCL ---
     x ∈ Interval.aux_unitSquare.construct ↔
       (0 ≤ x 0 ∧ x 0 ≤ 1) ∧ (0 ≤ x 1 ∧ x 1 ≤ 1) := by -- --- PROOF ---
   unfold Interval.construct Interval.aux_unitSquare
@@ -129,7 +129,7 @@ theorem Interval.aux_mem_unitSquare (x : Vec ℝ 2) : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.aux_r_zero (r s0 s1 : ℝ) (hr : 0 ≤ r) (h : s0 ^ 2 + s1 ^ 2 ≤ r ^ 2)
+private theorem Interval.aux_r_zero (r s0 s1 : ℝ) (hr : 0 ≤ r) (h : s0 ^ 2 + s1 ^ 2 ≤ r ^ 2)
     (a0 : 0 ≤ s0 - r) (a1 : 0 ≤ s1 - r) : r = 0 := by
   have h0 : r ^ 2 ≤ s0 ^ 2 := by nlinarith
   have h1 : r ^ 2 ≤ s1 ^ 2 := by nlinarith
@@ -137,11 +137,11 @@ theorem Interval.aux_r_zero (r s0 s1 : ℝ) (hr : 0 ≤ r) (h : s0 ^ 2 + s1 ^ 2 
   exact pow_eq_zero_iff (two_ne_zero) |>.mp this
 
 /-- Two real numbers whose squares sum to at most `0` are both `0`. -/
-theorem Interval.aux_sq_zero (a b : ℝ) (h : a ^ 2 + b ^ 2 ≤ 0 ^ 2) : a = 0 ∧ b = 0 := by
+private theorem Interval.aux_sq_zero (a b : ℝ) (h : a ^ 2 + b ^ 2 ≤ 0 ^ 2) : a = 0 ∧ b = 0 := by
   constructor <;> nlinarith [sq_nonneg a, sq_nonneg b]
 
 /-- No two generator directions satisfy `d0 * g0 = 1`, `d1 * g0 = 0` and `d1 * g1 = 1` together. -/
-theorem Interval.aux_lines (g0 g1 d0 d1 : ℝ) (h1 : d0 * g0 = 1) (h2 : d1 * g0 = 0)
+private theorem Interval.aux_lines (g0 g1 d0 d1 : ℝ) (h1 : d0 * g0 = 1) (h2 : d1 * g0 = 0)
     (h3 : d1 * g1 = 1) : False := by
   have hg : g0 ≠ 0 := fun hz => by rw [hz] at h1; simp at h1
   have : d1 = 0 := (mul_eq_zero.mp h2).resolve_right hg
@@ -149,7 +149,7 @@ theorem Interval.aux_lines (g0 g1 d0 d1 : ℝ) (h1 : d0 * g0 = 1) (h2 : d1 * g0 
   simp at h3
 
 /-- No capsule is the unit square. -/
-theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) : -- --- CONCL ---
+private theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) : -- --- CONCL ---
     C.construct ≠ Interval.aux_unitSquare.construct := by -- --- PROOF ---
   intro h
   have hmem : ∀ x : Vec ℝ 2, x ∈ C.construct ↔
@@ -196,7 +196,7 @@ theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) : -- --- CONCL ---
 
 /-- The face of a ball cut by a supporting hyperplane is one point: if `Σ aⱼ wⱼ = -q₁` with
 `q₁ ≥ ‖a‖` and `‖w‖ ≤ 1`, then `w = -a / ‖a‖`. -/
-theorem Interval.aux_face_unique {k : ℕ} (a u v : Fin k → ℝ) (q1 : ℝ)
+private theorem Interval.aux_face_unique {k : ℕ} (a u v : Fin k → ℝ) (q1 : ℝ)
     (hpos : 0 < ∑ j, a j ^ 2) (hq : Real.sqrt (∑ j, a j ^ 2) ≤ q1)
     (hu : ∑ j, u j ^ 2 ≤ 1) (hv : ∑ j, v j ^ 2 ≤ 1)
     (hau : q1 + ∑ j, a j * u j = 0) (hav : q1 + ∑ j, a j * v j = 0) : -- --- CONCL ---
@@ -233,7 +233,7 @@ theorem Interval.aux_face_unique {k : ℕ} (a u v : Fin k → ℝ) (q1 : ℝ)
   exact sub_eq_zero.mp ((mul_eq_zero.mp this).resolve_right hmpos.ne')
 
 /-- No ellipsoid is the unit square. -/
-theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) : -- --- CONCL ---
+private theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) : -- --- CONCL ---
     E.construct ≠ Interval.aux_unitSquare.construct := by -- --- PROOF ---
   intro h
   -- membership in the ellipsoid is membership in the square

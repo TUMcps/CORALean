@@ -54,14 +54,14 @@ variable {Ω Δ : Type*} [MeasurableSpace Δ]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the block's σ-algebra is the join of its values'
-theorem aux_comap_block_le (x : ℕ → Ω → Δ) (T : Finset ℕ) {m : MeasurableSpace Ω}
+private theorem aux_comap_block_le (x : ℕ → Ω → Δ) (T : Finset ℕ) {m : MeasurableSpace Ω}
     (h : ∀ t ∈ T, MeasurableSpace.comap (x t) inferInstance ≤ m) :
     MeasurableSpace.comap (fun ω (s : T) => x s ω) inferInstance ≤ m := by
   rw [MeasurableSpace.pi, MeasurableSpace.comap_iSup]
   exact iSup_le fun s => by rw [MeasurableSpace.comap_comp]; exact h s s.2
 
 -- a value of the block is measurable in the block's σ-algebra
-theorem aux_comap_le_block (x : ℕ → Ω → Δ) (T : Finset ℕ) {t : ℕ} (ht : t ∈ T) :
+private theorem aux_comap_le_block (x : ℕ → Ω → Δ) (T : Finset ℕ) {t : ℕ} (ht : t ∈ T) :
     MeasurableSpace.comap (x t) inferInstance ≤
       MeasurableSpace.comap (fun ω (s : T) => x s ω) inferInstance := by
   have : x t = (fun f : T → Δ => f ⟨t, ht⟩) ∘ fun ω (s : T) => x s ω := rfl

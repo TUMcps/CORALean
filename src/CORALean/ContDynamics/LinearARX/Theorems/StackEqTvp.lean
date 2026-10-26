@@ -49,7 +49,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The lags `0..p` of (11), summed over a longer range, are `feed`. -/
-theorem LinearARX.aux_sum_Bext_eq_feed (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec ℝ du)
+private theorem LinearARX.aux_sum_Bext_eq_feed (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec ℝ du)
     (k : ℕ) : -- --- CONCL ---
     ∑ i ∈ Finset.range (k + p + 1), sys.Bext i *ᵥ u (k + p - i)
       = sys.feed u k := by -- --- PROOF ---
@@ -64,7 +64,7 @@ theorem LinearARX.aux_sum_Bext_eq_feed (sys : LinearARX 𝕋 dy du p) (u : ℕ �
   congr 3
 
 /-- No input is weighted at a negative index. -/
-theorem LinearARX.aux_Btilde_neg_one (sys : LinearARX 𝕋 dy du p) (k : ℕ) :
+private theorem LinearARX.aux_Btilde_neg_one (sys : LinearARX 𝕋 dy du p) (k : ℕ) :
     sys.Btilde k (-1) = 0 := by
   unfold LinearARX.Btilde
   refine Finset.sum_eq_zero fun j _ => ?_

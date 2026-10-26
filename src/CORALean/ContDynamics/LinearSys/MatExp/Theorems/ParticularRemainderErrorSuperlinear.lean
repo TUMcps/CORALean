@@ -61,7 +61,7 @@ variable {n : ℕ}
 /-- `err` scales with a non-negative factor: the box of `c • S` is `c` times `S`'s, both
 endpoints scaling with it, and so is its farthest corner — what a superlinear-decrease argument
 uses to take a factor `φ` out of an error term. -/
-theorem _root_.CORALean.aux_err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ
+private theorem _root_.CORALean.aux_err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set (Vec ℝ
     n)) : -- --- CONCL ---
     err (c • S) = c * err S := by -- --- PROOF ---
   have himg : ∀ i : Fin n, (fun x : Vec ℝ n => x i) '' (c • S)
@@ -83,7 +83,7 @@ theorem _root_.CORALean.aux_err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) (S : Set
 
 /-- `E_abs(Δt,η)` is entrywise non-negative at every step `Δt ≥ 0`, every term of its series
 being so. -/
-theorem aux_expRemainderMat_entry_nonneg (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
+private theorem aux_expRemainderMat_entry_nonneg (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
     (j k : Fin n) : 0 ≤ MatExp.expRemainderMat A Δt η j k := by
   refine (MatExp.hasSum_expRemainderMat_entry A Δt η j k).nonneg fun i => ?_
   have hP : 0 ≤ ((MatExp.absMat A) ^ (i + (η + 1))) j k :=
@@ -91,8 +91,8 @@ theorem aux_expRemainderMat_entry_nonneg (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0
   positivity
 
 /-- `e^{At_i} E(φΔt,η) φΔt U ⊆ φ · e^{At_i} E(Δt,η) Δt U`, [1]'s set inclusion. -/
-theorem aux_particularRemainderSet_subset (A : Mat ℝ n n) (ti : ℝ) (U : Set (Vec ℝ n)) (η : ℕ)
-    {Δt : ℝ} (hΔt : 0 ≤ Δt) {φ : ℝ} (hφ : φ ∈ Set.Ioo (0 : ℝ) 1) : -- --- CONCL ---
+private theorem aux_particularRemainderSet_subset (A : Mat ℝ n n) (ti : ℝ) (U : Set (Vec ℝ n))
+    (η : ℕ) {Δt : ℝ} (hΔt : 0 ≤ Δt) {φ : ℝ} (hφ : φ ∈ Set.Ioo (0 : ℝ) 1) : -- --- CONCL ---
     MatExp.particularRemainderSet A ti U (φ * Δt) η
       ⊆ φ • MatExp.particularRemainderSet A ti U Δt η := by -- --- PROOF ---
   rintro _ ⟨_, ⟨M, hM, _, ⟨u, hu, rfl⟩, rfl⟩, rfl⟩

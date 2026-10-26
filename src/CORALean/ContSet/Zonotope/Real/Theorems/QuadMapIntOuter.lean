@@ -58,7 +58,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An entrywise bound `S` on `E` bounds the quadratic form at anything `a` covers. -/
-theorem Zonotope.aux_quadMapInt_abs_quad_le {E S : Mat ℝ n n} {x a : Vec ℝ n}
+private theorem Zonotope.aux_quadMapInt_abs_quad_le {E S : Mat ℝ n n} {x a : Vec ℝ n}
     (hE : ∀ j k, |E j k| ≤ S j k) (hx : ∀ j, |x j| ≤ a j) : -- --- CONCL ---
     |x ⬝ᵥ (E *ᵥ x)| ≤ a ⬝ᵥ (S *ᵥ a) := by -- --- PROOF ---
   have ha : ∀ j, 0 ≤ a j := fun j => (abs_nonneg _).trans (hx j)

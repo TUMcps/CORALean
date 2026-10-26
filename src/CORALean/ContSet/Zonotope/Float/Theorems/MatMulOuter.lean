@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q r : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One exact product of stored matrices, between its two directed roundings. -/
-theorem Zonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r) (i : Fin p) (j : Fin r) :
+private theorem Zonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r) (i : Fin p) (j : Fin r) :
     toReal (matMulDown A B i j) ≤ matMulBilin (toRealMat A) (toRealMat B) i j
       ∧ matMulBilin (toRealMat A) (toRealMat B) i j ≤ toReal (matMulUp A B i j) := by
   rw [matMulBilin_apply, Matrix.mul_apply]

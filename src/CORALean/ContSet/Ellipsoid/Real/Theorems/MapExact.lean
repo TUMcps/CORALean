@@ -39,7 +39,7 @@ variable {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_toMatrix'_mulVec (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (x : Vec ℝ n) :
+private theorem aux_toMatrix'_mulVec (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (x : Vec ℝ n) :
     (LinearMap.toMatrix' f) *ᵥ x = f x := by
   rw [← Matrix.toLin'_apply, Matrix.toLin'_toMatrix']
 

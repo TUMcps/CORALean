@@ -55,7 +55,7 @@ omit [Module ℝ α] in
 /-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
 projection because that is the form the goal has. Matched by `rw`, never
 applied: supplying `f` forces its domain to the reduced count. -/
-theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope α} (f : Fin (Z₁.h + Z₂.h) → α) :
+private theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope α} (f : Fin (Z₁.h + Z₂.h) → α) :
     ∑ j : Fin (Z₁.plus Z₂).h, f j
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
   Fin.sum_univ_add f

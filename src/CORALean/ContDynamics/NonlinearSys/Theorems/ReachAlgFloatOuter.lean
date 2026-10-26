@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `k` successful steps return `k` sets, and every run of `sys` on `[0, kΔt]` from
 `R` under inputs in `U` is, at every time of step `j`, in the `j`-th of them. -/
-theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
+private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---

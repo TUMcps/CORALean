@@ -45,7 +45,7 @@ variable {X : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Shifting the scaled trace by `t` is scaling the trace shifted by `t * c`. -/
-theorem STL.Formula.aux_shift_scale (c t : ℝ≥0) (ξ : ℝ≥0 → X) :
+private theorem STL.Formula.aux_shift_scale (c t : ℝ≥0) (ξ : ℝ≥0 → X) :
     Time.shift (fun s => ξ (s * c)) t = fun s => (Time.shift ξ (t * c)) (s * c) := by
   funext s
   show ξ ((s + t) * c) = ξ (s * c + t * c)

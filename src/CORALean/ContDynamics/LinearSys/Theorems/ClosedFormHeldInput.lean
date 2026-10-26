@@ -68,7 +68,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- On the step `(k Δt, (k + 1) Δt]` the held input is `v k`. -/
-theorem aux_heldInput_eq {Δt : ℝ} (hΔt : 0 < Δt) (v : ℕ → Vec ℝ n) (k : ℕ) {s : ℝ}
+private theorem aux_heldInput_eq {Δt : ℝ} (hΔt : 0 < Δt) (v : ℕ → Vec ℝ n) (k : ℕ) {s : ℝ}
     (hs : s ∈ Set.Ioc ((k : ℝ) * Δt) ((k : ℝ) * Δt + Δt)) : -- --- CONCL ---
     LinearSys.heldInput Δt v s = v k := by -- --- PROOF ---
   have h1 : (k : ℝ) < s / Δt := by rw [lt_div_iff₀ hΔt]; exact hs.1
@@ -80,7 +80,7 @@ theorem aux_heldInput_eq {Δt : ℝ} (hΔt : 0 < Δt) (v : ℕ → Vec ℝ n) (k
 
 /-- One step of `closedForm`: the state at `a + Δt` is `e^{AΔt}` applied to the state at `a`,
 plus `T w` from an input held at `w` over `(a, a + Δt]`. -/
-theorem aux_closedForm_add (sys : LinearSys 𝕋 n) {U : S n}
+private theorem aux_closedForm_add (sys : LinearSys 𝕋 n) {U : S n}
     (hU : Bornology.IsBounded (construct U)) {a Δt : ℝ} (ha : 0 ≤ a) (hΔt : 0 ≤ Δt)
     (x₀ : Vec ℝ n) {u : ℝ → Vec ℝ n} (hu : ∀ s ∈ Set.Icc (0:ℝ) (a + Δt), u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 (a + Δt)))) {w : Vec ℝ n}

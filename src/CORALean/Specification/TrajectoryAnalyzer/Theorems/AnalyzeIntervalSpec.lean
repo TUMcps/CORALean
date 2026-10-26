@@ -47,7 +47,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The loop over the propositions `L` of the analyzer, for a point, location and interval. -/
-theorem aux_analyzeInterval_loop (aps : List (String × AtomicProposition S n)) (dur : ℝ)
+private theorem aux_analyzeInterval_loop (aps : List (String × AtomicProposition S n)) (dur : ℝ)
     (point : Vec 𝕋 n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) : -- --- CONCL ---
     ∀ L : List (String × AtomicProposition S n), (∀ q ∈ L, q ∈ aps) →
     ∀ (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop),

@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_feasible_succ (Θ₀ : Set (Vec ℝ n)) (r : ℕ → Vec ℝ n) (y : ℕ → ℝ) (σ : ℝ)
+private theorem aux_feasible_succ (Θ₀ : Set (Vec ℝ n)) (r : ℕ → Vec ℝ n) (y : ℕ → ℝ) (σ : ℝ)
     (γ : Vec ℝ n) (N : ℕ) : -- --- CONCL ---
     feasibleSolutionSet Θ₀ r y σ γ (N + 2) =
       (feasibleSolutionSet Θ₀ r y σ γ (N + 1) + {b | ∀ i, |b i| ≤ γ i}) ∩

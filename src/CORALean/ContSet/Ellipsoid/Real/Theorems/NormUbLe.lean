@@ -42,7 +42,8 @@ variable {m n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The Frobenius norm bounds the Euclidean operator norm. -/
-theorem aux_norm₂_mulVec_le_frobenius_ellipsoid (M : Mat ℝ m n) (y : Vec ℝ n) : -- --- CONCL ---
+private theorem aux_norm₂_mulVec_le_frobenius_ellipsoid (M : Mat ℝ m n)
+    (y : Vec ℝ n) : -- --- CONCL ---
     ‖M.mulVec y‖₂ ≤ Real.sqrt (∑ i, ∑ j, M i j ^ 2) * ‖y‖₂ := by -- --- PROOF ---
   have hF : 0 ≤ ∑ i, ∑ j, M i j ^ 2 :=
     Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => sq_nonneg _

@@ -63,7 +63,7 @@ variable {n : ℕ}
 
 /-- An interval matrix whose two endpoints are both under `ρ` has center and radius under `ρ`
 too, which is the form `mtimesIntervalMat_subset_closedBall` asks for. -/
-theorem MatExp.aux_center_radius_le {m : ℕ} {ρ : ℝ} {IM : Interval (Mat ℝ m m)}
+private theorem MatExp.aux_center_radius_le {m : ℕ} {ρ : ℝ} {IM : Interval (Mat ℝ m m)}
     (h : ∀ j k, |IM.inf j k| ≤ ρ ∧ |IM.sup j k| ≤ ρ) : -- --- CONCL ---
     (∀ j k, |IM.center j k| ≤ ρ) ∧ ∀ j k, |IM.radius j k| ≤ ρ := by -- --- PROOF ---
   constructor
@@ -83,7 +83,8 @@ theorem MatExp.aux_center_radius_le {m : ℕ} {ρ : ℝ} {IM : Interval (Mat ℝ
 /-- Every point of the curvature enclosure is within `√n · (2ρ_F Σ_H + 2ρ_G Σ_ũ)` of the
 origin: the two interval products are each bounded at the supremum norm, and `√n` carries that
 to `‖·‖₂`. -/
-theorem MatExp.aux_norm₂_le_of_mem_curvatureEnclosure (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
+private theorem MatExp.aux_norm₂_le_of_mem_curvatureEnclosure (A : Mat ℝ n n)
+    (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) (η : ℕ) {ρF ρG : ℝ} (hρF : 0 ≤ ρF) (hρG : 0 ≤ ρG)
     (hF : ∀ j k, |(MatExp.correctionMatrix A Δt η).inf j k| ≤ ρF
       ∧ |(MatExp.correctionMatrix A Δt η).sup j k| ≤ ρF)
@@ -114,7 +115,7 @@ theorem MatExp.aux_norm₂_le_of_mem_curvatureEnclosure (A : Mat ℝ n n) (H : Z
 
 /-- `G^{(-)}_h`'s columns are each under `n‖e^{AΔt} - I‖` times their own generator's `ℓ¹`
 reach, and `genOpNorm₂_le_sum_norm₂` is what turns that into a bound on the operator norm. -/
-theorem MatExp.aux_genOpNorm₂_genMinus_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
+private theorem MatExp.aux_genOpNorm₂_genMinus_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (Δt : ℝ) : -- --- CONCL ---
     genOpNorm₂ (MatExp.genMinus A H Δt)
       ≤ (n : ℝ) * ‖exp (Δt • A) - 1‖ * ∑ l, ∑ j, |H.G l j| := by -- --- PROOF ---

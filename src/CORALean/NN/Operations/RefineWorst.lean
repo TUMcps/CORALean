@@ -48,12 +48,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 /-- A layer's own rank, `‖σ_k‖₂` of its neurons' ranks [1, Eq. 28]: what the
 layer-wise rule ranks layers by, the neurons of the layer it names all moving together. -/
-noncomputable def aux_layerRank (J : Mat ℝ m n) (d : Vec ℝ n) : ℝ :=
+private noncomputable def aux_layerRank (J : Mat ℝ m n) (d : Vec ℝ n) : ℝ :=
   Real.sqrt (∑ j, refinementRank J d j ^ 2)
 
 /-- The rank at what CORA actually backpropagates: the network's sensitivity at
 a point of the input set, weighing the errors the layer's relaxation leaves. -/
-noncomputable def Chain.aux_layerRank (c : Chain n m) (x d : Vec ℝ n) : ℝ :=
+private noncomputable def Chain.aux_layerRank (c : Chain n m) (x d : Vec ℝ n) : ℝ :=
   _root_.CORALean.aux_layerRank (c.sensitivity x) d
 
 /-- The layer the layer-wise rule refines next [1, Def. 4.6]: the largest

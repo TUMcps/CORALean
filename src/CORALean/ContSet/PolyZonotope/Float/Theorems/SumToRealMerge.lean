@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A sum over the kept columns, read against a plain count. -/
-theorem PolyZonotope.aux_sum_toReal_merge_keep {d : ℕ} (t : Finset (Fin d)) (f : Fin d → ℝ) :
+private theorem PolyZonotope.aux_sum_toReal_merge_keep {d : ℕ} (t : Finset (Fin d))
+    (f : Fin d → ℝ) :
     ∑ j ∈ t, f j = ∑ j : Fin t.card, f (t.orderIsoOfFin rfl j) := by
   rw [← Finset.sum_coe_sort t f]
   exact (Equiv.sum_comp (t.orderIsoOfFin rfl).toEquiv fun x => f x).symm

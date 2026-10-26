@@ -57,7 +57,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- a bounded set has bounded coordinates
-theorem Interval.aux_hullAdd_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBounded S)
+private theorem Interval.aux_hullAdd_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBounded S)
     (i : Fin n) : -- --- CONCL ---
     BddAbove ((fun x : Vec ℝ n => x i) '' S) ∧
       BddBelow ((fun x : Vec ℝ n => x i) '' S) := by -- --- PROOF ---
@@ -68,7 +68,7 @@ theorem Interval.aux_hullAdd_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBounded
     ⟨-R, by rintro _ ⟨x, hx, rfl⟩; exact (abs_le.mp (h x hx)).1⟩⟩
 
 -- a coordinate of a Minkowski sum ranges over the sum of the coordinate ranges
-theorem Interval.aux_image_add (S T : Set (Vec ℝ n)) (i : Fin n) : -- --- CONCL ---
+private theorem Interval.aux_image_add (S T : Set (Vec ℝ n)) (i : Fin n) : -- --- CONCL ---
     (fun x : Vec ℝ n => x i) '' (S + T) =
       (fun x : Vec ℝ n => x i) '' S + (fun x : Vec ℝ n => x i) '' T := by -- --- PROOF ---
   ext r

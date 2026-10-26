@@ -54,7 +54,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
-theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
+private theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
     (hy : y ∈ construct U) : -- --- CONCL ---
     M *ᵥ (c • y) ∈ construct (Mtimes.mtimes (c • M) U) := by -- --- PROOF ---
   have hM : M *ᵥ (c • y) = (c • M) *ᵥ y := by
@@ -67,7 +67,7 @@ theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- The Taylor part, by induction on the order: `plus` absorbs one term at a
 time, exactly as the operation builds it. -/
-theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n)
+private theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n)
     (x : ℕ → Vec ℝ n) : ∀ (η : ℕ),
     (∀ i, i ≤ η → x i ∈ construct (Mtimes.mtimes (sys.inputTerm r i) U)) →
     (∑ i ∈ Finset.range (η + 1), x i) ∈ construct (sys.inputTaylorSum r U η)

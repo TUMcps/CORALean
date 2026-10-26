@@ -50,12 +50,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_one_le_softmaxDenomDown (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) :
+private theorem aux_one_le_softmaxDenomDown (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     1 ≤ toReal (softmaxDenomDown k I i) := by
   rw [softmaxDenomDown, toReal_maximum, toReal_one]
   exact le_max_left _ _
 
-theorem aux_softmaxDenomDown_le (k : ℕ) (I : Interval (Vec 𝕋 n)) (i : Fin n) : -- --- CONCL ---
+private theorem aux_softmaxDenomDown_le (k : ℕ) (I : Interval (Vec 𝕋 n))
+    (i : Fin n) : -- --- CONCL ---
     toReal (softmaxDenomDown k I i)
       ≤ 1 + ∑ j ∈ Finset.univ.erase i,
           Real.exp (toReal (I.inf j) - toReal (I.sup i)) := by -- --- PROOF ---

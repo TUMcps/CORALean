@@ -123,7 +123,7 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A sum of members is a member of the float interval-matrix sum. -/
-theorem Interval.aux_sum_mem_sumTermsMat (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
+private theorem Interval.aux_sum_mem_sumTermsMat (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
     (N : ℕ) (h : ∀ k, k < N → M k ∈ (f k).construct) : -- --- CONCL ---
     ∑ k ∈ Finset.range N, M k ∈ (Interval.sumTermsMat f N).construct := by -- --- PROOF ---
   induction N with
@@ -148,8 +148,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- [1, Prop. 1]: `b` is in the box, for `t ≥ 0`. -/
-theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) {t : 𝕋} (η : ℕ)
-    (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) : -- --- CONCL ---
+private theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) {t : 𝕋}
+    (η : ℕ) (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) : -- --- CONCL ---
     GuardMap.sdcInput (toRealMat A) (toRealVec uc) (toReal t) η (toRealVec x₀)
       ∈ (GuardMap.aux_sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
   -- `tᵖ/q!` between the corner products
@@ -199,7 +199,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `y_h(x₀)` is in the box `aux_hitPointFloat` returns, and `Λ ≠ 0`. -/
-theorem GuardMap.aux_hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
+private theorem GuardMap.aux_hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
     (x₀ : Vec 𝕋 n) : -- --- CONCL ---
     ∀ K ∈ GuardMap.aux_hitPointFloat A b nv d x₀,
       toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
@@ -289,8 +289,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `L(x₀)` is in the interval matrix `aux_hitJacobianFloat` returns. -/
-theorem GuardMap.aux_hitJacobian_mem_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (x₀ : Vec 𝕋 n) : -- --- CONCL ---
+private theorem GuardMap.aux_hitJacobian_mem_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n)
+    (d : 𝕋) (x₀ : Vec 𝕋 n) : -- --- CONCL ---
     ∀ L ∈ GuardMap.aux_hitJacobianFloat A b nv d x₀,
       GuardMap.hitJacobian (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
         ∈ L.construct := by -- --- PROOF ---
@@ -398,7 +398,7 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `nᵀx − d` of a point of a float zonotope lies in `halfspaceRange`. -/
-theorem Zonotope.aux_halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (Vec 𝕋 n)}
+private theorem Zonotope.aux_halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (Vec 𝕋 n)}
     {x : Vec ℝ n}
     (hx : x ∈ Z.construct) : -- --- CONCL ---
     toReal (Z.halfspaceRange nv d).inf ≤ toRealVec nv ⬝ᵥ x - toReal d ∧
@@ -473,7 +473,7 @@ end
 
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
-theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
+private theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
     {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
       (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
@@ -490,7 +490,7 @@ theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂
   exact h
 
 /-- A float certificate that `[lo, hi]` excludes `0`, read as reals. -/
-theorem aux_hpMapF_sign {lo hi : 𝕋}
+private theorem aux_hpMapF_sign {lo hi : 𝕋}
     (h : (ltStrict zero lo || ltStrict hi zero) = true) : -- --- CONCL ---
     0 < toReal lo ∨ toReal hi < 0 := by -- --- PROOF ---
   rcases Bool.or_eq_true_iff.mp h with h | h
@@ -502,8 +502,8 @@ theorem aux_hpMapF_sign {lo hi : 𝕋}
     rwa [toReal_zero] at this
 
 /-- `1/y` of a point of a certified interval lies in `Interval.recip`'s box. -/
-theorem aux_hpMapF_recip {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero) = true) {y : ℝ}
-    (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
+private theorem aux_hpMapF_recip {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero) = true)
+    {y : ℝ} (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
     toReal ((Interval.recip (⟨fun _ => lo, fun _ => hi⟩ : Interval (Vec 𝕋 1))).inf 0) ≤ y⁻¹ ∧
       y⁻¹ ≤ toReal ((Interval.recip (⟨fun _ => lo, fun _ => hi⟩ : Interval (Vec 𝕋 1))).sup 0) :=
   Interval.recip_outer (⟨fun _ => lo, fun _ => hi⟩ : Interval (Vec 𝕋 1))
@@ -511,7 +511,7 @@ theorem aux_hpMapF_recip {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi ze
 
 /-- `1/y²` of a point of a certified interval lies in `[φ̲, φ̄]`, `1/max(|lo|, |hi|)²` rounded
 down and `1/min(|lo|, |hi|)²` rounded up, the latter's denominator certified positive. -/
-theorem aux_hpMapF_sq {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero) = true)
+private theorem aux_hpMapF_sq {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero) = true)
     (hm : ltStrict zero (mulDown (minimum (absolute lo) (absolute hi))
       (minimum (absolute lo) (absolute hi))) = true) {y : ℝ} (h1 : toReal lo ≤ y)
     (h2 : y ≤ toReal hi) : -- --- CONCL ---
@@ -556,7 +556,7 @@ theorem aux_hpMapF_sq {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero)
     exact (one_div_le_one_div_of_le hq hqy).trans this
 
 /-- A point within `g` of `c` is `c + κg` for some `|κ| ≤ 1`. -/
-theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) : -- --- CONCL ---
+private theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) : -- --- CONCL ---
     ∃ κ : ℝ, |κ| ≤ 1 ∧ y = c + κ * g := by -- --- PROOF ---
   rcases eq_or_lt_of_le ((abs_nonneg _).trans h) with h0 | hpos
   · refine ⟨0, by norm_num, ?_⟩
@@ -568,7 +568,7 @@ theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) : -- --- CONCL ---
     exact h
 
 /-- A point of `[lo, hi]` is within `τ_g = max(⌈hi − τ_c⌉, ⌈τ_c − lo⌉)` of any float `τ_c`. -/
-theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y)
+private theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y)
     (h2 : y ≤ toReal hi) : -- --- CONCL ---
     |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by -- --- PROOF ---
   have e1 := sub_le_subUp hi c
@@ -581,8 +581,8 @@ theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y)
 /-- `res1`: the hitting point `y_h(x₀)` of a point of `R₀`, given `Λ ≠ 0` and `1/Λ²` within
 `[φ̲, φ̄]` on a convex `S` holding `x₀` and the stored center `ξ` of `R₀red`, and `τ(ξ)` within
 `τ_g` of `τ_c`. -/
-theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ R0red : Zonotope (Vec 𝕋 n))
-    (hcen : R0red.c = R₀.c) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct)
+private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
+    (R₀ R0red : Zonotope (Vec 𝕋 n)) (hcen : R0red.c = R₀.c) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct)
     (hx₀' : x₀ ∈ R0red.construct) {S : Set (Vec ℝ n)} (hS : Convex ℝ S)
     (hξS : toRealVec R0red.c ∈ S) (hx₀S : x₀ ∈ S)
     (hΛne : ∀ x ∈ S, toRealVec nv ⬝ᵥ (toRealMat A *ᵥ x + toRealVec b) ≠ 0) {φlo φhi : 𝕋}

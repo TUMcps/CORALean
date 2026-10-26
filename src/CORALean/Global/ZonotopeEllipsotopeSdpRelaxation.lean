@@ -64,12 +64,12 @@ variable {n m l : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_zsr_two_sub_one : (2 : ℝ≥0∞) - 1 = 1 := by
+private theorem aux_zsr_two_sub_one : (2 : ℝ≥0∞) - 1 = 1 := by
   rw [show (2 : ℝ≥0∞) = 1 + 1 from one_add_one_eq_two.symm,
     ENNReal.add_sub_cancel_right ENNReal.one_ne_top]
 
 /-- `q / (2 - q)` and `q* / 2` are Hölder conjugates for `q ∈ (1, 2]`. -/
-theorem aux_zsr_holderConjugate {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq1 : 1 < q)
+private theorem aux_zsr_holderConjugate {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq1 : 1 < q)
     (hq2 : q ≤ 2) : -- --- CONCL ---
     (q / (2 - q)).HolderConjugate (q' / 2) := by -- --- PROOF ---
   have hq0 : q ≠ 0 := (zero_lt_one.trans hq1).ne'
@@ -92,7 +92,7 @@ theorem aux_zsr_holderConjugate {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq1 
   rw [add_comm, tsub_add_tsub_cancel h2 h1]
   exact aux_zsr_two_sub_one
 
-theorem aux_zsr_one_le {q : ℝ≥0∞} (hq1 : 1 < q) (hq2 : q ≤ 2) : -- --- CONCL ---
+private theorem aux_zsr_one_le {q : ℝ≥0∞} (hq1 : 1 < q) (hq2 : q ≤ 2) : -- --- CONCL ---
     1 ≤ q / (2 - q) := by -- --- PROOF ---
   rcases eq_or_lt_of_le hq2 with rfl | hlt
   · rw [tsub_self, ENNReal.div_zero two_ne_zero]
@@ -105,7 +105,7 @@ theorem aux_zsr_one_le {q : ℝ≥0∞} (hq1 : 1 < q) (hq2 : q ≤ 2) : -- --- C
       _ ≤ q := hq1.le
 
 /-- `‖(tᵢ²)ᵢ‖_{x/2} = ‖t‖_x²` for `2 ≤ x < ∞`. -/
-theorem aux_zsr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
+private theorem aux_zsr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ ∞)
     (t : Fin k → ℝ) : -- --- CONCL ---
     ‖WithLp.toLp (x / 2) (fun i => t i ^ 2)‖ = ‖WithLp.toLp x t‖ ^ 2 := by -- --- PROOF ---
   have hc : 2 ≤ x.toReal := by
@@ -127,23 +127,24 @@ theorem aux_zsr_norm_sq {k : ℕ} {x : ℝ≥0∞} (hx : 2 ≤ x) (hxT : x ≠ �
   push_cast
   field_simp
 
-theorem aux_zsr_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomentRoot p := by
+private theorem aux_zsr_gaussMomentRoot_nonneg {p : ℝ} (hp : 0 < p) : 0 ≤ gaussMomentRoot p := by
   unfold gaussMomentRoot
   exact Real.rpow_nonneg (mul_nonneg (by positivity)
     (Real.Gamma_pos_of_pos (by linarith)).le) _
 
-theorem aux_zsr_gaussMomentRoot_pos : 0 < gaussMomentRoot 1 := by
+private theorem aux_zsr_gaussMomentRoot_pos : 0 < gaussMomentRoot 1 := by
   unfold gaussMomentRoot
   norm_num
   positivity
 
 /-- `q* ≥ 2` for `q ≤ 2`. -/
-theorem aux_zsr_two_le_conj {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq2 : q ≤ 2) : 2 ≤ q' := by
+private theorem aux_zsr_two_le_conj {q q' : ℝ≥0∞} [q.HolderConjugate q'] (hq2 : q ≤ 2) : 2 ≤ q' :=
+    by
   rw [← ENNReal.inv_le_inv, ← ENNReal.HolderConjugate.one_sub_inv q q', ← ENNReal.one_sub_inv_two]
   exact tsub_le_tsub_left (ENNReal.inv_le_inv.mpr hq2) 1
 
 /-- The weak half: a pair of `K` bounds the norm of every point of `Z(G)`. -/
-theorem aux_zsr_weak (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q'] (hq1 : 1 < q)
+private theorem aux_zsr_weak (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q'] (hq1 : 1 < q)
     (hq2 : q ≤ 2) (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (hH : Function.Surjective H.mulVec) (v : Fin m → ℝ) (w : Fin l → ℝ)
     (hK : (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)).PosSemidef)
@@ -175,7 +176,7 @@ theorem aux_zsr_weak (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
   linarith
 
 /-- The vectors of a Gram factorization: `‖yⱼ‖`, `‖bᵢ‖²` and `⟨yⱼ, cⱼ⟩` in terms of `X`. -/
-theorem aux_zsr_gram {d : ℕ} (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
+private theorem aux_zsr_gram {d : ℕ} (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ)
     (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d))
     (hc : ∀ p q, X p q = ⟪c p, c q⟫) : -- --- CONCL ---
@@ -192,7 +193,7 @@ theorem aux_zsr_gram {d : ℕ} (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin
     exact Finset.sum_comm
 
 /-- The pointwise bound of the rounding: `Σⱼ sⱼ ⟨yⱼ, g⟩ sign⟨cⱼ, g⟩ ≤ r ‖(⟨bᵢ, g⟩)ᵢ‖_{q*}`. -/
-theorem aux_zsr_pointwise {d : ℕ} (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
+private theorem aux_zsr_pointwise {d : ℕ} (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (hq' : q' ≠ ∞) (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (hH : Function.Surjective H.mulVec) {r : ℝ}
     (hrle : ∀ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, coeffNorm ((Matrix.mulVecLin H) ∘ₗ
@@ -234,7 +235,7 @@ theorem aux_zsr_pointwise {d : ℕ} (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Hold
     _ ≤ r * ‖WithLp.toLp q' (ζ ᵥ* H)‖ := mul_le_mul_of_nonneg_right (hrle α hα) (norm_nonneg _)
 
 /-- The rounding: a certificate `X` gives `γ₁ Σ G_{kj} X_{kj} ≤ γ_{q*} r`. -/
-theorem aux_zsr_rounding (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q'] (hq1 : 1 < q)
+private theorem aux_zsr_rounding (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q'] (hq1 : 1 < q)
     (hq2 : q ≤ 2) (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (hH : Function.Surjective H.mulVec) {r : ℝ} (hr0 : 0 ≤ r)
     (hrle : ∀ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, coeffNorm ((Matrix.mulVecLin H) ∘ₗ

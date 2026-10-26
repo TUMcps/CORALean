@@ -48,7 +48,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Two blocks of rows side by side are each within their slack exactly when both blocks are. -/
-theorem ConPolyZono.aux_forall_abs_sub_append_iff {m₁ m₂ : ℕ} (u₁ c₁ s₁ : Fin m₁ → ℝ)
+private theorem ConPolyZono.aux_forall_abs_sub_append_iff {m₁ m₂ : ℕ} (u₁ c₁ s₁ : Fin m₁ → ℝ)
     (u₂ c₂ s₂ : Fin m₂ → ℝ) :
     (∀ i, |Fin.append u₁ u₂ i - Fin.append c₁ c₂ i| ≤ |Fin.append s₁ s₂ i|)
       ↔ (∀ i, |u₁ i - c₁ i| ≤ |s₁ i|) ∧ ∀ i, |u₂ i - c₂ i| ≤ |s₂ i| :=

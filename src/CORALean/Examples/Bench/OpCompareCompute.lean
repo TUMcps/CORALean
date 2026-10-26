@@ -31,7 +31,7 @@ open CORALean.Float FloatOps
 /-- `f i j` for every `(i, j)` in `n × n`, row-major, split into `numChunks` contiguous row
 ranges and computed by one `Task` each -- `Task.get`, in chunk order, is what makes the result
 row-major again. -/
-def aux_parMatrix {α : Type} (numChunks n : Nat) (f : Nat → Nat → α) : Array α :=
+private def aux_parMatrix {α : Type} (numChunks n : Nat) (f : Nat → Nat → α) : Array α :=
   let chunkLen := (n + numChunks - 1) / max numChunks 1
   let ranges := (List.range numChunks).map fun c => (c * chunkLen, min n (c * chunkLen + chunkLen))
   let tasks := (ranges.filter fun (lo, hi) => lo < hi).map fun (lo, hi) =>

@@ -59,7 +59,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The quadratic form's terms evaluate to it. -/
-theorem Taylm.aux_polyOf_quadTerms (H : Mat ℝ n n) (x0 t : Vec ℝ n) : -- --- CONCL ---
+private theorem Taylm.aux_polyOf_quadTerms (H : Mat ℝ n n) (x0 t : Vec ℝ n) : -- --- CONCL ---
     Taylm.polyOf (Taylm.quadTerms H x0) t
       = (t - x0) ⬝ᵥ (H *ᵥ (t - x0)) / 2 := by -- --- PROOF ---
   have hflat : ∀ LL : List (List (ℝ × (Fin n → ℕ))),

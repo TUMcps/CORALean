@@ -61,7 +61,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinate bounded by `1` in magnitude everywhere has `‖·‖₂` bounded by `√`(its count). -/
-theorem aux_norm₂_le_sqrt_card {h : ℕ} {f : Fin h → ℝ} (hf : ∀ j, |f j| ≤ 1) :
+private theorem aux_norm₂_le_sqrt_card {h : ℕ} {f : Fin h → ℝ} (hf : ∀ j, |f j| ≤ 1) :
     ‖f‖₂ ≤ Real.sqrt h := by
   have hterm : ∀ j : Fin h, f j ^ 2 ≤ (1:ℝ) := fun j => (sq_le_one_iff_abs_le_one (f j)).mpr (hf j)
   refine (Real.sqrt_le_sqrt (Finset.sum_le_sum fun j _ => hterm j)).trans (le_of_eq ?_)
@@ -70,7 +70,7 @@ theorem aux_norm₂_le_sqrt_card {h : ℕ} {f : Fin h → ℝ} (hf : ∀ j, |f j
 /-- `Fin.sum_univ_add` at `linComb`'s own generator count, stated through the projection since a
 binder's type is not something `simp`/`rw` rewrites — the local copy `LinCombOuter.lean`'s own
 `Zonotope.aux_sum_univ_linComb` cannot be reused across files (`aux_` names stay file-local). -/
-theorem aux_sum_univ_linComb2 {α : Type} [AddCommGroup α] [Module ℝ α] {Z₁ Z₂ : Zonotope α}
+private theorem aux_sum_univ_linComb2 {α : Type} [AddCommGroup α] [Module ℝ α] {Z₁ Z₂ : Zonotope α}
     (f : Fin (Z₁.h + Z₂.h + 1) → α) :
     ∑ j : Fin (Z₁.linComb Z₂).h, f j
       = ∑ j, f (Fin.castAdd 1 j) + ∑ j, f (Fin.natAdd (Z₁.h + Z₂.h) j) :=

@@ -44,7 +44,8 @@ open Polynomial
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The value at `y` is bounded by the dominating polynomial at `|y|`. -/
-theorem IsCoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : IsCoeffDom P A) (y : ℝ) : -- --- CONCL ---
+private theorem IsCoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : IsCoeffDom P A)
+    (y : ℝ) : -- --- CONCL ---
     |P.eval y| ≤ A.eval |y| := by -- --- PROOF ---
   have hdeg : P.natDegree ≤ A.natDegree := by
     rw [natDegree_le_iff_coeff_eq_zero]
@@ -60,25 +61,28 @@ theorem IsCoeffDom.aux_of_abs_le {P A : ℝ[X]} (h : IsCoeffDom P A) (y : ℝ) :
 
 
 /-- A dominating polynomial dominates itself. -/
-theorem IsCoeffDom.aux_self_of_dom {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom A A := fun j => by
+private theorem IsCoeffDom.aux_self_of_dom {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom A A := fun
+    j => by
   rw [abs_of_nonneg (h.nonneg j)]
 
 
 /-- Dominance is closed under a nonnegative scalar. -/
-theorem IsCoeffDom.aux_smul_nat {P A : ℝ[X]} (h : IsCoeffDom P A) (m : ℝ) (hm : 0 ≤ m) :
+private theorem IsCoeffDom.aux_smul_nat {P A : ℝ[X]} (h : IsCoeffDom P A) (m : ℝ) (hm : 0 ≤ m) :
     IsCoeffDom (C m * P) (C m * A) := fun j => by
   rw [coeff_C_mul, coeff_C_mul, abs_mul, abs_of_nonneg hm]
   exact mul_le_mul_of_nonneg_left (h j) hm
 
 
 /-- Dominance is closed under the factor `X`. -/
-theorem IsCoeffDom.aux_X_mul {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom (X * P) (X * A) :=
+private theorem IsCoeffDom.aux_X_mul {P A : ℝ[X]} (h : IsCoeffDom P A) : IsCoeffDom (X * P)
+    (X * A) :=
   (show IsCoeffDom X X from fun j => by
     rw [coeff_X]; split_ifs <;> simp).mul h
 
 
 /-- Polynomials dominated coefficientwise. -/
-theorem IsCoeffDom.aux_abs_eval_le {P A : ℝ[X]} (h : IsCoeffDom P A) {y m : ℝ} (hy : |y| ≤ m) :
+private theorem IsCoeffDom.aux_abs_eval_le {P A : ℝ[X]} (h : IsCoeffDom P A) {y m : ℝ}
+    (hy : |y| ≤ m) :
     |P.eval y| ≤ A.eval m :=
   le_trans (h.aux_of_abs_le y) (h.aux_self_of_dom.eval_mono (abs_nonneg _) hy)
 

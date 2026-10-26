@@ -54,7 +54,7 @@ open Pointwise
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The region of a point is that point. -/
-theorem Polygon.aux_construct_ofPoint (v : Vec ℝ 2) : -- --- CONCL ---
+private theorem Polygon.aux_construct_ofPoint (v : Vec ℝ 2) : -- --- CONCL ---
     ContSet.construct (OfPoint.ofPoint v : Polygon) = {v} := by -- --- PROOF ---
   ext x
   show x ∈ SetUnion.construct _ ↔ _
@@ -63,7 +63,7 @@ theorem Polygon.aux_construct_ofPoint (v : Vec ℝ 2) : -- --- CONCL ---
   rw [VPolytope.construct_point]
 
 /-- A hull of two pieces lies in any convex set holding both. -/
-theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Set (Vec ℝ 2)}
+private theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Set (Vec ℝ 2)}
     (hC : Convex ℝ C) (hp : p.construct ⊆ C) (hq : q.construct ⊆ C) : -- --- CONCL ---
     (p.linComb q).construct ⊆ C := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
@@ -78,7 +78,7 @@ theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Set (Vec �
     exact hq (VPolytope.vertex_mem q j)
 
 /-- The mirrored subtrahend about the center is the points `c - b`. -/
-theorem Polygon.aux_construct_mirror (B : Polygon) (c : Vec ℝ 2) : -- --- CONCL ---
+private theorem Polygon.aux_construct_mirror (B : Polygon) (c : Vec ℝ 2) : -- --- CONCL ---
     ContSet.construct (Polygon.times (-1) (B.minus c))
       = (fun b => c - b) '' ContSet.construct B := by -- --- PROOF ---
   -- `times (-1)` negates and `minus c` subtracts `c`
@@ -88,7 +88,7 @@ theorem Polygon.aux_construct_mirror (B : Polygon) (c : Vec ℝ 2) : -- --- CONC
   simp [Matrix.mulVec_diagonal]
 
 /-- The mirror of a convex set is convex. -/
-theorem Polygon.aux_convex_mirror {B : Set (Vec ℝ 2)} (hB : Convex ℝ B) (c : Vec ℝ 2) :
+private theorem Polygon.aux_convex_mirror {B : Set (Vec ℝ 2)} (hB : Convex ℝ B) (c : Vec ℝ 2) :
     Convex ℝ ((fun b => c - b) '' B) := by
   rintro _ ⟨b₁, hb₁, rfl⟩ _ ⟨b₂, hb₂, rfl⟩ a b ha hb hab
   refine ⟨a • b₁ + b • b₂, hB hb₁ hb₂ ha hb hab, ?_⟩
@@ -96,7 +96,7 @@ theorem Polygon.aux_convex_mirror {B : Set (Vec ℝ 2)} (hB : Convex ℝ B) (c :
     _ = a • (c - b₁) + b • (c - b₂) := by module
 
 /-- The `linComb` of two shifts of the mirror sweeps the mirror along the segment. -/
-theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet.construct B))
+private theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet.construct B))
     (u v : Vec ℝ 2) : -- --- CONCL ---
     ContSet.construct (Polygon.linComb
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint u))
@@ -134,7 +134,7 @@ theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet
         _ = a • (k + u) + b • (k + v) := by module
 
 /-- Inside the shifted minuend and off the swept region, the subtrahend stays in the minuend. -/
-theorem Polygon.aux_minkDiff_inner {A B : Set (Vec ℝ 2)} {c : Vec ℝ 2} (hB : Convex ℝ B)
+private theorem Polygon.aux_minkDiff_inner {A B : Set (Vec ℝ 2)} {c : Vec ℝ 2} (hB : Convex ℝ B)
     (hc : c ∈ B) {x : Vec ℝ 2} (hx : x ∈ interior ((fun a => a - c) '' A))
     (hS : x ∉ (fun b => c - b) '' B + frontier ((fun a => a - c) '' A)) : -- --- CONCL ---
     ∀ b ∈ B, x + b ∈ A := by -- --- PROOF ---
@@ -174,7 +174,7 @@ theorem Polygon.aux_minkDiff_inner {A B : Set (Vec ℝ 2)} {c : Vec ℝ 2} (hB :
   rwa [this]
 
 /-- An interior point of the Minkowski difference is inside the shifted minuend and unswept. -/
-theorem Polygon.aux_minkDiff_outer {A B : Set (Vec ℝ 2)} {c : Vec ℝ 2} (hc : c ∈ B)
+private theorem Polygon.aux_minkDiff_outer {A B : Set (Vec ℝ 2)} {c : Vec ℝ 2} (hc : c ∈ B)
     {x : Vec ℝ 2} (hx : x ∈ interior {x | ∀ b ∈ B, x + b ∈ A}) : -- --- CONCL ---
     x ∈ interior ((fun a => a - c) '' A) ∧
       x ∉ (fun b => c - b) '' B + frontier ((fun a => a - c) '' A) := by -- --- PROOF ---

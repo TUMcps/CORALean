@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The identity matrix leaves entry `i` of a vector unchanged. -/
-theorem aux_identityMat_mulVec (x : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
+private theorem aux_identityMat_mulVec (x : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     (toRealMat (identityMat 𝕋 n) *ᵥ x) i = x i := by -- --- PROOF ---
   show ∑ j, toReal (if i = j then (one : 𝕋) else zero) * x j = x i
   rw [Finset.sum_eq_single i]

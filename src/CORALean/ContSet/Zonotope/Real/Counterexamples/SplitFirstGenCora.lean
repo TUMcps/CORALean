@@ -65,8 +65,8 @@ def Zonotope.aux_three : Zonotope (Vec ℝ 2) :=
     else if j = 1 then (if i = 0 then 0 else 1) else 1⟩
 
 /-- `splitFirstGen` passes the argmax index on to `split`. -/
-theorem Zonotope.aux_splitFirstGenCora_of_argmax {n : ℕ} {Z : Zonotope (Vec ℝ n)} {j : Fin Z.h}
-    (hZ : (List.finRange Z.h).argmax (fun j => ∑ k, |Z.G j ⬝ᵥ Z.G k|) = some j) :
+private theorem Zonotope.aux_splitFirstGenCora_of_argmax {n : ℕ} {Z : Zonotope (Vec ℝ n)}
+    {j : Fin Z.h} (hZ : (List.finRange Z.h).argmax (fun j => ∑ k, |Z.G j ⬝ᵥ Z.G k|) = some j) :
     Z.splitFirstGenCora = Z.splitCora (j.val + 1) := by
   simp [Zonotope.splitFirstGenCora, hZ]
 

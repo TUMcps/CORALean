@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Coefficients pinned off the annihilated generators split into the face's center and a point
 of the face's generators. -/
-theorem Zonotope.aux_sum_split_face (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (β : Fin Z.h → ℝ)
+private theorem Zonotope.aux_sum_split_face (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (β : Fin Z.h → ℝ)
     (hpin : ∀ j, u (Z.G j) ≠ 0 → β j = Real.sign (u (Z.G j))) : -- --- CONCL ---
     Z.c + ∑ j, β j • Z.G j = (Z.face u).c + ∑ j, β j • (Z.face u).G j := by -- --- PROOF ---
   have hterm : ∀ j, β j • Z.G j

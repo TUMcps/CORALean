@@ -60,7 +60,7 @@ open Matrix
 
 /-- Row `i` of `Aξ = b`, solved for `βⱼ` with the other coefficients in `E`, lands between
 `rowBound`'s two endpoints. -/
-theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng} (h0 : A i j ≠ 0)
     (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
     min (ConZonotope.rowBound A b i j E).inf (ConZonotope.rowBound A b i j E).sup ≤ β j ∧
@@ -85,7 +85,7 @@ theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec 
   exact Interval.div_between_endpoints h0 h1 h2
 
 /-- Lines 3-5 keep a feasible coefficient vector inside `E` and inside every `R_j`. -/
-theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {β : Vec ℝ ng}
     {S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
     (hS : β ∈ S.1.construct ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
@@ -128,7 +128,7 @@ theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (
       exact hR k
 
 /-- One pass of lines 2-10 keeps the same invariant. -/
-theorem ConZonotope.aux_tightenPassER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
+private theorem ConZonotope.aux_tightenPassER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     {β : Vec ℝ ng} {S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
     (hS : β ∈ S.1.construct ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
     (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---

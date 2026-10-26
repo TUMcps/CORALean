@@ -49,7 +49,7 @@ namespace CORALean.Real
 
 /-- `Δd_trans` in one line: both translates fit iff the centered one fits with
 `|H|` to spare. -/
-theorem aux_abs_add_sub (A H Δ : ℝ) : -- --- CONCL ---
+private theorem aux_abs_add_sub (A H Δ : ℝ) : -- --- CONCL ---
     (|A + H| ≤ Δ ∧ |A - H| ≤ Δ) ↔ |A| ≤ Δ - |H| := by -- --- PROOF ---
   constructor
   · rintro ⟨h₁, h₂⟩

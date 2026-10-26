@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem STL.Tree.aux_le_add {s t x b : ℝ≥0} (hs : s ≤ x) (ht : t ≤ b) : s + t ≤ b + x := by
+private theorem STL.Tree.aux_le_add {s t x b : ℝ≥0} (hs : s ≤ x) (ht : t ≤ b) : s + t ≤ b + x := by
   rw [add_comm b x]
   exact add_le_add hs ht
 

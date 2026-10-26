@@ -50,7 +50,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 /-- Peels the first term off the sum with `Finset.sum_range_succ'`, rewrites it
 by `A`, and folds the remaining sum back up with `Finset.mul_sum`. -/
-theorem aux_sum_succ (A : Mat ℝ n n) (N : ℕ) :
+private theorem aux_sum_succ (A : Mat ℝ n n) (N : ℕ) :
     ∑ i ∈ Finset.range (N + 1), A ^ i = A * (∑ i ∈ Finset.range N, A ^ i) + 1 := by
   rw [Finset.sum_range_succ']
   simp only [pow_succ', pow_zero, ← Finset.mul_sum]
@@ -58,7 +58,7 @@ theorem aux_sum_succ (A : Mat ℝ n n) (N : ℕ) :
 omit [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- The closed form itself, proved once so both the base and the step case of
 `reachHeld_outer` read membership off it rather than reproving the recursion. -/
-theorem aux_x_eq {sys : LinearSysDT ℝ n} {R₀ U : S n} {x : ℕ → Vec ℝ n} {u : Vec ℝ n}
+private theorem aux_x_eq {sys : LinearSysDT ℝ n} {R₀ U : S n} {x : ℕ → Vec ℝ n} {u : Vec ℝ n}
     (h : sys.IsCanonicalHeldTrajectory R₀ U x u) (N : ℕ) : -- --- CONCL ---
     x N = sys.A ^ N *ᵥ x 0 + (∑ i ∈ Finset.range N, sys.A ^ i) *ᵥ u := by -- --- PROOF ---
   induction N with

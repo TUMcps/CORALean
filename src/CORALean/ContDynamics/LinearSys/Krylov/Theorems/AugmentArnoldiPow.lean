@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `‖[0ₙ; 1]‖ = 1`. -/
-theorem Krylov.aux_norm₂_single_last : -- --- CONCL ---
+private theorem Krylov.aux_norm₂_single_last : -- --- CONCL ---
     ‖(Pi.single (Fin.last n) 1 : Fin (n + 1) → ℝ)‖₂ = 1 := by -- --- PROOF ---
   set e : Fin (n + 1) → ℝ := Pi.single (Fin.last n) 1 with he
   have h : ∀ i, e i ^ 2 = e i := by

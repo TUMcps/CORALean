@@ -80,7 +80,7 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every time of `[0, NΔt]` is in the window of some step below `N`. -/
-theorem aux_exists_step {Δt : ℝ} (hΔt : 0 < Δt) {N : ℕ} (hN : 0 < N) {t : ℝ}
+private theorem aux_exists_step {Δt : ℝ} (hΔt : 0 < Δt) {N : ℕ} (hN : 0 < N) {t : ℝ}
     (ht : t ∈ Set.Icc (0 : ℝ) ((N : ℝ) * Δt)) : -- --- CONCL ---
     ∃ i < N, t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt) := by -- --- PROOF ---
   have hN1 : 1 ≤ N := hN

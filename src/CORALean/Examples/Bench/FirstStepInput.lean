@@ -46,13 +46,13 @@ deriving Repr
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def aux_optStr (j : Json) (k : String) : Option String := (j.getObjVal? k).toOption.bind
+private def aux_optStr (j : Json) (k : String) : Option String := (j.getObjVal? k).toOption.bind
   fun v => v.getStr?.toOption
 
-def aux_optNat (j : Json) (k : String) : Option Nat := (j.getObjVal? k).toOption.bind
+private def aux_optNat (j : Json) (k : String) : Option Nat := (j.getObjVal? k).toOption.bind
   fun v => v.getNat?.toOption
 
-def aux_run (j : Json) : Except String FirstStepRun := do
+private def aux_run (j : Json) : Except String FirstStepRun := do
   let ty ← (← j.getObjVal? "type").getStr?
   pure { ty := ty, format := aux_optStr j "format", prec := aux_optNat j "prec",
          digits := aux_optNat j "digits" }

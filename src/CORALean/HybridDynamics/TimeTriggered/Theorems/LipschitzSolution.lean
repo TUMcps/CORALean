@@ -53,7 +53,7 @@ section
 open Metric
 
 /-- A solution of `ẋ = f(x)` through `y` on `(-h, h)`, `h = 1 / (2K + 2)`, [1, Def. 2]. -/
-theorem aux_lipschitzSolutionLocal {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f)
+private theorem aux_lipschitzSolutionLocal {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f)
     (y : E) : -- --- CONCL ---
     ∃ α : ℝ → E, α 0 = y ∧ ∀ u ∈ Ioo (-(1 / (2 * (K : ℝ) + 2))) (1 / (2 * (K : ℝ) + 2)),
       HasDerivAt α (f (α u)) u := by -- --- PROOF ---
@@ -102,7 +102,7 @@ end
 
 omit [CompleteSpace E] in
 /-- Extending a solution on `(-h, T)` by `h/2` to the right, `h / 2 ≤ T`. -/
-theorem aux_extend {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {h T : ℝ} (hh : 0 < h)
+private theorem aux_extend {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {h T : ℝ} (hh : 0 < h)
     (hT : h ≤ T) (hloc : ∀ y : E, ∃ α : ℝ → E, α 0 = y ∧ ∀ u ∈ Ioo (-h) h, HasDerivAt α (f (α u)) u)
     {γ : ℝ → E} (hγ : ∀ u ∈ Ioo (-h) T, HasDerivAt γ (f (γ u)) u) : -- --- CONCL ---
     ∃ γ' : ℝ → E, (∀ u ≤ 0, γ' u = γ u) ∧

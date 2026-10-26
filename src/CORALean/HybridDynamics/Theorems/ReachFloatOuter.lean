@@ -66,7 +66,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A successful `mapM` in `Option` has an answer for every entry. -/
-theorem aux_mapM_some {α β : Type} {f : α → Option β} :
+private theorem aux_mapM_some {α β : Type} {f : α → Option β} :
     ∀ {l : List α} {l' : List β}, l.mapM f = some l' → ∀ a ∈ l, ∃ b ∈ l', f a = some b
   | [], _, _, a, ha => absurd ha (List.not_mem_nil)
   | a :: l, l', h, a', ha' => by

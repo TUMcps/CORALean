@@ -39,14 +39,14 @@ variable {m n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Interval.aux_prod₁_succ (I : Interval (Mat ℝ (m + 1) n)) :
+private theorem Interval.aux_prod₁_succ (I : Interval (Mat ℝ (m + 1) n)) :
     I.prod₁ = (⟨fun j => I.inf 0 j, fun j => I.sup 0 j⟩ : Interval (Vec ℝ n)).times
       (Interval.prod₁ (⟨fun i => I.inf i.succ, fun i => I.sup i.succ⟩ :
         Interval (Mat ℝ m n))) := by
   simp only [Interval.prod₁, Fin.foldr_succ]
 
 /-- A box that is exactly the image of a nonempty set is nonempty. -/
-theorem Interval.aux_nonempty_of_image {S : Set (Mat ℝ m n)} (hS : S.Nonempty)
+private theorem Interval.aux_nonempty_of_image {S : Set (Mat ℝ m n)} (hS : S.Nonempty)
     {J : Interval (Vec ℝ n)} {f : Mat ℝ m n → Vec ℝ n} (h : J.construct = f '' S) :
     J.IsNonempty := by
   rw [Interval.isNonempty_iff, h]

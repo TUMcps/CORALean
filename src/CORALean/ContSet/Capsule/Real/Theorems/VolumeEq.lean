@@ -46,16 +46,16 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The capsule on the first axis, in the coordinates `(s, w)`. -/
-def aux_P (m : ℕ) (L r : ℝ) : Set (ℝ × (Fin m → ℝ)) :=
+private def aux_P (m : ℕ) (L r : ℝ) : Set (ℝ × (Fin m → ℝ)) :=
   {p | (max (|p.1| - L) 0) ^ 2 + ∑ i, (p.2 i) ^ 2 ≤ r ^ 2}
 
 -- the coordinate description is a measurable set, so Fubini applies
-theorem aux_P_meas (L r : ℝ) : MeasurableSet (aux_P m L r) := by
+private theorem aux_P_meas (L r : ℝ) : MeasurableSet (aux_P m L r) := by
   unfold aux_P
   exact measurableSet_le (by fun_prop) measurable_const
 
 -- the slice of the capsule at a fixed `w`, as a condition on `s` alone
-theorem aux_slice_eq (L r : ℝ) (w : Fin m → ℝ) :
+private theorem aux_slice_eq (L r : ℝ) (w : Fin m → ℝ) :
     (fun s : ℝ => (s, w)) ⁻¹' aux_P m L r
       = {s : ℝ | (max (|s| - L) 0) ^ 2 ≤ r ^ 2 - ∑ i, (w i) ^ 2} := by
   ext s
@@ -63,7 +63,7 @@ theorem aux_slice_eq (L r : ℝ) (w : Fin m → ℝ) :
   constructor <;> intro h <;> linarith
 
 -- that slice is an interval, centered, of half-length `L + sqrt ρ`
-theorem aux_slice_icc {L ρ : ℝ} (hρ : 0 ≤ ρ) : -- --- CONCL ---
+private theorem aux_slice_icc {L ρ : ℝ} (hρ : 0 ≤ ρ) : -- --- CONCL ---
     {s : ℝ | (max (|s| - L) 0) ^ 2 ≤ ρ} = Icc (-(L + √ρ)) (L + √ρ) := by -- --- PROOF ---
   ext s
   simp only [mem_setOf_eq, mem_Icc]
@@ -80,7 +80,7 @@ theorem aux_slice_icc {L ρ : ℝ} (hρ : 0 ≤ ρ) : -- --- CONCL ---
     exact ⟨by linarith, hsq⟩
 
 -- its length: `2L` more than the slice of the ball, wherever the ball has one
-theorem aux_slice_vol {L r : ℝ} (hL : 0 ≤ L) (w : Fin m → ℝ) : -- --- CONCL ---
+private theorem aux_slice_vol {L r : ℝ} (hL : 0 ≤ L) (w : Fin m → ℝ) : -- --- CONCL ---
     volume ((fun s : ℝ => (s, w)) ⁻¹' aux_P m L r)
       = {w : Fin m → ℝ | ∑ i, (w i) ^ 2 ≤ r ^ 2}.indicator (fun _ => ENNReal.ofReal (2 * L)) w
         + volume ((fun s : ℝ => (s, w)) ⁻¹' aux_P m 0 r) := by -- --- PROOF ---
@@ -103,11 +103,11 @@ theorem aux_slice_vol {L r : ℝ} (hL : 0 ≤ L) (w : Fin m → ℝ) : -- --- CO
 
 
 -- the cross-section ball is measurable too
-theorem aux_meas_B (r : ℝ) : MeasurableSet {w : Fin m → ℝ | ∑ i, (w i) ^ 2 ≤ r ^ 2} :=
+private theorem aux_meas_B (r : ℝ) : MeasurableSet {w : Fin m → ℝ | ∑ i, (w i) ^ 2 ≤ r ^ 2} :=
   measurableSet_le (by fun_prop) measurable_const
 
 -- Fubini: the measure is `2L` times the cross-section plus the ball's
-theorem aux_vol_P {L : ℝ} (r : ℝ) (hL : 0 ≤ L) : -- --- CONCL ---
+private theorem aux_vol_P {L : ℝ} (r : ℝ) (hL : 0 ≤ L) : -- --- CONCL ---
     volume (aux_P m L r) = ENNReal.ofReal (2 * L) * volume {w : Fin m → ℝ | ∑ i, (w i) ^ 2 ≤ r ^ 2}
       + volume (aux_P m 0 r) := by -- --- PROOF ---
   have h1 := Measure.prod_apply_symm (μ := (volume : Measure ℝ))
@@ -121,7 +121,7 @@ theorem aux_vol_P {L : ℝ} (r : ℝ) (hL : 0 ≤ L) : -- --- CONCL ---
 
 
 -- on the axis, the nearest point of the segment is found at a parameter in `[-1, 1]`
-theorem aux_exists_t {s L : ℝ} (hL : 0 ≤ L) : -- --- CONCL ---
+private theorem aux_exists_t {s L : ℝ} (hL : 0 ≤ L) : -- --- CONCL ---
     ∃ t ∈ Icc (-1 : ℝ) 1, (s - t * L) ^ 2 = (max (|s| - L) 0) ^ 2 := by -- --- PROOF ---
   by_cases h1 : |s| ≤ L
   · have hmax : max (|s| - L) 0 = 0 := max_eq_right (by linarith)
@@ -144,7 +144,8 @@ theorem aux_exists_t {s L : ℝ} (hL : 0 ≤ L) : -- --- CONCL ---
       rw [max_eq_left (by linarith)]; ring
 
 -- and no point of the segment is nearer
-theorem aux_sq_le_of_mem {s L t : ℝ} (hL : 0 ≤ L) (ht : t ∈ Icc (-1 : ℝ) 1) : -- --- CONCL ---
+private theorem aux_sq_le_of_mem {s L t : ℝ} (hL : 0 ≤ L)
+    (ht : t ∈ Icc (-1 : ℝ) 1) : -- --- CONCL ---
     (max (|s| - L) 0) ^ 2 ≤ (s - t * L) ^ 2 := by -- --- PROOF ---
   have h1 : |t * L| ≤ L := by
     rw [abs_mul, abs_of_nonneg hL]
@@ -162,18 +163,20 @@ theorem aux_sq_le_of_mem {s L t : ℝ} (hL : 0 ≤ L) (ht : t ∈ Icc (-1 : ℝ)
 
 
 -- the Euclidean space, where the rotation lives
-abbrev aux_E (m : ℕ) := EuclideanSpace ℝ (Fin (m + 1))
+private abbrev aux_E (m : ℕ) := EuclideanSpace ℝ (Fin (m + 1))
 
-def aux_Kcap (g : aux_E m) (r : ℝ) : Set (aux_E m) := {y | ∃ t ∈ Icc (-1 : ℝ) 1, ‖y - t • g‖ ≤ r}
+private def aux_Kcap (g : aux_E m) (r : ℝ) : Set (aux_E m) :=
+    {y | ∃ t ∈ Icc (-1 : ℝ) 1, ‖y - t • g‖ ≤ r}
 
 -- the coordinates `(first, rest)` of a vector, measure preservingly
-def aux_Φ (m : ℕ) : (Fin (m + 1) → ℝ) ≃ᵐ ℝ × (Fin m → ℝ) :=
+private def aux_Φ (m : ℕ) : (Fin (m + 1) → ℝ) ≃ᵐ ℝ × (Fin m → ℝ) :=
   MeasurableEquiv.piFinSuccAbove (fun _ : Fin (m + 1) => ℝ) 0
 
-theorem aux_Φ_apply (v : Fin (m + 1) → ℝ) : aux_Φ m v = (v 0, fun i : Fin m => v i.succ) := rfl
+private theorem aux_Φ_apply (v : Fin (m + 1) → ℝ) : aux_Φ m v = (v 0, fun i : Fin m => v i.succ) :=
+    rfl
 
 -- on the first axis the capsule is the coordinate description
-theorem aux_Kcap_axis {L r : ℝ} (hL : 0 ≤ L) (hr : 0 ≤ r) : -- --- CONCL ---
+private theorem aux_Kcap_axis {L r : ℝ} (hL : 0 ≤ L) (hr : 0 ≤ r) : -- --- CONCL ---
     aux_Kcap (L • EuclideanSpace.single (0 : Fin (m + 1)) (1 : ℝ)) r
       = (fun y : aux_E m => aux_Φ m (WithLp.ofLp y)) ⁻¹' aux_P m L r := by -- --- PROOF ---
   ext y
@@ -201,7 +204,7 @@ theorem aux_Kcap_axis {L r : ℝ} (hL : 0 ≤ L) (hr : 0 ≤ r) : -- --- CONCL -
 
 
 -- a reflection takes the generator onto the first axis
-theorem aux_exists_rot (g : aux_E m) : -- --- CONCL ---
+private theorem aux_exists_rot (g : aux_E m) : -- --- CONCL ---
     ∃ T : aux_E m ≃ₗᵢ[ℝ] aux_E m,
       T g = ‖g‖ • EuclideanSpace.single (0 : Fin (m + 1)) (1 : ℝ) := by -- --- PROOF ---
   have h : ‖g‖ = ‖‖g‖ • EuclideanSpace.single (0 : Fin (m + 1)) (1 : ℝ)‖ := by
@@ -211,7 +214,7 @@ theorem aux_exists_rot (g : aux_E m) : -- --- CONCL ---
     Submodule.reflection_sub h⟩
 
 -- an isometry carries the capsule of `g` to that of its image
-theorem aux_Kcap_rot (T : aux_E m ≃ₗᵢ[ℝ] aux_E m) (g : aux_E m) (r : ℝ) :
+private theorem aux_Kcap_rot (T : aux_E m ≃ₗᵢ[ℝ] aux_E m) (g : aux_E m) (r : ℝ) :
     aux_Kcap g r = T ⁻¹' aux_Kcap (T g) r := by
   ext y
   simp only [aux_Kcap, mem_setOf_eq, mem_preimage]
@@ -219,13 +222,13 @@ theorem aux_Kcap_rot (T : aux_E m ≃ₗᵢ[ℝ] aux_E m) (g : aux_E m) (r : ℝ
   rw [← map_smul, ← map_sub, LinearIsometryEquiv.norm_map]
 
 -- the coordinate description is measurable in the Euclidean space
-theorem aux_meas_axis (L r : ℝ) :
+private theorem aux_meas_axis (L r : ℝ) :
     MeasurableSet ((fun y : aux_E m => aux_Φ m (WithLp.ofLp y)) ⁻¹' aux_P m L r) :=
   ((aux_Φ m).measurable.comp (PiLp.continuous_ofLp 2 (fun _ : Fin (m + 1) => ℝ)).measurable)
     (aux_P_meas L r)
 
 -- and the coordinates preserve the measure
-theorem aux_vol_axis (L r : ℝ) :
+private theorem aux_vol_axis (L r : ℝ) :
     volume ((fun y : aux_E m => aux_Φ m (WithLp.ofLp y)) ⁻¹' aux_P m L r)
       = volume (aux_P m L r) := by
   have hmp : MeasurePreserving (fun y : aux_E m => aux_Φ m (WithLp.ofLp y)) volume volume :=
@@ -234,7 +237,7 @@ theorem aux_vol_axis (L r : ℝ) :
   exact hmp.measure_preimage (aux_P_meas L r).nullMeasurableSet
 
 -- the general capsule: rotate, then read off the measure
-theorem aux_vol_Kcap (g : aux_E m) {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
+private theorem aux_vol_Kcap (g : aux_E m) {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     volume (aux_Kcap g r) = ENNReal.ofReal (2 * ‖g‖) *
         volume {w : Fin m → ℝ | ∑ i, (w i) ^ 2 ≤ r ^ 2}
       + volume (aux_Kcap (0 : aux_E m) r) := by -- --- PROOF ---
@@ -252,20 +255,20 @@ theorem aux_vol_Kcap (g : aux_E m) {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
 
 
 -- every capsule is measurable, being a rotated axis one
-theorem aux_meas_Kcap (g : aux_E m) {r : ℝ} (hr : 0 ≤ r) :
+private theorem aux_meas_Kcap (g : aux_E m) {r : ℝ} (hr : 0 ≤ r) :
     MeasurableSet (aux_Kcap g r) := by
   obtain ⟨T, hT⟩ := aux_exists_rot g
   rw [aux_Kcap_rot T g r, hT, aux_Kcap_axis (norm_nonneg g) hr]
   exact T.continuous.measurable (aux_meas_axis _ _)
 
 -- the ball constants, with `sqrt π` as a power of `π`
-theorem aux_sqrtPi (k : ℕ) : Real.sqrt Real.pi ^ k = Real.pi ^ ((k : ℝ) / 2) := by
+private theorem aux_sqrtPi (k : ℕ) : Real.sqrt Real.pi ^ k = Real.pi ^ ((k : ℝ) / 2) := by
   rw [Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul Real.pi_pos.le]
   congr 1
   ring
 
 -- the measure of the `n`-ball
-theorem aux_vol_ball {r : ℝ} : -- --- CONCL ---
+private theorem aux_vol_ball {r : ℝ} : -- --- CONCL ---
     volume (aux_Kcap (0 : aux_E m) r)
       = ENNReal.ofReal r ^ (m + 1) *
         ENNReal.ofReal (Real.sqrt Real.pi ^ (m + 1)
@@ -279,7 +282,7 @@ theorem aux_vol_ball {r : ℝ} : -- --- CONCL ---
   simp
 
 -- the measure of the `(n-1)`-ball, which is `1` for `n = 1`
-theorem aux_vol_cyl {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
+private theorem aux_vol_cyl {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     volume {w : Fin m → ℝ | ∑ i, (w i) ^ 2 ≤ r ^ 2}
       = ENNReal.ofReal r ^ m *
         ENNReal.ofReal (Real.sqrt Real.pi ^ m / Real.Gamma ((m : ℝ) / 2 + 1)) := by -- --- PROOF ---
@@ -301,7 +304,7 @@ theorem aux_vol_cyl {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
   simp
 
 -- the capsule of `Capsule.construct` is the translate of the Euclidean one
-theorem aux_construct_eq (C : Capsule (m + 1)) : -- --- CONCL ---
+private theorem aux_construct_eq (C : Capsule (m + 1)) : -- --- CONCL ---
     C.construct = (fun x : Vec ℝ (m + 1) => -C.c + x) ⁻¹'
       ((WithLp.toLp 2) ⁻¹' aux_Kcap (WithLp.toLp 2 C.g : aux_E m) C.r) := by -- --- PROOF ---
   ext x

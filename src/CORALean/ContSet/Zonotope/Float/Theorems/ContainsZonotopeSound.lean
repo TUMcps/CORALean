@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `pointLo` and `pointHi` bracket `c + G β`. -/
-theorem Zonotope.aux_point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec 𝕋 Z.h)
+private theorem Zonotope.aux_point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec 𝕋 Z.h)
     (i : Fin n) : -- --- CONCL ---
     toReal (Z.pointLo β i) ≤ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
       ∧ toReal (Z.c i) + ∑ j, toReal (Z.G j i) * toReal (β j)
@@ -63,8 +63,8 @@ theorem Zonotope.aux_point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec 𝕋 Z.
 
 
 /-- `aux_mulResidual` bounds `|A - G Γ|`. -/
-theorem Zonotope.aux_mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h) (Γ : Mat 𝕋 h m)
-    (i : Fin n) (j : Fin m) : -- --- CONCL ---
+private theorem Zonotope.aux_mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h)
+    (Γ : Mat 𝕋 h m) (i : Fin n) (j : Fin m) : -- --- CONCL ---
     |(toRealMat A - toRealMat G * toRealMat Γ) i j|
       ≤ toReal (Zonotope.aux_mulResidual A G Γ i j) := by -- --- PROOF ---
   have hd := dotDown_le (fun l => G i l) fun l => Γ l j
@@ -80,8 +80,8 @@ theorem Zonotope.aux_mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat �
 
 
 /-- `aux_errBound` bounds every member of a float box. -/
-theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n} (he : e ∈ E.construct)
-    (i : Fin n) : -- --- CONCL ---
+private theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n}
+    (he : e ∈ E.construct) (i : Fin n) : -- --- CONCL ---
     |e i| ≤ toReal (Zonotope.aux_errBound E i) := by -- --- PROOF ---
   have h1 : toReal (E.inf i) ≤ e i := (he i).1
   have h2 : e i ≤ toReal (E.sup i) := (he i).2
@@ -94,7 +94,7 @@ theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n}
 
 
 /-- `aux_entryDeviation` bounds `|x - e - y|`. -/
-theorem Zonotope.aux_entryDeviation_bound (x e lo hi : Vec 𝕋 n) {y : ℝ} (i : Fin n)
+private theorem Zonotope.aux_entryDeviation_bound (x e lo hi : Vec 𝕋 n) {y : ℝ} (i : Fin n)
     (hlo : toReal (lo i) ≤ y) (hhi : y ≤ toReal (hi i)) : -- --- CONCL ---
     |toReal (x i) - toReal (e i) - y|
       ≤ toReal (Zonotope.aux_entryDeviation x e lo hi i) := by -- --- PROOF ---

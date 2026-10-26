@@ -51,7 +51,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The factor vector of `linComb`, taken apart into the two operands' own
 factors and the fresh one and appended back together. -/
-theorem PolyZonotope.aux_append_linComb_p {pZ₁ pZ₂ : PolyZonotope α}
+private theorem PolyZonotope.aux_append_linComb_p {pZ₁ pZ₂ : PolyZonotope α}
     (a : Fin (pZ₁.linComb pZ₂).p → ℝ) {v : ℝ}
     (hv : a (Fin.natAdd (pZ₁.p + pZ₂.p) (0 : Fin 1)) = v) : -- --- CONCL ---
     Fin.append (Fin.append (fun k => a (Fin.castAdd 1 (Fin.castAdd pZ₂.p k)))
@@ -72,7 +72,7 @@ theorem PolyZonotope.aux_append_linComb_p {pZ₁ pZ₂ : PolyZonotope α}
 omit [AddCommGroup α] [Module ℝ α] in
 /-- `linComb` keeps no independent generator where neither operand had one, so
 every sum over an independent block below is empty. -/
-theorem PolyZonotope.aux_isEmpty_dependent_q {pZ₁ pZ₂ : PolyZonotope α}
+private theorem PolyZonotope.aux_isEmpty_dependent_q {pZ₁ pZ₂ : PolyZonotope α}
     (h₁ : pZ₁.q = 0) (h₂ : pZ₂.q = 0) : IsEmpty (Fin (pZ₁.q + pZ₂.q)) := by
   have hq : pZ₁.q + pZ₂.q = 0 := by omega
   rw [hq]

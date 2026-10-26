@@ -67,7 +67,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The symmetric root `S = E^{1/2}` of a positive-definite `E`: `Sᵀ = S`, `S S⁻¹ = 1 = S⁻¹ S`. -/
-theorem Ellipsoid.aux_sqrt_facts {E : Mat ℝ n n} (hE : E.PosDef) : -- --- CONCL ---
+private theorem Ellipsoid.aux_sqrt_facts {E : Mat ℝ n n} (hE : E.PosDef) : -- --- CONCL ---
     (CFC.sqrt E)ᵀ = CFC.sqrt E ∧ CFC.sqrt E * (CFC.sqrt E)⁻¹ = 1
       ∧ (CFC.sqrt E)⁻¹ * CFC.sqrt E = 1 := by -- --- PROOF ---
   set S := CFC.sqrt E
@@ -83,7 +83,7 @@ theorem Ellipsoid.aux_sqrt_facts {E : Mat ℝ n n} (hE : E.PosDef) : -- --- CONC
   exact ⟨hST, mul_nonsing_inv S hSu, nonsing_inv_mul S hSu⟩
 
 /-- `ξ ↦ E^{1/2}ξ` maps `E(F, 0)` into `E(E^{1/2}FE^{1/2}, 0)`, which is positive definite. -/
-theorem Ellipsoid.aux_mem_ofShape_conj {E F : Mat ℝ n n} (hE : E.PosDef) (hF : F.PosDef)
+private theorem Ellipsoid.aux_mem_ofShape_conj {E F : Mat ℝ n n} (hE : E.PosDef) (hF : F.PosDef)
     {x : Vec ℝ n} (hx : (CFC.sqrt E)⁻¹ *ᵥ x ∈ (Ellipsoid.ofShape F 0).construct) : -- --- CONCL ---
     (CFC.sqrt E * F * CFC.sqrt E).PosDef
       ∧ x ∈ (Ellipsoid.ofShape (CFC.sqrt E * F * CFC.sqrt E) 0).construct := by -- --- PROOF ---

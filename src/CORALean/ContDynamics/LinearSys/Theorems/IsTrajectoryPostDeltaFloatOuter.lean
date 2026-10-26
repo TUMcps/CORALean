@@ -73,7 +73,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 /-- The stored negated identity is the point interval at `-1`. -/
-theorem aux_negOne_mem_point : -- --- CONCL ---
+private theorem aux_negOne_mem_point : -- --- CONCL ---
     (-1 : Mat ℝ n n) ∈ (Interval.point (negIdentityMat 𝕋 n)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 n n) (negIdentityMat 𝕋 n)
   have he : (RealImage.realImage (α := Mat 𝕋 n n) (negIdentityMat 𝕋 n) : Mat ℝ n n) = -1 := by
@@ -87,7 +87,7 @@ theorem aux_negOne_mem_point : -- --- CONCL ---
 
 
 /-- The origin's generator-free zonotope holds `0`. -/
-theorem aux_zero_mem_origin :
+private theorem aux_zero_mem_origin :
     (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (FloatOps.zero : 𝕋)).zonotope.construct := by
   have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (FloatOps.zero : 𝕋))
   rwa [show RealImage.realImage (fun _ : Fin n => (FloatOps.zero : 𝕋)) = (0 : Vec ℝ n) from
@@ -96,7 +96,7 @@ theorem aux_zero_mem_origin :
 
 /-- Every difference `e^{As} x - x` between a state of the step and the state it
 started from, for `x ∈ R` and `s ∈ [0, Δt]`. -/
-theorem LinearSys.aux_deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
+private theorem LinearSys.aux_deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s)
     (hs : s ≤ toReal Δt) : -- --- CONCL ---
@@ -140,7 +140,7 @@ end
 
 
 /-- The generator-free zonotope at the stored zero holds `0`. -/
-theorem aux_zero_mem_segStart :
+private theorem aux_zero_mem_segStart :
     (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (FloatOps.zero : 𝕋)).zonotope.construct := by
   have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (FloatOps.zero : 𝕋))
   rwa [show RealImage.realImage (fun _ : Fin n => (FloatOps.zero : 𝕋)) = (0 : Vec ℝ n) from

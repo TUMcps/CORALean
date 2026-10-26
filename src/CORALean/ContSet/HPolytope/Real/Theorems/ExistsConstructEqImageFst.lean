@@ -52,7 +52,7 @@ namespace CORALean.Real
 open Classical in
 /-- Fourier–Motzkin, one variable: the rows not involving `t`, and every row bounding `t` from
 above against every row bounding it from below. -/
-theorem aux_fm {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
+private theorem aux_fm {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
     (F : ι → (β × ℝ →ₗ[ℝ] ℝ)) (c : ι → ℝ) : -- --- CONCL ---
     ∃ (κ : Type) (_ : Fintype κ) (A : κ → (β →ₗ[ℝ] ℝ)) (b : κ → ℝ),
       ∀ x, (∀ k, A k x ≤ b k) ↔ ∃ t : ℝ, ∀ i, F i (x, t) ≤ c i := by -- --- PROOF ---
@@ -123,7 +123,7 @@ theorem aux_fm {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
       · simp
 
 /-- Fourier–Motzkin, `k` variables, one at a time. -/
-theorem aux_fm_vec (k : ℕ) : -- --- CONCL ---
+private theorem aux_fm_vec (k : ℕ) : -- --- CONCL ---
     ∀ {β ι : Type} [AddCommGroup β] [Module ℝ β] [Fintype ι]
     (F : ι → (β × (Fin k → ℝ) →ₗ[ℝ] ℝ)) (c : ι → ℝ),
     ∃ (κ : Type) (_ : Fintype κ) (A : κ → (β →ₗ[ℝ] ℝ)) (b : κ → ℝ),

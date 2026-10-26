@@ -46,7 +46,7 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A value in the bracket is within its radius of the shift. -/
-theorem aux_abs_sub_le_bracketError {c0 lo hi : 𝕋} {y : ℝ}
+private theorem aux_abs_sub_le_bracketError {c0 lo hi : 𝕋} {y : ℝ}
     (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) : -- --- CONCL ---
     |y - (toReal (addUp c0 (bracketShift lo hi)) - toReal c0)|
       ≤ toReal (bracketError c0 lo hi) := by -- --- PROOF ---

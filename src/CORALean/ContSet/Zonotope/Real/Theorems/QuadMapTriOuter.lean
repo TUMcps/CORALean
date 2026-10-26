@@ -51,7 +51,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `quadMap`'s set is inside `quadMapTri`'s: the pair block re-indexed by `j < k` alone. -/
-theorem Zonotope.aux_quadMap_subset_quadMapTri {n m : ℕ} (Q : Fin m → Mat ℝ n n)
+private theorem Zonotope.aux_quadMap_subset_quadMapTri {n m : ℕ} (Q : Fin m → Mat ℝ n n)
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Z.quadMap Q).construct ⊆ (Z.quadMapTri Q).construct := by -- --- PROOF ---
   rintro x ⟨(β : Fin (Z.h + Z.h + Z.h * Z.h) → ℝ), hβ, rfl⟩

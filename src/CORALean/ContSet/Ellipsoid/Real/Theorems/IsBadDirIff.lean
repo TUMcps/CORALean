@@ -52,13 +52,13 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The quadratic form of a shape is nonnegative. -/
-theorem Ellipsoid.aux_quad_nonneg (E : Ellipsoid n) (v : Vec ℝ n) :
+private theorem Ellipsoid.aux_quad_nonneg (E : Ellipsoid n) (v : Vec ℝ n) :
     0 ≤ v ⬝ᵥ (E.Q *ᵥ v) := by
   rw [Ellipsoid.quad_eq, dotProduct_self]
   positivity
 
 /-- At full rank it is positive off zero. -/
-theorem Ellipsoid.aux_quad_pos (E : Ellipsoid n) (hr : E.rank = n) {v : Vec ℝ n}
+private theorem Ellipsoid.aux_quad_pos (E : Ellipsoid n) (hr : E.rank = n) {v : Vec ℝ n}
     (hv : v ≠ 0) : -- --- CONCL ---
     0 < v ⬝ᵥ (E.Q *ᵥ v) := by -- --- PROOF ---
   refine (Ellipsoid.aux_quad_nonneg E v).lt_of_ne fun h => hv ?_

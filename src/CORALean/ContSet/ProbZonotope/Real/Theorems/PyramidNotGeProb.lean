@@ -44,9 +44,9 @@ open scoped _root_.Real
 def aux_one : Fin 1 → ℝ := fun _ => 1
 
 /-- The point `0` with covariance `1` in `ℝ¹`. -/
-def aux_stdNormal : ProbZonotope 1 := ⟨⟨0, 0, Fin.elim0⟩, 1⟩
+private def aux_stdNormal : ProbZonotope 1 := ⟨⟨0, 0, Fin.elim0⟩, 1⟩
 
-theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
+private theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
     (aux_stdNormal.zonotope 1).construct ⊆ {y | |y 0| ≤ 1} := by -- --- PROOF ---
   rw [ProbZonotope.zonotope, ← Zonotope.plus_exact]
   rintro _ ⟨a, ha, b, ⟨β, hβ, rfl⟩, rfl⟩
@@ -54,7 +54,7 @@ theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
   simp only [aux_stdNormal, confidenceZonotope, CFC.sqrt_one] at *
   simpa using hβ 0
 
-theorem aux_stdNormal_volume_le : -- --- CONCL ---
+private theorem aux_stdNormal_volume_le : -- --- CONCL ---
     let P := (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1)))
     volume.real P ≤ 2 := by -- --- PROOF ---
   intro P

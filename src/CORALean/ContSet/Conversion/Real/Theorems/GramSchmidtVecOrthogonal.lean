@@ -44,7 +44,7 @@ variable {m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A nonzero vector is nonzero at its pivot, the first largest `|gᵢ|`. -/
-theorem aux_gramSchmidtPivot_ne_zero {g : Vec ℝ (m + 1)} (hg : g ≠ 0) : -- --- CONCL ---
+private theorem aux_gramSchmidtPivot_ne_zero {g : Vec ℝ (m + 1)} (hg : g ≠ 0) : -- --- CONCL ---
     g (gramSchmidtPivot g) ≠ 0 := by -- --- PROOF ---
   obtain ⟨i, hi⟩ : ∃ i, g i ≠ 0 := by
     by_contra h
@@ -64,7 +64,7 @@ theorem aux_gramSchmidtPivot_ne_zero {g : Vec ℝ (m + 1)} (hg : g ≠ 0) : -- -
   exact hi (abs_nonpos_iff.mp hle)
 
 /-- The completed columns are independent once `g` is nonzero at the dropped index `p`. -/
-theorem aux_gramSchmidtVec_cols_independent {g : Vec ℝ (m + 1)} {p : Fin (m + 1)}
+private theorem aux_gramSchmidtVec_cols_independent {g : Vec ℝ (m + 1)} {p : Fin (m + 1)}
     (hgp : g p ≠ 0) : -- --- CONCL ---
     LinearIndependent ℝ (Matrix.of fun i j => Fin.cases (motive := fun _ => ℝ)
       (g i) (fun l => (Pi.single (p.succAbove l) 1 : Vec ℝ (m + 1)) i) j)ᵀ := by -- --- PROOF ---

@@ -51,7 +51,7 @@ section
 open Plus Mtimes
 
 /-- A matrix times the real value of a point is in the `mtimes` of its point box. -/
-theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du) :
+private theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du) :
     Scalar.toRealMat M *ᵥ Scalar.toRealVec v ∈
       construct (mtimes (S := ℐ𝒱[𝕋]) M (Interval.point v)) :=
   mtimes_outer (S := ℐ𝒱[𝕋]) M _
@@ -59,7 +59,7 @@ theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du
 
 
 /-- The fold adds each listed term to a partial sum that is already enclosed. -/
-theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * dy) du)
+private theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * dy) du)
     (w : Fin (p + 1) → Vec 𝕋 du) : -- --- CONCL ---
     ∀ (l : List (Fin p)) (acc : Interval (Vec 𝕋 (p * dy))) (a : Vec ℝ (p * dy)),
       a ∈ construct acc →
@@ -79,7 +79,8 @@ theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * dy) du)
 
 
 /-- The real input feed lies in the float feed box. -/
-theorem LinearARX.aux_feed_mem_feedBox (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec 𝕋 du) (k : ℕ) :
+private theorem LinearARX.aux_feed_mem_feedBox (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec 𝕋 du)
+    (k : ℕ) :
     sys.feed (fun j => Scalar.toRealVec (u j)) k ∈ construct (sys.aux_feedBox u k) := by
   unfold LinearARX.feed LinearARX.aux_feedBox
   rw [Fin.sum_univ_succ, Fin.sum_univ_def]

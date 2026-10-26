@@ -82,7 +82,7 @@ def parseRational? (s : String) : Option (Int × Int) :=
 /-- `num / den` reduced to lowest terms, as (odd-or-zero numerator, the
 exponent reduction alone gives it, odd part left in the denominator). The last
 is `1` exactly when the fraction is exactly representable in binary. -/
-def aux_reduceRational (num den : Int) : Int × Int × Nat :=
+private def aux_reduceRational (num den : Int) : Int × Int × Nat :=
   if num = 0 then (0, 0, 1) else
   let g := Nat.gcd num.natAbs den.natAbs
   let num' := num / (g : Int)

@@ -54,7 +54,7 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `shift`'s point is the point moved. -/
-theorem PolyZonotope.aux_shift_point (pZ : PolyZonotope α) (v : α) (a : Fin pZ.p → ℝ) :
+private theorem PolyZonotope.aux_shift_point (pZ : PolyZonotope α) (v : α) (a : Fin pZ.p → ℝ) :
     (pZ.shift v).point a = pZ.point a + v := by
   show pZ.c + v + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
       = pZ.c + (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i) + v

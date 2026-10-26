@@ -39,7 +39,7 @@ open Lean (Json)
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `U`/`B`, if present, must be exactly zero: `LinearSys` has no input term. -/
-def aux_checkNoInput (req : Json) : Except String Unit := do
+private def aux_checkNoInput (req : Json) : Except String Unit := do
   match fieldOpt req "U" with
   | some uj =>
     let dz ← parseZonotopeScalar uj
@@ -57,7 +57,7 @@ def aux_checkNoInput (req : Json) : Except String Unit := do
 
 /-- `v`, as an exact `(num, den)` fraction, `den > 0` -- `.dy`'s own power of two, or
 `.decNeg`'s power of ten. -/
-def aux_toRat : ExactScalar → Int × Int
+private def aux_toRat : ExactScalar → Int × Int
   | .dy ⟨m, e⟩ => if e ≥ 0 then (m * 2 ^ e.toNat, 1) else (m, 2 ^ (-e).toNat)
   | .decNeg m d => (m, 10 ^ d)
 

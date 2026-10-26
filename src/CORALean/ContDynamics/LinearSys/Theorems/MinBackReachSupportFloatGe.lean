@@ -67,7 +67,7 @@ open Pointwise InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `Zonotope.lowerDot` is attained from below. -/
-theorem Zonotope.aux_lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
+private theorem Zonotope.aux_lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
     (hE : ∀ i, toReal (Z.I_error.inf i) ≤ toReal (Z.I_error.sup i)) : -- --- CONCL ---
     ∃ x ∈ Z.construct, toReal (Z.lowerDot a) ≤ ∑ i, toReal (a i) * x i := by -- --- PROOF ---
   -- the generator signs and the box corner the support formula names

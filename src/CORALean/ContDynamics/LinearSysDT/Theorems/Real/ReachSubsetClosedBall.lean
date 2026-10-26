@@ -75,7 +75,7 @@ variable {n : ℕ}
 namespace Real
 /-- The box's own `absBound`, read off its diagonal generators at a
 coordinate: the dropped rows' `1`-norm there, and nothing from the center. -/
-theorem aux_reduceByBox_absBound {n q r : ℕ} (Z : Zonotope (Vec ℝ n))
+private theorem aux_reduceByBox_absBound {n q r : ℕ} (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (j : Fin n) : -- --- CONCL ---
     (Z.reduceByBox part).absBound j = ∑ l, |Z.G (part.right l) j| := by -- --- PROOF ---
   show |(0 : Vec ℝ n) j| + ∑ l : Fin n,
@@ -92,7 +92,7 @@ theorem aux_reduceByBox_absBound {n q r : ℕ} (Z : Zonotope (Vec ℝ n))
 /-- `reduceBox`'s own `absBound` never exceeds the source zonotope's: a
 dropped generator is one of `Z`'s own, and the origin at an order already met
 is no further than `Z`'s own center, `absBound` being non-negative. -/
-theorem Zonotope.aux_reduceBox_absBound_le (Z : Zonotope (Vec ℝ n)) (o : ℕ)
+private theorem Zonotope.aux_reduceBox_absBound_le (Z : Zonotope (Vec ℝ n)) (o : ℕ)
     (j : Fin n) : -- --- CONCL ---
     (Z.reduceBox o).absBound j ≤ Z.absBound j := by -- --- PROOF ---
   unfold Zonotope.reduceBox
@@ -119,8 +119,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- Step `k + 1` of `reach` reaches no further than `‖sys.A‖ * r + rU + rbox`,
 given a ball for the state reached at step `k`, one for `U`, and one for the
 box that step's own reduction pays. -/
-theorem LinearSysDT.aux_reach_step_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
-    {R₀ U : Zonotope (Vec ℝ n)} {r rU rbox : ℝ} (k : ℕ)
+private theorem LinearSysDT.aux_reach_step_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ}
+    (ho : 0 < o) {R₀ U : Zonotope (Vec ℝ n)} {r rU rbox : ℝ} (k : ℕ)
     (hR : (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (hbox : (((Zonotope.mtimes sys.A

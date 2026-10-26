@@ -60,7 +60,7 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- With no generators of either kind the set is its center. -/
-theorem PolyZonotope.aux_mem_of_noGens (Z : PolyZonotope ℝ) (hh : Z.h = 0) (hq : Z.q = 0)
+private theorem PolyZonotope.aux_mem_of_noGens (Z : PolyZonotope ℝ) (hh : Z.h = 0) (hq : Z.q = 0)
     (x : ℝ) : -- --- CONCL ---
     x ∈ Z.construct ↔ x = Z.c := by -- --- PROOF ---
   haveI : IsEmpty (Fin Z.h) := by rw [hh]; infer_instance

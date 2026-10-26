@@ -61,7 +61,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- With `C` nonempty, `x ↦ g̲(x)` at `hᵢ = xⁱ` is a sum of minima, hence continuous. -/
-theorem aux_extremalLo_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 1))}
+private theorem aux_extremalLo_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 1))}
     (hC : C.IsNonempty) : -- --- CONCL ---
     Continuous fun x : ℝ => C.extremalLo (fun i => x ^ (i : ℕ)) := by -- --- PROOF ---
   have heq : (fun x : ℝ => C.extremalLo (fun i => x ^ (i : ℕ))) =
@@ -77,7 +77,7 @@ theorem aux_extremalLo_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 1))}
     (continuous_const.mul (continuous_pow _)).min (continuous_const.mul (continuous_pow _))
 
 /-- The mirror image: `g̅` is a sum of maxima. -/
-theorem aux_extremalHi_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 1))}
+private theorem aux_extremalHi_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 1))}
     (hC : C.IsNonempty) : -- --- CONCL ---
     Continuous fun x : ℝ => C.extremalHi (fun i => x ^ (i : ℕ)) := by -- --- PROOF ---
   have heq : (fun x : ℝ => C.extremalHi (fun i => x ^ (i : ℕ))) =
@@ -94,7 +94,7 @@ theorem aux_extremalHi_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 1))}
 
 
 /-- Membership in `B` with coordinate `k` replaced by `[a, b]`. -/
-theorem aux_mem_update_iff {B : Interval (Vec ℝ n)} {k : Fin n} {a b : ℝ}
+private theorem aux_mem_update_iff {B : Interval (Vec ℝ n)} {k : Fin n} {a b : ℝ}
     {z : Vec ℝ n} : -- --- CONCL ---
     z ∈ (⟨Function.update B.inf k a, Function.update B.sup k b⟩ : Interval (Vec ℝ n)).construct ↔
       (a ≤ z k ∧ z k ≤ b) ∧ ∀ i, i ≠ k → B.inf i ≤ z i ∧ z i ≤ B.sup i := by -- --- PROOF ---

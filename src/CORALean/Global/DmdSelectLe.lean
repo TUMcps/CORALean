@@ -46,7 +46,7 @@ variable {α : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the loop holds after `rankMax` ranks: a pair or nothing, nothing only for none. -/
-theorem aux_dmdSelect_fold (lt : ℝ → ℝ → Bool) (hlt : ∀ a b, lt a b = true ↔ a < b)
+private theorem aux_dmdSelect_fold (lt : ℝ → ℝ → Bool) (hlt : ∀ a b, lt a b = true ↔ a < b)
     (err : α → ℝ) (cand : ℕ → α) (rankMax : ℕ) : -- --- CONCL ---
     ((List.range rankMax).foldl (fun best i =>
       match best with

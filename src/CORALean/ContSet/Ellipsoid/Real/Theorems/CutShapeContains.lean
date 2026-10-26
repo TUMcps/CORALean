@@ -59,7 +59,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Ellipsoid.aux_quad' (b l : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
+private theorem Ellipsoid.aux_quad' (b l : ℝ) (c x : Vec ℝ n) : -- --- CONCL ---
     x ⬝ᵥ ((b • (1 + l • vecMulVec c c : Mat ℝ n n)) *ᵥ x)
       = b * (x ⬝ᵥ x + l * (c ⬝ᵥ x) ^ 2) := by -- --- PROOF ---
   rw [Matrix.smul_mulVec, Matrix.add_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,

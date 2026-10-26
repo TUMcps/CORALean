@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `|nominal pZ|` is at most its center plus every generator's magnitude, since
 every monomial is at most `1`. -/
-theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : Fin pZ.p → ℝ)
+private theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : Fin pZ.p → ℝ)
     (hb : ∀ k, |b k| ≤ 1) (i : Fin n) : -- --- CONCL ---
     |Real.PolyZonotope.point (nominal pZ) b i|
       ≤ toReal (PolyZonotope.evalPolyBoundS pZ i) := by -- --- PROOF ---
@@ -82,8 +82,8 @@ theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : F
 /-- The Horner recursion's invariant: the gap between the exact value (from `pZ`'s
 stored floats, with no further rounding) and the float accumulator's own stored
 value lies in that accumulator's error box, at every admissible `b`. -/
-theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs : List (Vec 𝕋 n))
-    (b : Fin pZ.p → ℝ) (hb : ∀ k, |b k| ≤ 1) : -- --- CONCL ---
+private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
+    (coeffs : List (Vec 𝕋 n)) (b : Fin pZ.p → ℝ) (hb : ∀ k, |b k| ≤ 1) : -- --- CONCL ---
     (fun i => (Real.PolyZonotope.evalPolyP (nominal pZ) (coeffs.map toRealVec)).1.point
           (fun k => b (Fin.cast ((Real.PolyZonotope.evalPolyP (nominal pZ)
               (coeffs.map toRealVec)).2.trans (PolyZonotope.nominal_p pZ)) k)) i

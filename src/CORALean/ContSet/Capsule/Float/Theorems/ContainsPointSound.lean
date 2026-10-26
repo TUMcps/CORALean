@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The clamp `e` of `u` to `[a, b]` is in the range, and `|u - e|` is at most the larger of
 `0`, `a - u` and `u - b`. -/
-theorem Capsule.aux_clamp {a b u : ℝ} (hab : a ≤ b) : -- --- CONCL ---
+private theorem Capsule.aux_clamp {a b u : ℝ} (hab : a ≤ b) : -- --- CONCL ---
     (a ≤ max a (min b u) ∧ max a (min b u) ≤ b) ∧
       |u - max a (min b u)| ≤ max 0 (max (a - u) (u - b)) := by -- --- PROOF ---
   refine ⟨⟨le_max_left _ _, max_le hab (min_le_left _ _)⟩, ?_⟩

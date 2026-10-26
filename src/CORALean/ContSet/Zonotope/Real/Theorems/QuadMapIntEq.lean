@@ -55,8 +55,8 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `b(u + Σ vⱼ, u + Σ vⱼ)` expanded: constant, linear, and every ordered pair. -/
-theorem Zonotope.aux_quadMapInt_sq {h : ℕ} (b : LinearMap.BilinForm ℝ (Vec ℝ n)) (u : Vec ℝ n)
-    (v : Fin h → Vec ℝ n) : -- --- CONCL ---
+private theorem Zonotope.aux_quadMapInt_sq {h : ℕ} (b : LinearMap.BilinForm ℝ (Vec ℝ n))
+    (u : Vec ℝ n) (v : Fin h → Vec ℝ n) : -- --- CONCL ---
     b (u + ∑ j, v j) (u + ∑ j, v j)
       = b u u + ∑ j, (b u (v j) + b (v j) u) + ∑ j, ∑ k, b (v j) (v k) := by -- --- PROOF ---
   simp only [map_add, map_sum, LinearMap.add_apply, LinearMap.coe_sum, Finset.sum_apply]
@@ -66,7 +66,7 @@ theorem Zonotope.aux_quadMapInt_sq {h : ℕ} (b : LinearMap.BilinForm ℝ (Vec �
   ring
 
 /-- The ordered pairs split into the diagonal and one term per unordered pair `j < k`. -/
-theorem Zonotope.aux_quadMapInt_diagpair {h : ℕ} (f : Fin h → Fin h → ℝ) : -- --- CONCL ---
+private theorem Zonotope.aux_quadMapInt_diagpair {h : ℕ} (f : Fin h → Fin h → ℝ) : -- --- CONCL ---
     ∑ j, ∑ k, f j k
       = ∑ j, f j j + ∑ j, ∑ k, (if j < k then f j k + f k j else 0) := by -- --- PROOF ---
   have hswap : ∑ j : Fin h, ∑ k, (if j < k then f k j else 0)
@@ -92,7 +92,7 @@ theorem Zonotope.aux_quadMapInt_diagpair {h : ℕ} (f : Fin h → Fin h → ℝ)
   ring
 
 /-- The pair block, read over `Fin (h * h)` through `finProdFinEquiv`. -/
-theorem Zonotope.aux_quadMapInt_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ) :
+private theorem Zonotope.aux_quadMapInt_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ) :
     ∑ l : Fin (h * h), f (finProdFinEquiv.symm l).1 (finProdFinEquiv.symm l).2
       = ∑ j, ∑ k, f j k := by
   rw [Fintype.sum_equiv finProdFinEquiv.symm _ (fun jk : Fin h × Fin h => f jk.1 jk.2)
@@ -100,7 +100,7 @@ theorem Zonotope.aux_quadMapInt_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ
   exact Fintype.sum_prod_type _
 
 /-- The radii add up to `|Z|ᵀ HΔ⁽ⁱ⁾ |Z|`: the identity behind [1, Thm. 1]. -/
-theorem Zonotope.aux_quadMapInt_radius (HΔ : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
+private theorem Zonotope.aux_quadMapInt_radius (HΔ : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
     (i : Fin m) : -- --- CONCL ---
     ((⟨Z.h, fun i => |Z.c i|, fun j i => |Z.G j i|⟩ : Zonotope (Vec ℝ n)).quadMap HΔ).c i
       + ∑ l : Fin (Z.h + Z.h + Z.h * Z.h),

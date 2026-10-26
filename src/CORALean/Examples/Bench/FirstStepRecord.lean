@@ -47,12 +47,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Every scalar a zonotope stores. -/
-def aux_scalars (Z : Zonotope (Vec 𝕋 2)) : List 𝕋 :=
+private def aux_scalars (Z : Zonotope (Vec 𝕋 2)) : List 𝕋 :=
   List.ofFn Z.c ++ (List.ofFn fun i => List.ofFn fun j => Z.G j i).flatten ++
     List.ofFn Z.I_error.inf ++ List.ofFn Z.I_error.sup
 
 /-- The sets of a successful step: `R_0` from `Rti`, `X_1` from `Rtp`, and the status they earn. -/
-def aux_sets (nonFinite : 𝕋 → Bool) (X0 : Zonotope (Vec 𝕋 2)) (etaUsed : ℕ)
+private def aux_sets (nonFinite : 𝕋 → Bool) (X0 : Zonotope (Vec 𝕋 2)) (etaUsed : ℕ)
     (Rti Rtp : List (Zonotope (Vec 𝕋 2))) : Option (String × String × List (String × Json)) :=
   match Rti, Rtp with
   | R0 :: _, _ :: X1 :: _ =>
@@ -66,7 +66,7 @@ def aux_sets (nonFinite : 𝕋 → Bool) (X0 : Zonotope (Vec 𝕋 2)) (etaUsed :
   | _, _ => none
 
 /-- The record's `status`, `reason` and whatever else it can say, in that order. -/
-def aux_result (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋)
+private def aux_result (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋)
     (exactIn : ExactDyadic → 𝕋) (nt : NumberType 𝕋) (dtStr : String) :
     String × String × List (String × Json) :=
   let nonFinite : 𝕋 → Bool := nt.overflows.getD fun _ => false

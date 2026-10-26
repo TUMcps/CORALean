@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- A matrix's negation, stored entrywise, is a point interval at the negated
 real matrix. -/
-theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
+private theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
       (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
@@ -67,7 +67,7 @@ theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
   rwa [he] at h
 
 /-- The same for a vector. -/
-theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
+private theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     -toRealVec v ∈
       (Interval.point (α := Vec 𝕋 k) (-v)).construct := by -- --- PROOF ---
   have h := Interval.mem_point (α := Vec 𝕋 k) (-v)
@@ -77,7 +77,7 @@ theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
   rwa [he] at h
 
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
-theorem aux_mem_slopeTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
+private theorem aux_mem_slopeTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
     (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
     (hy : y ∈ Y.construct) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈

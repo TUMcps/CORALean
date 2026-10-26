@@ -34,10 +34,10 @@ namespace CORALean.Bench
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `q · d` as an integer, `d` a multiple of `q.den`. -/
-def aux_sepScale (d : ℕ) (q : ℚ) : ℤ := q.num * ((d / q.den : ℕ) : ℤ)
+private def aux_sepScale (d : ℕ) (q : ℚ) : ℤ := q.num * ((d / q.den : ℕ) : ℤ)
 
 /-- `(separated, distance)` at one candidate normal, exactly; `dS` the box's denominator. -/
-def aux_atNormal (den dS : ℕ) (L H : ℤ × ℤ) : ℤ × ℤ × ℤ × ℕ × Float → Bool × Float
+private def aux_atNormal (den dS : ℕ) (L H : ℤ × ℤ) : ℤ × ℤ × ℤ × ℕ × Float → Bool × Float
   | (n₁, n₂, ρ, scale, nrm) =>
     -- `dS · min_S n · s`, against `dS · ρ_Y(n)`, both over `den`
     let m := n₁ * (if 0 ≤ n₁ then L.1 else H.1) + n₂ * (if 0 ≤ n₂ then L.2 else H.2)
@@ -48,7 +48,7 @@ def aux_atNormal (den dS : ℕ) (L H : ℤ × ℤ) : ℤ × ℤ × ℤ × ℕ ×
 /-- `(separated, distance)` of one window from the box with bounds `L ≤ s ≤ H` over `dS`, `Lf`
 and `Hf` the same as `Float`s. The normal the `Float`s rank first is tried exactly; only if it
 does not separate are all the candidates tried, exactly. -/
-def aux_windowSep (W : RandWindow) (dS : ℕ) (L H : ℤ × ℤ) (Lf Hf : Float × Float) :
+private def aux_windowSep (W : RandWindow) (dS : ℕ) (L H : ℤ × ℤ) (Lf Hf : Float × Float) :
     Bool × Float :=
   let (j, _) := W.approx.zipIdx.foldl (fun (bj, bv) ((n₁, n₂, ρ), j) =>
     let v := n₁ * (if 0 ≤ n₁ then Lf.1 else Hf.1) + n₂ * (if 0 ≤ n₂ then Lf.2 else Hf.2) - ρ

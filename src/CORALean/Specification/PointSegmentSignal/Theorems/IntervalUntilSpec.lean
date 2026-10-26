@@ -52,7 +52,7 @@ open scoped Pointwise
 section
 open Classical in
 /-- `untilIntNoZero` denotes the times of the until interval except `0`. -/
-theorem STLInterval.aux_set_untilNoZero (U U' : STLInterval ℝ)
+private theorem STLInterval.aux_set_untilNoZero (U U' : STLInterval ℝ)
     (hU' : U' = if U.containsPoint 0 0 then
       STLInterval.stlInterval (0 : ℝ) (U.supremum.value.getD 0) false U.supremum.closed (by simp)
       else U)

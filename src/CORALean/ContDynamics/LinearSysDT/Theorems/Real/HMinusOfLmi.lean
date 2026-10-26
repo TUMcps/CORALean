@@ -64,7 +64,7 @@ variable {n ny nf : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- [1, Eq. 24] at one step: the form of the negated Eq. 27 at `(e_{k+1}, e_k, f_k)`
-theorem LinearSysDT.aux_hMinus_step (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
+private theorem LinearSysDT.aux_hMinus_step (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
     (P : Mat ℝ n n) (W : Mat ℝ n ny) (M : Mat ℝ ny ny) (α β : ℝ) (hP : P.PosDef)
     (h : LinearSysDT.IsHMinusLmi A C E P W (Mᵀ * M) α β) (e : Vec ℝ n)
     (f : Vec ℝ nf) : -- --- CONCL ---

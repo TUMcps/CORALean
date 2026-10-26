@@ -54,7 +54,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The visits of a face are vertices of the face. -/
-theorem aux_visits_subset {b : Vec ℝ n} {α : ℝ} : -- --- CONCL ---
+private theorem aux_visits_subset {b : Vec ℝ n} {α : ℝ} : -- --- CONCL ---
     ∀ (j : ℕ) (p : Fin n → Bool), ∀ w ∈ Interval.exploreBNVisits b α j p,
       w ∈ Interval.prefixFace j p := by -- --- PROOF ---
   intro j
@@ -76,7 +76,7 @@ theorem aux_visits_subset {b : Vec ℝ n} {α : ℝ} : -- --- CONCL ---
     · simp at hw
 
 /-- The visits are distinct: the pieces of a partition are disjoint and miss `w`. -/
-theorem aux_visits_nodup {b : Vec ℝ n} {α : ℝ} : -- --- CONCL ---
+private theorem aux_visits_nodup {b : Vec ℝ n} {α : ℝ} : -- --- CONCL ---
     ∀ (j : ℕ) (p : Fin n → Bool),
       (Interval.exploreBNVisits b α j p).Nodup := by -- --- PROOF ---
   intro j
@@ -124,7 +124,7 @@ theorem aux_visits_nodup {b : Vec ℝ n} {α : ℝ} : -- --- CONCL ---
   · exact List.nodup_singleton _
 
 /-- `FIND SOLUTIONS` of every visit returns something, given that the plane meets the box. -/
-theorem aux_visits_nonempty {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) : -- --- CONCL ---
+private theorem aux_visits_nonempty {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) : -- --- CONCL ---
     ∀ (j : ℕ) (p : Fin n → Bool), (hj : j ≤ n) →
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner (fun i => if (i : ℕ) < j then p i else false) i
         ≤ α →
@@ -235,8 +235,8 @@ theorem aux_visits_nonempty {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) : 
     · simp at hw
 
 /-- A solution determines the vertex it was found from. -/
-theorem aux_decode {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) {w : Fin n → Bool} {x : Vec ℝ n}
-    (hx : x ∈ Interval.findSolutions b α ((⟨0, b⟩ : Interval (Vec ℝ n)).corner w))
+private theorem aux_decode {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) {w : Fin n → Bool}
+    {x : Vec ℝ n} (hx : x ∈ Interval.findSolutions b α ((⟨0, b⟩ : Interval (Vec ℝ n)).corner w))
     : -- --- CONCL ---
     (fun k => decide (x k = b k)) = w := by -- --- PROOF ---
   have hc : ∀ k, decide ((⟨0, b⟩ : Interval (Vec ℝ n)).corner w k = b k) = w k := fun k => by
@@ -258,7 +258,7 @@ theorem aux_decode {b : Vec ℝ n} {α : ℝ} (hb0 : ∀ i, 0 < b i) {w : Fin n 
     · rw [Function.update_of_ne hki]; exact hc k
 
 /-- Membership in the union line 8 accumulates. -/
-theorem aux_mem_foldr_union_iff {β γ : Type} [DecidableEq γ] (f : β → Finset γ) (L : List β)
+private theorem aux_mem_foldr_union_iff {β γ : Type} [DecidableEq γ] (f : β → Finset γ) (L : List β)
     (x : γ) : -- --- CONCL ---
     x ∈ L.foldr (fun w acc => f w ∪ acc) ∅ ↔ ∃ w ∈ L, x ∈ f w := by -- --- PROOF ---
   induction L with
@@ -274,7 +274,7 @@ theorem aux_mem_foldr_union_iff {β γ : Type} [DecidableEq γ] (f : β → Fins
       · exact Or.inr ⟨w', hw', h⟩
 
 /-- A nodup list of nonempty, decodable blocks has at most as many entries as their union. -/
-theorem aux_length_le_card {β γ : Type} [DecidableEq γ] (f : β → Finset γ) (g : γ → β)
+private theorem aux_length_le_card {β γ : Type} [DecidableEq γ] (f : β → Finset γ) (g : γ → β)
     (L : List β) (hnd : L.Nodup) (hne : ∀ w ∈ L, (f w).Nonempty)
     (hg : ∀ w ∈ L, ∀ x ∈ f w, g x = w) : -- --- CONCL ---
     L.length ≤ (L.foldr (fun w acc => f w ∪ acc) ∅).card := by -- --- PROOF ---

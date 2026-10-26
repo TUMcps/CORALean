@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The value and index `atIdx` finds are alike on the float and the real time points. -/
-theorem PointSegmentSignal.aux_atIdx_mapTime
+private theorem PointSegmentSignal.aux_atIdx_mapTime
     (s : PointSegmentSignal 𝕋) (time : WithTop 𝕋) : -- --- CONCL ---
     (s.mapTime toReal).atIdx (time.map toReal) = s.atIdx time := by -- --- PROOF ---
   -- a point is below the time exactly when the real it denotes is
@@ -82,7 +82,7 @@ theorem PointSegmentSignal.aux_atIdx_mapTime
 
 
 /-- Setting the value at a point commutes with reading the time points as reals. -/
-theorem PointSegmentSignal.aux_setPoint_mapTime (s : PointSegmentSignal 𝕋) (point : 𝕋)
+private theorem PointSegmentSignal.aux_setPoint_mapTime (s : PointSegmentSignal 𝕋) (point : 𝕋)
     (value : Bool) : -- --- CONCL ---
     (s.setPoint point value).mapTime toReal =
       (s.mapTime toReal).setPoint (toReal point) value := by -- --- PROOF ---
@@ -115,15 +115,15 @@ theorem PointSegmentSignal.aux_setPoint_mapTime (s : PointSegmentSignal 𝕋) (p
 
 omit [ExactLe 𝕋] in
 /-- The `k`-th time point, `0` past the end, read as a real. -/
-theorem PointSegmentSignal.aux_getD_mapTime (s : PointSegmentSignal 𝕋) (k : ℕ) :
+private theorem PointSegmentSignal.aux_getD_mapTime (s : PointSegmentSignal 𝕋) (k : ℕ) :
     (s.mapTime toReal).timePoints.getD k 0 = toReal (s.timePoints.getD k 0) := by
   rw [← toReal_zero_eq (𝕋 := 𝕋), List.getD_eq_getElem?_getD, List.getD_eq_getElem?_getD]
   simp only [PointSegmentSignal.mapTime, List.getElem?_map]
   cases s.timePoints[k]? <;> rfl
 
 /-- Whether a new point is needed is decided alike on the float and the real time points. -/
-theorem PointSegmentSignal.aux_isNewPointOk_mapTime (s : PointSegmentSignal 𝕋) (i : ℕ) (p : 𝕋)
-    (vals : List Bool) : -- --- CONCL ---
+private theorem PointSegmentSignal.aux_isNewPointOk_mapTime (s : PointSegmentSignal 𝕋) (i : ℕ)
+    (p : 𝕋) (vals : List Bool) : -- --- CONCL ---
     (s.mapTime toReal).aux_isNewPointOk i (toReal p) vals =
       s.aux_isNewPointOk i p vals := by -- --- PROOF ---
   -- the values next to the point are the float ones, the point and `0` compared exactly
@@ -139,7 +139,7 @@ theorem PointSegmentSignal.aux_isNewPointOk_mapTime (s : PointSegmentSignal 𝕋
   · rw [if_neg h, if_neg (show ¬ TimeOrder.Eqv (toReal _) (toReal p) from h)]
 
 /-- `set` on bounds commutes with reading the time points and the bounds as reals. -/
-theorem PointSegmentSignal.aux_setBounds_mapTime (s : PointSegmentSignal 𝕋) (lb : 𝕋)
+private theorem PointSegmentSignal.aux_setBounds_mapTime (s : PointSegmentSignal 𝕋) (lb : 𝕋)
     (ub : WithTop 𝕋) (lc rc value : Bool) : -- --- CONCL ---
     (s.aux_setBounds lb ub lc rc value).mapTime toReal =
       (s.mapTime toReal).aux_setBounds (toReal lb) (ub.map toReal) lc rc

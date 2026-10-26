@@ -74,7 +74,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A member's order-`i` input matrix lies in `inputTermZonoFloat`. -/
-theorem LinParamSys.aux_smul_pow_mem_inputTermZonoFloat
+private theorem LinParamSys.aux_smul_pow_mem_inputTermZonoFloat
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (i : ℕ) : -- --- CONCL ---
     (toReal r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • A ^ i
@@ -86,11 +86,11 @@ theorem LinParamSys.aux_smul_pow_mem_inputTermZonoFloat
 
 
 /-- The Minkowski sum of plain sets, exactly. -/
-@[reducible] def aux_zonoSetPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
+@[reducible] private def aux_zonoSetPlus (k : ℕ) : Plus (Set (Vec ℝ k)) (Vec ℝ k) :=
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_zonoSetMtimes : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_zonoSetMtimes : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -98,7 +98,7 @@ theorem LinParamSys.aux_smul_pow_mem_inputTermZonoFloat
 
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
-@[reducible] noncomputable def aux_zonoSetMtimesInterval :
+@[reducible] private noncomputable def aux_zonoSetMtimesInterval :
     Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
@@ -106,7 +106,7 @@ remainder's product is the closed convex set the exact theorem asks for. -/
 attribute [local instance] aux_zonoSetPlus aux_zonoSetMtimes aux_zonoSetMtimesInterval
 
 /-- One exact order's image inside the float product at a family that holds its matrix. -/
-theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
+private theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
     [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵[𝕋]]
     {M : Mat ℝ n n} {X : 𝕄 n n}
     (hM : M ∈ construct X) (V : Zonotope (Vec 𝕋 n)) :
@@ -116,7 +116,7 @@ theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
 
 /-- The member's exact orders `0 … m + 2`, regrouped as the float sum is: orders `0` and
 `1` through the matrix zonotope, then the interval tail. -/
-theorem LinParamSys.aux_inputTaylorSum_subset_zono
+private theorem LinParamSys.aux_inputTaylorSum_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ m, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
@@ -163,7 +163,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset_zono
         (MatExp.intervalInputTerm sys.A.matInterval r (m + 3)) V))
 
 /-- The member's remainder, closed and convexified, inside the float product. -/
-theorem LinParamSys.aux_inputRemainder_subset_zono
+private theorem LinParamSys.aux_inputRemainder_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
       sys.A.matInterval).IsOrderAdmissibleFloat r r η)

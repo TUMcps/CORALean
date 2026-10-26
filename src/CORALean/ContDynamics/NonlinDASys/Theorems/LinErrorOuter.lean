@@ -67,7 +67,7 @@ variable {n p q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- An entrywise bound `S` on `E` bounds the quadratic form at anything `a` covers. -/
-theorem NonlinDASys.aux_linError_abs_quad_le {E S : Mat ℝ q q} {x a : Vec ℝ q}
+private theorem NonlinDASys.aux_linError_abs_quad_le {E S : Mat ℝ q q} {x a : Vec ℝ q}
     (hE : ∀ j k, |E j k| ≤ S j k) (hx : ∀ j, |x j| ≤ a j) : -- --- CONCL ---
     |x ⬝ᵥ (E *ᵥ x)| ≤ a ⬝ᵥ (S *ᵥ a) := by -- --- PROOF ---
   have ha : ∀ j, 0 ≤ a j := fun j => (abs_nonneg _).trans (hx j)
@@ -80,14 +80,14 @@ theorem NonlinDASys.aux_linError_abs_quad_le {E S : Mat ℝ q q} {x a : Vec ℝ 
     ((abs_nonneg _).trans (hE j k))) (by positivity) (ha j)
 
 /-- `xᵀ(A - Σⱼ Mᵢⱼ Bⱼ)y = xᵀAy - Σⱼ Mᵢⱼ xᵀBⱼy`: the quadratic form is linear in the matrix. -/
-theorem NonlinDASys.aux_linError_form_sub (A : Mat ℝ q q) (B : Fin p → Mat ℝ q q)
+private theorem NonlinDASys.aux_linError_form_sub (A : Mat ℝ q q) (B : Fin p → Mat ℝ q q)
     (M : Mat ℝ n p) (i : Fin n) (x y : Vec ℝ q) :
     x ⬝ᵥ ((A - ∑ j, M i j • B j) *ᵥ y) = x ⬝ᵥ (A *ᵥ y) - ∑ j, M i j * (x ⬝ᵥ (B j *ᵥ y)) := by
   rw [Matrix.sub_mulVec, dotProduct_sub, Matrix.sum_mulVec, dotProduct_sum]
   simp only [Matrix.smul_mulVec, dotProduct_smul, smul_eq_mul]
 
 /-- The center of `quad(Hᵈ_c - CF⁻¹Hᵃ_c, R)` is `d - CF⁻¹e`. -/
-theorem NonlinDASys.aux_linError_quadMap_sub_c (Hd : Fin n → Mat ℝ q q)
+private theorem NonlinDASys.aux_linError_quadMap_sub_c (Hd : Fin n → Mat ℝ q q)
     (Ha : Fin p → Mat ℝ q q) (M : Mat ℝ n p) (R : Zonotope (Vec ℝ q)) : -- --- CONCL ---
     (R.quadMap (fun i => Hd i - ∑ j, M i j • Ha j)).c
       = (R.quadMap Hd).c - M *ᵥ (R.quadMap Ha).c := by -- --- PROOF ---
@@ -108,7 +108,7 @@ theorem NonlinDASys.aux_linError_quadMap_sub_c (Hd : Fin n → Mat ℝ q q)
   ring
 
 /-- The generators of `quad(Hᵈ_c - CF⁻¹Hᵃ_c, R)` are `H - CF⁻¹V`, block by block. -/
-theorem NonlinDASys.aux_linError_quadMap_sub_G (Hd : Fin n → Mat ℝ q q)
+private theorem NonlinDASys.aux_linError_quadMap_sub_G (Hd : Fin n → Mat ℝ q q)
     (Ha : Fin p → Mat ℝ q q) (M : Mat ℝ n p) (R : Zonotope (Vec ℝ q))
     (l : Fin (R.h + R.h + R.h * R.h)) : -- --- CONCL ---
     (R.quadMap (fun i => Hd i - ∑ j, M i j • Ha j)).G l

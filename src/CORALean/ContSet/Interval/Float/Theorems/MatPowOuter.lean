@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored identity block reads back as the real identity matrix. -/
-theorem aux_toRealMat_diagonalBlock_one :
+private theorem aux_toRealMat_diagonalBlock_one :
     toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)) = (1 : Mat ℝ n n) := by
   funext i j
   rw [toRealMat, toReal_diagonalBlock]

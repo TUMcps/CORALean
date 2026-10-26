@@ -55,7 +55,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Eq. (9) with any polynomial part and remainder that enclose `D_g` on the box. -/
-theorem aux_guardIntersectSolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
+private theorem aux_guardIntersectSolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
     {g D : Vec ℝ n → ℝ} (hG : {x | g x = 0} = {x | x k = D x}) (b : ℝ) (a c : Vec ℝ n)
     (v : Vec ℝ n → ℝ) (l u : ℝ)
     (hT : ∀ x ∈ I.construct, D x - (b + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc l u)

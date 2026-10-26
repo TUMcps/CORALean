@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A matrix with small absolute row sums contracts the sup norm. -/
-theorem Zonotope.aux_contract {K : Mat ℝ n n} {q : ℝ} (hK : ∀ i, ∑ j, |K i j| ≤ q)
+private theorem Zonotope.aux_contract {K : Mat ℝ n n} {q : ℝ} (hK : ∀ i, ∑ j, |K i j| ≤ q)
     (x : Vec ℝ n) {M : ℝ} (hM : 0 ≤ M) (hx : ∀ j, |x j| ≤ M) (i : Fin n) : -- --- CONCL ---
     |(K *ᵥ x) i| ≤ q * M := by -- --- PROOF ---
   calc |(K *ᵥ x) i| = |∑ j, K i j * x j| := rfl
@@ -64,7 +64,7 @@ theorem Zonotope.aux_contract {K : Mat ℝ n n} {q : ℝ} (hK : ∀ i, ∑ j, |K
 
 /-- `P x = 0` leaves only `x = 0`, the largest coordinate of `x = K x` being at most half of
 itself. -/
-theorem Zonotope.aux_injective (Pm Hm : Mat ℝ n n) {q : ℝ} (hq : q ≤ 1 / 2)
+private theorem Zonotope.aux_injective (Pm Hm : Mat ℝ n n) {q : ℝ} (hq : q ≤ 1 / 2)
     (hK : ∀ i, ∑ j, |(1 - Hm * Pm) i j| ≤ q) (x : Vec ℝ n) (hx : Pm *ᵥ x = 0) : -- --- CONCL ---
     x = 0 := by -- --- PROOF ---
   rcases isEmpty_or_nonempty (Fin n) with hn | hn

@@ -39,7 +39,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_lt_le {I J : Interval α} (h : I.lt J) : I.le J :=
+private theorem aux_lt_le {I J : Interval α} (h : I.lt J) : I.le J :=
   fun i => ⟨(h i).1.le, (h i).2.le⟩
 
 

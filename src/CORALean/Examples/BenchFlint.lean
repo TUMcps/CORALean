@@ -57,7 +57,7 @@ def stripTypeFlint : List String → Except String (List String)
 
 /-- One step of a splitmix64 generator (Steele/Lea/Flood), for a
 reproducible, dependency-free fixed seed. -/
-def aux_splitmix64 (s : UInt64) : UInt64 × UInt64 :=
+private def aux_splitmix64 (s : UInt64) : UInt64 × UInt64 :=
   let s' := s + 0x9E3779B97F4A7C15
   let z := s'
   let z := (z ^^^ (z >>> 30)) * 0xBF58476D1CE4E5B9
@@ -67,7 +67,7 @@ def aux_splitmix64 (s : UInt64) : UInt64 × UInt64 :=
 
 /-- A pseudo-random mantissa: small, `UInt64`-sized, or past `2^64` (the
 FFI's big-`Int` path), signed by a further bit. -/
-def aux_randMantissa (s : UInt64) : Int × UInt64 :=
+private def aux_randMantissa (s : UInt64) : Int × UInt64 :=
   let (cls, s1) := aux_splitmix64 s
   let (hi, s2) := aux_splitmix64 s1
   let (lo, s3) := aux_splitmix64 s2
@@ -80,19 +80,19 @@ def aux_randMantissa (s : UInt64) : Int × UInt64 :=
   (if lo % 2 = 1 then -mag else mag, s3)
 
 /-- A pseudo-random exponent in `[-30, 30]`. -/
-def aux_randExponent (s : UInt64) : Int × UInt64 :=
+private def aux_randExponent (s : UInt64) : Int × UInt64 :=
   let (r, s') := aux_splitmix64 s
   ((((r.toNat % 61 : Nat) : Int) - 30), s')
 
 /-- `m₁ * 2 ^ e₁ = m₂ * 2 ^ e₂` decided exactly by aligning to the smaller
 exponent -- results may use different mantissas for the same value. -/
-def aux_dyadicValueEq (m1 e1 m2 e2 : Int) : Bool :=
+private def aux_dyadicValueEq (m1 e1 m2 e2 : Int) : Bool :=
   let e := min e1 e2
   m1 * (2 : Int) ^ (e1 - e).toNat == m2 * (2 : Int) ^ (e2 - e).toNat
 
 /-- The six directed operations, `Flint p` paired with `Dyadic p`, named for
 a mismatch report. -/
-def aux_selftestOps (p : ℕ) :
+private def aux_selftestOps (p : ℕ) :
     List (String × (Flint p → Flint p → Flint p) × (Dyadic p → Dyadic p → Dyadic p)) :=
   [("addUp", Flint.addUp p, Dyadic.addUp), ("addDown", Flint.addDown p, Dyadic.addDown),
    ("mulUp", Flint.mulUp p, Dyadic.mulUp), ("mulDown", Flint.mulDown p, Dyadic.mulDown),
@@ -101,7 +101,7 @@ def aux_selftestOps (p : ℕ) :
 /-- `trials` random pairs at precision `p`: every op run at both scalars and
 compared by exact value, the divisor forced nonzero. Prints mismatches,
 returns (compared, mismatched). -/
-def aux_selftestAtPrec (p : ℕ) (trials : ℕ) (seed0 : UInt64) : IO (ℕ × ℕ) := do
+private def aux_selftestAtPrec (p : ℕ) (trials : ℕ) (seed0 : UInt64) : IO (ℕ × ℕ) := do
   let mut s := seed0
   let mut tested := 0
   let mut mismatches := 0
@@ -130,7 +130,7 @@ def aux_selftestAtPrec (p : ℕ) (trials : ℕ) (seed0 : UInt64) : IO (ℕ × �
 
 /-- `bench-flint selftest`: `{2, 11, 24, 53, 113}`, `3000` pairs each, a
 fixed seed. Exits nonzero on any mismatch. -/
-def aux_runSelftest : IO Unit := do
+private def aux_runSelftest : IO Unit := do
   let ps : List ℕ := [2, 11, 24, 53, 113]
   let mut totalTested := 0
   let mut totalMismatch := 0
@@ -147,7 +147,7 @@ def aux_runSelftest : IO Unit := do
 
 /-- `firststep`'s `flint` records, `Flint p` at the same `p` as `Dyadic p`; `none` for any other
 type, which `bench` makes. -/
-def aux_firstStepFlint (cfg : HeadlineConfig) (run : FirstStepRun) (dt : String) :
+private def aux_firstStepFlint (cfg : HeadlineConfig) (run : FirstStepRun) (dt : String) :
     Option Json :=
   if run.ty ≠ "flint" then none else
   -- `Flint p` at the width `Dyadic p` has, read as `Dyadic.toDyadicP` reads a config leaf
@@ -161,7 +161,7 @@ def aux_firstStepFlint (cfg : HeadlineConfig) (run : FirstStepRun) (dt : String)
 
 /-- `randverify`'s `flint<p>` types, `Flint p` read as `aux_firstStepFlint` reads it; `none` for
 any other label, which `bench` runs. -/
-def aux_randVerifyFlint (label : String) (J : RandJob) (insts : Array RandInstance) :
+private def aux_randVerifyFlint (label : String) (J : RandJob) (insts : Array RandInstance) :
     Option (IO (Array Json)) :=
   match randTypeKind label with
   | some ("flint", some p) =>

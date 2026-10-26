@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The quotient of a point of `int` by a point of an interval avoiding `0` lies in the quotient. -/
-theorem SyntaxTree.aux_quotient_containsFloat {int J : Float.SyntaxTree.Dom 𝕋} {c t : ℝ}
+private theorem SyntaxTree.aux_quotient_containsFloat {int J : Float.SyntaxTree.Dom 𝕋} {c t : ℝ}
     (hJ : ltStrict zero (J.inf 0) = true ∨ ltStrict (J.sup 0) zero = true) (hc : int.contains c)
     (ht : J.contains t) : -- --- CONCL ---
     Float.SyntaxTree.Dom.contains (Float.Interval.rdivide int J) (c / t) := by -- --- PROOF ---
@@ -58,7 +58,7 @@ theorem SyntaxTree.aux_quotient_containsFloat {int J : Float.SyntaxTree.Dom 𝕋
   exact hmem 0
 
 /-- A certified exclusion of `0` keeps the point away from `0`. -/
-theorem SyntaxTree.aux_ne_zero_of_certFloat {J : Float.SyntaxTree.Dom 𝕋} {t : ℝ}
+private theorem SyntaxTree.aux_ne_zero_of_certFloat {J : Float.SyntaxTree.Dom 𝕋} {t : ℝ}
     (hJ : ltStrict zero (J.inf 0) = true ∨ ltStrict (J.sup 0) zero = true)
     (ht : J.contains t) : -- --- CONCL ---
     t ≠ 0 := by -- --- PROOF ---
@@ -71,7 +71,7 @@ theorem SyntaxTree.aux_ne_zero_of_certFloat {J : Float.SyntaxTree.Dom 𝕋} {t :
     exact (ht.2.trans_lt this).ne
 
 /-- The operand of a product that lies in `int` is held by `int` over a partner avoiding `0`. -/
-theorem SyntaxTree.aux_operand_containsFloat {int J : Float.SyntaxTree.Dom 𝕋} {s t : ℝ}
+private theorem SyntaxTree.aux_operand_containsFloat {int J : Float.SyntaxTree.Dom 𝕋} {s t : ℝ}
     (hJ : ltStrict zero (J.inf 0) = true ∨ ltStrict (J.sup 0) zero = true)
     (hi : int.contains (s * t)) (ht : J.contains t) :
     Float.SyntaxTree.Dom.contains (Float.Interval.rdivide int J) s := by
