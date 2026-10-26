@@ -49,6 +49,9 @@ public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaOriginSound
 public import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.Capsule.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Capsule.Float.Instances
+public import CORALean.ContSet.Capsule.Float.Operations.BallVol
+public import CORALean.ContSet.Capsule.Float.Operations.Volume
+public import CORALean.ContSet.Capsule.Float.Theorems.VolumeLe
 
 /-!
 # Capsules over a floating-point scalar, collected

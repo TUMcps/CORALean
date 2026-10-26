@@ -2,13 +2,13 @@
 <rect width="100%" height="100%" fill="white"/>
 <text x="150" y="20" font-weight="bold">(a) CORA functions</text>
 <text x="142" y="39" text-anchor="end">Set representations</text>
-<rect x="150.0" y="28" width="451.7" height="14" fill="rgb(69,150,255)"/>
-<text x="375.8" y="39" text-anchor="middle" font-size="9" fill="#000">575</text>
-<rect x="601.7" y="28" width="30.6" height="14" fill="rgb(123,180,255)"/>
-<text x="617.0" y="39" text-anchor="middle" font-size="9" fill="#000">39</text>
-<rect x="632.3" y="28" width="33.0" height="14" fill="rgb(176,210,255)"/>
-<text x="648.8" y="39" text-anchor="middle" font-size="9" fill="#000">42</text>
-<rect x="665.3" y="28" width="4.7" height="14" fill="rgb(255,255,255)"/>
+<rect x="150.0" y="28" width="454.0" height="14" fill="rgb(69,150,255)"/>
+<text x="377.0" y="39" text-anchor="middle" font-size="9" fill="#000">578</text>
+<rect x="604.0" y="28" width="25.1" height="14" fill="rgb(123,180,255)"/>
+<text x="616.6" y="39" text-anchor="middle" font-size="9" fill="#000">32</text>
+<rect x="629.2" y="28" width="34.6" height="14" fill="rgb(176,210,255)"/>
+<text x="646.4" y="39" text-anchor="middle" font-size="9" fill="#000">44</text>
+<rect x="663.7" y="28" width="6.3" height="14" fill="rgb(255,255,255)"/>
 <rect x="150" y="28" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <text x="675.0" y="39" font-size="9" fill="#888">+246</text>
 <text x="142" y="59" text-anchor="end">Cont. dynamics</text>
@@ -85,13 +85,13 @@
 <text x="548" y="260">not yet</text>
 <text x="150" y="280" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="299" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="288" width="103.0" height="14" fill="rgb(0,114,189)"/>
+<rect x="150.0" y="288" width="102.9" height="14" fill="rgb(0,114,189)"/>
 <text x="201.5" y="299" text-anchor="middle" font-size="9" fill="#fff">1874</text>
-<rect x="253.0" y="288" width="181.3" height="14" fill="rgb(42,92,173)"/>
-<text x="343.7" y="299" text-anchor="middle" font-size="9" fill="#000">3298</text>
-<rect x="434.3" y="288" width="120.5" height="14" fill="rgb(84,69,158)"/>
-<text x="494.5" y="299" text-anchor="middle" font-size="9" fill="#000">2192</text>
-<rect x="554.8" y="288" width="115.2" height="14" fill="rgb(126,47,142)"/>
+<rect x="252.9" y="288" width="181.1" height="14" fill="rgb(42,92,173)"/>
+<text x="343.5" y="299" text-anchor="middle" font-size="9" fill="#000">3298</text>
+<rect x="434.0" y="288" width="120.9" height="14" fill="rgb(84,69,158)"/>
+<text x="494.5" y="299" text-anchor="middle" font-size="9" fill="#000">2201</text>
+<rect x="554.9" y="288" width="115.1" height="14" fill="rgb(126,47,142)"/>
 <text x="612.4" y="299" text-anchor="middle" font-size="9" fill="#000">2096</text>
 <rect x="150" y="288" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
 <rect x="150" y="314" width="12" height="12" fill="rgb(0,114,189)" stroke="#000" stroke-width="0.8"/>

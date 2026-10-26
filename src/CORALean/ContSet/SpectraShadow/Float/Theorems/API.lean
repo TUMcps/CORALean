@@ -28,6 +28,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaOriginSou
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.IsFullDimSound
 
 /-!
 # What a float spectrahedral shadow guarantees, collected

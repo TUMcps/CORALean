@@ -167,6 +167,18 @@ def ProbZonotope.zonotope (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : Zonot
 def ProbZonotope.interval (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : Interval (Vec 𝕋 n) :=
   (P.zonotope p m).interval
 
+
+-- ====================================  `ProbZonotope.sup`  ==================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `sup(probZ)` as an upper bound: the largest entry magnitude of the interval hull of the
+confidence zonotope, which is the larger sup-norm of its two bounds. -/
+def ProbZonotope.sup (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : 𝕋 :=
+  maximumOver (ProbZonotope.interval p P m).normMag
+
 end CORALean.Float
 
 
