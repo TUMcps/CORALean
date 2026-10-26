@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One-command reproduction of the paper's headline runs, for every
 # experiments/config/headline_*.json (or one, with `--config`): headline-a
-# and headline-b at dyadic binary64, float and the unsound round-to-nearest
+# and headline-b at dyadic binary64, hardware and the unsound round-to-nearest
 # baseline (`--type nearest`, binary64), exp2-timepoint at every dyadic format
 # and at every round-to-nearest one (the precision ablation) -- then the plotting pass
 # (to_pgfplots.py --merged) and simulate.py. Also one nn-float32 run, and the
@@ -123,12 +123,12 @@ for config in $configs; do
   [ -f "$config" ] || continue
   echo "== $config =="
 
-  # headline-a / headline-b: the headline pair, dyadic binary64, float and the
+  # headline-a / headline-b: the headline pair, dyadic binary64, hardware and the
   # round-to-nearest baseline (NO guarantee, as in CORA)
   for exp in headline-a headline-b; do
     run_experiment "$config $exp dyadic binary64" bench_run "$exp" --type dyadic \
       --format binary64 --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
-    run_experiment "$config $exp float" bench_run "$exp" --type float \
+    run_experiment "$config $exp hardware" bench_run "$exp" --type hardware \
       --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"
     run_experiment "$config $exp nearest binary64" bench_run "$exp" --type nearest \
       --config "$config" --out "$OUT_DIR" "${REPS_ARGS[@]}"

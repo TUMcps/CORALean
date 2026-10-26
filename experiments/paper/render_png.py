@@ -36,7 +36,7 @@ from matplotlib.patches import Polygon  # noqa: E402
 
 TYPE_COLORS = {
     "dyadic-binary64": ("tab:blue", "Dyadic $p=64$"),
-    "float": ("tab:orange", "Float"),
+    "hardware": ("tab:orange", "Float"),
     "nearest-binary64": ("tab:red", "round-to-nearest"),
     "cora": ("tab:green", "CORA"),
 }

@@ -29,9 +29,9 @@ namespace CORALean.Bench
 
 open Lean (Json)
 
-/-- One `dyadic <format>` or `float` combination a config asks to be run at.
+/-- One `dyadic <format>` or `hardware` combination a config asks to be run at.
 `format` is a label `Format.formatToPrec` reads (`"binary32"` and so on),
-`none` for `float`, whose precision is fixed by the type. -/
+`none` for `hardware`, whose precision is fixed by the type. -/
 structure PrecisionSpec where
   ty : String
   format : Option String

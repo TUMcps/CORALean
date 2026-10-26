@@ -4,7 +4,7 @@
 
 Standard library only. Reads `<results>/nn-mnist/<net>/<label>.json` for
 every net in `small medium large` and every label `run_mnist.sh` writes
-(`dyadic-binary4` .. `dyadic-binary64`, `float`, and, where present,
+(`dyadic-binary4` .. `dyadic-binary64`, `hardware`, and, where present,
 `nearest-binary4` .. `nearest-binary64`) -- a label that is not there is
 skipped rather than failing the table, so a partial sweep still prints
 whatever it has.
@@ -44,7 +44,7 @@ PAPER_LABEL = {"binary4": "p=4", "binary8": "p=8", "binary16": "p=16",
 # (label, column header) -- `nearest-*` columns are added only if their JSON exists
 COLUMNS = (
     [(f"dyadic-{f}", PAPER_LABEL[f]) for f in DYADIC_FORMATS]
-    + [("float", "float (p=64)")]
+    + [("hardware", "float (p=64)")]
     + [(f"nearest-{f}", f"round-to-nearest (as in CORA), unverified, {PAPER_LABEL[f]}")
        for f in DYADIC_FORMATS]
 )

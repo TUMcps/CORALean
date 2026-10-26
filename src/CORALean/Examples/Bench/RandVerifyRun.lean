@@ -43,7 +43,7 @@ open Lean (Json)
 
 private def aux_defaultTypes : String :=
   "dyadic12,dyadic16,dyadic24,dyadic32,dyadic53,dyadic64,dyadic128,dyadic256,dyadic1024,\
-binary16,binary32,binary64,float,nearest,flint64,flint128,flint256,flint1024"
+binary16,binary32,binary64,hardware,nearest,flint64,flint128,flint256,flint1024"
 
 private def aux_commaList (s : String) : List String :=
   (s.splitOn ",").map (·.trimAscii.toString) |>.filter (· ≠ "")

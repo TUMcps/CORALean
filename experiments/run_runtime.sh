@@ -5,7 +5,7 @@
 # an explicit `--config`): schemes headline-a and headline-b, each at
 # seven backends --
 #   * IEEE binary64, compiled (`lake exe bench --type ieee`), and interpreter
-#   * Dyadic binary64, compiled (`lake exe bench`)
+#   * Dyadic binary64, compiled (`lake exe bench --type dyadic`)
 #   * native Float, compiled
 #   * round-to-nearest `NearestFloat`, compiled (`--type nearest`: the unsound
 #     CORA-style baseline, what directed rounding costs against it)
@@ -96,10 +96,10 @@ for scheme in headline-a headline-b; do
   record "$scheme" compiled dyadic-binary64 \
     "$RUNTIME_DIR/compiled-dyadic/$CONFIG_NAME/$scheme/dyadic-binary64.json"
 
-  lake exe bench "$scheme" --type float --config "$CONFIG" --reps "$REPS" \
-    --out "$RUNTIME_DIR/compiled-float"
-  record "$scheme" compiled float \
-    "$RUNTIME_DIR/compiled-float/$CONFIG_NAME/$scheme/float.json"
+  lake exe bench "$scheme" --type hardware --config "$CONFIG" --reps "$REPS" \
+    --out "$RUNTIME_DIR/compiled-hardware"
+  record "$scheme" compiled hardware \
+    "$RUNTIME_DIR/compiled-hardware/$CONFIG_NAME/$scheme/hardware.json"
 
   lake exe bench "$scheme" --type nearest --config "$CONFIG" --reps "$REPS" \
     --out "$RUNTIME_DIR/compiled-nearest"
@@ -116,10 +116,10 @@ for scheme in headline-a headline-b; do
   record "$scheme" interpreter dyadic-binary64 \
     "$RUNTIME_DIR/interp-dyadic/$CONFIG_NAME/$scheme/dyadic-binary64.json"
 
-  lake env lean --run "$BENCH_ROOT" "$scheme" --type float --config "$CONFIG" \
-    --reps "$REPS" --out "$RUNTIME_DIR/interp-float"
-  record "$scheme" interpreter float \
-    "$RUNTIME_DIR/interp-float/$CONFIG_NAME/$scheme/float.json"
+  lake env lean --run "$BENCH_ROOT" "$scheme" --type hardware --config "$CONFIG" \
+    --reps "$REPS" --out "$RUNTIME_DIR/interp-hardware"
+  record "$scheme" interpreter hardware \
+    "$RUNTIME_DIR/interp-hardware/$CONFIG_NAME/$scheme/hardware.json"
 done
 
 python3 -c "

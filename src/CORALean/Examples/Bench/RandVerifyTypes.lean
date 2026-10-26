@@ -62,11 +62,11 @@ def randVerifyBenchRecord (label : String) (J : RandJob) (insts : Array RandInst
       let nt := ieeeNumberType label fmt
       some (randVerifyRecords (firstStepHead "ieee" label fmt.p nt) nt
         (fun field d => d.toIEEE field fmt) ExactDyadic.toIEEEUnchecked J insts)
-  | some ("float", _) =>
+  | some ("hardware", _) =>
     let nt : NumberType Float :=
       { description := "hardware binary64 (native Float, trusted, NaN outside the normal range)"
         overflows := some fun x => x.isNaN || x.isInf }
-    some (randVerifyRecords (firstStepHead "float" "binary64" 53 nt) nt
+    some (randVerifyRecords (firstStepHead "hardware" "binary64" 53 nt) nt
       ExactDyadic.toFloat ExactDyadic.toFloatUnchecked J insts)
   | some ("nearest", none) =>
     -- the unsound baseline: native `Float` rounded to nearest

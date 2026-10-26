@@ -5,11 +5,11 @@
 #
 # Figure data (experiments/README.md's "Plotting" section, `to_pgfplots.py`/
 # `simulate.py`): for every config x {headline-a, headline-b} x {ieee
-# binary64, dyadic binary64, float, nearest, cora} run this results directory holds, a merged
+# binary64, dyadic binary64, hardware, nearest, cora} run this results directory holds, a merged
 # tube (ti and tp) at `--every 1` and again at `--every 10` (thinned), plus
 # `-x0.dat` and the per-step hull `.dat`; one simulation-trajectory `.dat` per
 # config. Then `gen_figures.py` (beside this script): an `-eradius.dat` at
-# ieee and dyadic binary64 and float, a `-paper-ti-union.dat` at every type (every
+# ieee and dyadic binary64 and hardware, a `-paper-ti-union.dat` at every type (every
 # step's polygon unioned, no thinning -- needs `shapely`, see below), and
 # one `simulate-paper.dat` per config (its own docstrings say the exact rule
 # each follows). `experiments/results-paper/README.md` documents the exact
@@ -93,7 +93,7 @@ if ! python3 -c 'import shapely' >/dev/null 2>&1; then
   exit 1
 fi
 
-TYPES="ieee-binary64 dyadic-binary64 float nearest-binary64 cora"
+TYPES="ieee-binary64 dyadic-binary64 hardware nearest-binary64 cora"
 SCHEMES="headline-a headline-b"
 
 echo "== figure data: $RESULTS_DIR =="
@@ -116,7 +116,7 @@ for config_dir in "$RESULTS_DIR"/*/; do
       done
       python3 "$GEN_FIGURES" paper-ti-union "$RESULTS_DIR" "$config" "$scheme" "$type"
       case "$type" in
-        ieee-binary64|dyadic-binary64|float)
+        ieee-binary64|dyadic-binary64|hardware)
           python3 "$GEN_FIGURES" eradius "$RESULTS_DIR" "$config" "$scheme" "$type" ;;
       esac
     done
