@@ -491,6 +491,12 @@
   "2026/wetzlinger-tac-backward-reachability": {
     "Eq. 21": {
       "description": "eroding the hull by $F H(t_k)$ keeps points beyond the chords that no trajectory reaches"
+    },
+    "Thm. 2": {
+      "description": "(54) holds states that never reach $X_{\\mathrm{end}}$, already for $U = W = \\{0\\}$"
+    },
+    "Alg. 3": {
+      "description": "time-interval output by Thm.~2 holds states that never reach the target"
     }
   }
 }

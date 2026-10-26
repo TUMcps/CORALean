@@ -10,6 +10,7 @@ public import CORALean.ContDynamics.NonlinearSys.Counterexamples.InnerScaling
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.LinReachAdaptiveCora1D
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.LinReachCora1D
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.LinReachTensor3Cora2D
+public import CORALean.ContDynamics.NonlinearSys.Counterexamples.MinkowskiDiffIUnionChord
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.OutputSetCora
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.ReachInnerScalingCora1D
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.RowNormExpansion
