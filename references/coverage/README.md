@@ -78,7 +78,9 @@ A `proved` row that is not `float` is the **float backlog** (`needs_float` in
 
 * **(a)** a float-layer counterpart exists with an outer (or inner) theorem: a computable
   definition, and a theorem about it, in a `Float/` directory or in a declaration or file with
-  `Float` in its name. The row links them after `float:`; or
+  `Float` in its name. The row links them after `float:`.
+  The float counterpart is CORA's method at float (the same algorithm, outward rounding), not a coarser bound of the same quantity and not a definition that takes as input what CORA computes;
+  a certificate checked at float stands in for a solver call only where CONTRIBUTING's "Certificates, not algorithms" allows it; or
 * **(b)** its definition is generic over the scalar `𝕋` (or over the set representation, whose
   scalar the instances carry), is computable (not `noncomputable`), and its soundness theorem is stated for that generic
   `𝕋` or representation, not only at ℝ. Such a method needs no `Float/` counterpart: at
@@ -153,9 +155,9 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | bound | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 25 | 3 | 0 | 10 | 9 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 30 | 6 | 1 | 8 | 4 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 31 | 6 | 0 | 11 | 6 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 0 | 26 | 3 | 0 | 10 | 9 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 1 | 30 | 7 | 1 | 8 | 4 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 1 | 31 | 6 | 1 | 11 | 6 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 0 | 72 | 0 |
 | [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 33 | 2 | 0 | 12 | 8 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 0 | 7 | 0 |
@@ -164,12 +166,12 @@ Rulings on borderline cases:
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 0 | 9 | 3 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 1 | 52 | 2 | 3 | 15 | 10 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 1 | 32 | 0 | 2 | 11 | 10 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 4 | 39 | 3 | 0 | 12 | 10 |
-| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 3 | 14 | 2 | 0 | 9 | 5 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 0 | 9 | 6 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 3 | 39 | 3 | 1 | 12 | 10 |
+| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 2 | 15 | 2 | 0 | 9 | 5 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 0 | 24 | 0 | 0 | 9 | 6 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 1 | 27 | 11 | 0 | 12 | 1 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 31 | 3 | 0 | 7 | 6 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 16 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 4 | 57 | 5 | 0 | 14 | 16 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 0 | 2 | 2 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 0 | 11 | 4 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 0 | 4 | 3 |

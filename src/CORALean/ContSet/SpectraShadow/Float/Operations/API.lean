@@ -28,6 +28,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Or
 public import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Materialise
+public import CORALean.ContSet.SpectraShadow.Float.Operations.IsFullDim
 
 /-!
 # What a float spectrahedral shadow computes, collected
