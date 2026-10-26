@@ -85,7 +85,7 @@ for net in $NETS; do
         --format "$format" --out "$OUT_DIR" "${IMAGES_ARGS[@]}" "${REPS_ARGS[@]}"
     fi
   done
-  run_one "$net float" bench_run nn-mnist --net "$net" --type float \
+  run_one "$net hardware" bench_run nn-mnist --net "$net" --type hardware \
     --out "$OUT_DIR" "${IMAGES_ARGS[@]}" "${REPS_ARGS[@]}"
 done
 

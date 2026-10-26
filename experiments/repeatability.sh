@@ -55,7 +55,7 @@ for net in small medium large; do
   for format in binary16 binary32 binary64; do
     bench nn-mnist --net $net --type ieee --format $format
   done
-  bench nn-mnist --net $net --type float
+  bench nn-mnist --net $net --type hardware
 done
 
 # ===== Tab. 4 (Sec. 4.2): runtimes, Lean interpreter vs compiled C =====

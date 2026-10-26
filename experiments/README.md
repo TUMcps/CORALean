@@ -88,11 +88,11 @@ git clone https://gitlab.lrz.de/cps/coralean.git
 cd coralean
 lake exe cache get      # Mathlib's prebuilt oleans, so `lake build` need not recompile it
 lake build              # elaborates every file, including Bench -- 0 errors, 0 warnings
-lake exe bench headline-a --type float --config experiments/config/headline_default.json
+lake exe bench headline-a --type hardware --config experiments/config/headline_default.json
 bash experiments/run_all.sh
 bash experiments/run_runtime.sh
-python3 experiments/plot/to_pgfplots.py experiments/results/headline_default/headline-a/float.json \
-  experiments/results/headline_default/headline-a/float-plot --merged
+python3 experiments/plot/to_pgfplots.py experiments/results/headline_default/headline-a/hardware.json \
+  experiments/results/headline_default/headline-a/hardware-plot --merged
 python3 experiments/plot/simulate.py experiments/config/headline_default.json \
   experiments/results/headline_default/simulate.dat
 ```
@@ -103,7 +103,7 @@ CORA/MATLAB, a separate step needing MATLAB and a checked-out CORA -- see
 ## Running an experiment
 
 ```
-lake exe bench <experiment> --type dyadic|ieee|float|nearest|fixed [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
+lake exe bench <experiment> --type ieee|dyadic|hardware|nearest|fixed [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
 ```
 
 or, without the link step `lake exe` costs (`lake exe bench` links against
@@ -111,7 +111,7 @@ Mathlib's emitted C, which can take a long time; the interpreter needs only
 the built oleans):
 
 ```
-lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type dyadic|ieee|float|nearest|fixed [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
+lake env lean --run src/CORALean/Examples/Bench.lean <experiment> --type ieee|dyadic|hardware|nearest|fixed [--format F] [--prec P] [--config FILE] [--reps N] [--out DIR] [--exact]
 ```
 
 Flags:
@@ -120,11 +120,12 @@ Flags:
   `exp2-timepoint`, `nn-float32` (ignores `--type`/`--format`/`--prec`/
   `--config`), `nn-mnist` (ignores `--config`, takes its own `--net`/
   `--images`; see their own sections below).
-* `--type dyadic|ieee|float|nearest|fixed` -- `dyadic` (default) runs at `CORALean.Float.Dyadic
-  p`, exact integer arithmetic with the precision below, at an unbounded
-  exponent; `ieee` runs at `CORALean.Float.IEEE fmt`, the same rounding onto a
+* `--type ieee|dyadic|hardware|nearest|fixed` -- `ieee` (default, with its default
+  format `binary64`) runs at `CORALean.Float.IEEE fmt`, rounding onto a
   real format's grid, subnormals included, overflow detected: see "IEEE
-  formats" below; `float` runs at
+  formats" below; `dyadic` runs at `CORALean.Float.Dyadic
+  p`, exact integer arithmetic with the precision below, at an unbounded
+  exponent; `hardware` runs at
   native binary64, `Float`, where the numbers depend on the machine's IEEE 754
   unit and the ten `SoundFloatArithmetic` assumptions `Axioms.lean` states.
   `fixed` runs at `CORALean.Float.FixedPoint f`, decimal fixed-point at
@@ -136,7 +137,7 @@ Flags:
   significand width (see the table below), so a Dyadic run is labelled
   `dyadic p=16 (11-bit significand, unbounded exponent)`, never `binary16`.
   Default `binary64` (53 bits, chosen to agree with native `Float`). Ignored
-  for `--type float`, whose format is always `binary64`.
+  for `--type hardware`, whose format is always `binary64`.
 * `--prec P` -- a raw significand-bit count for `--type dyadic`, for a
   precision none of the five labels name. Wins over `--format` if both are
   given.
@@ -157,11 +158,11 @@ Flags:
 
 ```
 lake exe bench headline-a --type dyadic --format binary64 --config experiments/config/headline_default.json
-lake exe bench headline-a --type float --config experiments/config/headline_default.json
+lake exe bench headline-a --type hardware --config experiments/config/headline_default.json
 ```
 
 writes `experiments/results/headline_default/headline-a/dyadic-binary64.json`,
-`.../dyadic-binary64.csv`, `.../float.json` and `.../float.csv`.
+`.../dyadic-binary64.csv`, `.../hardware.json` and `.../hardware.csv`.
 
 ## The three verified experiments
 
@@ -267,14 +268,14 @@ with an *odd* numerator of `1` or `3` -- `1/8, 1/4, 3/8, 1/2, 3/4` are exact,
   "steps": 1200,   // N, explicit rather than computed at run time
   "reps": 3,
   "precisions": [
-    { "type": "dyadic", "format": "binary4" }, /* ... */ { "type": "float" }
+    { "type": "dyadic", "format": "binary4" }, /* ... */ { "type": "hardware" }
   ]
 }
 ```
 
 Four configs ship, all exact at `binary4` (the paper authors' parameters are
 not fixed yet, so these support a small sweep rather than pin one point). The
-headline runs are `binary64`/`float`; the precision ablation is every
+headline runs are `binary64`/`hardware`; the precision ablation is every
 `dyadic` row of `precisions`, `binary4` through `binary64`:
 
 | File | What it varies |
@@ -405,7 +406,7 @@ sample times `t_k = k * dt`, `k = 0, ..., steps` -- not denser, so a
 trajectory point at `t_k` lines up exactly with a `sets_tp` polygon at step
 `k`, which is how this harness's own sanity check works: every point of
 every trajectory checked lies inside the matching time-point polygon, for
-`headline-a` (`--type float`) and `headline-b` (`--type dyadic --format
+`headline-a` (`--type hardware`) and `headline-b` (`--type dyadic --format
 binary64`) on `headline_default` alike (`12080 / 12080` (`point, k`) pairs
 each). One `.dat` file, same `nan`-separated format, `# x y` header, open (a
 trajectory is a path, not a polygon, so it is not closed).
@@ -421,7 +422,7 @@ bash experiments/run_all.sh [--interp] [--config FILE] [--reps N] [--out DIR] [-
 
 For every `experiments/config/headline_*.json` (or one, with `--config`):
 `headline-a` and `headline-b` at `--type dyadic --format binary64`,
-`--type float` and `--type nearest` (the unsound round-to-nearest baseline),
+`--type hardware` and `--type nearest` (the unsound round-to-nearest baseline),
 `exp2-timepoint` at every `--format`, both `--type dyadic` and `--type nearest`
 (the precision ablation). Also one `nn-float32 --reps 11` run. Then the plotting pass
 (`to_pgfplots.py --merged`) over every JSON it produced, and `simulate.py`
@@ -516,7 +517,7 @@ given the JSON it checks that every one of those numbers agrees.
 ## MNIST rounding-error ablation (`nn-mnist`)
 
 ```
-lake exe bench nn-mnist --net small|medium|large --type dyadic|float [--format F] \
+lake exe bench nn-mnist --net small|medium|large --type ieee|dyadic|hardware [--format F] \
   [--reps N] [--images K] [--out DIR]
 bash experiments/nn/mnist/run_mnist.sh [--interp] [--net NAME] [--images K] [--reps N]
 python3 experiments/nn/mnist/make_table.py DIR DIR/nn-mnist/mnist_table
@@ -603,7 +604,7 @@ above, the full sweep below (100 images, every net × precision) runs in
 minutes rather than hours.
 
 `--images` defaults to 100; `run_mnist.sh` sweeps every network, every
-dyadic `--format`, `--type float`, and (where the tree has it) `--type
+dyadic `--format`, `--type hardware`, and (where the tree has it) `--type
 nearest`'s round-to-nearest baseline at every format, and writes
 `mnist_table.tex`/`.csv` (`make_table.py`, stdlib only) -- one row per
 network, one column per precision labelled the paper's own way (`p =
@@ -745,7 +746,7 @@ experiments/paper/make_paper.sh [RESULTS_DIR] [--no-latex]  # default experiment
 From an existing results directory (`run_all.sh` and `run_runtime.sh`'s own
 output, plus CORA's, if that directory holds it), regenerates every figure
 `.dat` file this README's "Plotting" section describes -- for every config x
-{`headline-a`, `headline-b`} x {dyadic binary64, float, nearest, cora} it
+{`headline-a`, `headline-b`} x {dyadic binary64, hardware, nearest, cora} it
 finds, a merged tube at `--every 1` and again at `--every 10` (thinned), plus
 `X0` and the per-step hull box, and one `simulate.dat` per config -- and every
 table body the paper `\input`s (`experiments/paper/gen_tables.py`, a
@@ -924,9 +925,9 @@ lake exe bench-flint randverify ... --types flint64,flint256     # the flint typ
 
 `--in` is an instance file, or a directory whose `*.json` are all run (default
 `experiments/randverify`). `--types` is a comma list of `dyadic<p>`, `binary16|32|64` (IEEE),
-`float` (hardware), `nearest` (binary64 round-to-nearest, the UNSOUND baseline) or
+`hardware` (native binary64), `nearest` (binary64 round-to-nearest, the UNSOUND baseline) or
 `nearest<p>`, and `flint<p>` (`bench-flint` only); the default is `dyadic{12,16,24,32,53,64,
-128,256,1024}`, the three IEEE formats, `float`, `nearest`, `flint{64,128,256,1024}`, each
+128,256,1024}`, the three IEEE formats, `hardware`, `nearest`, `flint{64,128,256,1024}`, each
 executable skipping what it does not link. `--algs` is `standard` (`reachFloat`) and/or
 `wrappingfree` (`reachWrappingFreeFloat`). Defaults: `--dt 1/64`, `--eta 6`, `--order 20`; `dt`
 must divide `tend` (a multiple of 2^-6) into a natural number. At `dt = 1/64` an instance with

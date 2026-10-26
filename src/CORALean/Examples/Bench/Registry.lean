@@ -63,7 +63,7 @@ open Lean (Json)
 `.json`/`.csv` extension, so two configs or experiments never collide. -/
 def outPath (outDir configPath experiment ty format : String) : System.FilePath :=
   let configName := (System.FilePath.mk configPath).fileStem.getD configPath
-  let label := if ty = "float" then ty else s!"{ty}-{format}"
+  let label := if ty = "hardware" then ty else s!"{ty}-{format}"
   System.FilePath.mk outDir / configName / experiment / label
 
 /-- Loads the config, builds the system, times and runs `rollout`, and writes
@@ -256,7 +256,7 @@ def dispatch (args : CliArgs) : IO Unit :=
   if args.experiment = "randverify" then runRandVerifyWith args "" randVerifyBenchRecord else
   if args.experiment = "randverify-family" then runRandVerifyFamily args else
   match args.ty with
-  | "float" =>
+  | "hardware" =>
     let toExact := if args.exact then some (fun x => let d := Binary64.toDyadic x
       s!"{d.mantissa}*2^{d.exponent}") else none
     runAt (𝕋 := Float) args ExactDyadic.toFloat ExactDyadic.toFloatUnchecked id

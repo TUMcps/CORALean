@@ -42,9 +42,9 @@ from common import booktabs_rows, find_run, fmt_tex, load_json, write_csv, write
 
 NETS = ["small", "medium", "large"]
 COLUMNS = [("ieee-binary16", "p=16"), ("ieee-binary32", "p=32"),
-           ("ieee-binary64", "p=64"), ("float", "p=64 (Float)")]
+           ("ieee-binary64", "p=64"), ("hardware", "p=64 (Float)")]
 DYADIC_COLUMNS = [("dyadic-binary16", "dyadic p=16"), ("dyadic-binary32", "dyadic p=32"),
-                  ("dyadic-binary64", "dyadic p=64"), ("float", "p=64 (Float)")]
+                  ("dyadic-binary64", "dyadic p=64"), ("hardware", "p=64 (Float)")]
 # Both diverge for every network (accuracy and certification collapse) --
 # dropped from the `.tex` table (per the paper's own review) but still
 # recorded in `mnist_table_dyadic.csv`, as two extra columns.
@@ -145,7 +145,7 @@ def write_mnist_nets(results_dir: Path, nets_dir: Path) -> None:
         if not net_path.exists():
             continue
         hidden_dims, params = parse_net_architecture(net_path)
-        float_doc = load(results_dir, net, "float")
+        float_doc = load(results_dir, net, "hardware")
         accuracy = f"{100.0 * float_doc['summary']['accuracy']:.0f}%" \
             if float_doc is not None else ""
         rows.append([net, hidden_layers_label(hidden_dims), params, accuracy])

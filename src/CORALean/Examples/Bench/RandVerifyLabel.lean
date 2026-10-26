@@ -1,10 +1,10 @@
 /-!
 # `randverify`: a number type's label
 
-`dyadic<p>`, `binary16|32|64` (IEEE), `float` (hardware), `nearest` (binary64) or `nearest<p>`
-(`Dyadic p` rounded to nearest) -- both unsound -- and `flint<p>`. `randTypeKind` gives the kind
-(`dyadic`, `ieee`, `float`, `nearest`, `flint`) and the width `p` where the label has one, `none`
-for a label that is no type.
+`dyadic<p>`, `binary16|32|64` (IEEE), `hardware` (native binary64), `nearest` (binary64) or
+`nearest<p>` (`Dyadic p` rounded to nearest) -- both unsound -- and `flint<p>`. `randTypeKind`
+gives the kind (`dyadic`, `ieee`, `hardware`, `nearest`, `flint`) and the width `p` where the label
+has one, `none` for a label that is no type.
 
 ## Inputs
 * `label` – number type label
@@ -31,7 +31,7 @@ def randTypeKind (label : String) : Option (String × Option Nat) :=
     if label.startsWith pre then (label.drop pre.length).toNat? else none
   match label with
   | "binary16" | "binary32" | "binary64" => some ("ieee", none)
-  | "float" => some ("float", none)
+  | "hardware" => some ("hardware", none)
   | "nearest" => some ("nearest", none)
   | _ =>
     match numeric "dyadic", numeric "nearest", numeric "flint" with

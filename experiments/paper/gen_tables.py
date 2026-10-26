@@ -30,7 +30,7 @@ from pathlib import Path
 from common import (booktabs_rows, find_run, fmt_csv, fmt_tex, load_json, max_dim,
                      num, read_csv_rows, round_outward_str, write_csv, write_tex)
 
-TYPES = [("ieee-binary64", "$p=64$"), ("dyadic-binary64", "Dyadic $p=64$"), ("float", "Float"),
+TYPES = [("ieee-binary64", "$p=64$"), ("dyadic-binary64", "Dyadic $p=64$"), ("hardware", "Float"),
          ("nearest-binary64", "round-to-nearest"), ("cora", "CORA")]
 # The paper's figure panel (a) is the RECURSIVE scheme (bench `headline-b`),
 # panel (b) the WRAPPING-FREE one (bench `headline-a`) -- every table below
@@ -461,13 +461,13 @@ def runtime_table(results_dir: Path, config: str) -> tuple[list[list], list[list
         ieee_i = rows_by_key.get((scheme_dir, "interpreter", "ieee-binary64"))
         dyadic_c = rows_by_key.get((scheme_dir, "compiled", "dyadic-binary64"))
         dyadic_i = rows_by_key.get((scheme_dir, "interpreter", "dyadic-binary64"))
-        float_c = rows_by_key.get((scheme_dir, "compiled", "float"))
-        float_i = rows_by_key.get((scheme_dir, "interpreter", "float"))
+        hardware_c = rows_by_key.get((scheme_dir, "compiled", "hardware"))
+        hardware_i = rows_by_key.get((scheme_dir, "interpreter", "hardware"))
         nearest_c = rows_by_key.get((scheme_dir, "compiled", "nearest-binary64"))
         cora_meta = run_summary(results_dir, config, scheme_dir, "cora")
         cora_ns = cora_meta["medianNs"] if cora_meta is not None else None
         vals_s = [v / 1e9 if v is not None else None
-                  for v in (ieee_i, ieee_c, dyadic_i, dyadic_c, float_i, float_c, cora_ns,
+                  for v in (ieee_i, ieee_c, dyadic_i, dyadic_c, hardware_i, hardware_c, cora_ns,
                             nearest_c)]
         tex_rows.append([row_label] + [fmt_tex(v) for v in vals_s])
         csv_rows.append([row_label, scheme_name] + [fmt_csv(v) for v in vals_s])
@@ -483,7 +483,7 @@ def write_runtime_table(results_dir: Path, config: str) -> None:
     tex_rows, csv_rows = runtime_table(results_dir, config)
     header = ["scheme", "scheme_name", "ieee64_interp_s", "ieee64_compiled_s",
               "dyadic64_interp_s", "dyadic64_compiled_s",
-              "float_interp_s", "float_compiled_s", "cora_s", "nearest_compiled_s"]
+              "hardware_interp_s", "hardware_compiled_s", "cora_s", "nearest_compiled_s"]
     write_csv(results_dir / "paper" / f"runtime_table_{config}.csv", header, csv_rows)
     body = booktabs_rows(tex_rows)
     write_tex(results_dir / "paper" / f"runtime_table_{config}.tex", body)

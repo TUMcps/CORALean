@@ -1,14 +1,14 @@
 import CORALean.Examples.Bench.Format
 
 /-!
-# `lake exe bench <exp> --type dyadic|ieee|float|nearest|fixed --format binary64 [--config FILE]`
+# `lake exe bench <exp> --type ieee|dyadic|hardware|nearest|fixed --format binary64 [--config FILE]`
 
 The one place the command line is read. `--reps` and `--out` override the config's own `reps` and
 the default output directory; everything else about a run comes from the config file. `--format` is
-validated here, against `formatToPrec`, once: it names the format for `--type ieee`, only a
-significand width for `dyadic`/`nearest`. `--prec` is the raw-bit-count escape hatch, unchecked,
-and wins if both are given; `--digits` is its `--type fixed` counterpart. `--net` and `--images`
-are `nn-mnist`'s own, left `none` and defaulted by the experiment itself.
+validated here, against `formatToPrec`, once: it names the format for `--type ieee`, the default
+type, only a significand width for `dyadic`/`nearest`. `--prec` is the raw-bit-count escape
+hatch, unchecked, and wins if both are given; `--digits` is its `--type fixed` counterpart.
+`--net` and `--images` are `nn-mnist`'s own, left `none` and defaulted by the experiment itself.
 
 ## Inputs
 * none
@@ -32,7 +32,7 @@ to the current directory -- `lake exe bench` and `lake env lean --run` are both
 meant to be run from the repository root, which `experiments/README.md` says. -/
 structure CliArgs where
   experiment : String
-  ty : String := "dyadic"
+  ty : String := "ieee"
   format : Option String := none
   prec : Option Nat := none
   digits : Option Nat := none
@@ -65,7 +65,7 @@ structure CliArgs where
 name, which is positional and first. Each flag pattern binds its value
 directly, `"--type" :: v :: rest`, so the recursion stays visibly structural. -/
 def parseArgs : List String → Except String CliArgs
-  | [] => throw "usage: bench <experiment> [--type dyadic|ieee|float|nearest|fixed] \
+  | [] => throw "usage: bench <experiment> [--type ieee|dyadic|hardware|nearest|fixed] \
       [--format binary64|binary32|binary16|binary8|binary4] [--prec P] [--digits F] \
       [--config FILE] [--reps N] [--out DIR] [--exact] [--net small|medium|large] \
       [--images K] [--in FILE] [--types LIST] [--algs LIST] [--dt Q] [--eta K] [--order R] \
@@ -75,8 +75,8 @@ where
   go : List String → CliArgs → Except String CliArgs
     | [], a => pure a
     | "--type" :: v :: rest, a => do
-      if v ≠ "dyadic" ∧ v ≠ "float" ∧ v ≠ "nearest" ∧ v ≠ "fixed" ∧ v ≠ "ieee" then
-        throw s!"`--type` is `dyadic`, `ieee`, `float`, `nearest` or `fixed`, not `{v}`"
+      if v ≠ "ieee" ∧ v ≠ "dyadic" ∧ v ≠ "hardware" ∧ v ≠ "nearest" ∧ v ≠ "fixed" then
+        throw s!"`--type` is `ieee`, `dyadic`, `hardware`, `nearest` or `fixed`, not `{v}`"
       go rest { a with ty := v }
     | "--format" :: v :: rest, a => do
       let _ ← formatToPrec v

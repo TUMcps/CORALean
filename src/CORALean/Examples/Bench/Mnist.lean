@@ -9,7 +9,7 @@ import CORALean.Examples.Bench.MnistParse
 import CORALean.Examples.Bench.Rational
 
 /-!
-# `lake exe bench nn-mnist --net small|medium|large --type dyadic|float [...]`
+# `lake exe bench nn-mnist --net small|medium|large --type ieee|dyadic|hardware [...]`
 
 The rounding-error ablation: how much sound enclosure radius `NeuralNetwork.enclose` accumulates
 through a real MNIST classifier, at several precisions, propagating float boxes
@@ -167,7 +167,7 @@ private def aux_runImage (instUnchecked : ExactDyadic → 𝕋) (toD : 𝕋 → 
 /-- `<out>/nn-mnist/<net>/<type>[-<format>]`, before the `.json`/`-layers.dat`
 extension. -/
 def mnistOutPath (outDir net ty format : String) : System.FilePath :=
-  let label := if ty = "float" then ty else s!"{ty}-{format}"
+  let label := if ty = "hardware" then ty else s!"{ty}-{format}"
   System.FilePath.mk outDir / "nn-mnist" / net / label
 
 /-- Loads `--net`'s network and the first `--images` images, runs each
