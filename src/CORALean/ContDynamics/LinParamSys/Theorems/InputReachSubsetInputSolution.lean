@@ -17,6 +17,7 @@ fixes one matrix over the step, so what the input can reach is the point system'
 matrix, and the enclosure it lands in is the box's. `inputReach` is stated over `Icc` and
 `inputSolution_outer` reads its input on the reflected `Ioc`, joined by
 `aestronglyMeasurable_reflect_Ioc` and one endpoint step, as in the point case.
+This is [1, Prop. 2] at the time point `r`, in its corrected form.
 
 ## Inputs
 * `sys` – system
@@ -38,6 +39,11 @@ matrix, and the enclosure it lands in is the box's. `inputReach` is stated over 
 
 ## Conclusion
 * everything the input alone can reach lies in the enclosure
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
 -/
 
 -- Authors:       Claude Opus 5

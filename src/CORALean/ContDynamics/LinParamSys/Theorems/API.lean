@@ -14,6 +14,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInpu
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagate
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachIUnionSubsetInputSolution
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
@@ -36,6 +37,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryTimeIn
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryDiscretizeEnclosureFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryDiscretizeEnclosureFloatMemReach
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachIUnionSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.SquaringsFloatSpec
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatInputOuter

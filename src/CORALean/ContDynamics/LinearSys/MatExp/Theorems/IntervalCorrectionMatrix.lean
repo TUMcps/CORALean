@@ -14,13 +14,13 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # The interpolation error of every member lies in the box's correction matrix
 
-`expDiff_mem_correctionMatrix` at a matrix drawn from an interval matrix rather than at the one
-the system stores. The point statement is not weakened: it is applied at the member `M` and read
-off entrywise, `min` and `max` being monotone, so the finite orders widen from `corrTerm M` to
-what `intervalCorrTerm` spans and the tail from the bound at `r • M` to the one at the dominating
-matrix of `r • A`. **`hε` is stated at the box, not at `M`**, as in `ExpIntervalEnclosure`: it
-has to be checkable from the interval matrix alone, and `norm_le_absMax` turns it into the
-condition the point theorem needs.
+[1, Thm. 3]: `expDiff_mem_correctionMatrix` at a matrix drawn from an interval matrix rather than
+at the one the system stores. The point statement is not weakened: it is applied at the member
+`M` and read off entrywise, `min` and `max` being monotone, so the finite orders widen from
+`corrTerm M` to what `intervalCorrTerm` spans and the tail from the bound at `r • M` to the one
+at the dominating matrix of `r • A`. **`hε` is stated at the box, not at `M`**, as in
+`ExpIntervalEnclosure`: it has to be checkable from the interval matrix alone, and
+`norm_le_absMax` turns it into the condition the point theorem needs.
 
 ## Inputs
 * `A` – interval matrix
@@ -38,6 +38,11 @@ condition the point theorem needs.
 
 ## Conclusion
 * the member's interpolation error lies in the box's correction matrix
+
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
 -/
 
 -- Authors:       Claude Opus 5
