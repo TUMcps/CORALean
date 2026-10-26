@@ -195,23 +195,23 @@ Rulings on borderline cases:
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 8 | 12 | 0 | 0 | 41 | 2 |
 | [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 |
 | [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 4 | 0 | 0 | 0 | 0 | 0 |
-| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 9 | 0 | 0 | 0 | 1 | 0 |
+| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 5 | 4 | 0 | 0 | 1 | 0 |
 | [fourValued](specification/fourValued.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 |
-| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 16 | 0 | 0 | 0 | 2 | 0 |
+| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 3 | 13 | 0 | 0 | 2 | 0 |
 | [kleene](specification/kleene.md) | specification | 4 | 0 | 4 | 0 | 0 | 0 | 0 |
-| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 13 | 0 | 0 | 0 | 2 | 0 |
+| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 3 | 10 | 0 | 0 | 2 | 0 |
 | [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 0 | 0 | 10 | 0 |
-| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 4 | 0 | 0 | 0 | 3 | 0 |
-| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 4 | 0 | 0 | 0 | 1 | 0 |
-| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 10 | 0 | 0 | 0 | 1 | 0 |
+| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 3 | 1 | 0 | 0 | 3 | 0 |
+| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 3 | 1 | 0 | 0 | 1 | 0 |
+| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 4 | 6 | 0 | 0 | 1 | 0 |
 | [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 5 | 0 | 0 | 0 | 0 | 1 |
 | [rtl](specification/rtl.md) | specification | 5 | 4 | 0 | 0 | 0 | 1 | 0 |
 | [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 6 | 6 | 2 |
 | [stl](specification/stl.md) | specification | 52 | 28 | 4 | 0 | 15 | 5 | 4 |
-| [stlInterval](specification/stlInterval.md) | specification | 19 | 17 | 0 | 0 | 0 | 2 | 1 |
-| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 27 | 0 | 0 | 0 | 0 | 3 |
-| [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 5 | 0 | 0 | 0 | 1 | 0 |
-| [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 2 | 0 | 0 | 0 | 0 | 0 |
+| [stlInterval](specification/stlInterval.md) | specification | 19 | 7 | 10 | 0 | 0 | 2 | 1 |
+| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 1 | 26 | 0 | 0 | 0 | 3 |
+| [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 1 | 4 | 0 | 0 | 1 | 0 |
+| [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 1 | 1 | 0 | 0 | 0 | 0 |
 | [ProbOccupancyPrediction](others/ProbOccupancyPrediction.md) | others | 25 | 0 | 0 | 0 | 21 | 4 | 0 |
 | [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
@@ -242,6 +242,10 @@ Rulings on borderline cases:
   `float` row links a float-layer definition and a float-layer theorem (route a) or carries a
   `route b —` note whose linked definitions are outside `Real/`, not `noncomputable`, not on the
   allowlist, and whose theorem or class names a scalar or a set representation (route b);
+* a `proved` row is not stale: it fails when its linked definition already counts as `float`,
+  by route a (a `…Float` twin, `opFloat` or `opFloat?`, that a float-layer theorem is about) or by
+  route b (every linked definition outside `Real/`, computable, not a `Prop`, its signature generic
+  over `𝕋`, and a linked theorem stated for `𝕋`), so the figure cannot lag behind the code;
 * the counts above are the tables' counts, and `experiments/paper/formalization-stats.json`
   is what `scripts/formalization-stats.py` writes now.
 
