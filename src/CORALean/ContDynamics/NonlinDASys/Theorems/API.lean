@@ -40,6 +40,7 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
 public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryOfHasDerivWithinAt
+public import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearFloatOuter
 
 /-!
 # What `NonlinDASys` guarantees

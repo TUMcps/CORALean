@@ -84,6 +84,17 @@ public import CORALean.NN.Operations.IntervalChainBackpropFloat
 public import CORALean.NN.Operations.EncloseUnsafeInputs
 public import CORALean.NN.Operations.UnsafeInputConstraints
 public import CORALean.NN.Operations.Verify
+public import CORALean.NN.Operations.IntervalChainToChain
+public import CORALean.NN.Operations.IntervalChainBackpropAtFloat
+public import CORALean.NN.Operations.IntervalChainSensitivityFloat
+public import CORALean.NN.Operations.FgsmAttackFloat
+public import CORALean.NN.Operations.PgdAttackFloat
+public import CORALean.NN.Operations.WeightAccPushLinearFloat
+public import CORALean.NN.Operations.WeightAccPushAffineFloat
+public import CORALean.NN.Operations.WeightAccLayerFloat
+public import CORALean.NN.Operations.WeightNetworkNormalFormAuxFloat
+public import CORALean.NN.Operations.WeightNetworkNormalFormFloat
+public import CORALean.NN.Operations.InputNeuronOrderFloat
 
 /-!
 # What a network does, collected

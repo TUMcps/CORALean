@@ -27,6 +27,7 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptive
 public import CORALean.ContDynamics.NonlinDASys.Operations.EnlargeInterfaceInput
 public import CORALean.ContDynamics.NonlinDASys.Operations.ComposeSubsystems
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachNextCompositional
+public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearFloat
 
 /-!
 # What `NonlinDASys` computes

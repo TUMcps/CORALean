@@ -31,6 +31,12 @@ public import CORALean.NN.Definitions.IntervalChainFloat
 public import CORALean.NN.Definitions.IntervalChainFloatSound
 public import CORALean.NN.Definitions.IsRelaxationOf
 public import CORALean.NN.Definitions.VerifyResult
+public import CORALean.NN.Definitions.WeightLayerFloat
+public import CORALean.NN.Definitions.WeightAccFloat
+public import CORALean.NN.Definitions.WeightNetworkFloat
+public import CORALean.NN.Definitions.WeightLayerEnclosesFloat
+public import CORALean.NN.Definitions.WeightAccEnclosesFloat
+public import CORALean.NN.Definitions.WeightNetworkEnclosesFloat
 
 /-!
 # What a network means, collected

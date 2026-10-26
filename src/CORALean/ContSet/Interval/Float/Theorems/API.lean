@@ -53,6 +53,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowSubset
 public import CORALean.ContSet.Interval.Float.Theorems.MaxExact
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.DiagonalMem
 public import CORALean.ContSet.Interval.Float.Theorems.MinExact
 public import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
