@@ -23,8 +23,8 @@ the two agree; an operand that only becomes an `&` is left for the next pass). E
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
--- Reviewed:      20-October-2026 (Tobias Ladner)
+-- Last update:   26-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -33,13 +33,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[res,cnt] = aux_rewrite(obj)` of `conjunctiveNormalForm.m`. -/
-def STL.Tree.cnfRewrite : STL.Tree n → STL.Tree n × ℕ
+def STL.Tree.cnfRewrite : STL.Tree τ κ n → STL.Tree τ κ n × ℕ
   | .or φ ψ =>
     let lhs := (cnfRewrite φ).1
     let rhs := (cnfRewrite ψ).1

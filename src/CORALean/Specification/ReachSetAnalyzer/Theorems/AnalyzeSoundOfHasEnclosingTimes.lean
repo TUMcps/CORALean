@@ -13,6 +13,7 @@ public import CORALean.Specification.FiniteSignal.Theorems.MkMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Definitions.HasEnclosingTimes
 public import CORALean.Specification.ReachSetAnalyzer.Operations.Analyze
 public import CORALean.Specification.ReachSetAnalyzer.Operations.Basic
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeSingleMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeTreeSound
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.BranchProper
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.MaskOkMapTime
@@ -70,128 +71,6 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- Marking a float builder possibly true, read as reals, is the real marking. -/
-private theorem aux_setPossiblyTrue?_mapTime (obj : FiniteKleeneSignalBuilder T)
-    (lo hi : T) : -- --- CONCL ---
-    (obj.setPossiblyTrue? lo hi).map (FiniteKleeneSignalBuilder.mapTime toReal) =
-      (obj.mapTime toReal).setPossiblyTrue? (toReal lo) (toReal hi) := by -- --- PROOF ---
-  unfold FiniteKleeneSignalBuilder.setPossiblyTrue?
-  dsimp only
-  have hd : (obj.mapTime toReal).possiblyTrueSignal.duration =
-      toReal obj.possiblyTrueSignal.duration :=
-    FiniteSignal.duration_mapTime toReal toReal_zero_eq _
-  rw [hd, ← FiniteSignal.indicator?_mapTime]
-  cases FiniteSignal.indicator? obj.possiblyTrueSignal.duration lo hi true with
-  | none => rfl
-  | some ind =>
-    simp only [Option.map_some, Option.bind_some]
-    have hc := FiniteSignal.combine?_mapTime (· || ·) [obj.possiblyTrueSignal, ind]
-    simp only [List.map_cons, List.map_nil] at hc
-    rw [show (obj.mapTime toReal).possiblyTrueSignal =
-      obj.possiblyTrueSignal.mapTime toReal from rfl, ← hc]
-    cases FiniteSignal.combine? (· || ·) [obj.possiblyTrueSignal, ind] <;> rfl
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- Marking a float builder possibly false, read as reals, is the real marking. -/
-private theorem aux_setPossiblyFalse?_mapTime (obj : FiniteKleeneSignalBuilder T)
-    (lo hi : T) : -- --- CONCL ---
-    (obj.setPossiblyFalse? lo hi).map (FiniteKleeneSignalBuilder.mapTime toReal) =
-      (obj.mapTime toReal).setPossiblyFalse? (toReal lo) (toReal hi) := by -- --- PROOF ---
-  unfold FiniteKleeneSignalBuilder.setPossiblyFalse?
-  dsimp only
-  have hd : (obj.mapTime toReal).possiblyFalseSignal.duration =
-      toReal obj.possiblyFalseSignal.duration :=
-    FiniteSignal.duration_mapTime toReal toReal_zero_eq _
-  rw [hd, ← FiniteSignal.indicator?_mapTime]
-  cases FiniteSignal.indicator? obj.possiblyFalseSignal.duration lo hi true with
-  | none => rfl
-  | some ind =>
-    simp only [Option.map_some, Option.bind_some]
-    have hc := FiniteSignal.combine?_mapTime (· || ·) [obj.possiblyFalseSignal, ind]
-    simp only [List.map_cons, List.map_nil] at hc
-    rw [show (obj.mapTime toReal).possiblyFalseSignal =
-      obj.possiblyFalseSignal.mapTime toReal from rfl, ← hc]
-    cases FiniteSignal.combine? (· || ·) [obj.possiblyFalseSignal, ind] <;> rfl
-
-omit [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
-/-- One proposition analyzed on a float analyzer, read as reals, is the real analysis. -/
-private theorem aux_analyzeKey_mapTime [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)]
-    (obj : ReachSetAnalyzer T S n) (set : S n) (loc : ℕ) (lo hi : T)
-    (p : String × AtomicProposition S n) : -- --- CONCL ---
-    (obj.analyzeKey (𝕋 := 𝕋) set loc lo hi p).map (ReachSetAnalyzer.mapTime toReal) =
-      (obj.mapTime toReal).analyzeKey (𝕋 := 𝕋) set loc (toReal lo) (toReal hi)
-        p := by -- --- PROOF ---
-  unfold ReachSetAnalyzer.analyzeKey
-  rw [ReachSetAnalyzer.maskOk_mapTime]
-  have hl : (obj.mapTime toReal).sigBuilder.lookup p.1 =
-      (obj.sigBuilder.lookup p.1).map (FiniteKleeneSignalBuilder.mapTime toReal) :=
-    lookup_map_snd _ _ _
-  rw [hl]
-  cases obj.sigBuilder.lookup p.1 with
-  | none => rfl
-  | some b =>
-    simp only [Option.map_some, Option.bind_some]
-    by_cases hm : obj.maskOk p.1 lo hi = true
-    · rw [if_pos hm, if_pos hm]
-      -- the marking as possibly true
-      have ht : (if p.2.canBeTrue (𝕋 := 𝕋) set loc then
-          (b.mapTime toReal).setPossiblyTrue? (toReal lo) (toReal hi)
-          else some (b.mapTime toReal)) = (if p.2.canBeTrue (𝕋 := 𝕋) set loc then
-          b.setPossiblyTrue? lo hi else some b).map (FiniteKleeneSignalBuilder.mapTime toReal) := by
-        split_ifs
-        · exact (aux_setPossiblyTrue?_mapTime b lo hi).symm
-        · rfl
-      rw [ht]
-      cases (if p.2.canBeTrue (𝕋 := 𝕋) set loc then b.setPossiblyTrue? lo hi else some b) with
-      | none => rfl
-      | some b1 =>
-        simp only [Option.map_some, Option.bind_some]
-        -- the marking as possibly false
-        have hf : (if p.2.canBeFalse (𝕋 := 𝕋) set loc then
-            (b1.mapTime toReal).setPossiblyFalse? (toReal lo) (toReal hi)
-            else some (b1.mapTime toReal)) = (if p.2.canBeFalse (𝕋 := 𝕋) set loc then
-            b1.setPossiblyFalse? lo hi else some b1).map
-              (FiniteKleeneSignalBuilder.mapTime toReal) := by
-          split_ifs
-          · exact (aux_setPossiblyFalse?_mapTime b1 lo hi).symm
-          · rfl
-        rw [hf]
-        cases (if p.2.canBeFalse (𝕋 := 𝕋) set loc then b1.setPossiblyFalse? lo hi
-          else some b1) with
-        | none => rfl
-        | some b2 =>
-          simp only [Option.map_some]
-          unfold ReachSetAnalyzer.mapTime
-          simp only
-          rw [replaceKey_map_snd]
-    · rw [if_neg hm, if_neg hm]
-      rfl
-
-/-- One time interval analyzed on a float analyzer, read as reals, is the real analysis. -/
-private theorem aux_analyzeTimeInterval_mapTime (obj : ReachSetAnalyzer T S n) (set : S n) (loc : ℕ)
-    (lo hi : T) : -- --- CONCL ---
-    (obj.analyzeTimeInterval (𝕋 := 𝕋) set loc lo hi).map (ReachSetAnalyzer.mapTime toReal) =
-      (obj.mapTime toReal).analyzeTimeInterval (𝕋 := 𝕋) set loc (toReal lo)
-        (toReal hi) := by -- --- PROOF ---
-  unfold ReachSetAnalyzer.analyzeTimeInterval
-  rw [foldlM_option_map _ (fun o p => o.analyzeKey (𝕋 := 𝕋) set loc (toReal lo) (toReal hi) p)
-    (ReachSetAnalyzer.mapTime toReal) id
-    (fun o p => aux_analyzeKey_mapTime o set loc lo hi p), List.map_id]
-  rfl
-
-/-- One reach set analyzed on a float analyzer, read as reals, is the real analysis of the reach
-set read as reals. -/
-private theorem aux_analyzeSingle_mapTime (obj : ReachSetAnalyzer T S n)
-    (R : ReachSetAnalyzer.Entry T S n) :
-    (obj.analyzeSingle (𝕋 := 𝕋) R).map (ReachSetAnalyzer.mapTime toReal) =
-      (obj.mapTime toReal).analyzeSingle (𝕋 := 𝕋) (R.mapTime toReal) := by
-  unfold ReachSetAnalyzer.analyzeSingle
-  exact foldlM_option_map _ _ _ _ (fun o t => aux_analyzeTimeInterval_mapTime o
-    t.set R.loc t.time.inf t.time.sup) _ _
 
 omit [ExactLe T] [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
@@ -319,7 +198,7 @@ theorem ReachSetAnalyzer.analyze_sound_of_hasEnclosingTimes
           simp only [id_eq, List.getElem?_map]
           cases R[j - 1]? with
           | none => rfl
-          | some e => exact aux_analyzeSingle_mapTime o e) w obj
+          | some e => exact ReachSetAnalyzer.analyzeSingle_mapTime o e) w obj
     rw [List.map_id, hf, Option.map_some] at this
     exact this.symm
   -- its signals read as reals

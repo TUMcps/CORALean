@@ -1,12 +1,14 @@
 module
 
 public import CORALean.Specification.FiniteSignal.Theorems.AtEqValueAt
+public import CORALean.Specification.FiniteSignal.Theorems.AtMapTime
 public import CORALean.Specification.FiniteSignal.Theorems.AtSpec
 public import CORALean.Specification.FiniteSignal.Theorems.Basic
 public import CORALean.Specification.FiniteSignal.Theorems.CellsFromBounds
 public import CORALean.Specification.FiniteSignal.Theorems.CellsIndex
 public import CORALean.Specification.FiniteSignal.Theorems.CombineMapTime
 public import CORALean.Specification.FiniteSignal.Theorems.CombineSpec
+public import CORALean.Specification.FiniteSignal.Theorems.CutoffMapTime
 public import CORALean.Specification.FiniteSignal.Theorems.CutoffSpec
 public import CORALean.Specification.FiniteSignal.Theorems.FindIntervalsMapTime
 public import CORALean.Specification.FiniteSignal.Theorems.FindIntervalsSpec

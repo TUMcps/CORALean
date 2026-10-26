@@ -28,13 +28,13 @@ which `getVariables` lists). A number has none; `x(i)*0` still mentions `x(i)`.
 
 namespace CORALean
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The indices of the variables occurring in `e`. -/
-def STL.Expr.variables : STL.Expr n → Finset (Fin n)
+def STL.Expr.variables : STL.Expr κ n → Finset (Fin n)
   | .var i => {i}
   | .num _ => ∅
   | .add e₁ e₂ | .sub e₁ e₂ | .mul e₁ e₂ => e₁.variables ∪ e₂.variables

@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.sat_nnfWith (ng : STL.Cmp → STL.Cmp)
-    (hng : ∀ op a b, (ng op).Relates a b ↔ ¬ op.Relates a b) (φ : STL.Tree n) (neg : Bool)
+    (hng : ∀ op a b, (ng op).Relates a b ↔ ¬ op.Relates a b) (φ : STL.Tree NNReal ℝ n) (neg : Bool)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.nnfWith ng neg).Satisfies ξ ↔ (φ.Satisfies ξ ↔ neg = false) := by -- --- PROOF ---
   induction φ generalizing neg ξ with

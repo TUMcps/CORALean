@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.temporal_of_isPredicate (φ : STL.Tree n) (h : φ.isPredicate = true) :
+theorem STL.Tree.temporal_of_isPredicate (φ : STL.Tree NNReal ℝ n) (h : φ.isPredicate = true) :
     φ.temporal = false := by
   induction φ with
   | cmp => rfl

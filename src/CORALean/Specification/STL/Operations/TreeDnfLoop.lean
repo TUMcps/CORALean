@@ -31,13 +31,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- the weight of a formula: `|` adds, `&` multiplies, a leaf weighs two
-def STL.Tree.aux_dnfWeight : STL.Tree n → ℕ
+def STL.Tree.aux_dnfWeight : STL.Tree τ κ n → ℕ
   | .or φ ψ => aux_dnfWeight φ + aux_dnfWeight ψ + 1
   | .and φ ψ => aux_dnfWeight φ * aux_dnfWeight ψ
   | _ => 2
@@ -47,7 +47,7 @@ def STL.Tree.aux_dnfWeight : STL.Tree n → ℕ
 
 /-- `while true [obj,cnt] = aux_rewrite(obj); if cnt == 0 break; end end` of
 `disjunctiveNormalForm.m`, with the NNF step left to the caller. -/
-def STL.Tree.dnfLoop (φ : STL.Tree n) : STL.Tree n :=
+def STL.Tree.dnfLoop (φ : STL.Tree τ κ n) : STL.Tree τ κ n :=
   let res := (φ.dnfRewrite).1
   let cnt := (φ.dnfRewrite).2
   if _ : cnt = 0 then res else dnfLoop res
@@ -55,16 +55,16 @@ termination_by φ.aux_dnfWeight
 decreasing_by
   rename_i h
   -- every formula weighs at least two
-  have htwo' : ∀ φ : STL.Tree n, 2 ≤ φ.aux_dnfWeight := by
+  have htwo' : ∀ φ : STL.Tree τ κ n, 2 ≤ φ.aux_dnfWeight := by
     intro φ
     induction φ with
     | or φ ψ ihφ ihψ => simp only [STL.Tree.aux_dnfWeight]; omega
     | and φ ψ ihφ ihψ => simp only [STL.Tree.aux_dnfWeight]; nlinarith
     | _ => simp [STL.Tree.aux_dnfWeight]
-  have htwo : PLift (∀ φ : STL.Tree n, 2 ≤ φ.aux_dnfWeight) := ⟨htwo'⟩
+  have htwo : PLift (∀ φ : STL.Tree τ κ n, 2 ≤ φ.aux_dnfWeight) := ⟨htwo'⟩
   clear htwo'
   -- a pass never raises the weight, and lowers it when it distributes
-  have hweight : ∀ φ : STL.Tree n,
+  have hweight : ∀ φ : STL.Tree τ κ n,
       (φ.dnfRewrite).1.aux_dnfWeight ≤ φ.aux_dnfWeight ∧
         ((φ.dnfRewrite).2 ≠ 0 →
           (φ.dnfRewrite).1.aux_dnfWeight < φ.aux_dnfWeight) := by

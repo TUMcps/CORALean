@@ -36,14 +36,14 @@ namespace CORALean
 open scoped NNReal
 
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `eliminateTrueFalse(obj)`, with `ut` the rewrite of `φ U[a,b] true`. -/
-def STL.Tree.eliminateTrueFalseWith (ut : ℝ≥0 → ℝ≥0 → STL.Tree n → STL.Tree n) :
-    STL.Tree n → STL.Tree n
+def STL.Tree.eliminateTrueFalseWith (ut : τ → τ → STL.Tree τ κ n → STL.Tree τ κ n) :
+    STL.Tree τ κ n → STL.Tree τ κ n
   | .tt => .tt
   | .ff => .ff
   | .cmp op e₁ e₂ => .cmp op e₁ e₂

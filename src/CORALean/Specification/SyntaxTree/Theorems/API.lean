@@ -99,6 +99,7 @@ public import CORALean.Specification.SyntaxTree.Theorems.SoundMinusNumLeftFloat
 public import CORALean.Specification.SyntaxTree.Theorems.SoundMinusNumRightFloat
 public import CORALean.Specification.SyntaxTree.Theorems.SoundMpowerFloat
 public import CORALean.Specification.SyntaxTree.Theorems.SoundMtimes
+public import CORALean.Specification.SyntaxTree.Theorems.SoundMtimesFloat
 public import CORALean.Specification.SyntaxTree.Theorems.SoundPlusFloat
 public import CORALean.Specification.SyntaxTree.Theorems.SoundPlusNumLeftFloat
 public import CORALean.Specification.SyntaxTree.Theorems.SoundPlusNumRightFloat

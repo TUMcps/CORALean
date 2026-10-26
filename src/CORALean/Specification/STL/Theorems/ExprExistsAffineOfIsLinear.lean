@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem STL.Expr.aux_isLinear_mul {e₁ e₂ : STL.Expr n}
+private theorem STL.Expr.aux_isLinear_mul {e₁ e₂ : STL.Expr ℝ n}
     (h : (STL.Expr.mul e₁ e₂).isLinear = true) :
     (∃ c, e₁ = .num c ∧ e₂.isLinear = true) ∨ (∃ c, e₂ = .num c ∧ e₁.isLinear = true) := by
   cases e₁ <;> cases e₂ <;> simp_all [STL.Expr.isLinear]
@@ -47,7 +47,7 @@ private theorem STL.Expr.aux_isLinear_mul {e₁ e₂ : STL.Expr n}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Expr.exists_affine_of_isLinear (e : STL.Expr n)
+theorem STL.Expr.exists_affine_of_isLinear (e : STL.Expr ℝ n)
     (h : e.isLinear = true) : -- --- CONCL ---
     ∃ (a : Fin n → ℝ) (b : ℝ), ∀ x, e.eval x = ∑ i, a i * x i + b := by -- --- PROOF ---
   induction e with

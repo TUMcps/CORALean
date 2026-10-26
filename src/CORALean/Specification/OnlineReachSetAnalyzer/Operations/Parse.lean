@@ -6,6 +6,7 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Definitions.Basic
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Basic
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ParseNew
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKey
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKeyEqv
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKind
 
 @[expose] public section
@@ -19,6 +20,12 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKi
 the root, whose `parent` is `0`), is entered into the cache, and its operands are parsed with
 this node as their parent. CORA throws if an index is out of range or a node cannot be made;
 here `none`.
+
+## Inputs
+* `dropPropagated` – drop propagated times flag
+
+## Output
+* the parse state with the subformula's node and its operands' nodes, or none
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -38,15 +45,13 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-open Classical in
-/-- `parse(phi,parent)`. Noncomputable: the cache lookup compares formulas classically, as the
-time scalar `𝕋` has no decidable equality. -/
-noncomputable def OnlineReachSetAnalyzer.parse (dropPropagated : Bool) :
+/-- `parse(phi,parent)`; the cache lookup compares the keys exactly (`Formula.keyEqv`). -/
+def OnlineReachSetAnalyzer.parse (dropPropagated : Bool) :
     OnlineReachSetAnalyzer.Formula 𝕋 (AtomicProposition S d) → ℕ →
       OnlineReachSetAnalyzer.ParseState 𝕋 S d → Option (OnlineReachSetAnalyzer.ParseState 𝕋 S d)
   | φ, parent, st =>
     -- check cache
-    match st.cache.find? (fun p => decide (p.1 = φ.key)) with
+    match st.cache.find? (fun p => p.1.keyEqv φ.key) with
     | some (_, c) =>
       -- obj.nodes(cache(k)).addParent(parent); obj.nodes(parent).addChild(cache(k))
       (OnlineReachSetAnalyzer.updateNode st.nodes c (fun n => some (n.addParent parent))).bind

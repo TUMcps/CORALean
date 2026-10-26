@@ -32,13 +32,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `aux_recursive(obj,time)` of `minimumTime.m`. -/
-def STL.Tree.minimumTimeFrom : STL.Tree n → ℝ≥0 → ℝ≥0
+def STL.Tree.minimumTimeFrom : STL.Tree NNReal κ n → ℝ≥0 → ℝ≥0
   | .tt, time | .ff, time | .cmp _ _ _, time => time
   | .not φ, time => φ.minimumTimeFrom time
   | .and φ ψ, time | .or φ ψ, time => min (φ.minimumTimeFrom time) (ψ.minimumTimeFrom time)

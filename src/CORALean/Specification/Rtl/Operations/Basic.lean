@@ -20,7 +20,7 @@ computed values.
 
 namespace CORALean
 
-variable {L : Type}
+variable {τ L : Type}
 
 
 -- ========================================  `Rtl.and?`  ======================================== --
@@ -30,7 +30,7 @@ variable {L : Type}
 -- Reviewed:      ---
 
 /-- `res = and(obj1,obj2)`: an empty operand (`none`) gives the other. -/
-def Rtl.and? : Option (Rtl L) → Option (Rtl L) → Option (Rtl L)
+def Rtl.and? : Option (Rtl τ L) → Option (Rtl τ L) → Option (Rtl τ L)
   | none, o2 => o2
   | o1, none => o1
   | some a, some b => some (.and a b)
@@ -44,7 +44,7 @@ def Rtl.and? : Option (Rtl L) → Option (Rtl L) → Option (Rtl L)
 
 open Classical in
 /-- `res = next(obj,time)`: CORA throws unless `time` is a multiple of `0.5`; here `none`. -/
-noncomputable def Rtl.next? (obj : Rtl L) (time : ℝ) : Option (Rtl L) :=
+noncomputable def Rtl.next? (obj : Rtl ℝ L) (time : ℝ) : Option (Rtl ℝ L) :=
   if Rtl.IsHalfMultiple time then some (.next time obj) else none
 
 
@@ -55,7 +55,7 @@ noncomputable def Rtl.next? (obj : Rtl L) (time : ℝ) : Option (Rtl L) :=
 -- Reviewed:      ---
 
 /-- `res = or(obj1,obj2)`: an empty operand (`none`) gives the other. -/
-def Rtl.or? : Option (Rtl L) → Option (Rtl L) → Option (Rtl L)
+def Rtl.or? : Option (Rtl τ L) → Option (Rtl τ L) → Option (Rtl τ L)
   | none, o2 => o2
   | o1, none => o1
   | some a, some b => some (.or a b)

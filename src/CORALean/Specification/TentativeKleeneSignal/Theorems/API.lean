@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.TentativeKleeneSignal.Theorems.AtEqIff
+public import CORALean.Specification.TentativeKleeneSignal.Theorems.AtMapTime
 public import CORALean.Specification.TentativeKleeneSignal.Theorems.EmptySignalMapTime
 public import CORALean.Specification.TentativeKleeneSignal.Theorems.EmptySignalSpec
 public import CORALean.Specification.TentativeKleeneSignal.Theorems.GetIntervalMapTime

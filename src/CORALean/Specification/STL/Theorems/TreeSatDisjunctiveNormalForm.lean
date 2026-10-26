@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One DNF pass keeps the meaning. -/
-private theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree n)
+private theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree NNReal ℝ n)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.dnfRewrite).1.Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
@@ -55,7 +55,7 @@ private theorem STL.Tree.aux_sat_dnfRewrite (φ : STL.Tree n)
 
 
 /-- The DNF loop keeps the meaning. -/
-private theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+private theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree NNReal ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     φ.dnfLoop.Satisfies ξ ↔ φ.Satisfies ξ := by
   induction φ using STL.Tree.dnfLoop.induct generalizing ξ with
   | case1 φ cnt hc => rw [STL.Tree.dnfLoop, dif_pos hc]; exact STL.Tree.aux_sat_dnfRewrite φ ξ
@@ -65,7 +65,7 @@ private theorem STL.Tree.aux_sat_dnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool)
+theorem STL.Tree.sat_disjunctiveNormalForm (φ : STL.Tree NNReal ℝ n) (nnf : Bool)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.disjunctiveNormalForm nnf).Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   unfold STL.Tree.disjunctiveNormalForm

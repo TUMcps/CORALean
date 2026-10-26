@@ -4,6 +4,7 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Basic
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ForcePropagation
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ForcePropagationFloat
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKey
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKeyEqv
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKind
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.GetVerdict
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Mk

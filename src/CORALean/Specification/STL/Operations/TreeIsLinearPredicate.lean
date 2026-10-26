@@ -32,13 +32,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `isLinearPredicate(obj)`. -/
-def STL.Tree.isLinearPredicate : STL.Tree n → Bool
+def STL.Tree.isLinearPredicate : STL.Tree τ κ n → Bool
   | .cmp _ e₁ e₂ => e₁.isLinear && e₂.isLinear
   | .and φ ψ => φ.isLinearPredicate && ψ.isLinearPredicate
   | _ => false

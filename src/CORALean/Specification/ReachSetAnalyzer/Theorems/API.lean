@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeComplete
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeKeySpec
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeSingleMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeSingleSpec
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeSound
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeSoundOfHasEnclosingTimes

@@ -33,13 +33,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `disjunctiveNormalForm(obj,nnf)`. -/
-def STL.Tree.disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool := false) : STL.Tree n :=
+def STL.Tree.disjunctiveNormalForm (φ : STL.Tree τ κ n) (nnf : Bool := false) : STL.Tree τ κ n :=
   let obj := if nnf then φ else φ.negationNormalForm
   obj.dnfLoop
 

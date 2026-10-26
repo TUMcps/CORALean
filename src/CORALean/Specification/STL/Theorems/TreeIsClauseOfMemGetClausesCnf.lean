@@ -40,7 +40,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.isClause_of_mem_getClausesCnf (φ : STL.Tree n) (h : φ.IsCnf) (c : STL.Tree n)
+theorem STL.Tree.isClause_of_mem_getClausesCnf (φ : STL.Tree NNReal ℝ n) (h : φ.IsCnf) (c :
+  STL.Tree NNReal ℝ n)
     (hc : c ∈ φ.getClausesCnf) : -- --- CONCL ---
     c.IsClause := by -- --- PROOF ---
   induction φ with

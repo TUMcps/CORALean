@@ -12,6 +12,7 @@ public import CORALean.Specification.FourValuedSignal.Theorems.CombineMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.CombineSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.ConclusiveIntervalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.ConclusiveIntervalToRealInterval
+public import CORALean.Specification.FourValuedSignal.Theorems.EqMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.EqNotComplete
 public import CORALean.Specification.FourValuedSignal.Theorems.FindIntervalsMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.FindIntervalsSpec

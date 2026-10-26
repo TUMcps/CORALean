@@ -44,8 +44,9 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `aux_halfspace2set(x,A,b)` of `polytope2stl.m`, for the comparison `op`. -/
-noncomputable def STL.Tree.halfspace2set (op : STL.Cmp) (a : Fin n → ℝ) (b : ℝ) : STL.Tree n :=
-  let term (i : Fin n) : STL.Expr n := if a i = 1 then .var i else .times (.num (a i)) (.var i)
+noncomputable def STL.Tree.halfspace2set (op : STL.Cmp) (a : Fin n → ℝ) (b : ℝ) : STL.Tree NNReal
+  ℝ n :=
+  let term (i : Fin n) : STL.Expr ℝ n := if a i = 1 then .var i else .times (.num (a i)) (.var i)
   match (List.finRange n).filter (fun i => a i ≠ 0) with
   | [] => STL.Tree.compare op (.num 0) (.num b)
   | ind :: rest =>

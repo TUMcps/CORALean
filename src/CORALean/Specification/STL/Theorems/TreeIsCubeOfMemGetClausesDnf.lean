@@ -40,7 +40,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.isCube_of_mem_getClausesDnf (φ : STL.Tree n) (h : φ.IsDnf) (c : STL.Tree n)
+theorem STL.Tree.isCube_of_mem_getClausesDnf (φ : STL.Tree NNReal ℝ n) (h : φ.IsDnf) (c :
+  STL.Tree NNReal ℝ n)
     (hc : c ∈ φ.getClausesDnf) : -- --- CONCL ---
     c.IsCube := by -- --- PROOF ---
   induction φ with

@@ -7,7 +7,9 @@ public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.MkMapTim
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.MkSpec
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.OrIndicatorSpec
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.RepresentsOfIff
+public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.SetPossiblyFalseMapTime
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.SetPossiblyFalseSpec
+public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.SetPossiblyTrueMapTime
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.SetPossiblyTrueSpec
 
 /-!

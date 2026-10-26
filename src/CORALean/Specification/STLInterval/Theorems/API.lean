@@ -27,6 +27,7 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetSub
 public import CORALean.Specification.STLInterval.Theorems.RawSetUpperOfLe
 public import CORALean.Specification.STLInterval.Theorems.RawSetUpperReach
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaEmptySetIff
+public import CORALean.Specification.STLInterval.Theorems.RepresentsaFloatSound
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaOriginZeroIff
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaPointZeroIff
 public import CORALean.Specification.STLInterval.Theorems.RightClosureToRealInterval

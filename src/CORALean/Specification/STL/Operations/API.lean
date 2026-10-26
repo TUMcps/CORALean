@@ -37,6 +37,8 @@ public import CORALean.Specification.STL.Operations.DepReachPointFloat
 public import CORALean.Specification.STL.Operations.DepReachStep
 public import CORALean.Specification.STL.Operations.DepReachStepFloat
 public import CORALean.Specification.STL.Operations.ExprIsLinear
+public import CORALean.Specification.STL.Operations.ExprMap
+public import CORALean.Specification.STL.Operations.ExprToReal
 public import CORALean.Specification.STL.Operations.ExprVariables
 public import CORALean.Specification.STL.Operations.FactorCheck
 public import CORALean.Specification.STL.Operations.FactorMeet
@@ -53,6 +55,7 @@ public import CORALean.Specification.STL.Operations.TreeAssignIdentifiersFrom
 public import CORALean.Specification.STL.Operations.TreeCnfLoop
 public import CORALean.Specification.STL.Operations.TreeCnfRewrite
 public import CORALean.Specification.STL.Operations.TreeCombineNext
+public import CORALean.Specification.STL.Operations.TreeCombineNextFloat
 public import CORALean.Specification.STL.Operations.TreeCompare
 public import CORALean.Specification.STL.Operations.TreeConjoin
 public import CORALean.Specification.STL.Operations.TreeConjunctiveNormalForm
@@ -64,11 +67,15 @@ public import CORALean.Specification.STL.Operations.TreeEliminateTrueFalseWith
 public import CORALean.Specification.STL.Operations.TreeGetVariables
 public import CORALean.Specification.STL.Operations.TreeHalfspace2set
 public import CORALean.Specification.STL.Operations.TreeIsLinearPredicate
+public import CORALean.Specification.STL.Operations.TreeMap
 public import CORALean.Specification.STL.Operations.TreeMaximumTimeFrom
+public import CORALean.Specification.STL.Operations.TreeMaximumTimeFromFloat
 public import CORALean.Specification.STL.Operations.TreeMinimumTimeFrom
+public import CORALean.Specification.STL.Operations.TreeMinimumTimeFromFloat
 public import CORALean.Specification.STL.Operations.TreeNnfWith
 public import CORALean.Specification.STL.Operations.TreePolytope2stl
 public import CORALean.Specification.STL.Operations.TreeTemporal
+public import CORALean.Specification.STL.Operations.TreeToReal
 public import CORALean.Specification.STL.Operations.UnsafeFactors
 public import CORALean.Specification.STL.Operations.UnsafeFactorsFloat
 

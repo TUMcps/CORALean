@@ -33,13 +33,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `aux_recursive(obj,time)` of `maximumTime.m`. -/
-def STL.Tree.maximumTimeFrom : STL.Tree n → ℝ≥0 → ℝ≥0
+def STL.Tree.maximumTimeFrom : STL.Tree NNReal κ n → ℝ≥0 → ℝ≥0
   | .tt, time | .ff, time | .cmp _ _ _, time => time
   | .not φ, time => φ.maximumTimeFrom time
   | .and φ ψ, time | .or φ ψ, time => max (φ.maximumTimeFrom time) (ψ.maximumTimeFrom time)

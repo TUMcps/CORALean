@@ -51,9 +51,9 @@ def FourValuedSignal.at {T : Type} [TimeOrder T] (s : FourValuedSignal T) (time 
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `obj == other`: both parts are equal (structurally). -/
-def FourValuedSignal.eq {T : Type} [LinearOrder T] (a b : FourValuedSignal T) : Bool :=
-  if a.signal.eq b.signal = true ∧ a.isInconclusive = b.isInconclusive then true else false
+/-- `obj == other`: both parts are equal. -/
+def FourValuedSignal.eq {T : Type} [TimeOrder T] (a b : FourValuedSignal T) : Bool :=
+  a.signal.eq b.signal && a.isInconclusive.eq b.isInconclusive
 
 
 -- ===============================  `FourValuedSignal.indicator`  =============================== --

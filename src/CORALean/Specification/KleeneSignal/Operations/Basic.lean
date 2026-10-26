@@ -52,9 +52,9 @@ def KleeneSignal.at {T : Type} [TimeOrder T] (s : KleeneSignal T) (time : T) : K
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `obj == other`: both parts are equal (structurally). -/
-def KleeneSignal.eq {T : Type} [LinearOrder T] (a b : KleeneSignal T) : Bool :=
-  if a.signal = b.signal ∧ a.isUnknown = b.isUnknown then true else false
+/-- `obj == other`: both parts are equal. -/
+def KleeneSignal.eq {T : Type} [TimeOrder T] (a b : KleeneSignal T) : Bool :=
+  a.signal.eq b.signal && a.isUnknown.eq b.isUnknown
 
 
 -- =================================  `KleeneSignal.indicator`  ================================= --

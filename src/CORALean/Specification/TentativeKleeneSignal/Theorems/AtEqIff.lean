@@ -36,7 +36,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem TentativeKleeneSignal.at_eq_iff {T : Type} [LinearOrder T] (s : TentativeKleeneSignal T)
+theorem TentativeKleeneSignal.at_eq_iff {T : Type} [TimeOrder T] (s : TentativeKleeneSignal T)
     (t : T) : -- --- CONCL ---
     (s.at t = .tt ↔ s.canBeTrue.at t = true ∧ s.canBeFalse.at t = false) ∧
       (s.at t = .ff ↔ s.canBeTrue.at t = false ∧ s.canBeFalse.at t = true) ∧

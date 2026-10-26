@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `polytope2stl(obj,P)` for `{x | A x <= b, Ae x = be}`. -/
-noncomputable def STL.Tree.polytope2stl (P : Real.HPolytope (Fin n → ℝ)) : STL.Tree n :=
+noncomputable def STL.Tree.polytope2stl (P : Real.HPolytope (Fin n → ℝ)) : STL.Tree NNReal ℝ n :=
   STL.Tree.conjoin ((List.finRange P.m).map (fun i =>
       STL.Tree.halfspace2set .le (fun j => P.A i (Pi.single j 1)) (P.b i)) ++
     (List.finRange P.me).flatMap fun i => [.le, .ge].map fun op =>

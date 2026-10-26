@@ -29,7 +29,8 @@ namespace CORALean
 -- Reviewed:      ---
 
 /-- `dim` of an STL interval is `1`: its times are a subset of `ℝ`. -/
-theorem STLInterval.dim_eq_one (I : STLInterval ℝ) : I.dim = 1 := rfl
+theorem STLInterval.dim_eq_one {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
+    (I : STLInterval 𝕋) : I.dim = 1 := rfl
 
 
 -- =============================  `STLInterval.rawSet_closed_coe`  ============================== --

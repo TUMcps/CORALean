@@ -33,13 +33,13 @@ namespace CORALean
 open scoped NNReal
 
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `desugar(phi)` of `desugar.m`. -/
-def STL.Tree.desugar : STL.Tree n → STL.Tree n
+def STL.Tree.desugar : STL.Tree τ κ n → STL.Tree τ κ n
   | .tt => .tt
   | .ff => .ff
   | .cmp op e₁ e₂ => .cmp op e₁ e₂

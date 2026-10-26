@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_getClausesDnf (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_getClausesDnf (φ : STL.Tree NNReal ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     φ.Satisfies ξ ↔ ∃ c ∈ φ.getClausesDnf, c.Satisfies ξ := by
   induction φ with
   | or φ ψ ihφ ihψ =>

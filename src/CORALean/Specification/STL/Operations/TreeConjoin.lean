@@ -31,13 +31,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The left-nested conjunction of the list, `true` for the empty list. -/
-def STL.Tree.conjoin (L : List (STL.Tree n)) : STL.Tree n :=
+def STL.Tree.conjoin (L : List (STL.Tree τ κ n)) : STL.Tree τ κ n :=
   (L.foldl (fun res c => some (res.elim c fun r => .and r c)) none).getD .tt
 
 end CORALean

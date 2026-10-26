@@ -13,6 +13,8 @@ the propositional formula `ϱ` it holds. The shift `a` of `Xₐ` is a nonnegativ
 `next` of CORA accepts every multiple of `0.5`, negative ones too, which have no counterpart, and
 `toFormula` is `none` for them.
 
+Real-only, a specification: the paper's formula over `ℝ≥0` times.
+
 ## Inputs
 * `f` – reading of a label as a predicate
 
@@ -41,7 +43,7 @@ variable {L X : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The formula of [1, Def. 1] that an `rtl` object is. -/
-noncomputable def Rtl.toFormula (f : L → Pform X) : Rtl L → Option (RTL.Formula X)
+noncomputable def Rtl.toFormula (f : L → Pform X) : Rtl ℝ L → Option (RTL.Formula X)
   | .all l => some (.A (f l))
   | .and a b => (a.toFormula f).bind fun a' => (b.toFormula f).map (RTL.Formula.and a')
   | .or a b => (a.toFormula f).bind fun a' => (b.toFormula f).map (RTL.Formula.or a')

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Rtl.Theorems.Basic
+public import CORALean.Specification.Rtl.Theorems.NextFloatEqSomeIff
 public import CORALean.Specification.Rtl.Theorems.SatToFormula
 public import CORALean.Specification.Rtl.Theorems.ToFormulaIsSomeIff
 

@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `φ` is a conjunction of clauses. -/
-def STL.Tree.IsCnf : STL.Tree n → Prop
+def STL.Tree.IsCnf : STL.Tree NNReal ℝ n → Prop
   | .and φ ψ => IsCnf φ ∧ IsCnf ψ
   | φ => φ.IsClause
 

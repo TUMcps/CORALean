@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One CNF pass keeps the meaning. -/
-private theorem STL.Tree.aux_sat_cnfRewrite (φ : STL.Tree n)
+private theorem STL.Tree.aux_sat_cnfRewrite (φ : STL.Tree NNReal ℝ n)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.cnfRewrite).1.Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
@@ -55,7 +55,7 @@ private theorem STL.Tree.aux_sat_cnfRewrite (φ : STL.Tree n)
 
 
 /-- The CNF loop keeps the meaning. -/
-private theorem STL.Tree.aux_sat_cnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+private theorem STL.Tree.aux_sat_cnfLoop (φ : STL.Tree NNReal ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     φ.cnfLoop.Satisfies ξ ↔ φ.Satisfies ξ := by
   induction φ using STL.Tree.cnfLoop.induct generalizing ξ with
   | case1 φ cnt hc => rw [STL.Tree.cnfLoop, dif_pos hc]; exact STL.Tree.aux_sat_cnfRewrite φ ξ
@@ -65,7 +65,7 @@ private theorem STL.Tree.aux_sat_cnfLoop (φ : STL.Tree n) (ξ : ℝ≥0 → Fin
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_conjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool)
+theorem STL.Tree.sat_conjunctiveNormalForm (φ : STL.Tree NNReal ℝ n) (nnf : Bool)
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (φ.conjunctiveNormalForm nnf).Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   unfold STL.Tree.conjunctiveNormalForm

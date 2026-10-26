@@ -66,7 +66,7 @@ private theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin 
         (if a i = 1 then STL.Expr.var i else STL.Expr.times (.num (a i)) (.var i)))
       (if a ind = 1 then STL.Expr.var ind else STL.Expr.times (.num (a ind)) (.var ind))).eval x
       = a ind * x ind + (rest.map fun i => a i * x i).sum := by -- --- PROOF ---
-  suffices ∀ init : STL.Expr n, (rest.foldl (fun rhs i => STL.Expr.plus rhs
+  suffices ∀ init : STL.Expr ℝ n, (rest.foldl (fun rhs i => STL.Expr.plus rhs
         (if a i = 1 then STL.Expr.var i else STL.Expr.times (.num (a i)) (.var i))) init).eval x
       = init.eval x + (rest.map fun i => a i * x i).sum by
     rw [this, STL.Tree.aux_eval_term]

@@ -34,13 +34,13 @@ give the comparison of the two.
 namespace CORALean
 
 
-variable {n : ℕ}
+variable {τ κ : Type} [Zero κ] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The node of `e₁ op e₂`, `op` one of `<`, `<=`, `>`, `>=`. -/
-def STL.Tree.compare (op : STL.Cmp) (e₁ e₂ : STL.Expr n) : STL.Tree n :=
+def STL.Tree.compare (op : STL.Cmp) (e₁ e₂ : STL.Expr κ n) : STL.Tree τ κ n :=
   match e₁, e₂ with
   | _, .num _ => .cmp op e₁ e₂
   | .num _, _ => .cmp op.dual e₂ e₁

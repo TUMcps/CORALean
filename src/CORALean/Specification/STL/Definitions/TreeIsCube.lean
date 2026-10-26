@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `φ` is a disjunction of leaves. -/
-def STL.Tree.IsCube : STL.Tree n → Prop
+def STL.Tree.IsCube : STL.Tree NNReal ℝ n → Prop
   | .or _ _ => False
   | .and φ ψ => IsCube φ ∧ IsCube ψ
   | _ => True
