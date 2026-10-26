@@ -59,6 +59,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundNonneg
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundSuperlinear
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatEntryLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatIsBigO
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec

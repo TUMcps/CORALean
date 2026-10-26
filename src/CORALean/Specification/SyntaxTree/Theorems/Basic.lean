@@ -1,10 +1,15 @@
 module
 
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
 public import CORALean.Specification.SyntaxTree.Definitions.Basic
 public import CORALean.Specification.SyntaxTree.Definitions.IsSound
+public import CORALean.Specification.SyntaxTree.Definitions.IsSoundFloat
 public import CORALean.Specification.SyntaxTree.Operations.Basic
+public import CORALean.Specification.SyntaxTree.Operations.IntervalFloat
+public import CORALean.Specification.SyntaxTree.Operations.ValueFloat
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.ContainsTimes
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesOfSound
@@ -14,15 +19,14 @@ public import CORALean.Specification.SyntaxTree.Theorems.PlusSound
 public import CORALean.Specification.SyntaxTree.Theorems.PowerSound
 public import CORALean.Specification.SyntaxTree.Theorems.TimesSound
 public import CORALean.Specification.SyntaxTree.Theorems.UminusSound
-public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
 # `SyntaxTree/Theorems`: small declarations
 
-One section per declaration, at most five code lines each; alphabetical, after the
-sections each one uses (CONTRIBUTING, "Small declarations").
+One section per declaration, at most five code lines each; alphabetical, after the sections each one
+uses (CONTRIBUTING, "Small declarations").
 -/
 
 
@@ -30,7 +34,9 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 namespace CORALean
+open Float.SoundFloatArithmetic
 variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 
 -- ==============================  `SyntaxTree.contains_interval`  ============================== --
@@ -41,6 +47,17 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- `interval(c,c)` holds `c`. -/
 theorem SyntaxTree.contains_interval {c : ℝ} : Dom.contains (interval c c) c := ⟨le_rfl, le_rfl⟩
+
+
+-- ===========================  `SyntaxTree.contains_intervalFloat`  ============================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `interval(c,c)` holds `c` read as a real. -/
+theorem SyntaxTree.contains_intervalFloat {c : 𝕋} :
+    (SyntaxTree.intervalFloat c c).contains (toReal c) := ⟨le_rfl, le_rfl⟩
 
 
 -- ===============================  `SyntaxTree.contains_minus`  ================================ --
@@ -55,6 +72,32 @@ theorem SyntaxTree.contains_minus {I J : Dom} {a b : ℝ} (ha : Dom.contains I a
   ⟨sub_le_sub ha.1 hb.2, sub_le_sub ha.2 hb.1⟩
 
 
+-- =============================  `SyntaxTree.contains_minusFloat`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `I - J` holds `a - b`. -/
+theorem SyntaxTree.contains_minusFloat {I J : Float.SyntaxTree.Dom 𝕋} {a b : ℝ} (ha : I.contains a)
+    (hb : J.contains b) : Float.SyntaxTree.Dom.contains (Float.Interval.minus I J) (a - b) :=
+  ⟨(Float.subDown_le_sub _ _).trans (sub_le_sub ha.1 hb.2),
+    (sub_le_sub ha.2 hb.1).trans (Float.sub_le_subUp _ _)⟩
+
+
+-- ===========================  `SyntaxTree.contains_of_outerFloat`  ============================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- If the image of `I` under `f` lies in `J`, then `J` holds `f t` where `I` holds `t`. -/
+theorem SyntaxTree.contains_of_outerFloat {I J : Float.SyntaxTree.Dom 𝕋} {f : ℝ → ℝ}
+    (h : (fun x i => f (x i)) '' I.construct ⊆ J.construct) {t : ℝ} (ht : I.contains t) :
+    J.contains (f t) :=
+  h ⟨fun _ => t, fun i => by obtain rfl : i = 0 := Subsingleton.elim i 0; exact ht, rfl⟩ 0
+
+
 -- ================================  `SyntaxTree.contains_plus`  ================================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -65,6 +108,45 @@ theorem SyntaxTree.contains_minus {I J : Dom} {a b : ℝ} (ha : Dom.contains I a
 theorem SyntaxTree.contains_plus {I J : Dom} {a b : ℝ} (ha : Dom.contains I a)
     (hb : Dom.contains J b) : Dom.contains (Real.Interval.plus I J) (a + b) :=
   ⟨add_le_add ha.1 hb.1, add_le_add ha.2 hb.2⟩
+
+
+-- =============================  `SyntaxTree.contains_plusFloat`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `I + J` holds `a + b`. -/
+theorem SyntaxTree.contains_plusFloat {I J : Float.SyntaxTree.Dom 𝕋} {a b : ℝ} (ha : I.contains a)
+    (hb : J.contains b) : Float.SyntaxTree.Dom.contains (Float.Interval.plus I J) (a + b) :=
+  ⟨(addDown_le_add _ _).trans (add_le_add ha.1 hb.1),
+    (add_le_add ha.2 hb.2).trans (add_le_addUp _ _)⟩
+
+
+-- =============================  `SyntaxTree.contains_timesFloat`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `I * J` holds `a * b`. -/
+theorem SyntaxTree.contains_timesFloat {I J : Float.SyntaxTree.Dom 𝕋} {a b : ℝ}
+    (ha : I.contains a) (hb : J.contains b) :
+    Float.SyntaxTree.Dom.contains (Float.Interval.times I J) (a * b) :=
+  Float.Interval.mul_between_corners ha.1 ha.2 hb.1 hb.2
+
+
+-- ============================  `SyntaxTree.contains_uminusFloat`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `-I` holds `-a`. -/
+theorem SyntaxTree.contains_uminusFloat {I : Float.SyntaxTree.Dom 𝕋} {a : ℝ} (ha : I.contains a) :
+    Float.SyntaxTree.Dom.contains (Float.Interval.uminus I) (-a) :=
+  ⟨by show toReal (-(I.sup 0)) ≤ -a; rw [Float.toReal_neg']; exact neg_le_neg ha.2,
+    by show -a ≤ toReal (-(I.inf 0)); rw [Float.toReal_neg']; exact neg_le_neg ha.1⟩
 
 
 -- ==================================  `SyntaxTree.eval_acos`  ================================== --
@@ -558,6 +640,18 @@ theorem SyntaxTree.sound_uminus (h : IsSound B t) : IsSound B t.uminus :=
 
 /-- `uplus` of a sound tree is sound. -/
 theorem SyntaxTree.sound_uplus (h : IsSound B t) : IsSound B t.uplus := h
+
+
+-- ==============================  `SyntaxTree.sound_uplusFloat`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       25-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The `uplus` node over a sound float tree is the tree itself. -/
+theorem SyntaxTree.sound_uplusFloat {n : ℕ} {B : Float.Interval (Vec 𝕋 n)}
+    {t : Float.SyntaxTree 𝕋 n} (h : SyntaxTree.IsSoundFloat B t) :
+    SyntaxTree.IsSoundFloat B (SyntaxTree.uplusFloat t) := h
 
 
 -- ==================================  `SyntaxTree.sound_var`  ================================== --

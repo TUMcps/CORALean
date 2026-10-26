@@ -14,8 +14,8 @@ public import Mathlib.Data.Matrix.Diagonal
 interval hull of a zonotope `⟨c, G⟩_Z`, `[c - r, c + r]` with `r_i = Σ_l |G_{i,l}|`, which is
 the zonotope with the center `c` and the `n` generators `r_i e_i`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
-computation over `𝕋` with directed rounding) is not yet written.
+Real-only, a specification: the sets and matrices are real; the rounded refinement is
+`STL.depBoxFloat`.
 
 ## Inputs
 * `Z` – zonotope

@@ -15,8 +15,8 @@ the
 largest and the smallest solution `x + 2 pi k` inside `intPrev` and meets `intPrev` with their hull.
 `contains` is exact (`tol = 0`).
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: it computes with real numbers exactly; its rounded refinement is
+`SyntaxTree.periodicFloat`.
 
 ## Inputs
 * `resTemp₁` – interval of the first branch

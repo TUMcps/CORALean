@@ -59,6 +59,17 @@ public import CORALean.Specification.STL.Operations.TreePolytope2stl
 public import CORALean.Specification.STL.Operations.TreeTemporal
 public import CORALean.Specification.STL.Operations.ExprIsLinear
 public import CORALean.Specification.STL.Operations.ExprVariables
+public import CORALean.Specification.STL.Operations.DepBloatingFloat
+public import CORALean.Specification.STL.Operations.DepBoxFloat
+public import CORALean.Specification.STL.Operations.DepCurvatureFFloat
+public import CORALean.Specification.STL.Operations.DepCurvatureGFloat
+public import CORALean.Specification.STL.Operations.DepReachAtFloat
+public import CORALean.Specification.STL.Operations.DepReachConstsOfFloat
+public import CORALean.Specification.STL.Operations.DepReachFloat
+public import CORALean.Specification.STL.Operations.DepReachInitFloat
+public import CORALean.Specification.STL.Operations.DepReachIntervalFloat
+public import CORALean.Specification.STL.Operations.DepReachPointFloat
+public import CORALean.Specification.STL.Operations.DepReachStepFloat
 
 /-!
 # Signal and reachset temporal logic: the operations

@@ -11,8 +11,8 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 MATLAB's `nthroot(x,k)`: the real `k`-th root, negative arguments allowed for odd `k`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: it is the exact real root; its enclosure by floats is
+`SyntaxTree.nthrootFloat`.
 
 ## Inputs
 * `x` – real number

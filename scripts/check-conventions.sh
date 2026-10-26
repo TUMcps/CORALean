@@ -1685,7 +1685,7 @@ report "$out"
 # instead of the paper (#255), and a definition of a composite
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
 # instead of through the component's operations without saying why in its docstring (#174), and
-# a real-only `Specification` operation that does not say why (scripts/float-refinement-pending.txt),
+# a real-only `Specification` operation that does not say why (scripts/check-float-refinement.py),
 # and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
 # `aux_` step (#227).
 # Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is

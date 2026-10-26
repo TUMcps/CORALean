@@ -9,8 +9,8 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 The one-dimensional `interval` with the bounds `lb` and `ub`, as the nodes store it.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: the bounds are real numbers; the interval of floats is
+`SyntaxTree.intervalFloat`.
 
 ## Inputs
 * `lb` – lower bound

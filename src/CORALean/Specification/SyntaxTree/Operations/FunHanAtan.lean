@@ -13,8 +13,8 @@ public import CORALean.Specification.SyntaxTree.Operations.Interval
 (`tan(±pi/2) =
 ±Inf`), met with `intPrev`. An `int` below `-pi/2` throws `CORA:outOfDomain`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: it computes with real numbers exactly; its rounded refinement is
+`SyntaxTree.funHanAtanFloat`.
 
 ## Inputs
 * `int` – target interval

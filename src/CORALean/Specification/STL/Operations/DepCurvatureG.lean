@@ -14,8 +14,8 @@ public import Mathlib.Algebra.BigOperators.Fin
 `[c_j Δt^j, 0] A^{j-1}/j!` for `j = 2, ..., κ+1`, entry by entry as `MatExp.constCorrTerm`
 (whose index `i` is `j - 2`), widened by `[-E, E] Δt`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
-computation over `𝕋` with directed rounding) is not yet written.
+Real-only, a specification: the sets and matrices are real; the rounded refinement is
+`STL.depCurvatureGFloat`.
 
 ## Inputs
 * `A` – dynamics matrix

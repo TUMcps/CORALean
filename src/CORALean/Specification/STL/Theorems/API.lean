@@ -149,6 +149,19 @@ public import CORALean.Specification.STL.Theorems.TreeSatPolytope2stl
 public import CORALean.Specification.STL.Theorems.TreeTemporalOfIsPredicate
 public import CORALean.Specification.STL.Theorems.ExprEvalCongrVariables
 public import CORALean.Specification.STL.Theorems.ExprExistsAffineOfIsLinear
+public import CORALean.Specification.STL.Theorems.DepBloatingFloatOuter
+public import CORALean.Specification.STL.Theorems.DepBoxFloatOuter
+public import CORALean.Specification.STL.Theorems.DepCurvatureFFloatOuter
+public import CORALean.Specification.STL.Theorems.DepCurvatureGFloatOuter
+public import CORALean.Specification.STL.Theorems.DepReachAtFloatOuter
+public import CORALean.Specification.STL.Theorems.DepReachConstsFloatOuter
+public import CORALean.Specification.STL.Theorems.DepReachFloatIntervalOuter
+public import CORALean.Specification.STL.Theorems.DepReachFloatPointOuter
+public import CORALean.Specification.STL.Theorems.DepReachInitFloatOuter
+public import CORALean.Specification.STL.Theorems.DepReachIntervalFloatOuter
+public import CORALean.Specification.STL.Theorems.DepReachPointFloatOuter
+public import CORALean.Specification.STL.Theorems.DepReachStepFloatOuter
+public import CORALean.Specification.STL.Theorems.ZonotopeExtremes
 
 /-!
 # Signal and reachset temporal logic: the theorems

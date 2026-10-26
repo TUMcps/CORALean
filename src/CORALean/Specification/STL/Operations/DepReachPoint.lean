@@ -11,8 +11,8 @@ public import CORALean.Specification.STL.Definitions.DepReachState
 [1, Eq. 14-20] and line 8 of [1, Alg. 1]: `R(t_i) = H(t_i) ⊕ P(t_i)`, `P(t_i) = P_c(t_i) ⊕ D_i`: the
 generators of `H(t_i)`, then those of `P_c(t_i)`, then those of `D_i`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
-computation over `𝕋` with directed rounding) is not yet written.
+Real-only, a specification: the sets and matrices are real; the rounded refinement is
+`STL.depReachPointFloat`.
 
 ## Inputs
 * `s` – algorithm state
