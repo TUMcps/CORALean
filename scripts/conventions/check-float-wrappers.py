@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rejects a float definition that only applies the exact operation to what the floats denote (issue #154).
 
-    python3 scripts/check-float-wrappers.py
+    python3 scripts/conventions/check-float-wrappers.py
 
 A float set's `nominal` is the exact set its stored floats describe, so a `def` under `Float/`
 whose whole body is `X.nominal.op args` (or `(InflatedContSet.nominal X).op args`) is the exact
@@ -21,7 +21,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
 
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:(?:private|protected|noncomputable|partial)\s+)*"

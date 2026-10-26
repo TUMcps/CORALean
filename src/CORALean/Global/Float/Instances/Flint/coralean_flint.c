@@ -10,7 +10,7 @@
  * lean.h alone (scalar fast path, else 64-bit limbs via `lean_nat_land` and
  * `lean_nat_shiftr`), and built back the same way. The FLINT/MPFR/GMP copy is
  * bundled into one relocatable object whose only globals are `coralean_flint_*`
- * (scripts/build-flint-shim.sh, to be written), so the two GMPs never meet.
+ * (scripts/build/build-flint-shim.sh, to be written), so the two GMPs never meet.
  *
  * Every conversion is exact: `arf_set_fmpz_2exp` and `arf_get_fmpz_2exp` do not
  * round. A precision below 2 is raised to 2, and one above CORALEAN_MAX_PREC

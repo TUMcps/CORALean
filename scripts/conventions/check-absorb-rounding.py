@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Every float set can move its error box into its parameters (issues #185, #192).
 
-    python3 scripts/check-absorb-rounding.py
+    python3 scripts/conventions/check-absorb-rounding.py
 
 A float set records its rounding in an `I_error` box and denotes nominal + `I_error`; rounding is
 never folded silently into a parameter. Each float representation therefore provides a sound
@@ -40,7 +40,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 CONTSET = ROOT / "src" / "CORALean" / "ContSet"
 OLD_NAMES = re.compile(r"\bdependent_(outer|nominal)\b")
 OLD_FILES = re.compile(r"^Dependent(Outer|Nominal)?\.lean$")

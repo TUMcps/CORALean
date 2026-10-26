@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Rewrites the `## References` entries of the Lean modules to the rendering of their page (#265).
 
-    python3 scripts/render-references.py          # rewrite every entry that differs
-    python3 scripts/render-references.py --check  # list the files it would rewrite, change nothing
+    python3 scripts/paper/render-references.py          # rewrite every entry that differs
+    python3 scripts/paper/render-references.py --check  # list the files it would rewrite, change nothing
 
-Each `references/<year>/*.md` page carries one BibTeX entry (see `scripts/refentry.py`), and a
+Each `references/<year>/*.md` page carries one BibTeX entry (see `scripts/paper/refentry.py`), and a
 module docstring cites the publication with a numbered line under `## References`,
 
     * [1] <authors>. "<Title>". <Venue>, <year>.
@@ -32,7 +32,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import refentry  # noqa: E402
 
-spec = importlib.util.spec_from_file_location("check_references", HERE / "check-references.py")
+spec = importlib.util.spec_from_file_location("check_references", HERE.parent / "check-references.py")
 cr = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(cr)
 

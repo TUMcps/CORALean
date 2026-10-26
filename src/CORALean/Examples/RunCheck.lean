@@ -19,10 +19,10 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 proves each compiles at a float scalar. This executable runs each of them and prints one line per
 `def`, `name | summary | status`: a short deterministic reading of the result, and `ok`, `NAN` (a
 NaN reached a result) or `NONE` (an `Option.none` where a value is expected).
-`scripts/check-runcheck.sh` diffs the output against `scripts/runcheck-expected.txt` and checks
-coverage: every `def` of `RunnableFloat.lean` must be run here, as `RunnableFloat.<name>` on a line
-of its own, or listed in `skipped` with a reason. Hardware `Float` runs a portable subset at the
-end. Run `lake exe runcheck` or `lake env lean --run src/CORALean/Examples/RunCheck.lean`.
+`scripts/check-runcheck.sh` diffs the output against `scripts/expected/runcheck-expected.txt` and
+checks coverage: every `def` of `RunnableFloat.lean` must be run here, as `RunnableFloat.<name>`
+on a line of its own, or listed in `skipped` with a reason. Hardware `Float` runs a portable subset
+at the end. Run `lake exe runcheck` or `lake env lean --run src/CORALean/Examples/RunCheck.lean`.
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

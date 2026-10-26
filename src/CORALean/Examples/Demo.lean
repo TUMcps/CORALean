@@ -9,9 +9,9 @@ import CORALean.Examples.Demo.Reduce
 
 Everything here is proved elsewhere; what is new is a number, which no `_outer` theorem supplies: a
 theorem is as true of a box the size of the state space as of a tight one. The output is committed
-as `scripts/demo-expected.txt` and `scripts/check-demo.sh` compares the two, so an enclosure that
-silently widens fails the build. `Dyadic` is exact integer arithmetic, so the numbers do not depend
-on the machine. `LinearSysDT.reach` runs at `Dyadic 24`, at the smaller
+as `scripts/expected/demo-expected.txt` and `scripts/check-demo.sh` compares the two, so an
+enclosure that silently widens fails the build. `Dyadic` is exact integer arithmetic, so the
+numbers do not depend on the machine. `LinearSysDT.reach` runs at `Dyadic 24`, at the smaller
 `Dyadic CORALean.Demo.smallP`, and at native `Float` (`Demo/Binary64.lean`); a network's `enclose`
 and `reduceOnTheFly` run at `Dyadic 24`, and so does one `LinParamSys` step at an interval matrix
 (`Demo/LinParamStep.lean`).

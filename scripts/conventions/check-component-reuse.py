@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A representation that stores another representation reuses its operations (#174).
 
-    python3 scripts/check-component-reuse.py [--root DIR]
+    python3 scripts/conventions/check-component-reuse.py [--root DIR]
 
 A representation that stores a set of another representation as a component — a constrained
 polynomial zonotope its factor constraint (`ConPolyZono.cons`, a `PolyLevelSet`), a constrained
@@ -48,7 +48,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()

@@ -235,7 +235,7 @@ algorithm computes, ends in `Exact`, whatever it is the set of: `LinearSys.reach
 `LinearSys.timeIntervalReachSetExact`, `LinearSysDT.backReachSetExistsExact`,
 `NonlinearSys.robustReachSetExact`, `HybridAutomaton.reachSetExact`. A computed set is a
 representation named by its algorithm, never a bare `Set`. `check-conventions.sh` runs
-`scripts/check-exact-names.py`, which rejects a `Set`-valued definition in a `Definitions/`
+`scripts/conventions/check-exact-names.py`, which rejects a `Set`-valued definition in a `Definitions/`
 directory of `ContDynamics/` or `HybridDynamics/` whose name says reach set, output, state,
 window or locations and does not end in `Exact`.
 
@@ -258,7 +258,7 @@ is `rescaleCols`, and `zeroFeasible`, `interiorCert` and `interiorMargin` are `c
 `HPolytope.lift_` and `intersection` of `ineqs` (float: `stackRows`), and `absorbRounding` with
 `lift_`; the intersection's agreement rows and the union's selector rows of a constrained
 polynomial zonotope are `PolyLevelSet.andRows`.
-`check-conventions.sh` runs `scripts/check-component-reuse.py`, whose per-representation table
+`check-conventions.sh` runs `scripts/conventions/check-component-reuse.py`, whose per-representation table
 says what counts as doing the component's work by hand: under `ContSet/ConPolyZono/`, a definition
 returning a matrix, an exponent matrix or a vector indexed by the constraint's rows or monomials,
 or named after a constraint field (`…A`, `…B`, `…R`); under `ContSet/ConZonotope/`, one that reads
@@ -414,23 +414,23 @@ density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
 silently left out of the build, that a declaration of at most five code lines
 is a section of its directory's `Basic.lean` and every section is well formed
-(through `scripts/check-basic-bundles.py`; see "Small declarations"), that a theorem file
+(through `scripts/conventions/check-basic-bundles.py`; see "Small declarations"), that a theorem file
 defines nothing ("A theorem file defines nothing"), that a float definition is not the exact
-operation at `nominal` under a second name (`scripts/check-float-wrappers.py`; "Float
+operation at `nominal` under a second name (`scripts/conventions/check-float-wrappers.py`; "Float
 definitions earn their name"), that a definition citing a paper's algorithm carries its steps
-(`scripts/check-algorithm-steps.py`; "Algorithms read like the paper"), that a long subterm
-is not spelled out three times in one declaration (`scripts/check-repeated-subterms.py`;
+(`scripts/conventions/check-algorithm-steps.py`; "Algorithms read like the paper"), that a long subterm
+is not spelled out three times in one declaration (`scripts/conventions/check-repeated-subterms.py`;
 "Name what repeats"), that a discrete-time class (`<X>DT`) has the fields of its continuous twin
-`<X>` (`scripts/check-dt-twins.py`; the sampling time `dt` is the one field a discrete-time class
+`<X>` (`scripts/conventions/check-dt-twins.py`; the sampling time `dt` is the one field a discrete-time class
 has and its twin has not), that a public theorem that exactly one other file reads is
 that file's `aux_` lemma unless something outward-facing names it
-(`scripts/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
+(`scripts/conventions/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
 `noncomputable` stays where it is legitimate — see below.
 
 **Principle.** Keep `noncomputable` to a minimum: a definition should compute wherever it can;
 where the real version cannot, there should at least be a float variant that does.
 
-**Rule** (`scripts/check-noncomputable.py`, no list). A `noncomputable` declaration is allowed if it
+**Rule** (`scripts/conventions/check-noncomputable.py`, no list). A `noncomputable` declaration is allowed if it
 is in a real layer (a file under a `Real/` folder, or a declaration that works over ℝ rather than
 the float scalar `𝕋`: its text mentions ℝ, or the file's `variable` lines do, and `𝕋` is at most
 the index of a system, never the type of a value), or its type is a `Set`, a `Prop` or ℝ-valued,
@@ -446,7 +446,7 @@ drift. Every message says what to do, not only what is wrong.
 It is text only: no Lean, no build, no network — which is why it runs on every
 commit rather than on request. Over the whole tree it takes about fifteen
 seconds on Linux (several times that in Git Bash on Windows); the hook does not
-pay that for a commit that only edits existing Lean files. `scripts/precommit-scope.py`
+pay that for a commit that only edits existing Lean files. `scripts/conventions/precommit-scope.py`
 compares the index with `HEAD`, and a commit that leaves every file's imports,
 namespaces, type declarations and `noncomputable` lines as they were runs the
 per-file rules on the changed files alone (`check-conventions.sh --staged`,
@@ -457,7 +457,7 @@ touches anything outside `src/` or what that check reads of a Lean file. The hoo
 checks the index, not the working tree: when the two differ, the whole-tree runs
 use a checkout of the index in a temporary directory. CI always runs the whole
 tree, so a commit that bypasses the hook, or that the scope wrongly called small,
-fails there. The Python scripts are started through `scripts/find-python.sh`, which
+fails there. The Python scripts are started through `scripts/conventions/find-python.sh`, which
 takes the first of `python3`, `python`, `py -3` that really runs a program (on
 Windows `python3` is by default a Store stub that runs nothing) and stops with a
 message when none does, and sets `PYTHONUTF8=1` so that reading the sources and printing `ℝ`
@@ -478,7 +478,7 @@ scanner and declarations are matched at the start of a line — which is what
 keeps it fast and dependency-free. It reports; it never rewrites.
 
 `scripts/check-demo.sh` runs the demo and diffs what it prints against
-`scripts/demo-expected.txt`. It is the only check here that measures
+`scripts/expected/demo-expected.txt`. It is the only check here that measures
 *precision*: every theorem in this repository is an enclosure, and an enclosure
 the size of the state space satisfies all of them, so a widening is invisible to
 the compiler and visible in that file. It needs a built tree, which is why it is
@@ -525,7 +525,7 @@ the page's only bibliographic record (#265):
 The fields are `author` (`Last, F. M.` joined by ` and `), `title`, `journal` or `booktitle`
 (`publisher` too in an `@incollection`) and `year`, in that order, and no others: no volume,
 pages, DOI, note or URL. The type is `article`, `inproceedings` or `incollection`. The key is
-the one the paper cites. Non-ASCII letters are written as such (`Černý`); `scripts/refentry.py`
+the one the paper cites. Non-ASCII letters are written as such (`Černý`); `scripts/paper/refentry.py`
 turns them into LaTeX commands for the `.bib`. Braces protect a capital (`{Minkowski}`) and are
 dropped wherever the entry is printed. The venue is the publication's own name for it: the
 journal, the proceedings title as the publisher's DOI record gives it, `arXiv preprint
@@ -548,7 +548,7 @@ rendering of the entry, in one format:
 first, the names in the order of the entry, the last two joined by `and`, no Oxford comma.
 `<Title>` and `<Venue>` are the entry's `title` and `journal`/`booktitle` without braces; a blank
 venue drops its comma. The line is wrapped at 100 characters with a six-space hanging indent.
-`python3 scripts/render-references.py` rewrites every entry that names a page (found by its
+`python3 scripts/paper/render-references.py` rewrites every entry that names a page (found by its
 quoted title) and `check-references.py` renders the same line from the entry and fails on any
 entry that differs, on a page without exactly one well-formed entry, and on a repeated key. An
 entry that begins with a CORA file in backticks, `None: <reason>`, and the stamps are untouched.
@@ -617,7 +617,7 @@ a handful of `#eval`s, uncommitted and undiffed, to show a definition runs to
 a value and not only that it elaborates; that alone does not make it a demo.
 
 The **demo** runs, and is the only place a definition in this repository is
-evaluated *and checked*. Its output is committed as `scripts/demo-expected.txt`
+evaluated *and checked*. Its output is committed as `scripts/expected/demo-expected.txt`
 and `check-demo.sh` diffs against it, so an enclosure that silently widens
 fails the build. No theorem can do that job: `_outer` is as true of a box the
 size of the state space as of a tight one, and the only way to tell those
@@ -713,8 +713,8 @@ refutations and by theorems about the model; only a theorem that states CORA's o
 (`isFullDimCora_of_interior`) keeps its model where it is, listed with the reason in
 `COUNTEREXAMPLE_EXCEPTIONS`. `noncomputable` is free in the folder, its models being read and never run.
 `Counterexamples/API.lean` collects the folder, and the `API.lean` that collects `Theorems/` imports it.
-The `**Counterexample:**` links of `references/`, the appendix tables `scripts/errors-table.py` and
-`scripts/cora-bugs-table.py` and the paper's statistics find a counterexample by that folder.
+The `**Counterexample:**` links of `references/`, the appendix tables `scripts/paper/errors-table.py` and
+`scripts/paper/cora-bugs-table.py` and the paper's statistics find a counterexample by that folder.
 
 **Recording a bug in CORA.** A bug found in CORA's code is recorded in two places and nowhere else:
 the `cora-issue — …` part of the note of its row in `references/coverage/<group>/<class>.md`, and an
@@ -779,7 +779,7 @@ there is no list.
 A public `theorem` that exactly one other file reads, and that nothing outward-facing points
 at, is an auxiliary lemma of that file: it goes there as an `aux_` one, under its `AUXILIARY`
 banner (and an `rfl` lemma used once is inlined at its use, and deleted).
-`scripts/check-single-use.py` reports it. A file counts as a user when the last component of the
+`scripts/conventions/check-single-use.py` reports it. A file counts as a user when the last component of the
 theorem's name occurs in its code, whatever the namespace or the dot notation in front, so the
 count errs towards "more users"; a declaration's own name is no use of a twin of the same name,
 and a file that declares a name of its own with that last component reads the theorem only where
@@ -1003,7 +1003,7 @@ file imported a file outside the bundle that imports another section back, the
 bundle would import itself, so that declaration keeps its file; it stays in its
 file. A declaration of at most five code lines is therefore a section of its directory's
 `Basic.lean` unless moving it there would close an import cycle, which
-`scripts/check-basic-bundles.py` tests on the import graph; there is no list. Only `Basic.lean`
+`scripts/conventions/check-basic-bundles.py` tests on the import graph; there is no list. Only `Basic.lean`
 is a bundle — a cycle is never resolved by a second bundle file in the same directory.
 
 **Moving in and out.** A section that grows past five code lines moves out into a
@@ -1035,7 +1035,7 @@ statement (a `let` in it included) or in the body of a public definition, where 
 `private` name, and for an `@[csimp]` lemma. A step that a satellite theorem file reads stays public
 `aux_` (#227), and an `aux_` that later gains a reader drops `private` again. `private`
 declarations count like public ones in the paper's theorem total, and
-`scripts/check-private-aux.py` reports a public `aux_` that no other file reads and that its own
+`scripts/conventions/check-private-aux.py` reports a public `aux_` that no other file reads and that its own
 file uses only in `private` declarations or in proofs.
 
 #### A step of one algorithm is `aux_` (#227)
@@ -1055,7 +1055,7 @@ the end of `<S>`, `_` or an uppercase letter. `IsMinSuffExplanationGreedyMinimal
 satellite of `GreedyMinimalExplanation`, `ExistsAutoStepAutoRun` of `AutoStep` and of `AutoRun`.
 Where several operations of the directory match, a stem that is a substring of a longer matching
 stem is dropped, so `ExistsAutoStepFloat` belongs to `AutoStepFloat` and not to `AutoStep`. A
-`Basic.lean` has no satellites. `scripts/satellites.py` computes it.
+`Basic.lean` has no satellites. `scripts/conventions/satellites.py` computes it.
 
 A step keeps its **own file** (the D exceptions) when
 
@@ -1071,7 +1071,7 @@ A step keeps its **own file** (the D exceptions) when
 * a page of `references/` or the paper sources under `experiments/paper/` link the file (a results
   row is a promise about it).
 
-`scripts/check-steps.py` reports every other `Operations/` definition with exactly one
+`scripts/conventions/check-steps.py` reports every other `Operations/` definition with exactly one
 `Operations/` reader (and no reader but that reader's satellites). The single-use check treats
 an algorithm and its satellites as one unit: a theorem whose one reader is in its own unit is left
 alone. `check-conventions.sh` accepts an `aux_` name in a satellite theorem file when the
@@ -1287,7 +1287,7 @@ A `Prop`-valued definition (a `def`, `abbrev`, `structure`, `inductive` or `clas
 
 A theorem that embeds the name follows Lean's rule, `IsTrajectory` as `isTrajectory` in a snake-case
 name (`simulate_isTrajectory`, `ofFull_isTrajectory_iff`). `check-conventions.sh` runs
-`scripts/check-prop-names.py`, which rejects a Prop-valued definition whose name has none of these
+`scripts/conventions/check-prop-names.py`, which rejects a Prop-valued definition whose name has none of these
 forms; there is no list.
 
 CORA's spelling is `center`: `center`, `centerMat`, `recenter`, `IsCenter`, never `centre`, in
@@ -1305,7 +1305,7 @@ quantifies over the results instead of taking a hypothesis `(hE : f … = some E
 (a pair is `∀ a b, (a, b) ∈ f …`; an `Option (Option _)` is `∀ o ∈ f …, ∀ x ∈ o`). Hypotheses
 about the result go in the claim as arrows, in front of it. The proof starts with
 `intro E (hE : f … = some E)`, and a caller supplies `_` for `E`. Every other operation is called
-directly in the claim. `check-conventions.sh` runs `scripts/check-option-hyps.py`, which rejects a
+directly in the claim. `check-conventions.sh` runs `scripts/conventions/check-option-hyps.py`, which rejects a
 binder `(h… : <call> = some …)` in the signature of the theorem under a `MAIN THEOREM` banner,
 except a lookup (`l[i]? = some a`, `.head?`, `.find?`) and a verdict (`= some true`,
 `= some false`), which name no result.
@@ -1332,7 +1332,7 @@ it says. A float operation is a definition of its own when it computes something
 does not: a result in `𝕋` where the exact one is a real number (`nominalSupportBound` is the
 `FloatBound` above `nominal.supportBound`, with every rounding upward), another algorithm
 (`HPolytope.levelSet`, which writes an equation as two inequalities), or the error box. The
-bare form is rejected by `scripts/check-float-wrappers.py`, and so is the exact operation applied
+bare form is rejected by `scripts/conventions/check-float-wrappers.py`, and so is the exact operation applied
 to the arguments read as reals — `Real.HPolytope.rowLin (toRealMat M) i` — which is no more than the
 conversion under a name. The one bare wrapper that stays is recognized by its form: `X.construct`
 in the float main file `ContSet/X/Float/X.lean` of a set with no error box (`Interval.construct`),
@@ -1348,7 +1348,7 @@ has a genuine design choice behind it. A real definition alone is a specificatio
 of something no machine runs, and it is far cheaper to refine an operation while
 its proof is still in hand than to come back to it.
 
-In `Specification/` the rule is checked (`scripts/check-float-refinement.py`): an operation
+In `Specification/` the rule is checked (`scripts/conventions/check-float-refinement.py`): an operation
 file under `Operations/` whose code mentions `ℝ` and not `𝕋` says why in its module
 docstring, in one sentence that opens with a marker. `Real-only, a specification:` says what
 it specifies — a `Set`, a truth value, a formula or another object no machine runs, so there
@@ -1388,7 +1388,7 @@ none of its own, says so in its main-type docstring in one line `There is no \`I
 \`absorbRounding\`: <reason>`, which the check accepts for a type with no box and no
 `absorbRounding` (`Interval`, `Polygon`, `ProbZonotope`, `ZonoBundle`, `Zoo`); a type with a box that
 cannot move it says `There is no \`absorbRounding\`: <reason>` (`VPolytope`);
-`scripts/check-absorb-rounding.py' (run by `check-conventions.sh`, #185)
+`scripts/conventions/check-absorb-rounding.py' (run by `check-conventions.sh`, #185)
 requires the rest to have an `I_error` field, a `def X.absorbRounding` that names every other
 recorded rounding field `<name>_error` of the type, and a `theorem X.absorbRounding_outer` under
 `ContSet/X/Float/`, and rejects the former name `dependent_outer`.
@@ -1525,7 +1525,7 @@ with `intro mid`. Where a `set` name is opaque to `simp` and `linarith`, `simp o
 at that step. Naming changes how a statement or proof is written, not what it states, so it
 does not count as a change of the file for the `Reviewed:` line.
 
-`scripts/check-repeated-subterms.py` reports the clearest case: a parenthesised or `⟨ … ⟩` group
+`scripts/conventions/check-repeated-subterms.py` reports the clearest case: a parenthesised or `⟨ … ⟩` group
 of 70 characters or more that one declaration spells out three times or more. There is no list of exceptions: a
 repeated group in a statement is named with a `let` or, where it is a concept, a definition.
 
@@ -1549,7 +1549,7 @@ had added, the Real/Float split having copied the prose across; two claimed a
 missing class that existed; one claimed a missing instance declared thirty lines
 below it.
 
-`python3 scripts/stale-claims.py` catches the shapes that recur. It is not in
+`python3 scripts/tools/stale-claims.py` catches the shapes that recur. It is not in
 CI — every check is a heuristic and a hit needs reading, not obeying — so run it
 when a class, an instance or a float layer lands. Better still, when a change
 fills a gap, ask which docstring explained that gap and fix it in the same
@@ -1627,7 +1627,7 @@ The module docstring of a directory's `API.lean` is its entry point.
 A definition whose docstring cites a paper's algorithm (`Alg. 1`, `Algorithm 2`) is that
 algorithm, so its body reads as the printed one does: one named `let` per printed step, in the
 paper's own symbols, each under a `-- <n>. …` line comment that says what the step does in the
-paper's words (`Taylm.rangeBound` is the model). `scripts/check-algorithm-steps.py` sees the
+paper's words (`Taylm.rangeBound` is the model). `scripts/conventions/check-algorithm-steps.py` sees the
 form — a citing docstring, a body of three lines or more, no `-- <n>.` comment — and refuses it.
 
 ### Lengths, which `check-conventions.sh` enforces
@@ -1709,7 +1709,7 @@ which re-lists the variables of its definition as inputs and keeps what it assum
 * the reduced zonotope has at most `o * n` generators
 ```
 
-`scripts/check-io-doc.py` (run by `check-conventions.sh`) checks the sections' presence and order
+`scripts/conventions/check-io-doc.py` (run by `check-conventions.sh`) checks the sections' presence and order
 for the kind of the main declaration, that the names listed under `## Inputs` and
 `## Hypotheses` are exactly the declaration's binders in its order, none missing and none extra,
 and that `## Output` / `## Conclusion` has exactly one entry. It cannot elaborate, so it sorts
@@ -1758,7 +1758,7 @@ more. Where no paper we hold states a result, remove the citation and say so in 
 ("not in a paper; CORA's `priv_inputTie`"), citing CORA's `.m` source as the reference entry.
 A book is fine where no paper stands behind the result — CORA cites one for the matrix zonotope
 product, and so do we. Where none can be confirmed, leave the section out; a blank is honest and
-a wrong citation is not. `check-conventions.sh` runs `scripts/check-thesis-refs.py`, which rejects
+a wrong citation is not. `check-conventions.sh` runs `scripts/conventions/check-thesis-refs.py`, which rejects
 a `## References` entry that says `thesis`, `dissertation`, `PhD` or `habilitation`, in every
 file and with no exception list.
 
@@ -1879,7 +1879,7 @@ To review, run
 `--updated` picks only files updated since their last review, `--commit` commits each review)
 or the VS Code task "Review a random Lean file or Basic.lean
 section". A file added in the old
-format is fixed by `python3 scripts/author-blocks.py`.
+format is fixed by `python3 scripts/tools/author-blocks.py`.
 
 Files that only collect or re-export do not: every `API.lean`, `CORALean.lean`.
 A `Basic.lean` carries one block per section instead of one for the file, each

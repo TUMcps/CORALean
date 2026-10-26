@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Which `Theorems/` files are the satellites of an `Operations/` file (#227).
 
-    python3 scripts/satellites.py of <operations-file>        its satellite theorem files
-    python3 scripts/satellites.py declares <theorem-file> <aux-name>
+    python3 scripts/conventions/satellites.py of <operations-file>        its satellite theorem files
+    python3 scripts/conventions/satellites.py declares <theorem-file> <aux-name>
                                   exit 0 when a satellite operation of the theorem file declares it
 
 A theorem file is a *satellite* of the operation `<D>/Operations/<X>.lean` when it is
@@ -19,10 +19,10 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 
 
-# Source helpers shared with check-single-use.py and check-steps.py.
+# Source helpers shared with check-single-use.py and check-steps.py (and `outside_text`).
 _LETTER = r"A-Za-z_À-ɏͰ-Ͽ℀-⅏\U0001D400-\U0001D7FF"
 _SUB = r"₀-ₜᵢ-ᵪⱼ"
 IDENT = re.compile(rf"[{_LETTER}][{_LETTER}0-9'!?{_SUB}.]*")
@@ -56,6 +56,21 @@ def split_code(lines):
         if depth == 0 and pos < len(line):
             code.append(line[pos:])
         out.append("".join(code))
+    return out
+
+
+def outside_text(root):
+    """The text of the pages and sources that make a promise about a declaration.
+
+    The reference pages (`references/`), the paper sources (`experiments/paper/`): a ledger row
+    or a paper claim that names a declaration or links its file keeps it where it is.
+    """
+    out = ""
+    for base in (root / "references", root / "experiments" / "paper"):
+        if base.is_dir():
+            for q in sorted(base.rglob("*")):
+                if q.suffix in (".md", ".tex", ".json", ".txt") and q.is_file():
+                    out += q.read_text(encoding="utf-8", errors="replace") + "\n"
     return out
 
 

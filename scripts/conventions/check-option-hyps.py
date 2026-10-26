@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A main theorem about an operation that returns `Option` quantifies over its results (#212).
 
-    python3 scripts/check-option-hyps.py [--root DIR]
+    python3 scripts/conventions/check-option-hyps.py [--root DIR]
 
 When an operation returns `Option`, its result cannot be named in a claim, and a theorem used to
 take a hypothesis `(hE : f … = some E)`. CORALean states the claim the way it reads instead,
@@ -19,7 +19,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()

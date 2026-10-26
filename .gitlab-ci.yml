@@ -25,7 +25,7 @@
 #   of which emitted C                         77 MB
 #
 # Lake stores the artifacts of every package it touches, Mathlib's included, though
-# `lake exe cache get` supplies those, so `scripts/prune-lake-cache.py` runs after
+# `lake exe cache get` supplies those, so `scripts/build/prune-lake-cache.py` runs after
 # every job and cuts the directory to what the tree just built needs. That also
 # bounds it: lake never removes an artifact, so without the prune a cache that
 # sees a commit a day would only grow.
@@ -194,7 +194,7 @@ review-status:
     policy: pull-push
     when: always
   after_script:
-    - if [ -d .lake-cache/outputs ]; then python3 scripts/prune-lake-cache.py .lake-cache; fi
+    - if [ -d .lake-cache/outputs ]; then python3 scripts/build/prune-lake-cache.py .lake-cache; fi
 
 build:
   extends: [.lean-setup, .lake-cache]
@@ -334,7 +334,7 @@ flint-check:
   cache:
     key:
       files:
-        - scripts/install-flint.sh
+        - scripts/build/install-flint.sh
     paths:
       - .flint-prefix/
   before_script:
@@ -350,10 +350,10 @@ flint-check:
           && [ -f "$FLINT_PREFIX/lib/libgmp.a" ]; then
         echo "FLINT prefix restored from the cache"
       else
-        sh -n scripts/install-flint.sh
-        bash scripts/install-flint.sh 2>&1 | tail -n 200
+        sh -n scripts/build/install-flint.sh
+        bash scripts/build/install-flint.sh 2>&1 | tail -n 200
       fi
-    - bash scripts/build-flint-shim.sh
+    - bash scripts/build/build-flint-shim.sh
     - lake build flintcheck bench-flint 2>&1 | tee flint-build.log
     - "if grep '^warning: src/' flint-build.log; then exit 1; fi"
     # What `trustedFlint` assumes, sampled; exits 1 on any violation.
@@ -380,8 +380,8 @@ flint-check:
         - src/CORALean/Global/Float/Instances/Flint/**/*
         - src/CORALean/Examples/FlintCheck.lean
         - src/CORALean/Examples/BenchFlint*.lean
-        - scripts/install-flint.sh
-        - scripts/build-flint-shim.sh
+        - scripts/build/install-flint.sh
+        - scripts/build/build-flint-shim.sh
         - .gitlab-ci.yml
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
@@ -391,7 +391,7 @@ flint-check:
 # `release-cli`'s image and the build wants Lean's. `release-oracle-build` links `oracle` and
 # `oracle-unsound`, runs both self-tests against the linked binaries and uploads them to the Generic
 # Package Registry, which unlike a job artifact neither expires nor depends on the job; the shell
-# steps are `scripts/release-oracle.sh`, which runs locally with `DRY_RUN=1`. `release-oracle`
+# steps are `scripts/build/release-oracle.sh`, which runs locally with `DRY_RUN=1`. `release-oracle`
 # creates the GitLab release, linking those uploads. It costs a full link of the two executables,
 # as the `hardwarecheck` step of `build` does, on top of the ~20 minutes of `build`'s own setup.
 release-oracle-build:
@@ -403,7 +403,7 @@ release-oracle-build:
     - apt-get install -y -qq --no-install-recommends binutils
   script:
     - !reference [.lean-setup, script]
-    - sh scripts/release-oracle.sh
+    - sh scripts/build/release-oracle.sh
   retry:
     max: 2
     when:

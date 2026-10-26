@@ -1,4 +1,4 @@
-# Sourced, not run: `. "$root/scripts/find-python.sh"` sets `PYTHON` to the first
+# Sourced, not run: `. "$root/scripts/conventions/find-python.sh"` sets `PYTHON` to the first
 # of `python3`, `python` that is a working Python 3.8 or later, or says so and
 # exits the sourcing script with status 2.
 #

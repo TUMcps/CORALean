@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """An `aux_` declaration that no other file reads is `private`, unless its own file needs it public (#269).
 
-    python3 scripts/check-private-aux.py [--root DIR]
+    python3 scripts/conventions/check-private-aux.py [--root DIR]
 
 Lean itself keeps a `private` declaration inside its file, so an `aux_` that only its own file
 uses has no business being public. Under `@[expose] public section` the compiler rejects a
@@ -34,7 +34,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import satellites  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 args = sys.argv[1:]
 if args[:1] == ["--root"]:
     ROOT = Path(args[1]).resolve()

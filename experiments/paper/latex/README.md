@@ -112,7 +112,7 @@ result's page under `references/`, a few words on what is wrong, and links `[Cex
 `[Fix]` to the Lean file proving the corrected statement (`---` where there is none: every
 `false` row, and a `fixed` row whose corrected theorem lives in a file the row does not link).
 `python3 scripts/formalization-stats.py` writes it with the files above, through
-`scripts/errors-table.py`, which documents how the two files are picked from the row's links.
+`scripts/paper/errors-table.py`, which documents how the two files are picked from the row's links.
 It was compiled against `llncs` and `splncs04`. The data it needs that the ledger does not hold
 is committed beside it:
 
@@ -142,7 +142,7 @@ to be, or is a wrong verdict a verification relies on; the others are too large,
 crash or error path, or a documented behaviour that is not the code's), at most ten words on what
 CORA gets wrong (the function name links to its page under `references/coverage/`), and links `[Cex]` to the Lean counterexample and `[Fix]` to the Lean file of the
 corrected version (`---` where there is none). `python3 scripts/formalization-stats.py` writes it,
-through `scripts/cora-bugs-table.py`, which documents how the two files are picked. The data is
+through `scripts/paper/cora-bugs-table.py`, which documents how the two files are picked. The data is
 committed beside it, `experiments/paper/cora-bugs.json`: per coverage file and method, the
 `description`, the `kind` (`unsound` or `other`), and optionally `cex` / `fix` (a linked file's
 name, or `null` for none). The run, and `--check`,

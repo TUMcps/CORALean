@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A definition that cites a paper's algorithm carries the algorithm's steps as comments.
 
-    python3 scripts/check-algorithm-steps.py
+    python3 scripts/conventions/check-algorithm-steps.py
 
 CONTRIBUTING, "Algorithms read like the paper": a `def` whose own docstring cites `Alg.` or
 `Algorithm` is the printed algorithm, so its body is one named `let` per printed step, each under
@@ -13,7 +13,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
 
 MIN_LINES = 3  # a one- or two-line definition has no steps to number

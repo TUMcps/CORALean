@@ -3,7 +3,7 @@
 # contain (the index), not on the working tree. Text only: it does not build, and
 # a commit that passes here can still fail to compile.
 #
-# What it costs depends on what the commit touches. `scripts/precommit-scope.py`
+# What it costs depends on what the commit touches. `scripts/conventions/precommit-scope.py`
 # compares each staged file with `HEAD`. A commit that only edits existing
 # `src/**/*.lean` files without changing their imports, namespaces, type
 # declarations or `noncomputable` lines runs the per-file rules on those files
@@ -27,13 +27,13 @@ root="$(git rev-parse --show-toplevel)" || exit 1
 cd "$root" || exit 1
 
 # `PYTHON`, or a loud exit: the Windows `python3` is a Store stub that runs nothing.
-. "$root/scripts/find-python.sh"
+. "$root/scripts/conventions/find-python.sh"
 
 list=$(mktemp) || exit 1
 tree=
 trap 'rm -f "$list"; [ -z "$tree" ] || rm -rf "$tree"' EXIT INT TERM
 
-scope=$($PYTHON scripts/precommit-scope.py "$list") || exit 1
+scope=$($PYTHON scripts/conventions/precommit-scope.py "$list") || exit 1
 conventions=$(printf '%s\n' "$scope" | sed -n 's/^conventions=//p')
 references=$(printf '%s\n' "$scope" | sed -n 's/^references=//p')
 

@@ -13,14 +13,14 @@
 # `Reviewed:      ---`.  Idempotent: a file already in the new format is left
 # alone, so later trains can rerun it for files added in the old format.
 #
-# usage: python3 scripts/author-blocks.py [--check] [--ref REF] [PATH...]
+# usage: python3 scripts/tools/author-blocks.py [--check] [--ref REF] [PATH...]
 import re
 import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 NAME_RE = re.compile(r"^Claude (Opus|Sonnet|Fable|Haiku) [0-9]+(\.[0-9]+)?$")
 TRAILER_RE = re.compile(r"^Co-Authored-By:\s*Claude\s+(Opus|Sonnet|Fable|Haiku)\s+([0-9]+(?:\.[0-9]+)?)",
                         re.I | re.M)

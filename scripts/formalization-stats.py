@@ -47,13 +47,13 @@ Writes `experiments/paper/formalization-stats.json` and, under
 * `figures/formalization/formalization.svg`, a dependency-free preview of the
   overview bars for a quick look without a TeX Live;
 * `appendix-errors.tex`, the appendix table of every `false` and `fixed` result with its
-  description, Lean counterexample and Lean fix (`scripts/errors-table.py`, which says where
+  description, Lean counterexample and Lean fix (`scripts/paper/errors-table.py`, which says where
   the descriptions come from); a row without a description, or a page without a well-formed
   BibTeX entry, fails the run and `--check`;
 * `appendix-errors.bib`, the BibTeX entries of those pages, written from the entries the pages
-  carry (`scripts/refentry.py`); never edited by hand;
+  carry (`scripts/paper/refentry.py`); never edited by hand;
 * `appendix-cora-bugs.tex`, the appendix table of the bugs found in CORA, one row per coverage
-  row with a `cora-issue` note (`scripts/cora-bugs-table.py`); a row without an entry in
+  row with a `cora-issue` note (`scripts/paper/cora-bugs-table.py`); a row without an entry in
   `experiments/paper/cora-bugs.json`, or an entry without a row, fails the run and `--check`.
 
 Everything is a function of `references/` and `src/`; no clock, no randomness, so
@@ -79,19 +79,19 @@ HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("check_references", HERE / "check-references.py")
 cr = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(cr)
-spec = importlib.util.spec_from_file_location("errors_table", HERE / "errors-table.py")
+spec = importlib.util.spec_from_file_location("errors_table", HERE / "paper" / "errors-table.py")
 et = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(et)
-spec = importlib.util.spec_from_file_location("cora_bugs_table", HERE / "cora-bugs-table.py")
+spec = importlib.util.spec_from_file_location("cora_bugs_table", HERE / "paper" / "cora-bugs-table.py")
 cb = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(cb)
 
 LATEX = cr.ROOT / "experiments" / "paper" / "latex"
 FIG_DIR = LATEX / "figures" / "formalization"
 APPENDIX = LATEX / "appendix-formalization.tex"
-ERRORS = LATEX / "appendix-errors.tex"  # see scripts/errors-table.py
+ERRORS = LATEX / "appendix-errors.tex"  # see scripts/paper/errors-table.py
 ERRORS_BIB = LATEX / "appendix-errors.bib"  # its entries, from the pages (#265)
-CORA_BUGS = LATEX / "appendix-cora-bugs.tex"  # see scripts/cora-bugs-table.py
+CORA_BUGS = LATEX / "appendix-cora-bugs.tex"  # see scripts/paper/cora-bugs-table.py
 
 # The colours of `experiments/paper/latex/cora-macs.sty`, as (name, rgb): the TikZ files name
 # them, the SVG preview needs the numbers.

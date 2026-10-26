@@ -17,7 +17,7 @@ set -eu
 
 cd "$(dirname "$0")/.."
 
-expected=scripts/demo-expected.txt
+expected=scripts/expected/demo-expected.txt
 raw=$(mktemp)
 actual=$(mktemp)
 trap 'rm -f "$raw" "$actual"' EXIT INT TERM

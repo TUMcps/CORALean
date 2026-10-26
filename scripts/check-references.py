@@ -13,11 +13,11 @@ every row asserting something links a file that proves something,
 every result cited somewhere is a row, every result one page defers to another
 is a row there, and the README's counts are the counts.
 
-Every page opens with its one BibTeX entry (#265, `scripts/refentry.py`): exactly one fenced
+Every page opens with its one BibTeX entry (#265, `scripts/paper/refentry.py`): exactly one fenced
 `bibtex` block with the fields author, title, journal or booktitle, year, and a key no other
 page has. The line a module docstring writes under `## References` is rendered from it,
 `<authors>. "<Title>". <Venue>, <year>.`, and every docstring entry that cites a page must equal
-that rendering (`scripts/render-references.py` rewrites them).
+that rendering (`scripts/paper/render-references.py` rewrites them).
 
 Every row also carries a `Class` cell, which `scripts/formalization-stats.py`
 turns into the paper's figure. A row in scope and formalized says how the *paper's*
@@ -66,7 +66,7 @@ import re
 import sys
 from pathlib import Path, PurePosixPath
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent / "paper"))
 import refentry  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1238,7 +1238,7 @@ def main():
             if near is not None and near.entry:
                 say(f"{where[0]}: the entry is not the rendering of {near.rel} ({len(where)} file(s)); "
                     f"it reads `{entry}` and should read `{near.entry}`. "
-                    "`python3 scripts/render-references.py` rewrites it")
+                    "`python3 scripts/paper/render-references.py` rewrites it")
             else:
                 say(f"{where[0]}: cites a publication with no file in references/: {entry[:70]}…")
             continue

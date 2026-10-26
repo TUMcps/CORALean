@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Decides how much of the convention and reference checks a commit needs (`.githooks/pre-commit`).
 
-    python3 scripts/precommit-scope.py LISTFILE
+    python3 scripts/conventions/precommit-scope.py LISTFILE
 
 Reads the index against `HEAD` and prints two lines:
 
@@ -32,7 +32,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 
 # The cross-file rules of `check-conventions.sh` and `check-basic-bundles.py` read these lines
 # of a file and nothing else of it. Matched anywhere in the comments too, which only errs

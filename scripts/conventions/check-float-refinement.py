@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Requires a real-only Specification operation to say why (CONTRIBUTING, "The two layers").
 
-    python3 scripts/check-float-refinement.py
+    python3 scripts/conventions/check-float-refinement.py
 
 An operation file under `src/CORALean/Specification/**/Operations/` whose code mentions `ℝ` and
 not `𝕋` computes in the real layer only. Its module docstring must then say why, in one of two
@@ -20,7 +20,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 SPEC = ROOT / "src" / "CORALean" / "Specification"
 SPEC_MARK = "Real-only, a specification:"
 PENDING_MARK = "Refinement pending:"
