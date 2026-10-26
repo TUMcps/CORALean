@@ -94,7 +94,7 @@ When running the C code, one can use multiple backends to represent the floating
 | `Flint` | 4–64 | unbounded | outward | + `trustedFlint` |
 | `FixedPoint` | – | none, $f$ decimal digits | outward | Lean axioms |
 
-The default backend is `IEEE`, which is also used in the paper's experiments. Another backend is selected with `--type` (`Flint` runs via `lake exe bench-flint`, see below):
+The default backend is `IEEE`, which is also used in the paper's experiments. Another backend is selected with `--type`:
 
 ```
 lake exe bench <experiment> --type ieee|dyadic|hardware|nearest|fixed
