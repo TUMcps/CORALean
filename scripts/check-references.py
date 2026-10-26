@@ -611,6 +611,78 @@ def is_float_path(path, name=""):
     return "Float" in p.parts or "Float" in p.stem or "Float" in name
 
 
+_INDEX = None
+
+
+def decl_index():
+    """`{name: [(path, kind, noncomputable, signature)]}` of every declaration under `src/`, the
+    signature being the text from the name to its `:=`, first pattern-matching case or `where`
+    (at most 2000 characters)."""
+    global _INDEX
+    if _INDEX is None:
+        _INDEX = {}
+        for f in SRC.rglob("*.lean"):
+            text = strip_block_comments(f.read_text(encoding="utf-8", errors="replace"))
+            for m in DECL.finditer(text):
+                ends = [e for e in (text.find(":=", m.end()), text.find("\n  |", m.end()),
+                                    text.find(" where\n", m.end())) if e >= 0]
+                end = min(ends + [m.end() + 2000])
+                sig = text[m.end():end]
+                _INDEX.setdefault(m.group(3), []).append(
+                    (f.resolve(), m.group(2), "noncomputable" in m.group(1), sig))
+    return _INDEX
+
+
+def float_twins(name):
+    """The `…Float` twins of a definition: `nameFloat`, or `opFloat?` for `op?`. A twin of the
+    same name in a `Float/` directory is not one: it may refine another ambient type (the
+    float `Interval.center` is at `Vec`, the matrix sets' real one at `Mat`)."""
+    idx = decl_index()
+    cands = [name + "Float"] + ([name[:-1] + "Float?"] if name.endswith("?") else [])
+    return [(c, f) for c in cands for f, k, _, _ in idx.get(c, []) if k in ("def", "abbrev")]
+
+
+def has_theorem_on(name, float_only):
+    """Some theorem (in the float layer, when `float_only`) names `name` in its statement."""
+    last = name.split(".")[-1]
+    pat = re.compile(r"(?<![\w.'])(?:[\w.]*\.)?" + re.escape(last) + r"(?![\w'?!])")
+    for n, decls in decl_index().items():
+        for f, k, _, sig in decls:
+            if k in ("theorem", "lemma") and (not float_only or is_float_path(f, n)) \
+                    and pat.search(sig):
+                return True
+    return False
+
+
+def stale_float_route(found):
+    """Why a `proved` row already counts as `float`, or `None`: route (a), a linked definition
+    has a float twin that a float-layer theorem is about; route (b), every linked definition is
+    outside the real layer, computable (not `noncomputable`, not a `Prop`) and generic over `𝕋`,
+    and a linked theorem is stated for `𝕋`."""
+    defs = [(t, n) for t, n, k in found if k in ("def", "abbrev")]
+    for t, n in defs:
+        if is_float_path(t, n):
+            continue
+        for twin, f in float_twins(n):
+            if f != t and has_theorem_on(twin, True):
+                return f"route a (`{twin}` in {f.name})"
+    if not defs:
+        return None
+    idx = decl_index()
+    def sig_of(t, n):
+        return next((g for f, k, nc, g in idx.get(n, []) if f == t), "")
+    def nc_of(t, n):
+        return any(nc for f, k, nc, g in idx.get(n, []) if f == t)
+    for t, n in defs:
+        sig = sig_of(t, n)
+        if "Real" in t.parts or nc_of(t, n) or "𝕋" not in sig or sig.rstrip().endswith("Prop"):
+            return None
+    if any(k in ("theorem", "lemma") and "Real" not in t.parts and "𝕋" in sig_of(t, n)
+           for t, n, k in found):
+        return "route b (generic over `𝕋`, computable, a theorem stated for `𝕋`)"
+    return None
+
+
 DECL_LINK = re.compile(r"\[`([^`]+(?<!\.lean))`\]\(([^)\s]+\.lean)\)")
 
 
@@ -813,6 +885,11 @@ class CoraTable:
                 say(f"{tag}: `float` needs a linked float-layer definition")
         if state == "proved" and where.count("float:"):
             say(f"{tag}: lists a float layer, so the state is `float`")
+        if state == "proved":
+            why = stale_float_route(found)
+            if why:
+                say(f"{tag}: stale: `proved`, but its linked definition already counts as "
+                    f"`float` by {why}; switch the row to `float`")
 
 
 def cora_inventory():

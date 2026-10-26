@@ -68,8 +68,8 @@
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:62.2676,3) -- ([yshift=5.5pt]axis cs:62.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:62.2676,3) {\hspace{0em}\textcolor{black!40}{+45}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:189,4) -- ([yshift=5.5pt]axis cs:189,4) [sharp corners] -- ([yshift=5.5pt]axis cs:0,4) -- cycle;
-\fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,4) rectangle ([yshift=5.5pt]axis cs:20,4);
-\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:20,4) rectangle ([yshift=5.5pt]axis cs:168,4);
+\fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,4) rectangle ([yshift=5.5pt]axis cs:96,4);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:96,4) rectangle ([yshift=5.5pt]axis cs:168,4);
 \fill[white] ([yshift=-5.5pt]axis cs:168,4) rectangle ([yshift=5.5pt]axis cs:189,4);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:189,4) -- ([yshift=5.5pt]axis cs:189,4) [sharp corners] -- ([yshift=5.5pt]axis cs:0,4) -- cycle;
@@ -86,7 +86,7 @@
 \begin{axis}[at={(methods.south west)}, anchor=south west, height=3.0cm, width=0.50\linewidth-2.55cm, xmin=0, xmax=1000, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,5)};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:287.5,0) {575};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:94,4) {148};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:48,4) {96};
 \end{axis}
 
 \begin{axis}[name=results,
