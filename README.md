@@ -2,7 +2,7 @@
 
 A Lean 4 formalization of [CORA](https://cora.in.tum.de), the Continuous Reachability Analyzer. 
 
-Paper reference: CORALean: A Lean 4 Formalization of CORA. Tobias Ladner, Matthias Althoff. `TBD`. 2026.
+Paper reference: `CORALean: A Lean 4 Formalization of CORA. Tobias Ladner, Matthias Althoff. TBD. 2026.`
 
 ## Formalizing CORA in Lean 4
 
@@ -37,6 +37,12 @@ and open it in VS Code. Finally, to build the project, run
 
 ```
 lake exe cache get && lake build
+```
+
+Afterwards, all experiments of the paper can be run using the compiled C code (details in [experiments/](experiments/README.md)):
+
+```
+sh experiments/repeatability.sh
 ```
 
 
