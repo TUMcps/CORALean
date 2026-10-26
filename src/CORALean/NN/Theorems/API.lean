@@ -121,6 +121,14 @@ public import CORALean.NN.Theorems.EncloseUnsafeInputsSound
 public import CORALean.NN.Theorems.ForwardLatent
 public import CORALean.NN.Theorems.LeForwardH
 public import CORALean.NN.Theorems.IsVerifySound
+public import CORALean.NN.Theorems.IntervalChainBackpropDegenerate
+public import CORALean.NN.Theorems.IntervalChainBackpropAtFloatOuter
+public import CORALean.NN.Theorems.IntervalChainSensitivityFloatOuter
+public import CORALean.NN.Theorems.FgsmAttackFloatOuter
+public import CORALean.NN.Theorems.PgdAttackFloatOuter
+public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxFloatEncloses
+public import CORALean.NN.Theorems.WeightNetworkNormalFormFloatEncloses
+public import CORALean.NN.Theorems.InputNeuronOrderFloatEq
 
 /-!
 # What a network's enclosure guarantees, collected

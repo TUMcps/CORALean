@@ -35,7 +35,8 @@
 \addlegendentry{not yet}
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,1) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,1) -- ([yshift=2.5pt]axis cs:8,1) [sharp corners] -- ([yshift=2.5pt]axis cs:0,1) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,1) rectangle ([yshift=2.5pt]axis cs:6,1);
-\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,1) rectangle ([yshift=2.5pt]axis cs:8,1);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,1) rectangle ([yshift=2.5pt]axis cs:7,1);
+\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:7,1) rectangle ([yshift=2.5pt]axis cs:8,1);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,1) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,1) -- ([yshift=2.5pt]axis cs:8,1) [sharp corners] -- ([yshift=2.5pt]axis cs:0,1) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:8,1) {\hspace{0em}\textcolor{black!40}{+11}};
@@ -75,8 +76,8 @@
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,7) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:4,7) -- ([yshift=2.5pt]axis cs:4,7) [sharp corners] -- ([yshift=2.5pt]axis cs:0,7) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:4,7) {\hspace{0em}\textcolor{black!40}{+1}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,8) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:10,8) -- ([yshift=2.5pt]axis cs:10,8) [sharp corners] -- ([yshift=2.5pt]axis cs:0,8) -- cycle;
-\fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,8) rectangle ([yshift=2.5pt]axis cs:3,8);
-\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:3,8) rectangle ([yshift=2.5pt]axis cs:9,8);
+\fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,8) rectangle ([yshift=2.5pt]axis cs:4,8);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:4,8) rectangle ([yshift=2.5pt]axis cs:9,8);
 \fill[white] ([yshift=-2.5pt]axis cs:9,8) rectangle ([yshift=2.5pt]axis cs:10,8);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,8) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:10,8) -- ([yshift=2.5pt]axis cs:10,8) [sharp corners] -- ([yshift=2.5pt]axis cs:0,8) -- cycle;
@@ -110,7 +111,8 @@
 \begin{axis}[at={(classes.south west)}, anchor=south west, height=3.90cm, width=0.5\linewidth, xmin=0, xmax=26, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,12)};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3,1) {6};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:7,1) {2};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:6.5,1) {1};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:7.5,1) {1};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3,2) {6};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:6.5,2) {1};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:1.5,3) {3};
@@ -122,8 +124,8 @@
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3.5,6) {7};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:9,6) {4};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2,7) {4};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:1.5,8) {3};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:6,8) {6};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2,8) {4};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:6.5,8) {5};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:9.5,8) {1};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:1.5,9) {3};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:3.5,9) {1};
