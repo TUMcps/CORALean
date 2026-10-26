@@ -22,9 +22,8 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 in one step, `η ≥ 2` and the box `X_end`: `|x₁| ≤ 1`, `|x₂| ≤ 1/4`, `|x₃ - 256| ≤ 1/4`. Then (54)
 is `e^{-AΔt}conv(P₁, P₂)`, [1, Alg. 3]'s lines 3-5 as `LinearSys.maxBackReach` computes them. It
 holds `(7/4, -16, 256)`, the image of the midpoint of `(3/4, 0, 256) ∈ P₁` and its step in `P₂`; the
-run from it keeps its first coordinate at `5/4 + 128(t - 1/16)² > 1`. The lines are spelled out:
-`LinearSys.maxBackReach` asks for a support bound on every `HPolytope`, unbounded ones included,
-which no function supplies.
+run from it keeps its first coordinate at `5/4 + 128(t - 1/16)² > 1`. The lines are spelled out,
+with the exact `box(X_end)` where `LinearSys.maxBackReach` takes the oracle's answer.
 
 ## Inputs
 * `η` – Taylor order

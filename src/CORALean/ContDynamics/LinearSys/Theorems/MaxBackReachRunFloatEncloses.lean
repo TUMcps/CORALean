@@ -29,7 +29,7 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 * `t₀` – float start time
 * `Δt` – float step length
 * `η` – Taylor order
-* `ρ` – support oracle for exact polytopes
+* `ρ` – support oracle for bounded exact polytopes
 * `P₁r` – first exact polytope
 * `P₂r` – second exact polytope
 * `Ur` – exact input zonotope
@@ -53,6 +53,8 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 * `hker₂` – second float polytope has no equality rows
 * `hkerr₁` – first exact polytope has no equality rows
 * `hkerr₂` – second exact polytope has no equality rows
+* `hP₁b` – the inequality rows of the first exact polytope bound it
+* `hP₂b` – the inequality rows of the second exact polytope bound it
 
 ## Conclusion
 * the float state after the iterations stands for the exact one
@@ -64,7 +66,7 @@ asked to hold `W₀r` with error box `{0}`. The lines are those of [1, Alg. 3].
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   15-October-2026
+-- Last update:   26-October-2026
 -- Reviewed:      ---
 
 
@@ -81,8 +83,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
     (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)} {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)}
-    {t₀ Δt : 𝕋} {η : ℕ} (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ),
-      SupportBound P.construct c) (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
+    {t₀ Δt : 𝕋} {η : ℕ}
+    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n))
     (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt) (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct)
     (hU : U.construct ⊆ construct Ur) (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
@@ -94,11 +98,13 @@ theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : I
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
-    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) (k : ℕ) : -- --- CONCL ---
+    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0)
+    (hP₁b : Bornology.IsBounded P₁r.dropEqs.construct)
+    (hP₂b : Bornology.IsBounded P₂r.dropEqs.construct) (k : ℕ) : -- --- CONCL ---
     ∀ s ∈ sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k,
       ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
         s.Encloses
-          (sys.maxBackReachRun ρ P₁r P₂r Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
+          (sys.maxBackReachRun ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
             k) := by -- --- PROOF ---
   intro s (h : sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k = some s)
   induction k generalizing s with
@@ -120,7 +126,7 @@ theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : I
     exact ⟨ηr, hη₀, hη, sys.maxBackReachStepFloat_encloses Bx P₁ P₂ ρ P₁r P₂r Ur W₀r
       Zwr _ hsr hΔt hU0 hU hWE hW₀r (hZw _ _ _ hsr.tEnc_inf_le hsr.le_tEnc_sup) hP₁ hP₂ hP₁0 hP₂0
         hker₁
-      hker₂ hkerr₁ hkerr₂ _ hη _ hstep⟩
+      hker₂ hkerr₁ hkerr₂ hP₁b hP₂b _ hη _ hstep⟩
 
 end CORALean
 

@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.SupportFunction.SupportFunction
 public import CORALean.Global.SupportFunction.Composition
+public import CORALean.Global.SupportFunction.OfIsBounded
 
 /-!
 # Bounds on a support function, collected

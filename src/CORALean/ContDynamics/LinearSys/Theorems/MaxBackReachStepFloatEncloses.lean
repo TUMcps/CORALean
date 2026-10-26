@@ -78,7 +78,7 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 * `Δt` – float step length
 * `η` – Taylor order
 * `s` – float loop state
-* `ρ` – support oracle for exact polytopes
+* `ρ` – support oracle for bounded exact polytopes
 * `P₁r` – first exact polytope
 * `P₂r` – second exact polytope
 * `Ur` – exact input zonotope
@@ -102,6 +102,8 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 * `hker₂` – second float polytope has no equality rows
 * `hkerr₁` – first exact polytope has no equality rows
 * `hkerr₂` – second exact polytope has no equality rows
+* `hP₁b` – the inequality rows of the first exact polytope bound it
+* `hP₂b` – the inequality rows of the second exact polytope bound it
 
 ## Conclusion
 * the float iteration's state stands for the exact iteration's
@@ -113,7 +115,7 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   15-October-2026
+-- Last update:   26-October-2026
 -- Reviewed:      ---
 
 
@@ -398,8 +400,9 @@ end Float
 theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
     (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)} {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋} {η : ℕ} {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
-    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ),
-      SupportBound P.construct c) (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
+    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n))
     (sr : LinearSys.MaxBackReachState n) (hs : s.Encloses sr) (hΔt : 0 < toReal Δt)
     (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
@@ -411,11 +414,14 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
-    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) : -- --- CONCL ---
+    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0)
+    (hP₁b : Bornology.IsBounded P₁r.dropEqs.construct)
+    (hP₂b : Bornology.IsBounded P₂r.dropEqs.construct) : -- --- CONCL ---
     ∀ η' ∈ sys.reachOrderFloat Δt Δt η,
       ∀ s' ∈ sys.maxBackReachStepFloat Bx P₁ P₂ U W₀ Zw Δt η s,
         s'.Encloses
-          (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr (toReal Δt) η' sr) := by -- --- PROOF ---
+          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr (toReal Δt) η'
+            sr) := by -- --- PROOF ---
   intro η' (hη' : sys.reachOrderFloat Δt Δt η = some η') s' (h : sys.maxBackReachStepFloat Bx P₁ P₂
       U W₀ Zw Δt η s = some s')
   unfold LinearSys.maxBackReachStepFloat at h
@@ -453,7 +459,8 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error hM hU0
   -- the disturbance sets: the exact `Ẑ_{W₀}` is inside the float one
-  have h5 : construct (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW₀ ⊆ ZW₀.construct := by
+  have h5 : construct (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW₀ ⊆
+      ZW₀.construct := by
     show (CORALean.Real.Zonotope.plus sr.ZW₀ (CORALean.Real.Zonotope.mtimes Φk'
       (sys.inputSolution (S := 𝒵) Δ η' W₀r))).construct
       ⊆ ZW₀.construct
@@ -466,10 +473,12 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         (S := 𝒵[𝕋]) Φk _
         (Set.mem_biUnion hΦk (Set.mem_image_of_mem _ (hW hb')))))
   -- and so is the new `Ẑ_W`: the new `Ẑ_{W₀}` plus the disturbance part
-  have h6 : construct (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW ⊆ ZW.construct := by
+  have h6 : construct (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW ⊆
+      ZW.construct := by
     intro x hx
     have hx2 : x ∈ (CORALean.Real.Zonotope.plus
-        (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW₀ (Zwr sr.t)).construct := hx
+        (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW₀
+          (Zwr sr.t)).construct := hx
     rw [← CORALean.Real.Zonotope.plus_exact] at hx2
     obtain ⟨a, ha, b, hb, rfl⟩ := hx2
     exact Plus.plus_outer ZW₀ _ (Set.add_mem_add (h5 ha) (hZw hb))
@@ -647,14 +656,15 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         P.construct ⊆ Pr.construct → (0 : Vec ℝ n) ∈ P.I_error.construct →
         (∀ i (y : Vec ℝ n), (toRealMat P.Ae *ᵥ y) i = 0) →
         (∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) →
+        ∀ hPrb : Bornology.IsBounded Pr.dropEqs.construct,
         ∀ y ∈ nominalSet (LinearSys.maxBackReachCZFloat Bx P ZWe),
-          y + δ ∈ (LinearSys.maxBackReachCZ ρ Pr
-            (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct := by
-      intro P Pr hP hP0 hker hkerr y hy
+          y + δ ∈ (LinearSys.maxBackReachCZ ρ Pr hPrb
+            (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).construct := by
+      intro P Pr hP hP0 hker hkerr hPrb y hy
       have hyc : y ∈ (LinearSys.maxBackReachCZFloat Bx P ZWe).construct :=
         ⟨y, hy, 0, hP0, add_zero y⟩
       have hin := LinearSys.maxBackReachCZFloat_inner Bx P ZWe (fun i y _ => hker i y) hyc
-      refine LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr _ hkerr (fun w hw => ?_)
+      refine LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr _ hPrb hkerr (fun w hw => ?_)
       -- the widened disturbance set holds `w` moved by `δ`, which `y` survives
       have hwδ : w + δ ∈ ZWe.construct :=
         Plus.plus_outer ZW _ (Set.add_mem_add (h6 hw) (Interval.zonotope_contains _ hδmem))
@@ -664,23 +674,23 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         exact h
       exact hP h'
     -- the moved point is a segment between the two exact sets, so in their hull
-    have hyseg : z + δ ∈ Set.linComb (LinearSys.maxBackReachCZ ρ P₁r
-          (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct
-        (LinearSys.maxBackReachCZ ρ P₂r
-          (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct :=
-      ⟨y₁ + δ, hblock P₁ P₁r hP₁ hP₁0 hker₁ hkerr₁ y₁ hy₁, y₂ + δ,
-        hblock P₂ P₂r hP₂ hP₂0 hker₂ hkerr₂ y₂ hy₂, lam, ⟨hl0, hl1⟩, by rw [hzeq]; module⟩
+    have hyseg : z + δ ∈ Set.linComb (LinearSys.maxBackReachCZ ρ P₁r hP₁b
+          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).construct
+        (LinearSys.maxBackReachCZ ρ P₂r hP₂b
+          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).construct :=
+      ⟨y₁ + δ, hblock P₁ P₁r hP₁ hP₁0 hker₁ hkerr₁ hP₁b y₁ hy₁, y₂ + δ,
+        hblock P₂ P₂r hP₂ hP₂0 hker₂ hkerr₂ hP₂b y₂ hy₂, lam, ⟨hl0, hl1⟩, by rw [hzeq]; module⟩
     have hlin := CORALean.Real.ConZonotope.linComb_outer _ _ hyseg
     -- line 12: the map of the hull and the negated `Z̲_U`, spelled out
-    have hR : (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).R
+    have hR : (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).R
         = CORALean.Real.ConZonotope.mtimes Φ (CORALean.Real.ConZonotope.plus
-          (CORALean.Real.ConZonotope.linComb (LinearSys.maxBackReachCZ ρ P₁r
-            (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW)
-            (LinearSys.maxBackReachCZ ρ P₂r
-              (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW))
+          (CORALean.Real.ConZonotope.linComb (LinearSys.maxBackReachCZ ρ P₁r hP₁b
+            (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW)
+            (LinearSys.maxBackReachCZ ρ P₂r hP₂b
+              (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW))
           (CORALean.Real.Zonotope.conZonotope
             (CORALean.Real.Zonotope.mtimes (-(1 : Mat ℝ n n)) sr.ZU))) := rfl
-    change a + b ∈ (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).R.construct
+    change a + b ∈ (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).R.construct
     rw [hR, ← CORALean.Real.ConZonotope.mtimes_exact, ← CORALean.Real.ConZonotope.plus_exact,
       ← CORALean.Real.Zonotope.conZonotope_exact, ← CORALean.Real.Zonotope.mtimes_exact]
     refine ⟨z + δ + (-(1 : Mat ℝ n n)) *ᵥ u, Set.add_mem_add hlin ⟨u, hu, rfl⟩, ?_⟩

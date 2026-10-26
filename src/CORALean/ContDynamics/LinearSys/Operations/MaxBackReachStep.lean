@@ -15,13 +15,13 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonoto
 # `Alg. 3` lines 7-12: one iteration of the main loop
 
 `maxBackReachStep`: [1, Alg. 3], propagating the two particular solutions and assembling
-`R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. `ρ` is the caller's support oracle for a polytope — the
-linear program of (9). `Zw` is (27), the constant center trajectory's contribution over one
-interval.
+`R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. `ρ` is the caller's support oracle for a bounded polytope —
+the linear program of (9); the inequality rows of `P₁`, `P₂` bound them, so their erosions are
+bounded too. `Zw` is (27), the constant center trajectory's contribution over one interval.
 
 ## Inputs
 * `sys` – linear system
-* `ρ` – support oracle for polytopes
+* `ρ` – support oracle for bounded polytopes
 * `P₁` – first eroded polytope
 * `P₂` – second eroded polytope
 * `U` – input zonotope
@@ -31,6 +31,10 @@ interval.
 * `η` – Taylor order
 * `s` – loop state
 
+## Hypotheses
+* `hP₁` – the inequality rows of `P₁` bound it
+* `hP₂` – the inequality rows of `P₂` bound it
+
 ## Output
 * next loop state with the step's backward reachable set
 ## References
@@ -39,9 +43,9 @@ interval.
       Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       19-September-2026
--- Last update:   14-October-2026
+-- Last update:   26-October-2026
 -- Reviewed:      ---
 
 
@@ -63,8 +67,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- Lines 7-12: one iteration of [1, Alg. 3]'s main loop, propagating the two
 particular solutions and assembling `R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. -/
 noncomputable def LinearSys.maxBackReachStep (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (P₁ P₂ : HPolytope (Vec ℝ n)) (U W₀ : Zonotope (Vec ℝ n))
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.construct)
+    (hP₂ : Bornology.IsBounded P₂.dropEqs.construct) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (Δt : ℝ) (η : ℕ)
     (s : LinearSys.MaxBackReachState n) : LinearSys.MaxBackReachState n :=
   -- 7. t_{k+1} ← t_k + Δt
@@ -81,7 +87,7 @@ noncomputable def LinearSys.maxBackReachStep (sys : LinearSys 𝕋 n)
   let ZW := Zonotope.plus ZW₀ (Zw s.t)
   -- 11. conv(CZ(…), CZ(…))
   let CZ := ConZonotope.linComb
-    (LinearSys.maxBackReachCZ ρ P₁ ZW) (LinearSys.maxBackReachCZ ρ P₂ ZW)
+    (LinearSys.maxBackReachCZ ρ P₁ hP₁ ZW) (LinearSys.maxBackReachCZ ρ P₂ hP₂ ZW)
   -- 12. e^{-A t_{k+1}}(CZ ⊕ -Z̲_U)
   let R := ConZonotope.mtimes (exp ((-tk1) • toRealMat sys.A))
     (ConZonotope.plus CZ (Zonotope.conZonotope (Zonotope.mtimes (-(1 : Mat ℝ n n)) s.ZU)))
