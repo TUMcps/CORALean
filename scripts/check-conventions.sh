@@ -1688,7 +1688,8 @@ report "$out"
 # a real-only `Specification` operation that does not say why (scripts/conventions/check-float-refinement.py),
 # and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
 # `aux_` step (#227), and an `aux_` that no other file reads and that Lean would take as `private`
-# (scripts/conventions/check-private-aux.py, #269).
+# (scripts/conventions/check-private-aux.py, #269), and a binder asking for a support bound of every
+# set of a class with unbounded members, a type nothing inhabits (check-unbounded-oracles.py, #270).
 # Same contract as the helper above: status 1 with findings on stdout is a finding, anything else is
 # the helper failing.
 if [ -z "$STAGED" ]; then
@@ -1696,7 +1697,7 @@ if [ -z "$STAGED" ]; then
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
     check-exact-names.py check-option-hyps.py check-thesis-refs.py check-io-doc.py \
     check-component-reuse.py check-float-refinement.py check-steps.py check-noncomputable.py \
-    check-private-aux.py; do
+    check-private-aux.py check-unbounded-oracles.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/conventions/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

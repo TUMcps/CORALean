@@ -48,6 +48,7 @@ import CORALean.Examples.LinParamSysCheck
 import CORALean.Examples.LinParamSysInputCheck
 import CORALean.Examples.LinParamUncertainMatrix
 import CORALean.Examples.LinProbSysNoise
+import CORALean.Examples.MaxBackReachOracle
 import CORALean.Examples.MinkDiffHPolytope
 import CORALean.Examples.MinkDiffInterval
 import CORALean.Examples.MinkDiffZonotope

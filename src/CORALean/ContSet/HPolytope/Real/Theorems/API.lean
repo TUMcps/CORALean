@@ -63,6 +63,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IneqsUnitRowsMinimal
 public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorNonemptyIffChebyshev
 public import CORALean.ContSet.HPolytope.Real.Theorems.InteriorRestrictNonempty
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedIffSimplexSupportFunc
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedDropEqsMinkDiffOf
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsequalNondegIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestSignedUnit
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq

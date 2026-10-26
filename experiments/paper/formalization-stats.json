@@ -6634,7 +6634,7 @@
         {
           "result": "Alg. 3",
           "class": "false",
-          "reason": "the output R̂^∃∀(-τ) the listing ensures is no inner approximation: lines 11-12 are `Thm. 2`'s (54), false (counterexample); `ρ` is typed for every `HPolytope`, unbounded ones included, so no oracle can be supplied and the theorems over it hold vacuously (Findings)"
+          "reason": "the output R̂^∃∀(-τ) the listing ensures is no inner approximation: lines 11-12 are `Thm. 2`'s (54), false (counterexample)"
         }
       ]
     }
@@ -8886,9 +8886,9 @@
       "paper": 1871,
       "float": 2191,
       "helper": 2096,
-      "lemma": 3299,
-      "total": 9457,
-      "examples": 129
+      "lemma": 3300,
+      "total": 9458,
+      "examples": 130
     }
   }
 }

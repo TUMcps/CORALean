@@ -17,11 +17,12 @@ subtrahend.
 The lines are those of [1, Alg. 3].
 
 ## Inputs
-* `ρ` – support oracle for exact polytopes
+* `ρ` – support oracle for bounded exact polytopes
 * `Pr` – exact polytope
 * `ZWr` – exact disturbance zonotope
 
 ## Hypotheses
+* `hPrb` – the inequality rows of the exact polytope bound it
 * `hker` – equality rows of the polytope vanish
 
 ## Conclusion
@@ -34,7 +35,7 @@ The lines are those of [1, Alg. 3].
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   26-October-2026
 -- Reviewed:      ---
 
 
@@ -52,11 +53,13 @@ variable {n : ℕ}
 /-- The exact eroded polytope holds every point of the difference, a subtrahend point attaining
 each row's support. -/
 theorem LinearSys.minkowskiDiff_subset_maxBackReachCZ
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (Pr : HPolytope (Vec ℝ n)) (ZWr : Zonotope (Vec ℝ n))
+    (hPrb : Bornology.IsBounded Pr.dropEqs.construct)
     (hker : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) : -- --- CONCL ---
     minkowskiDiff Pr.construct ZWr.construct ⊆
-      (LinearSys.maxBackReachCZ ρ Pr ZWr).construct := by -- --- PROOF ---
+      (LinearSys.maxBackReachCZ ρ Pr hPrb ZWr).construct := by -- --- PROOF ---
   intro x hx
   unfold LinearSys.maxBackReachCZ
   rw [Real.HPolytope.conZonotope_exact]

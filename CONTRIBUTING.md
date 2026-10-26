@@ -1463,6 +1463,17 @@ a hull as no further than its points. Soundness never depends on the directions,
 only precision does, so enumerating the true facets stays outside as an
 optimisation.
 
+**An oracle is asked about bounded sets.** An algorithm that takes its bounds from the caller
+(`ρ`, a linear program it does not solve itself) takes an oracle, and an oracle over a class with
+an unbounded member does not exist: `∀ P : HPolytope (Vec ℝ n), ∀ c, SupportBound P.construct c`
+must bound the description with no rows, all of `ℝⁿ`, and every theorem taking it is vacuously
+true (#270). Ask for the bound of a bounded set, `∀ P, Bornology.IsBounded P.construct → ∀ c, …`,
+and prove the boundedness where the algorithm calls it, or let the oracle answer in `Option` and
+fail soundly on `none`. `SupportBound.ofIsBounded` shows such an oracle exists, and a theorem
+over one gets an `example` that instantiates it. `scripts/conventions/check-unbounded-oracles.py`
+rejects the empty binder for `HPolytope`, `Halfspace`, `ConHyperplane`, `LevelSet`,
+`PolyLevelSet`, `Fullspace` and `Set`; there is no list of exceptions.
+
 `FloatBound` is the same object with a float value, and lives with the scalar
 interface in `Global/Float/`. Its composition rules are these with `+` replaced
 by `addUp` and `max` by `maximum` — a bound only stays sound by growing.

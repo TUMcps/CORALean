@@ -66,9 +66,9 @@ fails; see the findings on the paper's page.
       Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   26-October-2026
 -- Reviewed:      ---
 
 
@@ -84,8 +84,10 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable {ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c}
-variable {P₁ P₂ : HPolytope (Vec ℝ n)} {Uz W₀ ZW : Zonotope (Vec ℝ n)}
+variable {ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
+  (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c}
+variable {P₁ P₂ : HPolytope (Vec ℝ n)} {hP₁ : Bornology.IsBounded P₁.dropEqs.construct}
+  {hP₂ : Bornology.IsBounded P₂.dropEqs.construct} {Uz W₀ ZW : Zonotope (Vec ℝ n)}
 variable {Zw : ℝ → Zonotope (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
 
 
@@ -95,7 +97,7 @@ variable {Zw : ℝ → Zonotope (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
 recursion. -/
 private theorem LinearSys.aux_maxBackReachRun_t (sys : LinearSys 𝕋 n) (t₀ : ℝ)
     (k : ℕ) : -- --- CONCL ---
-    (sys.maxBackReachRun ρ P₁ P₂ Uz W₀ Zw t₀ Δt η k).t = t₀ + k * Δt := by -- --- PROOF ---
+    (sys.maxBackReachRun ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw t₀ Δt η k).t = t₀ + k * Δt := by -- --- PROOF ---
   induction k with
   | zero => simp [LinearSys.maxBackReachRun, LinearSys.maxBackReachInit]
   | succ k ih =>
@@ -153,26 +155,26 @@ private theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys �
 `τ_k`, which is (54). -/
 private theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {s : LinearSys.MaxBackReachState n} (hs : 0 ≤ s.t)
-    (hZW : (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).ZW = ZW)
+    (hZW : (sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw Δt η s).ZW = ZW)
     (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
     (hker₁ : ∀ (i : Fin P₁.me) (y : Vec ℝ n), P₁.Ae i y = 0)
     (hker₂ : ∀ (i : Fin P₂.me) (y : Vec ℝ n), P₂.Ae i y = 0)
-    (hne₁ : (LinearSys.maxBackReachCZ ρ P₁ ZW).construct.Nonempty)
-    (hne₂ : (LinearSys.maxBackReachCZ ρ P₂ ZW).construct.Nonempty)
+    (hne₁ : (LinearSys.maxBackReachCZ ρ P₁ hP₁ ZW).construct.Nonempty)
+    (hne₂ : (LinearSys.maxBackReachCZ ρ P₂ hP₂ ZW).construct.Nonempty)
     (hhom : ∀ y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct) ZW.construct,
       ∃ t ∈ Set.Icc s.t (s.t + Δt), y ∈ (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin ''
         minkowskiDiff (construct Xend) (sys.inputReach W t))
     (hZU : ∀ t ∈ Set.Icc s.t (s.t + Δt), s.ZU.construct ⊆
       (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) : -- --- CONCL ---
-    (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).R.construct ⊆
+    (sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw Δt η s).R.construct ⊆
       ⋃ t ∈ Set.Icc s.t (s.t + Δt),
         sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t := by -- --- PROOF ---
   -- line 12: the map, the hull and the input summand, spelled out
-  have hR : (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).R
+  have hR : (sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw Δt η s).R
       = ConZonotope.mtimes (exp ((-(s.t + Δt)) • toRealMat sys.A))
         (ConZonotope.plus
-          (ConZonotope.linComb (LinearSys.maxBackReachCZ ρ P₁ ZW)
-            (LinearSys.maxBackReachCZ ρ P₂ ZW))
+          (ConZonotope.linComb (LinearSys.maxBackReachCZ ρ P₁ hP₁ ZW)
+            (LinearSys.maxBackReachCZ ρ P₂ hP₂ ZW))
           (Zonotope.conZonotope (Zonotope.mtimes (-(1 : Mat ℝ n n)) s.ZU))) := by
     rw [← hZW]
     rfl
@@ -182,10 +184,11 @@ private theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U
   obtain ⟨y, hy, z, hz, rfl⟩ := Set.mem_add.mp hv
   obtain ⟨c, hc, rfl⟩ := hz
   -- lines 11, Alg. 1, (11): each endpoint of the hull is a `P_i` eroded by `Ẑ_W(τ_k)`
-  have hsub : ∀ P : HPolytope (Vec ℝ n), (∀ (i : Fin P.me) (w : Vec ℝ n), P.Ae i w = 0) →
-      (LinearSys.maxBackReachCZ ρ P ZW).construct ⊆ minkowskiDiff P.construct ZW.construct := by
-    intro P hker
-    have heq : (LinearSys.maxBackReachCZ ρ P ZW).construct
+  have hsub : ∀ (P : HPolytope (Vec ℝ n)) (hb : Bornology.IsBounded P.dropEqs.construct),
+      (∀ (i : Fin P.me) (w : Vec ℝ n), P.Ae i w = 0) →
+      (LinearSys.maxBackReachCZ ρ P hb ZW).construct ⊆ minkowskiDiff P.construct ZW.construct := by
+    intro P hb hker
+    have heq : (LinearSys.maxBackReachCZ ρ P hb ZW).construct
         = (P.minkDiffOf ZW.construct fun i => ZW.supportBound (P.A i)).construct :=
       HPolytope.conZonotope_exact _ _
     rw [heq]
@@ -194,7 +197,7 @@ private theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U
   have hL : y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct) ZW.construct := by
     obtain ⟨y₁, h₁, y₂, h₂, lam, hlam, rfl⟩ := ConZonotope.linComb_inner _ _ hne₁ hne₂ hy
     exact setLinComb_minkowskiDiff_subset _ _ _
-      ⟨y₁, hsub P₁ hker₁ h₁, y₂, hsub P₂ hker₂ h₂, lam, hlam, rfl⟩
+      ⟨y₁, hsub P₁ hP₁ hker₁ h₁, y₂, hsub P₂ hP₂ hker₂ h₂, lam, hlam, rfl⟩
   -- (21): the eroded hull is covered slice by slice, and `t` names the slice
   obtain ⟨t, ht, w', hw', hw'eq⟩ := hhom y hL
   obtain ⟨d, hd, hdeq⟩ := hZU t ht hc
@@ -228,7 +231,7 @@ backward reachable set — an inner approximation, `⊆`. -/
 theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {t₀ tend : ℝ} {ω : ℕ} {τ : Set ℝ} {st : ℕ → LinearSys.MaxBackReachState n}
     (hΔt : Δt = (tend - t₀) / ω) (ht₀ : 0 ≤ t₀) (hΔt0 : 0 ≤ Δt)
-    (hst : ∀ k, st k = sys.maxBackReachRun ρ P₁ P₂ Uz W₀ Zw t₀ Δt η k)
+    (hst : ∀ k, st k = sys.maxBackReachRun ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw t₀ Δt η k)
     (hτ : Set.Icc t₀ tend ⊆ τ) (hlast : t₀ + ω * Δt ≤ tend)
     (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
     {c : Vec ℝ n} (hc : c ∈ construct U)
@@ -236,8 +239,8 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
     (hker₁ : ∀ (i : Fin P₁.me) (y : Vec ℝ n), P₁.Ae i y = 0)
     (hker₂ : ∀ (i : Fin P₂.me) (y : Vec ℝ n), P₂.Ae i y = 0)
     -- [1, Lemma 1] asks for nonempty sets, and so does the hull of line 11
-    (hne₁ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₁ (st (k + 1)).ZW).construct.Nonempty)
-    (hne₂ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₂ (st (k + 1)).ZW).construct.Nonempty)
+    (hne₁ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₁ hP₁ (st (k + 1)).ZW).construct.Nonempty)
+    (hne₂ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₂ hP₂ (st (k + 1)).ZW).construct.Nonempty)
     -- (21): the hull of `P₁`, `P₂` eroded by `Ẑ_W(τ_k)`, covered slice by slice
     (hhom : ∀ k < ω, ∀ y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct)
         (st (k + 1)).ZW.construct,
@@ -248,14 +251,15 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
     (hZU : ∀ k < ω, ∀ t ∈ Set.Icc (st k).t ((st k).t + Δt), (st k).ZU.construct ⊆
       (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t)
     : -- --- CONCL ---
-    sys.maxBackReachTimeInterval ρ P₁ P₂ Uz W₀ Zw t₀ tend η ω ⊆
+    sys.maxBackReachTimeInterval ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw t₀ tend η ω ⊆
       sys.timeIntervalBackReachSetExistsForallExact
         (Set.Icc 0 tend) U W Xend τ := by -- --- PROOF ---
   subst hΔt
   intro x hx
   -- line 14: `x` comes from one of the `ω` iterations
   obtain ⟨k, hk, hxk⟩ := Set.mem_iUnion₂.mp hx
-  have hstep : sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw ((tend - t₀) / ω) η (st k) = st (k + 1) := by
+  have hstep :
+      sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw ((tend - t₀) / ω) η (st k) = st (k + 1) := by
     rw [hst k, hst (k + 1)]
     rfl
   rw [← hst (k + 1), ← hstep] at hxk
