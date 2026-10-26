@@ -1,11 +1,14 @@
 module
 
 public import CORALean.Specification.STLInterval.Theorems.Basic
+public import CORALean.Specification.STLInterval.Theorems.ContainsFloatIff
 public import CORALean.Specification.STLInterval.Theorems.ContainsPointZeroIff
 public import CORALean.Specification.STLInterval.Theorems.ContainsZeroIff
 public import CORALean.Specification.STLInterval.Theorems.InfimumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.InfimumValue
+public import CORALean.Specification.STLInterval.Theorems.IsequalFloatIff
 public import CORALean.Specification.STLInterval.Theorems.IsequalZeroIff
+public import CORALean.Specification.STLInterval.Theorems.LeftClosureToRealInterval
 public import CORALean.Specification.STLInterval.Theorems.MaximalRunsCongr
 public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
 public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBounds
@@ -26,6 +29,7 @@ public import CORALean.Specification.STLInterval.Theorems.RawSetUpperReach
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaEmptySetIff
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaOriginZeroIff
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaPointZeroIff
+public import CORALean.Specification.STLInterval.Theorems.RightClosureToRealInterval
 public import CORALean.Specification.STLInterval.Theorems.SetAnd
 public import CORALean.Specification.STLInterval.Theorems.SetClamp
 public import CORALean.Specification.STLInterval.Theorems.SetEqSingletonIff
@@ -38,6 +42,7 @@ public import CORALean.Specification.STLInterval.Theorems.SetMinkDiffOuter
 public import CORALean.Specification.STLInterval.Theorems.SetMinus
 public import CORALean.Specification.STLInterval.Theorems.SetMinusInterval
 public import CORALean.Specification.STLInterval.Theorems.SetMinusIntervalOuter
+public import CORALean.Specification.STLInterval.Theorems.SetMinusInwardInner
 public import CORALean.Specification.STLInterval.Theorems.SetMinusNum
 public import CORALean.Specification.STLInterval.Theorems.SetMinusNumOuter
 public import CORALean.Specification.STLInterval.Theorems.SetMinusOuter
@@ -59,6 +64,7 @@ public import CORALean.Specification.STLInterval.Theorems.SupremumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.SupremumValue
 public import CORALean.Specification.STLInterval.Theorems.ToERealMapAddUpGe
 public import CORALean.Specification.STLInterval.Theorems.ToERealMapSubUpGe
+public import CORALean.Specification.STLInterval.Theorems.WithinTolFloatIff
 public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
 public import CORALean.Specification.STLInterval.Theorems.ZeroLeAddCoe
 public import CORALean.Specification.STLInterval.Theorems.ZeroLeOfMemSet

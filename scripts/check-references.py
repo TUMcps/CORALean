@@ -654,17 +654,19 @@ def has_theorem_on(name, float_only):
     return False
 
 
-def stale_float_route(found):
-    """Why a `proved` row already counts as `float`, or `None`: route (a), a linked definition
-    has a float twin that a float-layer theorem is about; route (b), every linked definition is
-    outside the real layer, computable (not `noncomputable`, not a `Prop`) and generic over `𝕋`,
-    and a linked theorem is stated for `𝕋`."""
+def stale_float_route(found, constructor=False):
+    """Why a `proved` row already counts as `float`, or `None`: route (a), the row's own
+    definition (the first one it links; a helper it links after has no say, except on the
+    constructor row, which stands for every definition of the class) has a float twin that a
+    float-layer theorem is about; route (b), every linked definition is outside the real layer,
+    computable (not `noncomputable`, not a `Prop`) and generic over `𝕋`, and a linked theorem is
+    stated for `𝕋`."""
     defs = [(t, n) for t, n, k in found if k in ("def", "abbrev")]
-    for t, n in defs:
+    for t, n in (defs if constructor else defs[:1]):
         if is_float_path(t, n):
             continue
         for twin, f in float_twins(n):
-            if f != t and has_theorem_on(twin, True):
+            if has_theorem_on(twin, True):
                 return f"route a (`{twin}` in {f.name})"
     if not defs:
         return None
@@ -805,7 +807,7 @@ class CoraTable:
                         "without a theorem goes in the note)")
             elif not links:
                 say(f"{tag}: a `{state}` row links the Lean declarations that answer it")
-            self.check_links(tag, state, where, note)
+            self.check_links(tag, state, where, note, constructor=method == self.name)
 
     def check_generic(self, tag, found):
         """Route (b) of `float`: no float counterpart, because the definition is generic over the
@@ -842,7 +844,7 @@ class CoraTable:
                 if m.group(3) == n and "noncomputable" in m.group(1):
                     say(f"{tag}: route b (scalar-free), but `{n}` is `noncomputable`")
 
-    def check_links(self, tag, state, where, note):
+    def check_links(self, tag, state, where, note, constructor=False):
         """Every link exists and names a declaration the file really has; a `proved`
         row carries a theorem and a `float` row a theorem in the float layer."""
         say = self.say
@@ -886,7 +888,7 @@ class CoraTable:
         if state == "proved" and where.count("float:"):
             say(f"{tag}: lists a float layer, so the state is `float`")
         if state == "proved":
-            why = stale_float_route(found)
+            why = stale_float_route(found, constructor)
             if why:
                 say(f"{tag}: stale: `proved`, but its linked definition already counts as "
                     f"`float` by {why}; switch the row to `float`")

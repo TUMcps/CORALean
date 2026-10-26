@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.OnlineAnalyzerNode.OnlineAnalyzerNode
+public import CORALean.Specification.OnlineAnalyzerNode.Operations.PropBound
 public import CORALean.Specification.STLInterval.Definitions.IsWithinTol
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 
@@ -14,8 +15,8 @@ the smallest upper bound of the intervals propagated to the parents, closed at i
 bound's interval is; an empty entry (nothing propagated to that parent) gives `[0,0)`, and no
 parent at all `[0,∞)`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineAnalyzerNode.getAllPropFloat`, the same interval read as reals.
 
 ## Inputs
 * `eps` – machine epsilon
@@ -38,31 +39,13 @@ namespace CORALean
 variable {A : Type}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The loop of `getAllProp`: the bound `ub` and its closedness `rc` after the intervals. -/
-noncomputable def OnlineAnalyzerNode.aux_propBound (eps : ℝ) :
-    List (STLInterval ℝ) → WithTop ℝ × Bool → WithTop ℝ × Bool
-  | [], st => st
-  -- isemptyobject(obj.prop(i)): ub = 0; rc = false; break
-  | .empty :: _, _ => (0, false)
-  | .nonempty _ u _ nRc _ _ _ :: rest, (ub, rc) =>
-    open Classical in
-    -- if nUb < ub || withinTol(nUb,ub,eps) && ~nRc
-    if STLInterval.toEReal u < STLInterval.toEReal ub ∨
-        (STLInterval.IsWithinTol eps (STLInterval.toEReal u) (STLInterval.toEReal ub) ∧
-          nRc = false) then
-      OnlineAnalyzerNode.aux_propBound eps rest (u, nRc)
-    else OnlineAnalyzerNode.aux_propBound eps rest (ub, rc)
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `allProp = getAllProp(obj)`. -/
 noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerNode ℝ A) :
     STLInterval ℝ :=
   -- ub = inf; rc = true; the loop; allProp = stlInterval(0,ub,true,rc)
-  let b := OnlineAnalyzerNode.aux_propBound eps n.prop (⊤, true)
+  let b := OnlineAnalyzerNode.propBound eps n.prop (⊤, true)
   STLInterval.stlInterval (0 : ℝ) b.1 true b.2 (by simp)
 
 end CORALean

@@ -15,7 +15,10 @@ public import CORALean.Specification.ReachSetAnalyzer.Operations.Analyze
 public import CORALean.Specification.ReachSetAnalyzer.Operations.Basic
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeTreeSound
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.BranchProper
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.MaskOkMapTime
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.MkMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.MkSpec
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.SignalsMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.SignalsSoundOfBranch
 
 @[expose] public section
@@ -67,83 +70,6 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- A float mask's maximum on an interval is that of the mask read as reals. -/
-private theorem aux_max_mapTime (s : FiniteSignal T Bool) (lo hi : T) : -- --- CONCL ---
-    (s.mapTime toReal).max (toReal lo) (toReal hi) = s.max lo hi := by -- --- PROOF ---
-  unfold FiniteSignal.max FiniteSignal.mapTime FiniteSignal.length
-  simp only [List.length_map]
-  -- the first loop stops at the same breakpoint
-  have hk : (List.takeWhile (fun t => decide (t < toReal lo)) (s.time.map toReal)).length =
-      (List.takeWhile (fun t => decide (t < lo)) s.time).length := by
-    rw [List.takeWhile_map, List.length_map]
-    exact congrArg List.length (congrArg (List.takeWhile · s.time)
-      (funext fun t => decide_eq_decide.mpr Iff.rfl))
-  rw [hk]
-  congr 1
-  -- the second loop takes the same breakpoints
-  funext v j
-  have hg : (s.time.map toReal).getD j 0 = toReal (s.time.getD j 0) := by
-    rw [← toReal_zero_eq (𝕋 := T), List.getD_eq_getElem?_getD, List.getD_eq_getElem?_getD,
-      List.getElem?_map]
-    cases s.time[j]? <;> rfl
-  rw [hg]
-  by_cases h : s.time.getD j 0 ≤ hi
-  · rw [if_pos h, if_pos (show toReal (s.time.getD j 0) ≤ toReal hi from h)]
-  · rw [if_neg h, if_neg (show ¬ toReal (s.time.getD j 0) ≤ toReal hi from h)]
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- The mask of a float analyzer lets an interval through as its masks read as reals do. -/
-private theorem aux_maskOk_mapTime (obj : ReachSetAnalyzer T S n) (k : String)
-    (lo hi : T) : -- --- CONCL ---
-    (obj.mapTime toReal).maskOk k (toReal lo) (toReal hi) =
-      obj.maskOk k lo hi := by -- --- PROOF ---
-  unfold ReachSetAnalyzer.maskOk ReachSetAnalyzer.mapTime
-  simp only
-  rw [lookup_map_snd]
-  cases obj.masks.lookup k with
-  | none => rfl
-  | some m => exact aux_max_mapTime m lo hi
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- A float builder's constructor, read as reals, is the real one. -/
-private theorem aux_builder_mk?_mapTime (dur : T) : -- --- CONCL ---
-    (FiniteKleeneSignalBuilder.mk? dur).map (FiniteKleeneSignalBuilder.mapTime toReal) =
-      FiniteKleeneSignalBuilder.mk? (toReal dur) := by -- --- PROOF ---
-  have h := FiniteSignal.mk?_mapTime [dur] [false]
-  simp only [List.map_cons, List.map_nil] at h
-  unfold FiniteKleeneSignalBuilder.mk?
-  rw [← h]
-  cases FiniteSignal.mk? [dur] [false] <;> rfl
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- The constructor of a float analyzer, read as reals, is the real one. -/
-private theorem aux_mk?_mapTime (aps : List (String × AtomicProposition S n)) (dur : T)
-    (masks : List (String × FiniteSignal T Bool)) : -- --- CONCL ---
-    (ReachSetAnalyzer.mk? aps dur masks).map (ReachSetAnalyzer.mapTime toReal) =
-      ReachSetAnalyzer.mk? aps (toReal dur)
-        (masks.map fun p => (p.1, p.2.mapTime toReal)) := by -- --- PROOF ---
-  unfold ReachSetAnalyzer.mk?
-  have h := mapM_option_map (fun p : String × AtomicProposition S n =>
-    (FiniteKleeneSignalBuilder.mk? dur).map fun b => (p.1, b))
-    (fun p => (p.1, p.2.mapTime toReal)) aps
-  simp only [Option.map_map] at h
-  -- every builder is the float builder read as reals
-  have h2 : (fun a : String × AtomicProposition S n => Option.map
-      ((fun p => (p.1, FiniteKleeneSignalBuilder.mapTime toReal p.2)) ∘ fun b => (a.1, b))
-      (FiniteKleeneSignalBuilder.mk? dur)) =
-      fun a => (FiniteKleeneSignalBuilder.mk? (toReal dur)).map fun b => (a.1, b) := by
-    funext a
-    rw [← aux_builder_mk?_mapTime, Option.map_map]
-    rfl
-  rw [h2] at h
-  rw [← h, Option.map_map, Option.map_map]
-  rfl
 
 omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
@@ -200,7 +126,7 @@ private theorem aux_analyzeKey_mapTime [∀ k, Contains (S k) (S k)] [∀ k, IsD
       (obj.mapTime toReal).analyzeKey (𝕋 := 𝕋) set loc (toReal lo) (toReal hi)
         p := by -- --- PROOF ---
   unfold ReachSetAnalyzer.analyzeKey
-  rw [aux_maskOk_mapTime]
+  rw [ReachSetAnalyzer.maskOk_mapTime]
   have hl : (obj.mapTime toReal).sigBuilder.lookup p.1 =
       (obj.sigBuilder.lookup p.1).map (FiniteKleeneSignalBuilder.mapTime toReal) :=
     lookup_map_snd _ _ _
@@ -266,34 +192,6 @@ private theorem aux_analyzeSingle_mapTime (obj : ReachSetAnalyzer T S n)
   unfold ReachSetAnalyzer.analyzeSingle
   exact foldlM_option_map _ _ _ _ (fun o t => aux_analyzeTimeInterval_mapTime o
     t.set R.loc t.time.inf t.time.sup) _ _
-
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
-  [∀ k, IsDisjoint (S k) (S k)] in
-/-- The signals of a float analyzer, read as reals, are those of the analyzer read as reals. -/
-private theorem aux_signals_mapTime (obj : ReachSetAnalyzer T S n) : -- --- CONCL ---
-    obj.signals.map (List.map fun p => (p.1, p.2.mapTime toReal)) =
-      (obj.mapTime toReal).signals := by -- --- PROOF ---
-  unfold ReachSetAnalyzer.signals
-  rw [mapM_option_map]
-  congr 1
-  funext p
-  -- each proposition's builder is the float one read as reals
-  have hl : (obj.mapTime toReal).sigBuilder.lookup p.1 =
-      (obj.sigBuilder.lookup p.1).map (FiniteKleeneSignalBuilder.mapTime toReal) :=
-    lookup_map_snd _ _ _
-  rw [hl]
-  cases obj.sigBuilder.lookup p.1 with
-  | none => rfl
-  | some b =>
-    simp only [Option.map_some, Option.bind_some]
-    -- and its three-valued signal the float one read as reals
-    have hk : b.kleeneSignal?.map (FiniteSignal.mapTime toReal) =
-        (b.mapTime toReal).kleeneSignal? := by
-      unfold FiniteKleeneSignalBuilder.kleeneSignal?
-      rw [FiniteSignal.combine?_mapTime]
-      rfl
-    rw [← hk]
-    cases b.kleeneSignal? <;> rfl
 
 omit [ExactLe T] [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
@@ -403,7 +301,7 @@ theorem ReachSetAnalyzer.analyze_sound_of_hasEnclosingTimes
             (out.map fun p => (p.1, p.2.mapTime toReal)) := by -- --- PROOF ---
   intro obj (hobj : ReachSetAnalyzer.mk? aps dur masks = some obj) h out hout
   -- the analyzer read as reals is the real constructor's
-  have hobjR := aux_mk?_mapTime aps dur masks
+  have hobjR := ReachSetAnalyzer.mk?_mapTime aps dur masks
   rw [hobj, Option.map_some] at hobjR
   obtain ⟨obj0, hmk, -, hmasks, hr⟩ := (ReachSetAnalyzer.mk?_spec aps (toReal dur)
     (masks.map fun p => (p.1, p.2.mapTime toReal))).2 hd hnd
@@ -427,7 +325,7 @@ theorem ReachSetAnalyzer.analyze_sound_of_hasEnclosingTimes
   -- its signals read as reals
   have hsR : (obj'.mapTime toReal).signals =
       some (out.map fun p => (p.1, p.2.mapTime toReal)) := by
-    rw [← aux_signals_mapTime, hsig, Option.map_some]
+    rw [← ReachSetAnalyzer.signals_mapTime, hsig, Option.map_some]
   -- the tree read as reals has proper intervals and the same branches
   have hRR : ∀ e ∈ R.map (ReachSetAnalyzer.Entry.mapTime toReal), ∀ s ∈ e.timeInterval,
       s.time.inf < s.time.sup := by

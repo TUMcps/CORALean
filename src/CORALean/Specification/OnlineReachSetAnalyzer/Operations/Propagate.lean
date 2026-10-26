@@ -11,8 +11,8 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Propagate
 node `1`, with the interval `makeValid` for which observations are final. `eps` is MATLAB's
 `eps`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineReachSetAnalyzer.propagateFloat`.
 
 ## Inputs
 * `eps` – machine epsilon

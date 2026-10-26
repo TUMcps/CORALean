@@ -13,9 +13,9 @@ inputs) and the set `K` of those carrying only uncertainty, and a polytope `⟨C
 of [1, Prop. 2] `K = ⟨[C G(·,H) 0], d - C c + Σ_{j∈K} |C G(·,j)|⟩_P`. `[C G(·,H) 0] α̃`
 uses the first `|H|` entries of `α̃ ∈ ℝ^p`, in order as [1, Prop. 1]'s layout has it, hence
 `|H| ≤ p`; `K` is a `Finset`, only its members count.
-Refinement pending: the set is unbounded in `α̃`, and the rounded matrix `C G(·,H)` of a float
-polytope has an error `(C G - C̃ G̃) α̃` no offset absorbs without a bound on `α̃`; an outward
-refinement would intersect with the box `[-1, 1]^p`, which the real set lacks and CORA never does.
+Real-only, a specification: it is a set of real factors, unbounded in `α̃`; its rounded
+refinement, clipped to the factor box `[-1, 1]^p` where every use of the factors stays, is
+`STL.unsafeFactorsFloat`.
 
 ## Inputs
 * `C` – polytope matrix

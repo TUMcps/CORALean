@@ -12,8 +12,8 @@ public import CORALean.Specification.PointSegmentSignal.Operations.IntervalUntil
 signals are `true`. At a time `t` it is `true` iff the right-hand side holds at some `t'` with `t' -
 t` in the interval and the left-hand side holds strictly between `t` and `t'`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-stamps over `𝕋`, rounded outward) is not yet written.
+Real-only, a specification: it computes on real time stamps exactly; its rounded refinement is
+`PointSegmentSignal.untilFloat`, with the time shift rounded inward or outward.
 
 ## Inputs
 * `lhs` – left signal

@@ -12,8 +12,9 @@ public import CORALean.Specification.ReachSetAnalyzer.ReachSetAnalyzer
 `finiteKleeneSignalBuilder(dur)`, and `masks` defaults to the empty map. CORA throws in the
 builder's constructor for a negative `dur`; here `none`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Generic over the time type: at a float scalar it compares its time stamps exactly
+(`TimeOrder`), so the result read as reals is that of the analyzer read as reals
+(`ReachSetAnalyzer.mk?_mapTime`).
 
 ## Inputs
 * `aps` – labelled atomic propositions

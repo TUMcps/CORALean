@@ -10,8 +10,8 @@ public import CORALean.Specification.SyntaxTree.Operations.Nthroot
 `nthroot(x,e)` of MATLAB for `e < 0` is `1 / nthroot(x,-e)`. The real layer has no infinite bound,
 so `nthroot(0,e) = Inf` for `e < 0` is not modelled: the value there is `0`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (interval
-arithmetic over `𝕋` with outward rounding) is not yet written.
+Real-only, a specification: it is the exact real root; its enclosure by floats is
+`SyntaxTree.nthrootZFloat`.
 
 ## Inputs
 * `x` – real number

@@ -5,6 +5,7 @@ public import CORALean.Specification.FiniteSignal.Operations.Combine
 public import CORALean.Specification.FiniteSignal.Operations.FindIntervals
 public import CORALean.Specification.FiniteSignal.Operations.Indicator
 public import CORALean.Specification.FiniteSignal.Operations.Mk
+public import CORALean.Specification.FiniteSignal.Operations.UntilPiece
 public import Mathlib.Data.EReal.Operations
 
 @[expose] public section
@@ -16,7 +17,8 @@ public import Mathlib.Data.EReal.Operations
 need the same duration (else CORA throws, here `none`); the result starts false and is or-ed, for
 each run of the left signal and each run of the right one, with the indicator of `((lint(i) &
 rint(j)) - int) & lint(i)`. `int = [p,q]` is given by its bounds, `eps` is MATLAB's `eps`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it computes on real time stamps exactly; its rounded refinement,
+true only where this is, is `FiniteSignal.untilFloat?`.
 
 ## Inputs
 * `eps` – machine epsilon
@@ -42,28 +44,11 @@ namespace CORALean
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The bounds of `bint = ((lint(i) & rint(j)) - int) & lint(i)`, `none` if it is empty. -/
-noncomputable def FiniteSignal.aux_untilPiece (eps p : ℝ) (q : EReal) (L R : Real.Interval ℝ) :
-    Option (Real.Interval ℝ) :=
-  -- lint(i) & rint(j)
-  let lb := Max.max L.inf R.inf
-  let ub := Min.min L.sup R.sup
-  if ¬ lb - ub ≤ eps then none
-  else
-    -- (lint(i) & rint(j)) - int
-    let n1 : EReal := (Min.min lb ub : ℝ) - q
-    let n2 : EReal := (Max.max lb ub : ℝ) - p
-    -- & lint(i)
-    let lb' : EReal := Max.max n1 L.inf
-    let ub' : EReal := Min.min n2 L.sup
-    if ¬ lb' - ub' ≤ eps then none
-    else some ⟨(Min.min lb' ub').toReal, (Max.max lb' ub').toReal⟩
-
 /-- The loop body for the runs `LR = (lint(i), rint(j))`. -/
 noncomputable def FiniteSignal.aux_untilStep (eps p : ℝ) (q : EReal) (dur : ℝ)
     (sig : FiniteSignal ℝ Bool) (LR : Real.Interval ℝ × Real.Interval ℝ) :
     Option (FiniteSignal ℝ Bool) :=
-  match FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 with
+  match FiniteSignal.untilPiece eps p q LR.1 LR.2 with
   | none => some sig
   -- if ~representsa_(bint,'emptySet',eps) && volume(bint) > 0
   | some ⟨lo, hi⟩ =>

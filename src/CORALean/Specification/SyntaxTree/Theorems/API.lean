@@ -65,6 +65,7 @@ public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContainsFloat
 public import CORALean.Specification.SyntaxTree.Theorems.MinusSound
 public import CORALean.Specification.SyntaxTree.Theorems.NthrootFloatContains
+public import CORALean.Specification.SyntaxTree.Theorems.NthrootZFloatContains
 public import CORALean.Specification.SyntaxTree.Theorems.PeriodicContains
 public import CORALean.Specification.SyntaxTree.Theorems.PeriodicFloatContains
 public import CORALean.Specification.SyntaxTree.Theorems.PiFloatContains

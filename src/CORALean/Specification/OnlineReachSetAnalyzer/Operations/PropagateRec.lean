@@ -14,7 +14,8 @@ sibling's recursion already propagated is propagated again. Then `node.propagate
 and its children (handles in CORA, written back here) and `obj.propagated(idx)` is set. The syntax
 graph is acyclic, so `fuel` of the node count loses nothing; running out of it is `none`, as is
 every throw. `eps` is MATLAB's `eps`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+the recursion of `OnlineReachSetAnalyzer.propagateFloat`.
 
 ## Inputs
 * `eps` – machine epsilon

@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Basic
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ForcePropagation
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ForcePropagationFloat
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKey
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKind
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.GetVerdict
@@ -10,6 +11,7 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ObserveSe
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Parse
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ParseNew
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Propagate
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.PropagateFloat
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.PropagateRec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ToRealAnalyzer
 

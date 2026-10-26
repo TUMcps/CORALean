@@ -11,8 +11,9 @@ public import CORALean.Specification.ReachSetAnalyzer.ReachSetAnalyzer
 `out = signals(obj)`: the three-valued signal of every proposition, from its builder. CORA throws
 if a key has no builder or the signal cannot be built; here `none`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Generic over the time type: at a float scalar it compares its time stamps exactly
+(`TimeOrder`), so the result read as reals is that of the analyzer read as reals
+(`ReachSetAnalyzer.signals_mapTime`).
 
 ## Inputs
 * `obj` – analyzer

@@ -17,7 +17,8 @@ nothing. An `AP` node makes its tentative observations on `makeValid` final. Any
 the combination of its children's signals into its own, finds the interval up to which it is
 conclusive given what its parents have, and tells the children (`setPropagated`). The result is
 the new node and children, `none` where CORA throws.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineAnalyzerNode.propagateFloat`.
 
 ## Inputs
 * `eps` – machine epsilon

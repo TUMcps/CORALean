@@ -16,8 +16,8 @@ children over the node's interval. CORA throws (`notSupported`, a failed `assert
 wrong number of children, and where `toBoolSignal()` of the four-valued operations throws; all are
 `none`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineAnalyzerNode.combineFloat`, its `True` and `False` the exact ones read as reals.
 
 ## Inputs
 * `n` – node

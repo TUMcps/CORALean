@@ -47,6 +47,7 @@ public import CORALean.Specification.SyntaxTree.Operations.Mtimes
 public import CORALean.Specification.SyntaxTree.Operations.Nthroot
 public import CORALean.Specification.SyntaxTree.Operations.NthrootFloat
 public import CORALean.Specification.SyntaxTree.Operations.NthrootZ
+public import CORALean.Specification.SyntaxTree.Operations.NthrootZFloat
 public import CORALean.Specification.SyntaxTree.Operations.Periodic
 public import CORALean.Specification.SyntaxTree.Operations.PeriodicFloat
 public import CORALean.Specification.SyntaxTree.Operations.PiFloat

@@ -36,6 +36,9 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsSp
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindLastSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorMapTime
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilFloatInner
+public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilFloatOuter
+public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilFloatSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilUnitary
 public import CORALean.Specification.PointSegmentSignal.Theorems.IsValidAppendDrop
@@ -61,6 +64,8 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.SuccTimeAtValId
 public import CORALean.Specification.PointSegmentSignal.Theorems.SuccTimeAtValIdxOfLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.SuffixAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.TakeWhileLePos
+public import CORALean.Specification.PointSegmentSignal.Theorems.UntilFloatInner
+public import CORALean.Specification.PointSegmentSignal.Theorems.UntilFloatOuter
 public import CORALean.Specification.PointSegmentSignal.Theorems.UntilMono
 public import CORALean.Specification.PointSegmentSignal.Theorems.UntilSpec
 

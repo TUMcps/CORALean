@@ -14,7 +14,8 @@ upper bound `pUb` and closedness `pRc`, an observation from `lb` (closed if `lc`
 back before it, `pUb > lb || (withinTol(pUb,lb,eps) && pRc && lc)`; otherwise CORA throws
 `CORA:specialError`. Empty intervals are skipped; an empty observed interval has an empty `lb`,
 which is a MATLAB error. `some true` is the former throw, `none` the latter.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineAnalyzerNode.conflictsFloat`, deciding the same read as reals.
 
 ## Inputs
 * `eps` – machine epsilon

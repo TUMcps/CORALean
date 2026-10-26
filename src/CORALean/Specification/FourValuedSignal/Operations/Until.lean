@@ -19,7 +19,8 @@ inconclusive mapped to `False` is the Kleene part, and the value is inconclusive
 from that with inconclusive mapped to `True`; `none` is the `toBoolSignal()` error, which
 `until_spec` shows does not occur. This is `Λ̃₁ U_I Λ̃₂` of [1, Sec. 4.3 (operators)], the `⊔₂` of
 the untils of `⌊Λ̃⌋` and `⌈Λ̃⌉`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it computes on real time stamps exactly; its rounded refinement,
+`True` and `False` only where this is, is `FourValuedSignal.untilFloat`.
 
 ## Inputs
 * `lhs` – left signal

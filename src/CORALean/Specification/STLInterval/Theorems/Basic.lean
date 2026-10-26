@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.STLInterval.Definitions.Representsa
 public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Operations.ToRealInterval
 public import CORALean.Specification.STLInterval.STLInterval
 public import CORALean.Specification.STLInterval.Theorems.RawSetNonemptyOf
 
@@ -80,6 +81,18 @@ theorem STLInterval.set_empty {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFl
     (STLInterval.empty : STLInterval 𝕋).set = ∅ := rfl
 
 
+-- =============================  `STLInterval.set_toRealInterval`  ============================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- An interval read as reals denotes the times the float interval does. -/
+@[simp] theorem STLInterval.set_toRealInterval {𝕋 : Type} [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (I : STLInterval 𝕋) : I.toRealInterval.set = I.set := by
+  rcases I with _ | ⟨l, _ | u, lc, rc, _, _, _⟩ <;> rfl
+
+
 -- ================================  `STLInterval.toEReal_coe`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       23-October-2026
@@ -90,6 +103,19 @@ theorem STLInterval.set_empty {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFl
 @[simp] theorem STLInterval.toEReal_coe {𝕋 : Type} [Float.FloatOps 𝕋]
     [Float.SoundFloatArithmetic 𝕋] (x : 𝕋) :
     STLInterval.toEReal (x : WithTop 𝕋) = ((Float.SoundFloatArithmetic.toReal x : ℝ) : EReal) := rfl
+
+
+-- =============================  `STLInterval.toEReal_map_toReal`  ============================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A bound read as a real bound, `inf` kept, denotes the same extended real. -/
+@[simp] theorem STLInterval.toEReal_map_toReal {𝕋 : Type} [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (u : WithTop 𝕋) :
+    STLInterval.toEReal (u.map Float.SoundFloatArithmetic.toReal) = STLInterval.toEReal u := by
+  cases u <;> rfl
 
 
 -- ================================  `STLInterval.toEReal_none`  ================================ --
