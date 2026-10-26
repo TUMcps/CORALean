@@ -78,7 +78,7 @@ private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤
       sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧
         r.IsValid ∧ r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
           (v = true ↔ (sig.at? t = some true ∨ ∃ LR ∈ prs, ∃ lo hi,
-            FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
+            FiniteSignal.untilPiece eps p q LR.1 LR.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
               (0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi))))
   | [], sig, hs, hd => by
     refine ⟨sig, rfl, hs, hd, fun t ht0 ht1 => ?_⟩
@@ -91,14 +91,14 @@ private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤
         ∃ r, (LR :: rest).foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧ r.IsValid ∧
           r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
             (v = true ↔ (sig'.at? t = some true ∨ ∃ LR' ∈ rest, ∃ lo hi,
-              FiniteSignal.aux_untilPiece eps p q LR'.1 LR'.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
+              FiniteSignal.untilPiece eps p q LR'.1 LR'.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
                 (0 < hi ∧ lo < dur ∧ lo ≤ t ∧ (t < hi ∨ dur ≤ hi)))) := fun sig' hv hdd hstep => by
       obtain ⟨r, hr1, hr2, hr3, hr4⟩ := aux_until_fold eps p q dur h0 rest sig' hv hdd
       refine ⟨r, ?_, hr2, hr3, hr4⟩
       rw [List.foldlM_cons, hstep]
       exact hr1
     -- the case of the piece of `LR`
-    rcases hpc : FiniteSignal.aux_untilPiece eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
+    rcases hpc : FiniteSignal.untilPiece eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
     · -- empty: the signal stays
       obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig hs hd (by simp [FiniteSignal.aux_untilStep, hpc])
       refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
@@ -152,7 +152,7 @@ theorem FiniteSignal.until?_spec (eps : ℝ) (lsig rsig : FiniteSignal ℝ Bool)
       r.duration = lsig.duration ∧ ∀ t : ℝ, 0 ≤ t → t ≤ lsig.duration →
         (r.at? t = some true ↔ ∃ L ∈ lsig.findIntervals (fun v => decide (true ≤ v)),
           ∃ R ∈ rsig.findIntervals (fun v => decide (true ≤ v)), ∃ lo hi,
-            FiniteSignal.aux_untilPiece eps p q L R = some ⟨lo, hi⟩ ∧ lo < hi ∧
+            FiniteSignal.untilPiece eps p q L R = some ⟨lo, hi⟩ ∧ lo < hi ∧
               (0 < hi ∧ lo < lsig.duration ∧ lo ≤ t ∧
                 (t < hi ∨ lsig.duration ≤ hi))) := by -- --- PROOF ---
   -- the duration is nonnegative, and the signals have the same one

@@ -13,6 +13,8 @@ public import CORALean.Specification.FiniteSignal.Operations.Max
 public import CORALean.Specification.FiniteSignal.Operations.Mk
 public import CORALean.Specification.FiniteSignal.Operations.Set
 public import CORALean.Specification.FiniteSignal.Operations.Until
+public import CORALean.Specification.FiniteSignal.Operations.UntilFloat
+public import CORALean.Specification.FiniteSignal.Operations.UntilPiece
 public import CORALean.Specification.FiniteSignal.Operations.ValueAt
 
 /-!

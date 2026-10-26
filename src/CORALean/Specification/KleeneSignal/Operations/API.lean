@@ -7,6 +7,7 @@ public import CORALean.Specification.KleeneSignal.Operations.FindIntervals
 public import CORALean.Specification.KleeneSignal.Operations.Or
 public import CORALean.Specification.KleeneSignal.Operations.ToBoolSignal
 public import CORALean.Specification.KleeneSignal.Operations.Until
+public import CORALean.Specification.KleeneSignal.Operations.UntilFloat
 
 /-!
 # Three-valued signals, operations

@@ -29,6 +29,7 @@ public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalMapTime
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalOptionMapTime
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalSpec
 public import CORALean.Specification.KleeneSignal.Theorems.UntilBetweenRefinements
+public import CORALean.Specification.KleeneSignal.Theorems.UntilFloatSound
 public import CORALean.Specification.KleeneSignal.Theorems.UntilMono
 public import CORALean.Specification.KleeneSignal.Theorems.UntilSpec
 

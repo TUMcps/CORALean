@@ -1,7 +1,9 @@
 module
 
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.Basic
+public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.KleeneSignalMapTime
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.KleeneSignalSpec
+public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.MkMapTime
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.MkSpec
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.OrIndicatorSpec
 public import CORALean.Specification.FiniteKleeneSignalBuilder.Theorems.RepresentsOfIff

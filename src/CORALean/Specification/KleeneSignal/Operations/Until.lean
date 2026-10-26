@@ -15,7 +15,8 @@ public import Mathlib.Data.Fin.VecNotation
 as false) is the Boolean part, and the value is unknown where it differs from that of the maximal
 refinements (unknown as true). This is `Λ₁ U_I Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the
 untils of `⌊Λ⌋` and `⌈Λ⌉`.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it computes on real time stamps exactly; its rounded refinement,
+`True` and `False` only where this is, is `KleeneSignal.untilFloat`.
 
 ## Inputs
 * `lhs` – left signal

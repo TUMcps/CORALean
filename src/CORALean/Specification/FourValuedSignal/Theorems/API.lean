@@ -36,6 +36,7 @@ public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalOpt
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.UntilFloatSound
 public import CORALean.Specification.FourValuedSignal.Theorems.UntilIsRefinedBy
 public import CORALean.Specification.FourValuedSignal.Theorems.UntilSpec
 

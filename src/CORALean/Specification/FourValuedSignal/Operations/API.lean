@@ -9,6 +9,7 @@ public import CORALean.Specification.FourValuedSignal.Operations.Merge
 public import CORALean.Specification.FourValuedSignal.Operations.Or
 public import CORALean.Specification.FourValuedSignal.Operations.ToKleeneSignal
 public import CORALean.Specification.FourValuedSignal.Operations.Until
+public import CORALean.Specification.FourValuedSignal.Operations.UntilFloat
 
 /-!
 # Four-valued signals, operations

@@ -63,6 +63,8 @@ noncomputable instance : SoundFloatArithmetic ℝ where
 noncomputable instance : ExactLe ℝ where
   le a b := decide (a ≤ b)
   le_iff _ _ := decide_eq_true_iff
+  withinTol tol a b := decide (|a - b| ≤ tol ∨ |a - b| ≤ tol * min |a| |b|)
+  withinTol_iff _ _ _ := decide_eq_true_iff
 
 end CORALean.Float
 

@@ -194,21 +194,21 @@ Rulings on borderline cases:
 | [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 4 | 10 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 8 | 12 | 0 | 0 | 41 | 2 |
 | [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 |
-| [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 4 | 0 | 0 | 0 | 0 | 0 |
-| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 5 | 4 | 0 | 0 | 1 | 0 |
+| [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 2 | 2 | 0 | 0 | 0 | 0 |
+| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 2 | 7 | 0 | 0 | 1 | 0 |
 | [fourValued](specification/fourValued.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 |
-| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 3 | 13 | 0 | 0 | 2 | 0 |
+| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 2 | 14 | 0 | 0 | 2 | 0 |
 | [kleene](specification/kleene.md) | specification | 4 | 0 | 4 | 0 | 0 | 0 | 0 |
-| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 3 | 10 | 0 | 0 | 2 | 0 |
+| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 2 | 11 | 0 | 0 | 2 | 0 |
 | [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 0 | 0 | 10 | 0 |
-| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 3 | 1 | 0 | 0 | 3 | 0 |
-| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 3 | 1 | 0 | 0 | 1 | 0 |
-| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 4 | 6 | 0 | 0 | 1 | 0 |
-| [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 5 | 0 | 0 | 0 | 0 | 1 |
+| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 1 | 3 | 0 | 0 | 3 | 0 |
+| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 2 | 2 | 0 | 0 | 1 | 0 |
+| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 3 | 7 | 0 | 0 | 1 | 0 |
+| [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 1 | 4 | 0 | 0 | 0 | 1 |
 | [rtl](specification/rtl.md) | specification | 5 | 4 | 0 | 0 | 0 | 1 | 0 |
 | [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 6 | 6 | 2 |
 | [stl](specification/stl.md) | specification | 52 | 28 | 4 | 0 | 15 | 5 | 4 |
-| [stlInterval](specification/stlInterval.md) | specification | 19 | 7 | 10 | 0 | 0 | 2 | 1 |
+| [stlInterval](specification/stlInterval.md) | specification | 19 | 5 | 12 | 0 | 0 | 2 | 1 |
 | [syntaxTree](specification/syntaxTree.md) | specification | 27 | 1 | 26 | 0 | 0 | 0 | 3 |
 | [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 1 | 4 | 0 | 0 | 1 | 0 |
 | [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 1 | 1 | 0 | 0 | 0 | 0 |
@@ -243,8 +243,9 @@ Rulings on borderline cases:
   `route b —` note whose linked definitions are outside `Real/`, not `noncomputable`, not on the
   allowlist, and whose theorem or class names a scalar or a set representation (route b);
 * a `proved` row is not stale: it fails when its linked definition already counts as `float`,
-  by route a (a `…Float` twin, `opFloat` or `opFloat?`, that a float-layer theorem is about) or by
-  route b (every linked definition outside `Real/`, computable, not a `Prop`, its signature generic
+  by route a (the row's own definition, the first it links, has a `…Float` twin, `opFloat` or
+  `opFloat?`, that a float-layer theorem is about; a helper linked after it has no say, except on
+  the constructor row, which stands for the whole class) or by route b (every linked definition outside `Real/`, computable, not a `Prop`, its signature generic
   over `𝕋`, and a linked theorem stated for `𝕋`), so the figure cannot lag behind the code;
 * the counts above are the tables' counts, and `experiments/paper/formalization-stats.json`
   is what `scripts/formalization-stats.py` writes now.
@@ -279,6 +280,9 @@ its label. A departure can give rise to both: it is recorded here, the closing o
 
 | Subject | What differs | Details |
 |---|---|---|
+| Float until: the time shift rounded inward | CORA's untils shift a time interval by `minus` in doubles, rounded to nearest. A float until that is `True` only where the exact one is needs the shift inside the exact one: `minusInward` rounds the lower bound of the difference up and the upper one down. The point-segment until takes it for a signal true only where the exact one is and `minus` (rounded outward) for one true wherever it is; the Kleene and four-valued untils take the first for their minimal refinement and the second for their maximal one, so their `True` and `False` are exact ones. The finite-signal until rounds its `((lint(i) & rint(j)) - int) & lint(i)` inward, tests `lb - ub <= eps` on the difference rounded up, and drops a piece whose ends cross rather than turning it around, as CORA's `min`/`max` of the ends would. | [`MinusInward.lean`](../../src/CORALean/Specification/STLInterval/Operations/MinusInward.lean), [`UntilFloat.lean`](../../src/CORALean/Specification/PointSegmentSignal/Operations/UntilFloat.lean), [`UntilFloat.lean`](../../src/CORALean/Specification/KleeneSignal/Operations/UntilFloat.lean), [`UntilFloat.lean`](../../src/CORALean/Specification/FiniteSignal/Operations/UntilFloat.lean) |
+| Float `withinTol` decided exactly | CORA evaluates `withinTol(a,b,tol)` in doubles. The float specification operations decide it on the reals the stored values denote (`ExactLe.withinTol`, from the exact decoding into ℚ), so a test of time stamps goes the way the exact one goes on the same stored values, and the online analyzer's float operations read as reals are the exact ones. | [`Interfaces.lean`](../../src/CORALean/Global/Float/Interfaces.lean), [`WithinTolFloat.lean`](../../src/CORALean/Specification/STLInterval/Operations/WithinTolFloat.lean) |
+| Float factors that may reach a polytope, clipped to the box | The polytope `K` of Kochdumper and Bak's `Prop. 2` is unbounded in the factors, and its rows `C G(·,H)` rounded to floats miss the real ones by an error that only a bound on the factors absorbs. The float polytope is therefore read with the factor box `[-1, 1]^p`, where the paper's statement and every use of the factors stay, and its offset pays the rounding gap of the rows on that box. CORA computes the rows in doubles and does not clip. | [`UnsafeFactorsFloat.lean`](../../src/CORALean/Specification/STL/Operations/UnsafeFactorsFloat.lean), [`UnsafeFactorsFloatOuter.lean`](../../src/CORALean/Specification/STL/Theorems/UnsafeFactorsFloatOuter.lean) |
 | Homogeneous time-interval step | `linComb` in place of CORA's convex hull, so a non-convex representation keeps its shape. | [`TimeInterval.lean`](../../src/CORALean/ContDynamics/LinearSys/Operations/TimeInterval.lean) |
 | `ConPolyZono.union` | The source states its union identity with no hypothesis on the operands, and it is false without one: an all-zero exponent column is a degree-`0` monomial, so it survives on the branch that pins its own operand's factors to `0` and is added twice. Formalized with `HasNoZeroCol` on all four exponent matrices — the half of the source's `regular` its own proof uses, the duplicate-free half being irrelevant here. One further hypothesis is this representation's rather than the source's: neither operand carries independent generators, which the source's representation cannot. | [`UnionExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/UnionExact.lean) |
 | `ConPolyZono.convHull` | The source states its convex hull identity with no hypothesis on the operands, and it is false when exactly one of them is empty: the step that replaces the union by the linear combination needs a point of the *other* operand to pair with, and the closed form carries that combination's constraint system `n + 1` times over, so it is empty whenever either operand is while the hull is not. Formalized with both operands non-empty, which is what that step actually asks for; CORA guards the same case by returning the other set outright. One further hypothesis is this representation's rather than the source's: neither operand carries independent generators, which the source's representation cannot. | [`ConvHullExact.lean`](../../src/CORALean/ContSet/ConPolyZono/Real/Theorems/ConvHullExact.lean) |

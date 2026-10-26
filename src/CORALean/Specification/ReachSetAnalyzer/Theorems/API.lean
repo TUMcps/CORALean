@@ -10,8 +10,11 @@ public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeTreeComple
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.AnalyzeTreeSound
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.BranchProper
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.MapMSpec
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.MaskOkMapTime
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.MkMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.MkSpec
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.RepresentsOfIff
+public import CORALean.Specification.ReachSetAnalyzer.Theorems.SignalsMapTime
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.SignalsSoundOfBranch
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.SignalsSpec
 public import CORALean.Specification.ReachSetAnalyzer.Theorems.TrueMarkCongr

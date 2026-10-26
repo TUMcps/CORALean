@@ -11,8 +11,8 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 `forcePropagation(obj)`: propagates regardless of the propagation frequency, with every
 observation final, `makeValid = stlInterval(0,inf)`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineReachSetAnalyzer.forcePropagationFloat`.
 
 ## Inputs
 * `eps` – machine epsilon

@@ -13,8 +13,9 @@ public import Mathlib.Algebra.Ring.BooleanRing
 mask matters always, one with a mask only where the mask is true somewhere in `int =
 interval(lo,hi)`.
 
-Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
-intervals over `𝕋`, rounded outward) is not yet written.
+Generic over the time type: at a float scalar it compares its time stamps exactly
+(`TimeOrder`), so the result read as reals is that of the analyzer read as reals
+(`ReachSetAnalyzer.maskOk_mapTime`).
 
 ## Inputs
 * `obj` – analyzer

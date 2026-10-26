@@ -16,7 +16,8 @@ with this index and, if `dropPropagated`, the signal is made inconclusive on eve
 to all parents. CORA throws if the new interval is smaller than the old or `parent` is no parent;
 here `none`. `eps` is MATLAB's machine epsilon, the tolerance of the comparisons; the parents are
 assumed distinct.
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it reads real time stamps exactly; its rounded refinement is
+`OnlineAnalyzerNode.setPropagatedFloat`, the same node read as reals.
 
 ## Inputs
 * `eps` – machine epsilon

@@ -20,7 +20,8 @@ is `true` at the times `t` for which an interval of `lhsInt`, closed at the left
 interval of `rhsInt`, closed at the right, at a `t'` with `t' - t` in the until interval, minus
 zero; and, if that interval contains `0`, at the times of `rhsInt`. `contains(0)` and `representsa`
 use tolerance `0`. With one interval on each side this is the unitary until of [1, Eq. 1].
-Refinement pending: CORA computes this in doubles, its refinement over `𝕋` is not yet written.
+Real-only, a specification: it computes on real time stamps exactly; its rounded refinement is
+`PointSegmentSignal.intervalUntilFloat`, with the time shift rounded inward or outward.
 
 ## References
 
