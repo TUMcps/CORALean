@@ -28,13 +28,13 @@ expressions, or a product of a number and a linear expression. A power is not li
 
 namespace CORALean
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The expression passes `isLinearPredicate`'s `aux_recursive`. -/
-def STL.Expr.isLinear : STL.Expr n → Bool
+def STL.Expr.isLinear : STL.Expr κ n → Bool
   | .var _ | .num _ => true
   | .add e₁ e₂ | .sub e₁ e₂ => e₁.isLinear && e₂.isLinear
   | .mul (.num _) e | .mul e (.num _) => e.isLinear

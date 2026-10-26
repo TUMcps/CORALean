@@ -20,8 +20,8 @@ no `until` and `release` nodes of [1, Def. 1]: `stl2rtl` produces only the four.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Last update:   26-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -33,11 +33,11 @@ namespace CORALean
 
 /-- A reachset temporal logic formula over leaves `L`: a leaf, conjunction, disjunction, or a next
 with a time shift. -/
-inductive Rtl (L : Type)
+inductive Rtl (τ L : Type)
   | all (lhs : L)
-  | and (lhs rhs : Rtl L)
-  | or (lhs rhs : Rtl L)
-  | next (time : ℝ) (lhs : Rtl L)
+  | and (lhs rhs : Rtl τ L)
+  | or (lhs rhs : Rtl τ L)
+  | next (time : τ) (lhs : Rtl τ L)
 
 end CORALean
 

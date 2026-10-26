@@ -8,6 +8,7 @@ public import CORALean.Specification.KleeneSignal.Theorems.AtOr
 public import CORALean.Specification.KleeneSignal.Theorems.Basic
 public import CORALean.Specification.KleeneSignal.Theorems.CombineMapTime
 public import CORALean.Specification.KleeneSignal.Theorems.CombineSpec
+public import CORALean.Specification.KleeneSignal.Theorems.EqMapTime
 public import CORALean.Specification.KleeneSignal.Theorems.EqNotComplete
 public import CORALean.Specification.KleeneSignal.Theorems.FindIntervalsMapTime
 public import CORALean.Specification.KleeneSignal.Theorems.FindIntervalsSpec

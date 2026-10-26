@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_desugar (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
+theorem STL.Tree.sat_desugar (φ : STL.Tree NNReal ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     φ.desugar.Satisfies ξ ↔ φ.Satisfies ξ := by -- --- PROOF ---
   induction φ generalizing ξ with
   | tt | ff | cmp => rfl

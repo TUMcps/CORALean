@@ -33,13 +33,13 @@ namespace CORALean
 open scoped NNReal
 
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `aux_recursive(obj,neg)` of `negationNormalForm.m`. -/
-def STL.Tree.nnfWith (ng : STL.Cmp → STL.Cmp) : Bool → STL.Tree n → STL.Tree n
+def STL.Tree.nnfWith (ng : STL.Cmp → STL.Cmp) : Bool → STL.Tree τ κ n → STL.Tree τ κ n
   | true, .and φ ψ => .or (nnfWith ng true φ) (nnfWith ng true ψ)
   | true, .or φ ψ => .and (nnfWith ng true φ) (nnfWith ng true ψ)
   | true, .not φ => nnfWith ng false φ

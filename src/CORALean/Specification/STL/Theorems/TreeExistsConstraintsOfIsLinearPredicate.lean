@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.exists_constraints_of_isLinearPredicate (φ : STL.Tree n)
+theorem STL.Tree.exists_constraints_of_isLinearPredicate (φ : STL.Tree NNReal ℝ n)
     (h : φ.isLinearPredicate = true) : -- --- CONCL ---
     ∃ L : List (STL.Cmp × (Fin n → ℝ) × ℝ),
       ∀ ξ : ℝ≥0 → Fin n → ℝ,

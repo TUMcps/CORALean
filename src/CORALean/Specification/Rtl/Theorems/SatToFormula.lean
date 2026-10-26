@@ -44,7 +44,7 @@ variable {L X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Rtl.sat_toFormula (f : L → Pform X) : -- --- CONCL ---
-    ∀ (ψ : Rtl L) (φ : RTL.Formula X), ψ.toFormula f = some φ → ∀ R : ℝ≥0 → Set X,
+    ∀ (ψ : Rtl ℝ L) (φ : RTL.Formula X), ψ.toFormula f = some φ → ∀ R : ℝ≥0 → Set X,
       (ψ.Satisfies (fun l r => (f l).Satisfies r) R ↔ φ.Satisfies R) := by -- --- PROOF ---
   intro ψ
   induction ψ with

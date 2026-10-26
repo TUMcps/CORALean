@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- `eliminateTrueFalse(obj)` as printed. -/
-def STL.Tree.eliminateTrueFalseCora (φ : STL.Tree n) : STL.Tree n :=
+def STL.Tree.eliminateTrueFalseCora (φ : STL.Tree NNReal ℝ n) : STL.Tree NNReal ℝ n :=
   STL.Tree.eliminateTrueFalseWith (fun _ _ _ => .tt) φ
 
 end CORALean
@@ -59,7 +59,8 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.eliminateTrueFalseCora_until_counterexample (n : ℕ) (ξ : ℝ≥0 → Fin n → ℝ) :
-    ∃ φ : STL.Tree n, φ.IsWellFormed ∧ ¬ (φ.eliminateTrueFalseCora.Satisfies ξ ↔ φ.Satisfies ξ) :=
+    ∃ φ : STL.Tree NNReal ℝ n,
+      φ.IsWellFormed ∧ ¬ (φ.eliminateTrueFalseCora.Satisfies ξ ↔ φ.Satisfies ξ) :=
         by
   refine ⟨.until 0 1 .ff .tt, ⟨zero_le_one, trivial, trivial⟩, fun h => ?_⟩
   obtain ⟨t, -, -, -, h₄⟩ := h.1 (by simp [STL.Tree.eliminateTrueFalseCora,

@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.maximumTimeFrom_of_not_temporal (φ : STL.Tree n) (h : φ.temporal = false)
+theorem STL.Tree.maximumTimeFrom_of_not_temporal (φ : STL.Tree NNReal ℝ n) (h : φ.temporal = false)
     (time : ℝ≥0) : -- --- CONCL ---
     φ.maximumTimeFrom time = time := by -- --- PROOF ---
   induction φ with

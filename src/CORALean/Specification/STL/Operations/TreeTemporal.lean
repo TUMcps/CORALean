@@ -31,13 +31,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `obj.temporal`. -/
-def STL.Tree.temporal : STL.Tree n → Bool
+def STL.Tree.temporal : STL.Tree τ κ n → Bool
   | .tt | .ff | .cmp _ _ _ => false
   | .not φ => temporal φ
   | .and φ ψ | .or φ ψ => temporal φ || temporal ψ

@@ -44,7 +44,7 @@ variable {L X : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R ⊨ᵣ ψ`. -/
-def Rtl.Satisfies (sat : L → X → Prop) : Rtl L → (ℝ≥0 → Set X) → Prop
+def Rtl.Satisfies (sat : L → X → Prop) : Rtl ℝ L → (ℝ≥0 → Set X) → Prop
   | .all l, R => ∀ r ∈ R 0, sat l r
   | .and a b, R => a.Satisfies sat R ∧ b.Satisfies sat R
   | .or a b, R => a.Satisfies sat R ∨ b.Satisfies sat R

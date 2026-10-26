@@ -43,7 +43,7 @@ theorem FourValuedSignal.at_eq_ii_iff {T : Type} [LinearOrder T] (s : FourValued
 theorem FourValuedSignal.eq_iff {T : Type} [LinearOrder T] (a b : FourValuedSignal T) :
     a.eq b = true ↔ a = b := by
   obtain ⟨⟨a1, a2⟩, a3⟩ := a; obtain ⟨⟨b1, b2⟩, b3⟩ := b
-  simp [FourValuedSignal.eq, KleeneSignal.eq]
+  simp [FourValuedSignal.eq, KleeneSignal.eq, PointSegmentSignal.eq_iff]
 
 
 -- ==============================  `FourValuedSignal.at_eq_of_eq`  ============================== --
@@ -68,6 +68,19 @@ theorem FourValuedSignal.at_eq_of_eq {T : Type} [LinearOrder T] (a b : FourValue
 theorem FourValuedSignal.not_isValid {T : Type} [LinearOrder T] [Zero T] (s : FourValuedSignal T)
     (hs : s.IsValid) : s.not.IsValid :=
   ⟨KleeneSignal.not_isValid _ hs.1, hs.2⟩
+
+
+-- ==============================  `FourValuedSignal.not_mapTime`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Negating keeps the time points, so the negation of a float signal read as reals is the negation
+of the signal read as reals. -/
+theorem FourValuedSignal.not_mapTime {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
+    (s : FourValuedSignal 𝕋) : s.not.mapTime Float.SoundFloatArithmetic.toReal =
+      (s.mapTime Float.SoundFloatArithmetic.toReal).not := rfl
 
 
 end CORALean

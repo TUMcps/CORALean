@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Expr.eval_congr_variables (e : STL.Expr n) {x y : Fin n → ℝ}
+theorem STL.Expr.eval_congr_variables (e : STL.Expr ℝ n) {x y : Fin n → ℝ}
     (h : ∀ i ∈ e.variables, x i = y i) : -- --- CONCL ---
     e.eval x = e.eval y := by -- --- PROOF ---
   induction e with

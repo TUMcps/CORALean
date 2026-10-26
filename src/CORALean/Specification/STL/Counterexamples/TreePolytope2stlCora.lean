@@ -59,7 +59,8 @@ variable {n : ℕ}
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- `polytope2stl(obj,P)`, inequality rows only, as printed. -/
-noncomputable def STL.Tree.polytope2stlCora (P : Real.HPolytope (Fin n → ℝ)) : STL.Tree n :=
+noncomputable def STL.Tree.polytope2stlCora (P : Real.HPolytope (Fin n → ℝ)) : STL.Tree NNReal ℝ
+  n :=
   STL.Tree.conjoin ((List.finRange P.m).map fun i =>
     STL.Tree.halfspace2set .le (fun j => P.A i (Pi.single j 1)) (P.b i))
 

@@ -33,13 +33,14 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `list` of `aux_recursive(obj,cnt,list)`, started from `list`. -/
-def STL.Tree.assignIdentifiersFrom (list : List (STL.Tree n)) : STL.Tree n → List (STL.Tree n)
+def STL.Tree.assignIdentifiersFrom (list : List (STL.Tree τ κ n)) : STL.Tree τ κ n → List
+  (STL.Tree τ κ n)
   | .not φ => if φ.temporal then φ.assignIdentifiersFrom list else list ++ [.not φ]
   | .and φ ψ =>
     if φ.temporal || ψ.temporal then ψ.assignIdentifiersFrom (φ.assignIdentifiersFrom list)

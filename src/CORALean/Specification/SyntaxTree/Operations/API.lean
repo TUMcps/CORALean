@@ -44,6 +44,7 @@ public import CORALean.Specification.SyntaxTree.Operations.FunHanTimesFloat
 public import CORALean.Specification.SyntaxTree.Operations.Interval
 public import CORALean.Specification.SyntaxTree.Operations.IntervalFloat
 public import CORALean.Specification.SyntaxTree.Operations.Mtimes
+public import CORALean.Specification.SyntaxTree.Operations.MtimesFloat
 public import CORALean.Specification.SyntaxTree.Operations.Nthroot
 public import CORALean.Specification.SyntaxTree.Operations.NthrootFloat
 public import CORALean.Specification.SyntaxTree.Operations.NthrootZ

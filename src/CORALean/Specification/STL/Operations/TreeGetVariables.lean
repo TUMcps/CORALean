@@ -31,13 +31,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `getVariables(obj)`. -/
-def STL.Tree.getVariables : STL.Tree n → Finset (Fin n)
+def STL.Tree.getVariables : STL.Tree τ κ n → Finset (Fin n)
   | .tt | .ff => ∅
   | .cmp _ e₁ e₂ => e₁.variables ∪ e₂.variables
   | .not φ | .next _ φ | .finally _ _ φ | .globally _ _ φ => getVariables φ

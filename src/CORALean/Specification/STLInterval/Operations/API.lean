@@ -14,6 +14,7 @@ public import CORALean.Specification.STLInterval.Operations.MinusNum
 public import CORALean.Specification.STLInterval.Operations.Plus
 public import CORALean.Specification.STLInterval.Operations.PlusInterval
 public import CORALean.Specification.STLInterval.Operations.PlusNum
+public import CORALean.Specification.STLInterval.Operations.RepresentsaFloat
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 public import CORALean.Specification.STLInterval.Operations.Supremum

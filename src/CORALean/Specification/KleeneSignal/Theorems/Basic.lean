@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtMapTime
+public import CORALean.Specification.PointSegmentSignal.Theorems.EqIff
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
 
@@ -67,7 +68,7 @@ theorem KleeneSignal.at_not {T : Type} [LinearOrder T] [Zero T] (s : KleeneSigna
 theorem KleeneSignal.eq_iff {T : Type} [LinearOrder T] (a b : KleeneSignal T) :
     a.eq b = true ↔ a = b := by
   obtain ⟨a1, a2⟩ := a; obtain ⟨b1, b2⟩ := b
-  simp [KleeneSignal.eq]
+  simp [KleeneSignal.eq, PointSegmentSignal.eq_iff]
 
 
 -- ================================  `KleeneSignal.at_eq_of_eq`  ================================ --
@@ -114,6 +115,19 @@ value there. -/
 theorem KleeneSignal.at_mapTime (s : KleeneSignal 𝕋) (t : 𝕋) :
     (s.mapTime toReal).at (toReal t) = s.at t := by
   simp only [KleeneSignal.at, KleeneSignal.mapTime, PointSegmentSignal.at_mapTime]
+
+
+-- ================================  `KleeneSignal.not_mapTime`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+omit [ExactLe 𝕋] in
+/-- Negating keeps the time points, so the negation of a float signal read as reals is the negation
+of the signal read as reals. -/
+theorem KleeneSignal.not_mapTime (s : KleeneSignal 𝕋) :
+    s.not.mapTime toReal = (s.mapTime toReal).not := rfl
 
 end
 

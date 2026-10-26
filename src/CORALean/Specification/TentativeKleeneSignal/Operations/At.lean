@@ -23,8 +23,8 @@ only `canBeFalse` does, `Unknown` where both do and `Inconclusive` where neither
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   15-October-2026
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Last update:   26-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -35,7 +35,7 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The value at a time: `Inconclusive` if neither value can be, `Unknown` if both can. -/
-def TentativeKleeneSignal.at {T : Type} [LinearOrder T] (s : TentativeKleeneSignal T) (time : T) :
+def TentativeKleeneSignal.at {T : Type} [TimeOrder T] (s : TentativeKleeneSignal T) (time : T) :
     FourValued :=
   match s.canBeTrue.at time, s.canBeFalse.at time with
   | true, true => .uu

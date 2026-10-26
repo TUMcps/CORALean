@@ -47,7 +47,7 @@ private theorem STL.Tree.aux_le_add {s t x b : ℝ≥0} (hs : s ≤ x) (ht : t �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
+theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree NNReal ℝ n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
     (h : ∀ s ≤ φ.maximumTime, ξ s = ξ' s) : -- --- CONCL ---
     φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with

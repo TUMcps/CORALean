@@ -52,7 +52,8 @@ theorem FourValuedSignal.eq_not_complete : -- --- CONCL ---
          STLInterval.upperBound, STLInterval.lowerClosed,
         STLInterval.upperClosed, FourValuedSignal.not, KleeneSignal.not,
         PointSegmentSignal.not, FourValued.toKleene, Kleene.toBool]
-    simp [FourValuedSignal.eq, KleeneSignal.eq, this]
+    rw [Bool.eq_false_iff]
+    exact fun h => this (congrArg (·.signal.signal) ((FourValuedSignal.eq_iff _ _).mp h))
 
 end CORALean
 

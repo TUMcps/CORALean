@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- No `next` is left that `combineNext` would rewrite. -/
-def STL.Tree.IsNextCombined : STL.Tree n → Prop
+def STL.Tree.IsNextCombined : STL.Tree NNReal ℝ n → Prop
   | .next _ (.and φ ψ) | .next _ (.or φ ψ) => (φ.temporal || ψ.temporal) = false
   | .next _ (.not _) | .next _ (.next _ _) => False
   | .not φ => φ.IsNextCombined

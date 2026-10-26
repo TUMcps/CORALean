@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.isNextCombined_combineNext (φ : STL.Tree n) : -- --- CONCL ---
+theorem STL.Tree.isNextCombined_combineNext (φ : STL.Tree NNReal ℝ n) : -- --- CONCL ---
     φ.combineNext.IsNextCombined := by -- --- PROOF ---
   induction φ using STL.Tree.combineNext.induct with
   | case1 a φ ψ h ihφ ihψ | case3 a φ ψ h ihφ ihψ =>

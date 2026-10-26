@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
+theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree NNReal ℝ n) (ξ ξ' : ℝ≥0 → Fin n → ℝ)
     (h : ∀ s, φ.minimumTime ≤ s → ξ s = ξ' s) : -- --- CONCL ---
     φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ generalizing ξ ξ' with

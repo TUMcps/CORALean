@@ -33,13 +33,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[res,cnt] = aux_rewrite(obj)` of `disjunctiveNormalForm.m`. -/
-def STL.Tree.dnfRewrite : STL.Tree n → STL.Tree n × ℕ
+def STL.Tree.dnfRewrite : STL.Tree τ κ n → STL.Tree τ κ n × ℕ
   | .and φ ψ =>
     let lhs := (dnfRewrite φ).1
     let rhs := (dnfRewrite ψ).1

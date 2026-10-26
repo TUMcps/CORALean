@@ -55,7 +55,8 @@ theorem KleeneSignal.eq_not_complete : -- --- CONCL ---
         STLInterval.lowerBound, STLInterval.upperBound, STLInterval.lowerClosed,
         STLInterval.upperClosed, KleeneSignal.not,
         PointSegmentSignal.not, Kleene.toBool]
-    simp [KleeneSignal.eq, this]
+    rw [Bool.eq_false_iff]
+    exact fun h => this (congrArg KleeneSignal.signal ((KleeneSignal.eq_iff _ _).mp h))
 
 end CORALean
 

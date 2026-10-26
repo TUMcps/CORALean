@@ -42,7 +42,7 @@ variable {L X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Rtl.toFormula_isSome_iff (f : L → Pform X) : -- --- CONCL ---
-    ∀ ψ : Rtl L, (ψ.toFormula f).isSome ↔ ψ.TimesNonneg := by -- --- PROOF ---
+    ∀ ψ : Rtl ℝ L, (ψ.toFormula f).isSome ↔ ψ.TimesNonneg := by -- --- PROOF ---
   intro ψ
   induction ψ with
   | all l => simp [Rtl.toFormula, Rtl.TimesNonneg]

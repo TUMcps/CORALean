@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Rtl.Operations.Basic
+public import CORALean.Specification.Rtl.Operations.NextFloat
 public import CORALean.Specification.Rtl.Operations.ToFormula
 
 /-!

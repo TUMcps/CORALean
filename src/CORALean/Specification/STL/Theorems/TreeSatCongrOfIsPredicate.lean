@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_congr_of_isPredicate (φ : STL.Tree n) (h : φ.isPredicate = true)
+theorem STL.Tree.sat_congr_of_isPredicate (φ : STL.Tree NNReal ℝ n) (h : φ.isPredicate = true)
     (ξ ξ' : ℝ≥0 → Fin n → ℝ) (hξ : ξ 0 = ξ' 0) : -- --- CONCL ---
     φ.Satisfies ξ ↔ φ.Satisfies ξ' := by -- --- PROOF ---
   induction φ with

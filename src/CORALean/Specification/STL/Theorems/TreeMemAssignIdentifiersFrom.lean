@@ -39,8 +39,9 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.temporal_of_mem_assignIdentifiersFrom (φ : STL.Tree n) (list : List (STL.Tree n))
-    (ψ : STL.Tree n) (h : ψ ∈ φ.assignIdentifiersFrom list) : -- --- CONCL ---
+theorem STL.Tree.temporal_of_mem_assignIdentifiersFrom (φ : STL.Tree NNReal ℝ n) (list : List
+  (STL.Tree NNReal ℝ n))
+    (ψ : STL.Tree NNReal ℝ n) (h : ψ ∈ φ.assignIdentifiersFrom list) : -- --- CONCL ---
     ψ ∈ list ∨ ψ.temporal = false := by -- --- PROOF ---
   induction φ generalizing list with
   -- a leaf is appended to the list

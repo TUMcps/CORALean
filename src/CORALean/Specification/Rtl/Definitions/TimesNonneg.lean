@@ -38,7 +38,7 @@ variable {L : Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- All time shifts of the formula are nonnegative. -/
-def Rtl.TimesNonneg : Rtl L → Prop
+def Rtl.TimesNonneg : Rtl ℝ L → Prop
   | .all _ => True
   | .and a b => a.TimesNonneg ∧ b.TimesNonneg
   | .or a b => a.TimesNonneg ∧ b.TimesNonneg

@@ -38,9 +38,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.sat_conjoin (L : List (STL.Tree n)) (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
+theorem STL.Tree.sat_conjoin (L : List (STL.Tree NNReal ℝ n))
+    (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
     (STL.Tree.conjoin L).Satisfies ξ ↔ ∀ c ∈ L, c.Satisfies ξ := by -- --- PROOF ---
-  suffices ∀ acc : Option (STL.Tree n), ((L.foldl (fun res c => some (res.elim c fun r => .and r c))
+  suffices ∀ acc : Option (STL.Tree NNReal ℝ n),
+    ((L.foldl (fun res c => some (res.elim c fun r => .and r c))
       acc).getD .tt).Satisfies ξ ↔ (∀ r ∈ acc, r.Satisfies ξ) ∧ ∀ c ∈ L, c.Satisfies ξ by
     simpa [STL.Tree.conjoin] using this none
   induction L with

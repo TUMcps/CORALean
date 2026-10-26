@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `φ` is a disjunction of cubes. -/
-def STL.Tree.IsDnf : STL.Tree n → Prop
+def STL.Tree.IsDnf : STL.Tree NNReal ℝ n → Prop
   | .or φ ψ => IsDnf φ ∧ IsDnf ψ
   | φ => φ.IsCube
 

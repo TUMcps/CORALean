@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- `negationNormalForm(obj)`, `aux_recursive(obj,false)`, as printed. -/
-def STL.Tree.negationNormalFormCora (φ : STL.Tree n) : STL.Tree n :=
+def STL.Tree.negationNormalFormCora (φ : STL.Tree NNReal ℝ n) : STL.Tree NNReal ℝ n :=
   STL.Tree.nnfWith STL.Cmp.dual false φ
 
 end CORALean
@@ -58,7 +58,7 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.Tree.negationNormalFormCora_counterexample :
-    ∃ (φ : STL.Tree 1) (ξ : ℝ≥0 → Fin 1 → ℝ),
+    ∃ (φ : STL.Tree NNReal ℝ 1) (ξ : ℝ≥0 → Fin 1 → ℝ),
       ¬ (φ.negationNormalFormCora.Satisfies ξ ↔ φ.Satisfies ξ) := by
   refine ⟨.not (.cmp .lt (.var 0) (.num 0)), fun _ _ => 0, ?_⟩
   simp [STL.Tree.negationNormalFormCora, STL.Tree.nnfWith, STL.Cmp.dual, STL.Tree.Satisfies,

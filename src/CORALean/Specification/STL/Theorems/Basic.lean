@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STL.Operations.Basic
+public import CORALean.Specification.STL.Operations.ExprToReal
 public import CORALean.Specification.STL.Operations.TreeConjunctiveNormalForm
 public import CORALean.Specification.STL.Operations.TreeDisjunctiveNormalForm
 public import CORALean.Specification.STL.Theorems.TreeMemAssignIdentifiersFrom
@@ -45,7 +46,7 @@ theorem STL.Cmp.rel_negate (op : STL.Cmp) (a b : ℝ) : op.negate.Relates a b �
 -- Reviewed:      ---
 
 /-- `minus.m` builds the difference. -/
-theorem STL.Expr.eval_minus (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
+theorem STL.Expr.eval_minus (e₁ e₂ : STL.Expr ℝ n) (x : Fin n → ℝ) :
     (STL.Expr.minus e₁ e₂).eval x = e₁.eval x - e₂.eval x := rfl
 
 
@@ -56,7 +57,7 @@ theorem STL.Expr.eval_minus (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
 -- Reviewed:      ---
 
 /-- `plus.m` builds the sum, whichever operand is the number. -/
-theorem STL.Expr.eval_plus (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
+theorem STL.Expr.eval_plus (e₁ e₂ : STL.Expr ℝ n) (x : Fin n → ℝ) :
     (STL.Expr.plus e₁ e₂).eval x = e₁.eval x + e₂.eval x := by
   cases e₁ <;> simp [STL.Expr.plus, STL.Expr.eval, add_comm]
 
@@ -68,7 +69,7 @@ theorem STL.Expr.eval_plus (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
 -- Reviewed:      ---
 
 /-- `power.m` builds the power. -/
-theorem STL.Expr.eval_power (e : STL.Expr n) (k : ℤ) (x : Fin n → ℝ) :
+theorem STL.Expr.eval_power (e : STL.Expr ℝ n) (k : ℤ) (x : Fin n → ℝ) :
     (STL.Expr.power e k).eval x = e.eval x ^ k := rfl
 
 
@@ -79,9 +80,59 @@ theorem STL.Expr.eval_power (e : STL.Expr n) (k : ℤ) (x : Fin n → ℝ) :
 -- Reviewed:      ---
 
 /-- `times.m` builds the product, whichever operand is the number. -/
-theorem STL.Expr.eval_times (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
+theorem STL.Expr.eval_times (e₁ e₂ : STL.Expr ℝ n) (x : Fin n → ℝ) :
     (STL.Expr.times e₁ e₂).eval x = e₁.eval x * e₂.eval x := by
   cases e₁ <;> cases e₂ <;> simp [STL.Expr.times, STL.Expr.eval, mul_comm]
+
+
+-- =================================  `STL.Expr.minus_toReal`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `minus` of float expressions read as reals is the difference node of the readings. -/
+theorem STL.Expr.minus_toReal {𝕋 : Type} [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (e₁ e₂ : STL.Expr 𝕋 n) :
+    (STL.Expr.minus e₁ e₂).toReal = STL.Expr.minus e₁.toReal e₂.toReal := rfl
+
+
+-- ==================================  `STL.Expr.plus_toReal`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `plus` of float expressions read as reals is the sum node of the readings. -/
+theorem STL.Expr.plus_toReal {𝕋 : Type} [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (e₁ e₂ : STL.Expr 𝕋 n) :
+    (STL.Expr.plus e₁ e₂).toReal = STL.Expr.plus e₁.toReal e₂.toReal := by
+  cases e₁ <;> simp [STL.Expr.plus, STL.Expr.toReal, STL.Expr.map]
+
+
+-- =================================  `STL.Expr.power_toReal`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `power` of a float expression read as reals is the power of the reading. -/
+theorem STL.Expr.power_toReal {𝕋 : Type} [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (e : STL.Expr 𝕋 n) (k : ℤ) :
+    (STL.Expr.power e k).toReal = STL.Expr.power e.toReal k := rfl
+
+
+-- =================================  `STL.Expr.times_toReal`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `times` of float expressions read as reals is the product node of the readings. -/
+theorem STL.Expr.times_toReal {𝕋 : Type} [Float.FloatOps 𝕋]
+    [Float.SoundFloatArithmetic 𝕋] (e₁ e₂ : STL.Expr 𝕋 n) :
+    (STL.Expr.times e₁ e₂).toReal = STL.Expr.times e₁.toReal e₂.toReal := by
+  cases e₁ <;> cases e₂ <;> simp [STL.Expr.times, STL.Expr.toReal, STL.Expr.map]
 
 
 -- ====================================  `STL.Tree.sat_ge`  ===================================== --
@@ -91,7 +142,7 @@ theorem STL.Expr.eval_times (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
 -- Reviewed:      ---
 
 /-- `ge.m` builds the comparison `e₁ >= e₂`. -/
-theorem STL.Tree.sat_ge (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_ge (e₁ e₂ : STL.Expr ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     (STL.Tree.ge e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) ≥ e₂.eval (ξ 0) := STL.Tree.sat_compare .ge e₁
         e₂ ξ
 
@@ -103,7 +154,7 @@ theorem STL.Tree.sat_ge (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 -- Reviewed:      ---
 
 /-- `gt.m` builds the comparison `e₁ > e₂`. -/
-theorem STL.Tree.sat_gt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_gt (e₁ e₂ : STL.Expr ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     (STL.Tree.gt e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) > e₂.eval (ξ 0) := STL.Tree.sat_compare .gt e₁
         e₂ ξ
 
@@ -115,7 +166,7 @@ theorem STL.Tree.sat_gt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 -- Reviewed:      ---
 
 /-- `implies.m` builds the classical implication. -/
-theorem STL.Tree.sat_implies (φ ψ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_implies (φ ψ : STL.Tree NNReal ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     (STL.Tree.implies φ ψ).Satisfies ξ ↔ (φ.Satisfies ξ → ψ.Satisfies ξ) := imp_iff_not_or.symm
 
 
@@ -126,7 +177,7 @@ theorem STL.Tree.sat_implies (φ ψ : STL.Tree n) (ξ : ℝ≥0 → Fin n → �
 -- Reviewed:      ---
 
 /-- `le.m` builds the comparison `e₁ <= e₂`. -/
-theorem STL.Tree.sat_le (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_le (e₁ e₂ : STL.Expr ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     (STL.Tree.le e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) ≤ e₂.eval (ξ 0) := STL.Tree.sat_compare .le e₁
         e₂ ξ
 
@@ -138,7 +189,7 @@ theorem STL.Tree.sat_le (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 -- Reviewed:      ---
 
 /-- `lt.m` builds the comparison `e₁ < e₂`. -/
-theorem STL.Tree.sat_lt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_lt (e₁ e₂ : STL.Expr ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     (STL.Tree.lt e₁ e₂).Satisfies ξ ↔ e₁.eval (ξ 0) < e₂.eval (ξ 0) := STL.Tree.sat_compare .lt e₁
         e₂ ξ
 
@@ -150,7 +201,7 @@ theorem STL.Tree.sat_lt (e₁ e₂ : STL.Expr n) (ξ : ℝ≥0 → Fin n → ℝ
 -- Reviewed:      ---
 
 /-- `negationNormalForm` keeps the meaning of a formula. -/
-theorem STL.Tree.sat_negationNormalForm (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
+theorem STL.Tree.sat_negationNormalForm (φ : STL.Tree NNReal ℝ n) (ξ : ℝ≥0 → Fin n → ℝ) :
     φ.negationNormalForm.Satisfies ξ ↔ φ.Satisfies ξ :=
   (STL.Tree.sat_nnfWith STL.Cmp.negate STL.Cmp.rel_negate φ false ξ).trans (by simp)
 
@@ -162,7 +213,7 @@ theorem STL.Tree.sat_negationNormalForm (φ : STL.Tree n) (ξ : ℝ≥0 → Fin 
 -- Reviewed:      ---
 
 /-- Every listed formula of `assignIdentifiers` is non-temporal. -/
-theorem STL.Tree.temporal_of_mem_assignIdentifiers (φ ψ : STL.Tree n)
+theorem STL.Tree.temporal_of_mem_assignIdentifiers (φ ψ : STL.Tree NNReal ℝ n)
     (h : ψ ∈ φ.assignIdentifiers) : ψ.temporal = false :=
   (STL.Tree.temporal_of_mem_assignIdentifiersFrom φ [] ψ h).resolve_left (by simp)
 

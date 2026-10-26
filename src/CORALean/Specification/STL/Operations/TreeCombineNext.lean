@@ -32,13 +32,13 @@ namespace CORALean
 
 open scoped NNReal
 
-variable {n : ℕ}
+variable {τ κ : Type} [Add τ] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `combineNext(obj)`. -/
-def STL.Tree.combineNext : STL.Tree n → STL.Tree n
+def STL.Tree.combineNext : STL.Tree τ κ n → STL.Tree τ κ n
   | .next a (.and φ ψ) =>
     if (STL.Tree.and φ ψ).temporal then .and (combineNext (.next a φ)) (combineNext (.next a ψ))
     else .next a (.and φ ψ)

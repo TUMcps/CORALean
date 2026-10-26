@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Interfaces
 public import CORALean.Specification.PointSegmentSignal.PointSegmentSignal
 public import Mathlib.Order.WithBot
 
@@ -39,6 +40,18 @@ def List.matlabDiff (l : List Bool) : List ℤ :=
 /-- `find(x)` with a predicate: the one-based indices of the entries that satisfy it. -/
 def List.matlabFind {α : Type} (p : α → Bool) (l : List α) : List ℕ :=
   (List.range' 1 l.length).filter (fun j => (l[j - 1]?).any p)
+
+
+-- =================================  `PointSegmentSignal.eq`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `obj == other`: the time points agree (`withinTol` with `eps` in CORA, `TimeOrder.Eqv` here)
+and the values are equal. -/
+def PointSegmentSignal.eq {T : Type} [TimeOrder T] (a b : PointSegmentSignal T) : Bool :=
+  a.timePoints.isEqv b.timePoints (fun x y => decide (TimeOrder.Eqv x y)) && a.values == b.values
 
 
 -- ===============================  `PointSegmentSignal.length`  ================================ --

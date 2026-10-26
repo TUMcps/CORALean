@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.Tree.isPredicate_of_isLinearPredicate (φ : STL.Tree n)
+theorem STL.Tree.isPredicate_of_isLinearPredicate (φ : STL.Tree NNReal ℝ n)
     (h : φ.isLinearPredicate = true) : φ.isPredicate = true := by
   induction φ with
   | cmp => rfl

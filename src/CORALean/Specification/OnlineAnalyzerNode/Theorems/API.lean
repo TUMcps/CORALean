@@ -8,6 +8,7 @@ public import CORALean.Specification.OnlineAnalyzerNode.Theorems.InitSignalMapTi
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.MkSpec
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetApSound
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetApSpec
+public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetFloatToRealNode
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.ObserveSetSpec
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.PropagateApSpec
 public import CORALean.Specification.OnlineAnalyzerNode.Theorems.PropagateFloatToRealNode

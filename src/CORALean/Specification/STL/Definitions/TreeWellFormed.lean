@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every time interval of the formula is non-empty. -/
-def STL.Tree.IsWellFormed : STL.Tree n → Prop
+def STL.Tree.IsWellFormed : STL.Tree NNReal ℝ n → Prop
   | .tt => True
   | .ff => True
   | .cmp _ _ _ => True
