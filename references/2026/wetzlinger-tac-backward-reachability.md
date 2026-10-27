@@ -243,6 +243,8 @@ These name the paper as a whole. A locator would put each in a row above.
 
 * [`InnerAbstrErr.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerAbstrErr.lean)
 * [`InnerCurvatureError.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerCurvatureError.lean)
+* [`InnerMinkDiffCorrected.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerMinkDiffCorrected.lean)
+* [`InnerMinkDiffCorrectedStep.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InnerMinkDiffCorrectedStep.lean)
 * [`ConvexHullTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeInterval.lean)
 * [`ExpRemainderMatShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ExpRemainderMatShear.lean)
 * [`InnerAbstrErrShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerAbstrErrShear.lean)

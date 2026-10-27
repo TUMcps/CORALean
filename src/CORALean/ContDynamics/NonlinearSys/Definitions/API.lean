@@ -25,6 +25,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
 public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
 public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCorrectedCert
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.IsLinReachInnerCert

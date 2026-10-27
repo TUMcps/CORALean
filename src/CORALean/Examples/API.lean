@@ -37,6 +37,7 @@ import CORALean.Examples.GuardCutThenReset
 import CORALean.Examples.HPolytopePlus
 import CORALean.Examples.IEEERounding
 import CORALean.Examples.IsequalFloat
+import CORALean.Examples.InnerMinkDiffCorrectedInstance
 import CORALean.Examples.LagrangeRemainder
 import CORALean.Examples.LevelSetCellFloat
 import CORALean.Examples.LevelSetContainsFloat
