@@ -72,6 +72,17 @@ public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
 public import CORALean.ContSet.Interval.Float.Operations.Submatrix
 public import CORALean.ContSet.Interval.Float.Operations.Materialise
 public import CORALean.ContSet.Interval.Float.Operations.MaterialiseMat
+public import CORALean.ContSet.Interval.Float.Operations.RadiusMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterBoxMat
+public import CORALean.ContSet.Interval.Float.Operations.Powers
+public import CORALean.ContSet.Interval.Float.Operations.Vec
+public import CORALean.ContSet.Interval.Float.Operations.MatVolume
+public import CORALean.ContSet.Interval.Float.Operations.MatNorm
+public import CORALean.ContSet.Interval.Float.Operations.InfNorm
+public import CORALean.ContSet.Interval.Float.Operations.ContainsMat
+public import CORALean.ContSet.Interval.Float.Operations.Unvec
+public import CORALean.ContSet.Interval.Float.Operations.IntervalMatrix
+public import CORALean.ContSet.Interval.Float.Operations.ExactSquare
 
 /-!
 # What `Interval` computes

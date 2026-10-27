@@ -19,6 +19,12 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.MemColumnGap
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConvexConstruct
+public import CORALean.ContSet.VPolytope.Float.Theorems.VecExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.UnvecExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.MatPlusOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.MpowerOuter
 
 /-!
 # What the float `VPolytope` guarantees

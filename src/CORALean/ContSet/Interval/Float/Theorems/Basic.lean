@@ -57,6 +57,18 @@ theorem Interval.center_mem_centerBox (I : Interval (Vec 𝕋 n)) :
   fun i => ⟨I.centerLo_le i, I.center_ge i⟩
 
 
+-- ===============================  `Interval.convex_construct`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       26-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The set of a float interval is the nominal one's, which is convex. -/
+theorem Interval.convex_construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
+    [Entrywise β ι] (I : Interval α) : Convex ℝ I.construct :=
+  I.nominal.convex_construct
+
+
 -- ================================  `Interval.convHull_outer`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConvexConstruct
 
 @[expose] public section
 

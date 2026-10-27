@@ -27,6 +27,13 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalIntervals
 public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalWellFormed
 public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iMem
 public import CORALean.DiscrDynamics.GridPartition.Theorems.ZeroMemIntersectingCells
+public import CORALean.DiscrDynamics.GridPartition.Theorems.NrOfCellsFloatNominal
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellSegmentsFloatNominal
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellIndicesFloatNominal
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellIntervalsFloatNominal
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellCenterFloatMem
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellPolytopesFloatExact
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellZonotopesFloatContains
 
 /-!
 # The grid partition: theorems, collected

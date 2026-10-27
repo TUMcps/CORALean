@@ -30,7 +30,7 @@ restate it after paying a rounding into that box.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   26-October-2026
 -- Reviewed:      ---
 
 
@@ -38,14 +38,14 @@ restate it after paying a rounding into that box.
 
 namespace CORALean.Float
 
-open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
+open Pointwise InflatedContSet
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.convex_construct (Z : Zonotope (Vec 𝕋 n)) : Convex ℝ Z.construct :=
+theorem Zonotope.convex_construct (Z : Zonotope α) : Convex ℝ Z.construct :=
   Convex.add (nominal Z).convex_construct Z.I_error.nominal.convex_construct
 
 end CORALean.Float

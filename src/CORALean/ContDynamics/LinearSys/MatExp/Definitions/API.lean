@@ -18,6 +18,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.DependentTermsM
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpmMixedMatZono
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRemainderSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.DependentTermsFloat
 
 /-!
 # What enclosing a matrix exponential means

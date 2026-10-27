@@ -38,6 +38,9 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_MatPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_MatPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_IntervalMatrix
 
 /-!
 # The constructions of the Float conversions, collected

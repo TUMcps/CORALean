@@ -133,6 +133,11 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryRatio
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryPoint
 public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
 public import CORALean.ContSet.Zonotope.Float.Operations.MaterialiseMat
+public import CORALean.ContSet.Zonotope.Float.Operations.Mpower
+public import CORALean.ContSet.Zonotope.Float.Operations.Powers
+public import CORALean.ContSet.Zonotope.Float.Operations.Transpose
+public import CORALean.ContSet.Zonotope.Float.Operations.MatNorm
+public import CORALean.ContSet.Zonotope.Float.Operations.Vec
 
 /-!
 # What `Zonotope` computes
