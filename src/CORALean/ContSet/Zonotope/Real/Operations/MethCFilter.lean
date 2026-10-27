@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.Global.Partition
 public import CORALean.Global.Sort
 public import Mathlib.Data.Fin.Tuple.Sort
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -45,17 +46,19 @@ namespace CORALean.Real
 variable {n q r : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- CORA's `W`: what each coordinate's row of the generator matrix reaches in
 `1`-norm, the diagonal the length filter measures against. -/
-noncomputable def Zonotope.aux_methCScale (Z : Zonotope (Vec ℝ n)) (i : Fin n) : ℝ :=
+@[step_of Zonotope.methCFilter]
+noncomputable def Zonotope.step_methCScale (Z : Zonotope (Vec ℝ n)) (i : Fin n) : ℝ :=
   ∑ j, |Z.G j i|
 
 /-- The length stage one ranks by, `‖W⁻¹g‖₂` squared. A zero row divides to
 zero, which is where CORA's `pinv(W)` puts it too. -/
-noncomputable def Zonotope.aux_methCLength (Z : Zonotope (Vec ℝ n)) (j : Fin Z.h) : ℝ :=
-  ∑ i, (Z.G j i / Z.aux_methCScale i) ^ 2
+@[step_of Zonotope.methCFilter]
+noncomputable def Zonotope.step_methCLength (Z : Zonotope (Vec ℝ n)) (j : Fin Z.h) : ℝ :=
+  ∑ i, (Z.G j i / Z.step_methCScale i) ^ 2
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -65,7 +68,7 @@ decreasing length: CORA's `priv_lengthFilter` at its default `n + 8`. Sorting
 is ascending, so the length enters negated. -/
 noncomputable def Zonotope.methCFilter (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (k : Fin (min (n + 8) r)) : Fin Z.h :=
-  part.right ((Tuple.sort fun l => -Z.aux_methCLength (part.right l))
+  part.right ((Tuple.sort fun l => -Z.step_methCLength (part.right l))
     (Fin.castLE (min_le_right (n + 8) r) k))
 
 end CORALean.Real

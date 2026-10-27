@@ -20,6 +20,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 public import CORALean.Global.Block
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -27,7 +28,7 @@ public import CORALean.Global.Block
 # One step of `linReach` at `alg = 'poly'`, end to end
 
 CORA's `linReach` for [1, Alg. 1], lines 3-10: `aux_deltaReach` for `Rdiff`, `priv_precompStatError`
-for `VerrorStat`, and the `while` loop, whose candidates `aux_abstrErrPolyCandidates` computes and
+for `VerrorStat`, and the `while` loop, whose candidates `step_abstrErrPolyCandidates` computes and
 `abstrErrPolySearch` tests. Only what CORA takes as data is supplied: the expansion point, `A`,
 `B`, the Hessian `H`, the third-order bound `E`, and the previous step's `abstrerr`. Candidate `k`
 is certified by CORA's split of the second-order term, so `W` must cover exactly `VerrorDyn`'s
@@ -78,11 +79,12 @@ open Matrix ContSet
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Candidate `k` of `linReach`'s `alg = 'poly'` loop from the seed `abstrerr`:
 `Rdiff + RallError` at the `k`-th applied error, and `VerrorDyn` over it. -/
-noncomputable def NonlinearSys.aux_abstrErrPolyCandidates (A : Mat ℝ n n) (xs : Vec ℝ n)
+@[step_of NonlinearSys.linReachPoly]
+noncomputable def NonlinearSys.step_abstrErrPolyCandidates (A : Mat ℝ n n) (xs : Vec ℝ n)
     (us : Vec ℝ m) (H : Fin n → Mat ℝ (n + m) (n + m))
     (E : Fin n → Fin (n + m) → Mat ℝ (n + m) (n + m)) (Δt : ℝ)
     (η errorOrder intermediateOrder : ℕ) (U : PolyZonotope (Vec ℝ m))
@@ -120,7 +122,7 @@ noncomputable def NonlinearSys.aux_abstrErrPolyCandidates (A : Mat ℝ n n) (xs 
   match k with
   | 0 => (Rdiff', VerrorDyn)
   | k + 1 =>                                                               -- abstrerr = trueError
-    NonlinearSys.aux_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
+    NonlinearSys.step_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
       Rdiff VerrorStat trueError k
 
 
@@ -142,7 +144,7 @@ noncomputable def NonlinearSys.linReachPoly (sys : NonlinearSys n m)
   let Hstat : Fin n → Mat ℝ n n :=
     fun i => (2 : ℝ)⁻¹ • (H i).submatrix (Fin.castAdd m) (Fin.castAdd m)
   let VerrorStat := precompStatError Hstat xs Rstat                       -- 0.5*quadMap(Z,H)
-  let cand := NonlinearSys.aux_abstrErrPolyCandidates A xs us H E Δt η errorOrder
+  let cand := NonlinearSys.step_abstrErrPolyCandidates A xs us H E Δt η errorOrder
     intermediateOrder U Rinit Rdiff VerrorStat abstrerr
   -- the loop: candidate `k` certified over `Rinit ⊞ (Rdiff + RallError)`
   sys.abstrErrPolySearch U A B xs us (fun k => Rstat.plus (cand k).1)

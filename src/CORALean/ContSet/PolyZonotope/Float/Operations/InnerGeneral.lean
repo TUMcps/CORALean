@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerTest
 public import Mathlib.Data.Fintype.Card
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -11,7 +12,7 @@ public import Mathlib.Data.Fintype.Card
 
 CORA's `aux_InnerGeneral` in `innerApproxImage` and `aux_containsInterval` in
 `@polyZonotope/contains_`, [1, Alg. 3]: the domain has more dimensions than the function, so
-`aux_getSuitableSubmatrix` (`aux_innerColumns`) picks the columns of `u₁` from `df(X_)`, the
+`aux_getSuitableSubmatrix` (`step_innerColumns`) picks the columns of `u₁` from `df(X_)`, the
 preconditioner is the inverse of those columns of `df(x_)` (`aux_preconditionMatrix`, the
 `r × r` block [1, Eq. 10] needs), and the inflation loop (`innerTest`) runs on `U1_`; if it fails,
 once more without preconditioning (`C = eye(n)`). CORA falls back to `eye(n)` when the extended
@@ -52,10 +53,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- One column per row at an entry without `0`, as `aux_getSuitableSubmatrix` picks them. -/
-def PolyZonotope.aux_innerColumns (J : Interval (Mat 𝕋 n m)) : Option (Fin n ↪ Fin m) :=
+@[step_of PolyZonotope.innerGeneral]
+def PolyZonotope.step_innerColumns (J : Interval (Mat 𝕋 n m)) : Option (Fin n ↪ Fin m) :=
   -- nonZero(i,j) = ~contains(J(i,j),0)
   let nz : Fin n → Fin m → Bool := fun i j => !(le (J.inf i j) zero && le zero (J.sup i j))
   -- [~,index] = sort(sum(nonZero,2))
@@ -80,7 +82,7 @@ def PolyZonotope.aux_innerColumns (J : Interval (Mat 𝕋 n m)) : Option (Fin n 
 def PolyZonotope.innerGeneral (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ) : Bool :=
   -- 7. split `u` into `(u₁, u₂)` at the columns `ind` of `f'(x̃)` (lines 7-10)
-  match PolyZonotope.aux_innerColumns (PolyZonotope.jacobianBox pZ X₀) with
+  match PolyZonotope.step_innerColumns (PolyZonotope.jacobianBox pZ X₀) with
   | none => false
   | some ind =>
     -- 3. `x̃ ← mid(x̃)`, and 5. `f'(x̃)` at the columns `ind` (the first `r` lines of the Jacobian)

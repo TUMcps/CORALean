@@ -58,6 +58,6 @@ assigned in the listing. Read as the text says, `t = kr`.
 **`Sec. 5.4.2` — singular choices.** Method C ranks every choice of `n` generators by
 `Θ̃ = |det[g^(i₁), ..., g^(iₙ)]|⁻¹`, which is undefined where the determinant vanishes, and
 Prop. 8 then needs a full-rank `Γ`. The paper says nothing of either, nor of a zonotope with
-fewer than `n` generators. `aux_methodCBasis` drops the singular choices and falls back to
+fewer than `n` generators. `step_methodCBasis` drops the singular choices and falls back to
 `Γ = I`, a box, when none is left, so `methodC_outer` holds unconditionally.
 [`MethodC.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MethodC.lean)

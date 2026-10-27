@@ -13,8 +13,8 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 Each row is multiplied by a number, positive for an inequality, and the stored row `ṽ` is `s v`
 rounded down. For a point of the polytope in the domain, `ṽᵀ x = s vᵀ x - (s v - ṽ)ᵀ x`: the first
-term is at most `s b` (for an equality it is `s bₑ`), and the second lies between `aux_scaleDevLo`
-and `aux_scaleDevHi`. So the point reads every scaled row within its (zero) slack of
+term is at most `s b` (for an equality it is `s bₑ`), and the second lies between `step_scaleDevLo`
+and `step_scaleDevHi`. So the point reads every scaled row within its (zero) slack of
 `s b - (s v - ṽ)ᵀ x`, a value between the two ends `setRhs` is given
 (`HPolytope.mem_setRhs_nominal`). Outer over the domain: the rounding of the rows, which names other
 halfspaces, is paid in the slacks there, as `reduceOverDomain_outer` pays it on the right-hand side.
@@ -53,10 +53,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- What rounding a scaled row costs, bounded over a domain. -/
 private theorem HPolytope.aux_scaleDev_between (v : Vec 𝕋 n) (s : 𝕋) (dom : Interval (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ dom.construct) : -- --- CONCL ---
-    toReal (HPolytope.aux_scaleDevLo v s dom)
+    toReal (HPolytope.step_scaleDevLo v s dom)
         ≤ ∑ j, (toReal s * toReal (v j) - toReal (mulDown (v j) s)) * x j
       ∧ ∑ j, (toReal s * toReal (v j) - toReal (mulDown (v j) s)) * x j
-        ≤ toReal (HPolytope.aux_scaleDevHi v s dom) := by -- --- PROOF ---
+        ≤ toReal (HPolytope.step_scaleDevHi v s dom) := by -- --- PROOF ---
   have hdev : ∀ j, toReal (subDown (mulDown (v j) s) (mulDown (v j) s))
         ≤ toReal s * toReal (v j) - toReal (mulDown (v j) s)
       ∧ toReal s * toReal (v j) - toReal (mulDown (v j) s)
@@ -95,18 +95,18 @@ theorem HPolytope.scaleRows_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.IsEr
     exact Finset.sum_congr rfl fun j _ => by ring
   -- the exact bound of a scaled row at `x`, and its two ends
   have hends : ∀ {k : ℕ} (M : Mat 𝕋 k n) (c s : Fin k → 𝕋) (i : Fin k),
-      toReal (subDown (mulDown (c i) (s i)) (HPolytope.aux_scaleDevHi (M i) (s i) dom))
+      toReal (subDown (mulDown (c i) (s i)) (HPolytope.step_scaleDevHi (M i) (s i) dom))
           ≤ toReal (s i) * toReal (c i)
             - ∑ j, (toReal (s i) * toReal (M i j) - toReal (mulDown (M i j) (s i))) * x j
         ∧ toReal (s i) * toReal (c i)
             - ∑ j, (toReal (s i) * toReal (M i j) - toReal (mulDown (M i j) (s i))) * x j
-          ≤ toReal (subUp (mulUp (c i) (s i)) (HPolytope.aux_scaleDevLo (M i) (s i) dom)) := by
+          ≤ toReal (subUp (mulUp (c i) (s i)) (HPolytope.step_scaleDevLo (M i) (s i) dom)) := by
     intro k M c s i
     obtain ⟨hlo, hhi⟩ := HPolytope.aux_scaleDev_between (M i) (s i) dom hd
     have h1 := mulDown_le_mul (c i) (s i)
-    have h2 := subDown_le_sub (mulDown (c i) (s i)) (HPolytope.aux_scaleDevHi (M i) (s i) dom)
+    have h2 := subDown_le_sub (mulDown (c i) (s i)) (HPolytope.step_scaleDevHi (M i) (s i) dom)
     have h3 := mul_le_mulUp (c i) (s i)
-    have h4 := sub_le_subUp (mulUp (c i) (s i)) (HPolytope.aux_scaleDevLo (M i) (s i) dom)
+    have h4 := sub_le_subUp (mulUp (c i) (s i)) (HPolytope.step_scaleDevLo (M i) (s i) dom)
     constructor <;> nlinarith
   refine (HPolytope.mem_nominal_of_origin rfl).mpr (HPolytope.mem_setRhs_nominal _ _ _
     (fun i => hends P.A P.b sA i) (fun i => hends P.Ae P.be sE i) (fun i => ?_) (fun i => ?_))

@@ -187,7 +187,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepInputConstEq
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepSubsetHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.SuperlinearDecreaseTimePointStepRemainderError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact

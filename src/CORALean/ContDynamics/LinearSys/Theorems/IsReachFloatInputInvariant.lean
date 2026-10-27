@@ -77,7 +77,7 @@ private theorem LinearSys.aux_reachFloatInputStep_invariant (sys : LinearSys �
     {s : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)}
     (h : sys.IsReachFloatInputInvariant Δt X₀ ũ Ũ k s) : -- --- CONCL ---
     sys.IsReachFloatInputInvariant Δt X₀ ũ Ũ (k + 1)
-      (LinearSys.aux_reachFloatInputStep eAΔt Pu ρ s) := by -- --- PROOF ---
+      (LinearSys.step_reachFloatInputStep eAΔt Pu ρ s) := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4⟩ := h
   set A := Scalar.toRealMat sys.A with hA
   -- `[e^{AΔt}] Z` holds `e^{AΔt} z`

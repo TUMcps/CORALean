@@ -4,6 +4,7 @@ public import CORALean.Global.Interfaces
 public import CORALean.Specification.FiniteSignal.FiniteSignal
 public import CORALean.Specification.FiniteSignal.Operations.Basic
 public import CORALean.Specification.FiniteSignal.Operations.Mk
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -41,10 +42,11 @@ comparisons are exact (`TimeOrder`), so nothing rounds.
 namespace CORALean
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The `startIdx`, `newTim` and `newVal` after the lower boundary; `startIdx` is `0`-based. -/
-def FiniteSignal.aux_setLower {T V : Type} [TimeOrder T] [Zero T] [DecidableEq V]
+@[step_of FiniteSignal.set?]
+def FiniteSignal.step_setLower {T V : Type} [TimeOrder T] [Zero T] [DecidableEq V]
     (s : FiniteSignal T V) (a : T) (value : V) (startIdx : ℕ) : ℕ × List T × List V :=
   -- if val(startIdx) ~= value && lb > 0
   if s.value[startIdx]? ≠ some value ∧ 0 < a then
@@ -72,7 +74,7 @@ protected def FiniteSignal.set? {T V : Type} [TimeOrder T] [Zero T] [DecidableEq
     let startIdx := (s.time.takeWhile (· ≤ lb)).length
     let stopIdx := (s.time.takeWhile (· ≤ ub)).length
     -- the boundary at the lower bound
-    let lower := s.aux_setLower lb value startIdx
+    let lower := s.step_setLower lb value startIdx
     -- if ub == obj.duration || val(stopIdx) ~= value, a boundary at the upper bound
     let upper := TimeOrder.Eqv ub s.duration ∨ s.value[stopIdx]? ≠ some value
     let newTim := if upper then lower.2.1 ++ [ub] else lower.2.1

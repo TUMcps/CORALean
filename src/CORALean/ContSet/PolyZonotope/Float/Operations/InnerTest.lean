@@ -5,6 +5,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
 public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -16,7 +17,7 @@ run it for the dependent point map `f`: with the columns `ind` of the Jacobian a
 `Y` is proved inside `f(X)` when `t = Diag⁻¹(J₁)(b - OffDiag(J₁)(U1_ - u1_)) - J₂(U2_ - u2_)`
 lands in `U1_`; otherwise `U1_ ← u1_ + τt` while the distance contracts by `μ`; `innerStep` is
 the body. CORA's `while` has no bound; `iter` caps it. CORALean also checks that `C` is
-nonsingular (`aux_precondRegular`), that `x_` lies in `X` and `X_` off `ind`, and `u1_ ∈ U1_`.
+nonsingular (`step_precondRegular`), that `x_` lies in `X` and `X_` off `ind`, and `u1_ ∈ U1_`.
 
 ## Inputs
 * `pZ` – polynomial zonotope
@@ -53,10 +54,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Every row of `|1 - M C|` sums to less than `1`, so `C` is injective. -/
-def PolyZonotope.aux_precondRegular (M C : Mat 𝕋 n n) : Bool :=
+@[step_of PolyZonotope.innerTest]
+def PolyZonotope.step_precondRegular (M C : Mat 𝕋 n n) : Bool :=
   -- `M C`, rounded both ways
   let lo := matMulDown M C
   let hi := matMulUp M C
@@ -85,7 +87,7 @@ def PolyZonotope.innerTest (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (
   let b : Interval (Vec 𝕋 n) := ((Interval.mtimes C Y).minus
     (Interval.mtimes C (PolyZonotope.pointBox pZ (Interval.point xc)))).materialise
   -- 6. `C` is checked nonsingular, and `x̃` in `x` and `x̃` off `ind` (soundness, not printed)
-  let ok : Bool := PolyZonotope.aux_precondRegular M C && (List.finRange pZ.p).all fun k =>
+  let ok : Bool := PolyZonotope.step_precondRegular M C && (List.finRange pZ.p).all fun k =>
     (List.finRange n).any (fun i => decide (ind i = k)) || (le (X.inf k) (xc k)
       && le (xc k) (X.sup k) && le (X₀.inf k) (xc k) && le (xc k) (X₀.sup k))
   -- 12. the distance `d(ũ, ũ + τt)` of line 17, squared

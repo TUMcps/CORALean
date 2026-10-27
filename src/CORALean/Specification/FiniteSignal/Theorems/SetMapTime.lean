@@ -47,9 +47,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 /-- The lower boundary of `set` is found at the same index, its new time stamp mapped. -/
 private theorem aux_setLower_mapTime {V : Type} [DecidableEq V] (s : FiniteSignal 𝕋 V) (a : 𝕋)
     (value : V) (k : ℕ) : -- --- CONCL ---
-    (s.mapTime toReal).aux_setLower (toReal a) value k =
-      ((s.aux_setLower a value k).1, (s.aux_setLower a value k).2.1.map toReal,
-        (s.aux_setLower a value k).2.2) := by -- --- PROOF ---
+    (s.mapTime toReal).step_setLower (toReal a) value k =
+      ((s.step_setLower a value k).1, (s.step_setLower a value k).2.1.map toReal,
+        (s.step_setLower a value k).2.2) := by -- --- PROOF ---
   -- the two tests compare the reals the stamps denote
   have h0 : ∀ x : 𝕋, (0 < x) ↔ (0 < toReal x) := fun x => by
     rw [show (0 < x) ↔ toReal (0 : 𝕋) < toReal x from Iff.rfl, toReal_zero_eq]
@@ -58,7 +58,7 @@ private theorem aux_setLower_mapTime {V : Type} [DecidableEq V] (s : FiniteSigna
     rw [List.getElem?_map]
     cases s.time[k - 1]? <;>
       simp [show ∀ b : 𝕋, TimeOrder.Eqv b a ↔ toReal b = toReal a from fun _ => Iff.rfl]
-  unfold FiniteSignal.aux_setLower FiniteSignal.mapTime
+  unfold FiniteSignal.step_setLower FiniteSignal.mapTime
   simp only [← h0, he]
   split_ifs <;> simp
 
@@ -102,7 +102,8 @@ theorem FiniteSignal.set?_mapTime {V : Type} [DecidableEq V] (s : FiniteSignal �
   by_cases hlu : lb < ub
   · -- a proper interval: the same lists, read as reals
     rw [if_neg (not_not.mpr hlu), if_neg (not_not.mpr (show toReal lb < toReal ub from hlu))]
-    generalize s.aux_setLower lb value (List.takeWhile (fun x => decide (x ≤ lb)) s.time).length = L
+    generalize
+      s.step_setLower lb value (List.takeWhile (fun x => decide (x ≤ lb)) s.time).length = L
     generalize (List.takeWhile (fun x => decide (x ≤ ub)) s.time).length = k
     by_cases hu : TimeOrder.Eqv ub s.duration ∨ s.value[k]? ≠ some value
     · rw [if_pos hu, if_pos hu, if_pos (show TimeOrder.Eqv (toReal ub) (toReal s.duration) ∨

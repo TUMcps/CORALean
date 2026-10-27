@@ -20,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # What the softmax layer encloses
 
 `Real.softmax`: the normalization at a raw lower bound of zero, which `softmax_nonneg` gives, the
-rounded raw lower bound where `aux_softmaxExpInRange` licenses it, and the rounded raw upper bound,
+rounded raw lower bound where `step_softmaxExpInRange` licenses it, and the rounded raw upper bound,
 each end rounded outward on the way.
 
 ## Inputs

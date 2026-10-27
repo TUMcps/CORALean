@@ -4,6 +4,7 @@ public import CORALean.NN.Operations.IntervalChainSensitivityFloat
 public import CORALean.NN.Operations.SnakeOrder
 public import CORALean.NN.Definitions.Basic
 public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,11 +43,12 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The box of the sum over the outputs of the absolute entries of column `j` of the sensitivity
 box, the exact zero for a neuron past the input width. -/
-def aux_sensitivityKey (S : Interval (Mat 𝕋 m n)) (j : ℕ) : Interval 𝕋 :=
+@[step_of IntervalChain.getInputNeuronOrder]
+def step_sensitivityKey (S : Interval (Mat 𝕋 m n)) (j : ℕ) : Interval 𝕋 :=
   if hj : j < n then
     ⟨sumDown fun i => maximum zero (maximum (S.inf i ⟨j, hj⟩) (neg (S.sup i ⟨j, hj⟩))),
       sumUp fun i => maximum (neg (S.inf i ⟨j, hj⟩)) (S.sup i ⟨j, hj⟩)⟩
@@ -54,13 +56,15 @@ def aux_sensitivityKey (S : Interval (Mat 𝕋 m n)) (j : ℕ) : Interval 𝕋 :
 
 /-- The key box of pixel `p` of `ch` channels of `h * w` neurons: the sum over the channels of the
 neurons' keys. -/
-def aux_channelKey (key : ℕ → Interval 𝕋) (h w ch : ℕ) (p : ℕ) : Interval 𝕋 :=
+@[step_of IntervalChain.getInputNeuronOrder]
+def step_channelKey (key : ℕ → Interval 𝕋) (h w ch : ℕ) (p : ℕ) : Interval 𝕋 :=
   ⟨sumDown fun k : Fin ch => (key (p + h * w * k)).inf,
     sumUp fun k : Fin ch => (key (p + h * w * k)).sup⟩
 
 /-- The stable sort of `L` by the key boxes when every two of its neurons are strictly separated:
 `a` precedes `b` when the upper end of `a`'s box is at most the lower end of `b`'s. -/
-def aux_rankByKey (key : ℕ → Interval 𝕋) (L : List ℕ) : Option (List ℕ) :=
+@[step_of IntervalChain.getInputNeuronOrder]
+def step_rankByKey (key : ℕ → Interval 𝕋) (L : List ℕ) : Option (List ℕ) :=
   if L.all (fun a => L.all fun b =>
       a == b || le (key a).sup (key b).inf || ltStrict (key b).sup (key a).inf) then
     some (L.mergeSort fun a b => a == b || le (key a).sup (key b).inf)
@@ -79,10 +83,10 @@ def IntervalChain.getInputNeuronOrder (c : IntervalChain 𝕋 n m) (method : Inp
     | some (h, w, _) => some (snakeOrder h w fun i j => (i : ℕ) + h * j)
   | .sensitivity =>
     -- the key boxes of the neurons from the sensitivity box
-    let key := aux_sensitivityKey (c.sensitivity X)
+    let key := step_sensitivityKey (c.sensitivity X)
     match inputSize with
-    | none => aux_rankByKey key (List.range n)
-    | some (h, w, ch) => aux_rankByKey (aux_channelKey key h w ch) (List.range (h * w))
+    | none => step_rankByKey key (List.range n)
+    | some (h, w, ch) => step_rankByKey (step_channelKey key h w ch) (List.range (h * w))
 
 end CORALean.Float
 

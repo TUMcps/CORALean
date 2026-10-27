@@ -4,6 +4,7 @@ public import Mathlib.Data.Rat.Defs
 public import Mathlib.Data.List.Sort
 public import Mathlib.Algebra.Order.Ring.Rat
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -49,59 +50,66 @@ support is `9` for `Z` and `8` for `Zred`.
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Insertion of the head into the sorted tail: `a` goes before the first `b` it may precede, so
 with a non-strict `before` equal keys keep their order, as in MATLAB's `sort`. -/
-def Zonotope.aux_insert {α : Type} (before : α → α → Bool) (a : α) : List α → List α
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_insert {α : Type} (before : α → α → Bool) (a : α) : List α → List α
   | [] => [a]
-  | b :: l => if before a b then a :: b :: l else b :: aux_insert before a l
+  | b :: l => if before a b then a :: b :: l else b :: step_insert before a l
 
 /-- Insertion sort, stable for a non-strict `before`. -/
-def Zonotope.aux_sort {α : Type} (before : α → α → Bool) : List α → List α
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_sort {α : Type} (before : α → α → Bool) : List α → List α
   | [] => []
-  | a :: l => aux_insert before a (aux_sort before l)
+  | a :: l => step_insert before a (step_sort before l)
 
 /-- The determinant of two columns. -/
-def Zonotope.aux_det (a b : ℤ × ℤ) : ℤ := a.1 * b.2 - a.2 * b.1
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_det (a b : ℤ × ℤ) : ℤ := a.1 * b.2 - a.2 * b.1
 
 /-- The squared length. -/
-def Zonotope.aux_normSq (a : ℤ × ℤ) : ℤ := a.1 ^ 2 + a.2 ^ 2
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_normSq (a : ℤ × ℤ) : ℤ := a.1 ^ 2 + a.2 ^ 2
 
 /-- One run `i` of the loop (l. 45-74) in `ℝ²`: the first column `T(:,i)`, then the column with
 the largest residual (the rest sorted by `|det|` descending, stable); returns the basis and the
 leftover `T` in the order MATLAB leaves it. -/
-def Zonotope.aux_run (G : List (ℤ × ℤ)) (i : Nat) : (ℤ × ℤ) × (ℤ × ℤ) × List (ℤ × ℤ) :=
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_run (G : List (ℤ × ℤ)) (i : Nat) : (ℤ × ℤ) × (ℤ × ℤ) × List (ℤ × ℤ) :=
   let f := G.getD i (0, 0)
-  let s := aux_sort (fun a b => decide (|aux_det f a| ≥ |aux_det f b|)) (G.eraseIdx i)
+  let s := step_sort (fun a b => decide (|step_det f a| ≥ |step_det f b|)) (G.eraseIdx i)
   (f, s.headD (0, 0), s.tail)
 
 /-- `alpha_j = 1 + sum |(Tr \ g)_j|` over the merged columns, `Tr = [t1, t2]`. -/
-def Zonotope.aux_alpha (t1 t2 : ℤ × ℤ) (M : List (ℤ × ℤ)) : ℚ × ℚ :=
-  (1 + (M.map fun g => |(aux_det g t2 : ℚ) / aux_det t1 t2|).sum,
-   1 + (M.map fun g => |(aux_det t1 g : ℚ) / aux_det t1 t2|).sum)
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_alpha (t1 t2 : ℤ × ℤ) (M : List (ℤ × ℤ)) : ℚ × ℚ :=
+  (1 + (M.map fun g => |(step_det g t2 : ℚ) / step_det t1 t2|).sum,
+   1 + (M.map fun g => |(step_det t1 g : ℚ) / step_det t1 t2|).sum)
 
+/-- The zonotope with center `0` and generators `G`: the combinations with coefficients in
+`[-1, 1]`. -/
+@[step_of Zonotope.valeroCora_counterexample]
+def Zonotope.step_zonotope (G : List (ℚ × ℚ)) : Set (ℚ × ℚ) :=
+  {z | ∃ s : List ℚ, s.length = G.length ∧ (∀ x ∈ s, |x| ≤ 1) ∧
+    z = ((List.zipWith (fun a g => (a * g.1, a * g.2)) s G).map Prod.fst |>.sum,
+         (List.zipWith (fun a g => (a * g.1, a * g.2)) s G).map Prod.snd |>.sum)}
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- The generators of `reduce(Z,'valero',order)` for `n = 2` with `g = order * n` and `ng = 2`:
 `Tr` of the best run, `T` of the last. -/
 def Zonotope.valeroCora (G : List (ℤ × ℤ)) (g : Nat) : List (ℚ × ℚ) :=
-  let Gs := aux_sort (fun a b => decide (aux_normSq a ≥ aux_normSq b)) G   -- sort by length
-  let r1 := aux_run Gs 0                                               -- i = 1
-  let r2 := aux_run Gs 1                                               -- i = 2
-  let best := if |aux_det r2.1 r2.2.1| > |aux_det r1.1 r1.2.1| then r2 else r1   -- volTn > volF
-  let T := aux_sort (fun a b => decide (aux_normSq a ≤ aux_normSq b)) r2.2.2  -- T of the LAST run
+  let Gs := step_sort (fun a b => decide (step_normSq a ≥ step_normSq b)) G   -- sort by length
+  let r1 := step_run Gs 0                                               -- i = 1
+  let r2 := step_run Gs 1                                               -- i = 2
+  let best := if |step_det r2.1 r2.2.1| > |step_det r1.1 r1.2.1| then r2 else r1   -- volTn > volF
+  -- T of the LAST run
+  let T := step_sort (fun a b => decide (step_normSq a ≤ step_normSq b)) r2.2.2
   let k := T.length + 2 - g                                            -- end - g + n
-  let a := aux_alpha best.1 best.2.1 (T.take k)
+  let a := step_alpha best.1 best.2.1 (T.take k)
   [(a.1 * best.1.1, a.1 * best.1.2), (a.2 * best.2.1.1, a.2 * best.2.1.2)]
     ++ (T.drop k).map fun v => ((v.1 : ℚ), (v.2 : ℚ))
-
-/-- The zonotope with center `0` and generators `G`: the combinations with coefficients in
-`[-1, 1]`. -/
-def Zonotope.aux_zonotope (G : List (ℚ × ℚ)) : Set (ℚ × ℚ) :=
-  {z | ∃ s : List ℚ, s.length = G.length ∧ (∀ x ∈ s, |x| ≤ 1) ∧
-    z = ((List.zipWith (fun a g => (a * g.1, a * g.2)) s G).map Prod.fst |>.sum,
-         (List.zipWith (fun a g => (a * g.1, a * g.2)) s G).map Prod.snd |>.sum)}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -110,11 +118,11 @@ def Zonotope.aux_zonotope (G : List (ℚ × ℚ)) : Set (ℚ × ℚ) :=
 direction `(-1,1)`) and not of the result (support `8`). -/
 theorem Zonotope.valeroCora_counterexample : -- --- CONCL ---
     valeroCora [(0, -1), (-1, 1), (3, -2), (1, 0)] 3 = [(3, -2), (0, -2), (1, 0)] ∧
-      ((-5 : ℚ), (4 : ℚ)) ∈ aux_zonotope [(0, -1), (-1, 1), (3, -2), (1, 0)] ∧
-      ((-5 : ℚ), (4 : ℚ)) ∉ aux_zonotope [(3, -2), (0, -2), (1, 0)] := by -- --- PROOF ---
+      ((-5 : ℚ), (4 : ℚ)) ∈ step_zonotope [(0, -1), (-1, 1), (3, -2), (1, 0)] ∧
+      ((-5 : ℚ), (4 : ℚ)) ∉ step_zonotope [(3, -2), (0, -2), (1, 0)] := by -- --- PROOF ---
   refine ⟨?_, ⟨[-1, 1, -1, -1], by simp, ?_, by norm_num [List.zipWith]⟩, ?_⟩
-  · simp (config := {decide := true}) [valeroCora, aux_run, aux_sort, aux_insert, aux_det,
-      aux_normSq, aux_alpha]
+  · simp (config := {decide := true}) [valeroCora, step_run, step_sort, step_insert, step_det,
+      step_normSq, step_alpha]
     norm_num
   · intro x hx
     simp only [List.mem_cons, List.not_mem_nil, or_false] at hx

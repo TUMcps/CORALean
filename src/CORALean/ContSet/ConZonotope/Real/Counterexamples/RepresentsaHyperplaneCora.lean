@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.Global.NotHyperplaneOneDim
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -63,17 +64,21 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `c = 0`, `G = (1)`, no constraint rows: the interval `[-1, 1]`. -/
-def ConZonotope.aux_unitSegment : ConZonotope (Vec ℝ 1) :=
+@[step_of ConZonotope.representsa_hyperplane_cora_counterexample]
+def ConZonotope.step_unitSegment : ConZonotope (Vec ℝ 1) :=
   ⟨1, fun _ => 0, fun _ _ => 1, ⟨0, Fin.elim0, Fin.elim0, 0, Fin.elim0, Fin.elim0⟩⟩
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 private theorem ConZonotope.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
-    (fun _ => t) ∈ ConZonotope.aux_unitSegment.construct := by
+    (fun _ => t) ∈ ConZonotope.step_unitSegment.construct := by
   refine ⟨fun _ => t, fun _ => ht, ⟨fun i => i.elim0, fun i => i.elim0⟩, ?_⟩
   ext i
-  simp [ConZonotope.aux_unitSegment]
+  simp [ConZonotope.step_unitSegment]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -81,8 +86,8 @@ private theorem ConZonotope.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
 theorem ConZonotope.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        ConZonotope.aux_unitSegment.construct = {x | f x = c}) ∧
-      ConZonotope.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
+        ConZonotope.step_unitSegment.construct = {x | f x = c}) ∧
+      ConZonotope.step_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
   refine ⟨CORALean.not_hyperplane_of_two_points_fin1 (ConZonotope.aux_mem 0 (by norm_num))
     (ConZonotope.aux_mem 1 (by norm_num)) ?_, by simp [ConZonotope.representsaHyperplaneCora]⟩
   intro h

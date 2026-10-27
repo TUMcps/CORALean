@@ -43,12 +43,12 @@ namespace CORALean.Real
 /-- Monotone in the kept and the absorbed count. -/
 private theorem Zonotope.aux_reduceByBasisCost_mono {q q' r r' : ℕ} (n : ℕ) (inv : Cost)
     (hq : q ≤ q') (hr : r ≤ r') : -- --- CONCL ---
-    Zonotope.aux_reduceByBasisCost n q r inv ≤
-      Zonotope.aux_reduceByBasisCost n q' r' inv := by -- --- PROOF ---
+    Zonotope.step_reduceByBasisCost n q r inv ≤
+      Zonotope.step_reduceByBasisCost n q' r' inv := by -- --- PROOF ---
   have := Nat.mul_le_mul_right (2 * n * n) hr
   have := Nat.mul_le_mul_left n hr
   have := Nat.mul_le_mul_left n hq
-  simp only [Zonotope.aux_reduceByBasisCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul, Cost.matVec]
+  simp only [Zonotope.step_reduceByBasisCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul, Cost.matVec]
   nlinarith
 
 

@@ -152,7 +152,7 @@ private theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → �
     intro _ s h
     rw [LinearSys.tunedRun, Option.some.injEq] at h
     subst h
-    dsimp only [LinearSys.aux_tunedInit]
+    dsimp only [LinearSys.step_tunedInit]
     exact ⟨le_refl 0, mul_pos htf hμ, by simp, by simp, by simp⟩
   | succ k ih =>
     intro hhor s h
@@ -167,7 +167,7 @@ private theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → �
       split at h
       -- the horizon is not reached, so line 5 runs
       · rename_i hlt
-        simp only [LinearSys.aux_tunedStep] at h
+        simp only [LinearSys.step_tunedStep] at h
         split at h
         · exact absurd h (by simp)
         · rename_i Δt η εP hA2

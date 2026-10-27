@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A `true` from the entry test is a proof. -/
 private theorem LinearSys.aux_entryIsFloat_sound {a x : 𝕋}
-    (h : LinearSys.aux_entryIsFloat a x = true) :
+    (h : LinearSys.step_entryIsFloat a x = true) :
     toReal x = toReal a := by
-  unfold LinearSys.aux_entryIsFloat at h
+  unfold LinearSys.step_entryIsFloat at h
   rw [Bool.and_eq_true] at h
   exact le_antisymm (toReal_le_of_le h.2) (toReal_le_of_le h.1)
 

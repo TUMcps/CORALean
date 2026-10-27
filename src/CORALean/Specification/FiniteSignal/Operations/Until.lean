@@ -7,6 +7,7 @@ public import CORALean.Specification.FiniteSignal.Operations.Indicator
 public import CORALean.Specification.FiniteSignal.Operations.Mk
 public import CORALean.Specification.FiniteSignal.Operations.UntilPiece
 public import Mathlib.Data.EReal.Operations
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,10 +43,11 @@ true only where this is, is `FiniteSignal.untilFloat?`.
 namespace CORALean
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The loop body for the runs `LR = (lint(i), rint(j))`. -/
-noncomputable def FiniteSignal.aux_untilStep (eps p : ℝ) (q : EReal) (dur : ℝ)
+@[step_of FiniteSignal.until?]
+noncomputable def FiniteSignal.step_untilStep (eps p : ℝ) (q : EReal) (dur : ℝ)
     (sig : FiniteSignal ℝ Bool) (LR : Real.Interval ℝ × Real.Interval ℝ) :
     Option (FiniteSignal ℝ Bool) :=
   match FiniteSignal.untilPiece eps p q LR.1 LR.2 with
@@ -74,7 +76,7 @@ protected noncomputable def FiniteSignal.until? (eps : ℝ) (lsig : FiniteSignal
       let rint := rsig.findIntervals (fun v => decide (true ≤ v))
       -- iterate over all combinations of intervals
       (lint.flatMap fun L => rint.map fun R => (L, R)).foldlM
-        (FiniteSignal.aux_untilStep eps p q lsig.duration) sig
+        (FiniteSignal.step_untilStep eps p q lsig.duration) sig
 
 end CORALean
 

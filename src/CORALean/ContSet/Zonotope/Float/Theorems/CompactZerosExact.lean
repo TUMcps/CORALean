@@ -41,17 +41,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.compactZeros_exact (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Z.compactZeros.construct = Z.construct := by -- --- PROOF ---
-  have hz : ∀ j, Z.aux_keepColumn j = false → (nominal Z).G j = 0 := by
+  have hz : ∀ j, Z.step_keepColumn j = false → (nominal Z).G j = 0 := by
     intro j hj
     funext i
-    simp only [Zonotope.aux_keepColumn, Bool.not_eq_false', List.all_eq_true, List.mem_finRange,
+    simp only [Zonotope.step_keepColumn, Bool.not_eq_false', List.all_eq_true, List.mem_finRange,
       Bool.and_eq_true, forall_const] at hj
     have := hj i
     have h₁ := toReal_le_of_le this.1
     have h₂ := toReal_le_of_le this.2
     rw [toReal_zero] at h₁ h₂
     exact le_antisymm h₁ h₂
-  have hN : nominal Z.compactZeros = (nominal Z).filterGen Z.aux_keepColumn := rfl
+  have hN : nominal Z.compactZeros = (nominal Z).filterGen Z.step_keepColumn := rfl
   have hE : I_error Z.compactZeros = I_error Z := rfl
   show ContSet.construct (nominal Z.compactZeros) + (I_error Z.compactZeros).construct =
     ContSet.construct (nominal Z) + (I_error Z).construct

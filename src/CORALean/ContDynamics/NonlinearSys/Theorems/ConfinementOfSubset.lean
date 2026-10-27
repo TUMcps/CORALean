@@ -120,7 +120,7 @@ theorem NonlinearSys.IsTrajectory.confinement_of_subset [Mtimes ℐ S]
       (fun j hj => hRconv j (lt_trans hj hiN)) (fun j hj => hRclosed j (lt_trans hj hiN))
       (fun j hj => hRbdd j (lt_trans hj hiN)) ho i le_rfl
     -- and the a priori ball carries it across the step it cannot enclose
-    exact traj.confined_of_ball (by nlinarith) (step_subset_horizon hΔt.le hT hiN) hM₀
+    exact traj.confined_of_ball (by nlinarith) (oneStep_subset_horizon hΔt.le hT hiN) hM₀
       (hM i hiN) (by rw [show ((i : ℝ) + 1) * Δt - (i : ℝ) * Δt = Δt from by ring]; exact hρ)
       (hsub i hiN _ hstart)
 

@@ -57,7 +57,7 @@ theorem LinearSys.manualRun_t_eq (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
     (η ρ k : ℕ) : -- --- CONCL ---
     (sys.manualRun X₀ U Δt η ρ k).t = k * Δt := by -- --- PROOF ---
   induction k with
-  | zero => simp [LinearSys.manualRun, LinearSys.aux_manualInit]
+  | zero => simp [LinearSys.manualRun, LinearSys.step_manualInit]
   | succ k ih =>
     simp only [LinearSys.manualRun, LinearSys.manualStep]
     push_cast

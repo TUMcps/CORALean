@@ -69,9 +69,9 @@ private theorem aux_pgdStep_mem {c : IntervalChain 𝕋 n m} {r : Real.IntervalC
       lossDer t' y' ∈ (lossDerF T Y).construct) (q : ℕ) {z : Vec ℝ n} {s : ℝ}
     {Z : Interval (Vec 𝕋 n)} {S : Interval 𝕋} (hz : z ∈ Z.construct)
     (hsS : toReal S.inf ≤ s ∧ s ≤ toReal S.sup) {rs : Vec ℝ n × ℝ}
-    (hrs : rs = r.toChain.aux_pgdStep (toRealVec t) l u (toReal decay) iter lossDer q (z, s))
+    (hrs : rs = r.toChain.pgdStep (toRealVec t) l u (toReal decay) iter lossDer q (z, s))
     {fs : Interval (Vec 𝕋 n) × Interval 𝕋}
-    (hfs : fs = c.aux_pgdStep t L U decay iter lossDerF q (Z, S)) : -- --- CONCL ---
+    (hfs : fs = c.step_pgdStep t L U decay iter lossDerF q (Z, S)) : -- --- CONCL ---
     rs.1 ∈ fs.1.construct ∧ toReal fs.2.inf ≤ rs.2 ∧ rs.2 ≤ toReal fs.2.sup := by -- --- PROOF ---
   subst hrs hfs
   -- the clipped signed gradient step for any step size in a box `S'`
@@ -100,7 +100,7 @@ private theorem aux_pgdStep_mem {c : IntervalChain 𝕋 n m} {r : Real.IntervalC
       rw [toReal_minimum, toReal_maximum]
       exact min_le_min hUi.2 (max_le_max hLi.2 hf.2)
   -- the step size is multiplied by the decay at the listed iterations, else kept
-  simp only [Chain.aux_pgdStep, IntervalChain.aux_pgdStep]
+  simp only [Chain.pgdStep, IntervalChain.step_pgdStep]
   by_cases hq : q ∈ iter
   · have hb := Interval.mul_between_corners hsS.1 hsS.2 (le_refl (toReal decay))
       (le_refl (toReal decay))
@@ -151,12 +151,12 @@ theorem IntervalChain.pgdAttack_outer {c : IntervalChain 𝕋 n m} {r : Real.Int
   -- the real state after `q` passes and the float one
   set st : ℕ → Vec ℝ n × ℝ := fun q =>
     Nat.rec (motive := fun _ => Vec ℝ n × ℝ) (toRealVec x, toReal stepsize)
-      (fun q zs => r.toChain.aux_pgdStep (toRealVec t)
+      (fun q zs => r.toChain.pgdStep (toRealVec t)
         (fun i => max (toRealVec l i) (toRealVec x i - toReal ε))
         (fun i => min (toRealVec u i) (toRealVec x i + toReal ε)) (toReal stepsizeDecay)
         stepsizeDecayIter lossDer (q + 1) zs) q with hst
   set F : ℕ → Interval (Vec 𝕋 n) × Interval 𝕋 :=
-    c.aux_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF with hF
+    c.step_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF with hF
   -- every pass keeps the real state in the float one
   have hQ : ∀ q : ℕ, (st q).1 ∈ (F q).1.construct ∧
       toReal (F q).2.inf ≤ (st q).2 ∧ (st q).2 ≤ toReal (F q).2.sup := by

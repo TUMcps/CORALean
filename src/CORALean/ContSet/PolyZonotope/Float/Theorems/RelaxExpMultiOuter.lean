@@ -72,13 +72,13 @@ private theorem PolyZonotope.aux_mergedGenMulti_gap (pZ : PolyZonotope (Vec 𝕋
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- CONCL ---
     |toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
       - toReal (pZ.mergedGen part i)|
-      ≤ toReal (pZ.aux_relaxGapMulti part i 0) := by -- --- PROOF ---
+      ≤ toReal (pZ.step_relaxGapMulti part i 0) := by -- --- PROOF ---
   have hlo : toReal (pZ.mergedGen part i)
       ≤ toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i) := addDown_le_add _ _
   have hhi : toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
       ≤ toReal (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) := add_le_addUp _ _
   have hgap : toReal (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i))
-      - toReal (pZ.mergedGen part i) ≤ toReal (pZ.aux_relaxGapMulti part i 0) := sub_le_subUp _ _
+      - toReal (pZ.mergedGen part i) ≤ toReal (pZ.step_relaxGapMulti part i 0) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
 
@@ -87,14 +87,14 @@ too is off by at most its gap to the upward fold. -/
 private theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- CONCL ---
     |(pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
-      - toReal (pZ.aux_relaxGenMulti part i)|
-        ≤ toReal (pZ.aux_relaxGapMulti part i 1) := by -- --- PROOF ---
-  have hlo : toReal (pZ.aux_relaxGenMulti part i)
+      - toReal (pZ.step_relaxGenMulti part i)|
+        ≤ toReal (pZ.step_relaxGapMulti part i 1) := by -- --- PROOF ---
+  have hlo : toReal (pZ.step_relaxGenMulti part i)
       ≤ (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i) := nsmulDown_le _ _
   have hhi : (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
       ≤ toReal (nsmulUp (pZ.relaxWidthMulti part) (pZ.G (part.right 0) i)) := le_nsmulUp _ _
   have hgap : toReal (nsmulUp (pZ.relaxWidthMulti part) (pZ.G (part.right 0) i))
-      - toReal (pZ.aux_relaxGenMulti part i) ≤ toReal (pZ.aux_relaxGapMulti part i 1) :=
+      - toReal (pZ.step_relaxGenMulti part i) ≤ toReal (pZ.step_relaxGapMulti part i 1) :=
         sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
@@ -103,7 +103,7 @@ private theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 
 private theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpMulti part)
-      + (PolyZonotope.generatorError (pZ.aux_relaxGapMulti part)).construct := by -- --- PROOF ---
+      + (PolyZonotope.generatorError (pZ.step_relaxGapMulti part)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   -- the width is a sum of naturals, and the drift bound is stated over its casts
@@ -139,13 +139,13 @@ private theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec �
       + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
             * Real.PolyZonotope.monomial pZ.E a (part.left l)
           + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.aux_relaxGenMulti part i) * t),
+      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.step_relaxGenMulti part i) * t),
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, Fin.append β fun _ => t, ha, ?_, ?_⟩,
-    _, PolyZonotope.mem_generatorError (G := pZ.aux_relaxGapMulti part)
+    _, PolyZonotope.mem_generatorError (G := pZ.step_relaxGapMulti part)
       (Δ := fun i => ![toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
           - toReal (pZ.mergedGen part i),
         (pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
-          - toReal (pZ.aux_relaxGenMulti part i)])
+          - toReal (pZ.step_relaxGenMulti part i)])
       (t := ![Real.PolyZonotope.monomial pZ.E a (part.right 1), t]) ?_ ?_, ?_⟩
   -- the fresh independent coefficient is what the drift asks of the new column
   · refine Fin.addCases (fun j => ?_) fun _ => ?_
@@ -171,7 +171,7 @@ private theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec �
           + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
               * Real.PolyZonotope.monomial pZ.E a (part.left l)
             + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.aux_relaxGenMulti part i) * t)
+          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.step_relaxGenMulti part i) * t)
         + ∑ l, _ * _ = x i
     rw [hxi i, Fin.sum_univ_two,
       part.sum_split₂ fun l => toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l,

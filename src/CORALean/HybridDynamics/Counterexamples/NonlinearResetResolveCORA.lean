@@ -2,6 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
 public import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -38,28 +39,36 @@ The example: two components with one state, input and output each, the reset `x'
 namespace CORALean
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 namespace ResolveSwapExample
 
 -- two components, one state, input and output each
-abbrev aux_dims : Fin 2 → ℕ := fun _ => 1
+@[step_of NonlinearReset.resolveCORA_swap]
+abbrev step_dims : Fin 2 → ℕ := fun _ => 1
 
-def aux_reset : NonlinearReset 2 (∑ i, aux_dims i) 2 where
+@[step_of NonlinearReset.resolveCORA_swap]
+def step_reset : NonlinearReset 2 (∑ i, step_dims i) 2 where
   f := fun _ u a => u (finSigmaFinEquiv ⟨a, 0⟩)
 
-def aux_out : ∀ i : Fin 2, Vec ℝ (aux_dims i) → Vec ℝ (aux_dims i) → Vec ℝ (aux_dims i) :=
+@[step_of NonlinearReset.resolveCORA_swap]
+def step_out : ∀ i : Fin 2, Vec ℝ (step_dims i) → Vec ℝ (step_dims i) → Vec ℝ (step_dims i) :=
   fun _ _ _ => 0
 
-def aux_stateBinds : ∀ i : Fin 2, Fin (aux_dims i) → Fin 2 := fun i _ => i
+@[step_of NonlinearReset.resolveCORA_swap]
+def step_stateBinds : ∀ i : Fin 2, Fin (step_dims i) → Fin 2 := fun i _ => i
 
 -- the inputs are bound to the global inputs `1` and `0`
-def aux_binds : ∀ i : Fin 2, Fin (aux_dims i) → ResolveSource 2 aux_dims 2 :=
+@[step_of NonlinearReset.resolveCORA_swap]
+def step_binds : ∀ i : Fin 2, Fin (step_dims i) → ResolveSource 2 step_dims 2 :=
   fun i _ => .global (if i = 0 then 1 else 0)
 
-private theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
 
-private theorem aux_rank : NonlinearReset.globalRank aux_binds ⟨0, 0⟩ = 0 := rfl
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+private theorem aux_globalColumns : NonlinearReset.globalColumns step_binds = 2 := rfl
+
+private theorem aux_rank : NonlinearReset.globalRank step_binds ⟨0, 0⟩ = 0 := rfl
 
 end ResolveSwapExample
 
@@ -72,13 +81,13 @@ open ResolveSwapExample
 but CORA's resolved reset hands it its first argument. At the arguments `v i = i` the two
 disagree. -/
 theorem NonlinearReset.resolveCORA_swap : -- --- CONCL ---
-    ((aux_reset.resolve aux_out aux_stateBinds aux_binds).f (fun _ => 0)
+    ((step_reset.resolve step_out step_stateBinds step_binds).f (fun _ => 0)
       (fun i => (i : ℝ)) 0 = 1) ∧
-    ((aux_reset.resolveCORA aux_out aux_stateBinds aux_binds).f (fun _ => 0)
+    ((step_reset.resolveCORA step_out step_stateBinds step_binds).f (fun _ => 0)
       (fun i => (i : ℝ)) 0 = 0) := by -- --- PROOF ---
   constructor
-  · simp [NonlinearReset.resolve, aux_reset, aux_binds]
-  · simp [NonlinearReset.resolveCORA, aux_reset, aux_binds, aux_rank, aux_globalColumns]
+  · simp [NonlinearReset.resolve, step_reset, step_binds]
+  · simp [NonlinearReset.resolveCORA, step_reset, step_binds, aux_rank, aux_globalColumns]
 
 end CORALean
 

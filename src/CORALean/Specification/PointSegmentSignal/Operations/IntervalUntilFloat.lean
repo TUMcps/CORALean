@@ -7,6 +7,7 @@ public import CORALean.Specification.STLInterval.Operations.And
 public import CORALean.Specification.STLInterval.Operations.Basic
 public import CORALean.Specification.STLInterval.Operations.StlInterval
 public import CORALean.Specification.STLInterval.Operations.Supremum
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -44,16 +45,18 @@ open Float SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `untilInt.contains(0)` at tolerance `0`: the lower end is a closed `0`. -/
-def PointSegmentSignal.aux_containsZero : STLInterval 𝕋 → Bool
+@[step_of PointSegmentSignal.intervalUntilFloat]
+def PointSegmentSignal.step_containsZero : STLInterval 𝕋 → Bool
   | .empty => false
   | .nonempty l _ lc _ _ _ _ => lc && decide (toReal l = toReal (0 : 𝕋))
 
 /-- `untilIntNoZero`: the until interval without `0`, `(0,ub]` or `(0,ub)` if it contains `0`. -/
-def PointSegmentSignal.aux_untilIntNoZero (untilInt : STLInterval 𝕋) : STLInterval 𝕋 :=
-  if PointSegmentSignal.aux_containsZero untilInt then
+@[step_of PointSegmentSignal.intervalUntilFloat]
+def PointSegmentSignal.step_untilIntNoZero (untilInt : STLInterval 𝕋) : STLInterval 𝕋 :=
+  if PointSegmentSignal.step_containsZero untilInt then
     STLInterval.stlInterval 0 (untilInt.supremum.value.getD 0) false untilInt.supremum.closed
       toReal_zero_eq.ge
   else untilInt
@@ -69,7 +72,7 @@ def PointSegmentSignal.intervalUntilFloat (shift : STLInterval 𝕋 → STLInter
   let out := PointSegmentSignal.indicator
     (STLInterval.stlInterval (0 : 𝕋) ⊤ true true toReal_zero_eq.ge) false false
   -- 2. untilIntNoZero: if untilInt.contains(0), the interval `(0,ub]` or `(0,ub)` of its supremum
-  let untilIntNoZero := PointSegmentSignal.aux_untilIntNoZero untilInt
+  let untilIntNoZero := PointSegmentSignal.step_untilIntNoZero untilInt
   -- 3. for each pair, the times `t` with a witness `t'`: set them to true unless there are none
   let out := lhsInt.foldl (fun out lhs => rhsInt.foldl (fun out rhs =>
     let posShift := (shift (rhs.and_ lhs.rightClosure) untilIntNoZero).and_ lhs.leftClosure
@@ -77,7 +80,7 @@ def PointSegmentSignal.intervalUntilFloat (shift : STLInterval 𝕋 → STLInter
     | .empty => out
     | .nonempty .. => out.set posShift true) out) out
   -- 4. if untilInt.contains(0), the right-hand side holding at `t` itself is a witness
-  if PointSegmentSignal.aux_containsZero untilInt then
+  if PointSegmentSignal.step_containsZero untilInt then
     rhsInt.foldl (fun out rhs => out.set rhs true) out
   else out
 

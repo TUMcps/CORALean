@@ -5,6 +5,7 @@ public import Mathlib.Data.List.FinRange
 public import Mathlib.Data.Finset.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
 public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -13,8 +14,8 @@ public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
 
 CORA's `compact_(P, 'AtoAe')`: after the unit normalization of `compact_` (`normalizeRows`),
 every pair of inequality rows `aᵀx ≤ b`, `-aᵀx ≤ -b` becomes the equality `aᵀx = b`
-(`priv_compact_toEquality`, its loop in `aux_atoAeState`), the rows moved are deleted from the
-inequalities and the equalities are appended (`aux_moveToEq`).
+(`priv_compact_toEquality`, its loop in `step_atoAeState`), the rows moved are deleted from the
+inequalities and the equalities are appended (`step_moveToEq`).
 
 The test for an inverted pair is exact equality of `[a, b]` and `-[a', b']`; CORA's is
 `withinTol(sum, 0, tol)` entrywise, at the default `tol = 1e-9`. The emptiness and fullspace
@@ -42,12 +43,13 @@ open scoped Classical
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-noncomputable def HPolytope.aux_moveToEq (P : HPolytope α) (S : Finset (Fin P.m))
+@[step_of HPolytope.compactAtoAe]
+noncomputable def HPolytope.step_moveToEq (P : HPolytope α) (S : Finset (Fin P.m))
     (L : List (Fin P.m)) : HPolytope α where
   m := S.card
   A := fun k => P.A (S.equivFin.symm k).1
@@ -62,7 +64,8 @@ end
 section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-noncomputable def HPolytope.aux_atoAeState (Q : HPolytope α) : Finset (Fin Q.m) × List (Fin Q.m) :=
+@[step_of HPolytope.compactAtoAe]
+noncomputable def HPolytope.step_atoAeState (Q : HPolytope α) : Finset (Fin Q.m) × List (Fin Q.m) :=
   (List.finRange Q.m).foldl
     (fun st i =>
       if i ∈ st.1 then st
@@ -78,8 +81,8 @@ end
 
 noncomputable def HPolytope.compactAtoAe (P : HPolytope (Vec ℝ n)) : HPolytope (Vec ℝ n) :=
   let Q := P.normalizeRows
-  let st := Q.aux_atoAeState
-  Q.aux_moveToEq (Finset.univ.filter fun i => i ∉ st.1) st.2
+  let st := Q.step_atoAeState
+  Q.step_moveToEq (Finset.univ.filter fun i => i ∉ st.1) st.2
 
 end CORALean.Real
 

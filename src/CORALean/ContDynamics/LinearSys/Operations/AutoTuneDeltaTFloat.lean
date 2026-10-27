@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionError
 public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
 public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -57,11 +58,12 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Lines 9-15: the coarsest `η ≥ 2` at which the order is admissible and both admissible-error
 shares hold, `none` where the sweep gives out. -/
-def LinearSys.aux_autoTuneOrderFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
+@[step_of LinearSys.autoTuneDeltaTFloat]
+def LinearSys.step_autoTuneOrderFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
     (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n) (U₀ : Zonotope (Vec 𝕋 n)) (Δt : 𝕋) (εaτ εnτ : ℚ) :
     ℕ → ℕ → Option ℕ
   | _, 0 => none
@@ -73,11 +75,12 @@ def LinearSys.aux_autoTuneOrderFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (
     let Δεn := Δεh + ΔεUτ                                                         -- eq. (32)
     if le nrm (half (nsmulDown (η + 2) one)) && decide (Δεa ≤ εaτ) && decide (Δεn ≤ εnτ)
     then some η                                                          -- 15. both admissible
-    else sys.aux_autoTuneOrderFloat eAtk H ũ U₀ Δt εaτ εnτ (η + 1) k
+    else sys.step_autoTuneOrderFloat eAtk H ũ U₀ Δt εaτ εnτ (η + 1) k
 
-/-- Lines 6-15: halve `Δt` until `aux_autoTuneOrderFloat` finds an `η`, `none` after `fuel`
+/-- Lines 6-15: halve `Δt` until `step_autoTuneOrderFloat` finds an `η`, `none` after `fuel`
 halvings without one. -/
-def LinearSys.aux_autoTuneSearchFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
+@[step_of LinearSys.autoTuneDeltaTFloat]
+def LinearSys.step_autoTuneSearchFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
     (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n) (tk tend εmax ζ εaAcc : ℚ) (ηmax : ℕ)
     (U₀ : Zonotope (Vec 𝕋 n)) : 𝕋 → ℕ → Option (𝕋 × ℕ)
   | _, 0 => none
@@ -86,9 +89,9 @@ def LinearSys.aux_autoTuneSearchFloat (sys : LinearSys 𝕋 n) (eAtk : Interval 
     let t1 := tk + ToRat.toRat Δt'                                          -- t_{k+1}
     let εaτ := t1 / tend * (1 - ζ) * εmax - εaAcc                           -- 14. eq. (37),(36)
     let εnτ := εmax - t1 / tend * ζ * εmax - εaAcc                          -- 14. eq. (38),(34)
-    match sys.aux_autoTuneOrderFloat eAtk H ũ U₀ Δt' εaτ εnτ 2 ηmax with
+    match sys.step_autoTuneOrderFloat eAtk H ũ U₀ Δt' εaτ εnτ 2 ηmax with
     | some η => some (Δt', η)
-    | none => sys.aux_autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt' k
+    | none => sys.step_autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt' k
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -100,7 +103,7 @@ def LinearSys.autoTuneDeltaTFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat
   -- 5. Δt_k ← 2Δt_{k-1}
   let Δt₀ := addUp Δtprev Δtprev
   -- 6.-15. the repeat
-  sys.aux_autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel
+  sys.step_autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel
 
 end CORALean
 

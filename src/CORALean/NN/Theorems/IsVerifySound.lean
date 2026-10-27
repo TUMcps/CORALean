@@ -120,9 +120,9 @@ private theorem aux_abs_zonotackFactors_le {k : ℕ} (Y : Zonotope (Vec ℝ k)) 
 /-- A point of a piece lies in its input set: the factor box is inside `[-1, 1]`. -/
 private theorem aux_piece_subset (X : Zonotope (Vec ℝ n)) (Cd : Mat ℝ p X.h × Vec ℝ p)
     (s : Σ r : ℕ, Mat ℝ r X.h × Vec ℝ r) (iterFM : ℕ) (P : Zonotope (Vec ℝ n))
-    (hP : aux_piece X Cd s iterFM = some P) : -- --- CONCL ---
+    (hP : step_piece X Cd s iterFM = some P) : -- --- CONCL ---
     P.construct ⊆ X.construct := by -- --- PROOF ---
-  simp only [aux_piece] at hP
+  simp only [step_piece] at hP
   split_ifs at hP with hempty
   cases hP
   have hu := fun j => aux_iter_subset_unit (Fin.append Cd.1 s.2.1) (Fin.append Cd.2 s.2.2) iterFM j
@@ -204,11 +204,11 @@ theorem SetBasedNet.verify_sound {N : SetBasedNet n k} {Φ : Vec ℝ n → Vec �
           -- refinement (Prop. 2) and splitting: the pieces join the queue
           have hv : N.verify Φ A b split iterFM (fuel + 1) (Xi :: Q) =
               N.verify Φ A b split iterFM fuel (Q ++ (split Xi).filterMap fun s =>
-                aux_piece Xi (N.unsafeInputConstraints Xi A b) s iterFM) := by
+                step_piece Xi (N.unsafeInputConstraints Xi A b) s iterFM) := by
             simp only [SetBasedNet.verify, if_neg hchk, hfind]
           rw [hv]
           obtain ⟨hv', hf'⟩ := ih (Q ++ (split Xi).filterMap fun s =>
-            aux_piece Xi (N.unsafeInputConstraints Xi A b) s iterFM)
+            step_piece Xi (N.unsafeInputConstraints Xi A b) s iterFM)
           refine ⟨fun h X hX x hx hU => ?_, fun x h => ?_⟩
           · rcases List.mem_cons.1 hX with rfl | hX
             · -- an unsafe `x ∈ X_i` is in `X_i|_{C≤d}` (Prop. 2), in a piece, in its box (Prop. 3)
@@ -231,10 +231,10 @@ theorem SetBasedNet.verify_sound {N : SetBasedNet n k} {Φ : Vec ℝ n → Vec �
               set Bβ := ConZonotope.fourierMotzkinIter Call dall iterFM with hBβ
               have hbox : ∀ j, Bβ.inf j ≤ β j ∧ β j ≤ Bβ.sup j :=
                 ConZonotope.fourierMotzkinIter_outer _ _ iterFM β hβ hall
-              have hpiece : aux_piece X (N.unsafeInputConstraints X A b) s iterFM = some
+              have hpiece : step_piece X (N.unsafeInputConstraints X A b) s iterFM = some
                   ⟨X.h, X.c + ∑ j, ((Bβ.inf j + Bβ.sup j) / 2) • X.G j,
                     fun j => ((Bβ.sup j - Bβ.inf j) / 2) • X.G j⟩ := by
-                simp only [aux_piece]
+                simp only [step_piece]
                 rw [← hCall, ← hdall, ← hBβ,
                   if_neg (not_exists.2 fun j => not_lt.2 ((hbox j).1.trans (hbox j).2))]
               exact hv' h _ (List.mem_append_right _ (List.mem_filterMap.2 ⟨s, hs, hpiece⟩)) _

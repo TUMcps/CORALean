@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # The matrix-zonotope order `i` of the input solution, in floats
 
-`LinParamSys.aux_inputTermZono` computed in `𝕋` ([1, Thm. 1], [1, Sec. 4.4]): the system's float
+`LinParamSys.step_inputTermZono` computed in `𝕋` ([1, Thm. 1], [1, Sec. 4.4]): the system's float
 matrix zonotope to the power `i`, kept as a matrix zonotope, scaled by `r^{i+1}/(i+1)!`, which
 `taylorCoeffBounds` brackets because no float holds it exactly.
 

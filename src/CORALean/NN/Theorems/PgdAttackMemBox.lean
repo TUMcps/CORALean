@@ -70,7 +70,7 @@ theorem Chain.pgdAttack_mem_box (c : Chain n m) (x : Vec ℝ n) (t : Vec ℝ m) 
       le_trans (min_le_left _ _) (min_le_right _ _)
     exact ⟨le_min (le_trans (le_max_left _ _) h) (le_max_of_le_left (le_max_left _ _)),
       le_trans (min_le_left _ _) (min_le_left _ _), abs_le.mpr ⟨by linarith, by linarith⟩⟩
-  simp only [Chain.pgdAttack, Chain.aux_pgdStep]
+  simp only [Chain.pgdAttack, Chain.pgdStep]
   exact key _
 
 end CORALean

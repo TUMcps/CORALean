@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -15,7 +16,7 @@ multiplies the applied error by `1.1` and retries — `perfIndCurr = max(trueErr
 proves a step meeting it a sound enclosure, so any `some step` carries `step.cert` and a wrong
 `Ws k` costs no soundness, only convergence. What is new is only the search: package the first
 candidate the certificate accepts into a `LinStep`, `none` once `fuel` runs out. A candidate is a
-region `pZ k`, its sub-box and static error as well as `Ws k`; `aux_abstrErrPolyCandidates`.
+region `pZ k`, its sub-box and static error as well as `Ws k`; `step_abstrErrPolyCandidates`.
 
 ## Inputs
 * `sys` – system
@@ -60,15 +61,16 @@ open Matrix ContSet
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 open scoped Classical in
 /-- The first `k ≥ k₀` where `P` holds, tried within `fuel` rounds; `none` once
 `fuel` runs out with none accepted. Noncomputable: `P` is a statement about reals, decided
 classically. -/
-noncomputable def aux_search (P : ℕ → Prop) : ℕ → ℕ → Option {k // P k}
+@[step_of NonlinearSys.abstrErrPolySearch]
+noncomputable def step_search (P : ℕ → Prop) : ℕ → ℕ → Option {k // P k}
   | _, 0 => none
-  | k, fuel + 1 => if h : P k then some ⟨k, h⟩ else aux_search P (k + 1) fuel
+  | k, fuel + 1 => if h : P k then some ⟨k, h⟩ else step_search P (k + 1) fuel
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -81,7 +83,7 @@ noncomputable def NonlinearSys.abstrErrPolySearch (sys : NonlinearSys n m)
     (L : ℕ → PolyZonotope (Vec ℝ n)) (hp : ∀ k, (L k).p = (pZ k).p)
     (hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1) (Ws : ℕ → PolyZonotope (Vec ℝ n))
     (fuel : ℕ) : Option (sys.LinStep (S := 𝒫𝒵) U) :=
-  (aux_search (fun k => IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k)
+  (step_search (fun k => IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k)
       (hp k) (Ws k)) 0 fuel).map
     fun ⟨k, h⟩ => ⟨A, B, xs, us, (pZ k).subsetAt (Ba k), L k ⊞ Ws k,
       IsAbstractionError.of_poly (hBa k) h⟩

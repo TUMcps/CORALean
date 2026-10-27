@@ -68,10 +68,10 @@ private theorem Polygon.innerHRep_isErrFree {p : VPolytope (Vec 𝕋 2)} : -- --
 /-- Subtracting the piece `q` from `r` leaves pieces that cover every point of `r` outside `q`. -/
 private theorem Polygon.aux_subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) : -- --- CONCL ---
     r.construct \ q.construct ⊆
-      {x | ∃ s ∈ Polygon.aux_subtractPiece q r, x ∈ s.construct} := by -- --- PROOF ---
+      {x | ∃ s ∈ Polygon.step_subtractPiece q r, x ∈ s.construct} := by -- --- PROOF ---
   rintro x ⟨hr, hq⟩
   -- a piece `q` certainly covers is not dropped
-  unfold Polygon.aux_subtractPiece
+  unfold Polygon.step_subtractPiece
   by_cases hs : Polygon.pieceSubset r q = true
   · exact absurd (Polygon.pieceSubset_sound hs hr) hq
   rw [if_neg hs]
@@ -107,7 +107,7 @@ end
 private theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
     (qs L : List (VPolytope (Vec 𝕋 2))) : -- --- CONCL ---
     (∃ r ∈ L, x ∈ r.construct) → (∀ q ∈ qs, x ∉ q.construct) →
-      ∃ s ∈ qs.foldl (fun L q => L.flatMap (Polygon.aux_subtractPiece q)) L,
+      ∃ s ∈ qs.foldl (fun L q => L.flatMap (Polygon.step_subtractPiece q)) L,
       x ∈ s.construct := by -- --- PROOF ---
   induction qs generalizing L with
   | nil => exact fun h _ => h

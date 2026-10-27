@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
 /-!
 # `Alg. 2` lines 12-13 in floats: one direction's support value at a step
 
-`aux_minBackReachSupport` computed in `𝕋`: [1, Alg. 2] lines 12-13, eq. (46): `ρ(R̂^∃(-τ_k;u_j(·)),
+`step_minBackReachSupport` computed in `𝕋`: [1, Alg. 2] lines 12-13, eq. (46): `ρ(R̂^∃(-τ_k;u_j(·)),
 N_(j,·))`, the step's own support value less what the direction's input trajectory takes off it.
 The first term is rounded up (`ConZonotope.boundDot`, checked in ℚ against the float values) and
 the second down (`Zonotope.lowerDot`), so the difference, rounded up, is above the real one. The

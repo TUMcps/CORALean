@@ -12,6 +12,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -64,11 +65,12 @@ variable {n q : ℕ} {𝕋 : Type} [Scalar 𝕋]
 open Matrix ContSet Scalar NormedSpace
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Lines 1-6: the two centered particular solutions accumulated up to `t₀`,
 before the first iteration. -/
-noncomputable def LinearSys.aux_minBackReachInit (sys : LinearSys 𝕋 n)
+@[step_of LinearSys.minBackReachTimeInterval]
+noncomputable def LinearSys.step_minBackReachInit (sys : LinearSys 𝕋 n)
     (W₀ U₀ : Zonotope (Vec ℝ n)) (t₀ : ℝ) (η : ℕ) : LinearSys.MinBackReachState n :=
   let Ā : LinearSys ℝ n := LinearSys.canonical (-toRealMat sys.A)  -- time-inverted dynamics
   { t := t₀                                                         -- 1. τ = [t₀, t_end]
@@ -78,7 +80,8 @@ noncomputable def LinearSys.aux_minBackReachInit (sys : LinearSys 𝕋 n)
 
 /-- Lines 8-11: one iteration of [1, Alg. 2]'s main loop, propagating the two
 particular solutions and the converted target set over `τ_k`. -/
-noncomputable def LinearSys.aux_minBackReachStep (sys : LinearSys 𝕋 n)
+@[step_of LinearSys.minBackReachTimeInterval]
+noncomputable def LinearSys.step_minBackReachStep (sys : LinearSys 𝕋 n)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (Δt : ℝ) (η : ℕ)
     (s : LinearSys.MinBackReachState n) : LinearSys.MinBackReachState n :=
@@ -109,32 +112,35 @@ noncomputable def LinearSys.aux_minBackReachStep (sys : LinearSys 𝕋 n)
   { t := tk1, ZW₀ := ZW₀, ZU₀ := ZU₀, R := R }
 
 /-- Lines 7-15: the state after the `k`-th iteration, holding `R̂^∃(-τ_k)`. -/
-noncomputable def LinearSys.aux_minBackReachRun (sys : LinearSys 𝕋 n)
+@[step_of LinearSys.minBackReachTimeInterval]
+noncomputable def LinearSys.step_minBackReachRun (sys : LinearSys 𝕋 n)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (t₀ Δt : ℝ) (η : ℕ) : ℕ → LinearSys.MinBackReachState n
-  | 0 => sys.aux_minBackReachStep CZ W₀ U₀ Zw Δt η (sys.aux_minBackReachInit W₀ U₀ t₀ η)
+  | 0 => sys.step_minBackReachStep CZ W₀ U₀ Zw Δt η (sys.step_minBackReachInit W₀ U₀ t₀ η)
   | k + 1 =>
-    sys.aux_minBackReachStep CZ W₀ U₀ Zw Δt η (sys.aux_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k)
+    sys.step_minBackReachStep CZ W₀ U₀ Zw Δt η (sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k)
 
 /-- Lines 12-13, eq. (46): `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`, the step's own support
 value less what the direction's input trajectory takes off it. -/
-noncomputable def LinearSys.aux_minBackReachSupport (sys : LinearSys 𝕋 n)
+@[step_of LinearSys.minBackReachTimeInterval]
+noncomputable def LinearSys.step_minBackReachSupport (sys : LinearSys 𝕋 n)
     (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (N : Mat ℝ q n) (t₀ Δt : ℝ) (η : ℕ)
     (k : ℕ) (j : Fin q) : ℝ :=
-  let s := sys.aux_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k
+  let s := sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k
   (ρ s.R (HPolytope.rowLin N j)).val - (s.ZU₀.supportBound (-HPolytope.rowLin N j)).val
 
 /-- Lines 4 and 14: `p_(j)` after the steps `0` to `k`. `max`, not line 14's
 `min` — a union's support is the largest of its parts', see the findings. -/
-noncomputable def LinearSys.aux_minBackReachP (sys : LinearSys 𝕋 n)
+@[step_of LinearSys.minBackReachTimeInterval]
+noncomputable def LinearSys.step_minBackReachP (sys : LinearSys 𝕋 n)
     (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (N : Mat ℝ q n) (t₀ Δt : ℝ) (η : ℕ) : ℕ → Fin q → ℝ
-  | 0 => fun j => sys.aux_minBackReachSupport ρ CZ W₀ U₀ Zw N t₀ Δt η 0 j
-  | k + 1 => fun j => max (sys.aux_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η k j)
-      (sys.aux_minBackReachSupport ρ CZ W₀ U₀ Zw N t₀ Δt η (k + 1) j)
+  | 0 => fun j => sys.step_minBackReachSupport ρ CZ W₀ U₀ Zw N t₀ Δt η 0 j
+  | k + 1 => fun j => max (sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η k j)
+      (sys.step_minBackReachSupport ρ CZ W₀ U₀ Zw N t₀ Δt η (k + 1) j)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -149,8 +155,8 @@ noncomputable def LinearSys.minBackReachTimeInterval (sys : LinearSys 𝕋 n)
   let Δt := (tend - t₀) / ω
   -- 4. and 14. ⟨N,p⟩_H
   let P := HPolytope.ineqs N
-    (sys.aux_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1))
-  ⋃ k < ω, ((sys.aux_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct ∩ P.construct)
+    (sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1))
+  ⋃ k < ω, ((sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct ∩ P.construct)
 
 end CORALean
 

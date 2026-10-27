@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinDASys.Definitions.LinPoint
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
 public import CORALean.ContSet.Zonotope.Real.Operations.Split
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -44,10 +45,11 @@ open CORALean.Real
 variable {n p m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `linReach` of `Rinit` at its linearization `L`: one entry of `initReach`'s result. -/
-noncomputable def NonlinDASys.aux_initReachLin (sys : NonlinDASys n p m)
+@[step_of NonlinDASys.initReach]
+noncomputable def NonlinDASys.step_initReachLin (sys : NonlinDASys n p m)
     (L : NonlinDASys.LinPoint n p m) (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (η : ℕ)
     (Rinit : Zonotope (Vec ℝ n)) :
     Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n × Vec ℝ p) :=
@@ -65,13 +67,13 @@ noncomputable def NonlinDASys.initReach (sys : NonlinDASys n p m)
     (η : ℕ) : ℕ → List (Zonotope (Vec ℝ n)) →
       List (Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n × Vec ℝ p))
   | 0, Rstart => Rstart.map fun Rinit =>                                  -- no split left
-    sys.aux_initReachLin (lin Rinit) U Δt η Rinit                         -- linReach
+    sys.step_initReachLin (lin Rinit) U Δt η Rinit                         -- linReach
   | fuel + 1, Rstart => Rstart.flatMap fun Rinit =>
     match select Rinit with                                               -- dimForSplit
     | some j =>
       let Rsplit := Rinit.split j                                         -- split
       sys.initReach lin select U Δt η fuel [Rsplit.fst, Rsplit.snd]           -- initReach
-    | none => [sys.aux_initReachLin (lin Rinit) U Δt η Rinit]             -- linReach
+    | none => [sys.step_initReachLin (lin Rinit) U Δt η Rinit]             -- linReach
 
 end CORALean
 

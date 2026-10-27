@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -57,17 +58,19 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Line 1 and the algorithm's input `R(t_0) = X₀`, before the first iteration. -/
-def NonlinearSys.aux_abstrInit (X₀ : S n) : NonlinearSys.AbstrState S n :=
+@[step_of NonlinearSys.abstrReach]
+def NonlinearSys.step_abstrInit (X₀ : S n) : NonlinearSys.AbstrState S n :=
   { t := 0                                                       -- 1. k ← 0, t_k ← 0
     R := X₀
     Rτ := X₀ }
 
 /-- Lines 3-16: one iteration of [1, Alg. 1]'s main loop, and `none` where the
 abstraction error's fixed point was not reached. -/
-noncomputable def NonlinearSys.aux_abstrStep (sys : NonlinearSys n m) (U : S m)
+@[step_of NonlinearSys.abstrReach]
+noncomputable def NonlinearSys.step_abstrStep (sys : NonlinearSys n m) (U : S m)
     (lin : Vec ℝ n → Vec ℝ m → Mat ℝ n n × Mat ℝ n m) (Φ : S n → S n → S n)
     (sub : S n → S n → Bool) (enlarge : S n → S n) (Δt : ℝ) (ηlin ηabs o fuel : ℕ)
     (s : NonlinearSys.AbstrState S n) : Option (NonlinearSys.AbstrState S n) :=
@@ -103,17 +106,18 @@ noncomputable def NonlinearSys.aux_abstrStep (sys : NonlinearSys n m) (U : S m)
            R := Reduce.reduce Rt o, Rτ := Reduce.reduce Rτ o }
 
 /-- Lines 2-17: iterate the step while `t_k < t_end`. -/
-noncomputable def NonlinearSys.aux_abstrRun (sys : NonlinearSys n m) (U : S m)
+@[step_of NonlinearSys.abstrReach]
+noncomputable def NonlinearSys.step_abstrRun (sys : NonlinearSys n m) (U : S m)
     (lin : Vec ℝ n → Vec ℝ m → Mat ℝ n n × Mat ℝ n m) (Φ : S n → S n → S n)
     (sub : S n → S n → Bool) (enlarge : S n → S n) (Δt tend : ℝ) (ηlin ηabs o fuel : ℕ)
     (X₀ : S n) : ℕ → Option (NonlinearSys.AbstrState S n)
-  | 0 => some (NonlinearSys.aux_abstrInit X₀)                          -- 1. initialize
+  | 0 => some (NonlinearSys.step_abstrInit X₀)                          -- 1. initialize
   | k + 1 =>
-    match sys.aux_abstrRun U lin Φ sub enlarge Δt tend ηlin ηabs o fuel X₀ k with
+    match sys.step_abstrRun U lin Φ sub enlarge Δt tend ηlin ηabs o fuel X₀ k with
     | none => none
     | some s =>
       if s.t < tend                                                -- 2. while t_k < t_end
-      then sys.aux_abstrStep U lin Φ sub enlarge Δt ηlin ηabs o fuel s
+      then sys.step_abstrStep U lin Φ sub enlarge Δt ηlin ηabs o fuel s
       else some s
 
 
@@ -130,7 +134,7 @@ noncomputable def NonlinearSys.abstrReach (sys : NonlinearSys n m)
   -- 2. the horizon of the loop, whose clock starts at `0`
   let tend := params.tFinal - params.tStart
   -- 18. `R([0,t_end])`, the union of the time-interval sets of iterations 1 to `K`
-  ⋃ j < options.K, ⋃ s ∈ sys.aux_abstrRun U options.lin options.Φ options.sub options.enlarge
+  ⋃ j < options.K, ⋃ s ∈ sys.step_abstrRun U options.lin options.Φ options.sub options.enlarge
     options.Δt tend options.η options.taylorTermsAbstr options.ρ
     options.fuel X₀ (j + 1), construct s.Rτ
 

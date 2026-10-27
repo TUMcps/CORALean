@@ -44,9 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- An inverted pair is inverted both ways. -/
 private theorem HPolytope.aux_isInvertedPair_symm {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
-    (h : HPolytope.aux_isInvertedPair Q i j = true) :
-    HPolytope.aux_isInvertedPair Q j i = true := by
-  simp only [HPolytope.aux_isInvertedPair, Bool.and_eq_true] at h ⊢
+    (h : HPolytope.step_isInvertedPair Q i j = true) :
+    HPolytope.step_isInvertedPair Q j i = true := by
+  simp only [HPolytope.step_isInvertedPair, Bool.and_eq_true] at h ⊢
   tauto
 
 end
@@ -54,10 +54,10 @@ end
 
 /-- An inverted pair of rows has opposite values. -/
 private theorem HPolytope.aux_isInvertedPair_dot {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fin Q.m}
-    (h : HPolytope.aux_isInvertedPair Q i j = true) (x : Vec ℝ n) : -- --- CONCL ---
+    (h : HPolytope.step_isInvertedPair Q i j = true) (x : Vec ℝ n) : -- --- CONCL ---
     (toRealMat Q.A *ᵥ x) j = -(toRealMat Q.A *ᵥ x) i ∧
       toReal (Q.b j) = -toReal (Q.b i) := by -- --- PROOF ---
-  simp only [HPolytope.aux_isInvertedPair, Bool.and_eq_true] at h
+  simp only [HPolytope.step_isInvertedPair, Bool.and_eq_true] at h
   refine ⟨?_, (HPolytope.toReal_eq_of_eqScalar h.1.1.1.2).trans (toReal_neg _)⟩
   simp only [mulVec, dotProduct, toRealMat, ← Finset.sum_neg_distrib]
   refine Finset.sum_congr rfl fun c _ => ?_
@@ -72,25 +72,25 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
   ext x
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   -- the rows of the result, read in `Q`
-  have hkA : ∀ k, (toRealMat Q.pairsToEq.A *ᵥ x) k = (toRealMat Q.A *ᵥ x) (Q.aux_keptRows.get k) :=
+  have hkA : ∀ k, (toRealMat Q.pairsToEq.A *ᵥ x) k = (toRealMat Q.A *ᵥ x) (Q.step_keptRows.get k) :=
     fun k => rfl
   -- the old equality rows and the appended ones
   have hold : ∀ r, (toRealMat Q.pairsToEq.Ae *ᵥ x) (Fin.castAdd _ r) = (toRealMat Q.Ae *ᵥ x) r := by
     intro r
     simp [mulVec, dotProduct, toRealMat, HPolytope.pairsToEq, Fin.append_left]
   have hnew : ∀ k, (toRealMat Q.pairsToEq.Ae *ᵥ x) (Fin.natAdd Q.me k)
-      = (toRealMat Q.A *ᵥ x) (Q.aux_leadRows.get k) := by
+      = (toRealMat Q.A *ᵥ x) (Q.step_leadRows.get k) := by
     intro k
     simp [mulVec, dotProduct, toRealMat, HPolytope.pairsToEq, Fin.append_right]
   have hbnew : ∀ k, toReal (Q.pairsToEq.be (Fin.natAdd Q.me k))
-      = toReal (Q.b (Q.aux_leadRows.get k)) := by
+      = toReal (Q.b (Q.step_leadRows.get k)) := by
     intro k
     simp [HPolytope.pairsToEq, Fin.append_right]
   have hbold : ∀ r, Q.pairsToEq.be (Fin.castAdd _ r) = Q.be r := by
     intro r
     simp [HPolytope.pairsToEq, Fin.append_left]
   -- the slacks: carried on the kept and the old rows, `zero` on the appended equalities
-  have hkE : ∀ k, Q.pairsToEq.b_error k = Q.b_error (Q.aux_keptRows.get k) := fun k => rfl
+  have hkE : ∀ k, Q.pairsToEq.b_error k = Q.b_error (Q.step_keptRows.get k) := fun k => rfl
   have hee : ∀ r, Q.pairsToEq.be_error (Fin.castAdd _ r) = Q.be_error r := by
     intro r
     simp [HPolytope.pairsToEq, Fin.append_left]
@@ -98,26 +98,26 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
     intro k
     simp [HPolytope.pairsToEq, Fin.append_right, toReal_zero]
   -- an inverted pair carries no slack, certified
-  have hz : ∀ {i j}, HPolytope.aux_isInvertedPair Q i j = true →
+  have hz : ∀ {i j}, HPolytope.step_isInvertedPair Q i j = true →
       toReal (Q.b_error i) = 0 ∧ toReal (Q.b_error j) = 0 := by
     intro i j h
-    simp only [HPolytope.aux_isInvertedPair, Bool.and_eq_true] at h
+    simp only [HPolytope.step_isInvertedPair, Bool.and_eq_true] at h
     exact ⟨(HPolytope.toReal_eq_of_eqScalar h.2.1).trans toReal_zero,
       (HPolytope.toReal_eq_of_eqScalar h.2.2).trans toReal_zero⟩
   -- every row with a partner is, or is the negation of, a row listed as a lead
-  have hlead : ∀ i j, HPolytope.aux_isInvertedPair Q i j = true → ∃ k,
-      (Q.aux_leadRows.get k = i ∧ HPolytope.aux_isInvertedPair Q i j = true) ∨
-        (Q.aux_leadRows.get k = j ∧ HPolytope.aux_isInvertedPair Q j i = true) := by
+  have hlead : ∀ i j, HPolytope.step_isInvertedPair Q i j = true → ∃ k,
+      (Q.step_leadRows.get k = i ∧ HPolytope.step_isInvertedPair Q i j = true) ∨
+        (Q.step_leadRows.get k = j ∧ HPolytope.step_isInvertedPair Q j i = true) := by
     intro i j h
     by_cases hij : i ≤ j
     · obtain ⟨k, hk⟩ := List.mem_iff_get.mp (List.mem_filter.mpr ⟨List.mem_finRange i,
         List.any_eq_true.mpr ⟨j, List.mem_finRange j, by simp [h, hij]⟩⟩ :
-        i ∈ Q.aux_leadRows)
+        i ∈ Q.step_leadRows)
       exact ⟨k, Or.inl ⟨hk, h⟩⟩
     · have hs := HPolytope.aux_isInvertedPair_symm h
       obtain ⟨k, hk⟩ := List.mem_iff_get.mp (List.mem_filter.mpr ⟨List.mem_finRange j,
         List.any_eq_true.mpr ⟨i, List.mem_finRange i, by simp [hs, (not_le.mp hij).le]⟩⟩ :
-        j ∈ Q.aux_leadRows)
+        j ∈ Q.step_leadRows)
       exact ⟨k, Or.inr ⟨hk, hs⟩⟩
   -- the two directions
   constructor
@@ -125,7 +125,7 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
     rintro ⟨h1, h2⟩
     refine ⟨fun i => ?_, fun r => ?_⟩
     · -- a row with a partner is a lead or the negation of one
-      by_cases hm : ((List.finRange Q.m).any fun j => HPolytope.aux_isInvertedPair Q i j) = true
+      by_cases hm : ((List.finRange Q.m).any fun j => HPolytope.step_isInvertedPair Q i j) = true
       · -- the lead's equality gives both bounds
         obtain ⟨j, -, hj⟩ := List.any_eq_true.mp hm
         have hab := abs_nonneg (toReal (Q.b_error i))
@@ -138,12 +138,12 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
           obtain ⟨d1, d2⟩ := HPolytope.aux_isInvertedPair_dot hj x
           linarith
       · -- a row without a partner is kept, its slack with it
-        have hmem : i ∈ Q.aux_keptRows :=
+        have hmem : i ∈ Q.step_keptRows :=
           List.mem_filter.mpr ⟨List.mem_finRange i, by simpa using hm⟩
         obtain ⟨k, hk⟩ := List.mem_iff_get.mp hmem
         have := h1 k
         have hb : Q.pairsToEq.b k = Q.b i := by
-          show Q.b (Q.aux_keptRows.get k) = _
+          show Q.b (Q.step_keptRows.get k) = _
           rw [hk]
         rw [hkA, hk, hb, hkE, hk] at this
         exact this
@@ -159,13 +159,13 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
       · rw [hold, hbold r, hee r]
         exact h2 r
       · -- the lead row has a partner, whose value is its negative
-        have hmem := List.get_mem Q.aux_leadRows k
+        have hmem := List.get_mem Q.step_leadRows k
         obtain ⟨-, hl⟩ := List.mem_filter.mp hmem
         obtain ⟨j, -, hj⟩ := List.any_eq_true.mp hl
         simp only [Bool.and_eq_true, decide_eq_true_eq] at hj
         obtain ⟨d1, d2⟩ := HPolytope.aux_isInvertedPair_dot hj.1 x
         obtain ⟨hzl, hzj⟩ := hz hj.1
-        have e1 := h1 (Q.aux_leadRows.get k)
+        have e1 := h1 (Q.step_leadRows.get k)
         have e2 := h1 j
         rw [hzl, abs_zero, add_zero] at e1
         rw [hzj, abs_zero, add_zero] at e2

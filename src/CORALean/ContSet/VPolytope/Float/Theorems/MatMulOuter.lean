@@ -15,7 +15,7 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 
 A member is a nominal point plus a point of the error box. The product of two nominal points is in
 the hull of the exact vertex products, which differ from the stored ones by a residual in
-`aux_matColumnGap`; the cross terms `a f + e (b + f)` are interval products of boxes that contain
+`step_matColumnGap`; the cross terms `a f + e (b + f)` are interval products of boxes that contain
 their factors. The sum of the residual and the cross terms is in the stored error box.
 
 ## Inputs
@@ -54,7 +54,7 @@ private theorem VPolytope.aux_mem_matColumnGap {k : ℕ} {lo hi : Fin k → Mat 
     {A : Mat ℝ p r} {l : Fin k}
     (h : ∀ i j, toReal (lo l i j) ≤ A i j ∧ A i j ≤ toReal (hi l i j)) : -- --- CONCL ---
     (fun i j => A i j - toReal (lo l i j)) ∈
-      (VPolytope.aux_matColumnGap lo hi).construct := by -- --- PROOF ---
+      (VPolytope.step_matColumnGap lo hi).construct := by -- --- PROOF ---
   -- the residual is nonnegative, and below the gap of its own vertex, hence of the widest
   refine Interval.mem_mat_iff.mpr fun i j => ⟨?_, ?_⟩
   · show toReal (zero : 𝕋) ≤ A i j - toReal (lo l i j)
@@ -80,7 +80,7 @@ theorem VPolytope.matMul_outer (P : VPolytope (Mat 𝕋 p q)) (Q : VPolytope (Ma
   have hab := Real.VPolytope.matMul_outer P.nominal Q.nominal ha hb
   -- which sit within the gap box of the stored, rounded-down ones
   have hgap : (Real.VPolytope.matMul P.nominal Q.nominal).construct ⊆
-      InflatedContSet.nominalSet (P.matMul Q) + (VPolytope.aux_matColumnGap
+      InflatedContSet.nominalSet (P.matMul Q) + (VPolytope.step_matColumnGap
         (fun l => matMulDown (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2))
         (fun l => matMulUp (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2))
           ).construct := by

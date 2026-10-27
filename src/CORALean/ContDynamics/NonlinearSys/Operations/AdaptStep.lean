@@ -10,6 +10,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltat
 public import Mathlib.Data.Real.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -77,11 +78,12 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Real.OfInterval S]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Lines 3-6: the linearized system and the two sets it reaches, the half of
 the loop body both passes share. -/
-noncomputable def NonlinearSys.aux_adaptLinPass (sys : NonlinearSys n m) (U : S m)
+@[step_of NonlinearSys.adaptStep]
+noncomputable def NonlinearSys.step_adaptLinPass (sys : NonlinearSys n m) (U : S m)
     (lin : Vec ℝ n → Vec ℝ m → Mat ℝ n n × Mat ℝ n m) (Δt : ℝ) (ηlin : ℕ) (R : S n) :
     Mat ℝ n n × S n × S n :=
   let zs := sys.linPoint Δt R U                                   -- 3. linPoint, eq. (6)
@@ -94,7 +96,8 @@ noncomputable def NonlinearSys.aux_adaptLinPass (sys : NonlinearSys n m) (U : S 
 
 /-- [1, Alg. 2] line 13: the abstraction order of the next step, from the two
 error radii of eq. (46) and the two diameter vectors of eq. (47). -/
-noncomputable def aux_tuneAbstrOrder (le : ℝ → ℝ → Bool) (ζK φstar rabs rabsLast : ℝ)
+@[step_of NonlinearSys.adaptStep]
+noncomputable def step_tuneAbstrOrder (le : ℝ → ℝ → Bool) (ζK φstar rabs rabsLast : ℝ)
     (d1 d2 : Fin n → ℝ) (κ : ℕ) : ℕ :=
   -- 13. eq. (46): too close to re-tune
   if le |φstar * rabs / rabsLast| (1 - ζK) then κ
@@ -117,7 +120,7 @@ noncomputable def NonlinearSys.adaptStep (sys : NonlinearSys n m) (U : S m)
   -- 1. h_k, eq. (59)
   let hk := s.h * (ζδ - ζh) / (ζδ - s.φ)
   -- 3.-6. a = 1, at Δt_k = h_k
-  let p₁ := sys.aux_adaptLinPass U lin hk ηlin s.R
+  let p₁ := sys.step_adaptLinPass U lin hk ηlin s.R
   -- 7. abstrErrLoop
   match abstrErrLoop sub enlarge (Φ s.κ p₁.2.2) (OfPoint.ofPoint 0) fuel with
   | none => none
@@ -128,7 +131,7 @@ noncomputable def NonlinearSys.adaptStep (sys : NonlinearSys n m) (U : S m)
     -- 10. optDeltat, Δt_k ← Δt*
     let opt := optDeltat le ζδ ζZ ζA s.φ (rad s.R) rabs1 hk fuel
     -- 3.-6. a = 2, at Δt_k = Δt*
-    let p₂ := sys.aux_adaptLinPass U lin opt.Δt ηlin s.R
+    let p₂ := sys.step_adaptLinPass U lin opt.Δt ηlin s.R
     -- 7. abstrErrLoop at both orders
     match abstrErrLoop sub enlarge (Φ 1 p₂.2.2) (OfPoint.ofPoint 0) fuel,
       abstrErrLoop sub enlarge (Φ 2 p₂.2.2) (OfPoint.ofPoint 0) fuel with
@@ -142,8 +145,8 @@ noncomputable def NonlinearSys.adaptStep (sys : NonlinearSys n m) (U : S m)
       let Rabs := if s.κ = 1 then Rabs₁ else Rabs₂
       -- 12. r^{(λ*)}_abs,k
       let rabsOpt := rad Rabs
-      -- 13. aux_tuneAbstrOrder
-      let κ' := aux_tuneAbstrOrder le ζK s.φ rabsOpt s.rabs
+      -- 13. step_tuneAbstrOrder
+      let κ' := step_tuneAbstrOrder le ζK s.φ rabsOpt s.rabs
         (dbox Rabs₁) (dbox Rabs₂) s.κ
       -- 16. estimateGain
       let φk := estimateGain le ζδ ((1 / ζδ) ^ opt.exponent)

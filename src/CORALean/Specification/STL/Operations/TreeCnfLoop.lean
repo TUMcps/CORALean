@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STL.Operations.TreeCnfRewrite
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -34,12 +35,13 @@ open scoped NNReal
 variable {τ κ : Type} {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- the weight of a formula: `&` adds, `|` multiplies, a leaf weighs two
-def STL.Tree.aux_cnfWeight : STL.Tree τ κ n → ℕ
-  | .and φ ψ => aux_cnfWeight φ + aux_cnfWeight ψ + 1
-  | .or φ ψ => aux_cnfWeight φ * aux_cnfWeight ψ
+@[step_of STL.Tree.cnfLoop]
+def STL.Tree.step_cnfWeight : STL.Tree τ κ n → ℕ
+  | .and φ ψ => step_cnfWeight φ + step_cnfWeight ψ + 1
+  | .or φ ψ => step_cnfWeight φ * step_cnfWeight ψ
   | _ => 2
 
 
@@ -51,23 +53,23 @@ def STL.Tree.cnfLoop (φ : STL.Tree τ κ n) : STL.Tree τ κ n :=
   let res := (φ.cnfRewrite).1
   let cnt := (φ.cnfRewrite).2
   if _ : cnt = 0 then res else cnfLoop res
-termination_by φ.aux_cnfWeight
+termination_by φ.step_cnfWeight
 decreasing_by
   rename_i h
   -- every formula weighs at least two
-  have htwo' : ∀ φ : STL.Tree τ κ n, 2 ≤ φ.aux_cnfWeight := by
+  have htwo' : ∀ φ : STL.Tree τ κ n, 2 ≤ φ.step_cnfWeight := by
     intro φ
     induction φ with
-    | and φ ψ ihφ ihψ => simp only [STL.Tree.aux_cnfWeight]; omega
-    | or φ ψ ihφ ihψ => simp only [STL.Tree.aux_cnfWeight]; nlinarith
-    | _ => simp [STL.Tree.aux_cnfWeight]
-  have htwo : PLift (∀ φ : STL.Tree τ κ n, 2 ≤ φ.aux_cnfWeight) := ⟨htwo'⟩
+    | and φ ψ ihφ ihψ => simp only [STL.Tree.step_cnfWeight]; omega
+    | or φ ψ ihφ ihψ => simp only [STL.Tree.step_cnfWeight]; nlinarith
+    | _ => simp [STL.Tree.step_cnfWeight]
+  have htwo : PLift (∀ φ : STL.Tree τ κ n, 2 ≤ φ.step_cnfWeight) := ⟨htwo'⟩
   clear htwo'
   -- a pass never raises the weight, and lowers it when it distributes
   have hweight : ∀ φ : STL.Tree τ κ n,
-      (φ.cnfRewrite).1.aux_cnfWeight ≤ φ.aux_cnfWeight ∧
+      (φ.cnfRewrite).1.step_cnfWeight ≤ φ.step_cnfWeight ∧
         ((φ.cnfRewrite).2 ≠ 0 →
-          (φ.cnfRewrite).1.aux_cnfWeight < φ.aux_cnfWeight) := by
+          (φ.cnfRewrite).1.step_cnfWeight < φ.step_cnfWeight) := by
     clear * - htwo
     intro φ
     induction φ with
@@ -78,7 +80,7 @@ decreasing_by
       obtain ⟨b₁, b₂⟩ := ihψ
       simp only [STL.Tree.cnfRewrite]
       split
-      all_goals simp_all only [STL.Tree.aux_cnfWeight]
+      all_goals simp_all only [STL.Tree.step_cnfWeight]
       -- both operands became `&`: four clauses replace the product
       · rename_i ψ' _ _ _ l₁ l₂ r₁ r₂ _ _
         have t₁ := htwo.down l₁
@@ -106,7 +108,7 @@ decreasing_by
     | and φ ψ ihφ ihψ =>
       obtain ⟨a₁, a₂⟩ := ihφ
       obtain ⟨b₁, b₂⟩ := ihψ
-      simp only [STL.Tree.cnfRewrite, STL.Tree.aux_cnfWeight]
+      simp only [STL.Tree.cnfRewrite, STL.Tree.step_cnfWeight]
       refine ⟨by omega, fun h => ?_⟩
       by_cases hφ : (φ.cnfRewrite).2 = 0
       · have := b₂ (by omega); omega

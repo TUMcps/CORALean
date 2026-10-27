@@ -16,6 +16,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -71,10 +72,11 @@ open Matrix Scalar NormedSpace
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `e^{AΔt}` as a linear equivalence, `e^{-AΔt}` its inverse. -/
-noncomputable def aux_maxBackReach_expEquiv (A : Mat ℝ n n) (Δt : ℝ) : Vec ℝ n ≃ₗ[ℝ] Vec ℝ n :=
+@[step_of LinearSys.maxBackReach]
+noncomputable def step_maxBackReach_expEquiv (A : Mat ℝ n n) (Δt : ℝ) : Vec ℝ n ≃ₗ[ℝ] Vec ℝ n :=
   LinearEquiv.ofLinear (exp (Δt • A)).mulVecLin (exp (-(Δt • A))).mulVecLin
     (by
       have h : exp (Δt • A) * exp (-(Δt • A)) = 1 := by
@@ -89,7 +91,8 @@ noncomputable def aux_maxBackReach_expEquiv (A : Mat ℝ n n) (Δt : ℝ) : Vec 
 
 /-- Lines 4-5: `X ⊖ F box(X_end) ⊖ B_μ`, one of the two polytopes of the inner
 approximated homogeneous time-interval solution (21). -/
-noncomputable def LinearSys.aux_maxBackReachPoly (X : HPolytope (Vec ℝ n))
+@[step_of LinearSys.maxBackReach]
+noncomputable def LinearSys.step_maxBackReachPoly (X : HPolytope (Vec ℝ n))
     (FB : Zonotope (Vec ℝ n)) (μ : ℝ) : HPolytope (Vec ℝ n) :=
   let XF := X.minkDiffOf FB.construct fun i => FB.supportBound (X.A i)  -- ⊖ F box(X_end)
   XF.minkDiffOf (⟨0, 0, μ⟩ : Capsule n).construct                       -- ⊖ B_μ
@@ -116,23 +119,23 @@ noncomputable def LinearSys.maxBackReach (sys : LinearSys 𝕋 n)
   -- 3. μ ← √γ ‖(e^{AΔt} - I)G‖₂
   let μ := sys.maxBackReachMu Δt B
   -- 4. P₁ ← X_end ⊖ F box ⊖ B_μ
-  let P₁ := LinearSys.aux_maxBackReachPoly Xend FB μ
+  let P₁ := LinearSys.step_maxBackReachPoly Xend FB μ
   -- 5. P₂ ← e^{AΔt}X_end ⊖ …
-  let P₂ := LinearSys.aux_maxBackReachPoly
-    (Xend.mapEquiv (aux_maxBackReach_expEquiv (toRealMat sys.A) Δt)) FB μ
+  let P₂ := LinearSys.step_maxBackReachPoly
+    (Xend.mapEquiv (step_maxBackReach_expEquiv (toRealMat sys.A) Δt)) FB μ
   -- the two erosions keep the inequality rows bounded, `F box` and `B_μ` being nonempty
   have hμ : 0 ≤ μ := by
     letI : NormedAddCommGroup (Matrix (Fin n) (Fin B.h) ℝ) := Matrix.instL2OpNormedAddCommGroup
     exact mul_nonneg (Real.sqrt_nonneg _) (norm_nonneg _)
   have hP : ∀ X : HPolytope (Vec ℝ n), Bornology.IsBounded X.dropEqs.construct →
-      Bornology.IsBounded (LinearSys.aux_maxBackReachPoly X FB μ).dropEqs.construct := fun _ h =>
+      Bornology.IsBounded (LinearSys.step_maxBackReachPoly X FB μ).dropEqs.construct := fun _ h =>
     HPolytope.isBounded_dropEqs_minkDiffOf _
       (HPolytope.isBounded_dropEqs_minkDiffOf _ h ⟨FB.c, FB.center_mem_construct⟩)
       ⟨0, (Capsule.center_mem_construct_iff ⟨0, 0, μ⟩).mpr hμ⟩
   -- 2. and 6.-14. the loop over the time intervals and its union
   have hX₂ : Bornology.IsBounded                                   -- `e^{AΔt}` is Lipschitz
-      (Xend.mapEquiv (aux_maxBackReach_expEquiv (toRealMat sys.A) Δt)).dropEqs.construct :=
-    ((LinearMap.toContinuousLinearMap (aux_maxBackReach_expEquiv (toRealMat sys.A) Δt :
+      (Xend.mapEquiv (step_maxBackReach_expEquiv (toRealMat sys.A) Δt)).dropEqs.construct :=
+    ((LinearMap.toContinuousLinearMap (step_maxBackReach_expEquiv (toRealMat sys.A) Δt :
       Vec ℝ n →ₗ[ℝ] Vec ℝ n)).lipschitz.isBounded_image hXend).subset fun x hx =>
         ⟨_, ⟨hx.1, fun i => i.elim0⟩, LinearEquiv.apply_symm_apply _ x⟩
   sys.maxBackReachTimeInterval ρ P₁ P₂ (hP _ hXend) (hP _ hX₂) U W₀ Zw t₀ tend η ω

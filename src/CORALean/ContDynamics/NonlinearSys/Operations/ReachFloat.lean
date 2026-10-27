@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinRunAtFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 public import CORALean.ContDynamics.Reach.Operations.Steps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -11,7 +12,7 @@ public import CORALean.ContDynamics.Reach.Operations.Steps
 # Nonlinear reachability in floats: CORA's `nonlinearSys/reach` at `alg = 'lin'`
 
 `ẋ = f(x, u)`, `u(t) ∈ U` arbitrary in time, from `X₀`, computed in `𝕋` from a `FloatModel` of
-`f`: `N = (tFinal - tStart) / Δt` re-linearized steps (`aux_relinRunFloat`), each returning its set
+`f`: `N = (tFinal - tStart) / Δt` re-linearized steps (`step_relinRunFloat`), each returning its set
 over the whole step. `N` is read as `LinearSys.reachFloatInput` reads it, through `Reach.steps`,
 and `none` is returned where it is no natural number or a step fails. The real layer's same loop
 is `NonlinearSys.relinReach`, given certificates; this one computes its own, and its guarantee
@@ -47,11 +48,12 @@ open CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `R(τ_0), …, R(τ_{k-1})` of `k` re-linearized steps from `R`, or `none` if
 one of them fails: `relinRunAtFloat` at `x✱ = linPointFloat`. -/
-def NonlinearSys.FloatModel.aux_relinRunFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
+@[step_of NonlinearSys.FloatModel.reachFloat]
+def NonlinearSys.FloatModel.step_relinRunFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
     (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
     ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n))) :=
   fm.relinRunAtFloat U options fun R => (fm.linPointFloat options.Δt R U).1
@@ -69,7 +71,7 @@ def NonlinearSys.FloatModel.reachFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
   -- 2. the loop runs while `t_k < t_end`: `N = (tFinal - tStart) / Δt` iterations
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt)  -- (tFinal - tStart) / Δt ∈ ℕ
   -- 3.-17. the iterations; 18. their `R(τ_k)`, `⋃_{k < N} R(τ_k)`
-  fm.aux_relinRunFloat params.U options N X₀                            -- ⋃_{k < N} R(τ_k)
+  fm.step_relinRunFloat params.U options N X₀                            -- ⋃_{k < N} R(τ_k)
 
 end CORALean
 

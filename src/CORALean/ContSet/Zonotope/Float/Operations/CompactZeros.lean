@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import Mathlib.Data.Finset.Sort
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -9,7 +10,7 @@ public import Mathlib.Data.Finset.Sort
 # `Zonotope.compactZeros`, over a floating-point scalar
 
 CORA's `compact_(Z, 'zeros')` at tolerance `0`: the generator columns that are certifiably zero
-(`Zonotope.aux_keepColumn`, by the certified `le` in both directions, a proof when it holds) are
+(`Zonotope.step_keepColumn`, by the certified `le` in both directions, a proof when it holds) are
 dropped; a zero column the test cannot certify is kept, which is sound.
 The center and the error box are copied. Nothing rounds, so the denoted set is the same
 (`compactZeros_exact`).
@@ -36,20 +37,21 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Whether column `j` is not certified zero. -/
-def Zonotope.aux_keepColumn (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : Bool :=
+@[step_of Zonotope.compactZeros]
+def Zonotope.step_keepColumn (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : Bool :=
   !(List.finRange n).all fun i => le (Z.G j i) zero && le zero (Z.G j i)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.compactZeros (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
-  h := (Finset.univ.filter fun j => Z.aux_keepColumn j = true).card
+  h := (Finset.univ.filter fun j => Z.step_keepColumn j = true).card
   c := Z.c
   G := fun j =>
-    Z.G ((Finset.univ.filter fun j => Z.aux_keepColumn j = true).orderEmbOfFin rfl j)
+    Z.G ((Finset.univ.filter fun j => Z.step_keepColumn j = true).orderEmbOfFin rfl j)
   I_error := Z.I_error
 
 end CORALean.Float

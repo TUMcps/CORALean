@@ -8,6 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.HPolytope.Float.Instances
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -55,12 +56,13 @@ open CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] {n r w : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 open FloatOps
 
-def LinearSys.aux_verifyStepFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
+@[step_of LinearSys.verifyFloat]
+def LinearSys.step_verifyStepFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
     (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
     (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋) :
@@ -85,7 +87,8 @@ end
 section
 open FloatOps
 
-def LinearSys.aux_verifyRunFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
+@[step_of LinearSys.verifyFloat]
+def LinearSys.step_verifyRunFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
     (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
     (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋) :
@@ -93,11 +96,11 @@ def LinearSys.aux_verifyRunFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
   | 0 => none
   | fuel + 1 =>
     let it :=
-      LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax      -- 3.-25.
+      LinearSys.step_verifyStepFloat reachFn innerApprox distG distF G F εmax      -- 3.-25.
     let verified := le it.νGout zero && ltStrict zero it.νFout                -- 27. (bνG≤0)∧(bνF>0)
     let falsified := ltStrict zero it.νGin || le it.νFin zero                 -- 26. (qνG>0)∨(qνF≤0)
     if verified || falsified then some verified                               -- 26. until, 27.
-    else LinearSys.aux_verifyRunFloat reachFn innerApprox distG distF G F it.εmax fuel -- 2. repeat
+    else LinearSys.step_verifyRunFloat reachFn innerApprox distG distF G F it.εmax fuel -- 2. repeat
 
 end
 
@@ -111,7 +114,7 @@ def LinearSys.verifyFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax₀ : 𝕋)
     (fuel : ℕ) : Option Bool :=
   -- 1. ε_max ← ε_max₀
-  LinearSys.aux_verifyRunFloat reachFn innerApprox distG distF G F εmax₀ fuel
+  LinearSys.step_verifyRunFloat reachFn innerApprox distG distF G F εmax₀ fuel
 
 end CORALean
 

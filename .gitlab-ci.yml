@@ -63,8 +63,8 @@ variables:
 conventions:
   image: debian:bookworm-slim
   # Text only — no toolchain, no Mathlib, no network — so it answers in seconds
-  # and says what a green build cannot: whether `aux_` stayed in its file and
-  # off every instance, whether a file under `Operations/` or `Theorems/`
+  # and says what a green build cannot: whether `aux_` stayed off every instance
+  # (Lean keeps it in its file, #269), whether a file under `Operations/` or `Theorems/`
   # declares more than one public thing, whether the section markers still
   # signpost the declaration Lean buries last, whether an `API.lean` holds
   # anything but imports, whether a `Real` file reached into `Float`. The same

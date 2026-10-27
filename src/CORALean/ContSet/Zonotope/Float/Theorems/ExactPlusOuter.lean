@@ -62,7 +62,7 @@ private theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (
       (Z₂.h - min (min Z₁.h Z₂.h) k))) : -- --- CONCL ---
     |((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
         - toReal ((Z₁.exactPlus Z₂ k).G j i)| ≤
-      toReal (Z₁.aux_exactPlusGap Z₂ k i j) := by -- --- PROOF ---
+      toReal (Z₁.step_exactPlusGap Z₂ k i j) := by -- --- PROOF ---
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j
   · refine Fin.addCases (fun j => ?_) (fun j => ?_) j
     · -- a shared column: the stored sum is rounded down, the gap is up minus down
@@ -76,9 +76,9 @@ private theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (
       have e2 : (Z₁.exactPlus Z₂ k).G (Fin.castAdd _ (Fin.castAdd _ j)) i =
           addDown g₁ g₂ := by
         simp only [Zonotope.exactPlus, Fin.append_left, g₁, g₂]
-      have e3 : Z₁.aux_exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.castAdd _ j)) =
+      have e3 : Z₁.step_exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.castAdd _ j)) =
           subUp (addUp g₁ g₂) (addDown g₁ g₂) := by
-        simp only [Zonotope.aux_exactPlusGap, Fin.append_left, g₁, g₂]
+        simp only [Zonotope.step_exactPlusGap, Fin.append_left, g₁, g₂]
       erw [e1, e2, e3]
       exact Zonotope.aux_pairSum_gap _ _
     · -- a copied column of the first operand: exact
@@ -89,8 +89,8 @@ private theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (
       have e2 : (Z₁.exactPlus Z₂ k).G (Fin.castAdd _ (Fin.natAdd _ j)) i =
           Z₁.G ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ i := by
         simp only [Zonotope.exactPlus, Fin.append_left, Fin.append_right]
-      have e3 : Z₁.aux_exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.natAdd _ j)) = zero := by
-        simp only [Zonotope.aux_exactPlusGap, Fin.append_left, Fin.append_right]
+      have e3 : Z₁.step_exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.natAdd _ j)) = zero := by
+        simp only [Zonotope.step_exactPlusGap, Fin.append_left, Fin.append_right]
       erw [e1, e2, e3]
       simp [toReal_zero]
   · -- a copied column of the second operand: exact
@@ -101,8 +101,8 @@ private theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (
     have e2 : (Z₁.exactPlus Z₂ k).G (Fin.natAdd _ j) i =
         Z₂.G ⟨min (min Z₁.h Z₂.h) k + j, by have := j.2; omega⟩ i := by
       simp only [Zonotope.exactPlus, Fin.append_right]
-    have e3 : Z₁.aux_exactPlusGap Z₂ k i (Fin.natAdd _ j) = zero := by
-      simp only [Zonotope.aux_exactPlusGap, Fin.append_right]
+    have e3 : Z₁.step_exactPlusGap Z₂ k i (Fin.natAdd _ j) = zero := by
+      simp only [Zonotope.step_exactPlusGap, Fin.append_right]
     erw [e1, e2, e3]
     simp [toReal_zero]
 
@@ -123,7 +123,8 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
       (Zonotope.centerResidual Z₁.c Z₂.c).construct :=
     Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   have hr₂ : (fun i => ∑ j, (((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
-      - toReal (F.G j i)) * δ j) ∈ (Zonotope.generatorError (Z₁.aux_exactPlusGap Z₂ k)).construct :=
+      - toReal (F.G j i)) * δ j)
+        ∈ (Zonotope.generatorError (Z₁.step_exactPlusGap Z₂ k)).construct :=
     Zonotope.mem_generatorError (fun i j => Zonotope.aux_exactPlus_gap Z₁ Z₂ k i j) hδ
   -- the box absorbs the two incoming boxes and both roundings
   have hE : e₁ + e₂ + (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i))

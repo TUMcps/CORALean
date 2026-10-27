@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidOuter
 public import Mathlib.Analysis.Real.Pi.Bounds
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -38,10 +39,14 @@ open MeasureTheory ProbabilityTheory WithLp Matrix
 open scoped _root_.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The single value `1` of `mArray`. -/
-def aux_one : Fin 1 → ℝ := fun _ => 1
+@[step_of ProbZonotope.pyramid_not_ge_prob]
+def step_one : Fin 1 → ℝ := fun _ => 1
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The point `0` with covariance `1` in `ℝ¹`. -/
 private def aux_stdNormal : ProbZonotope 1 := ⟨⟨0, 0, Fin.elim0⟩, 1⟩
@@ -81,7 +86,7 @@ private theorem aux_stdNormal_volume_le : -- --- CONCL ---
 
 theorem ProbZonotope.pyramid_not_ge_prob : -- --- CONCL ---
     ∃ (P : ProbZonotope 1) (ν : Measure (EuclideanSpace ℝ (Fin 1))), ν ∈ P.laws ∧
-      ν Set.univ = 1 ∧ P.pyramid aux_one Set.univ < 1 := by -- --- PROOF ---
+      ν Set.univ = 1 ∧ P.pyramid step_one Set.univ < 1 := by -- --- PROOF ---
   refine ⟨aux_stdNormal, multivariateGaussian (toLp 2 0) 1,
     ⟨0, ⟨fun _ => 0, fun j => by simp, by simp [aux_stdNormal]⟩, rfl⟩, measure_univ, ?_⟩
   -- the peak `K = (2π)^{-1/2}` is at most `1/2`
@@ -100,19 +105,19 @@ theorem ProbZonotope.pyramid_not_ge_prob : -- --- CONCL ---
   have hV := aux_stdNormal_volume_le
   have hE : 0 < Real.exp (-(1 / 2 : ℝ)) ∧ Real.exp (-(1 / 2 : ℝ)) ≤ 1 :=
     ⟨Real.exp_pos _, Real.exp_le_one_iff.2 (by norm_num)⟩
-  have hlo : aux_stdNormal.pyramidLevels aux_one (0 : Fin 1).castSucc
+  have hlo : aux_stdNormal.pyramidLevels step_one (0 : Fin 1).castSucc
       = K * Real.exp (-(1 / 2)) := by
     rw [ProbZonotope.pyramidLevels, Fin.snoc_castSucc]
-    simp [hmax, aux_one]
-  have hhi : aux_stdNormal.pyramidLevels aux_one (0 : Fin 1).succ = K := by
-    have : aux_stdNormal.pyramidLevels aux_one (0 : Fin 1).succ = aux_stdNormal.max 0 :=
+    simp [hmax, step_one]
+  have hhi : aux_stdNormal.pyramidLevels step_one (0 : Fin 1).succ = K := by
+    have : aux_stdNormal.pyramidLevels step_one (0 : Fin 1).succ = aux_stdNormal.max 0 :=
       Fin.snoc_last (α := fun _ => ℝ) _ _
     rw [this, hmax]
     simp
-  have hpy : aux_stdNormal.pyramid aux_one Set.univ
+  have hpy : aux_stdNormal.pyramid step_one Set.univ
       = (K - K * Real.exp (-(1 / 2))) * volume.real
         (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1))) := by
-    simp only [ProbZonotope.pyramid, Fin.sum_univ_one, hlo, hhi, Set.inter_univ, aux_one]
+    simp only [ProbZonotope.pyramid, Fin.sum_univ_one, hlo, hhi, Set.inter_univ, step_one]
   -- the volume is at most `2`, the step at most `K (1 - e^{-1/2}) < 1/2`
   rw [hpy]
   have hstep : 0 ≤ K - K * Real.exp (-(1 / 2)) := by nlinarith

@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -15,8 +16,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Point
 `LinParamSys.reachUnion` computed in `𝕋`, the input set `params.U` in input coordinates anywhere,
 [1, Alg. 1]: `V = B U ⊕ c` is formed here, as `LinearSys.reachFloatInput` forms it, and
 taken apart at its center, `ũ` carried across windows by `constPropagateFloat` and the rest,
-holding the origin, by `particularSolutionFloat`, window by window as `aux_reachStepkFloatInput` has
-it. The offset `sys.c` is a real vector, which no float run can add, so the run takes the float
+holding the origin, by `particularSolutionFloat`, window by window as `step_reachStepkFloatInput`
+has it. The offset `sys.c` is a real vector, which no float run can add, so the run takes the float
 vector `c` that stands for it, as `LinearSys 𝕋 n` stores its `c` in `𝕋`; `reachFloatInput_outer`
 relates it to the system's through `toRealVec`. `none` when the order, a window's squaring count
 or the accumulation fails.
@@ -53,11 +54,12 @@ open CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, the input set `V` of the
 state space split at its center, at every member of `sys.A`. -/
-def LinParamSys.aux_reachStepkFloatInput
+@[step_of LinParamSys.reachFloatInput]
+def LinParamSys.step_reachStepkFloatInput
     (sys : LinParamSys ℐ[𝕋] n) (V : Zonotope (Vec 𝕋 n)) (ρ : ℕ)
     (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Option (Zonotope (Vec 𝕋 n)) := do
   let uc := ScalarCenter.centerVec (S := 𝒵[𝕋]) V           -- ũ, the constant
@@ -88,7 +90,7 @@ def LinParamSys.reachFloatInput (sys : LinParamSys ℐ[𝕋] n) (c : Vec 𝕋 n)
   let HRτ₀ := sys.timeIntervalFloat Δt η' X₀                    -- H^R(τ_0)
   let PcRτ₀ := sys.constInputSolutionFloat Δt η' uc                 -- P̃^R(τ_0), ũ over τ_0
   let Rτ₀ := Reduce.reduce (HRτ₀ ⊞ PcRτ₀) ρ                         -- (H^R ⊕ P̃^R)(τ_0), to order ρ
-  (List.range N).mapM (sys.aux_reachStepkFloatInput V ρ Δt η' Rτ₀)      -- R(τ_k), every k < N
+  (List.range N).mapM (sys.step_reachStepkFloatInput V ρ Δt η' Rτ₀)      -- R(τ_k), every k < N
 
 end CORALean
 

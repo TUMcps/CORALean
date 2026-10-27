@@ -63,15 +63,15 @@ namespace CORALean
 section
 variable {T : Type} [LinearOrder T] [Zero T]
 
-/-- `aux_isNewPointOk` as a proposition. -/
+/-- `step_isNewPointOk` as a proposition. -/
 private theorem PointSegmentSignal.aux_isNewPointOk_iff (s : PointSegmentSignal T) (i : ℕ) (p : T)
     (vals : List Bool) : -- --- CONCL ---
-    s.aux_isNewPointOk i p vals = true ↔ (s.timePoints.getD (i - 1) 0 = p ∧
+    s.step_isNewPointOk i p vals = true ↔ (s.timePoints.getD (i - 1) 0 = p ∧
       (p = 0 ∨ vals.getD 0 false ≠
       vals.getD 1 false ∨ vals.getD 0 false ≠ s.precIntervalValue i)) ∨
       (s.timePoints.getD (i - 1) 0 ≠ p ∧ ∃ v ∈ vals, v ≠ s.succIntervalValue i)
       := by -- --- PROOF ---
-  unfold PointSegmentSignal.aux_isNewPointOk
+  unfold PointSegmentSignal.step_isNewPointOk
   by_cases h : s.timePoints.getD (i - 1) 0 = p
   · simp only [TimeOrder.eqv_iff_eq, h, if_true, decide_eq_true_eq, true_and, ne_eq,
       not_true_eq_false, false_and, or_false]
@@ -85,7 +85,7 @@ private def aux_lowerPrefix (s : PointSegmentSignal T) (lb : T) (lc value : Bool
   let before := (s.atIdx (lb : WithTop T)).1
   let i := (s.atIdx (lb : WithTop T)).2
   let lVal := if lc then [value, value] else [before, value]
-  let addL := s.aux_isNewPointOk i lb lVal
+  let addL := s.step_isNewPointOk i lb lVal
   let i' := if s.timePoints.getD (i - 1) 0 = lb then i - 1 else i
   ⟨s.timePoints.take i' ++ (if addL then [lb] else []),
     s.values.take (2 * i') ++ (if addL then lVal else [])⟩
@@ -104,7 +104,7 @@ private theorem aux_ls_key (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) 
     (P : List T) (VP : List Bool) (hb : before = (s.atIdx (lb : WithTop T)).1)
     (hi : i = (s.atIdx (lb : WithTop T)).2)
     (hl : lVal = if lc then [value, value] else [before, value])
-    (ha : addL = s.aux_isNewPointOk i lb lVal)
+    (ha : addL = s.step_isNewPointOk i lb lVal)
     (hi' : i' = if s.timePoints.getD (i - 1) 0 = lb then i - 1 else i)
     (hP : P = s.timePoints.take i') (hVP : VP = s.values.take (2 * i')) : -- --- CONCL ---
     (∀ x ∈ P, x < lb) ∧ VP.length = 2 * P.length ∧ (∀ r ∈ s.timePoints.drop i', lb ≤ r) ∧ before =
@@ -264,7 +264,7 @@ private theorem aux_ls_spec (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T)
   generalize hb : (s.atIdx (lb : WithTop T)).1 = before
   generalize hi : (s.atIdx (lb : WithTop T)).2 = i
   generalize hl : (if lc = true then [value, value] else [before, value]) = lVal
-  generalize ha : s.aux_isNewPointOk i lb lVal = addL
+  generalize ha : s.step_isNewPointOk i lb lVal = addL
   generalize hi' : (if s.timePoints.getD (i - 1) 0 = lb then i - 1 else i) = i'
   have key := aux_ls_key s hs lb h0 lc value before i lVal addL i' (s.timePoints.take i')
     (s.values.take (2 * i')) hb.symm hi.symm hl.symm ha.symm hi'.symm rfl rfl
@@ -459,19 +459,19 @@ private theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) 
     (lc rc : Bool) (value : Bool) (h0 : 0 ≤ lb)
     (hne : STLInterval.emptyBounds lb up lc rc = false)
     (hlt : (lb : WithTop T) ≠ up) : -- --- CONCL ---
-    (s.aux_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
-      (STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
-      (¬ STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = s.at t)
+    (s.step_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
+      (STLInterval.IsInBounds lb up lc rc t → (s.step_setBounds lb up lc rc value).at t = value) ∧
+      (¬ STLInterval.IsInBounds lb up lc rc t → (s.step_setBounds lb up lc rc value).at t = s.at t)
       := by -- --- PROOF ---
   obtain ⟨hQv, hQle, hdrop, hbelow, hatlb, habove, hlast⟩ := aux_ls_spec s hs lb h0 lc value
   induction up using WithTop.recTopCoe with
   | top =>
-    have hR : s.aux_setBounds lb ⊤ lc rc value = aux_lowerPrefix s lb lc value := by
+    have hR : s.step_setBounds lb ⊤ lc rc value = aux_lowerPrefix s lb lc value := by
       have hj : (s.atIdx (⊤ : WithTop T)).2 = s.timePoints.length := by
         simp only [PointSegmentSignal.atIdx, le_top, decide_true]
         rw [List.takeWhile_eq_self_iff.mpr (fun _ _ => rfl)]
       have hvl : s.values.length = 2 * s.timePoints.length := hs.2.1
-      unfold PointSegmentSignal.aux_setBounds aux_lowerPrefix
+      unfold PointSegmentSignal.step_setBounds aux_lowerPrefix
       simp only [TimeOrder.isEqvTop_iff_eq, TimeOrder.eqv_iff_eq, hne, hlt, Bool.false_eq_true,
         if_false, ne_eq, not_true_eq_false, and_false, hj,
         List.drop_length, hvl.symm ▸ (List.drop_length (l := s.values)), List.append_nil]
@@ -511,7 +511,7 @@ private theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) 
         else [(s.atIdx (u : WithTop T)).1, s.succIntervalValue (s.atIdx (u : WithTop T)).2]) :=
       ⟨_, rfl⟩
     -- `set` is the lower prefix, the upper point and the tail from `ub`
-    have hR : s.aux_setBounds lb (u : WithTop T) lc rc value =
+    have hR : s.step_setBounds lb (u : WithTop T) lc rc value =
         ⟨(aux_lowerPrefix s lb lc value).timePoints ++
           (if (M.any (fun v => v ≠ value)) = true then [u] else []) ++
           s.timePoints.drop (s.atIdx (u : WithTop T)).2,
@@ -520,7 +520,7 @@ private theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) 
           s.values.drop (2 * (s.atIdx (u : WithTop T)).2)⟩ := by
       subst hM
       -- unfold `set` and regroup the appended lists
-      unfold PointSegmentSignal.aux_setBounds aux_lowerPrefix
+      unfold PointSegmentSignal.step_setBounds aux_lowerPrefix
       simp only [TimeOrder.isEqvTop_iff_eq, TimeOrder.eqv_iff_eq, hne, hlt, Bool.false_eq_true,
         if_false, ne_eq, WithTop.coe_ne_top,
         not_false_eq_true, and_true, WithTop.untopD_coe, List.append_assoc]
@@ -539,7 +539,8 @@ private theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) 
       exact ⟨fun hm => absurd hm hnm, fun _ => by rw [hRlt t ht (h.trans hlu)]; exact hbelow t ht h⟩
     · -- at the lower end
       subst h
-      have hat : (s.aux_setBounds t (u : WithTop T) lc rc value).at t = if lc = true then value else
+      have hat : (s.step_setBounds t (u : WithTop T) lc rc value).at t =
+          if lc = true then value else
           s.at t := by
         rw [hRlt t ht hlu]; exact hatlb
       cases lc
@@ -577,25 +578,25 @@ private theorem aux_set_ne (s : PointSegmentSignal T) (hs : s.IsValid) (lb : T) 
         exact ⟨fun hm => absurd hm hnm, fun _ => hRgt t h'⟩
 
 
-/-- `aux_setBounds` sets the interval to `value` and changes nothing else, and keeps the signal
+/-- `step_setBounds` sets the interval to `value` and changes nothing else, and keeps the signal
 valid. -/
 private theorem PointSegmentSignal.aux_setBounds_spec (s : PointSegmentSignal T) (hs : s.IsValid)
     (lb : T) (up : WithTop T) (lc rc : Bool) (hI : 0 ≤ lb) (value : Bool) : -- --- CONCL ---
-    (s.aux_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
-      (STLInterval.IsInBounds lb up lc rc t → (s.aux_setBounds lb up lc rc value).at t = value) ∧
+    (s.step_setBounds lb up lc rc value).IsValid ∧ ∀ t : T, 0 ≤ t →
+      (STLInterval.IsInBounds lb up lc rc t → (s.step_setBounds lb up lc rc value).at t = value) ∧
       (¬ STLInterval.IsInBounds lb up lc rc t →
-        (s.aux_setBounds lb up lc rc value).at t = s.at t) := by -- --- PROOF ---
+        (s.step_setBounds lb up lc rc value).at t = s.at t) := by -- --- PROOF ---
   by_cases hne : STLInterval.emptyBounds lb up lc rc = true
-  · have hset : s.aux_setBounds lb up lc rc value = s := by
-      unfold PointSegmentSignal.aux_setBounds; rw [if_pos hne]
+  · have hset : s.step_setBounds lb up lc rc value = s := by
+      unfold PointSegmentSignal.step_setBounds; rw [if_pos hne]
     rw [hset]
     exact ⟨hs, fun t _ => ⟨fun hm => absurd hm (STLInterval.not_memBounds_of_emptyBounds _ _ _ _
         t hne),
       fun _ => rfl⟩⟩
   · have hne' : STLInterval.emptyBounds lb up lc rc = false := by simpa using hne
     by_cases hsing : (lb : WithTop T) = up
-    · have hset : s.aux_setBounds lb up lc rc value = s.setPoint lb value := by
-        unfold PointSegmentSignal.aux_setBounds
+    · have hset : s.step_setBounds lb up lc rc value = s.setPoint lb value := by
+        unfold PointSegmentSignal.step_setBounds
         rw [if_neg hne, if_pos ((TimeOrder.isEqvTop_iff_eq _ _).2 hsing)]
       -- a single time is `aux_setPoint`
       rw [hset]

@@ -8,6 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Recip
 public import CORALean.ContSet.Interval.Float.Operations.Times
 public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
 public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -56,13 +57,14 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 variable {𝕋 : Type} {n p : ℕ}
 
 /-- `X₀` with coordinate `ind i` replaced by `U`'s coordinate `i`. -/
-def PolyZonotope.aux_sliceBox (X₀ : Interval (Vec 𝕋 p)) (ind : Fin n → Fin p)
+@[step_of PolyZonotope.innerStep]
+def PolyZonotope.step_sliceBox (X₀ : Interval (Vec 𝕋 p)) (ind : Fin n → Fin p)
     (U : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 p) :=
   -- which coordinate of `U`, if any, sits at `k`
   let pick : Fin p → Option (Fin n) := fun k => (List.finRange n).find? fun i => decide (ind i = k)
@@ -85,7 +87,7 @@ def PolyZonotope.innerStep (pZ : PolyZonotope (Vec 𝕋 n)) (X₀ : Interval (Ve
     fun k => if sel k then zero else subUp (X₀.sup k) (xc k)⟩
   -- 10. `C J`, the preconditioned Jacobian on the current box
   let CJ := (Interval.matMul (Interval.point C) (PolyZonotope.jacobianBox pZ
-    (PolyZonotope.aux_sliceBox X₀ ind U))).materialiseMat
+    (PolyZonotope.step_sliceBox X₀ ind U))).materialiseMat
   -- 10. `(J_{f1:r,u1}, J_{f1:r,u2}) ← Extract(C J, r, m)`
   let J1 : Interval (Mat 𝕋 n n) := ⟨fun i j => CJ.inf i (ind j), fun i j => CJ.sup i (ind j)⟩
   let J2 : Interval (Mat 𝕋 n pZ.p) := ⟨fun i k => if sel k then zero else CJ.inf i k,

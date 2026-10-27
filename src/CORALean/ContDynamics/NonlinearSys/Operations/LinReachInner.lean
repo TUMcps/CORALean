@@ -7,6 +7,7 @@ public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -58,12 +59,13 @@ variable {n : ℕ} {𝓛 : Type}
 open Pointwise
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The loop `while perfIndCurr > 1` of CORA's `linReachInner` from the guess `abstrerr`, for
 the linearization `A` at `p` and the box `Rlinti__`: `(trueError, VerrorDyn, Rmax__)`, or `none`
 once `fuel` passes have not settled. -/
-noncomputable def NonlinearSys.aux_linReachInnerErr (ops : NonlinearSys.LinReachInnerOps n 𝓛)
+@[step_of NonlinearSys.linReachInner]
+noncomputable def NonlinearSys.step_linReachInnerErr (ops : NonlinearSys.LinReachInnerOps n 𝓛)
     (Δt : ℝ) (A : Mat ℝ n n) (p : Vec ℝ n) (Rlinti__ : Set (Vec ℝ n)) :
     Vec ℝ n → ℕ → Option (Vec ℝ n × 𝓛 × Set (Vec ℝ n))
   | _, 0 => none
@@ -76,7 +78,7 @@ noncomputable def NonlinearSys.aux_linReachInnerErr (ops : NonlinearSys.LinReach
     let VerrorDyn := (ops.abstrErr p Rmax__).2                  --   priv_abstrerr_lin(...)
     if ∀ i, trueError i ≤ appliedError i then                   -- while perfIndCurr > 1
       some (trueError, VerrorDyn, Rmax__)
-    else NonlinearSys.aux_linReachInnerErr ops Δt A p Rlinti__ trueError k  -- abstrerr = trueError
+    else NonlinearSys.step_linReachInnerErr ops Δt A p Rlinti__ trueError k  -- abstrerr = trueError
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -101,7 +103,7 @@ noncomputable def NonlinearSys.linReachInner (ops : NonlinearSys.LinReachInnerOp
   let C := ops.curv Δt A Rstart_interval__ u                    -- C = F*zonotope(.) + G*u
   let Rlintp_outerapprox__ := (fun x => eADeltat *ᵥ x + Rcon) '' Rstart_interval__
   let Rlinti__ := convexHull ℝ (Rstart_interval__ ∪ (Rlintp_outerapprox__ + ops.box C))
-  (NonlinearSys.aux_linReachInnerErr ops Δt A p Rlinti__ abstrerr fuel).map fun r =>  -- while loop
+  (NonlinearSys.step_linReachInnerErr ops Δt A p Rlinti__ abstrerr fuel).map fun r =>  -- while loop
     let abstrerr' := r.1                                        -- abstrerr = trueError
     let VerrorDyn := r.2.1
     let Rmax__ := r.2.2

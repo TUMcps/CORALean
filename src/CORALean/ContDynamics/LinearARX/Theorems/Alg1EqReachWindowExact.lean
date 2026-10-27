@@ -79,12 +79,12 @@ private theorem LinearARX.aux_image_sum {n m : ℕ} (M : Mat ℝ m n) (s : Finse
 /-- The loop invariant of Alg. 1: the step, the set `S`, and the stored parameters. -/
 private theorem LinearARX.aux_alg1State_inv (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (U : ℕ → Set (Vec ℝ du)) {kinit : ℕ} (hp : 0 < p) (hk : p ≤ kinit) (m : ℕ) : -- --- CONCL ---
-    (sys.aux_alg1State yinit U kinit m).1 = kinit + m * p ∧
-    (sys.aux_alg1State yinit U kinit m).2.1 = {sys.Aext ^ (kinit + m * p) *ᵥ yinit}
+    (sys.step_alg1State yinit U kinit m).1 = kinit + m * p ∧
+    (sys.step_alg1State yinit U kinit m).2.1 = {sys.Aext ^ (kinit + m * p) *ᵥ yinit}
       + ∑ i ∈ Finset.Ico p (kinit + m * p + p),
           (sys.Btilde (kinit + m * p) i *ᵥ ·) '' U (kinit + m * p + p - 1 - i) ∧
     ∀ i < 2 * p,
-      (sys.aux_alg1State yinit U kinit m).2.2 i =
+      (sys.step_alg1State yinit U kinit m).2.2 i =
         sys.Btilde (kinit + m * p) i := by -- --- PROOF ---
   induction m with
   | zero =>
@@ -100,22 +100,22 @@ private theorem LinearARX.aux_alg1State_inv (sys : LinearARX 𝕋 dy du p) (yini
     rw [hk']
     -- the stored parameters, refreshed or settled
     have hB : ∀ i < 2 * p,
-        (sys.aux_alg1State yinit U kinit (m + 1)).2.2 i = sys.Btilde (k + p) i := by
+        (sys.step_alg1State yinit U kinit (m + 1)).2.2 i = sys.Btilde (k + p) i := by
       intro i hi
       by_cases hlt : k + p < 3 * p
       · by_cases hpi : p ≤ i ∧ i ≤ 2 * p - 1
-        · simp only [LinearARX.aux_alg1State, h1, if_pos hlt, if_pos hpi]
-        · simp only [LinearARX.aux_alg1State, h1, if_pos hlt, if_neg hpi]
+        · simp only [LinearARX.step_alg1State, h1, if_pos hlt, if_pos hpi]
+        · simp only [LinearARX.step_alg1State, h1, if_pos hlt, if_neg hpi]
           rw [h3 i hi, sys.Btilde_add_of_lt k p (by omega)]
-      · simp only [LinearARX.aux_alg1State, h1, if_neg hlt]
+      · simp only [LinearARX.step_alg1State, h1, if_neg hlt]
         rw [h3 i hi, sys.Btilde_add_of_lt k p (by omega)]
-    refine ⟨by simp only [LinearARX.aux_alg1State, h1], ?_, hB⟩
+    refine ⟨by simp only [LinearARX.step_alg1State, h1], ?_, hB⟩
     -- line 13, with the refreshed parameters
-    have hS : (sys.aux_alg1State yinit U kinit (m + 1)).2.1 = (sys.Aext ^ p *ᵥ ·) ''
-        (sys.aux_alg1State yinit U kinit m).2.1 + ∑ i ∈ Finset.Ico p (2 * p),
+    have hS : (sys.step_alg1State yinit U kinit (m + 1)).2.1 = (sys.Aext ^ p *ᵥ ·) ''
+        (sys.step_alg1State yinit U kinit m).2.1 + ∑ i ∈ Finset.Ico p (2 * p),
           (sys.Btilde (k + p) i *ᵥ ·) '' U (k + p + p - 1 - i) := by
       have hB' := hB
-      simp only [LinearARX.aux_alg1State, h1] at hB' ⊢
+      simp only [LinearARX.step_alg1State, h1] at hB' ⊢
       rw [LinearARX.aux_Icc_sub_one _ _ (by omega)]
       congr 1
       refine Finset.sum_congr rfl fun i hi => ?_

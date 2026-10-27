@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Operations.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -34,17 +35,23 @@ source, not run).
 namespace CORALean
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 namespace ResolveSharedExample
 
 -- two components, one state, input and output each
-abbrev aux_dims : Fin 2 → ℕ := fun _ => 1
+@[step_of NonlinearReset.globalColumns_shared]
+abbrev step_dims : Fin 2 → ℕ := fun _ => 1
 
 -- both inputs are bound to the global input `0`
-def aux_binds : ∀ i : Fin 2, Fin (aux_dims i) → ResolveSource 2 aux_dims 1 := fun _ _ => .global 0
+@[step_of NonlinearReset.globalColumns_shared]
+def step_binds : ∀ i : Fin 2, Fin (step_dims i) → ResolveSource 2 step_dims 1 :=
+  fun _ _ => .global 0
 
-private theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+private theorem aux_globalColumns : NonlinearReset.globalColumns step_binds = 2 := rfl
 
 end ResolveSharedExample
 
@@ -53,7 +60,7 @@ end ResolveSharedExample
 
 /-- CORA's `numGlobalInputs` is `2` where the product has the one global input `0`. -/
 theorem NonlinearReset.globalColumns_shared :
-    NonlinearReset.globalColumns ResolveSharedExample.aux_binds ≠ 1 := by
+    NonlinearReset.globalColumns ResolveSharedExample.step_binds ≠ 1 := by
   rw [ResolveSharedExample.aux_globalColumns]
   exact Nat.succ_ne_self 1
 

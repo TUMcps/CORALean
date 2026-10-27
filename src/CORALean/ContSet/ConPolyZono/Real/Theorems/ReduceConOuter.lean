@@ -66,13 +66,13 @@ private theorem ConPolyZono.aux_sum_univ_reduceCon (cPZ : ConPolyZono α) (r : F
         + ∑ i : Fin (cPZ.cons.q - 1), PolyZonotope.monomial cPZ.cons.R a (dropIdx t i)
             • ((-(cPZ.cons.A r (dropIdx t i)) / cPZ.cons.A r t) • cPZ.G d) := by -- --- PROOF ---
   refine (Fin.sum_univ_add (f := fun i : Fin ((cPZ.h - 1) + (cPZ.cons.q - 1)) =>
-    PolyZonotope.monomial (ConPolyZono.aux_reduceConE cPZ.E cPZ.cons.R d t) a i
-      • ConPolyZono.aux_reduceConG cPZ.G cPZ.cons.A r d t i)).trans ?_
+    PolyZonotope.monomial (ConPolyZono.step_reduceConE cPZ.E cPZ.cons.R d t) a i
+      • ConPolyZono.step_reduceConG cPZ.G cPZ.cons.A r d t i)).trans ?_
   congr 1
   · exact Finset.sum_congr rfl fun i _ => by
-      simp [PolyZonotope.monomial, ConPolyZono.aux_reduceConE, ConPolyZono.aux_reduceConG]
+      simp [PolyZonotope.monomial, ConPolyZono.step_reduceConE, ConPolyZono.step_reduceConG]
   · exact Finset.sum_congr rfl fun i _ => by
-      simp [PolyZonotope.monomial, ConPolyZono.aux_reduceConE, ConPolyZono.aux_reduceConG]
+      simp [PolyZonotope.monomial, ConPolyZono.step_reduceConE, ConPolyZono.step_reduceConG]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

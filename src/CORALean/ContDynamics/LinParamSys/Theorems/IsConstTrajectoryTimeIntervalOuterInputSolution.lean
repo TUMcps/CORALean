@@ -9,12 +9,12 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRe
 /-!
 # A constant-parameter run stays in the step enclosure, at every time of the step
 
-`IsConstTrajectory.step_outer` holds where the step ends; this holds throughout
+`IsConstTrajectory.oneStep_outer` holds where the step ends; this holds throughout
 it, which is what a time-interval reachable set is. The homogeneous half already
 covered every `t ∈ [0, r]`; what was missing was the input half, and
 `inputSolution_timeInterval_outer` supplies it.
 
-`0 ∈ U` is the one hypothesis beyond `step_outer`'s, and it is what buys a
+`0 ∈ U` is the one hypothesis beyond `oneStep_outer`'s, and it is what buys a
 single enclosure for the whole step rather than one per time.
 
 ## Inputs

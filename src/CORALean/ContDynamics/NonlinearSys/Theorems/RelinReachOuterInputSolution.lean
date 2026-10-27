@@ -91,7 +91,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
   -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
   refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ ho
   intro i hi
-  have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hi)).linearize measurableSet_Icc
+  have hlin := (traj.restrict (oneStep_subset_horizon hΔt.le hT hi)).linearize measurableSet_Icc
     (steps i).cert (hR i hi)
   exact hlin.stepInput_outer hΔt η (hε i hi) (hconv i hi) (hclosed i hi) (hbdd i hi)
     (hRconv i hi) (hRclosed i hi) (hRbdd i hi) i subset_rfl

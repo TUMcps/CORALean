@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 /-!
 # A nonempty box's support bound is its support function
 
-`Interval.aux_supportBoundEntrywise` claims only that nothing exceeds the value. For
+`Interval.step_supportBoundEntrywise` claims only that nothing exceeds the value. For
 a box whose bounds do not cross the value is a maximum: coordinate `i` is moved
 to whichever endpoint the sign of the direction's weight on it picks, and
 `Entrywise.ofEntry` assembles that point. An empty box has a bound and no point
@@ -45,7 +45,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 private theorem Interval.aux_supportBoundEntrywise_attained [Fintype ι] [DecidableEq ι]
     (I : Interval α) (c : α →ₗ[ℝ] ℝ) (hI : I.IsNonempty) : -- --- CONCL ---
-    ∃ x ∈ I.construct, c x = (I.aux_supportBoundEntrywise c).val := by -- --- PROOF ---
+    ∃ x ∈ I.construct, c x = (I.step_supportBoundEntrywise c).val := by -- --- PROOF ---
   classical
   -- the weight each coordinate carries; the far endpoint is the one its sign picks
   set w : ι → ℝ := fun i => c (ofEntry (Pi.single i 1)) with hw

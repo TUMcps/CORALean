@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The lower end keeps a nonnegative value whose power is at most `x`. -/
 private theorem SyntaxTree.aux_downIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     ∀ (n : ℕ) (lo hi : 𝕋), 0 ≤ toReal lo → toReal lo ^ k ≤ toReal x → 0 ≤ toReal
-      (SyntaxTree.aux_nthrootFloat_downIter x k n lo hi) ∧ toReal
-      (SyntaxTree.aux_nthrootFloat_downIter x k n lo hi) ^ k ≤ toReal x := by -- --- PROOF ---
+      (SyntaxTree.step_nthrootFloat_downIter x k n lo hi) ∧ toReal
+      (SyntaxTree.step_nthrootFloat_downIter x k n lo hi) ^ k ≤ toReal x := by -- --- PROOF ---
   intro n
   induction n with
   | zero => intro lo hi h0 h1; exact ⟨h0, h1⟩
@@ -55,7 +55,7 @@ private theorem SyntaxTree.aux_downIter_invFloat (x : 𝕋) (k : ℕ) : -- --- C
     intro lo hi h0 h1
     have hm : 0 ≤ toReal (maximum zero (half (addDown lo hi))) := by
       rw [toReal_maximum, toReal_zero]; exact le_max_left _ _
-    unfold SyntaxTree.aux_nthrootFloat_downIter
+    unfold SyntaxTree.step_nthrootFloat_downIter
     dsimp only
     split_ifs with hc
     · refine ih _ _ hm ?_
@@ -65,8 +65,8 @@ private theorem SyntaxTree.aux_downIter_invFloat (x : 𝕋) (k : ℕ) : -- --- C
 /-- The upper end keeps a nonnegative value whose power is at least `x`. -/
 private theorem SyntaxTree.aux_upIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CONCL ---
     ∀ (n : ℕ) (lo hi : 𝕋), 0 ≤ toReal hi → toReal x ≤ toReal hi ^ k → 0 ≤ toReal
-      (SyntaxTree.aux_nthrootFloat_upIter x k n lo hi) ∧ toReal x ≤ toReal
-      (SyntaxTree.aux_nthrootFloat_upIter x k n lo hi) ^ k := by -- --- PROOF ---
+      (SyntaxTree.step_nthrootFloat_upIter x k n lo hi) ∧ toReal x ≤ toReal
+      (SyntaxTree.step_nthrootFloat_upIter x k n lo hi) ^ k := by -- --- PROOF ---
   intro n
   induction n with
   | zero => intro lo hi h0 h1; exact ⟨h0, h1⟩
@@ -74,7 +74,7 @@ private theorem SyntaxTree.aux_upIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CON
     intro lo hi h0 h1
     have hm : 0 ≤ toReal (maximum zero (half (addUp lo hi))) := by
       rw [toReal_maximum, toReal_zero]; exact le_max_left _ _
-    unfold SyntaxTree.aux_nthrootFloat_upIter
+    unfold SyntaxTree.step_nthrootFloat_upIter
     dsimp only
     split_ifs with hc
     · refine ih _ _ hm ?_
@@ -84,11 +84,11 @@ private theorem SyntaxTree.aux_upIter_invFloat (x : 𝕋) (k : ℕ) : -- --- CON
 /-- For a nonnegative `x` and a degree at least one, the lower end is at most the root. -/
 private theorem SyntaxTree.aux_down_leFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
     (hx : 0 ≤ toReal x) : -- --- CONCL ---
-    toReal (SyntaxTree.aux_nthrootFloat_down steps x k) ≤
+    toReal (SyntaxTree.step_nthrootFloat_down steps x k) ≤
       toReal x ^ ((1 : ℝ) / k) := by -- --- PROOF ---
   have h := SyntaxTree.aux_downIter_invFloat x k steps (zero : 𝕋) (maximum one x)
     (by rw [toReal_zero]) (by rw [toReal_zero, zero_pow hk.ne']; exact hx)
-  unfold SyntaxTree.aux_nthrootFloat_down
+  unfold SyntaxTree.step_nthrootFloat_down
   rw [one_div, Real.le_rpow_inv_iff_of_pos h.1 hx (by exact_mod_cast hk), Real.rpow_natCast]
   exact h.2
 
@@ -96,13 +96,13 @@ private theorem SyntaxTree.aux_down_leFloat {steps k : ℕ} {x : 𝕋} (hk : 0 <
 private theorem SyntaxTree.aux_le_upFloat {steps k : ℕ} {x : 𝕋} (hk : 0 < k)
     (hx : 0 ≤ toReal x) : -- --- CONCL ---
     toReal x ^ ((1 : ℝ) / k) ≤
-      toReal (SyntaxTree.aux_nthrootFloat_up steps x k) := by -- --- PROOF ---
+      toReal (SyntaxTree.step_nthrootFloat_up steps x k) := by -- --- PROOF ---
   have h1 : 1 ≤ toReal (maximum one x) := by rw [toReal_maximum, toReal_one]; exact le_max_left _ _
   have h := SyntaxTree.aux_upIter_invFloat x k steps (zero : 𝕋) (maximum one x) (by linarith)
     (by
       calc toReal x ≤ toReal (maximum one x) := by rw [toReal_maximum]; exact le_max_right _ _
         _ ≤ toReal (maximum one x) ^ k := le_self_pow₀ h1 hk.ne')
-  unfold SyntaxTree.aux_nthrootFloat_up
+  unfold SyntaxTree.step_nthrootFloat_up
   rw [one_div, Real.rpow_inv_le_iff_of_pos hx h.1 (by exact_mod_cast hk), Real.rpow_natCast]
   exact h.2
 

@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.Global.EuclideanHausdorffDist
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 [1, Thm. 1]'s `ω_max`, at the `‖·‖₂` the paper states it in, beside
 `Zonotope.hausdorffDist₂_interval_le` (`ω_rad`); the same bound, unnamed, is [2, Thm. 3.2]. [2]'s
-Eq. (15) misprints the selector as `k ≠ i*` for `i ≠ i*`; followed here. `aux_ghat` is the paper's
+Eq. (15) misprints the selector as `k ≠ i*` for `i ≠ i*`; followed here. `step_ghat` is the paper's
 `ĝ`: a generator's entrywise magnitude with its first `‖·‖_∞`-attaining entry zeroed. The witness
 is the paper's: each generator is taken at the coefficient that cancels the displacement exactly
 in the entry `ĝ` zeroes, leaving at most twice the generator's magnitude in every other entry.
@@ -53,12 +54,16 @@ open Entrywise
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Thm. 1]'s `ĝ`: the entrywise magnitude, zeroed at the first entry
 attaining `‖·‖_∞`. -/
-noncomputable def aux_ghat (v : Vec ℝ n) : Vec ℝ n :=
+@[step_of Zonotope.hausdorffDist₂_interval_le_max]
+noncomputable def step_ghat (v : Vec ℝ n) : Vec ℝ n :=
   fun i => if (∀ j, |v j| ≤ |v i|) ∧ ∀ j < i, |v j| < |v i| then 0 else |v i|
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinatewise bound against twice a vector is a `‖·‖₂` bound against
 twice its norm. -/
@@ -78,9 +83,9 @@ private theorem aux_norm₂_le_two_mul {r z : Vec ℝ n} (h : ∀ i, |r i| ≤ 2
     _ = 2 * ‖z‖₂ := by rw [Real.sqrt_mul (by norm_num : (0 : ℝ) ≤ 4), h4]; rfl
 
 /-- One generator at the coefficient that cancels the displacement in the entry
-`aux_ghat` zeroes: what is left is at most twice `ĝ` in every entry. -/
+`step_ghat` zeroes: what is left is at most twice `ĝ` in every entry. -/
 private theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 1) : -- --- CONCL ---
-    ∃ a : ℝ, |a| ≤ 1 ∧ ∀ i, |lam i * |g i| - a * g i| ≤ 2 * aux_ghat g i := by -- --- PROOF ---
+    ∃ a : ℝ, |a| ≤ 1 ∧ ∀ i, |lam i * |g i| - a * g i| ≤ 2 * step_ghat g i := by -- --- PROOF ---
   by_cases hex : ∃ i₀ : Fin n, (∀ j, |g j| ≤ |g i₀|) ∧ ∀ j < i₀, |g j| < |g i₀|
   · obtain ⟨i₀, hmax, hfirst⟩ := hex
     -- the coefficient that cancels the generator in its own largest entry
@@ -93,13 +98,13 @@ private theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 
     refine ⟨a, ha1, fun i => ?_⟩
     by_cases hi : i = i₀
     -- at the zeroed entry both sides are `0`
-    · have hz : aux_ghat g i₀ = 0 := by
-        simp only [aux_ghat]
+    · have hz : step_ghat g i₀ = 0 := by
+        simp only [step_ghat]
         rw [if_pos ⟨hmax, hfirst⟩]
       rw [hi, ha2, sub_self, abs_zero, hz, mul_zero]
     -- everywhere else `ĝ` is the magnitude itself, and both terms are under it
-    · have hgi : aux_ghat g i = |g i| := by
-        simp only [aux_ghat]
+    · have hgi : step_ghat g i = |g i| := by
+        simp only [step_ghat]
         refine if_neg fun hp => hi ?_
         rcases lt_trichotomy i i₀ with h | h | h
         · exact absurd (hp.1 i₀) (not_le.mpr (hfirst i h))
@@ -118,8 +123,8 @@ private theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 
       linarith
   -- no maximal entry at all: `ĝ` zeroes nothing, and the zero coefficient works
   · refine ⟨0, by norm_num, fun i => ?_⟩
-    have hg : aux_ghat g i = |g i| := by
-      simp only [aux_ghat]
+    have hg : step_ghat g i = |g i| := by
+      simp only [step_ghat]
       exact if_neg fun hp => hex ⟨i, hp⟩
     rw [hg, zero_mul, sub_zero, abs_mul, abs_abs]
     nlinarith [hlam i, abs_nonneg (g i), abs_nonneg (lam i)]
@@ -132,9 +137,9 @@ from the zonotope than twice the generators' trimmed magnitudes reach, at
 `‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     hausdorffDist₂ Z.construct Z.interval.construct
-      ≤ 2 * ‖∑ p, aux_ghat (Z.G p)‖₂ := by -- --- PROOF ---
-  have hr : (0 : ℝ) ≤ 2 * ‖∑ p, aux_ghat (Z.G p)‖₂ := by
-    have := norm₂_nonneg (∑ p, aux_ghat (Z.G p))
+      ≤ 2 * ‖∑ p, step_ghat (Z.G p)‖₂ := by -- --- PROOF ---
+  have hr : (0 : ℝ) ≤ 2 * ‖∑ p, step_ghat (Z.G p)‖₂ := by
+    have := norm₂_nonneg (∑ p, step_ghat (Z.G p))
     linarith
   refine hausdorffDist₂_le_of_mem_dist hr
     (fun x hx => ⟨x, Z.interval_contains hx, by rw [sub_self, norm₂_zero]; exact hr⟩) ?_
@@ -174,7 +179,7 @@ theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) : -
     show x i - (Z.c + ∑ p, α p • Z.G p) i = _
     rw [Entrywise.add_sum_smul_apply, hsum, Finset.sum_sub_distrib, ← Finset.mul_sum, ← hlam2 i]
     ring
-  rw [hres, show (∑ p, aux_ghat (Z.G p)) i = ∑ p, aux_ghat (Z.G p) i from
+  rw [hres, show (∑ p, step_ghat (Z.G p)) i = ∑ p, step_ghat (Z.G p) i from
     Finset.sum_apply i Finset.univ _, Finset.mul_sum]
   exact (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun p _ => hα2 p i)
 

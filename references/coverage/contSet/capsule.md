@@ -115,7 +115,7 @@ products in the error box (the generator's as a symmetric box), the operand's bo
 Newton steps).
 
 **`polytope` — the general branch.** Otherwise the rows `[B'; -B']`, each at the capsule's support
-value `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`aux_supportFunction`, `Capsule.hPolytopeOuter`; CORA's
+value `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`step_supportFunction`, `Capsule.hPolytopeOuter`; CORA's
 `supportFunc_(zonotope(0, g), a) + r` shifted by `c`, equal at a unit row), with
 `B = gramSchmidt(g)` (`gramSchmidtVec`: CORA's completion by the unit columns but the first largest
 `|gᵢ|`, then Mathlib's `gramSchmidtNormed`, the classical loop, orthogonal for `g ≠ 0`).
@@ -125,7 +125,7 @@ value `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`aux_supportFunction`, `Capsul
 vertex form `Capsule.vPolytope` (the bounding box's corners) is no CORA method and is not linked.
 
 **`polytope` — cora-issue account.** at `g = 0`, `r > 0` (a ball) CORA's `gramSchmidt(C.g)` divides
-by `norm(0) = 0` and every row of `aux_supportFunction` is `NaN` (read from the source, not run:
+by `norm(0) = 0` and every row of `step_supportFunction` is `NaN` (read from the source, not run:
 `polytope(capsule([0;0],[0;0],1),'outer')`). The Lean basis is the identity there, the box `c ± r`.
 
 **`polytope` — float layer.** route a — `n = 1` the box rounded outward. Otherwise the rows

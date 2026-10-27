@@ -4,6 +4,7 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -66,10 +67,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `{x | lo ≤ x ≤ hi}` in `ℝ¹` by two halfspaces; empty when `hi < lo`. -/
-def HPolytope.aux_convHullInterval (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
+@[step_of HPolytope.convHullCora_empty_counterexample]
+def HPolytope.step_convHullInterval (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
   m := 2
   A := ![(LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ), -(LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ)]
   b := ![hi, -lo]
@@ -81,8 +83,8 @@ def HPolytope.aux_convHullInterval (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.convHullCora_empty_counterexample (rest : Set (Vec ℝ 1)) : -- --- CONCL ---
-    let P := HPolytope.aux_convHullInterval 1 0
-    let S := HPolytope.aux_convHullInterval 0 1
+    let P := HPolytope.step_convHullInterval 1 0
+    let S := HPolytope.step_convHullInterval 0 1
     (0 : Vec ℝ 1) ∈ convexHull ℝ (P.construct ∪ S.construct) ∧
       (0 : Vec ℝ 1) ∉ P.convHullCora S rest := by -- --- PROOF ---
   intro P S
@@ -90,11 +92,11 @@ theorem HPolytope.convHullCora_empty_counterexample (rest : Set (Vec ℝ 1)) : -
     refine Set.eq_empty_iff_forall_notMem.mpr fun x hx => ?_
     have h0 := hx.1 (show Fin 2 from 0)
     have h1 := hx.1 (show Fin 2 from 1)
-    simp [P, HPolytope.aux_convHullInterval] at h0 h1
+    simp [P, HPolytope.step_convHullInterval] at h0 h1
     linarith
   have hS : (0 : Vec ℝ 1) ∈ S.construct := by
     refine ⟨fun i => ?_, fun i => i.elim0⟩
-    fin_cases i <;> simp [S, HPolytope.aux_convHullInterval]
+    fin_cases i <;> simp [S, HPolytope.step_convHullInterval]
   refine ⟨subset_convexHull ℝ _ (Or.inr hS), ?_⟩
   simp [HPolytope.convHullCora, hP]
 

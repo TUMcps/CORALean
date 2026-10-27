@@ -131,7 +131,7 @@ v1's line 14 set `p_(j) ← min{p_(j), ρ(R̂^∃(-τ_k), N^⊤_(j,·))}` from t
 consistent fold, but of `min` over the steps `k`, which is not v1's (46) `min` over the
 *trajectories* `i`; wherever the steps' support values differ, `⟨N,p⟩_H` was strictly smaller
 than the enclosure permits, so it could cut off states that are in `R^∀∃(-τ)` and the `⊆`
-`Thm. 1` claims failed. `LinearSys.aux_minBackReachP` folds with `max` from the first step's own
+`Thm. 1` claims failed. `LinearSys.step_minBackReachP` folds with `max` from the first step's own
 value.
 
 **`Alg. 2`'s (46) carries the curvature term that v1's (44) dropped.** The set (45)
@@ -142,7 +142,7 @@ Every interval factor in (19) is `[c,0]` with `c ≤ 0` and `E` is symmetric, so
 matrix lies in `F` and the missing term `ρ(F e^{-At_{k+1}}CZ(X_end), ℓ)` is non-negative:
 v1's (44) underestimated, which is the direction that breaks the enclosure. (46) restores it as
 `ρ(F X_end, (e^{-At_{k+1}})^⊤ ℓ_j)` and writes the input term as `β_j` (47).
-`LinearSys.aux_minBackReachSupport` avoids the decomposition altogether and reads the support off
+`LinearSys.step_minBackReachSupport` avoids the decomposition altogether and reads the support off
 the step's own constructed set.
 
 **`Thm. 1`'s proof indexes (57) by the polytope instead of by the row.** (57) asks for

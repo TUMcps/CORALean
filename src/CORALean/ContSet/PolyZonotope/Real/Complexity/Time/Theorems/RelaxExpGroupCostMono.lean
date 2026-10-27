@@ -46,8 +46,8 @@ namespace CORALean.Real
 
 /-- Monotone in the factor count. -/
 private theorem PolyZonotope.aux_relaxWidthGroupCost_mono {p p' : ℕ} (h : p ≤ p') :
-    PolyZonotope.aux_relaxWidthGroupCost p ≤ PolyZonotope.aux_relaxWidthGroupCost p' := by
-  simp only [PolyZonotope.aux_relaxWidthGroupCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul]
+    PolyZonotope.step_relaxWidthGroupCost p ≤ PolyZonotope.step_relaxWidthGroupCost p' := by
+  simp only [PolyZonotope.step_relaxWidthGroupCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul]
   have := Nat.mul_le_mul_right PolyZonotope.eDiffCost.ops h
   omega
 

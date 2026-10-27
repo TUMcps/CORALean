@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
 public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -36,32 +37,35 @@ namespace CORALean.Real
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The level set `{x | x = 0}`. -/
-def LevelSet.aux_L : LevelSet 1 := ⟨1, fun x => x, fun _ => .eq⟩
+@[step_of LevelSet.isIntersecting_cell_counterexample]
+def LevelSet.step_L : LevelSet 1 := ⟨1, fun x => x, fun _ => .eq⟩
 
 /-- The box `[0, 1]`. -/
-def LevelSet.aux_box : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
+@[step_of LevelSet.isIntersecting_cell_counterexample]
+def LevelSet.step_box : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
 
 /-- The bounds `(0, 1)` of the function over the box. -/
-def LevelSet.aux_B : Fin 1 → Interval ℝ := fun _ => ⟨0, 1⟩
+@[step_of LevelSet.isIntersecting_cell_counterexample]
+def LevelSet.step_B : Fin 1 → Interval ℝ := fun _ => ⟨0, 1⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.isIntersecting_cell_counterexample : -- --- CONCL ---
-    LevelSet.aux_L.construct ∩ LevelSet.aux_box.construct ≠ ∅ ∧
-      (∀ i, IsRangeBound (fun x => LevelSet.aux_L.f x i)
-        LevelSet.aux_box.construct (LevelSet.aux_B i).inf (LevelSet.aux_B i).sup) ∧
-      ¬ LevelSet.isIntersecting_cell 0 LevelSet.aux_L.op LevelSet.aux_B := by -- --- PROOF ---
+    LevelSet.step_L.construct ∩ LevelSet.step_box.construct ≠ ∅ ∧
+      (∀ i, IsRangeBound (fun x => LevelSet.step_L.f x i)
+        LevelSet.step_box.construct (LevelSet.step_B i).inf (LevelSet.step_B i).sup) ∧
+      ¬ LevelSet.isIntersecting_cell 0 LevelSet.step_L.op LevelSet.step_B := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩
   · -- the point `0` is in both
     intro h
     have : (fun _ => (0 : ℝ) : Vec ℝ 1) ∈ (∅ : Set (Vec ℝ 1)) := by
       rw [← h]
       refine ⟨fun i => ?_, fun i => ?_⟩
-      · simp [LevelSet.aux_L, CompOp.holds]
+      · simp [LevelSet.step_L, CompOp.holds]
       · exact ⟨le_rfl, zero_le_one⟩
     exact this
   · -- the range of `x` over `[0, 1]` is `[0, 1]`
@@ -71,7 +75,7 @@ theorem LevelSet.isIntersecting_cell_counterexample : -- --- CONCL ---
   · -- the test reads `0 < 0` at the one `==` row
     intro h
     have := h (0 : Fin 1)
-    simp [LevelSet.aux_L, LevelSet.aux_B] at this
+    simp [LevelSet.step_L, LevelSet.step_B] at this
 
 
 end CORALean.Real

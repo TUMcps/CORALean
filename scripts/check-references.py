@@ -1143,7 +1143,7 @@ def theorem_categories(papers):
     """Every `theorem`/`lemma` under `src/CORALean`, `private` ones included (visibility is not
     meaning, #269), in exactly one of: a float
     refinement (a `Float/` path, or `Float` in the file or declaration name; wins over
-    everything), a proof helper (an `aux_*` name), a paper theorem (anything else in a file
+    everything), a proof helper (an `aux_*` or `step_*` name), a paper theorem (anything else in a file
     some row links) or a lemma (the rest). `Examples/` is counted apart, not classified."""
     linked = linked_files(papers)
     cat = {"paper": 0, "float": 0, "helper": 0, "lemma": 0}
@@ -1156,7 +1156,7 @@ def theorem_categories(papers):
         for name, _ in decls:
             if is_float_path(path, name):
                 cat["float"] += 1
-            elif any(seg.startswith("aux_") for seg in name.split(".")):
+            elif any(seg.startswith(("aux_", "step_")) for seg in name.split(".")):
                 cat["helper"] += 1
             elif path.resolve() in linked:
                 cat["paper"] += 1

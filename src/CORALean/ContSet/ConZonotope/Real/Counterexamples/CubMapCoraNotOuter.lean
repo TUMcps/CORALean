@@ -5,6 +5,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.LinearAlgebra.Matrix.Notation
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -43,30 +44,36 @@ namespace CORALean.Real
 open Matrix
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The constrained zonotope `c = (1, 0)`, `G = I`, `A = [1 1]`, `b = 0`. -/
-def ConZonotope.aux_cubCexIn : ConZonotope (Vec ℝ 2) where
+@[step_of ConZonotope.cubMapCora_not_outer]
+def ConZonotope.step_cubCexIn : ConZonotope (Vec ℝ 2) where
   h := 2
   c := ![1, 0]
   G := ![![1, 0], ![0, 1]]
   P := HPolytope.eqs (!![1, 1] : Mat ℝ 1 2) ![0]
 
 /-- `z = x₁² · x₁`: `T{1,1} = diag(1, 0)`, `T{1,2} = 0`. -/
-def ConZonotope.aux_cubCexTensor : Fin 1 → Fin 2 → Mat ℝ 2 2 :=
+@[step_of ConZonotope.cubMapCora_not_outer]
+def ConZonotope.step_cubCexTensor : Fin 1 → Fin 2 → Mat ℝ 2 2 :=
   fun _ k => if k = 0 then !![1, 0; 0, 0] else 0
 
 /-- What `aux_cubMapSingle` returns for them, traced by hand: center `5/2`, generators
 `(3, 3/2, 1)` and the constraint `γ₁ = 0` on the one linear monomial left. -/
-noncomputable def ConZonotope.aux_cubCexCora : ConZonotope (Vec ℝ 1) where
+@[step_of ConZonotope.cubMapCora_not_outer]
+noncomputable def ConZonotope.step_cubCexCora : ConZonotope (Vec ℝ 1) where
   h := 3
   c := ![5 / 2]
   G := ![![3], ![3 / 2], ![1]]
   P := HPolytope.eqs (!![1, 0, 0] : Mat ℝ 1 3) ![0]
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- The point `β = (1, -1)` of the input, `x = (2, -1)`. -/
 private theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
-    (![(2 : ℝ), -1] : Vec ℝ 2) ∈ ConZonotope.aux_cubCexIn.construct := by -- --- PROOF ---
+    (![(2 : ℝ), -1] : Vec ℝ 2) ∈ ConZonotope.step_cubCexIn.construct := by -- --- PROOF ---
   refine ⟨![1, -1], ?_, ?_, ?_⟩
   -- both factors lie in `[-1, 1]`
   · intro j
@@ -87,8 +94,8 @@ private theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
 
 /-- The same point is in `ConZonotope.cubMap`, which keeps the linear generator of `β₂`. -/
 private theorem ConZonotope.aux_cubMap_cex_mem :
-    PolyZonotope.cubEval ConZonotope.aux_cubCexTensor ![2, -1]
-      ∈ (ConZonotope.aux_cubCexIn.cubMap ConZonotope.aux_cubCexTensor).construct :=
+    PolyZonotope.cubEval ConZonotope.step_cubCexTensor ![2, -1]
+      ∈ (ConZonotope.step_cubCexIn.cubMap ConZonotope.step_cubCexTensor).construct :=
   ConZonotope.cubMap_outer _ _ ⟨![2, -1], ConZonotope.aux_cubCex_mem, rfl⟩
 
 
@@ -96,14 +103,14 @@ private theorem ConZonotope.aux_cubMap_cex_mem :
 
 /-- CORA's result does not contain the cubic image `z = 8` of the point `x = (2, -1)`. -/
 theorem ConZonotope.cubMapCora_not_outer : -- --- CONCL ---
-    ∃ x ∈ ConZonotope.aux_cubCexIn.construct,
-      PolyZonotope.cubEval ConZonotope.aux_cubCexTensor x
-        ∉ ConZonotope.aux_cubCexCora.construct := by -- --- PROOF ---
+    ∃ x ∈ ConZonotope.step_cubCexIn.construct,
+      PolyZonotope.cubEval ConZonotope.step_cubCexTensor x
+        ∉ ConZonotope.step_cubCexCora.construct := by -- --- PROOF ---
   refine ⟨![2, -1], ConZonotope.aux_cubCex_mem, ?_⟩
   -- the three coefficients, as a plain vector
   have key : ∀ γ : Vec ℝ 3, (∀ j, |γ j| ≤ 1)
       → γ ∈ (HPolytope.eqs (!![1, 0, 0] : Mat ℝ 1 3) ![0]).construct
-      → PolyZonotope.cubEval ConZonotope.aux_cubCexTensor ![2, -1]
+      → PolyZonotope.cubEval ConZonotope.step_cubCexTensor ![2, -1]
         ≠ ![5 / 2] + ∑ j : Fin 3, γ j • (![![3], ![3 / 2], ![1]] : Fin 3 → Vec ℝ 1) j := by
     intro γ hγ hP hx
     -- the constraint pins the first coefficient to `0`
@@ -114,7 +121,7 @@ theorem ConZonotope.cubMapCora_not_outer : -- --- CONCL ---
     have h1 := congrFun hx 0
     have b1 := abs_le.mp (hγ 1)
     have b2 := abs_le.mp (hγ 2)
-    simp [PolyZonotope.cubEval, ConZonotope.aux_cubCexTensor, Fin.sum_univ_two,
+    simp [PolyZonotope.cubEval, ConZonotope.step_cubCexTensor, Fin.sum_univ_two,
       Fin.sum_univ_three, h0, dotProduct, Matrix.mulVec] at h1
     nlinarith [b1.1, b1.2, b2.1, b2.2]
   rintro ⟨γ, hγ, hP, hx⟩

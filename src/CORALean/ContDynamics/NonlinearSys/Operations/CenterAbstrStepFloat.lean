@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepFloat
 /-!
 # `Alg. 1` lines 3-15, linearizing at the center, in floats
 
-`aux_centerAbstrStep` in `𝕋` from a `FloatModel`: [1, Alg. 1] linearizes at the center of the set
+`step_centerAbstrStep` in `𝕋` from a `FloatModel`: [1, Alg. 1] linearizes at the center of the set
 the step starts from, `z✱(t_s) = center(R(t_s))` with `center(U)` for the input half, where
 `relinStepFloat` linearizes at [2, (6)]'s half step further along `f`. The rest is
 `relinStepAtFloat`: the region first and checked, then the slopes of the model over it in place of

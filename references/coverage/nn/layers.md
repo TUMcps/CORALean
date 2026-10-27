@@ -82,7 +82,7 @@ bounds (`bound_approx` false) are not computed.
 
 **`evaluateConZonotope` — float layer.** `Float.StarSet` (now the representation `ContSet/StarSet/`)
 stores the star set in `𝕋` with an error box `I_error`, which the ReLU step makes symmetric at the
-neuron (`Float.StarSet.aux_reluError`, the ReLU being 1-Lipschitz). The bounds of the nominal part
+neuron (`Float.StarSet.step_reluError`, the ReLU being 1-Lipschitz). The bounds of the nominal part
 of a neuron are the certified corner-hull sums (`Float.StarSet.rowBounds`, rounded outward, not
 CORA's center formula). The triangle's chord row has its slope `u/(u-l)` bracketed with the products
 rounded to the weaker side and the cost paid into the right-hand side, added only when `l < 0 < u`

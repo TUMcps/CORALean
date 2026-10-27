@@ -6,6 +6,7 @@ public import CORALean.Global.Float.IntRound
 public import CORALean.Specification.SyntaxTree.Operations.Periodic
 public import CORALean.Specification.SyntaxTree.Operations.PiFloat
 public import CORALean.Specification.SyntaxTree.Definitions.SyntaxTreeFloat
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -45,27 +46,30 @@ open Float Float.FloatOps Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `R + m·(2 pi)`: the interval `R` shifted by `m` periods, rounded outward. -/
-def SyntaxTree.aux_periodicFloat_shift (twoPi R : Float.SyntaxTree.Dom 𝕋) (m : ℤ) :
+@[step_of SyntaxTree.periodicFloat]
+def SyntaxTree.step_periodicFloat_shift (twoPi R : Float.SyntaxTree.Dom 𝕋) (m : ℤ) :
     Float.SyntaxTree.Dom 𝕋 :=
   Float.Interval.plus R (Float.Interval.times ⟨fun _ => intDown m, fun _ => intUp m⟩ twoPi)
 
 /-- The upper bound a branch allows below `b`: the top of the last copy of `R` before the first
 one certified to start above `b`, and `b` where none is. -/
-def SyntaxTree.aux_periodicFloat_upper (twoPi R : Float.SyntaxTree.Dom 𝕋) (b : 𝕋) : 𝕋 :=
+@[step_of SyntaxTree.periodicFloat]
+def SyntaxTree.step_periodicFloat_upper (twoPi R : Float.SyntaxTree.Dom 𝕋) (b : 𝕋) : 𝕋 :=
   let ind : ℤ := ⌈(ToRat.toRat b - ToRat.toRat (R.sup 0)) / ToRat.toRat (twoPi.inf 0)⌉
-  if ltStrict b ((SyntaxTree.aux_periodicFloat_shift twoPi R ind).inf 0) = true then
-    (SyntaxTree.aux_periodicFloat_shift twoPi R (ind - 1)).sup 0
+  if ltStrict b ((SyntaxTree.step_periodicFloat_shift twoPi R ind).inf 0) = true then
+    (SyntaxTree.step_periodicFloat_shift twoPi R (ind - 1)).sup 0
   else b
 
 /-- The lower bound a branch allows above `a`: the bottom of the first copy of `R` after the last
 one certified to end below `a`, and `a` where none is. -/
-def SyntaxTree.aux_periodicFloat_lower (twoPi R : Float.SyntaxTree.Dom 𝕋) (a : 𝕋) : 𝕋 :=
+@[step_of SyntaxTree.periodicFloat]
+def SyntaxTree.step_periodicFloat_lower (twoPi R : Float.SyntaxTree.Dom 𝕋) (a : 𝕋) : 𝕋 :=
   let ind : ℤ := ⌊(ToRat.toRat a - ToRat.toRat (R.inf 0)) / ToRat.toRat (twoPi.inf 0)⌋
-  if ltStrict ((SyntaxTree.aux_periodicFloat_shift twoPi R ind).sup 0) a = true then
-    (SyntaxTree.aux_periodicFloat_shift twoPi R (ind + 1)).inf 0
+  if ltStrict ((SyntaxTree.step_periodicFloat_shift twoPi R ind).sup 0) a = true then
+    (SyntaxTree.step_periodicFloat_shift twoPi R (ind + 1)).inf 0
   else a
 
 
@@ -81,12 +85,12 @@ def SyntaxTree.periodicFloat (p k : ℕ) (resTemp₁ resTemp₂ prev : Float.Syn
     ⟨fun _ => addDown piI.inf piI.inf, fun _ => addUp piI.sup piI.sup⟩
   -- compute updated upper bound
   let supNew := minimum (prev.sup 0)
-    (maximum (SyntaxTree.aux_periodicFloat_upper twoPi resTemp₁ (prev.sup 0))
-      (SyntaxTree.aux_periodicFloat_upper twoPi resTemp₂ (prev.sup 0)))
+    (maximum (SyntaxTree.step_periodicFloat_upper twoPi resTemp₁ (prev.sup 0))
+      (SyntaxTree.step_periodicFloat_upper twoPi resTemp₂ (prev.sup 0)))
   -- compute updated lower bound
   let infNew := maximum (prev.inf 0)
-    (minimum (SyntaxTree.aux_periodicFloat_lower twoPi resTemp₁ (prev.inf 0))
-      (SyntaxTree.aux_periodicFloat_lower twoPi resTemp₂ (prev.inf 0)))
+    (minimum (SyntaxTree.step_periodicFloat_lower twoPi resTemp₁ (prev.inf 0))
+      (SyntaxTree.step_periodicFloat_lower twoPi resTemp₂ (prev.inf 0)))
   ⟨fun _ => infNew, fun _ => supNew⟩
 
 end CORALean

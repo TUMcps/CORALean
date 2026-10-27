@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Instances
 public import CORALean.NN.Graph.Operations.Flatten
 public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -32,14 +33,15 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] {N F : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- The matrix of `H ↦ 1 H` on the stacked `N × F` node features. -/
-def GNN.aux_sumPoolMat (N F : ℕ) : Mat 𝕋 F (N * F) :=
+@[step_of GNN.sumPool]
+def GNN.step_sumPoolMat (N F : ℕ) : Mat 𝕋 F (N * F) :=
   fun j c => if (finProdFinEquiv.symm c).2 = j then one else zero
 
 end
@@ -49,7 +51,7 @@ end
 
 /-- Each feature summed across the nodes of the stacked node features. -/
 def GNN.sumPool (pZ : PolyZonotope (Vec 𝕋 (N * F))) : PolyZonotope (Vec 𝕋 F) :=
-  PolyZonotope.mtimes (GNN.aux_sumPoolMat N F) pZ
+  PolyZonotope.mtimes (GNN.step_sumPoolMat N F) pZ
 
 end CORALean.Float
 

@@ -70,7 +70,7 @@ variable [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One step of a `'constParam'` run, initial set and inputs together. -/
-theorem LinParamSys.IsCanonicalConstTrajectory.step_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
+theorem LinParamSys.IsCanonicalConstTrajectory.oneStep_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}
     (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)

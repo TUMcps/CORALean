@@ -60,18 +60,19 @@ private theorem Taylm.aux_log_coef {c : ℝ} (hc : 0 < c) (k : ℕ) : -- --- CON
   field_simp
 
 
-/-- `aux_logCoef` encloses the Taylor coefficients of `log`. -/
+/-- `step_logCoef` encloses the Taylor coefficients of `log`. -/
 private theorem Taylm.aux_logCoef_mem (q s : ℕ) {c : 𝕋} (hc : 0 < toReal c)
     (k : ℕ) : -- --- CONCL ---
-    toReal (Taylm.aux_logCoef q s c k).inf ≤ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
+    toReal (Taylm.step_logCoef q s c k).inf
+        ≤ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
       ∧ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
-        ≤ toReal (Taylm.aux_logCoef q s c k).sup := by -- --- PROOF ---
+        ≤ toReal (Taylm.step_logCoef q s c k).sup := by -- --- PROOF ---
   have hinvU : 1 / toReal c ≤ toReal (divUp one c) := by
     have := div_le_divUp one c hc; rwa [toReal_one] at this
   have hinv0 : 0 < 1 / toReal c := by positivity
   cases k with
   | zero =>
-    simp only [iteratedDeriv_zero, Nat.factorial_zero, Nat.cast_one, div_one, Taylm.aux_logCoef,
+    simp only [iteratedDeriv_zero, Nat.factorial_zero, Nat.cast_one, div_one, Taylm.step_logCoef,
       toReal_neg]
     constructor
     · -- `log c = -log (1/c) ≥ -log u ≥ -logUp u` for `u ≥ 1/c`
@@ -124,7 +125,7 @@ private theorem Taylm.aux_logCoef_mem (q s : ℕ) {c : 𝕋} (hc : 0 < toReal c)
     have hsplit : (-1 : ℝ) ^ k * (1 / toReal c) ^ (k + 1) / ((k + 1 : ℕ) : ℝ)
         = (-1) ^ k * m := by simp only [m]; ring
     rw [hsplit]
-    simp only [Taylm.aux_logCoef]
+    simp only [Taylm.step_logCoef]
     rcases Nat.even_or_odd k with he | ho
     · rw [if_pos (Nat.even_iff.1 he), he.neg_one_pow, one_mul]
       exact ⟨hlo, hhi⟩

@@ -60,9 +60,9 @@ the boxes enclose. -/
 private theorem aux_rankByKey_eq (key : ℕ → Interval 𝕋) (L : List ℕ) (s g : ℕ → ℝ)
     (hs : ∀ a ∈ L, toReal (key a).inf ≤ s a ∧ s a ≤ toReal (key a).sup)
     (hg : ∀ a ∈ L, ∀ b ∈ L, g a ≤ g b ↔ s a ≤ s b) {L' : List ℕ}
-    (h : aux_rankByKey key L = some L') : -- --- CONCL ---
+    (h : step_rankByKey key L = some L') : -- --- CONCL ---
     L' = L.mergeSort fun a b => decide (g a ≤ g b) := by -- --- PROOF ---
-  unfold aux_rankByKey at h
+  unfold step_rankByKey at h
   split_ifs at h with hcert
   rw [← Option.some.inj h]
   -- the two comparisons agree on every pair of neurons of the list
@@ -89,12 +89,12 @@ private noncomputable def aux_sum (S : Mat ℝ m n) (j : ℕ) : ℝ :=
 /-- A sensitivity in its box has its key in the key box. -/
 private theorem aux_sensitivityKey_mem {SB : Interval (Mat 𝕋 m n)} {S : Mat ℝ m n}
     (hS : S ∈ SB.construct) (j : ℕ) : -- --- CONCL ---
-    toReal (aux_sensitivityKey SB j).inf ≤ aux_sum S j ∧
-      aux_sum S j ≤ toReal (aux_sensitivityKey SB j).sup := by -- --- PROOF ---
+    toReal (step_sensitivityKey SB j).inf ≤ aux_sum S j ∧
+      aux_sum S j ≤ toReal (step_sensitivityKey SB j).sup := by -- --- PROOF ---
   by_cases hj : j < n
   · -- every absolute entry is between the stored bounds of its box
     have hS' := Interval.mem_mat_iff.mp hS
-    simp only [aux_sensitivityKey, aux_sum, dif_pos hj]
+    simp only [step_sensitivityKey, aux_sum, dif_pos hj]
     refine ⟨le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun i _ => ?_),
       le_trans (Finset.sum_le_sum fun i _ => ?_) (sum_le_sumUp _)⟩
     · have h := hS' i ⟨j, hj⟩
@@ -106,13 +106,13 @@ private theorem aux_sensitivityKey_mem {SB : Interval (Mat 𝕋 m n)} {S : Mat �
       have h1 := le_max_left (-toReal (SB.inf i ⟨j, hj⟩)) (toReal (SB.sup i ⟨j, hj⟩))
       have h2 := le_max_right (-toReal (SB.inf i ⟨j, hj⟩)) (toReal (SB.sup i ⟨j, hj⟩))
       exact abs_le.mpr ⟨by linarith [h.1], by linarith [h.2]⟩
-  · simp [aux_sensitivityKey, aux_sum, dif_neg hj, toReal_zero]
+  · simp [step_sensitivityKey, aux_sum, dif_neg hj, toReal_zero]
 
 /-- The channel key box encloses the sum of the neurons' real keys over the channels. -/
 private theorem aux_channelKey_mem {key : ℕ → Interval 𝕋} {s : ℕ → ℝ}
     (hk : ∀ j, toReal (key j).inf ≤ s j ∧ s j ≤ toReal (key j).sup) (h w ch p : ℕ) :
-    toReal (aux_channelKey key h w ch p).inf ≤ ∑ k ∈ Finset.range ch, s (p + h * w * k) ∧
-      ∑ k ∈ Finset.range ch, s (p + h * w * k) ≤ toReal (aux_channelKey key h w ch p).sup := by
+    toReal (step_channelKey key h w ch p).inf ≤ ∑ k ∈ Finset.range ch, s (p + h * w * k) ∧
+      ∑ k ∈ Finset.range ch, s (p + h * w * k) ≤ toReal (step_channelKey key h w ch p).sup := by
   rw [Finset.sum_range (fun k => s (p + h * w * k))]
   exact ⟨le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun k _ => (hk _).1),
     le_trans (Finset.sum_le_sum fun k _ => (hk _).2) (sum_le_sumUp _)⟩

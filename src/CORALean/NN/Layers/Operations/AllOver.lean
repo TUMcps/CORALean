@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Tensor
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -29,19 +30,20 @@ and `@[csimp]` swaps in the same conjunction as a loop, giving up the early exit
 namespace CORALean
 
 
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+/-- The same conjunction as a loop. -/
+@[step_of allOver]
+def step_allOverImpl {k : ℕ} (f : Fin k → Bool) : Bool :=
+  Fin.foldr k (fun i acc => f i && acc) true
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Every index passing its own check, as a fold rather than a `Finset`. -/
 def allOver : {k : ℕ} → (Fin k → Bool) → Bool
   | 0, _ => true
   | _ + 1, f => f 0 && allOver fun i => f i.succ
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The same conjunction as a loop. -/
-def aux_allOverImpl {k : ℕ} (f : Fin k → Bool) : Bool :=
-  Fin.foldr k (fun i acc => f i && acc) true
 
 end CORALean
 

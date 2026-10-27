@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepSubsetHorizon
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
@@ -103,7 +103,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T :
     have hiN : i < N := Nat.lt_of_succ_le hi
     have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
     have hwin : Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt) ⊆ T :=
-      step_subset_horizon hΔt hT hiN
+      oneStep_subset_horizon hΔt hT hiN
     -- the run re-anchored at the start of step `i`, from what step `i - 1` enclosed
     have hmaps : Set.MapsTo (fun t => (i : ℝ) * Δt + t) (Set.Icc (0 : ℝ) Δt) T := by
       intro t ht

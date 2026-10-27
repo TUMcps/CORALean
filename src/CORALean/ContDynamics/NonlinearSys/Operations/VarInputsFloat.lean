@@ -5,6 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
 public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -51,10 +52,11 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n m o : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `½ I`, the scaling of the second-order part. -/
-def aux_halfMat (n : ℕ) : Mat 𝕋 n n := fun i j => if i = j then half one else zero
+@[step_of varInputsFloat]
+def step_halfMat (n : ℕ) : Mat 𝕋 n n := fun i j => if i = j then half one else zero
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -68,7 +70,7 @@ def varInputsFloat (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
   let DzΔz := PolyZonotope.quadMapMixed D RzΔ Rz           -- D[z∆, z]
   let DzΔzΔ := PolyZonotope.quadMap D RzΔ                  -- D[z∆, z∆]
   let quad := (DzzΔ.plus DzΔz).plus DzΔzΔ                  -- the three pairings
-  BU.plus (PolyZonotope.mtimes (aux_halfMat n) quad)           -- B U∆ + ½ (…)
+  BU.plus (PolyZonotope.mtimes (step_halfMat n) quad)           -- B U∆ + ½ (…)
 
 end CORALean
 

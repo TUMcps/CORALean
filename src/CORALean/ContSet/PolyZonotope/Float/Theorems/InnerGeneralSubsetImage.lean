@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerTestSubsetImage
 # `innerGeneral` proves an inner box
 
 Both passes of `innerGeneral`, the preconditioned one and the one with `C = eye(n)`, are `innerTest`
-at the columns `aux_innerColumns` picked, so `innerTest_subset_image` is the guarantee of either;
+at the columns `step_innerColumns` picked, so `innerTest_subset_image` is the guarantee of either;
 where no columns are found the answer is `false`.
 
 ## Inputs

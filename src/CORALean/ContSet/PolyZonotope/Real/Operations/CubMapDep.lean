@@ -8,6 +8,7 @@ public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Data.Real.Basic
 public import Mathlib.LinearAlgebra.BilinearMap
 public import Mathlib.Logic.Equiv.Fin.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -46,10 +47,11 @@ namespace CORALean.Real
 variable {n m : ℕ} {V : Type} [AddCommGroup V] [Module ℝ V]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `(x, w) ↦ (Σₖ xₖ · w(i, k))ᵢ`, `w` indexed by the pairs `(i, k)`. -/
-def PolyZonotope.aux_cubPair (m n : ℕ) : Vec ℝ n →ₗ[ℝ] Vec ℝ (m * n) →ₗ[ℝ] Vec ℝ m :=
+@[step_of PolyZonotope.cubMapDepOn]
+def PolyZonotope.step_cubPair (m n : ℕ) : Vec ℝ n →ₗ[ℝ] Vec ℝ (m * n) →ₗ[ℝ] Vec ℝ m :=
   LinearMap.mk₂ ℝ (fun (x : Vec ℝ n) (w : Vec ℝ (m * n)) (i : Fin m) =>
       ∑ k, x k * w (finProdFinEquiv (i, k)))
     (fun _ _ _ => funext fun _ => by simp [add_mul, Finset.sum_add_distrib])
@@ -58,7 +60,8 @@ def PolyZonotope.aux_cubPair (m n : ℕ) : Vec ℝ n →ₗ[ℝ] Vec ℝ (m * n)
     (fun _ _ _ => funext fun _ => by simp [Finset.mul_sum, mul_left_comm])
 
 /-- The tensor read as one quadratic form per pair: `T{i,k}` at `(i, k)`. -/
-def PolyZonotope.aux_cubQuad (T : Fin m → Fin n → Mat ℝ n n) : Fin (m * n) → Mat ℝ n n :=
+@[step_of PolyZonotope.cubMapDepOn]
+def PolyZonotope.step_cubQuad (T : Fin m → Fin n → Mat ℝ n n) : Fin (m * n) → Mat ℝ n n :=
   fun l => T (finProdFinEquiv.symm l).1 (finProdFinEquiv.symm l).2
 
 
@@ -70,9 +73,10 @@ def PolyZonotope.cubMapDepOn (π₁ π₂ π₃ : V →ₗ[ℝ] Vec ℝ n) (T : 
     (P : PolyZonotope V) : PolyZonotope (Vec ℝ m) :=
   -- the quadratic forms `w(i, k) = (π₁ x)ᵀ T{i,k} (π₂ x)`
   let w : PolyZonotope (Vec ℝ (m * n)) :=
-    PolyZonotope.bilin ((PolyZonotope.quadBilin (PolyZonotope.aux_cubQuad T)).compl₁₂ π₁ π₂) P P rfl
+    PolyZonotope.bilin ((PolyZonotope.quadBilin (PolyZonotope.step_cubQuad T)).compl₁₂ π₁ π₂)
+      P P rfl
   -- `Σₖ (π₃ x)ₖ w(i, k)`
-  PolyZonotope.bilin ((PolyZonotope.aux_cubPair m n).compl₁₂ π₃ LinearMap.id) P w rfl
+  PolyZonotope.bilin ((PolyZonotope.step_cubPair m n).compl₁₂ π₃ LinearMap.id) P w rfl
 
 end CORALean.Real
 

@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.Global.Float.FloatOps
 public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -44,32 +45,33 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def Zonotope.aux_mulResidual {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h) (Γ : Mat 𝕋 h m) :
+@[step_of Zonotope.containsZonotope]
+def Zonotope.step_mulResidual {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h) (Γ : Mat 𝕋 h m) :
     Fin n → Fin m → 𝕋 := fun i j =>
   maximum (absolute (subDown (A i j) (dotUp (fun l => G i l) fun l => Γ l j)))
     (absolute (subUp (A i j) (dotDown (fun l => G i l) fun l => Γ l j)))
 
-
-def Zonotope.aux_errBound (E : Interval (Vec 𝕋 n)) : Vec 𝕋 n := fun i =>
+@[step_of Zonotope.containsZonotope]
+def Zonotope.step_errBound (E : Interval (Vec 𝕋 n)) : Vec 𝕋 n := fun i =>
   maximum (absolute (E.inf i)) (absolute (E.sup i))
 
-
-def Zonotope.aux_entryDeviation (x e lo hi : Vec 𝕋 n) (i : Fin n) : 𝕋 :=
+@[step_of Zonotope.containsZonotope]
+def Zonotope.step_entryDeviation (x e lo hi : Vec 𝕋 n) (i : Fin n) : 𝕋 :=
   maximum (subUp (subUp (x i) (e i)) (lo i)) (subUp (hi i) (subDown (x i) (e i)))
-
 
 /-- Entry `i` of what the rounded `β` (`stBeta`) and `Γ` (`stGamma`) of the `'approx:st'` test
 (`st`: Sadraddini-Tedrake) leave over, rounded up: the center and generator residuals of
 `c₂ - c₁ = G₂ β`, `G₁ = G₂ Γ`, plus `Z₁`'s error box. The box of `ballCert` must absorb it. -/
-def Zonotope.aux_stLeftover (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) (i : Fin n) : 𝕋 :=
+@[step_of Zonotope.containsZonotope]
+def Zonotope.step_stLeftover (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) (i : Fin n) : 𝕋 :=
   addUp (addUp
-    (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
+    (Zonotope.step_entryDeviation Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
       (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
-    (sumUp fun j => Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
+    (sumUp fun j => Zonotope.step_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
       (Z₂.stGamma Z₁ H) i j))
-    (Zonotope.aux_errBound Z₁.I_error i)
+    (Zonotope.step_errBound Z₁.I_error i)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -78,7 +80,7 @@ def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 
   let δ := Z₂.stDelta Z₁ H
   Zonotope.ballCert (fun i j => Z₂.G j i) H (Zonotope.ballB H δ) δ
     && (List.finRange Z₂.h).all (fun k => le (addUp (Z₂.stUsed Z₁ H k) δ) one)
-    && (List.finRange n).all (fun i => le (Z₂.aux_stLeftover Z₁ H i) (Zonotope.ballB H δ))
+    && (List.finRange n).all (fun i => le (Z₂.step_stLeftover Z₁ H i) (Zonotope.ballB H δ))
     && (List.finRange n).all fun i => le (Z₂.I_error.inf i) (Z₂.I_error.sup i)
 
 end CORALean.Float

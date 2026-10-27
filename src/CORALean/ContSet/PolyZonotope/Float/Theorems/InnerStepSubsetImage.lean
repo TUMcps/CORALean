@@ -122,18 +122,18 @@ private theorem PolyZonotope.aux_jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 
 section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 
-/-- The slice through a point lies in `aux_sliceBox`. -/
+/-- The slice through a point lies in `step_sliceBox`. -/
 private theorem PolyZonotope.aux_jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p))
     {ind : Fin n → Fin p}
     (hind : Function.Injective ind) (U : Interval (Vec 𝕋 n)) {xc : Vec ℝ p} {v : Vec ℝ n}
     (hv : v ∈ U.construct)
     (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k))
     : -- --- CONCL ---
-    jacobiSlice xc ind v ∈ (PolyZonotope.aux_sliceBox X₀ ind U).construct := by -- --- PROOF ---
+    jacobiSlice xc ind v ∈ (PolyZonotope.step_sliceBox X₀ ind U).construct := by -- --- PROOF ---
   intro k
-  show toReal ((PolyZonotope.aux_sliceBox X₀ ind U).inf k) ≤ jacobiSlice xc ind v k ∧
-    jacobiSlice xc ind v k ≤ toReal ((PolyZonotope.aux_sliceBox X₀ ind U).sup k)
-  simp only [PolyZonotope.aux_sliceBox]
+  show toReal ((PolyZonotope.step_sliceBox X₀ ind U).inf k) ≤ jacobiSlice xc ind v k ∧
+    jacobiSlice xc ind v k ≤ toReal ((PolyZonotope.step_sliceBox X₀ ind U).sup k)
+  simp only [PolyZonotope.step_sliceBox]
   cases h : (List.finRange n).find? fun i => decide (ind i = k) with
   | some i =>
     -- `k` is `ind i`, where the slice reads `v`
@@ -184,9 +184,9 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
   cases h
   simp only [Interval.materialiseMat_eq, Interval.materialise_eq] at hD hcand
   set CJ := Interval.matMul (Interval.point C) (PolyZonotope.jacobianBox pZ
-    (PolyZonotope.aux_sliceBox X₀ ind U))
+    (PolyZonotope.step_sliceBox X₀ ind U))
   -- the Jacobian on the slice lies in `C·jacobianBox`
-  have hCJ : ∀ z ∈ (PolyZonotope.aux_sliceBox X₀ ind U).construct,
+  have hCJ : ∀ z ∈ (PolyZonotope.step_sliceBox X₀ ind U).construct,
       toRealMat C * Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) z ∈
         CJ.construct := fun z hz =>
     Interval.matMul_outer _ _ (Interval.mem_point C) (PolyZonotope.aux_jacobianBox_outer pZ _ hz)

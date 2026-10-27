@@ -115,7 +115,7 @@ theorem NonlinearSys.reachSetExact_subset_evalOn (sys : NonlinearSys n m)
   have hstep : ∀ j < N, (NonlinearSys.linearize (steps j).A).stepInput
       (fun t => sys.f (x t) (u t) - (steps j).A *ᵥ x t) Δt j ∈ construct (Ud j) := by
     intro j hj
-    have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hj)).linearize measurableSet_Icc
+    have hlin := (traj.restrict (oneStep_subset_horizon hΔt.le hT hj)).linearize measurableSet_Icc
       (steps j).cert (fun t ht => hR j hj t ht (traj.reachSetExact_outer t))
     exact hUd j hj (hlin.stepInput_outer hΔt η (hε j hj) (hconv j hj) (hclosed j hj)
       (hbdd j hj) (hRconv j hj) (hRclosed j hj) (hRbdd j hj) j subset_rfl)

@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 public import CORALean.ContSet.Zonotope.Real.Instances
-public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.OneStepSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
@@ -129,7 +129,7 @@ private theorem LinearSysDT.aux_reach_step_subset_closedBall (sys : LinearSysDT 
         ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) :
     (sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + rbox) :=
-  Zonotope.step_subset_closedBall sys.A hR hU hbox
+  Zonotope.oneStep_subset_closedBall sys.A hR hU hbox
 
 end
 

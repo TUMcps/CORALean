@@ -9,7 +9,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # `rightInvQ` bounds every absolute row sum of `1 - G H`
 
-Each entry is bounded by `aux_rightInvResidual`, a row of them is summed upward, and the largest of
+Each entry is bounded by `step_rightInvResidual`, a row of them is summed upward, and the largest of
 the sums is taken exactly.
 
 ## Inputs
@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n h : ℕ}
 private theorem Zonotope.aux_rightInvResidual_bound (G : Mat 𝕋 n h) (H : Mat 𝕋 h n)
     (i j : Fin n) : -- --- CONCL ---
     |((1 : Mat ℝ n n) - toRealMat G * toRealMat H) i j|
-      ≤ toReal (Zonotope.aux_rightInvResidual G H i j) := by -- --- PROOF ---
+      ≤ toReal (Zonotope.step_rightInvResidual G H i j) := by -- --- PROOF ---
   have hd := dotDown_le (fun l => G i l) fun l => H l j
   have hu := le_dotUp (fun l => G i l) fun l => H l j
   have hprod : (toRealMat G * toRealMat H) i j
@@ -62,7 +62,7 @@ private theorem Zonotope.aux_rightInvResidual_bound (G : Mat 𝕋 n h) (H : Mat 
     (dotDown (fun l => G i l) fun l => H l j)
   rw [hδ] at h1 h2
   rw [hsub]
-  simp only [Zonotope.aux_rightInvResidual, toReal_maximum, toReal_absolute]
+  simp only [Zonotope.step_rightInvResidual, toReal_maximum, toReal_absolute]
   exact abs_le_max_abs_abs (by linarith) (by linarith)
 
 
@@ -72,8 +72,8 @@ theorem Zonotope.rightInvQ_bound (G : Mat 𝕋 n h) (H : Mat 𝕋 h n) (i : Fin 
     ∑ j, |((1 : Mat ℝ n n) - toRealMat G * toRealMat H) i j|
       ≤ toReal (Zonotope.rightInvQ G H) := by
   refine le_trans (Finset.sum_le_sum fun j _ => Zonotope.aux_rightInvResidual_bound G H i j) ?_
-  refine le_trans (sum_le_sumUp fun j => Zonotope.aux_rightInvResidual G H i j) ?_
-  exact le_maximumOver (fun i => sumUp fun j => Zonotope.aux_rightInvResidual G H i j) i
+  refine le_trans (sum_le_sumUp fun j => Zonotope.step_rightInvResidual G H i j) ?_
+  exact le_maximumOver (fun i => sumUp fun j => Zonotope.step_rightInvResidual G H i j) i
 
 end CORALean.Float
 

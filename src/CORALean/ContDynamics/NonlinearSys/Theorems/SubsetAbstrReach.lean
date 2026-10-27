@@ -63,11 +63,11 @@ algorithm returns. -/
 theorem NonlinearSys.subset_abstrReach (sys : NonlinearSys n m)
     (params : Reach.InputParams (S n) (S m) ℝ) (options : NonlinearSys.AbstrReachOptions S n m)
     {j : ℕ} (hj : j < options.K) : -- --- CONCL ---
-    ∀ s ∈ sys.aux_abstrRun params.U options.lin options.Φ options.sub options.enlarge options.Δt
+    ∀ s ∈ sys.step_abstrRun params.U options.lin options.Φ options.sub options.enlarge options.Δt
         (params.tFinal - params.tStart) options.η options.taylorTermsAbstr options.ρ options.fuel
         params.X₀ (j + 1),
       construct s.Rτ ⊆ sys.abstrReach params options := by -- --- PROOF ---
-  intro s (h : sys.aux_abstrRun params.U options.lin options.Φ options.sub options.enlarge
+  intro s (h : sys.step_abstrRun params.U options.lin options.Φ options.sub options.enlarge
       options.Δt (params.tFinal - params.tStart) options.η options.taylorTermsAbstr options.ρ
       options.fuel params.X₀ (j + 1) = some s) x hx
   simp only [NonlinearSys.abstrReach, Set.mem_iUnion, exists_prop]

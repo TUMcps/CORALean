@@ -93,11 +93,11 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
     (hmû : ∀ i, AEStronglyMeasurable (û i) (volume.restrict T))
     -- (44), (45): the `ω` steps enclose the center trajectory's own set
     (hcov : sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u₀ ⊆
-      ⋃ k < ω, (sys.aux_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct)
+      ⋃ k < ω, (sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct)
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
       ∀ x ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ (û i),
-        HPolytope.rowLin N j x ≤ sys.aux_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1) j)
+        HPolytope.rowLin N j x ≤ sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1) j)
     : -- --- CONCL ---
     sys.timeIntervalBackReachSetForallExistsExact T U W Xend τ ⊆
       sys.minBackReachTimeInterval ρ CZ W₀ U₀ Zw N t₀ tend η ω := by -- --- PROOF ---
@@ -110,7 +110,7 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
     fun u hu hmu => hx₀ u hu hmu
   -- (57): every row of `⟨N,p⟩_H` bounds one of those sets, hence `x₀`
   have hP : x₀ ∈ (HPolytope.ineqs N
-      (sys.aux_minBackReachP ρ CZ W₀ U₀ Zw N t₀ ((tend - t₀) / ω) η (ω - 1))).construct := by
+      (sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ ((tend - t₀) / ω) η (ω - 1))).construct := by
     refine HPolytope.mem_ineqs_iff.mpr fun j => ?_
     obtain ⟨i, hi⟩ := hp j
     exact hi x₀ (key (û i) (hû i) (hmû i))

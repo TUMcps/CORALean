@@ -101,7 +101,7 @@ private theorem LinearSys.aux_deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δ
     {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s)
     (hs : s ≤ toReal Δt) : -- --- CONCL ---
     exp (s • Scalar.toRealMat sys.A) *ᵥ x - x
-      ∈ (sys.aux_deltaReachFloat Δt η R).construct := by -- --- PROOF ---
+      ∈ (sys.step_deltaReachFloat Δt η R).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set A := Scalar.toRealMat sys.A
   set r := toReal Δt
@@ -182,12 +182,12 @@ theorem LinearSys.IsCanonicalTrajectory.postDeltaFloat_outer {sys : LinearSys �
   have hrest := sys.inputReach_subset_inputSolutionFloat hΔt hη _
     (sys.inputReach_mono (CompactSet.isBounded_construct _) (Recenter.zero_mem_recenter V) ht.1
       ht.2 (traj.sub_mem_inputReach_recenter hUV ht))
-  -- the free motion's difference, inside `aux_deltaReachFloat`
+  -- the free motion's difference, inside `step_deltaReachFloat`
   have hhom := sys.aux_deltaReachFloat_outer hΔt hη R traj.init ht.1 ht.2
   have hsplit : x t - x 0 = (exp (t • A) *ᵥ x 0 - x 0) + (Real.MatExp.expIntegral A t *ᵥ ũ
       + (x t - (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ))) := by abel
   rw [hsplit]
-  exact Plus.plus_outer (sys.aux_deltaReachFloat Δt η R) (sys.inputSolutionFloat Δt η seg ⊞
+  exact Plus.plus_outer (sys.step_deltaReachFloat Δt η R) (sys.inputSolutionFloat Δt η seg ⊞
     sys.inputSolutionFloat Δt η (Recenter.recenter V)) (Set.add_mem_add hhom
       (Plus.plus_outer (sys.inputSolutionFloat Δt η seg)
         (sys.inputSolutionFloat Δt η (Recenter.recenter V)) (Set.add_mem_add hconst hrest)))

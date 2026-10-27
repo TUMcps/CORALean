@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -45,11 +46,12 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The least of `b` and a family, folded right as `sumUp` is, as the loop the compiler runs.
 `minimumOver` would not do: it folds from `zero`, so it returns at most `zero`. -/
-def ZonoBundle.aux_minimumFrom {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : 𝕋 :=
+@[step_of ZonoBundle.boundDot]
+def ZonoBundle.step_minimumFrom {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : 𝕋 :=
   Fin.foldr k (fun i acc => minimum (u i) acc) b
 
 
@@ -60,19 +62,19 @@ def ZonoBundle.aux_minimumFrom {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : 𝕋 
 def ZonoBundle.boundDot (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 zB.construct c where
-  val := ZonoBundle.aux_minimumFrom (Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).val
+  val := ZonoBundle.step_minimumFrom (Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).val
     fun i => (Zonotope.boundDot (zB.Z i) a hc).val
   le x hx := by
     -- anything under `b` and under every entry is under the fold, `minimum` being exact
     have hle : ∀ {k : ℕ} {b : 𝕋} {u : Fin k → 𝕋} {x : ℝ},
         x ≤ toReal b → (∀ j, x ≤ toReal (u j)) →
-        x ≤ toReal (ZonoBundle.aux_minimumFrom b u) := by
+        x ≤ toReal (ZonoBundle.step_minimumFrom b u) := by
       intro k
       induction k with
       | zero => intro b u x hb _; exact hb
       | succ m ih =>
         intro b u x hb hu
-        rw [ZonoBundle.aux_minimumFrom, Fin.foldr_succ, toReal_minimum]
+        rw [ZonoBundle.step_minimumFrom, Fin.foldr_succ, toReal_minimum]
         exact le_min (hu 0) (ih hb fun j => hu j.succ)
     have hmem : ∀ i, x ∈ (zB.Z i).construct := fun i => SetIntersection.mem_construct_ofFn.mp hx i
     exact hle ((Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).le x (hmem _))

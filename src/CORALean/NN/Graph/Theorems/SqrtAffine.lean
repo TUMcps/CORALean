@@ -13,7 +13,7 @@ public import CORALean.NN.Graph.Theorems.DegreeAtEq
 The inverse square root of node `j`'s degree, read through a `Relaxation` at the box `[degree,
 degreeSup]` that node's degree sits in. What comes back is a slope, an offset and an error;
 composing the slope with the affine `degreeAt` of `degreeAt_eq` leaves `s_j` affine in the edge
-weights: `s_j = sqrtConst + Σₑ sqrtEdgeCoeff ⬝ αₑ + (residual, at most aux_sqrtError)`.
+weights: `s_j = sqrtConst + Σₑ sqrtEdgeCoeff ⬝ αₑ + (residual, at most step_sqrtError)`.
 `sqrt_affine` is that identity at the factors `α = 2λ - 1` the uncertain adjacency uses. The
 residual is a factor of its own, one per node, spent by the enclosure.
 

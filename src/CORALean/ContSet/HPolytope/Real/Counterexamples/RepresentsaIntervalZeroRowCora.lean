@@ -4,6 +4,7 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.Data.EReal.Basic
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -122,10 +123,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The box `[-1,1]²` with the infeasible row `0 x ≤ -1` added. -/
-def HPolytope.aux_boxZeroRow : HPolytope (Fin 2 → ℝ) where
+@[step_of HPolytope.representsa_interval_zeroRow_cora_counterexample]
+def HPolytope.step_boxZeroRow : HPolytope (Fin 2 → ℝ) where
   m := 5
   A := let p0 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ := LinearMap.proj 0
     let p1 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ := LinearMap.proj 1
@@ -135,13 +137,16 @@ def HPolytope.aux_boxZeroRow : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 private theorem HPolytope.aux_boxZeroRow_construct : -- --- CONCL ---
-    HPolytope.aux_boxZeroRow.construct = ∅ := by -- --- PROOF ---
+    HPolytope.step_boxZeroRow.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨h, -⟩
   have h4 := h (4 : Fin 5)
-  simp [HPolytope.aux_boxZeroRow] at h4
+  simp [HPolytope.step_boxZeroRow] at h4
   norm_num at h4
 
 -- a nonnegative offset gives an update `≥ 0` for `ub`
@@ -187,33 +192,33 @@ private theorem HPolytope.aux_not_flagged (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) 
 the origin. -/
 theorem HPolytope.representsa_interval_zeroRow_cora_counterexample
     (rest : (Fin 2 → EReal) × (Fin 2 → EReal)) : -- --- CONCL ---
-    let box := HPolytope.aux_boxZeroRow.representsaIntervalZeroRowCora rest
-    HPolytope.aux_boxZeroRow.construct = ∅ ∧ ∀ j, box.1 j ≤ 0 ∧ 0 ≤ box.2 j := by -- --- PROOF ---
+    let box := HPolytope.step_boxZeroRow.representsaIntervalZeroRowCora rest
+    HPolytope.step_boxZeroRow.construct = ∅ ∧ ∀ j, box.1 j ≤ 0 ∧ 0 ≤ box.2 j := by -- --- PROOF ---
   intro box
   -- the polytope is empty; no row is flagged, so `(lb, ub)` is returned
   refine ⟨HPolytope.aux_boxZeroRow_construct, ?_⟩
-  have hA : ∀ i, ¬ ∃ a b, a ≠ b ∧ (HPolytope.aux_boxZeroRow.A i) (Pi.single a 1) ≠ 0 ∧
-      (HPolytope.aux_boxZeroRow.A i) (Pi.single b 1) ≠ 0 := by
+  have hA : ∀ i, ¬ ∃ a b, a ≠ b ∧ (HPolytope.step_boxZeroRow.A i) (Pi.single a 1) ≠ 0 ∧
+      (HPolytope.step_boxZeroRow.A i) (Pi.single b 1) ≠ 0 := by
     -- each of the five rows has at most one nonzero coordinate
     intro i
     fin_cases i
     · exact HPolytope.aux_not_flagged _ 0 fun i hi => by
-        by_contra h; apply hi; simp [HPolytope.aux_boxZeroRow, Ne.symm h]
+        by_contra h; apply hi; simp [HPolytope.step_boxZeroRow, Ne.symm h]
     · exact HPolytope.aux_not_flagged _ 0 fun i hi => by
-        by_contra h; apply hi; simp [HPolytope.aux_boxZeroRow, Ne.symm h]
+        by_contra h; apply hi; simp [HPolytope.step_boxZeroRow, Ne.symm h]
     · exact HPolytope.aux_not_flagged _ 1 fun i hi => by
-        by_contra h; apply hi; simp [HPolytope.aux_boxZeroRow, Ne.symm h]
+        by_contra h; apply hi; simp [HPolytope.step_boxZeroRow, Ne.symm h]
     · exact HPolytope.aux_not_flagged _ 1 fun i hi => by
-        by_contra h; apply hi; simp [HPolytope.aux_boxZeroRow, Ne.symm h]
+        by_contra h; apply hi; simp [HPolytope.step_boxZeroRow, Ne.symm h]
     · exact HPolytope.aux_not_flagged _ 0 fun i hi => by
-        exfalso; apply hi; simp [HPolytope.aux_boxZeroRow]
+        exfalso; apply hi; simp [HPolytope.step_boxZeroRow]
   -- the equality part has no rows
-  have hnf : ¬ ((∃ i : Fin HPolytope.aux_boxZeroRow.m, ∃ a b, a ≠ b ∧
-        (HPolytope.aux_boxZeroRow.A i) (Pi.single a 1) ≠ 0 ∧
-        (HPolytope.aux_boxZeroRow.A i) (Pi.single b 1) ≠ 0) ∨
-      (∃ i : Fin HPolytope.aux_boxZeroRow.me, ∃ a b, a ≠ b ∧
-        (HPolytope.aux_boxZeroRow.Ae i) (Pi.single a 1) ≠ 0 ∧
-        (HPolytope.aux_boxZeroRow.Ae i) (Pi.single b 1) ≠ 0)) := by
+  have hnf : ¬ ((∃ i : Fin HPolytope.step_boxZeroRow.m, ∃ a b, a ≠ b ∧
+        (HPolytope.step_boxZeroRow.A i) (Pi.single a 1) ≠ 0 ∧
+        (HPolytope.step_boxZeroRow.A i) (Pi.single b 1) ≠ 0) ∨
+      (∃ i : Fin HPolytope.step_boxZeroRow.me, ∃ a b, a ≠ b ∧
+        (HPolytope.step_boxZeroRow.Ae i) (Pi.single a 1) ≠ 0 ∧
+        (HPolytope.step_boxZeroRow.Ae i) (Pi.single b 1) ≠ 0)) := by
     rintro (⟨i, hi⟩ | ⟨i, -⟩)
     · exact hA i hi
     · exact absurd i.2 (Nat.not_lt_zero _)
@@ -228,22 +233,22 @@ theorem HPolytope.representsa_interval_zeroRow_cora_counterexample
     · exact absurd i.2 (Nat.not_lt_zero _)
     · exact absurd i.2 (Nat.not_lt_zero _)
     · fin_cases i
-      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · simp [HPolytope.aux_boxZeroRow, HPolytope.aux_rowLower_zero]
+      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · exact HPolytope.aux_rowLower_nonpos _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · simp [HPolytope.step_boxZeroRow, HPolytope.aux_rowLower_zero]
   -- every upper update `c/|a|` has `c ≥ 0`, so is `≥ 0`; the zero row gives `Inf`
   · refine le_inf (le_inf (le_iInf fun i => ?_) (le_iInf fun i => ?_)) (le_iInf fun i => ?_)
     rotate_left
     · exact absurd i.2 (Nat.not_lt_zero _)
     · exact absurd i.2 (Nat.not_lt_zero _)
     · fin_cases i
-      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.aux_boxZeroRow])
-      · simp [HPolytope.aux_boxZeroRow, HPolytope.aux_rowUpper_zero]
+      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · exact HPolytope.aux_rowUpper_nonneg _ _ _ (by simp [HPolytope.step_boxZeroRow])
+      · simp [HPolytope.step_boxZeroRow, HPolytope.aux_rowUpper_zero]
 
 end CORALean.Real
 

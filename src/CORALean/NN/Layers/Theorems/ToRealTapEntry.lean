@@ -3,6 +3,7 @@ module
 public import CORALean.Global.Float.Instances.Real.Instances
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Layers.Operations.TapEntry
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -38,18 +39,19 @@ open Float Float.FloatOps Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- the compiler runs the loop the operation's `aux_` implementation is
 omit [SoundFloatArithmetic 𝕋] in
-@[csimp] theorem aux_tapEntry_eq_impl : -- --- CONCL ---
-    @tapEntry = @aux_tapEntryImpl := by -- --- PROOF ---
+@[csimp, step_of toReal_tapEntry]
+theorem step_tapEntry_eq_impl : -- --- CONCL ---
+    @tapEntry = @step_tapEntryImpl := by -- --- PROOF ---
   funext 𝕋 _ n k
   induction k with
-  | zero => funext t v i; rw [aux_tapEntryImpl, Fin.foldr_zero]; rfl
+  | zero => funext t v i; rw [step_tapEntryImpl, Fin.foldr_zero]; rfl
   | succ k ih =>
     funext t v i
-    rw [aux_tapEntryImpl, Fin.foldr_succ, ← aux_tapEntryImpl,
+    rw [step_tapEntryImpl, Fin.foldr_succ, ← step_tapEntryImpl,
       ← congrFun (congrFun (congrFun ih fun l => t l.succ) fun l => v l.succ) i]
     rfl
 

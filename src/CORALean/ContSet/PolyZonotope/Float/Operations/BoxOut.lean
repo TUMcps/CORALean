@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 public import Mathlib.Data.Finset.Sort
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -10,8 +11,8 @@ public import Mathlib.Data.Finset.Sort
 
 The tail of CORA's `outerApprox`: the `removed` dependent generators leave `G` and `E` for a
 diagonal box appended to the independent block, which also covers the `taken` independent ones.
-The radius is `aux_boxOutRadius`, at least the exact one; center, error box and the kept columns are
-copied, the kept columns being read off in order by `orderEmbOfFin`.
+The radius is `step_boxOutRadius`, at least the exact one; center, error box and the kept columns
+are copied, the kept columns being read off in order by `orderEmbOfFin`.
 
 ## Inputs
 * `pZ` – polynomial zonotope
@@ -37,10 +38,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The radius of the box in coordinate `i`, rounded up. -/
-def PolyZonotope.aux_boxOutRadius (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h → Bool)
+@[step_of PolyZonotope.boxOut]
+def PolyZonotope.step_boxOutRadius (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h → Bool)
     (taken : Fin pZ.q → Bool) : Vec 𝕋 n := fun i =>
   addUp (sumUp fun l => if removed l then absolute (pZ.G l i) else zero)
     (sumUp fun j => if taken j then absolute (pZ.GI j i) else zero)
@@ -58,7 +60,7 @@ def PolyZonotope.boxOut (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h →
   c := pZ.c
   G := fun l => pZ.G ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
   E := fun k l => pZ.E k ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
-  GI := Fin.append pZ.GI fun j i => diagonalBlock (pZ.aux_boxOutRadius removed taken) i j
+  GI := Fin.append pZ.GI fun j i => diagonalBlock (pZ.step_boxOutRadius removed taken) i j
   I_error := pZ.I_error
 
 end CORALean.Float

@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBounds
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -43,21 +44,22 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- the compiler runs the implementation the operation's `aux_` pair builds
 omit [SoundFloatArithmetic 𝕋] in
-@[csimp] theorem MatExp.aux_expIntervalTaylor_eq_impl : -- --- CONCL ---
-    @MatExp.expIntervalTaylor = @MatExp.aux_expIntervalTaylorImpl := by -- --- PROOF ---
+@[csimp, step_of MatExp.expTaylor_mem_expIntervalTaylor]
+theorem MatExp.step_expIntervalTaylor_eq_impl : -- --- CONCL ---
+    @MatExp.expIntervalTaylor = @MatExp.step_expIntervalTaylorImpl := by -- --- PROOF ---
   funext 𝕋 _ n A k
   -- the pair is the power and the sum, order by order
-  have hpair : ∀ k, MatExp.aux_expIntervalTaylorPair A k
+  have hpair : ∀ k, MatExp.step_expIntervalTaylorPair A k
       = (Interval.matPow A k, MatExp.expIntervalTaylor A k) := by
     intro k
     induction k with
     | zero => rfl
-    | succ k ih => rw [MatExp.aux_expIntervalTaylorPair, ih]; rfl
-  rw [MatExp.aux_expIntervalTaylorImpl, hpair]
+    | succ k ih => rw [MatExp.step_expIntervalTaylorPair, ih]; rfl
+  rw [MatExp.step_expIntervalTaylorImpl, hpair]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

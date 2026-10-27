@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -41,18 +42,19 @@ namespace CORALean.Real
 open Matrix
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The part of `aux_isEmptySet` that precedes the contractor: `some false` ("not empty") when
 `GI` is nonempty, `none` for the rest (the constraint check and the contraction of the domain,
 which are not modelled). -/
-def ConPolyZono.aux_isEmptySetPrinted {α : Type} (cPZ : ConPolyZono α) : Option Bool :=
+@[step_of ConPolyZono.representsa_empty_counterexample]
+def ConPolyZono.step_isEmptySetPrinted {α : Type} (cPZ : ConPolyZono α) : Option Bool :=
   let giNonempty := decide (0 < cPZ.qI)
   if giNonempty then some false else none
 
-
 /-- One factor, `c = 0`, `GI = 1`, and the constraint `1 · α₁ = 2`. -/
-def ConPolyZono.aux_emptyWithGI : ConPolyZono ℝ :=
+@[step_of ConPolyZono.representsa_empty_counterexample]
+def ConPolyZono.step_emptyWithGI : ConPolyZono ℝ :=
   ⟨1, 0, 1, 0, Fin.elim0, fun _ _ => 0, fun _ => 1, ⟨1, 1, fun _ _ => 1, fun _ _ => 1, fun _ => 2,
       fun _ => .eq, Interval.unit 1⟩,
       fun _ => rfl, rfl⟩
@@ -62,18 +64,19 @@ def ConPolyZono.aux_emptyWithGI : ConPolyZono ℝ :=
 
 /-- The set is empty although `GI` is nonempty, and CORA's printed check answers "not empty". -/
 theorem ConPolyZono.representsa_empty_counterexample : -- --- CONCL ---
-    0 < ConPolyZono.aux_emptyWithGI.qI ∧ ConPolyZono.aux_emptyWithGI.construct = ∅ ∧
-      ConPolyZono.aux_isEmptySetPrinted ConPolyZono.aux_emptyWithGI
+    0 < ConPolyZono.step_emptyWithGI.qI ∧ ConPolyZono.step_emptyWithGI.construct = ∅ ∧
+      ConPolyZono.step_isEmptySetPrinted ConPolyZono.step_emptyWithGI
         = some false := by -- --- PROOF ---
   refine ⟨Nat.one_pos, ?_,
-    by simp [ConPolyZono.aux_isEmptySetPrinted, ConPolyZono.aux_emptyWithGI]⟩
+    by simp [ConPolyZono.step_isEmptySetPrinted, ConPolyZono.step_emptyWithGI]⟩
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, -, hs, -⟩
   have h4 :=
-    ((PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.aux_emptyWithGI.cons_eq).mp hs).2 (0 : Fin 1)
+    ((PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.step_emptyWithGI.cons_eq).mp hs).2
+      (0 : Fin 1)
   have h3 := (Interval.mem_unit_iff a).mp hs.1 (0 : Fin 1)
-  simp [ConPolyZono.aux_emptyWithGI, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3
+  simp [ConPolyZono.step_emptyWithGI, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3
   rw [h4] at h3
   norm_num [abs_of_pos] at h3
 

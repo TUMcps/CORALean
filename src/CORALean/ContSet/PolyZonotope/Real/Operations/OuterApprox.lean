@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -31,16 +32,17 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- How many of the sorted columns the scan takes: one is taken while the running sum `Val_curr`
 plus its absolute value stays at most `Th` in every coordinate. -/
-noncomputable def PolyZonotope.aux_outerApproxCount (Th : Fin n → ℝ) :
+@[step_of PolyZonotope.outerApprox]
+noncomputable def PolyZonotope.step_outerApproxCount (Th : Fin n → ℝ) :
     List (Fin n → ℝ) → (Fin n → ℝ) → ℕ
   | [], _ => 0
   | g :: gs, v =>
     if ∀ k, |g k| + v k ≤ Th k then
-      1 + PolyZonotope.aux_outerApproxCount Th gs (fun k => v k + |g k|)
+      1 + PolyZonotope.step_outerApproxCount Th gs (fun k => v k + |g k|)
     else 0
 
 
@@ -69,7 +71,7 @@ noncomputable def PolyZonotope.outerApprox (pZ : PolyZonotope (Vec ℝ n)) (tol 
   let Th : Fin n → ℝ := fun k => tol * (cand.map fun t => |GGI t k|).foldr max 0
   -- `redCount`: the scan over the sorted columns
   let redCount : ℕ :=
-    PolyZonotope.aux_outerApproxCount Th (sorted.map fun t k => |GGI t k|) (fun _ => 0)
+    PolyZonotope.step_outerApproxCount Th (sorted.map fun t k => |GGI t k|) (fun _ => 0)
   -- `ii_red`
   let red : List (Fin pZ.h ⊕ Fin pZ.q) := sorted.take redCount
   -- `ii_red_G`, `ii_red_GI`: the removed dependent and the taken independent generators

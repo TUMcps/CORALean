@@ -77,5 +77,6 @@ robust backward recursion at aligned zonotopes, inside and around `backReachSetR
 step `BackReachSetRobustExactSucc` reads as a difference, a sum and a preimage.
 
 `ReachHeldOuter` is the zero-order-hold run in closed form. The `ClosedBall` three bound `reach`'s
-width against `Zonotope.Real`'s own bounds, `StepSubsetClosedBall`/`ReduceBoxAbsBoundLe` among them.
+width against `Zonotope.Real`'s own bounds, `OneStepSubsetClosedBall`/`ReduceBoxAbsBoundLe` among
+them.
 -/

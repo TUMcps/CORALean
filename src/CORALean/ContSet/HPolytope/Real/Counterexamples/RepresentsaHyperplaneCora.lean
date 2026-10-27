@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -67,10 +68,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `polytope.Inf(2)`: no rows. -/
-def HPolytope.aux_noRows : HPolytope (Fin 2 → ℝ) where
+@[step_of HPolytope.representsa_hyperplane_cora_counterexample]
+def HPolytope.step_noRows : HPolytope (Fin 2 → ℝ) where
   m := 0
   A := Fin.elim0
   b := Fin.elim0
@@ -78,8 +80,11 @@ def HPolytope.aux_noRows : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 private theorem HPolytope.aux_noRows_construct :
-    HPolytope.aux_noRows.construct = Set.univ := by
+    HPolytope.step_noRows.construct = Set.univ := by
   ext x
   simp only [Set.mem_univ, iff_true]
   exact ⟨fun i => i.elim0, fun i => i.elim0⟩
@@ -89,12 +94,12 @@ private theorem HPolytope.aux_noRows_construct :
 
 /-- The set is `ℝ²`, which is no hyperplane `{x | f x = c}` with `f ≠ 0`; CORA answers `true`. -/
 theorem HPolytope.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
-    HPolytope.aux_noRows.construct = Set.univ ∧
+    HPolytope.step_noRows.construct = Set.univ ∧
       (¬ ∃ (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        HPolytope.aux_noRows.construct = {x | f x = c}) ∧
-      HPolytope.aux_noRows.representsaHyperplaneCora = true := by -- --- PROOF ---
+        HPolytope.step_noRows.construct = {x | f x = c}) ∧
+      HPolytope.step_noRows.representsaHyperplaneCora = true := by -- --- PROOF ---
   have hc := HPolytope.aux_noRows_construct
-  refine ⟨hc, ?_, by simp [HPolytope.representsaHyperplaneCora, HPolytope.aux_noRows]⟩
+  refine ⟨hc, ?_, by simp [HPolytope.representsaHyperplaneCora, HPolytope.step_noRows]⟩
   rintro ⟨f, c, hf, h⟩
   rw [hc] at h
   have hall : ∀ x, f x = c := fun x => by

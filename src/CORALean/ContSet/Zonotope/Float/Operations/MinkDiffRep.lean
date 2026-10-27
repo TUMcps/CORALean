@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -13,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 CORA's `@zonotope/minkDiff` as a *checked representation*, the float counterpart of
 `Real.Zonotope.minkDiffRep`. A Minkowski difference is a guarantee, so unlike every other float
 operation this one must return a **subset** of the real difference. The candidate
-(`aux_minkDiffRepCandidate`) is rounded inward, but rounding can still move it off the real result,
+(`step_minkDiffRepCandidate`) is rounded inward, but rounding can still move it off the real result,
 so it is returned only once `Zonotope.containsZonotope`, with a right inverse `H` of the
 minuend's generators the caller proposes, certifies that the candidate plus the subtrahend lies in
 the minuend. A wrong `M`, `ρ` or `H` gives `none`, costing precision and never soundness. `some`
@@ -45,11 +46,12 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The candidate difference at the representation `M` (`M i j` writes `Z₂`'s `j`-th generator in
 `Z₁`'s `i`-th), with the margin shrunk by `ρ`; rounded inward, checked by `minkDiffRep`. -/
-def Zonotope.aux_minkDiffRepCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
+@[step_of Zonotope.minkDiffRep]
+def Zonotope.step_minkDiffRepCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
     (M : Fin Z₁.h → Fin Z₂.h → 𝕋) (ρ : 𝕋) :
     Zonotope (Vec 𝕋 n) :=
   let c := fun r => subDown (Z₁.c r) (Z₂.c r)  -- c₁ - c₂
@@ -67,7 +69,7 @@ def Zonotope.aux_minkDiffRepCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
 minuend with the right inverse `H`; `none` where the check does not go through. -/
 def Zonotope.minkDiffRep (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (M : Fin Z₁.h → Fin Z₂.h → 𝕋) (ρ : 𝕋)
     (H : Mat 𝕋 Z₁.h n) : Option (Zonotope (Vec 𝕋 n)) :=
-  let D := Z₁.aux_minkDiffRepCandidate Z₂ M ρ
+  let D := Z₁.step_minkDiffRepCandidate Z₂ M ρ
   if Z₁.containsZonotope (D.plus Z₂) H then some D else none
 
 end CORALean.Float

@@ -119,7 +119,7 @@ theorem LinearARX.alg2_ne_reachWindowExact : -- --- CONCL ---
       nlinarith [abs_nonneg (M 0 0), abs_nonneg (v 0)]
     -- the pass: `B̃₀(2) Ũ_c + B̃₁(2) Ũ_c + B̃₂(2) Ũ_c + Ā_ext B̃₂(2) Ũ_c`, the stale `B̃₂(2) = 0`
     intro hx
-    simp only [LinearARX.alg2, LinearARX.aux_alg2State] at hx
+    simp only [LinearARX.alg2, LinearARX.step_alg2State] at hx
     norm_num at hx
     rw [Finset.sum_range_succ, Finset.sum_range_one] at hx
     obtain ⟨a, ha, d, hd, had⟩ := hx

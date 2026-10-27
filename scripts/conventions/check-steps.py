@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""A step of exactly one algorithm is an `aux_` declaration of that algorithm's file (#227).
+"""A step of exactly one algorithm is declared in that algorithm's file (#227).
 
     python3 scripts/conventions/check-steps.py [--root DIR]
 
 An `Operations/` definition that exactly one other `Operations/` file reads, and that besides
 that user is read only by the user's satellite theorem files (`scripts/conventions/satellites.py`), is a
-step of that one algorithm: it belongs in the user's file as an `aux_` declaration, under the
-`AUXILIARY` banner. It keeps its own file when
+step of that one algorithm: it belongs in the user's file, as a `step_` declaration under the
+`STEPS` banner (with `@[step_of …]`, when the satellites read it) or as a `private` `aux_` one
+under `AUXILIARY`. Where a step may be used, once it is one, Lean checks itself
+(`CORALean/Global/StepOf.lean`, #269); this check finds the definitions that should be steps and
+are not yet. It keeps its own file when
 
 * its docstring cites its own algorithm (`Alg.` / `Algorithm`, and not just lines of one: `l. 3-5`,
   `Lines 6-10`): the paper prints it as an algorithm of its own;
@@ -22,7 +25,7 @@ step of that one algorithm: it belongs in the user's file as an `aux_` declarati
   layer calls the real step, which has to stay public.
 
 A file that something else reads too (its own theorem file, an example, a second algorithm) is
-not a step. A user in a `Basic.lean` cannot hold it as `aux_`, so that is not flagged either.
+not a step. A user in a `Basic.lean` cannot hold it as a step, so that is not flagged either.
 
 Prints one finding per line and exits 1 on any; 2 when the sources cannot be read.
 `--root DIR` reads another tree (used to test the rule on a mutated copy).
@@ -57,7 +60,7 @@ DEF = re.compile(
 
 
 def public_defs(lines):
-    """(line, name, docstring-cites-algorithm) of every public non-`aux_` definition."""
+    """(line, name, docstring-cites-algorithm) of every public definition that is no step yet."""
     out, doc, in_doc = [], [], False
     for i, line in enumerate(lines):
         if line.startswith("/--"):
@@ -68,7 +71,8 @@ def public_defs(lines):
             in_doc = "-/" not in line
             continue
         m = DEF.match(line)
-        if m and "private" not in m.group("mods") and not m.group("name").split(".")[-1].startswith("aux_"):
+        if m and "private" not in m.group("mods") and \
+                not m.group("name").split(".")[-1].startswith(("aux_", "step_")):
             out.append((i + 1, m.group("name"), bool(CITES.search(" ".join(doc)) and not LINES.search(" ".join(doc)))))
         if line.strip() and not line.startswith(("@[", "set_option", "open", "omit", "include")):
             doc = []
@@ -133,8 +137,8 @@ def main():
     findings = []
     for path, (ln, name, user) in sorted(flagged.items()):
         findings.append(
-            f"{path}:{ln}: `{name}` is a step of one algorithm, `{user}` — make it an `aux_` "
-            f"declaration there (CONTRIBUTING, \"A step of one algorithm is `aux_`\")")
+            f"{path}:{ln}: `{name}` is a step of one algorithm, `{user}` — declare it there, "
+            f"`step_` or `aux_` (CONTRIBUTING, \"A step of one algorithm is `step_` or `aux_`\")")
     for f in findings:
         print(f)
     return 1 if findings else 0

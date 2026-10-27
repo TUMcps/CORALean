@@ -4,6 +4,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.AbsorbRounding
 public import CORALean.Global.BlockDiag
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,7 +13,7 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 
 CORA's `@spectraShadow/and_`, `'exact'` branch, over a floating-point scalar: each shadow's
 error box absorbed into its inequality (`absorbRounding`), then the two tied to one point
-(`aux_tieInter`). Nothing is computed: every stored entry is a stored float, its exact negation,
+(`step_tieInter`). Nothing is computed: every stored entry is a stored float, its exact negation,
 `zero` or `one`. Stated as an enclosure only; the error box of the result is the origin.
 
 ## Inputs
@@ -36,12 +37,13 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 open FloatOps
 
-def SpectraShadow.aux_tieInter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
+@[step_of SpectraShadow.inter]
+def SpectraShadow.step_tieInter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   let unit : Fin n → Vec 𝕋 n := fun i r => if r = i then one else zero
   let zeroV : Vec 𝕋 (n + n) := fun _ => zero
   -- `z - c - Gβ = 0` as that expression and its negation: constants, `β` and `z` coefficients
@@ -76,7 +78,7 @@ end
 def SpectraShadow.inter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   let T₁ := S₁.absorbRounding
   let T₂ := S₂.absorbRounding
-  T₁.aux_tieInter T₂
+  T₁.step_tieInter T₂
 
 end CORALean.Float
 

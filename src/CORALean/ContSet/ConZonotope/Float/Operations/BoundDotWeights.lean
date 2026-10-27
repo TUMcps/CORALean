@@ -6,13 +6,14 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
 public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 public import CORALean.Global.Float.FloatBound
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
 /-!
 # `ConZonotope.boundDotWeights`
 
-`aux_nominalBoundWeights` for the nominal set, the error box's own reach added
+`step_nominalBoundWeights` for the nominal set, the error box's own reach added
 upward. Sound at every weight vector, so this is where a certificate from any
 source, trusted or not, becomes a bound on the stored set.
 
@@ -47,15 +48,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- A proposed weight, made admissible. -/
-def ConZonotope.aux_clamp (w : 𝕋) : 𝕋 := maximum zero w
+@[step_of ConZonotope.boundDotWeights]
+def ConZonotope.step_clamp (w : 𝕋) : 𝕋 := maximum zero w
 
 /-- An upper end of the residual's `j`-th entry. Not the polytope's work (certificate): the residual
 of the coefficient program's dual over the constraint and the unit box together, column by column,
 which no operation of the polytope alone states. -/
-def ConZonotope.aux_resUp (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
+@[step_of ConZonotope.boundDotWeights]
+def ConZonotope.step_resUp (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
   addUp (dotUp a (cZ.G j))
     (addUp (neg (dotDown y fun k => cZ.P.A k j))
@@ -63,7 +66,8 @@ def ConZonotope.aux_resUp (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) 
 
 /-- A lower end of the residual's `j`-th entry. Not the polytope's work (certificate): the lower end
 of the same dual residual. -/
-def ConZonotope.aux_resDown (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
+@[step_of ConZonotope.boundDotWeights]
+def ConZonotope.step_resDown (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
     (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : 𝕋 :=
   addDown (dotDown a (cZ.G j))
     (addDown (neg (dotUp y fun k => cZ.P.A k j))
@@ -72,14 +76,15 @@ def ConZonotope.aux_resDown (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n
 /-- The coefficient program bounded at the given weights, each clamped at zero, the residual paid by
 the unit box; sound for every weight vector. Not the polytope's work (certificate): weak duality
 over the constraint and the unit box. -/
-def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
+@[step_of ConZonotope.boundDotWeights]
+def ConZonotope.step_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (y₀ : Vec 𝕋 cZ.P.m) (zu₀ zl₀ : Vec 𝕋 cZ.P.me) : FloatBound 𝕋 (nominalSet cZ) c :=
-  let y : Vec 𝕋 cZ.P.m := fun k => ConZonotope.aux_clamp (y₀ k)
-  let zu : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zu₀ k)
-  let zl : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zl₀ k)
+  let y : Vec 𝕋 cZ.P.m := fun k => ConZonotope.step_clamp (y₀ k)
+  let zu : Vec 𝕋 cZ.P.me := fun k => ConZonotope.step_clamp (zu₀ k)
+  let zl : Vec 𝕋 cZ.P.me := fun k => ConZonotope.step_clamp (zl₀ k)
   let R : Vec 𝕋 cZ.h := fun j =>
-    maximum (ConZonotope.aux_resUp cZ a y zu zl j) (neg (ConZonotope.aux_resDown cZ a y zu zl j))
+    maximum (ConZonotope.step_resUp cZ a y zu zl j) (neg (ConZonotope.step_resDown cZ a y zu zl j))
   -- the right-hand sides, each widened by its row's slack, rounded up: the constraint's own
   let bS : Vec 𝕋 cZ.P.m := cZ.P.bSlackU
   let beU : Vec 𝕋 cZ.P.me := cZ.P.beSlackU
@@ -89,9 +94,9 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
     le := by
       intro x hx
       -- a clamped weight is nonnegative
-      have hclamp : ∀ w : 𝕋, 0 ≤ toReal (ConZonotope.aux_clamp w) := by
+      have hclamp : ∀ w : 𝕋, 0 ≤ toReal (ConZonotope.step_clamp w) := by
         intro w
-        rw [ConZonotope.aux_clamp, toReal_maximum, toReal_zero]
+        rw [ConZonotope.step_clamp, toReal_maximum, toReal_zero]
         exact le_max_left _ _
       -- a weighted sum of rows applied to `β`, read column by column
       have hswap : ∀ {p q : ℕ} (u : Fin p → ℝ) (M : Fin p → Fin q → ℝ) (β : Fin q → ℝ),
@@ -106,8 +111,8 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
           - (∑ k, toReal (y k) * toReal (cZ.P.A k j))
           - (∑ k, toReal (zu k) * toReal (cZ.P.Ae k j))
           + ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j)
-        toReal (ConZonotope.aux_resDown cZ a y zu zl j) ≤ r
-          ∧ r ≤ toReal (ConZonotope.aux_resUp cZ a y zu zl j) := by
+        toReal (ConZonotope.step_resDown cZ a y zu zl j) ≤ r
+          ∧ r ≤ toReal (ConZonotope.step_resUp cZ a y zu zl j) := by
         intro y zu zl j r
         -- each of the four products, enclosed by its rounded dot product
         have h1 := le_dotUp a (cZ.G j)
@@ -128,7 +133,7 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
             (addDown (neg (dotUp y fun k => cZ.P.A k j))
               (addDown (neg (dotUp zu fun k => cZ.P.Ae k j)) (dotDown zl fun k => cZ.P.Ae k j)))
           rw [toReal_neg] at e1 e2
-          rw [ConZonotope.aux_resDown]
+          rw [ConZonotope.step_resDown]
           linarith
         -- the upper end, its three additions rounded up
         · have e1 := add_le_addUp (neg (dotDown zu fun k => cZ.P.Ae k j))
@@ -139,7 +144,7 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
             (addUp (neg (dotDown y fun k => cZ.P.A k j))
               (addUp (neg (dotDown zu fun k => cZ.P.Ae k j)) (dotUp zl fun k => cZ.P.Ae k j)))
           rw [toReal_neg] at e1 e2
-          rw [ConZonotope.aux_resUp]
+          rw [ConZonotope.step_resUp]
           linarith
       obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp hx
       obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
@@ -214,8 +219,8 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
           show _ ≤ toReal (maximum _ _)
           rw [toReal_maximum, toReal_neg]
           refine abs_le.mpr ⟨?_, ?_⟩
-          · have := le_max_right (toReal (ConZonotope.aux_resUp cZ a y zu zl j))
-              (-toReal (ConZonotope.aux_resDown cZ a y zu zl j))
+          · have := le_max_right (toReal (ConZonotope.step_resUp cZ a y zu zl j))
+              (-toReal (ConZonotope.step_resDown cZ a y zu zl j))
             linarith
           · exact le_trans hhi (le_max_left _ _)
         -- `|βⱼ| ≤ 1` is the box
@@ -241,7 +246,7 @@ def ConZonotope.aux_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c 
 def ConZonotope.boundDotWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (y : Vec 𝕋 cZ.P.m) (zu zl : Vec 𝕋 cZ.P.me) : FloatBound 𝕋 cZ.construct c :=
-  InflatedContSet.boundOfParts (cZ.aux_nominalBoundWeights a hc y zu zl) (cZ.I_error.boundDot a hc)
+  InflatedContSet.boundOfParts (cZ.step_nominalBoundWeights a hc y zu zl) (cZ.I_error.boundDot a hc)
 
 end CORALean.Float
 

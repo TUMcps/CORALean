@@ -1,7 +1,8 @@
 #!/bin/sh
 # Checks the conventions CONTRIBUTING.md states, none of which the compiler can
-# check: a green build says nothing about whether `aux_` stayed in its file or
-# whether an `API.lean` slipped a declaration in.
+# check: a green build says nothing about whether the section markers still sit where they
+# belong or whether an `API.lean` slipped a declaration in. Where a step may be used, and that
+# `aux_` is `private`, Lean checks itself (`CORALean/Global/StepOf.lean`, #269).
 #
 # Text only — no Lean, no build, no network, so it is cheap enough to run on a
 # pre-commit hook as well as in CI: about fifteen seconds over the whole tree
@@ -279,18 +280,19 @@ BEGIN {
   # keeping it escaped, silently turning the pattern into a character class.
   BSLASH = "\134"; LBRACK = "\133"; RBRACK = "\135"
   ATTR = "(@" BSLASH LBRACK "[^" RBRACK "]*" BSLASH RBRACK "[ \t]*)?"
-  MODS = "(private |protected |noncomputable |partial |scoped )*"
+  MODS = "(private |protected |noncomputable |partial |scoped |meta )*"
   KIND = "(def|theorem|lemma|abbrev|instance|structure|inductive|class|opaque)"
   DECL_START = "^" ATTR MODS KIND " "
   DECL_PREFIX = "^" ATTR MODS KIND "[ \t]+"
 
-  # The four section markers stamped across every file with declarations:
+  # The section markers stamped across every file with declarations:
   # exactly 100 characters, `-` fill except the label naming the main
   # declaration, which uses `=`. Checked by exact string match against every
   # valid form rather than by a width-only regex, so a marker that is 100
   # characters but has its fill split unevenly around the label — a mistake a
   # length check alone would miss — is still caught.
   M_BEGIN = "-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --"
+  M_STEPS = "-- ------------------------------------------  STEPS  ------------------------------------------- --"
   M_AUX   = "-- ----------------------------------------  AUXILIARY  ----------------------------------------- --"
   M_END   = "-- ---------------------------------------  END OF CODE  ---------------------------------------- --"
   M_THM   = "-- =======================================  MAIN THEOREM  ======================================= --"
@@ -303,6 +305,7 @@ BEGIN {
   SECTION_BANNER = "^-- =+  `[^`]+`  =+ --$"
 
   markerLabel[M_BEGIN] = "BEGIN CODE"
+  markerLabel[M_STEPS] = "STEPS"
   markerLabel[M_AUX]   = "AUXILIARY"
   markerLabel[M_END]   = "END OF CODE"
   markerLabel[M_THM]   = "MAIN THEOREM"
@@ -474,22 +477,15 @@ function closeBlock(e,   len) {
   blockKind = ""
 }
 
-# #227: the `Theorems/` file of an algorithm (its satellite, see scripts/conventions/satellites.py) may read
-# the `aux_` declarations of that algorithm'"'"'s `Operations/` file; no other file may.
-function satelliteDeclares(f, a,   cmd) {
-  if (f !~ /\/Theorems\//) return 0
-  # from `REPO`: `--staged` runs inside a checkout of the staged files alone
-  cmd = PYTHON " \"" REPO "/scripts/conventions/satellites.py\" declares " f " " a
-  return system(cmd) == 0
-}
-
 function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   endRun(f)
   collector = (f ~ /\/API\.lean$/) || (f == "src/CORALean.lean")
 
-  for (a in useAux)
-    if (!(a in declAux) && !satelliteDeclares(f, a))
-      say(f ":" useAux[a] ": `aux_` name `" a "` is not declared in this file")
+  # `@[step_of X]` names the algorithm the step belongs to: a declaration of this file, after it.
+  for (i = 1; i <= nStepOf; i++)
+    if (!((stepOfTarget[i]) in declAt) || declAt[stepOfTarget[i]] <= stepOfLine[i])
+      say(f ":" stepOfLine[i] ": `@[step_of " stepOfTarget[i] "]` names no declaration of this" \
+          " file below the step — name the algorithm it is a step of")
 
   if (docLine == 0) {
     say(f ":1: no module docstring — every file opens with `/-! ... -/`")
@@ -653,17 +649,18 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   }
 
   # Section markers: `BEGIN CODE`/`END OF CODE` frame a file with declarations,
-  # `AUXILIARY` marks the first `aux_` one, and a `MAIN ...`/`INSTANCES` marker
+  # `STEPS` marks the public `step_` ones, `AUXILIARY` the private `aux_` ones below them, and a
+  # `MAIN ...`/`INSTANCES` marker
   # signposts the declaration a reader is looking for, which Lean always buries
   # last. `API.lean` and a file with no declarations at all carry none.
   isAPI = (f ~ /\/API\.lean$/)
   hasDecl = (nDeclTotal > 0)
 
   if (isAPI) {
-    if (beginCount + endCount + auxCount + mainishCount > 0)
+    if (beginCount + endCount + stepsCount + auxCount + mainishCount > 0)
       say(f ":1: `API.lean` carries no section markers")
   } else if (!hasDecl) {
-    if (beginCount + endCount + auxCount + mainishCount > 0)
+    if (beginCount + endCount + stepsCount + auxCount + mainishCount > 0)
       say(f ":1: a file with no declarations carries no section markers")
   } else {
     if (beginCount == 0)
@@ -696,6 +693,12 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
       say(f ":1: file has `aux_` declarations but no `AUXILIARY` marker")
     if (n == 0 && auxCount > 0)
       say(f ":1: `AUXILIARY` marker present but the file has no `aux_` declaration")
+    if (nStep > 0 && stepsCount == 0)
+      say(f ":1: file has `step_` declarations but no `STEPS` marker")
+    if (nStep == 0 && stepsCount > 0)
+      say(f ":1: `STEPS` marker present but the file has no `step_` declaration")
+    if (stepsCount > 1)
+      say(f ":" stepsFNR ": more than one `STEPS` marker")
   }
 
   if (pendingMain)
@@ -714,7 +717,8 @@ FNR == 1 {
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0; secLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
   npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0; nh1 = 0; cexWord = 0; cexNeg = 0; cexDecl = ""; sigOpen = 0
-  beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
+  beginCount = 0; endCount = 0; stepsCount = 0; auxCount = 0; mainishCount = 0
+  stepsFNR = 0; region = ""; nStep = 0; nStepOf = 0; attrLine = ""; attrFNR = 0
   beginFNR = 0; endFNR = 0
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
   pendingMain = 0; pendingMainLabel = ""; pendingMainFNR = 0; pendingMainIsInstances = 0
@@ -722,7 +726,8 @@ FNR == 1 {
   isBasic = (FILENAME ~ /\/Basic\.lean$/)
   exposeCount = 0; exposeFNR = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
-  split("", declAux); split("", useAux); split("", imp); split("", impLine)
+  split("", declAux); split("", declAt); split("", stepOfTarget); split("", stepOfLine)
+  split("", imp); split("", impLine)
   split("", refDef); split("", refCite); split("", pubList)
 }
 
@@ -756,11 +761,18 @@ FNR == 1 {
       beginCount++; beginFNR = FNR
     } else if (label == "END OF CODE") {
       endCount++; endFNR = FNR
+    } else if (label == "STEPS") {
+      stepsCount++; stepsFNR = FNR; region = label
+      # The steps come first: a private declaration cannot appear in a public body or statement,
+      # so no step uses an `aux_`, while an `aux_` lemma may be about a step.
+      if (auxCount + mainishCount > 0)
+        say(FILENAME ":" FNR ": the `STEPS` marker comes before `AUXILIARY` and `MAIN ...`")
+      afterPending = 1; afterLabel = label; afterMarkerFNR = FNR; afterBlanks = 0
     } else if (label == "AUXILIARY") {
-      auxCount++
+      auxCount++; region = label
       afterPending = 1; afterLabel = label; afterMarkerFNR = FNR; afterBlanks = 0
     } else {
-      mainishCount++
+      mainishCount++; region = label
       if (label == "INSTANCES" && FILENAME !~ /\/Instances\.lean$/)
         say(FILENAME ":" FNR ": the `INSTANCES` label is only for `Instances.lean`")
       if (label != "INSTANCES" && FILENAME ~ /\/Instances\.lean$/)
@@ -1039,7 +1051,7 @@ FNR == 1 {
 
     # A public definition named for the CORA code (`…Cora`) or a theorem named `…counterexample`
     # belongs in a `Counterexamples/` folder (#148); `check` reports the first one found.
-    if (cexDecl == "" && b !~ /^aux_/ && prefix !~ /private /) {
+    if (cexDecl == "" && b !~ /^(aux|step)_/ && prefix !~ /private /) {
       if ((kind == "theorem" || kind == "lemma") ? (b ~ /[Cc]ounterexample$/) \
           : (b ~ /[Cc]ora([A-Z0-9_]|$)/))
         cexDecl = FNR ":" qualDecl
@@ -1061,7 +1073,7 @@ FNR == 1 {
     # A `Complexity/Time/` directory holds asserted running costs and nothing derived from
     # a definition; the `...Cost` name is one of the three things that says so,
     # the directory and the `Cost`-valued `def` being the other two.
-    if (FILENAME ~ /\/Complexity\/Time\// && kind == "def" && b !~ /^aux_/ && b !~ /(Cost|Bound)$/)
+    if (FILENAME ~ /\/Complexity\/Time\// && kind == "def" && b !~ /^(aux|step)_/ && b !~ /(Cost|Bound)$/)
       say(FILENAME ":" FNR ": a `def` under `Complexity/Time/` is an asserted cost, named" \
           " `...Cost` or `...Bound`, not `" b "`")
 
@@ -1069,13 +1081,14 @@ FNR == 1 {
     # *about* is declared elsewhere. A `def`, `abbrev`, `instance`, `structure`, `class`,
     # `inductive` or `opaque` there is a definition in the wrong file: it belongs in
     # `Definitions/` (a type, a proposition, a set, a specification) or `Operations/` (an
-    # algorithm). Free are the declarations that serve one proof only — `private` and `aux_`.
+    # algorithm). Free are the declarations that serve one proof only — `aux_`, and the `step_`
+    # a statement of the file needs public (the witness of a counterexample).
     if (FILENAME ~ /\/Theorems\// &&
         FILENAME !~ /\/API\.lean$/ && kind != "theorem" && kind != "lemma" &&
-        prefix !~ /private / && b !~ /^aux_/)
+        prefix !~ /private / && b !~ /^(aux|step)_/)
       say(FILENAME ":" FNR ": a `" kind "` in a theorem file — `" qualDecl "` is a definition," \
           " which belongs in `Definitions/` (a type, proposition, set or specification) or" \
-          " `Operations/` (an algorithm); only `private` and `aux_` helpers of one proof stay")
+          " `Operations/` (an algorithm); only `aux_` and `step_` helpers stay")
 
     # Rule B. A `Definitions/` file holds meanings: types, propositions, sets,
     # and what is `noncomputable` because it is a specification. A theorem
@@ -1096,6 +1109,25 @@ FNR == 1 {
       }
     }
 
+    # The name of every declaration, for `@[step_of X]`; an instance by the name after its priority.
+    instName = code
+    if (sub(/^.*instance[ \t]+(\([^)]*\)[ \t]*)?/, "", instName) && kind == "instance") {
+      sub(/[ \t([{:].*$/, "", instName)
+      if (instName != "" && !(instName in declAt)) declAt[instName] = FNR
+    }
+    if (qualDecl != "" && !(qualDecl in declAt)) declAt[qualDecl] = FNR
+
+    # `@[step_of X]`, inline or on the attribute line just above.
+    stepAttr = ""
+    if (prefix ~ /step_of[ \t]/) stepAttr = prefix
+    else if (attrFNR == FNR - 1 && attrLine ~ /step_of[ \t]/) stepAttr = attrLine
+    if (stepAttr != "") {
+      tgt = stepAttr; sub(/^.*step_of[ \t]+/, "", tgt); sub(/[], \t].*$/, "", tgt)
+      nStepOf++; stepOfTarget[nStepOf] = tgt; stepOfLine[nStepOf] = FNR
+    }
+
+    # `aux_` is `private` and `step_` is public with `@[step_of X]` (#269). The linter of `StepOf.lean`
+    # checks both in every file that imports it; this covers the files that do not.
     if (b ~ /^aux_/) {
       declAux[b] = FNR
       # An instance is found by type class search, never by name, so no file
@@ -1104,12 +1136,28 @@ FNR == 1 {
       if (prefix ~ /instance $/)
         say(FILENAME ":" FNR ": `aux_` on an instance is never justified — " \
             "`" b "` is found by type class search from any file, not by this name")
+      else if (prefix !~ /private /)
+        say(FILENAME ":" FNR ": `" b "` is `aux_`, so `private`; a step that other files read" \
+            " is public, named `step_...` and carries `@[step_of X]` (#269)")
+    } else if (b ~ /^step_/) {
+      nStep++
+      if (prefix ~ /private /)
+        say(FILENAME ":" FNR ": `" b "` is `step_`, so public; a `private` helper is `aux_` (#269)")
+      else if (stepAttr == "")
+        say(FILENAME ":" FNR ": `" b "` is `step_` and carries `@[step_of X]`, X the algorithm" \
+            " it is a step of (#269)")
+      if (region != "STEPS")
+        say(FILENAME ":" FNR ": `" b "` is a step; it sits under the `STEPS` marker")
+    } else if (region == "STEPS" && prefix ~ /private /) {
+      say(FILENAME ":" FNR ": everything under `STEPS` is public; `" qualDecl "` is `private`," \
+          " so it sits under `AUXILIARY`")
     }
     # One public declaration per `Operations/`/`Theorems/` file (#62): a
-    # `private` declaration and an `aux_`-named one are file-local by
-    # convention and do not count against the limit.
-    else if (prefix !~ /private /) { npub++; pubList[npub] = b }
+    # `private` declaration, an `aux_` one and a `step_` one are file-local
+    # (Lean holds a step to its file and its satellites) and do not count.
+    if (b !~ /^(aux|step)_/ && prefix !~ /private /) { npub++; pubList[npub] = b }
   }
+  if (code ~ /^@\[[^]]*\][ \t]*$/) { attrLine = code; attrFNR = FNR }
 
   if (defPending) {
     defHdr = defHdr " " code
@@ -1125,12 +1173,6 @@ FNR == 1 {
     }
   }
 
-  rest = code
-  while (match(rest, /aux_[A-Za-z0-9_'"'"']*/)) {
-    tok = substr(rest, RSTART, RLENGTH)
-    if (!(tok in useAux)) useAux[tok] = FNR
-    rest = substr(rest, RSTART + RLENGTH)
-  }
 }
 
 END {
@@ -1686,9 +1728,8 @@ report "$out"
 # representation (ConPolyZono, ConZonotope, StarSet) that does its stored component's work by hand
 # instead of through the component's operations without saying why in its docstring (#174), and
 # a real-only `Specification` operation that does not say why (scripts/conventions/check-float-refinement.py),
-# and an `Operations/` definition that exactly one algorithm reads and that is not that algorithm's
-# `aux_` step (#227), and an `aux_` that no other file reads and that Lean would take as `private`
-# (scripts/conventions/check-private-aux.py, #269), and a binder asking for a support bound of every
+# and an `Operations/` definition that exactly one algorithm reads and that is not yet declared in
+# that algorithm's file as a step (#227), and a binder asking for a support bound of every
 # set of a class with unbounded members, a type nothing inhabits (check-unbounded-oracles.py, #270),
 # and a markdown file whose paragraphs, table cells or sentences are too long to read
 # (check-readability.py, CONTRIBUTING "Writing").
@@ -1699,7 +1740,7 @@ if [ -z "$STAGED" ]; then
     check-dt-twins.py check-single-use.py check-prop-names.py check-absorb-rounding.py \
     check-exact-names.py check-option-hyps.py check-thesis-refs.py check-io-doc.py \
     check-component-reuse.py check-float-refinement.py check-steps.py check-noncomputable.py \
-    check-private-aux.py check-unbounded-oracles.py check-readability.py; do
+    check-unbounded-oracles.py check-readability.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/conventions/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

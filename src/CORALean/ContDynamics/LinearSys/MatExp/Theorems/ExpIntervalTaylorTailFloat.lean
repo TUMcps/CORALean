@@ -7,6 +7,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 public import Mathlib.Algebra.BigOperators.Intervals
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -44,6 +45,28 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+-- the compiler runs the implementation the operation's `aux_` pair builds
+omit [SoundFloatArithmetic 𝕋] in
+@[csimp, step_of MatExp.taylorTail_mem_expIntervalTaylorTail]
+theorem MatExp.step_expIntervalTaylorTail_eq_impl : -- --- CONCL ---
+    @MatExp.expIntervalTaylorTail = @MatExp.step_expIntervalTaylorTailImpl := by -- --- PROOF ---
+  funext 𝕋 _ n B k
+  have hpair : ∀ k, MatExp.step_expIntervalTaylorTailPair B k
+      = (Interval.matPow B k, MatExp.expIntervalTaylorTail B k) := by
+    intro k
+    induction k with
+    | zero => rfl
+    | succ k ih =>
+      rw [MatExp.step_expIntervalTaylorTailPair, ih]
+      match k with
+      | 0 => rfl
+      | 1 => rfl
+      | m + 2 => rfl
+  rw [MatExp.step_expIntervalTaylorTailImpl, hpair]
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored zero matrix is the point `0`. -/
@@ -56,24 +79,6 @@ private theorem aux_zero_mem_point :
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
--- the compiler runs the implementation the operation's `aux_` pair builds
-omit [SoundFloatArithmetic 𝕋] in
-@[csimp] theorem MatExp.aux_expIntervalTaylorTail_eq_impl : -- --- CONCL ---
-    @MatExp.expIntervalTaylorTail = @MatExp.aux_expIntervalTaylorTailImpl := by -- --- PROOF ---
-  funext 𝕋 _ n B k
-  have hpair : ∀ k, MatExp.aux_expIntervalTaylorTailPair B k
-      = (Interval.matPow B k, MatExp.expIntervalTaylorTail B k) := by
-    intro k
-    induction k with
-    | zero => rfl
-    | succ k ih =>
-      rw [MatExp.aux_expIntervalTaylorTailPair, ih]
-      match k with
-      | 0 => rfl
-      | 1 => rfl
-      | m + 2 => rfl
-  rw [MatExp.aux_expIntervalTaylorTailImpl, hpair]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

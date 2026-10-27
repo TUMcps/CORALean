@@ -53,11 +53,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 
 /-- The zero test reads whether `0` is a time of the interval. -/
 private theorem PointSegmentSignal.aux_containsZero_iff (U : STLInterval 𝕋) : -- --- CONCL ---
-    PointSegmentSignal.aux_containsZero U = true ↔ (0 : ℝ) ∈ U.set := by -- --- PROOF ---
+    PointSegmentSignal.step_containsZero U = true ↔ (0 : ℝ) ∈ U.set := by -- --- PROOF ---
   cases U with
-  | empty => simp [PointSegmentSignal.aux_containsZero, STLInterval.set]
+  | empty => simp [PointSegmentSignal.step_containsZero, STLInterval.set]
   | nonempty l u lc rc _ hlt h0 =>
-    simp only [PointSegmentSignal.aux_containsZero, STLInterval.set, STLInterval.rawSet,
+    simp only [PointSegmentSignal.step_containsZero, STLInterval.set, STLInterval.rawSet,
       Set.mem_setOf_eq, Bool.and_eq_true, decide_eq_true_eq, toReal_zero_eq, EReal.coe_zero]
     constructor
     · -- a closed lower end at `0` is reached, and the upper end is above it or closed at it
@@ -74,16 +74,16 @@ private theorem PointSegmentSignal.aux_containsZero_iff (U : STLInterval 𝕋) :
 
 /-- The until interval without zero denotes its times but `0`. -/
 private theorem PointSegmentSignal.aux_set_untilIntNoZero (U : STLInterval 𝕋) : -- --- CONCL ---
-    (PointSegmentSignal.aux_untilIntNoZero U).set = U.set \ {0} := by -- --- PROOF ---
-  unfold PointSegmentSignal.aux_untilIntNoZero
-  by_cases h : PointSegmentSignal.aux_containsZero U = true
+    (PointSegmentSignal.step_untilIntNoZero U).set = U.set \ {0} := by -- --- PROOF ---
+  unfold PointSegmentSignal.step_untilIntNoZero
+  by_cases h : PointSegmentSignal.step_containsZero U = true
   · -- `0` is in the interval, so the interval starts at a closed `0`
     have h0 := (PointSegmentSignal.aux_containsZero_iff U).1 h
     rw [if_pos h]
     cases U with
     | empty => exact absurd h0 (by simp [STLInterval.set])
     | nonempty l u lc rc b c hl =>
-      simp only [PointSegmentSignal.aux_containsZero, Bool.and_eq_true, decide_eq_true_eq,
+      simp only [PointSegmentSignal.step_containsZero, Bool.and_eq_true, decide_eq_true_eq,
         toReal_zero_eq] at h
       simp only [STLInterval.supremum, Option.getD_some]
       rw [STLInterval.set_stlInterval]
@@ -134,18 +134,18 @@ theorem PointSegmentSignal.intervalUntilFloat_spec
     (shift : STLInterval 𝕋 → STLInterval 𝕋 → STLInterval 𝕋)
     (lhsInt rhsInt : List (STLInterval 𝕋)) (U : STLInterval 𝕋) : -- --- CONCL ---
     let r := (PointSegmentSignal.intervalUntilFloat shift lhsInt U rhsInt).mapTime toReal
-    (PointSegmentSignal.aux_untilIntNoZero U).set = U.set \ {0} ∧ r.IsValid ∧
+    (PointSegmentSignal.step_untilIntNoZero U).set = U.set \ {0} ∧ r.IsValid ∧
     ∀ t : ℝ, 0 ≤ t →
       (r.at t = true ↔
         (∃ L ∈ lhsInt, ∃ R ∈ rhsInt, t ∈ (shift (R.and_ L.rightClosure)
-          (PointSegmentSignal.aux_untilIntNoZero U)).set ∧ t ∈ L.leftClosure.set) ∨
+          (PointSegmentSignal.step_untilIntNoZero U)).set ∧ t ∈ L.leftClosure.set) ∨
         (0 ∈ U.set ∧ ∃ R ∈ rhsInt, t ∈ R.set)) := by -- --- PROOF ---
   dsimp only
   refine ⟨PointSegmentSignal.aux_set_untilIntNoZero U, ?_⟩
   have h0U := PointSegmentSignal.aux_containsZero_iff U
   -- the shifted interval of a pair of intervals
   let S : STLInterval 𝕋 → STLInterval 𝕋 → STLInterval 𝕋 := fun L R =>
-    shift (R.and_ L.rightClosure) (PointSegmentSignal.aux_untilIntNoZero U)
+    shift (R.and_ L.rightClosure) (PointSegmentSignal.step_untilIntNoZero U)
   let P : STLInterval 𝕋 → STLInterval 𝕋 → STLInterval 𝕋 := fun L R => (S L R).and_ L.leftClosure
   have hP : ∀ L R : STLInterval 𝕋, ∀ t : ℝ, t ∈ (P L R).set ↔
       t ∈ (S L R).set ∧ t ∈ L.leftClosure.set := fun L R t => by
@@ -208,11 +208,11 @@ theorem PointSegmentSignal.intervalUntilFloat_spec
     · rintro ⟨L, hL', hh⟩
       exact b1 ⟨L, hL', hh⟩
   have key : PointSegmentSignal.intervalUntilFloat shift lhsInt U rhsInt =
-      if PointSegmentSignal.aux_containsZero U = true then
+      if PointSegmentSignal.step_containsZero U = true then
         rhsInt.foldl (fun out R => out.set R true) B else B := by
     rw [hBdef]; rfl
   rw [key]
-  by_cases hc : PointSegmentSignal.aux_containsZero U = true
+  by_cases hc : PointSegmentSignal.step_containsZero U = true
   · -- the right-hand side intervals are set as well
     rw [if_pos hc]
     obtain ⟨hvF, hF⟩ := List.foldl_set_spec

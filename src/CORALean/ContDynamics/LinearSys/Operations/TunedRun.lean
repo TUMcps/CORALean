@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -55,11 +56,12 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 open Matrix ContSet Scalar NormedSpace
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Lines 1-3: the time, the step `Alg. 2` starts from, and the two accumulated
 errors, before the first iteration. -/
-noncomputable def LinearSys.aux_tunedInit (tf μ : ℝ) : LinearSys.TunedState n :=
+@[step_of LinearSys.tunedRun]
+noncomputable def LinearSys.step_tunedInit (tf μ : ℝ) : LinearSys.TunedState n :=
   -- 1. t ← 0
   { t := 0
     -- 2. Δt₋₁ ← t_f μ
@@ -74,7 +76,8 @@ noncomputable def LinearSys.aux_tunedInit (tf μ : ℝ) : LinearSys.TunedState n
 
 /-- Lines 5-10: one iteration of [1, Alg. 1]'s main loop, and `none` where
 `Alg. 2` ran out of fuel. -/
-noncomputable def LinearSys.aux_tunedStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
+@[step_of LinearSys.tunedRun]
+noncomputable def LinearSys.step_tunedStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εSmax tf μ : ℝ) (ηmax fuel : ℕ)
     (s : LinearSys.TunedState n) : Option (LinearSys.TunedState n) :=
   match sys.adaptTimeStep le X₀ U εHmax εPmax s.εP tf s.t s.Δt μ ηmax fuel with
@@ -109,13 +112,13 @@ noncomputable def LinearSys.aux_tunedStep (sys : LinearSys 𝕋 n) (le : ℝ →
 noncomputable def LinearSys.tunedRun (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εSmax tf μ : ℝ) (ηmax fuel : ℕ) :
     ℕ → Option (LinearSys.TunedState n)
-  | 0 => some (LinearSys.aux_tunedInit tf μ)                           -- 1.-3. initialize
+  | 0 => some (LinearSys.step_tunedInit tf μ)                           -- 1.-3. initialize
   | k + 1 =>
     match sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k with
     | none => none
     | some s =>
       if s.t < tf                                                  -- 4. while t < t_f
-      then sys.aux_tunedStep le X₀ U εHmax εPmax εSmax tf μ ηmax fuel s
+      then sys.step_tunedStep le X₀ U εHmax εPmax εSmax tf μ ηmax fuel s
       else some s
 
 end CORALean

@@ -109,7 +109,7 @@ and `R_union = ∅` exactly as lines 13-14 print them.
 
 * `ReachRepeat.lean` — `NonlinDASys.reachRepeat`, lines 5-10: Eq. 17's enlargement about the center,
   lines 6-8 as one `linReach`, line 9 as Cor. 1 over the joint set, the exit test
-* `LinReachAdaptive.lean` — `NonlinDASys.aux_errorLoopAdaptive`, lines 4-10 as CORA's
+* `LinReachAdaptive.lean` — `NonlinDASys.step_errorLoopAdaptive`, lines 4-10 as CORA's
   `linReach_adaptive` runs them: line 5's guess the origin-centered box of `λ` times the last error's
   size, no `L_max` exit
 * `ReachLoop.lean` — `NonlinDASys.reachLoop`, lines 2-4 and 11-21: the split and its recursion on

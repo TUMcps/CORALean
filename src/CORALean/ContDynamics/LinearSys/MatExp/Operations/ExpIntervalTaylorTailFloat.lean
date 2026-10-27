@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoun
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MatPow
 public import CORALean.ContSet.Interval.Float.Operations.Smul
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -47,6 +48,27 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+/-- The power and the tail at order `k`, the power carried from one order to the next. -/
+@[step_of MatExp.expIntervalTaylorTail]
+def MatExp.step_expIntervalTaylorTailPair (B : Interval (Mat 𝕋 n n)) :
+    ℕ → Interval (Mat 𝕋 n n) × Interval (Mat 𝕋 n n)
+  | 0 => (Interval.matPow B 0, Interval.point fun _ _ => zero)
+  | k + 1 =>
+    let PS := MatExp.step_expIntervalTaylorTailPair B k
+    let P := (Interval.matMul B PS.1).materialiseMat
+    (P, if k < 2 then Interval.point fun _ _ => zero
+      else (Interval.matPlus (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf
+        (MatExp.invFactorialBounds (k + 1)).sup P) PS.2).materialiseMat)
+
+/-- The same tail, one product per order rather than `κ` of them. -/
+@[step_of MatExp.expIntervalTaylorTail]
+def MatExp.step_expIntervalTaylorTailImpl (B : Interval (Mat 𝕋 n n)) (k : ℕ) :
+    Interval (Mat 𝕋 n n) :=
+  (MatExp.step_expIntervalTaylorTailPair B k).2
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Orders `3 … κ` of the Taylor series at an interval matrix. Below order three there are
@@ -59,25 +81,6 @@ def MatExp.expIntervalTaylorTail (B : Interval (Mat 𝕋 n n)) : ℕ → Interva
       (Interval.smul (MatExp.invFactorialBounds (k + 3)).inf (MatExp.invFactorialBounds (k + 3)).sup
         (Interval.matPow B (k + 3)))
       (MatExp.expIntervalTaylorTail B (k + 2))).materialiseMat
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The power and the tail at order `k`, the power carried from one order to the next. -/
-def MatExp.aux_expIntervalTaylorTailPair (B : Interval (Mat 𝕋 n n)) :
-    ℕ → Interval (Mat 𝕋 n n) × Interval (Mat 𝕋 n n)
-  | 0 => (Interval.matPow B 0, Interval.point fun _ _ => zero)
-  | k + 1 =>
-    let PS := MatExp.aux_expIntervalTaylorTailPair B k
-    let P := (Interval.matMul B PS.1).materialiseMat
-    (P, if k < 2 then Interval.point fun _ _ => zero
-      else (Interval.matPlus (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf
-        (MatExp.invFactorialBounds (k + 1)).sup P) PS.2).materialiseMat)
-
-/-- The same tail, one product per order rather than `κ` of them. -/
-def MatExp.aux_expIntervalTaylorTailImpl (B : Interval (Mat 𝕋 n n)) (k : ℕ) :
-    Interval (Mat 𝕋 n n) :=
-  (MatExp.aux_expIntervalTaylorTailPair B k).2
 
 end CORALean.Float
 

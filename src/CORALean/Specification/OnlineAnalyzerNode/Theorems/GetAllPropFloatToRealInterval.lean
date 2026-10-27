@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋
 private theorem OnlineAnalyzerNode.aux_propBoundFloat_toReal (eps : 𝕋)
     (ps : List (STLInterval 𝕋)) : -- --- CONCL ---
     ∀ st : WithTop 𝕋 × Bool,
-      Prod.map (WithTop.map toReal) id (OnlineAnalyzerNode.aux_propBoundFloat eps ps st) =
+      Prod.map (WithTop.map toReal) id (OnlineAnalyzerNode.step_propBoundFloat eps ps st) =
         OnlineAnalyzerNode.propBound (toReal eps) (ps.map STLInterval.toRealInterval)
           (Prod.map (WithTop.map toReal) id st) := by -- --- PROOF ---
   induction ps with
@@ -58,7 +58,7 @@ private theorem OnlineAnalyzerNode.aux_propBoundFloat_toReal (eps : 𝕋)
     obtain ⟨ub, rc⟩ := st
     rcases p with _ | ⟨l, u, lc', rc', hu, hlt, h0⟩
     · -- an empty interval: the bound `0`, open
-      simp [OnlineAnalyzerNode.aux_propBoundFloat, OnlineAnalyzerNode.propBound,
+      simp [OnlineAnalyzerNode.step_propBoundFloat, OnlineAnalyzerNode.propBound,
         STLInterval.toRealInterval, toReal_zero_eq]
     · -- the new bound and the old compared exactly
       obtain ⟨h1, h2, h3, hp⟩ : ∃ h1 h2 h3,
@@ -66,7 +66,7 @@ private theorem OnlineAnalyzerNode.aux_propBoundFloat_toReal (eps : 𝕋)
             STLInterval.nonempty (toReal l) (u.map toReal) lc' rc' h1 h2 h3 := by
         rcases u with _ | u <;> exact ⟨_, _, _, rfl⟩
       rw [List.map_cons, hp]
-      simp only [OnlineAnalyzerNode.aux_propBoundFloat, OnlineAnalyzerNode.propBound,
+      simp only [OnlineAnalyzerNode.step_propBoundFloat, OnlineAnalyzerNode.propBound,
         Prod.map_apply, id_eq, STLInterval.toEReal_map_toReal]
       open Classical in
       by_cases hc : STLInterval.toEReal u < STLInterval.toEReal ub ∨

@@ -50,6 +50,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContain
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -81,36 +82,43 @@ open ContSet FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `a` read as the functional over ℝ it names, one row of a one-row matrix. -/
-abbrev aux_dirLin (a : Vec 𝕋 n) : Vec ℝ n →ₗ[ℝ] ℝ := Real.HPolytope.rowLin
+@[step_of containsPolytopeInterval]
+abbrev step_dirLin (a : Vec 𝕋 n) : Vec ℝ n →ₗ[ℝ] ℝ := Real.HPolytope.rowLin
     (toRealMat (fun (_ : Fin 1) => a)) 0
 
 /-- A box's bound along `a`. -/
-def aux_boxBound (I : Interval (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
-  (I.boundDot (c := aux_dirLin a) a fun _ => rfl).val
+@[step_of containsPolytopeInterval]
+def step_boxBound (I : Interval (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
+  (I.boundDot (c := step_dirLin a) a fun _ => rfl).val
 
-theorem aux_boxBound_le (I : Interval (Vec 𝕋 n)) :
-    ∀ a, ∀ x ∈ I.construct, ∑ j, toReal (a j) * x j ≤ toReal (aux_boxBound I a) :=
-  fun a => (I.boundDot (c := aux_dirLin a) a fun _ => rfl).le
+@[step_of containsPolytopeInterval]
+theorem step_boxBound_le (I : Interval (Vec 𝕋 n)) :
+    ∀ a, ∀ x ∈ I.construct, ∑ j, toReal (a j) * x j ≤ toReal (step_boxBound I a) :=
+  fun a => (I.boundDot (c := step_dirLin a) a fun _ => rfl).le
 
 /-- A zonotope's bound along `a`, with no solver. -/
-def aux_zonoBound (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
-  (Z.boundDot (c := aux_dirLin a) a fun _ => rfl).val
+@[step_of containsPolytopeZonotope]
+def step_zonoBound (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
+  (Z.boundDot (c := step_dirLin a) a fun _ => rfl).val
 
-theorem aux_zonoBound_le (Z : Zonotope (Vec 𝕋 n)) :
-    ∀ a, ∀ x ∈ Z.construct, ∑ j, toReal (a j) * x j ≤ toReal (aux_zonoBound Z a) :=
-  fun a => (Z.boundDot (c := aux_dirLin a) a fun _ => rfl).le
+@[step_of containsPolytopeZonotope]
+theorem step_zonoBound_le (Z : Zonotope (Vec 𝕋 n)) :
+    ∀ a, ∀ x ∈ Z.construct, ∑ j, toReal (a j) * x j ≤ toReal (step_zonoBound Z a) :=
+  fun a => (Z.boundDot (c := step_dirLin a) a fun _ => rfl).le
 
 /-- Every coordinate of `B` inside `I`'s. -/
-def aux_containsBox (I B : Interval (Vec 𝕋 n)) : Bool :=
+@[step_of containsBoxOuter]
+def step_containsBox (I B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange n).all fun j => le (I.inf j) (B.inf j) && le (B.sup j) (I.sup j)
 
-theorem aux_containsBox_sound {I B : Interval (Vec 𝕋 n)}
-    (h : aux_containsBox I B = true) : -- --- CONCL ---
+@[step_of containsBoxOuter]
+theorem step_containsBox_sound {I B : Interval (Vec 𝕋 n)}
+    (h : step_containsBox I B = true) : -- --- CONCL ---
     B.construct ⊆ I.construct := by -- --- PROOF ---
-  simp only [aux_containsBox, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
+  simp only [step_containsBox, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
   intro x hx j
   have hlo : toReal (B.inf j) ≤ x j := (hx j).1
@@ -118,13 +126,15 @@ theorem aux_containsBox_sound {I B : Interval (Vec 𝕋 n)}
   exact ⟨le_trans (toReal_le_of_le (h j).1) hlo, le_trans hhi (toReal_le_of_le (h j).2)⟩
 
 /-- One coordinate in which `B` lies strictly to one side of `I`. -/
-def aux_disjointBox (I B : Interval (Vec 𝕋 n)) : Bool :=
+@[step_of isDisjointBoxOuter]
+def step_disjointBox (I B : Interval (Vec 𝕋 n)) : Bool :=
   (List.finRange n).any fun j => ltStrict (B.sup j) (I.inf j) || ltStrict (I.sup j) (B.inf j)
 
-theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)}
-    (h : aux_disjointBox I B = true) : -- --- CONCL ---
+@[step_of isDisjointBoxOuter]
+theorem step_disjointBox_sound {I B : Interval (Vec 𝕋 n)}
+    (h : step_disjointBox I B = true) : -- --- CONCL ---
     Disjoint B.construct I.construct := by -- --- PROOF ---
-  simp only [aux_disjointBox, List.any_eq_true, List.mem_finRange, Bool.or_eq_true,
+  simp only [step_disjointBox, List.any_eq_true, List.mem_finRange, Bool.or_eq_true,
     true_and] at h
   obtain ⟨j, hj⟩ := h
   rw [Set.disjoint_left]
@@ -138,7 +148,8 @@ theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)}
   · linarith [toReal_lt_of_ltStrict hj]
 
 /-- The negated direction's bound, read as a lower bound along `a`. -/
-private theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
+@[step_of containsPolytopeInterval]
+theorem step_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a)) (a : Vec 𝕋 n)
     {x : Vec ℝ n} (hx : x ∈ X) :
     toReal (neg (bnd (-a))) ≤ ∑ j, toReal (a j) * x j := by
@@ -149,17 +160,19 @@ private theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
 
 /-- Every row of `P` bounded on the set by `bnd`, an equality row from both sides, and the origin
 in the error box, so that the nominal part the rows describe is inside the polytope. -/
-def aux_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
+@[step_of containsPolytopeInterval]
+def step_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
   (List.finRange P.m).all (fun i => le (bnd (P.A i)) (P.b i)) &&
     (List.finRange P.me).all (fun i =>
       le (bnd (P.Ae i)) (P.be i) && le (P.be i) (neg (bnd (-(P.Ae i))))) &&
     (List.finRange n).all fun j => le (P.I_error.inf j) zero && le zero (P.I_error.sup j)
 
-theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
+@[step_of containsPolytopeInterval]
+theorem step_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
-    (h : aux_containsRows P bnd = true) : -- --- CONCL ---
+    (h : step_containsRows P bnd = true) : -- --- CONCL ---
     X ⊆ P.construct := by -- --- PROOF ---
-  simp only [aux_containsRows, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
+  simp only [step_containsRows, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   intro x hx
   obtain ⟨⟨hA, hE⟩, hbox⟩ := h
@@ -168,7 +181,7 @@ theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
       (abs_nonneg _)
   · have h : (toRealMat P.Ae).mulVec x i = toReal (P.be i) :=
       le_antisymm (le_trans (hb (P.Ae i) x hx) (toReal_le_of_le (hE i).1))
-        (le_trans (toReal_le_of_le (hE i).2) (aux_neg_bound hb (P.Ae i) hx))
+        (le_trans (toReal_le_of_le (hE i).2) (step_neg_bound hb (P.Ae i) hx))
     rw [h, sub_self, abs_zero]
     exact abs_nonneg _
   · refine Interval.mem_vec_iff.mpr fun j => ?_
@@ -178,20 +191,52 @@ theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
     exact ⟨h₁, h₂⟩
 
 /-- One row of `P` the whole set lies strictly beyond. -/
-def aux_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
+@[step_of isDisjointPolytopeInterval]
+def step_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
   (List.finRange P.m).any fun i => ltStrict (P.bU i) (neg (bnd (-(P.A i))))
 
-theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
+@[step_of isDisjointPolytopeInterval]
+theorem step_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
-    (h : aux_disjointRows P bnd = true) : -- --- CONCL ---
+    (h : step_disjointRows P bnd = true) : -- --- CONCL ---
     Disjoint X P.construct := by -- --- PROOF ---
-  simp only [aux_disjointRows, List.any_eq_true, List.mem_finRange, true_and] at h
+  simp only [step_disjointRows, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨i, hi⟩ := h
   rw [Set.disjoint_left]
   intro x hX hP
   have hrow : ∑ j, toReal (P.A i j) * x j ≤ toReal (P.bU i) :=
     (HPolytope.rows_of_mem_construct hP).1 i
-  linarith [aux_neg_bound hb (P.A i) hX, toReal_lt_of_ltStrict hi]
+  linarith [step_neg_bound hb (P.A i) hX, toReal_lt_of_ltStrict hi]
+
+/-- Some member's hull of `zB` strictly to one side of `B`. -/
+@[step_of isDisjointZonoBundleOuter]
+def step_disjointBundleBox (zB : ZonoBundle (Vec 𝕋 n)) (B : Interval (Vec 𝕋 n)) : Bool :=
+  (List.finRange zB.k).any fun i => step_disjointBox (Zonotope.interval (zB.Z i)) B
+
+@[step_of isDisjointZonoBundleOuter]
+theorem step_disjointBundleBox_sound {zB : ZonoBundle (Vec 𝕋 n)} {B : Interval (Vec 𝕋 n)}
+    (h : step_disjointBundleBox zB B = true) : -- --- CONCL ---
+    Disjoint B.construct zB.construct := by -- --- PROOF ---
+  simp only [step_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
+  obtain ⟨i, hi⟩ := h
+  exact (step_disjointBox_sound hi).mono_right
+    ((SetIntersection.construct_subset_ofFn _ i).trans
+      (Zonotope.interval_contains (zB.Z i)))
+
+/-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
+@[step_of isDisjointZonoBundleZonoBundle]
+def step_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
+  (List.finRange zB'.k).any fun j => step_disjointBundleBox zB (Zonotope.interval (zB'.Z j))
+
+@[step_of isDisjointZonoBundleZonoBundle]
+theorem step_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
+    (h : step_disjointBundles zB zB' = true) : -- --- CONCL ---
+    Disjoint zB'.construct zB.construct := by -- --- PROOF ---
+  simp only [step_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
+  obtain ⟨j, hj⟩ := h
+  exact (step_disjointBundleBox_sound hj).mono_left
+    ((SetIntersection.construct_subset_ofFn _ j).trans
+      (Zonotope.interval_contains (zB'.Z j)))
 
 
 -- ========================================  INSTANCES  ========================================= --
@@ -199,50 +244,24 @@ theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
 /-- Through the interval hull, so exact at a box and, for `contains`, at a zonotope. -/
 instance containsBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
     Contains (Interval (Vec 𝕋 n)) (S n) where
-  contains I s := aux_containsBox I (IntervalOuter.interval s)
-  contains_sound _ s h := (IntervalOuter.interval_outer s).trans (aux_containsBox_sound h)
+  contains I s := step_containsBox I (IntervalOuter.interval s)
+  contains_sound _ s h := (IntervalOuter.interval_outer s).trans (step_containsBox_sound h)
 
 /-- Axis-aligned separation of the interval hull: conservative beyond a box. -/
 instance isDisjointBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
     IsDisjoint (Interval (Vec 𝕋 n)) (S n) where
-  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval s)
-  isDisjoint_sound _ s h := (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer s)
+  isDisjoint I s := step_disjointBox I (IntervalOuter.interval s)
+  isDisjoint_sound _ s h := (step_disjointBox_sound h).mono_left (IntervalOuter.interval_outer s)
 
 /-- Each set through its interval hull, `'approx'` `isIntersecting_`: `true` separates the hulls,
 `false` says nothing. Low priority, so the box and polytope instances above come first. -/
 instance (priority := 50) isDisjointBoxBoxOuter {T S : ℕ → Type}
     [∀ n, ContSet (T n) (Vec ℝ n)] [∀ n, ContSet (S n) (Vec ℝ n)]
     [IntervalOuter T 𝕋] [IntervalOuter S 𝕋] : IsDisjoint (T n) (S n) where
-  isDisjoint t s := aux_disjointBox (IntervalOuter.interval t) (IntervalOuter.interval s)
+  isDisjoint t s := step_disjointBox (IntervalOuter.interval t) (IntervalOuter.interval s)
   isDisjoint_sound t s h :=
-    (aux_disjointBox_sound h).mono (IntervalOuter.interval_outer s)
+    (step_disjointBox_sound h).mono (IntervalOuter.interval_outer s)
       (IntervalOuter.interval_outer t)
-
-/-- Some member's hull of `zB` strictly to one side of `B`. -/
-def aux_disjointBundleBox (zB : ZonoBundle (Vec 𝕋 n)) (B : Interval (Vec 𝕋 n)) : Bool :=
-  (List.finRange zB.k).any fun i => aux_disjointBox (Zonotope.interval (zB.Z i)) B
-
-theorem aux_disjointBundleBox_sound {zB : ZonoBundle (Vec 𝕋 n)} {B : Interval (Vec 𝕋 n)}
-    (h : aux_disjointBundleBox zB B = true) : -- --- CONCL ---
-    Disjoint B.construct zB.construct := by -- --- PROOF ---
-  simp only [aux_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
-  obtain ⟨i, hi⟩ := h
-  exact (aux_disjointBox_sound hi).mono_right
-    ((SetIntersection.construct_subset_ofFn _ i).trans
-      (Zonotope.interval_contains (zB.Z i)))
-
-/-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
-def aux_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
-  (List.finRange zB'.k).any fun j => aux_disjointBundleBox zB (Zonotope.interval (zB'.Z j))
-
-theorem aux_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
-    (h : aux_disjointBundles zB zB' = true) : -- --- CONCL ---
-    Disjoint zB'.construct zB.construct := by -- --- PROOF ---
-  simp only [aux_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
-  obtain ⟨j, hj⟩ := h
-  exact (aux_disjointBundleBox_sound hj).mono_left
-    ((SetIntersection.construct_subset_ofFn _ j).trans
-      (Zonotope.interval_contains (zB'.Z j)))
 
 -- A bundle's three pairings: with a boxable set on either side, and with a bundle.
 
@@ -251,23 +270,23 @@ bundle has no total box of its own (`k = 0` is the whole space). -/
 instance (priority := 50) isDisjointZonoBundleOuter {S : ℕ → Type}
     [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] : IsDisjoint
     (ZonoBundle (Vec 𝕋 n)) (S n) where
-  isDisjoint zB s := aux_disjointBundleBox zB (IntervalOuter.interval s)
+  isDisjoint zB s := step_disjointBundleBox zB (IntervalOuter.interval s)
   isDisjoint_sound _ s h :=
-    (aux_disjointBundleBox_sound h).mono_left (IntervalOuter.interval_outer s)
+    (step_disjointBundleBox_sound h).mono_left (IntervalOuter.interval_outer s)
 
 -- the same with the bundle second
 instance (priority := 50) isDisjointOuterZonoBundle {T : ℕ → Type}
     [∀ n, ContSet (T n) (Vec ℝ n)] [IntervalOuter T 𝕋] : IsDisjoint (T n)
     (ZonoBundle (Vec 𝕋 n)) where
-  isDisjoint t zB := aux_disjointBundleBox zB (IntervalOuter.interval t)
+  isDisjoint t zB := step_disjointBundleBox zB (IntervalOuter.interval t)
   isDisjoint_sound t _ h :=
-    (aux_disjointBundleBox_sound h).symm.mono_right (IntervalOuter.interval_outer t)
+    (step_disjointBundleBox_sound h).symm.mono_right (IntervalOuter.interval_outer t)
 
 -- and a bundle against a bundle
 instance (priority := 50) isDisjointZonoBundleZonoBundle :
     IsDisjoint (ZonoBundle (Vec 𝕋 n)) (ZonoBundle (Vec 𝕋 n)) where
-  isDisjoint := aux_disjointBundles
-  isDisjoint_sound _ _ := aux_disjointBundles_sound
+  isDisjoint := step_disjointBundles
+  isDisjoint_sound _ _ := step_disjointBundles_sound
 
 /-- The box's pair at a float zonotope, `S` fixed rather than inferred: the generic instances
 above cannot find a family written as a lambda. -/
@@ -278,66 +297,66 @@ instance isDisjointBoxZonotope : IsDisjoint (Interval (Vec 𝕋 n)) (Zonotope (V
   isDisjointBoxOuter (S := 𝒵[𝕋])
 
 instance containsPolytopeInterval : Contains (HPolytope 𝕋 (Vec 𝕋 n)) (Interval (Vec 𝕋 n)) where
-  contains P I := aux_containsRows P (aux_boxBound I)
-  contains_sound _ I := aux_containsRows_sound (aux_boxBound_le I)
+  contains P I := step_containsRows P (step_boxBound I)
+  contains_sound _ I := step_containsRows_sound (step_boxBound_le I)
 
 instance containsPolytopeZonotope : Contains (HPolytope 𝕋 (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) where
-  contains P Z := aux_containsRows P (aux_zonoBound Z)
-  contains_sound _ Z := aux_containsRows_sound (aux_zonoBound_le Z)
+  contains P Z := step_containsRows P (step_zonoBound Z)
+  contains_sound _ Z := step_containsRows_sound (step_zonoBound_le Z)
 
 instance isDisjointPolytopeInterval : IsDisjoint (HPolytope 𝕋 (Vec 𝕋 n)) (Interval (Vec 𝕋 n)) where
-  isDisjoint P I := aux_disjointRows P (aux_boxBound I)
-  isDisjoint_sound _ I := aux_disjointRows_sound (aux_boxBound_le I)
+  isDisjoint P I := step_disjointRows P (step_boxBound I)
+  isDisjoint_sound _ I := step_disjointRows_sound (step_boxBound_le I)
 
 instance isDisjointPolytopeZonotope : IsDisjoint (HPolytope 𝕋 (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) where
-  isDisjoint P Z := aux_disjointRows P (aux_zonoBound Z)
-  isDisjoint_sound _ Z := aux_disjointRows_sound (aux_zonoBound_le Z)
+  isDisjoint P Z := step_disjointRows P (step_zonoBound Z)
+  isDisjoint_sound _ Z := step_disjointRows_sound (step_zonoBound_le Z)
 
 open scoped CORALean.Real in
 /-- The box's `Contains`/`IsDisjoint` at an exact real-layer family, `S` fixed rather than
 inferred — what the generic instance above cannot do at a family written as a lambda. -/
 noncomputable instance containsBoxRealInterval :
     Contains (Interval (Vec ℝ n)) (Real.Interval (Vec ℝ n)) where
-  contains I s := aux_containsBox I (IntervalOuter.interval (S := ℐ𝒱) s)
+  contains I s := step_containsBox I (IntervalOuter.interval (S := ℐ𝒱) s)
   contains_sound _ s h :=
-    (IntervalOuter.interval_outer (S := ℐ𝒱) s).trans (aux_containsBox_sound h)
+    (IntervalOuter.interval_outer (S := ℐ𝒱) s).trans (step_containsBox_sound h)
 
 open scoped CORALean.Real in
 noncomputable instance isDisjointBoxRealInterval :
     IsDisjoint (Interval (Vec ℝ n)) (Real.Interval (Vec ℝ n)) where
-  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := ℐ𝒱) s)
+  isDisjoint I s := step_disjointBox I (IntervalOuter.interval (S := ℐ𝒱) s)
   isDisjoint_sound _ s h :=
-    (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := ℐ𝒱) s)
+    (step_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := ℐ𝒱) s)
 
 -- The same pair at the second exact family a box can be hulled from.
 open scoped CORALean.Real in
 noncomputable instance containsBoxRealZonotope :
     Contains (Interval (Vec ℝ n)) (Real.Zonotope (Vec ℝ n)) where
-  contains I s := aux_containsBox I (IntervalOuter.interval (S := 𝒵) s)
+  contains I s := step_containsBox I (IntervalOuter.interval (S := 𝒵) s)
   contains_sound _ s h :=
-    (IntervalOuter.interval_outer (S := 𝒵) s).trans (aux_containsBox_sound h)
+    (IntervalOuter.interval_outer (S := 𝒵) s).trans (step_containsBox_sound h)
 
 open scoped CORALean.Real in
 noncomputable instance isDisjointBoxRealZonotope :
     IsDisjoint (Interval (Vec ℝ n)) (Real.Zonotope (Vec ℝ n)) where
-  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒵) s)
+  isDisjoint I s := step_disjointBox I (IntervalOuter.interval (S := 𝒵) s)
   isDisjoint_sound _ s h :=
-    (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒵) s)
+    (step_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒵) s)
 
 -- The same pair once more, at the third exact family a box can be hulled from.
 open scoped CORALean.Real in
 noncomputable instance containsBoxRealConZonotope :
     Contains (Interval (Vec ℝ n)) (Real.ConZonotope (Vec ℝ n)) where
-  contains I s := aux_containsBox I (IntervalOuter.interval (S := 𝒞) s)
+  contains I s := step_containsBox I (IntervalOuter.interval (S := 𝒞) s)
   contains_sound _ s h :=
-    (IntervalOuter.interval_outer (S := 𝒞) s).trans (aux_containsBox_sound h)
+    (IntervalOuter.interval_outer (S := 𝒞) s).trans (step_containsBox_sound h)
 
 open scoped CORALean.Real in
 noncomputable instance isDisjointBoxRealConZonotope :
     IsDisjoint (Interval (Vec ℝ n)) (Real.ConZonotope (Vec ℝ n)) where
-  isDisjoint I s := aux_disjointBox I (IntervalOuter.interval (S := 𝒞) s)
+  isDisjoint I s := step_disjointBox I (IntervalOuter.interval (S := 𝒞) s)
   isDisjoint_sound _ s h :=
-    (aux_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒞) s)
+    (step_disjointBox_sound h).mono_left (IntervalOuter.interval_outer (S := 𝒞) s)
 
 /-- Every width certified positive by `ltStrict`. -/
 instance fullDimTestInterval : FullDimTest (Interval (Vec 𝕋 n)) where

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.HybridDynamics.Definitions.ResolveSource
 public import Mathlib.Algebra.BigOperators.Fin
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,8 +13,8 @@ public import Mathlib.Algebra.BigOperators.Fin
 CORA's `linearReset/resolve` (`LinearReset.resolve`) at a float scalar. The updates
 `A += B_part C(l,:)`, `B += B_part D(l,:)`, `c += B_part q(l)` multiply and add, which is not exact
 at a float, so the resolved `A`, `B` and `c` are returned as interval matrices and an interval
-vector: the bounds of the updates (`aux_resolveUpdateFloat`) summed in their own directions, and the
-columns of one global index summed from the bounds of the updated `B`. Soundness is
+vector: the bounds of the updates (`step_resolveUpdateFloat`) summed in their own directions, and
+the columns of one global index summed from the bounds of the updated `B`. Soundness is
 `LinearReset.resolveFloat_outer`.
 
 ## Inputs
@@ -45,9 +46,10 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {N g k : ℕ} {n m p : Fin k → ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def LinearReset.aux_resolveUpdateFloat (B : Mat 𝕋 N (∑ i, m i))
+@[step_of LinearReset.resolveFloat]
+def LinearReset.step_resolveUpdateFloat (B : Mat 𝕋 N (∑ i, m i))
     (C : ∀ i, Mat 𝕋 (p i) (n i)) (D : ∀ i, Mat 𝕋 (p i) (m i)) (q : ∀ i, Vec 𝕋 (p i))
     (stateBinds : ∀ i, Fin (n i) → Fin N) (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
     (ij : Σ i, Fin (m i)) :
@@ -93,7 +95,7 @@ def LinearReset.resolveFloat (A : Mat 𝕋 N N) (B : Mat 𝕋 N (∑ i, m i)) (c
   -- `idxCompInput{i}(j)`: the column of `u` that is input `j` of component `i`
   let idxCompInput : ∀ i, Fin (m i) → Fin (∑ i, m i) := fun i j => finSigmaFinEquiv ⟨i, j⟩
   -- the loop over the bound inputs
-  let update := LinearReset.aux_resolveUpdateFloat B C D q stateBinds inputBinds
+  let update := LinearReset.step_resolveUpdateFloat B C D q stateBinds inputBinds
   let A' : Interval (Mat 𝕋 N N) :=
     ⟨fun a b => addDown (A a b) (sumDown fun i => sumDown fun j => (update ⟨i, j⟩).1.inf a b),
      fun a b => addUp (A a b) (sumUp fun i => sumUp fun j => (update ⟨i, j⟩).1.sup a b)⟩

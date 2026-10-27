@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -35,10 +36,11 @@ open CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The `k`-th chunk of `g` consecutive entries of `x`, the last one possibly shorter. -/
-def aux_groupSortChunkFloat (g : ℕ) (x : Vec 𝕋 n) (k : ℕ) : List 𝕋 :=
+@[step_of groupSortFloat]
+def step_groupSortChunkFloat (g : ℕ) (x : Vec 𝕋 n) (k : ℕ) : List 𝕋 :=
   List.ofFn fun r : Fin (min g (n - k * g)) => x ⟨k * g + r, by have := r.2; omega⟩
 
 
@@ -46,7 +48,7 @@ def aux_groupSortChunkFloat (g : ℕ) (x : Vec 𝕋 n) (k : ℕ) : List 𝕋 :=
 
 /-- Entry `i` is the `i mod g`-th entry of the chunk `⌊i / g⌋`, sorted ascending by `le`. -/
 def groupSortFloat (g : ℕ) (x : Vec 𝕋 n) : Vec 𝕋 n := fun i =>
-  ((aux_groupSortChunkFloat g x (i / g)).mergeSort FloatOps.le).getD (i % g) FloatOps.zero
+  ((step_groupSortChunkFloat g x (i / g)).mergeSort FloatOps.le).getD (i % g) FloatOps.zero
 
 end CORALean
 

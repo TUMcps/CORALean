@@ -15,7 +15,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Subs
 A point of the exact layer's `subs` of the stored sets, plus a point of the first set's error box,
 is a point of the float `subs`. The float terms bracket the exact ones (`subsTerms_rel`), so the
 same factor values reach the stored generators, which differ from the exact ones by at most
-`aux_subsGDiff` entrywise (`subsG_close`), and that difference, scaled by monomials in `[-1, 1]`,
+`step_subsGDiff` entrywise (`subsG_close`), and that difference, scaled by monomials in `[-1, 1]`,
 lies in the box `generatorError` that was added. The substituted set `pZin` is taken as its stored
 nominal polynomial: its independent generators and error box are not modelled, as in the exact
 layer.
@@ -91,10 +91,10 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     fun l => by simp only [hmon_def, Real.PolyZonotope.monomial, hE]; rfl
   -- the shortfall of each stored generator against the exact one
   set Δ : Fin n → Fin st.length → ℝ := fun i l =>
-    ρ l * toReal (pZ.G (st.get l).1 i) - toReal (pZ.aux_subsGDown pZin idu i l)
+    ρ l * toReal (pZ.G (st.get l).1 i) - toReal (pZ.step_subsGDown pZin idu i l)
     with hΔ
   have hbox : (fun i => ∑ l, Δ i l * mon l)
-      ∈ (PolyZonotope.generatorError (pZ.aux_subsGDiff pZin idu)).construct :=
+      ∈ (PolyZonotope.generatorError (pZ.step_subsGDiff pZin idu)).construct :=
     PolyZonotope.mem_generatorError_monomial (fun i l =>
       PolyZonotope.subsG_close pZ pZin idu l i (hm l).2.2.1 (hm l).2.2.2) ha
   -- the exact point's generator sum, over the stored terms
@@ -112,7 +112,7 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     rw [hG]
     rfl
   refine ⟨fun i => toReal ((pZ.subs pZin idu share).c i)
-      + (∑ l, toReal (pZ.aux_subsGDown pZin idu i l)
+      + (∑ l, toReal (pZ.step_subsGDown pZin idu i l)
           * mon l)
       + ∑ j : Fin pZ.q, toReal ((pZ.subs pZin idu share).GI j i) * β j,
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun _ => rfl⟩,
@@ -122,10 +122,10 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     intro i
     have h₁ : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
     have h₂ : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
-    have h₃ : toReal ((PolyZonotope.generatorError (pZ.aux_subsGDiff pZin idu)).inf i) ≤
+    have h₃ : toReal ((PolyZonotope.generatorError (pZ.step_subsGDiff pZin idu)).inf i) ≤
           (∑ l, Δ i l * mon l) ∧
         (∑ l, Δ i l * mon l) ≤
-          toReal ((PolyZonotope.generatorError (pZ.aux_subsGDiff pZin idu)).sup i) := hbox i
+          toReal ((PolyZonotope.generatorError (pZ.step_subsGDiff pZin idu)).sup i) := hbox i
     refine ⟨le_trans (addDown_le_add _ _) ?_, le_trans ?_ (add_le_addUp _ _)⟩
     · simp only [Entrywise.entry]
       linarith [h₃.1]
@@ -135,7 +135,7 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     funext i
     have hzi := hz i
     rw [hsum i] at hzi
-    have hs : (∑ l, toReal (pZ.aux_subsGDown pZin idu i l)
+    have hs : (∑ l, toReal (pZ.step_subsGDown pZin idu i l)
           * mon l)
         + (∑ l, Δ i l * mon l)
         = ∑ l, ρ l * toReal (pZ.G (st.get l).1 i)

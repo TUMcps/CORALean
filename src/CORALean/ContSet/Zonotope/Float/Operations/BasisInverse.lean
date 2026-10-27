@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -35,10 +36,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- One elimination step: row `k` scaled to a unit pivot, and cleared from every other row. -/
-def Zonotope.aux_basisStep (k : Fin n) (A B : Vector (Vector 𝕋 n) n) :
+@[step_of Zonotope.basisInverse]
+def Zonotope.step_basisStep (k : Fin n) (A B : Vector (Vector 𝕋 n) n) :
     Vector (Vector 𝕋 n) n × Vector (Vector 𝕋 n) n :=
   let p := (A[k.val]'k.isLt)[k.val]'k.isLt
   let rowA : Fin n → 𝕋 := fun j => divDown ((A[k.val]'k.isLt)[j.val]'j.isLt) p
@@ -57,7 +59,7 @@ def Zonotope.basisInverse (P : Mat 𝕋 n n) : Mat 𝕋 n n :=
   let A₀ : Vector (Vector 𝕋 n) n := Vector.ofFn fun i => Vector.ofFn fun j => P i j
   let B₀ : Vector (Vector 𝕋 n) n :=
     Vector.ofFn fun i => Vector.ofFn fun j => if i = j then one else zero
-  let B := ((List.finRange n).foldl (fun s k => Zonotope.aux_basisStep k s.1 s.2) (A₀, B₀)).2
+  let B := ((List.finRange n).foldl (fun s k => Zonotope.step_basisStep k s.1 s.2) (A₀, B₀)).2
   fun i j => (B[i.val]'i.isLt)[j.val]'j.isLt
 
 end CORALean.Float

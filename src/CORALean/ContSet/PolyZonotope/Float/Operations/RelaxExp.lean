@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidth
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,21 +43,23 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 open FloatOps
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The new independent generator as stored: `ξ_E` copies of the relaxed
 generator, rounded down. -/
-def PolyZonotope.aux_relaxGen (pZ : PolyZonotope (Vec 𝕋 n))
+@[step_of PolyZonotope.relaxExp]
+def PolyZonotope.step_relaxGen (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
   fun i => nsmulDown (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i)
 
 /-- What the two stored columns can be off by, each the gap to the other
 rounding direction of the same sum. -/
-def PolyZonotope.aux_relaxGap (pZ : PolyZonotope (Vec 𝕋 n))
+@[step_of PolyZonotope.relaxExp]
+def PolyZonotope.step_relaxGap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Mat 𝕋 n 2 :=
   fun i =>
     ![subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) (pZ.mergedGen part i),
-      subUp (nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i)) (pZ.aux_relaxGen part k₀ i)]
+      subUp (nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i)) (pZ.step_relaxGen part k₀ i)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -71,8 +74,8 @@ def PolyZonotope.relaxExp (pZ : PolyZonotope (Vec 𝕋 n))
   c := pZ.c
   G := Fin.append (fun l => pZ.G (part.left l)) (fun _ => pZ.mergedGen part)
   E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
-  GI := Fin.append pZ.GI (fun _ => pZ.aux_relaxGen part k₀)
-  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.aux_relaxGap part k₀))
+  GI := Fin.append pZ.GI (fun _ => pZ.step_relaxGen part k₀)
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.step_relaxGap part k₀))
 
 end CORALean.Float
 

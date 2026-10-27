@@ -3,6 +3,7 @@ module
 public import CORALean.Global.CoeffNorm
 public import CORALean.Global.CoeffNormHalfGadgetH
 public import CORALean.Global.GadgetGA
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -48,15 +49,19 @@ open scoped ENNReal
 open Matrix
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `A = (2, 1)ᵀ ∈ ℝ^{2×1}`. -/
-def aux_A28 : Mat ℝ 2 1 := fun i _ => if i = 0 then 2 else 1
+@[step_of gadget_sigma_counterexample]
+def step_A28 : Mat ℝ 2 1 := fun i _ => if i = 0 then 2 else 1
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem aux_mulVec28 (t : ℝ) (w : Fin 1 → ℝ) : -- --- CONCL ---
-    (t • aux_A28) *ᵥ w = ![2 * t * w 0, t * w 0] := by -- --- PROOF ---
+    (t • step_A28) *ᵥ w = ![2 * t * w 0, t * w 0] := by -- --- PROOF ---
   funext i
-  simp only [mulVec, dotProduct, Fin.sum_univ_one, Matrix.smul_apply, smul_eq_mul, aux_A28]
+  simp only [mulVec, dotProduct, Fin.sum_univ_one, Matrix.smul_apply, smul_eq_mul, step_A28]
   fin_cases i
   · simp only [Fin.zero_eta, if_true, cons_val_zero]; ring
   · simp only [Fin.mk_one, one_ne_zero, if_false, cons_val_one, cons_val_zero]; ring
@@ -94,16 +99,16 @@ private theorem aux_coeffNorm_gadgetH (x : Vec ℝ 2 × ℝ) : -- --- CONCL ---
 /-- For `0 < t ≤ 1` the radius of `E_∞(G_{tA})` at `Z(½H)` is `(3t + 1)/2`, attained at
 `(1, -1)`. -/
 private theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL ---
-    IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 α)) ''
+    IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • step_A28) 1 α)) ''
       Metric.closedBall 0 1) ((3 * t + 1) / 2) := by -- --- PROOF ---
   have hnorm := (coeffNorm_half_gadgetH (n := 2) (by norm_num)).2
   -- the value at `(v, s)`
   have hval : ∀ α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ),
-      coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 α) =
+      coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • step_A28) 1 α) =
         max ‖(![2 * t * α.fst 0, t * α.fst 0] : Vec ℝ 2)‖
           ((|2 * t * α.fst 0| + |t * α.fst 0| + |α.snd|) / 2) := by
     intro α
-    rw [show gadgetGA ∞ (t • aux_A28) 1 α = (![2 * t * α.fst 0, t * α.fst 0], -1 * α.snd) from
+    rw [show gadgetGA ∞ (t • step_A28) 1 α = (![2 * t * α.fst 0, t * α.fst 0], -1 * α.snd) from
       Prod.ext (aux_mulVec28 t _) rfl, hnorm]
     simp [Fin.sum_univ_two]
   -- the bound at every coefficient of the ball
@@ -124,7 +129,7 @@ private theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL
     show ‖WithLp.toLp ∞ (fun _ : Fin 1 => (1 : ℝ))‖ ≤ 1
     rw [PiLp.norm_toLp]
     exact (pi_norm_le_iff_of_nonneg zero_le_one).mpr fun _ => by simp
-  · show coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 _) = _
+  · show coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • step_A28) 1 _) = _
     rw [hval]
     refine le_antisymm (hle 1 (-1) (by simp) (by simp)) (le_trans ?_ (le_max_right _ _))
     show (3 * t + 1) / 2 ≤ (|2 * t * 1| + |t * 1| + |(-1 : ℝ)|) / 2
@@ -135,7 +140,7 @@ private theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL
     rw [Metric.mem_closedBall, dist_zero_right, WithLp.prod_norm_eq_sup, max_le_iff] at hα
     have hv : |α.fst 0| ≤ 1 := (Real.norm_eq_abs _ ▸ PiLp.norm_apply_le α.fst 0).trans hα.1
     have hs : |α.snd| ≤ 1 := by rw [← Real.norm_eq_abs]; exact hα.2
-    show coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 α) ≤ _
+    show coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • step_A28) 1 α) ≤ _
     rw [hval]
     exact hle _ _ hv hs
 
@@ -147,34 +152,34 @@ private theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL
 `(2 / ξ̂²) |3 - 5/2|`. -/
 theorem gadget_sigma_counterexample : -- --- CONCL ---
     -- `‖A‖_{1↦∞} = 2`, the numerator of Eq. 80's slope
-    IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ‖aux_A28 *ᵥ WithLp.ofLp v‖) ''
+    IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ‖step_A28 *ᵥ WithLp.ofLp v‖) ''
         Metric.closedBall 0 1) 2 ∧
       -- `‖A‖_{1↦1} = 3 = ξ̂` at `m = 1`
-      IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ∑ i, |(aux_A28 *ᵥ WithLp.ofLp v) i|) ''
+      IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ∑ i, |(step_A28 *ᵥ WithLp.ofLp v) i|) ''
         Metric.closedBall 0 1) 3 ∧
       -- at the printed `Z(H)`, `σ(3)`, `σ(5/2)` differ by less than the slope bound: Eq. 80 fails
       (∃ σ σ' : ℝ, IsGreatest ((fun α => coeffNorm (gadgetH 2)
-          (gadgetGA ∞ ((3 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ ∧
+          (gadgetGA ∞ ((3 : ℝ)⁻¹ • step_A28) 1 α)) '' Metric.closedBall 0 1) σ ∧
         IsGreatest ((fun α => coeffNorm (gadgetH 2)
-          (gadgetGA ∞ ((5 / 2 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ' ∧
+          (gadgetGA ∞ ((5 / 2 : ℝ)⁻¹ • step_A28) 1 α)) '' Metric.closedBall 0 1) σ' ∧
         |σ' - σ| < 2 / 3 ^ 2 * |3 - 5 / 2|) ∧
       -- the same at the circumbody `Z(½H)` the proof uses, refuting the printed reading directly
       ∃ σ σ' : ℝ, IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2)
-          (gadgetGA ∞ ((3 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ ∧
+          (gadgetGA ∞ ((3 : ℝ)⁻¹ • step_A28) 1 α)) '' Metric.closedBall 0 1) σ ∧
         IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2)
-          (gadgetGA ∞ ((5 / 2 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ' ∧
+          (gadgetGA ∞ ((5 / 2 : ℝ)⁻¹ • step_A28) 1 α)) '' Metric.closedBall 0 1) σ' ∧
         |σ' - σ| < 2 / 3 ^ 2 * |3 - 5 / 2| := by -- --- PROOF ---
-  have hA : ∀ w : Fin 1 → ℝ, aux_A28 *ᵥ w = ![2 * w 0, w 0] := fun w => by
+  have hA : ∀ w : Fin 1 → ℝ, step_A28 *ᵥ w = ![2 * w 0, w 0] := fun w => by
     have := aux_mulVec28 1 w
     rw [one_smul] at this
     rw [this]; simp
   -- the radius at `Z(H)` is half that at `Z(½H)`
   have hhalf : ∀ t : ℝ, 0 < t → t ≤ 1 → IsGreatest ((fun α => coeffNorm (gadgetH 2)
-      (gadgetGA ∞ (t • aux_A28) 1 α)) '' Metric.closedBall 0 1) ((3 * t + 1) / 2 / 2) := by
+      (gadgetGA ∞ (t • step_A28) 1 α)) '' Metric.closedBall 0 1) ((3 * t + 1) / 2 / 2) := by
     intro t ht0 ht1
     have h := aux_sigma t ht0 ht1
-    have hfun : (fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 α)) =
-        fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • aux_A28) 1 α) / 2 :=
+    have hfun : (fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ (t • step_A28) 1 α)) =
+        fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2) (gadgetGA ∞ (t • step_A28) 1 α) / 2 :=
       funext fun α => aux_coeffNorm_gadgetH _
     rw [hfun]
     refine ⟨?_, ?_⟩
@@ -197,23 +202,23 @@ theorem gadget_sigma_counterexample : -- --- CONCL ---
     ⟨_, _, hhalf 3⁻¹ (by norm_num) (by norm_num), hhalf (5 / 2)⁻¹ (by norm_num) (by norm_num), ?_⟩,
     ⟨_, _, aux_sigma 3⁻¹ (by norm_num) (by norm_num),
       aux_sigma (5 / 2)⁻¹ (by norm_num) (by norm_num), ?_⟩⟩
-  · show ‖aux_A28 *ᵥ Pi.single 0 1‖ = 2
+  · show ‖step_A28 *ᵥ Pi.single 0 1‖ = 2
     rw [hA]
     simp only [Pi.single_eq_same, mul_one]
     have := norm_le_pi_norm (![(2 : ℝ), 1] : Vec ℝ 2) 0
     refine le_antisymm (aux_norm_vec2_le (by norm_num) (by simp) (by simp)) (by simpa using this)
   · rintro _ ⟨v, hv, rfl⟩
-    show ‖aux_A28 *ᵥ WithLp.ofLp v‖ ≤ 2
+    show ‖step_A28 *ᵥ WithLp.ofLp v‖ ≤ 2
     rw [hA]
     have h := hv0 v hv
     refine aux_norm_vec2_le (by norm_num) ?_ (h.trans (by norm_num))
     rw [abs_mul, abs_two]
     exact (mul_le_mul_of_nonneg_left h (by norm_num)).trans (by norm_num)
   -- `‖A‖_{1↦1} = 3`, attained at the unit coefficient
-  · show ∑ i, |(aux_A28 *ᵥ Pi.single 0 1) i| = 3
+  · show ∑ i, |(step_A28 *ᵥ Pi.single 0 1) i| = 3
     rw [hA]; simp [Fin.sum_univ_two]; norm_num
   · rintro _ ⟨v, hv, rfl⟩
-    show ∑ i, |(aux_A28 *ᵥ WithLp.ofLp v) i| ≤ 3
+    show ∑ i, |(step_A28 *ᵥ WithLp.ofLp v) i| ≤ 3
     rw [hA]
     have h := hv0 v hv
     simp only [Fin.sum_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one, abs_mul, abs_two]

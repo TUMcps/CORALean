@@ -2,6 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeResolveCORA
 public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -36,28 +37,36 @@ the composed reset of CORA gives the first component its first argument, the pro
 namespace CORALean
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 namespace SynchronizeResolveExample
 
-abbrev aux_dims : Fin 2 → ℕ := fun _ => 1
+@[step_of NonlinearReset.synchronizeResolveCORA_counterexample]
+abbrev step_dims : Fin 2 → ℕ := fun _ => 1
 
-def aux_out : ∀ i : Fin 2, Vec ℝ (aux_dims i) → Vec ℝ (aux_dims i) → Vec ℝ (aux_dims i) :=
+@[step_of NonlinearReset.synchronizeResolveCORA_counterexample]
+def step_out : ∀ i : Fin 2, Vec ℝ (step_dims i) → Vec ℝ (step_dims i) → Vec ℝ (step_dims i) :=
   fun _ _ _ => 0
 
-def aux_stateBinds : ∀ i : Fin 2, Fin (aux_dims i) → Fin 2 := fun i _ => i
+@[step_of NonlinearReset.synchronizeResolveCORA_counterexample]
+def step_stateBinds : ∀ i : Fin 2, Fin (step_dims i) → Fin 2 := fun i _ => i
 
 /-- the inputs are bound to the global inputs `1` and `0` -/
-def aux_binds : ∀ i : Fin 2, Fin (aux_dims i) → ResolveSource 2 aux_dims 2 :=
+@[step_of NonlinearReset.synchronizeResolveCORA_counterexample]
+def step_binds : ∀ i : Fin 2, Fin (step_dims i) → ResolveSource 2 step_dims 2 :=
   fun i _ => .global (if i = 0 then 1 else 0)
 
-private theorem aux_globalColumns : NonlinearReset.globalColumns aux_binds = 2 := rfl
-
-private theorem aux_rank : NonlinearReset.globalRank aux_binds ⟨0, 0⟩ = 0 := rfl
-
 /-- the reset of component `i` lifted to the product: `x'_i = u_i`, other states `0` -/
-def aux_resets (i : Fin 2) : NonlinearReset 2 (∑ i, aux_dims i) 2 where
+@[step_of NonlinearReset.synchronizeResolveCORA_counterexample]
+def step_resets (i : Fin 2) : NonlinearReset 2 (∑ i, step_dims i) 2 where
   f := fun _ u a => if a = i then u (finSigmaFinEquiv ⟨i, 0⟩) else 0
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+private theorem aux_globalColumns : NonlinearReset.globalColumns step_binds = 2 := rfl
+
+private theorem aux_rank : NonlinearReset.globalRank step_binds ⟨0, 0⟩ = 0 := rfl
 
 end SynchronizeResolveExample
 
@@ -69,14 +78,14 @@ open SynchronizeResolveExample
 /-- At the arguments `v i = i`, the first component's state after the synchronized jump is `1`
 for the parallel automaton (`resolve` of the synchronized reset), `0` for CORA. -/
 theorem NonlinearReset.synchronizeResolveCORA_counterexample : -- --- CONCL ---
-    (((NonlinearReset.synchronize aux_resets ∅).resolve aux_out aux_stateBinds aux_binds).f
+    (((NonlinearReset.synchronize step_resets ∅).resolve step_out step_stateBinds step_binds).f
       (fun _ => 0) (fun i => (i : ℝ)) 0 = 1) ∧
-    ((NonlinearReset.synchronizeResolveCORA aux_resets ∅ aux_out aux_stateBinds aux_binds).f
+    ((NonlinearReset.synchronizeResolveCORA step_resets ∅ step_out step_stateBinds step_binds).f
       (fun _ => 0) (fun i => (i : ℝ)) 0 = 0) := by -- --- PROOF ---
   constructor
-  · simp [NonlinearReset.resolve, NonlinearReset.synchronize, aux_resets, aux_binds]
+  · simp [NonlinearReset.resolve, NonlinearReset.synchronize, step_resets, step_binds]
   · simp [NonlinearReset.synchronizeResolveCORA, NonlinearReset.resolveCORA,
-      NonlinearReset.synchronize, aux_resets, aux_binds, aux_rank, aux_globalColumns]
+      NonlinearReset.synchronize, step_resets, step_binds, aux_rank, aux_globalColumns]
 
 end CORALean
 

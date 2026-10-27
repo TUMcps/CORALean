@@ -18,6 +18,7 @@ public import CORALean.Global.DropIdx
 public import CORALean.Global.FoldInduction
 public import CORALean.Global.CrossProduct
 public import CORALean.Global.Cost
+public import CORALean.Global.StepOf
 public import CORALean.Global.BoxDiameter
 public import CORALean.Global.Err
 public import CORALean.Global.EuclideanNorm

@@ -9,6 +9,7 @@ public import CORALean.ContSet.StarSet.Float.StarSet
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -20,8 +21,8 @@ public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
 `[0, max(u, 0)]` under `-β ≤ 0`, `c_j + G_j α - β ≤ 0` and, when `StarSet.chordGuard` certifies it,
 the chord row `StarSet.chordRow`. The comparisons are the scalar's `le`, which certifies `≤` only,
 so a bound not known to be on one side takes the last branch, whose rows hold wherever the bounds
-do. The error box is made symmetric at `j` by `StarSet.aux_reluError` in every branch; the predicate
-is built by `HPolytope`'s own operations (#174), as in the exact layer.
+do. The error box is made symmetric at `j` by `StarSet.step_reluError` in every branch; the
+predicate is built by `HPolytope`'s own operations (#174), as in the exact layer.
 
 ## Inputs
 * `s` – float star set
@@ -47,10 +48,11 @@ open Float Float.FloatOps
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The error box with coordinate `j` made symmetric about `0`. -/
-def StarSet.aux_reluError (e : Interval (Vec 𝕋 n)) (j : Fin n) : Interval (Vec 𝕋 n) :=
+@[step_of StarSet.reluNeuron]
+def StarSet.step_reluError (e : Interval (Vec 𝕋 n)) (j : Fin n) : Interval (Vec 𝕋 n) :=
   let r := maximum (neg (e.inf j)) (e.sup j)
   ⟨Function.update e.inf j (neg r), Function.update e.sup j r⟩
 
@@ -60,7 +62,7 @@ def StarSet.aux_reluError (e : Interval (Vec 𝕋 n)) (j : Fin n) : Interval (Ve
 /-- The ReLU step on neuron `j` of a float star set, given its bounds. -/
 def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
     StarSet 𝕋 n :=
-  let e := StarSet.aux_reluError s.I_error j
+  let e := StarSet.step_reluError s.I_error j
   if le zero b.inf then { s with I_error := e }
   else if le b.sup zero then
     { s with c := Function.update s.c j zero, G := Function.update s.G j (fun _ => zero),

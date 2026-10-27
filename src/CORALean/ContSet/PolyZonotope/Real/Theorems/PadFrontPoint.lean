@@ -47,19 +47,19 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 original exponent matrix gives at the factors it already had. -/
 private theorem PolyZonotope.aux_monomial_padFront {p s : ℕ} (l : ℕ) (E : Fin p → Fin s → ℕ)
     (a : Fin (l + p) → ℝ) (i : Fin s) : -- --- CONCL ---
-    PolyZonotope.monomial (PolyZonotope.aux_padFrontE l E) a i
+    PolyZonotope.monomial (PolyZonotope.step_padFrontE l E) a i
       = PolyZonotope.monomial E (a ∘ Fin.natAdd l) i := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]
   -- the prepended half is a product of `1`s
   have hnew : (∏ k : Fin l, a (Fin.castAdd p k)
-      ^ PolyZonotope.aux_padFrontE l E (Fin.castAdd p k) i) = 1 :=
+      ^ PolyZonotope.step_padFrontE l E (Fin.castAdd p k) i) = 1 :=
     Finset.prod_eq_one fun k _ => by
-      simp only [PolyZonotope.aux_padFrontE, Fin.append_left, pow_zero]
+      simp only [PolyZonotope.step_padFrontE, Fin.append_left, pow_zero]
   have hold : (∏ k : Fin p, a (Fin.natAdd l k)
-      ^ PolyZonotope.aux_padFrontE l E (Fin.natAdd l k) i)
+      ^ PolyZonotope.step_padFrontE l E (Fin.natAdd l k) i)
       = ∏ k, (a ∘ Fin.natAdd l) k ^ E k i :=
     Finset.prod_congr rfl fun k _ => by
-      simp only [PolyZonotope.aux_padFrontE, Fin.append_right, Function.comp_apply]
+      simp only [PolyZonotope.step_padFrontE, Fin.append_right, Function.comp_apply]
   rw [hnew, hold, one_mul]
 
 

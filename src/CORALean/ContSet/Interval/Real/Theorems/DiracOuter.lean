@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Theorems.DiracZeroMem
 public import Mathlib.Data.Sign.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -39,10 +40,11 @@ namespace CORALean.Real
 variable {m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The value of `δ` at `t`: `∞` at `0`, `0` elsewhere. -/
-noncomputable def Interval.aux_diracValue (t : ℝ) : EReal := by
+@[step_of Interval.dirac_zero_outer]
+noncomputable def Interval.step_diracValue (t : ℝ) : EReal := by
   classical
   exact if t = 0 then ⊤ else 0
 
@@ -51,22 +53,22 @@ noncomputable def Interval.aux_diracValue (t : ℝ) : EReal := by
 
 theorem Interval.dirac_zero_outer (I : Interval (Vec ℝ m)) {x : Vec ℝ m} (hx : x ∈ I.construct)
     (i : Fin m) : -- --- CONCL ---
-    (Interval.dirac 0 I).1 i ≤ Interval.aux_diracValue (x i) ∧
-      Interval.aux_diracValue (x i) ≤ (Interval.dirac 0 I).2 i := by -- --- PROOF ---
+    (Interval.dirac 0 I).1 i ≤ Interval.step_diracValue (x i) ∧
+      Interval.step_diracValue (x i) ≤ (Interval.dirac 0 I).2 i := by -- --- PROOF ---
   classical
   have hx0 := Interval.dirac_zero_mem 0 I i
   by_cases h : x i = 0
   · -- `0` is in the interval: the signs of its bounds sum to at most `1` in absolute value
     have hi : I.inf i ≤ x i ∧ x i ≤ I.sup i := hx i
     rw [h] at hi
-    have hv : Interval.aux_diracValue (x i) = ⊤ := by simp [Interval.aux_diracValue, h]
+    have hv : Interval.step_diracValue (x i) = ⊤ := by simp [Interval.step_diracValue, h]
     rw [hv]
     refine ⟨le_top, ?_⟩
     have hsup : 0 < I.sup i ∨ I.sup i = 0 := hi.2.lt_or_eq.imp id Eq.symm
     rcases hi.1.lt_or_eq with h1 | h1 <;> rcases hsup with h2 | h2 <;>
       norm_num [Interval.dirac, h1, h2, sign_neg, sign_pos]
   · -- off `0` the value is `0`, which the result contains
-    have hv : Interval.aux_diracValue (x i) = 0 := by simp [Interval.aux_diracValue, h]
+    have hv : Interval.step_diracValue (x i) = 0 := by simp [Interval.step_diracValue, h]
     rw [hv]
     exact hx0
 

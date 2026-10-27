@@ -4,6 +4,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
 public import CORALean.ContSet.Taylm.Real.Operations.ListMin
 public import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,9 +43,10 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-noncomputable def Taylm.aux_goStep (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
+@[step_of Taylm.globalMin]
+noncomputable def Taylm.step_goStep (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
     List (Fin n → Interval ℝ) × ℝ → List (Fin n → Interval ℝ) × ℝ
   | ([], cut) => ([], cut)
   | (B :: rest, cut) =>
@@ -56,17 +58,18 @@ noncomputable def Taylm.aux_goStep (lb : (Fin n → Interval ℝ) → ℝ) (ub :
       | some β => (rest ++ [(Taylm.halveBox B β).1, (Taylm.halveBox B β).2],
           min cut (ub (Taylm.boxMid B)))
 
-noncomputable def Taylm.aux_goLoop (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
+@[step_of Taylm.globalMin]
+noncomputable def Taylm.step_goLoop (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
     ℕ → List (Fin n → Interval ℝ) × ℝ → List (Fin n → Interval ℝ) × ℝ
   | 0, st => st
-  | fuel + 1, st => Taylm.aux_goLoop lb ub fuel (Taylm.aux_goStep lb ub st)
+  | fuel + 1, st => Taylm.step_goLoop lb ub fuel (Taylm.step_goStep lb ub st)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.globalMin (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ)
     (X : Fin n → Interval ℝ) (fuel : ℕ) : Interval ℝ :=
-  let st := Taylm.aux_goLoop lb ub fuel ([X], ub (Taylm.boxMid X))
+  let st := Taylm.step_goLoop lb ub fuel ([X], ub (Taylm.boxMid X))
   ⟨min st.2 (Taylm.listMin lb st.1), st.2⟩
 
 end CORALean.Real

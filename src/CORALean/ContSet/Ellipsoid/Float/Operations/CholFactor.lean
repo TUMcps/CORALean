@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -37,10 +38,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Column `j` of the factor, from the columns before it. -/
-def Ellipsoid.aux_cholStep (p : ℕ) (Q : Mat 𝕋 n n) (j : Fin n) (L : Vector (Vector 𝕋 n) n) :
+@[step_of Ellipsoid.cholFactor]
+def Ellipsoid.step_cholStep (p : ℕ) (Q : Mat 𝕋 n n) (j : Fin n) (L : Vector (Vector 𝕋 n) n) :
     Vector (Vector 𝕋 n) n :=
   let row : Fin n → Vec 𝕋 n := fun i k => (L[i.val]'i.isLt)[k.val]'k.isLt
   -- the earlier columns' share of entry `(i, j)`
@@ -62,7 +64,7 @@ def Ellipsoid.aux_cholStep (p : ℕ) (Q : Mat 𝕋 n n) (j : Fin n) (L : Vector 
 /-- An approximate Cholesky factor of `Q` less a margin; `p` Newton steps per square root. -/
 def Ellipsoid.cholFactor (p : ℕ) (Q : Mat 𝕋 n n) : Mat 𝕋 n n :=
   let L₀ : Vector (Vector 𝕋 n) n := Vector.ofFn fun _ => Vector.ofFn fun _ => zero
-  let L := (List.finRange n).foldl (fun L j => Ellipsoid.aux_cholStep p Q j L) L₀
+  let L := (List.finRange n).foldl (fun L j => Ellipsoid.step_cholStep p Q j L) L₀
   fun i k => (L[i.val]'i.isLt)[k.val]'k.isLt
 
 end CORALean.Float

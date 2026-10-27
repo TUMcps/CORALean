@@ -34,13 +34,13 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 @[csimp] theorem allOver_eq_impl : -- --- CONCL ---
-    @allOver = @aux_allOverImpl := by -- --- PROOF ---
+    @allOver = @step_allOverImpl := by -- --- PROOF ---
   funext k
   induction k with
-  | zero => funext f; rw [aux_allOverImpl, Fin.foldr_zero]; rfl
+  | zero => funext f; rw [step_allOverImpl, Fin.foldr_zero]; rfl
   | succ k ih =>
     funext f
-    rw [aux_allOverImpl, Fin.foldr_succ, ← aux_allOverImpl, ← congrFun ih fun i => f i.succ]
+    rw [step_allOverImpl, Fin.foldr_succ, ← step_allOverImpl, ← congrFun ih fun i => f i.succ]
     rfl
 
 end CORALean

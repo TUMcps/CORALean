@@ -5,6 +5,7 @@ public import CORALean.NN.Layers.Definitions.ScaleRounding
 public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.ConjTBound
 public import CORALean.NN.Layers.Operations.EvalPolyUp
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -41,15 +42,17 @@ open Float Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The conjugated coefficients `a · bⁱ · p i` (constant shifted by `c`), rounded up. -/
-def aux_conjCoeffsUp (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) → 𝕋) : Fin (m + 1) → 𝕋 :=
+@[step_of PolyRelaxation.ofAffineConj]
+def step_conjCoeffsUp (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) → 𝕋) : Fin (m + 1) → 𝕋 :=
   fun i => if i = 0 then addUp (A.up (B.up^[(i : ℕ)] (p i))) c else A.up (B.up^[(i : ℕ)] (p i))
 
 /-- An upper bound on the distance of each stored coefficient from the exact one. -/
-def aux_conjCoeffsGap (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) → 𝕋) : Fin (m + 1) → 𝕋 :=
-  fun i => subUp (aux_conjCoeffsUp A B c p i) (conjCoeffsDown A B c p i)
+@[step_of PolyRelaxation.ofAffineConj]
+def step_conjCoeffsGap (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) → 𝕋) : Fin (m + 1) → 𝕋 :=
+  fun i => subUp (step_conjCoeffsUp A B c p i) (conjCoeffsDown A B c p i)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -57,10 +60,10 @@ def aux_conjCoeffsGap (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) →
 /-- `g t = ra f (rb t) + c` inherits `f`'s polynomial relaxation. -/
 def PolyRelaxation.ofAffineConj (P : PolyRelaxation 𝕋 m) (A B : ScaleRounding 𝕋) (c : 𝕋) :
     PolyRelaxation 𝕋 m where
-  coeffs l u := aux_conjCoeffsUp A B c (P.coeffs (B.down l) (B.up u))
+  coeffs l u := step_conjCoeffsUp A B c (P.coeffs (B.down l) (B.up u))
   error l u :=
     addUp (A.up (P.error (B.down l) (B.up u)))
-      (evalPolyUp (aux_conjCoeffsGap A B c (P.coeffs (B.down l) (B.up u)))
+      (evalPolyUp (step_conjCoeffsGap A B c (P.coeffs (B.down l) (B.up u)))
         (Relaxation.conjTBound l u))
 
 end CORALean

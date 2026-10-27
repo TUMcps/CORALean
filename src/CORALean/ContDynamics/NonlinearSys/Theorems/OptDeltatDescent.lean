@@ -60,19 +60,19 @@ namespace CORALean
 cleared, so the endpoint's cost is under every cost it passed. -/
 private theorem aux_optDeltatSearch_descent {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (cost : ℕ → ℝ) : -- --- CONCL ---
-    ∀ (fuel s : ℕ), s ≤ aux_optDeltatSearch le cost s fuel ∧
-      ∀ j, s ≤ j → j ≤ aux_optDeltatSearch le cost s fuel →
-        cost (aux_optDeltatSearch le cost s fuel) ≤ cost j := by -- --- PROOF ---
+    ∀ (fuel s : ℕ), s ≤ step_optDeltatSearch le cost s fuel ∧
+      ∀ j, s ≤ j → j ≤ step_optDeltatSearch le cost s fuel →
+        cost (step_optDeltatSearch le cost s fuel) ≤ cost j := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero =>
     intro s
-    rw [show aux_optDeltatSearch le cost s 0 = s from rfl]
+    rw [show step_optDeltatSearch le cost s 0 = s from rfl]
     exact ⟨le_refl s, fun j hj hj' => by rw [le_antisymm hj' hj]⟩
   | succ k ih =>
     intro s
-    rw [show aux_optDeltatSearch le cost s (k + 1)
-      = if le (cost (s + 1)) (cost s) then aux_optDeltatSearch le cost (s + 1) k else s from rfl]
+    rw [show step_optDeltatSearch le cost s (k + 1)
+      = if le (cost (s + 1)) (cost s) then step_optDeltatSearch le cost (s + 1) k else s from rfl]
     split
     -- the check cleared the next `λ'`, so the walk moves there with the rest of the fuel
     · rename_i hc
@@ -94,9 +94,10 @@ theorem optDeltat_descent {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a
     (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).Δt
         = h * ζδ ^ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent ∧
       ∀ j ≤ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent,
-        aux_reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent
-          ≤ aux_reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs j := by -- --- PROOF ---
-  obtain ⟨-, hmin⟩ := aux_optDeltatSearch_descent hle (aux_reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs)
+        step_reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs
+            (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent
+          ≤ step_reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs j := by -- --- PROOF ---
+  obtain ⟨-, hmin⟩ := aux_optDeltatSearch_descent hle (step_reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs)
     fuel 0
   exact ⟨rfl, fun j hj => hmin j (Nat.zero_le j) hj⟩
 

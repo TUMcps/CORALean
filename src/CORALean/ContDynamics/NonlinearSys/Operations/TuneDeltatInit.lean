@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.TunedStep
 public import Mathlib.Data.Real.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -46,11 +47,12 @@ namespace CORALean
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `φ(Δt)` of eq. (25): the worst dimension's ratio of the two error widths,
 picked out by the caller's `le`. -/
-noncomputable def aux_gainMax (le : ℝ → ℝ → Bool) (d dδ : Fin n → ℝ) : ℝ :=
+@[step_of tuneDeltatInit]
+noncomputable def step_gainMax (le : ℝ → ℝ → Bool) (d dδ : Fin n → ℝ) : ℝ :=
   (List.finRange n).foldl (fun φ i => if le φ (dδ i / d i) then dδ i / d i else φ) 0
 
 
@@ -65,7 +67,7 @@ noncomputable def tuneDeltatInit (le : ℝ → ℝ → Bool) (dabs : ℝ → Fin
     let Δnext := ζδ * Δ                                        -- 4. Δ ← ζ_δ Δ
     let dΔ := dabs Δnext                                       -- 5. d(box(R_abs(Δ)))
     let dδΔ := dabs (ζδ * Δnext)                               -- 5. d(box(R_abs(ζ_δ Δ)))
-    let φ1 := aux_gainMax le dΔ dδΔ                                -- 6. φ₁ by (25)
+    let φ1 := step_gainMax le dΔ dδΔ                                -- 6. φ₁ by (25)
     if le ζΔ φ1 then some ⟨Δnext, φ1⟩                          -- 3. while φ₁ < ζ_Δ
     else tuneDeltatInit le dabs ζδ ζΔ Δnext k
 

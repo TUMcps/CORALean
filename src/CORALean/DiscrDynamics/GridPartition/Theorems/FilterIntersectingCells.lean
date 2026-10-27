@@ -42,9 +42,9 @@ theorem GridPartition.filter_intersectingCells (P : GridPartition n)
     (P.intersectingCells I).filter (fun c => 0 < c ∧ c ≤ P.nrOfCells) =
       (List.range' 1 P.nrOfCells).filter fun c =>
         ∀ j, GridPartition.i2s P.nrOfSegments c j ∈
-          P.aux_meetingSubscripts I j := by -- --- PROOF ---
+          P.step_meetingSubscripts I j := by -- --- PROOF ---
   unfold GridPartition.intersectingCells
-  by_cases h : n = 0 ∨ ∃ j, P.aux_meetingSubscripts I j = []
+  by_cases h : n = 0 ∨ ∃ j, P.step_meetingSubscripts I j = []
   · -- no real cell: the list is just `0`, and no cell has a subscript in the empty segment set
     rw [if_pos h]
     obtain ⟨j, hj⟩ := h.resolve_left hn
@@ -59,9 +59,9 @@ theorem GridPartition.filter_intersectingCells (P : GridPartition n)
     dsimp only
     -- all of `MX` are real cells, so dropping the outside leaves them whole
     have hself : ((List.range' 1 P.nrOfCells).filter fun c =>
-        ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.aux_meetingSubscripts I j).filter
+        ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.step_meetingSubscripts I j).filter
         (fun c => 0 < c ∧ c ≤ P.nrOfCells) = (List.range' 1 P.nrOfCells).filter fun c =>
-        ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.aux_meetingSubscripts I j := by
+        ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.step_meetingSubscripts I j := by
       rw [List.filter_eq_self]
       intro c hc
       rw [List.mem_filter, List.mem_range'_1] at hc

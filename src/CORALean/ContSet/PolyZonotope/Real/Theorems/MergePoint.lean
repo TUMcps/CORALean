@@ -58,7 +58,7 @@ variable {α : Type} [AddCommGroup α]
 
 /-- A sum over the kept columns is a sum over the plain count. -/
 private theorem PolyZonotope.aux_sum_mergeKeep {p h : ℕ} (E : Fin p → Fin h → ℕ) (f : Fin h → α) :
-    (∑ j ∈ PolyZonotope.mergeKeep E, f j) = ∑ j, f (PolyZonotope.aux_mergeIdx E j) := by
+    (∑ j ∈ PolyZonotope.mergeKeep E, f j) = ∑ j, f (PolyZonotope.step_mergeIdx E j) := by
   rw [← Finset.sum_coe_sort (PolyZonotope.mergeKeep E) f]
   exact (Equiv.sum_comp ((PolyZonotope.mergeKeep E).orderIsoOfFin rfl).toEquiv
     fun x => f x).symm

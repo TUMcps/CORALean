@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
 public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -36,10 +37,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The cross product of `(b - a, c - a)`, certified on one side of zero. -/
-def Polygon.aux_crossCertified (p : VPolytope (Vec 𝕋 2)) (a b c : Fin p.k) : Bool :=
+@[step_of Polygon.isFullDim]
+def Polygon.step_crossCertified (p : VPolytope (Vec 𝕋 2)) (a b c : Fin p.k) : Bool :=
   let D := Polygon.orientBounds (p.V a) (p.V b) (p.V c)
   ltStrict zero D.inf || ltStrict D.sup zero
 
@@ -51,7 +53,7 @@ def Polygon.isFullDim (P : Polygon 𝕋) : Bool :=
   P.sets.any fun p =>
     ((List.finRange 2).all fun i => le (p.I_error.inf i) (p.I_error.sup i)) &&
       (List.finRange p.k).any fun a => (List.finRange p.k).any fun b =>
-        (List.finRange p.k).any fun c => Polygon.aux_crossCertified p a b c
+        (List.finRange p.k).any fun c => Polygon.step_crossCertified p a b c
 
 end CORALean.Float
 

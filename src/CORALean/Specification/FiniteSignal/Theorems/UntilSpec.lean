@@ -75,7 +75,7 @@ private theorem FiniteSignal.aux_at?_isSome {T V : Type} [LinearOrder T] [Zero T
 /-- The loop of `until`: every pair of runs adds the times of its piece to the true times. -/
 private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
     ∀ (prs : List (Real.Interval ℝ × Real.Interval ℝ)) (sig : FiniteSignal ℝ Bool), sig.IsValid →
-      sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧
+      sig.duration = dur → ∃ r, prs.foldlM (FiniteSignal.step_untilStep eps p q dur) sig = some r ∧
         r.IsValid ∧ r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
           (v = true ↔ (sig.at? t = some true ∨ ∃ LR ∈ prs, ∃ lo hi,
             FiniteSignal.untilPiece eps p q LR.1 LR.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
@@ -87,8 +87,9 @@ private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤
   | LR :: rest, sig, hs, hd => by
     -- pairs of runs after `LR`, with the signal after it
     have hrest : ∀ sig' : FiniteSignal ℝ Bool, sig'.IsValid → sig'.duration = dur →
-        FiniteSignal.aux_untilStep eps p q dur sig LR = some sig' →
-        ∃ r, (LR :: rest).foldlM (FiniteSignal.aux_untilStep eps p q dur) sig = some r ∧ r.IsValid ∧
+        FiniteSignal.step_untilStep eps p q dur sig LR = some sig' →
+        ∃ r, (LR :: rest).foldlM (FiniteSignal.step_untilStep eps p q dur) sig = some r ∧
+          r.IsValid ∧
           r.duration = dur ∧ ∀ t : ℝ, 0 ≤ t → t ≤ dur → ∃ v, r.at? t = some v ∧
             (v = true ↔ (sig'.at? t = some true ∨ ∃ LR' ∈ rest, ∃ lo hi,
               FiniteSignal.untilPiece eps p q LR'.1 LR'.2 = some ⟨lo, hi⟩ ∧ lo < hi ∧
@@ -100,7 +101,7 @@ private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤
     -- the case of the piece of `LR`
     rcases hpc : FiniteSignal.untilPiece eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
     · -- empty: the signal stays
-      obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig hs hd (by simp [FiniteSignal.aux_untilStep, hpc])
+      obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig hs hd (by simp [FiniteSignal.step_untilStep, hpc])
       refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
       obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
       refine ⟨v, hv, hvi.trans ?_⟩
@@ -115,7 +116,7 @@ private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤
         -- the fact `hdd`
         have hdd : sig'.duration = dur := by rw [hc3, hd, hind3, min_self]
         obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig' hc2 hdd (by
-          simp [FiniteSignal.aux_untilStep, hpc, hlh, hind1, hc1])
+          simp [FiniteSignal.step_untilStep, hpc, hlh, hind1, hc1])
         refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, ?_⟩
@@ -136,7 +137,7 @@ private theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤
       · -- a piece without length: the signal stays
         -- unpack the facts from the previous steps
         obtain ⟨r, hr1, hr2, hr3, hr4⟩ :=
-          hrest sig hs hd (by simp [FiniteSignal.aux_untilStep, hpc, hlh])
+          hrest sig hs hd (by simp [FiniteSignal.step_untilStep, hpc, hlh])
         refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, hvi.trans ?_⟩

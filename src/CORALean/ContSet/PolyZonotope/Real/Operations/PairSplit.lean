@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Partition
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -40,10 +41,11 @@ names them.
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The permutation carrying the last two indices onto `i` and `j`. -/
-def PolyZonotope.aux_pairPerm {m : ℕ} (i j : Fin (m + 2)) : Equiv.Perm (Fin (m + 2)) :=
+@[step_of PolyZonotope.pairSplit]
+def PolyZonotope.step_pairPerm {m : ℕ} (i j : Fin (m + 2)) : Equiv.Perm (Fin (m + 2)) :=
   (Equiv.swap (Fin.natAdd m 1) (Equiv.swap (Fin.natAdd m 0) i j)).trans
     (Equiv.swap (Fin.natAdd m 0) i)
 
@@ -56,7 +58,7 @@ def PolyZonotope.pairSplit {m : ℕ} (h2 : 2 ≤ m) (i j : Fin m) :
     Split (Fin m) into (Fin (m - 2)) ⊕ (Fin 2) :=
   (Partition.split (m - 2) 2).reindex
     ((finCongr (Nat.sub_add_cancel h2).symm).trans
-      (PolyZonotope.aux_pairPerm (finCongr (Nat.sub_add_cancel h2).symm i)
+      (PolyZonotope.step_pairPerm (finCongr (Nat.sub_add_cancel h2).symm i)
         (finCongr (Nat.sub_add_cancel h2).symm j)).symm)
 
 end CORALean.Real

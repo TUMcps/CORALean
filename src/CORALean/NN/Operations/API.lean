@@ -56,6 +56,7 @@ public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Operations.Backprop
 public import CORALean.NN.Operations.FgsmAttack
 public import CORALean.NN.Operations.PgdAttack
+public import CORALean.NN.Operations.PgdStep
 public import CORALean.NN.Operations.Sensitivity
 public import CORALean.NN.Operations.ToLayer
 public import CORALean.NN.Operations.VerifySplit

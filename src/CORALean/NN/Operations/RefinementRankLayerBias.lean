@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Data.Real.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -44,11 +45,12 @@ namespace CORALean
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Neuron `j`'s rank under `σ`-Approximation-Error [1, Def. 4.9]: the
 error its own relaxation leaves, and nothing else. -/
-def aux_refinementRankApproxError (d : Vec ℝ n) (j : Fin n) : ℝ := |d j|
+@[step_of refinementRankLayerBias]
+def step_refinementRankApproxError (d : Vec ℝ n) (j : Fin n) : ℝ := |d j|
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -56,7 +58,7 @@ def aux_refinementRankApproxError (d : Vec ℝ n) (j : Fin n) : ℝ := |d j|
 /-- Neuron `j`'s rank under `σ`-Layer-Bias [1, Def. 4.10]: its own
 approximation error, divided by `l + 1`. -/
 noncomputable def refinementRankLayerBias (d : Vec ℝ n) (l : ℕ) (j : Fin n) : ℝ :=
-  aux_refinementRankApproxError d j / ((l : ℝ) + 1)
+  step_refinementRankApproxError d j / ((l : ℝ) + 1)
 
 end CORALean
 

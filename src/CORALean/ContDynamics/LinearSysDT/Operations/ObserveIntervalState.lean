@@ -7,6 +7,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 # The interval observer's state after `k` steps
 
 CORA's `priv_observe_interval` initialisation, `x = center(R0)`, `R_x = R0`, `R_wv = 0`,
-`D = -L V + W`, then `aux_observeIntervalStep` at the measurement `y k` and input `u k`.
+`D = -L V + W`, then `step_observeIntervalStep` at the measurement `y k` and input `u k`.
 
 [1, Alg. 1], lines 1-2 and the loop.
 
@@ -53,9 +54,10 @@ variable {n p : ℕ}
 open Matrix CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def LinearSysDT.aux_observeIntervalStep (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+@[step_of LinearSysDT.observeIntervalState]
+def LinearSysDT.step_observeIntervalStep (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (u : Vec ℝ sys.m) (y : Vec ℝ sys.q) (s : LinearSysDT.ObserveIntervalState n) :
     LinearSysDT.ObserveIntervalState n :=
   let x := sys.A *ᵥ s.x + sys.B *ᵥ u + L *ᵥ (y - sys.C *ᵥ s.x)  -- observer update
@@ -72,7 +74,7 @@ def LinearSysDT.observeIntervalState (sys : LinearSysDT ℝ n) (L : Mat ℝ n sy
     (y : ℕ → Vec ℝ sys.q) :
     ℕ → LinearSysDT.ObserveIntervalState n
   | 0 => { x := R₀.c, Rx := R₀, Rwv := Interval.point 0, D := (Zonotope.mtimes (-L) V).plus W }
-  | k + 1 => sys.aux_observeIntervalStep L (u k) (y k) (sys.observeIntervalState L R₀ W V u y k)
+  | k + 1 => sys.step_observeIntervalStep L (u k) (y k) (sys.observeIntervalState L R₀ W V u y k)
 
 end CORALean
 

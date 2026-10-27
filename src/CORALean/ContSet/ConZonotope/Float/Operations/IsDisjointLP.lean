@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ Here that program is solved at ℚ for a *witness* only: the stacked coefficient
 both operands' boxes and constraints, `max -s` over `|(c₁ + G₁β₁) - (c₂ + G₂β₂)|ᵢ ≤ s`, whose dual
 weights on the `2n` gap rows combine into a direction `a` separating the nominal sets when `s > 0`.
 
-The verdict is `aux_separatesAlong`'s at `a` and `-a`, with the error boxes paid by `boundDot`:
+The verdict is `step_separatesAlong`'s at `a` and `-a`, with the error boxes paid by `boundDot`:
 `true` proves the sets disjoint whatever direction the simplex returned; `false` says nothing. A NaN
 among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, which costs tightness only.
 
@@ -41,58 +42,63 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `true` only when, in direction `a`, the first set's upper bound lies strictly
 below the second set's lower bound. -/
-def ConZonotope.aux_separatesAlong (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : Bool :=
+@[step_of ConZonotope.isDisjointLP]
+def ConZonotope.step_separatesAlong (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : Bool :=
   ltStrict (cZ₁.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0) a fun _
       => rfl).val
     (neg (cZ₂.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) j => neg (a j))) 0)
         (-a)
       fun _ => rfl).val)
 
-
 /-- A vector over `Fin h`, placed at offset `off` of an index read as `ℕ`, zero
 elsewhere. -/
-def ConZonotope.aux_place {h : ℕ} (f : Fin h → ℚ) (off v : ℕ) : ℚ :=
+@[step_of ConZonotope.isDisjointLP]
+def ConZonotope.step_place {h : ℕ} (f : Fin h → ℚ) (off v : ℕ) : ℚ :=
   if hv : off ≤ v ∧ v - off < h then f ⟨v - off, hv.2⟩ else 0
 
 /-- The polytope's rows on the coefficients at offset `off`, and the unit box both ways. Not the
 polytope's work (proposal): the rows decoded into ℚ for the exact simplex that proposes a direction,
 which `separatesAlong` certifies. -/
-def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (off : ℕ) : List ((ℕ → ℚ) × ℚ) :=
+@[step_of ConZonotope.isDisjointLP]
+def ConZonotope.step_coeffRows (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (off : ℕ) : List ((ℕ → ℚ) × ℚ) :=
   let A := fun k j => ToRat.toRat (cZ.P.A k j)
   let Ae := fun k j => ToRat.toRat (cZ.P.Ae k j)
-  (List.finRange cZ.P.m).map (fun k => (ConZonotope.aux_place (A k) off, ToRat.toRat (cZ.P.b k)))
+  (List.finRange cZ.P.m).map (fun k => (ConZonotope.step_place (A k) off, ToRat.toRat (cZ.P.b k)))
     ++ (List.finRange cZ.P.me).map (fun k =>
-      (ConZonotope.aux_place (Ae k) off, ToRat.toRat (cZ.P.be k)))
+      (ConZonotope.step_place (Ae k) off, ToRat.toRat (cZ.P.be k)))
     ++ (List.finRange cZ.P.me).map (fun k =>
-      (fun v => -ConZonotope.aux_place (Ae k) off v, -ToRat.toRat (cZ.P.be k)))
+      (fun v => -ConZonotope.step_place (Ae k) off v, -ToRat.toRat (cZ.P.be k)))
     ++ (List.finRange cZ.h).map (fun j =>
-      (ConZonotope.aux_place (fun l => if l = j then 1 else 0) off, 1))
+      (ConZonotope.step_place (fun l => if l = j then 1 else 0) off, 1))
     ++ (List.finRange cZ.h).map (fun j =>
-      (ConZonotope.aux_place (fun l => if l = j then -1 else 0) off, 1))
+      (ConZonotope.step_place (fun l => if l = j then -1 else 0) off, 1))
 
 /-- The gap rows, `±((G₁β₁ - G₂β₂)ᵢ) - s ≤ ±(c₂ - c₁)ᵢ`, the `+` block first. -/
-def ConZonotope.aux_gapRows (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : List ((ℕ → ℚ) × ℚ) :=
+@[step_of ConZonotope.isDisjointLP]
+def ConZonotope.step_gapRows (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : List ((ℕ → ℚ) × ℚ) :=
   let s := cZ₁.h + cZ₂.h
   let gap (i : Fin n) : ℕ → ℚ := fun v =>
-    ConZonotope.aux_place (fun j => ToRat.toRat (cZ₁.G j i)) 0 v
-      - ConZonotope.aux_place (fun j => ToRat.toRat (cZ₂.G j i)) cZ₁.h v
+    ConZonotope.step_place (fun j => ToRat.toRat (cZ₁.G j i)) 0 v
+      - ConZonotope.step_place (fun j => ToRat.toRat (cZ₂.G j i)) cZ₁.h v
   let dc (i : Fin n) : ℚ := ToRat.toRat (cZ₂.c i) - ToRat.toRat (cZ₁.c i)
   (List.finRange n).map (fun i => (fun v => gap i v - if v = s then 1 else 0, dc i))
     ++ (List.finRange n).map (fun i => (fun v => -gap i v - if v = s then 1 else 0, -dc i))
 
 /-- A rational, rounded to the scalar with its sign kept; any value would do. -/
-def ConZonotope.aux_ratSigned (q : ℚ) : 𝕋 := if 0 ≤ q then ratUp q else neg (ratUp (-q))
+@[step_of ConZonotope.isDisjointLP]
+def ConZonotope.step_ratSigned (q : ℚ) : 𝕋 := if 0 ≤ q then ratUp q else neg (ratUp (-q))
 
 /-- The direction the program's dual proposes: the `-` block's weight minus the
 `+` block's, coordinate by coordinate. All zero when the simplex returns
 nothing, which then fails the check below. -/
-def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Vec 𝕋 n :=
-  let rows := ConZonotope.aux_coeffRows cZ₁ 0 ++ ConZonotope.aux_coeffRows cZ₂ cZ₁.h
-    ++ ConZonotope.aux_gapRows cZ₁ cZ₂
+@[step_of ConZonotope.isDisjointLP]
+def ConZonotope.step_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Vec 𝕋 n :=
+  let rows := ConZonotope.step_coeffRows cZ₁ 0 ++ ConZonotope.step_coeffRows cZ₂ cZ₁.h
+    ++ ConZonotope.step_gapRows cZ₁ cZ₂
   let N := cZ₁.h + cZ₂.h + 1
   let base := rows.length - (n + n)
   let A : Fin rows.length → Fin N → ℚ := fun r v => (rows.get r).1 v
@@ -103,7 +109,7 @@ def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Ve
   | none => fun _ => zero
   | some w =>
     let wN : ℕ → ℚ := fun k => if hk : k < rows.length then w ⟨k, hk⟩ else 0
-    fun i => ConZonotope.aux_ratSigned (wN (base + n + i) - wN (base + i))
+    fun i => ConZonotope.step_ratSigned (wN (base + n + i) - wN (base + i))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -111,8 +117,8 @@ def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Ve
 /-- Disjoint if the proposed direction, or its negation, separates the two
 bounds. Sound when `true`; `false` decides nothing. -/
 def ConZonotope.isDisjointLP (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
-  let a := ConZonotope.aux_separator cZ₁ cZ₂
-  ConZonotope.aux_separatesAlong cZ₁ cZ₂ a || ConZonotope.aux_separatesAlong cZ₁ cZ₂ (-a)
+  let a := ConZonotope.step_separator cZ₁ cZ₂
+  ConZonotope.step_separatesAlong cZ₁ cZ₂ a || ConZonotope.step_separatesAlong cZ₁ cZ₂ (-a)
 
 end CORALean.Float
 

@@ -7,6 +7,7 @@ public import CORALean.Global.Float.Log
 public import CORALean.Global.Float.PowUp
 public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -54,17 +55,19 @@ open CORALean.Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Increase `λ'` while the estimate keeps falling, and stop at the first
 increase — [1]'s own evaluation of eq. (58). -/
-def aux_optDeltatSearchFloat (cost : ℕ → 𝕋) : ℕ → ℕ → ℕ
+@[step_of optDeltatFloat]
+def step_optDeltatSearchFloat (cost : ℕ → 𝕋) : ℕ → ℕ → ℕ
   | s, 0 => s
-  | s, k + 1 => if le (cost (s + 1)) (cost s) then aux_optDeltatSearchFloat cost (s + 1) k else s
+  | s, k + 1 => if le (cost (s + 1)) (cost s) then step_optDeltatSearchFloat cost (s + 1) k else s
 
 /-- Eq. (57): the size `R(t)` is estimated to reach after the finite horizon,
 walked in `λ = ζ_δ^{-λ'}` steps. -/
-def aux_reachSizeEstimateFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (prec bis : ℕ)
+@[step_of optDeltatFloat]
+def step_reachSizeEstimateFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (prec bis : ℕ)
     (ζδ ζZ ζA φ1 r₀ rabs : 𝕋) (scalings : ℕ) : 𝕋 :=
   let rpow := fun (x y : 𝕋) => expUp prec (mulUp y (logUp prec bis x))  -- x ^ y for x > 0
   let lam := powUp (divUp one ζδ) scalings                       -- λ = ζ_δ^{-λ'}
@@ -89,9 +92,9 @@ def optDeltatFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (prec bis : ℕ)
     (ζδ ζZ ζA φ1 r₀ rabs h : 𝕋) (fuel : ℕ) :
     NonlinearSys.OptStep 𝕋 :=
   -- 10. eq. (57): the cost function
-  let cost := aux_reachSizeEstimateFloat prec bis ζδ ζZ ζA φ1 r₀ rabs
+  let cost := step_reachSizeEstimateFloat prec bis ζδ ζZ ζA φ1 r₀ rabs
   -- 10. eq. (58): the argmin over λ'
-  let sstar := aux_optDeltatSearchFloat cost 0 fuel
+  let sstar := step_optDeltatSearchFloat cost 0 fuel
   -- 10. eq. (58): Δt* = h ζ_δ^{λ'}
   ⟨mulUp h (powUp ζδ sstar), sstar⟩
 

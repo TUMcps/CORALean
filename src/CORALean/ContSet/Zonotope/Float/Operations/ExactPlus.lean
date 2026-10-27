@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -13,7 +14,7 @@ CORA's `@zonotope/exactPlus`: the first `m = min(h₁, h₂, k)` generator colum
 share their coefficients and are added pairwise, the remaining columns of each follow, and the
 centers add. Only the added entries round: the center as in `plus` (its residual goes into the
 box), and each pairwise column sum, stored rounded down, whose gap to the sum rounded up
-(`aux_exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
+(`step_exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
 coefficients range over `[-1, 1]`. A copied column costs nothing.
 
 ## Inputs
@@ -40,9 +41,10 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def Zonotope.aux_exactPlusGap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
+@[step_of Zonotope.exactPlus]
+def Zonotope.step_exactPlusGap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
     Mat 𝕋 n (min (min Z₁.h Z₂.h) k + (Z₁.h - min (min Z₁.h Z₂.h) k) +
       (Z₂.h - min (min Z₁.h Z₂.h) k)) :=
   let m := min (min Z₁.h Z₂.h) k
@@ -72,7 +74,7 @@ def Zonotope.exactPlus (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope 
     c := fun i => addDown (Z₁.c i) (Z₂.c i)
     G := fun j i => Fin.append (Fin.append (shared i) (rest₁ i)) (rest₂ i) j
     I_error := ((Z₁.I_error.plus Z₂.I_error).plus (Zonotope.centerResidual Z₁.c Z₂.c)).plus
-      (Zonotope.generatorError (Z₁.aux_exactPlusGap Z₂ k)) }
+      (Zonotope.generatorError (Z₁.step_exactPlusGap Z₂ k)) }
 
 end CORALean.Float
 

@@ -4,6 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.Global.NotHyperplaneOneDim
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -68,27 +69,32 @@ open Matrix
 open scoped MatrixOrder
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `q = 0`, `Q = (1)`: the interval `[-1, 1]`. -/
-def Ellipsoid.aux_unitSegment : Ellipsoid 1 := ⟨1, fun _ => 0, .one⟩
+@[step_of Ellipsoid.representsa_hyperplane_cora_counterexample]
+def Ellipsoid.step_unitSegment : Ellipsoid 1 := ⟨1, fun _ => 0, .one⟩
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Its generator is `(1)`. -/
-private theorem Ellipsoid.aux_unitSegment_G : Ellipsoid.aux_unitSegment.G = 1 := CFC.sqrt_one
+private theorem Ellipsoid.aux_unitSegment_G : Ellipsoid.step_unitSegment.G = 1 := CFC.sqrt_one
 
-private theorem Ellipsoid.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Ellipsoid.aux_unitSegment.construct :=
+private theorem Ellipsoid.aux_zero_mem :
+    (fun _ => (0 : ℝ)) ∈ Ellipsoid.step_unitSegment.construct :=
     by
   refine Ellipsoid.mem_construct_iff.2 ⟨fun _ => 0, ?_, ?_⟩
   · simp [CORALean.norm₂]
   · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
-    ext i; simp [Ellipsoid.aux_unitSegment]
+    ext i; simp [Ellipsoid.step_unitSegment]
 
-private theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.aux_unitSegment.construct :=
+private theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.step_unitSegment.construct :=
     by
   refine Ellipsoid.mem_construct_iff.2 ⟨fun _ => 1, ?_, ?_⟩
   · simp [CORALean.norm₂]
   · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
-    ext i; simp [Ellipsoid.aux_unitSegment]
+    ext i; simp [Ellipsoid.step_unitSegment]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -96,8 +102,8 @@ private theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.aux_u
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
 theorem Ellipsoid.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        Ellipsoid.aux_unitSegment.construct = {x | f x = c}) ∧
-      Ellipsoid.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
+        Ellipsoid.step_unitSegment.construct = {x | f x = c}) ∧
+      Ellipsoid.step_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
   refine ⟨CORALean.not_hyperplane_of_two_points_fin1 Ellipsoid.aux_zero_mem
     Ellipsoid.aux_one_mem ?_, by simp [Ellipsoid.representsaHyperplaneCora]⟩
   intro h

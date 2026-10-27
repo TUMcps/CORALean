@@ -5,6 +5,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Minus
 public import CORALean.ContSet.Taylm.Real.Taylm
 public import Mathlib.Data.Matrix.Mul
 public import CORALean.ContSet.Taylm.Real.Operations.QuadTerms
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -43,16 +44,17 @@ open Matrix
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-noncomputable def Taylm.aux_quadForm (H : Mat ℝ n n) (x0 : Vec ℝ n) (N : ℕ) : Taylm n :=
+@[step_of Taylm.qfbLower]
+noncomputable def Taylm.step_quadForm (H : Mat ℝ n n) (x0 : Vec ℝ n) (N : ℕ) : Taylm n :=
   ⟨Taylm.quadTerms H x0, ⟨0, 0⟩, N⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.qfbLower (T : Taylm n) (H : Mat ℝ n n) (x0 : Vec ℝ n) : ℝ :=
-  (T.minus (Taylm.aux_quadForm H x0 T.maxOrder)).bounds.inf
+  (T.minus (Taylm.step_quadForm H x0 T.maxOrder)).bounds.inf
 
 end CORALean.Real
 

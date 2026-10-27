@@ -7,9 +7,9 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupportFloa
 /-!
 # `Alg. 2` lines 4 and 14 in floats: the accumulated support value
 
-`aux_minBackReachP` computed in `𝕋`: [1, Alg. 2] lines 4 and 14, `p_(j)` after the steps `0` to `k`.
-`maximum`, not line 14's `min` — a union's support is the largest of its parts', as over `ℝ` — and
-exact, since choosing between two floats rounds nothing.
+`step_minBackReachP` computed in `𝕋`: [1, Alg. 2] lines 4 and 14, `p_(j)` after the steps `0` to
+`k`. `maximum`, not line 14's `min` — a union's support is the largest of its parts', as over `ℝ` —
+and exact, since choosing between two floats rounds nothing.
 
 ## Inputs
 * `sys` – linear system

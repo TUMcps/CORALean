@@ -10,9 +10,9 @@ public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 /-!
 # Softmax above its rounded raw lower bound
 
-`Real.raw_le_softmax` at the box the stored bounds denote. Where `aux_softmaxExpInRange` holds, each
-`expUp`'s hypothesis is discharged by the comparison with `aux_expUpLimit k`; where it does not, the
-bound is zero and `softmax_nonneg` is all that is needed.
+`Real.raw_le_softmax` at the box the stored bounds denote. Where `step_softmaxExpInRange` holds,
+each `expUp`'s hypothesis is discharged by the comparison with `step_expUpLimit k`; where it does
+not, the bound is zero and `softmax_nonneg` is all that is needed.
 
 ## Inputs
 * `k` – reduction depth of the exponential
@@ -45,21 +45,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem aux_expUpLimit_le (k : ℕ) : -- --- CONCL ---
-    toReal (aux_expUpLimit (𝕋 := 𝕋) k) ≤ 2 ^ k / 2 := by -- --- PROOF ---
+    toReal (step_expUpLimit (𝕋 := 𝕋) k) ≤ 2 ^ k / 2 := by -- --- PROOF ---
   induction k with
-  | zero => rw [aux_expUpLimit, toReal_half, toReal_one]; norm_num
+  | zero => rw [step_expUpLimit, toReal_half, toReal_one]; norm_num
   | succ k ih =>
-    rw [aux_expUpLimit, pow_succ]
-    have := addDown_le_add (aux_expUpLimit (𝕋 := 𝕋) k) (aux_expUpLimit k)
+    rw [step_expUpLimit, pow_succ]
+    have := addDown_le_add (step_expUpLimit (𝕋 := 𝕋) k) (step_expUpLimit k)
     linarith
 
 private theorem aux_softmaxExpInRange_le (k : ℕ) (I : Interval (Vec 𝕋 n)) {i j : Fin n}
-    (h : aux_softmaxExpInRange k I i = true) (hj : j ≠ i) : -- --- CONCL ---
+    (h : step_softmaxExpInRange k I i = true) (hj : j ≠ i) : -- --- CONCL ---
     Real.exp (toReal (I.sup j) - toReal (I.inf i))
       ≤ toReal (expUp k (subUp (I.sup j) (I.inf i))) := by -- --- PROOF ---
   have hall := List.all_eq_true.mp h j (List.mem_finRange j)
   rw [Bool.or_eq_true, decide_eq_true_eq] at hall
-  have hle : le (subUp (I.sup j) (I.inf i)) (aux_expUpLimit k) = true := by
+  have hle : le (subUp (I.sup j) (I.inf i)) (step_expUpLimit k) = true := by
     rcases hall with h1 | h1
     · exact absurd h1 hj
     · exact h1
@@ -67,16 +67,16 @@ private theorem aux_softmaxExpInRange_le (k : ℕ) (I : Interval (Vec 𝕋 n)) {
   exact le_expUp_of_le k _ _ (aux_expUpLimit_le k) hle
 
 private theorem aux_one_add_sum_le_softmaxDenomUp (k : ℕ) (I : Interval (Vec 𝕋 n)) {i : Fin n}
-    (h : aux_softmaxExpInRange k I i = true) : -- --- CONCL ---
+    (h : step_softmaxExpInRange k I i = true) : -- --- CONCL ---
     1 + ∑ j ∈ Finset.univ.erase i, Real.exp (toReal (I.sup j) - toReal (I.inf i))
-      ≤ toReal (aux_softmaxDenomUp k I i) := by -- --- PROOF ---
+      ≤ toReal (step_softmaxDenomUp k I i) := by -- --- PROOF ---
   have hsum := sum_erase_le_sumOffUp i fun j => expUp k (subUp (I.sup j) (I.inf i))
   have hterm : ∑ j ∈ Finset.univ.erase i, Real.exp (toReal (I.sup j) - toReal (I.inf i))
       ≤ ∑ j ∈ Finset.univ.erase i, toReal (expUp k (subUp (I.sup j) (I.inf i))) :=
     Finset.sum_le_sum fun j hj => aux_softmaxExpInRange_le k I h (Finset.ne_of_mem_erase hj)
   have hadd := add_le_addUp (one : 𝕋) (sumOffUp i fun j => expUp k (subUp (I.sup j) (I.inf i)))
   rw [toReal_one] at hadd
-  rw [aux_softmaxDenomUp]
+  rw [step_softmaxDenomUp]
   linarith
 
 
@@ -92,8 +92,8 @@ theorem softmaxRawLower_le (k : ℕ) (I : Interval (Vec 𝕋 n)) {x : Vec ℝ n}
     have hS : (0:ℝ) ≤ ∑ j ∈ Finset.univ.erase i,
         Real.exp (toReal (I.sup j) - toReal (I.inf i)) :=
       Finset.sum_nonneg fun j _ => (Real.exp_pos _).le
-    have hpos : 0 < toReal (aux_softmaxDenomUp k I i) := by linarith
-    have h1 := divDown_le_div (one : 𝕋) (aux_softmaxDenomUp k I i) hpos
+    have hpos : 0 < toReal (step_softmaxDenomUp k I i) := by linarith
+    have h1 := divDown_le_div (one : 𝕋) (step_softmaxDenomUp k I i) hpos
     rw [toReal_one] at h1
     have hraw := Real.raw_le_softmax (lo := fun i => toReal (I.inf i))
       (hi := fun i => toReal (I.sup i)) hx i

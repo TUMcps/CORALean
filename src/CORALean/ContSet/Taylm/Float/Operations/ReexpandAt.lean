@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.BinomCoef
 public import CORALean.ContSet.Taylm.Float.Taylm
 public import CORALean.Global.Float.ListSum
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -39,13 +40,15 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def Taylm.aux_reexpCoef (k : Fin n) (m r : 𝕋) (p : (𝕋 × (Fin n → ℕ)) × ℕ) : Interval 𝕋 :=
+@[step_of Taylm.reexpandAt]
+def Taylm.step_reexpCoef (k : Fin n) (m r : 𝕋) (p : (𝕋 × (Fin n → ℕ)) × ℕ) : Interval 𝕋 :=
   let B := Taylm.binomCoef (p.1.2 k) p.2 m r
   ⟨Interval.mulLo p.1.1 p.1.1 B.inf B.sup, Interval.mulHi p.1.1 p.1.1 B.inf B.sup⟩
 
-def Taylm.aux_reexpPairs (k : Fin n) (T : Taylm 𝕋 n) : List ((𝕋 × (Fin n → ℕ)) × ℕ) :=
+@[step_of Taylm.reexpandAt]
+def Taylm.step_reexpPairs (k : Fin n) (T : Taylm 𝕋 n) : List ((𝕋 × (Fin n → ℕ)) × ℕ) :=
   T.terms.flatMap fun a => (List.range (a.2 k + 1)).map fun j => (a, j)
 
 
@@ -53,10 +56,10 @@ def Taylm.aux_reexpPairs (k : Fin n) (T : Taylm 𝕋 n) : List ((𝕋 × (Fin n 
 
 def Taylm.reexpandAt (k : Fin n) (m r : 𝕋) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   -- what storing the upper corners costs, summed over the new terms
-  let err := listSumUp ((T.aux_reexpPairs k).map fun p =>
-    subUp (Taylm.aux_reexpCoef k m r p).sup (Taylm.aux_reexpCoef k m r p).inf)
-  ⟨(T.aux_reexpPairs k).map fun p =>
-      ((Taylm.aux_reexpCoef k m r p).sup, Function.update p.1.2 k p.2),
+  let err := listSumUp ((T.step_reexpPairs k).map fun p =>
+    subUp (Taylm.step_reexpCoef k m r p).sup (Taylm.step_reexpCoef k m r p).inf)
+  ⟨(T.step_reexpPairs k).map fun p =>
+      ((Taylm.step_reexpCoef k m r p).sup, Function.update p.1.2 k p.2),
     T.rem, ⟨subDown T.I_error.inf err, addUp T.I_error.sup err⟩, T.maxOrder⟩
 
 end CORALean.Float

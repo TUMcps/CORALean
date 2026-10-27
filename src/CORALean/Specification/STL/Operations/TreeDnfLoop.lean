@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.STL.Operations.TreeDnfRewrite
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -34,12 +35,13 @@ open scoped NNReal
 variable {τ κ : Type} {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- the weight of a formula: `|` adds, `&` multiplies, a leaf weighs two
-def STL.Tree.aux_dnfWeight : STL.Tree τ κ n → ℕ
-  | .or φ ψ => aux_dnfWeight φ + aux_dnfWeight ψ + 1
-  | .and φ ψ => aux_dnfWeight φ * aux_dnfWeight ψ
+@[step_of STL.Tree.dnfLoop]
+def STL.Tree.step_dnfWeight : STL.Tree τ κ n → ℕ
+  | .or φ ψ => step_dnfWeight φ + step_dnfWeight ψ + 1
+  | .and φ ψ => step_dnfWeight φ * step_dnfWeight ψ
   | _ => 2
 
 
@@ -51,23 +53,23 @@ def STL.Tree.dnfLoop (φ : STL.Tree τ κ n) : STL.Tree τ κ n :=
   let res := (φ.dnfRewrite).1
   let cnt := (φ.dnfRewrite).2
   if _ : cnt = 0 then res else dnfLoop res
-termination_by φ.aux_dnfWeight
+termination_by φ.step_dnfWeight
 decreasing_by
   rename_i h
   -- every formula weighs at least two
-  have htwo' : ∀ φ : STL.Tree τ κ n, 2 ≤ φ.aux_dnfWeight := by
+  have htwo' : ∀ φ : STL.Tree τ κ n, 2 ≤ φ.step_dnfWeight := by
     intro φ
     induction φ with
-    | or φ ψ ihφ ihψ => simp only [STL.Tree.aux_dnfWeight]; omega
-    | and φ ψ ihφ ihψ => simp only [STL.Tree.aux_dnfWeight]; nlinarith
-    | _ => simp [STL.Tree.aux_dnfWeight]
-  have htwo : PLift (∀ φ : STL.Tree τ κ n, 2 ≤ φ.aux_dnfWeight) := ⟨htwo'⟩
+    | or φ ψ ihφ ihψ => simp only [STL.Tree.step_dnfWeight]; omega
+    | and φ ψ ihφ ihψ => simp only [STL.Tree.step_dnfWeight]; nlinarith
+    | _ => simp [STL.Tree.step_dnfWeight]
+  have htwo : PLift (∀ φ : STL.Tree τ κ n, 2 ≤ φ.step_dnfWeight) := ⟨htwo'⟩
   clear htwo'
   -- a pass never raises the weight, and lowers it when it distributes
   have hweight : ∀ φ : STL.Tree τ κ n,
-      (φ.dnfRewrite).1.aux_dnfWeight ≤ φ.aux_dnfWeight ∧
+      (φ.dnfRewrite).1.step_dnfWeight ≤ φ.step_dnfWeight ∧
         ((φ.dnfRewrite).2 ≠ 0 →
-          (φ.dnfRewrite).1.aux_dnfWeight < φ.aux_dnfWeight) := by
+          (φ.dnfRewrite).1.step_dnfWeight < φ.step_dnfWeight) := by
     clear * - htwo
     intro φ
     induction φ with
@@ -78,7 +80,7 @@ decreasing_by
       obtain ⟨b₁, b₂⟩ := ihψ
       simp only [STL.Tree.dnfRewrite]
       split
-      all_goals simp_all only [STL.Tree.aux_dnfWeight]
+      all_goals simp_all only [STL.Tree.step_dnfWeight]
       -- both operands became `|`: four cubes replace the product
       · rename_i ψ' _ _ _ l₁ l₂ r₁ r₂ _ _
         have t₁ := htwo.down l₁
@@ -106,7 +108,7 @@ decreasing_by
     | or φ ψ ihφ ihψ =>
       obtain ⟨a₁, a₂⟩ := ihφ
       obtain ⟨b₁, b₂⟩ := ihψ
-      simp only [STL.Tree.dnfRewrite, STL.Tree.aux_dnfWeight]
+      simp only [STL.Tree.dnfRewrite, STL.Tree.step_dnfWeight]
       refine ⟨by omega, fun h => ?_⟩
       by_cases hφ : (φ.dnfRewrite).2 = 0
       · have := b₂ (by omega); omega

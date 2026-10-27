@@ -5,6 +5,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_Interval
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -40,10 +41,11 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q r : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The box from `0` to the widest rounding gap of each entry over the vertices. -/
-def VPolytope.aux_matColumnGap {k : ℕ} (lo hi : Fin k → Mat 𝕋 p r) : Interval (Mat 𝕋 p r) :=
+@[step_of VPolytope.matMul]
+def VPolytope.step_matColumnGap {k : ℕ} (lo hi : Fin k → Mat 𝕋 p r) : Interval (Mat 𝕋 p r) :=
   ⟨fun _ _ => zero, fun i j => maximumOver fun l => subUp (hi l i j) (lo l i j)⟩
 
 
@@ -55,7 +57,7 @@ def VPolytope.matMul (P : VPolytope (Mat 𝕋 p q)) (Q : VPolytope (Mat 𝕋 q r
   k := P.k * Q.k
   V := fun l => matMulDown (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2)
   I_error := Interval.matPlus
-    (VPolytope.aux_matColumnGap
+    (VPolytope.step_matColumnGap
       (fun l => matMulDown (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2))
       (fun l => matMulUp (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2)))
     (Interval.matPlus

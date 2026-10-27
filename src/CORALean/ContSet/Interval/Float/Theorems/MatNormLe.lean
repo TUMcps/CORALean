@@ -52,7 +52,7 @@ theorem Interval.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (I : Inte
   have hc := Interval.mem_mat_iff.mp (Interval.center_mem_centerBoxMat I)
   have hMi := Interval.mem_mat_iff.mp hM
   -- every entry is below the rounded `abs(center) + rad` in absolute value
-  have hb : ∀ i j, |M i j| ≤ toReal (I.aux_normEntry i j) := by
+  have hb : ∀ i j, |M i j| ≤ toReal (I.step_normEntry i j) := by
     intro i j
     -- the member is within the radius of the real center
     have h1 : |M i j| ≤ |I.nominal.center i j| + I.nominal.radius i j := by
@@ -76,11 +76,11 @@ theorem Interval.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (I : Inte
       exact abs_le_max_abs_abs (hc i j).1 (hc i j).2
     have h3 := Interval.radiusMat_ge I i j
     exact le_trans (add_le_add h2 h3) (add_le_addUp _ _)
-  have h0 : ∀ i j, 0 ≤ toReal (I.aux_normEntry i j) := fun i j => le_trans (abs_nonneg _) (hb i j)
+  have h0 : ∀ i j, 0 ≤ toReal (I.step_normEntry i j) := fun i j => le_trans (abs_nonneg _) (hb i j)
   -- then each norm type adds up the bounds on the entries and rounds the sums up
   cases p with
   | one =>
-    show (⨆ j, ∑ i, |M i j|) ≤ toReal (maximumOver fun j => sumUp fun i => I.aux_normEntry i j)
+    show (⨆ j, ∑ i, |M i j|) ≤ toReal (maximumOver fun j => sumUp fun i => I.step_normEntry i j)
     -- the supremum over no column is `0`, as is `maximumOver` of none
     rcases isEmpty_or_nonempty (Fin n) with h | h
     · rw [Real.iSup_of_isEmpty]
@@ -92,10 +92,10 @@ theorem Interval.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (I : Inte
       rw [maximumOver, toReal_zero]
     · refine ciSup_le fun j => ?_
       exact le_trans (Finset.sum_le_sum fun i _ => hb i j)
-        (le_trans (sum_le_sumUp fun i => I.aux_normEntry i j)
-          (le_maximumOver (fun j => sumUp fun i => I.aux_normEntry i j) j))
+        (le_trans (sum_le_sumUp fun i => I.step_normEntry i j)
+          (le_maximumOver (fun j => sumUp fun i => I.step_normEntry i j) j))
   | inf =>
-    show (⨆ i, ∑ j, |M i j|) ≤ toReal (maximumOver fun i => sumUp fun j => I.aux_normEntry i j)
+    show (⨆ i, ∑ j, |M i j|) ≤ toReal (maximumOver fun i => sumUp fun j => I.step_normEntry i j)
     -- the supremum over no row is `0`, as is `maximumOver` of none
     rcases isEmpty_or_nonempty (Fin m) with h | h
     · rw [Real.iSup_of_isEmpty]
@@ -107,11 +107,11 @@ theorem Interval.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (I : Inte
       rw [maximumOver, toReal_zero]
     · refine ciSup_le fun i => ?_
       exact le_trans (Finset.sum_le_sum fun j _ => hb i j)
-        (le_trans (sum_le_sumUp fun j => I.aux_normEntry i j)
-          (le_maximumOver (fun i => sumUp fun j => I.aux_normEntry i j) i))
+        (le_trans (sum_le_sumUp fun j => I.step_normEntry i j)
+          (le_maximumOver (fun i => sumUp fun j => I.step_normEntry i j) i))
   | fro =>
     show Real.sqrt (∑ i, ∑ j, M i j ^ 2) ≤ toReal (sqrtUp steps (sumUp fun i => sumUp fun j =>
-      mulUp (I.aux_normEntry i j) (I.aux_normEntry i j)))
+      mulUp (I.step_normEntry i j) (I.step_normEntry i j)))
     -- the sum of squares is below the rounded one, and `sqrtUp` is above the root
     refine le_trans (Real.sqrt_le_sqrt ?_) (le_sqrtUp steps _)
     refine le_trans ?_ (sum_le_sumUp _)
@@ -119,7 +119,7 @@ theorem Interval.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (I : Inte
     refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)
     rw [← sq_abs (M i j)]
     calc |M i j| ^ 2 = |M i j| * |M i j| := pow_two _
-      _ ≤ toReal (I.aux_normEntry i j) * toReal (I.aux_normEntry i j) :=
+      _ ≤ toReal (I.step_normEntry i j) * toReal (I.step_normEntry i j) :=
         mul_le_mul (hb i j) (hb i j) (abs_nonneg _) (h0 i j)
       _ ≤ _ := mul_le_mulUp _ _
 

@@ -3,6 +3,7 @@ module
 public import Mathlib.Data.Fintype.Perm
 public import Mathlib.Data.List.FinRange
 public import Mathlib.Data.Fintype.Pi
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -60,20 +61,23 @@ def VPolytope.plusPruneCora (n m d : ℕ) (vecVpot : List (List ℤ)) (K : List 
     (List.range (n * m)).map fun i => vecVcol.getD (n * m * j + i) 0
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The example: `A = [0 1; 1 0]` and `B = [0 1; 0 1]` plus the zero matrix; the row of entry `k`
 is `(A_k, B_k)` (entries column by column). -/
-def VPolytope.aux_squareRows : List (List ℤ) := [[0, 0], [1, 0], [1, 1], [0, 1]]
+@[step_of VPolytope.plusPrune_cora_counterexample]
+def VPolytope.step_squareRows : List (List ℤ) := [[0, 0], [1, 0], [1, 1], [0, 1]]
 
 /-- Whether a matrix lies on the line through `A` and `B` (flattened column by column): its
 entries satisfy the three equations that hold for both. -/
-def VPolytope.aux_onLineAB (M : List ℤ) : Bool :=
+@[step_of VPolytope.plusPrune_cora_counterexample]
+def VPolytope.step_onLineAB (M : List ℤ) : Bool :=
   M.getD 0 0 = 0 && M.getD 2 0 = 1 && M.getD 1 0 + M.getD 3 0 = 1
 
 /-- The facets `convhulln` returns for the four points of the square: its four edges `{j, j+1}`,
 each oriented as `o` says, listed in the order `σ`. -/
-def VPolytope.aux_squareFacets (σ : Equiv.Perm (Fin 4)) (o : Fin 4 → Bool) : List (List ℕ) :=
+@[step_of VPolytope.plusPrune_cora_counterexample]
+def VPolytope.step_squareFacets (σ : Equiv.Perm (Fin 4)) (o : Fin 4 → Bool) : List (List ℕ) :=
   (List.finRange 4).map fun i =>
     if o i then [(σ i).val, ((σ i).val + 1) % 4] else [((σ i).val + 1) % 4, (σ i).val]
 
@@ -83,8 +87,8 @@ def VPolytope.aux_squareFacets (σ : Equiv.Perm (Fin 4)) (o : Fin 4 → Bool) : 
 /-- Whatever the order and orientation of the four edges, not every matrix of the result is on
 the line through `A` and `B`, so the result is not the polytope of the sum vertices `A`, `B`. -/
 theorem VPolytope.plusPrune_cora_counterexample (σ : Equiv.Perm (Fin 4)) (o : Fin 4 → Bool) :
-    (VPolytope.plusPruneCora 2 2 2 VPolytope.aux_squareRows (VPolytope.aux_squareFacets σ o)).all
-      VPolytope.aux_onLineAB = false := by
+    (VPolytope.plusPruneCora 2 2 2 VPolytope.step_squareRows (VPolytope.step_squareFacets σ o)).all
+      VPolytope.step_onLineAB = false := by
   revert σ o
   exact of_decide_eq_true rfl
 
