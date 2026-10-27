@@ -6,11 +6,21 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ForcePropag
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.GetVerdictAp
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.GetVerdictConst
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.GetVerdictToRealAnalyzer
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.MkNodesSpec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.MkSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveAtomsSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveLeavesSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetCorrect
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetCorrectNonvacuous
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetErasedKeepsVerdict
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetFloatSound
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetFloatSoundNonvacuous
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetSingleAp
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ObserveSetVerdictFinal
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.ParseSpec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.SatRefines
+public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.SatSpec
 public import CORALean.Specification.OnlineReachSetAnalyzer.Theorems.UpdateNodeSpec
 
 /-!

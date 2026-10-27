@@ -118,6 +118,19 @@ theorem FourValued.and_or_self_ne :
     FourValued.uu.and (FourValued.uu.or .ii) ≠ .uu := nofun
 
 
+-- =================================  `FourValued.and_refines`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       27-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Refining both operands refines the conjunction: where `a & b` is not inconclusive, it is
+`a' & b'`. -/
+theorem FourValued.and_refines (a b a' b' : FourValued) (ha : a ≠ .ii → a' = a)
+    (hb : b ≠ .ii → b' = b) : a.and b ≠ .ii → a'.and b' = a.and b := by
+  cases a <;> cases b <;> cases a' <;> cases b' <;> simp_all [FourValued.and]
+
+
 -- ==================================  `FourValued.and_self`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -138,6 +151,18 @@ theorem FourValued.and_self (a : FourValued) : a.and a = a := by
 /-- `True` is the unit of `&`. -/
 theorem FourValued.and_tt (a : FourValued) : a.and .tt = a := by
   cases a <;> rfl
+
+
+-- ==================================  `FourValued.eq_of_iff`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       27-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Values that agree on being `True`, `False` and `Inconclusive` are equal. -/
+theorem FourValued.eq_of_iff (x y : FourValued) (h1 : x = .tt ↔ y = .tt) (h2 : x = .ff ↔ y = .ff)
+    (h3 : x = .ii ↔ y = .ii) : x = y := by
+  cases x <;> cases y <;> simp_all
 
 
 -- ===========================  `FourValued.fromBool_eq_fromKleene`  ============================ --
@@ -317,6 +342,18 @@ theorem FourValued.not_or (a b : FourValued) : (a.or b).not = a.not.and b.not :=
   cases a <;> cases b <;> rfl
 
 
+-- =================================  `FourValued.not_refines`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       27-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Refining the operand refines the negation. -/
+theorem FourValued.not_refines (a a' : FourValued) (ha : a ≠ .ii → a' = a) :
+    a.not ≠ .ii → a'.not = a.not := by
+  cases a <;> cases a' <;> simp_all [FourValued.not]
+
+
 -- =====================  `FourValued.ofKleeneInc_toKleene_isInconclusive`  ===================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -408,6 +445,19 @@ theorem FourValued.or_ff (a : FourValued) : a.or .ff = a := by
 theorem FourValued.or_ii (a : FourValued) :
     a.or .ii = if a = .tt then .tt else .ii := by
   cases a <;> rfl
+
+
+-- =================================  `FourValued.or_refines`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       27-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Refining both operands refines the disjunction: where `a | b` is not inconclusive, it is
+`a' | b'`. -/
+theorem FourValued.or_refines (a b a' b' : FourValued) (ha : a ≠ .ii → a' = a)
+    (hb : b ≠ .ii → b' = b) : a.or b ≠ .ii → a'.or b' = a.or b := by
+  cases a <;> cases b <;> cases a' <;> cases b' <;> simp_all [FourValued.or]
 
 
 -- ===================================  `FourValued.or_self`  =================================== --
