@@ -29,8 +29,9 @@ the result need not lie in the difference (`Zonotope.minkDiffApprox_not_inner`).
 ## References
 
 * [1] `contSet/@zonotope/minkDiff.m`, CORA, ll. 78, 114-138, 207-307.
-* [2] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
-      arXiv:1512.02794, 2015.
+* [2] [M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794,
+      2015.](../../../../../../references/2015/althoff-arxiv-minkowski-difference.md)
 -/
 
 -- Authors:       Claude Opus 5.5

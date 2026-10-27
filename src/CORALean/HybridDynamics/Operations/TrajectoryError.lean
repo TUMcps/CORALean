@@ -39,9 +39,10 @@ outputs `c_tilde` and `d_tilde`, which CORA documents as `?`, are not defined he
 ## References
 
 * [1] `contDynamics/@linearSys/trajectoryError.m`
-* [2] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+* [2] [M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
       Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
-      Systems: Computation and Control, 2012.
+      Systems: Computation and Control,
+      2012.](../../../../references/2012/althoff-hscc-avoiding-intersection.md)
 -/
 
 -- Authors:       Claude Opus 5.5

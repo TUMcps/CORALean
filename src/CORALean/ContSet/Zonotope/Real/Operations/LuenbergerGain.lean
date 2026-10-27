@@ -27,10 +27,12 @@ the generator columns; the inverse is Mathlib's, `0` where `Γ Ĝ Ĝᵀ Γᵀ + 
 
 ## References
 
-* [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
-      Observers Using Diffusion Strategies". Journal of the Franklin Institute, 2023.
-* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
-      paradigms and robust convergence". Automatica, 2015.
+* [1] [A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
+      Observers Using Diffusion Strategies". Journal of the Franklin Institute,
+      2023.](../../../../../../references/2023/alanwar-jfi-diffusion-observers.md)
+* [2] [C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica,
+      2015.](../../../../../../references/2015/combastel-automatica-zonotopes-kalman.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

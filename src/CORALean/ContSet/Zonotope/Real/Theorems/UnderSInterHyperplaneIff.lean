@@ -30,8 +30,9 @@ the normal `n_e` of the guard `G_e = {x | n_e·x = f_e}` is in `S` then
 
 ## References
 
-* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
-      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control, 2006.
+* [1] [A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
+      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control,
+      2006.](../../../../../../references/2006/girard-hscc-lti-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5

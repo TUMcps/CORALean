@@ -31,8 +31,9 @@ formalized; see the paper's page.
 
 ## References
 
-* [1] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
-      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC), 2024.
+* [1] [A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
+      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC),
+      2024.](../../../references/2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

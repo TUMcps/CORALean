@@ -35,11 +35,12 @@ factor — the printed normalized rows among them, and zero rows wherever genera
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+* [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
-      2023.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
-      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
+      2023.](../../../../../../references/2023/liu-tro-guarantees-real-robotic.md)
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems,
+      2010.](../../../../../../references/2010/althoff-nahs-zonotopes-polytopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -30,8 +30,9 @@ once `Σₖ maxⱼ |(HᵀY)_{kj}| ≤ 1`, with equality at `Y = H⁻ᵀ e_k sign
 
 ## References
 
-* [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
-      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+* [1] [A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control,
+      2025.](../../../references/2025/kulmburg-tac-approximability-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -27,9 +27,9 @@ The `λ_jk` select a row `k`, the other `α̃_jk` vanish and `α̃ = α̃_jk`.
 
 ## References
 
-* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+* [1] [N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, 2024.
+      Hybrid Systems, 2024.](../../../../../references/2024/kochdumper-nahs-stl-lti-verification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

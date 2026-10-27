@@ -17,11 +17,12 @@ whole window. An input set off the origin is split as in [2, Eq. 4], a constant 
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
       Enclosing Hulls of Probability Density Functions". 2009 European Control Conference (ECC),
-      2009.
-* [2] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
-      Systems". IEEE Transactions on Automatic Control, 2014.
+      2009.](../../../../../references/2009/althoff-ecc-enclosing-hulls.md)
+* [2] [M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control,
+      2014.](../../../../../references/2014/althoff-tac-nonlinear-dae.md)
 -/
 
 -- Authors:       Claude Opus 5.5

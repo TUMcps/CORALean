@@ -187,10 +187,9 @@ private theorem HPolytope.aux_not_flagged (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) 
 the origin. -/
 theorem HPolytope.representsa_interval_zeroRow_cora_counterexample
     (rest : (Fin 2 → EReal) × (Fin 2 → EReal)) : -- --- CONCL ---
-    HPolytope.aux_boxZeroRow.construct = ∅ ∧
-      ∀ j, (HPolytope.aux_boxZeroRow.representsaIntervalZeroRowCora rest).1 j ≤ 0 ∧
-        0 ≤
-          (HPolytope.aux_boxZeroRow.representsaIntervalZeroRowCora rest).2 j := by -- --- PROOF ---
+    let box := HPolytope.aux_boxZeroRow.representsaIntervalZeroRowCora rest
+    HPolytope.aux_boxZeroRow.construct = ∅ ∧ ∀ j, box.1 j ≤ 0 ∧ 0 ≤ box.2 j := by -- --- PROOF ---
+  intro box
   -- the polytope is empty; no row is flagged, so `(lb, ub)` is returned
   refine ⟨HPolytope.aux_boxZeroRow_construct, ?_⟩
   have hA : ∀ i, ¬ ∃ a b, a ≠ b ∧ (HPolytope.aux_boxZeroRow.A i) (Pi.single a 1) ≠ 0 ∧
@@ -219,6 +218,7 @@ theorem HPolytope.representsa_interval_zeroRow_cora_counterexample
     · exact hA i hi
     · exact absurd i.2 (Nat.not_lt_zero _)
   intro j
+  dsimp only [box]
   unfold HPolytope.representsaIntervalZeroRowCora
   simp only [hnf, if_false]
   constructor

@@ -27,8 +27,9 @@ measurements is `exactUncertainSet_eq`.
 
 ## References
 
-* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 2013.
+* [1] [V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica,
+      2013.](../../../../../references/2013/le-automatica-zonotopic-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

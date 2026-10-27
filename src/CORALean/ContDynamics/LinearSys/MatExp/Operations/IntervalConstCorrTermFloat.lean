@@ -27,8 +27,9 @@ lies in: `corrCoeff (i+2)` is in `[corrCoeffLow (i+2), 0]` and `r^{i+2}/(i+2)!` 
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
-      Systems". IEEE Transactions on Automatic Control, 2014.
+* [1] [M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control,
+      2014.](../../../../../../references/2014/althoff-tac-nonlinear-dae.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

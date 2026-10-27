@@ -32,8 +32,8 @@ evaluation, which is exact here: each of `Jᵢᵢ`, `Jᵢⱼ`, `vⱼ`, `yᵢ` oc
 
 ## References
 
-* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
-      Reliable Computing, 2010.
+* [1] [A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
+      Reliable Computing, 2010.](../../../references/2010/goldsztejn-rc-inner-range.md)
 -/
 
 -- Authors:       Claude Opus 5.5

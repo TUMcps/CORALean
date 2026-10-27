@@ -33,8 +33,9 @@ generating `A ⊔ C`. A point of an `M`-dependent sequence is so independent of 
 
 ## References
 
-* [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 2009.
+* [1] [M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
+      reliability". Automatica,
+      2009.](../../../references/2009/campi-automatica-interval-predictor-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

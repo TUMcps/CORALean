@@ -27,8 +27,9 @@ zonotope back off [1, Eq. 23].
 
 ## References
 
-* [1] C. Combastel. "A state bounding observer based on zonotopes". 2003 European Control Conference
-      (ECC), 2003.
+* [1] [C. Combastel. "A state bounding observer based on zonotopes". 2003 European Control
+      Conference (ECC),
+      2003.](../../../../../../references/2003/combastel-ecc-state-bounding-observer.md)
 -/
 
 -- Authors:       Claude Opus 5

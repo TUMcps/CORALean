@@ -18,9 +18,11 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 `Alg. 3` halves `Δt` (line 15) only when `falsifiable = false` and `0 ∈ P̂`, the polytope of the
 outer support vectors, but lines 19 and 23 choose the directions from `P̌`, the inner one's.
 For `ẋ = x + u`, `X₀ = {0}`, `U = [-1, 1]`, `t = 1`, `L = {c}` with `c` the order-`η` Taylor sum
-of `e - 1` plus `1/(η+1)!` lies at distance `c - (e - 1) > 0` from `R(1)`. Every vertex of `P̌`
-is left of the origin, so lines 19 and 23 return `ℓ₁ = +1` again, every vertex of `P̂` right of
-it: the exits fail and `verifySearch` answers `undecided` for every `fuel`, `η` and oracle.
+of `e - 1` plus `1/(η+1)!` is at distance `c - (e - 1) > 0` from `R(1)`, yet all of `P̌` is left of
+the origin, lines 19 and 23 return `+1` again, and `verifySearch` answers `undecided`.
+
+**The oracles.** The theorem holds for every origin test, facet finder and direction finder meeting
+their contracts; the corollary fixes `inHullExact` (`0 ∈ P`) and, in `R¹`, the closest vertex.
 
 ## Inputs
 * `η` – Taylor order
@@ -33,9 +35,10 @@ it: the exits fail and `verifySearch` answers `undecided` for every `fuel`, `η`
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+* [1] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Reachability Analysis with Support Functions". Proceedings of the 26th ACM
-      International Conference on Hybrid Systems: Computation and Control, 2023.
+      International Conference on Hybrid Systems: Computation and Control,
+      2023.](../../../../../references/2023/wetzlinger-hscc-support-functions.md)
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -132,6 +135,40 @@ private theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S 
         exact hPc v (List.mem_of_getElem? hj)
     · -- line 23: the vector towards the origin is `ℓ` again
       exact ih _ (hgs _ hne hPc) rfl rfl hPh hPc
+
+
+open Classical in
+/-- The exact origin test of line 14: `0 ∈ P` for the polytope spanned by the vertices. -/
+noncomputable def inHullExact (V : List (Vec ℝ n)) : Bool :=
+  if (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V} then true else false
+
+open Classical in
+/-- The exact test answers `true` exactly when the origin is in the hull. -/
+theorem inHullExact_iff (V : List (Vec ℝ n)) :
+    inHullExact V = true ↔ (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V} := by
+  unfold inHullExact
+  split_ifs with h <;> simp [h]
+
+/-- The direction towards the origin from the vertex of `V` closest to it, in `R¹`. -/
+noncomputable def gramSchmidt1 (V : List (Vec ℝ 1)) : Vec ℝ 1 →ₗ[ℝ] ℝ :=
+  match V.argmin (fun v => |v 0|) with
+  | some v => if v 0 < 0 then LinearMap.proj 0 else -LinearMap.proj 0
+  | none => LinearMap.proj 0
+
+/-- The closest facet in `R¹`, where a facet is a vertex: the vertex of `V` closest to the
+origin, with the unit normal towards the origin. -/
+noncomputable def closestFacet1 (V : List (Vec ℝ 1)) : (Vec ℝ 1 →ₗ[ℝ] ℝ) × List ℕ :=
+  (gramSchmidt1 V, match V.argmin (fun v => |v 0|) with
+    | some v => [V.idxOf v]
+    | none => [])
+
+/-- On vertices all left of the origin, `gramSchmidt1` returns `+1`. -/
+theorem gramSchmidt1_of_neg (V : List (Vec ℝ 1)) (h : ∀ v ∈ V, v 0 < 0) :
+    gramSchmidt1 V = LinearMap.proj 0 := by
+  unfold gramSchmidt1
+  cases hm : V.argmin (fun v => |v 0|) with
+  | none => rfl
+  | some v => simp [h v (List.argmin_mem hm)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -307,6 +344,41 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
   exact aux_verifySearchLoop_stall (S := 𝒵) sys X₀ U η ρ ν₀ νU νL νhat ρL hhull ℓ₁ (φ := ℓ₁)
     (Δt := 1) (k := 1) hfacet hgs hsafe hhat hcheck fuel ⟨1, ℓ₁, 1, 1, [], [], true⟩ rfl rfl rfl
     (fun v hv => by simp at hv) (fun v hv => by simp at hv)
+
+/-- [1, Alg. 3 (termination)] at the algorithm's own tests: with the exact origin test `0 ∈ P` and
+the closest vertex of `R¹` as facet and direction, `verifySearch` still answers `undecided` for
+every `fuel`, `η` and sound support function oracle. -/
+theorem LinearSys.verifySearch_stall_exact_counterexample (η : ℕ) : -- --- CONCL ---
+    let sys : LinearSys ℝ 1 := LinearSys.canonical 1
+    let X₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint 0
+    let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
+    let c : ℝ := (∑ i ∈ Finset.range (η + 1), 1 / ((i + 1).factorial : ℝ)) +
+      1 / ((η + 1).factorial : ℝ)
+    let L : Set (Vec ℝ 1) := {fun _ => c}
+    let ℓ₁ : Vec ℝ 1 →ₗ[ℝ] ℝ := LinearMap.proj 0
+    -- decidable: `R(1)` and `L` are at a positive distance
+    Real.exp 1 - 1 < c ∧
+    (∀ x ∈ sys.reachSetExact (S := 𝒵) (Set.Icc 0 1) X₀ U 1, ∀ y ∈ L,
+      c - (Real.exp 1 - 1) ≤ ‖x - y‖) ∧
+    -- and yet, for every sound oracle, `Alg. 3` never exits
+    ∀ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
+      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ construct X₀)
+      (_ : ∀ d, νU d ∈ construct U) (_ : ∀ d, νL d ∈ L)
+      (ρL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ) (_ : ∀ d, ∀ y ∈ L, d y ≤ ρL d)
+      (νhat : ℝ → (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1)
+      (_ : ℓ₁ (νhat 1 ℓ₁) = (sys.supportUpper (S := 𝒵) 1 η X₀ U ρ ℓ₁ 1).ρR)
+      (fuel : ℕ),
+      sys.verifySearch (S := 𝒵) X₀ U 1 η ρ ν₀ νU νL νhat ρL inHullExact closestFacet1
+        gramSchmidt1 fuel = .undecided := by -- --- PROOF ---
+  intro sys X₀ U c L ℓ₁
+  obtain ⟨h1, h2, h3⟩ := LinearSys.verifySearch_stall_counterexample η
+  refine ⟨h1, h2, ?_⟩
+  intro ρ hρ ν₀ νU νL hν₀ hνU hνL ρL hρL νhat hνhat fuel
+  exact h3 ρ hρ ν₀ νU νL hν₀ hνU hνL ρL hρL νhat hνhat inHullExact
+    (fun V hV => (inHullExact_iff V).mp hV) closestFacet1
+    (fun V _ hneg => gramSchmidt1_of_neg V hneg) gramSchmidt1
+    (fun V _ hneg => gramSchmidt1_of_neg V hneg) fuel
 
 end CORALean
 

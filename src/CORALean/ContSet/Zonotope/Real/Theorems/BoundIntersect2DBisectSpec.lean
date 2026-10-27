@@ -27,8 +27,9 @@ segment between them. Unlike `Alg. 3` the search needs `Z ∩ L_γ ≠ ∅`.
 
 ## References
 
-* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems Reachability
-      Analysis". Hybrid Systems: Computation and Control, 2008.
+* [1] [A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems
+      Reachability Analysis". Hybrid Systems: Computation and Control,
+      2008.](../../../../../../references/2008/girard-hscc-zonotope-hyperplane.md)
 -/
 
 -- Authors:       Claude Opus 5.5

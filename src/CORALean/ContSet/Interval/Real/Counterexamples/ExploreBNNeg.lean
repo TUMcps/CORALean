@@ -19,8 +19,9 @@ point `-1`, outside the box, although the cut is empty. `exploreBN_eq_extremePoi
 
 ## References
 
-* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
-      INFOCOMP Journal of Computer Science, 2009.
+* [1] [C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
+      INFOCOMP Journal of Computer Science,
+      2009.](../../../../../../references/2009/lara-infocomp-hyperbox-hyperplane.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -31,9 +31,9 @@ states do not keep, so the exact set is the common bound.
 * the exact reachable set over the interval lies inside the float one
 ## References
 
-* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+* [1] [N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, 2024.
+      Hybrid Systems, 2024.](../../../../../references/2024/kochdumper-nahs-stl-lti-verification.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

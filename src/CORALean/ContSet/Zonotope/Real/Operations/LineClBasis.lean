@@ -30,8 +30,9 @@ CORA reduces them [2], one named step per printed line. Where the listing is ope
 
 ## References
 
-* [1] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of Zonotopes". 2017
-      IEEE 56th Annual Conference on Decision and Control (CDC), 2017.
+* [1] [A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of Zonotopes". 2017
+      IEEE 56th Annual Conference on Decision and Control (CDC),
+      2017.](../../../../../../references/2017/kopetzki-cdc-order-reduction.md)
 * [2] `contSet/@zonotope/private/priv_reduceCluster.m`, CORA (Sep. 2025).
 -/
 

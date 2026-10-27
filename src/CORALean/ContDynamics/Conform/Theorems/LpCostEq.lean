@@ -42,9 +42,9 @@ At `α ≥ 0`, `n^T z` with `n = [0, ∑_k ω_k σ^T G̃(I_m, t_k)]` (15) is
 
 ## References
 
-* [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of 10th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
-      2023.
+* [1] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of
+      10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+      2023.](../../../../../references/2023/althoff-arch-reachset-conformance.md)
 -/
 
 -- Authors:       Claude Opus 5.5

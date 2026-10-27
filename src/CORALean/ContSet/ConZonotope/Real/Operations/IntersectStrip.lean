@@ -33,9 +33,10 @@ The gain `Λ` is an argument and any `Λ` works. CORA's `'normGen'`, `'alamo-FRa
 
 ## References
 
-* [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
-      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
-      European Journal of Control, 2023.
+* [1] [A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
+      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption". European
+      Journal of Control,
+      2023.](../../../../../../references/2023/alanwar-ejc-privacy-preserving-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -28,8 +28,9 @@ operation, and the printed `R` rescaling (A.3) is not kept.
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
-      tool for set-based estimation and fault detection". Automatica, 2016.
+* [1] [J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica,
+      2016.](../../../../../../references/2016/scott-automatica-constrained-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

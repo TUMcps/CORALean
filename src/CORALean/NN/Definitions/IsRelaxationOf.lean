@@ -17,10 +17,12 @@ input set takes, `e(H) ≤ ϕ(t) - m(H) t ≤ ē(H)`. That is pointwise, not onl
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
-      Network Verification". International Conference on Learning Representations, 2026.
-* [2] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
-      Transactions on Machine Learning Research, 2025.
+* [1] [L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
+      Network Verification". International Conference on Learning Representations,
+      2026.](../../../../references/2026/koller-iclr-latent-space.md)
+* [2] [L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../references/2025/koller-tmlr-set-based-training.md)
 -/
 
 -- Authors:       Claude Opus 5.5

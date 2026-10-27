@@ -28,9 +28,10 @@ loop; this file gives the paper's own name and signature to it, decoupled from t
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
+* [1] [M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
       and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
-      computation and control, 2013.
+      computation and control,
+      2013.](../../../../../references/2013/althoff-hscc-conservative-polynomialization.md)
 -/
 
 -- Authors:       Claude Opus 5

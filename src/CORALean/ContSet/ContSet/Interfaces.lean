@@ -19,11 +19,12 @@ an operand-independent one is closed over by a `def` returning the class.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
-* [2] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 2013.
+* [1] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
+* [2] [V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica,
+      2013.](../../../../references/2013/le-automatica-zonotopic-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

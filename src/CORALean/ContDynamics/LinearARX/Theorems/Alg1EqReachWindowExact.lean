@@ -34,8 +34,8 @@ line 13 is that invariant at `k + p` by [1, Lemma 1], and the stored `B̃ᵢ`, `
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
-      on Decision and Control (CDC), 2023.
+* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
+      on Decision and Control (CDC), 2023.](../../../../../references/2023/luetzow-cdc-armax.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -40,15 +40,15 @@ namespace CORALean.Real
 
 theorem Ellipsoid.intersectStripGollamudi1D_counterexample (lam : ℝ) (h0 : 0 < lam)
     (h1 : lam < 1) : -- --- CONCL ---
-    (-1 : ℝ) ^ 2 / 1 ≤ 1 ∧ |(-1 : ℝ) - 2| ≤ 3 ∧
-      1 < (-1 - (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).1) ^ 2 /
-        (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).2 := by -- --- PROOF ---
+    let E' := Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam
+    (-1 : ℝ) ^ 2 / 1 ≤ 1 ∧ |(-1 : ℝ) - 2| ≤ 3 ∧ 1 < (-1 - E'.1) ^ 2 / E'.2 := by -- --- PROOF ---
+  intro E'
   refine ⟨by norm_num, by norm_num [abs_of_neg], ?_⟩
   -- the update in closed form: center `2 lam`, shape `1 / (1 + 2 lam)^2`
-  have hc : (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).1 = 2 * lam := by
-    simp [Ellipsoid.intersectStripGollamudi1D, mul_comm]
-  have hq : (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).2 = ((1 + 2 * lam) ^ 2)⁻¹ := by
-    simp only [Ellipsoid.intersectStripGollamudi1D]
+  have hc : E'.1 = 2 * lam := by
+    simp [E', Ellipsoid.intersectStripGollamudi1D, mul_comm]
+  have hq : E'.2 = ((1 + 2 * lam) ^ 2)⁻¹ := by
+    simp only [E', Ellipsoid.intersectStripGollamudi1D]
     have h : (1 - lam) * (1 : ℝ)⁻¹ + lam * (1 * 1) = 1 := by ring
     have h2 : (1 - lam) + lam * (1 * 1 * 1) = (1 : ℝ) := by ring
     rw [h, h2]

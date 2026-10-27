@@ -23,8 +23,9 @@ has no child, and the pseudo-code then has nothing to return.
 
 ## References
 
-* [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 2009.
+* [1] [M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
+      reliability". Automatica,
+      2009.](../../../references/2009/campi-automatica-interval-predictor-models.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

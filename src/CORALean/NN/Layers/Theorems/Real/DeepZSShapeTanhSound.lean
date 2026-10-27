@@ -26,8 +26,9 @@ and falls away from `0`, so `deepZSShape_isSound` applies at `x' = 0`.
 
 ## References
 
-* [1] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
-      Certification". Advances in Neural Information Processing Systems, 2018.
+* [1] [G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
+      Certification". Advances in Neural Information Processing Systems,
+      2018.](../../../../../../references/2018/singh-neurips-deepz.md)
 -/
 
 -- Authors:       Claude Opus 5.5

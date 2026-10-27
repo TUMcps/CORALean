@@ -24,6 +24,6 @@ and all, convert in exactly. As a star set its predicate is that level set
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
 -/

@@ -22,8 +22,9 @@ which is a hypothesis of the theorems here rather than a field.
 
 ## References
 
-* [1] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward reachable sets for
-      uncertain linear systems". IEEE Control Systems Letters, 2022.
+* [1] [L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward reachable sets for
+      uncertain linear systems". IEEE Control Systems Letters,
+      2022.](../../../../../../references/2022/yang-lcss-zonotopic-underapproximation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

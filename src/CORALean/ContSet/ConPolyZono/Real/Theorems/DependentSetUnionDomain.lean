@@ -33,8 +33,8 @@ notation. `union_exact_of_noZeroCol` does not go through this statement but thro
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

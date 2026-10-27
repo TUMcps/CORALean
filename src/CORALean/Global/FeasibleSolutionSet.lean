@@ -30,8 +30,9 @@ k ≤ N` mattering.
 
 ## References
 
-* [1] J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with
-      time-varying parameters". IEEE Transactions on Automatic Control, 2006.
+* [1] [J. M. Bravo, T. Alamo and E. F. Camacho. "Bounded error identification of systems with
+      time-varying parameters". IEEE Transactions on Automatic Control,
+      2006.](../../../references/2006/bravo-tac-bounded-error-identification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

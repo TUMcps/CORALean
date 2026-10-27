@@ -24,8 +24,8 @@ when to stop, so every pass is defined; `aux_alg1State` carries the rest of the 
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
-      on Decision and Control (CDC), 2023.
+* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
+      on Decision and Control (CDC), 2023.](../../../../../references/2023/luetzow-cdc-armax.md)
 -/
 
 -- Authors:       Claude Opus 5.5

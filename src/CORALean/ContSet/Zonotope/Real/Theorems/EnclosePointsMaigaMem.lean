@@ -25,9 +25,9 @@ enclosure.
 
 ## References
 
-* [1] M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
+* [1] [M. Maïga, N. Ramdani, L. Travé-Massuyès and C. Combastel. "A Comprehensive Method for
       Reachability Analysis of Uncertain Nonlinear Hybrid Systems". IEEE Transactions on Automatic
-      Control, 2016.
+      Control, 2016.](../../../../../../references/2016/maiga-tac-hybrid-reachability.md)
 -/
 
 -- Authors:       Claude Opus 5.5

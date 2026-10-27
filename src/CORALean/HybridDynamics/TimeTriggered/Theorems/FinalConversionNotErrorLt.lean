@@ -32,8 +32,9 @@ in `m_either`, reaching `50` within `T' = 100 + t_scaling` for every `t_scaling 
 
 ## References
 
-* [1] S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability
-      Analysis of Hybrid Automata". Formal Modeling and Analysis of Timed Systems, 2017.
+* [1] [S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability
+      Analysis of Hybrid Automata". Formal Modeling and Analysis of Timed Systems,
+      2017.](../../../../../references/2017/bak-formats-time-triggered-conversion.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -134,16 +135,27 @@ private theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) : -- --- CONCL ---
 /-- With `t₁ = 10`, `t₂ = 100` the dwell conditions hold, but for every `t_scaling ≥ 0` the error
 of `H_final` against `Reach≤100(H)` is at least `50`: none brings it below `δ = 50`. -/
 theorem DiffInclAutomaton.finalConversion_not_error_lt : -- --- CONCL ---
-    let H := DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-      (fun _ => (0 : ℝ)) (1 : ℝ) 0
-    H.IsFirstDwell 10 ∧
-      H.IsSecondDwell 10 100 ∧
-      ∀ ts : ℝ, 0 ≤ ts → ∀ e : ENNReal, e < ENNReal.ofReal 50 →
-        ¬ H.IsOverapproxErrorLE 100
-          (DiffInclAutomaton.finalConversion ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-            (fun _ => (0 : ℝ)) (fun _ => Icc (0 : ℝ) 1) (1 : ℝ) 0 10 100 ts) Prod.fst
-          (100 + ts) e := by -- --- PROOF ---
-  intro H
+    -- the flows, the initial states, the guard `a · x = b` and the dwell times of `H`
+    let X₀ : Set ℝ := {-100, -10}
+    let f₁ : ℝ → ℝ := fun _ => 1
+    let f₂ : ℝ → ℝ := fun _ => 0
+    let f_either : ℝ → Set ℝ := fun _ => Icc 0 1
+    let a : ℝ := 1
+    let b : ℝ := 0
+    let t₁ : ℝ := 10
+    let t₂ : ℝ := 100
+    -- the time bound `T` and the error `δ` to beat
+    let T : ℝ := 100
+    let δ : ℝ := 50
+    let H := DiffInclAutomaton.spaceTriggered X₀ f₁ f₂ a b
+    let H_final := fun t_scaling : ℝ =>
+      DiffInclAutomaton.finalConversion X₀ f₁ f₂ f_either a b t₁ t₂ t_scaling
+    H.IsFirstDwell t₁ ∧
+      H.IsSecondDwell t₁ t₂ ∧
+      ∀ t_scaling : ℝ, 0 ≤ t_scaling → ∀ e : ENNReal, e < ENNReal.ofReal δ →
+        ¬ H.IsOverapproxErrorLE T (H_final t_scaling) Prod.fst (T + t_scaling)
+          e := by -- --- PROOF ---
+  intro X₀ f₁ f₂ f_either a b t₁ t₂ T δ H H_final
   refine ⟨fun d hd m x h => ?_, fun d hd m x h => ?_, fun ts hts e he hle => ?_⟩
   · -- an execution in `m₂` has duration at least `10`
     by_contra hm

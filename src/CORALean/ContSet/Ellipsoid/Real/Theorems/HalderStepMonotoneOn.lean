@@ -26,8 +26,9 @@ point, the step brings every orbit to it ([1, Thm. 3]).
 
 ## References
 
-* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski
-      sum of ellipsoids". 2018 IEEE Conference on Decision and Control (CDC), 2018.
+* [1] [A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski
+      sum of ellipsoids". 2018 IEEE Conference on Decision and Control (CDC),
+      2018.](../../../../../../references/2018/halder-cdc-minkowski-sum-ellipsoids.md)
 -/
 
 -- Authors:       Claude Opus 5.5

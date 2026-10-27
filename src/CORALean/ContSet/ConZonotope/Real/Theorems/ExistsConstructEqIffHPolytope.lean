@@ -37,11 +37,12 @@ This is the equivalence of polytopes and constrained zonotopes of
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
-      tool for set-based estimation and fault detection". Automatica, 2016.
-* [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
+* [1] [J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica,
+      2016.](../../../../../../references/2016/scott-automatica-constrained-zonotopes.md)
+* [2] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

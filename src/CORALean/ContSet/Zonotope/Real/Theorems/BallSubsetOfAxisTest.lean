@@ -31,9 +31,11 @@ radius `ν/√n`. The test is Goffin's, [2, Eq. 17], the ball [2, Eq. 18], [2, S
 
 ## References
 
-* [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
-      Zonotope Norm". 2020 American Control Conference (ACC), 2020.
-* [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
+* [1] [V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
+      Zonotope Norm". 2020 American Control Conference (ACC),
+      2020.](../../../../../../references/2020/gassmann-acc-zonotope-ellipsoid.md)
+* [2] [M. Černý. "Goffin's algorithm for zonotopes". Kybernetika,
+      2012.](../../../../../../references/2012/cerny-kybernetika-goffin-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

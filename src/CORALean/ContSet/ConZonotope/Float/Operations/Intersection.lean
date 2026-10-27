@@ -27,8 +27,9 @@ between the two ends. The result keeps the first operand's box, so widened. CORA
 
 ## References
 
-* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
-      tool for set-based estimation and fault detection". Automatica, 2016.
+* [1] [J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica,
+      2016.](../../../../../../references/2016/scott-automatica-constrained-zonotopes.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

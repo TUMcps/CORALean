@@ -17,8 +17,8 @@ a `Float` copy would be the same type twice.
 
 ## References
 
-* [1] M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
-      Technische Universität München, 2026.
+* [1] [M. Althoff, N. Kochdumper, T. Ladner, M. Perschl and M. Wetzlinger. "CORA Manual (v2026)".
+      Technische Universität München, 2026.](../../../../../references/2026/althoff-cora-manual.md)
 -/
 
 -- Authors:       Claude Opus 5

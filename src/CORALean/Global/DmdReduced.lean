@@ -29,8 +29,9 @@ and `φ ≠ 0` for `λ ≠ 0`. With a known input matrix `X'` is replaced by `X'
 
 ## References
 
-* [1] J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic Mode Decomposition with Control". SIAM
-      Journal on Applied Dynamical Systems, 2016.
+* [1] [J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic Mode Decomposition with Control". SIAM
+      Journal on Applied Dynamical Systems,
+      2016.](../../../references/2016/proctor-siads-dmd-control.md)
 -/
 
 -- Authors:       Claude Opus 5.5

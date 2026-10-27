@@ -26,8 +26,9 @@ vacuously for `E = ∅` ([1, Sec. 2.5]); `FourValuedSTL.verdict_system` proves i
 
 ## References
 
-* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
-      Verification of Hybrid Systems". Computer Aided Verification, 2024.
+* [1] [F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". Computer Aided Verification,
+      2024.](../../../../../references/2024/lercher-cav-four-valued-stl.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -46,10 +47,10 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSTL.not_holdsOn_of_ff_counterexample : -- --- CONCL ---
-    ∃ r, (FourValuedSTL.Formula.not .tt : FourValuedSTL.Formula Unit).fourValuedSat
-        (fun _ => FourValuedSignal.uniformSignal .ii) = some r ∧ r.IsValid ∧
-      r.at 0 = FourValued.ff ∧
-      (FourValuedSTL.Formula.not .tt : FourValuedSTL.Formula Unit).HoldsOn ∅ := by -- --- PROOF ---
+    let φ : FourValuedSTL.Formula Unit := FourValuedSTL.Formula.not .tt
+    ∃ r, φ.fourValuedSat (fun _ => FourValuedSignal.uniformSignal .ii) = some r ∧ r.IsValid ∧
+      r.at 0 = FourValued.ff ∧ φ.HoldsOn ∅ := by -- --- PROOF ---
+  intro φ
   obtain ⟨hv, h⟩ := FourValuedSignal.uniformSignal_spec FourValued.tt
   refine ⟨(FourValuedSignal.uniformSignal FourValued.tt).not, rfl,
     FourValuedSignal.not_isValid _ hv, ?_, fun ξ hξ => absurd hξ (Set.notMem_empty ξ)⟩

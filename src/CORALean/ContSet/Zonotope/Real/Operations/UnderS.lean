@@ -22,8 +22,9 @@ as [1] remarks, so the directions are a family `s : Fin ℓ → Vec ℝ n`.
 
 ## References
 
-* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
-      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control, 2006.
+* [1] [A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
+      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control,
+      2006.](../../../../../../references/2006/girard-hscc-lti-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5

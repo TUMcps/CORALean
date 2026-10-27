@@ -41,16 +41,16 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.intersectStripLiu1D_counterexample : -- --- CONCL ---
+    let E' := Ellipsoid.intersectStripLiu1D 1 0 1 1 1 (1 / 2) 1
     1 < (1 : ℝ) + ((1 / 2 : ℝ) - 1 * 0) ^ 2 ∧ ((1 : ℝ) - 0) ^ 2 / 1 ≤ 1 ∧
-      ((1 / 2 : ℝ) - 1 * 1) ^ 2 / 1 ≤ 1 ∧
-      1 < (1 - (Ellipsoid.intersectStripLiu1D 1 0 1 1 1 (1 / 2) 1).1) ^ 2 /
-        (Ellipsoid.intersectStripLiu1D 1 0 1 1 1 (1 / 2) 1).2.1 := by -- --- PROOF ---
+      ((1 / 2 : ℝ) - 1 * 1) ^ 2 / 1 ≤ 1 ∧ 1 < (1 - E'.1) ^ 2 / E'.2.1 := by -- --- PROOF ---
+  intro E'
   refine ⟨by norm_num, by norm_num, by norm_num, ?_⟩
   -- the update in closed form: `λ = 1/2`, center `1/4`, shape `1/4`
-  have hc : (Ellipsoid.intersectStripLiu1D 1 0 1 1 1 (1 / 2) 1).1 = 1 / 4 := by
-    norm_num [Ellipsoid.intersectStripLiu1D]
-  have hq : (Ellipsoid.intersectStripLiu1D 1 0 1 1 1 (1 / 2) 1).2.1 = 1 / 4 := by
-    norm_num [Ellipsoid.intersectStripLiu1D]
+  have hc : E'.1 = 1 / 4 := by
+    norm_num [E', Ellipsoid.intersectStripLiu1D]
+  have hq : E'.2.1 = 1 / 4 := by
+    norm_num [E', Ellipsoid.intersectStripLiu1D]
   rw [hc, hq]
   norm_num
 

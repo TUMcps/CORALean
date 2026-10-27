@@ -24,10 +24,12 @@ for `W = Wᵀ ≻ 0`, and [2, Def. 3] the F-radius `‖R‖_F` as its value at `
 
 ## References
 
-* [1] Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
-      zonotopes for discrete-time descriptor systems". Automatica, 2018.
-* [2] C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
-      paradigms and robust convergence". Automatica, 2015.
+* [1] [Y. Wang, V. Puig and G. Cembrano. "Set-membership approach and Kalman observer based on
+      zonotopes for discrete-time descriptor systems". Automatica,
+      2018.](../../../../../../references/2018/wang-automatica-descriptor-observer.md)
+* [2] [C. Combastel. "Zonotopes and Kalman observers: Gain optimality under distinct uncertainty
+      paradigms and robust convergence". Automatica,
+      2015.](../../../../../../references/2015/combastel-automatica-zonotopes-kalman.md)
 -/
 
 -- Authors:       Claude Opus 5.5

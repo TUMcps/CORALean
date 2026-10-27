@@ -23,8 +23,9 @@ cosine of `(1, -1)` and `(0, 1)` is `-1/√2` and (4) gives `1/√2`.
 
 ## References
 
-* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
-      of Zonotopes". IEEE Control Systems Letters, 2025.
+* [1] [L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
+      of Zonotopes". IEEE Control Systems Letters,
+      2025.](../../../../../../references/2025/luetzow-lcss-underapprox-order-reduction.md)
 -/
 
 -- Authors:       Claude Opus 5.5

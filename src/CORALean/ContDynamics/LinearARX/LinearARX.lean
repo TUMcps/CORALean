@@ -18,8 +18,8 @@ first window in `Y₀`, as CORA's `y0`, every input in `U`.
 ## References
 
 * [1] `contDynamics/@linearARX/linearARX.m`
-* [2] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
-      on Decision and Control (CDC), 2023.
+* [2] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
+      on Decision and Control (CDC), 2023.](../../../../references/2023/luetzow-cdc-armax.md)
 -/
 
 -- Authors:       Claude Opus 5.5

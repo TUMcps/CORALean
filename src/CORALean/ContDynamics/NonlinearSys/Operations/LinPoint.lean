@@ -25,11 +25,12 @@ representation offers as its center. There is no `y✱`: this is the ODE special
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms for
-      Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems, 2022.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
+* [1] [M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms
+      for Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems,
+      2022.](../../../../../references/2022/wetzlinger-nahs-abstraction-error.md)
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
       Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
-      and Control, 2008.
+      and Control, 2008.](../../../../../references/2008/althoff-cdc-conservative-linearization.md)
 -/
 
 -- Authors:       Claude Opus 5

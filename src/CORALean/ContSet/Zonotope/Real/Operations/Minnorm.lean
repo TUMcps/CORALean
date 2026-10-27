@@ -24,8 +24,9 @@ are the cross products of `n` generators [1, Thm. 2] and the description is exac
 
 ## References
 
-* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
-      arXiv:1512.02794, 2015.
+* [1] [M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794,
+      2015.](../../../../../../references/2015/althoff-arxiv-minkowski-difference.md)
 * [2] `contSet/@zonotope/minnorm.m`, CORA (Sep. 2025).
 -/
 

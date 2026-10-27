@@ -27,14 +27,15 @@ generators, not on the set.
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+* [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
-      2023.
-* [2] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of 10th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
-      2023.
-* [3] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
-      Automatic Control, 2026.
+      2023.](../../../../../references/2023/liu-tro-guarantees-real-robotic.md)
+* [2] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of
+      10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+      2023.](../../../../../references/2023/althoff-arch-reachset-conformance.md)
+* [3] [L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control,
+      2026.](../../../../../references/2026/luetzow-tac-reachset-conformant-identification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

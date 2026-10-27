@@ -17,9 +17,9 @@ pair only making `L` large. `R` and `U` are plain sets; `L` is a representation,
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
       Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
-      and Control, 2008.
+      and Control, 2008.](../../../../../references/2008/althoff-cdc-conservative-linearization.md)
 -/
 
 -- Authors:       Claude Sonnet 5

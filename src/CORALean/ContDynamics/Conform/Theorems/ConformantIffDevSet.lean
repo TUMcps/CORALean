@@ -29,9 +29,9 @@ deviation set `R_a(k)` — `mem_reachOutExact_iff` once per measurement.
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+* [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
-      2023.
+      2023.](../../../../../references/2023/liu-tro-guarantees-real-robotic.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -32,10 +32,12 @@ enclosure holds for every gain. Soundness is `observeStripBasedFloat_outer`.
 
 ## References
 
-* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 2013.
-* [2] M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
-      Verification of Continuous and Hybrid Systems (ARCH21), 2021.
+* [1] [V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica,
+      2013.](../../../../../references/2013/le-automatica-zonotopic-estimation.md)
+* [2] [M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
+      Verification of Continuous and Hybrid Systems (ARCH21),
+      2021.](../../../../../references/2021/althoff-arch-state-estimation.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -23,9 +23,10 @@ are arguments; the lemma only asks that they do not sum to zero.
 
 ## References
 
-* [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
-      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
-      European Journal of Control, 2023.
+* [1] [A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
+      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption". European
+      Journal of Control,
+      2023.](../../../../../../references/2023/alanwar-ejc-privacy-preserving-estimation.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -24,8 +24,9 @@ generators of [1, Thm. 1]), and the order reduction `↓_q`, here CORA's `reduce
 
 ## References
 
-* [1] A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
-      Observers Using Diffusion Strategies". Journal of the Franklin Institute, 2023.
+* [1] [A. Alanwar, J. J. Rath, H. Said, K. H. Johansson and M. Althoff. "Distributed Set-Based
+      Observers Using Diffusion Strategies". Journal of the Franklin Institute,
+      2023.](../../../../../../references/2023/alanwar-jfi-diffusion-observers.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -28,8 +28,9 @@ generator lists and the offset sums over the generators one at a time. The sets
 
 ## References
 
-* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
-      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control, 2006.
+* [1] [A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
+      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control,
+      2006.](../../../../../../references/2006/girard-hscc-lti-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5

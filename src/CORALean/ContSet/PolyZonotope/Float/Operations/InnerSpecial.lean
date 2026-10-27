@@ -30,10 +30,11 @@ iteration [2, Eq. 7], with `τ = 1.01` and `μ = 0.9`.
 
 ## References
 
-* [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
-      Vector-valued Functions". Reliable Computing, 2013.
-* [2] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
-      Reliable Computing, 2010.
+* [1] [O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
+      Vector-valued Functions". Reliable Computing,
+      2013.](../../../../../../references/2013/mullier-rc-general-inner-approximation.md)
+* [2] [A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
+      Reliable Computing, 2010.](../../../../../../references/2010/goldsztejn-rc-inner-range.md)
 -/
 
 -- Authors:       Claude Opus 5.5

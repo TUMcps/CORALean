@@ -24,8 +24,9 @@ F-radius is `1/2`, the printed entry at `G(0,0)` is `1 / (2 · 1/2) = 1`, while 
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
-      Transactions on Machine Learning Research, 2025.
+* [1] [L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../references/2025/koller-tmlr-set-based-training.md)
 -/
 
 -- Authors:       Claude Opus 5.5

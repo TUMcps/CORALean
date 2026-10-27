@@ -36,8 +36,9 @@ in the time-interval set and with `(x, y)` in the joint set throughout (CORA's t
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
-      Systems". IEEE Transactions on Automatic Control, 2014.
+* [1] [M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control,
+      2014.](../../../../../references/2014/althoff-tac-nonlinear-dae.md)
 -/
 
 -- Authors:       Claude Opus 5.5

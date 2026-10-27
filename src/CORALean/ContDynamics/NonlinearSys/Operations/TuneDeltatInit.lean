@@ -27,9 +27,10 @@ reference page.
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
+* [1] [M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
       Analysis of Nonlinear Systems". Proceedings of the 24th International Conference on Hybrid
-      Systems: Computation and Control, 2021.
+      Systems: Computation and Control,
+      2021.](../../../../../references/2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md)
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5

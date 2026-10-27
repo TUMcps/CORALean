@@ -23,9 +23,9 @@ that the same point of each intersection was the one summed in every pair.
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+* [1] [M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
       Sets". 2011 50th IEEE Conference on Decision and Control and European Control Conference
-      (CDC-ECC 2011), 2011.
+      (CDC-ECC 2011), 2011.](../../../../../../references/2011/althoff-cdc-zonotope-bundles.md)
 -/
 
 -- Authors:       Claude Opus 5

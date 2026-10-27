@@ -109,15 +109,15 @@ def Polygon.aux_uShape : List Polygon.aux_Pt2 :=
 /-- The sort of the U is `(0,0), (1,1), (2,1), (3,0), (3,3), (2,3), (1,3), (0,3)`; the result is
 `(0,0), (1,1), (2,1), (3,0), (3,3), (0,3)`, both have area `7`, `(3/2, 2)` is in the result only. -/
 theorem Polygon.removeCollinearPoints_counterexample : -- --- CONCL ---
-    Polygon.aux_sortByAngle Polygon.aux_uShape =
-        [(0,0), (1,1), (2,1), (3,0), (3,3), (2,3), (1,3), (0,3)] ∧
-      Polygon.aux_removeCollinearVertices2D Polygon.aux_uShape =
-        [(0,0), (1,1), (2,1), (3,0), (3,3), (0,3)] ∧
-      Polygon.aux_shoelace Polygon.aux_uShape = 7 ∧
-      Polygon.aux_shoelace (Polygon.aux_removeCollinearVertices2D Polygon.aux_uShape) = 7 ∧
-      Polygon.aux_evenOdd (Polygon.aux_removeCollinearVertices2D Polygon.aux_uShape) (3/2, 2)
-        = true ∧
-      Polygon.aux_evenOdd Polygon.aux_uShape (3/2, 2) = false := by -- --- PROOF ---
+    let U := Polygon.aux_uShape
+    let R := Polygon.aux_removeCollinearVertices2D U
+    Polygon.aux_sortByAngle U = [(0,0), (1,1), (2,1), (3,0), (3,3), (2,3), (1,3), (0,3)] ∧
+      R = [(0,0), (1,1), (2,1), (3,0), (3,3), (0,3)] ∧
+      Polygon.aux_shoelace U = 7 ∧ Polygon.aux_shoelace R = 7 ∧
+      Polygon.aux_evenOdd R (3/2, 2) = true ∧
+      Polygon.aux_evenOdd U (3/2, 2) = false := by -- --- PROOF ---
+  intro U R
+  simp only [U, R]
   -- the sort, by the exported equations of `insertionSort` and `orderedInsert`
   have hs : Polygon.aux_sortByAngle Polygon.aux_uShape =
       [(0,0), (1,1), (2,1), (3,0), (3,3), (2,3), (1,3), (0,3)] := by

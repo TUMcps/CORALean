@@ -45,9 +45,9 @@ the output space ([1, Prop. 1] needs it). The printed proof needs `α > 0`; this
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+* [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
-      2023.
+      2023.](../../../../../references/2023/liu-tro-guarantees-real-robotic.md)
 -/
 
 -- Authors:       Claude Opus 5.5

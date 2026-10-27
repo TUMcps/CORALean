@@ -27,8 +27,9 @@ goes through the caller's `le`, so the float layer transcribes this with
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
-      analysis of linear systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
+* [1] [M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
+      analysis of linear systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      2020.](../../../../../references/2020/wetzlinger-cdc-adaptive-tuning.md)
 -/
 
 -- Authors:       Claude Sonnet 5

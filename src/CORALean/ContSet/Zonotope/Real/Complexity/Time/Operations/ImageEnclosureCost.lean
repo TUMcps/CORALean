@@ -26,8 +26,9 @@ input at `2n(q + 1)`; per neuron the slope and errors (lines 3-5) at `cNeuron`; 
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
-      Transactions on Machine Learning Research, 2025.
+* [1] [L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../../../../../references/2025/koller-tmlr-set-based-training.md)
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

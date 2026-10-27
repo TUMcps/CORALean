@@ -39,11 +39,13 @@ stored polynomial zonotope, which rounds.
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
+* [1] [T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
       using Sensitivity Analysis". Proceedings of the 26th ACM International Conference on Hybrid
-      Systems: Computation and Control, 2023.
-* [2] N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
-      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715, 2022.
+      Systems: Computation and Control,
+      2023.](../../../../../references/2023/ladner-hscc-abstraction-refinement.md)
+* [2] [N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
+      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715,
+      2022.](../../../../../references/2022/kochdumper-arxiv-nn-polyzono.md)
 -/
 
 -- Authors:       Claude Opus 5.5

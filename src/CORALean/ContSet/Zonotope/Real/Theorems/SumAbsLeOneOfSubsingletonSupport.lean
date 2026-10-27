@@ -25,8 +25,9 @@ methods, whose `T` has one `±1` or `0` per row.
 
 ## References
 
-* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
-      of Zonotopes". IEEE Control Systems Letters, 2025.
+* [1] [L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
+      of Zonotopes". IEEE Control Systems Letters,
+      2025.](../../../../../../references/2025/luetzow-lcss-underapprox-order-reduction.md)
 -/
 
 -- Authors:       Claude Opus 5.5

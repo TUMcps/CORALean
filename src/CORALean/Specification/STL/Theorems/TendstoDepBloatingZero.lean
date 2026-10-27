@@ -32,9 +32,9 @@ norm ball of radius `‖Σ_{j≤κ} A^j Δt^{j+1}/(j+1)!‖ r + Σ_{j<κ} ‖A^{
 
 ## References
 
-* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+* [1] [N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, 2024.
+      Hybrid Systems, 2024.](../../../../../references/2024/kochdumper-nahs-stl-lti-verification.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

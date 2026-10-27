@@ -46,8 +46,9 @@ section. It needs `γ` on the walk's side of the lowest corner, `0 ≤ σ (γ - 
 
 ## References
 
-* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems Reachability
-      Analysis". Hybrid Systems: Computation and Control, 2008.
+* [1] [A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems
+      Reachability Analysis". Hybrid Systems: Computation and Control,
+      2008.](../../../../../../references/2008/girard-hscc-zonotope-hyperplane.md)
 -/
 
 -- Authors:       Claude Opus 5.5

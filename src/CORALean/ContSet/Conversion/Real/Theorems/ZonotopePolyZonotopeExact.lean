@@ -29,12 +29,13 @@ image is exactly a polynomial zonotope.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
-* [2] M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
+* [1] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
+* [2] [M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
       and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
-      computation and control, 2013.
+      computation and control,
+      2013.](../../../../../../references/2013/althoff-hscc-conservative-polynomialization.md)
 -/
 
 -- Authors:       Claude Opus 5

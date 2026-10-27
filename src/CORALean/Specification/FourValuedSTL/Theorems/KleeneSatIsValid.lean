@@ -31,8 +31,9 @@ operators of `U₁`-signals keep a signal of finite variability (`KleeneSignal.n
 
 ## References
 
-* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
-      Verification of Hybrid Systems". Computer Aided Verification, 2024.
+* [1] [F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". Computer Aided Verification,
+      2024.](../../../../../references/2024/lercher-cav-four-valued-stl.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

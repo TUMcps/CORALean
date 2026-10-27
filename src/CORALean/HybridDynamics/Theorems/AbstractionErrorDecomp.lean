@@ -54,9 +54,10 @@ read the memberships off their own sets. The input's orders are averages (`integ
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+* [1] [M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
       Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
-      Systems: Computation and Control, 2012.
+      Systems: Computation and Control,
+      2012.](../../../../references/2012/althoff-hscc-avoiding-intersection.md)
 * [2] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`, `aux_abstractionError`
 -/
 

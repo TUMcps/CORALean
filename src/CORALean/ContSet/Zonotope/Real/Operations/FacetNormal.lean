@@ -26,10 +26,12 @@ value. The rows first appeared in [2, Thm. 7] and, at `p = n`, [2, Lemma 6].
 
 ## References
 
-* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
-      arXiv:1512.02794, 2015.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
-      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
+* [1] [M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794,
+      2015.](../../../../../../references/2015/althoff-arxiv-minkowski-difference.md)
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems,
+      2010.](../../../../../../references/2010/althoff-nahs-zonotopes-polytopes.md)
 -/
 
 -- Authors:       Claude Opus 5

@@ -25,8 +25,9 @@ The hyperbolic tangent is strictly increasing and continuous on all of `ℝ`, so
 
 ## References
 
-* [1] M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". ARCH16. 3rd
-      International Workshop on Applied Verification for Continuous and Hybrid Systems, 2017.
+* [1] [M. Althoff and D. Grebenyuk. "Implementation of Interval Arithmetic in CORA 2016". ARCH16.
+      3rd International Workshop on Applied Verification for Continuous and Hybrid Systems,
+      2017.](../../../../../../references/2017/althoff-arch-interval-arithmetic.md)
 -/
 
 -- Authors:       Claude Opus 5.5

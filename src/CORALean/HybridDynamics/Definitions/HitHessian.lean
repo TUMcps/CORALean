@@ -27,9 +27,10 @@ read as `2Θ_lΥ_m/Λ`, the reading Prop. 3's `ψ_{c,l} 2Υ_m`, `ψ = Θ/Λ`, co
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+* [1] [M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
       Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
-      Systems: Computation and Control, 2012.
+      Systems: Computation and Control,
+      2012.](../../../../references/2012/althoff-hscc-avoiding-intersection.md)
 -/
 
 -- Authors:       Claude Opus 5.5

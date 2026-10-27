@@ -27,8 +27,9 @@ runs out. The listing requires a polytopic `X₀` and the autonomous field `f`.
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
+* [1] [M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
+      2024.](../../../../../references/2024/wetzlinger-lcss-inner-minkowski-difference.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -31,9 +31,9 @@ half for `K_i1` holds (`STL.not_mem_of_not_mem_unsafeFactors_point`).
 
 ## References
 
-* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+* [1] [N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, 2024.
+      Hybrid Systems, 2024.](../../../../../references/2024/kochdumper-nahs-stl-lti-verification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -28,8 +28,9 @@ denotes less than the zonotope built from it does.
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
-      Transactions on Machine Learning Research, 2025.
+* [1] [T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../../../references/2023/ladner-tmlr-network-reduction.md)
 -/
 
 -- Authors:       Claude Opus 5

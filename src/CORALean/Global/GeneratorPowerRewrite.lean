@@ -32,9 +32,9 @@ by `cos(-α) = cos α` and `sin(-α) = -sin α`, as the paper says. `Y` stands f
 
 ## References
 
-* [1] M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of 9th
+* [1] [M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of 9th
       International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22),
-      2022.
+      2022.](../../../references/2022/althoff-arch-power-systems.md)
 -/
 
 -- Authors:       Claude Opus 5.5

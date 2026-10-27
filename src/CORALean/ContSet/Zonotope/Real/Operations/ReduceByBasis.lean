@@ -29,8 +29,9 @@ enclosure, `reduceMethC`'s reason for testing the determinant. Kept and dropped 
 ## References
 
 * [1] `contSet/@zonotope/private/priv_reduceMethC.m`, CORA (Sep. 2025).
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
-      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems,
+      2010.](../../../../../../references/2010/althoff-nahs-zonotopes-polytopes.md)
 -/
 
 -- Authors:       Claude Opus 5

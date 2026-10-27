@@ -25,10 +25,12 @@ of [1, Alg. 1] evaluates it at the remainder `L̂`, line 11 at each guess.
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
-* [2] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
+* [1] [M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
+      2024.](../../../../../references/2024/wetzlinger-lcss-inner-minkowski-difference.md)
+* [2] [M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control,
+      2026.](../../../../../references/2026/wetzlinger-tac-backward-reachability.md)
 -/
 
 -- Authors:       Claude Opus 5.5

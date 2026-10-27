@@ -42,8 +42,9 @@ is rounded at a standard Gaussian, and `integral_inner_mul_sign_inner_stdGaussia
 
 ## References
 
-* [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
-      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+* [1] [A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control,
+      2025.](../../../references/2025/kulmburg-tac-approximability-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

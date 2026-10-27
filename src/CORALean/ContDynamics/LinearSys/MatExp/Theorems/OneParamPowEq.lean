@@ -29,8 +29,9 @@ three printed rules for `F_{i+1}^{(l)}` are the single rule `P_i^{(l-1)} G + P_i
 
 ## References
 
-* [1] M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety
-      Verification of High-Order Road Vehicle Models". 2012 American Control Conference (ACC), 2012.
+* [1] [M. Althoff and J. M. Dolan. "Reachability Computation of Low-Order Models for the Safety
+      Verification of High-Order Road Vehicle Models". 2012 American Control Conference (ACC),
+      2012.](../../../../../../references/2012/althoff-acc-low-order-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

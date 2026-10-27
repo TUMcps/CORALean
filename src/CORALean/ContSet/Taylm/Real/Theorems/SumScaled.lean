@@ -28,8 +28,9 @@ at most `N`, which is the direction [1, Thm. 1] can use.
 
 ## References
 
-* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
-      International Journal of Pure and Applied Mathematics, 2003.
+* [1] [K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
+      International Journal of Pure and Applied Mathematics,
+      2003.](../../../../../../references/2003/makino-ijpam-taylor-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

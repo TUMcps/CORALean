@@ -26,8 +26,9 @@ a box with `l(i) > u(i)` is empty and so are its faces, and a flat one is its ow
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for
-      Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
+* [1] [N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
+      for Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      2020.](../../../references/2020/kochdumper-cdc-nonconvex-inner.md)
 -/
 
 -- Authors:       Claude Opus 5.5

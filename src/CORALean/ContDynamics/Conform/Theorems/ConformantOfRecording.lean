@@ -33,9 +33,9 @@ the same. (20)'s `x_a⁽ᵐ⁾(1)` is `x(m+1) - (A x(m) + B u(m))` here.
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+* [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
-      2023.
+      2023.](../../../../../references/2023/liu-tro-guarantees-real-robotic.md)
 -/
 
 -- Authors:       Claude Opus 5.5

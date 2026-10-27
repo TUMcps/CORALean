@@ -18,8 +18,8 @@ backend (optional)").
 
 ## References
 
-* [1] F. Johansson. "Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic". IEEE
-      Transactions on Computers, 2017.
+* [1] [F. Johansson. "Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic". IEEE
+      Transactions on Computers, 2017.](../../../../../../references/2017/johansson-tc-arb.md)
 -/
 
 -- Authors:       Claude Opus 5.5

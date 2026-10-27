@@ -25,11 +25,12 @@ interpolation weight `t/r` on `e^{Ar} - I` cannot be dropped.
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
       Enclosing Hulls of Probability Density Functions". 2009 European Control Conference (ECC),
-      2009.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
+      2009.](../../../../../../references/2009/althoff-ecc-enclosing-hulls.md)
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      2007.](../../../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -51,15 +52,14 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.not_expDiff_mulVec_mem_unscaled_correctionMatrix : -- --- CONCL ---
-    ¬ ∃ F ∈ (MatExp.correctionMatrix (Matrix.diagonal fun _ : Fin 1 => (1 : ℝ)) (1 / 10)
-        (0 + 2)).construct,
-      exp ((0 : ℝ) • (Matrix.diagonal fun _ : Fin 1 => (1 : ℝ)))
-          *ᵥ (fun _ => (1 : ℝ)) - (fun _ => (1 : ℝ))
-        = ((exp ((1 / 10 : ℝ) • (Matrix.diagonal fun _ : Fin 1 => (1 : ℝ))) - 1) + F)
-          *ᵥ (fun _ => (1 : ℝ)) := by -- --- PROOF ---
+    let A : Mat ℝ 1 1 := Matrix.diagonal fun _ : Fin 1 => (1 : ℝ)
+    ¬ ∃ F ∈ (MatExp.correctionMatrix A (1 / 10) (0 + 2)).construct,
+      exp ((0 : ℝ) • A) *ᵥ (fun _ => (1 : ℝ)) - (fun _ => (1 : ℝ))
+        = ((exp ((1 / 10 : ℝ) • A) - 1) + F) *ᵥ (fun _ => (1 : ℝ)) := by -- --- PROOF ---
+  intro A
   rintro ⟨F, hF, h⟩
   -- the correction matrix is second order in `r‖A‖`, `e^{Ar} - 1` first order
-  set A : Mat ℝ 1 1 := Matrix.diagonal fun _ : Fin 1 => (1 : ℝ) with hA
+  have hA : A = Matrix.diagonal fun _ : Fin 1 => (1 : ℝ) := rfl
   have hnA : ‖A‖ = 1 := by
     simp [hA]
   have hnrA : ‖(1 / 10 : ℝ) • A‖ = 1 / 10 := by

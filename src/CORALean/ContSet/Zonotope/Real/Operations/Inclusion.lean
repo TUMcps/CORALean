@@ -21,10 +21,12 @@ sum (`rs`, the row-sum diagonal matrix of [1, Sec. 2]). The enclosure is `inclus
 
 ## References
 
-* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 2013.
-* [2] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
-      Automatica, 2005.
+* [1] [V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica,
+      2013.](../../../../../../references/2013/le-automatica-zonotopic-estimation.md)
+* [2] [T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
+      Automatica,
+      2005.](../../../../../../references/2005/alamo-automatica-guaranteed-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

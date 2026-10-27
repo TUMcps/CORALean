@@ -33,10 +33,12 @@ directions (`minkDiffAligned_not_inner`). [2, Prop. 3] is the same for [2, Def. 
 
 ## References
 
-* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
-      arXiv:1512.02794, 2015.
-* [2] L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward reachable sets for
-      uncertain linear systems". IEEE Control Systems Letters, 2022.
+* [1] [M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794,
+      2015.](../../../../../../references/2015/althoff-arxiv-minkowski-difference.md)
+* [2] [L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward reachable sets for
+      uncertain linear systems". IEEE Control Systems Letters,
+      2022.](../../../../../../references/2022/yang-lcss-zonotopic-underapproximation.md)
 -/
 
 -- Authors:       Claude Opus 5

@@ -157,15 +157,18 @@ hypothesis discharged by the `...Converges` files at one, two [3, Prop. 4.13] an
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
-      Transactions on Machine Learning Research, 2025.
-* [2] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
+* [1] [T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../references/2023/ladner-tmlr-network-reduction.md)
+* [2] [S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
       Abstraction and Refinement of Provable Explanations". Proceedings of the 42nd International
-      Conference on Machine Learning, 2025.
-* [3] T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
+      Conference on Machine Learning,
+      2025.](../../../../references/2025/bassan-icml-explaining-fast-and-slow.md)
+* [3] [T. Ladner and M. Althoff. "Automatic Abstraction Refinement in Neural Network Verification
       using Sensitivity Analysis". Proceedings of the 26th ACM International Conference on Hybrid
-      Systems: Computation and Control, 2023.
-* [4] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
+      Systems: Computation and Control,
+      2023.](../../../../references/2023/ladner-hscc-abstraction-refinement.md)
+* [4] [T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
       and Robustness Certification of Neural Networks with Abstract Interpretation". 2018 IEEE
-      Symposium on Security and Privacy (SP), 2018.
+      Symposium on Security and Privacy (SP), 2018.](../../../../references/2018/gehr-sp-ai2.md)
 -/

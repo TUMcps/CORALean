@@ -52,14 +52,15 @@ which `0 ∈ U` gives (`inputReach_mono`); the third is [3, Prop. 4]'s separatio
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
+* [1] [M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
       Sets". 2011 50th IEEE Conference on Decision and Control and European Control Conference
-      (CDC-ECC 2011), 2011.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
-* [3] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+      (CDC-ECC 2011), 2011.](../../../../../references/2011/althoff-cdc-zonotope-bundles.md)
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      2007.](../../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
+* [3] [M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
       Enclosing Hulls of Probability Density Functions". 2009 European Control Conference (ECC),
-      2009.
+      2009.](../../../../../references/2009/althoff-ecc-enclosing-hulls.md)
 -/
 
 -- Authors:       Claude Opus 5.5

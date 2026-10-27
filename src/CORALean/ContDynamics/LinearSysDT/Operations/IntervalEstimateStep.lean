@@ -27,8 +27,9 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 ## References
 
-* [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
-      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control, 2019.
+* [1] [W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
+      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
+      2019.](../../../../../references/2019/tang-tac-interval-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

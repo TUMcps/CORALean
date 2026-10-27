@@ -34,8 +34,9 @@ Conversely every `vᵢ` is a point of `Z₁`.
 
 ## References
 
-* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem".
-      European Journal of Control, 2021.
+* [1] [A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem".
+      European Journal of Control,
+      2021.](../../../../../../references/2021/kulmburg-ejc-zonotope-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

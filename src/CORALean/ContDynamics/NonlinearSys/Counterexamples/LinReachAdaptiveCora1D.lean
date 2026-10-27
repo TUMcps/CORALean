@@ -68,11 +68,12 @@ the step reads. The miss is the region, not overestimation.
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
       Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
-      and Control, 2008.
-* [2] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms for
-      Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems, 2022.
+      and Control, 2008.](../../../../../references/2008/althoff-cdc-conservative-linearization.md)
+* [2] [M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms
+      for Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems,
+      2022.](../../../../../references/2022/wetzlinger-nahs-abstraction-error.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -203,9 +203,10 @@ solution under a piecewise constant input, and its failure between them.
 
 ## References
 
-* [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and Hybrid
-      Systems". Automated Technology for Verification and Analysis, 2016.
-* [2] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+* [1] [H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
+      Hybrid Systems". Automated Technology for Verification and Analysis,
+      2016.](../../../../../references/2016/roehm-atva-stl-model-checking.md)
+* [2] [N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, 2024.
+      Hybrid Systems, 2024.](../../../../../references/2024/kochdumper-nahs-stl-lti-verification.md)
 -/

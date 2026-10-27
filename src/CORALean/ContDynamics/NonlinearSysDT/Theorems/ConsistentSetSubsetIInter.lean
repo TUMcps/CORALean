@@ -27,8 +27,8 @@ the strips of [1, Property 1] bound, one per output.
 
 ## References
 
-* [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
-      Automatica, 2005.
+* [1] [T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
+      Automatica, 2005.](../../../../../references/2005/alamo-automatica-guaranteed-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -110,9 +110,9 @@ private theorem aux_absErrCora_foldl {β : Type} (f : ℕ → β) (init : β) (k
 zonotope `{0}`: center and every generator `0`. -/
 theorem GuardMap.abstractionErrorCora_eq_zero (A : Mat ℝ n n) (x₀ : Vec ℝ n) (th tmax : ℝ)
     {η : ℕ} (hA : A ^ η = 0) (hW : MatExp.expRemainderMat A tmax η = 0) : -- --- CONCL ---
-    (GuardMap.abstractionErrorCora A (Zonotope.ofPoint 0) (Zonotope.ofPoint x₀) th tmax η).c = 0
-      ∧ ∀ j, (GuardMap.abstractionErrorCora A (Zonotope.ofPoint 0) (Zonotope.ofPoint x₀) th
-        tmax η).G j = 0 := by -- --- PROOF ---
+    let Z := GuardMap.abstractionErrorCora A (Zonotope.ofPoint 0) (Zonotope.ofPoint x₀) th tmax η
+    Z.c = 0 ∧ ∀ j, Z.G j = 0 := by -- --- PROOF ---
+  intro Z
   have hW0 : (fun j k => |MatExp.expRemainderMat A tmax η j k| : Mat ℝ n n) = 0 := by
     ext j k; simp [hW]
   -- `err1`: `{0}` when the loop is not entered, else its last summand `(Aᵑ/η!)(...)`
@@ -126,7 +126,7 @@ theorem GuardMap.abstractionErrorCora_eq_zero (A : Mat ℝ n n) (x₀ : Vec ℝ 
     · rw [hk, aux_absErrCora_foldl]; exact hg k (by omega)
   -- the sets of `aux_abstractionError`, each `{0}`: no inputs, `W = 0`
   show aux_absErrCora_Zero _
-  dsimp only [GuardMap.abstractionErrorCora]
+  dsimp only [Z, GuardMap.abstractionErrorCora]
   refine aux_absErrCora_plus (aux_absErrCora_plus (aux_absErrCora_mtimesIM _
     (aux_absErrCora_plus (aux_absErrCora_plus (h1 _ fun m hm => ?_)
       (aux_absErrCora_sumTerms (fun _ => aux_absErrCora_mtimesIM _ aux_absErrCora_ofPoint) η))

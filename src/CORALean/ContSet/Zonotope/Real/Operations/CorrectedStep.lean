@@ -31,9 +31,9 @@ generators `(I - ΛC) N F`. `Λ` is any matrix; the enclosure holds for each.
 
 ## References
 
-* [1] Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on
+* [1] [Y. Wang, T. Alamo, V. Puig and G. Cembrano. "A distributed set-membership approach based on
       zonotopes for interconnected systems". 2018 IEEE Conference on Decision and Control (CDC),
-      2018.
+      2018.](../../../../../../references/2018/wang-cdc-distributed-set-membership.md)
 -/
 
 -- Authors:       Claude Opus 5.5

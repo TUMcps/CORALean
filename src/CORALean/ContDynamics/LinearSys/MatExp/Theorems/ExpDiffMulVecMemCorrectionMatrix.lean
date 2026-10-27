@@ -30,11 +30,12 @@ proved is `Δx(t) = (t/r)(e^{Ar} - I) x(0) + F x(0)` for some `F` of the interva
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Safety Assessment for Stochastic Linear Systems using
       Enclosing Hulls of Probability Density Functions". 2009 European Control Conference (ECC),
-      2009.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
+      2009.](../../../../../../references/2009/althoff-ecc-enclosing-hulls.md)
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      2007.](../../../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5

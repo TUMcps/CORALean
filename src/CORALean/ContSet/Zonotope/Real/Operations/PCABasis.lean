@@ -27,8 +27,9 @@ signs of the columns changes the set `reduceByBasis` denotes.
 ## References
 
 * [1] `contSet/@zonotope/private/priv_reducePCA.m`, CORA (Sep. 2025).
-* [2] A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of Zonotopes". 2017
-      IEEE 56th Annual Conference on Decision and Control (CDC), 2017.
+* [2] [A.-K. Kopetzki, B. Schürmann and M. Althoff. "Methods for Order Reduction of Zonotopes". 2017
+      IEEE 56th Annual Conference on Decision and Control (CDC),
+      2017.](../../../../../../references/2017/kopetzki-cdc-order-reduction.md)
 -/
 
 -- Authors:       Claude Opus 5

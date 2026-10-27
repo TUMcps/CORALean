@@ -27,9 +27,10 @@ coordinate of `y`, and the image is its shadow on `y`, a polyhedron by Fourierâ€
 
 ## References
 
-* [1] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
+* [1] [T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
       and Robustness Certification of Neural Networks with Abstract Interpretation". 2018 IEEE
-      Symposium on Security and Privacy (SP), 2018.
+      Symposium on Security and Privacy (SP),
+      2018.](../../../../../../references/2018/gehr-sp-ai2.md)
 -/
 
 -- Authors:       Claude Opus 5.5

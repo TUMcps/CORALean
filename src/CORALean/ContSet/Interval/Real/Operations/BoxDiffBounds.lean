@@ -25,8 +25,9 @@ on that side moved onto `I`'s, `ᾱ(i*) = l₂(i*)` or `α̲(i*) = u₂(i*)`. Th
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets for
-      Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC), 2020.
+* [1] [N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
+      for Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      2020.](../../../../../../references/2020/kochdumper-cdc-nonconvex-inner.md)
 -/
 
 -- Authors:       Claude Opus 5.5

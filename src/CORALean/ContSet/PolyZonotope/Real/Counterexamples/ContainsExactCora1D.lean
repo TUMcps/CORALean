@@ -58,11 +58,10 @@ noncomputable def PolyZonotope.containsExactCora1D (pZ : PolyZonotope (Vec ℝ 1
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.containsExactCora1D_counterexample : -- --- CONCL ---
-    PolyZonotope.containsExactCora1D
-        (⟨1, 2, 0, 0, ![![1], ![1]], ![![1, 2]], Fin.elim0⟩ : PolyZonotope (Vec ℝ 1)) ![-1 / 2] ∧
-      (![-1 / 2] : Vec ℝ 1) ∉
-        (⟨1, 2, 0, 0, ![![1], ![1]], ![![1, 2]], Fin.elim0⟩ :
-          PolyZonotope (Vec ℝ 1)).construct := by -- --- PROOF ---
+    let PZ : PolyZonotope (Vec ℝ 1) := ⟨1, 2, 0, 0, ![![1], ![1]], ![![1, 2]], Fin.elim0⟩
+    PolyZonotope.containsExactCora1D PZ ![-1 / 2] ∧
+      (![-1 / 2] : Vec ℝ 1) ∉ PZ.construct := by -- --- PROOF ---
+  intro PZ
   constructor
   · -- the enclosure is `1/2 + β₀ + β₁/2`: take `β = (-1, 0)`
     refine ⟨![-1, 0], ?_, ?_⟩
@@ -72,7 +71,7 @@ theorem PolyZonotope.containsExactCora1D_counterexample : -- --- CONCL ---
         norm_num
       · show |(0 : ℝ)| ≤ 1
         norm_num
-    · simp [PolyZonotope.zonotopeEven, PolyZonotope.evenWeight, Fin.sum_univ_succ,
+    · simp [PZ, PolyZonotope.zonotopeEven, PolyZonotope.evenWeight, Fin.sum_univ_succ,
         Fin.append, Fin.addCases]
       erw [Fin.sum_univ_two]
       simp
@@ -81,7 +80,7 @@ theorem PolyZonotope.containsExactCora1D_counterexample : -- --- CONCL ---
       norm_num
   · rintro ⟨a, β, ha, -, hx⟩
     have h := congrFun hx 0
-    simp [PolyZonotope.monomial, Fin.sum_univ_two] at h
+    simp [PZ, PolyZonotope.monomial, Fin.sum_univ_two] at h
     nlinarith [sq_nonneg (a 0 + 1 / 2)]
 
 end CORALean.Real

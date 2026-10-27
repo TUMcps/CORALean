@@ -32,8 +32,9 @@ CORA's `priv_observe_interval` initialisation, `x = center(R0)`, `R_x = R0`, `R_
 
 ## References
 
-* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
-      Verification of Continuous and Hybrid Systems (ARCH21), 2021.
+* [1] [M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
+      Verification of Continuous and Hybrid Systems (ARCH21),
+      2021.](../../../../../references/2021/althoff-arch-state-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

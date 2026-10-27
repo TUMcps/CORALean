@@ -25,9 +25,9 @@ least-squares cost, the dynamic mode decomposition of `Ξᵀ` [1, Eq. 14].
 
 ## References
 
-* [1] S. L. Brunton, J. L. Proctor and J. N. Kutz. "Discovering governing equations from data by
+* [1] [S. L. Brunton, J. L. Proctor and J. N. Kutz. "Discovering governing equations from data by
       sparse identification of nonlinear dynamical systems". Proceedings of the National Academy of
-      Sciences, 2016.
+      Sciences, 2016.](../../../references/2016/brunton-pnas-sindy.md)
 -/
 
 -- Authors:       Claude Opus 5.5

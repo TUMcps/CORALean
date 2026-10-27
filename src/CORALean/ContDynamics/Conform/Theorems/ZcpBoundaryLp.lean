@@ -33,9 +33,10 @@ has each `δₘ` at its largest, and that is positive iff (24) holds (`not_isBou
 
 ## References
 
-* [1] L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal Prediction:
+* [1] [L. Lützow, M. Eichelbeck, M. J. Kochenderfer and M. Althoff. "Zono-Conformal Prediction:
       Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks". Journal of
-      Machine Learning Research, 2025.
+      Machine Learning Research,
+      2025.](../../../../../references/2025/luetzow-jmlr-zono-conformal-prediction.md)
 -/
 
 -- Authors:       Claude Opus 5.5

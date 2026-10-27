@@ -37,8 +37,8 @@ since `X + ∅ ⊆ Y + ∅` always holds.
 
 ## References
 
-* [1] H. Rådström. "An embedding theorem for spaces of convex sets". Proceedings of the American
-      Mathematical Society, 1952.
+* [1] [H. Rådström. "An embedding theorem for spaces of convex sets". Proceedings of the American
+      Mathematical Society, 1952.](../../../references/1952/radstrom-embedding.md)
 -/
 
 -- Authors:       Claude Opus 5
