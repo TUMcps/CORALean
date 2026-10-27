@@ -1,32 +1,32 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 
 @[expose] public section
 
 /-!
 # `ZonoBundle.reduce`
 
-To a maximum order: keep the first `o` components, in `Z`'s existing order, and drop the rest. A
-bundle denotes an *intersection*, so dropping a component only enlarges the set. That is why this
-`reduce`, alone in the tree, carries no error box: every other representation's `reduce` absorbs
-what it drops into what survives, while a bundle just forgets it, for free.
+CORA's `@zonoBundle/reduce`: every member is reduced to the order asked for, by the method asked
+for, and all of them are kept. The method here is `Zonotope.reduce`'s, Girard's, CORA's default.
 
-Which components survive is a heuristic with no proof obligation of its own: the `Reduce` instance's
-`reduce_outer` holds at *any* choice of survivors. A ranking would want to drop whichever component
-is nearly redundant given the others, but that is future work.
+A bundle denotes an *intersection*, so enlarging each member enlarges the set, and the intersection
+over the reduced members contains the original (the `Reduce` instance's `reduce_outer`, monotone in
+the members). The bundle keeps its member count; only each member's generator count comes down, to
+`o * n` at most (`reduce_order_le`).
 
 ## Inputs
 * `zB` – zonotope bundle
-* `o` – maximal number of members
+* `o` – maximum order of each member
 
 ## Output
-* the bundle keeping the first members
+* bundle of the reduced members
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -34,14 +34,15 @@ is nearly redundant given the others, but that is future work.
 
 namespace CORALean.Real
 
-variable {α : Type} [AddCommGroup α] [Module ℝ α]
+variable {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ZonoBundle.reduce (zB : ZonoBundle α) (o : ℕ) : ZonoBundle α where
-  k := min zB.k o
-  Z := fun i => zB.Z (Fin.castLE (min_le_left zB.k o) i)
+/-- CORA's `reduce`: each member of the bundle reduced to order `o`, none dropped. -/
+noncomputable def ZonoBundle.reduce (zB : ZonoBundle (Vec ℝ n)) (o : ℕ) : ZonoBundle (Vec ℝ n) where
+  k := zB.k
+  Z := fun i => (zB.Z i).reduce o
 
 end CORALean.Real
 

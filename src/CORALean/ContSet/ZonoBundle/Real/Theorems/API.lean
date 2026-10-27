@@ -62,7 +62,7 @@ guarantees in `Instances`: convexity (`convex_construct`), compactness given a m
 of `plus`, `linComb`, `mtimes`, `mtimesMatZonotope`, `project`, `quadMap` and `reduce`
 (`memberwise_outer`, `pairwise_outer`) and the exact `map` at a bijection
 (`memberwise_image_exact`). Here: `intersection` exactly, through the general one;
-`reduce_order_le`, with no hypothesis, unlike `Zonotope`'s; `split_union`, exact at any
+`reduce_order_le`, each member at most `o * n` generators; `split_union`, exact at any
 invertible `Λ` and enclosing box, and so each heuristic's split; the printed disjointness of the
 halves is false (`split_not_disjoint`).
 -/

@@ -40,7 +40,7 @@ layer's reason (#85). No `CompactSet`, `k = 0` denoting `univ`.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   18-October-2026
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -91,14 +91,14 @@ instance {n : ℕ} : Intersection (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
     rw [ZonoBundle.materialise_eq]
     exact (ZonoBundle.intersection_exact zB₁ zB₂).symm.subset
 
-/-- Members are dropped, never absorbed, so this needs no error box, unlike
-`Zonotope.reduce`, which boxes the generators it discards. -/
+/-- Each member reduced by `Zonotope.reduce`, which boxes what it discards into the member's own
+error box. -/
 instance {n : ℕ} : Reduce (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
   reduce zB o := (zB.reduce o).materialise
   reduce_outer zB o := by
     rw [ZonoBundle.materialise_eq]
     exact SetIntersection.memberwise_outer id monotone_id fun i =>
-      ⟨Fin.castLE (min_le_left zB.k o) i, subset_rfl⟩
+      ⟨i, Zonotope.reduce_outer (zB.Z i) o⟩
 
 instance : Reindex 𝒵ℬ[𝕋] where
   reindex e zB := (ZonoBundle.reindex e zB).materialise
