@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A constant-parameter run at a matrix zonotope stays in the step, inputs and all
 
-`IsConstTrajectory.timeInterval_outer` at `𝕄𝒵`: the one matrix fixed over the step
+`IsCanonicalConstTrajectory.timeInterval_outer` at `𝕄𝒵`: the one matrix fixed over the step
 makes the run a `LinearSys` one (`toLinearSys`), whose closed form splits it into
 the flow of the initial state, which `timeIntervalZono_outer` holds, and what
 the inputs contributed, which `Vd` has to hold.

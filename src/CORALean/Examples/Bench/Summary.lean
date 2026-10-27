@@ -37,6 +37,13 @@ open Lean (Json)
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
+/-- The first step whose set stores a value past the range, `none` if none does. -/
+def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope (Vec 𝕋 2))) : Option ℕ :=
+  steps.findIdx? fun Z => (List.finRange 2).any fun i =>
+    overflows (Z.c i) || overflows (Z.I_error.inf i) || overflows (Z.I_error.sup i) ||
+      (List.finRange Z.h).any fun j => overflows (Z.G j i)
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `(E.sup - E.inf) / 2` at dimension `i` -- the box's radius, half of
@@ -88,15 +95,6 @@ private def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite
 #guard aux_isBlowup (0.0 / 0.0) = true
 #guard aux_isBlowup 2.0 = true
 #guard aux_isBlowup 0.5 = false
-
-/-- Whether any number `Z` stores is past the type's range: center, generators, error box. -/
-def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope (Vec 𝕋 2)) : Bool :=
-  (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.I_error.inf i) ||
-    overflows (Z.I_error.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G j i)
-
-/-- The first step whose set stores a value past the range, `none` if none does. -/
-def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope (Vec 𝕋 2))) : Option ℕ :=
-  steps.findIdx? (zonoOverflows overflows)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -9,14 +9,14 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # A time-varying run stays in the step enclosure, the drift paid as input
 
-`IsConstTrajectory.timeInterval_outer` at `'varParam'`. The homogeneous half is unchanged —
+`IsCanonicalConstTrajectory.timeInterval_outer` at `'varParam'`. The homogeneous half is unchanged —
 `timeInterval` is the box's and knows no member, so freezing `Â ∈ construct sys.A` costs
-nothing there. What changes is the second half: `IsTrajectory.toLinearSys` turns the parameter
-mismatch into input, so the set `Vd` has to hold the drift `(A s - Â) x s` as well as `u s`.
-This is not CORA's `'varParam'` branch: `Interval.matPow` admits a different member at each
-factor, tighter than freezing one; `IsTrajectory.timeInterval_outer_varying` proves *that* set sound
-for an input-free run. This is the enclosure freezing gives, sound at every `Â` and with an input.
-`Â` is a free choice; the box's center makes the drift smallest.
+nothing there. What changes is the second half: `IsCanonicalTrajectory.toLinearSys` turns the
+parameter mismatch into input, so the set `Vd` has to hold the drift `(A s - Â) x s` as well as
+`u s`. This is not CORA's `'varParam'` branch: `Interval.matPow` admits a different member at each
+factor, tighter than freezing one; `IsCanonicalTrajectory.timeInterval_outer_varying` proves *that*
+set sound for an input-free run. This is the enclosure freezing gives, sound at every `Â` and with
+an input. `Â` is a free choice; the box's center makes the drift smallest.
 
 ## Inputs
 * `sys` – system

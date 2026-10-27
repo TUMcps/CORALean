@@ -12,9 +12,9 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 `relinTimeInterval` says where step `i` *is*; this says how far it has *moved* from where it
 started: `LinearSys.deltaReach` of the linearized system at `(steps i).A`, applied to what
 `relinReach` reaches at the step's start, plus step `i`'s own input enclosure — the shape
-`IsTrajectory.deltaReach_outer` proves. CORA's `Rdiff`, computed once per step by `linReach`
-before the abstraction error is estimated: `priv_abstrerr_poly` splits the second-order term at
-`x = z + δ`, and each product left over carries at least one `δ`.
+`IsCanonicalTrajectory.deltaReach_outer` proves. CORA's `Rdiff`, computed once per step by
+`linReach` before the abstraction error is estimated: `priv_abstrerr_poly` splits the second-order
+term at `x = z + δ`, and each product left over carries at least one `δ`.
 
 ## Inputs
 * `sys` – system

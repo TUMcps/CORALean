@@ -47,35 +47,32 @@ structure System (𝕋 : Type) where
   U : Zonotope (Vec 𝕋 2)
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A row of the config's `x0.generators`, read into `𝕋` -- one generator `X0.G j`
-once `buildX0` reads it in. -/
-private def aux_readVec (field : String) (inst : String → ExactDyadic → Except String 𝕋)
-    (row : Array String) : Except String (Array 𝕋) :=
-  row.mapM fun s => do inst field (← parseExact s)
-
-/-- The zero-input zonotope `reach` still takes: a single point at the origin,
-no generators, no error. -/
-private def aux_zeroInput (z0 : 𝕋) : Zonotope (Vec 𝕋 2) :=
-  { h := 0, c := fun _ => z0, G := fun j => j.elim0, I_error := ⟨fun _ => z0, fun _ => z0⟩ }
-
-/-- `X0` from the config's center and generator rows, all read into `𝕋` through
-`inst` -- shared with `ContRollout.buildContSystem`, so not `aux_`-named despite
-living beside the auxiliaries it is built from. -/
+/-- `X0` from the config's center and generator rows, all read into `𝕋` through `inst`; shared
+with `ContRollout.buildContSystem`. -/
 def buildX0 (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except String 𝕋)
     (z0 : 𝕋) : Except String (Zonotope (Vec 𝕋 2)) := do
+  -- a row of the config, read into `𝕋`: the center, or one generator `X0.G j`
+  let readVec (field : String) (row : Array String) : Except String (Array 𝕋) :=
+    row.mapM fun s => do inst field (← parseExact s)
   if cfg.x0Center.size ≠ 2 then throw "config `x0.center` must have exactly 2 entries" else
-  let cArr ← aux_readVec "x0.center" inst cfg.x0Center
+  let cArr ← readVec "x0.center" cfg.x0Center
   let h := cfg.x0Generators.size
   for row in cfg.x0Generators do
     if row.size ≠ 2 then throw "config `x0.generators` rows must each have exactly 2 entries"
-  let gRows ← cfg.x0Generators.mapM (aux_readVec "x0.generators" inst)
+  let gRows ← cfg.x0Generators.mapM (readVec "x0.generators")
   pure
     { h := h
       c := fun i => cArr.getD i.val z0
       G := fun j i => (gRows.getD j.val #[]).getD i.val z0
       I_error := ⟨fun _ => z0, fun _ => z0⟩ }
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The zero-input zonotope `reach` still takes: a single point at the origin,
+no generators, no error. -/
+private def aux_zeroInput (z0 : 𝕋) : Zonotope (Vec 𝕋 2) :=
+  { h := 0, c := fun _ => z0, G := fun j => j.elim0, I_error := ⟨fun _ => z0, fun _ => z0⟩ }
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

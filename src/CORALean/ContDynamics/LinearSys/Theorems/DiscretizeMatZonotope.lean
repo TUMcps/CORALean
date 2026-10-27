@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
 /-!
 # A sampled trajectory of the matrix-zonotope system
 
-`IsTrajectory.discretizeEnclosure` again, one witness changed: the same matrix `e^{AΔt}`
+`IsCanonicalTrajectory.discretizeEnclosure` again, one witness changed: the same matrix `e^{AΔt}`
 `discretize_step` produces, shown to lie in a matrix zonotope by `exp_mem_expMatZonoEnclosure`
 rather than in an interval matrix. `hε` sits beside the other side conditions of the sampling, where
 `discretizeEnclosure` states it, in the same form: `expMatZonoEnclosure` asks for it at

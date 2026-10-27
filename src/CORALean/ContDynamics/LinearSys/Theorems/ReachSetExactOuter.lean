@@ -11,7 +11,7 @@ Half of the two-step form, and the cheap half: a trajectory is in the set of wha
 by construction, so the proof is the pair itself. That is the point rather than a shortcoming: all
 the content of a reachability claim then sits in the *other* half, the inclusion of this set in a
 computed one, where it can be read as one set inside another. Stated at every `t`, including outside
-`T`: there `IsTrajectory` constrains nothing beyond `x 0 ∈ R₀`, so the set is large and the
+`T`: there `IsCanonicalTrajectory` constrains nothing beyond `x 0 ∈ R₀`, so the set is large and the
 enclosure theorems that consume it ask for the window they speak about.
 
 ## Inputs

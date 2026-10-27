@@ -14,10 +14,10 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 /-!
 # A time-varying run with an input stays in the box's step and input solution
 
-`IsConstTrajectory.timeInterval_outer_inputSolution` at `'varParam'`, with the same two sets —
-CORA's `initReach`, the run read at a measurable parameter by
-`IsTrajectory.exists_integral_eq_of_measurable`. The Peano–Baker expansion splits the run: the
-homogeneous half is the interpolation plus correction
+`IsCanonicalConstTrajectory.timeInterval_outer_inputSolution` at `'varParam'`, with the same two
+sets — CORA's `initReach`, the run read at a measurable parameter by
+`IsCanonicalTrajectory.exists_integral_eq_of_measurable`. The Peano–Baker expansion splits the run:
+the homogeneous half is the interpolation plus correction
 (`MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`); the input's `k`-th term lies in
 `t^{k+1}/(k+1)!` times the closed convex hull of `matPow sys.A k` applied to `U`
 (`MatExp.peanoBakerInputTerm_mem`), inside `inputTerm r k` applied to `U` when that set is closed

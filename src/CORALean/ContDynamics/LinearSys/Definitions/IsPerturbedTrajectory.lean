@@ -7,13 +7,14 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # Two-input continuous runs: input and disturbance kept apart
 
-`IsTrajectory` carries one signal `u`. [1, Def. 6] and [1, Def. 7] need a second, independently
-quantified one, `w`: `∀u(·)∈U ∃w(·)∈W` and `∃u(·)∈U ∀w(·)∈W` cannot be built from one `IsTrajectory`
-folding the two together. So this is a structure of its own over `ẋ = Ax + u + w`, a Carathéodory
-run as `IsTrajectory` is: `x t = x 0 + ∫₀ᵗ (A x + u + w)`, so a run whose input or disturbance jumps
-still counts, as [1, Prop. 3] and [1, Prop. 5] need. `measInput` and `measDisturbance` are each
-signal's own regularity, `cont` the continuity `IsTrajectory.cont` is. No `init`/`R₀`: Def. 6 and
-Def. 7 test one starting point, which their own definitions pin.
+`IsCanonicalTrajectory` carries one signal `u`. [1, Def. 6] and [1, Def. 7] need a second,
+independently quantified one, `w`: `∀u(·)∈U ∃w(·)∈W` and `∃u(·)∈U ∀w(·)∈W` cannot be built from one
+`IsCanonicalTrajectory` folding the two together. So this is a structure of its own over
+`ẋ = Ax + u + w`, a Carathéodory run as `IsCanonicalTrajectory` is: `x t = x 0 + ∫₀ᵗ (A x + u + w)`,
+so a run whose input or disturbance jumps still counts, as [1, Prop. 3] and [1, Prop. 5] need.
+`measInput` and `measDisturbance` are each signal's own regularity, `cont` the continuity
+`IsCanonicalTrajectory.cont` is. No `init`/`R₀`: Def. 6 and Def. 7 test one starting point, which
+their own definitions pin.
 
 ## References
 

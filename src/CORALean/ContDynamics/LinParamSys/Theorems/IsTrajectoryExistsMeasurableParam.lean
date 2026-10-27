@@ -11,8 +11,8 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 /-!
 # A time-varying run is driven by a measurable member of the box everywhere
 
-`IsTrajectory.measParam` makes `t ↦ A t` measurable on `T`, almost everywhere and only there; the
-Peano–Baker expansion (`MatExp.norm_sub_peanoBakerSum_le`) wants a parameter measurable
+`IsCanonicalTrajectory.measParam` makes `t ↦ A t` measurable on `T`, almost everywhere and only
+there; the Peano–Baker expansion (`MatExp.norm_sub_peanoBakerSum_le`) wants a parameter measurable
 everywhere and inside the box at every instant. This supplies one equal to `A` almost everywhere
 on the window, so the flow, an integral, cannot tell the two apart. Each entry is replaced by a
 measurable representative; where box membership fails — a null set — the member `A 0` stands in.

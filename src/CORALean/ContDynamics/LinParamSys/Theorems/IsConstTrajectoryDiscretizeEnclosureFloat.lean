@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A sampled `'constParam'` run of the float-sampled system
 
-`IsConstTrajectory.discretizeEnclosure` with the float enclosure: `step` witnesses
+`IsCanonicalConstTrajectory.discretizeEnclosure` with the float enclosure: `step` witnesses
 the frozen member's `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 `exp_mem_expIntervalFloat` at an order admissible for `[Δt, Δt]`; sampling is at
 the real time `toReal Δt` the float denotes.

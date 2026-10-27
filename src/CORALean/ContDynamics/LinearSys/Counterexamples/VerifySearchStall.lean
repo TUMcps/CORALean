@@ -63,6 +63,25 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
+open Classical in
+/-- The exact origin test of line 14: `0 ∈ P` for the polytope spanned by the vertices. -/
+noncomputable def inHullExact (V : List (Vec ℝ n)) : Bool :=
+  if (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V} then true else false
+
+/-- The direction towards the origin from the vertex of `V` closest to it, in `R¹`. -/
+noncomputable def gramSchmidt1 (V : List (Vec ℝ 1)) : Vec ℝ 1 →ₗ[ℝ] ℝ :=
+  match V.argmin (fun v => |v 0|) with
+  | some v => if v 0 < 0 then LinearMap.proj 0 else -LinearMap.proj 0
+  | none => LinearMap.proj 0
+
+/-- The closest facet in `R¹`, where a facet is a vertex: the vertex of `V` closest to the
+origin, with the unit normal towards the origin. -/
+noncomputable def closestFacet1 (V : List (Vec ℝ 1)) : (Vec ℝ 1 →ₗ[ℝ] ℝ) × List ℕ :=
+  (gramSchmidt1 V, match V.argmin (fun v => |v 0|) with
+    | some v => [V.idxOf v]
+    | none => [])
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- No list on one open side of a hyperplane through the origin has it in its hull. -/
@@ -136,34 +155,15 @@ private theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S 
     · -- line 23: the vector towards the origin is `ℓ` again
       exact ih _ (hgs _ hne hPc) rfl rfl hPh hPc
 
-
-open Classical in
-/-- The exact origin test of line 14: `0 ∈ P` for the polytope spanned by the vertices. -/
-noncomputable def inHullExact (V : List (Vec ℝ n)) : Bool :=
-  if (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V} then true else false
-
 open Classical in
 /-- The exact test answers `true` exactly when the origin is in the hull. -/
-theorem inHullExact_iff (V : List (Vec ℝ n)) :
+private theorem aux_inHullExact_iff (V : List (Vec ℝ n)) :
     inHullExact V = true ↔ (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V} := by
   unfold inHullExact
   split_ifs with h <;> simp [h]
 
-/-- The direction towards the origin from the vertex of `V` closest to it, in `R¹`. -/
-noncomputable def gramSchmidt1 (V : List (Vec ℝ 1)) : Vec ℝ 1 →ₗ[ℝ] ℝ :=
-  match V.argmin (fun v => |v 0|) with
-  | some v => if v 0 < 0 then LinearMap.proj 0 else -LinearMap.proj 0
-  | none => LinearMap.proj 0
-
-/-- The closest facet in `R¹`, where a facet is a vertex: the vertex of `V` closest to the
-origin, with the unit normal towards the origin. -/
-noncomputable def closestFacet1 (V : List (Vec ℝ 1)) : (Vec ℝ 1 →ₗ[ℝ] ℝ) × List ℕ :=
-  (gramSchmidt1 V, match V.argmin (fun v => |v 0|) with
-    | some v => [V.idxOf v]
-    | none => [])
-
 /-- On vertices all left of the origin, `gramSchmidt1` returns `+1`. -/
-theorem gramSchmidt1_of_neg (V : List (Vec ℝ 1)) (h : ∀ v ∈ V, v 0 < 0) :
+private theorem aux_gramSchmidt1_of_neg (V : List (Vec ℝ 1)) (h : ∀ v ∈ V, v 0 < 0) :
     gramSchmidt1 V = LinearMap.proj 0 := by
   unfold gramSchmidt1
   cases hm : V.argmin (fun v => |v 0|) with
@@ -376,9 +376,9 @@ theorem LinearSys.verifySearch_stall_exact_counterexample (η : ℕ) : -- --- CO
   refine ⟨h1, h2, ?_⟩
   intro ρ hρ ν₀ νU νL hν₀ hνU hνL ρL hρL νhat hνhat fuel
   exact h3 ρ hρ ν₀ νU νL hν₀ hνU hνL ρL hρL νhat hνhat inHullExact
-    (fun V hV => (inHullExact_iff V).mp hV) closestFacet1
-    (fun V _ hneg => gramSchmidt1_of_neg V hneg) gramSchmidt1
-    (fun V _ hneg => gramSchmidt1_of_neg V hneg) fuel
+    (fun V hV => (aux_inHullExact_iff V).mp hV) closestFacet1
+    (fun V _ hneg => aux_gramSchmidt1_of_neg V hneg) gramSchmidt1
+    (fun V _ hneg => aux_gramSchmidt1_of_neg V hneg) fuel
 
 end CORALean
 

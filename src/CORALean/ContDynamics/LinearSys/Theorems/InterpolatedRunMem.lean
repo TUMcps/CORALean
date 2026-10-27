@@ -96,8 +96,8 @@ private theorem aux_heldSim_sum (sys : LinearSys 𝕋 n) (Δt : ℝ) {ι : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 3 (exits)]: with convex weights `w_j` (the paper's `λ_j`) and
-`∑ w_j (x_j(k) - y_j) = 0`, the run from `∑ w_j x_j` under the held inputs `∑ w_j v_j` is a
-`IsTrajectory` whose state at `t_k` lies in `L`. -/
+`∑ w_j (x_j(k) - y_j) = 0`, the run from `∑ w_j x_j` under the held inputs `∑ w_j v_j` is an
+`IsCanonicalTrajectory` whose state at `t_k` lies in `L`. -/
 theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hR₀ : Convex ℝ (construct R₀)) (hUconv : Convex ℝ (construct U))
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) {L : Set (Vec ℝ n)}

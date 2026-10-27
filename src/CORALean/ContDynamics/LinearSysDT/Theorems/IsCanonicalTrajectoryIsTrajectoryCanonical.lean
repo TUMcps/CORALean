@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 /-!
 # Every run of the canonical form is a run of a full system
 
-The converse of `IsTrajectory.canonical`: a `IsCanonicalTrajectory` of `sys` is a `IsTrajectory` of
-`LinearSysDT.canonical A` at `sys`'s own `A`, with no disturbance or noise and the state as
+The converse of `IsTrajectory.canonical`: an `IsCanonicalTrajectory` of `sys` is an `IsTrajectory`
+of `LinearSysDT.canonical A` at `sys`'s own `A`, with no disturbance or noise and the state as
 output. Together the two say the canonical form loses no run and adds none. Stated at ℝ, where
 `1` and `0` read as themselves.
 

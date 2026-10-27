@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # A held run is a trajectory
 
-`IsCanonicalHeldTrajectory`'s single `u` reused at every step is `IsTrajectory`'s `u` at
+`IsCanonicalHeldTrajectory`'s single `u` reused at every step is `IsCanonicalTrajectory`'s `u` at
 `fun _ => u` — a restriction, not a separate guarantee. So `reach_outer` already
 encloses a held run, and what `reachHeld` buys over `reach` is precision, not
 soundness: the point of a closed form is losing less, not covering more.

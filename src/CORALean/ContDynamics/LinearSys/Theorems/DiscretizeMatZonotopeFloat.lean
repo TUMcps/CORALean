@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 /-!
 # A sampled trajectory of the float matrix-zonotope system
 
-`IsTrajectory.discretizeMatZonotope` with the float enclosure: `step` witnesses the exact
+`IsCanonicalTrajectory.discretizeMatZonotope` with the float enclosure: `step` witnesses the exact
 `e^{AΔt}`, whose argument lies in the rounded `AΔt` (`smul_outer` at `mem_point`), so the
 exponential lies in its float enclosure by `exp_mem_expMatZonoEnclosure`. `hε` is that
 theorem's side condition, a float comparison a caller can check before running.

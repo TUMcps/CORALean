@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerS
 `LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying` at the float step: a fresh member of
 the float box at every instant, and still `timeIntervalFloat`, the set the float
 `'constParam'` step computes. The run is a run of the box's nominal real system, so it solves
-the integral equation at a measurable member (`IsTrajectory.exists_integral_eq`); its
+the integral equation at a measurable member (`IsCanonicalTrajectory.exists_integral_eq`); its
 Peano–Baker expansion misses little (`MatExp.norm_sub_peanoBakerSum_le`), and the float core
 (`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`) reads the rest as the float
 interpolation plus the float correction. The condition is the float step's own,

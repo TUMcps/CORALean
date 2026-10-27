@@ -12,11 +12,11 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 
 [1, Alg. 2], lines 9-10, with the counterexample of [1]'s Sec. 5.1: once line 16's `ρ(Ř(τ_k), ℓ_i)`
 exceeds `f_(i)`, the run from `supportCounterexample` (the initial state of [1]'s Eq. (19) and the
-piecewise-constant inputs of [1]'s Eq. (20), corrected) is a `IsTrajectory` of the system whose
-state leaves the halfspace `ℓ_i x ≤ f_(i)` at `t_k` or at `t_{k+1}`. Which of the two is decided by
-line 16's maximum (`supportLower_timeInterval_le`), and needs `ũ ∈ U` for the second; [1]'s Sec. 5.1
-names only `ν(Ř(t_k), ℓ_i)`, which is the violating one only when the maximum is `ρ(H(t_k), ℓ_i)`.
-The run is on `[0, t_{k+1}]`, the whole of `τ_k`.
+piecewise-constant inputs of [1]'s Eq. (20), corrected) is an `IsCanonicalTrajectory` of the system
+whose state leaves the halfspace `ℓ_i x ≤ f_(i)` at `t_k` or at `t_{k+1}`. Which of the two is
+decided by line 16's maximum (`supportLower_timeInterval_le`), and needs `ũ ∈ U` for the second;
+[1]'s Sec. 5.1 names only `ν(Ř(t_k), ℓ_i)`, which is the violating one only when the maximum is
+`ρ(H(t_k), ℓ_i)`. The run is on `[0, t_{k+1}]`, the whole of `τ_k`.
 
 ## Inputs
 * `sys` – linear system
@@ -68,8 +68,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2, l. 9-10]: if line 16's `ρ(Ř(τ_k), ℓ)` exceeds `f`, the run from
-`supportCounterexample` at `j = k` or `j = k + 1` is a `IsTrajectory` on `[0, t_{k+1}]` whose
-state at `t_j` has `ℓ x > f`. -/
+`supportCounterexample` at `j = k` or `j = k + 1` is an `IsCanonicalTrajectory` on `[0, t_{k+1}]`
+whose state at `t_j` has `ℓ x > f`. -/
 theorem LinearSys.supportCounterexample_violates (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt)
     {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)

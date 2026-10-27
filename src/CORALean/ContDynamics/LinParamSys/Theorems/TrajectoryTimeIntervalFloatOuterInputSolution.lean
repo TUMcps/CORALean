@@ -17,9 +17,9 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 /-!
 # A time-varying run with an input stays in the float step and input solution
 
-`IsTrajectory.timeInterval_outer_varying_inputSolution` at the float layer, with the sets the float
-`'constParam'` step computes: `timeIntervalFloat` and `inputSolutionFloat`. The run is one of
-the box's nominal real system, so its Peano–Baker expansion is the real one; the homogeneous half
+`IsCanonicalTrajectory.timeInterval_outer_varying_inputSolution` at the float layer, with the sets
+the float `'constParam'` step computes: `timeIntervalFloat` and `inputSolutionFloat`. The run is one
+of the box's nominal real system, so its Peano–Baker expansion is the real one; the homogeneous half
 goes through the float core (`Float.MatExp.exists_mem_intervalCorrectionMatrix_of_remainder`). The
 input's `k`-th term lies in `t^{k+1}/(k+1)!` times the closed convex hull of the real `matPow` of
 the nominal box applied to `U`; the real power is inside the float one (`Interval.matPow_subset`),

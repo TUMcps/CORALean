@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 # A constant-parameter run is a run of the system at the matrix it fixed
 
 The direction `TrajectoryToLinParam` does not give: there a `LinearSys` becomes
-a `LinParamSys` at the point its matrix denotes, here a `IsConstTrajectory`
+a `LinParamSys` at the point its matrix denotes, here an `IsCanonicalConstTrajectory`
 becomes the `LinearSys.IsCanonicalTrajectory` of the one matrix it holds fixed. The
 matrix set is dropped, `param` with it, which is why nothing comes back the
 other way without knowing the set is that point.

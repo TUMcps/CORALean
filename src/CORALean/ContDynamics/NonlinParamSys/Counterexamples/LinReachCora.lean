@@ -97,19 +97,21 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The zero zonotope in `ℝ¹`: center and every generator `0`. -/
-def LinParamSys.IsNullZono (Z : Zonotope (Vec ℝ 1)) : Prop := Z.c = 0 ∧ ∀ l, Z.G l = 0
+namespace LinParamSys
 
-theorem LinParamSys.IsNullZono.plus {Z₁ Z₂ : Zonotope (Vec ℝ 1)} (h₁ : IsNullZono Z₁)
-    (h₂ : IsNullZono Z₂) : IsNullZono (Z₁ ⊞ Z₂) := by
+/-- The zero zonotope in `ℝ¹`: center and every generator `0`. -/
+private def aux_IsNullZono (Z : Zonotope (Vec ℝ 1)) : Prop := Z.c = 0 ∧ ∀ l, Z.G l = 0
+
+private theorem aux_IsNullZono_plus {Z₁ Z₂ : Zonotope (Vec ℝ 1)} (h₁ : aux_IsNullZono Z₁)
+    (h₂ : aux_IsNullZono Z₂) : aux_IsNullZono (Z₁ ⊞ Z₂) := by
   refine ⟨by show Z₁.c + Z₂.c = 0; rw [h₁.1, h₂.1]; simp, fun l => ?_⟩
   show Fin.append Z₁.G Z₂.G l = 0
   refine Fin.addCases (fun i => ?_) (fun j => ?_) l <;>
     simp [Fin.append_left, Fin.append_right, h₁.2, h₂.2]
 
-theorem LinParamSys.IsNullZono.mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : IsNullZono Z)
+private theorem aux_IsNullZono_mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : aux_IsNullZono Z)
     (IM : Interval (Mat ℝ 1 1)) : -- --- CONCL ---
-    IsNullZono (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) := by -- --- PROOF ---
+    aux_IsNullZono (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) := by -- --- PROOF ---
   refine ⟨by show IM.center *ᵥ Z.c = 0; rw [hZ.1]; simp, fun l => ?_⟩
   show Fin.append (fun l => IM.center *ᵥ Z.G l)
     (Matrix.diagonal fun i => Zonotope.radiusReach IM Z i) l = 0
@@ -119,9 +121,9 @@ theorem LinParamSys.IsNullZono.mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : I
     ext k
     simp [Matrix.diagonal_apply, Zonotope.radiusReach, Zonotope.absBound, hZ.1, hZ.2]
 
-theorem LinParamSys.IsNullZono.mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ : IsNullZono Z)
+private theorem aux_IsNullZono_mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ : aux_IsNullZono Z)
     (M : Zonotope (Mat ℝ 1 1)) : -- --- CONCL ---
-    IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
+    aux_IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
   refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hZ.1], fun l => ?_⟩
   simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
   refine Fin.addCases (fun i => ?_) (fun k => ?_) l
@@ -129,9 +131,9 @@ theorem LinParamSys.IsNullZono.mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ 
       simp [Fin.append_left, Fin.append_right, hZ.1, hZ.2]
   · simp [Fin.append_right, hZ.2]
 
-theorem LinParamSys.IsNullZono.mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
+private theorem aux_IsNullZono_mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
     {M : Zonotope (Mat ℝ 1 1)} (hc : M.c = 0) (hh : M.h = 0) : -- --- CONCL ---
-    IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
+    aux_IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
   refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hc], fun l => ?_⟩
   simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
   refine Fin.addCases (fun i => ?_) (fun k => ?_) l
@@ -139,6 +141,8 @@ theorem LinParamSys.IsNullZono.mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
     · exact absurd a.2 (by omega)
     · simp [Fin.append_left, Fin.append_right, hc]
   · exact absurd (finProdFinEquiv.symm k).1.2 (by omega)
+
+end LinParamSys
 
 /-- For the identity `B`, the deviation of `B` from its center is the zero zonotope, so the
 independent input `initReachInputDependence` adds for it is the zero set. -/
@@ -152,13 +156,18 @@ private theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1
         (⟨zA.h, Uc, UG⟩ : Zonotope (Vec ℝ 1)))
     X.c 0 = 0 ∧ S X = 0 := by -- --- PROOF ---
   intro X
-  have hV := LinParamSys.IsNullZono.mtimesMatZonotope_zero (Z := (⟨zA.h, Uc, UG⟩ :
+  have hV := LinParamSys.aux_IsNullZono_mtimesMatZonotope_zero (Z := (⟨zA.h, Uc, UG⟩ :
     Zonotope (Vec ℝ 1))) (M := (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
       (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.G⟩ : Zonotope (Mat ℝ 1 1))) rfl rfl
-  have hX : IsNullZono X := by
+  have hX : LinParamSys.aux_IsNullZono X := by
     simp only [X, LinParamSys.inputSolutionZono]
-    exact ((hV.mtimesMatZonotope _ |>.plus (hV.mtimesMatZonotope _)).plus
-      (hV.mtimesInterval _)).plus (hV.mtimesInterval _)
+    exact LinParamSys.aux_IsNullZono_plus
+      (LinParamSys.aux_IsNullZono_plus
+        (LinParamSys.aux_IsNullZono_plus
+          (LinParamSys.aux_IsNullZono_mtimesMatZonotope hV _)
+          (LinParamSys.aux_IsNullZono_mtimesMatZonotope hV _))
+        (LinParamSys.aux_IsNullZono_mtimesInterval hV _))
+      (LinParamSys.aux_IsNullZono_mtimesInterval hV _)
   simp [hS, hX.1, hX.2]
 
 

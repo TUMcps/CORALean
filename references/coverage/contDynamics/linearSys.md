@@ -236,9 +236,9 @@ and `ε_max`'s tenth and nine tenths are rounded, which steers precision only.
 **`verify` — the support-function and STL variants.** The support-function variant
 (`priv_verifyRA_supportFunc.m`, HSCC'23): `supportLower` is its lower-bound recursion, every value
 of which a reachable state takes, and an `unsafe` from `verifyHalfspace` on those bounds names a
-falsifying run, a Carathéodory `IsTrajectory` from `supportCounterexample`'s initial state under its
-piecewise-constant inputs (`counterexample_of_verifyHalfspace_violated`). `interpolated_run_mem` is
-the GJK variant's interpolated counterexample.
+falsifying run, a Carathéodory `IsCanonicalTrajectory` from `supportCounterexample`'s initial state
+under its piecewise-constant inputs (`counterexample_of_verifyHalfspace_violated`).
+`interpolated_run_mem` is the GJK variant's interpolated counterexample.
 
 **`verify` — the support-function and STL variants, continued.** Real layer only · the STL variant
 (`priv_verifySTL_kochdumper.m`, [Kochdumper and Bak

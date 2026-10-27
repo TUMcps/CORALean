@@ -66,12 +66,12 @@ private def aux_pickDownDec (downM upM xM : Int) (downD upD xD : Nat) : Bool :=
 /-- `x` normalised: `m` not a multiple of `10`, or `"0*10^0"` at zero -- `fixedpoint`'s own
 grammar, see the module docstring; a value it prints this way parses back through
 `ExactScalar.decNeg` (or `.dy`, once stripping reaches `d = 0`) unchanged. -/
-def showFixedPointExact {f : Nat} (x : FixedPoint f) : String :=
+private def aux_showFixedPointExact {f : Nat} (x : FixedPoint f) : String :=
   if x.m = 0 then "0*10^0" else
     let (m', d') := strip x.m x.d
     s!"{m'}*10^{-(d' : Int)}"
 where
-  -- not `aux_`-named: a `where`-local helper, not a file-scope one the convention governs.
+  -- a `where`-local helper, not a file-scope one the convention governs.
   strip (m : Int) (d : Nat) : Int × Nat :=
     if d = 0 then (m, 0) else if m % 10 = 0 then strip (m / 10) (d - 1) else (m, d)
 
@@ -188,7 +188,7 @@ def fixedPointDtypeOps (label : String) (f : Nat) : DtypeOps (FixedPoint f) wher
       if d ≤ f then pure (⟨m * 10 ^ (f - d), f⟩ : FixedPoint f)
       else throw s!"field `{field}`: {m}*10^-{d} needs more than {f} decimal digits"
   roundToScalar := fixedPointRoundToScalar f
-  showExact := showFixedPointExact
+  showExact := aux_showFixedPointExact
 
 /-- Every valid `dtype` form, for `ping` and for an unknown-dtype error. -/
 def dtypeForms : List String :=

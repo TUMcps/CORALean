@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 # A witness in `inputReach` is a witness in `reachSetExact`
 
 The `⊇` half of `reachSetExact T R₀ U t = e^{tA} R₀ ⊕ inputReach U t`: every
-point the closed form names is reached by the `IsTrajectory` the closed
+point the closed form names is reached by the `IsCanonicalTrajectory` the closed
 form itself is — `closedForm_flow` and `closedForm_continuousOn` supplying its
 `flow` and `cont` fields verbatim. A measurable, merely bounded input is
 admissible, so a point named this way is genuinely reached.
@@ -54,7 +54,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point `e^{tA} R₀ ⊕ inputReach U t` names is `x t` for the
-`IsTrajectory` that is `closedForm`'s own formula at the witnessing
+`IsCanonicalTrajectory` that is `closedForm`'s own formula at the witnessing
 input, `closedForm_flow` supplying exactly its `flow` field. -/
 theorem LinearSys.mulVecLin_image_add_inputReach_subset_reachSetExact
     (sys : LinearSys 𝕋 n) (R₀ U : S n) {t : ℝ} (ht : 0 ≤ t)

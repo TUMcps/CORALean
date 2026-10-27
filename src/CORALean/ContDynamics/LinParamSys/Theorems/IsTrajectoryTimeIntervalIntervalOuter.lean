@@ -14,10 +14,10 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 What `'varParam'` gets at `𝕄𝒵`: a run drawing a fresh member of the matrix zonotope at every
 instant draws one of its box too (`Zonotope.interval_contains`), so it is an input-free run of
 the interval system, and the box's own step holds it
-(`IsTrajectory.timeInterval_outer_varying`). Not
+(`IsCanonicalTrajectory.timeInterval_outer_varying`). Not
 the matrix-zonotope step `timeIntervalZono`, which only
-`IsConstTrajectory.timeIntervalZono_outer` reaches: the Peano–Baker averaging would carry over
-but is not done here.
+`IsCanonicalConstTrajectory.timeIntervalZono_outer` reaches: the Peano–Baker averaging would carry
+over but is not done here.
 
 ## Inputs
 * `sys` – system

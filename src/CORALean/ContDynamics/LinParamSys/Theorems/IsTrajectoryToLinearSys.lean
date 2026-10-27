@@ -9,13 +9,14 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A time-varying run is a run at any frozen matrix, with the drift as input
 
-`IsConstTrajectory.toLinearSys` has no free counterpart at `'varParam'`: a run drawing a fresh
-`A t` at every instant is a `LinearSys.IsCanonicalTrajectory` for no matrix at all. It is one at
-*every* matrix `Â` once the mismatch is paid into the input — `A t x + u = Â x + ((A t - Â) x + u)`.
+`IsCanonicalConstTrajectory.toLinearSys` has no free counterpart at `'varParam'`: a run drawing a
+fresh `A t` at every instant is a `LinearSys.IsCanonicalTrajectory` for no matrix at all. It is one
+at *every* matrix `Â` once the mismatch is paid into the input —
+`A t x + u = Â x + ((A t - Â) x + u)`.
 The price is `hV`: the input set has to hold the drift `(A t - Â) x t` as well as `u t`, so it is
 a set the caller supplies and not `U`; the drift is bounded by `‖A t - Â‖ ‖x t‖`, which
-`IsTrajectory.norm_le` bounds a priori. `Â` need not lie in `construct sys.A`; the linear run
-lives on a measurable `T' ⊆ T`, where `x`'s continuity makes the drift measurable.
+`IsCanonicalTrajectory.norm_le` bounds a priori. `Â` need not lie in `construct sys.A`; the linear
+run lives on a measurable `T' ⊆ T`, where `x`'s continuity makes the drift measurable.
 
 ## Inputs
 * `sys` – system

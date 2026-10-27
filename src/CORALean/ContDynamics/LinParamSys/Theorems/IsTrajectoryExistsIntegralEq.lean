@@ -13,7 +13,7 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 box whose entries are integrable over every window — the form the Peano–Baker
 expansion (`MatExp.norm_sub_peanoBakerSum_le`) takes.
 
-`IsTrajectory.exists_measurable_param` supplies `Â`, measurable, inside the box at
+`IsCanonicalTrajectory.exists_measurable_param` supplies `Â`, measurable, inside the box at
 every instant and equal to `A` almost everywhere on the window; inside the box its
 entries are bounded, hence integrable; and the flow, an integral, does not see
 the null set where the two differ, nor the endpoint where the input may not vanish.

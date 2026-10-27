@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 /-!
 # The run sampled from a bounded horizon alone
 
-`discretize_step` iterated, each step at the prefix `[0, (k+1)Δt]` of the horizon. A
-`IsTrajectoryOn K`, not a total `IsTrajectory` — nothing pins `x` or `u` past step
+`discretize_step` iterated, each step at the prefix `[0, (k+1)Δt]` of the horizon. An
+`IsCanonicalTrajectoryOn K`, not a total `IsCanonicalTrajectory` — nothing pins `x` or `u` past step
 `K`, which is what lets `reach_outer_horizon` answer for a run over `[0, KΔt]`
 without asking for all of forward time.
 

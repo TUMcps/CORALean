@@ -11,10 +11,11 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 What makes `backReachSetExistsExact` deserve the name; it cannot be
 `backReachSetForallExact_isTrajectory`'s statement: there the run is given, here the input signal
 is what the set asserts, so the theorem *produces* one. From `x₀` in the `k`-step set comes a
-signal admissible for the `k` steps that matter, whose run is in `T` at step `k`. `IsTrajectoryOn k`
-and not `IsTrajectory`: past step `k` nothing was chosen, and an empty `U` admits no total signal.
-`aux_simulate_cons` is the shift the induction needs, and `aux_backReachSetExistsExact_input` is
-the run without `R₀`, which lets the induction move to a start state no set was named for.
+signal admissible for the `k` steps that matter, whose run is in `T` at step `k`.
+`IsCanonicalTrajectoryOn k` and not `IsCanonicalTrajectory`: past step `k` nothing was chosen, and
+an empty `U` admits no total signal. `aux_simulate_cons` is the shift the induction needs, and
+`aux_backReachSetExistsExact_input` is the run without `R₀`, which lets the induction move to a
+start state no set was named for.
 
 ## Inputs
 * `sys` – system

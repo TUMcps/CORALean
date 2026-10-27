@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Instances
 /-!
 # A sampled trajectory of the float-enclosed system
 
-`discretizeEnclosure`'s `IsTrajectory` with the float enclosure in place of the
+`discretizeEnclosure`'s `IsCanonicalTrajectory` with the float enclosure in place of the
 real one: `step` witnesses the exact `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 `exp_mem_expIntervalFloat` at an order admissible for `[Δt, Δt]`. The sampling
 is the exact one, at the real time `toReal Δt` the float denotes.

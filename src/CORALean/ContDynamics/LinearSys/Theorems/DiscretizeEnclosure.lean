@@ -11,8 +11,8 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # A sampled trajectory of the enclosed system
 
-`discretizeEnclosure`'s `IsTrajectory`, one field changed from `discretize`'s: `step` witnesses
-membership in the exponential's enclosure rather than equality with an exact matrix,
+`discretizeEnclosure`'s `IsCanonicalTrajectory`, one field changed from `discretize`'s: `step`
+witnesses membership in the exponential's enclosure rather than equality with an exact matrix,
 `exp_mem_expEnclosure` at the same exponential `discretize_step` already produces. The witness is
 the same matrix `e^{AΔt}` at every `k`; the system does not actually vary,
 `LinParamSysDT.IsCanonicalTrajectory` merely permits it to. `reach` built on this trajectory does

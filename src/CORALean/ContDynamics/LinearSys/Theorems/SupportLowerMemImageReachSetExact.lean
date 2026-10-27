@@ -12,9 +12,9 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 
 [1, Alg. 1 (lower bounds)], line 15: `ρ(Ř(t_k), ℓ)` is `ℓ` at a state some run of the system is in
 at `t_k`: the run from `supportCounterexample`'s initial state under its held inputs, which
-`isTrajectory_heldInput` makes a `IsTrajectory`, `closedForm_heldInput` samples as [1]'s Eq. (18),
-and `heldSim_supportCounterexample` evaluates along `ℓ`. So it is at most `ρ(R(t_k), ℓ)`, and
-`Ř(t_k)` is reached rather than enclosed. The support vectors only have to be points of `X₀` and
+`isTrajectory_heldInput` makes an `IsCanonicalTrajectory`, `closedForm_heldInput` samples as [1]'s
+Eq. (18), and `heldSim_supportCounterexample` evaluates along `ℓ`. So it is at most `ρ(R(t_k), ℓ)`,
+and `Ř(t_k)` is reached rather than enclosed. The support vectors only have to be points of `X₀` and
 `U`; that they maximize is what makes the bound tight, not what makes it a bound.
 
 ## Inputs
