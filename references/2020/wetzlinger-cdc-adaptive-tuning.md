@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://arxiv.org/pdf/2006.12091 — the arXiv preprint of the CDC paper, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable). The table was seeded from https://ar5iv.labs.arxiv.org/html/2006.12091, whose numbering is not to be trusted; every locator below has since been re-read off the PDF and none of them moved.  
+**Source:** https://arxiv.org/pdf/2006.12091 — the arXiv preprint of the CDC paper, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable). The table was seeded from https://ar5iv.labs.arxiv.org/html/2006.12091, whose numbering is not to be trusted; every locator below has since been re-read off the PDF and none of them moved. The paper's own records are the IEEE version, https://doi.org/10.1109/CDC42340.2020.9304431, and the TUM repository record https://mediatum.ub.tum.de/node?id=1591476, which holds an 8-page authors' copy that was not read.  
 **Inventory:** confirmed
 
 Every tuning knob a reachability run has — the time step, the order a set is

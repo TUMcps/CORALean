@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://www.bmtdynamics.org/pub/papers/GOM05/GOM05.pdf (the authors' copy, 8 pages, read in full; text extracted with `pypdf`, which drops the minus signs and over- and underlines of the typeset formulas, so `D_{n,i} + d/Lᵢ` in step (3)(a) is read as the kept part's upper end. The copy prints no venue; volume, issue and pages are from the authors' publication list at bmtdynamics.org/pub. The publisher's typeset version was not found.)  
+**Source:** https://www.bmtdynamics.org/pub/papers/GOM05/GOM05.pdf (the authors' copy, 8 pages, read in full; text extracted with `pypdf`, which drops the minus signs and over- and underlines of the typeset formulas, so `D_{n,i} + d/Lᵢ` in step (3)(a) is read as the kept part's upper end. The copy prints no venue. The authors' publication list at https://www.bmtdynamics.org/pub/ gives "Transactions on Computers 11,4 (2005) 1611-1618" without a publisher. No publisher page, typeset version or DOI was found (Crossref has no record), so the BibTeX venue stays blank.)  
 **Inventory:** confirmed (no numbered definitions, theorems or algorithms; the results are the LDB algorithm of Sec. 2, the QFB of Sec. 3 and the COSY-GO procedure of Sec. 4, followed by three experiments, Tables 1-2 and Figures 1-4)
 
 The range bounders behind CORA's `optLinQuad` and `globVerMinimization`: the linear dominated

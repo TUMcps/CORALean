@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.6 (pp. 121–150), a verbatim reprint of the Elsevier version, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable, and the journal version at https://doi.org/10.1016/j.nahs.2022.101252 is paywalled; the paper has no arXiv preprint).  
+**Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.6 (pp. 121–150), a verbatim reprint of the Elsevier version. The thesis is the document read, with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable). The paper's own records are the journal version, https://doi.org/10.1016/j.nahs.2022.101252 (paywalled), and the TUM repository record https://mediatum.ub.tum.de/node?id=1696192. That record's file, https://mediatum.ub.tum.de/doc/1696192/1696192.pdf, is the submitted preprint ("Preprint submitted to Nonlinear Analysis: Hybrid Systems", 9 August 2022, 64 pages), not compared with the reprint. The paper has no arXiv preprint.  
 **Inventory:** confirmed
 
 What a time step size can and cannot buy for a nonlinear system. The gain function

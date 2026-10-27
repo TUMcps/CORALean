@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.5 (pp. 109–120), a verbatim reprint of the ACM version, read with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable, and the ACM version at https://doi.org/10.1145/3447928.3456643 is paywalled; the paper has no arXiv preprint).  
+**Source:** https://mediatum.ub.tum.de/doc/1725668/document.pdf — Wetzlinger's thesis, Appendix A.5 (pp. 109–120), a verbatim reprint of the ACM version. The thesis is the document read, with `pypdf` (poppler is not installed here, so the Read tool's PDF-page mode is unavailable). The paper's own records are the ACM version, https://doi.org/10.1145/3447928.3456643 (paywalled), and the TUM repository record https://mediatum.ub.tum.de/node?id=1615814. That record's file, https://mediatum.ub.tum.de/doc/1615814/1615814.pdf, is the authors' copy of the ACM typesetting (11 pages), not compared with the reprint. The paper has no arXiv preprint.  
 **Inventory:** confirmed
 
 The nonlinear counterpart of the [CDC 2020 tuning paper](../2020/wetzlinger-cdc-adaptive-tuning.md):

@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://arxiv.org/pdf/2209.09321v2 (arXiv v2, which matches the published IEEE TAC version — includes the "©2023 IEEE" notice; read via a custom PDF-content-stream text extractor, since poppler/pdftoppm is not installed in this environment so the Read tool's PDF-page mode is unavailable). NOTE: arXiv v1 (rendered fine by ar5iv/arxiv-html) has DIFFERENT Definition numbering — v1 has an extra "Definition 4 (Hyperball)" that v2 dropped, shifting v1's Def. 5-7 to v2's Def. 4-6. This file uses v2's (published) numbering, cross-checked directly against the v2 PDF text.  
+**Source:** https://arxiv.org/pdf/2209.09321v2 (arXiv v2, which matches the published IEEE TAC version — includes the "©2023 IEEE" notice; read via a custom PDF-content-stream text extractor, since poppler/pdftoppm is not installed in this environment so the Read tool's PDF-page mode is unavailable). NOTE: arXiv v1 (rendered fine by ar5iv/arxiv-html) has DIFFERENT Definition numbering — v1 has an extra "Definition 4 (Hyperball)" that v2 dropped, shifting v1's Def. 5-7 to v2's Def. 4-6. This file uses v2's (published) numbering, cross-checked directly against the v2 PDF text. The paper's own records are the IEEE version, https://doi.org/10.1109/TAC.2023.3292008, and the TUM repository record https://mediatum.ub.tum.de/node?id=1731060, which holds a 16-page authors' copy that was not read.  
 **Inventory:** confirmed (full text of the 14-page body + 2 appendices read via the custom extractor)
 
 Verifying a linear system with no parameters to tune, by computing an inner
