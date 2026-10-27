@@ -12,6 +12,8 @@ public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachDecompCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachFromStartCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportLowerTimeInterval
 public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportUpperCenter
+public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifyHalfspacePrintedStall
+public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifyHalfspacePrintedStallNonvacuous
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifyRAOuterVerdictCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStall
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStallExactNonvacuous
