@@ -3,10 +3,12 @@ module
 public import CORALean.Specification.FourValuedSignal.Theorems.AndIsRefinedBy
 public import CORALean.Specification.FourValuedSignal.Theorems.AndMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.AtAnd
+public import CORALean.Specification.FourValuedSignal.Theorems.AtAndTwo
 public import CORALean.Specification.FourValuedSignal.Theorems.AtEqJoin
 public import CORALean.Specification.FourValuedSignal.Theorems.AtMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.AtNot
 public import CORALean.Specification.FourValuedSignal.Theorems.AtOr
+public import CORALean.Specification.FourValuedSignal.Theorems.AtOrTwo
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.FourValuedSignal.Theorems.CombineMapTime
 public import CORALean.Specification.FourValuedSignal.Theorems.CombineSpec
@@ -39,6 +41,7 @@ public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalMapT
 public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.UntilFloatSound
 public import CORALean.Specification.FourValuedSignal.Theorems.UntilIsRefinedBy
+public import CORALean.Specification.FourValuedSignal.Theorems.UntilRefines
 public import CORALean.Specification.FourValuedSignal.Theorems.UntilSpec
 
 /-!

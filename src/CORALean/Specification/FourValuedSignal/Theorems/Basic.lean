@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
+public import CORALean.Specification.FourValuedSignal.Definitions.Refines
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.KleeneSignal.Theorems.Basic
 
@@ -81,6 +82,28 @@ of the signal read as reals. -/
 theorem FourValuedSignal.not_mapTime {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
     (s : FourValuedSignal 𝕋) : s.not.mapTime Float.SoundFloatArithmetic.toReal =
       (s.mapTime Float.SoundFloatArithmetic.toReal).not := rfl
+
+
+-- =============================  `FourValuedSignal.Refines.refl`  ============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       27-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Every signal refines itself. -/
+theorem FourValuedSignal.Refines.refl (s : FourValuedSignal ℝ) : s.Refines s := fun _ _ _ => rfl
+
+
+-- =============================  `FourValuedSignal.Refines.trans`  ============================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       27-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Refinement is transitive. -/
+theorem FourValuedSignal.Refines.trans {a b c : FourValuedSignal ℝ} (h1 : a.Refines b)
+    (h2 : b.Refines c) : a.Refines c := fun t ht hne => by
+  rw [← h2 t ht hne]; exact h1 t ht (by rw [h2 t ht hne]; exact hne)
 
 
 end CORALean

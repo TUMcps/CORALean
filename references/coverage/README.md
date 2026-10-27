@@ -204,7 +204,7 @@ Rulings on borderline cases:
 | [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 0 | 13 | 0 | 0 | 2 | 0 |
 | [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 0 | 0 | 10 | 0 |
 | [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 0 | 4 | 0 | 0 | 3 | 0 |
-| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 1 | 3 | 0 | 0 | 1 | 0 |
+| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 0 | 4 | 0 | 0 | 1 | 0 |
 | [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 0 | 10 | 0 | 0 | 1 | 0 |
 | [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 1 |
 | [rtl](specification/rtl.md) | specification | 5 | 0 | 4 | 0 | 0 | 1 | 0 |

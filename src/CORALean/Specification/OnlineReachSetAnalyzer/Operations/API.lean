@@ -8,12 +8,16 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKe
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.FormulaKind
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.GetVerdict
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Mk
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ObserveAtoms
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ObserveSet
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ObserveSetFloat
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Parse
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ParseNew
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Propagate
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.PropagateFloat
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.PropagateRec
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.PropagateRecFloat
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Sat
 public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.ToRealAnalyzer
 
 /-!
