@@ -176,7 +176,9 @@ hull and erosion does not save it; (15)'s enclosure of `F H(0)`, about
 in Lean). The random search that found it (2-D and 3-D linear systems, zonotopes of up to 20
 generators) saw no failure of the form [Wetzlinger et al. 2024](../2024/wetzlinger-lcss-inner-minkowski-difference.md)
 would need, `conv(H(t_k) ⊖ C, H(t_{k+1}) ⊖ C) ⊖ B_µ + 2c` with `C` symmetric about `c`, whose
-shift turns the erosion into one by `-C`, the side the trajectories need; that form is unproved.
+shift turns the erosion into one by `-C`, the side the trajectories need; that form is sound for
+an initial set inside a zonotope (`NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact`,
+on that page), though it erodes before taking the hull and so does not repair (21) itself.
 [`ConvexHullMinkowskiDiffBall.lean`](../../src/CORALean/ContDynamics/LinearSys/Counterexamples/ConvexHullMinkowskiDiffBall.lean)
 
 **`Thm. 2`'s proof erodes a union slice by slice, which only holds one way.** Both
@@ -245,3 +247,4 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`ExpRemainderMatShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/ExpRemainderMatShear.lean)
 * [`InnerAbstrErrShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerAbstrErrShear.lean)
 * [`InnerCurvatureErrorShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerCurvatureErrorShear.lean)
+* [`MinkowskiDiffConvexHullBallSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffConvexHullBallSubsetReachSetExact.lean)

@@ -24,8 +24,10 @@ holds for a linearized step, and `Remark 1`'s counterexample, as is the closed f
 constant-input solution (12). `Prop. 2` is false, for a nonconvex initial set, which it admits,
 and for a convex one (a box, under a linear shear) alike, and holds with the hull replaced by
 the chords of single initial states, the Minkowski differences taken at each time, a union over
-every time and so no computable set; taken over the whole chord union, the difference fails for a
-nonconvex initial set and holds where the covering start and time can be chosen continuously.
+every time and so no computable set; taken over the whole chord union, the difference fails, for
+a convex initial set too, and holds where the covering start and time can be chosen continuously.
+Its computable repair is proved: for an initial set inside a zonotope, (23)'s hull eroded by the
+ball `B_µ` of the authors' backward-reachability paper is sound.
 `Alg. 1` is written line by line
 over exact sets; its time-point sets are inner approximations, step by step, and its output, the
 union of the time-interval sets, is not, by `Prop. 2`'s convex counterexample run through the
@@ -50,7 +52,7 @@ the method is built on.
 | `Lemma 1` | For A ⊂ ℝⁿ nonempty, convex, compact, B centrally symmetric around c, φ: A → B continuous and S = {a + φ(a) \| a ∈ A}: A ⊖ B ⊆ S - 2c (19). | [`MinkowskiDiffSubsetOfContinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuous.lean) — `minkowskiDiff_subset_of_continuous`, in any finite-dimensional real normed space, the symmetry as `b ∈ B → 2c - b ∈ B`, by Brouwer's theorem as the paper argues | `correct` |
 | `Remark 1` | Continuity of φ cannot be dropped: A = B = [-1, 1] gives A ⊖ B = {0}, and φ = sign (sign 0 = 1) gives S = [-2, -1) ∪ [1, 2]. | [`MinkowskiDiffNotSubsetOfDiscontinuous.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffNotSubsetOfDiscontinuous.lean) — all three sets as stated, and 0 ∉ S | `correct` |
 | `Prop. 1` | (Time-point reachable set) For X₀ compact, nonempty and R̂_err centrally symmetric, R̂(Δt) = R_aff(Δt) ⊖ R̂_err + 2c ⊆ R(Δt), c = cen(R̂_err) (20). | [`MinkowskiDiffAddSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffAddSubsetReachSetExact.lean), [`MinkowskiDiffSubsetOfContinuousOfConvex.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffSubsetOfContinuousOfConvex.lean) — `NonlinearSys.minkowskiDiff_add_subset_reachSetExact`: e^{AΔt} = `M` invertible, R_con = `v`, R̂_err a convex compact set as (13) makes it; the proof's representation (21) is the hypothesis `herr` (restated from [18], like (14)), the solutions and the field's Lipschitz constant along them (the paper's standing assumption) are hypotheses, and Grönwall gives the continuity of `z` the proof invokes; `minkowskiDiff_subset_of_continuous_of_convex` is `Lemma 1` with `B`, not `A`, convex. [`SubMemInputSolution.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/SubMemInputSolution.lean), [`MinkowskiDiffInputSolutionSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffInputSolutionSubsetReachSetExact.lean) — (21) derived from a linearization: `NonlinearSys.IsTrajectory.sub_mem_inputSolution` for a run that stays in the region of an `IsAbstractionError` certificate `L`, with R̂_err = `inputSolution Δt η L` (13), and with it `NonlinearSys.minkowskiDiff_inputSolution_subset_reachSetExact`, the proposition for a linearized step, the confinement still a hypothesis | `proof-gap` — the proof applies `Lemma 1` with A = R_aff(Δt) = e^{AΔt}X₀ + R_con, which is not convex for the merely compact X₀ the proposition allows; the statement holds because R̂_err is (Findings) |
-| `Prop. 2` | (Time-interval reachable set) For a compact, non-empty X₀ and E = C ⊕ R̂_err (22) centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | [`ConvexHullTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeInterval.lean), [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean) — **Counterexample:** `convexHull_timeInterval_counterexample`: for `ẋ = (0, 1)` and two squares as X₀, (23) in full at every Taylor order η, η = 0 included, and every center x* of line 4 (cen(X₀) has no formula), its terms computed from (6), (9), (12), (13), (17) and line 14: C = R̂_err = {0}, L̂ = 0, c = 0 and R_con = Δt w derived (A = 0), though w ≠ 0; (23) holds a point no run reaches; `convexHull_timeInterval_convex_counterexample`: the same for the shear `ẋ = (x₂, 0)` from the box X₀ = [-1/10, 1/10] × [-1, 1], (23) in full at every Taylor order η ≥ 1 and cen(X₀) = 0, its terms computed from (6), (9), (12), (13), (17) and line 14, and C = R̂_err = {0}, L̂ = 0, c = 0 derived (`A² = 0`); [`MinkowskiDiffChordSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffChordSubsetReachSetExact.lean) — the repair: `NonlinearSys.minkowskiDiff_chord_subset_reachSetExact`, ⋃_{t∈[0,Δt]} ((chords(t) ⊖ C) ⊖ R̂_err) + 2c ⊆ R(τ₀), chords(t) = {x₀ + (t/Δt)(e^{AΔt}x₀ + R_con - x₀) \| x₀ ∈ X₀}, each slice `Prop. 1` at time t with (1 - t/Δt)I + (t/Δt)e^{AΔt} invertible, the solutions' representation by chord plus E a hypothesis as (21) is for `Prop. 1`; [`NotMemMinkowskiDiffChordShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/NotMemMinkowskiDiffChordShear.lean) — `NonlinearSys.not_mem_minkowskiDiff_chord_shear`: the repaired set of the shear no longer holds (1/2, 0); [`MinkowskiDiffIUnionChord.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/MinkowskiDiffIUnionChord.lean) — `NonlinearSys.minkowskiDiff_iUnion_chord_counterexample`: the repair with ⊖ C ⊖ R̂_err taken over the whole chord union instead, under the same hypotheses, is false, for ẋ = (1/2, 0), the connected Π-shaped X₀ = [0, 1] × [0, 3] ∪ [2, 3] × [0, 3] ∪ [0, 3] × [2, 3] and chords x₀ + t(1, 0); [`AddMemReachSetExactOfChordSection.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/AddMemReachSetExactOfChordSection.lean) — `NonlinearSys.add_mem_reachSetExact_of_chord_section`: that union-level set is sound at every point z + 2c whose z + E the chords cover through a start and time chosen continuously | `false` — false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes; true with the hull replaced by the chords of single initial states, the Minkowski differences taken at each t, but that union over every t is no computable set; ⊖ over the whole chord union is false too, and true where the covering start and time can be chosen continuously (Findings) |
+| `Prop. 2` | (Time-interval reachable set) For a compact, non-empty X₀ and E = C ⊕ R̂_err (22) centrally symmetric around c, R̂(τ₀) = conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) + 2c ⊆ R(τ₀) (23). | [`ConvexHullTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeInterval.lean), [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean) — **Counterexample:** `convexHull_timeInterval_counterexample`: for `ẋ = (0, 1)` and two squares as X₀, (23) in full at every Taylor order η, η = 0 included, and every center x* of line 4 (cen(X₀) has no formula), its terms computed from (6), (9), (12), (13), (17) and line 14: C = R̂_err = {0}, L̂ = 0, c = 0 and R_con = Δt w derived (A = 0), though w ≠ 0; (23) holds a point no run reaches; `convexHull_timeInterval_convex_counterexample`: the same for the shear `ẋ = (x₂, 0)` from the box X₀ = [-1/10, 1/10] × [-1, 1], (23) in full at every Taylor order η ≥ 1 and cen(X₀) = 0, its terms computed from (6), (9), (12), (13), (17) and line 14, and C = R̂_err = {0}, L̂ = 0, c = 0 derived (`A² = 0`); [`MinkowskiDiffChordSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffChordSubsetReachSetExact.lean) — the repair: `NonlinearSys.minkowskiDiff_chord_subset_reachSetExact`, ⋃_{t∈[0,Δt]} ((chords(t) ⊖ C) ⊖ R̂_err) + 2c ⊆ R(τ₀), chords(t) = {x₀ + (t/Δt)(e^{AΔt}x₀ + R_con - x₀) \| x₀ ∈ X₀}, each slice `Prop. 1` at time t with (1 - t/Δt)I + (t/Δt)e^{AΔt} invertible, the solutions' representation by chord plus E a hypothesis as (21) is for `Prop. 1`; [`NotMemMinkowskiDiffChordShear.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/NotMemMinkowskiDiffChordShear.lean) — `NonlinearSys.not_mem_minkowskiDiff_chord_shear`: the repaired set of the shear no longer holds (1/2, 0); [`MinkowskiDiffIUnionChord.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/MinkowskiDiffIUnionChord.lean) — `NonlinearSys.minkowskiDiff_iUnion_chord_counterexample`: the repair with ⊖ C ⊖ R̂_err taken over the whole chord union instead, under the same hypotheses, is false, for ẋ = (1/2, 0), the connected Π-shaped X₀ = [0, 1] × [0, 3] ∪ [2, 3] × [0, 3] ∪ [0, 3] × [2, 3] and chords x₀ + t(1, 0); [`MinkowskiDiffIUnionChordConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/MinkowskiDiffIUnionChordConvex.lean) — `NonlinearSys.minkowskiDiff_iUnion_chord_convex_counterexample`: the same for a convex X₀, ẋ = (x₃, 1, 0), the box X₀ = [-1/2, -1/4] × [-1, 0] × [-1, 1] and chords x₀ + t(x₀₃ - 1/2, 0, -1); [`AddMemReachSetExactOfChordSection.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/AddMemReachSetExactOfChordSection.lean) — `NonlinearSys.add_mem_reachSetExact_of_chord_section`: that union-level set is sound at every point z + 2c whose z + E the chords cover through a start and time chosen continuously; [`MinkowskiDiffConvexHullBallSubsetReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/MinkowskiDiffConvexHullBallSubsetReachSetExact.lean) — the computable repair, `NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact`: conv(((X₀ ⊖ C) ⊖ R̂_err) ∪ ((R_aff ⊖ R̂_err) ⊖ C)) ⊖ B_µ + 2c ⊆ R(τ₀), B_µ the Euclidean ball of [16, (21)], µ = √γ‖(e^{AΔt} - I)G‖₂, for a convex X₀ inside a zonotope ⟨c₀, G⟩ with γ generators (a zonotope or a constrained zonotope), R̂(Δt)'s shift 2 cen(R̂_err) = 0 as (13) makes R̂_err symmetric about 0, the solutions' representation by chord plus E a hypothesis as for the per-slice repair | `fixed` — false for a nonconvex X₀, which the proposition admits, and for a convex one, all that `Alg. 1` passes; true for an X₀ inside a zonotope once the hull is eroded by the ball B_µ of [16], µ = √γ‖(e^{AΔt} - I)G‖₂, a computable set; the chords of single initial states with the Minkowski differences taken at each t are sound too, but no computable set, and ⊖ over the whole chord union is false, for a convex X₀ as well (Findings) |
 | `Def. 2` | (Support function) ρ(S, ℓ) := max_{s∈S} ℓᵀs. | n/a — restated from Le Guernic and Girard 2010 [21, Def. 1] | `restated` |
 | `Def. 3` | (Polytope) P = {s \| Hs ≤ d} = ⟨H, d⟩_H. | n/a — restated from Ziegler [22, Sec. 1.1] | `restated` |
 | `Eq. 24` | P ⊖ S = ⟨H, d̃⟩_H, d̃⁽ʲ⁾ = d⁽ʲ⁾ - ρ(S, H⁽ʲ,·⁾ᵀ). | n/a — restated from Kolmanovsky and Gilbert 1998 [23, Thm. 2.2] | `restated` |
@@ -101,8 +103,8 @@ its first coordinate is in `[-1/10, 1/10]` (`convexHull_timeInterval_convex_coun
 with every term of (23) computed and the vanishing ones derived).
 Convexity is therefore no correction. What `Lemma 1` gives, for each fixed `t` and a convex X₀, is
 the shrunk image of the convex chord slice `((1 - t/Δt)I + (t/Δt)e^{AΔt})X₀ + (t/Δt)R_con` (where
-that matrix is invertible), and the union of these over `t` is not the hull. That is the repair,
-proved, but it is no computable set, so the row stays `false`: `⋃_{t∈[0,Δt]} ((slice(t) ⊖ C) ⊖ R̂_err) + 2c ⊆ R(τ₀)`, each slice being
+that matrix is invertible), and the union of these over `t` is not the hull. That repair is
+proved, but it is no computable set: `⋃_{t∈[0,Δt]} ((slice(t) ⊖ C) ⊖ R̂_err) + 2c ⊆ R(τ₀)`, each slice being
 `Prop. 1` at time `t` with that matrix, `⊖ C`, `⊖ R̂_err` and the `2c` shift all slice-wise, given
 that every solution lies within `E = C ⊕ R̂_err` of its chord, the representation the printed
 proof writes (`NonlinearSys.minkowskiDiff_chord_subset_reachSetExact`). For the shear the slices
@@ -120,13 +122,16 @@ value on the runs. What fails is the covering time: `(7/4, 1) + E` is covered by
 continuous choice. With it the union-level set is sound:
 `NonlinearSys.add_mem_reachSetExact_of_chord_section` proves `z + 2c ∈ R(τ₀)` whenever the chords
 cover `z + E` through a start `x₀ ∈ X₀` and time `t` chosen continuously in the point, Brouwer on
-`z + E` and Grönwall's continuity of `(x₀, t) ↦ x(t)`; a constant time is the per-slice repair. For
-a convex X₀, all `Alg. 1` passes, whether the union-level set is sound stays open: no proof (the
-slices of a convex set need not admit a continuous covering time, and a degree argument over
-`X₀ × [0, Δt]`, one dimension more than the state, is not in Mathlib), and a random search (2-D
-linear fields, random convex polygons, chord endpoints exact or perturbed, `E` the symmetric hull
-of the deviations; about 2500 instances, its three coarse-grid hits all reached on a fine time
-grid) found no point of it that no run reaches. The convex
+`z + E` and Grönwall's continuity of `(x₀, t) ↦ x(t)`; a constant time is the per-slice repair. A
+convex X₀, all `Alg. 1` passes, does not save it: for `ẋ = (x₃, 1, 0)`, `Δt = 1`, the box
+`X₀ = [-1/2, -1/4] × [-1, 0] × [-1, 1]`, `M = e^{A} = I + e₁e₃ᵀ`, `v = (-1/2, 0, -1)`, `E` the
+segment from `0` to `δ = (1/2, 1, 1)` and `c = δ/2`, every run is its chord plus `tδ`; `-λδ` lies in
+`X₀` for `λ ≥ 1/2` and on the chord of `(λ/2 - 1/2, -λ, 1 - λ)` at `t = 1` for `λ ≤ 1/2`, so the
+eroded union holds `-δ + 2c = 0`, while a run through `0` would start at `(0, -t, 0)`, outside `X₀`
+(`NonlinearSys.minkowskiDiff_iUnion_chord_convex_counterexample`). The covering time again jumps,
+from `0` to `1`, and the start-time fibres `{t | y on the chord of some x₀ ∈ X₀ at t}` are
+disconnected. The earlier random search, over 2-D linear fields only (about 2500 instances), had
+found no such point; whether a planar convex instance exists is not settled. The convex
 `conv((X₀ ⊖ C) ⊖ R̂_err, R̂(Δt) ⊖ C) ⊖ B_μ + 2c`, `μ = √γ‖(e^{AΔt} - I)G‖₂`, was to rest on
 [16, (20)] (arXiv v3's (21)), which cites [15, Prop. 1], an outer Hausdorff bound whose proof
 alone uses the inner inclusion (see [Wetzlinger et al. 2023](../2023/wetzlinger-fully-automated-verification.md)).
@@ -135,10 +140,22 @@ and for `ẋ = (x₂, x₃, 0)` its set holds a point no run reaches
 (`LinearSys.convexHull_minkowskiDiff_ball_counterexample`, on
 [Wetzlinger and Althoff 2026](../2026/wetzlinger-tac-backward-reachability.md)). The candidate
 does not fall with it: for `C` centrally symmetric about `c`, `(S ⊖ C) + 2c = S ⊖ (-C)`, so its
-`+ 2c` erodes on the side the trajectories need, and that witness is not in it. A random search
-over linear fields (2-D and 3-D, zonotopes of up to 20 generators, `C` the box of
-`F(X₀ - x*) ⊕ G w`, about 850 nonempty instances) found no point of it that no run reaches; it
-stays open, without a proof. CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
+`+ 2c` erodes on the side the trajectories need, and that witness is not in it. It is sound, and
+it is the computable repair that makes the row `fixed`: for a convex X₀ inside a zonotope
+`⟨c₀, G⟩` with `γ` generators, `conv(((X₀ ⊖ C) ⊖ R̂_err) ∪ ((R_aff ⊖ R̂_err) ⊖ C)) ⊖ B_µ + 2c ⊆ R(τ₀)`,
+`µ = √γ‖(e^{AΔt} - I)G‖₂`, given that every solution lies within `E` of its chord
+(`NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact`; (13) makes `R̂_err` symmetric
+about `0`, so `R̂(Δt)`'s own shift vanishes). The `B_µ` margin is twice what is used: a hull point
+`p = θa + (1 - θ)k`, `a ∈ X₀ ⊖ E`, `k ∈ R_aff ⊖ E`, moved by `e ∈ E`, is
+`θa₁ + (1 - θ)(e^{AΔt}a₂ + R_con)` with `a₁ = a + e` and `a₂ = e^{-AΔt}(k + e - R_con)` in X₀, and
+lies `θ(1 - θ)(e^{AΔt} - I)(a₂ - a₁)`, at most `µ/2` in `‖·‖₂`, from the chord of
+`θa₁ + (1 - θ)a₂` at `t = (1 - θ)Δt`. Brouwer's theorem on `B_µ(y) × E`, for `y` in the eroded
+hull, finds `p` and `e` with `p` minus that deviation equal to `y` and `e = 2c - φ`, `φ` the run's
+deviation from its chord, so that run is at `y + 2c`; a continuous choice of `θ`, `a`, `k` is not
+needed, a representation interpolated over a finite net of the ball (weights `θ`, `θa`,
+`(1 - θ)k` mix convexly) being within the other `µ/2`. The earlier random search (linear fields,
+2-D and 3-D, about 850 nonempty instances) and one over 3-D shears with chords off the exact
+flow found no failure, as the proof says. CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
 [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean)
 
 **`Alg. 1` — the output is `Prop. 2`'s.** The listing ensures that R̂(τ) = ⋃_k R̂(τ_k) (line
@@ -152,9 +169,12 @@ which no run reaches at any `t ∈ [0, 1]` (`NonlinearSys.innerMinkDiff_timeInte
 for every `η ≥ 1`: (9), (13) and (17), with `F`, `G`, `E` of [16, (18), (19), (26)], are the
 printed formulas and their values are derived; the center, the box, the Jacobian (6) and the
 interval operations of lines 9-13 enter as hypotheses).
-No correction is known that keeps line 16's hull, so the row is `false`, not `underspecified`.
-`Prop. 2`'s repair does not change this: it is a union over every `t ∈ [0, Δt]`, no set line 16
-can compute; a finite union of its slices is computable and sound, but covers only the chosen times.
+Line 16 with its hull eroded by `B_µ`, `µ` from the generator matrix of `R̂(t_k)`, is sound for
+one step: `R̂(t_k)` is a constrained zonotope inside the zonotope of its own generators, which is
+what `NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact` asks. The algorithm with
+that line is not written in Lean, so the row stays `false` until it is; the per-slice repair of
+`Prop. 2` is a union over every `t ∈ [0, Δt]`, no set line 16 can compute, and a finite union of
+its slices is computable and sound, but covers only the chosen times.
 The time-point sets are sound: by induction over the steps, every R̂(t_k) lies in R(t_k)
 (`NonlinearSys.innerMinkDiffLoop_subset_reachSetExact`), a step from R̂(t_k) reaching only states
 some run reaches, since runs under the constant input concatenate

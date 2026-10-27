@@ -15,8 +15,8 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 a point `z + 2c` of `(⋃ chords ⊖ E) + 2c`, `E = C ⊕ R̂_err` centrally symmetric about `c`, lies in
 `R(τ₀)` when the chords cover `z + E` through a continuous choice `σ` of start `x₀ ∈ X₀` and time
 `t`. Brouwer's theorem on `z + E` then finds a point whose chosen solution lands on `z + 2c`;
-Grönwall makes `(x₀, t) ↦ x(t)` continuous. Without such a choice the claim is false
-(`NonlinearSys.minkowskiDiff_iUnion_chord_counterexample`, where the covering time jumps). That
+Grönwall makes `(x₀, t) ↦ x(t)` continuous. Without such a choice the claim is false, for a
+convex `X₀` too (`NonlinearSys.minkowskiDiff_iUnion_chord_convex_counterexample`). That
 every solution stays within `E` of its chord is a hypothesis, as in
 `NonlinearSys.minkowskiDiff_chord_subset_reachSetExact`, the case of a constant time.
 
