@@ -19,10 +19,10 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
 the rest are boxed into `n` fresh generators, and the constraints on the kept
 coefficients are `keepRows`. The fresh coefficients are unconstrained.
 
-Where `ConZonotope.reduce` forgets `P` before reducing, this removes the dropped coefficients from
-the domain and boxes what they contributed. CORA's `@conZonotope/reduce` lifts the equality rows
-with the generators first; that is `ConZonotope.reduceLiftBy`, which uses this for the inequality
-rows. Here every row is projected on its own (`keepRows`); the two are not comparable as sets.
+This removes the dropped coefficients from the domain and boxes what they contributed. CORA's
+`@conZonotope/reduce` lifts the equality rows with the generators first; that is
+`ConZonotope.reduceLiftBy`, which uses this for the inequality rows. Here every row is projected
+on its own (`keepRows`); the two are not comparable as sets.
 
 ## Inputs
 * `cZ` – constrained zonotope

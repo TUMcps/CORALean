@@ -54,6 +54,19 @@ noncomputable def Zonotope.generatorLength (Z : Zonotope (Vec ℝ n)) (j : Fin Z
   ‖Z.G j‖₂
 
 
+-- =================================  `Zonotope.girardMetric`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`. Zero exactly on the
+axis-aligned generators, which a box reproduces for free, and growing with what
+boxing would cost; the max folds from `0`, which no `|G i j|` undercuts. -/
+noncomputable def Zonotope.girardMetric (Z : Zonotope (Vec ℝ n)) (j : Fin Z.h) : ℝ :=
+  (∑ i, |Z.G j i|) - Finset.univ.fold max 0 fun i => |Z.G j i|
+
+
 -- ====================================  `Zonotope.project`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026

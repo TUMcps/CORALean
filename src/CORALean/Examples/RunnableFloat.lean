@@ -134,7 +134,7 @@ import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.VerifySplit
 import CORALean.NN.Theorems.HoldsOfCheck
 import CORALean.Specification.Instances
-import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
+import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 import CORALean.ContSet.Zonotope.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.And
 import CORALean.ContSet.Polygon.Float.Operations.MinkDiff
@@ -1397,7 +1397,7 @@ def goodE₂ : Ellipsoid D 2 := ⟨!![d 1 0, d 0 0; d 0 0, d 1 0], ![d 0 0, d 0 
 /-- Whether the direction `(1, 0)` is certified good for `goodE₁` against `goodE₂`. -/
 def isGoodDirRun : Bool := goodE₁.isGoodDir goodE₂ ![d 1 0, d 0 0] (d 1 (-2))
 
-/-! ## `ConZonotope.reduceLift`, constraints kept
+/-! ## `ConZonotope.reduce`, constraints kept
 
 Four generators in the plane, one inequality `β₀ ≤ ½` and one equality `β₂ + β₃ = 0`, reduced at
 order `1`: the lifted zonotope `[G; Aₑ]` has three rows and keeps no generator, so its four are
@@ -1417,7 +1417,7 @@ def cZ_eqs : ConZonotope D (Vec D 2) where
   I_error := zbox 2
 
 /-- The constrained zonotope reduced to order `1` by lifting, constraints kept. -/
-def cZ_reduceLift : ConZonotope D (Vec D 2) := cZ_eqs.reduceLift 1
+def cZ_reduce_eqs : ConZonotope D (Vec D 2) := cZ_eqs.reduce 1
 
 /-! ## Components with a worked example of their own
 

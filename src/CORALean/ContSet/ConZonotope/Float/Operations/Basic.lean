@@ -1,13 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
-public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
-public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
-public import CORALean.ContSet.Conversion.Real.Operations.Basic
-public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
@@ -62,18 +56,6 @@ def ConZonotope.centerLo (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 
 The bilinear form `u ⬝ᵥ (Q *ᵥ v)` rounded up, the mirror of `quadBilDown`. -/
 def ConZonotope.quadBilUp (Q : Mat 𝕋 n n) (u v : Vec 𝕋 n) : 𝕋 :=
   PolyZonotope.quadUp u (mulVecDown Q v) (mulVecUp Q v)
-
-
--- ===================================  `ConZonotope.reduce`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   08-September-2026
--- Reviewed:      ---
-
-/-- Above the requested order, the enclosing zonotope is reduced and the constraints
-dropped; at or below it, nothing happens and the constraints survive. As over ℝ. -/
-def ConZonotope.reduce (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (o : ℕ) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  if o * n < cZ.h then (cZ.zonotope.reduce o).conZonotope else cZ
 
 end CORALean.Float
 

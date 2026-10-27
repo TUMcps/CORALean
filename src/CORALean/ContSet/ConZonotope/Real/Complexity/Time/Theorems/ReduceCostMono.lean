@@ -31,9 +31,9 @@ bound on the cost.
 * the cost of order reduction is monotone in the sizes
 -/
 
--- Authors:       Claude Opus 5, Claude Sonnet 5.5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   15-October-2026
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -49,9 +49,16 @@ bound on the cost. -/
 theorem ConZonotope.reduceCost_mono {h h' r r' re re' : ℕ} (n : ℕ) (hh : h ≤ h') (hr : r ≤ r')
     (he : re ≤ re') : -- --- CONCL ---
     ConZonotope.reduceCost n h r re ≤ ConZonotope.reduceCost n h' r' re' := by -- --- PROOF ---
-  have := Cost.le_iff.mp (Zonotope.reduceGirardCost_mono n hh)
+  have hz := Cost.le_iff.mp (Zonotope.reduceGirardCost_mono (n + re) hh)
+  -- Girard's count grows with the lifted dimension `n + re` too
+  have hd : (Zonotope.reduceGirardCost (n + re) h').ops
+      ≤ (Zonotope.reduceGirardCost (n + re') h').ops := by
+    simp only [Zonotope.reduceGirardCost, Zonotope.reduceByCost, Cost.ops_add]
+    gcongr
   simp only [ConZonotope.reduceCost, Cost.le_iff, Cost.ops_add]
-  have g : 2 * (n * (1 + h)) + (r + re) * (h + 1) ≤ 2 * (n * (1 + h')) + (r' + re') * (h' + 1) := by
+  have g : (n + r + re) * (h + 1) + (n + re) * (1 + h) + 2 * r * (h + 1)
+      + (n + r + re) * (h + n + re + 1) ≤ (n + r' + re') * (h' + 1) + (n + re') * (1 + h')
+      + 2 * r' * (h' + 1) + (n + r' + re') * (h' + n + re' + 1) := by
     gcongr
   omega
 

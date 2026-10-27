@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 /-!
 # A point of `cZ` lifts to a point of `liftEq`
 
-[1, Prop. 3] in the direction `reduceLift` needs: `x ∈ cZ` gives `[x; 0] ∈ Z⁺`, the same
+[1, Prop. 3] in the direction `reduce` needs: `x ∈ cZ` gives `[x; 0] ∈ Z⁺`, the same
 coefficients with the equality rows read as the lower coordinates. Each lower coordinate is
 `-bₑ i + Σⱼ Aₑ i e_j βⱼ = -bₑ i + Aₑ i β = 0`.
 

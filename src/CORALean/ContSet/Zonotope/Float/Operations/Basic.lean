@@ -48,6 +48,18 @@ def Zonotope.errorRadius (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
 def Zonotope.generatorError (G : Mat 𝕋 n h) : Interval (Vec 𝕋 n) := Interval.symmetric (radius G)
 
 
+-- =================================  `Zonotope.girardMetric`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       08-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, in `𝕋`. Zero exactly on the
+axis-aligned generators, which a box reproduces for free. -/
+def Zonotope.girardMetric (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : 𝕋 :=
+  subDown (sumUp fun i => absolute (Z.G j i)) (maximumOver fun i => absolute (Z.G j i))
+
+
 -- ====================================  `Zonotope.origin`  ===================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026

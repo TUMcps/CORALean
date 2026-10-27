@@ -51,7 +51,6 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOrder
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftEqOfMem
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftByOuter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceLiftOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOrder
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RescaleExact
@@ -98,7 +97,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 # What `ConZonotope` guarantees
 
 `intersection`, `plus` and `map` exactly; the interval-matrix product and `reduce` as enclosures,
-`reduce` by way of `zonotope_contains`, and `reduce_order_le` for its own generator-count bound.
+`reduce` by way of `reduceLiftBy_outer`, and `reduce_order_le` for its degree-of-freedom bound.
 `linComb` has both directions: `_outer` is what the interface asks for and holds always, `_inner`
 is what says the result is the convex hull itself and asks both sets to be nonempty. `enclose_outer`
 is the one direction `enclose` gets, asking the constraints to agree besides. The topological facts
