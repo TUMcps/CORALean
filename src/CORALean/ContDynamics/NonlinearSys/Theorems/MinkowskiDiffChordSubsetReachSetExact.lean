@@ -14,8 +14,8 @@ the differences `⊖ C ⊖ R̂_err` taken at each `t`, on the slice `{a | x₀ �
 `t ∈ [0, Δt]` of `((slice ⊖ C) ⊖ R̂_err) + 2c` lies in `R(τ₀)`, `E = C ⊕ R̂_err` (22) centrally
 symmetric about `c`; each slice is `[1, Prop. 1]` at time `t`, with the matrix
 `(1 - t/Δt)I + (t/Δt)e^{AΔt}`, which must be invertible. That every solution stays within `E` of
-its chord is a hypothesis, as (21) is for `Prop. 1`. Whether `⊖` of the whole chord union, which
-is not convex, is sound is open: Brouwer's theorem gives it only slice by slice.
+its chord is a hypothesis, as (21) is for `Prop. 1`. `⊖` of the whole chord union is not sound,
+even for a convex `X₀` (`NonlinearSys.minkowskiDiff_iUnion_chord_convex_counterexample`).
 
 ## Inputs
 * `sys` – system

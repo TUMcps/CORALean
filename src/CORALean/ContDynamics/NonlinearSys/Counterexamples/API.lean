@@ -11,6 +11,7 @@ public import CORALean.ContDynamics.NonlinearSys.Counterexamples.LinReachAdaptiv
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.LinReachCora1D
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.LinReachTensor3Cora2D
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.MinkowskiDiffIUnionChord
+public import CORALean.ContDynamics.NonlinearSys.Counterexamples.MinkowskiDiffIUnionChordConvex
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.OutputSetCora
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.ReachInnerScalingCora1D
 public import CORALean.ContDynamics.NonlinearSys.Counterexamples.RowNormExpansion
