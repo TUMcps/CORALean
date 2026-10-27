@@ -31,9 +31,10 @@ here the bound is a zonotope, carried along the run rather than restated.
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+* [1] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
-      Automatic Control, 2023.
+      Automatic Control,
+      2023.](../../../../../references/2023/wetzlinger-fully-automated-verification.md)
 -/
 
 -- Authors:       Claude Sonnet 5

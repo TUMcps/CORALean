@@ -27,11 +27,13 @@ not modelled, nor is the mixed form `quadMap(cZ1, cZ2, Q)`.
 
 ## References
 
-* [1] M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
+* [1] [M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
       Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
-      Systems: Computation and Control, 2012.
-* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
-      tool for set-based estimation and fault detection". Automatica, 2016.
+      Systems: Computation and Control,
+      2012.](../../../../../../references/2012/althoff-hscc-avoiding-intersection.md)
+* [2] [J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica,
+      2016.](../../../../../../references/2016/scott-automatica-constrained-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -28,9 +28,10 @@ empty inbody (`-∞`) and one unbounded in a direction (`+∞`) need no case of 
 
 ## References
 
-* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral Operations
-      in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for Continuous
-      and Hybrid Systems, 2024.
+* [1] [M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for
+      Continuous and Hybrid Systems,
+      2024.](../../../../../../references/2024/wetzlinger-arch-polyhedral-operations.md)
 -/
 
 -- Authors:       Claude Opus 5.5

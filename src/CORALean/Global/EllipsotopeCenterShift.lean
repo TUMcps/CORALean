@@ -31,8 +31,9 @@ circumbody's norm being any `coeffNorm` of a surjective map.
 
 ## References
 
-* [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
-      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+* [1] [A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control,
+      2025.](../../../references/2025/kulmburg-tac-approximability-containment.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

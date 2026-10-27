@@ -30,9 +30,10 @@ the text describes it.
 
 ## References
 
-* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral Operations
-      in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for Continuous
-      and Hybrid Systems, 2024.
+* [1] [M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for
+      Continuous and Hybrid Systems,
+      2024.](../../../../../../references/2024/wetzlinger-arch-polyhedral-operations.md)
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -51,23 +52,21 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isequalNondeg_printed_counterexample : -- --- CONCL ---
+    -- `P` without its `j`-th inequality
+    let drop := fun (A : Mat ℝ 2 1) (b : Vec ℝ 2) (j : Fin 2) =>
+      HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)
     ∃ (A₁ : Mat ℝ 2 1) (b₁ : Vec ℝ 2) (A₂ : Mat ℝ 2 1) (b₂ : Vec ℝ 2),
       (∀ j, ‖A₁ j‖₂ = 1) ∧ (∀ k, ‖A₂ k‖₂ = 1) ∧
       (interior (HPolytope.ineqs A₁ b₁).construct).Nonempty ∧
       (interior (HPolytope.ineqs A₂ b₂).construct).Nonempty ∧
-      (∀ j, (HPolytope.ineqs A₁ b₁).construct ≠
-        (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).construct) ∧
-      (∀ k, (HPolytope.ineqs A₂ b₂).construct ≠
-        (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).construct) ∧
+      (∀ j, (HPolytope.ineqs A₁ b₁).construct ≠ (drop A₁ b₁ j).construct) ∧
+      (∀ k, (HPolytope.ineqs A₂ b₂).construct ≠ (drop A₂ b₂ k).construct) ∧
       (∀ j, (∃ k, A₁ j = A₂ k ∧ b₁ j = b₂ k) ∨
-        supportFunc
-          (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).construct
-          (HPolytope.rowLin A₁ j) ≠ (b₁ j : EReal)) ∧
+        supportFunc (drop A₁ b₁ j).construct (HPolytope.rowLin A₁ j) ≠ (b₁ j : EReal)) ∧
       (∀ k, (∃ j, A₂ k = A₁ j ∧ b₂ k = b₁ j) ∨
-        supportFunc
-          (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).construct
-          (HPolytope.rowLin A₂ k) ≠ (b₂ k : EReal)) ∧
+        supportFunc (drop A₂ b₂ k).construct (HPolytope.rowLin A₂ k) ≠ (b₂ k : EReal)) ∧
       (HPolytope.ineqs A₁ b₁).construct ≠ (HPolytope.ineqs A₂ b₂).construct := by -- --- PROOF ---
+  intro drop
   let A : Mat ℝ 2 1 := !![1; -1]
   have hA : ∀ x : Vec ℝ 1, A *ᵥ x = ![x 0, -x 0] := fun x => by
     funext i

@@ -123,9 +123,10 @@ Network reduction, written once over the scalar: `BucketTolerance` is [1, Alg. 1
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
-      Transactions on Machine Learning Research, 2025.
-* [2] T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
+* [1] [T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../references/2023/ladner-tmlr-network-reduction.md)
+* [2] [T. Gehr, M. Mirman, D. Drachsler-Cohen, P. Tsankov, S. Chaudhuri and M. Vechev. "AI2: Safety
       and Robustness Certification of Neural Networks with Abstract Interpretation". 2018 IEEE
-      Symposium on Security and Privacy (SP), 2018.
+      Symposium on Security and Privacy (SP), 2018.](../../../../references/2018/gehr-sp-ai2.md)
 -/

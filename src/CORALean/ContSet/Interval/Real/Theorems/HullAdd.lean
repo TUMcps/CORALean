@@ -33,10 +33,12 @@ the suprema (`csSup_add`).
 
 ## References
 
-* [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
-      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control, 2019.
-* [2] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
-      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control, 2006.
+* [1] [W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
+      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
+      2019.](../../../../../../references/2019/tang-tac-interval-estimation.md)
+* [2] [A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
+      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control,
+      2006.](../../../../../../references/2006/girard-hscc-lti-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5

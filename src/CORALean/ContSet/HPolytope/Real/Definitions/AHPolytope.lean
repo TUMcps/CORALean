@@ -24,8 +24,9 @@ A set, not a representation: `ConZonotope` is the representation, and
 
 ## References
 
-* [1] S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". 2019 IEEE
-      58th Conference on Decision and Control (CDC), 2019.
+* [1] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". 2019 IEEE
+      58th Conference on Decision and Control (CDC),
+      2019.](../../../../../../references/2019/sadraddini-cdc-polytope-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

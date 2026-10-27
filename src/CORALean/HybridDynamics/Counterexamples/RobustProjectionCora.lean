@@ -78,11 +78,9 @@ open Matrix
 
 /-- The box of `aux_robustProjection` at `D = 1`, `n = (2, 0)`, `γ = 4` misses the hyperplane. -/
 theorem Location.robustProjectionCora_counterexample (lb ub : Vec ℝ 2) : -- --- CONCL ---
-    ∀ x : Vec ℝ 2, x ⬝ᵥ ![2, 0] = 4 →
-      ¬ ∀ k, (Location.robustProjectionCora (1 : Mat ℝ 2 2) ![2, 0] 4 lb ub).1 k ≤ x k ∧
-        x k ≤
-          (Location.robustProjectionCora (1 : Mat ℝ 2 2) ![2, 0] 4 lb ub).2 k := by -- --- PROOF ---
-  intro x hx hbox
+    let box := Location.robustProjectionCora (1 : Mat ℝ 2 2) ![2, 0] 4 lb ub
+    ∀ x : Vec ℝ 2, x ⬝ᵥ ![2, 0] = 4 → ¬ ∀ k, box.1 k ≤ x k ∧ x k ≤ box.2 k := by -- --- PROOF ---
+  intro box x hx hbox
   have h0 : x 0 = 2 := by
     simp [dotProduct, Fin.sum_univ_two] at hx
     linarith
@@ -98,7 +96,7 @@ theorem Location.robustProjectionCora_counterexample (lb ub : Vec ℝ 2) : -- --
     simp [List.finRange_succ, List.filter]
     split <;> split <;> simp_all <;> linarith [pow_pos (show (0 : ℝ) < 2 by norm_num) 52]
   have := hbox 0
-  simp only [Location.robustProjectionCora, hf] at this
+  simp only [box, Location.robustProjectionCora, hf] at this
   simp [h0] at this
 
 end CORALean

@@ -17,7 +17,7 @@ in the generator entries alone — `Float/Theorems/MemGeneratorError` argues it.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
+* [1] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
 -/

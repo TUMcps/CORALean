@@ -28,9 +28,10 @@ an empty operand — degenerate and bounded in the paper's convention, and absor
 
 ## References
 
-* [1] M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral Operations
-      in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for Continuous
-      and Hybrid Systems, 2024.
+* [1] [M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for
+      Continuous and Hybrid Systems,
+      2024.](../../../../../references/2024/wetzlinger-arch-polyhedral-operations.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -24,8 +24,9 @@ bound certifies 1% from `m = 18`, where the exponent is `17`.
 
 ## References
 
-* [1] R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed
-      Over Bounded Regions". Operations Research, 1984.
+* [1] [R. L. Smith. "Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed
+      Over Bounded Regions". Operations Research,
+      1984.](../../../references/1984/smith-or-uniform-points.md)
 -/
 
 -- Authors:       Claude Opus 5.5

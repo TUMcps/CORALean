@@ -36,8 +36,9 @@ the margin of Eq. 17 and `α₂` the sum of the `|P_ij|`, so `V_{k+1} ≤ α V_k
 
 ## References
 
-* [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
-      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control, 2019.
+* [1] [W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
+      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
+      2019.](../../../../../../references/2019/tang-tac-interval-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

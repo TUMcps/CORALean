@@ -35,12 +35,13 @@ those fractions and their complements. This is the arrow from zonotopes to polyt
 
 ## References
 
-* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+* [1] [M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
       with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
-      Uncertainties, 2011.
-* [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
+      Uncertainties,
+      2011.](../../../../../../references/2011/althoff-reachability-parametric-uncertainties.md)
+* [2] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

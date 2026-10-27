@@ -37,10 +37,12 @@ is all the proof uses. The paper takes the two extrema in a figure; here every p
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
-      Transactions on Machine Learning Research, 2025.
-* [2] G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
-      Certification". Advances in Neural Information Processing Systems, 2018.
+* [1] [L. Koller, T. Ladner and M. Althoff. "Set-Based Training for Neural Network Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../../../references/2025/koller-tmlr-set-based-training.md)
+* [2] [G. Singh, T. Gehr, M. Mirman, M. Püschel and M. Vechev. "Fast and Effective Robustness
+      Certification". Advances in Neural Information Processing Systems,
+      2018.](../../../../../../references/2018/singh-neurips-deepz.md)
 -/
 
 -- Authors:       Claude Opus 5.5

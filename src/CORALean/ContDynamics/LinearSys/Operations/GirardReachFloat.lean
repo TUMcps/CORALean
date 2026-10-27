@@ -36,8 +36,9 @@ as one past the bit length of `⌈r‖A‖⌉`, which keeps its argument in rang
 
 ## References
 
-* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
-      Computation and Control, 2005.
+* [1] [A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
+      Computation and Control,
+      2005.](../../../../../references/2005/girard-hscc-reachability-zonotopes.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

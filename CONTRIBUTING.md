@@ -527,7 +527,7 @@ build job.
 `scripts/check-references.py` checks `references/` against the tree:
 
 - Every page has one well-formed BibTeX entry and every docstring entry equals its rendering
-  (below).
+  and links its page (below).
 - Every paper cited has a page.
 - Every link on a page resolves and lands on a file that really cites that paper.
 - Every result cited anywhere is a row.
@@ -591,8 +591,12 @@ The line every `## References` entry of a module docstring under that page write
 rendering of the entry, in one format:
 
 ```
-* [1] <authors>. "<Title>". <Venue>, <year>.
+* [1] [<authors>. "<Title>". <Venue>, <year>.](<path to the page, relative to the file>)
 ```
+
+The whole line is a markdown link to the page (#237), so a click in the editor opens the page and,
+through its `**Source:**` line, the publication the statements were read from. The generator
+computes the path from the file's depth and `check-references.py` requires it.
 
 `<authors>` is `A. Name`, `A. Name and B. Name` or `A. Name, B. Name and C. Name`: the initials
 first, the names in the order of the entry, the last two joined by `and`, no Oxford comma.
@@ -1607,8 +1611,10 @@ a glance. A fact is a `have h : … := …`. A term in a proof is a `set x := �
 rewrites the context as well as the goal), or an `obtain ⟨x, hx⟩ : ∃ x, x = … := ⟨_, rfl⟩` where
 the name should stay opaque. A term in a statement that its readers will see is named by a local
 `let` at the head of the statement (`let mid := … ; a ≤ mid ∧ mid ≤ b`), which a proof takes
-with `intro mid`. Where a `set` name is opaque to `simp` and `linarith`, `simp only [x]` unfolds it
-at that step. Naming changes how a statement or proof is written, not what it states, so it
+with `intro mid`. A statement names each repeated piece (a set, the flows, the automaton) once, in
+the paper's symbols, and builds on the names (#259). Where a `set` name is opaque to `simp` and
+`linarith`, `simp only [x]` unfolds it at
+that step. Naming changes how a statement or proof is written, not what it states, so it
 does not count as a change of the file for the `Reviewed:` line.
 
 `scripts/conventions/check-repeated-subterms.py` reports the clearest case: a parenthesised or `⟨ … ⟩` group

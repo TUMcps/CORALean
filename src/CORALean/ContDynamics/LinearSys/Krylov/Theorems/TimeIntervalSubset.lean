@@ -53,8 +53,9 @@ error at `t` is at most `t/δ` times the box of `R_h(δ)`, which the hull reache
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
-      Subspace". IEEE Transactions on Automatic Control, 2020.
+* [1] [M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
+      Krylov Subspace". IEEE Transactions on Automatic Control,
+      2020.](../../../../../../references/2020/althoff-tac-krylov.md)
 -/
 
 -- Authors:       Claude Opus 5.5

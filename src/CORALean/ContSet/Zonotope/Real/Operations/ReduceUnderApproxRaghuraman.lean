@@ -26,10 +26,12 @@ maximum is a `0` the printed `P/|P|` is `0/0`, which is `0` here.
 
 ## References
 
-* [1] L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
-      of Zonotopes". IEEE Control Systems Letters, 2025.
-* [2] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
-      zonotopes". Automatica, 2022.
+* [1] [L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
+      of Zonotopes". IEEE Control Systems Letters,
+      2025.](../../../../../../references/2025/luetzow-lcss-underapprox-order-reduction.md)
+* [2] [V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
+      zonotopes". Automatica,
+      2022.](../../../../../../references/2022/raghuraman-koeln-constrained-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

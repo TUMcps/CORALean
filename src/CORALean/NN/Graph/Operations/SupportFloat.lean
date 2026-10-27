@@ -22,9 +22,9 @@ computable stand-in for `A i j ≠ 0`.
 
 ## References
 
-* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph Convolutional Networks
+* [1] [T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph Convolutional Networks
       with Uncertain Node Features and Uncertain Graph Structure". Transactions on Machine Learning
-      Research, 2025.
+      Research, 2025.](../../../../../references/2025/ladner-tmlr-gcn.md)
 -/
 
 -- Authors:       Claude Opus 5.5

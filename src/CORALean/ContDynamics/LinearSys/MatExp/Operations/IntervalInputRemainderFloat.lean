@@ -24,9 +24,10 @@ same step are taken at, so one order is admissible for all three.
 
 ## References
 
-* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+* [1] [M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
       with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
-      Uncertainties, 2011.
+      Uncertainties,
+      2011.](../../../../../../references/2011/althoff-reachability-parametric-uncertainties.md)
 -/
 
 -- Authors:       Claude Opus 5.5

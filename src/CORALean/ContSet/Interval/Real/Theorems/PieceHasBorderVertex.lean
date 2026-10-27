@@ -20,8 +20,9 @@ need not, `Interval.piece_solution_counterexample`. Neither needs the box ordere
 
 ## References
 
-* [1] C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
-      INFOCOMP Journal of Computer Science, 2009.
+* [1] [C. Lara, J. J. Flores and F. Calderon. "On the Hyperbox – Hyperplane Intersection Problem".
+      INFOCOMP Journal of Computer Science,
+      2009.](../../../../../../references/2009/lara-infocomp-hyperbox-hyperplane.md)
 -/
 
 -- Authors:       Claude Opus 5.5

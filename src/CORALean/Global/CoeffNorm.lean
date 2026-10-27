@@ -28,10 +28,12 @@ every point. That this is a norm there is `[1, Thm. 1]`, and at any coefficient 
 
 ## References
 
-* [1] A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem".
-      European Journal of Control, 2021.
-* [2] A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
-      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC), 2024.
+* [1] [A. Kulmburg and M. Althoff. "On the co-NP-Completeness of the Zonotope Containment Problem".
+      European Journal of Control,
+      2021.](../../../references/2021/kulmburg-ejc-zonotope-containment.md)
+* [2] [A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
+      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC),
+      2024.](../../../references/2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -18,9 +18,9 @@ The upper end of the union of [1, Alg. 1]'s intervals (line 30); `0` for the emp
 
 ## References
 
-* [1] M. Althoff, D. Grebenyuk and N. Kochdumper. "Implementation of Taylor Models in CORA 2018".
+* [1] [M. Althoff, D. Grebenyuk and N. Kochdumper. "Implementation of Taylor Models in CORA 2018".
       ARCH18. 5th International Workshop on Applied Verification of Continuous and Hybrid Systems,
-      2018.
+      2018.](../../../../../../references/2018/althoff-arch-taylor-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -28,8 +28,9 @@ are right for `G⁻ = ½(|G| - G)` (`Zonotope.intervalOfFactorBounds` writes the
 
 ## References
 
-* [1] L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
-      Network Verification". International Conference on Learning Representations, 2026.
+* [1] [L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
+      Network Verification". International Conference on Learning Representations,
+      2026.](../../../../../../references/2026/koller-iclr-latent-space.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,11 +21,12 @@ the multiplicative inverse of [1, Def. 3 (inverse)] followed by the product of [
 
 ## References
 
-* [1] K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
-      International Journal of Pure and Applied Mathematics, 2003.
-* [2] M. Althoff, D. Grebenyuk and N. Kochdumper. "Implementation of Taylor Models in CORA 2018".
+* [1] [K. Makino and M. Berz. "Taylor Models and Other Validated Functional Inclusion Methods".
+      International Journal of Pure and Applied Mathematics,
+      2003.](../../../../../../references/2003/makino-ijpam-taylor-models.md)
+* [2] [M. Althoff, D. Grebenyuk and N. Kochdumper. "Implementation of Taylor Models in CORA 2018".
       ARCH18. 5th International Workshop on Applied Verification of Continuous and Hybrid Systems,
-      2018.
+      2018.](../../../../../../references/2018/althoff-arch-taylor-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

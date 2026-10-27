@@ -37,8 +37,8 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 
 ## References
 
-* [1] K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range Bounders".
-      2005.
+* [1] [K. Makino and M. Berz. "Verified Global Optimization with Taylor Model-based Range Bounders".
+      2005.](../../../../../../references/2005/makino-tc-global-optimization.md)
 -/
 
 -- Authors:       Claude Opus 5.5

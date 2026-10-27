@@ -18,8 +18,9 @@ exactly one set `I` of indices, so the event is covered by the boxes `∏_j (V i
 boxes are disjoint, so this is the exact probability, but only the bound is needed.
 ## References
 
-* [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 2009.
+* [1] [M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
+      reliability". Automatica,
+      2009.](../../../references/2009/campi-automatica-interval-predictor-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

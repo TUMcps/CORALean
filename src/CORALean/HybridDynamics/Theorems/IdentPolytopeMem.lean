@@ -22,9 +22,10 @@ every inequality `cᵢᵀx ≤ dᵢ` ([1, Def. 2]).
 
 ## References
 
-* [1] N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid
+* [1] [N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid
       Automata from Noisy Data". Proceedings of the 28th ACM International Conference on Hybrid
-      Systems: Computation and Control, 2025.
+      Systems: Computation and Control,
+      2025.](../../../../references/2025/kochdumper-hscc-hybrid-automata-identification.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

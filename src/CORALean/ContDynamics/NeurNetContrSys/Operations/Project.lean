@@ -19,8 +19,9 @@ it runs at whichever representation the loop is reached in (`project_outer`).
 
 ## References
 
-* [1] N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
-      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715, 2022.
+* [1] [N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
+      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715,
+      2022.](../../../../../references/2022/kochdumper-arxiv-nn-polyzono.md)
 -/
 
 -- Authors:       Claude Opus 5.5

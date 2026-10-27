@@ -23,10 +23,12 @@ homogeneous case: `reachInstance` runs `reachAdmissible` (CORA's `standard`, [1,
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
-* [2] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
-      Systems". IEEE Transactions on Automatic Control, 2014.
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      2007.](../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
+* [2] [M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control,
+      2014.](../../../../references/2014/althoff-tac-nonlinear-dae.md)
 -/
 
 -- Authors:       Claude Sonnet 5

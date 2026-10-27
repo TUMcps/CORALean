@@ -24,10 +24,12 @@ iteratively to further refine E", and [1] repeats that, which is `k > 0`.
 
 ## References
 
-* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
-      zonotopes". Automatica, 2022.
-* [2] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
-      tool for set-based estimation and fault detection". Automatica, 2016.
+* [1] [V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
+      zonotopes". Automatica,
+      2022.](../../../../../../references/2022/raghuraman-koeln-constrained-zonotopes.md)
+* [2] [J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes: A new
+      tool for set-based estimation and fault detection". Automatica,
+      2016.](../../../../../../references/2016/scott-automatica-constrained-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

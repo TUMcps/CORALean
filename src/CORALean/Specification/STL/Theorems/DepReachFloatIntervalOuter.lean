@@ -40,9 +40,9 @@ P(t_{i+1}) ⊕ C_i` with `C_i` the exact products mapped `i` times by `e^{AΔt}`
 * the exact reachable set over the interval lies inside the float one
 ## References
 
-* [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
+* [1] [N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems
       against Signal Temporal Logic Specifications via Reachability Analysis". Nonlinear Analysis:
-      Hybrid Systems, 2024.
+      Hybrid Systems, 2024.](../../../../../references/2024/kochdumper-nahs-stl-lti-verification.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

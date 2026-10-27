@@ -34,9 +34,11 @@ below the minimum, norm of `F⁻¹ Z` ([1, Def. 3], [1, Def. 4]); `ellipsoidNorm
 
 ## References
 
-* [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
-      Zonotope Norm". 2020 American Control Conference (ACC), 2020.
-* [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
+* [1] [V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
+      Zonotope Norm". 2020 American Control Conference (ACC),
+      2020.](../../../../../../references/2020/gassmann-acc-zonotope-ellipsoid.md)
+* [2] [M. Černý. "Goffin's algorithm for zonotopes". Kybernetika,
+      2012.](../../../../../../references/2012/cerny-kybernetika-goffin-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

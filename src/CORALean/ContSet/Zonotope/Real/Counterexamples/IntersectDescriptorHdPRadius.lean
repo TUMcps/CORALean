@@ -30,8 +30,9 @@ Eq. 21a fails. Splitting the block corrects it (`intersectDescriptorHd_pRadius_l
 
 ## References
 
-* [1] Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for
-      discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control, 2019.
+* [1] [Y. Wang, Z. Wang, V. Puig and G. Cembrano. "Zonotopic set-membership state estimation for
+      discrete-time descriptor LPV systems". IEEE Transactions on Automatic Control,
+      2019.](../../../../../../references/2019/wang-tac-descriptor-lpv-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -160,16 +161,14 @@ theorem Zonotope.intersectDescriptorHd_pRadius_counterexample : -- --- CONCL ---
     -- the previous estimate `{0}`, its intersection zonotope, and Eq. 22's `ℓ_d`
     let X : Zonotope (Vec ℝ 1) := ⟨0, 0, Fin.elim0⟩
     let Z := X.intersectDescriptor T N Λ A B (D * Hd) C (F * Hd) 0 0
-    let ℓd := β * sSup ((fun b : Vec ℝ 1 => (Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b)) '' {b | ∀ i, |b i| ≤ 1}) +
-      (1 - β) * sSup ((fun b : Vec ℝ 1 => (Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b)) '' {b | ∀ i, |b i| ≤ 1})
+    let s : ℝ := sSup ((fun b : Vec ℝ 1 => (Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b)) '' {b | ∀ i, |b i| ≤ 1})
+    let ℓd := β * s + (1 - β) * s
+    -- the block `[P(1 - ΛC)TA, P(1 - ΛC)TD, P(NF - ΛCNF + ΛF)]` of the LMI
+    let M := fromCols (P * (1 - Λ * C) * T * A) (fromCols (P * (1 - Λ * C) * T * D)
+      (P * (N * F - Λ * C * N * F + Λ * F)))
     T * E + N * C = 1 ∧ P.PosDef ∧
       (fromBlocks (fromBlocks (α • P) 0 0
-        (fromBlocks (((1 - α) * β) • 1) 0 0 (((1 - α) * (1 - β)) • 1)))
-        (fromCols (P * (1 - Λ * C) * T * A) (fromCols (P * (1 - Λ * C) * T * D)
-          (P * (N * F - Λ * C * N * F + Λ * F))))ᵀ
-        (fromCols (P * (1 - Λ * C) * T * A) (fromCols (P * (1 - Λ * C) * T * D)
-          (P * (N * F - Λ * C * N * F + Λ * F))))
-        P).PosDef ∧
+        (fromBlocks (((1 - α) * β) • 1) 0 0 (((1 - α) * (1 - β)) • 1))) Mᵀ M P).PosDef ∧
       (∀ x : Vec ℝ 1, x ⬝ᵥ x ≤ γ ^ 2 * (x ⬝ᵥ (P *ᵥ x))) ∧
       ¬ Z.pRadius P ≤ α * X.pRadius P + (1 - α) * ℓd := by -- --- PROOF ---
   intro E T N Λ A B D C F Hd P α β γ X Z ℓd

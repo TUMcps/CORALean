@@ -24,8 +24,9 @@ term included: the paper sums from `i = 1` while its `g[Y]` and its example star
 
 ## References
 
-* [1] G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor Based
-      on Extremal Functions". Principles and Practice of Constraint Programming – CP 2010, 2010.
+* [1] [G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor
+      Based on Extremal Functions". Principles and Practice of Constraint Programming – CP 2010,
+      2010.](../../../../../../references/2010/trombettoni-cp-box-consistency.md)
 -/
 
 -- Authors:       Claude Opus 5.5

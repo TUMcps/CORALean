@@ -37,8 +37,9 @@ vector, entering as the factor `‖v_{m+1}‖₂` that (2.2) makes `1`.
 
 ## References
 
-* [1] T. Jawecki, W. Auzinger and O. Koch. "Computable upper error bounds for Krylov approximations
-      to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 2020.
+* [1] [T. Jawecki, W. Auzinger and O. Koch. "Computable upper error bounds for Krylov approximations
+      to matrix exponentials and associated φ-functions". BIT Numerical Mathematics,
+      2020.](../../../../../../references/2020/jawecki-bit-krylov-error-bounds.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -31,9 +31,9 @@ reached. CORA's `priv_reachInnerProjection` stores that box as its inner approxi
 
 ## References
 
-* [1] E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear Continuous
+* [1] [E. Goubault and S. Putot. "Forward Inner-Approximated Reachability of Non-Linear Continuous
       Systems". Proceedings of the 20th International Conference on Hybrid Systems: Computation and
-      Control, 2017.
+      Control, 2017.](../../../../references/2017/goubault-hscc-forward-inner-reachability.md)
 -/
 
 -- Authors:       Claude Opus 5.5

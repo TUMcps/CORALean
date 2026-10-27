@@ -27,9 +27,9 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
 
 ## References
 
-* [1] V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and S. A. Seshia.
+* [1] [V. Raman, A. Donzé, M. Maasoumy, R. M. Murray, A. Sangiovanni-Vincentelli and S. A. Seshia.
       "Model Predictive Control with Signal Temporal Logic Specifications". 53rd IEEE Conference on
-      Decision and Control, 2014.
+      Decision and Control, 2014.](../../../../../references/2014/raman-cdc-mpc-stl.md)
 -/
 
 -- Authors:       Claude Opus 5.5

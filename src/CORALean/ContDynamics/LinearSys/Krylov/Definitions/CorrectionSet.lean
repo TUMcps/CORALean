@@ -23,8 +23,9 @@ The interval's lower end is `corrCoeff i · δⁱ`, `corrCoeff i = i^{-i/(i-1)} 
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
-      Subspace". IEEE Transactions on Automatic Control, 2020.
+* [1] [M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
+      Krylov Subspace". IEEE Transactions on Automatic Control,
+      2020.](../../../../../../references/2020/althoff-tac-krylov.md)
 -/
 
 -- Authors:       Claude Opus 5.5

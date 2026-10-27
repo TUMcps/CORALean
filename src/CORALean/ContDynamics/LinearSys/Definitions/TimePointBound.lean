@@ -42,9 +42,10 @@ hypotheses, as `timeIntervalBound` takes its three: any representation that answ
 * support bound on the time-point reachable set along the direction
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+* [1] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Reachability Analysis with Support Functions". Proceedings of the 26th ACM
-      International Conference on Hybrid Systems: Computation and Control, 2023.
+      International Conference on Hybrid Systems: Computation and Control,
+      2023.](../../../../../references/2023/wetzlinger-hscc-support-functions.md)
 -/
 
 -- Authors:       Claude Opus 5

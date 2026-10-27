@@ -33,9 +33,10 @@ nonnegative (`0 ≤ φ`); with a negative width the strip `|C x - y| ≤ φ` is 
 
 ## References
 
-* [1] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
-      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
-      European Journal of Control, 2023.
+* [1] [A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
+      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption". European
+      Journal of Control,
+      2023.](../../../../../../references/2023/alanwar-ejc-privacy-preserving-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

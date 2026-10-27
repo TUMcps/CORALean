@@ -30,8 +30,9 @@ and the result encloses nothing; here it boxes along the axes.
 
 * [1] `contSet/@zonotope/private/priv_reduceMethC.m`, CORA (Sep. 2025). No
       paper behind the rule was confirmed.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
-      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
+* [2] [M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems,
+      2010.](../../../../../../references/2010/althoff-nahs-zonotopes-polytopes.md)
 -/
 
 -- Authors:       Claude Opus 5

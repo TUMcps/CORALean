@@ -26,9 +26,9 @@ set; a star set's box is finite, so an unbounded one is none.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
+* [1] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

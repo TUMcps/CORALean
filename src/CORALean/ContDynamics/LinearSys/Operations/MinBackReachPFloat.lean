@@ -28,8 +28,9 @@ exact, since choosing between two floats rounds nothing.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
+* [1] [M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control,
+      2026.](../../../../../references/2026/wetzlinger-tac-backward-reachability.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

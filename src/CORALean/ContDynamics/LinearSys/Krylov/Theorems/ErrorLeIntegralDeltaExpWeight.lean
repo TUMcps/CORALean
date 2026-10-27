@@ -38,8 +38,9 @@ e^{(s-t)ν}` (`Krylov.norm_exp_neg_smul_mulVec_le`). Stated for any real `ν` wi
 
 ## References
 
-* [1] H. Wang and Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix
-      exponentials". SIAM Journal on Matrix Analysis and Applications, 2017.
+* [1] [H. Wang and Q. Ye. "Error bounds for the Krylov subspace methods for computations of matrix
+      exponentials". SIAM Journal on Matrix Analysis and Applications,
+      2017.](../../../../../../references/2017/wang-simax-krylov-error-bounds.md)
 -/
 
 -- Authors:       Claude Opus 5.5

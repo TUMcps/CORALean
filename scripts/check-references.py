@@ -17,7 +17,9 @@ Every page opens with its one BibTeX entry (#265, `scripts/paper/refentry.py`): 
 `bibtex` block with the fields author, title, journal or booktitle, year, and a key no other
 page has. The line a module docstring writes under `## References` is rendered from it,
 `<authors>. "<Title>". <Venue>, <year>.`, and every docstring entry that cites a page must equal
-that rendering (`scripts/paper/render-references.py` rewrites them).
+that rendering (`scripts/paper/render-references.py` rewrites them). Each entry that names a page is
+a markdown link to it, `* [1] [<rendering>](<relative path to the page>)` (#237), so the page, and
+through its `**Source:**` line the publication read, is one click from the docstring.
 
 Every row also carries a `Class` cell, which `scripts/formalization-stats.py`
 turns into the paper's figure. A row in scope and formalized says how the *paper's*
@@ -152,8 +154,18 @@ def locator(s):
     return re.sub(r"\((\d[\d.]*)\)", r"\1", s)
 
 
-def module_refs(text):
-    """The file's bibliography, `{number: entry}`, and where the block sits."""
+# An entry that names a page is a markdown link to it, `[<rendering>](<path>)` (#237).
+ENTRY_LINK = re.compile(r"^\[(.+)\]\(([^()\s]+)\)$")
+
+
+def split_link(entry):
+    """`(text, target)` of an entry written as a link, `(entry, None)` otherwise."""
+    m = ENTRY_LINK.match(entry)
+    return (m.group(1), m.group(2)) if m else (entry, None)
+
+
+def raw_refs(text):
+    """The file's bibliography as written, `{number: entry}`, and where the block sits."""
     m = re.search(r"^## References\s*$(.*?)(?=^-/)", text, re.S | re.M)
     if not m:
         return {}, None
@@ -166,6 +178,17 @@ def module_refs(text):
         elif cur and line.strip():
             ents[cur] += " " + line.strip()
     return ents, m.span()
+
+
+def module_refs(text):
+    """The file's bibliography, `{number: entry}` without the link, and where the block sits."""
+    ents, span = raw_refs(text)
+    return {n: split_link(e)[0] for n, e in ents.items()}, span
+
+
+def page_link(lean, page):
+    """The target of the link from a Lean file to a `references/` page, relative to the file."""
+    return os.path.relpath(page, lean.parent).replace(os.sep, "/")
 
 
 def cites_of(path):
@@ -1228,6 +1251,18 @@ def main():
             cited.setdefault(entry, {})
             for loc in locs:
                 cited[entry].setdefault(loc, set()).add(path)
+
+    # Every entry that names a page links it (#237), relative to the file, so a click in the
+    # editor opens the page, and the page's `**Source:**` line is one more click.
+    for path in sorted(SRC.rglob("*.lean")):
+        ents, _ = raw_refs(path.read_text(encoding="utf-8", errors="replace"))
+        for num, raw in ents.items():
+            text, target = split_link(raw)
+            page = by_entry.get(text)
+            if page is not None and target != page_link(path, page.path):
+                say(f"{path.relative_to(ROOT).as_posix()}: `## References` entry [{num}] must be "
+                    f"a link to its page, `[<entry>]({page_link(path, page.path)})`. "
+                    "`python3 scripts/paper/render-references.py` writes it")
 
     for entry, locs in sorted(cited.items()):
         paper = by_entry.get(entry)

@@ -34,8 +34,9 @@ greatest and least `x·ℓ`. It follows from [1, Prop. 1] and the specification 
 
 ## References
 
-* [1] A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems Reachability
-      Analysis". Hybrid Systems: Computation and Control, 2008.
+* [1] [A. Girard and C. Le Guernic. "Zonotope/Hyperplane Intersection for Hybrid Systems
+      Reachability Analysis". Hybrid Systems: Computation and Control,
+      2008.](../../../../../references/2008/girard-hscc-zonotope-hyperplane.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -23,12 +23,12 @@ compared against once the test case's initial state and inputs are put in.
 
 ## References
 
-* [1] S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
+* [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
-      2023.
-* [2] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of 10th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
-      2023.
+      2023.](../../../../../references/2023/liu-tro-guarantees-real-robotic.md)
+* [2] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of
+      10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+      2023.](../../../../../references/2023/althoff-arch-reachset-conformance.md)
 -/
 
 -- Authors:       Claude Opus 5.5

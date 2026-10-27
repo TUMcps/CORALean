@@ -23,11 +23,13 @@ layer `ActivationPoly.lean` builds.
 
 ## References
 
-* [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
+* [1] [S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
       Abstraction and Refinement of Provable Explanations". Proceedings of the 42nd International
-      Conference on Machine Learning, 2025.
-* [2] N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
-      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715, 2022.
+      Conference on Machine Learning,
+      2025.](../../../../references/2025/bassan-icml-explaining-fast-and-slow.md)
+* [2] [N. Kochdumper, C. Schilling, M. Althoff and S. Bak. "Open- and Closed-Loop Neural Network
+      Verification using Polynomial Zonotopes". arXiv preprint arXiv:2207.02715,
+      2022.](../../../../references/2022/kochdumper-arxiv-nn-polyzono.md)
 -/
 
 -- Authors:       Claude Opus 5

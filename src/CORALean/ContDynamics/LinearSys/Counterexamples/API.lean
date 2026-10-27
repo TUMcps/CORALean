@@ -14,6 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportLowerTimeIn
 public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportUpperCenter
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifyRAOuterVerdictCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStall
+public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStallExactNonvacuous
 
 /-!
 # Counterexamples of `LinearSys`, collected

@@ -40,13 +40,13 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.center_not_mem_counterexample : -- --- CONCL ---
-    (⟨1, 2, 0, 0, ![![2], ![1]], ![![0, 1]], Fin.elim0⟩ : PolyZonotope (Vec ℝ 1)).c ∉
-      (⟨1, 2, 0, 0, ![![2], ![1]], ![![0, 1]], Fin.elim0⟩ :
-        PolyZonotope (Vec ℝ 1)).construct := by -- --- PROOF ---
+    let PZ : PolyZonotope (Vec ℝ 1) := ⟨1, 2, 0, 0, ![![2], ![1]], ![![0, 1]], Fin.elim0⟩
+    PZ.c ∉ PZ.construct := by -- --- PROOF ---
+  intro PZ
   rintro ⟨a, β, ha, -, hx⟩
   -- the first coordinate reads `0 = 2 + α`
   have h := congrFun hx 0
-  simp [PolyZonotope.monomial, Fin.sum_univ_two] at h
+  simp [PZ, PolyZonotope.monomial, Fin.sum_univ_two] at h
   have := (abs_le.mp (ha 0)).1
   linarith
 

@@ -34,11 +34,13 @@ a limit inside an infinite series needs uniform control. Here every summand is i
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms for
-      Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems, 2022.
-* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
+* [1] [M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms
+      for Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems,
+      2022.](../../../../../references/2022/wetzlinger-nahs-abstraction-error.md)
+* [2] [M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
       Analysis of Nonlinear Systems". Proceedings of the 24th International Conference on Hybrid
-      Systems: Computation and Control, 2021.
+      Systems: Computation and Control,
+      2021.](../../../../../references/2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md)
 -/
 
 -- Authors:       Claude Opus 5

@@ -29,8 +29,9 @@ every rounding is exact and this is `|n̂_k/n_k - ρ| ≤ tol` itself.
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
-      Transactions on Machine Learning Research, 2025.
+* [1] [T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../references/2023/ladner-tmlr-network-reduction.md)
 -/
 
 -- Authors:       Claude Opus 5.5

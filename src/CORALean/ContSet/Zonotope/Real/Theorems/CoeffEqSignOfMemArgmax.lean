@@ -37,7 +37,8 @@ point's coefficients usable on every face through it at once (`exists_raise_degr
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
+* [1] [M. Černý. "Goffin's algorithm for zonotopes". Kybernetika,
+      2012.](../../../../../../references/2012/cerny-kybernetika-goffin-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

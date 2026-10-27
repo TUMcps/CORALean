@@ -26,8 +26,9 @@ in column `b` of the last row is `A (np - b)`; the window is `p` blocks of `ny`,
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
-      Automatic Control, 2026.
+* [1] [L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control,
+      2026.](../../../../../references/2026/luetzow-tac-reachset-conformant-identification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

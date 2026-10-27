@@ -31,8 +31,8 @@ shifted by exactly the constant that leaves ([1, Prop. 13], eqs. (35) and (36)).
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

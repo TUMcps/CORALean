@@ -27,8 +27,9 @@ Its `reach` is `LinParamSysDT.reach` at that family, which runs as it stands;
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control, 2007.
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
+      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      2007.](../../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

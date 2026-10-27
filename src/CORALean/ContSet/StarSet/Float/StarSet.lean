@@ -23,8 +23,9 @@ predicate by its nominal part, slacks included, as `ConZonotope.P` is. The gener
 
 ## References
 
-* [1] P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear
-      Systems". Computer Aided Verification, 2016.
+* [1] [P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear
+      Systems". Computer Aided Verification,
+      2016.](../../../../../references/2016/duggirala-cav-parsimonious-verification.md)
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

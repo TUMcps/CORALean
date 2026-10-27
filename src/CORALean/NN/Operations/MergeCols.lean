@@ -28,8 +28,9 @@ adding it is how [1, Eq. 4] combines several buckets. The product and the sum ro
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
-      Transactions on Machine Learning Research, 2025.
+* [1] [T. Ladner and M. Althoff. "Fully Automatic Neural Network Reduction for Formal Verification".
+      Transactions on Machine Learning Research,
+      2025.](../../../../references/2023/ladner-tmlr-network-reduction.md)
 -/
 
 -- Authors:       Claude Opus 5.5

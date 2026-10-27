@@ -34,8 +34,9 @@ states; compact and preconnected is all that is used.
 
 ## References
 
-* [1] O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
-      Vector-valued Functions". Reliable Computing, 2013.
+* [1] [O. Mullier, É. Goubault, M. Kieffer and S. Putot. "General Inner Approximation of
+      Vector-valued Functions". Reliable Computing,
+      2013.](../../../references/2013/mullier-rc-general-inner-approximation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

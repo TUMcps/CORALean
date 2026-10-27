@@ -28,8 +28,9 @@ iterations; `0` is the pre-loop state of lines 1-6, so the `k`-th iteration's se
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
+* [1] [M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control,
+      2026.](../../../../../references/2026/wetzlinger-tac-backward-reachability.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -28,8 +28,9 @@ problem of the tree has a support constraint; `optimalDiscard_le` makes it a hyp
 
 ## References
 
-* [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 2009.
+* [1] [M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
+      reliability". Automatica,
+      2009.](../../../references/2009/campi-automatica-interval-predictor-models.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

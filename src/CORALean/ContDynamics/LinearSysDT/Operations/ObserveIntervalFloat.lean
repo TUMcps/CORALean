@@ -35,8 +35,9 @@ gain `L` fixed. Soundness is `observeIntervalFloat_outer`.
 
 ## References
 
-* [1] M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
-      Verification of Continuous and Hybrid Systems (ARCH21), 2021.
+* [1] [M. Althoff. "Guaranteed State Estimation in CORA 2021". 8th International Workshop on Applied
+      Verification of Continuous and Hybrid Systems (ARCH21),
+      2021.](../../../../../references/2021/althoff-arch-state-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -28,9 +28,9 @@ This is the arrow from zonotopes to polytopes of [1, Fig. 1 (Zonotopes → Polyt
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
-      Representation for Reachability Analysis". IEEE Transactions on Automatic
-      Control, 2021.
+* [1] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
+      Reachability Analysis". IEEE Transactions on Automatic Control,
+      2021.](../../../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
 
 -/
 

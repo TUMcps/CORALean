@@ -29,8 +29,9 @@ at `ℓ = 0` the hull is empty and the second set is `{u}`, so `0 < ℓ` is assu
 
 ## References
 
-* [1] A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
-      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control, 2006.
+* [1] [A. Girard, C. Le Guernic and O. Maler. "Efficient Computation of Reachable Sets of Linear
+      Time-Invariant Systems with Inputs". Hybrid Systems: Computation and Control,
+      2006.](../../../../../../references/2006/girard-hscc-lti-inputs.md)
 -/
 
 -- Authors:       Claude Opus 5.5

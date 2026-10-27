@@ -41,9 +41,10 @@ each coordinate's extreme values, the same over a set and its closed convex hull
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+* [1] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
-      Automatic Control, 2023.
+      Automatic Control,
+      2023.](../../../../../references/2023/wetzlinger-fully-automated-verification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

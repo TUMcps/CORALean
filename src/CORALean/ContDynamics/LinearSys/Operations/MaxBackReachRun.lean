@@ -30,8 +30,9 @@ line 2's pre-loop state, so the `k`-th iteration's set is `run (k+1)`'s.
 * loop state after a given number of iterations
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
+* [1] [M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control,
+      2026.](../../../../../references/2026/wetzlinger-tac-backward-reachability.md)
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5

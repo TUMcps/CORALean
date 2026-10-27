@@ -34,9 +34,10 @@ line (9, 11, 13) reads `τ_k`, which line 5 never sets (see the reference page's
 
 ## References
 
-* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+* [1] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
-      Automatic Control, 2023.
+      Automatic Control,
+      2023.](../../../../../references/2023/wetzlinger-fully-automated-verification.md)
 -/
 
 -- Authors:       Claude Sonnet 5

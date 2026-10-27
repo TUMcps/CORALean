@@ -32,8 +32,8 @@ are `w_0, …, w_{k-1}` and the noises `v_1, …, v_k`, as in the paper. `g` is 
 
 ## References
 
-* [1] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
-      Automatica, 2005.
+* [1] [T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
+      Automatica, 2005.](../../../../../references/2005/alamo-automatica-guaranteed-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

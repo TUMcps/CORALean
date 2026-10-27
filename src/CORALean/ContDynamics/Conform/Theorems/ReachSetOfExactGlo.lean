@@ -33,8 +33,9 @@ approximation reaches exactly `Ȳ` of (7) from `x∗ ⊕ X₀` under inputs in `
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
-      Automatic Control, 2026.
+* [1] [L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control,
+      2026.](../../../../../references/2026/luetzow-tac-reachset-conformant-identification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

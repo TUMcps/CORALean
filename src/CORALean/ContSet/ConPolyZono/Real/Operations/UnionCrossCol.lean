@@ -25,8 +25,8 @@ quadratic rather than linear in the operands' factor counts.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

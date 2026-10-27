@@ -35,9 +35,9 @@ see the narrowed box, which still holds `x`.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
+* [1] [N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
       Sets". Proceedings of the 23rd International Conference on Hybrid Systems: Computation and
-      Control, 2020.
+      Control, 2020.](../../../../../../references/2020/kochdumper-hscc-nonlinear-guards.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

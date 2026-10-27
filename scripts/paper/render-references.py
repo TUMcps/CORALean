@@ -7,7 +7,9 @@
 Each `references/<year>/*.md` page carries one BibTeX entry (see `scripts/paper/refentry.py`), and a
 module docstring cites the publication with a numbered line under `## References`,
 
-    * [1] <authors>. "<Title>". <Venue>, <year>.
+    * [1] [<authors>. "<Title>". <Venue>, <year>.](<relative path to the page>)
+
+The whole line is a markdown link to the page, the path computed from the file's depth (#237).
 
 `<authors>` is `A. Name, B. Name and C. Name`, the title and the venue are the entry's with the
 protecting braces dropped, wrapped at the line limit with a six-space hanging indent. An entry
@@ -41,13 +43,13 @@ INDENT = " " * 6
 
 
 def pages():
-    """`{bare title: rendering}` over the titles of the pages' entries and headings."""
+    """`{bare title: (rendering, page)}` over the titles of the pages' entries and headings."""
     out = {}
     for path in sorted(cr.REFS.glob(cr.PAPER_GLOB)):
         paper = cr.Paper(path, lambda m: None)
         if not paper.bib:
             continue
-        line = refentry.render(paper.bib)
+        line = (refentry.render(paper.bib), path)
         out.setdefault(refentry.tnorm(paper.bib["title"]), line)
         out.setdefault(refentry.tnorm(paper.title), line)
     return out
@@ -59,8 +61,9 @@ def wrap(number, line, lead=""):
                          break_on_hyphens=False)
 
 
-def rewrite(text, rendered):
-    """`text` with every entry that names a page replaced by that page's rendering."""
+def rewrite(text, rendered, lean):
+    """`text` with every entry that names a page replaced by a link to the page, its text the
+    page's rendering; `lean` is the file, the link being relative to it."""
     m = re.search(r"^## References\s*$(.*?)(?=^-/)", text, re.S | re.M)
     if not m:
         return text
@@ -77,7 +80,8 @@ def rewrite(text, rendered):
             j += 1
         flat = cr.FLAT(" ".join([e.group(2)] + lines[i + 1:j]))
         title = refentry.quoted_title(flat)
-        want = rendered.get(refentry.tnorm(title)) if title else None
+        page = rendered.get(refentry.tnorm(title)) if title else None
+        want = f"[{page[0]}]({cr.page_link(lean, page[1])})" if page else None
         if want is None or want == flat or flat.startswith("`"):
             out.extend(lines[i:j])
         else:
@@ -93,7 +97,7 @@ def main():
     changed = 0
     for path in sorted(cr.SRC.rglob("*.lean")):
         text = path.read_text(encoding="utf-8")
-        new = rewrite(text, rendered)
+        new = rewrite(text, rendered, path)
         if new != text:
             changed += 1
             if check:

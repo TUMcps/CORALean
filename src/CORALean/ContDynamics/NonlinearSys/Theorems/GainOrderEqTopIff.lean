@@ -27,8 +27,9 @@ leave the infimum `⊤` while the error is not zero, and the theorem would be fa
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms for
-      Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems, 2022.
+* [1] [M. Wetzlinger, A. Kulmburg, A. Le Penven and M. Althoff. "Adaptive Reachability Algorithms
+      for Nonlinear Systems Using Abstraction Error Analysis". Nonlinear Analysis: Hybrid Systems,
+      2022.](../../../../../references/2022/wetzlinger-nahs-abstraction-error.md)
 -/
 
 -- Authors:       Claude Opus 5

@@ -29,8 +29,9 @@ circumbody `Z(½H)` the proof uses as well.
 
 ## References
 
-* [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
-      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+* [1] [A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control,
+      2025.](../../../../references/2025/kulmburg-tac-approximability-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -145,15 +146,19 @@ private theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) : -- --- CONCL
 `σ(3)` and `σ(5/2)` at the printed `Z(H)`, and at `Z(½H)`, differ by less than
 `(2 / ξ̂²) |3 - 5/2|`. -/
 theorem gadget_sigma_counterexample : -- --- CONCL ---
+    -- `‖A‖_{1↦∞} = 2`, the numerator of Eq. 80's slope
     IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ‖aux_A28 *ᵥ WithLp.ofLp v‖) ''
         Metric.closedBall 0 1) 2 ∧
+      -- `‖A‖_{1↦1} = 3 = ξ̂` at `m = 1`
       IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ∑ i, |(aux_A28 *ᵥ WithLp.ofLp v) i|) ''
         Metric.closedBall 0 1) 3 ∧
+      -- at the printed `Z(H)`, `σ(3)`, `σ(5/2)` differ by less than the slope bound: Eq. 80 fails
       (∃ σ σ' : ℝ, IsGreatest ((fun α => coeffNorm (gadgetH 2)
           (gadgetGA ∞ ((3 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ ∧
         IsGreatest ((fun α => coeffNorm (gadgetH 2)
           (gadgetGA ∞ ((5 / 2 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ' ∧
         |σ' - σ| < 2 / 3 ^ 2 * |3 - 5 / 2|) ∧
+      -- the same at the circumbody `Z(½H)` the proof uses, refuting the printed reading directly
       ∃ σ σ' : ℝ, IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2)
           (gadgetGA ∞ ((3 : ℝ)⁻¹ • aux_A28) 1 α)) '' Metric.closedBall 0 1) σ ∧
         IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH 2)

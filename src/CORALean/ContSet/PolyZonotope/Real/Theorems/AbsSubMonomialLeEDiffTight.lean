@@ -32,9 +32,9 @@ times a product of powers of factors in `[-1,1]`, which never leaves `[-1,1]`, a
 
 ## References
 
-* [1] T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its Applications in
-      Formal Neural Network Verification". Proceedings of the AAAI Conference on Artificial
-      Intelligence, 2024.
+* [1] [T. Ladner and M. Althoff. "Exponent Relaxation of Polynomial Zonotopes and Its Applications
+      in Formal Neural Network Verification". Proceedings of the AAAI Conference on Artificial
+      Intelligence, 2024.](../../../../../../references/2024/ladner-aaai-exponent-relaxation.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

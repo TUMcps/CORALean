@@ -27,8 +27,8 @@ for every `ε > 0`, because `M` is not an H-matrix. (2) is that of the corollary
 
 ## References
 
-* [1] A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
-      Reliable Computing, 2010.
+* [1] [A. Goldsztejn and L. Jaulin. "Inner approximation of the range of vector-valued functions".
+      Reliable Computing, 2010.](../../../references/2010/goldsztejn-rc-inner-range.md)
 -/
 
 -- Authors:       Claude Opus 5.5

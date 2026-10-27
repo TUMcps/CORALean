@@ -34,9 +34,10 @@ never that one. The equivalence holds at every level a warm start could enter at
 
 ## References
 
-* [1] S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
+* [1] [S. Bassan, Y. Y. Elboher, T. Ladner, M. Althoff and G. Katz. "Explaining, Fast and Slow:
       Abstraction and Refinement of Provable Explanations". Proceedings of the 42nd International
-      Conference on Machine Learning, 2025.
+      Conference on Machine Learning,
+      2025.](../../../../references/2025/bassan-icml-explaining-fast-and-slow.md)
 -/
 
 -- Authors:       Claude Opus 5.5

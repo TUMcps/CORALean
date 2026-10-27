@@ -24,8 +24,8 @@ degenerate block should have, and the reason no positivity hypothesis is needed.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

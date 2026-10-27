@@ -24,8 +24,9 @@ so `X_{pq} = ⟨c_p, c_q⟩` for `c_p = (vₐ p)ₐ ∈ ℝ^d`.
 
 ## References
 
-* [1] A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
-      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control, 2025.
+* [1] [A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
+      Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control,
+      2025.](../../../references/2025/kulmburg-tac-approximability-containment.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -37,8 +37,9 @@ the sublevel set and every support constraint. The proof of [1, Thm. 3] rests on
 
 ## References
 
-* [1] M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
-      reliability". Automatica, 2009.
+* [1] [M. C. Campi, G. Calafiore and S. Garatti. "Interval predictor models: Identification and
+      reliability". Automatica,
+      2009.](../../../references/2009/campi-automatica-interval-predictor-models.md)
 -/
 
 -- Authors:       Claude Opus 5.5

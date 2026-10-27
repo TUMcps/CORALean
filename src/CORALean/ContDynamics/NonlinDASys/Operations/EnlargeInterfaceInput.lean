@@ -29,8 +29,9 @@ matrix; [1] means a diagonal one). With `Λ = I` it is the enlargement of [1, Eq
 
 ## References
 
-* [1] M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets". IEEE
-      Transactions on Power Systems, 2014.
+* [1] [M. Althoff. "Formal and Compositional Analysis of Power Systems using Reachable Sets". IEEE
+      Transactions on Power Systems,
+      2014.](../../../../../references/2014/althoff-tps-power-systems.md)
 -/
 
 -- Authors:       Claude Opus 5.5

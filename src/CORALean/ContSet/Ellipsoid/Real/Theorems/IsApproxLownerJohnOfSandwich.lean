@@ -33,7 +33,8 @@ is contained in it, then `E* = E_j/(1+ε)` is an `ε`-approximate Löwner-John e
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
+* [1] [M. Černý. "Goffin's algorithm for zonotopes". Kybernetika,
+      2012.](../../../../../../references/2012/cerny-kybernetika-goffin-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

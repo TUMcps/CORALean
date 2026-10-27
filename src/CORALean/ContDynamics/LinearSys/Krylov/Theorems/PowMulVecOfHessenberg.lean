@@ -32,8 +32,9 @@ the residual `h_{m+1,m} v⁽ᵐ⁺¹⁾`. At `x = e₁` this is `C^j V e₁ = V 
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov
-      Subspace". IEEE Transactions on Automatic Control, 2020.
+* [1] [M. Althoff. "Reachability Analysis of Large Linear Systems with Uncertain Inputs in the
+      Krylov Subspace". IEEE Transactions on Automatic Control,
+      2020.](../../../../../../references/2020/althoff-tac-krylov.md)
 -/
 
 -- Authors:       Claude Opus 5.5

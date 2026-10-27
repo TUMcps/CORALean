@@ -29,8 +29,9 @@ written `p + 1`. The exponential series of `e^{θz}`, integrated term by term ag
 
 ## References
 
-* [1] T. Jawecki, W. Auzinger and O. Koch. "Computable upper error bounds for Krylov approximations
-      to matrix exponentials and associated φ-functions". BIT Numerical Mathematics, 2020.
+* [1] [T. Jawecki, W. Auzinger and O. Koch. "Computable upper error bounds for Krylov approximations
+      to matrix exponentials and associated φ-functions". BIT Numerical Mathematics,
+      2020.](../../../../../../references/2020/jawecki-bit-krylov-error-bounds.md)
 -/
 
 -- Authors:       Claude Opus 5.5

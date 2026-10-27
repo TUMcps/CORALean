@@ -25,8 +25,9 @@ is a precision question, not a soundness one.
 * the polytope on the directions `Aq` bounded by the sum of the bounds `u₁` and `u₂`
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
+* [1] [M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control,
+      2026.](../../../../../../references/2026/wetzlinger-tac-backward-reachability.md)
 -/
 
 -- Authors:       Claude Opus 5

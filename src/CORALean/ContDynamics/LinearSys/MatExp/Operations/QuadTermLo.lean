@@ -20,9 +20,10 @@ vertex; where `t = 0` the `if` reads `-1/t` as `0` and this is sound but not tig
 
 ## References
 
-* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
+* [1] [M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic Systems
       with Parametric Uncertainties". Modeling, Design, and Simulation of Systems with
-      Uncertainties, 2011.
+      Uncertainties,
+      2011.](../../../../../../references/2011/althoff-reachability-parametric-uncertainties.md)
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -28,8 +28,8 @@ compaction buys is the order bound, which is stated in `ReduceOrder`.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

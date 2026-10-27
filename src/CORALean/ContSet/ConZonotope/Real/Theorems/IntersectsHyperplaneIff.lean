@@ -32,8 +32,9 @@ between them inside `Zc`, at the one weight `h` reads off as `f`.
 
 ## References
 
-* [1] V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
-      zonotopes". Automatica, 2022.
+* [1] [V. Raghuraman and J. P. Koeln. "Set operations and order reductions for constrained
+      zonotopes". Automatica,
+      2022.](../../../../../../references/2022/raghuraman-koeln-constrained-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5

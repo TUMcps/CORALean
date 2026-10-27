@@ -18,8 +18,8 @@ their proofs are too. `e4m3` and `e2m1` are [1, Table 2] and [1, Table 5]; IEEE 
 
 ## References
 
-* [1] Open Compute Project. "OCP Microscaling Formats (MX) Specification, Version 1.0". Open Compute
-      Project, 2023.
+* [1] [Open Compute Project. "OCP Microscaling Formats (MX) Specification, Version 1.0". Open
+      Compute Project, 2023.](../../../../../../references/2023/ocp-mx-specification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

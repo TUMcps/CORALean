@@ -33,8 +33,9 @@ to do.
 
 ## References
 
-* [1] V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
-      Zonotope Norm". 2020 American Control Conference (ACC), 2020.
+* [1] [V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
+      Zonotope Norm". 2020 American Control Conference (ACC),
+      2020.](../../../../../../references/2020/gassmann-acc-zonotope-ellipsoid.md)
 -/
 
 -- Authors:       Claude Opus 5.5

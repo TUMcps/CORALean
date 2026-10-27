@@ -25,8 +25,9 @@ through `exhaustiveSearchCost_ops_le`, then `C(n + κ, n) ≤ (n + κ)ⁿ` and
 
 ## References
 
-* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
-      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems, 2010.
+* [1] [M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
+      Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems,
+      2010.](../../../../../../../../references/2010/althoff-nahs-zonotopes-polytopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

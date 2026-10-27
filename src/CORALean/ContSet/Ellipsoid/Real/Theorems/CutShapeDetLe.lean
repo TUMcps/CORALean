@@ -32,7 +32,8 @@ determinant is `(1+x)^(n−1)/(1+ε)`; `1 + x ≤ eˣ` gives `(1+x)^(n−1) ≤ 
 
 ## References
 
-* [1] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
+* [1] [M. Černý. "Goffin's algorithm for zonotopes". Kybernetika,
+      2012.](../../../../../../references/2012/cerny-kybernetika-goffin-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

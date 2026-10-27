@@ -24,9 +24,10 @@ since the two domains are equal in size but not in name. It is the half of
 
 ## References
 
-* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
+* [1] [N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
       Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:
-      Computation and Control, 2020.
+      Computation and Control,
+      2020.](../../../../../../references/2020/kochdumper-hscc-utilizing-dependencies.md)
 -/
 
 -- Authors:       Claude Opus 5

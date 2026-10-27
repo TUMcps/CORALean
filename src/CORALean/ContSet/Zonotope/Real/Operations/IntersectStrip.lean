@@ -29,16 +29,20 @@ are tuning, as `Λ` is any matrix here, and the soundness does not depend on it.
 
 ## References
 
-* [1] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
-      estimation for uncertain systems". Automatica, 2013.
-* [2] A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
-      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption".
-      European Journal of Control, 2023.
-* [3] T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
-      Automatica, 2005.
-* [4] V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
+* [1] [V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotopic guaranteed state
+      estimation for uncertain systems". Automatica,
+      2013.](../../../../../../references/2013/le-automatica-zonotopic-estimation.md)
+* [2] [A. Alanwar, V. Gaßmann, X. He, H. Said, H. Sandberg, K. H. Johansson and M. Althoff.
+      "Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption". European
+      Journal of Control,
+      2023.](../../../../../../references/2023/alanwar-ejc-privacy-preserving-estimation.md)
+* [3] [T. Alamo, J. M. Bravo and E. F. Camacho. "Guaranteed state estimation by zonotopes".
+      Automatica,
+      2005.](../../../../../../references/2005/alamo-automatica-guaranteed-estimation.md)
+* [4] [V. T. H. Le, C. Stoica, T. Alamo, E. F. Camacho and D. Dumur. "Zonotope-based set-membership
       estimation for multi-output uncertain systems". 2013 IEEE International Symposium on
-      Intelligent Control (ISIC), 2013.
+      Intelligent Control (ISIC),
+      2013.](../../../../../../references/2013/le-isic-multi-output-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

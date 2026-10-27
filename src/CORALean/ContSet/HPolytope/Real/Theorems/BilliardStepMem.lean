@@ -33,8 +33,9 @@ the uniform draw of `η` hits with probability zero.
 
 ## References
 
-* [1] B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control and
-      optimization". IFAC Proceedings Volumes, 2014.
+* [1] [B. T. Polyak and E. N. Gryazina. "Billiard walk - a new sampling algorithm for control and
+      optimization". IFAC Proceedings Volumes,
+      2014.](../../../../../../references/2014/polyak-ifac-billiard-walk.md)
 -/
 
 -- Authors:       Claude Opus 5.5

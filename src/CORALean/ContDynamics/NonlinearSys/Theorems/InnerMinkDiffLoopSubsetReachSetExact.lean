@@ -41,8 +41,9 @@ symmetric about line 14's `c`. Runs are under the constant input `u₀` of the a
 
 ## References
 
-* [1] M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
-      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters, 2024.
+* [1] [M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
+      Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
+      2024.](../../../../../references/2024/wetzlinger-lcss-inner-minkowski-difference.md)
 -/
 
 -- Authors:       Claude Opus 5.5

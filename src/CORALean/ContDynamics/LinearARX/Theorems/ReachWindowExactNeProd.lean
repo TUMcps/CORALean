@@ -25,8 +25,8 @@ reachable, but `y(2) = 2` forces `ũ(2) = 1` and so `y(3) ≥ 0`.
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
-      on Decision and Control (CDC), 2023.
+* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
+      on Decision and Control (CDC), 2023.](../../../../../references/2023/luetzow-cdc-armax.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -21,11 +21,11 @@ same set, so whatever is proved of a `LevelSet` holds here.
 
 ## References
 
-* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
-      Informatica, 2023.
-* [2] N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
+* [1] [N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta Informatica,
+      2023.](../../../../../references/2023/kochdumper-constrained-polyzonotopes.md)
+* [2] [N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
       Sets". Proceedings of the 23rd International Conference on Hybrid Systems: Computation and
-      Control, 2020.
+      Control, 2020.](../../../../../references/2020/kochdumper-hscc-nonlinear-guards.md)
 -/
 
 -- Authors:       Claude Opus 5.5

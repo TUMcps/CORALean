@@ -23,9 +23,11 @@ assuming `Q` positive semi-definite, where it is the structure itself (`ofShape_
 
 ## References
 
-* [1] A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski
-      sum of ellipsoids". 2018 IEEE Conference on Decision and Control (CDC), 2018.
-* [2] M. Černý. "Goffin's algorithm for zonotopes". Kybernetika, 2012.
+* [1] [A. Halder. "On the parameterized computation of minimum volume outer ellipsoid of Minkowski
+      sum of ellipsoids". 2018 IEEE Conference on Decision and Control (CDC),
+      2018.](../../../../../../references/2018/halder-cdc-minkowski-sum-ellipsoids.md)
+* [2] [M. Černý. "Goffin's algorithm for zonotopes". Kybernetika,
+      2012.](../../../../../../references/2012/cerny-kybernetika-goffin-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

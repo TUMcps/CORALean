@@ -40,8 +40,9 @@ zonotope; `0 < ‖A‖` is [1]'s division by `‖A‖`, without which `β_r` rea
 
 ## References
 
-* [1] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
-      Computation and Control, 2005.
+* [1] [A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". Hybrid Systems:
+      Computation and Control,
+      2005.](../../../../../references/2005/girard-hscc-reachability-zonotopes.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -32,8 +32,8 @@ the others since `u` does not annihilate it.
 
 ## References
 
-* [1] M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
-      arXiv:1512.02794, 2015.
+* [1] [M. Althoff. "On Computing the Minkowski Difference of Zonotopes". arXiv preprint
+      arXiv:1512.02794, 2015.](../../../references/2015/althoff-arxiv-minkowski-difference.md)
 -/
 
 -- Authors:       Claude Opus 5

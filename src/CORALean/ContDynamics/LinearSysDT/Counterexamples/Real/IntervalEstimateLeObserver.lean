@@ -29,8 +29,9 @@ Both start at `[-1, 1]`. At `k = 1` the estimate is `[-1, 1]`, the generator `-1
 
 ## References
 
-* [1] W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
-      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control, 2019.
+* [1] [W. Tang, Z. Wang, Y. Wang, T. Raïssi and Y. Shen. "Interval estimation methods for
+      discrete-time linear time-invariant systems". IEEE Transactions on Automatic Control,
+      2019.](../../../../../../references/2019/tang-tac-interval-estimation.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -25,8 +25,9 @@ zero outside, which the printed formula needs and does not say.
 
 ## References
 
-* [1] L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
-      Automatic Control, 2026.
+* [1] [L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
+      Automatic Control,
+      2026.](../../../../../references/2026/luetzow-tac-reachset-conformant-identification.md)
 -/
 
 -- Authors:       Claude Opus 5.5

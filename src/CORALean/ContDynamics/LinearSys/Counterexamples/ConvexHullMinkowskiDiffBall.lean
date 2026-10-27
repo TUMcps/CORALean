@@ -39,11 +39,13 @@ away from its trajectory, and `⊖ F H` trims the hull on the trajectory's side,
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
-      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control, 2026.
-* [2] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
+* [1] [M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed Continuous-Time
+      Linear Systems Using Set Propagation". IEEE Transactions on Automatic Control,
+      2026.](../../../../../references/2026/wetzlinger-tac-backward-reachability.md)
+* [2] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
       Systems Using Inner- and Outer-Approximations of Reachable Sets". IEEE Transactions on
-      Automatic Control, 2023.
+      Automatic Control,
+      2023.](../../../../../references/2023/wetzlinger-fully-automated-verification.md)
 -/
 
 -- Authors:       Claude Opus 5.5
