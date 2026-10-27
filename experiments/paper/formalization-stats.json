@@ -16,8 +16,8 @@
   "totals": {
     "papers": 103,
     "papers_with_findings": 90,
-    "in_scope": 1310,
-    "formalized": 1225,
+    "in_scope": 1311,
+    "formalized": 1226,
     "not_formalized": 85,
     "out_of_scope": 1157,
     "out_of_scope_by_reason": {
@@ -32,7 +32,7 @@
       "underspecified": 261,
       "proof-gap": 32,
       "fixed": 110,
-      "false": 12
+      "false": 13
     },
     "claims": {
       "in_scope": 489,
@@ -44,13 +44,13 @@
       "false": 7
     },
     "definitions": {
-      "in_scope": 821,
-      "formalized": 774,
+      "in_scope": 822,
+      "formalized": 775,
       "correct": 545,
       "underspecified": 165,
       "proof-gap": 0,
       "fixed": 59,
-      "false": 5
+      "false": 6
     }
   },
   "papers": [
@@ -5332,8 +5332,8 @@
       "label": "Wetzlinger 2023 (hscc)",
       "year": 2023,
       "title": "Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions",
-      "in_scope": 9,
-      "formalized": 9,
+      "in_scope": 10,
+      "formalized": 10,
       "not_formalized": 0,
       "out_of_scope": 4,
       "out_of_scope_by_reason": {
@@ -5348,7 +5348,7 @@
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
-        "false": 1
+        "false": 2
       },
       "claims": {
         "in_scope": 0,
@@ -5360,13 +5360,13 @@
         "false": 0
       },
       "definitions": {
-        "in_scope": 9,
-        "formalized": 9,
+        "in_scope": 10,
+        "formalized": 10,
         "correct": 1,
         "underspecified": 6,
         "proof-gap": 0,
         "fixed": 1,
-        "false": 1
+        "false": 2
       },
       "findings": [
         {
@@ -5393,6 +5393,11 @@
           "result": "Alg. 2",
           "class": "underspecified",
           "reason": "the falsification test is nested under the safety test and can never fire: it never returns unsafe; and when line 16's maximum is ρ(H(t_{k+1}),ℓ_i) the violating support vector is ν(Ř(t_{k+1}),ℓ_i), not ν(Ř(t_k),ℓ_i); see Findings"
+        },
+        {
+          "result": "Sec. 5.1 (termination)",
+          "class": "false",
+          "reason": "line 9 is the `else if` of line 7, and a lower bound never exceeds its step's upper bound, so the listing never returns unsafe: with the state `1` of `R(0)` above `f = 0`, line 7 fails in every round and the `repeat` halves Δt forever; see Findings"
         },
         {
           "result": "Alg. 3 (exits)",
@@ -8148,7 +8153,7 @@
           "underspecified": 13,
           "proof-gap": 0,
           "fixed": 0,
-          "false": 0
+          "false": 1
         }
       },
       {
@@ -8815,7 +8820,7 @@
           "underspecified": 23,
           "proof-gap": 2,
           "fixed": 9,
-          "false": 1
+          "false": 2
         }
       },
       "others": {
@@ -8866,7 +8871,7 @@
         "underspecified": 230,
         "proof-gap": 28,
         "fixed": 93,
-        "false": 11
+        "false": 12
       }
     },
     "findings_not_on_a_class": {
@@ -8893,11 +8898,11 @@
       }
     },
     "theorems": {
-      "paper": 1886,
+      "paper": 1892,
       "float": 2306,
-      "helper": 2242,
+      "helper": 2247,
       "lemma": 3355,
-      "total": 9789,
+      "total": 9800,
       "examples": 133
     }
   }

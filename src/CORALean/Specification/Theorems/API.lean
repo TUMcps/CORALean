@@ -16,6 +16,8 @@ public import CORALean.Specification.Theorems.Separation
 public import CORALean.Specification.Theorems.SubsetHPolytope
 public import CORALean.Specification.Theorems.VerifyConvexFoldInv
 public import CORALean.Specification.Theorems.VerifyConvexSafe
+public import CORALean.Specification.Theorems.VerifyHalfspaceEqSafeOfMargin
+public import CORALean.Specification.Theorems.VerifyHalfspaceEqViolatedOfMargin
 public import CORALean.Specification.Theorems.VerifyHalfspaceSafe
 public import CORALean.Specification.Theorems.VerifyHalfspaceUnsafe
 
@@ -33,7 +35,8 @@ discharge the check itself, each turning it into bounds `Global.SupportFunction`
 supplies; `Violation` and `Intersection` are the falsification exits of the
 same two algorithms. `VerifyHalfspaceSafe`/`VerifyHalfspaceUnsafe` and
 `VerifyConvexSafe` assemble those exits into the decision procedures'
-conclusive answers. `DiffPointMemSub` and `VerifyConvexFoldInv` are
+conclusive answers, and `VerifyHalfspaceEqSafeOfMargin`/`VerifyHalfspaceEqViolatedOfMargin` reach
+them from a margin and converging bounds. `DiffPointMemSub` and `VerifyConvexFoldInv` are
 `VerifyConvex`'s own loop invariant, and `ExistsSeparatingOfVerifyConvexEqSafe`/
 `ExistsConvexHullOfVerifyConvexEqUnsafe` read a `safe`/`violated` verdict back
 as a witness. `CheckSound` is what a passed `check` is worth.

@@ -375,6 +375,9 @@
       "description": "support direction drops $T$ and counts steps from the wrong end",
       "fix": "HeldSimLeSupportCounterexample.lean"
     },
+    "Sec. 5.1 (termination)": {
+      "description": "printed Alg.~2 never returns unsafe, so it loops on an unsafe decidable case"
+    },
     "Alg. 3 (termination)": {
       "description": "search can stall at one $\\Delta t$ in a decidable case"
     }
