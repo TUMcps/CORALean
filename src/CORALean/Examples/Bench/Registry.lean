@@ -181,6 +181,21 @@ private def aux_runTiTp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋
       IO.println s!"{experiment}: wrote {out}.json and {out}.csv ({ti.length} ti, \
         {tp.length} tp steps, median {medianNs} ns over {reps} rep(s), eta = {etaUsed})"
 
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The significand width a `dyadic` run picks: `--prec` if given, else
+`--format` (already validated), else `53` -- `binary64`. -/
+def resolvedPrec (args : CliArgs) : ℕ :=
+  match args.prec with
+  | some p => p
+  | none => match args.format with
+    | some fmt => (formatToPrec fmt).toOption.getD 53
+    | none => 53
+
+/-- The decimal digit count a `fixed` run picks: `--digits` if given, else `4`. -/
+def resolvedDigits (args : CliArgs) : ℕ := args.digits.getD 4
+
 /-- `args.experiment`, run at whichever `𝕋` `dispatch` picked. -/
 def runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (args : CliArgs)
     (inst : String → ExactDyadic → Except String 𝕋) (instUnchecked : ExactDyadic → 𝕋)
@@ -200,21 +215,6 @@ def runAt {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     IO.eprintln s!"unknown experiment `{other}` -- one of dtdemo, headline-a, \
       headline-b, exp2-timepoint, nn-float32, nn-mnist"
     IO.Process.exit 1
-
-
--- =====================================  MAIN DEFINITION  ====================================== --
-
-/-- The significand width a `dyadic` run picks: `--prec` if given, else
-`--format` (already validated), else `53` -- `binary64`. -/
-def resolvedPrec (args : CliArgs) : ℕ :=
-  match args.prec with
-  | some p => p
-  | none => match args.format with
-    | some fmt => (formatToPrec fmt).toOption.getD 53
-    | none => 53
-
-/-- The decimal digit count a `fixed` run picks: `--digits` if given, else `4`. -/
-def resolvedDigits (args : CliArgs) : ℕ := args.digits.getD 4
 
 open CORALean.Bench.NearestUnsound in
 /-- `--type nearest`, with NO guarantees: `NearestFloat`, or `NearestDyadic p` once

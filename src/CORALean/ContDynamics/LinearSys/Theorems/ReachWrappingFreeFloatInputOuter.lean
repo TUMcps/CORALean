@@ -25,7 +25,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # `reachWrappingFreeFloatInput` holds every run over every window
 
 At `t = τ + t_k`: the run less its free motion and the constant's share is one
-`Ũ`-input's contribution by `t` (`IsTrajectory.sub_mem_inputReach_recenter`),
+`Ũ`-input's contribution by `t` (`IsCanonicalTrajectory.sub_mem_inputReach_recenter`),
 inside `e^{A t_k} P^R(Δt) ⊕ P^R(t_k)` (`inputReach_mono`, then
 `inputReach_separation_subset` at `Δt + t_k`); the free motion and the constant
 come apart the same way (`expIntegral_add_mulVec`). So the run is

@@ -21,9 +21,9 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 `timeIntervalInner_inner` at the reachable set over `[0, r]`, for any input set `U`. The inner
 approximation lies in `X₀` itself (`timeInterval_subset_initial_add_error` measures against
 `X₀`), and every point of `X₀` is the state at `t = 0` of a Carathéodory run on `[0, r]`: hold the
-input at `U`'s center and take `closedForm`, which `closedForm_flow` makes a `IsTrajectory`.
-`timeInterval` carries no input, so `U` enters only through that witness; a zonotope is never
-empty, so no hypothesis on `U` is needed.
+input at `U`'s center and take `closedForm`, which `closedForm_flow` makes an
+`IsCanonicalTrajectory`. `timeInterval` carries no input, so `U` enters only through that witness; a
+zonotope is never empty, so no hypothesis on `U` is needed.
 
 ## Inputs
 * `sys` – linear system

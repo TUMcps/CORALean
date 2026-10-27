@@ -7,9 +7,9 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 /-!
 # `simulate` samples a trajectory
 
-`simulate x₀ u` satisfies `IsTrajectory R₀ U` whenever `x₀ ∈ construct R₀` and
+`simulate x₀ u` satisfies `IsCanonicalTrajectory R₀ U` whenever `x₀ ∈ construct R₀` and
 `u` stays in `construct U` at every step: `init` and `input` are the
-hypotheses handed in, `step` is `rfl`, since `simulate` is `IsTrajectory.step`'s
+hypotheses handed in, `step` is `rfl`, since `simulate` is `IsCanonicalTrajectory.step`'s
 equation read as a recursive definition rather than as a predicate.
 
 ## Inputs

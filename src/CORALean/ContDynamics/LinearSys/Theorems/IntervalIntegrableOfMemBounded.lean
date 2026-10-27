@@ -15,7 +15,7 @@ integrand is dominated by a constant over a finite measure.
 
 Stated for a bare signal rather than for a run, since the two-signal flow of
 `IsPerturbedTrajectory` needs it once per signal and neither of those is
-the input of a `IsTrajectory` on its own.
+the input of an `IsCanonicalTrajectory` on its own.
 
 ## Inputs
 * `U` – bounded set

@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # A continuous-time system paired with its input set
 
-The input set `U` a `IsTrajectory` draws from is bundled with the system rather than taken from
-CORA's `params.U`, because `0 ∈ U` is a proof about it that `params` cannot carry;
+The input set `U` an `IsCanonicalTrajectory` draws from is bundled with the system rather than taken
+from CORA's `params.U`, because `0 ∈ U` is a proof about it that `params` cannot carry;
 `Reach LinearSys.WithInput` reads it off the system it is asked about, exactly as it reads `sys.A`.
 `0 ∈ U` is a field, the hypothesis [1, Prop. 4]'s proof takes: with the origin admissible, what
 the input contributes only grows with time (`inputReach_mono`), so one accumulated set serves a

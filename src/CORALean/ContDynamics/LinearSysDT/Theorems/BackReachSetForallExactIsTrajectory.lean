@@ -10,8 +10,9 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForallEx
 What makes `backReachSetForallExact` deserve the name: a trajectory that starts in the `k`-step set
 is in `T` at step `k`, whatever inputs `U` handed it. `R₀` goes unused — where a run began says
 nothing about where it must end. The induction runs on the step count with the start time left
-free, since `backReachSetForallExact` peels a step off the *front* of a run while `IsTrajectory`
-is stated from time zero; `aux_backReachSetForallExact_from` is that general form.
+free, since `backReachSetForallExact` peels a step off the *front* of a run while
+`IsCanonicalTrajectory` is stated from time zero; `aux_backReachSetForallExact_from` is that general
+form.
 
 ## Inputs
 * `sys` – system

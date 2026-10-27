@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderS
 /-!
 # A run's state difference over a step, the input set named
 
-The same as `IsTrajectory.deltaReach_outer`, with the input set named rather than
+The same as `IsCanonicalTrajectory.deltaReach_outer`, with the input set named rather than
 assumed — CORA's `Rdelta = Rhom + RV` with `RV` computed rather than supplied.
 
 `inputSolution` is the same enclosure `timeInterval_outer_inputSolution` uses,

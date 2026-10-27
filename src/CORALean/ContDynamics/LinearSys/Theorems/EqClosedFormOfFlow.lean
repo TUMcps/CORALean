@@ -13,13 +13,13 @@ public import Mathlib.Analysis.ODE.Gronwall
 /-!
 # A run of the integral equation *is* the closed form, point by point
 
-`IsTrajectory`'s uniqueness, stated at the raw hypotheses rather than at the structure: continuity,
-the integral equation, and a bounded measurable input. Two callers need it at shapes no
-`IsTrajectory` has: `ReachSetExactSubset` names an `R₀` this statement never mentions, and the
-two-signal run of `IsPerturbedTrajectory` reaches it only after subtracting off the disturbance's
-own closed form. `x` and `closedForm (x 0) u` solve the same integral equation against the same
-input, so `d := x - closedForm (x 0) u` solves the *homogeneous* one, `d τ = ∫₀^τ A d`, which
-`hcont` makes legitimate. `A d` continuous gives `d` an everywhere right derivative `A d`, and
+`IsCanonicalTrajectory`'s uniqueness, stated at the raw hypotheses rather than at the structure:
+continuity, the integral equation, and a bounded measurable input. Two callers need it at shapes no
+`IsCanonicalTrajectory` has: `ReachSetExactSubset` names an `R₀` this statement never mentions, and
+the two-signal run of `IsPerturbedTrajectory` reaches it only after subtracting off the
+disturbance's own closed form. `x` and `closedForm (x 0) u` solve the same integral equation against
+the same input, so `d := x - closedForm (x 0) u` solves the *homogeneous* one, `d τ = ∫₀^τ A d`,
+which `hcont` makes legitimate. `A d` continuous gives `d` an everywhere right derivative `A d`, and
 Grönwall's `eq_zero_of_abs_deriv_le_mul_abs_self_of_eq_zero_right` forces `d ≡ 0`.
 
 ## Inputs

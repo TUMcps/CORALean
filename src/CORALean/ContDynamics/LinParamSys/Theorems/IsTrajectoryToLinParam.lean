@@ -8,8 +8,8 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ToLinParam
 # A `LinearSys` trajectory is a `toLinParam` trajectory at the constant matrix
 
 `LinearSys.IsCanonicalTrajectory.flow` already runs against the fixed matrix `toRealMat
-sys.A`, so it is a `IsConstTrajectory` there directly; `param` is
-`OfPoint.mem_ofPoint`. The converse — a `toLinParam` `IsConstTrajectory` is a
+sys.A`, so it is an `IsCanonicalConstTrajectory` there directly; `param` is
+`OfPoint.mem_ofPoint`. The converse — a `toLinParam` `IsCanonicalConstTrajectory` is a
 `LinearSys.IsCanonicalTrajectory` — needs the matrix set to denote *only* `toRealMat
 sys.A`, which `OfPoint` alone does not give: `mem_ofPoint` says the point is
 in the set, never that the set is only the point. Not stated.

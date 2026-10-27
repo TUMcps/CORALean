@@ -9,11 +9,11 @@ public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
 # The output of a discrete run lies in the output set of its reachable set
 
 The two enclosures a run already carries, joined: `reach_outer` places the state at step `k` in the
-reachable set, and `IsTrajectory.input` places the input at that step in `U`, which is exactly the
-pair `outputSet_outer` asks for. `U` appears twice in the conclusion, as the set the step was taken
-with and as the set the output is read at; that is the same set by definition here, and why an
-output equation stored on the system would be wrong for a *sampled* system, where the two sets come
-apart.
+reachable set, and `IsCanonicalTrajectory.input` places the input at that step in `U`, which is
+exactly the pair `outputSet_outer` asks for. `U` appears twice in the conclusion, as the set the
+step was taken with and as the set the output is read at; that is the same set by definition here,
+and why an output equation stored on the system would be wrong for a *sampled* system, where the two
+sets come apart.
 
 ## Inputs
 * `sys` – system

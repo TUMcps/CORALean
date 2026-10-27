@@ -12,10 +12,10 @@ public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViol
 `ρ(Ř(τ_k), H_(i,·)ᵀ)` at the step `Δt = t_end / 2^r` of round `r`) answers `violated` only from a
 round, step and row whose lower bound crossed `f_(i)`
 (`exists_round_of_verifyHalfspace_eq_violated`). There the counterexample of [1]'s Sec. 5.1,
-`supportCounterexample` at `t_k` or `t_{k+1}`, is a `IsTrajectory` of the system on the whole
-horizon `[0, t_end]` (`isTrajectory_heldInput`) whose state at that time violates row `i` of the
-safe set (`supportCounterexample_violates`), so the answer is constructive: the falsifying initial
-state and piecewise-constant input are named.
+`supportCounterexample` at `t_k` or `t_{k+1}`, is an `IsCanonicalTrajectory` of the system on the
+whole horizon `[0, t_end]` (`isTrajectory_heldInput`) whose state at that time violates row `i` of
+the safe set (`supportCounterexample_violates`), so the answer is constructive: the falsifying
+initial state and piecewise-constant input are named.
 
 ## Inputs
 * `sys` – linear system
@@ -70,8 +70,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2]: an `unsafe` answer on [1, Alg. 1 (lower bounds)]'s bounds names a round `r'`, a
-row `i` and a step `j`, and the counterexample run there is a `IsTrajectory` on `[0, t_end]` whose
-state at `t_j ∈ [0, t_end]` violates `H_(i,·) x ≤ f_(i)`. -/
+row `i` and a step `j`, and the counterexample run there is an `IsCanonicalTrajectory` on
+`[0, t_end]` whose state at `t_j ∈ [0, t_end]` violates `H_(i,·) x ≤ f_(i)`. -/
 theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys 𝕋 n)
     (R₀ U : S n) (hU : Bornology.IsBounded (construct U)) {tEnd : ℝ} (htEnd : 0 < tEnd)
     {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)

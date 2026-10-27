@@ -10,7 +10,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # A `'constParam'` run is enclosed by the float step over one step
 
-`IsConstTrajectory.timeInterval_outer` with the float step: the closed form at the
+`IsCanonicalConstTrajectory.timeInterval_outer` with the float step: the closed form at the
 frozen member splits `x t` into its free motion, which
 `timeIntervalFloat_outer` places in the float step, and the input's
 contribution, which the caller's `Ud` holds.

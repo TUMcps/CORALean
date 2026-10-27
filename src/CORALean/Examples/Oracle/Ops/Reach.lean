@@ -9,7 +9,7 @@ import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 `reachFloat`'s `params` (`tStart = 0`), `timeStep`, `taylorTerms` and `zonotopeOrder` its
 `options`, same names. `LinearSys` here carries no input, so `B`/`U` have nothing to enter through:
 rejected unless every entry is exactly zero (`aux_checkNoInput`). `timeStep` and `tFinal` are read
-as arbitrary exact reals: `exactDiv` checks that `tFinal / timeStep` is a nonnegative integer
+as arbitrary exact reals: `aux_exactDiv` checks that `tFinal / timeStep` is a nonnegative integer
 before either is asked to fit `𝕋`, so an inexact ratio is refused by name. `timeStep` is then read
 into `𝕋` exactly, since rounding it would run a different time grid than the one asked for.
 
@@ -64,7 +64,7 @@ private def aux_toRat : ExactScalar → Int × Int
 /-- `tFinal / timeStep` as a nonnegative integer, exact: both read as `(num, den)` fractions
 (`aux_toRat`, binary or decimal alike), cross-multiplied, then integer division checked to
 leave no remainder. -/
-def exactDiv (tFinal timeStep : ExactScalar) : Except String Nat := do
+private def aux_exactDiv (tFinal timeStep : ExactScalar) : Except String Nat := do
   let (n1, d1) := aux_toRat tFinal
   let (n2, d2) := aux_toRat timeStep
   if n2 ≤ 0 then throw "linearSysReach: `timeStep` must be positive"
@@ -89,7 +89,7 @@ def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic �
     let timeStep ← scalarField req "timeStep"
     let tFinal ← scalarField req "tFinal"
     -- refused by name before the run would refuse it with `none`: the same exact division
-    let _ ← exactDiv tFinal timeStep
+    let _ ← aux_exactDiv tFinal timeStep
     let Δt ← match dops.readExact "timeStep" timeStep with
       | .ok v => pure v
       | .error _ => throw s!"linearSysReach: timeStep {showScalarForMessage timeStep} is not \

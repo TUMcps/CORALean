@@ -48,12 +48,13 @@ namespace CORALean
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
 /-- The map applied: `½H (β₁, β₂) = (½(β₁ - β₂), ½(1ᵀβ₁ + 1ᵀβ₂))`. -/
 theorem half_gadgetH_apply (β : Vec ℝ n × Vec ℝ n) :
     ((1 / 2 : ℝ) • gadgetH n) β =
       ((1 / 2 : ℝ) • (β.1 - β.2), (1 / 2 : ℝ) * (∑ i, β.1 i + ∑ i, β.2 i)) := rfl
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A preimage of `(y, h)` whose norm is the closed form. -/
 private theorem aux_exists_preimage (hn : 1 ≤ n) (y : Vec ℝ n) (h : ℝ) : -- --- CONCL ---

@@ -12,13 +12,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRe
 /-!
 # A time-varying run's whole step, both halves computed from the two sets
 
-`IsTrajectory.timeInterval_outer` with `Vd` named: `sys.inputSolution` at the enlarged set `V`,
-extended across the step by the frozen matrix's own `inputReach_mono`, as at `'constParam'`. So
+`IsCanonicalTrajectory.timeInterval_outer` with `Vd` named: `sys.inputSolution` at the enlarged set
+`V`, extended across the step by the frozen matrix's own `inputReach_mono`, as at `'constParam'`. So
 `'varParam'` is enclosed by `'constParam'` at any frozen `Â ∈ construct sys.A`, over an input set
 that has absorbed the parameter drift. `V` is the whole price of the time-varying reading, a set
-the caller supplies; `IsTrajectory.norm_drift_le` makes it constructible: any `V` containing a
-ball of the radius it names will do. `0 ∈ V` buys one enclosure for the whole step rather than
-one per time.
+the caller supplies; `IsCanonicalTrajectory.norm_drift_le` makes it constructible: any `V`
+containing a ball of the radius it names will do. `0 ∈ V` buys one enclosure for the whole step
+rather than one per time.
 
 ## Inputs
 * `sys` – system

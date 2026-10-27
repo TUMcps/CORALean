@@ -13,7 +13,7 @@ public import Mathlib.MeasureTheory.Integral.Prod
 /-!
 # The closed form satisfies the raw integral equation, for any bounded input
 
-`closedForm` solves `IsTrajectory.flow` at every `τ`, for `u` merely
+`closedForm` solves `IsCanonicalTrajectory.flow` at every `τ`, for `u` merely
 bounded and measurable — no continuity, so a piecewise-constant input is
 covered. It gets there from nothing but the formula itself, by a Duhamel
 swap: `∫₀ᵗ∫₀ᵖ = ∫₀ᵗ∫_σ^t` over the triangle `0 ≤ σ ≤ ρ ≤ τ`, folded into a

@@ -12,7 +12,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 `R_0 = X₀` holds `x(0)`; at `t_{k+1}` the free motion plus the constant's
 contribution is in `H(t_{k+1})`, and the rest is one `Ũ`-input's contribution
-by `t_{k+1}` (`IsTrajectory.sub_mem_inputReach_recenter`), in `P^R(t_{k+1})`.
+by `t_{k+1}` (`IsCanonicalTrajectory.sub_mem_inputReach_recenter`), in `P^R(t_{k+1})`.
 
 ## Inputs
 * `sys` – linear system

@@ -57,6 +57,24 @@ open Set
 variable {m : ℕ}
 
 
+/-- The coordinate line through `p` stays in the box, and its derivative is `∂ᵢf`. -/
+theorem hasDerivAt_comp_update {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
+    (p : Fin m → ℝ) (i : Fin m) (t : ℝ) :
+    HasDerivAt (fun s => f (Function.update p i s))
+      (fderiv ℝ f (Function.update p i t) (Pi.single i 1)) t :=
+  (hf _).hasFDerivAt.comp_hasDerivAt t (hasDerivAt_update p i t)
+
+/-- Points of a box with one coordinate replaced inside its bounds stay in the box. -/
+theorem update_mem_Icc {lo hi p : Fin m → ℝ} (hp : p ∈ Icc lo hi) (i : Fin m) {t : ℝ}
+    (ht : t ∈ Icc (lo i) (hi i)) : -- --- CONCL ---
+    Function.update p i t ∈ Icc lo hi := by -- --- PROOF ---
+  refine ⟨fun j => ?_, fun j => ?_⟩ <;> by_cases h : j = i
+  · subst h; simpa using ht.1
+  · simpa [Function.update_of_ne h] using hp.1 j
+  · subst h; simpa using ht.2
+  · simpa [Function.update_of_ne h] using hp.2 j
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Splitting the threshold sum at `k`: the coordinates from `k` on are coordinate `k` and
@@ -76,23 +94,6 @@ private theorem aux_sum_ite_succ (L : Fin m → ℝ) (k : ℕ) (hk : k < m) : --
         simp [h1, h2, this]
   rw [Finset.sum_congr rfl fun j _ => h j, Finset.sum_add_distrib, Finset.sum_ite_eq']
   simp
-
-/-- The coordinate line through `p` stays in the box, and its derivative is `∂ᵢf`. -/
-theorem hasDerivAt_comp_update {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
-    (p : Fin m → ℝ) (i : Fin m) (t : ℝ) :
-    HasDerivAt (fun s => f (Function.update p i s))
-      (fderiv ℝ f (Function.update p i t) (Pi.single i 1)) t :=
-  (hf _).hasFDerivAt.comp_hasDerivAt t (hasDerivAt_update p i t)
-
-/-- Points of a box with one coordinate replaced inside its bounds stay in the box. -/
-theorem update_mem_Icc {lo hi p : Fin m → ℝ} (hp : p ∈ Icc lo hi) (i : Fin m) {t : ℝ}
-    (ht : t ∈ Icc (lo i) (hi i)) : -- --- CONCL ---
-    Function.update p i t ∈ Icc lo hi := by -- --- PROOF ---
-  refine ⟨fun j => ?_, fun j => ?_⟩ <;> by_cases h : j = i
-  · subst h; simpa using ht.1
-  · simpa [Function.update_of_ne h] using hp.1 j
-  · subst h; simpa using ht.2
-  · simpa [Function.update_of_ne h] using hp.2 j
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

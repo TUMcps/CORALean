@@ -13,8 +13,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemIntervalC
 still the same set — `CH(X₀, e^{[A]r} X₀) ⊕ F X₀` with the box's exponential enclosure and
 correction matrix, CORA's `initReach` for `linParamSys`, `expmIndMixed` and `priv_tie`. Nothing
 is frozen and no drift is paid as input. The run solves the integral equation at a measurable
-member of the box (`IsTrajectory.exists_integral_eq`), and the Peano–Baker expansion of that
-equation puts it on the interpolation from its start to a member of the enclosure plus a member
+member of the box (`IsCanonicalTrajectory.exists_integral_eq`), and the Peano–Baker expansion of
+that equation puts it on the interpolation from its start to a member of the enclosure plus a member
 of `F` applied to its start (`MatExp.exists_mem_intervalCorrectionMatrix_of_integral`).
 Input-free only; with an input, `…TimeIntervalOuterInputSolution`.
 

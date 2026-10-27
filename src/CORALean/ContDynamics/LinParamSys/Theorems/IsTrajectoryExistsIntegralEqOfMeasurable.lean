@@ -13,11 +13,11 @@ public import Mathlib.Topology.Order.ProjIcc
 /-!
 # A time-varying run with an input solves the integral equation, measurably
 
-`IsTrajectory.exists_integral_eq` with an input: `x(s) = x(0) + ∫₀ˢ Â(σ) x(σ) + u(σ) dσ`
+`IsCanonicalTrajectory.exists_integral_eq` with an input: `x(s) = x(0) + ∫₀ˢ Â(σ) x(σ) + u(σ) dσ`
 over the window, at a parameter `Â` inside the box with entries integrable over
-every window — `IsTrajectory.exists_measurable_param`'s, equal to `A` almost
+every window — `IsCanonicalTrajectory.exists_measurable_param`'s, equal to `A` almost
 everywhere on the window, which the integral does not see. The input is already
-measurable, by `IsTrajectory.meas`, so nothing is asked of it here.
+measurable, by `IsCanonicalTrajectory.meas`, so nothing is asked of it here.
 
 ## Inputs
 * `sys` – system

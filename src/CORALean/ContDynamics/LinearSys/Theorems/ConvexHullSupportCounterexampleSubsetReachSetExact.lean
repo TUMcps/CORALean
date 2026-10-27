@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 [1, Sec. 4.2]: for template directions `ℓ_1, …, ℓ_w`, the vertex polytope
 `⟨[ν(Ř(t_k), ℓ_1), …, ν(Ř(t_k), ℓ_w)]⟩_V` lies in `R(t_k)`. Each vertex is
 [1]'s Eq. (18)'s `x(k)` from `supportCounterexample`, hence the state at `t_k` of a
-held-input `IsTrajectory`, and `reachSetExact_convex` takes the hull. Along its own
+held-input `IsCanonicalTrajectory`, and `reachSetExact_convex` takes the hull. Along its own
 direction each vertex attains line 15's bound (`heldSim_supportCounterexample`).
 
 ## Inputs

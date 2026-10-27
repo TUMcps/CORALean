@@ -60,15 +60,10 @@ theorem norm_toEuclidean (x : Vec ℝ n) : ‖toEuclidean x‖ = ‖x‖₂ := b
     rw [toEuclidean_apply, Real.norm_eq_abs, sq_abs])
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-private theorem aux_sum_sq_nonneg (x : Vec ℝ n) : 0 ≤ ∑ i, x i ^ 2 :=
-  Finset.sum_nonneg fun _ _ => sq_nonneg _
-
 theorem norm₂_nonneg (x : Vec ℝ n) : 0 ≤ ‖x‖₂ := Real.sqrt_nonneg _
 
 theorem norm₂_sq (x : Vec ℝ n) : ‖x‖₂ ^ 2 = ∑ i, x i ^ 2 :=
-  Real.sq_sqrt (aux_sum_sq_nonneg x)
+  Real.sq_sqrt (Finset.sum_nonneg fun _ _ => sq_nonneg _)
 
 theorem dotProduct_self (x : Vec ℝ n) : x ⬝ᵥ x = ‖x‖₂ ^ 2 := by
   rw [norm₂_sq]
@@ -88,7 +83,7 @@ theorem abs_dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : -- --- CONCL -
     Finset.sum_mul_sq_le_sq_mul_sq Finset.univ x y
   calc |x ⬝ᵥ y| = Real.sqrt ((∑ i, x i * y i) ^ 2) := (Real.sqrt_sq_eq_abs _).symm
     _ ≤ Real.sqrt ((∑ i, x i ^ 2) * ∑ i, y i ^ 2) := Real.sqrt_le_sqrt hcs
-    _ = ‖x‖₂ * ‖y‖₂ := Real.sqrt_mul (aux_sum_sq_nonneg x) _
+    _ = ‖x‖₂ * ‖y‖₂ := Real.sqrt_mul (Finset.sum_nonneg fun _ _ => sq_nonneg _) _
 
 /-- Cauchy–Schwarz, which is the whole of the ellipsoid's support function. -/
 theorem dotProduct_le_norm₂_mul_norm₂ (x y : Vec ℝ n) : x ⬝ᵥ y ≤ ‖x‖₂ * ‖y‖₂ :=

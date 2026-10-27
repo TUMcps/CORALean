@@ -1100,6 +1100,11 @@ CORA, and is `private` (#269), so the compiler rejects any use from another file
 `private` name in a proof, and rejects it in a statement (a `let` in it included) and in the body
 of a public definition.
 
+**Only `aux_` sits under `AUXILIARY`.** A declaration the file's statement or another file reads
+is not auxiliary, however small, and `check-conventions.sh` rejects any non-`private` declaration
+under the banner. A public definition that a private helper is built from goes above the banner;
+one that needs a private helper goes below the `MAIN ...` marker, or the helper is inlined.
+
 **`step_` is a public step.** A helper that has to be public is a step: a satellite theorem file
 reads it (#227), a statement of its file names it (a counterexample's witness), the body of a
 public definition calls it, or it is an `@[csimp]` lemma. It is named `step_…`, is public, and
@@ -1181,9 +1186,14 @@ regardless: `BEGIN CODE` after the author block and before `namespace`;
 `STEPS` before the public `step_` declarations and `AUXILIARY` before the
 private `aux_` ones, each omitted when there is none. `STEPS` comes first, and
 everything under it is public: a step never uses a `private` declaration, while
-an `aux_` lemma may well be about a step. A `MAIN ...` marker immediately above the main declaration and
-above its docstring, so the docstring stays attached to what it documents; and
-`END OF CODE` as the file's last line. `API.lean` and any file that declares
+an `aux_` lemma may well be about a step.
+
+**Everything under `AUXILIARY` is `private`.** A public declaration there is not auxiliary, so it
+is a `step_` under `STEPS`, or it moves above the `AUXILIARY` banner (a definition a statement
+names, a general lemma other files read) or below the `MAIN ...` marker, or into a file of its own.
+
+The `MAIN ...` marker goes immediately above the main declaration and above its docstring, so the
+docstring stays attached to what it documents, and `END OF CODE` is the file's last line. `API.lean` and any file that declares
 nothing carry none of this — there is nothing to find. A `Basic.lean` carries
 `BEGIN CODE` and `END OF CODE`, and in place of `MAIN ...` one banner per section
 naming its declaration.

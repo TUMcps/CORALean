@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A sampled `'constParam'` run lands in the float-sampled system's `reach`
 
-`IsConstTrajectory.discretizeEnclosureFloat` handed to `LinParamSysDT.reach_outer`,
+`IsCanonicalConstTrajectory.discretizeEnclosureFloat` handed to `LinParamSysDT.reach_outer`,
 as `discretizeEnclosure_mem_reach` is at the exact layer: `reach` at the float
 interval-matrix family is the discrete recursion run in floats.
 

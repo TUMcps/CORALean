@@ -9,10 +9,10 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderS
 /-!
 # `postΔ` contains every state difference a step can span
 
-[1, Sec. 4.1]: `post∆(R(ts), Ψ(τs), A)` names what `IsTrajectory.deltaReach_outer_inputSolution`
-already proves, at the constant input set `Ψ` standing for the linearization
-error `Ψ(τs)` a run's own input is confined to over the step. No new argument —
-the hypotheses are that theorem's, unchanged, and this file is the citation
+[1, Sec. 4.1]: `post∆(R(ts), Ψ(τs), A)` names what
+`IsCanonicalTrajectory.deltaReach_outer_inputSolution` already proves, at the constant input set `Ψ`
+standing for the linearization error `Ψ(τs)` a run's own input is confined to over the step. No new
+argument — the hypotheses are that theorem's, unchanged, and this file is the citation
 `deltaReach_outer_inputSolution` did not carry.
 
 ## References

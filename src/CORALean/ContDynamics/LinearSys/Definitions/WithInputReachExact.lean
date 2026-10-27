@@ -9,9 +9,9 @@ public import CORALean.ContDynamics.LinearSys.Definitions.WithInput
 # The exact set `Reach LinearSys.WithInput` is asked to enclose
 
 `timeIntervalReachSetExact` over the horizon `[0, tFinal]`: every state some
-`IsTrajectory` on that horizon, from a bare initial set and under inputs in
+`IsCanonicalTrajectory` on that horizon, from a bare initial set and under inputs in
 `sys.U`, is at, at some time of it. The bare set is the representation `Set`
-itself, which `IsTrajectory` accepts as it accepts any other, as
+itself, which `IsCanonicalTrajectory` accepts as it accepts any other, as
 `NonlinearSys.WithSteps.reachUnionExact` does. The windows `reach` covers the
 horizon with are how it encloses this set, not part of it.
 

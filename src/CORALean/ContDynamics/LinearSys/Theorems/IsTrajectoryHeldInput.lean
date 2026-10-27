@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
 
 [1, Sec. 4.2]'s simulated counterexample, as a run: from any `x₀ ∈ R₀`, under any
 input held piecewise at values of `U`, `closedForm` is a Carathéodory
-`IsTrajectory` on any horizon `[0, t]`. The input is measurable by
+`IsCanonicalTrajectory` on any horizon `[0, t]`. The input is measurable by
 `heldInput_measurable`, and `closedForm_flow` and `closedForm_continuousOn` do the
 rest, so no derivative is taken at the steps where the input jumps.
 
@@ -60,8 +60,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Sec. 4.2]: the run from `x₀ ∈ R₀` under inputs of `U` held piecewise is a
-`IsTrajectory` on `[0, t]`. -/
+/-- [1, Sec. 4.2]: the run from `x₀ ∈ R₀` under inputs of `U` held piecewise is an
+`IsCanonicalTrajectory` on `[0, t]`. -/
 theorem LinearSys.isTrajectory_heldInput (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hU : Bornology.IsBounded (construct U)) {t : ℝ} (ht : 0 ≤ t) (Δt : ℝ) {x₀ : Vec ℝ n}
     (hx₀ : x₀ ∈ construct R₀) {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ construct U) :

@@ -2,7 +2,8 @@
 # Checks the conventions CONTRIBUTING.md states, none of which the compiler can
 # check: a green build says nothing about whether the section markers still sit where they
 # belong or whether an `API.lean` slipped a declaration in. Where a step may be used, and that
-# `aux_` is `private`, Lean checks itself (`CORALean/Global/StepOf.lean`, #269).
+# `aux_` is `private`, Lean checks itself (`CORALean/Global/StepOf.lean`, #269); that everything
+# under `AUXILIARY` is `private` this script checks.
 #
 # Text only — no Lean, no build, no network, so it is cheap enough to run on a
 # pre-commit hook as well as in CI: about fifteen seconds over the whole tree
@@ -1148,6 +1149,9 @@ FNR == 1 {
             " it is a step of (#269)")
       if (region != "STEPS")
         say(FILENAME ":" FNR ": `" b "` is a step; it sits under the `STEPS` marker")
+    } else if (region == "AUXILIARY" && prefix !~ /private /) {
+      say(FILENAME ":" FNR ": everything under `AUXILIARY` is `private`; `" qualDecl "` is public," \
+          " so it is a `step_` under `STEPS`, or it moves out of the auxiliary part (#269)")
     } else if (region == "STEPS" && prefix ~ /private /) {
       say(FILENAME ":" FNR ": everything under `STEPS` is public; `" qualDecl "` is `private`," \
           " so it sits under `AUXILIARY`")

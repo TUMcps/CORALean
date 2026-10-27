@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 /-!
 # Where an input-free time-varying run is at a time of its window
 
-`IsTrajectory.aux_exists_mem_expIntervalEnclosure` read at the sets: the box's
+`IsCanonicalTrajectory.aux_exists_mem_expIntervalEnclosure` read at the sets: the box's
 exponential enclosure over `t` times the initial set holds the run's state at
 `t`. CORA's `'varParam'` homogeneous solution at a time point, the mapping matrix
 of `priv_mappingMatrix` applied to the initial set; the same set

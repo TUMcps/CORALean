@@ -46,6 +46,11 @@ true on `[1,2]` and then false, is not a run of CORA's analyzer: the first obser
 namespace CORALean
 
 
+open scoped CORALean.Float in
+/-- The boxes `Interval (Vec ℝ k)` over `ℝ`, a set type the atoms are checked against. -/
+abbrev OnlineReachSetAnalyzer.boxes : ℕ → Type := ℐ𝒱[ℝ]
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 section signals
@@ -576,9 +581,6 @@ section concrete
 
 open scoped CORALean.Float
 open Float
-
-/-- The boxes `Interval (Vec ℝ k)` over `ℝ`, a set type the atoms are checked against. -/
-abbrev OnlineReachSetAnalyzer.boxes : ℕ → Type := ℐ𝒱[ℝ]
 
 /-- Real `iterate` of halving from `1`. -/
 private theorem aux_half_iter (n : ℕ) : -- --- CONCL ---

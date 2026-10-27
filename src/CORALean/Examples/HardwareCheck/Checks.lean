@@ -29,10 +29,11 @@ namespace CORALean.HardwareCheck
 open CORALean.Float CORALean.Bench
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
 /-- A failure: its kind and the report line. -/
 abbrev Fail := String × String
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private def aux_hex (b : UInt64) : String := uint64ToHex b
 
