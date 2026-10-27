@@ -35,6 +35,6 @@ enclosures of a bundle's `plus`, `linComb`, `mtimes`, `project`, `quadMap`, `red
 `reindex`, which map or pair members — is a general theorem of that class read at the members'
 own (`Instances.lean` reads it); this directory holds what CORA's own algorithms give beyond it.
 
-`reduce_order_le` needs no `0 < o`, unlike `Zonotope.reduceCombastel_order_le`: a bundle of
-`k = 0` is `univ`, which encloses anything.
+`reduce_order_le` bounds each member of the reduced bundle at `o * n` generators, as
+`Zonotope.reduceCombastel_order_le` does for one zonotope.
 -/

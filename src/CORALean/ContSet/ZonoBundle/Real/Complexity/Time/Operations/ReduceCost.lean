@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceGirardCost
 public import CORALean.Global.Cost
 
 @[expose] public section
@@ -8,14 +9,14 @@ public import CORALean.Global.Cost
 /-!
 # `ZonoBundle.reduceCost`
 
-Asserted, not proved. CORA's `@zonoBundle/reduce.m` reduces each member by the method asked for, and
-a method *selects* the generators it keeps before it writes them: Girard's metric on each generator
-(at most `4 * n + 2` operations, as `Zonotope.reduceGirardCost` counts it) and the sort of the `h`
-keys, `Cost.sort h`. That selection is charged per member, `k` times, and the kept members are then
-written, `n * (h + 1)` entries each.
+Asserted, not proved. CORA's `@zonoBundle/reduce.m` reduces every member by the method asked for,
+and `ZonoBundle.reduce` does the same at Girard's rule: `k` members, each at
+`Zonotope.reduceGirardCost`, the Girard metric and the selection of each member's generators
+included.
 
-`Operations/Reduce.lean` itself keeps the first `min k o` members and never looks inside one, so the
-count is an upper bound for it, stated at CORA's method; reducing members is `Zonotope.reduce`.
+An upper bound, not an exact count, because that member cost is one: it charges the metrics and the
+sort at their worst and the block `reduceBy` writes at `h` kept and `h` absorbed generators,
+whatever the order. The bundle adds nothing of its own, no member is dropped or reordered.
 
 ## Inputs
 * `n` – dimension
@@ -23,12 +24,12 @@ count is an upper bound for it, stated at CORA's method; reducing members is `Zo
 * `h` – generators per member
 
 ## Output
-* the cost of the order reduction
+* the cost of reducing the bundle
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   19-October-2026
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -40,10 +41,9 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `ZonoBundle.reduce` costs at any order at `Vec ℝ n` on a bundle of `k` members, none over
-`h` generators: per member, the selection of the generators to keep (Girard's metrics and the
-sort of the keys), then one write for each of the at most `k * (n * (h + 1))` entries kept. -/
+`h` generators: each member reduced, at `Zonotope.reduceGirardCost`. -/
 def ZonoBundle.reduceCost (n k h : ℕ) : Cost :=
-  k • (⟨h * (4 * n + 2)⟩ + Cost.sort h) + ⟨k * (n * (h + 1))⟩
+  k • Zonotope.reduceGirardCost n h
 
 end CORALean.Real
 

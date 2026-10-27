@@ -35,7 +35,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.Materialise
 `intersection`, exact and the whole point of the representation; `plus`, `linComb` and
 `mtimes`, enclosures over the family that leave each member's rounding in that
 member's own error box; `reindex`, which does no arithmetic at all; and
-`reduce`, which forgets members rather than absorbing them; and `supportBound`,
+`reduce`, every member reduced by the float `Zonotope.reduce`; and `supportBound`,
 the least of the members' own float bounds; and `boundDotLP`, CORA's linear
 program over the whole bundle, by a checked dual certificate. CORA's box `intervalAll` intersects
 the members' boxes; `intervalSupportFunc` is the bundle's own, by `boundDotLP` in `±eᵢ`.

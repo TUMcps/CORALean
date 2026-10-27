@@ -24,7 +24,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 A bundle is `SetIntersection` at its members, so every guarantee here is a general theorem of that
 class at the members' own: `ConvexSet` is `SetIntersection.convex_construct`; `Plus` and `LinComb`
 are `pairwise_outer` at `Zonotope.plus_exact` and `Zonotope.linComb_outer`; `Mtimes`, at a point
-matrix and at a matrix zonotope, and `Reduce`, which drops members and needs no error box, are
+matrix and at a matrix zonotope, and `Reduce`, which reduces each member, are
 `memberwise_outer`; `Reindex` is `memberwise_image_exact` at `reindexLin e`. `Intersection` is
 `intersection_exact`, appending the two families; `OfPoint` bundles one point-zonotope. `CompactSet`
 is not an instance: at `k = 0` the set is `univ`, so the unconditional obligation fails;
@@ -33,7 +33,7 @@ is not an instance: at `k = 0` the set is `univ`, so the unconditional obligatio
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   18-October-2026
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -100,11 +100,11 @@ noncomputable instance : Mtimes 𝕄𝒵 (𝒵ℬ) where
     (fun _ _ h => Set.biUnion_mono subset_rfl fun _ _ => Set.image_mono h) fun i =>
       ⟨i, Zonotope.mtimesMatZonotope_outer M (zB.Z i)⟩
 
-/-- Drops members, which only enlarges the intersection. -/
-instance : Reduce (ZonoBundle α) α where
+/-- Each member reduced, which only enlarges it and so the intersection. -/
+noncomputable instance {n : ℕ} : Reduce (ZonoBundle (Vec ℝ n)) (Vec ℝ n) where
   reduce := ZonoBundle.reduce
   reduce_outer zB o := SetIntersection.memberwise_outer id monotone_id fun i =>
-    ⟨Fin.castLE (min_le_left zB.k o) i, subset_rfl⟩
+    ⟨i, Zonotope.reduce_outer (zB.Z i) o⟩
 
 end CORALean.Real
 

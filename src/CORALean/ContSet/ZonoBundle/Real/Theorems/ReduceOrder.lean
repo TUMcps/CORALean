@@ -1,20 +1,32 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 
 @[expose] public section
 
 /-!
-# `ZonoBundle.reduce` bounds the bundle size
+# `ZonoBundle.reduce` bounds each member's generator count
 
-Unlike `Zonotope.reduce_order_le`, no `0 < o` hypothesis: at `o = 0` the
-reduced bundle has `k = 0`, which denotes `univ` — a sound enclosure of
-anything, per `ZonoBundle.lean`'s docstring, so the bound holds there too.
+CORA's order bound read member by member: a bundle has no single order, each member of the reduced
+bundle has at most `o * n` generators, as `Zonotope.reduce_order_le` states for one zonotope. The
+member count is the operand's.
+
+## Inputs
+* `zB` – zonotope bundle
+* `o` – maximum order
+* `i` – member
+
+## Hypotheses
+* `ho` – order positive
+
+## Conclusion
+* the `i`-th member of the result has at most `o * n` generators
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -22,14 +34,14 @@ anything, per `ZonoBundle.lean`'s docstring, so the bound holds there too.
 
 namespace CORALean.Real
 
-variable {α : Type} [AddCommGroup α] [Module ℝ α]
+variable {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [AddCommGroup α] [Module ℝ α] in
-theorem ZonoBundle.reduce_order_le (zB : ZonoBundle α) (o : ℕ) : (zB.reduce o).k ≤ o :=
-  min_le_right zB.k o
+theorem ZonoBundle.reduce_order_le (zB : ZonoBundle (Vec ℝ n)) {o : ℕ} (ho : 0 < o)
+    (i : Fin zB.k) : ((zB.reduce o).Z i).h ≤ o * n :=
+  Zonotope.reduce_order_le (zB.Z i) ho
 
 end CORALean.Real
 
