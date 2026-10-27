@@ -104,7 +104,7 @@ private theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R
   Fin.sum_univ_add f
 
 /-- `R.sound` at the degree bracket: the residual never leaves its error. -/
-private theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.Encloses invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
     |GNN.aux_residual R A U lam j| ≤ GNN.aux_sqrtError R A U j := by
@@ -113,7 +113,7 @@ private theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt
 
 /-- The residual factor is spent exactly, in both branches: dividing by the
 error and multiplying back, or a zero error forcing a zero residual. -/
-private theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.IsSound invSqrt)
+private theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.Encloses invSqrt)
     (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) : -- --- CONCL ---
@@ -130,7 +130,7 @@ private theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.IsSound
 
 /-- Every factor is admissible: `2λ - 1` because `λ` is a weight, and a residual
 factor because its numerator is bounded by its denominator. -/
-private theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_factors_abs_le (R : Relaxation ℝ) (hR : R.Encloses invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (k : Fin (m + N)) : -- --- CONCL ---
     |GNN.aux_factors R A U lam k| ≤ 1 := by -- --- PROOF ---
@@ -171,7 +171,7 @@ private theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
 
 /-- Either broadcast at those factors: node `idx i j`'s inverse square root,
 exactly, which is `sqrt_affine` plus the residual the factor spends. -/
-private theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+private theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.Encloses invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
     (hA : ∀ a b, 0 ≤ A a b) (idx : Fin N → Fin N → Fin N) : -- --- CONCL ---
     (GNN.aux_sqrtBroadcast R A U idx).point (GNN.aux_factors R A U lam)
@@ -205,7 +205,8 @@ private theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.IsSound invS
 
 /-- [1]'s message-passing enclosure is sound: at any admissible edge weights, the
 graph's own `D̃^(-1/2) Ã D̃^(-1/2)` is a point of it. -/
-theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.Encloses invSqrt)
+    (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) : -- --- CONCL ---
     GNN.messagePassing (GNN.adjAt A U lam)

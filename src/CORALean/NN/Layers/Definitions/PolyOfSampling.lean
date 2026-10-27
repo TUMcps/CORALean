@@ -47,7 +47,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The relaxation a fit and exact sampling buy; soundness is `ofSampling_isSound`. -/
+/-- The relaxation a fit and exact sampling buy; soundness is `ofSampling_encloses`. -/
 noncomputable def PolyRelaxation.ofSampling {n : ℕ} (σ : ℝ → ℝ) (c : ℝ → ℝ → Fin (n + 1) → ℝ)
     (M : ℝ → ℝ → ℝ) (N : ℝ → ℝ → ℕ) : CORALean.PolyRelaxation ℝ n where
   coeffs l u := shiftConst (c l u)

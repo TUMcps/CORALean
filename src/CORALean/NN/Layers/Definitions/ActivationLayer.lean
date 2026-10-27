@@ -33,7 +33,7 @@ that it encloses some activation `σ`. -/
 structure ActivationLayer (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
     (n m : ℕ) where
   R : Relaxation 𝕋
-  sound : ∃ σ : ℝ → ℝ, R.IsSound σ
+  sound : ∃ σ : ℝ → ℝ, R.Encloses σ
   dim : n = m
 
 end CORALean

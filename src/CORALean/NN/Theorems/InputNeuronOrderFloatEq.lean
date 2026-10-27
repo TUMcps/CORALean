@@ -9,9 +9,9 @@ public import CORALean.NN.Theorems.IntervalChainSensitivityFloatOuter
 /-!
 # A float ranking of the input neurons is the real one
 If `IntervalChain.getInputNeuronOrder` returns a ranking for a float interval chain standing for a
-smooth real one (`IntervalChain.IsSound`), the real `getInputNeuronOrder` of the chain of its layers
-at every point of the input box is that ranking. `in-order` and `snake` are index lists, the same
-in both. The sensitivity of the real chain lies in the float box (`sensitivity_outer`), so each
+smooth real one (`IntervalChain.Encloses`), the real `getInputNeuronOrder` of the chain of its
+layers at every point of the input box is that ranking. `in-order` and `snake` are index lists, the
+same in both. The sensitivity of the real chain lies in the float box (`sensitivity_outer`), so each
 neuron's real key lies in its key box; strictly separated boxes decide every comparison of the
 stable sort as the real keys do, and a sort whose comparisons agree on its elements returns the
 same list.
@@ -128,7 +128,7 @@ private theorem aux_scale_iff {u v c : ℝ} (hc : 0 < c ∨ u = 0 ∧ v = 0) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.getInputNeuronOrder_eq {c : IntervalChain 𝕋 n m}
-    {r : Real.IntervalChain n m} (hc : c.IsSound r) (hs : r.IsSmooth) (method : InputOrderMethod)
+    {r : Real.IntervalChain n m} (hc : c.Encloses r) (hs : r.IsSmooth) (method : InputOrderMethod)
     (X : Interval (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ X.construct)
     (inputSize : Option (ℕ × ℕ × ℕ)) : -- --- CONCL ---
     ∀ L ∈ c.getInputNeuronOrder method X inputSize,

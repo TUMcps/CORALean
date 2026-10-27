@@ -1352,6 +1352,23 @@ A `Prop`-valued definition (a `def`, `abbrev`, `structure`, `inductive` or `clas
   method of `references/coverage/cora-inventory.json` (`eq`, `le`, `isequal`, `representsa_point`,
   `constrSat`), and the model of CORA's code ends in `Cora`.
 
+**`Encloses`, not `Sound`.** That a stored or abstract object over-approximates an exact function or
+set is `Encloses` (`Relaxation.Encloses`, `Layer.Encloses`, `Taylm.Encloses`, `FloatModel.Encloses`),
+and the theorem concluding it is `…_encloses`. `Sound` and `IsSound` name only the correctness bundle
+of an algorithm or a translation (`SyntaxTree.IsSound`, `STL.IsSound`, `LinearSys.IsVerifySound`),
+which live under `Specification/` and `LinearSys/Definitions/`; a domain's `…_outer` inclusions are
+`IsOuter` (`CatDomain.IsOuter`) (#165).
+
+**The order of an `Encloses`.** The enclosing object comes first, then the exact function or set it
+encloses, then any domain or extra argument, so that `x.Encloses f` reads "x encloses f"
+(`R.Encloses σ`, `fm.Encloses sys`, `s.Encloses Φ lo hi z₀ τ`, `t.Encloses B`). Only an argument that the type of the
+enclosing object depends on may come before it: `OutputFloatModel.Encloses sys om`, as `om`'s type
+mentions `sys.q`.
+
+`check-prop-names.py` rejects a predicate with `Sound` in its name outside those two directories,
+and, when `X` is a type, an `X.Encloses` with an argument before the object of type `X` that its type
+does not depend on.
+
 A theorem that embeds the name follows Lean's rule, `IsTrajectory` as `isTrajectory` in a snake-case
 name (`simulate_isTrajectory`, `ofFull_isTrajectory_iff`). `check-conventions.sh` runs
 `scripts/conventions/check-prop-names.py`, which rejects a Prop-valued definition whose name has none of these

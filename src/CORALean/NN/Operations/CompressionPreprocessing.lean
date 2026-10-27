@@ -68,9 +68,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- [1, Alg. 3]: the output set of `Φ_org = (L_1, L_2, …)` on the image box `I_X`, compressed
 by `Φ_pre` first and reduced on the fly at rate `ρ`; `none` where [1, Alg. 1] gave out. -/
 def compressionPreprocessing (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (R_relu : Relaxation 𝕋)
-    (hσ_relu : ∃ σ : ℝ → ℝ, R_relu.IsSound σ)
+    (hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Encloses σ)
     {n n₁ m : ℕ} (I_X : Interval (Vec 𝕋 n)) (L_1 : ReducedLinear 𝕋 n n₁) (L_2 : Relaxation 𝕋)
-    (hσ_2 : ∃ σ : ℝ → ℝ, L_2.IsSound σ)
+    (hσ_2 : ∃ σ : ℝ → ℝ, L_2.Encloses σ)
     (B_2 : MergeBuckets 𝕋) (rest : ReducibleNetwork 𝕋 n₁ m) (ρ : 𝕋) : Option (S m) :=
   -- 1. `L_{-2}`, the identity, of `L_{-2}, L_{-1}, L_0 ← construct Φ_pre` (Cor. 1)
   let L_m2 := ReducedLinear.identity (𝕋 := 𝕋) n

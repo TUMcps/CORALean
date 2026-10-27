@@ -11,7 +11,7 @@ An affine conjugation `g t = ra f (rb t) + c` scales by two positive reals, and 
 no format and no numeral, so no stored value is guaranteed to denote `ra` or `rb` exactly. The
 caller supplies instead a sound rounding of "multiply by `r`" as two total functions. For tanh's
 `r = 2` that is `fun x => addUp x x`, exact in any binary format and needing no value that
-denotes `2` at all. `IsSound` is that the two bracket multiplication by `r`, the one place `r`
+denotes `2` at all. `Encloses` is that the two bracket multiplication by `r`, the one place `r`
 appears; at `𝕋 := ℝ` the exact rounding is multiplication by `r` itself.
 -/
 
@@ -38,7 +38,7 @@ structure ScaleRounding (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatAri
   down : 𝕋 → 𝕋
 
 /-- That the two directions bracket multiplication by `r`. -/
-structure ScaleRounding.IsSound (A : ScaleRounding 𝕋) (r : ℝ) : Prop where
+structure ScaleRounding.Encloses (A : ScaleRounding 𝕋) (r : ℝ) : Prop where
   up_ge (x : 𝕋) : r * toReal x ≤ toReal (A.up x)
   down_le (x : 𝕋) : toReal (A.down x) ≤ r * toReal x
 

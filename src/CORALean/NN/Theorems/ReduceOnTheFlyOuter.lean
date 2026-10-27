@@ -72,7 +72,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Lines 10, 11 and 13 are the reduced layers' `enclose`, so `Y = H_κ` is `Φ̂_ρ`'s. -/
 private theorem aux_reduceOnTheFlyFrom_enclose :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
-      (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.IsSound σ) (B : MergeBuckets 𝕋)
+      (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Encloses σ) (B : MergeBuckets 𝕋)
       {Φhat : ReducibleNetwork 𝕋 n m} {Y : S m},
       reduceOnTheFlyFrom le tol fuel ρ H L R hτ B rest = some (Φhat, Y) →
         Y = Φhat.toNetwork.enclose H
@@ -95,8 +95,8 @@ private theorem aux_reduceOnTheFlyFrom_enclose :
 /-- The loop from one `k` on, for every bias `c` the pending layer `L̂_{k-1}`'s box admits. -/
 private theorem aux_reduceOnTheFlyFrom_outer :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
-      (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.IsSound σ) (B : MergeBuckets 𝕋)
-      {σ : ℝ → ℝ} (_hR : R.IsSound σ) {c : Vec ℝ n₁}
+      (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Encloses σ) (B : MergeBuckets 𝕋)
+      {σ : ℝ → ℝ} (_hR : R.Encloses σ) {c : Vec ℝ n₁}
       (_hc : c - toRealVec L.b ∈ L.I'.construct) {h : Vec ℝ n₁ → Vec ℝ m}
       (_hrest : rest.IsInstance h) {Φhat : ReducibleNetwork 𝕋 n m} {Y : S m},
       reduceOnTheFlyFrom le tol fuel ρ H L R hτ B rest = some (Φhat, Y) →

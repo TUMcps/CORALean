@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Layers.Definitions.PolyOfSampling
 public import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
 public import CORALean.NN.Layers.Theorems.Real.ExistsEvalPolyNear
-public import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
+public import CORALean.NN.Layers.Theorems.Real.OfSamplingEncloses
 public import CORALean.NN.Layers.Theorems.Real.SampleGridMemIcc
 
 @[expose] public section
@@ -119,7 +119,7 @@ private theorem aux_polyDerivDiff_le {lo hi ctr rad r : ℝ} (hrad0 : 0 ≤ rad)
 
 theorem exists_polyRelaxation_error_lt {σ σ' : ℝ → ℝ} {L U Mσ ε : ℝ}
     (hd : ∀ x, HasDerivAt σ (σ' x) x) (hσ : ∀ x, |σ' x| ≤ Mσ) (hε : 0 < ε) : -- --- CONCL ---
-    ∃ (k : ℕ) (P : CORALean.PolyRelaxation ℝ k), P.IsSound σ ∧ ∀ l u : ℝ,
+    ∃ (k : ℕ) (P : CORALean.PolyRelaxation ℝ k), P.Encloses σ ∧ ∀ l u : ℝ,
       L ≤ l → l ≤ u → u ≤ U → P.error l u < ε := by -- --- PROOF ---
   have hcont : ContinuousOn σ (Set.Icc L U) :=
     fun x _ => ((hd x).continuousAt).continuousWithinAt
@@ -151,7 +151,7 @@ theorem exists_polyRelaxation_error_lt {σ σ' : ℝ → ℝ} {L U Mσ ε : ℝ}
     linarith
   refine ⟨k, PolyRelaxation.ofSampling σ (fun _ _ => c₀)
     (fun l u => polyDerivDiff (-Mσ) Mσ (polyDerivCenter c₀) (polyDerivRadius c₀ l u))
-    (fun _ _ => N), PolyRelaxation.ofSampling_isSound hd _ _ _ hM (fun _ _ => hN), ?_⟩
+    (fun _ _ => N), PolyRelaxation.ofSampling_encloses hd _ _ _ hM (fun _ _ => hN), ?_⟩
   intro l u hl hlu hu
   -- every sample of a sub-box is a point of `[L, U]`, so the fit's own bound caps it
   have hgrid : ∀ i : Fin (N + 1),

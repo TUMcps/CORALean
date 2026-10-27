@@ -75,7 +75,7 @@ private theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPoly_encloses {P : LayerRelaxation ℝ n m}
-    (hP : ∀ i, (P i).IsSound σ) : -- --- CONCL ---
+    (hP : ∀ i, (P i).Encloses σ) : -- --- CONCL ---
     (Layer.activationPoly P).Encloses (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox := PolyZonotope.interval_contains s hx

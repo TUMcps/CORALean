@@ -5,7 +5,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
 public import CORALean.NN.Theorems.IntervalChainFloatLinearRMem
 public import CORALean.NN.Theorems.ScalarEnclosesVecMem
-public import CORALean.NN.Definitions.IntervalChainFloatSound
+public import CORALean.NN.Definitions.IntervalChainFloatEncloses
 public import CORALean.NN.Operations.IntervalChainFwd
 public import CORALean.NN.Operations.IntervalChainFwdFloat
 
@@ -14,7 +14,7 @@ public import CORALean.NN.Operations.IntervalChainFwdFloat
 /-!
 # The float forward pass of an interval chain encloses the real one
 
-For a float chain `c` that stands for the real chain `r` (`IntervalChain.IsSound`), and an
+For a float chain `c` that stands for the real chain `r` (`IntervalChain.Encloses`), and an
 input pair of real vectors inside the boxes `P`, the real `Real.IntervalChain.fwd` lies, bound by
 bound, in the boxes `IntervalChain.fwd` returns. Layer by layer: the linear layer's
 `mu = W (l + u)/2 + b` and `r = |W| (u - l)/2` are enclosed by `Interval.mtimes`, `plus`, `minus`
@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.fwd_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.IsSound r) : -- --- CONCL ---
+    {r : Real.IntervalChain n k} (hc : c.Encloses r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n),
       p.1 ∈ P.1.construct → p.2 ∈ P.2.construct →
       (r.fwd p).1 ∈ (c.fwd P).1.construct ∧

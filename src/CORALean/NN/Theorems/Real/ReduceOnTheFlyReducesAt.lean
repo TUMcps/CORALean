@@ -72,7 +72,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 pending layer `L̂_{k-1}` admits. -/
 private theorem aux_reduceOnTheFlyFrom_reducesAt :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
-      (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.IsSound σ) {σ : ℝ → ℝ} (_hR : R.IsSound σ)
+      (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Encloses σ) {σ : ℝ → ℝ} (_hR : R.Encloses σ)
       (B : MergeBuckets ℝ)
       {c : Vec ℝ n₁} (_hc : c - L.b ∈ L.I'.construct) {nn : NeuralNetwork S n₁ m}
       {h : Vec ℝ n₁ → Vec ℝ m} (_hrest : rest.IsInstanceNetwork nn h)

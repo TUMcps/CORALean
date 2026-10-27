@@ -10,7 +10,7 @@ public import CORALean.NN.Layers.Definitions.EvalPoly
 
 CORA's `computeApproxPoly` together with the error `computeApproxError` [1, Alg. 1] leaves: per box,
 the coefficients of a degree-`m` polynomial and the error to allow for, stored in the scalar.
-`IsSound` is that it encloses `σ` on every box the stored values describe, measured against the
+`Encloses` is that it encloses `σ` on every box the stored values describe, measured against the
 coefficients *stored*: a rounded fit is a different fit and not a wrong one, and only the error
 pays. `Relaxation` is the order-1 case. A layer's abstraction is one relaxation per neuron, all at
 one degree, as an order pattern [1, Eq. 23] makes of a nonlinear layer; a family is one per level.
@@ -46,7 +46,7 @@ structure PolyRelaxation (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatAr
   error : 𝕋 → 𝕋 → 𝕋
 
 /-- That it encloses `σ` on every box the stored values describe. -/
-structure PolyRelaxation.IsSound (P : PolyRelaxation 𝕋 m) (σ : ℝ → ℝ) : Prop where
+structure PolyRelaxation.Encloses (P : PolyRelaxation 𝕋 m) (σ : ℝ → ℝ) : Prop where
   sound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
     |σ t - Real.evalPoly (fun k => toReal (P.coeffs l u k)) t| ≤ toReal (P.error l u)
 
@@ -60,8 +60,8 @@ structure PolyRelaxationFamily (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundF
   rel : (o : ℕ) → PolyRelaxation 𝕋 (deg o)
 
 /-- That every level of it encloses `σ`, which is where `σ` arrives. -/
-structure PolyRelaxationFamily.IsSound (F : PolyRelaxationFamily 𝕋) (σ : ℝ → ℝ) : Prop where
-  rel_sound (o : ℕ) : (F.rel o).IsSound σ
+structure PolyRelaxationFamily.Encloses (F : PolyRelaxationFamily 𝕋) (σ : ℝ → ℝ) : Prop where
+  rel_sound (o : ℕ) : (F.rel o).Encloses σ
 
 end CORALean
 

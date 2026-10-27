@@ -11,7 +11,7 @@ public import CORALean.NN.Theorems.EnclosesHoldsOfEnclose
 A specification verified on what `enclose` computed holds of everything the network computes
 on the input set, with no hypothesis: the network is sound at its own `eval`. A
 specification that fails on the enclosed set is not a counterexample; finding out which it
-is means tightening the enclosure. `IsSound.holds_of_enclose` is the same transfer for any
+is means tightening the enclosure. `Encloses.holds_of_enclose` is the same transfer for any
 function the network is sound at, which a reduced network needs.
 
 ## Inputs

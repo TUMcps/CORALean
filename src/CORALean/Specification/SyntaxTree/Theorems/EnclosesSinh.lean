@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `sinh` node encloses its function. -/
-theorem SyntaxTree.encloses_sinh (h : Encloses B t) : Encloses B t.sinh :=
+theorem SyntaxTree.encloses_sinh (h : t.Encloses B) : t.sinh.Encloses B :=
   fun x hx =>
   have hc := h x hx
   contains_of_image (f := Real.sinh)

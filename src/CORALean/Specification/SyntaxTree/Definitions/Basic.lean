@@ -51,7 +51,7 @@ def SyntaxTree.IsInBox {n : ℕ} (B : Real.Interval (Vec ℝ n)) (x : Fin n → 
 -- Reviewed:      ---
 
 /-- `t.value` holds `t.eval x` at every point `x` of the box `B`. -/
-def SyntaxTree.Encloses {n : ℕ} (B : Real.Interval (Vec ℝ n)) (t : SyntaxTree n) : Prop :=
+def SyntaxTree.Encloses {n : ℕ} (t : SyntaxTree n) (B : Real.Interval (Vec ℝ n)) : Prop :=
   ∀ x, SyntaxTree.IsInBox B x → Dom.contains t.value (t.eval x)
 
 end
@@ -101,7 +101,7 @@ def Float.SyntaxTree.IsInBox {n : ℕ} (B : Float.Interval (Vec 𝕋 n)) (x : Fi
 -- Reviewed:      ---
 
 /-- `t.value` holds `t.eval x` at every point `x` of the float box `B`. -/
-def Float.SyntaxTree.Encloses {n : ℕ} (B : Float.Interval (Vec 𝕋 n)) (t : Float.SyntaxTree 𝕋 n) :
+def Float.SyntaxTree.Encloses {n : ℕ} (t : Float.SyntaxTree 𝕋 n) (B : Float.Interval (Vec 𝕋 n)) :
     Prop :=
   ∀ x, Float.SyntaxTree.IsInBox B x → (t.value).contains (t.eval x)
 

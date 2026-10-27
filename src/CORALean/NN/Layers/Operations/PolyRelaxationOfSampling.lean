@@ -13,7 +13,7 @@ CORA's `computeApproxError` [1] assembled from stored pieces: the grid certified
 computed, the fit enclosed by `evalPolyDown`/`evalPolyUp`, the activation by an `Enclosure`, and
 the recentering paying for its own rounding in `ofBracket`. The fit `c` owes nothing — any array
 of stored values, a least-squares solve, a Taylor expansion or a guess — and decides precision
-alone. All four arguments are data; `ofSampling_isSound` is what they are worth.
+alone. All four arguments are data; `ofSampling_encloses` is what they are worth.
 
 ## Inputs
 * `E` – enclosure of the activation

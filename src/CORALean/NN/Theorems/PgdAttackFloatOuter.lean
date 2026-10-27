@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 /-!
 # The float PGD attack encloses the real one
 
-For a float interval chain standing for a smooth real one (`IntervalChain.IsSound`) and a float
+For a float interval chain standing for a smooth real one (`IntervalChain.Encloses`) and a float
 loss derivative enclosing the real one, the real `Chain.pgdAttack` of the chain of its layers at
 the real values of the float arguments lies in the box `IntervalChain.pgdAttack` returns. By
 induction on the passes: a pass keeps the real point in the float box and the real step size in
@@ -61,7 +61,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- A pass keeps the real point in the float box and the real step size in its box. -/
 private theorem aux_pgdStep_mem {c : IntervalChain 𝕋 n m} {r : Real.IntervalChain n m}
-    (hc : c.IsSound r) (hs : r.IsSmooth) (t : Vec 𝕋 m) (L U : Interval (Vec 𝕋 n))
+    (hc : c.Encloses r) (hs : r.IsSmooth) (t : Vec 𝕋 m) (L U : Interval (Vec 𝕋 n))
     {l u : Vec ℝ n} (hL : l ∈ L.construct) (hU : u ∈ U.construct) (decay : 𝕋)
     (iter : List ℕ) (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m))
     {lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m}
@@ -113,7 +113,7 @@ private theorem aux_pgdStep_mem {c : IntervalChain 𝕋 n m} {r : Real.IntervalC
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.pgdAttack_outer {c : IntervalChain 𝕋 n m} {r : Real.IntervalChain n m}
-    (hc : c.IsSound r) (hs : r.IsSmooth) (x : Vec 𝕋 n) (t : Vec 𝕋 m) (ε : 𝕋) (Q : ℕ)
+    (hc : c.Encloses r) (hs : r.IsSmooth) (x : Vec 𝕋 n) (t : Vec 𝕋 m) (ε : 𝕋) (Q : ℕ)
     (l u : Vec 𝕋 n) (stepsize stepsizeDecay : 𝕋) (stepsizeDecayIter : List ℕ)
     (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m))
     {lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m}

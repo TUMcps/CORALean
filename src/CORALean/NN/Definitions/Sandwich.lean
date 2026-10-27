@@ -14,7 +14,7 @@ public import CORALean.NN.Operations.Basic
 
 Linear, activation, linear: the three layers `ReducesAt.merge` replaces by a reduced sandwich,
 and the shape [1]'s neuron merging is stated on. ℝ-only, as the activation is the hypothesis
-`R.IsSound σ` beside it.
+`R.Encloses σ` beside it.
 
 ## Inputs
 * `n` – input width
@@ -60,7 +60,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- The unreduced sandwich a `merge` step replaces: linear, activation, linear. -/
 noncomputable def sandwich {n n₁ n₂ : ℕ} (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ}
-    {R : Relaxation ℝ} (hR : R.IsSound σ) (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) :
+    {R : Relaxation ℝ} (hR : R.Encloses σ) (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) :
     NeuralNetwork S n n₂ :=
   .layer (LinearLayer.mk W0 b0)
     (.layer (ActivationLayer.of (n := n₁) hR) (.ofLayer (LinearLayer.mk W1 b1)))

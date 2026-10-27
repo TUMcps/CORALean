@@ -87,8 +87,8 @@ noncomputable def forwardInnerRange (models : ℕ → ForwardInnerState n → �
 
 /-- What the Taylor models must be: at time `τ`, `[z]` holds the flow of every initial value
 of the box, `[z̃]` that of `z̃₀`, and `[J]` the Jacobian of the flow on the box. -/
-def ForwardInnerState.Encloses (Φ : ℝ → (Fin n → ℝ) → (Fin n → ℝ)) (lo hi z₀ : Fin n → ℝ)
-    (τ : ℝ) (s : ForwardInnerState n) : Prop :=
+def ForwardInnerState.Encloses (s : ForwardInnerState n) (Φ : ℝ → (Fin n → ℝ) → (Fin n → ℝ))
+    (lo hi z₀ : Fin n → ℝ) (τ : ℝ) : Prop :=
   (∀ z ∈ Icc lo hi, Φ τ z ∈ Icc s.zlo s.zhi) ∧ Φ τ z₀ ∈ Icc s.ztlo s.zthi ∧
     ∀ i j, ∀ y ∈ Icc lo hi,
       fderiv ℝ (fun z => Φ τ z i) y (Pi.single j 1) ∈ Icc (s.Jlo i j) (s.Jhi i j)

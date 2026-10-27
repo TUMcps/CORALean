@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the power node encloses its function. -/
-theorem SyntaxTree.encloses_power (h : Encloses B t) (k : ℕ) : Encloses B (t.power k) := fun x hx =>
+theorem SyntaxTree.encloses_power (h : t.Encloses B) (k : ℕ) : (t.power k).Encloses B := fun x hx =>
   have hc := h x hx
   contains_of_image (f := fun y => y ^ k)
     (Real.Interval.power_exact _ (fun i => by

@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `log` node encloses its function for a positive operand. -/
-theorem SyntaxTree.encloses_log (h : Encloses B t) (hd : 0 < t.value.inf 0) : Encloses B t.log :=
+theorem SyntaxTree.encloses_log (h : t.Encloses B) (hd : 0 < t.value.inf 0) : t.log.Encloses B :=
   fun x hx =>
   have hc := h x hx
   have hne : t.value.inf 0 ≤ t.value.sup 0 := hc.1.trans hc.2

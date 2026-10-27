@@ -6,7 +6,7 @@ public import CORALean.NN.Operations.Sensitivity
 public import CORALean.NN.Theorems.SensitivityLinear
 public import CORALean.NN.Theorems.SensitivityActivation
 public import CORALean.NN.Theorems.ScalarEnclosesVecMem
-public import CORALean.NN.Definitions.IntervalChainFloatSound
+public import CORALean.NN.Definitions.IntervalChainFloatEncloses
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
@@ -18,7 +18,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.DiagonalMem
 /-!
 # The float sensitivity encloses `Chain.sensitivity`
 
-For a float interval chain standing for a smooth real one (`IntervalChain.IsSound`), the
+For a float interval chain standing for a smooth real one (`IntervalChain.Encloses`), the
 `Chain.sensitivity` of the chain of its layers at every point of the box `X` lies in the box
 `IntervalChain.sensitivity` returns. The forward value of a layer lies in the box the float pass
 computes, a linear layer's Jacobian is its weights (`Layer.linear_sensitivity`), an activation's the
@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.sensitivity_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.IsSound r) (hs : r.IsSmooth) : -- --- CONCL ---
+    {r : Real.IntervalChain n k} (hc : c.Encloses r) (hs : r.IsSmooth) : -- --- CONCL ---
     ∀ (X : Interval (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ X.construct →
       r.toChain.sensitivity x ∈ (c.sensitivity X).construct := by -- --- PROOF ---
   induction hc with

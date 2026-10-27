@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `sqrt` node encloses its function for a nonnegative operand. -/
-theorem SyntaxTree.encloses_sqrt (h : Encloses B t) (hd : 0 ≤ t.value.inf 0) : Encloses B t.sqrt :=
+theorem SyntaxTree.encloses_sqrt (h : t.Encloses B) (hd : 0 ≤ t.value.inf 0) : t.sqrt.Encloses B :=
   fun x hx =>
   have hc := h x hx
   have hne : t.value.inf 0 ≤ t.value.sup 0 := hc.1.trans hc.2

@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Operations.IntervalChainBackpropAtFloat
 public import CORALean.NN.Theorems.IntervalChainBackpropFloatOuter
 public import CORALean.NN.Theorems.IntervalChainBackpropDegenerate
-public import CORALean.NN.Definitions.IntervalChainFloatSound
+public import CORALean.NN.Definitions.IntervalChainFloatEncloses
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # The float backpropagation at a box encloses `Chain.backprop`
 
-For a float interval chain standing for a smooth real one (`IntervalChain.IsSound`), the real
+For a float interval chain standing for a smooth real one (`IntervalChain.Encloses`), the real
 `Chain.backprop` of the chain of its layers at a point `x` of the box `X` and at a gradient `g` of
 the box `G` lies in the box `IntervalChain.backpropAt` returns. The interval backpropagation of
 the real chain is `Chain.backprop` on degenerate pairs (`backprop_degenerate`), and the float box
@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.backpropAt_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.IsSound r) (hs : r.IsSmooth) (X : Interval (Vec 𝕋 n))
+    {r : Real.IntervalChain n k} (hc : c.Encloses r) (hs : r.IsSmooth) (X : Interval (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ X.construct) (G : Interval (Vec 𝕋 k)) {g : Vec ℝ k}
     (hg : g ∈ G.construct) : -- --- CONCL ---
     r.toChain.backprop x g ∈ (c.backpropAt X G).construct := by -- --- PROOF ---

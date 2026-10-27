@@ -13,7 +13,7 @@ public import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
 
 [1, Prop. 11]: for an S-shaped `ϕ` on `[l, u]`, with `[e, ē]` the approximation errors of the secant
 [1, Def. 6, Def. 7] and `e_S` the error of Singh's enclosure [2, Thm. 3.2], `area([e, ē], [l, u]) ≤
-area([-e_S, e_S], [l, u])`. The S-shape is the class of the tree's `deepZSShape_isSound`: the
+area([-e_S, e_S], [l, u])`. The S-shape is the class of the tree's `deepZSShape_encloses`: the
 derivative rises up to some `x'` and falls after it (the sigmoid, tanh); not the footnote's of [2,
 Thm. 3.2], which is the wrong curvature. It gives `ϕ' ≥ m_S = min(ϕ'(l), ϕ'(u))` on `[l, u]`, which
 is all the proof uses. The paper takes the two extrema in a figure; here every pair is bounded,

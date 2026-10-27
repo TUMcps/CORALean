@@ -83,7 +83,7 @@ bound the nonlinear layer over what `pre` reaches. -/
 theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat 𝕋 n n₁) (b0 : Vec 𝕋 n) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.IsSound σ)
+    (W0 : Mat 𝕋 n n₁) (b0 : Vec 𝕋 n) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.Encloses σ)
     (W1 : Mat 𝕋 n₂ n) (b1 : Vec 𝕋 n₂) (Y : Interval (Vec 𝕋 n)) (X : S n₀)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Encloses fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Encloses fpost)

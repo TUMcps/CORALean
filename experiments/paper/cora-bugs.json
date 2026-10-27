@@ -683,7 +683,7 @@
     "computeApproxPoly": {
       "description": "DeepZ S-shape unsound at $x^3$; reaches network output",
       "kind": "unsound",
-      "fix": "DeepZSShapeSound.lean"
+      "fix": "DeepZSShapeEncloses.lean"
     },
     "nnActLayerFromHandle": {
       "description": "error bound skips interior extremum; radius too small",

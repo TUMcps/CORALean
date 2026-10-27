@@ -6,7 +6,7 @@ import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.RelaxationBox
 import CORALean.NN.Layers.Operations.ReluRelaxation
 import CORALean.NN.Layers.Operations.ReluSlope
-import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+import CORALean.NN.Layers.Theorems.ReluRelaxationEncloses
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.ReduceOnTheFly
 import CORALean.NN.Operations.ReducibleNetworkToNetwork
@@ -65,9 +65,9 @@ def br₂ : Vec D 2 := ![dy 0 0, dy 0 0]
 
 /-- Affine, ReLU, affine, ReLU, every error box `[0, 0]` and both buckets static at `0`. -/
 def reducible : ReducibleNetwork D 2 2 :=
-  .cons ⟨Wr₁, br₁, zeroBox 4⟩ (reluRelaxation reluSlope) ⟨_, reluRelaxation_isSound reluSlope⟩
+  .cons ⟨Wr₁, br₁, zeroBox 4⟩ (reluRelaxation reluSlope) ⟨_, reluRelaxation_encloses reluSlope⟩
       (.static [dy 0 0])
-    (.cons ⟨Wr₂, br₂, zeroBox 2⟩ (reluRelaxation reluSlope) ⟨_, reluRelaxation_isSound reluSlope⟩
+    (.cons ⟨Wr₂, br₂, zeroBox 2⟩ (reluRelaxation reluSlope) ⟨_, reluRelaxation_encloses reluSlope⟩
       (.static [dy 0 0]) .nil)
 
 /-- `[1, 2] × [0, 1/2]`. -/

@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 /-!
 # The float interval backpropagation encloses the real one
 
-For a float chain `c` that stands for the real chain `r` (`IntervalChain.IsSound`), an input pair
+For a float chain `c` that stands for the real chain `r` (`IntervalChain.Encloses`), an input pair
 `p` and an output gradient pair `g` of real vectors inside the boxes `P` and `G`, the pair
 `Real.IntervalChain.backprop` returns lies, bound by bound, in the boxes `IntervalChain.backprop`
 returns. The forward values the real recursion needs are the ones `IntervalChain.fwd` encloses, so
@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.backprop_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
-    {r : Real.IntervalChain n k} (hc : c.IsSound r) : -- --- CONCL ---
+    {r : Real.IntervalChain n k} (hc : c.Encloses r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n)
       (G : Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k)) (g : Vec ℝ k × Vec ℝ k),
       p.1 ∈ P.1.construct → p.2 ∈ P.2.construct → g.1 ∈ G.1.construct → g.2 ∈ G.2.construct →
