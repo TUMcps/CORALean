@@ -115,6 +115,23 @@ public import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
 public import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
 public import CORALean.ContSet.Interval.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Float.Theorems.SubsetOfBounds
+public import CORALean.ContSet.Interval.Float.Theorems.MagnitudeMatEqAbsMax
+public import CORALean.ContSet.Interval.Float.Theorems.RadiusMatGe
+public import CORALean.ContSet.Interval.Float.Theorems.CenterMemCenterBoxMat
+public import CORALean.ContSet.Interval.Float.Theorems.PowersOuter
+public import CORALean.ContSet.Interval.Float.Theorems.VecNominal
+public import CORALean.ContSet.Interval.Float.Theorems.MatVolumeLe
+public import CORALean.ContSet.Interval.Float.Theorems.MatNormLe
+public import CORALean.ContSet.Interval.Float.Theorems.MatNormNominalLe
+public import CORALean.ContSet.Interval.Float.Theorems.InfNormLe
+public import CORALean.ContSet.Interval.Float.Theorems.ContainsMatSound
+public import CORALean.ContSet.Interval.Float.Theorems.VecExact
+public import CORALean.ContSet.Interval.Float.Theorems.VecRepresentsaEmptySetSound
+public import CORALean.ContSet.Interval.Float.Theorems.VecRepresentsaOriginSound
+public import CORALean.ContSet.Interval.Float.Theorems.VecRepresentsaPointSound
+public import CORALean.ContSet.Interval.Float.Theorems.UnvecExact
+public import CORALean.ContSet.Interval.Float.Theorems.IntervalMatrixOuter
+public import CORALean.ContSet.Interval.Float.Theorems.ExactSquareOuter
 
 /-!
 # What `Interval` guarantees

@@ -103,6 +103,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmMixed
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.DependentTermsMatZono
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmIndPolytope
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmMixedMatZono
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.DependentTermsFloat
 
 /-!
 # What enclosing a matrix exponential computes

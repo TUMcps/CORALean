@@ -14,8 +14,9 @@ CORA's `partition` (`discrDynamics/@partition`): a box, the state space, cut axi
 cells. The cells are numbered `1, …, N` with the first dimension running fastest, as MATLAB's
 `ind2sub` does; the number `0` stands for everything outside the box. `dividers j k` is CORA's
 `dividers{j}(k + 1)`; `ofInterval` cuts evenly, `ofDividers` anywhere, and `IsWellFormed` asks the
-dividers not to decrease. Written once over ℝ, with no float layer: the cells are boxes whose float
-enclosure would be a separate object.
+dividers not to decrease. This is the exact layer, over ℝ; `Float.GridPartition` (in
+`Definitions/GridPartitionFloat`) stores the dividers in a float scalar, and the cell operations
+that only read them have float twins in the files named `…Float`.
 
 ## References
 

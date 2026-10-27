@@ -218,13 +218,13 @@ Rulings on borderline cases:
 | [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
-| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 19 | 4 | 1 | 5 | 10 | 3 |
+| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 3 | 20 | 1 | 5 | 10 | 3 |
 | [markovchain](others/markovchain.md) | others | 12 | 5 | 0 | 0 | 2 | 5 | 1 |
-| [matPolytope](others/matPolytope.md) | others | 20 | 11 | 0 | 0 | 1 | 8 | 5 |
-| [matZonotope](others/matZonotope.md) | others | 33 | 14 | 2 | 4 | 3 | 10 | 3 |
+| [matPolytope](others/matPolytope.md) | others | 20 | 4 | 7 | 0 | 1 | 8 | 5 |
+| [matZonotope](others/matZonotope.md) | others | 33 | 3 | 13 | 4 | 3 | 10 | 3 |
 | [matrixSet](others/matrixSet.md) | others | 3 | 0 | 0 | 0 | 0 | 3 | 0 |
 | [neuralnetwork2cora](others/neuralnetwork2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
-| [partition](others/partition.md) | others | 12 | 10 | 0 | 0 | 0 | 2 | 0 |
+| [partition](others/partition.md) | others | 12 | 3 | 7 | 0 | 0 | 2 | 0 |
 | [powerSystem2cora](others/powerSystem2cora.md) | others | 2 | 0 | 0 | 0 | 0 | 2 | 0 |
 | [road](others/road.md) | others | 15 | 0 | 0 | 0 | 9 | 6 | 0 |
 | [simulation](others/simulation.md) | others | 7 | 0 | 0 | 0 | 4 | 3 | 0 |

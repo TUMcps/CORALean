@@ -83,6 +83,10 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeSpectraShadowCo
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeTaylmExact
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeVPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeZonoBundleExact
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalMatPolytopeExact
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalMatPolytopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatPolytopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.VPolytopeIntervalMatrixContains
 
 /-!
 # The guarantees of the Float conversions, collected

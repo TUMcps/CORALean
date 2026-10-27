@@ -127,6 +127,14 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationZonoO
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryRatioAtGe
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryRatioGe
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryPointOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MpowerOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.PowersOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.TransposeExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.MatNormLe
+public import CORALean.ContSet.Zonotope.Float.Theorems.VecExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.VecRepresentsaPointSound
+public import CORALean.ContSet.Zonotope.Float.Theorems.VecRepresentsaOriginSound
+public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemNominalSet
 
 /-!
 # What `Zonotope` guarantees

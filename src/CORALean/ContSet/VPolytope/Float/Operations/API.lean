@@ -23,6 +23,11 @@ public import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
 public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
 public import CORALean.ContSet.VPolytope.Float.Operations.Materialise
+public import CORALean.ContSet.VPolytope.Float.Operations.Vec
+public import CORALean.ContSet.VPolytope.Float.Operations.Unvec
+public import CORALean.ContSet.VPolytope.Float.Operations.MatPlus
+public import CORALean.ContSet.VPolytope.Float.Operations.MatMul
+public import CORALean.ContSet.VPolytope.Float.Operations.Mpower
 
 /-!
 # What the float `VPolytope` computes
