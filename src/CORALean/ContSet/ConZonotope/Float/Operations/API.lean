@@ -13,7 +13,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Project
 public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
 public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
-public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
+public import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 public import CORALean.ContSet.ConZonotope.Float.Operations.Empty
 public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 public import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
@@ -53,8 +53,8 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Materialise
 `plus` keeps the constraints, padding each onto the wider coefficient space, and
 rounds only the center. `linComb` keeps them too, weighting each side's rows and
 unit box by the interpolation parameter; halving is exact, so the only rounding
-is the center's and the center generator's. `reduce` goes through the enclosing
-zonotope and gives the constraints up, as it does over ℝ.
+is the center's and the center generator's. `reduce` keeps them as CORA does, as
+over ℝ: Girard's rule on the lifted zonotope `[G; Aₑ]`, the box rounded up.
 
 `mtimes` keeps the constraints, which sit on the coefficients, and pays the rounding of center and
 generators into the box as `Zonotope.mtimes` does. `intersection` copies both

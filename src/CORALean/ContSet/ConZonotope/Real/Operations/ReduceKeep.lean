@@ -16,10 +16,9 @@ A reduction that keeps the constraints. Above the requested order, `aux_keepSpli
 the generators, `reduceKeepBy` boxes the lowest ranked and projects the constraints
 onto what is kept; at or below it nothing happens.
 
-Beside `ConZonotope.reduce`, not in place of it: that one drops `P` and reduces by Girard's metric
-alone, this one ranks constrained generators first, so neither set contains the other in general.
-What this one buys is that every constraint on a kept coefficient survives, up to the slack
-`keepSlack` charges. No linear program runs in either.
+Beside `ConZonotope.reduce`, not in place of it: that one is CORA's, Girard's metric on the
+zonotope `[G; Aₑ]` the equality rows lift to; this one ranks constrained generators first and
+projects every row, so neither set contains the other in general. No linear program runs in either.
 
 ## Inputs
 * `cZ` – constrained zonotope

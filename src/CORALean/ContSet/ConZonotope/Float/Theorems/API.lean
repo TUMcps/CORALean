@@ -32,7 +32,6 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceLiftByOuter
-public import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceLiftOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ReindexExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound

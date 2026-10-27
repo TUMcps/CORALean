@@ -1,16 +1,18 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
+public import CORALean.ContSet.HPolytope.Real.Operations.Restrict
+public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
 
 @[expose] public section
 
 /-!
 # `ConZonotope.reduce`'s constraint counts
 
-Only a bound, and only on the constraints: above the order, the enclosing zonotope is reduced and
-reconverted, which drops every constraint down to `fullspace`'s zero; at or below it, `cZ` passes
-through unchanged. Either way neither count grows, so `≤ cZ.P.m` and `≤ cZ.P.me` hold
-unconditionally: `0 ≤ ·` in the first branch, `rfl` in the second.
+Only a bound, and only on the constraints. Compacting keeps every inequality row, and above the
+threshold each one is read on the kept generators (`keepRows`), one row for one, while the equality
+rows go into the lifted zonotope and come back as equalities. So the inequality count is the
+operand's and the equality count at most the operand's, the trivial rows `0 = 0` being gone.
 
 The generator count is `ConZonotope.reduce_order_le`, under `Theorems/`: it is `reduce`'s own bound,
 not one operation's size in terms of another's, which is what `Complexity/Space/` records.
@@ -26,9 +28,9 @@ not one operation's size in terms of another's, which is what `Complexity/Space/
 * reducing does not increase the inequality count
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   07-September-2026
+-- Last update:   27-October-2026
 -- Reviewed:      ---
 
 
@@ -42,12 +44,20 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An upper bound on the `P_m` count of `reduce`'s result. -/
-theorem ConZonotope.reduce_P_m_le (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
-    (cZ.reduce o).P.m ≤ cZ.P.m := by
+theorem ConZonotope.reduce_P_m_le (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
+    (cZ.reduce o).P.m ≤ cZ.P.m := by -- --- PROOF ---
+  have hc : cZ.compact.P.m = cZ.P.m := by
+    simp [ConZonotope.compact, HPolytope.comap, HPolytope.dropTrivialEqs, HPolytope.restrict]
   unfold ConZonotope.reduce
-  by_cases h : o * n < cZ.h
-  · rw [if_pos h]; exact Nat.zero_le _
-  · rw [if_neg h]
+  dsimp only
+  by_cases hlt : max o 1 * n + cZ.compact.P.me < cZ.compact.h
+  · rw [dif_pos hlt]
+    simp only [ConZonotope.reduceLiftBy, ConZonotope.reduceKeepBy, ConZonotope.keepRows,
+      HPolytope.intersection, HPolytope.eqs, HPolytope.comap, HPolytope.relax, HPolytope.toIneqs,
+      ConZonotope.liftEq, HPolytope.dropEqs]
+    omega
+  · rw [dif_neg hlt]
+    omega
 
 end CORALean.Real
 

@@ -574,8 +574,8 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "goodE₂" (ofEll RunnableFloat.goodE₂)
   row "isGoodDirRun" (ofBool RunnableFloat.isGoodDirRun)
   row "cZ_eqs" (ofHP RunnableFloat.cZ_eqs.P)
-  row "cZ_reduceLift" (ofCZ RunnableFloat.cZ_reduceLift)
-  row "cZ_reduceLift_P" (ofHP RunnableFloat.cZ_reduceLift.P)
+  row "cZ_reduce_eqs" (ofCZ RunnableFloat.cZ_reduce_eqs)
+  row "cZ_reduce_eqs_P" (ofHP RunnableFloat.cZ_reduce_eqs.P)
   -- the components with a worked example of their own
   row "zAnd" (ofZono RunnableFloat.zAnd)
   row "polyAnd" (ofPolygon RunnableFloat.polyAnd)

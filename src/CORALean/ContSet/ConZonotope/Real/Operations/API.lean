@@ -17,7 +17,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeep
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
 public import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
-public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLift
 public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.ConZonotope.Real.Operations.Enclose
 public import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
@@ -75,10 +74,10 @@ the convex hull exactly, where the enclosing zonotope is only an enclosure of it
 `enclose` keeps them too, for the aligned pair `linComb` also covers, with one copy of `cZ₁.P`'s
 own rows rather than a halfScaled intersection of both sides'; it is only outer, where `linComb`
 is exact between nonempty sets.
-`reduce` is the one operation that still goes through the enclosing zonotope and gives the
-constraints up. CORA reduces the zonotope the constraint rows lift to and reads the rows back off
-it, which asks for the equality system CORA's constraints are and this representation's polytope
-need not be.
+
+`reduce` keeps them as CORA does: it reduces the zonotope `[G; Aₑ]` the equality rows lift to by
+Girard's rule and reads the rows back off it (`reduceLiftBy`), the inequality rows loosened onto the
+kept generators. `reduceKeep` is another constraint-keeping reduction, by its own ranking.
 
 `OfMat` is CORA's constructor, whose constraints are an equality system, `Domain` is the
 coefficient polytope the unit box and `P` make together, and `OfPoint` is the center alone, at

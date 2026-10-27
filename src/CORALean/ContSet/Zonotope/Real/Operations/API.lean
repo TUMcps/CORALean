@@ -13,6 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowOffset
 public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardKeep
 public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 public import CORALean.ContSet.Zonotope.Real.Operations.LinMtimes
@@ -220,11 +221,11 @@ caller, so that it is total — and wrapped, since the difference can be empty a
 `minkDiffGenRec` is Althoff's own recursion instead: exact, and `Set`-valued because nothing smaller
 can be, the difference of two zonotopes not being one itself.
 
-`girardSplit` is the ranking `reduceGirard` reduces by, named on its own because `reduceBox` reads
-the same partition the other way round. `reduceByBox` computes nothing new — the diagonal block
-`reduceBy` already builds, centered at the origin — and `reduceBox` is that at the partition
-`reduce` actually picks, the origin where the order is already met. Together they name the error a
-reduction pays, which is what an inner approximation subtracts back off.
+`girardSplit` is the ranking `reduceGirard` reduces by, `girardKeep` the same at a kept count the
+caller names; `reduceBox` reads the partition the other way round. `reduceByBox` computes nothing
+new — the diagonal block `reduceBy` already builds, centered at the origin — and `reduceBox` is that
+at the partition `reduce` actually picks, the origin where the order is already met. Together they
+name the error a reduction pays, which is what an inner approximation subtracts back off.
 
 `reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume` and `methCBasis`
 pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s. `split` halves one generator into two

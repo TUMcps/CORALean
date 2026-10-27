@@ -33,6 +33,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
 public import CORALean.ContSet.Zonotope.Float.Operations.Radius
 public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorLength
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+public import CORALean.ContSet.Zonotope.Float.Operations.GirardKeep
 public import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
