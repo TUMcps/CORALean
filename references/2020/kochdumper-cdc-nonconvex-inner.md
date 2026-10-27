@@ -49,25 +49,31 @@ and then cross the boundary. It holds when the final box is not flat; see Findin
 ## Findings
 
 **Theorem 3 and Algorithm 1 — the stored box.** Prop. 3 returns a half-open slab,
-`Î = [l₁(i*), l₂(i*)[` or `]u₂(i*), u₁(i*)]`, and is correct as stated. Alg. 1 stores the result
-in its bounds "α̲, ᾱ ∈ ℝᵖ", as Example 5 does (iteration 1: `I = [(0.84, -1), (1, 1)]` gives
+`Î = [l₁(i*), l₂(i*)[` or `]u₂(i*), u₁(i*)]`, and is correct as stated. Alg. 1 stores the result in
+its bounds "α̲, ᾱ ∈ ℝᵖ", as Example 5 does (iteration 1: `I = [(0.84, -1), (1, 1)]` gives
 `ᾱ(1) = 0.84`, a value inside `I`). The closed box shares the face `α(i*) = l₂(i*)` with the
-contraction, so `C(α̲, ᾱ) ∩ PZₖ = ∅` (Thm. 3's proof: "Alg. 1 computes a set which corresponds
-to a feasible solution for the optimization problem (10)") is not guaranteed. When the
-contraction is the whole box, all margins are `0`, Prop. 3's slab is empty, and the stored box
-is a face, which can cross `∂R`. Take `ẋ = 0` on ℝ (Lipschitz), `X₀ = [-1, 1]`, `t = 1`, so
-`R = [-1, 1]`; the outer approximation `x = α₁ + α₂/2` with the initial-state factor `α₁` and one
-more factor, as Example 2's has; `B` the reach-subsets of the faces `α₁ = ±1`, `[1/2, 3/2]` and
-`[-3/2, -1/2]`, exactly (8). With the identity contractor, which Def. 3 admits, both
-iterations contract to the whole box, `i* = 1`, and Alg. 1 returns `α₁ = -1`, `α₂ ∈ [-1, 1]`:
-`C = [-3/2, -1/2]`, which meets `B` at `-3/2`. Its center `-1` passes (14) and `-3/2 ∈ C` is
-not reachable (`innerScaling_counterexample`). The identity is not what breaks it: the tightest
-contractor gives `ᾱ(1) = 0` after the first piece and the whole box again for the second,
-with the same result. The repair is the paper's own argument applied to the open box: every
-pass keeps the image of the open box away from the piece passed, so with `α̲ < ᾱ` that image
-is inside `R` by Thm. 1, and the closed box's image, its closure, is too when `R` is closed
-(`PolyZonotope.innerScaling_subset_of_lt`). Storing the slab half-open, or treating a flat
-box as empty, gives the same guarantee. [`InnerScaling.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/InnerScaling.lean), [`InnerScalingSubsetOfLt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/InnerScalingSubsetOfLt.lean)
+contraction, so `C(α̲, ᾱ) ∩ PZₖ = ∅` (Thm. 3's proof: "Alg. 1 computes a set which corresponds to a
+feasible solution for the optimization problem (10)") is not guaranteed. When the contraction is the
+whole box, all margins are `0`, Prop. 3's slab is empty, and the stored box is a face, which can
+cross `∂R`.
+
+****Theorem 3 and Algorithm 1 — the witness.**.** Take `ẋ = 0` on ℝ (Lipschitz), `X₀ = [-1, 1]`,
+`t = 1`, so `R = [-1, 1]`; the outer approximation `x = α₁ + α₂/2` with the initial-state factor
+`α₁` and one more factor, as Example 2's has; `B` the reach-subsets of the faces `α₁ = ±1`,
+`[1/2, 3/2]` and `[-3/2, -1/2]`, exactly (8). With the identity contractor, which Def. 3 admits,
+both iterations contract to the whole box, `i* = 1`, and Alg. 1 returns `α₁ = -1`, `α₂ ∈ [-1, 1]`:
+`C = [-3/2, -1/2]`, which meets `B` at `-3/2`. Its center `-1` passes (14) and `-3/2 ∈ C` is not
+reachable (`innerScaling_counterexample`). The identity is not what breaks it: the tightest
+contractor gives `ᾱ(1) = 0` after the first piece and the whole box again for the second, with the
+same result.
+
+****Theorem 3 and Algorithm 1 — the repair.**.** The repair is the paper's own argument applied to
+the open box: every pass keeps the image of the open box away from the piece passed, so with
+`α̲ < ᾱ` that image is inside `R` by Thm. 1, and the closed box's image, its closure, is too when
+`R` is closed (`PolyZonotope.innerScaling_subset_of_lt`). Storing the slab half-open, or treating a
+flat box as empty, gives the same guarantee.
+[`InnerScaling.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/InnerScaling.lean),
+[`InnerScalingSubsetOfLt.lean`](../../src/CORALean/ContSet/PolyZonotope/Real/Theorems/InnerScalingSubsetOfLt.lean)
 
 **Proposition 3 — the proof's second goal.** The proof sets out to show "I₃ ⊆ I₁ and
 I₃ ∩ I₁ = ∅"; the second is a slip for `I₃ ∩ I₂ = ∅`, which is what the argument that follows

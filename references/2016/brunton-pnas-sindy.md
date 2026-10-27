@@ -10,14 +10,14 @@
 ```
 
 **Source:** https://arxiv.org/pdf/1509.03580 (arXiv v1, September 2015, "Discovering governing equations from data: Sparse identification of nonlinear dynamical systems", 26 pages, read in full; text extracted with `pypdf`). The PNAS paper of 2016 is a shorter revision of this preprint and is not open access; its numbering differs from the one used here, which is the preprint's, and nothing in the revision was read. CORA cites the paper in `contDynamics/@nonlinearSys/identify.m` and `@nonlinearSysDT/identify.m` and their private `priv_identifySparse.m` (algorithm `'sparse'`, "SINDy").  
-**Inventory:** confirmed (equations (1)-(28); Sections 1-5; Code 1, the only algorithm, which is MATLAB code; Examples 1a, 1b, 2, 3 and the bifurcation examples; Figures 1-13 and Tables 1-7; no numbered theorems)
+**Inventory:** confirmed (equations (1)-(28), Sections 1-5, Code 1, the only algorithm, which is MATLAB code, Examples 1a, 1b, 2, 3 and the bifurcation examples, Figures 1-13 and Tables 1-7, no numbered theorems)
 
 Sparse identification of nonlinear dynamics (SINDy) fits `ẋ = f(x)` as `Ẋ = Θ(X) Ξ` over a library
 `Θ` of candidate functions, with `Ξ` sparse: by the LASSO (`Eq. 2`) or, as the paper prefers for
 speed, by sequential thresholded least squares (`Code 1`: least squares, set the coefficients below
 `λ` to zero, regress onto the rest, repeat). Formalized: the regression and the model read off `Ξ`
 (`Eq. 7`-`Eq. 9`, `Eq. 13`), its equivalence with DMD for a linear library (`Eq. 14`), `Code 1` with
-the regression an argument (a solver, as MATLAB's backslash), and what it provably guarantees: for
+the regression an argument (a solver, as MATLAB's backslash). It provably guarantees: for
 `λ > 0` the nonzero coefficients only shrink, the iteration reaches a fixed point within `p · n + 1`
 passes, a fixed point holds only coefficients at least `λ` and is the regression onto them, and
 exact data of a sparse `Ξ*` is recovered. Convergence results of later papers and the choice of
@@ -43,8 +43,8 @@ is a choice among the paper's, not a deviation.
 | `Eq. 8` | `ẋ_k = f_k(x) = Θ(xᵀ) ξ_k`. | [`SindyData.lean`](../../src/CORALean/Global/SindyData.lean) — `sindyModel_apply` | `correct` |
 | `Eq. 9` | The model `ẋ = f(x) = Ξᵀ (Θ(xᵀ))ᵀ`. | [`SindyData.lean`](../../src/CORALean/Global/SindyData.lean) — `sindyModel`, `sindy_data_iff` | `correct` |
 | `Eq. 10` | With noisy derivatives, `Ẋ = Θ(X) Ξ + η Z`, `Z` Gaussian. | n/a — a noise model | `not-a-claim` |
-| `Alg. 1` | `Code 1`, sequential thresholded least squares: `Xi = Theta \ dXdt`, then `for k = 1:10`: `smallinds = abs(Xi) < lambda`, `Xi(smallinds) = 0`, and for each column `Xi(biginds, ind) = Theta(:, biginds) \ dXdt(:, ind)`. | [`SindyThreshold.lean`](../../src/CORALean/Global/SindyThreshold.lean) — `sindyStep`, `sindy` (one `let` per printed line, `K` passes, `sindy 10` the printed code; `solve ind S` is `Theta(:, biginds) \ dXdt(:, ind)`, an argument), `sindyBig_step_subset`: for `λ > 0` a pass only removes entries; [`SindyFixedPoint.lean`](../../src/CORALean/Global/SindyFixedPoint.lean) — `sindy_fixed_spec`: at a fixed point every entry is zero or at least `λ`, and the nonzero ones are the regression onto the survivors; `sindy_fixed_normalEq`: if the regression solves its normal equations so does the fixed point, on its support; `sindy_recovers`: exact data of a sparse `Ξ*` with entries at least `λ` is recovered after any number of passes | `correct` |
-| `Sec. 3.1` | The algorithm "is computationally efficient, and it rapidly converges to a sparse solution in a small number of iterations"; the procedure "is continued until the non-zero coefficients converge". | [`SindyThreshold.lean`](../../src/CORALean/Global/SindyThreshold.lean) — `sindy_fixed`: for `λ > 0` and any regression, `K ≥ p · n + 1` passes (`p` terms, `n` columns) reach a fixed point | `underspecified` — "a small number" is not a quantity; `p · n + 1` is what holds for every regression, and the printed `10` suffices only when it is at least that; for `λ ≤ 0` nothing is thresholded; the efficiency claim is not a result |
+| `Alg. 1` | `Code 1`, sequential thresholded least squares: `Xi = Theta \ dXdt`, then `for k = 1:10`: `smallinds = abs(Xi) < lambda`, `Xi(smallinds) = 0`, and for each column `Xi(biginds, ind) = Theta(:, biginds) \ dXdt(:, ind)`. | [`SindyThreshold.lean`](../../src/CORALean/Global/SindyThreshold.lean) — `sindyStep`, `sindy` (one `let` per printed line, `K` passes, `sindy 10` the printed code; `solve ind S` is `Theta(:, biginds) \ dXdt(:, ind)`, an argument), `sindyBig_step_subset`: for `λ > 0` a pass only removes entries; [`SindyFixedPoint.lean`](../../src/CORALean/Global/SindyFixedPoint.lean) — `sindy_fixed_spec`: at a fixed point every entry is zero or at least `λ`, and the nonzero ones are the regression onto the survivors. `sindy_fixed_normalEq`: if the regression solves its normal equations so does the fixed point, on its support; `sindy_recovers`: exact data of a sparse `Ξ*` with entries at least `λ` is recovered after any number of passes | `correct` |
+| `Sec. 3.1` | The algorithm "is computationally efficient, and it rapidly converges to a sparse solution in a small number of iterations"; the procedure "is continued until the non-zero coefficients converge". | [`SindyThreshold.lean`](../../src/CORALean/Global/SindyThreshold.lean) — `sindy_fixed`: for `λ > 0` and any regression, `K ≥ p · n + 1` passes (`p` terms, `n` columns) reach a fixed point | `underspecified` — "a small number" is not a quantity; `p · n + 1` is what holds for every regression, and the printed `10` suffices only when it is at least that. For `λ ≤ 0` nothing is thresholded; the efficiency claim is not a result |
 | `Sec. 3.2` | Cross-validation and the Pareto front for choosing `λ`. | n/a — a heuristic for a parameter | `not-a-claim` |
 | `Eq. 11` | The discrete-time system `x_{k+1} = f(x_k)`. | n/a — a modelling assumption | `not-a-claim` |
 | `Eq. 12` | The data matrices `X₁^{m-1}`, `X₂^m` of snapshots and their successors. | n/a — a definition | `not-a-claim` |
@@ -65,7 +65,7 @@ at most `p · n + 1` passes for `p` library terms and `n` state components (`sin
 the guarantee; ten passes reach the fixed point whenever `p · n + 1 ≤ 10` and, for a larger library,
 not by this argument. At the fixed point every coefficient is zero or at least `λ` in magnitude, and
 the nonzero ones are the regression onto the surviving terms, a least-squares fit onto its support
-(`sindy_fixed_normalEq`, for a regression that solves its normal equations); it is not claimed to
+(`sindy_fixed_normalEq`, for a regression that solves its normal equations). It is not claimed to
 be the best fit over all supports, nor that the support is the true one except for exact data of a
 sparse `Ξ*` (`sindy_recovers`). The regression `Theta(:, biginds) \ dXdt(:, ind)` is an argument,
 as MATLAB's backslash returns the minimum-norm or a basic solution when the surviving columns are

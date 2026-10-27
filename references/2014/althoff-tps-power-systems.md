@@ -14,7 +14,7 @@
 
 The compositional extension of [Althoff, Krogh 2014](althoff-tac-nonlinear-dae.md) to power systems:
 the same linearization of a semi-explicit index-1 DAE into a linear differential inclusion
-(Eqs. 3-13, Alg. 1), and two ways to split a partitioned system, the reachable sets of the
+(Eqs. 3-13, Alg. 1). It adds two ways to split a partitioned system: the reachable sets of the
 subsystems with the interface inputs assumed (Eq. 14, Alg. 2) or only the Lagrange remainder
 of the linearization error (Sec. V-B). The linearization is all restated from the earlier paper
 and tracked there. The paper prints the algebraic error with the right sign, `-C F⁻¹`, in
@@ -50,7 +50,7 @@ subsystems through `F`; see Findings.
 | `Sec. V` | The partition of the power system into subsystems is given (coherency or graph based), transmission lines are the interfaces, and the bus voltage and phase of a neighbour are an input of the subsystem. | n/a — an assumption on the partition | `not-a-claim` |
 | `Eq. 14` | The interface inputs of subsystem `i` enlarged by `λ_U` about their center, "analogously to (12)": `Û⁽ⁱ⁾ = ĉ_U⁽ⁱ⁾ ⊕ ((λ_U - 1)Λ⁽ⁱ⁾ + I)(U⁽ⁱ⁾ ⊕ (-ĉ_U⁽ⁱ⁾))`, `Λ` a diagonal matrix with ones at the interface inputs. | [`EnlargeInterfaceInput.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/EnlargeInterfaceInput.lean), [`EnlargeInterfaceInputSubset.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/EnlargeInterfaceInputSubset.lean) — for `λ_U ≥ 1`, `Λ Λ = Λ` and `ĉ` the center of `U`, `Λ U ⊆ Λ Û` (`NonlinDASys.image_subset_enlargeInterfaceInput`); that is all `Alg. 2` uses | `underspecified` — `λ_U ≥ 1`, `Λ` idempotent (a 0/1 diagonal) and `ĉ` the center of `U` are not stated; `U ⊆ Û` is not implied, since only the interface coordinates are scaled, which decorrelates them from the others |
 | `Eq. 15` | The complete reachable set from the subsystems', `R(τ_k) = Φ⁽¹⁾R⁽¹⁾(τ_k) × Φ⁽²⁾R⁽²⁾(τ_k) × … × Φ⁽ⁿˢ⁾R⁽ⁿˢ⁾(τ_k)`, with `Φ⁽ⁱ⁾` mapping the local states to those of the full system, ones where states correspond. | [`ComposeSubsystems.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ComposeSubsystems.lean), [`ComposeSubsystemsExact.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ComposeSubsystemsExact.lean), [`ComposeSubsystemsEqPreimage.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ComposeSubsystemsEqPreimage.lean) — the zonotope `Φ⁽¹⁾R⁽¹⁾ ⊕ … ⊕ Φ⁽ⁿˢ⁾R⁽ⁿˢ⁾` is the sum of the mapped sets, equal, and for `Φ`, `Υ` a partition of the coordinates `{x \| ∀ i, Υ⁽ⁱ⁾x ∈ R⁽ⁱ⁾}`, equal | `underspecified` — each `Φ⁽ⁱ⁾R⁽ⁱ⁾` already lies in the states of the full system, so `×` would have dimension `n_s n`; read as the Minkowski sum, which for disjoint coordinates is the product in place |
-| `Alg. 2` | `reachNextCompositional(R⁽ⁱ⁾ᵈ(t_k), λ_U, U⁽ⁱ⁾, otherInputsToReachNext)`: per subsystem with `inputEnclosure⁽ⁱ⁾ = false`, `Û⁽ⁱ⁾` by Eq. 14 and Alg. 1 on it; `R(τ_k)` by Eq. 15; `inputEnclosure⁽ⁱ⁾ := Υ⁽ⁱ⁾R(τ_k) ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾`, `U⁽ⁱ⁾ := Λ⁽ⁱ⁾Û⁽ⁱ⁾ ⊕ (I - Λ⁽ⁱ⁾)U⁽ⁱ⁾`; until all are set; "the assumption is overapproximative and thus valid". | — partial: [`CompositionalState.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Definitions/CompositionalState.lean), [`ReachNextCompositional.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ReachNextCompositional.lean) (`NonlinDASys.reachNextCompositional`, lines 3-18; Alg. 1 an argument, `fuel` bounds the passes), [`ReachNextCompositionalSpec.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachNextCompositionalSpec.lean) (the result passed the test of lines 10-15, `Υ⁽ⁱ⁾R(τ_k) ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾`, and each subsystem's sets are Alg. 1 at its final `Û⁽ⁱ⁾`); missing: that a solution of the coupled system stays in `R(τ_k)` once the test passes, the paper's "thus valid" being an assume-guarantee argument it does not give, so the guarantee is not formalized | — |
+| `Alg. 2` | `reachNextCompositional(R⁽ⁱ⁾ᵈ(t_k), λ_U, U⁽ⁱ⁾, otherInputsToReachNext)`: per subsystem with `inputEnclosure⁽ⁱ⁾ = false`, `Û⁽ⁱ⁾` by Eq. 14 and Alg. 1 on it. `R(τ_k)` by Eq. 15; `inputEnclosure⁽ⁱ⁾ := Υ⁽ⁱ⁾R(τ_k) ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾`, `U⁽ⁱ⁾ := Λ⁽ⁱ⁾Û⁽ⁱ⁾ ⊕ (I - Λ⁽ⁱ⁾)U⁽ⁱ⁾`; until all are set. "the assumption is overapproximative and thus valid". | — partial: [`CompositionalState.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Definitions/CompositionalState.lean), [`ReachNextCompositional.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ReachNextCompositional.lean), [`ReachNextCompositionalSpec.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Theorems/ReachNextCompositionalSpec.lean); missing: that a solution of the coupled system stays in `R(τ_k)` once the test passes, the paper's "thus valid" being an assume-guarantee argument it does not give, so the guarantee is not formalized | — |
 | `Sec. V-B` | The linearization error computed compositionally: the Lagrange remainder of Eq. 10 is evaluated per subsystem, the neighbours' variables inputs from Eq. 14, and the partial remainders `L⁽ⁱ⁾` joined "as for the reachable set in (15)", `L(τ_k) = Φ⁽¹⁾L⁽¹⁾(τ_k) × … × Φ⁽ⁿˢ⁾L⁽ⁿˢ⁾(τ_k)`, while the reachable set is computed from the full model. | [`ComposeSubsystems.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ComposeSubsystems.lean), [`CompositionalLocalError.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Counterexamples/CompositionalLocalError.lean) — the join as `Eq. 15`; the counterexample `NonlinDASys.compositional_local_error_counterexample`: two coupled subsystems whose local error `ℓᵈ₁ - C₁F₁⁻¹ℓᵃ₁` of `ẋ₁` is `0` at every point while the true `ℓᵈ - CF⁻¹ℓᵃ` is `x₂²` | `underspecified` — `L⁽ⁱ⁾` is not defined: with the `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹` of the subsystem's own rows and columns the product misses the error whenever `F` couples the subsystems, and the remainders `σ`, `φ` of the parts must be joined before the global `CF⁻¹` of `Eq. 10`; see Findings |
 | `Sec. V-B (complexity)` | The compositional linearization error saves computation similar to the fully compositional one, the remainder costing `O(n⁵)` and every other operation `O(n³)`. | n/a — a running time of a construction, never proved in the tree; see CONTRIBUTING.md | `not-a-claim` |
 | `Def. VI.1` | (Zonotope) `Z = {c + Σ βᵢg⁽ⁱ⁾ \| βᵢ ∈ [-1, 1]}`, written `(c, g⁽¹⁾, …, g⁽ᵖ⁾)`; order `p/n`. | n/a — restated; tracked as `Def. 1` on [Girard 2005](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
@@ -64,7 +64,7 @@ subsystems through `F`; see Findings.
 | `Eq. 19` | The power-flow equations with injections `P_i = P_{g,i} + Pᵈ_{g,i} + P_{d,i} = Σⱼ V_iV_j\|Y_{ij}\|cos(Ψ_{ij} + Θ_j - Θ_i)` and `Q_i = -Σⱼ V_iV_j\|Y_{ij}\|sin(Ψ_{ij} + Θ_j - Θ_i)` (after [50]); a power drop-out sets `P_{g,i} = Q_{g,i} = 0` and replaces `E_i` by `V_i`. | n/a — restated; tracked as `Eq. 3` on [Althoff 2022](../2022/althoff-arch-power-systems.md); the injections `Pᵈ_{g,i}`, `Qᵈ_{g,i}` of renewable sources are added here | `restated` |
 | `Sec. VII-A (variables)` | The assignment of dynamic, algebraic and input variables for a subsystem with `N_g` generator buses, `N_l` load buses and `N_i` cut lines: `y = (E_i, V_{N_g+i}, Θ_i)`, `x = (δ, ω, T_m)`, `u = (P_c, Pᵈ_g, Qᵈ_g, V̂_{k,j}, Θ̂_{k,j})` of the neighbours. | n/a — the numbering of variables | `not-a-claim` |
 | `Table I` | Generator parameters `M = 1/(15π)`, `D = 0.04`, `\|Y_g\| = 5`, `Ψ_g = -π/2`, `T_SV = 1`, `R_D = 0.05`, `ω_s = 120π`. | n/a — data | `not-a-claim` |
-| `Sec. VII-B` | Transient stability of the IEEE 14-bus and 30-bus systems: after 0.1 s the largest plant is taken off for 0.03 s; the subsystem split of Alg. 2 explodes after 0.27 s, the compositional linearization error does not and differs little from the full one; return times 4.0 s and 4.4 s (Table II); the 30-bus system with 18 dynamic variables needs `2¹⁸` simulations of about 1.5 s, 393216 s, "around 100 times longer" than the formal analysis. | n/a — an experiment; the arithmetic `2¹⁸ · 1.5 = 393216` holds | `not-a-claim` |
+| `Sec. VII-B` | Transient stability of the IEEE 14-bus and 30-bus systems: after 0.1 s the largest plant is taken off for 0.03 s; the subsystem split of Alg. 2 explodes after 0.27 s, the compositional linearization error does not and differs little from the full one. Return times 4.0 s and 4.4 s (Table II); the 30-bus system with 18 dynamic variables needs `2¹⁸` simulations of about 1.5 s, 393216 s, "around 100 times longer" than the formal analysis. | n/a — an experiment; the arithmetic `2¹⁸ · 1.5 = 393216` holds | `not-a-claim` |
 | `Sec. VII-C` | Critical clearing time `t_crit = 0.323 s` of the 14-bus scenario for the center of the initial set; the reachable set computed until `t_crit` and unbounded afterwards, the sensitivity of the algebraic to the dynamic state making the error computation diverge. | n/a — an experiment | `not-a-claim` |
 | `Sec. VII-D` | Uncertain renewable production at buses 13 and 14, `Pᵈ_g(t) ∈ {(t/5)P* \| P* ∈ [0.04, 0.06] p.u.}`, the 14-bus reachable sets for `[0, 5]` s against random simulations. | n/a — an experiment | `not-a-claim` |
 
@@ -91,29 +91,32 @@ error of Eqs. 10, 11 and 20 of the earlier paper, refuted there
 (`NonlinDASys.shared_lagrange_point_counterexample`), and is repaired alike: every later step
 holds with one `ξ` per row. The rows are tracked there.
 
-**`Eq. 15`, `Sec. V-B` — the join and the local `CF⁻¹`.** The join `Φ⁽¹⁾R⁽¹⁾ × …` of Eq. 15
-is dimensionally a sum: each `Φ⁽ⁱ⁾R⁽ⁱ⁾` is a set of the full system's states, and the
-product of `n_s` of them has dimension `n_s n`. Read as the Minkowski sum, it is exactly the set
-whose part in every subsystem is that subsystem's, the Cartesian product in place
-(`NonlinDASys.composeSubsystems_eq_preimage`, for `Φ`, `Υ` a partition of the coordinates).
-Sec. V-B joins "the partial Lagrange remainders `L⁽ⁱ⁾`" the same way, but the error of the
-dynamics is `ℓᵈ - CF⁻¹ℓᵃ` with the `F⁻¹` of the full system (Eq. 10), and the interface
-variables that make a subsystem's `F⁽ⁱ⁾` a diagonal block of `F` are, in the full system,
-algebraic variables the rows of `g` couple through. Then `(CF⁻¹)` has blocks off the
-diagonal and the subsystem's own `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹` is not its block of it: for `f = y`,
-`g = (y₁ - y₂, y₂ - x₂²)` with subsystems `(x₁, y₁)` and `(x₂, y₂)`, the true error of `ẋ₁`
-at `x₂ = 1` is `1`, and the error subsystem 1 computes from its own rows (`C₁ = F₁ = 1`, linear
-rows, remainders `0`) is `0` at every point, so no set that encloses the local errors holds the
-true one (`NonlinDASys.compositional_local_error_counterexample`). The paper's text does not say
-which `CF⁻¹` the parts carry, so the row is `underspecified`, not false: joining the
-remainders `σ` and `φ` of the parts first, and applying the global `CF⁻¹` to the joined sets,
-is sound. CORA's `priv_linError_mixed_noInt_comp.m` takes the local blocks:
-`[~,~,Csub,~,~,Fsub] = options.subsystemJacobian{iSys}(…)`, `CFsub_inv = Csub*pinv(Fsub)`, and
-adds `index{iSys}.X'*error{iSys}` per subsystem, which is the unsound reading whenever the
-power-flow rows of a bus couple to a bus of another subsystem (a cut line); its own
-`Rtotal_y` is updated with the global `F_inv`. Not run; the first witness is for the formula,
-and `NonlinDASys.compLocalErrorCora_counterexample` is for CORA's per-subsystem code on the same
-system (the error set of subsystem 1 is `{0}` for every `Csub`, `Fsub`).
+**`Eq. 15`, `Sec. V-B` — the join and the local `CF⁻¹`.** The join `Φ⁽¹⁾R⁽¹⁾ × …` of Eq. 15 is
+dimensionally a sum: each `Φ⁽ⁱ⁾R⁽ⁱ⁾` is a set of the full system's states, and the product of `n_s`
+of them has dimension `n_s n`. Read as the Minkowski sum, it is exactly the set whose part in every
+subsystem is that subsystem's, the Cartesian product in place
+(`NonlinDASys.composeSubsystems_eq_preimage`, for `Φ`, `Υ` a partition of the coordinates). Sec. V-B
+joins "the partial Lagrange remainders `L⁽ⁱ⁾`" the same way, but the error of the dynamics is
+`ℓᵈ - CF⁻¹ℓᵃ` with the `F⁻¹` of the full system (Eq. 10), and the interface variables that make a
+subsystem's `F⁽ⁱ⁾` a diagonal block of `F` are, in the full system, algebraic variables the rows of
+`g` couple through. Then `(CF⁻¹)` has blocks off the diagonal and the subsystem's own `C⁽ⁱ⁾F⁽ⁱ⁾⁻¹`
+is not its block of it.
+
+****`Eq. 15`, `Sec. V-B` — the counterexample.**.** Take `f = y`, `g = (y₁ - y₂, y₂ - x₂²)` with
+subsystems `(x₁, y₁)` and `(x₂, y₂)`. The true error of `ẋ₁` at `x₂ = 1` is `1`. The error subsystem
+1 computes from its own rows (`C₁ = F₁ = 1`, linear rows, remainders `0`) is `0` at every point, so
+no set that encloses the local errors holds the true one
+(`NonlinDASys.compositional_local_error_counterexample`). The paper's text does not say which `CF⁻¹`
+the parts carry, so the row is `underspecified`, not false: joining the remainders `σ` and `φ` of
+the parts first, and applying the global `CF⁻¹` to the joined sets, is sound.
+
+****`Eq. 15`, `Sec. V-B` — CORA and the witnesses.**.** CORA's `priv_linError_mixed_noInt_comp.m`
+takes the local blocks: `[~,~,Csub,~,~,Fsub] = options.subsystemJacobian{iSys}(…)`,
+`CFsub_inv = Csub*pinv(Fsub)`, and adds `index{iSys}.X'*error{iSys}` per subsystem, which is the
+unsound reading whenever the power-flow rows of a bus couple to a bus of another subsystem (a cut
+line); its own `Rtotal_y` is updated with the global `F_inv`. Not run; the first witness is for the
+formula, and `NonlinDASys.compLocalErrorCora_counterexample` is for CORA's per-subsystem code on the
+same system (the error set of subsystem 1 is `{0}` for every `Csub`, `Fsub`).
 
 **`Alg. 2` — the validation of the assumed inputs.** The test `Υ⁽ⁱ⁾R(τ_k) ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾` of
 the loop confirms that the computed sets stay in the assumed interface inputs; "thus valid" is
@@ -132,3 +135,10 @@ Eq. 18 is not formalized.
 
 **Preprint.** The page is for the author's manuscript, headed with the journal template's
 placeholders; the numbering of the typeset article was not seen.
+
+**`Alg. 2` — what the linked files state.**
+
+* `ReachNextCompositional.lean` — `NonlinDASys.reachNextCompositional`, lines 3-18; Alg. 1 an
+  argument, `fuel` bounds the passes
+* `ReachNextCompositionalSpec.lean`: the result passed the test of lines 10-15,
+  `Υ⁽ⁱ⁾R(τ_k) ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾`, and each subsystem's sets are Alg. 1 at its final `Û⁽ⁱ⁾`

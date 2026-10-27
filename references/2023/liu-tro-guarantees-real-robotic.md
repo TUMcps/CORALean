@@ -10,7 +10,7 @@
 ```
 
 **Source:** https://arxiv.org/pdf/2103.01626 (arXiv:2103.01626v2, 12 Sep 2023, the authors' accepted version with the "© 2023 IEEE" notice, 14 pages including Appendices A-B, read in full; text extracted with `pypdf`). Volume, issue and pages from the DOI record (doi:10.1109/TRO.2023.3277268); the typeset T-RO article was not reachable. CORA cites it as "Liu et al., 202x" in `@linearSysDT/isconform_dyn.m`, `confSynth_dyn.m`, `confSynth_gray.m`, `private/priv_conform_reachableHalfspaces.m` and `priv_conform_unifyTrajectories.m`, by equation number ((14), (15), (17), (21), Thm. 1, Cor. 1), which match this numbering; `isconform_dyn` notes that the signs in (21) "were incorrect in the IEEE early access version" — the arXiv version read here has them right.  
-**Inventory:** confirmed (Definitions 1-7, Propositions 1-4, Theorem 1, Corollary 1 and Remarks 1-3, each with its own counter; equations (1)-(33); Tables I-IV; Appendices A-B)
+**Inventory:** confirmed (Definitions 1-7, Propositions 1-4, Theorem 1, Corollary 1 and Remarks 1-3, each with its own counter, equations (1)-(33), Tables I-IV, Appendices A-B)
 
 Reachset conformance for a linear plant `x(k+1) = A x + B u + w`, `y = C x + D u + v`, with the
 disturbance and noise sets zonotopes stretched from templates, combined with the synthesis of

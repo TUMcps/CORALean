@@ -13,7 +13,8 @@
 # Linux and several times that in Git Bash on Windows; the reference check runs
 # when a commit touches `references/`, `scripts/`, `experiments/paper/` or what it
 # reads of a Lean file (declaration names, the bibliography, the cites), and takes
-# about seven. A commit of only other files, such as the root README, runs neither.
+# about seven. A commit of only other files, such as the root README, runs neither, but the
+# readability of every staged `.md` is always checked (`check-readability.py --index`).
 # When the working tree differs from the index, a whole-tree failure is rerun on
 # a checkout of the index in a temporary directory, so a violation in unstaged
 # edits alone does not block the commit.
@@ -78,6 +79,14 @@ if [ "$conventions" = full ] || [ "$references" = yes ]; then
     checkout
     whole_tree "$tree" || status=1
   fi
+fi
+
+# Readability of the staged markdown (CONTRIBUTING, "Writing"): the index versions, one second at
+# most. A commit that runs the whole tree has already had every tracked `.md` checked there.
+md=$(git diff --cached --name-only --diff-filter=AMR -- '*.md')
+if [ -n "$md" ] && [ "$conventions" != full ]; then
+  # shellcheck disable=SC2086
+  $PYTHON scripts/conventions/check-readability.py --index $md || status=1
 fi
 
 exit "$status"

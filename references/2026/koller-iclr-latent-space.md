@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://arxiv.org/pdf/2505.17854v3 (arXiv:2505.17854v3, 9 Feb 2026, "Published as a conference paper at ICLR 2026"; 18 pages with the appendix, read in full; text extracted with `pymupdf`, Prop. 2, Prop. 3, Eq. 9 and Eq. 13 checked against the page images)  
+**Source:** https://arxiv.org/pdf/2505.17854v3 (arXiv:2505.17854v3, 9 Feb 2026, "Published as a conference paper at ICLR 2026", 18 pages with the appendix, read in full, text extracted with `pymupdf`, Prop. 2, Prop. 3, Eq. 9 and Eq. 13 checked against the page images)  
 **Inventory:** confirmed (against the paper: Definitions 1-3, Propositions 1-4, Corollary 1, Algorithm 1 and Example 1, each with its own counter, and Equations 1-15; the proofs are Appendices E-F, Sec. 5 and Appendices A and C are the evaluation)
 
 CORA's `neuralNetwork/verify` with `options.nn.refinement_method = 'zonotack'` and
@@ -48,7 +48,7 @@ other reading of `A⁻` than the one Prop. 3 needs; both are corrected, CORA com
 | `Sec. 3 (iteration)` | Prop. 2 can be iterated, each time transferring the unsafe set to the input space to remove provably safe inputs; the refined set encloses the unsafe inputs and in general not the full output set (Fig. 3). | n/a — a remark on using `Prop. 2`, not a claim beyond it | `not-a-claim` |
 | `Eq. 8` | (Set-based verification, Scott et al. 2016, Prop. 2) `∃ i ∈ [p]: A(i,·) c_y - \|A(i,·) G_y\| 1 > b(i) ⟹ Y ∩ U = ∅`. | [`InterIneqsEqEmptyOfRow.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/InterIneqsEqEmptyOfRow.lean) — `Zonotope.inter_ineqs_eq_empty_of_row`; CORA: the `unknown` test of step 1 of `verify.m` | `correct` |
 | `Eq. 9` | (Set-based falsification, Althoff and Frehse 2016, Lemma 1) For each normal vector `A(i,·)` of the unsafe set, the boundary point `β̃ᵢ = sign(A(i,·) G_y)`, `ỹ = c_y + G_y β̃ᵢ` of the intersection of the enclosed output set and the unsafe set, and the candidate `x̃ = c_x + G_x β̃ᵢ([q₀]) ∈ X`, checked by `Φ(x̃) ∈ U`. | [`ZonotackFactors.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/ZonotackFactors.lean), [`ZonotackFactorsIsLeast.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ZonotackFactorsIsLeast.lean), [`SignBoundaryPoint.lean`](../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/SignBoundaryPoint.lean) — corrected: `β̃ = -sign(A(i,·) G_y)` (`Zonotope.zonotackFactors`) gives the point of `Y` least in `A(i,·) y`, `Zonotope.zonotackFactors_isLeast`, so it satisfies row `i` whenever some point of `Y` does; CORA: the `'zonotack'` falsification of step 2.1 of `verify.m`, `beta_ = -sign(...)` **Counterexample:** `Zonotope.signBoundaryPoint_counterexample` | `fixed` — the printed sign maximizes `A(i,·) y` over `Y`, the vertex farthest from the halfspace `A(i,·) y ≤ b(i)`: for `Y = [-1, 1]` and `U = {y ≤ 0}`, `Y ∩ U = [-1, 0]` and the printed `ỹ = 1 ∉ U`; CORA takes `-sign`; see Findings |
-| `Alg. 1` | (Set-based verification algorithm) A queue of input sets from `X`; per set `X_i`: `Y_i ← enclose(Φ, X_i)` (Prop. 1); if `Y_i ∩ U = ∅` (8) continue; else `x̃_i ← c_x + G_x β̃([q₀])` for `β̃_i = sign(A(i,·) G_y)` (9), `ỹ_i ← Φ(x)`, return `FALSIFIED(x̃_i)` if `ỹ_i ∈ U`; else compute `C, d` (Prop. 2), split into `X_i\|_{C₁≤d₁}, …, X_i\|_{C_ξ≤d_ξ}` (Scott et al. 2016, Prop. 3) and enqueue them; `VERIFIED` when the queue is empty. | [`VerifyResult.lean`](../../src/CORALean/NN/Definitions/VerifyResult.lean), [`Verify.lean`](../../src/CORALean/NN/Operations/Verify.lean), [`IsVerifySound.lean`](../../src/CORALean/NN/Theorems/IsVerifySound.lean) — `SetBasedNet.verify`, the main loop of `verify.m` with `'zonotack'` falsification and refinement: a candidate per row of `A` with `-sign`, the pieces of a split stored as their factor bounds of Prop. 3 rescaling `X_i` (`aux_refineInputSet`, `aux_scaleAndOffsetZonotope`), an empty piece dropped, and a budget of sets that ends in `UNKNOWN` (`options.nn.max_verif_iter`); the split is a parameter, any family of constraints covering the factor box (`aux_dimSplitConstraints`, the neuron splits); `SetBasedNet.verify_sound`: `VERIFIED` proves every queued set safe, `FALSIFIED(x̃)` gives `x̃` in a queued set with `Φ(x̃) ∈ U` | `underspecified` — an `Alg.` row, read as simplified pseudocode (references/README.md): line 10 has the sign of `Eq. 9` and one `β̃_i` indexed by the loop counter `i`, line 11 reads `Φ(x)` for `Φ(x̃_i)`, line 15 applies Prop. 2, stated for a zonotope, to the constrained sets of line 16, which App. D stores as their bounds, and the loop has no budget; see Findings |
+| `Alg. 1` | (Set-based verification algorithm) A queue of input sets from `X`; per set `X_i`: `Y_i ← enclose(Φ, X_i)` (Prop. 1). If `Y_i ∩ U = ∅` (8) continue; else `x̃_i ← c_x + G_x β̃([q₀])` for `β̃_i = sign(A(i,·) G_y)` (9), `ỹ_i ← Φ(x)`, return `FALSIFIED(x̃_i)` if `ỹ_i ∈ U`. Else compute `C, d` (Prop. 2), split into `X_i\|_{C₁≤d₁}, …, X_i\|_{C_ξ≤d_ξ}` (Scott et al. 2016, Prop. 3) and enqueue them; `VERIFIED` when the queue is empty. | [`VerifyResult.lean`](../../src/CORALean/NN/Definitions/VerifyResult.lean), [`Verify.lean`](../../src/CORALean/NN/Operations/Verify.lean), [`IsVerifySound.lean`](../../src/CORALean/NN/Theorems/IsVerifySound.lean) — `SetBasedNet.verify`, the main loop of `verify.m` with `'zonotack'` falsification and refinement: a candidate per row of `A` with `-sign`, the pieces of a split stored as their factor bounds of Prop. 3 rescaling `X_i` (`aux_refineInputSet`, `aux_scaleAndOffsetZonotope`), an empty piece dropped, and a budget of sets that ends in `UNKNOWN` (`options.nn.max_verif_iter`). The split is a parameter, any family of constraints covering the factor box (`aux_dimSplitConstraints`, the neuron splits); `SetBasedNet.verify_sound`: `VERIFIED` proves every queued set safe, `FALSIFIED(x̃)` gives `x̃` in a queued set with `Φ(x̃) ∈ U` | `underspecified` — an `Alg.` row, read as simplified pseudocode (references/README.md): line 10 has the sign of `Eq. 9` and one `β̃_i` indexed by the loop counter `i`, line 11 reads `Φ(x)` for `Φ(x̃_i)`, line 15 applies Prop. 2, stated for a zonotope, to the constrained sets of line 16, which App. D stores as their bounds, and the loop has no budget; see Findings |
 | `Sec. B (F-radius)` | The F-radius `‖Y‖_F := √(Σᵢ Σⱼ G_y(i,j)²)` of `Y = ⟨c_y, G_y⟩_Z` (Combastel 2015, Def. 3). | n/a — restated; tracked as `Def. 3` on [Zonotopes and Kalman observers: Gain optimality under distinct uncertainty paradigms and robust convergence](../2015/combastel-automatica-zonotopes-kalman.md) | `restated` |
 | `Eq. 10` | (Enclosure-gradient heuristic) The score `s(i) = r(i) ∇_{r(i)} ‖Y‖_F` of input dimension `i`, `r = \|G_x\| 1` the radius of `X`. | n/a — a splitting heuristic, the choice of which dimension `Alg. 1` splits; `SetBasedNet.verify_sound` holds for every split that covers the factor box | `not-a-claim` |
 | `Eq. 11` | The score `s(L_k, i) = e_k(i) ∇_{e_k(i)} ‖Y‖_F` of neuron `i` of a ReLU layer `k`, `e_k = ½(ē_k - e̲_k)` the radius of its approximation error. | n/a — a splitting heuristic, as `Eq. 10` | `not-a-claim` |
@@ -56,7 +56,7 @@ other reading of `A⁻` than the one Prop. 3 needs; both are corrected, CORA com
 | `Prop. 3` | (Bounds of bounded polytope) `P = ⟨C, d⟩_H ∩ [β̲₀, β̄₀] ⊂ ℝ^q` with `C ∈ ℝ^{p×q}` is enclosed by `[β̲, β̄]`: with `Σ_{∖{j}} := I_q - e_j e_jᵀ` and `C̲(i,j) := (d(i) - C⁺(i,·) Σ_{∖{j}} β̲₀ - C⁻(i,·) Σ_{∖{j}} β̄₀) / C(i,j)`, `β̲(j) = max ({C̲(i,j) \| C(i,j) < 0} ∪ {β̲₀(j)})` and `β̄(j) = min ({C̲(i,j) \| C(i,j) > 0} ∪ {β̄₀(j)})`; `A⁺ = ½(A + \|A\|) ∈ ℝ_{≥0}` and "`A⁻ ∈ ℝ_{≥0}` defined analogously". | [`FourierMotzkinBounds.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/FourierMotzkinBounds.lean), [`FourierMotzkinBoundsOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/FourierMotzkinBoundsOuter.lean) — `ConZonotope.fourierMotzkinBounds_outer`, `P ⊆ [β̲, β̄]`, with `C⁻ = ½(C - \|C\|)`; CORA: `aux_fourierMotzkinApproximation` of `conZonotope/approximateBoundsWithGPU`, which `aux_refineInputSet` of `verify.m` calls | `underspecified` — the notation leaves `A⁻` open: "defined analogously" to `A⁺` with `A⁻ ∈ ℝ_{≥0}` reads `½(\|A\| - A)`, under which `C̲(i,j)` has the wrong sign on `C⁻`; the proof's last step, `min C(i,·) Σ_{∖{j}} β̃ = C⁺(i,·) Σ_{∖{j}} β̲₀ + C⁻(i,·) Σ_{∖{j}} β̄₀`, needs `C⁻ = ½(C - \|C\|) ≤ 0`, which the formalization takes; see Findings |
 | `App. D` | Prop. 3 can be applied iteratively: for `P = ⟨C, d⟩_H ∩ [β̲₀, β̄₀]` with bounds `[β̲, β̄]`, `P = ⟨C, d⟩_H ∩ [β̲, β̄]`, and Prop. 3 applies again (App. A: at most 4 passes). | [`FourierMotzkinBoundsInterEq.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/FourierMotzkinBoundsInterEq.lean), [`FourierMotzkinIter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/FourierMotzkinIter.lean), [`FourierMotzkinIterOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/FourierMotzkinIterOuter.lean) — `ConZonotope.fourierMotzkinBounds_inter_eq`, the equality, and `ConZonotope.fourierMotzkinIter_outer`, `k` passes from the unit box still enclose it; CORA: the `while tighterBnds && iter <= maxIter` loop of `aux_fourierMotzkinApproximation` | `correct` |
 | `Eq. 13` | The bounds of `Z\|_{C≤d}` from bounds `[β̲, β̄] ⊆ B_q` of its constrained hypercube: `Z\|_{C≤d} ⊆ c ⊕ [G⁺ β̲ - G⁻ β̄, G⁺ β̄ - G⁻ β̲]`. | [`IntervalOfFactorBounds.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Operations/IntervalOfFactorBounds.lean), [`IntervalOfFactorBoundsOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IntervalOfFactorBoundsOuter.lean), [`IntervalOfFactorBoundsPrinted.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Counterexamples/IntervalOfFactorBoundsPrinted.lean) — corrected: `c ⊕ [G⁺ β̲ + G⁻ β̄, G⁺ β̄ + G⁻ β̲]` with `G⁻ = ½(G - \|G\|)`, the reading `Prop. 3` needs (`Zonotope.intervalOfFactorBounds_outer`); CORA: the `'fourier-motzkin'` branch of `aux_boundConZonotope`, `c + G β_c ± \|G\| β_r`, the same box **Counterexample:** `Zonotope.intervalOfFactorBoundsPrinted_counterexample` | `fixed` — with `G⁻ = ½(G - \|G\|)`, the reading under which `Prop. 3` holds, the printed `-G⁻` adds `\|G⁻\|` on the wrong side: for `Z = ⟨0, [-1]⟩_Z` and the exact bounds `[-1, 1]` the printed interval runs from `1` to `-1` and misses `0 ∈ Z`; under the other reading `Eq. 13` holds and `Prop. 3` fails; see Findings |
-| `Prop. 4` | (Time complexity of Alg. 1) With `κ` layers, `p` output constraints, `q` generators of the output enclosure and `ξ` splits per iteration, an iteration of Alg. 1 takes `O(κ q³ + ξ p q²)` computation time with respect to `κ`, `p`, `q` and `ξ`. | [`EvalCost.lean`](../../src/CORALean/NN/Complexity/Time/Operations/EvalCost.lean), [`EvalCostLe.lean`](../../src/CORALean/NN/Complexity/Time/Theorems/EvalCostLe.lean), [`VerifyStepCost.lean`](../../src/CORALean/NN/Complexity/Time/Operations/VerifyStepCost.lean), [`VerifyStepCostLe.lean`](../../src/CORALean/NN/Complexity/Time/Theorems/VerifyStepCostLe.lean) — the cost of one set of `SetBasedNet.verify` asserted as the proof counts it, a candidate and a check per row of `A`, the enclosure at `SetBasedNet.forwardCost`, and proved at most `(cNeuron + cEval + 21) κ Q³ + (60 + 2R + iterFM (17R + 19)) ξ p Q²` for `Q` at least the output generators and every width, the input's included, `1 ≤ p ≤ Q`, `ξ ≥ 1` and at most `R` split rows per piece | `underspecified` — "with respect to `κ`, `p`, `q` and `ξ`" leaves the widths and the constants open: the proof's `O(κ q³)` is Koller et al. 2025, Prop. 16's `O(n_max² q κ)` with `n_max ≤ q`, which needs every width, `n₀` and `n_κ` included, at most `q`; the proof counts one candidate and one check of `Φ`, where Sec. 4 (and CORA) try one per row of `A`, `p` evaluations at `O(κ q²)` each, inside `O(κ q³)` only for `p ≤ q`; and the constants depend on the per-neuron costs, the split's rows and the passes of Prop. 3; see Findings |
+| `Prop. 4` | (Time complexity of Alg. 1) With `κ` layers, `p` output constraints, `q` generators of the output enclosure and `ξ` splits per iteration, an iteration of Alg. 1 takes `O(κ q³ + ξ p q²)` computation time with respect to `κ`, `p`, `q` and `ξ`. | [`EvalCost.lean`](../../src/CORALean/NN/Complexity/Time/Operations/EvalCost.lean), [`EvalCostLe.lean`](../../src/CORALean/NN/Complexity/Time/Theorems/EvalCostLe.lean), [`VerifyStepCost.lean`](../../src/CORALean/NN/Complexity/Time/Operations/VerifyStepCost.lean), [`VerifyStepCostLe.lean`](../../src/CORALean/NN/Complexity/Time/Theorems/VerifyStepCostLe.lean) — the cost of one set of `SetBasedNet.verify` asserted as the proof counts it, a candidate and a check per row of `A`, the enclosure at `SetBasedNet.forwardCost`, and proved at most `(cNeuron + cEval + 21) κ Q³ + (60 + 2R + iterFM (17R + 19)) ξ p Q²` for `Q` at least the output generators and every width, the input's included, `1 ≤ p ≤ Q`, `ξ ≥ 1` and at most `R` split rows per piece | `underspecified` — "with respect to `κ`, `p`, `q` and `ξ`" leaves the widths and the constants open: the proof's `O(κ q³)` is Koller et al. 2025, Prop. 16's `O(n_max² q κ)` with `n_max ≤ q`, which needs every width, `n₀` and `n_κ` included, at most `q`. The proof counts one candidate and one check of `Φ`, where Sec. 4 (and CORA) try one per row of `A`, `p` evaluations at `O(κ q²)` each, inside `O(κ q³)` only for `p ≤ q`; and the constants depend on the per-neuron costs, the split's rows and the passes of Prop. 3; see Findings |
 | `Cor. 1` | For `Φ`, `X` and `U = ⟨A, b⟩_H`, the refinement of Prop. 2 decides verification and falsification: `Φ(X\|_{C≤d}) ∩ U = ∅ ⟺ Φ(X) ∩ U = ∅` and `(∃ x ∈ X\|_{C≤d}: Φ(x) ∈ U) ⟺ (∃ x ∈ X: Φ(x) ∈ U)`. | [`EncloseUnsafeInputsSound.lean`](../../src/CORALean/NN/Theorems/EncloseUnsafeInputsSound.lean) — `SetBasedNet.encloseUnsafeInputs_sound`, both equivalences | `underspecified` — as at `Prop. 2`, from which it follows: the approximation errors pointwise; `X` is only "an input set" in the statement and a zonotope in Prop. 2; see Findings |
 | `Eq. 14` | `y = c_y + G_y β` for some `β ∈ B_{q_κ}`, in the proof of Prop. 2. | n/a — a step of the proof of `Prop. 2` | `not-a-claim` |
 | `Eq. 15` | `Φ(X ∖ X\|_{C≤d}) ∩ U = ∅` and `¬(∃ x ∈ X ∖ X\|_{C≤d}: Φ(x) ∈ U)`, in the proof of Cor. 1. | n/a — a step of the proof of `Cor. 1` | `not-a-claim` |
@@ -65,23 +65,25 @@ other reading of `A⁻` than the one Prop. 3 needs; both are corrected, CORA com
 
 ## Findings
 
-**`Sec. 3`, `Prop. 2` and `Cor. 1` — the latent space needs pointwise errors.** The proof of
-Prop. 2 starts from `Φ(x) = c_y + G_y β` with "the first `q₀` factors of the output `y` are the
-factors of the input `x`". That is a property of how `Y` was computed, not of `Y` enclosing
-`Φ(X)`: Prop. 2 calls `Y` "an enclosure of the output set", and Prop. 1 guarantees no more than
-`L_k(H_{k-1}) ⊆ enclose(L_k, H_{k-1})` per layer. For the activation `ϕ(t) = -t` with slope `1`
-and errors `[0, 0]` on `X = ⟨0, [1]⟩_Z`, `enclose` returns `⟨0, [1 0]⟩_Z = [-1, 1] ⊇ ϕ(X)`, yet the
+**`Sec. 3`, `Prop. 2` and `Cor. 1` — the latent space needs pointwise errors.** The proof of Prop. 2
+starts from `Φ(x) = c_y + G_y β` with "the first `q₀` factors of the output `y` are the factors of
+the input `x`". That is a property of how `Y` was computed, not of `Y` enclosing `Φ(X)`: Prop. 2
+calls `Y` "an enclosure of the output set", and Prop. 1 guarantees no more than
+`L_k(H_{k-1}) ⊆ enclose(L_k, H_{k-1})` per layer. For the activation `ϕ(t) = -t` with slope `1` and
+errors `[0, 0]` on `X = ⟨0, [1]⟩_Z`, `enclose` returns `⟨0, [1 0]⟩_Z = [-1, 1] ⊇ ϕ(X)`, yet the
 output factor of `ϕ(β)` is `-β`; for `U = {y ≥ ½}`, `C = [-1]` and `d = -½` give
 `X|_{C≤d} = [½, 1]`, which misses the unsafe input `-1`
 ([`EncloseUnsafeInputs.lean`](../../src/CORALean/NN/Counterexamples/EncloseUnsafeInputs.lean)). What
-the proof uses is that each approximation error bounds `ϕ(t) - m t` at every `t` the neuron's
-input takes, as the errors of Koller et al. 2025, Def. 6 do; then `ϕ(h(i)) = m h(i) + ½(e̲ + ē) +
-γ(i) ½(ē - e̲)` for some `γ(i) ∈ [-1, 1]`, a new factor beside the input's
-([`ForwardLatent.lean`](../../src/CORALean/NN/Theorems/ForwardLatent.lean)). The formalization
-assumes exactly that (`SetBasedNet.IsRelaxationOf`). The hypercube does not "remain unchanged", as
-`Sec. 3` says: it gains a dimension per neuron, and only its first `q₀` coordinates are the
-input's. `Cor. 1` is stated for an arbitrary input set `X` and follows from Prop. 2, so it carries
-the same hypothesis and needs `X` a zonotope.
+the proof uses is that each approximation error bounds `ϕ(t) - m t` at every `t` the neuron's input
+takes, as the errors of Koller et al. 2025, Def. 6 do; then
+`ϕ(h(i)) = m h(i) + ½(e̲ + ē) + γ(i) ½(ē - e̲)` for some `γ(i) ∈ [-1, 1]`, a new factor beside the
+input's ([`ForwardLatent.lean`](../../src/CORALean/NN/Theorems/ForwardLatent.lean)). The
+formalization assumes exactly that (`SetBasedNet.IsRelaxationOf`).
+
+****`Sec. 3`, `Cor. 1` — the hypercube and the corollary.**.** The hypercube does not "remain
+unchanged", as `Sec. 3` says: it gains a dimension per neuron, and only its first `q₀` coordinates
+are the input's. `Cor. 1` is stated for an arbitrary input set `X` and follows from Prop. 2, so it
+carries the same hypothesis and needs `X` a zonotope.
 
 **`Eq. 9` — the sign of the falsification vertex.** `U = ⟨A, b⟩_H = {y | A y ≤ b}`, so the point of
 `Y` most likely in `U` along row `i` minimizes `A(i,·) y`, at `β̃ = -sign(A(i,·) G_y)`. The printed
@@ -96,34 +98,37 @@ least `A(i,·) y` over `Y`, so it satisfies row `i` whenever any point of `Y` do
 ([`ZonotackFactorsIsLeast.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ZonotackFactorsIsLeast.lean)).
 Alg. 1, line 10 has the same sign.
 
-**`Prop. 3` and `Eq. 13` — the two readings of `A⁻`.** App. D defines `A⁺ = ½(A + |A|) ∈ ℝ_{≥0}`
-and "the matrix `A⁻ ∈ ℝ_{≥0}` analogously". The minimum of `C(i,·) Σ_{∖{j}} β̃` over the box is
+**`Prop. 3` and `Eq. 13` — the two readings of `A⁻`.** App. D defines `A⁺ = ½(A + |A|) ∈ ℝ_{≥0}` and
+"the matrix `A⁻ ∈ ℝ_{≥0}` analogously". The minimum of `C(i,·) Σ_{∖{j}} β̃` over the box is
 `C⁺(i,·) Σ_{∖{j}} β̲₀ + C⁻(i,·) Σ_{∖{j}} β̄₀` for `C⁻ = ½(C - |C|)`, the entries `≤ 0`, and
-`C⁺(i,·) Σ_{∖{j}} β̲₀ - C⁻(i,·) Σ_{∖{j}} β̄₀` for `C⁻ = ½(|C| - C) ≥ 0`. Prop. 3 and its proof
-write `d(i) - C⁺(…) β̲₀ - C⁻(…) β̄₀`, which is right for the first; Eq. 13 writes
+`C⁺(i,·) Σ_{∖{j}} β̲₀ - C⁻(i,·) Σ_{∖{j}} β̄₀` for `C⁻ = ½(|C| - C) ≥ 0`. Prop. 3 and its proof write
+`d(i) - C⁺(…) β̲₀ - C⁻(…) β̄₀`, which is right for the first; Eq. 13 writes
 `c ⊕ [G⁺ β̲ - G⁻ β̄, G⁺ β̄ - G⁻ β̲]`, which is right for the second. Under either reading one of the
-two is wrong. The formalization takes `C⁻ = ½(C - |C|)`, under which Prop. 3 holds as printed
+two is wrong.
+
+****`Prop. 3` — the formalization and CORA.**.** The formalization takes `C⁻ = ½(C - |C|)`, under
+which Prop. 3 holds as printed
 ([`FourierMotzkinBoundsOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/FourierMotzkinBoundsOuter.lean)),
 and Eq. 13 becomes `c ⊕ [G⁺ β̲ + G⁻ β̄, G⁺ β̄ + G⁻ β̲]`
 ([`IntervalOfFactorBoundsOuter.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IntervalOfFactorBoundsOuter.lean));
-as printed it fails on `Z = ⟨0, [-1]⟩_Z`, whose bounds `[-1, 1]` give the empty interval from
-`1` to `-1`
+as printed it fails on `Z = ⟨0, [-1]⟩_Z`, whose bounds `[-1, 1]` give the empty interval from `1` to
+`-1`
 ([`IntervalOfFactorBoundsPrinted.lean`](../../src/CORALean/ContSet/ConZonotope/Real/Counterexamples/IntervalOfFactorBoundsPrinted.lean)).
-CORA is right both times: `aux_fourierMotzkinApproximation` multiplies each entry by the lower
-bound where it is positive and the upper where negative, and `aux_boundConZonotope` maps the
-factor box by its center and radius, `c + G β_c ± |G| β_r`. The proof's last sentence sets
-`β̄(j)` to the "minimum lower bound", meaning the minimum upper bound.
+CORA is right both times: `aux_fourierMotzkinApproximation` multiplies each entry by the lower bound
+where it is positive and the upper where negative, and `aux_boundConZonotope` maps the factor box by
+its center and radius, `c + G β_c ± |G| β_r`. The proof's last sentence sets `β̄(j)` to the "minimum
+lower bound", meaning the minimum upper bound.
 
 **`Prop. 4` — what the `O` is in.** The bound is "with respect to `κ`, `p`, `q`, and `ξ`", and the
 proof absorbs into it `O(p n_κ q)` for the test (8), `O((n₀ + n_κ) q)` for a candidate and
 `O(κ q² + p n_κ)` for its check, and cites Koller et al. 2025, Prop. 16 for the enclosure at
-`O(κ q³)`, which states `O(n_max² q κ)`. Each step needs a width at most `q`; with `n_max`
-over the layers only, a network with a wide input layer and few generators is already beyond it
-(the `Prop. 16` finding of that paper). The proof also counts one candidate (Alg. 1, line 10, one
+`O(κ q³)`, which states `O(n_max² q κ)`. Each step needs a width at most `q`; with `n_max` over the
+layers only, a network with a wide input layer and few generators is already beyond it (the
+`Prop. 16` finding of that paper). The proof also counts one candidate (Alg. 1, line 10, one
 `β̃_i`), where Sec. 4 computes one per row of `A` and CORA tries all `p`: then the checks cost
 `O(p κ q²)`, inside `O(κ q³ + ξ p q²)` only when `p ≤ q`. The formalization asserts the cost of one
 set of `SetBasedNet.verify` per operation, with a cost per neuron for the enclosure's slopes and
-errors and for `ϕ` at a point, and proves the printed form for `Q` covering every width and the
+errors and for `ϕ` at a point. It proves the printed form for `Q` covering every width and the
 output generators, `p ≤ Q`, `ξ ≥ 1` and at most `R` split rows per piece, with constants in those
 costs, `R` and the passes of Prop. 3
 ([`VerifyStepCostLe.lean`](../../src/CORALean/NN/Complexity/Time/Theorems/VerifyStepCostLe.lean)).

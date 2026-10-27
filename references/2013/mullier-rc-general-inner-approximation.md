@@ -10,10 +10,10 @@
 ```
 
 **Source:** https://reliable-computing.org/reliable-computing-18-pp-117-143.pdf (the journal's open-access PDF, pp. 117-143, 27 pages, read in full; text extracted with `pypdf`). CORA cites the paper in `contSet/@polyZonotope/innerApprox.m`, `contSet/@polyZonotope/contains_.m` and `global/functions/helper/sets/contSet/polyZonotope/innerApproxImage.m`, whose `aux_InnerGeneral` is `Alg. 3` and whose `aux_preconditionMatrix` is the preconditioner of (10).  
-**Inventory:** confirmed (Corollary 2.1; Theorem 3.1, Lemma 3.1, Corollary 3.1, Example 3.2; Example 4.1, Definitions 4.2-4.5, 4.7, 4.8, Theorems 4.6, 4.9, 4.10, Remarks 4.1-4.2; Algorithms 1-4; equations (1)-(20); numbered per section)
+**Inventory:** confirmed (Corollary 2.1, Theorem 3.1, Lemma 3.1, Corollary 3.1, Example 3.2, Example 4.1, Definitions 4.2-4.5, 4.7, 4.8, Theorems 4.6, 4.9, 4.10, Remarks 4.1-4.2, Algorithms 1-4, equations (1)-(20), numbered per section)
 
 Inner approximations of the range of `f : ℝᵐ → ℝⁿ` of rank `r`, by Goldsztejn and Jaulin's
-interval test (`Cor. 2.1`) extended to the first `r` components: a submersion maps no
+interval test (`Cor. 2.1`) extended to the first `r` components. A submersion maps no
 interior point onto the frontier of its image (`Lemma 3.1`), so a box the image of `∂u` misses
 and that meets the image is inside it (`Thm. 3.1`), and a Hansen–Sengupta-type inclusion
 proves that (`Cor. 3.1`), also preconditioned (`Eq. 10`). Formalized, without Brouwer's
@@ -83,19 +83,20 @@ matrix is singular (`subLp16_counterexample`). (14), (15), (17) and (18) are sou
 (`det_submatrix_ne_zero_of_lp14` to `_lp18`); none of them needs `M`.
 [`SubmatrixLp.lean`](../../src/CORALean/Global/Counterexamples/SubmatrixLp.lean)
 
-**`Alg. 3`.** It returns true on `ũ + t ⊆ ũ`, a closed inclusion, where `Cor. 3.1` needs
-`int(u₁)`; CORA's `aux_InnerGeneral` does the same. The closed version is true: on the slice at
-`ũ₂` the test is the Jacobi step of the square case, whose map
-`x ↦ x̃ + Diag⁻¹A(x)(b - OffDiag A(x)(x - x̃))` with the average Jacobian `A(x)` is a continuous
-self-map of the box, and Brouwer's theorem fixes a zero (`exists_mem_Icc_eq_add_of_jacobi`,
-`Icc_subset_image_of_innerTest_closed`, and with a preconditioner and the column choice
-`exists_jacobiSlice_eq_of_jacobi`). That map needs the segment from `x̃` to every point of the
-box inside the box, so the midpoint must stay in the inflated box: it does where `b` holds `0`,
-which `f₁:ᵣ(ũ) ∈ y₁` gives, as `Alg. 1`'s `ỹ` ensures; without it the test accepts a false box
-(`f(x) = x²`, `x̃ = 0`, `x = [2, 3]`, `y = {12}`: the step `12/[4, 6] = [2, 3]` lands in `x`,
-and `12 ∉ f(x) = [4, 9]`), so `PolyZonotope.innerTest` checks it. CORA's `aux_InnerGeneral`
-subtracts `J₂(u₂ - ũ₂)` after the division by the diagonal rather than before; that interval
-contains `0`, so the test it computes still contains the slice's and stays sound. `Alg. 3` as
-printed also overwrites `x̃` by its midpoint (line 3), repeats line 7 as line 8 and subtracts
-`ũ₁ - ũ₁` (line 14).
+**`Alg. 3`.** It returns true on `ũ + t ⊆ ũ`, a closed inclusion, where `Cor. 3.1` needs `int(u₁)`;
+CORA's `aux_InnerGeneral` does the same. The closed version is true: on the slice at `ũ₂` the test
+is the Jacobi step of the square case, whose map `x ↦ x̃ + Diag⁻¹A(x)(b - OffDiag A(x)(x - x̃))`
+with the average Jacobian `A(x)` is a continuous self-map of the box, and Brouwer's theorem fixes a
+zero (`exists_mem_Icc_eq_add_of_jacobi`, `Icc_subset_image_of_innerTest_closed`, and with a
+preconditioner and the column choice `exists_jacobiSlice_eq_of_jacobi`). That map needs the segment
+from `x̃` to every point of the box inside the box, so the midpoint must stay in the inflated box:
+it does where `b` holds `0`, which `f₁:ᵣ(ũ) ∈ y₁` gives, as `Alg. 1`'s `ỹ` ensures. Without it the
+test accepts a false box (`f(x) = x²`, `x̃ = 0`, `x = [2, 3]`, `y = {12}`: the step
+`12/[4, 6] = [2, 3]` lands in `x`, and `12 ∉ f(x) = [4, 9]`), so `PolyZonotope.innerTest` checks it.
+CORA's `aux_InnerGeneral` subtracts `J₂(u₂ - ũ₂)` after the division by the diagonal rather than
+before; that interval contains `0`, so the test it computes still contains the slice's and stays
+sound.
+
+****`Alg. 3` — the printed listing.**.** `Alg. 3` as printed also overwrites `x̃` by its midpoint
+(line 3), repeats line 7 as line 8 and subtracts `ũ₁ - ũ₁` (line 14).
 [`InnerTest.lean`](../../src/CORALean/ContSet/PolyZonotope/Float/Operations/InnerTest.lean)

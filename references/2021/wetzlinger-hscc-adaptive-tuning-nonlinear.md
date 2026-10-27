@@ -46,7 +46,7 @@ printed.
 | `Lemma 3.1` | For continuous f: C1×C2→I and g: C1→I on compact C1,C2⊂R^n and a compact interval I⊂R^n: if min_{y∈C2} f(x,y) ≤ g(x) for every x∈C1, then max_{x∈C1} min_{y∈C2} f(x,y) ≤ max_{x∈C1} g(x). | [`CORALean.minimax_le`](../../src/CORALean/Global/Minimax.lean) | `underspecified` — typo: codomain `I ⊂ ℝⁿ` printed, `I ⊂ ℝ` meant |
 | `Thm. 3.2` | For a zonotope Z=⟨c,G⟩_Z and its box over-approximation Z_B := box(Z)=⟨c,G_B⟩_Z ⊇ Z, the Hausdorff distance d_H(Z,Z_B) = max_{x_B∈Z_B} min_{x∈Z} ‖x_B-x‖_2 is over-approximated by ω(Z) := 2‖Σ_{k=1}^γ ĝ^(k)‖_2, where ĝ^(k) is \|g^(k)\| with the entry at the (first) index i* attaining ‖g^(k)‖_∞ set to zero. | [`Zonotope.hausdorffDist₂_interval_le_max`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HausdorffDist2IntervalLeMax.lean) | `underspecified` — typo in eq. (15): compares the generator index `k` with `i*`; `i ≠ i*` is meant |
 | `Prop. 1` | Scaling Δt by ζ_δ∈(0,1) shrinks the i-th entry of the diameter of box(R_abs) by ζ_δ^{λ_i} with λ_i∈N as Δt→0: lim_{Δt→0} d_i(box(R_abs(ζ_δΔt)))/d_i(box(R_abs(Δt))) = ζ_δ^{λ_i}, where λ_i = j+1 for the first non-negative j with (A^j Ψ)_i ≠ {0}. | [`CORALean.gainDim_tendsto_pow_const`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimTendstoPowConst.lean) — `j` read off the generator row of `A^jΨ` alone, the center not widening a box | `proof-gap` — proof substitutes the truncated (6) while `λᵢ` ignores `η_abs`; formalized at the untruncated series |
-| `Alg. 1` | "Reachability analysis of nonlinear systems using state-space abstraction": per step, linearize at z*(t_s) = center(R(t_s)), compute R_lin by `linReach`, enlarge the estimated abstraction error Ψ̄ until Ψ ⊆ Ψ̄, add the resulting R_abs to both the time-point and time-interval solution, and reduce the set representation size. | [`CenterAbstrReach.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/CenterAbstrReach.lean) — one `let` per printed line, for the ordinary differential equations of (1). Lines 7-10 are [`AbstrErrLoop.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErrLoop.lean), which the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md) numbers 8-11, and line 11's `abstrSol` is `LinearSys.inputSolution` at Ψ, (6) being that operation's formula up to the uniform remainder box `inputRemainder` this tree writes for `E(Δt,η_abs)`. Line 5 adds the particular solution outside the convex hull, where (8) prints it inside — the same departure the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md)'s `Alg. 1` row records for its (12), and it is recorded rather than discharged here too. Lines 4-5 are the caller's, nothing here differentiating `f`, which is why the certificate sits on the theorems. What the loop guarantees is [`AbstrErrLoopFixed.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/AbstrErrLoopFixed.lean) and what line 17 collects is [`SubsetCenterAbstrReach.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/SubsetCenterAbstrReach.lean). A definition of its own rather than a share of that paper's `AbstrReach.lean`: line 3 differs, and so does every line number from 5 on — see the finding below. In floats the step is [`CenterAbstrStepFloat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/CenterAbstrStepFloat.lean), linearizing at the stored center of the start set and checking a region where lines 7-10 enlarge an error | `underspecified` — line 3 names no input expansion point; lines 5 and 13 index `τ` one step ahead |
+| `Alg. 1` | "Reachability analysis of nonlinear systems using state-space abstraction": per step, linearize at z*(t_s) = center(R(t_s)), compute R_lin by `linReach`, enlarge the estimated abstraction error Ψ̄ until Ψ ⊆ Ψ̄, add the resulting R_abs to both the time-point and time-interval solution, and reduce the set representation size. | [`CenterAbstrReach.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/CenterAbstrReach.lean) — one `let` per printed line, for the ordinary differential equations of (1). Lines 7-10 are [`AbstrErrLoop.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErrLoop.lean), which the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md) numbers 8-11, and line 11's `abstrSol` is `LinearSys.inputSolution` at Ψ, (6) being that operation's formula up to the uniform remainder box `inputRemainder` this tree writes for `E(Δt,η_abs)`. Line 5 adds the particular solution outside the convex hull, where (8) prints it inside — the same departure the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md)'s `Alg. 1` row records for its (12), and it is recorded rather than discharged here too. What the loop guarantees is [`AbstrErrLoopFixed.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/AbstrErrLoopFixed.lean) and what line 17 collects is [`SubsetCenterAbstrReach.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/SubsetCenterAbstrReach.lean). See the Findings. | `underspecified` — line 3 names no input expansion point; lines 5 and 13 index `τ` one step ahead |
 | `Alg. 2` | "Tuning of the time step size Δt": maintains the finite horizon Δ and the gain φ_1 across steps, computes R_abs(Δ) and its scalar counterpart r_abs,1, and returns the optimal time step size Δt* by Eq. (31) — initializing by shrinking Δ with ζ_δ until φ_1 ≥ ζ_Δ in the first step. | [`TuneDeltat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltat.lean) — both branches, one `let` per printed line. Lines 10-13 are the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md)'s `Alg. 2` lines 1, 9, 10 and 16 under other equation numbers, so (30) and (31) are [`OptDeltat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/OptDeltat.lean) and (29) is [`EstimateGain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/EstimateGain.lean), held to [`OptDeltatDescent.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/OptDeltatDescent.lean) and [`EstimateGainBracket.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/EstimateGainBracket.lean) unchanged. New here is the `s = 1` branch, lines 2-8: (25)'s gain is [`TuneDeltatInit.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltatInit.lean) over two supplied box diameters, the shrink loop carries explicit fuel and returns an `Option` where the source loops forever, and what it buys is [`TuneDeltatInitGain.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/TuneDeltatInitGain.lean). `d(box(R_abs(Δt)))` and `r(R_abs(Δt))` are the caller's, as `aux_tuneAbstrOrder`'s diameters are; see the findings below | `underspecified` — first-step loop tests a gain it has not computed and scales an uninitialized variable; eq. (32) prints `min` for `max` |
 
 ## Findings
@@ -72,7 +72,7 @@ correctly as `i ≠ i*` in its Eq. (18). The bound is right as intended.
 is, as the un-truncated series `[1, (8)]` would sum rather than this paper's truncated `(6)`. At
 constant `A`, `Ψ` the specialization is proved outright, not inherited with a hypothesis: `Thm. 2`
 assumes its expansion's leading term because passing a limit inside an infinite series needs
-uniform control over the index that a moving `A(h)`, `Ψ(h)` does not supply; here every summand
+uniform control over the index that a moving `A(h)`, `Ψ(h)` does not supply. Here every summand
 is already independent of `Δt`, so the same expansion is elementary and is proved here rather
 than assumed.
 
@@ -112,20 +112,19 @@ time-interval sets, which is what both readings agree the algorithm returns. The
 is printed in the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md)'s `Alg. 1`.
 [`CenterAbstrReach.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/CenterAbstrReach.lean)
 
-**`Alg. 2` — the first step's loop tests a gain it has not computed, and shrinks a variable it
-has not initialized.** Two defects in lines 2-7, both in the `s = 1` branch and both settled by
-the prose. First, line 3's `while φ₁ < ζ_Δ` is a pre-test, but `φ₁` is produced by line 6 inside
-the body and the algorithm's own input list supplies it only "if s > 1" — on entry there is no
-`φ₁` to compare. §3.4 describes the loop the other way round ("we first decrease an arbitrarily
-initialized Δt (Line 2) until the condition in (32) is met, yielding Δ ... as well as φ₁ in the
-process (Lines 3-7)"), i.e. a `repeat … until`, which is the only reading under which the first
-step has a gain to test; formalized that way, so `tuneDeltatInit` always shrinks at least once.
-Second, line 2 initializes `Δt` while line 4 scales `Δ` — the variable initialized is never read
-and the variable scaled is never initialized, and line 4's own note reads "⊲ Decrease Δt". (32)
-settles that too: it is the finite horizon `Δ` that is shrunk until `φ₁(Δ) ≥ ζ_Δ`, so the two
-are one variable and line 2's arbitrary value is `Δinit` here. (Line 3 and line 10 also read
-`ζ_Δ`, which the `Input:` list omits though it lists `ζ_Z`, `ζ_P` and `ζ_δ`; Table 1 fixes it
-globally.)
+**`Alg. 2` — the first step's loop tests a gain it has not computed, and shrinks a variable it has
+not initialized.** Two defects in lines 2-7, both in the `s = 1` branch and both settled by the
+prose. First, line 3's `while φ₁ < ζ_Δ` is a pre-test, but `φ₁` is produced by line 6 inside the
+body and the algorithm's own input list supplies it only "if s > 1". On entry there is no `φ₁` to
+compare. §3.4 describes the loop the other way round ("we first decrease an arbitrarily initialized
+Δt (Line 2) until the condition in (32) is met, yielding Δ ... as well as φ₁ in the process (Lines
+3-7)"), i.e. a `repeat … until`, which is the only reading under which the first step has a gain to
+test; formalized that way, so `tuneDeltatInit` always shrinks at least once. Second, line 2
+initializes `Δt` while line 4 scales `Δ` — the variable initialized is never read and the variable
+scaled is never initialized, and line 4's own note reads "⊲ Decrease Δt". (32) settles that too: it
+is the finite horizon `Δ` that is shrunk until `φ₁(Δ) ≥ ζ_Δ`, so the two are one variable and line
+2's arbitrary value is `Δinit` here. (Line 3 and line 10 also read `ζ_Δ`, which the `Input:` list
+omits though it lists `ζ_Z`, `ζ_P` and `ζ_δ`; Table 1 fixes it globally.)
 [`TuneDeltat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltat.lean)
 
 **Eq. (32) — the minimum is a maximum.** (32) sets `Δ = min τ such that φ₁(τ) ≥ ζ_Δ`. By `Prop.
@@ -150,3 +149,10 @@ recorded on the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md)'
 two readings was meant, and `optDeltat` is passed the previous gain in both.
 [`TuneDeltat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltat.lean)
 
+**`Alg. 1` — lines 4-5 and the float step.** Lines 4-5 are the caller's, nothing here
+differentiating `f`, which is why the certificate sits on the theorems. A definition of its own
+rather than a share of that paper's `AbstrReach.lean`: line 3 differs, and so does every line number
+from 5 on — see the finding below. In floats the step is
+[`CenterAbstrStepFloat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/CenterAbstrStepFloat.lean),
+linearizing at the stored center of the start set and checking a region where lines 7-10 enlarge an
+error.

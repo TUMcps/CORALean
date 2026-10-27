@@ -13,8 +13,7 @@
 **Inventory:** confirmed (against the paper: Definitions 1-2, Assumptions 1-2, Lemma 1, Propositions 1-2 and Theorem 1, each with its own counter; Equations 1-23, of which the rows below are the displays outside a numbered result, the others being parts of the results they belong to; the algorithm of Sec. IV-C has no number, Sec. V is the example)
 
 The estimator behind CORA's `PRad-C` gain (`priv_observe_gain_PRadC`, whose LMI is the one "also
-presented in [1] on p. 671", Eq. 14b with `Γ`, `Υ` diagonal and the objective `-tr(P)` of Eq. 23):
-the state-bounding zonotope of an agent in an interconnected system, built from its neighbours'
+presented in [1] on p. 671", Eq. 14b with `Γ`, `Υ` diagonal and the objective `-tr(P)` of Eq. 23). It covers the state-bounding zonotope of an agent in an interconnected system, built from its neighbours'
 zonotopes with one coefficient vector per neighbour (Prop. 1), its centralized form (Prop. 2) and
 the LMI that makes its P-radius contract (Thm. 1), the loop of Sec. IV-C. Every gain encloses the
 state; the LMI only says how well. The theorems are proved at an arbitrary correction matrix and

@@ -9,7 +9,7 @@
 }
 ```
 
-**Source:** https://arxiv.org/pdf/2401.14961 (arXiv:2401.14961v4, dated 5 Aug 2025 like the TMLR publication, https://openreview.net/forum?id=n0lzHrAWIA; 29 pages with the appendix, read in full; text extracted with `pypdf`, Prop. 5, 8 and 9 checked against the page images)  
+**Source:** https://arxiv.org/pdf/2401.14961 (arXiv:2401.14961v4, dated 5 Aug 2025 like the TMLR publication, https://openreview.net/forum?id=n0lzHrAWIA, 29 pages with the appendix, read in full, text extracted with `pypdf`, Prop. 5, 8 and 9 checked against the page images)  
 **Inventory:** confirmed (against the paper: Definitions 1-7, Propositions 1-17 and Algorithms 1-2, each with its own counter, and Equations 1-12; the proofs are Appendix D, Sec. 5 and Appendices A-C are the evaluation)
 
 What CORA's `neuralNetwork/train` does with `'set'`: propagate the zonotope of an `ℓ∞` ball through
@@ -67,7 +67,7 @@ Props. 16 and 17 leave out (see Findings).
 | `Eq. 11` | The gradient set of layer `k`, `G_k = ⟨c_k', G_k'⟩_Z := ∇_{H_k} L(t, Y)`. | n/a — notation | `not-a-claim` |
 | `Prop. 14` | (Gradient set of weights and biases) `∇_{W_k} L(t, Y) = ∇_{H_k} L(t, Y) ⊙ H_{k-1}ᵀ` and `∇_{b_k} L(t, Y) = ∇_{H_k} L(t, Y) ⊙ ⟨1, 0⟩_Zᵀ`, with `Z_1 ⊙ Z_2ᵀ := c_1 c_2ᵀ + G_1 G_2ᵀ`. | [`GradientWeights.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GradientWeights.lean), [`GradientBias.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GradientBias.lean) — the derivative of `L(W H + b)` along the entry `W(i,j)` is `c'(i) c(j) + Σₗ G'(l,i) G(l,j)`, and along `b(i)` it is `c'(i)`, `c' · 1 + G' · 0`, for a loss differentiable at the layer's output | `underspecified` — as at `Prop. 13 (linear)`: the chain rule needs the loss differentiable at the layer's output, which the statement leaves open; see Findings |
 | `Eq. 12` | The updates `W_k ← W_k - η ∇_{W_k} L(t, Y)`, `b_k ← b_k - η ∇_{b_k} L(t, Y)`. | n/a — the update rule of a training step, not a claim | `not-a-claim` |
-| `Alg. 1` | The image enclosure of a nonlinear layer: bounds `[l, u]` of `H_{k-1}` (Prop. 2); per neuron the slope `m_k(i)` (Def. 7) and the errors `e_k(i)`, `ē_k(i)` (Prop. 10); `H̃_k ← Diag(m_k) H_{k-1} + ½(e_k + ē_k)` (Prop. 4); `H_k ← H̃_k ⊕ [e_k, ē_k]` (Prop. 3). | [`ApproxErrorRelaxation.lean`](../../src/CORALean/NN/Layers/Definitions/ApproxErrorRelaxation.lean), [`ApproxErrorRelaxationSound.lean`](../../src/CORALean/NN/Layers/Theorems/Real/ApproxErrorRelaxationSound.lean), [`EncloseNonlinearPrinted.lean`](../../src/CORALean/NN/Layers/Definitions/EncloseNonlinearPrinted.lean), [`EncloseNonlinearPrinted.lean`](../../src/CORALean/NN/Layers/Counterexamples/Real/EncloseNonlinearPrinted.lean) — as a `Relaxation` for `Layer.activation`, sound for every continuous `ϕ`; and the printed lines in one dimension with the counterexample the printed form is refuted by `encloseNonlinearPrinted_counterexample` | `underspecified` — an `Alg.` row, read as simplified pseudocode (references/README.md), though the slip is not harmless: line 6 adds `½(e + ē)` to the center and line 7 forms `⊕ [e, ē]`, which by `Prop. 3` adds the midpoint again; at `ϕ(x) = x + 1` on `[-1, 1]` the printed output is `[1, 3]` and misses `ϕ(-1) = 0`; the relaxation adds it once, which is what `Prop. 12`'s proof uses (`c_k(i) = m_k(i) c_{k-1}(i) + ½(e_k(i) + ē_k(i))`); see Findings |
+| `Alg. 1` | The image enclosure of a nonlinear layer: bounds `[l, u]` of `H_{k-1}` (Prop. 2). Per neuron the slope `m_k(i)` (Def. 7) and the errors `e_k(i)`, `ē_k(i)` (Prop. 10); `H̃_k ← Diag(m_k) H_{k-1} + ½(e_k + ē_k)` (Prop. 4); `H_k ← H̃_k ⊕ [e_k, ē_k]` (Prop. 3). | [`ApproxErrorRelaxation.lean`](../../src/CORALean/NN/Layers/Definitions/ApproxErrorRelaxation.lean), [`ApproxErrorRelaxationSound.lean`](../../src/CORALean/NN/Layers/Theorems/Real/ApproxErrorRelaxationSound.lean), [`EncloseNonlinearPrinted.lean`](../../src/CORALean/NN/Layers/Definitions/EncloseNonlinearPrinted.lean), [`EncloseNonlinearPrinted.lean`](../../src/CORALean/NN/Layers/Counterexamples/Real/EncloseNonlinearPrinted.lean) — as a `Relaxation` for `Layer.activation`, sound for every continuous `ϕ`; and the printed lines in one dimension with the counterexample the printed form is refuted by `encloseNonlinearPrinted_counterexample` | `underspecified` — an `Alg.` row, read as simplified pseudocode (references/README.md), though the slip is not harmless: line 6 adds `½(e + ē)` to the center and line 7 forms `⊕ [e, ē]`, which by `Prop. 3` adds the midpoint again. At `ϕ(x) = x + 1` on `[-1, 1]` the printed output is `[1, 3]` and misses `ϕ(-1) = 0`; the relaxation adds it once, which is what `Prop. 12`'s proof uses (`c_k(i) = m_k(i) c_{k-1}(i) + ½(e_k(i) + ē_k(i))`); see Findings |
 | `Prop. 15` | (Time complexity of Alg. 1) For `H_{k-1} = Z` with `c ∈ ℝⁿ`, `G ∈ ℝ^{n × q}`, Alg. 1 takes `O(n² q)`. | [`ImageEnclosureCost.lean`](../../src/CORALean/ContSet/Zonotope/Real/Complexity/Time/Operations/ImageEnclosureCost.lean), [`ImageEnclosureCostLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Complexity/Time/Theorems/ImageEnclosureCostLe.lean),  — the cost asserted as the proof counts `Alg. 1`, the slope and errors at a constant per neuron, and proved at most `(cNeuron + 17) n² q` for `n, q ≥ 1` | `correct` |
 | `Prop. 16` | (Time complexity of Prop. 6) The zonotopes of a forward propagation have at most `q ≤ n_0 + Σ_{k ∈ [κ]} n_k` generators, and the propagation takes `O(n_max² q κ)`, `n_max := max_k n_k`. | [`ForwardHLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Complexity/Space/Theorems/ForwardHLe.lean), [`ForwardCost.lean`](../../src/CORALean/ContSet/Zonotope/Real/Complexity/Time/Operations/ForwardCost.lean), [`ForwardCostLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Complexity/Time/Theorems/ForwardCostLe.lean) — the generators: the forward propagation of a `SetBasedNet` adds at most `Σₖ nₖ`; the running time asserted as the proof counts it and proved at most `(cNeuron + 17) N² Q κ` for `N` at least every width, the input's included, and `Q` the generator bound | `underspecified` — `n_max = max_{k ∈ [κ]} nₖ` leaves out `n₀`, which the proof's `O(n_{k-1} nₖ q) = O(n_max² q)` needs at `k = 1`: a wide input before a narrow layer costs `n₀ n₁ q`, more than any constant times `n_max² q κ` once `n₀ ≫ n_max`; the formalization takes `n_max` over every width; see Findings |
 | `Alg. 2` | One iteration of set-based training: `H_0 ← ⟨x, εI_{n_0}⟩_Z`, the set-based forward propagation, `G_κ ← ∇_Y L(t, Y)`, then for `k = κ, …, 1` the set-based backpropagation and, at a linear layer, the updates of `W_k` and `b_k`. | n/a — a training iteration, a procedure; what it computes is `Props. 8`-`14` and `Alg. 1`, each its own row | `not-a-claim` |
@@ -76,22 +76,24 @@ Props. 16 and 17 leave out (see Findings).
 
 ## Findings
 
-**`Prop. 8` and `Prop. 9` — a factor of `n_κ`.** `Prop. 5` defines the F-radius with a
-normalization factor `1/n`, `‖Y‖_F = (1/n) √(Σ G²)`, and `Prop. 8` prints the gradient as
-`G / (n ‖Y‖_F)`. The proof writes the derivative of `(1/n) √(1ᵀ(G ⊙ G)1)` as `G / (n ‖Y‖_F)`
-(Eq. 13), which drops the factor `1/n` hidden in `‖Y‖_F`: `∂/∂G(i,j) (1/n) √S = (1/n) G(i,j) / √S`
-and `√S = n ‖Y‖_F`, so the gradient is `G / (n² ‖Y‖_F)`. The printed formula is the gradient of
-the unnormalized Frobenius norm `√S` divided by `n`, which is the same thing written with `‖Y‖_F`
-read as `√S`. In two dimensions the zonotope with one generator `(1, 0)` has `‖Y‖_F = 1/2` and
-derivative `1/2` along the entry, where the printed formula gives `1`
+**`Prop. 8` and `Prop. 9` — a factor of `n_κ`.** `Prop. 5` defines the F-radius with a normalization
+factor `1/n`, `‖Y‖_F = (1/n) √(Σ G²)`, and `Prop. 8` prints the gradient as `G / (n ‖Y‖_F)`. The
+proof writes the derivative of `(1/n) √(1ᵀ(G ⊙ G)1)` as `G / (n ‖Y‖_F)` (Eq. 13), which drops the
+factor `1/n` hidden in `‖Y‖_F`: `∂/∂G(i,j) (1/n) √S = (1/n) G(i,j) / √S` and `√S = n ‖Y‖_F`, so the
+gradient is `G / (n² ‖Y‖_F)`. The printed formula is the gradient of the unnormalized Frobenius norm
+`√S` divided by `n`, which is the same thing written with `‖Y‖_F` read as `√S`. In two dimensions
+the zonotope with one generator `(1, 0)` has `‖Y‖_F = 1/2` and derivative `1/2` along the entry,
+where the printed formula gives `1`
 ([`FRadiusGradient.lean`](../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/FRadiusGradient.lean)).
-`Prop. 9` takes the factor over: its generator matrix is `(τ/ε) G / (n_κ ‖Y‖_F)`, again a factor
-`n_κ` too large against the loss `Def. 5` ([`SetBasedLossGradient.lean`](../../src/CORALean/NN/Counterexamples/SetBasedLossGradient.lean)).
-The corrected statements are proved ([`FRadiusGradient.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/FRadiusGradient.lean),
+
+****`Prop. 9` and CORA — the same factor.**.** `Prop. 9` takes the factor over: its generator matrix
+is `(τ/ε) G / (n_κ ‖Y‖_F)`, again a factor `n_κ` too large against the loss `Def. 5`
+([`SetBasedLossGradient.lean`](../../src/CORALean/NN/Counterexamples/SetBasedLossGradient.lean)).
+The corrected statements are proved
+([`FRadiusGradient.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/FRadiusGradient.lean),
 [`SetBasedLossGradient.lean`](../../src/CORALean/NN/Theorems/SetBasedLossGradient.lean)). CORA's
-`train.m` is right: it takes the plain Frobenius norm `√S` of the generator matrix, scales the
-loss and the gradient `G / √S` by `1/(n_κ ε)` outside, which is `G / (n_κ² ε ‖Y‖_F)` per unit of
-`τ`.
+`train.m` is right: it takes the plain Frobenius norm `√S` of the generator matrix, scales the loss
+and the gradient `G / √S` by `1/(n_κ ε)` outside, which is `G / (n_κ² ε ‖Y‖_F)` per unit of `τ`.
 
 **`Prop. 13` and `Prop. 14` — differentiability.** Both are chain-rule statements: the loss reaches
 `W_k` and `H_{k-1}` through the layer's output zonotope, and the proofs expand
@@ -123,7 +125,7 @@ proves the miss at `ϕ(x) = x + 1` on `[-1, 1]`.
 **`Prop. 12` — differentiability, and the first term.** The proof differentiates the center
 `m(i) c(i) + ½(e(i) + ē(i))` and the generators `m(i) G(i, j)`, `½(ē(i) - e(i))` of the image
 enclosure with respect to the row `H(i)`, by the chain and product rules, and so needs the slope
-and the errors differentiable there; they are functions of the bounds `c(i) ∓ Σⱼ |G(i, j)|`
+and the errors differentiable there. They are functions of the bounds `c(i) ∓ Σⱼ |G(i, j)|`
 (`Def. 7`, `Prop. 10`), which have a kink where a generator entry is `0`, and the errors are
 extremal values. As at `Prop. 13 (linear)` the loss must be differentiable at the output in the
 center and generator entries together. The statement assumes neither; the formalization takes

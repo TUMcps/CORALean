@@ -10,7 +10,7 @@
 ```
 
 **Source:** http://jmlr.org/papers/volume26/25-1161/25-1161.pdf (the published JMLR article, CC-BY, 37 pages, read in full; text extracted with `pypdf`; volume, number and pages from the JMLR record). It matches arXiv:2508.11025v3 page for page. CORA cites the arXiv version, without result numbers, in `global/classes/@confPredictor` (`confPredictor.m`, `calibrate.m`, `predict.m`, `initializeUncertainties.m`, `evaluateData.m`, `evaluateCoverage.m`) and `contDynamics/@contDynamics/private/priv_conform_iterOD.m`, the boundary-point search for outliers.  
-**Inventory:** confirmed (Definitions 1-2, Problems 1-2, Example 1, Lemmas 3-5, Theorems 6-7 and Propositions 8-10, one shared counter; equations (1)-(33); Sections 1-7 and Appendices A-B; Tables 1-3)
+**Inventory:** confirmed (Definitions 1-2, Problems 1-2, Example 1, Lemmas 3-5, Theorems 6-7 and Propositions 8-10, one shared counter, equations (1)-(33), Sections 1-7 and Appendices A-B, Tables 1-3)
 
 Zonotopic prediction sets for a point predictor `f`: uncertainties `u` inserted into `f`, linearized
 at `u = 0`, give `Y_ZCP(x) = ⟨f(x), D̄(x) G_u diag(α)⟩` (`Lemma 3`), and the stretch factors `α`
