@@ -16,6 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -25,7 +26,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 `maxBackReachStep` computed in `𝕋`, inside the exact layer's set (`maxBackReachStepFloat_encloses`).
 What is subtracted rounds towards a larger set and what is kept towards a smaller one; the margin
 is paid once, in line 10. Lines 8-10 are outer float sets with their excess recorded (`UErr`).
-`aux_maxBackReachErosionFloat` is the distance the hull keeps from the exact eroded set for line
+`step_maxBackReachErosionFloat` is the distance the hull keeps from the exact eroded set for line
 12's map, rounded, and for `Z̲_U`'s excess; `Ẑ_W(τ_k)` is widened by it, so line 11's erosion keeps
 that distance. Line 11 is `maxBackReachCZFloat`, whose hull `linCombSameCenter` is exact since
 both sets share the conversion box's center. `none` when an order search fails or the box's center
@@ -68,12 +69,13 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The distance, per coordinate, the hull has to keep from the exact one's boundary: `Φn` and
 `Ψ` bracket `e^{-A t_{k+1}}` and `e^{A t_{k+1}}`, the hull `H` is the set mapped, `ζ` bounds its
 points and `DU` is the second summand's own distance after the map. -/
-def LinearSys.aux_maxBackReachErosionFloat (Φn Ψ : Interval (Mat 𝕋 n n))
+@[step_of LinearSys.maxBackReachStepFloat]
+def LinearSys.step_maxBackReachErosionFloat (Φn Ψ : Interval (Mat 𝕋 n n))
     (H : ConZonotope 𝕋 (Vec 𝕋 n)) (ζ DU : Vec 𝕋 n) : Vec 𝕋 n :=
   let W : Mat 𝕋 n n := fun i k => subUp (Φn.sup i k) (Φn.inf i k)   -- |Φ̄ - Φ|, entrywise
   let ε := ConZonotope.mtimesNominalErr Φn.inf H                    -- rounding of Φ̄ z
@@ -123,7 +125,7 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
   let DU : Vec 𝕋 n := fun i =>                                      -- -Z̲_U(t_k) after the map
     addUp ((Zonotope.mtimesIntervalMatBox Φn s.ZU).magnitude i) (dotUp (Φn.magnitudeMat i) s.UErr)
   let Hs := (P₁.conZonotopeInner Bx).linCombSameCenter (P₂.conZonotopeInner Bx)  -- its shape
-  let ρe := LinearSys.aux_maxBackReachErosionFloat Φn Ψ Hs ζ DU         -- the margin line 12 needs
+  let ρe := LinearSys.step_maxBackReachErosionFloat Φn Ψ Hs ζ DU         -- the margin line 12 needs
   let ZWe := ZW ⊞ (Interval.mk (-ρe) ρe).zonotope  -- Ẑ_W(τ_k), widened by it
   -- 11. CZ(P₁ ⊖ Ẑ_W(τ_k))
   let C₁ := LinearSys.maxBackReachCZFloat Bx P₁ ZWe

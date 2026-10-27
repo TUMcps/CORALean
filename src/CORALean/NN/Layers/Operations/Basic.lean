@@ -157,7 +157,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- The conjugated coefficients `a · bⁱ · p i` (constant shifted by `c`), rounded down.
 
-The mirror of `aux_conjCoeffsUp`, every step rounded down. -/
+The mirror of `step_conjCoeffsUp`, every step rounded down. -/
 def conjCoeffsDown (A B : ScaleRounding 𝕋) (c : 𝕋) (p : Fin (m + 1) → 𝕋) : Fin (m + 1) → 𝕋 :=
   fun i =>
     if i = 0 then addDown (A.down (B.down^[(i : ℕ)] (p i))) c else A.down (B.down^[(i : ℕ)] (p i))

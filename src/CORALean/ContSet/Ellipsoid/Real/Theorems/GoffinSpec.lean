@@ -149,8 +149,8 @@ theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set 
   -- one cut keeps `Z` inside: the invariant's step
   have hstep : ∀ (E : Mat ℝ n n) (a : Vec ℝ n), E.PosDef →
       Z ⊆ (Ellipsoid.ofShape E 0).construct → test E = some a →
-      (Ellipsoid.aux_goffinCut ε E a).PosDef
-        ∧ Z ⊆ (Ellipsoid.ofShape (Ellipsoid.aux_goffinCut ε E a) 0).construct := by
+      (Ellipsoid.step_goffinCut ε E a).PosDef
+        ∧ Z ⊆ (Ellipsoid.ofShape (Ellipsoid.step_goffinCut ε E a) 0).construct := by
     intro E a hE hZ ha
     obtain ⟨b, x₀, hx₀, hb, hbx⟩ := hsep E a hE ha
     set S := CFC.sqrt E with hS
@@ -193,7 +193,7 @@ theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set 
     have hcpd : (Ellipsoid.cutShape n c γ).PosDef :=
       Ellipsoid.cutShape_posDef (hcut z₀ hz₀).2 hn hγ0 hγn
     -- the cut ellipsoid holds `S⁻¹z` (Lemma 4.3), so `E_{j+1} = S E S` holds `z`
-    have hcutE : Ellipsoid.aux_goffinCut ε E a = S * Ellipsoid.cutShape n c γ * S := rfl
+    have hcutE : Ellipsoid.step_goffinCut ε E a = S * Ellipsoid.cutShape n c γ * S := rfl
     rw [hcutE]
     refine ⟨(Ellipsoid.aux_mem_ofShape_conj hE hcpd
       (Ellipsoid.cutShape_contains (hcut z₀ hz₀).2 hn hγ0 hγn (hcut z₀ hz₀).1)).1,
@@ -215,7 +215,7 @@ theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set 
         exact ih
       | some a =>
         have he : Ellipsoid.goffin ε test E₀ (j + 1)
-            = Ellipsoid.aux_goffinCut ε (Ellipsoid.goffin ε test E₀ j) a := by
+            = Ellipsoid.step_goffinCut ε (Ellipsoid.goffin ε test E₀ j) a := by
           simp [Ellipsoid.goffin, h]
         rw [he]
         exact hstep _ a ih.1 ih.2 h

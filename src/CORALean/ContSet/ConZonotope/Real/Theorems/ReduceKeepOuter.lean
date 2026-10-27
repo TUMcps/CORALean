@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
 /-!
 # `ConZonotope.reduceKeep` over-approximates
 
-Above the order it is `reduceKeepBy` at `aux_keepSplit`, an over-approximation at every
+Above the order it is `reduceKeepBy` at `step_keepSplit`, an over-approximation at every
 partition; at or below it, the identity.
 
 ## Inputs

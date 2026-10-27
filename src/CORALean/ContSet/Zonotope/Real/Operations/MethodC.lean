@@ -8,6 +8,7 @@ public import Mathlib.Data.List.Sort
 public import Mathlib.Data.List.Sublists
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -15,7 +16,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 # `Zonotope.methodC`: a zonotope reduced to a parallelotope by method C
 
 [1, Sec. 5.4.2]'s method C, the reduction to a parallelotope the paper recommends for the
-halfspace conversion: [1, Prop. 8]'s `Γ box(Γ⁻¹Z)` at the `Γ` `aux_methodCBasis` selects,
+halfspace conversion: [1, Prop. 8]'s `Γ box(Γ⁻¹Z)` at the `Γ` `step_methodCBasis` selects,
 `κ = 8`, `κ̃ = 3` in the paper's evaluation and `κ = 5` in its numerical example.
 
 CORA's `reduce(Z, 'methC', o)`, `Zonotope.reduceMethC`, is a relative: it boxes only what
@@ -50,11 +51,12 @@ variable {n : ℕ}
 open Matrix
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Sec. 5.4.2]'s method C: the `Γ` of the least-volume parallelotope among the `n + κ̃`
 largest-volume choices of `n` of the `n + κ` longest generators, or `I` if none is regular. -/
-noncomputable def Zonotope.aux_methodCBasis (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) : Mat ℝ n n :=
+@[step_of Zonotope.methodC]
+noncomputable def Zonotope.step_methodCBasis (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) : Mat ℝ n n :=
   let p := min (n + κ) Z.h
   -- the `p̃` longest generators by `‖g‖₂`, longest first
   let len : Fin Z.h → ℝ := fun j => ∑ i, Z.G j i ^ 2
@@ -81,7 +83,7 @@ noncomputable def Zonotope.aux_methodCBasis (Z : Zonotope (Vec ℝ n)) (κ κ' :
 
 /-- [1, Sec. 5.4.2]: the parallelotope method C encloses `Z` by. -/
 noncomputable def Zonotope.methodC (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) : Zonotope (Vec ℝ n) :=
-  Z.parallelotope (Z.aux_methodCBasis κ κ')
+  Z.parallelotope (Z.step_methodCBasis κ κ')
 
 end CORALean.Real
 

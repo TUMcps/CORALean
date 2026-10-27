@@ -57,7 +57,7 @@ private theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotop
     β ∈ (cZ₁.intersection cZ₂).P.construct ↔
       (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct)
-      ∧ ∀ i, (ConZonotope.aux_agreeMat cZ₁ cZ₂ *ᵥ β) i = cZ₂.c i - cZ₁.c i := by -- --- PROOF ---
+      ∧ ∀ i, (ConZonotope.step_agreeMat cZ₁ cZ₂ *ᵥ β) i = cZ₂.c i - cZ₁.c i := by -- --- PROOF ---
   -- via `mp`/`mpr`, not rewrites: writing the polytopes out needs an instance at an unreduced count
   constructor
   · intro h
@@ -69,12 +69,12 @@ private theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotop
 
 private theorem ConZonotope.aux_mulVec_agree (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
     (β : Fin (cZ₁.h + cZ₂.h) → ℝ) (i : Fin n) : -- --- CONCL ---
-    (ConZonotope.aux_agreeMat cZ₁ cZ₂ *ᵥ β) i
+    (ConZonotope.step_agreeMat cZ₁ cZ₂ *ᵥ β) i
       = (∑ j, cZ₁.G j i * β (Fin.castAdd cZ₂.h j))
         - ∑ j, cZ₂.G j i * β (Fin.natAdd cZ₁.h j) := by -- --- PROOF ---
-  show ∑ j : Fin (cZ₁.h + cZ₂.h), ConZonotope.aux_agreeMat cZ₁ cZ₂ i j * β j = _
+  show ∑ j : Fin (cZ₁.h + cZ₂.h), ConZonotope.step_agreeMat cZ₁ cZ₂ i j * β j = _
   rw [Fin.sum_univ_add]
-  simp only [ConZonotope.aux_agreeMat, Fin.append_left, Fin.append_right, neg_mul]
+  simp only [ConZonotope.step_agreeMat, Fin.append_left, Fin.append_right, neg_mul]
   rw [Finset.sum_neg_distrib, ← sub_eq_add_neg]
 
 /-- Only the first generator block survives; the second is pinned to it. -/

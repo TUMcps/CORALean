@@ -49,12 +49,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- The mixed form at an appended pair is the bilinear form of its blocks. -/
 private theorem PolyZonotope.aux_mixedForm_eval (Q : Fin m → Mat 𝕋 n n)
     (x y : Vec ℝ n) : -- --- CONCL ---
-    Real.PolyZonotope.quadEval (fun k => toRealMat (PolyZonotope.aux_mixedForm Q k))
+    Real.PolyZonotope.quadEval (fun k => toRealMat (PolyZonotope.step_mixedForm Q k))
       (Fin.append x y)
       = Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k)) x y := by -- --- PROOF ---
   funext k
   simp only [Real.PolyZonotope.quadEval, Real.PolyZonotope.quadBilin, dotProduct, mulVec,
-    PolyZonotope.aux_mixedForm, toRealMat]
+    PolyZonotope.step_mixedForm, toRealMat]
   simp only [Fin.sum_univ_add, Fin.addCases_left, Fin.addCases_right, Fin.append_left,
     Fin.append_right, toReal_zero, zero_mul, Finset.sum_const_zero, mul_zero, add_zero, zero_add,
     LinearMap.mk₂_apply]
@@ -76,10 +76,10 @@ theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n)
       PolyZonotope.absorbRounding_nominal pZ₂ hy⟩, rfl⟩
   -- the exact layer's quadratic map of that nominal part, then the float refinement
   have hq := (Real.PolyZonotope.quadMapDep_exact
-    (fun k => toRealMat (PolyZonotope.aux_mixedForm Q k))
+    (fun k => toRealMat (PolyZonotope.step_mixedForm Q k))
     (nominal (pZ₁.absorbRounding.cartProd pZ₂.absorbRounding)) rfl).subset ⟨_, hz, rfl⟩
   rw [PolyZonotope.aux_mixedForm_eval] at hq
-  exact PolyZonotope.bilin_refines (PolyZonotope.aux_mixedForm Q) _ _ rfl hq
+  exact PolyZonotope.bilin_refines (PolyZonotope.step_mixedForm Q) _ _ rfl hq
 
 end CORALean.Float
 

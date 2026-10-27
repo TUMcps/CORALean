@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -35,9 +36,10 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def PolyZonotope.aux_padFrontE {p s : ℕ} (l : ℕ) (E : Fin p → Fin s → ℕ) :
+@[step_of PolyZonotope.padFront]
+def PolyZonotope.step_padFrontE {p s : ℕ} (l : ℕ) (E : Fin p → Fin s → ℕ) :
     Fin (l + p) → Fin s → ℕ :=
   Fin.append (fun _ _ => 0) E
 
@@ -51,7 +53,7 @@ def PolyZonotope.padFront (l : ℕ) (pZ : PolyZonotope α) : PolyZonotope α whe
   q := pZ.q
   c := pZ.c
   G := pZ.G
-  E := PolyZonotope.aux_padFrontE l pZ.E
+  E := PolyZonotope.step_padFrontE l pZ.E
   GI := pZ.GI
 
 end CORALean.Real

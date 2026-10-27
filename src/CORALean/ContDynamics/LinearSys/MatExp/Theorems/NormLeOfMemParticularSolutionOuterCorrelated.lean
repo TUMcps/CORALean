@@ -57,7 +57,7 @@ variable {n : ℕ}
 
 /-- The correlated summand's own matrix, bounded pointwise exactly like the decorrelated sum's:
 `Matrix.sum_mulVec` turns the one application into the same sum of images, and `norm₂_sum_le`
-plus `aux_norm₂_le_of_mem_particularCoeff_image`'s per-term bound do the rest. -/
+plus `norm₂_le_of_mem_particularCoeff_image`'s per-term bound do the rest. -/
 private theorem aux_norm₂_le_of_mem_particularCoeffSum_image (A : Mat ℝ n n) {U0 : Set (Vec ℝ n)}
     (hU0 : Bornology.IsBounded U0) (i0 η : ℕ) (Δt : ℝ) : -- --- CONCL ---
     ∀ y ∈ (fun x => (MatExp.particularCoeffSum A Δt i0 η).mulVec x) '' U0,
@@ -71,7 +71,7 @@ private theorem aux_norm₂_le_of_mem_particularCoeffSum_image (A : Mat ℝ n n)
   rw [heq]
   have hterm : ∀ i ∈ Finset.Ico i0 (η + 1), ‖(MatExp.particularCoeff A Δt i).mulVec x‖₂
       ≤ (∑ j, ‖(fun k => (A ^ i) j k)‖₂) * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ))
-        * err U0 := fun i _ => aux_norm₂_le_of_mem_particularCoeff_image A hU0 Δt i _
+        * err U0 := fun i _ => norm₂_le_of_mem_particularCoeff_image A hU0 Δt i _
       (Set.mem_image_of_mem (fun x => (MatExp.particularCoeff A Δt i).mulVec x) hx)
   calc ‖∑ i ∈ Finset.Ico i0 (η + 1), (MatExp.particularCoeff A Δt i).mulVec x‖₂
       ≤ ∑ i ∈ Finset.Ico i0 (η + 1), ‖(MatExp.particularCoeff A Δt i).mulVec x‖₂ :=
@@ -99,7 +99,7 @@ theorem MatExp.norm₂_le_of_mem_particularSolutionOuterCorrelated (A : Mat ℝ 
       * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ))) * err U0 :=
     aux_norm₂_le_of_mem_particularCoeffSum_image A hU0 i0 η Δt y1 hy1
   have h2 : ‖y2‖₂ ≤ (n : ℝ) ^ 2 * ‖MatExp.expRemainderMat A Δt η‖ * |Δt| * err U0 :=
-    aux_norm₂_le_of_mem_intervalMulVecSet A hU0 Δt η y2 hy2
+    norm₂_le_of_mem_intervalMulVecSet A hU0 Δt η y2 hy2
   calc ‖y1 + y2‖₂ ≤ ‖y1‖₂ + ‖y2‖₂ := norm₂_add_le _ _
     _ ≤ (∑ i ∈ Finset.Ico i0 (η + 1), (∑ j, ‖(fun k => (A ^ i) j k)‖₂)
           * (|Δt| ^ (i + 1) / (Nat.factorial (i + 1) : ℝ))) * err U0

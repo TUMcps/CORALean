@@ -16,7 +16,7 @@ set inclusion and the triangle inequality the radius. The box's radius is a hypo
 what it can be made is the whole content of the two ways this bound gets used: a fixed order
 against the source zonotope's own reach (crude, but self-contained — see
 `LinearSysDT.reach_subset_closedBall`), or an order `reduceBoxOrder` chooses against a caller's
-tolerance (`step_subset_closedBall_of_reduceBoxOrder`).
+tolerance (`oneStep_subset_closedBall_of_reduceBoxOrder`).
 
 ## Inputs
 * `A` – state matrix
@@ -59,7 +59,7 @@ variable {n : ℕ}
 /-- One step `reduce (plus (mtimes A Z) U) o` reaches no further than
 `‖A‖ * r + rU + rbox`, given a ball for each of `Z`, `U` and the box the
 reduction pays at that step. -/
-theorem Zonotope.step_subset_closedBall (A : Mat ℝ n n) {Z U : Zonotope (Vec ℝ n)} {o : ℕ}
+theorem Zonotope.oneStep_subset_closedBall (A : Mat ℝ n n) {Z U : Zonotope (Vec ℝ n)} {o : ℕ}
     {r rU rbox : ℝ} (hZ : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (hbox : (((Zonotope.mtimes A Z).plus U).reduceBox o).construct

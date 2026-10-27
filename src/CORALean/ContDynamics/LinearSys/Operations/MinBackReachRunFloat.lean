@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStepFloat
 /-!
 # `Alg. 2` lines 6-13 in floats: the loop
 
-`aux_minBackReachRun` computed in `𝕋`: [1, Alg. 2] lines 6-13, the state after the first `k`
+`step_minBackReachRun` computed in `𝕋`: [1, Alg. 2] lines 6-13, the state after the first `k`
 iterations; `0` is the pre-loop state of lines 1-6, so the `k`-th iteration's set is `run
 (k+1)`'s.
 

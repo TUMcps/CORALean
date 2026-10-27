@@ -9,6 +9,7 @@ public import Mathlib.Data.Fintype.Sigma
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Data.Nat.Choose.Basic
 public import Mathlib.Logic.Equiv.Fin.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -19,7 +20,7 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 `dᵢ = cᵀQ⁽ⁱ⁾c + 0.5 Σₛ g⁽ˢ⁾ᵀQ⁽ⁱ⁾g⁽ˢ⁾`, the `p` linear generators `h⁽ʲ⁾ᵢ = cᵀQ⁽ⁱ⁾g⁽ʲ⁾ + g⁽ʲ⁾ᵀQ⁽ⁱ⁾c`,
 the `p` squares `h⁽ᵖ⁺ʲ⁾ᵢ = 0.5 g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾`, and one generator
 `h⁽²ᵖ⁺ˡ⁾ᵢ = g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ᵏ⁾ + g⁽ᵏ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾` for each pair `j < k` alone, numbered by
-`aux_quadMapPairIdx`. That is `σ = C(p + 2, 2) - 1` generators. `Zonotope.quadMap` indexes the pair
+`step_quadMapPairIdx`. That is `σ = C(p + 2, 2) - 1` generators. `Zonotope.quadMap` indexes the pair
 block by all of `Fin p × Fin p`, zero off `j < k`.
 
 ## Inputs
@@ -52,10 +53,11 @@ open Matrix
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Lemma 1 (generators)]: the index `l` of the pair generators, against the pairs `j < k`. -/
-noncomputable def Zonotope.aux_quadMapPairIdx (p : ℕ) :
+@[step_of Zonotope.quadMapTri]
+noncomputable def Zonotope.step_quadMapPairIdx (p : ℕ) :
     Fin (p.choose 2) ≃ {jk : Fin p × Fin p // jk.1 < jk.2} :=
   -- the pairs `j < k` of `Fin p` are `p(p - 1)/2 = C(p, 2)` of them
   have hcard : Fintype.card {jk : Fin p × Fin p // jk.1 < jk.2} = p.choose 2 := by
@@ -84,7 +86,7 @@ noncomputable def Zonotope.quadMapTri (Q : Fin m → Mat ℝ n n) (Z : Zonotope 
       (fun j i => Z.c ⬝ᵥ (Q i *ᵥ Z.G j) + Z.G j ⬝ᵥ (Q i *ᵥ Z.c))
       (fun j i => (1 / 2) * Z.G j ⬝ᵥ (Q i *ᵥ Z.G j)))
     (fun l i =>
-      let jk := (Zonotope.aux_quadMapPairIdx Z.h l).1
+      let jk := (Zonotope.step_quadMapPairIdx Z.h l).1
       Z.G jk.1 ⬝ᵥ (Q i *ᵥ Z.G jk.2) + Z.G jk.2 ⬝ᵥ (Q i *ᵥ Z.G jk.1))
 
 end CORALean.Real

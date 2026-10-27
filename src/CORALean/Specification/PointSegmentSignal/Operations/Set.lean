@@ -5,6 +5,7 @@ public import CORALean.Specification.PointSegmentSignal.Operations.AtIdx
 public import CORALean.Specification.PointSegmentSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Operations.SetPoint
 public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,8 +13,8 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 # Setting the value in an interval
 
 `set(obj,interval,value)` of `pointSegmentSignal.m` for a time scalar `𝕋` and an `stlInterval`: the
-interval's bounds and closedness flags are read off (`lowerBound`, `upperBound`) and `aux_setBounds`
-does the work.
+interval's bounds and closedness flags are read off (`lowerBound`, `upperBound`) and
+`step_setBounds` does the work.
 
 ## Inputs
 * `s` – signal
@@ -37,19 +38,20 @@ namespace CORALean
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] [TimeOrder 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-/-- `aux_isNewPointOk(obj,i,p,vals)`. -/
-def PointSegmentSignal.aux_isNewPointOk {T : Type} [TimeOrder T] [Zero T]
+/-- `step_isNewPointOk(obj,i,p,vals)`. -/
+@[step_of PointSegmentSignal.set]
+def PointSegmentSignal.step_isNewPointOk {T : Type} [TimeOrder T] [Zero T]
     (s : PointSegmentSignal T) (i : ℕ) (p : T) (vals : List Bool) : Bool :=
   if TimeOrder.Eqv (s.timePoints.getD (i - 1) 0) p then
     TimeOrder.Eqv p 0 ∨ vals.getD 0 false ≠ vals.getD 1 false ∨
       vals.getD 0 false ≠ s.precIntervalValue i
   else vals.any (fun v => v ≠ s.succIntervalValue i)
 
-
 /-- `sig = set(obj,stlInterval(lb,ub,lc,rc),value)`. -/
-def PointSegmentSignal.aux_setBounds {T : Type} [TimeOrder T] [Zero T] (s : PointSegmentSignal T)
+@[step_of PointSegmentSignal.set]
+def PointSegmentSignal.step_setBounds {T : Type} [TimeOrder T] [Zero T] (s : PointSegmentSignal T)
     (lb : T) (ub : WithTop T) (lc rc : Bool) (value : Bool) : PointSegmentSignal T :=
   if STLInterval.emptyBounds lb ub lc rc then s
   else if TimeOrder.IsEqvTop (lb : WithTop T) ub then s.setPoint lb value
@@ -64,7 +66,7 @@ def PointSegmentSignal.aux_setBounds {T : Type} [TimeOrder T] [Zero T] (s : Poin
     let lVal := if lc then [value, value] else [before, value]
     let rVal := if rc then [value, after] else [afterPoint, after]
     -- 3. new points at the ends, where they are needed
-    let addL := s.aux_isNewPointOk i lb lVal
+    let addL := s.step_isNewPointOk i lb lVal
     let addR := rVal.any (fun v => v ≠ value) ∧ ub ≠ ⊤
     let newPoints := (if addL then [lb] else []) ++ (if addR then [ub.untopD 0] else [])
     let newValues := (if addL then lVal else []) ++ (if addR then rVal else [])
@@ -80,7 +82,7 @@ def PointSegmentSignal.aux_setBounds {T : Type} [TimeOrder T] [Zero T] (s : Poin
 /-- `sig = set(obj,interval,value)`. -/
 def PointSegmentSignal.set (s : PointSegmentSignal 𝕋) (I : STLInterval 𝕋) (value : Bool) :
     PointSegmentSignal 𝕋 :=
-  s.aux_setBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed value
+  s.step_setBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed value
 
 end CORALean
 

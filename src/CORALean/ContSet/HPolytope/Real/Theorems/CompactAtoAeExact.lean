@@ -42,14 +42,14 @@ variable {n : ℕ}
 section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-/-- The set of `aux_moveToEq`. -/
+/-- The set of `step_moveToEq`. -/
 private theorem HPolytope.aux_moveToEq_construct (P : HPolytope α) (S : Finset (Fin P.m))
     (L : List (Fin P.m)) : -- --- CONCL ---
-    (P.aux_moveToEq S L).construct
+    (P.step_moveToEq S L).construct
       = {x | (∀ i ∈ S, P.A i x ≤ P.b i) ∧ (∀ r, P.Ae r x = P.be r) ∧
           ∀ i ∈ L, P.A i x = P.b i} := by -- --- PROOF ---
   ext x
-  simp only [HPolytope.construct, HPolytope.aux_moveToEq, Set.mem_setOf_eq]
+  simp only [HPolytope.construct, HPolytope.step_moveToEq, Set.mem_setOf_eq]
   -- the kept inequalities, indexed by `S` rather than by `Fin S.card`
   have h1 : (∀ k : Fin S.card, P.A (S.equivFin.symm k).1 x ≤ P.b (S.equivFin.symm k).1)
       ↔ ∀ i ∈ S, P.A i x ≤ P.b i := by
@@ -76,10 +76,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- What the loop of `compact_(P, 'AtoAe')` guarantees. -/
 private theorem HPolytope.aux_atoAeState_spec (Q : HPolytope α) : -- --- CONCL ---
-    (∀ k ∈ Q.aux_atoAeState.2, ∃ j, Q.A j = -Q.A k ∧ Q.b j = -Q.b k) ∧
-    ∀ i ∈ Q.aux_atoAeState.1, ∃ k ∈ Q.aux_atoAeState.2,
+    (∀ k ∈ Q.step_atoAeState.2, ∃ j, Q.A j = -Q.A k ∧ Q.b j = -Q.b k) ∧
+    ∀ i ∈ Q.step_atoAeState.1, ∃ k ∈ Q.step_atoAeState.2,
       i = k ∨ (Q.A i = -Q.A k ∧ Q.b i = -Q.b k) := by -- --- PROOF ---
-  unfold HPolytope.aux_atoAeState
+  unfold HPolytope.step_atoAeState
   -- the invariant, along the loop
   suffices h : ∀ (l : List (Fin Q.m)) (st : Finset (Fin Q.m) × List (Fin Q.m)),
       ((∀ k ∈ st.2, ∃ j, Q.A j = -Q.A k ∧ Q.b j = -Q.b k) ∧
@@ -143,7 +143,7 @@ theorem HPolytope.compactAtoAe_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL 
   · -- the moved rows are implied by the appended equalities
     rintro ⟨h1, h2, h3⟩
     refine ⟨fun i => ?_, h2⟩
-    by_cases hi : i ∈ Q.aux_atoAeState.1
+    by_cases hi : i ∈ Q.step_atoAeState.1
     · obtain ⟨k, hk, hik⟩ := hmov i hi
       have hkx := h3 k hk
       rcases hik with rfl | ⟨hA, hb⟩

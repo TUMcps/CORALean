@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemai
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -58,16 +59,17 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
-@[reducible] noncomputable def aux_setMtimesIntervalRem :
+@[reducible, step_of LinearSys.inputRemainder_subset_float]
+noncomputable def step_setMtimesIntervalRem :
     Mtimes ℐ 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
-attribute [local instance] aux_setMtimesIntervalRem
+attribute [local instance] step_setMtimesIntervalRem
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

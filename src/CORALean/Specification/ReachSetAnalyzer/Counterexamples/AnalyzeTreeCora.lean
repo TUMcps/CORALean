@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.ReachSetAnalyzer.Operations.AnalyzeTree
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -62,26 +63,28 @@ def ReachSetAnalyzer.analyzeTreeCora {σ α : Type} (children : ℕ → List ℕ
             obj).map fun last => outs.flatten ++ last
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The fork of the reach sets with parents `0`, `1`, `1`: the root has the child `1`, and `1` has
 the children `2` and `3`. -/
-def ReachSetAnalyzer.aux_forkChildren : ℕ → List ℕ
+@[step_of ReachSetAnalyzer.analyzeTreeCora_counterexample]
+def ReachSetAnalyzer.step_forkChildren : ℕ → List ℕ
   | 0 => [1]
   | 1 => [2, 3]
   | _ => []
 
 /-- The state is the list of entries analyzed so far. -/
-def ReachSetAnalyzer.aux_visit (o : List ℕ) (j : ℕ) : Option (List ℕ) := some (o ++ [j])
+@[step_of ReachSetAnalyzer.analyzeTreeCora_counterexample]
+def ReachSetAnalyzer.step_visit (o : List ℕ) (j : ℕ) : Option (List ℕ) := some (o ++ [j])
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.analyzeTreeCora_counterexample : -- --- CONCL ---
-    ReachSetAnalyzer.analyzeTreeCora ReachSetAnalyzer.aux_forkChildren
-        ReachSetAnalyzer.aux_visit some 4 0 [] = some [[1, 2], [1, 2]] ∧
-      ReachSetAnalyzer.analyzeTree ReachSetAnalyzer.aux_forkChildren
-        ReachSetAnalyzer.aux_visit some 4 0 [] = some [[1, 2], [1, 3]] := by -- --- PROOF ---
+    ReachSetAnalyzer.analyzeTreeCora ReachSetAnalyzer.step_forkChildren
+        ReachSetAnalyzer.step_visit some 4 0 [] = some [[1, 2], [1, 2]] ∧
+      ReachSetAnalyzer.analyzeTree ReachSetAnalyzer.step_forkChildren
+        ReachSetAnalyzer.step_visit some 4 0 [] = some [[1, 2], [1, 3]] := by -- --- PROOF ---
   constructor <;> rfl
 
 end CORALean

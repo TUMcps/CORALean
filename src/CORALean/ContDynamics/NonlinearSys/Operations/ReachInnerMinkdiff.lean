@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -45,11 +46,12 @@ namespace CORALean
 variable {n : ℕ} {𝓛 : Type}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `j` steps of CORA's `priv_reachInnerMinkdiff` from step `k` and the start `Rtp` with the
 error `err`, on top of the cells `timePoint` and `timeInt`. -/
-noncomputable def NonlinearSys.aux_reachInnerMinkdiffLoop (ops : NonlinearSys.LinReachInnerOps n 𝓛)
+@[step_of NonlinearSys.reachInnerMinkdiff]
+noncomputable def NonlinearSys.step_reachInnerMinkdiffLoop (ops : NonlinearSys.LinReachInnerOps n 𝓛)
     (f : Vec ℝ n → Vec ℝ n) (Δt : ℝ) (fuel : ℕ) :
     ℕ → ℕ → Set (Vec ℝ n) → Vec ℝ n → (ℕ → Set (Vec ℝ n)) → (ℕ → Set (Vec ℝ n)) →
       Option ((ℕ → Set (Vec ℝ n)) × (ℕ → Set (Vec ℝ n)))
@@ -61,7 +63,7 @@ noncomputable def NonlinearSys.aux_reachInnerMinkdiffLoop (ops : NonlinearSys.Li
       | some st =>
         let timeInt' := Function.update timeInt k st.Rti              -- timeInt.set{k} = Rti
         let timePoint' := Function.update timePoint (k + 1) st.Rtp    -- timePoint.set{k+1}
-        NonlinearSys.aux_reachInnerMinkdiffLoop ops f Δt fuel j (k + 1) st.Rtp st.err timePoint'
+        NonlinearSys.step_reachInnerMinkdiffLoop ops f Δt fuel j (k + 1) st.Rtp st.err timePoint'
           timeInt'
 
 
@@ -76,7 +78,7 @@ noncomputable def NonlinearSys.reachInnerMinkdiff (ops : NonlinearSys.LinReachIn
   let timeInt : ℕ → Set (Vec ℝ n) := fun _ => ∅                    -- timeInt.set = cell(steps)
   let Rtp := R0                                                     -- Rtp.set = params.X₀
   let err : Vec ℝ n := 0                                            -- Rtp.error = zeros(n,1)
-  NonlinearSys.aux_reachInnerMinkdiffLoop ops f timeStep fuel steps 0 Rtp err timePoint timeInt
+  NonlinearSys.step_reachInnerMinkdiffLoop ops f timeStep fuel steps 0 Rtp err timePoint timeInt
 
 end CORALean
 

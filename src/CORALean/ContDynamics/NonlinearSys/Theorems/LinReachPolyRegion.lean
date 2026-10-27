@@ -64,7 +64,7 @@ private theorem aux_abstrErrPolyCandidates_q (A : Mat ℝ n n) (xs : Vec ℝ n) 
     (Δt : ℝ) (η errorOrder intermediateOrder : ℕ) (U : PolyZonotope (Vec ℝ m))
     (Rinit Rdiff VerrorStat : PolyZonotope (Vec ℝ n)) (abstrerr : Vec ℝ n)
     (k : ℕ) : -- --- CONCL ---
-    (NonlinearSys.aux_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
+    (NonlinearSys.step_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
       Rdiff VerrorStat abstrerr k).1.q = 0 := by -- --- PROOF ---
   induction k generalizing abstrerr with
   | zero => rfl
@@ -83,7 +83,8 @@ theorem NonlinearSys.linReachPoly_region {sys : NonlinearSys n m} {U : PolyZonot
     (h : sys.linReachPoly U A B xs us H E Δt η errorOrder intermediateOrder Rinit abstrerr fuel
       = some step) : -- --- CONCL ---
     step.A = A ∧ step.B = B ∧ step.xs = xs ∧ step.us = us ∧ ∃ k, step.R = (Rinit.dependent.plus
-      (NonlinearSys.aux_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
+      (NonlinearSys.step_abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U
+        Rinit
         (((NonlinearSys.linearize A).deltaReach (S := 𝒫𝒵) Δt η Rinit).plus
           ((NonlinearSys.linearize A).inputSolution (S := 𝒫𝒵) Δt η
             (linInput (S := 𝒫𝒵) sys.f A B xs us U (PolyZonotope.ofPoint 0))))

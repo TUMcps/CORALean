@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.HalfSqBoundsFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -46,10 +47,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The entry `(i, j)` of `W(t)`'s interval, as an interval of floats. -/
-def aux_expIntervalWEntry (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (i j : Fin n) : Interval 𝕋 :=
+@[step_of MatExp.expIntervalW]
+def step_expIntervalWEntry (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (i j : Fin n) : Interval 𝕋 :=
   let ht := MatExp.halfSqBounds t                                   -- ½ t², bracketed
   let sLo := addDown (A.inf i i) (A.inf j j)                        -- A i i + A j j
   let sHi := addUp (A.sup i i) (A.sup j j)
@@ -71,7 +73,7 @@ def aux_expIntervalWEntry (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (i j : Fin n)
 
 /-- `W(t)` of [1, Prop. 4] as an interval matrix, rounded outward. -/
 def MatExp.expIntervalW (A : Interval (Mat 𝕋 n n)) (t : 𝕋) : Interval (Mat 𝕋 n n) :=
-  ⟨fun i j => (aux_expIntervalWEntry A t i j).inf, fun i j => (aux_expIntervalWEntry A t i j).sup⟩
+  ⟨fun i j => (step_expIntervalWEntry A t i j).inf, fun i j => (step_expIntervalWEntry A t i j).sup⟩
 
 end CORALean.Float
 

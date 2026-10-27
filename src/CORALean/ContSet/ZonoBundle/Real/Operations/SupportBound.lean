@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -40,12 +41,13 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- One component's bound, read back as a bound on the whole bundle — the
 result type is what pins the metavariables `SupportBound.mono` would
 otherwise leave to the caller. -/
-def aux_componentBound (zB : ZonoBundle α) (c : α →ₗ[ℝ] ℝ) (i : Fin zB.k) :
+@[step_of ZonoBundle.supportBound]
+def step_componentBound (zB : ZonoBundle α) (c : α →ₗ[ℝ] ℝ) (i : Fin zB.k) :
     SupportBound zB.construct c :=
   SupportBound.mono (SetIntersection.construct_subset_ofFn _ i)
     ((zB.Z i).supportBound c)
@@ -57,13 +59,13 @@ def aux_componentBound (zB : ZonoBundle α) (c : α →ₗ[ℝ] ℝ) (i : Fin zB
 the component that attains it. -/
 noncomputable def ZonoBundle.supportBound (zB : ZonoBundle α) (hk : 0 < zB.k)
     (c : α →ₗ[ℝ] ℝ) : SupportBound zB.construct c where
-  val := Finset.univ.inf' ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (aux_componentBound zB c i).val)
+  val := Finset.univ.inf' ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (step_componentBound zB c i).val)
   le := by
     intro x hx
     obtain ⟨i, -, hi⟩ := Finset.exists_mem_eq_inf' (s := (Finset.univ : Finset (Fin zB.k)))
-      ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (aux_componentBound zB c i).val)
+      ⟨⟨0, hk⟩, Finset.mem_univ _⟩ (fun i => (step_componentBound zB c i).val)
     rw [hi]
-    exact (aux_componentBound zB c i).le x hx
+    exact (step_componentBound zB c i).le x hx
 
 end CORALean.Real
 

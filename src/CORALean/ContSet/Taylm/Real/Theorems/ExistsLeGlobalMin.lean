@@ -88,7 +88,7 @@ theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Inter
   have inv : ∀ fuel (st : List (Fin n → Interval ℝ) × ℝ),
       (∀ B ∈ st.1, (∀ k, (B k).inf ≤ (B k).sup) ∧ ∀ t, Taylm.IsInBox B t → Taylm.IsInBox X t) →
       (∃ p, Taylm.IsInBox X p ∧ f p ≤ st.2) →
-      ∃ p, Taylm.IsInBox X p ∧ f p ≤ (Taylm.aux_goLoop lb ub fuel st).2 := by
+      ∃ p, Taylm.IsInBox X p ∧ f p ≤ (Taylm.step_goLoop lb ub fuel st).2 := by
     intro fuel
     -- by induction over the box steps
     induction fuel with
@@ -107,7 +107,7 @@ theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Inter
           · exact ⟨p, hpX, by rw [min_eq_left hc]; exact hfp⟩
           · exact ⟨Taylm.boxMid B, hBp.2 _ (hmid B hBp.1),
               by rw [min_eq_right hc]; exact hub _ (hBp.2 _ (hmid B hBp.1))⟩
-        simp only [Taylm.aux_goLoop, Taylm.aux_goStep]
+        simp only [Taylm.step_goLoop, Taylm.step_goStep]
         split_ifs with hc
         · exact ih _ (fun B' hB' => hl B' (by simp [hB'])) hp
         · split

@@ -29,6 +29,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonot
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -38,7 +39,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 `Location.guardIntersectHyperplaneMap`, CORA's `guardIntersect_hyperplaneMap` [1], at float
 zonotopes, one `let` per line: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E` of [2, Sec.
 5.4]. What rounds is an interval, and what an interval cannot stand in for is charged to a set (`b`
-is the lower end of `GuardMap.aux_sdcInputFloat`, the rest added to the error). `none` when a float
+is the lower end of `GuardMap.step_sdcInputFloat`, the rest added to the error). `none` when a float
 test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away from `0`, the float `‖tmax A‖` above
 `(η + 2)/2`, or `k`, `L` not computed.
 
@@ -81,13 +82,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
   [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Prop. 1]: a box holding `b = Θ(t)x₀ + Γ*(t)u_c`. -/
-def GuardMap.aux_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) (t : 𝕋) (η : ℕ) (x₀ : Vec 𝕋 n) :
+@[step_of Location.guardIntersectHyperplaneMapFloat]
+def GuardMap.step_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) (t : 𝕋) (η : ℕ) (x₀ : Vec 𝕋 n) :
     Interval (Vec 𝕋 n) :=
   let Apow : ℕ → Interval (Mat 𝕋 n n) := fun i =>                -- `Aⁱ`, bracketed
     Interval.matPow (Interval.point A) i
@@ -111,7 +113,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- A box holding `y_h(x₀) = x₀ + (Ax₀ + b)(d − nᵀx₀)/Λ`, `none` if `0` may be in `Λ`'s box. -/
-def GuardMap.aux_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (x₀ : Vec 𝕋 n) :
+@[step_of Location.guardIntersectHyperplaneMapFloat]
+def GuardMap.step_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (x₀ : Vec 𝕋 n) :
     Option (Interval (Vec 𝕋 n)) :=
   let y : Interval (Vec 𝕋 n) :=                                       -- `Ax₀ + b`
     ⟨fun i => addDown (dotDown (A i) x₀) (b i), fun i => addUp (dotUp (A i) x₀) (b i)⟩
@@ -134,7 +137,8 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Prop. 2]: an interval matrix holding `L(x₀)`, `none` if `0` may be in `Λ`'s box. -/
-def GuardMap.aux_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (x₀ : Vec 𝕋 n) :
+@[step_of Location.guardIntersectHyperplaneMapFloat]
+def GuardMap.step_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (x₀ : Vec 𝕋 n) :
     Option (Interval (Mat 𝕋 n n)) :=
   let y : Interval (Vec 𝕋 n) :=                                       -- `Ax₀ + b`
     ⟨fun i => addDown (dotDown (A i) x₀) (b i), fun i => addUp (dotUp (A i) x₀) (b i)⟩
@@ -185,7 +189,7 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let A : Mat 𝕋 n n := ℓ.dynamics.A                                -- [A,U] = aux_systemParams
   let U : Zonotope (Vec 𝕋 n) := ℓ.inputSetFloat                    -- U = B*U + c, and E*W
   let th : 𝕋 := half tmax                                           -- th = tmax/2
-  let bI := GuardMap.aux_sdcInputFloat A U.c th η R₀.c                  -- b = aux_constantFlow
+  let bI := GuardMap.step_sdcInputFloat A U.c th η R₀.c                  -- b = aux_constantFlow
   let b : Vec 𝕋 n := bI.inf                                         -- its lower end
   let R0red := R₀.reduceGirard guardOrder                           -- R0red = reduce(R0,..)
   let R0red_ := R0red.recenter                                      -- R0red_ = R0red - c
@@ -237,7 +241,7 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let cI : Interval (Vec 𝕋 n) :=
     ⟨fun i => Interval.mulLo (nv i) (nv i) rLo rHi, fun i => Interval.mulHi (nv i) (nv i) rLo rHi⟩
   let nrmA := MatExp.normUpperBound (Interval.smul tmax tmax (Interval.point A))  -- `‖tmax A‖`
-  match GuardMap.aux_hitPointFloat A b nv d x0, GuardMap.aux_hitJacobianFloat A b nv d x0 with
+  match GuardMap.step_hitPointFloat A b nv d x0, GuardMap.step_hitJacobianFloat A b nv d x0 with
   | some k, some Lk =>                                               -- k, L
     -- `res1 = k + L*R0_ + 0.5*phi*quadMap(R0red_,Q)`
     let res1 := ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R0_)).plus

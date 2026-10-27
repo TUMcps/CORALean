@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import Mathlib.Data.EReal.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -67,10 +68,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `c = 0`, one generator `1`, equality row `0 ξ = 1`. -/
-def ConZonotope.aux_infeasibleZeroRow : ConZonotope (Vec ℝ 1) where
+@[step_of ConZonotope.supportFunc_upper_cora_counterexample]
+def ConZonotope.step_infeasibleZeroRow : ConZonotope (Vec ℝ 1) where
   h := 1
   c := fun _ => 0
   G := fun _ _ => 1
@@ -82,8 +84,11 @@ def ConZonotope.aux_infeasibleZeroRow : ConZonotope (Vec ℝ 1) where
       Ae := fun _ => 0
       be := fun _ => 1 }
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 private theorem ConZonotope.aux_infeasibleZeroRow_construct : -- --- CONCL ---
-    ConZonotope.aux_infeasibleZeroRow.construct = ∅ := by -- --- PROOF ---
+    ConZonotope.step_infeasibleZeroRow.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨β, -, ⟨-, hE⟩, -⟩
@@ -97,19 +102,19 @@ private theorem ConZonotope.aux_infeasibleZeroRow_construct : -- --- CONCL ---
 /-- The set is empty, so its support value along `dir = id` is `⊥ = -Inf`; CORA answers `1`,
 whatever `lp` is. -/
 theorem ConZonotope.supportFunc_upper_cora_counterexample (lp : EReal) : -- --- CONCL ---
-    ConZonotope.aux_infeasibleZeroRow.construct = ∅ ∧
-      (⨆ x ∈ ConZonotope.aux_infeasibleZeroRow.construct,
+    ConZonotope.step_infeasibleZeroRow.construct = ∅ ∧
+      (⨆ x ∈ ConZonotope.step_infeasibleZeroRow.construct,
           (((LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ) x : ℝ) : EReal)) = ⊥ ∧
-      ConZonotope.aux_infeasibleZeroRow.supportFuncUpperCora (LinearMap.proj 0) lp =
+      ConZonotope.step_infeasibleZeroRow.supportFuncUpperCora (LinearMap.proj 0) lp =
         1 := by -- --- PROOF ---
   have hc := ConZonotope.aux_infeasibleZeroRow_construct
   refine ⟨hc, by rw [hc]; simp, ?_⟩
-  have hall : ∀ (i : Fin ConZonotope.aux_infeasibleZeroRow.P.me)
-      (ξ : Vec ℝ ConZonotope.aux_infeasibleZeroRow.h),
-      ConZonotope.aux_infeasibleZeroRow.P.Ae i ξ = 0 := fun i ξ => rfl
+  have hall : ∀ (i : Fin ConZonotope.step_infeasibleZeroRow.P.me)
+      (ξ : Vec ℝ ConZonotope.step_infeasibleZeroRow.h),
+      ConZonotope.step_infeasibleZeroRow.P.Ae i ξ = 0 := fun i ξ => rfl
   unfold ConZonotope.supportFuncUpperCora
   rw [if_pos hall]
-  simp [ConZonotope.aux_infeasibleZeroRow]
+  simp [ConZonotope.step_infeasibleZeroRow]
 
 end CORALean.Real
 

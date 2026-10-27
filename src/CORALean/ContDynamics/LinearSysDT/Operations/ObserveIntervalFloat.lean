@@ -10,6 +10,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -56,9 +57,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 open CORALean.Float FloatOps
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def LinearSysDT.aux_observeIntervalStepFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+@[step_of LinearSysDT.observeIntervalFloat]
+def LinearSysDT.step_observeIntervalStepFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (u : Vec 𝕋 sys.m) (y : Vec 𝕋 sys.q) (s : LinearSysDT.ObserveIntervalStateFloat 𝕋 n) :
     LinearSysDT.ObserveIntervalStateFloat 𝕋 n :=
   let IM := LinearSysDT.errMatFloat sys.A L sys.C                     -- `A - L C`, rounded
@@ -69,14 +71,15 @@ def LinearSysDT.aux_observeIntervalStepFloat (sys : LinearSysDT 𝕋 n) (L : Mat
     Rwv := s.Rwv.plus s.D.interval                                    -- add the box of `D`
     D := Zonotope.mtimesIntervalMat IM s.D }                          -- `D` through `A - L C`
 
-def LinearSysDT.aux_observeIntervalStateFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+@[step_of LinearSysDT.observeIntervalFloat]
+def LinearSysDT.step_observeIntervalStateFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) : ℕ → LinearSysDT.ObserveIntervalStateFloat 𝕋 n
   | 0 => { x := Interval.point R₀.c, Rx := R₀, Rwv := Interval.point fun _ => zero,
            D := (Zonotope.mtimes (-L) V).plus W }
   | k + 1 =>
-    sys.aux_observeIntervalStepFloat L (u k) (y k)
-      (sys.aux_observeIntervalStateFloat L R₀ W V u y k)
+    sys.step_observeIntervalStepFloat L (u k) (y k)
+      (sys.step_observeIntervalStateFloat L R₀ W V u y k)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -85,7 +88,7 @@ def LinearSysDT.observeIntervalFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n 
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) (k : ℕ) :
     Interval (Vec 𝕋 n) :=
-  let s := sys.aux_observeIntervalStateFloat L R₀ W V u y k
+  let s := sys.step_observeIntervalStateFloat L R₀ W V u y k
   let E := s.Rx.interval.plus s.Rwv                                  -- `box(R_x) + R_wv`
   s.x.plus E                                                         -- `x̂ + E`
 

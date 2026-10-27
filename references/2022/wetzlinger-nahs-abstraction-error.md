@@ -207,7 +207,7 @@ proved without it.
 **`Alg. 1` — lines 4-5 are supplied, and the differential-algebraic half is not taken on.**
 `taylor` and `linSys` read derivatives of `f` off the linearization point, and nothing in this
 tree differentiates `f`: `IsAbstractionError` is a certificate and `Linearize` takes `A` as given,
-so `aux_abstrStep` asks the caller for the `A` and `B` a linearization at line 3's point would yield,
+so `step_abstrStep` asks the caller for the `A` and `B` a linearization at line 3's point would yield,
 exactly as `LinStep` carries them. The certificate consequently sits on the theorems rather than
 in the definition. The algebraic equation is omitted throughout — `linPoint` has no `y✱`, `linSys`
 no `Ỹ Z̃⁻¹` elimination and the loop no `R_y(t_{k+1})` — which is the specialization the paper

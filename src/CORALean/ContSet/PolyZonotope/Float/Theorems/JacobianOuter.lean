@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Jacobian
 
 The exact layer's `jacobian` of what the stored floats denote lies in the float one: its generator
 columns are `E k i` times the stored ones, which the stored lower multiple is off from by at most
-`aux_jacobianGap`, and the monomials lie in `[-1, 1]`, so the box holds the difference. The exact
+`step_jacobianGap`, and the monomials lie in `[-1, 1]`, so the box holds the difference. The exact
 layer's `jacobian_hasDerivAt` says what the exact set is, the derivative of the point along `k`.
 
 ## Inputs
@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem PolyZonotope.aux_jacobianGap_bound (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p)
     (r : Fin n) (i : Fin pZ.h) : -- --- CONCL ---
     |(pZ.E k i : ℝ) * toReal (pZ.G i r) - toReal ((pZ.jacobian k).G i r)|
-      ≤ toReal (pZ.aux_jacobianGap k r i) := by -- --- PROOF ---
+      ≤ toReal (pZ.step_jacobianGap k r i) := by -- --- PROOF ---
   have hlo := sumDown_le_sum (fun _ : Fin (pZ.E k i) => pZ.G i r)
   have hhi := sum_le_sumUp (fun _ : Fin (pZ.E k i) => pZ.G i r)
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul] at hlo hhi
@@ -56,7 +56,7 @@ private theorem PolyZonotope.aux_jacobianGap_bound (pZ : PolyZonotope (Vec 𝕋 
   have hG : toReal ((pZ.jacobian k).G i r) = toReal (sumDown fun _ : Fin (pZ.E k i) => pZ.G i r) :=
     rfl
   rw [abs_le]
-  simp only [PolyZonotope.aux_jacobianGap]
+  simp only [PolyZonotope.step_jacobianGap]
   constructor <;> linarith
 
 

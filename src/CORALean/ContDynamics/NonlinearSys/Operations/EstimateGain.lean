@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
 public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 public import Mathlib.Data.Real.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -52,17 +53,18 @@ halvings.
 namespace CORALean
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Halve the bracket toward where `g` crosses `target`, `fuel` times, and hand
 back the last midpoint. -/
-noncomputable def aux_estimateGainSearch (le : ℝ → ℝ → Bool) (g : ℝ → ℝ) (target : ℝ) :
+@[step_of estimateGain]
+noncomputable def step_estimateGainSearch (le : ℝ → ℝ → Bool) (g : ℝ → ℝ) (target : ℝ) :
     ℝ → ℝ → ℕ → ℝ
   | lo, hi, 0 => (lo + hi) / 2
   | lo, hi, k + 1 =>
     let mid := (lo + hi) / 2
-    if le (g mid) target then aux_estimateGainSearch le g target mid hi k
-    else aux_estimateGainSearch le g target lo mid k
+    if le (g mid) target then step_estimateGainSearch le g target mid hi k
+    else step_estimateGainSearch le g target lo mid k
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -77,7 +79,7 @@ noncomputable def estimateGain (le : ℝ → ℝ → Bool) (ζδ lam rabs1 rabsO
   let lhs := fun φ1 => ∏ j ∈ Finset.range scalings,
     interpGain ζδ φ1 j
   -- 16. eq. (56): solve for φ⁽¹⁾ in [0,1]
-  aux_estimateGainSearch le lhs target 0 1 fuel
+  step_estimateGainSearch le lhs target 0 1 fuel
 
 end CORALean
 

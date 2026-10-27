@@ -4,6 +4,7 @@ public import CORALean.NN.Operations.Raise
 public import CORALean.NN.Operations.RefinementRank
 public import CORALean.NN.Operations.Sensitivity
 public import CORALean.NN.Operations.WorstIndex
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -47,28 +48,33 @@ namespace CORALean
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- Neuron `j`'s own rank at what CORA backpropagates, left unaggregated: this
-rule ranks `(layer, neuron)` pairs and never layers. -/
-private noncomputable def Chain.aux_neuronRank (c : Chain n m) (x d : Vec ℝ n)
-    (j : Fin n) : ℝ := refinementRank (c.sensitivity x) d j
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The pair the rule refines at: the layer holding the best-ranked neuron, and
 that neuron. Ties go to the earlier layer, then to the earlier neuron. -/
-noncomputable def aux_worstNeuron (r : Fin (k + 1) → Fin (n + 1) → ℝ) :
+@[step_of Schedule.refineWorstNeurons]
+noncomputable def step_worstNeuron (r : Fin (k + 1) → Fin (n + 1) → ℝ) :
     Fin (k + 1) × Fin (n + 1) :=
   let l := worstIndex fun i => Finset.univ.sup' Finset.univ_nonempty (r i)
   (l, worstIndex (r l))
 
 /-- The order each neuron of that layer gains [1, Eq. 27]: one where its rank
 clears `ω` times the best, none elsewhere and none outside the layer. -/
-noncomputable def aux_neuronwiseStep (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) :
+@[step_of Schedule.refineWorstNeurons]
+noncomputable def step_neuronwiseStep (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) :
     ℕ → ℕ :=
   fun j => if h : j < n + 1 then
-      (if ω * r (aux_worstNeuron r).1 (aux_worstNeuron r).2
-          ≤ r (aux_worstNeuron r).1 ⟨j, h⟩ then 1 else 0)
+      (if ω * r (step_worstNeuron r).1 (step_worstNeuron r).2
+          ≤ r (step_worstNeuron r).1 ⟨j, h⟩ then 1 else 0)
     else 0
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- Neuron `j`'s own rank at what CORA backpropagates, left unaggregated: this
+rule ranks `(layer, neuron)` pairs and never layers. -/
+private noncomputable def Chain.aux_neuronRank (c : Chain n m) (x d : Vec ℝ n)
+    (j : Fin n) : ℝ := refinementRank (c.sensitivity x) d j
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -77,7 +83,7 @@ noncomputable def aux_neuronwiseStep (r : Fin (k + 1) → Fin (n + 1) → ℝ) (
 best rank names, each moving up one order. -/
 noncomputable def Schedule.refineWorstNeurons (sch : Schedule)
     (r : Fin (k + 1) → Fin (n + 1) → ℝ) (ω : ℝ) : Schedule :=
-  Schedule.raise sch (aux_worstNeuron r).1 (aux_neuronwiseStep r ω)
+  Schedule.raise sch (step_worstNeuron r).1 (step_neuronwiseStep r ω)
 
 end CORALean
 

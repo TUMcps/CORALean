@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -36,9 +37,10 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def Zonotope.aux_splitHalf (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n) :
+@[step_of Zonotope.split]
+def Zonotope.step_splitHalf (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n) :
     Zonotope (Vec 𝕋 n) where
   h := Z.h
   c := fun i => addDown (Z.c i) (s i)
@@ -52,7 +54,7 @@ def Zonotope.aux_splitHalf (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec �
 def Zonotope.split (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) : Zonotope (Vec 𝕋 n) ×
     Zonotope (Vec 𝕋 n) :=
   let g := fun i => half (Z.G j i)
-  (Z.aux_splitHalf j (-g), Z.aux_splitHalf j g)
+  (Z.step_splitHalf j (-g), Z.step_splitHalf j g)
 
 end CORALean.Float
 

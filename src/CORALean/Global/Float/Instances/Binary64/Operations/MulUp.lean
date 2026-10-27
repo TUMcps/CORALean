@@ -36,7 +36,7 @@ namespace Binary64
 
 def mulUp (a b : Float) : Float :=
   let r := a * b
-  -- `0` and NaN by their bits, see `aux_inRange`
+  -- `0` and NaN by their bits, see `step_inRange`
   if r == Float.ofBits 0 && a != Float.ofBits 0 && b != Float.ofBits 0 then
     Float.ofBits 0x7FF8000000000000
   else stepUp r

@@ -5,6 +5,7 @@ public import CORALean.NN.Theorems.CatEvalAffineIff
 public import CORALean.NN.Theorems.CatEvalCompIff
 public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
 public import CORALean.NN.Theorems.CatMaxSegmentEvalIff
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -48,10 +49,11 @@ open Matrix Float Float.FloatOps Float.SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Window `j - a` lies inside the `r` windows. -/
-theorem aux_lt_of_window {a k r j q : ℕ} (hj : j < a + r) (ha : a ≤ j) (hq : q < k + 1) :
+@[step_of Cat.maxSegments_eval_iff]
+theorem step_lt_of_window {a k r j q : ℕ} (hj : j < a + r) (ha : a ≤ j) (hq : q < k + 1) :
     a + (k + 1) * (j - a) + q < a + (k + 1) * r := by
   have : (k + 1) * (j - a) + (k + 1) ≤ (k + 1) * r := by
     rw [← Nat.mul_succ]
@@ -67,7 +69,7 @@ theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- CONCL ---
     -- the pooled coordinates, then the maximum of each window
     let yv : Vec ℝ (a + r) := fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
       else Real.windowMax fun q : Fin (k + 1) =>
-        x ⟨a + (k + 1) * (j.val - a) + q.val, aux_lt_of_window j.isLt (by omega) q.isLt⟩
+        x ⟨a + (k + 1) * (j.val - a) + q.val, step_lt_of_window j.isLt (by omega) q.isLt⟩
     (Cat.maxSegments (𝕋 := 𝕋) k a r).Evaluates x y ↔ y = yv := by -- --- PROOF ---
   intro a r
   induction r generalizing a with

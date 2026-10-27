@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeCompress
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 
 [1, Alg. 3] (`cloud2zonotope`): a zonotope `c ⊕ Z(R)` enclosing a cloud `X` of points of `ℝⁿ`,
 by at most `s₁` rounds of "compress the cloud along its first principal direction, add the cut
-segment" (`aux_cloud2zonotopeLoop`), then the interval hull of what is left as `n` axis-aligned
+segment" (`step_cloud2zonotopeLoop`), then the interval hull of what is left as `n` axis-aligned
 generators `diag(rad)` (`Interval.zonotope`: center `mid`, generators `diag(rad)`). Inputs
 `ratio`, `s₁`, `s₂` as printed; `dir` stands for `svd(X)(:, 1)`. Every point lies in the result,
 for any `dir` and `ratio` (`cloud2zonotope_mem`).
@@ -50,11 +51,12 @@ variable {n : ℕ} {κ : Type}
 open Matrix
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The `while` loop of `cloud2zonotope`: returns the zonotope `c ⊕ Z(R)` built and the residual
 cloud `X`. -/
-noncomputable def Zonotope.aux_cloud2zonotopeLoop [Fintype κ] [Nonempty κ]
+@[step_of Zonotope.cloud2zonotope]
+noncomputable def Zonotope.step_cloud2zonotopeLoop [Fintype κ] [Nonempty κ]
     (dir : (κ → Vec ℝ n) → Vec ℝ n) (ratio s₂ : ℝ) :
     ℕ → ℕ → Vec ℝ n → Zonotope (Vec ℝ n) → (κ → Vec ℝ n) →
       Zonotope (Vec ℝ n) × (κ → Vec ℝ n)
@@ -72,7 +74,7 @@ noncomputable def Zonotope.aux_cloud2zonotopeLoop [Fintype κ] [Nonempty κ]
     let Z := Z.plus ⟨1, mid, fun _ => g⟩
     open Classical in
     if ∃ i, s₂ * w i < rad i then
-      Zonotope.aux_cloud2zonotopeLoop dir ratio s₂ k iter w Z X
+      Zonotope.step_cloud2zonotopeLoop dir ratio s₂ k iter w Z X
     else (Z, X)
 
 
@@ -82,7 +84,7 @@ noncomputable def Zonotope.aux_cloud2zonotopeLoop [Fintype κ] [Nonempty κ]
 noncomputable def Zonotope.cloud2zonotope [Fintype κ] [Nonempty κ] (dir : (κ → Vec ℝ n) → Vec ℝ n)
     (ratio : ℝ) (s₁ : ℕ) (s₂ : ℝ) (X : κ → Vec ℝ n) : Zonotope (Vec ℝ n) :=
   let Z₀ : Zonotope (Vec ℝ n) := ⟨0, 0, Fin.elim0⟩
-  let loop := Zonotope.aux_cloud2zonotopeLoop dir ratio s₂ s₁ 0 0 Z₀ X
+  let loop := Zonotope.step_cloud2zonotopeLoop dir ratio s₂ s₁ 0 0 Z₀ X
   let I := Interval.enclosePoints loop.2
   loop.1.plus I.zonotope
 

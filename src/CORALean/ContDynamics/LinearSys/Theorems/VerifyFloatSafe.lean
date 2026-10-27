@@ -66,14 +66,16 @@ private theorem LinearSys.aux_isVerifySpecFloat_of_verifyStepFloat
     {distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋}
     (h : LinearSys.IsVerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax : 𝕋)
-    (hG : toReal (LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax).νGout ≤ 0)
-    (hF : 0 < toReal (LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax).νFout)
+    (hG : toReal
+      (LinearSys.step_verifyStepFloat reachFn innerApprox distG distF G F εmax).νGout ≤ 0)
+    (hF : 0 < toReal
+      (LinearSys.step_verifyStepFloat reachFn innerApprox distG distF G F εmax).νFout)
     : -- --- CONCL ---
     LinearSys.IsVerifySpecFloat G F Reach := by -- --- PROOF ---
   -- the outer approximation, read as a constrained zonotope, still contains `Reach`
   have hR : Reach ⊆ (reachFn εmax).conZonotope.construct :=
     (h.outer εmax).trans (Zonotope.conZonotope_contains _)
-  simp only [LinearSys.aux_verifyStepFloat, LinearSys.toReal_maximumFold,
+  simp only [LinearSys.step_verifyStepFloat, LinearSys.toReal_maximumFold,
     LinearSys.toReal_minimumFold] at hG hF
   refine ⟨fun j => ?_, fun j => ?_⟩
   · -- every `distG` is below the maximum, hence `≤ 0`
@@ -92,19 +94,19 @@ private theorem LinearSys.aux_isVerifySpecFloat_of_verifyRunFloat
     (h : LinearSys.IsVerifySoundFloat Reach reachFn innerApprox distG distF)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n))
     (εmax : 𝕋) (fuel : ℕ)
-    (hrun : LinearSys.aux_verifyRunFloat reachFn innerApprox distG distF G F εmax fuel = some true)
+    (hrun : LinearSys.step_verifyRunFloat reachFn innerApprox distG distF G F εmax fuel = some true)
     : -- --- CONCL ---
     LinearSys.IsVerifySpecFloat G F Reach := by -- --- PROOF ---
   induction fuel generalizing εmax with
-  | zero => simp [LinearSys.aux_verifyRunFloat] at hrun
+  | zero => simp [LinearSys.step_verifyRunFloat] at hrun
   | succ fuel ih =>
-    simp only [LinearSys.aux_verifyRunFloat] at hrun
+    simp only [LinearSys.step_verifyRunFloat] at hrun
     split at hrun
     · -- the until-condition holds: the answer is the verified test itself
       rename_i hcond
-      have hv : (le (LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax).νGout
+      have hv : (le (LinearSys.step_verifyStepFloat reachFn innerApprox distG distF G F εmax).νGout
           zero && ltStrict zero
-            (LinearSys.aux_verifyStepFloat reachFn innerApprox distG distF G F εmax).νFout) = true
+            (LinearSys.step_verifyStepFloat reachFn innerApprox distG distF G F εmax).νFout) = true
               :=
         Option.some.inj hrun
       rw [Bool.and_eq_true] at hv

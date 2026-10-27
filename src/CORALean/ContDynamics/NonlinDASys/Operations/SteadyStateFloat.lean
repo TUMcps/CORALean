@@ -7,6 +7,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Center
 public import CORALean.ContSet.Interval.Float.Operations.Horzcat
 public import CORALean.ContSet.Interval.Float.Operations.Norm
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -49,16 +50,18 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n p m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- file-local: only `steadyStateFloat` below needs it
 /-- The Jacobian a float model returns at a point, as a matrix of floats: the `Interval` it
 evaluates to is as thin as one evaluation's rounding, and its center is the matrix. -/
-def aux_pointJacobian {k l : ℕ} (J : Interval (Mat 𝕋 k l)) : Mat 𝕋 k l :=
+@[step_of NonlinDASys.FloatModel.steadyStateFloat]
+def step_pointJacobian {k l : ℕ} (J : Interval (Mat 𝕋 k l)) : Mat 𝕋 k l :=
   J.materialiseMat.centerMat
 
 /-- The slopes of `(f, g)` over a stacked box, `[A C; D F]`, at the input box `U`. -/
-def NonlinDASys.FloatModel.aux_stackJac (fm : NonlinDASys.FloatModel 𝕋 n p m)
+@[step_of NonlinDASys.FloatModel.steadyStateFloat]
+def NonlinDASys.FloatModel.step_stackJac (fm : NonlinDASys.FloatModel 𝕋 n p m)
     (U : Interval (Vec 𝕋 m)) (Z : Interval (Vec 𝕋 (n + p))) : Interval (Mat 𝕋 (n + p) (n + p)) :=
   let X : Interval (Vec 𝕋 n) := ⟨fun i => Z.inf (Fin.castAdd p i), fun i => Z.sup (Fin.castAdd p i)⟩
   let Y : Interval (Vec 𝕋 p) := ⟨fun j => Z.inf (Fin.natAdd n j), fun j => Z.sup (Fin.natAdd n j)⟩
@@ -66,7 +69,8 @@ def NonlinDASys.FloatModel.aux_stackJac (fm : NonlinDASys.FloatModel 𝕋 n p m)
     (Interval.horzcat (fm.jacD X Y U) (fm.jacF X Y U))
 
 /-- `(f, g)` over a stacked box, at the input box `U`. -/
-def NonlinDASys.FloatModel.aux_stackRes (fm : NonlinDASys.FloatModel 𝕋 n p m)
+@[step_of NonlinDASys.FloatModel.steadyStateFloat]
+def NonlinDASys.FloatModel.step_stackRes (fm : NonlinDASys.FloatModel 𝕋 n p m)
     (U : Interval (Vec 𝕋 m)) (Z : Interval (Vec 𝕋 (n + p))) : Interval (Vec 𝕋 (n + p)) :=
   let X : Interval (Vec 𝕋 n) := ⟨fun i => Z.inf (Fin.castAdd p i), fun i => Z.sup (Fin.castAdd p i)⟩
   let Y : Interval (Vec 𝕋 p) := ⟨fun j => Z.inf (Fin.natAdd n j), fun j => Z.sup (Fin.natAdd n j)⟩
@@ -89,10 +93,10 @@ def NonlinDASys.FloatModel.steadyStateFloat (fm : NonlinDASys.FloatModel 𝕋 n 
     -- returned value of algebraic equations
     let l : Vec 𝕋 p := (fm.g X Y U₀).materialise.center
     -- Jacobians
-    let A : Mat 𝕋 n n := aux_pointJacobian (fm.jacA X Y U₀)
-    let C : Mat 𝕋 n p := aux_pointJacobian (fm.jacC X Y U₀)
-    let D : Mat 𝕋 p n := aux_pointJacobian (fm.jacD X Y U₀)
-    let F : Mat 𝕋 p p := aux_pointJacobian (fm.jacF X Y U₀)
+    let A : Mat 𝕋 n n := step_pointJacobian (fm.jacA X Y U₀)
+    let C : Mat 𝕋 n p := step_pointJacobian (fm.jacC X Y U₀)
+    let D : Mat 𝕋 p n := step_pointJacobian (fm.jacD X Y U₀)
+    let F : Mat 𝕋 p p := step_pointJacobian (fm.jacF X Y U₀)
     -- evaluate Jacobian
     let M : Mat 𝕋 (n + p) (n + p) :=
       Fin.append (fun i => Fin.append (A i) (C i)) (fun i => Fin.append (D i) (F i))
@@ -108,7 +112,7 @@ def NonlinDASys.FloatModel.steadyStateFloat (fm : NonlinDASys.FloatModel 𝕋 n 
   letI : Add (Vector 𝕋 (n + p)) := ⟨fun a b => Vector.ofFn fun i => addDown a[i] b[i]⟩
   (newtonIterate step converged fuel (Vector.ofFn (Fin.append x₀ y₀))).bind fun zv =>
     let z : Vec 𝕋 (n + p) := fun i => zv[i]
-    if NonlinDASys.newtonTestFloat (fm.aux_stackRes U₀) (fm.aux_stackJac U₀) z tol
+    if NonlinDASys.newtonTestFloat (fm.step_stackRes U₀) (fm.step_stackJac U₀) z tol
     then some (fun i => z (Fin.castAdd p i), fun j => z (Fin.natAdd n j)) else none
 
 end CORALean

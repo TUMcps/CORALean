@@ -46,11 +46,11 @@ theorem PolyZonotope.merge_col_injective (pZ : PolyZonotope α) : -- --- CONCL -
     Function.Injective (PolyZonotope.col pZ.merge.E) := by -- --- PROOF ---
   intro j₁ j₂ hj
   -- every kept column is its own representative, by the filter `mergeKeep` is
-  have hrep : ∀ j, PolyZonotope.rep pZ.E (PolyZonotope.aux_mergeIdx pZ.E j)
-      = PolyZonotope.aux_mergeIdx pZ.E j :=
+  have hrep : ∀ j, PolyZonotope.rep pZ.E (PolyZonotope.step_mergeIdx pZ.E j)
+      = PolyZonotope.step_mergeIdx pZ.E j :=
     fun j => (Finset.mem_filter.mp ((PolyZonotope.mergeKeep pZ.E).orderIsoOfFin rfl j).2).2
-  have hc : PolyZonotope.col pZ.E (PolyZonotope.aux_mergeIdx pZ.E j₁)
-      = PolyZonotope.col pZ.E (PolyZonotope.aux_mergeIdx pZ.E j₂) := hj
+  have hc : PolyZonotope.col pZ.E (PolyZonotope.step_mergeIdx pZ.E j₁)
+      = PolyZonotope.col pZ.E (PolyZonotope.step_mergeIdx pZ.E j₂) := hj
   have heq := PolyZonotope.rep_congr pZ.E hc
   rw [hrep, hrep] at heq
   exact ((PolyZonotope.mergeKeep pZ.E).orderIsoOfFin rfl).injective (Subtype.ext heq)

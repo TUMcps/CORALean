@@ -41,16 +41,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `MatExp.aux_factorialUp` bounds a factorial from above. -/
+/-- `MatExp.step_factorialUp` bounds a factorial from above. -/
 private theorem MatExp.aux_factorial_le_factorialUp (k : ℕ) : -- --- CONCL ---
-    (Nat.factorial k : ℝ) ≤ toReal (MatExp.aux_factorialUp (𝕋 := 𝕋) k) := by -- --- PROOF ---
+    (Nat.factorial k : ℝ) ≤ toReal (MatExp.step_factorialUp (𝕋 := 𝕋) k) := by -- --- PROOF ---
   induction k with
-  | zero => rw [MatExp.aux_factorialUp, toReal_one, Nat.factorial_zero, Nat.cast_one]
+  | zero => rw [MatExp.step_factorialUp, toReal_one, Nat.factorial_zero, Nat.cast_one]
   | succ k ih =>
     -- the factor never undershoots `k + 1`, and both factors are nonnegative
     have hc := le_nsmulUp (k + 1) (one : 𝕋)
     rw [toReal_one, mul_one] at hc
-    rw [MatExp.aux_factorialUp, Nat.factorial_succ, Nat.cast_mul]
+    rw [MatExp.step_factorialUp, Nat.factorial_succ, Nat.cast_mul]
     refine le_trans ?_ (mul_le_mulUp _ _)
     exact mul_le_mul hc ih (by positivity) (le_trans (by positivity) hc)
 
@@ -66,11 +66,11 @@ theorem MatExp.invFactorialBounds_mem (k : ℕ) : -- --- CONCL ---
   have hf := MatExp.factorialDown_mem (𝕋 := 𝕋) k
   refine ⟨?_, ?_⟩
   · rw [MatExp.invFactorialBounds]
-    have hpos : (0 : ℝ) < toReal (MatExp.aux_factorialUp (𝕋 := 𝕋) k) := lt_of_lt_of_le hfpos hb
-    have hd := divDown_le_div (one : 𝕋) (MatExp.aux_factorialUp (𝕋 := 𝕋) k) hpos
+    have hpos : (0 : ℝ) < toReal (MatExp.step_factorialUp (𝕋 := 𝕋) k) := lt_of_lt_of_le hfpos hb
+    have hd := divDown_le_div (one : 𝕋) (MatExp.step_factorialUp (𝕋 := 𝕋) k) hpos
     rw [toReal_one] at hd
-    calc toReal (divDown one (MatExp.aux_factorialUp (𝕋 := 𝕋) k))
-        ≤ 1 / toReal (MatExp.aux_factorialUp (𝕋 := 𝕋) k) := hd
+    calc toReal (divDown one (MatExp.step_factorialUp (𝕋 := 𝕋) k))
+        ≤ 1 / toReal (MatExp.step_factorialUp (𝕋 := 𝕋) k) := hd
       _ ≤ 1 / (Nat.factorial k : ℝ) := one_div_le_one_div_of_le hfpos hb
       _ = (Nat.factorial k : ℝ)⁻¹ := one_div _
   · rw [MatExp.invFactorialBounds, inv_eq_one_div]

@@ -17,6 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -24,7 +25,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # `Alg. 1` in floats: reachability at a fixed step, order and zonotope order
 
 `ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, from `X₀` over `[tStart, tFinal]`, by
-[1, Alg. 1] computed in `𝕋`: `N = (tFinal - tStart)/Δt` iterations from `aux_manualInitFloat`,
+[1, Alg. 1] computed in `𝕋`: `N = (tFinal - tStart)/Δt` iterations from `step_manualInitFloat`,
 returning `R̂(τ_0), …, R̂(τ_{N-1})`. `B` and `c` are the system's; `V = B U ⊕ c`
 (`inputSetFloat`) is split at its stored center, so `0 ∈ U` is not asked. The order `η` is
 raised until the float enclosures admit it (`reachOrderFloat`), as the other float reaches
@@ -62,14 +63,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 open CORALean.Float FloatOps
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 /-- Lines 5-11: one iteration of [1, Alg. 1] from `X₀` under inputs in `V`, the next state
 and `R̂(τ_k)`, or `none` where no squaring count fits `[e^{At_k}]` or `[e^{At_{k+1}}]`. -/
-def LinearSys.aux_manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
+@[step_of LinearSys.manualReachFloat]
+def LinearSys.step_manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η ρ : ℕ) (s : LinearSys.ManualStateFloat 𝕋 n) :
     Option (LinearSys.ManualStateFloat 𝕋 n × Zonotope (Vec 𝕋 n)) := do
   -- 1. {ũ}, V's stored center
@@ -117,19 +119,21 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 /-- Lines 4-11: the windows `R̂(τ_k), …, R̂(τ_{k+K-1})` of `K` iterations from `s`. -/
-def LinearSys.aux_manualRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
+@[step_of LinearSys.manualReachFloat]
+def LinearSys.step_manualRunFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η ρ : ℕ) : ℕ → LinearSys.ManualStateFloat 𝕋 n → Option (List (Zonotope (Vec 𝕋 n)))
   | 0, _ => some []
   | K + 1, s => do
-    let (s', Rτk) ← sys.aux_manualStepFloat X₀ V Δt η ρ s               -- 5.-11. one iteration
-    let Rs ← sys.aux_manualRunFloat X₀ V Δt η ρ K s'                     -- 4. the rest of the loop
+    let (s', Rτk) ← sys.step_manualStepFloat X₀ V Δt η ρ s               -- 5.-11. one iteration
+    let Rs ← sys.step_manualRunFloat X₀ V Δt η ρ K s'                     -- 4. the rest of the loop
     pure (Rτk :: Rs)
 
 end
 
 
 /-- Lines 1-2, before the first iteration. -/
-def LinearSys.aux_manualInitFloat (X₀ : Zonotope (Vec 𝕋 n)) : LinearSys.ManualStateFloat 𝕋 n :=
+@[step_of LinearSys.manualReachFloat]
+def LinearSys.step_manualInitFloat (X₀ : Zonotope (Vec 𝕋 n)) : LinearSys.ManualStateFloat 𝕋 n :=
   { t := 0, tEnc := ⟨zero, zero⟩                              -- 1. t₀ ← 0
     H := X₀                                                         -- 2. H(t₀) ← X₀
     Pu := Interval.point fun _ => zero                              -- 2. P^u(t₀) ← 0
@@ -151,7 +155,7 @@ def LinearSys.manualReachFloat (sys : LinearSys 𝕋 n)
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
   -- 1.-11. the loop over the time steps, from the initial state
-  sys.aux_manualRunFloat X₀ V Δt η' ρ N (LinearSys.aux_manualInitFloat X₀)
+  sys.step_manualRunFloat X₀ V Δt η' ρ N (LinearSys.step_manualInitFloat X₀)
 
 end CORALean
 

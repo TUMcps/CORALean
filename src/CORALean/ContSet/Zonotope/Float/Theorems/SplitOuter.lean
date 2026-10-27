@@ -53,9 +53,9 @@ private theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin 
     (hzn : ∀ i, zn i = toReal (Z.c i) + toReal (s i)
       + ∑ k, β k * Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k)
     : -- --- CONCL ---
-    zn + e ∈ (Z.aux_splitHalf j s).construct := by -- --- PROOF ---
+    zn + e ∈ (Z.step_splitHalf j s).construct := by -- --- PROOF ---
   -- the stored generators read as the real halved ones, entry by entry
-  have hG : ∀ (i : Fin n) (k : Fin Z.h), toReal ((Z.aux_splitHalf j s).G k i)
+  have hG : ∀ (i : Fin n) (k : Fin Z.h), toReal ((Z.step_splitHalf j s).G k i)
       = Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k := by
     intro i k
     by_cases hk : k = j
@@ -69,16 +69,16 @@ private theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin 
     (x := fun i => toReal (Z.c i) + toReal (s i))
     fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
   -- the box point is the incoming one plus the center rounding, inside the plus of the boxes
-  refine ⟨fun i => toReal ((Z.aux_splitHalf j s).c i)
-            + ∑ k, toReal ((Z.aux_splitHalf j s).G k i) * β k,
+  refine ⟨fun i => toReal ((Z.step_splitHalf j s).c i)
+            + ∑ k, toReal ((Z.step_splitHalf j s).G k i) * β k,
     Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩, _,
     Interval.plus_outer Z.I_error (Zonotope.centerResidual Z.c s) ⟨e, he, _, hr, rfl⟩, ?_⟩
   -- compare coordinate by coordinate: the stored sum reads as the real halved one
   funext i
-  have hs : ∑ k, toReal ((Z.aux_splitHalf j s).G k i) * β k
+  have hs : ∑ k, toReal ((Z.step_splitHalf j s).G k i) * β k
       = ∑ k, β k * Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k :=
     Finset.sum_congr rfl fun k _ => by rw [hG, mul_comm]
-  have hc : (Z.aux_splitHalf j s).c i = addDown (Z.c i) (s i) := rfl
+  have hc : (Z.step_splitHalf j s).c i = addDown (Z.c i) (s i) := rfl
   simp only [Pi.add_apply, hc, hs, hzn i]
   ring
 

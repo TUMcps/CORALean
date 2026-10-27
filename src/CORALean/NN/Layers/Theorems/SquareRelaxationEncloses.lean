@@ -65,8 +65,8 @@ theorem squareRelaxation_encloses : -- --- CONCL ---
   · have hlu : toReal (squareDerivLo l u) ≤ toReal (squareDerivHi l u) := by
       linarith [aux_squareDerivLo_le l u, aux_le_squareDerivHi l u]
     refine ⟨?_, ?_⟩
-    · rw [aux_squareSlope, toReal_maximum]; exact le_max_left _ _
-    · rw [aux_squareSlope, toReal_maximum, toReal_minimum]
+    · rw [step_squareSlope, toReal_maximum]; exact le_max_left _ _
+    · rw [step_squareSlope, toReal_maximum, toReal_minimum]
       exact max_le hlu (min_le_left _ _)
 
 end CORALean

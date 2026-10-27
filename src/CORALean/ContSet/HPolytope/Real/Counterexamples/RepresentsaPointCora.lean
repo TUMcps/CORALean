@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -68,10 +69,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The contradictory strip `{x ≤ 0, x ≥ 1}` in `ℝ²`. -/
-def HPolytope.aux_emptyStrip : HPolytope (Fin 2 → ℝ) where
+@[step_of HPolytope.representsa_point_cora_counterexample]
+def HPolytope.step_emptyStrip : HPolytope (Fin 2 → ℝ) where
   m := 2
   A := let p0 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ := LinearMap.proj 0
     ![p0, -p0]
@@ -80,14 +82,17 @@ def HPolytope.aux_emptyStrip : HPolytope (Fin 2 → ℝ) where
   Ae := Fin.elim0
   be := Fin.elim0
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 private theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
-    HPolytope.aux_emptyStrip.construct = ∅ := by -- --- PROOF ---
+    HPolytope.step_emptyStrip.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨h, -⟩
   have h0 := h (0 : Fin 2)
   have h1 := h (1 : Fin 2)
-  simp [HPolytope.aux_emptyStrip] at h0 h1
+  simp [HPolytope.step_emptyStrip] at h0 h1
   linarith
 
 
@@ -97,13 +102,13 @@ private theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
 rest of `isFullDim` would compute. -/
 theorem HPolytope.representsa_point_cora_counterexample
     (rest : Bool × List (Fin 2 → ℝ)) : -- --- CONCL ---
-    HPolytope.aux_emptyStrip.construct = ∅ ∧
-      (¬ ∃ p : Fin 2 → ℝ, HPolytope.aux_emptyStrip.construct = {p}) ∧
-      HPolytope.aux_emptyStrip.representsaPointCora rest = true := by -- --- PROOF ---
+    HPolytope.step_emptyStrip.construct = ∅ ∧
+      (¬ ∃ p : Fin 2 → ℝ, HPolytope.step_emptyStrip.construct = {p}) ∧
+      HPolytope.step_emptyStrip.representsaPointCora rest = true := by -- --- PROOF ---
   have hc := HPolytope.aux_emptyStrip_construct
   refine ⟨hc, ?_, ?_⟩
   · rintro ⟨p, hp⟩
-    have : p ∈ HPolytope.aux_emptyStrip.construct := by rw [hp]; rfl
+    have : p ∈ HPolytope.step_emptyStrip.construct := by rw [hp]; rfl
     rw [hc] at this
     exact this
   · simp [HPolytope.representsaPointCora, hc]

@@ -399,8 +399,9 @@ builds from cold.
 `scripts/check-conventions.sh` checks the conventions on this page that the
 compiler cannot. Each item below is one rule.
 
-- An `aux_` name is used only in the file that declares it (or in that algorithm's
-  satellite theorem files, #227).
+- An `aux_` declaration is `private`, and a `step_` one is public, sits under `STEPS` and carries
+  `@[step_of X]`, `X` a declaration of its file below it (#269). Where a step may be used, Lean
+  checks itself (see "`aux_` and `step_`").
 - An `API.lean` holds nothing but imports, and it collects its whole directory unless
   its own docstring says which sibling it deliberately leaves out. No file imports
   its own directory's collector.
@@ -720,9 +721,9 @@ has three, and `Dyadic`'s are one-line compositions.
 "One each" is meant literally, and `check-conventions.sh` enforces it: a file
 under `Operations/` or `Theorems/` declares exactly one public thing — or, if
 that thing is small, it is a section of the directory's `Basic.lean` (see
-"Small declarations" below). What it needs and nothing else uses is `aux_` (a step of one
-algorithm is `aux_` in that algorithm's file, see "`aux_`"); what the tree needs earns a file of
-its own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
+"Small declarations" below). What it needs and nothing else uses is `aux_`, or `step_` where
+the algorithm's satellite theorem files read it (see "`aux_` and `step_`"); what the tree needs
+earns a file of its own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
 declared with what it denotes, and instances have no names to collect.
 
 `Complexity/` follows the same layout as every other directory (issue #187):
@@ -852,8 +853,8 @@ it spells it qualified or as a field of a value (`h.foo`). The theorem stays pub
 
 * its own file reads it too, or two declarations of the user's `Basic.lean` do (a bundle holds one
   declaration per section, so no lemma);
-* it reads an `aux_` step of its operation, which no other file may read (the theorem is a
-  satellite of that operation, "`aux_`" below);
+* it reads a `step_` of its operation, which no other file may read (the theorem is a
+  satellite of that operation, "`aux_` and `step_`" below);
 * its file carries a review stamp (`-- Reviewed:` with a reviewer's name and date, not `---`): folding
   it would drop the review, so a reviewed file keeps its own file;
 * a page of `references/` or the paper sources under `experiments/paper/` name it or link the
@@ -878,7 +879,8 @@ proved from the definition) states and proves a guarantee about something declar
 wrong file: a type, a proposition, a set or a specification goes to `Definitions/`, an
 algorithm to `Operations/`, and a conversion's construction to the `Operations/` of its
 `Conversion/` layer. The one thing a theorem file may declare is a helper of its own proof,
-`private` or `aux_`. `check-conventions.sh` rejects the rest.
+`private` or `aux_`, or a `step_` that one of its statements names (a counterexample's witness).
+`check-conventions.sh` rejects the rest.
 
 The mirror image holds for `Operations/` (#198): a file there holds definitions, and no `theorem`
 or `lemma`. A guarantee about an operation is a `Theorems/` file's to state; a general fact about
@@ -1091,29 +1093,43 @@ name shadows a root one that way is `protected` — the float layer's
 reached as `I.max` or `Interval.max` only. A proof downstream can likewise meet a `@[simp]` lemma it
 never imported before; such a proof states the lemmas and cases it needs.
 
-### `aux_`
+### `aux_` and `step_`
 
-What a file needs and nothing else uses carries the `aux_` prefix, as in CORA.
-The test is mechanical: used outside its own file, or not.
+**`aux_` is private.** What a file needs and nothing else uses carries the `aux_` prefix, as in
+CORA, and is `private` (#269), so the compiler rejects any use from another file. Lean accepts a
+`private` name in a proof, and rejects it in a statement (a `let` in it included) and in the body
+of a public definition.
 
-An `aux_` declaration that no other file reads is `private` (#269), so the compiler rejects any
-use from another file; it stays public only where its own file needs it public: in a theorem's
-statement (a `let` in it included) or in the body of a public definition, where Lean rejects a
-`private` name, and for an `@[csimp]` lemma. A step that a satellite theorem file reads stays public
-`aux_` (#227), and an `aux_` that later gains a reader drops `private` again. `private`
-declarations count like public ones in the paper's theorem total, and
-`scripts/conventions/check-private-aux.py` reports a public `aux_` that no other file reads and that its own
-file uses only in `private` declarations or in proofs.
+**`step_` is a public step.** A helper that has to be public is a step: a satellite theorem file
+reads it (#227), a statement of its file names it (a counterexample's witness), the body of a
+public definition calls it, or it is an `@[csimp]` lemma. It is named `step_…`, is public, and
+carries `@[step_of X]`, `X` the main declaration of its file (in `Instances.lean`, the first
+instance it serves). A step never uses an `aux_`, since its body or statement could not name it.
 
-#### A step of one algorithm is `aux_` (#227)
+**Lean checks the scope.** `CORALean/Global/StepOf.lean` defines the attribute and a linter that
+runs on every command. A use of a `@[step_of]` declaration outside its file and that file's
+satellites is a build error, as is a public `aux_…` declaration, a `step_…` one without
+`@[step_of]`, and `@[step_of]` on any other name. A use is a constant the source names, in a
+statement, a proof or a `simp` list; unfolding a public definition that calls a step is none. The
+tests under `test/StepOfTest/` are a library of their own that `lake build` builds: each rejected
+use sits in a `#guard_msgs` block.
 
-What a file needs and nothing else uses is `aux_`, and the file may be an algorithm's. A step
-of exactly one algorithm — an `Operations/` definition that one other `Operations/` file reads,
-and that is read otherwise only by that algorithm's satellite theorem files — is an `aux_`
-declaration in the algorithm's file, under its `AUXILIARY` banner, before the main definition,
-and the main definition keeps one numbered step comment per printed step. It does not get a file
-of its own because the algorithm's invariant proof needs to name it: that proof is the algorithm's
-satellite, and may read the algorithm's `aux_` declarations; nothing else may.
+**What the scripts keep.** The linter runs where `StepOf.lean` is imported, so
+`check-conventions.sh` repeats the naming rule over every file, and checks what Lean does not:
+the `STEPS` and `AUXILIARY` banners, and that `X` names a declaration of the file below the step.
+`private` declarations count like public ones in the paper's theorem total, and a `step_` theorem
+counts as a proof helper, like an `aux_` one.
+
+#### A step of one algorithm is `step_` or `aux_` (#227)
+
+What a file needs and nothing else uses is declared there, and the file may be an algorithm's. A
+step of exactly one algorithm — an `Operations/` definition that one other `Operations/` file
+reads, and that is read otherwise only by that algorithm's satellite theorem files — is declared
+in the algorithm's file, before the main definition: as a `step_` under its `STEPS` banner when
+the satellites read it, otherwise as an `aux_` under `AUXILIARY`. The main definition keeps one
+numbered step comment per printed step. A step does not get a file of its own because the
+algorithm's invariant proof needs to name it: that proof is the algorithm's satellite, and may
+read the algorithm's `step_` declarations; nothing else may.
 
 The **satellite** theorem files of the algorithm `<D>/Operations/<X>.lean` are the files
 `<D>/Theorems/<S>.lean`, same directory `<D>`, where `<X>` occurs in `<S>` as a whole run of
@@ -1122,7 +1138,13 @@ the end of `<S>`, `_` or an uppercase letter. `IsMinSuffExplanationGreedyMinimal
 satellite of `GreedyMinimalExplanation`, `ExistsAutoStepAutoRun` of `AutoStep` and of `AutoRun`.
 Where several operations of the directory match, a stem that is a substring of a longer matching
 stem is dropped, so `ExistsAutoStepFloat` belongs to `AutoStepFloat` and not to `AutoStep`. A
-`Basic.lean` has no satellites. `scripts/conventions/satellites.py` computes it.
+`Basic.lean` has no satellites.
+
+**Two implementations of one rule.** `scripts/conventions/satellites.py` computes the satellites
+for the Python checks, and `StepOf.lean` applies the same rule in Lean, from the module names and
+the `Operations/` directory beside the theorem file. They differ in what counts as a use: Lean
+resolves the constant, so a twin of the same name in another file is none, and it judges only
+`@[step_of]` declarations.
 
 A step keeps its **own file** (the D exceptions) when
 
@@ -1141,8 +1163,7 @@ A step keeps its **own file** (the D exceptions) when
 `scripts/conventions/check-steps.py` reports every other `Operations/` definition with exactly one
 `Operations/` reader (and no reader but that reader's satellites). The single-use check treats
 an algorithm and its satellites as one unit: a theorem whose one reader is in its own unit is left
-alone. `check-conventions.sh` accepts an `aux_` name in a satellite theorem file when the
-algorithm's file declares it.
+alone. A use of a step outside the unit is a build error (`StepOf.lean`).
 
 Never on an `instance`. Type class search reaches an instance from every file
 that imports it and never names it, so no file can claim nothing else uses one.
@@ -1154,11 +1175,13 @@ outright.
 Lean requires a helper to be declared before whatever uses it, so the
 declaration a reader opens a file to find is always at the bottom, under every
 `aux_` name it needed — the one place the source order works against the
-reader instead of for them. A file that declares anything carries four
+reader instead of for them. A file that declares anything carries
 full-line, 100-character banners, CORA-styled, that say where things are
 regardless: `BEGIN CODE` after the author block and before `namespace`;
-`AUXILIARY` immediately before the first `aux_` declaration, omitted when
-there is none. A `MAIN ...` marker immediately above the main declaration and
+`STEPS` before the public `step_` declarations and `AUXILIARY` before the
+private `aux_` ones, each omitted when there is none. `STEPS` comes first, and
+everything under it is public: a step never uses a `private` declaration, while
+an `aux_` lemma may well be about a step. A `MAIN ...` marker immediately above the main declaration and
 above its docstring, so the docstring stays attached to what it documents; and
 `END OF CODE` as the file's last line. `API.lean` and any file that declares
 nothing carry none of this — there is nothing to find. A `Basic.lean` carries
@@ -1287,8 +1310,8 @@ specification standing. `CORALean.lean` leaves out `Examples/` and
 `Examples/API.lean` leaves out `Demo.lean`, both being targets of their own, so
 that the library holds the development and nothing that merely uses it.
 
-An import cannot filter, so `Theorems/API.lean` re-exports the `aux_` lemmas
-too. The prefix is the only thing marking them.
+An import cannot filter, so `Theorems/API.lean` re-exports the `step_`
+declarations too. The prefix marks them, and Lean rejects any use outside their unit.
 
 ### Naming
 
@@ -1787,7 +1810,7 @@ own `/--` docstring: every declaration in the files exempt from the sections (`B
 `API.lean`, `Instances.lean`, `Interfaces.lean`, and files with only `MAIN TYPE` or
 `MAIN INSTANCE` banners), and the second and later declarations under a banner in the other files.
 Attributes (`@[simp]`) between the docstring and the declaration are fine. Structure fields and
-`aux_` declarations in `AUXILIARY` sections are not covered. The docstring says in words, in one to
+the declarations under `STEPS` and `AUXILIARY` are not covered. The docstring says in words, in one to
 three lines, what the declaration is or states, without copying the formula; an abbreviated name
 (`stBeta`) says where it comes from (CORA's `'approx:st'`, Sadraddini and Tedrake's β).
 `check-conventions.sh` reports each missing docstring; the rule has no list.

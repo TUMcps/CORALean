@@ -158,7 +158,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
     abel
   -- window `k`, and `k < N`
   refine SetUnion.mem_construct.mpr
-    ⟨sys.aux_reachStepkInput options.Δt (m + 2) params.X₀ V k, ?_, ?_⟩
+    ⟨sys.step_reachStepkInput options.Δt (m + 2) params.X₀ V k, ?_, ?_⟩
   · rw [← hm]
     exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
   · rw [hvoc, hx]

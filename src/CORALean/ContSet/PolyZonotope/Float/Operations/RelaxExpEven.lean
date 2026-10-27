@@ -5,6 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidth
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -43,33 +44,37 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 open FloatOps
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The same fold rounded up, which only the center and the gaps read. -/
-def PolyZonotope.aux_relaxGenEvenUp (pZ : PolyZonotope (Vec 𝕋 n))
+@[step_of PolyZonotope.relaxExpEven]
+def PolyZonotope.step_relaxGenEvenUp (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
   fun i => half (nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i))
 
 /-- Half of `ξ_E` copies of the relaxed generator, rounded down: the new
 independent column, and the size of the center shift. -/
-def PolyZonotope.aux_relaxGenEven (pZ : PolyZonotope (Vec 𝕋 n))
+@[step_of PolyZonotope.relaxExpEven]
+def PolyZonotope.step_relaxGenEven (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
   fun i => half (nsmulDown (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i))
 
 /-- The recentered center as stored: the shift taken off at its upper rounding,
 so the stored center stays below the exact one. -/
-def PolyZonotope.aux_relaxCenterEven (pZ : PolyZonotope (Vec 𝕋 n))
+@[step_of PolyZonotope.relaxExpEven]
+def PolyZonotope.step_relaxCenterEven (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
-  fun i => subDown (pZ.c i) (pZ.aux_relaxGenEvenUp part k₀ i)
+  fun i => subDown (pZ.c i) (pZ.step_relaxGenEvenUp part k₀ i)
 
 /-- What the merged column, the halved column and the recentered center can each
 be off by, every one of them a gap between two roundings of one expression. -/
-def PolyZonotope.aux_relaxGapEven (pZ : PolyZonotope (Vec 𝕋 n))
+@[step_of PolyZonotope.relaxExpEven]
+def PolyZonotope.step_relaxGapEven (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Mat 𝕋 n 3 :=
   fun i =>
     ![subUp (addUp (pZ.G (part.right 1) i) (pZ.G (part.right 0) i)) (pZ.mergedGen part i),
-      subUp (pZ.aux_relaxGenEvenUp part k₀ i) (pZ.aux_relaxGenEven part k₀ i),
-      subUp (subUp (pZ.c i) (pZ.aux_relaxGenEven part k₀ i)) (pZ.aux_relaxCenterEven part k₀ i)]
+      subUp (pZ.step_relaxGenEvenUp part k₀ i) (pZ.step_relaxGenEven part k₀ i),
+      subUp (subUp (pZ.c i) (pZ.step_relaxGenEven part k₀ i)) (pZ.step_relaxCenterEven part k₀ i)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -81,11 +86,11 @@ def PolyZonotope.relaxExpEven (pZ : PolyZonotope (Vec 𝕋 n))
   p := pZ.p
   h := d + 1
   q := pZ.q + 1
-  c := pZ.aux_relaxCenterEven part k₀
+  c := pZ.step_relaxCenterEven part k₀
   G := Fin.append (fun l => pZ.G (part.left l)) (fun _ => pZ.mergedGen part)
   E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
-  GI := Fin.append pZ.GI (fun _ => pZ.aux_relaxGenEven part k₀)
-  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.aux_relaxGapEven part k₀))
+  GI := Fin.append pZ.GI (fun _ => pZ.step_relaxGenEven part k₀)
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.step_relaxGapEven part k₀))
 
 end CORALean.Float
 

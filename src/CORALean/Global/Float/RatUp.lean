@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.FloatOps
 public import Mathlib.Data.Rat.Defs
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -37,13 +38,14 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `[inf, sup]` around `k`, by binary doubling. -/
-def aux_natBracket : ℕ → Interval 𝕋
+@[step_of ratUp]
+def step_natBracket : ℕ → Interval 𝕋
   | 0 => ⟨zero, zero⟩
   | k + 1 =>
-    let h := aux_natBracket ((k + 1) / 2)                             -- ⌊(k + 1)/2⌋
+    let h := step_natBracket ((k + 1) / 2)                             -- ⌊(k + 1)/2⌋
     let d : Interval 𝕋 := ⟨addDown h.inf h.inf, addUp h.sup h.sup⟩   -- doubled
     if (k + 1) % 2 = 0 then d else ⟨addDown d.inf one, addUp d.sup one⟩ -- and one more if odd
 termination_by k => k
@@ -54,7 +56,7 @@ decreasing_by omega
 
 /-- `q`, rounded up for a positive `q`: the numerator up over the denominator down. -/
 def ratUp (q : ℚ) : 𝕋 :=
-  divUp (aux_natBracket q.num.toNat).sup (aux_natBracket q.den).inf
+  divUp (step_natBracket q.num.toNat).sup (step_natBracket q.den).inf
 
 end CORALean.Float
 

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 public import CORALean.Global.Sort
 public import Mathlib.Data.Fin.Tuple.Sort
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -34,18 +35,20 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Girard's metric on one generator, `‖g‖₁ - ‖g‖∞`, over a bare family so that
 either block and their concatenation are ranked by this one line. Zero on the
 axis-aligned generators; the max folds from `0`, which no `|G l i|` undercuts. -/
-noncomputable def ConPolyZono.aux_girardMetric {m : ℕ} (G : Fin m → Vec ℝ n) (l : Fin m) : ℝ :=
+@[step_of ConPolyZono.reduceGirard]
+noncomputable def ConPolyZono.step_girardMetric {m : ℕ} (G : Fin m → Vec ℝ n) (l : Fin m) : ℝ :=
   (∑ i, |G l i|) - Finset.univ.fold max 0 fun i => |G l i|
 
 /-- The `k` generators a metric ranks first, against the rest. Clamped to the
 block, so the split is total and no order hypothesis travels with it; sorting is
 ascending, so the metric enters negated and the dearest to box rank first. -/
-noncomputable def ConPolyZono.aux_girardSplit {m : ℕ} (metric : Fin m → ℝ) (k : ℕ) :
+@[step_of ConPolyZono.reduceGirard]
+noncomputable def ConPolyZono.step_girardSplit {m : ℕ} (metric : Fin m → ℝ) (k : ℕ) :
     Split (Fin m) into (Fin (min k m)) ⊕ (Fin (m - min k m)) :=
   (Partition.split (min k m) (m - min k m)).reindex
     ((Tuple.sort fun l => -metric l).symm.trans
@@ -54,9 +57,10 @@ noncomputable def ConPolyZono.aux_girardSplit {m : ℕ} (metric : Fin m → ℝ)
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once.
 The cap at `K` never binds and is there to keep the order bound arithmetic. -/
-noncomputable def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono (Vec ℝ n)) (K : ℕ) : ℕ :=
+@[step_of ConPolyZono.reduceGirard]
+noncomputable def ConPolyZono.step_girardKeptDep (cPZ : ConPolyZono (Vec ℝ n)) (K : ℕ) : ℕ :=
   let rank := (Tuple.sort fun l =>
-    -ConPolyZono.aux_girardMetric (Fin.append cPZ.G cPZ.GI) l).symm
+    -ConPolyZono.step_girardMetric (Fin.append cPZ.G cPZ.GI) l).symm
   min K (Finset.univ.filter fun l : Fin cPZ.h =>
     (rank (Fin.castAdd cPZ.qI l) : ℕ) < K).card
 
@@ -70,9 +74,9 @@ noncomputable def ConPolyZono.reduceGirard (cPZ : ConPolyZono (Vec ℝ n)) (o : 
     ConPolyZono (Vec ℝ n) :=
   if o * n < cPZ.h + cPZ.qI then
     let K := (o - 1) * n
-    let d := cPZ.aux_girardKeptDep K
-    cPZ.reduceBy (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.G) d)
-      (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.GI) (K - d))
+    let d := cPZ.step_girardKeptDep K
+    cPZ.reduceBy (ConPolyZono.step_girardSplit (ConPolyZono.step_girardMetric cPZ.G) d)
+      (ConPolyZono.step_girardSplit (ConPolyZono.step_girardMetric cPZ.GI) (K - d))
   else cPZ
 
 end CORALean.Real

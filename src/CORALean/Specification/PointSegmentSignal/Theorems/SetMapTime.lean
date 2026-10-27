@@ -124,14 +124,14 @@ private theorem PointSegmentSignal.aux_getD_mapTime (s : PointSegmentSignal 𝕋
 /-- Whether a new point is needed is decided alike on the float and the real time points. -/
 private theorem PointSegmentSignal.aux_isNewPointOk_mapTime (s : PointSegmentSignal 𝕋) (i : ℕ)
     (p : 𝕋) (vals : List Bool) : -- --- CONCL ---
-    (s.mapTime toReal).aux_isNewPointOk i (toReal p) vals =
-      s.aux_isNewPointOk i p vals := by -- --- PROOF ---
+    (s.mapTime toReal).step_isNewPointOk i (toReal p) vals =
+      s.step_isNewPointOk i p vals := by -- --- PROOF ---
   -- the values next to the point are the float ones, the point and `0` compared exactly
   have hp : (s.mapTime toReal).precIntervalValue i = s.precIntervalValue i := rfl
   have hs : (s.mapTime toReal).succIntervalValue i = s.succIntervalValue i := rfl
   have h0 : TimeOrder.Eqv (toReal p) (0 : ℝ) ↔ TimeOrder.Eqv p (0 : 𝕋) := by
     rw [← toReal_zero_eq (𝕋 := 𝕋)]; exact Iff.rfl
-  unfold PointSegmentSignal.aux_isNewPointOk
+  unfold PointSegmentSignal.step_isNewPointOk
   rw [hp, hs, PointSegmentSignal.aux_getD_mapTime]
   by_cases h : TimeOrder.Eqv (s.timePoints.getD (i - 1) 0) p
   · rw [if_pos h, if_pos (show TimeOrder.Eqv (toReal _) (toReal p) from h)]
@@ -141,8 +141,8 @@ private theorem PointSegmentSignal.aux_isNewPointOk_mapTime (s : PointSegmentSig
 /-- `set` on bounds commutes with reading the time points and the bounds as reals. -/
 private theorem PointSegmentSignal.aux_setBounds_mapTime (s : PointSegmentSignal 𝕋) (lb : 𝕋)
     (ub : WithTop 𝕋) (lc rc value : Bool) : -- --- CONCL ---
-    (s.aux_setBounds lb ub lc rc value).mapTime toReal =
-      (s.mapTime toReal).aux_setBounds (toReal lb) (ub.map toReal) lc rc
+    (s.step_setBounds lb ub lc rc value).mapTime toReal =
+      (s.mapTime toReal).step_setBounds (toReal lb) (ub.map toReal) lc rc
         value := by -- --- PROOF ---
   -- every condition on the real bounds is the one on the float bounds
   have hlt : ub.map toReal < ((toReal lb : ℝ) : WithTop ℝ) ↔ ub < (lb : WithTop 𝕋) := by
@@ -168,7 +168,7 @@ private theorem PointSegmentSignal.aux_setBounds_mapTime (s : PointSegmentSignal
     fun _ _ => Iff.rfl
   simp only [WithTop.map_coe] at hal
   -- both sides unfolded: the same conditions, the time points mapped one by one
-  unfold PointSegmentSignal.aux_setBounds STLInterval.emptyBounds
+  unfold PointSegmentSignal.step_setBounds STLInterval.emptyBounds
   simp only [hlt, heq, heq', ne_eq, htop, hd, hal, hau, hs,
     PointSegmentSignal.aux_isNewPointOk_mapTime, PointSegmentSignal.aux_getD_mapTime, hv]
   rw [apply_ite (PointSegmentSignal.mapTime toReal)]

@@ -3,6 +3,7 @@ module
 public import CORALean.HybridDynamics.Definitions.IsInvariant
 public import CORALean.HybridDynamics.Theorems.FlowOuterInputSolution
 public import CORALean.HybridDynamics.Theorems.JumpIntersectionOuter
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -55,11 +56,12 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Mtimes (Mat 𝕋) S] [OfInterval S]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The set `hflow`'s remainder-side hypotheses are asked of: `τ`'s remainder
 bound against the location's own input set. -/
-noncomputable def aux_remainder [∀ n, OfPoint (S n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n) (τ : ℝ)
+@[step_of HybridAutomaton.isInvariant_of_enclosure]
+noncomputable def step_remainder [∀ n, OfPoint (S n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n) (τ : ℝ)
     (m : ℕ) : S n :=
   Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet
 
@@ -78,9 +80,9 @@ theorem HybridAutomaton.isInvariant_of_enclosure [∀ n, Intersection (S n) (Vec
     (h0 : ∀ ℓ : L, (0 : Vec ℝ n) ∈ construct (HA.loc ℓ).inputSet)
     (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,
       ‖τ • toRealMat (HA.loc ℓ).dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 ∧
-      Convex ℝ (construct (aux_remainder (HA.loc ℓ) τ m)) ∧
-      IsClosed (construct (aux_remainder (HA.loc ℓ) τ m)) ∧
-      Bornology.IsBounded (construct (aux_remainder (HA.loc ℓ) τ m)) ∧
+      Convex ℝ (construct (step_remainder (HA.loc ℓ) τ m)) ∧
+      IsClosed (construct (step_remainder (HA.loc ℓ) τ m)) ∧
+      Bornology.IsBounded (construct (step_remainder (HA.loc ℓ) τ m)) ∧
       construct (Plus.plus ((HA.loc ℓ).timeInterval τ (m + 2) (R ℓ))
         ((HA.loc ℓ).dynamics.inputSolution τ (m + 2) (HA.loc ℓ).inputSet)) ⊆ construct (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans →

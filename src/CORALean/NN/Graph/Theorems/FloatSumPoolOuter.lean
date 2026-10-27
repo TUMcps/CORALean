@@ -50,12 +50,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N F : ℕ}
 section
 open Matrix
 
-/-- `aux_sumPoolMat` reads back as the pooling map. -/
+/-- `step_sumPoolMat` reads back as the pooling map. -/
 private theorem GNN.aux_sumPoolMat_mulVec (H : Mat ℝ N F) : -- --- CONCL ---
-    toRealMat (GNN.aux_sumPoolMat (𝕋 := 𝕋) N F) *ᵥ GNN.flatten H
+    toRealMat (GNN.step_sumPoolMat (𝕋 := 𝕋) N F) *ᵥ GNN.flatten H
       = Real.GNN.sumPoolLin N F H := by -- --- PROOF ---
   funext j
-  simp only [Matrix.mulVec, dotProduct, GNN.flatten, toRealMat, GNN.aux_sumPoolMat]
+  simp only [Matrix.mulVec, dotProduct, GNN.flatten, toRealMat, GNN.step_sumPoolMat]
   rw [← finProdFinEquiv.sum_comp, Fintype.sum_prod_type]
   show _ = ∑ i, H i j
   simp [apply_ite toReal, toReal_zero, toReal_one, Equiv.symm_apply_apply]
@@ -69,7 +69,7 @@ theorem GNN.sumPool_outer (pZ : PolyZonotope (Vec 𝕋 (N * F))) (H : Mat ℝ N 
     (hH : GNN.flatten H ∈ pZ.construct) :
     Real.GNN.sumPoolLin N F H ∈ (GNN.sumPool pZ).construct := by
   rw [← GNN.aux_sumPoolMat_mulVec (𝕋 := 𝕋)]
-  exact PolyZonotope.mtimes_outer (GNN.aux_sumPoolMat N F) pZ ⟨_, hH, rfl⟩
+  exact PolyZonotope.mtimes_outer (GNN.step_sumPoolMat N F) pZ ⟨_, hH, rfl⟩
 
 end CORALean.Float
 

@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.OutputEq.Operations.Eval
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 public import CORALean.Global.EuclideanHausdorffDist
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -16,7 +17,7 @@ public import CORALean.Global.EuclideanHausdorffDist
 nonempty `X1 X2` and one common `V`: nothing about how `X2` over-approximates `X1` is used.
 `‖C‖₂` is not `‖mulVecLin (toRealMat out.C)‖`: `Vec ℝ n` carries the supremum norm, so that
 operator norm is the largest absolute row sum. Reading `C` in the paper's norm needs it
-conjugated through `toEuclidean`, `aux_toEuclideanCLM`.
+conjugated through `toEuclidean`, `step_toEuclideanCLM`.
 
 ## Inputs
 * `out` – output equation
@@ -56,22 +57,26 @@ open Matrix Scalar Pointwise
 variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The same matrix action, conjugated to act between the `EuclideanSpace` copies of `Vec ℝ n` and
 `Vec ℝ r`, so its own operator norm is `Def. 5`'s `‖·‖₂` rather than `Vec`'s supremum one. -/
-noncomputable def aux_toEuclideanCLM (M : Mat ℝ r n) :
+@[step_of OutputEq.hausdorffDist₂_eval_le]
+noncomputable def step_toEuclideanCLM (M : Mat ℝ r n) :
     EuclideanSpace ℝ (Fin n) →L[ℝ] EuclideanSpace ℝ (Fin r) :=
   toEuclidean.toContinuousLinearMap.comp
     ((LinearMap.toContinuousLinearMap (mulVecLin M)).comp toEuclidean.symm.toContinuousLinearMap)
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 @[simp] private theorem aux_toEuclideanCLM_apply (M : Mat ℝ r n) (x : Vec ℝ n) :
-    aux_toEuclideanCLM M (toEuclidean x) = toEuclidean (mulVecLin M x) := by
-  simp [aux_toEuclideanCLM]
+    step_toEuclideanCLM M (toEuclidean x) = toEuclidean (mulVecLin M x) := by
+  simp [step_toEuclideanCLM]
 
 /-- `toEuclidean`'s image of a matrix's image is the conjugated map's image of `toEuclidean`'s. -/
 private theorem aux_toEuclidean_image_mulVecLin (M : Mat ℝ r n) (X : Set (Vec ℝ n)) :
-    toEuclidean '' (mulVecLin M '' X) = aux_toEuclideanCLM M '' (toEuclidean '' X) := by
+    toEuclidean '' (mulVecLin M '' X) = step_toEuclideanCLM M '' (toEuclidean '' X) := by
   rw [Set.image_image, Set.image_image]
   exact Set.image_congr fun x _ => (aux_toEuclideanCLM_apply M x).symm
 
@@ -79,9 +84,9 @@ private theorem aux_toEuclidean_image_mulVecLin (M : Mat ℝ r n) (X : Set (Vec 
 private theorem aux_hausdorffDist₂_mulVecLin_le (M : Mat ℝ r n) {X1 X2 : Set (Vec ℝ n)}
     (hX1 : IsCompact X1) (hX1ne : X1.Nonempty) (hX2 : IsCompact X2) (hX2ne : X2.Nonempty) :
     hausdorffDist₂ (mulVecLin M '' X1) (mulVecLin M '' X2)
-      ≤ ‖aux_toEuclideanCLM M‖ * hausdorffDist₂ X1 X2 := by
+      ≤ ‖step_toEuclideanCLM M‖ * hausdorffDist₂ X1 X2 := by
   rw [hausdorffDist₂, aux_toEuclidean_image_mulVecLin, aux_toEuclidean_image_mulVecLin]
-  exact hausdorffDist_image_le (aux_toEuclideanCLM M)
+  exact hausdorffDist_image_le (step_toEuclideanCLM M)
     (hX1.image toEuclidean.continuous) (hX1ne.image _)
     (hX2.image toEuclidean.continuous) (hX2ne.image _)
 
@@ -111,13 +116,13 @@ private theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 5]: an error in the reachable set carries over to the output set, scaled by `‖C‖₂`
-(`aux_toEuclideanCLM`'s operator norm). `V` is the same input/disturbance set on both sides,
+(`step_toEuclideanCLM`'s operator norm). `V` is the same input/disturbance set on both sides,
 matching how `WV + q` is read off `Y` and `Ŷ` alike in [1]'s proof. -/
 theorem OutputEq.hausdorffDist₂_eval_le (out : OutputEq 𝕋 n m r) {X1 X2 : Set (Vec ℝ n)}
     (hX1 : IsCompact X1) (hX1ne : X1.Nonempty) (hX2 : IsCompact X2) (hX2ne : X2.Nonempty)
     (V : Set (Vec ℝ m)) : -- --- CONCL ---
     hausdorffDist₂ (Set.image2 out.eval X1 V) (Set.image2 out.eval X2 V)
-      ≤ ‖aux_toEuclideanCLM (toRealMat out.C)‖ * hausdorffDist₂ X1 X2 := by -- --- PROOF ---
+      ≤ ‖step_toEuclideanCLM (toRealMat out.C)‖ * hausdorffDist₂ X1 X2 := by -- --- PROOF ---
   have hC1 : IsCompact (mulVecLin (toRealMat out.C) '' X1) :=
     hX1.image (mulVecLin (toRealMat out.C)).continuous_of_finiteDimensional
   have hC2 : IsCompact (mulVecLin (toRealMat out.C) '' X2) :=
@@ -133,7 +138,7 @@ theorem OutputEq.hausdorffDist₂_eval_le (out : OutputEq 𝕋 n m r) {X1 X2 : S
           add_comm (mulVecLin (toRealMat out.C) '' X2)]
     _ ≤ hausdorffDist₂ (mulVecLin (toRealMat out.C) '' X1) (mulVecLin (toRealMat out.C) '' X2) :=
         aux_hausdorffDist₂_add_le hC1 (hX1ne.image _) hC2 (hX2ne.image _)
-    _ ≤ ‖aux_toEuclideanCLM (toRealMat out.C)‖ * hausdorffDist₂ X1 X2 :=
+    _ ≤ ‖step_toEuclideanCLM (toRealMat out.C)‖ * hausdorffDist₂ X1 X2 :=
         aux_hausdorffDist₂_mulVecLin_le _ hX1 hX1ne hX2 hX2ne
 
 end CORALean

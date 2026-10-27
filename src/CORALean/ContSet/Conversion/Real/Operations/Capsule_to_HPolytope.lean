@@ -11,6 +11,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.Translate
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -20,7 +21,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Translate
 `@capsule/polytope.m`: an empty capsule gives the empty polytope; at `n = 1` the interval
 `[c - |g| - r, c + |g| + r]` (`aux_1D`); a point its own polytope; a segment (`r = 0`) the rows
 `±B(:,1)ᵀ x ≤ ‖g‖₂` and `B(:,2:end)ᵀ x = 0` shifted to `c` (`aux_exactLineConversion`); otherwise,
-at `'outer'`, the rows `[B'; -B']` at the capsule's support value (`aux_supportFunction`), with
+at `'outer'`, the rows `[B'; -B']` at the capsule's support value (`step_supportFunction`), with
 `B = gramSchmidt(g)`. Departures: a negative radius is CORALean's empty capsule; the support value
 is `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`Capsule.supportBound`); a ball takes the identity for `B`, where
 CORA's `gramSchmidt` divides by zero. CORA's default `'exact'` throws (`CORA:noExactAlg`) and
@@ -57,16 +58,17 @@ noncomputable def Capsule.hPolytopeOfLine (C : Capsule (m + 1)) :
   HPolytope.translate C.c (ineqs.intersection eqs)
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-/-- The basis of `aux_supportFunction`: `gramSchmidt(g)`, the identity at `g = 0`. -/
-noncomputable def Capsule.aux_basis (C : Capsule (m + 1)) : Mat ℝ (m + 1) (m + 1) :=
+/-- The basis of `step_supportFunction`: `gramSchmidt(g)`, the identity at `g = 0`. -/
+@[step_of Capsule.hPolytope]
+noncomputable def Capsule.step_basis (C : Capsule (m + 1)) : Mat ℝ (m + 1) (m + 1) :=
   if C.g = 0 then 1 else gramSchmidtVec C.g
 
-/-- CORA's `aux_supportFunction`: the rows `[B'; -B']`, each at its support value. -/
+/-- CORA's `step_supportFunction`: the rows `[B'; -B']`, each at its support value. -/
 noncomputable def Capsule.hPolytopeOuter (C : Capsule (m + 1)) :
     HPolytope (Vec ℝ (m + 1)) :=
-  let A : Mat ℝ ((m + 1) + (m + 1)) (m + 1) := Fin.append C.aux_basisᵀ (-C.aux_basisᵀ)
+  let A : Mat ℝ ((m + 1) + (m + 1)) (m + 1) := Fin.append C.step_basisᵀ (-C.step_basisᵀ)
   HPolytope.ofBounds (HPolytope.rowLin A) fun i => C.supportBound (HPolytope.rowLin A i)
 
 
@@ -84,7 +86,7 @@ noncomputable def Capsule.hPolytope : {n : ℕ} → Capsule n → HPolytope (Vec
     else if C.g = 0 ∧ C.r = 0 then HPolytope.ofPoint C.c
     -- 4. a segment: `aux_exactLineConversion`
     else if C.r = 0 then C.hPolytopeOfLine
-    -- 5. `'outer'`: `aux_supportFunction`
+    -- 5. `'outer'`: `step_supportFunction`
     else C.hPolytopeOuter
 
 end CORALean.Real

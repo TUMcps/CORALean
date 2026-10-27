@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Operations.MulHi
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
 public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -37,15 +38,17 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The least square over `[a, b]`: the smaller end square if the interval is certified to lie on
 one side of `0`, else `0`. -/
-def Interval.aux_squareLo (a b : 𝕋) : 𝕋 :=
+@[step_of Interval.exactSquare]
+def Interval.step_squareLo (a b : 𝕋) : 𝕋 :=
   if le zero a || le b zero then minimum (mulDown a a) (mulDown b b) else zero
 
 /-- The greatest square over `[a, b]`, the larger end square rounded up. -/
-def Interval.aux_squareHi (a b : 𝕋) : 𝕋 := maximum (mulUp a a) (mulUp b b)
+@[step_of Interval.exactSquare]
+def Interval.step_squareHi (a b : 𝕋) : 𝕋 := maximum (mulUp a a) (mulUp b b)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -55,7 +58,7 @@ def Interval.exactSquare (A : Interval (Mat 𝕋 n n)) : Interval (Mat 𝕋 n n)
   -- the lower ends: squares and products rounded down
   inf := fun i j =>
     if i = j then
-      addDown (Interval.aux_squareLo (A.inf i i) (A.sup i i))
+      addDown (Interval.step_squareLo (A.inf i i) (A.sup i i))
         (sumDown fun k => if k = i then zero
           else Interval.mulLo (A.inf i k) (A.sup i k) (A.inf k i) (A.sup k i))
     else
@@ -66,7 +69,7 @@ def Interval.exactSquare (A : Interval (Mat 𝕋 n n)) : Interval (Mat 𝕋 n n)
   -- the upper ends: squares and products rounded up
   sup := fun i j =>
     if i = j then
-      addUp (Interval.aux_squareHi (A.inf i i) (A.sup i i))
+      addUp (Interval.step_squareHi (A.inf i i) (A.sup i i))
         (sumUp fun k => if k = i then zero
           else Interval.mulHi (A.inf i k) (A.sup i k) (A.inf k i) (A.sup k i))
     else

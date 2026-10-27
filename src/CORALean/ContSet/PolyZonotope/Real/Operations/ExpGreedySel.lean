@@ -4,6 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.DecidableExpEdge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IsExpEdge
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PairSplit
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -45,10 +46,11 @@ The weight is summed over every factor, the single `eDiff` at a similar pair.
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The lightest edge of the graph, or `none` where it has no edge at all. -/
-def PolyZonotope.aux_lightestEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) :
+@[step_of PolyZonotope.expGreedySel]
+def PolyZonotope.step_lightestEdge {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) :
     Option (Fin h × Fin h) :=
   ((List.finRange h).flatMap fun i => (List.finRange h).map fun j => (i, j)).foldl
     (fun best ij =>
@@ -69,7 +71,7 @@ along, and `none` once the graph is exhausted. -/
 def PolyZonotope.expGreedySel {p h : ℕ} (E : Fin p → Fin h → ℕ) (η : ℕ) :
     Option ((d : ℕ) × (Split (Fin h) into (Fin d) ⊕ (Fin 2))) :=
   if h2 : 2 ≤ h then
-    (PolyZonotope.aux_lightestEdge E η).map fun ij =>
+    (PolyZonotope.step_lightestEdge E η).map fun ij =>
       ⟨h - 2, PolyZonotope.pairSplit h2 ij.1 ij.2⟩
   else none
 

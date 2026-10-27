@@ -53,7 +53,7 @@ private theorem NonlinearSys.FloatModel.Encloses.aux_relinRunFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} :
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
-      fm.aux_relinRunFloat U options k R = some Rs → Rs.length = k ∧
+      fm.step_relinRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u y →

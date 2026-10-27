@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -40,10 +41,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The candidate vertex for direction `s`; rounding may move it, `underapproximate` checks it. -/
-def Zonotope.aux_underapproximateCandidate (Z : Zonotope (Vec 𝕋 n)) (s : Vec 𝕋 n)
+@[step_of Zonotope.underapproximate]
+def Zonotope.step_underapproximateCandidate (Z : Zonotope (Vec 𝕋 n)) (s : Vec 𝕋 n)
     (b : Bool) : Vec 𝕋 n :=
   let d := fun j : Fin Z.h => sumUp fun i => mulUp (s i) (Z.G j i)  -- sᵀ gⱼ
   let sgn := fun j : Fin Z.h =>  -- sign(sᵀ gⱼ), `0` unless strictly signed, flipped for `false`
@@ -56,7 +58,7 @@ def Zonotope.aux_underapproximateCandidate (Z : Zonotope (Vec 𝕋 n)) (s : Vec 
 
 def Zonotope.underapproximate (Z : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z.h n) (s : Vec 𝕋 n) (b : Bool) :
     Option (Vec 𝕋 n) :=
-  let p := Z.aux_underapproximateCandidate s b
+  let p := Z.step_underapproximateCandidate s b
   if Z.containsPoint H p then some p else none
 
 end CORALean.Float

@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IsSorted
 # `merge` keeps a sorted matrix sorted
 
 Half of what [1, Prop. 3.3] claims of its result, and the half that holds:
-`aux_mergeIdx` names the kept columns in increasing order, so the result's columns
+`step_mergeIdx` names the kept columns in increasing order, so the result's columns
 are a subsequence of the operand's and ascend with them.
 
 The other half — regularity — does not; `Merge.lean` says where it fails.
@@ -41,7 +41,7 @@ omit [Module ℝ α] in
 /-- The kept columns are named in increasing order. File-local: only
 `merge_isSorted` below needs it. -/
 private theorem PolyZonotope.aux_mergeIdx_monotone {p h : ℕ} (E : Fin p → Fin h → ℕ) :
-    Monotone (PolyZonotope.aux_mergeIdx E) :=
+    Monotone (PolyZonotope.step_mergeIdx E) :=
   fun _ _ hab => ((PolyZonotope.mergeKeep E).orderIsoOfFin rfl).monotone hab
 
 

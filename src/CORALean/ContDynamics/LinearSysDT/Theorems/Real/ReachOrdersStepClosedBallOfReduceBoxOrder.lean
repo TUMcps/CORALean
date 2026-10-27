@@ -5,8 +5,8 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 public import CORALean.ContSet.Zonotope.Real.Instances
-public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
-public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
+public import CORALean.ContSet.Zonotope.Real.Theorems.OneStepSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.OneStepSubsetClosedBallOfReduceBoxOrder
 
 @[expose] public section
 
@@ -89,7 +89,7 @@ theorem LinearSysDT.reachOrders_step_subset_closedBall_of_reduceBoxOrder (sys : 
           (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U)
           (o (k + 1))
       from rfl, heq]
-  exact Zonotope.step_subset_closedBall_of_reduceBoxOrder sys.A hn hR hU hε
+  exact Zonotope.oneStep_subset_closedBall_of_reduceBoxOrder sys.A hn hR hU hε
 
 end CORALean
 

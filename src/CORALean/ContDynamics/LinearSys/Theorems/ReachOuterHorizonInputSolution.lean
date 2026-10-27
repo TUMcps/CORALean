@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepSubsetHorizon
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderSet
 
 @[expose] public section
@@ -55,7 +55,7 @@ theorem LinearSys.IsCanonicalTrajectory.reach_outer_horizon_inputSolution [Mtime
       ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_horizon hΔt.le hT hbdd
     (fun k hk => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k
-      (step_subset_horizon hΔt.le hT hk)) ho
+      (oneStep_subset_horizon hΔt.le hT hk)) ho
 
 end CORALean
 

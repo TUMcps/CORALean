@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `aux_roundAwayInt` is `roundAway`. -/
+/-- `step_roundAwayInt` is `roundAway`. -/
 private theorem aux_roundAwayInt_cast (q : ℚ) : -- --- CONCL ---
-    ((aux_roundAwayInt q : ℤ) : ℝ) = CORALean.Real.roundAway (q : ℝ) := by -- --- PROOF ---
-  unfold aux_roundAwayInt CORALean.Real.roundAway
+    ((step_roundAwayInt q : ℤ) : ℝ) = CORALean.Real.roundAway (q : ℝ) := by -- --- PROOF ---
+  unfold step_roundAwayInt CORALean.Real.roundAway
   by_cases h : 0 ≤ q
   · have h' : (0 : ℝ) ≤ q := by exact_mod_cast h
     rw [if_pos h, if_pos h']
@@ -65,13 +65,13 @@ theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
   intro x hx i
   have h := hx i
   have hl : CORALean.Real.roundAway (toReal (I.inf i)) =
-      ((aux_roundAwayInt (ToRat.toRat (I.inf i)) : ℤ) : ℝ) := by
+      ((step_roundAwayInt (ToRat.toRat (I.inf i)) : ℤ) : ℝ) := by
     rw [aux_roundAwayInt_cast, ToRat.toReal_toRat]
   have hu : CORALean.Real.roundAway (toReal (I.sup i)) =
-      ((aux_roundAwayInt (ToRat.toRat (I.sup i)) : ℤ) : ℝ) := by
+      ((step_roundAwayInt (ToRat.toRat (I.sup i)) : ℤ) : ℝ) := by
     rw [aux_roundAwayInt_cast, ToRat.toReal_toRat]
-  have h1 := (intDown_le_intUp (𝕋 := 𝕋) (aux_roundAwayInt (ToRat.toRat (I.inf i)))).1
-  have h2 := (intDown_le_intUp (𝕋 := 𝕋) (aux_roundAwayInt (ToRat.toRat (I.sup i)))).2
+  have h1 := (intDown_le_intUp (𝕋 := 𝕋) (step_roundAwayInt (ToRat.toRat (I.inf i)))).1
+  have h2 := (intDown_le_intUp (𝕋 := 𝕋) (step_roundAwayInt (ToRat.toRat (I.sup i)))).2
   refine ⟨?_, ?_⟩
   · exact le_trans h1 (hl ▸ h.1)
   · exact le_trans (hu ▸ h.2) h2

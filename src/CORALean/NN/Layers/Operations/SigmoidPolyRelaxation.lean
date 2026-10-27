@@ -5,6 +5,7 @@ public import CORALean.NN.Layers.Operations.PolyRelaxationOfSampling
 public import CORALean.NN.Layers.Operations.SigmoidDerivHi
 public import CORALean.NN.Layers.Operations.SigmoidDerivLo
 public import CORALean.NN.Layers.Operations.SigmoidEnclosure
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -40,10 +41,11 @@ open Float Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {N : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `Sigmoid`'s derivative bracket read against the fit's own. -/
-def aux_sigmoidPolyDerivBound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (l u : 𝕋) : 𝕋 :=
+@[step_of sigmoidPolyRelaxation]
+def step_sigmoidPolyDerivBound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (l u : 𝕋) : 𝕋 :=
   polyDerivBoundUp (c l u) (sigmoidDerivLo (sigmoidEnclosure k) l u)
     (sigmoidDerivHi (sigmoidEnclosure k) l u) l u
 
@@ -53,7 +55,7 @@ def aux_sigmoidPolyDerivBound (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → �
 /-- `ofSampling` at the sigmoid, the fit and the grid free. -/
 def sigmoidPolyRelaxation (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (dx : 𝕋 → 𝕋 → 𝕋)
     (p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) : PolyRelaxation 𝕋 m :=
-  PolyRelaxation.ofSampling (sigmoidEnclosure k) c (aux_sigmoidPolyDerivBound k c) dx p
+  PolyRelaxation.ofSampling (sigmoidEnclosure k) c (step_sigmoidPolyDerivBound k c) dx p
 
 end CORALean
 

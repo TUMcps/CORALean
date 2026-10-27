@@ -4,6 +4,7 @@ public import CORALean.NN.Definitions.VerifyResult
 public import CORALean.NN.Operations.UnsafeInputConstraints
 public import CORALean.ContSet.ConZonotope.Real.Operations.FourierMotzkinIter
 public import CORALean.ContSet.Zonotope.Real.Operations.ZonotackFactors
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -51,11 +52,12 @@ open Matrix
 variable {n k p : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- One piece of [1, Alg. 1, l. 16]: `X|_{[C; C_j] ≤ [d; d_j]}` bounded by `iterFM` passes of
 [1, Prop. 3] and stored as the rescaled `X`, `none` when the bounds are empty. -/
-noncomputable def aux_piece (X : Zonotope (Vec ℝ n)) (Cd : Mat ℝ p X.h × Vec ℝ p)
+@[step_of SetBasedNet.verify]
+noncomputable def step_piece (X : Zonotope (Vec ℝ n)) (Cd : Mat ℝ p X.h × Vec ℝ p)
     (s : Σ r : ℕ, Mat ℝ r X.h × Vec ℝ r) (iterFM : ℕ) : Option (Zonotope (Vec ℝ n)) :=
   -- 1. the refinement and the split constraints together, `[C; C_j] β ≤ [d; d_j]`
   let Call : Mat ℝ (p + s.1) X.h := Fin.append Cd.1 s.2.1
@@ -97,7 +99,7 @@ noncomputable def SetBasedNet.verify (N : SetBasedNet n k) (Φ : Vec ℝ n → V
         -- 15. the constraints `C`, `d` of Prop. 2
         let Cd := N.unsafeInputConstraints Xi A b
         -- 16. `X_i|_{C₁≤d₁}, …, X_i|_{C_ξ≤d_ξ}`, each as its box
-        let pieces := (split Xi).filterMap fun s => aux_piece Xi Cd s iterFM
+        let pieces := (split Xi).filterMap fun s => step_piece Xi Cd s iterFM
         -- 17. `Q.enqueue(…)`
         N.verify Φ A b split iterFM fuel (Q ++ pieces)
 

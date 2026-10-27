@@ -3,6 +3,7 @@ module
 public import CORALean.NN.Operations.FgsmAttackFloat
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
 public import CORALean.ContSet.Interval.Float.Operations.MulHi
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -48,12 +49,13 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- One pass `q` of the loop in `computePGDAttack`: `stepsize = stepsize * stepsizeDecay` if
 `q ∈ stepsizeDecayIter`, `z = computeFGSMAttack(z, t, stepsize)`, `z = min(u, max(l, z))`, on the
 boxes `L` and `U` of the two bounds. -/
-def IntervalChain.aux_pgdStep (c : IntervalChain 𝕋 n m) (t : Vec 𝕋 m) (L U : Interval (Vec 𝕋 n))
+@[step_of IntervalChain.pgdAttack]
+def IntervalChain.step_pgdStep (c : IntervalChain 𝕋 n m) (t : Vec 𝕋 m) (L U : Interval (Vec 𝕋 n))
     (stepsizeDecay : 𝕋) (stepsizeDecayIter : List ℕ)
     (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m)) (q : ℕ)
     (zs : Interval (Vec 𝕋 n) × Interval 𝕋) : Interval (Vec 𝕋 n) × Interval 𝕋 :=
@@ -67,13 +69,14 @@ def IntervalChain.aux_pgdStep (c : IntervalChain 𝕋 n m) (t : Vec 𝕋 m) (L U
     fun i => minimum (U.sup i) (maximum (L.sup i) (z.sup i))⟩, stepsize)
 
 /-- The state after `q` passes, from the point `x` and the initial step size. -/
-def IntervalChain.aux_pgdState (c : IntervalChain 𝕋 n m) (x : Vec 𝕋 n) (t : Vec 𝕋 m)
+@[step_of IntervalChain.pgdAttack]
+def IntervalChain.step_pgdState (c : IntervalChain 𝕋 n m) (x : Vec 𝕋 n) (t : Vec 𝕋 m)
     (L U : Interval (Vec 𝕋 n)) (stepsize stepsizeDecay : 𝕋) (stepsizeDecayIter : List ℕ)
     (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m)) :
     ℕ → Interval (Vec 𝕋 n) × Interval 𝕋
   | 0 => (Interval.point x, Interval.point stepsize)
-  | q + 1 => c.aux_pgdStep t L U stepsizeDecay stepsizeDecayIter lossDerF (q + 1)
-      (c.aux_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF q)
+  | q + 1 => c.step_pgdStep t L U stepsizeDecay stepsizeDecayIter lossDerF (q + 1)
+      (c.step_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF q)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -86,7 +89,7 @@ def IntervalChain.pgdAttack (c : IntervalChain 𝕋 n m) (x : Vec 𝕋 n) (t : V
     ⟨fun i => maximum (l i) (subDown (x i) ε), fun i => maximum (l i) (subUp (x i) ε)⟩
   let U : Interval (Vec 𝕋 n) :=                                         -- u = min(u, x + ε)
     ⟨fun i => minimum (u i) (addDown (x i) ε), fun i => minimum (u i) (addUp (x i) ε)⟩
-  (c.aux_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF Q).1
+  (c.step_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF Q).1
 
 end CORALean.Float
 

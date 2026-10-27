@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -67,10 +68,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The square `[0, 2]²` cut by the row `x + y ≤ 0`. -/
-def HPolytope.aux_squareCut : HPolytope (Fin 2 → ℝ) where
+@[step_of HPolytope.representsa_interval_cora_counterexample]
+def HPolytope.step_squareCut : HPolytope (Fin 2 → ℝ) where
   m := 5
   A := let p0 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ := LinearMap.proj 0
     let p1 : (Fin 2 → ℝ) →ₗ[ℝ] ℝ := LinearMap.proj 1
@@ -85,11 +87,11 @@ def HPolytope.aux_squareCut : HPolytope (Fin 2 → ℝ) where
 
 /-- The polytope is the interval `[0, 0]²`, yet CORA does not accept it as an interval. -/
 theorem HPolytope.representsa_interval_cora_counterexample : -- --- CONCL ---
-    HPolytope.aux_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 ∧
-      ¬ HPolytope.aux_squareCut.representsaIntervalCora 0 (fun _ => 2) ![1, 1]
+    HPolytope.step_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 ∧
+      ¬ HPolytope.step_squareCut.representsaIntervalCora 0 (fun _ => 2) ![1, 1]
         0 := by -- --- PROOF ---
   -- the five rows pin both coordinates to `0`
-  have hc : HPolytope.aux_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 := by
+  have hc : HPolytope.step_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 := by
     ext x
     constructor
     · rintro ⟨h, -⟩
@@ -98,16 +100,16 @@ theorem HPolytope.representsa_interval_cora_counterexample : -- --- CONCL ---
       have h2 := h (2 : Fin 5)
       have h3 := h (3 : Fin 5)
       have h4 := h (4 : Fin 5)
-      simp [HPolytope.aux_squareCut] at h0 h1 h2 h3 h4
+      simp [HPolytope.step_squareCut] at h0 h1 h2 h3 h4
       refine ⟨fun i => ?_, fun i => ?_⟩ <;> fin_cases i <;> simp <;> linarith
     · rintro ⟨h0, h1⟩
       have a0 : x 0 = 0 := le_antisymm (h1 0) (h0 0)
       have a1 : x 1 = 0 := le_antisymm (h1 1) (h0 1)
       refine ⟨fun (i : Fin 5) => ?_, fun i => i.elim0⟩
-      fin_cases i <;> simp [HPolytope.aux_squareCut, a0, a1]
+      fin_cases i <;> simp [HPolytope.step_squareCut, a0, a1]
   -- the cut row is neither redundant nor excluding, so CORA asks for emptiness; `0` is a point
   refine ⟨hc, fun h => ?_⟩
-  have h0 : (0 : Fin 2 → ℝ) ∈ HPolytope.aux_squareCut.construct := by
+  have h0 : (0 : Fin 2 → ℝ) ∈ HPolytope.step_squareCut.construct := by
     rw [hc]; exact ⟨le_rfl, le_rfl⟩
   unfold HPolytope.representsaIntervalCora at h
   simp [Fin.sum_univ_two] at h

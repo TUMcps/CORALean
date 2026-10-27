@@ -10,6 +10,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -49,13 +50,14 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n m k : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 variable {𝕋 : Type} [FloatOps 𝕋] {n m k : ℕ}
 
 /-- Zero at the pivot, every other tap's reach rounded up. -/
-def aux_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
+@[step_of Layer.maxPool]
+def step_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval (Vec 𝕋 n)) (j : Fin m) : 𝕋 :=
   maximumOver fun l =>
     if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))
@@ -69,7 +71,7 @@ def Layer.maxPool (tap : Fin m → Fin (k + 1) → Fin n)
     (pivot : Interval (Vec 𝕋 n) → Fin m → Fin (k + 1)) : Layer S n m where
   enclose s :=
     plus (mtimes (selectMat (𝕋 := 𝕋) fun j => tap j (pivot (interval s) j)) s)
-      (ofInterval (⟨fun _ => zero, aux_maxPoolGapUp tap (pivot (interval s)) (interval s)⟩ :
+      (ofInterval (⟨fun _ => zero, step_maxPoolGapUp tap (pivot (interval s)) (interval s)⟩ :
         Interval (Vec 𝕋 m)))
 
 end CORALean

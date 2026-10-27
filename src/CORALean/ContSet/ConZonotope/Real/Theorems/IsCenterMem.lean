@@ -65,11 +65,11 @@ theorem ConZonotope.IsCenter.mem {c : α} {G : Fin h → α} {A : Mat ℝ q h} {
     refine ⟨x0 + N *ᵥ y, fun j => ?_, fun i => ?_, rfl⟩
     · have h1 : (N *ᵥ y) j ≤ 1 - x0 j := by
         have := hrow (Fin.castAdd h j)
-        simpa [ConZonotope.aux_nullPolytope, HPolytope.ineqs, HPolytope.rowLin,
+        simpa [ConZonotope.step_nullPolytope, HPolytope.ineqs, HPolytope.rowLin,
           Matrix.mulVec] using this
       have h2 : -(N *ᵥ y) j ≤ 1 + x0 j := by
         have := hrow (Fin.natAdd h j)
-        simp only [ConZonotope.aux_nullPolytope, HPolytope.ineqs, Fin.append_right] at this
+        simp only [ConZonotope.step_nullPolytope, HPolytope.ineqs, Fin.append_right] at this
         -- the lower block of the stacked rows is `-N`
         have e : (Fin.append N (-N) : Mat ℝ (h + h) k) (Fin.natAdd h j) = -N j :=
           Fin.append_right N (-N) j

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
 public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -43,10 +44,11 @@ namespace CORALean.Real
 variable {n N : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `Sm(Z(R)) = ‖R‖²_F`. -/
-def Zonotope.aux_segmentLength (Z : Zonotope (Vec ℝ n)) : ℝ := ∑ j, ∑ i, Z.G j i ^ 2
+@[step_of Zonotope.enclosePointsMaiga]
+def Zonotope.step_segmentLength (Z : Zonotope (Vec ℝ n)) : ℝ := ∑ j, ∑ i, Z.G j i ^ 2
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -58,7 +60,7 @@ noncomputable def Zonotope.enclosePointsMaiga [NeZero N] (dir : (Fin N → Vec �
   (List.range' 2 99).foldl
     (fun Zopt (i : ℕ) =>
       let Z := Zonotope.cloud2zonotope dir ((i : ℝ) / 100) n 0 pts
-      if Z.aux_segmentLength < Zopt.aux_segmentLength then Z else Zopt)
+      if Z.step_segmentLength < Zopt.step_segmentLength then Z else Zopt)
     Zopt
 
 end CORALean.Real

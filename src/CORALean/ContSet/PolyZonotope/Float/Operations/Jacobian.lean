@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -10,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 CORA's `jacobian(pZ)` for one factor `k`: the polynomial zonotope of the derivative along `k`, whose
 generator `i` is `E k i` times the original and whose exponent of `k` is lowered by one; the center
 is `0` and the independent block is dropped. The multiples are stored with the lower rounding and
-the gap goes into the error box (`aux_jacobianGap`). The original's error box is not part of the
+the gap goes into the error box (`step_jacobianGap`). The original's error box is not part of the
 derivative.
 
 ## Inputs
@@ -36,10 +37,11 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The gap between the two directed multiples of a column. -/
-def PolyZonotope.aux_jacobianGap (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) : Mat 𝕋 n pZ.h :=
+@[step_of PolyZonotope.jacobian]
+def PolyZonotope.step_jacobianGap (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) : Mat 𝕋 n pZ.h :=
   fun r i => subUp (sumUp fun _ : Fin (pZ.E k i) => pZ.G i r)
     (sumDown fun _ : Fin (pZ.E k i) => pZ.G i r)
 
@@ -56,7 +58,7 @@ def PolyZonotope.jacobian (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
   G := fun i r => sumDown fun _ : Fin (pZ.E k i) => pZ.G i r
   E := fun k' i => if k' = k then pZ.E k i - 1 else pZ.E k' i
   GI := Fin.elim0
-  I_error := PolyZonotope.generatorError (pZ.aux_jacobianGap k)
+  I_error := PolyZonotope.generatorError (pZ.step_jacobianGap k)
 
 end CORALean.Float
 

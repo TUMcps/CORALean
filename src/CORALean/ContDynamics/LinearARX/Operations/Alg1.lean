@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearARX.Operations.Btilde
 public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -10,7 +11,7 @@ public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
 
 [1, Alg. 1], line 7 of the `m`-th pass: `Ỹ(k:k₊) ← S ⊕ ⊕_{i=0}^{p-1} B̃ᵢ Ũ(k₊ - i)`, the
 window of reachable sets at `k = k_init + m p`. The loop bound `k ≤ p + k_h` only says
-when to stop, so every pass is defined; `aux_alg1State` carries the rest of the listing.
+when to stop, so every pass is defined; `step_alg1State` carries the rest of the listing.
 
 ## Inputs
 * `sys` – ARX system
@@ -43,9 +44,10 @@ open Matrix Pointwise
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def LinearARX.aux_alg1State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
+@[step_of LinearARX.alg1]
+def LinearARX.step_alg1State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (U : ℕ → Set (Vec ℝ du)) (kinit : ℕ) :
     ℕ → ℕ × Set (Vec ℝ (p * dy)) × (ℕ → Mat ℝ (p * dy) du)
   | 0 =>
@@ -58,7 +60,7 @@ def LinearARX.aux_alg1State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p *
     (k, S, Btilde)
   | m + 1 =>
     -- line 8, lines 9–12, then line 13
-    let prev := sys.aux_alg1State yinit U kinit m
+    let prev := sys.step_alg1State yinit U kinit m
     let k := prev.1 + p
     let kplus := k + p - 1
     let Btilde : ℕ → Mat ℝ (p * dy) du :=
@@ -73,7 +75,7 @@ def LinearARX.aux_alg1State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p *
 
 def LinearARX.alg1 (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (U : ℕ → Set (Vec ℝ du)) (kinit m : ℕ) : Set (Vec ℝ (p * dy)) :=
-  let state := sys.aux_alg1State yinit U kinit m
+  let state := sys.step_alg1State yinit U kinit m
   let k := state.1
   let kplus := k + p - 1
   let S := state.2.1

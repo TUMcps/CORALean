@@ -5,6 +5,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.CompactGens
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 public import Mathlib.Data.Finset.Sort
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -18,7 +19,7 @@ unconstrained adds nothing. The tolerance is `0`; CORA's `eps` removes smaller c
 
 Inequality rows stay, since CORA's constraint is an equality, and the kept generators keep their
 order. Both steps are the constraint's own operations (#174): `HPolytope.dropTrivialEqs` and
-`HPolytope.comap` along `aux_compactEmbed`.
+`HPolytope.comap` along `step_compactEmbed`.
 
 ## Inputs
 * `cZ` – constrained zonotope
@@ -40,10 +41,11 @@ namespace CORALean.Real
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `v` at the kept coordinates of `S`, zero elsewhere: `∑ l, v l • e_{S l}`. -/
-def ConZonotope.aux_compactEmbed {h : ℕ} (S : Finset (Fin h)) : Vec ℝ S.card →ₗ[ℝ] Vec ℝ h where
+@[step_of ConZonotope.compact]
+def ConZonotope.step_compactEmbed {h : ℕ} (S : Finset (Fin h)) : Vec ℝ S.card →ₗ[ℝ] Vec ℝ h where
   toFun v := ∑ l, v l • (Pi.single (S.orderIsoOfFin rfl l).1 (1 : ℝ) : Vec ℝ h)
   map_add' u v := by simp [add_smul, Finset.sum_add_distrib]
   map_smul' a v := by simp [Finset.smul_sum, smul_smul]
@@ -57,7 +59,7 @@ noncomputable def ConZonotope.compact (cZ : ConZonotope α) : ConZonotope α whe
   c := cZ.c
   G := fun l => cZ.G (cZ.compactGens.orderIsoOfFin rfl l).1
   -- the rows without `0 = 0`, read on the kept coefficients
-  P := (cZ.P.dropTrivialEqs).comap (ConZonotope.aux_compactEmbed cZ.compactGens)
+  P := (cZ.P.dropTrivialEqs).comap (ConZonotope.step_compactEmbed cZ.compactGens)
 
 end CORALean.Real
 

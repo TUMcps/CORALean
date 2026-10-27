@@ -54,7 +54,7 @@ private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
-      fm.aux_linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
+      fm.step_linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u y →
@@ -64,12 +64,12 @@ private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
   induction k with
   | zero =>
     intro R Rs hRs
-    simp only [NonlinearSys.FloatHessModel.aux_linReachRunFloat, Option.some.injEq] at hRs
+    simp only [NonlinearSys.FloatHessModel.step_linReachRunFloat, Option.some.injEq] at hRs
     subst hRs
     exact ⟨rfl, fun _ j hj => absurd hj (Nat.not_lt_zero j)⟩
   | succ k ih =>
     intro R Rs hRs
-    simp only [NonlinearSys.FloatHessModel.aux_linReachRunFloat, Option.bind_eq_bind,
+    simp only [NonlinearSys.FloatHessModel.step_linReachRunFloat, Option.bind_eq_bind,
       Option.bind_eq_some_iff] at hRs
     obtain ⟨⟨Rτ, Rt⟩, hstep, rest, hrest, hpure⟩ := hRs
     simp only [pure, Option.some.injEq] at hpure

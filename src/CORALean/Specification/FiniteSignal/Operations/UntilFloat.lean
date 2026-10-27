@@ -6,6 +6,7 @@ public import CORALean.Specification.FiniteSignal.Operations.Combine
 public import CORALean.Specification.FiniteSignal.Operations.FindIntervals
 public import CORALean.Specification.FiniteSignal.Operations.Indicator
 public import CORALean.Specification.FiniteSignal.Operations.Mk
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -46,11 +47,12 @@ open Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The bounds of `bint = ((lint(i) & rint(j)) - int) & lint(i)`, rounded inward, `none` if it is
 empty. -/
-def FiniteSignal.aux_untilPieceFloat (eps p : 𝕋) (q : WithTop 𝕋) (L R : Real.Interval 𝕋) :
+@[step_of FiniteSignal.untilFloat?]
+def FiniteSignal.step_untilPieceFloat (eps p : 𝕋) (q : WithTop 𝕋) (L R : Real.Interval 𝕋) :
     Option (Real.Interval 𝕋) :=
   -- lint(i) & rint(j)
   let lb := if L.inf ≤ R.inf then R.inf else L.inf
@@ -70,10 +72,11 @@ def FiniteSignal.aux_untilPieceFloat (eps p : 𝕋) (q : WithTop 𝕋) (L R : Re
     if lb' < ub' then some ⟨lb', ub'⟩ else none
 
 /-- The loop body for the runs `LR = (lint(i), rint(j))`. -/
-def FiniteSignal.aux_untilStepFloat (eps p : 𝕋) (q : WithTop 𝕋) (dur : 𝕋)
+@[step_of FiniteSignal.untilFloat?]
+def FiniteSignal.step_untilStepFloat (eps p : 𝕋) (q : WithTop 𝕋) (dur : 𝕋)
     (sig : FiniteSignal 𝕋 Bool) (LR : Real.Interval 𝕋 × Real.Interval 𝕋) :
     Option (FiniteSignal 𝕋 Bool) :=
-  match FiniteSignal.aux_untilPieceFloat eps p q LR.1 LR.2 with
+  match FiniteSignal.step_untilPieceFloat eps p q LR.1 LR.2 with
   | none => some sig
   -- if ~representsa_(bint,'emptySet',eps) && volume(bint) > 0
   | some ⟨lo, hi⟩ =>
@@ -99,7 +102,7 @@ def FiniteSignal.untilFloat? (eps : 𝕋) (lsig : FiniteSignal 𝕋 Bool) (p : �
       let rint := rsig.findIntervals (fun v => decide (true ≤ v))
       -- iterate over all combinations of intervals
       (lint.flatMap fun L => rint.map fun R => (L, R)).foldlM
-        (FiniteSignal.aux_untilStepFloat eps p q lsig.duration) sig
+        (FiniteSignal.step_untilStepFloat eps p q lsig.duration) sig
 
 end CORALean
 

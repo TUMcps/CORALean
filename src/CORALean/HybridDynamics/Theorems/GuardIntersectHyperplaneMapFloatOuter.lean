@@ -152,7 +152,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) {t : 𝕋}
     (η : ℕ) (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) : -- --- CONCL ---
     GuardMap.sdcInput (toRealMat A) (toRealVec uc) (toReal t) η (toRealVec x₀)
-      ∈ (GuardMap.aux_sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
+      ∈ (GuardMap.step_sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
   -- `tᵖ/q!` between the corner products
   have hcoef : ∀ p q : ℕ, toReal (Interval.mulLo (powDown t p) (powUp t p)
       (MatExp.invFactorialBounds q).inf (MatExp.invFactorialBounds q).sup)
@@ -199,15 +199,15 @@ end
 section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-/-- `y_h(x₀)` is in the box `aux_hitPointFloat` returns, and `Λ ≠ 0`. -/
+/-- `y_h(x₀)` is in the box `step_hitPointFloat` returns, and `Λ ≠ 0`. -/
 private theorem GuardMap.aux_hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
     (x₀ : Vec 𝕋 n) : -- --- CONCL ---
-    ∀ K ∈ GuardMap.aux_hitPointFloat A b nv d x₀,
+    ∀ K ∈ GuardMap.step_hitPointFloat A b nv d x₀,
       toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
         GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
           ∈ K.construct := by -- --- PROOF ---
-  intro K (hK : GuardMap.aux_hitPointFloat A b nv d x₀ = some K)
-  simp only [GuardMap.aux_hitPointFloat] at hK
+  intro K (hK : GuardMap.step_hitPointFloat A b nv d x₀ = some K)
+  simp only [GuardMap.step_hitPointFloat] at hK
   split_ifs at hK with hc
   obtain rfl := Option.some.inj hK
   set yr : Vec ℝ n := toRealMat A *ᵥ toRealVec x₀ + toRealVec b with hyr
@@ -289,14 +289,14 @@ end
 section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-/-- `L(x₀)` is in the interval matrix `aux_hitJacobianFloat` returns. -/
+/-- `L(x₀)` is in the interval matrix `step_hitJacobianFloat` returns. -/
 private theorem GuardMap.aux_hitJacobian_mem_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n)
     (d : 𝕋) (x₀ : Vec 𝕋 n) : -- --- CONCL ---
-    ∀ L ∈ GuardMap.aux_hitJacobianFloat A b nv d x₀,
+    ∀ L ∈ GuardMap.step_hitJacobianFloat A b nv d x₀,
       GuardMap.hitJacobian (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
         ∈ L.construct := by -- --- PROOF ---
-  intro L (hL : GuardMap.aux_hitJacobianFloat A b nv d x₀ = some L)
-  simp only [GuardMap.aux_hitJacobianFloat] at hL
+  intro L (hL : GuardMap.step_hitJacobianFloat A b nv d x₀ = some L)
+  simp only [GuardMap.step_hitJacobianFloat] at hL
   split_ifs at hL with hc
   obtain rfl := Option.some.inj hL
   set yr : Vec ℝ n := toRealMat A *ᵥ toRealVec x₀ + toRealVec b with hyr
@@ -593,8 +593,8 @@ private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋
       (toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec R0red.c + toRealVec b))⁻¹ - toReal τc|
         ≤ toReal τg)
     {k : Interval (Vec 𝕋 n)} {Lk : Interval (Mat 𝕋 n n)}
-    (hk : GuardMap.aux_hitPointFloat A b nv d R0red.c = some k)
-    (hL : GuardMap.aux_hitJacobianFloat A b nv d R0red.c = some Lk) : -- --- CONCL ---
+    (hk : GuardMap.step_hitPointFloat A b nv d R0red.c = some k)
+    (hL : GuardMap.step_hitJacobianFloat A b nv d R0red.c = some Lk) : -- --- CONCL ---
     -- `k ⊕ L R₀_ ⊕ [φ̲/2, φ̄/2] R_quad`, as the guard mapping builds it
     GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) x₀ ∈
       ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R₀.recenter)).plus
@@ -720,7 +720,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
   have htm0 : 0 ≤ toReal tmax := ht.1.trans htmax
   have hth : 0 ≤ toReal (half tmax) := by rw [toReal_half]; linarith
   obtain ⟨bI, hbI⟩ : ∃ v,
-      v = GuardMap.aux_sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c (half tmax) η R₀.c := ⟨_, rfl⟩
+      v = GuardMap.step_sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c (half tmax) η R₀.c := ⟨_, rfl⟩
   set br := toRealVec bI.inf with hbr
   obtain ⟨R0red, hR0red⟩ : ∃ Z', Z' = R₀.reduceGirard guardOrder := ⟨_, rfl⟩
   have hcen : R0red.c = R₀.c := by

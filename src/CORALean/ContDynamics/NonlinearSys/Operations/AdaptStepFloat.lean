@@ -9,6 +9,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.FloatOps
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -61,11 +62,12 @@ open CORALean.Float FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Alg. 2] line 13: the abstraction order of the next step, from the two
 error radii of eq. (46) and the two diameter vectors of eq. (47). -/
-def aux_tuneAbstrOrderFloat {n : ℕ} (ζK φstar rabs rabsLast : 𝕋) (d1 d2 : Fin n → 𝕋) (κ : ℕ) : ℕ :=
+@[step_of NonlinearSys.FloatHessModel.adaptStepFloat]
+def step_tuneAbstrOrderFloat {n : ℕ} (ζK φstar rabs rabsLast : 𝕋) (d1 d2 : Fin n → 𝕋) (κ : ℕ) : ℕ :=
   if le (absolute (divUp (mulUp φstar rabs) rabsLast)) (subDown one ζK)
     -- 13. eq. (46): too close to re-tune
     then κ
@@ -115,8 +117,8 @@ def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRa
   let F := if s.κ = 1 then F₁' else F₂'
   -- 12. r^{(λ*)}_abs,k
   let rabsOpt := maximum zero (subUp (rad F.2) (rad p₂.2.1))
-  -- 13. aux_tuneAbstrOrder
-  let κ' := aux_tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ
+  -- 13. step_tuneAbstrOrder
+  let κ' := step_tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ
   -- 16. estimateGain
   let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent) rabs1 rabsOpt
     opt.exponent fuel

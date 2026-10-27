@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -35,17 +36,18 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- A room `s` over a row sum `r`, one where the row is zero. -/
-def HPolytope.aux_ratio (s r : 𝕋) : 𝕋 := if ltStrict zero r then divDown s r else one
+@[step_of HPolytope.ineqMargin]
+def HPolytope.step_ratio (s r : 𝕋) : 𝕋 := if ltStrict zero r then divDown s r else one
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The least room, over its row's absolute sum, of the inequality rows at `β₀`, at most one. -/
 def HPolytope.ineqMargin (P : HPolytope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 n) : 𝕋 :=
-  (List.finRange P.m).foldl (fun acc i => minimum acc (HPolytope.aux_ratio
+  (List.finRange P.m).foldl (fun acc i => minimum acc (HPolytope.step_ratio
     (subDown (addDown (P.b i) (absolute (P.b_error i))) (dotUp (P.A i) β₀)) (radius P.A i))) one
 
 end CORALean.Float

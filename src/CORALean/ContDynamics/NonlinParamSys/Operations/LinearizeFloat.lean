@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
 public import CORALean.ContSet.Interval.Float.Operations.Center
 public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -48,10 +49,11 @@ open CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The enclosure of the constant term `f(xs, us, p)` over the parameter box `P`. -/
-def NonlinParamSys.FloatModel.aux_linearizeFFloat (fm : NonlinParamSys.FloatModel 𝕋 n m q)
+@[step_of NonlinParamSys.FloatModel.linearizeFloat]
+def NonlinParamSys.FloatModel.step_linearizeFFloat (fm : NonlinParamSys.FloatModel 𝕋 n m q)
     (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (P : Interval (Vec 𝕋 q)) : Interval (Vec 𝕋 n) :=
   fm.f (Interval.point xs) (Interval.point us) P                    -- [f(p.x, p.u, p)]
 
@@ -65,7 +67,7 @@ def NonlinParamSys.FloatModel.linearizeFloat (fm : NonlinParamSys.FloatModel �
     LinParamSys ℐ[𝕋] n × Vec 𝕋 n × Vec 𝕋 m × Vec 𝕋 q :=
   let X := Interval.point xs                                        -- the point box of p.x
   let U := Interval.point us                                        -- the point box of p.u
-  let zf := fm.aux_linearizeFFloat xs us P                              -- [f(p.x, p.u, p)]
+  let zf := fm.step_linearizeFFloat xs us P                              -- [f(p.x, p.u, p)]
   let A := fm.jacX X U P                                            -- [∂f/∂x (p.x, p.u, p)]
   let B := fm.jacU X U P                                            -- [∂f/∂u (p.x, p.u, p)]
   (⟨A, m, B, toRealVec zf.center⟩, xs, us, P.center)                -- linsys, p.x, p.u, p.p

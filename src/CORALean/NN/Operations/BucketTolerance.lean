@@ -5,6 +5,7 @@ public import CORALean.NN.Operations.InitMergeBuckets
 public import CORALean.NN.Operations.MaxOver
 public import CORALean.NN.Operations.MinOver
 public import CORALean.NN.Operations.Ratio
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -52,10 +53,11 @@ open Float Float.FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Lines 7-16: bisect `[δmin, δmax]` until `n̂_k/n_k ≈ ρ`; `none` past `fuel`. -/
-def aux_bisectBucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (B : MergeBuckets 𝕋)
+@[step_of bucketTolerance]
+def step_bisectBucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (B : MergeBuckets 𝕋)
     (I_k : Interval (Vec 𝕋 n)) (ρ : 𝕋) : 𝕋 → 𝕋 → ℕ → Option (Fin n → Bool)
   | _, _, 0 => none
   | δmin, δmax, fuel + 1 =>
@@ -66,7 +68,7 @@ def aux_bisectBucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (B : Me
     let δmax := if tooManyMerged then δ else δmax                   -- Alg. 1, line 12
     let δmin := if tooManyMerged then δmin else δ                   -- Alg. 1, line 14
     if le (absolute (subUp (ratio nhat_k n) ρ)) tol then some B_kδ  -- Alg. 1, lines 16-17
-    else aux_bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
+    else step_bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -84,7 +86,7 @@ def bucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (B :
   | none => none
   | some δmax =>
     -- 7. `do` 8. `δ ← (δmin + δmax) / 2` … 16. `while n̂_k / n_k ≉ ρ`, 17. `return B_{k,δ}`
-    aux_bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
+    step_bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
 
 end CORALean
 

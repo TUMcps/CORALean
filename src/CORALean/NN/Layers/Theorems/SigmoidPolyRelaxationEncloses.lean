@@ -49,7 +49,7 @@ theorem sigmoidPolyRelaxation_encloses (k : ℕ) (c : 𝕋 → 𝕋 → Fin (m +
     (dx : 𝕋 → 𝕋 → 𝕋) (p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
     (sigmoidPolyRelaxation k c dx p).Encloses Real.sigmoid :=
   PolyRelaxation.ofSampling_encloses (E := sigmoidEnclosure k) (c := c)
-    (M := aux_sigmoidPolyDerivBound k c) (dx := dx) (p := p) (sigmoidEnclosure_encloses k)
+    (M := step_sigmoidPolyDerivBound k c) (dx := dx) (p := p) (sigmoidEnclosure_encloses k)
     Real.hasDerivAt_sigmoid fun l u x hx hx' => abs_sub_evalPolyDeriv_le
       (sigmoidDerivLo_le (sigmoidEnclosure_encloses k) l u x hx hx')
       (le_sigmoidDerivHi (sigmoidEnclosure_encloses k) l u x hx hx') hx hx'

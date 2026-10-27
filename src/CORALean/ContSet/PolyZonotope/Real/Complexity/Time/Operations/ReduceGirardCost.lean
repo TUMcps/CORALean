@@ -12,7 +12,7 @@ Asserted, not proved, by reading `Operations/ReduceGirard.lean`. Girard's metric
 generator is `n` absolute values and `n - 1` additions, `n` more and `n` comparisons for the
 `max` fold, and one negation for the sort key: at most `4 * n + 2`, as in `Zonotope`'s file,
 evaluated on the concatenation and again on each block. Three sorts follow, each bounded by
-`Cost.sort` at the joint width; `aux_girardKeptDep` counts the dependent ranks. No order
+`Cost.sort` at the joint width; `step_girardKeptDep` counts the dependent ranks. No order
 argument: below `o * n` the operation is the identity, so this bounds every `o` at once.
 `reduceBy` is charged at the most it can keep and absorb and writes its own result.
 

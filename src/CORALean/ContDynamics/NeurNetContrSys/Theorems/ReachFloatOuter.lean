@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepSubsetHorizon
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AugmentFlow
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithTimePointOuter
@@ -142,7 +142,7 @@ private theorem LinearSys.IsCanonicalTrajectory.aux_discretizeEnclosureFloat_mem
   have hdt := traj.discretize_horizon (Ud := sys.inputSolutionFloat Δt η U) hΔt.le hT
     (CompactSet.isBounded_construct U) fun j hj =>
       sys.inputReach_subset_inputSolutionFloat hΔt hη U
-        (traj.aux_stepInput_mem_inputReach j (step_subset_horizon hΔt.le hT hj))
+        (traj.aux_stepInput_mem_inputReach j (oneStep_subset_horizon hΔt.le hT hj))
   -- the same run, its matrix only enclosed
   have hon : (sys.discretizeEnclosureFloat Δt η).IsCanonicalTrajectoryOn (S := 𝒵[𝕋]) R₀
     (sys.inputSolutionFloat Δt η U) K

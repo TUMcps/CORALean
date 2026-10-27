@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -62,27 +63,31 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The Krylov term of order `j + 1` at `u`, `P Ṽ(u)H̃^{j+1}(u)e₁ δ^{j+1}/(j+1)!`. -/
-noncomputable abbrev Krylov.aux_krylovTerm (A : Mat ℝ n n) (δ : ℝ) (m j : ℕ) (u : Vec ℝ n) :
+@[step_of Krylov.inputReach_subset_krylovZonotope]
+noncomputable abbrev Krylov.step_krylovTerm (A : Mat ℝ n n) (δ : ℝ) (m j : ℕ) (u : Vec ℝ n) :
     Vec ℝ n :=
   (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
     (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
       (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1)
         ^ (j + 1) *ᵥ Pi.single 0 1)) (Fin.castSucc i)
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 /-- Below the Krylov order the Krylov term maps the zonotope `Z` onto the zonotope of the
 images of its center and generators. -/
 private theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (δ : ℝ)
     {m j : ℕ} (hj : j + 1 ≤ m) : -- --- CONCL ---
-    Krylov.aux_krylovTerm A δ m j '' Z.construct = (⟨Z.h, Krylov.aux_krylovTerm A δ m j Z.c,
-      fun i => Krylov.aux_krylovTerm A δ m j (Z.G i)⟩ :
+    Krylov.step_krylovTerm A δ m j '' Z.construct = (⟨Z.h, Krylov.step_krylovTerm A δ m j Z.c,
+      fun i => Krylov.step_krylovTerm A δ m j (Z.G i)⟩ :
         Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
   -- the term is the linear map `u ↦ (δ^{j+1}/(j+1)!) A^j u`
-  have hlin : ∀ u, Krylov.aux_krylovTerm A δ m j u
+  have hlin : ∀ u, Krylov.step_krylovTerm A δ m j u
       = (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • (A ^ j *ᵥ u) := fun u => by
-    rw [Krylov.aux_krylovTerm, Krylov.augment_arnoldi_pow A u m (Nat.le_add_left 1 j) hj,
+    rw [Krylov.step_krylovTerm, Krylov.augment_arnoldi_pow A u m (Nat.le_add_left 1 j) hj,
       Nat.add_sub_cancel]
   ext x
   simp only [Set.mem_image, Zonotope.construct, Set.mem_setOf_eq, hlin]
@@ -105,8 +110,8 @@ theorem Krylov.inputReach_subset_krylovZonotope (A : Mat ℝ n n) (Z : Zonotope 
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.construct δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
-          (⟨Z.h, Krylov.aux_krylovTerm A δ m j Z.c,
-            fun i => Krylov.aux_krylovTerm A δ m j (Z.G i)⟩ : Zonotope (Vec ℝ n)).construct)
+          (⟨Z.h, Krylov.step_krylovTerm A δ m j Z.c,
+            fun i => Krylov.step_krylovTerm A δ m j (Z.G i)⟩ : Zonotope (Vec ℝ n)).construct)
         + closure (convexHull ℝ
             (⋃ M ∈ (MatExp.inputRemainder A δ η).construct,
               (M *ᵥ ·) '' Z.construct)) := by -- --- PROOF ---

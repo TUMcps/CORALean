@@ -5,6 +5,7 @@ public import CORALean.Global.Float.RatUp
 public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.LinProg.Simplex
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,11 +43,12 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {h : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The rows in ℚ, exactly, with the margin `t` as the last variable: `A`, `Ae`, `-Ae`, then the
 unit box `I` and `-I`, each row ending in `1`. -/
-def HPolytope.aux_marginRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
+@[step_of HPolytope.emptyWeights]
+def HPolytope.step_marginRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
     Fin (P.m + (P.me + P.me) + (h + h)) → Fin (h + 1) → ℚ :=
   fun i j =>
     if hj : j.val < h then
@@ -57,8 +59,10 @@ def HPolytope.aux_marginRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
         i ⟨j.val, hj⟩
     else 1
 
-/-- The right-hand sides matching `aux_marginRows`. -/
-def HPolytope.aux_marginRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
+/-- The right-hand sides matching `step_marginRows`. -/
+@[step_of HPolytope.emptyWeights]
+def HPolytope.step_marginRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) :
+    Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
   Fin.append
     (Fin.append (fun i => ToRat.toRat (P.bU i))
       (Fin.append (fun i => ToRat.toRat (P.beU i)) fun i => ToRat.toRat (P.beLN i)))
@@ -74,8 +78,8 @@ def HPolytope.emptyWeights (P : HPolytope 𝕋 (Vec 𝕋 h)) :
   let k := P.m + (P.me + P.me) + (h + h)
   -- maximise the margin `t`, the last variable
   let obj : Fin (h + 1) → ℚ := fun j => if j.val = h then 1 else 0
-  match dualCandidate (64 * (k + h + 2)) (HPolytope.aux_marginRows P)
-      (HPolytope.aux_marginRhs P) obj with
+  match dualCandidate (64 * (k + h + 2)) (HPolytope.step_marginRows P)
+      (HPolytope.step_marginRhs P) obj with
   | none => (fun _ => zero, fun _ => zero, fun _ => zero)
   | some w =>
     (fun i => ratUp (w (Fin.castAdd _ (Fin.castAdd _ i))),

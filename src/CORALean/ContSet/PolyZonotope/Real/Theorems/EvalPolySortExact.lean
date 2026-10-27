@@ -4,6 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySort
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolySortTailPoint
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -49,6 +50,14 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+/-- The shared factor count `evalPolySort` never leaves. -/
+@[step_of PolyZonotope.evalPolySort_exact]
+theorem PolyZonotope.step_evalPolySort_p (pZ : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n)) :
+    (pZ.evalPolySort coeffs).p = pZ.p := (pZ.evalPolySortP coeffs).2
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 section
@@ -64,16 +73,11 @@ private theorem PolyZonotope.aux_shift_point (pZ : PolyZonotope α) (v : α) (a 
 end
 
 
-/-- The shared factor count `evalPolySort` never leaves. -/
-theorem PolyZonotope.aux_evalPolySort_p (pZ : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n)) :
-    (pZ.evalPolySort coeffs).p = pZ.p := (pZ.evalPolySortP coeffs).2
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.evalPolySort_exact (pZ : PolyZonotope (Vec ℝ n))
     (coeffs : List (Vec ℝ n)) (a : Fin pZ.p → ℝ) : -- --- CONCL ---
-    (pZ.evalPolySort coeffs).point (fun l => a (Fin.cast (pZ.aux_evalPolySort_p coeffs) l))
+    (pZ.evalPolySort coeffs).point (fun l => a (Fin.cast (pZ.step_evalPolySort_p coeffs) l))
       = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i)
           (pZ.point a i) := by -- --- PROOF ---
   match coeffs with
@@ -84,7 +88,7 @@ theorem PolyZonotope.evalPolySort_exact (pZ : PolyZonotope (Vec ℝ n))
       PolyZonotope.evalPolyReal]
   | a0 :: rest =>
     calc (pZ.evalPolySort (a0 :: rest)).point
-          (fun l => a (Fin.cast (pZ.aux_evalPolySort_p (a0 :: rest)) l))
+          (fun l => a (Fin.cast (pZ.step_evalPolySort_p (a0 :: rest)) l))
         = (pZ.evalPolySortTailP rest 0).1.point
               (fun l => a (Fin.cast (pZ.evalPolySortTailP rest 0).2 l)) + a0 :=
           PolyZonotope.aux_shift_point _ _ _

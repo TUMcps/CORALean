@@ -134,8 +134,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitLongestGenUnion
-public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
-public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder
+public import CORALean.ContSet.Zonotope.Real.Theorems.OneStepSubsetClosedBall
+public import CORALean.ContSet.Zonotope.Real.Theorems.OneStepSubsetClosedBallOfReduceBoxOrder
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfMulEqOneOfSumAbsLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
@@ -433,6 +433,6 @@ product, `MtimesIntervalMatSymmBox` it at a symmetric matrix. `ReduceBySubsetAdd
 `CenterMemConstruct`'s nonemptiness, and priced by `HausdorffDistIntervalLe` at the sup norm and the
 `HausdorffDist2*` group at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse tie `absBound` to
 a sup-norm ball, which `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe`
-carry through their operations, `StepSubsetClosedBall` composes at `reach`'s shape, and
+carry through their operations, `OneStepSubsetClosedBall` composes at `reach`'s shape, and
 `SumSmulUpdate` is the sum a split changes, read by `SplitUnion`/`SplitIntersection`.
 -/

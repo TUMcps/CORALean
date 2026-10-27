@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCora
 public import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGen
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Tactic.FinCases
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -57,12 +58,16 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `zonotope([0;0],[1 0 1; 0 1 1])`: the generators `(1,0)`, `(0,1)`, `(1,1)`. -/
-def Zonotope.aux_three : Zonotope (Vec ℝ 2) :=
+@[step_of Zonotope.splitFirstGen_cora_crash]
+def Zonotope.step_three : Zonotope (Vec ℝ 2) :=
   ⟨3, fun _ => 0, fun j i => if j = 0 then (if i = 0 then 1 else 0)
     else if j = 1 then (if i = 0 then 0 else 1) else 1⟩
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `splitFirstGen` passes the argmax index on to `split`. -/
 private theorem Zonotope.aux_splitFirstGenCora_of_argmax {n : ℕ} {Z : Zonotope (Vec ℝ n)}
@@ -75,21 +80,21 @@ private theorem Zonotope.aux_splitFirstGenCora_of_argmax {n : ℕ} {Z : Zonotope
 
 /-- `splitFirstGen` picks the generator `(1,1)` and `split` errors on it. -/
 theorem Zonotope.splitFirstGen_cora_crash : -- --- CONCL ---
-    Zonotope.aux_three.splitFirstGenCora = none := by -- --- PROOF ---
+    Zonotope.step_three.splitFirstGenCora = none := by -- --- PROOF ---
   -- the box has two generators
-  have hlen : Zonotope.aux_three.boxCora.h = 2 := by
-    simp [Zonotope.boxCora, Zonotope.boxRadiusCora, Zonotope.aux_three, List.finRange,
+  have hlen : Zonotope.step_three.boxCora.h = 2 := by
+    simp [Zonotope.boxCora, Zonotope.boxRadiusCora, Zonotope.step_three, List.finRange,
       List.filter, Fin.sum_univ_three]
     norm_num
   -- the scores are `4` at generator `2` and `2` elsewhere
-  have hv : ∀ j : Fin 3, (∑ k : Fin 3, |Zonotope.aux_three.G j ⬝ᵥ Zonotope.aux_three.G k|) =
+  have hv : ∀ j : Fin 3, (∑ k : Fin 3, |Zonotope.step_three.G j ⬝ᵥ Zonotope.step_three.G k|) =
       if j = 2 then 4 else 2 := by
     intro j
     fin_cases j <;>
-      simp [Zonotope.aux_three, dotProduct, Fin.sum_univ_two, Fin.sum_univ_three] <;> norm_num
+      simp [Zonotope.step_three, dotProduct, Fin.sum_univ_two, Fin.sum_univ_three] <;> norm_num
   -- so the argmax is generator `2`, `index = 3`
   have harg : (List.finRange 3).argmax
-      (fun j : Fin 3 => ∑ k : Fin 3, |Zonotope.aux_three.G j ⬝ᵥ Zonotope.aux_three.G k|) =
+      (fun j : Fin 3 => ∑ k : Fin 3, |Zonotope.step_three.G j ⬝ᵥ Zonotope.step_three.G k|) =
         some 2 := by
     rw [List.argmax_eq_some_iff]
     refine ⟨by simp, fun a _ => ?_, fun a _ h2 => ?_⟩

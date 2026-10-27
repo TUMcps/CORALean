@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Logic.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -38,34 +39,39 @@ namespace CORALean.Real
 namespace ReduceUnderApproxDispatch
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The method names of `reduceUnderApprox` (old names identify with the new ones). -/
-inductive aux_Method
+@[step_of cora_legacy_dispatch]
+inductive step_Method
   | sadraddini | yang | raghuraman | kochdumper | scale | boxCone | nlp | cluster
   | boxLP | boxWetzlinger | boxNLP
   deriving DecidableEq
 
 /-- The methods CORA's comment calls `LEGACY`. -/
-def aux_isLegacy : aux_Method → Bool
+@[step_of cora_legacy_dispatch]
+def step_isLegacy : step_Method → Bool
   | .boxLP | .boxWetzlinger | .boxNLP => true
   | _ => false
 
 /-- What a call does: returns the set unchanged, or runs the method's routine. -/
-inductive aux_Outcome
+@[step_of cora_legacy_dispatch]
+inductive step_Outcome
   | unchanged
-  | runs (m : aux_Method)
+  | runs (m : step_Method)
   deriving DecidableEq
 
 /-- The nesting as written: the legacy `elseif`s hang on `if n*order < nrOfGens`. -/
-def aux_cora (needed : Bool) (m : aux_Method) : aux_Outcome :=
+@[step_of cora_legacy_dispatch]
+def step_cora (needed : Bool) (m : step_Method) : step_Outcome :=
   if needed then
-    if aux_isLegacy m then .unchanged else .runs m
+    if step_isLegacy m then .unchanged else .runs m
   else
-    if aux_isLegacy m then .runs m else .unchanged
+    if step_isLegacy m then .runs m else .unchanged
 
 /-- The nesting as intended: all methods inside the test, `else return`. -/
-def aux_intended (needed : Bool) (m : aux_Method) : aux_Outcome :=
+@[step_of cora_legacy_dispatch]
+def step_intended (needed : Bool) (m : step_Method) : step_Outcome :=
   if needed then .runs m else .unchanged
 
 
@@ -73,10 +79,10 @@ def aux_intended (needed : Bool) (m : aux_Method) : aux_Outcome :=
 
 /-- For a legacy method CORA does nothing where reduction is needed and runs the routine where
 it is not, both the reverse of the intended nesting. -/
-theorem cora_legacy_dispatch (m : aux_Method) (hm : aux_isLegacy m = true) :
-    (aux_cora true m = .unchanged ∧ aux_intended true m = .runs m) ∧
-      (aux_cora false m = .runs m ∧ aux_intended false m = .unchanged) := by
-  simp [aux_cora, aux_intended, hm]
+theorem cora_legacy_dispatch (m : step_Method) (hm : step_isLegacy m = true) :
+    (step_cora true m = .unchanged ∧ step_intended true m = .runs m) ∧
+      (step_cora false m = .runs m ∧ step_intended false m = .unchanged) := by
+  simp [step_cora, step_intended, hm]
 
 end ReduceUnderApproxDispatch
 

@@ -57,7 +57,7 @@ variable {n : ℕ}
 /-- Dropping generators only shrinks: the ones left out get coefficient zero. -/
 private theorem aux_genSelection_subset {α : Type} [AddCommGroup α] [Module ℝ α]
     (Z : Zonotope α) (σ : Equiv.Perm (Fin Z.h)) (ξ : ℕ) : -- --- CONCL ---
-    (Z.aux_genSelection σ Z.c ξ).construct ⊆ Z.construct := by -- --- PROOF ---
+    (Z.step_genSelection σ Z.c ξ).construct ⊆ Z.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   set f : Fin (min ξ Z.h) → Fin Z.h :=
     fun i => σ (Fin.castLE (min_le_right ξ Z.h) i) with hf

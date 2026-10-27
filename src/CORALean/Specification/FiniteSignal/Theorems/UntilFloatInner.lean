@@ -84,13 +84,13 @@ private theorem FiniteSignal.aux_at?_isSome {T V : Type} [LinearOrder T] [Zero T
 /-- A float piece lies inside the exact piece of the same runs read as reals. -/
 private theorem FiniteSignal.aux_untilPieceFloat_sub (eps p : 𝕋) (q : WithTop 𝕋)
     (L R : Real.Interval 𝕋) (heps : 0 ≤ toReal eps) (lo hi : 𝕋)
-    (h : FiniteSignal.aux_untilPieceFloat eps p q L R = some ⟨lo, hi⟩) : -- --- CONCL ---
+    (h : FiniteSignal.step_untilPieceFloat eps p q L R = some ⟨lo, hi⟩) : -- --- CONCL ---
     toReal lo < toReal hi ∧ ∃ lo' hi', FiniteSignal.untilPiece (toReal eps) (toReal p)
       (STLInterval.toEReal q) ⟨toReal L.inf, toReal L.sup⟩ ⟨toReal R.inf, toReal R.sup⟩ =
         some ⟨lo', hi'⟩ ∧ lo' ≤ toReal lo ∧ toReal hi ≤ hi' := by -- --- PROOF ---
   obtain ⟨Li, Ls⟩ := L
   obtain ⟨Ri, Rs⟩ := R
-  simp only [FiniteSignal.aux_untilPieceFloat] at h
+  simp only [FiniteSignal.step_untilPieceFloat] at h
   -- the meet of the runs is read exactly
   have hlb : toReal (if Li ≤ Ri then Ri else Li) = max (toReal Li) (toReal Ri) := by
     split_ifs with hh
@@ -179,11 +179,11 @@ private theorem FiniteSignal.aux_mapTime_at?_isSome (s : FiniteSignal 𝕋 Bool)
 private theorem aux_untilFloat_fold (eps p : 𝕋) (q : WithTop 𝕋) (dur : 𝕋) (h0 : 0 ≤ toReal dur) :
     ∀ (prs : List (Real.Interval 𝕋 × Real.Interval 𝕋)) (sig : FiniteSignal 𝕋 Bool),
       (sig.mapTime toReal).IsValid → (sig.mapTime toReal).duration = toReal dur →
-      ∃ r, prs.foldlM (FiniteSignal.aux_untilStepFloat eps p q dur) sig = some r ∧
+      ∃ r, prs.foldlM (FiniteSignal.step_untilStepFloat eps p q dur) sig = some r ∧
         (r.mapTime toReal).IsValid ∧ (r.mapTime toReal).duration = toReal dur ∧
         ∀ t : ℝ, 0 ≤ t → t ≤ toReal dur → ∃ v, (r.mapTime toReal).at? t = some v ∧
           (v = true ↔ ((sig.mapTime toReal).at? t = some true ∨ ∃ LR ∈ prs, ∃ lo hi,
-            FiniteSignal.aux_untilPieceFloat eps p q LR.1 LR.2 = some ⟨lo, hi⟩ ∧
+            FiniteSignal.step_untilPieceFloat eps p q LR.1 LR.2 = some ⟨lo, hi⟩ ∧
               toReal lo < toReal hi ∧ (0 < toReal hi ∧ toReal lo < toReal dur ∧ toReal lo ≤ t ∧
                 (t < toReal hi ∨ toReal dur ≤ toReal hi))))
   | [], sig, hs, hd => by
@@ -194,12 +194,12 @@ private theorem aux_untilFloat_fold (eps p : 𝕋) (q : WithTop 𝕋) (dur : �
     -- pairs of runs after `LR`, with the signal after it
     have hrest : ∀ sig' : FiniteSignal 𝕋 Bool, (sig'.mapTime toReal).IsValid →
         (sig'.mapTime toReal).duration = toReal dur →
-        FiniteSignal.aux_untilStepFloat eps p q dur sig LR = some sig' →
-        ∃ r, (LR :: rest).foldlM (FiniteSignal.aux_untilStepFloat eps p q dur) sig = some r ∧
+        FiniteSignal.step_untilStepFloat eps p q dur sig LR = some sig' →
+        ∃ r, (LR :: rest).foldlM (FiniteSignal.step_untilStepFloat eps p q dur) sig = some r ∧
           (r.mapTime toReal).IsValid ∧ (r.mapTime toReal).duration = toReal dur ∧
           ∀ t : ℝ, 0 ≤ t → t ≤ toReal dur → ∃ v, (r.mapTime toReal).at? t = some v ∧
             (v = true ↔ ((sig'.mapTime toReal).at? t = some true ∨ ∃ LR' ∈ rest, ∃ lo hi,
-              FiniteSignal.aux_untilPieceFloat eps p q LR'.1 LR'.2 = some ⟨lo, hi⟩ ∧
+              FiniteSignal.step_untilPieceFloat eps p q LR'.1 LR'.2 = some ⟨lo, hi⟩ ∧
                 toReal lo < toReal hi ∧ (0 < toReal hi ∧ toReal lo < toReal dur ∧
                   toReal lo ≤ t ∧ (t < toReal hi ∨ toReal dur ≤ toReal hi)))) :=
       fun sig' hv hdd hstep => by
@@ -208,10 +208,10 @@ private theorem aux_untilFloat_fold (eps p : 𝕋) (q : WithTop 𝕋) (dur : �
         rw [List.foldlM_cons, hstep]
         exact hr1
     -- the case of the piece of `LR`
-    rcases hpc : FiniteSignal.aux_untilPieceFloat eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
+    rcases hpc : FiniteSignal.step_untilPieceFloat eps p q LR.1 LR.2 with _ | ⟨lo, hi⟩
     · -- empty: the signal stays
       obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig hs hd
-        (by simp [FiniteSignal.aux_untilStepFloat, hpc])
+        (by simp [FiniteSignal.step_untilStepFloat, hpc])
       refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
       obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
       refine ⟨v, hv, hvi.trans ?_⟩
@@ -234,7 +234,7 @@ private theorem aux_untilFloat_fold (eps p : 𝕋) (q : WithTop 𝕋) (dur : �
         have hdd : (sig''.mapTime toReal).duration = toReal dur := by
           rw [hc3, hd, hind3, min_self]
         obtain ⟨r, hr1, hr2, hr3, hr4⟩ := hrest sig'' hc2 hdd (by
-          simp [FiniteSignal.aux_untilStepFloat, hpc, hlh, hind1, hc1])
+          simp [FiniteSignal.step_untilStepFloat, hpc, hlh, hind1, hc1])
         refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, ?_⟩
@@ -255,7 +255,7 @@ private theorem aux_untilFloat_fold (eps p : 𝕋) (q : WithTop 𝕋) (dur : �
         simp [hlh', or_assoc]
       · -- a piece without length: the signal stays
         obtain ⟨r, hr1, hr2, hr3, hr4⟩ :=
-          hrest sig hs hd (by simp [FiniteSignal.aux_untilStepFloat, hpc, hlh])
+          hrest sig hs hd (by simp [FiniteSignal.step_untilStepFloat, hpc, hlh])
         refine ⟨r, hr1, hr2, hr3, fun t ht0 ht1 => ?_⟩
         obtain ⟨v, hv, hvi⟩ := hr4 t ht0 ht1
         refine ⟨v, hv, hvi.trans ?_⟩

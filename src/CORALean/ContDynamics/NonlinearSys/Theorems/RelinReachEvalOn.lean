@@ -112,7 +112,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T 
     intro hi
     have hiN : i < N := Nat.lt_of_succ_le hi
     have hwin : Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt) ⊆ T :=
-      step_subset_horizon hΔt hT hiN
+      oneStep_subset_horizon hΔt hT hiN
     -- step `i`'s linearized run, and the sample it takes over that window
     have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
     rw [hexp] at hwin

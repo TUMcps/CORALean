@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Data.Fintype.Basic
 public import Mathlib.Data.Finset.SDiff
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,11 +43,12 @@ namespace CORALean
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Alg. 1, l. 3-5]: drop `i` from `E` when the oracle says the result
 stays sufficient, otherwise keep `E` as it is. -/
-def aux_greedyExplanationStep (suff : Finset (Fin n) → Bool) (E : Finset (Fin n)) (i : Fin n) :
+@[step_of greedyMinimalExplanation]
+def step_greedyExplanationStep (suff : Finset (Fin n) → Bool) (E : Finset (Fin n)) (i : Fin n) :
     Finset (Fin n) :=
   -- 4. `S ∖ {i}`, the candidate with feature `i` dropped
   let S' := E \ {i}
@@ -60,7 +62,7 @@ def aux_greedyExplanationStep (suff : Finset (Fin n) → Bool) (E : Finset (Fin 
 the result sufficient. -/
 def greedyMinimalExplanation (n : ℕ) (suff : Finset (Fin n) → Bool) : Finset (Fin n) :=
   -- 1. `S ← [n]`, 2. `for each feature i`: lines 3-5 are the step above, 6. `return S`
-  (List.finRange n).foldl (aux_greedyExplanationStep suff) Finset.univ
+  (List.finRange n).foldl (step_greedyExplanationStep suff) Finset.univ
 
 end CORALean
 

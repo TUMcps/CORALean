@@ -81,8 +81,8 @@ private theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * d
 /-- The real input feed lies in the float feed box. -/
 private theorem LinearARX.aux_feed_mem_feedBox (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec 𝕋 du)
     (k : ℕ) :
-    sys.feed (fun j => Scalar.toRealVec (u j)) k ∈ construct (sys.aux_feedBox u k) := by
-  unfold LinearARX.feed LinearARX.aux_feedBox
+    sys.feed (fun j => Scalar.toRealVec (u j)) k ∈ construct (sys.step_feedBox u k) := by
+  unfold LinearARX.feed LinearARX.step_feedBox
   rw [Fin.sum_univ_succ, Fin.sum_univ_def]
   exact LinearARX.aux_foldl_mem_box sys.inputMat (fun j => u (k + p - j)) (List.finRange p) _ _
     (LinearARX.aux_mulVec_mem_box _ _)
@@ -120,7 +120,7 @@ theorem LinearARX.simulate_mem_simulateBox (sys : LinearARX 𝕋 dy du p) (y₀ 
       (u := fun j => Scalar.toRealVec (u j)) hrec k
   -- the feed lies in the feed box; then the generic box induction
   have hu := fun k => sys.aux_feed_mem_feedBox u k
-  exact sys.toLinearSysDT.mem_simulateBoxIn (Interval.point y₀) (sys.aux_feedBox u) h0 hu hstep k
+  exact sys.toLinearSysDT.mem_simulateBoxIn (Interval.point y₀) (sys.step_feedBox u) h0 hu hstep k
 
 end CORALean
 

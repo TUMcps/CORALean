@@ -47,8 +47,8 @@ namespace CORALean.Real
 bound on the cost. -/
 private theorem PolyZonotope.aux_compactCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h')
     (hq : q ≤ q') :
-    PolyZonotope.aux_compactCost n p h q ≤ PolyZonotope.aux_compactCost n p h' q' := by
-  cost_mono [PolyZonotope.aux_compactCost]
+    PolyZonotope.step_compactCost n p h q ≤ PolyZonotope.step_compactCost n p h' q' := by
+  cost_mono [PolyZonotope.step_compactCost]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

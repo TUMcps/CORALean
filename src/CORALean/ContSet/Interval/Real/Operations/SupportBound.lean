@@ -4,13 +4,14 @@ public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
 public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
 /-!
 # A box answers a direction corner by corner, at `Vec ℝ n`
 
-A one-line specialisation of `Interval.aux_supportBoundEntrywise`: `Vec ℝ n`'s
+A one-line specialisation of `Interval.step_supportBoundEntrywise`: `Vec ℝ n`'s
 `Entrywise` instance is the identity on both `entry` and `ofEntry`, so
 `ofEntry (Pi.single i 1)` reduces to `Pi.single i 1` by `rfl` and the general
 `val`/`le` match this type's exactly — checked, not assumed. Kept under its own
@@ -37,14 +38,15 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 open Entrywise
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 /-- As `Interval.supportBound`, but over any `Entrywise` ambient type. -/
-noncomputable def Interval.aux_supportBoundEntrywise [Fintype ι] [DecidableEq ι]
+@[step_of Interval.supportBound]
+noncomputable def Interval.step_supportBoundEntrywise [Fintype ι] [DecidableEq ι]
     (I : Interval α) (c : α →ₗ[ℝ] ℝ) : SupportBound I.construct c where
   val := ∑ i, max (c (ofEntry (Pi.single i 1)) * entry I.inf i)
                   (c (ofEntry (Pi.single i 1)) * entry I.sup i)
@@ -67,7 +69,7 @@ end
 coordinate, each attained by moving that coordinate to its far endpoint. -/
 noncomputable def Interval.supportBound (I : Interval (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportBound I.construct c :=
-  Interval.aux_supportBoundEntrywise I c
+  Interval.step_supportBoundEntrywise I c
 
 end CORALean.Real
 

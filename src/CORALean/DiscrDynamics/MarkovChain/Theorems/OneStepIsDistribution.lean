@@ -42,7 +42,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With `T.T i` column-stochastic, a distribution over the cells stays one after a step. -/
-theorem MarkovChain.step_isDistribution (M : MarkovChain n m) (h : M.IsStochastic) (i : Fin m)
+theorem MarkovChain.oneStep_isDistribution (M : MarkovChain n m) (h : M.IsStochastic) (i : Fin m)
     {p : Fin (M.field.nrOfCells + 1) → ℝ} (hp0 : ∀ s, 0 ≤ p s) (hp1 : ∑ s, p s = 1) :
     (∀ s, 0 ≤ (M.T.T i *ᵥ p) s) ∧ ∑ s, (M.T.T i *ᵥ p) s = 1 := by
   refine ⟨fun s => Matrix.nonneg_mulVec_of_mem_colStochastic (h i).1 hp0 s, ?_⟩

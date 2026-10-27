@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.EuclideanNorm
 public import CORALean.Global.Tensor
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -10,7 +11,7 @@ public import CORALean.Global.Tensor
 
 The paper's per-neuron weight [1, Def. 4.12]: `σ^(E·S)_k(j) = d_k(j)·s_k(j)`,
 `Def. 4.9`'s approximation error times `Def. 4.11`'s sensitivity, so it is
-literally `aux_refinementRankSensitivity` scaled — the Euclidean norm of the neuron's
+literally `step_refinementRankSensitivity` scaled — the Euclidean norm of the neuron's
 column of the backpropagated Jacobian, against the error its own relaxation
 leaves. `Operations.RefineWorst` sums it into a layer's rank and
 `Operations.RefineWorstNeurons` reads it unaggregated — the same quantity ranks
@@ -45,11 +46,12 @@ namespace CORALean
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Neuron `j`'s rank under `σ`-Sensitivity [1, Def. 4.11]: the Euclidean
 norm of its column of the sensitivity, `‖J(·, j)‖₂`. -/
-noncomputable def aux_refinementRankSensitivity (J : Mat ℝ m n) (j : Fin n) : ℝ :=
+@[step_of refinementRank]
+noncomputable def step_refinementRankSensitivity (J : Mat ℝ m n) (j : Fin n) : ℝ :=
   ‖fun i => J i j‖₂
 
 
@@ -59,7 +61,7 @@ noncomputable def aux_refinementRankSensitivity (J : Mat ℝ m n) (j : Fin n) : 
 `‖S_k(j,·)‖₂`, the Euclidean norm of its column of the sensitivity, times the
 error `d_k(j)` its own relaxation leaves. -/
 noncomputable def refinementRank (J : Mat ℝ m n) (d : Vec ℝ n) (j : Fin n) : ℝ :=
-  aux_refinementRankSensitivity J j * |d j|
+  step_refinementRankSensitivity J j * |d j|
 
 end CORALean
 

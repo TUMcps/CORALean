@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepErrorBoxFloat
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -41,16 +42,17 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `k` steps of the recursion, from `[e^{AΔt}]` and the box paid at each step. -/
-def aux_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope (Vec 𝕋 n)) :
+@[step_of LinearSys.reachInputErrorFloat]
+def step_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope (Vec 𝕋 n)) :
     ℕ → Zonotope (Vec 𝕋 n)
   | 0 => Zonotope.point fun _ => zero
   | k + 1 =>
     Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eAΔt
-      (aux_reachInputErrorFloat eAΔt box k)) box
+      (step_reachInputErrorFloat eAΔt box k)) box
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -61,7 +63,7 @@ def LinearSys.reachInputErrorFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : �
     (U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                          -- [e^{AΔt}]
   let box := sys.timePointStepErrorBoxFloat Δt η U                -- paid afresh at every step
-  aux_reachInputErrorFloat eAΔt box k
+  step_reachInputErrorFloat eAΔt box k
 
 end CORALean
 

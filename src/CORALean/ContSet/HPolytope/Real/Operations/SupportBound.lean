@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.BoundOfDual
 public import CORALean.Global.LinProg.Simplex
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -46,20 +47,23 @@ open scoped Classical
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- A functional's coordinates, read off the standard basis: the simplex sees
 numbers, never maps. -/
-def aux_coeff (f : Vec ℝ n →ₗ[ℝ] ℝ) (j : Fin n) : ℝ := f fun k => if k = j then 1 else 0
+@[step_of HPolytope.supportBound]
+def step_coeff (f : Vec ℝ n →ₗ[ℝ] ℝ) (j : Fin n) : ℝ := f fun k => if k = j then 1 else 0
 
 /-- The inequality system the simplex is given: the rows, then each equality
 row twice with opposite signs. -/
-def aux_ineqs (P : HPolytope (Vec ℝ n)) : Fin (P.m + (P.me + P.me)) → Fin n → ℝ :=
-  Fin.append (fun i => aux_coeff (P.A i))
-    (Fin.append (fun i => aux_coeff (P.Ae i)) fun i j => -aux_coeff (P.Ae i) j)
+@[step_of HPolytope.supportBound]
+def step_ineqs (P : HPolytope (Vec ℝ n)) : Fin (P.m + (P.me + P.me)) → Fin n → ℝ :=
+  Fin.append (fun i => step_coeff (P.A i))
+    (Fin.append (fun i => step_coeff (P.Ae i)) fun i j => -step_coeff (P.Ae i) j)
 
-/-- The right-hand sides matching `aux_ineqs`. -/
-def aux_rhs (P : HPolytope (Vec ℝ n)) : Fin (P.m + (P.me + P.me)) → ℝ :=
+/-- The right-hand sides matching `step_ineqs`. -/
+@[step_of HPolytope.supportBound]
+def step_rhs (P : HPolytope (Vec ℝ n)) : Fin (P.m + (P.me + P.me)) → ℝ :=
   Fin.append P.b (Fin.append P.be fun i => -P.be i)
 
 
@@ -70,8 +74,8 @@ below — an unbounded description, or a pivot budget, linear in the problem
 size, that ran out. -/
 noncomputable def HPolytope.supportBound (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     Option (SupportBound P.construct c) :=
-  match dualCandidate (64 * (P.m + P.me + P.me + n + 1)) (aux_ineqs P) (aux_rhs P)
-      (aux_coeff c) with
+  match dualCandidate (64 * (P.m + P.me + P.me + n + 1)) (step_ineqs P) (step_rhs P)
+      (step_coeff c) with
   | none => none
   | some w =>
     -- the equality rows' two weights recombine into the one free dual variable

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import CORALean.Global.Tensor
 public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -72,10 +73,11 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The polynomial zonotope `{c}`: no factor, no generator. -/
-def PolyZonotope.aux_point (c : Vec ℝ 2) : PolyZonotope (Vec ℝ 2) :=
+@[step_of PolyZonotope.representsa_capsule_cora_crash]
+def PolyZonotope.step_point (c : Vec ℝ 2) : PolyZonotope (Vec ℝ 2) :=
   ⟨0, 0, 0, c, Fin.elim0, fun k => k.elim0, Fin.elim0⟩
 
 
@@ -83,12 +85,12 @@ def PolyZonotope.aux_point (c : Vec ℝ 2) : PolyZonotope (Vec ℝ 2) :=
 
 /-- CORA's test errors on `{c}`, which is the capsule `Capsule.ofPoint c`. -/
 theorem PolyZonotope.representsa_capsule_cora_crash (c : Vec ℝ 2) :
-    (PolyZonotope.aux_point c).representsaCapsuleCora = none ∧
-      (PolyZonotope.aux_point c).construct = (Capsule.ofPoint c).construct := by
-  refine ⟨by simp [PolyZonotope.representsaCapsuleCora, PolyZonotope.aux_point], ?_⟩
+    (PolyZonotope.step_point c).representsaCapsuleCora = none ∧
+      (PolyZonotope.step_point c).construct = (Capsule.ofPoint c).construct := by
+  refine ⟨by simp [PolyZonotope.representsaCapsuleCora, PolyZonotope.step_point], ?_⟩
   ext x
   rw [Capsule.mem_ofPoint_iff]
-  simp [PolyZonotope.construct, PolyZonotope.aux_point, eq_comm]
+  simp [PolyZonotope.construct, PolyZonotope.step_point, eq_comm]
 
 end CORALean.Real
 

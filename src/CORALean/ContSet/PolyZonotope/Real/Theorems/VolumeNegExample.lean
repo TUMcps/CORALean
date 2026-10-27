@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeOfQZero
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -33,27 +34,28 @@ over-approximation of it.
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `-α`: one factor, one generator `-1`, exponent `1`, center `0`. -/
-abbrev PolyZonotope.aux_negAlpha : PolyZonotope (Vec ℝ 1) :=
+@[step_of PolyZonotope.volume_neg_example]
+abbrev PolyZonotope.step_negAlpha : PolyZonotope (Vec ℝ 1) :=
   ⟨1, 1, 0, fun _ => 0, fun _ _ => -1, fun _ _ => 1, Fin.elim0⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.volume_neg_example : -- --- CONCL ---
-    PolyZonotope.aux_negAlpha.volume = some (-2) := by -- --- PROOF ---
+    PolyZonotope.step_negAlpha.volume = some (-2) := by -- --- PROOF ---
   -- the derivative along the one factor is the constant `-1`
   have hconst : ∀ (k : Fin 1) (a : Fin 1 → ℝ),
-      (PolyZonotope.aux_negAlpha.jacobian k).point a 0 = -1 := by
+      (PolyZonotope.step_negAlpha.jacobian k).point a 0 = -1 := by
     intro k a
     fin_cases k
     simp [PolyZonotope.point, PolyZonotope.jacobian, PolyZonotope.monomial,
-      PolyZonotope.aux_negAlpha]
+      PolyZonotope.step_negAlpha]
   -- so the integral over `[-1,1]` is `-1` times the length `2`
-  have hint : PolyZonotope.aux_negAlpha.aux_jacobianDetIntegral (n := 1) rfl = -2 := by
-    unfold PolyZonotope.aux_jacobianDetIntegral
+  have hint : PolyZonotope.step_negAlpha.step_jacobianDetIntegral (n := 1) rfl = -2 := by
+    unfold PolyZonotope.step_jacobianDetIntegral
     simp only [Matrix.det_unique, Matrix.of_apply, Fin.default_eq_zero]
     refine (MeasureTheory.setIntegral_congr_fun (g := fun _ => (-1 : ℝ)) measurableSet_Icc
       (fun a _ => hconst _ a)).trans ?_

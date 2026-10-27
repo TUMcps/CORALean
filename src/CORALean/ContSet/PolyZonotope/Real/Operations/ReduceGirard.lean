@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,7 +13,7 @@ Split out of `Reduce.lean` (issue #62): each `reduce`-family rule earns its own 
 CORA. The two blocks are ranked as one, which bounds the result: `(o-1)·n` of the concatenation
 are kept, so the `n` the box adds brings the total back to `n·o`, where ranking the dependent
 block alone leaves `q` free to grow. The joint ranking enters as one number,
-`aux_girardKeptDep`, and each block is cut at its share by the same metric.
+`step_girardKeptDep`, and each block is cut at its share by the same metric.
 
 ## Inputs
 * `pZ` – polynomial zonotope
@@ -35,13 +36,14 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- file-local: only `reduceGirard` below needs it
 /-- How many of the `K` best-ranked generators overall are dependent: CORA's
 joint accounting as one number, `rank` bound by a `let` so the sort runs once.
 The cap at `K` never binds and is there to keep the order bound arithmetic. -/
-noncomputable def PolyZonotope.aux_girardKeptDep (pZ : PolyZonotope (Vec ℝ n)) (K : ℕ) : ℕ :=
+@[step_of PolyZonotope.reduceGirard]
+noncomputable def PolyZonotope.step_girardKeptDep (pZ : PolyZonotope (Vec ℝ n)) (K : ℕ) : ℕ :=
   let rank := (Tuple.sort fun l =>
     -PolyZonotope.girardMetric (Fin.append pZ.G pZ.GI) l).symm
   min K (Finset.univ.filter fun l : Fin pZ.h =>
@@ -57,7 +59,7 @@ noncomputable def PolyZonotope.reduceGirard (pZ : PolyZonotope (Vec ℝ n)) (o :
     PolyZonotope (Vec ℝ n) :=
   if o * n < pZ.h + pZ.q then
     let K := (o - 1) * n
-    let d := pZ.aux_girardKeptDep K
+    let d := pZ.step_girardKeptDep K
     pZ.reduceBy (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) d)
       (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.GI) (K - d))
   else pZ

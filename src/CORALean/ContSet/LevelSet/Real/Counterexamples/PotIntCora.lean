@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
 public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -60,27 +61,30 @@ namespace CORALean.Real
 variable {n m : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The guard `x = 0 ∧ x - 1 ≤ 0`. -/
-def LevelSet.aux_G : LevelSet 1 :=
+@[step_of LevelSet.potIntCora_misses_counterexample]
+def LevelSet.step_G : LevelSet 1 :=
   ⟨2, fun x i => if i = 0 then x 0 else x 0 - 1, fun i => if i.val = 0 then .eq else .le⟩
 
 /-- The reach set `[0, 1]`. -/
-def LevelSet.aux_R : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
+@[step_of LevelSet.potIntCora_misses_counterexample]
+def LevelSet.step_R : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
 
 /-- The bounds of the guard function over `[0, 1]`: `(0, 1)` and `(-1, 0)`. -/
-def LevelSet.aux_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → Interval ℝ :=
+@[step_of LevelSet.potIntCora_misses_counterexample]
+def LevelSet.step_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → Interval ℝ :=
   fun i => if i.val = 0 then ⟨0, 1⟩ else ⟨-1, 0⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.potIntCora_misses_counterexample : -- --- CONCL ---
-    LevelSet.aux_G.construct ∩ LevelSet.aux_R.construct ≠ ∅ ∧
-      (∀ i : Fin 2, IsRangeBound (fun x => LevelSet.aux_G.f x i) LevelSet.aux_R.construct
-        (LevelSet.aux_BG LevelSet.aux_G 0 i).inf (LevelSet.aux_BG LevelSet.aux_G 0 i).sup) ∧
-      (0, 0) ∉ LevelSet.potIntCora [LevelSet.aux_G] 1 LevelSet.aux_BG := by -- --- PROOF ---
+    LevelSet.step_G.construct ∩ LevelSet.step_R.construct ≠ ∅ ∧
+      (∀ i : Fin 2, IsRangeBound (fun x => LevelSet.step_G.f x i) LevelSet.step_R.construct
+        (LevelSet.step_BG LevelSet.step_G 0 i).inf (LevelSet.step_BG LevelSet.step_G 0 i).sup) ∧
+      (0, 0) ∉ LevelSet.potIntCora [LevelSet.step_G] 1 LevelSet.step_BG := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩
   · -- the point `0` is in both
     intro h
@@ -88,22 +92,22 @@ theorem LevelSet.potIntCora_misses_counterexample : -- --- CONCL ---
       rw [← h]
       refine ⟨?_, fun i => ⟨le_rfl, zero_le_one⟩⟩
       show ∀ i : Fin 2, _
-      refine Fin.forall_fin_two.mpr ⟨?_, ?_⟩ <;> simp [LevelSet.aux_G, CompOp.holds]
+      refine Fin.forall_fin_two.mpr ⟨?_, ?_⟩ <;> simp [LevelSet.step_G, CompOp.holds]
     exact this
   · -- the bounds are range bounds
     refine Fin.forall_fin_two.mpr ⟨fun x hx => ?_, fun x hx => ?_⟩
     · have h0 := hx 0
-      simp only [LevelSet.aux_BG, LevelSet.aux_G]
+      simp only [LevelSet.step_BG, LevelSet.step_G]
       exact ⟨h0.1, h0.2⟩
     · have h0 := hx 0
       have h1 : (0 : ℝ) ≤ x 0 := h0.1
       have h2 : x 0 ≤ 1 := h0.2
-      simp only [LevelSet.aux_BG, LevelSet.aux_G]
+      simp only [LevelSet.step_BG, LevelSet.step_G]
       exact ⟨by simp; linarith, by simp; linarith⟩
   · -- the `==` row reads `0 < 0`
     rintro ⟨_, _, h⟩
     have := h (⟨0, by decide⟩ : Fin 2)
-    simp [LevelSet.aux_G, LevelSet.aux_BG] at this
+    simp [LevelSet.step_G, LevelSet.step_BG] at this
 
 end CORALean.Real
 

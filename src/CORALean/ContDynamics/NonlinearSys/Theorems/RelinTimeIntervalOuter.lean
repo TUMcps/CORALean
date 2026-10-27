@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepSubsetHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
@@ -112,7 +112,7 @@ theorem NonlinearSys.IsTrajectory.relinTimeInterval_outer {sys : NonlinearSys n 
   have hRi := traj.relinReach_outer_inputSolution hΔt hT hR (q + 2) hε hconv hclosed hbdd
     hRconv hRclosed hRbdd ho i hi.le
   -- the run re-anchored at the start of step `i`, from what `relinReach` encloses there
-  have hwin := step_subset_horizon hΔt.le hT hi
+  have hwin := oneStep_subset_horizon hΔt.le hT hi
   have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
   have hmaps : Set.MapsTo (fun s => (i : ℝ) * Δt + s) (Set.Icc (0 : ℝ) Δt) T := by
     intro s hs

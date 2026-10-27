@@ -5,6 +5,7 @@ public import CORALean.Global.Float.RatUp
 public import CORALean.Global.Float.Interfaces
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.LinProg.Simplex
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -43,18 +44,20 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {h : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The rows in ℚ, exactly: `A`, `Ae`, `-Ae`, then the unit box `I` and `-I`. -/
-def HPolytope.aux_boxRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
+@[step_of HPolytope.dualWeights]
+def HPolytope.step_boxRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
     Fin (P.m + (P.me + P.me) + (h + h)) → Fin h → ℚ :=
   Fin.append
     (Fin.append (fun i j => ToRat.toRat (P.A i j))
       (Fin.append (fun i j => ToRat.toRat (P.Ae i j)) fun i j => -ToRat.toRat (P.Ae i j)))
     (Fin.append (fun i j => if i = j then 1 else 0) fun i j => if i = j then -1 else 0)
 
-/-- The right-hand sides matching `aux_boxRows`. -/
-def HPolytope.aux_boxRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
+/-- The right-hand sides matching `step_boxRows`. -/
+@[step_of HPolytope.dualWeights]
+def HPolytope.step_boxRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
   Fin.append
     (Fin.append (fun i => ToRat.toRat (P.bU i))
       (Fin.append (fun i => ToRat.toRat (P.beU i)) fun i => ToRat.toRat (P.beLN i)))
@@ -69,7 +72,7 @@ where the simplex returns nothing. A proposal, not a certificate. -/
 def HPolytope.dualWeights (P : HPolytope 𝕋 (Vec 𝕋 h)) (d : Fin h → ℚ) :
     Vec 𝕋 P.m × Vec 𝕋 P.me × Vec 𝕋 P.me :=
   let k := P.m + (P.me + P.me) + (h + h)
-  match dualCandidate (64 * (k + h + 1)) (HPolytope.aux_boxRows P) (HPolytope.aux_boxRhs P) d with
+  match dualCandidate (64 * (k + h + 1)) (HPolytope.step_boxRows P) (HPolytope.step_boxRhs P) d with
   | none => (fun _ => zero, fun _ => zero, fun _ => zero)
   | some w =>
     (fun i => ratUp (w (Fin.castAdd _ (Fin.castAdd _ i))),

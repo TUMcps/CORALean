@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 [1, Alg. 1], lines 8-13, one `let` each, for `x_{k+1} = A x_k + B u_k + E w_k`,
 `y_k = C x_k + F v_k` and the observer gain `L`. Real only, as CORA's interval observer
-(`aux_observeIntervalStep`) is: no float layer of the observers is written yet.
+(`step_observeIntervalStep`) is: no float layer of the observers is written yet.
 
 ## Inputs
 * `sys` – system

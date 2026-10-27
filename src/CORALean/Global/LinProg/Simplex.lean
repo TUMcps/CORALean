@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Algebra.Field.Defs
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -42,30 +43,34 @@ namespace CORALean
 variable {𝕂 : Type} [Field 𝕂] [LinearOrder 𝕂]
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- A tableau entry, out of range reading as zero, so every loop below indexes
 by `ℕ` and none of them carries a range proof. -/
-def aux_entry (T : Array (Array 𝕂)) (i j : ℕ) : 𝕂 := (T.getD i #[]).getD j 0
+@[step_of dualCandidate]
+def step_entry (T : Array (Array 𝕂)) (i j : ℕ) : 𝕂 := (T.getD i #[]).getD j 0
 
 /-- Row `r` scaled to a unit pivot in column `q`, that column then eliminated
 from every other row, the objective row included. -/
-def aux_pivot (T : Array (Array 𝕂)) (r q : ℕ) : Array (Array 𝕂) :=
-  let piv := (T.getD r #[]).map (· / aux_entry T r q)
+@[step_of dualCandidate]
+def step_pivot (T : Array (Array 𝕂)) (r q : ℕ) : Array (Array 𝕂) :=
+  let piv := (T.getD r #[]).map (· / step_entry T r q)
   T.mapIdx fun i row =>
     if i = r then piv else row.mapIdx fun j a => a - row.getD q 0 * piv.getD j 0
 
 /-- Bland's entering column: the first improving one, which is what keeps the
 loop from cycling without anything proving that it does not. -/
-def aux_enter (T : Array (Array 𝕂)) (obj lim : ℕ) : Option ℕ :=
-  (List.range lim).find? fun q => if aux_entry T obj q < 0 then true else false
+@[step_of dualCandidate]
+def step_enter (T : Array (Array 𝕂)) (obj lim : ℕ) : Option ℕ :=
+  (List.range lim).find? fun q => if step_entry T obj q < 0 then true else false
 
 /-- The ratio test, ties broken by the smaller basic index — Bland again. -/
-def aux_leave (T : Array (Array 𝕂)) (basis : Array ℕ) (rhs q rows : ℕ) : Option ℕ :=
+@[step_of dualCandidate]
+def step_leave (T : Array (Array 𝕂)) (basis : Array ℕ) (rhs q rows : ℕ) : Option ℕ :=
   Prod.fst <$> (List.range rows).foldl (fun best r =>
-    let a := aux_entry T r q
+    let a := step_entry T r q
     if a ≤ 0 then best else
-      let t := aux_entry T r rhs / a
+      let t := step_entry T r rhs / a
       match best with
       | none => some (r, t)
       | some (r', t') =>
@@ -74,37 +79,40 @@ def aux_leave (T : Array (Array 𝕂)) (basis : Array ℕ) (rhs q rows : ℕ) : 
 
 /-- One pivot per unit of fuel. Exhaustion, optimality and an unbounded
 objective all just stop, and the caller reads the tableau to tell them apart. -/
-def aux_run (fuel : ℕ) (T : Array (Array 𝕂)) (basis : Array ℕ) (obj rhs rows lim : ℕ) :
+@[step_of dualCandidate]
+def step_run (fuel : ℕ) (T : Array (Array 𝕂)) (basis : Array ℕ) (obj rhs rows lim : ℕ) :
     Array (Array 𝕂) × Array ℕ :=
   match fuel with
   | 0 => (T, basis)
   | f + 1 =>
-    match aux_enter T obj lim with
+    match step_enter T obj lim with
     | none => (T, basis)
     | some q =>
-      match aux_leave T basis rhs q rows with
+      match step_leave T basis rhs q rows with
       | none => (T, basis)
-      | some r => aux_run f (aux_pivot T r q) (basis.set! r q) obj rhs rows lim
+      | some r => step_run f (step_pivot T r q) (basis.set! r q) obj rhs rows lim
 
 /-- The reduced costs of `cost` at the current basis, which is the objective row
 a phase starts from. `cost` is read at the right-hand side column too, where
 every cost vector here is zero. -/
-def aux_costRow (T : Array (Array 𝕂)) (basis : Array ℕ) (cost : ℕ → 𝕂) (rows cols : ℕ) :
+@[step_of dualCandidate]
+def step_costRow (T : Array (Array 𝕂)) (basis : Array ℕ) (cost : ℕ → 𝕂) (rows cols : ℕ) :
     Array 𝕂 :=
   (List.range cols).toArray.map fun j =>
-    cost j - (List.range rows).foldl (fun s r => s + cost (basis.getD r 0) * aux_entry T r j) 0
+    cost j - (List.range rows).foldl (fun s r => s + cost (basis.getD r 0) * step_entry T r j) 0
 
 /-- Artificials left basic at zero, pivoted out wherever a real column can take
 their place. A row with no such column is redundant, and the artificial sitting
 in it can no longer move, which is what lets phase two ignore them. -/
-def aux_expel (T : Array (Array 𝕂)) (basis : Array ℕ) (lim rows : ℕ) :
+@[step_of dualCandidate]
+def step_expel (T : Array (Array 𝕂)) (basis : Array ℕ) (lim rows : ℕ) :
     Array (Array 𝕂) × Array ℕ :=
   (List.range rows).foldl (fun st r =>
     if st.2.getD r 0 < lim then st
     else
-      match (List.range lim).find? fun q => if aux_entry st.1 r q = 0 then false else true with
+      match (List.range lim).find? fun q => if step_entry st.1 r q = 0 then false else true with
       | none => st
-      | some q => (aux_pivot st.1 r q, st.2.set! r q)) (T, basis)
+      | some q => (step_pivot st.1 r q, st.2.set! r q)) (T, basis)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -127,20 +135,20 @@ def dualCandidate (fuel : ℕ) {m n : ℕ} (A : Fin m → Fin n → 𝕂) (b : F
       else if k = m + j then 1 else 0
   let basis₀ : Array ℕ := (List.range n).toArray.map (m + ·)
   -- phase one, over every column: the artificials go to zero or the dual is infeasible
-  let obj₁ := aux_costRow T₀ basis₀ (fun k => if m ≤ k ∧ k < rhs then 1 else 0) n cols
-  let (T₁, basis₁) := aux_run fuel (T₀.push obj₁) basis₀ n rhs n rhs
+  let obj₁ := step_costRow T₀ basis₀ (fun k => if m ≤ k ∧ k < rhs then 1 else 0) n cols
+  let (T₁, basis₁) := step_run fuel (T₀.push obj₁) basis₀ n rhs n rhs
   -- the objective row's right-hand side is the negated phase-one optimum
-  if aux_entry T₁ n rhs < 0 then none
+  if step_entry T₁ n rhs < 0 then none
   else
-    let (T₂, basis₂) := aux_expel T₁ basis₁ m n
+    let (T₂, basis₂) := step_expel T₁ basis₁ m n
     -- phase two, over the real columns alone, minimising the bound `bᵀy` itself
-    let obj₂ := aux_costRow T₂ basis₂ (fun k => if h : k < m then b ⟨k, h⟩ else 0) n cols
-    let (T₃, basis₃) := aux_run fuel (T₂.set! n obj₂) basis₂ n rhs n m
+    let obj₂ := step_costRow T₂ basis₂ (fun k => if h : k < m then b ⟨k, h⟩ else 0) n cols
+    let (T₃, basis₃) := step_run fuel (T₂.set! n obj₂) basis₂ n rhs n m
     -- a variable's value is its basic row's right-hand side, and zero otherwise
     some fun i =>
       match (List.range n).find? fun r => if basis₃.getD r 0 = (i : ℕ) then true else false with
       | none => 0
-      | some r => aux_entry T₃ r rhs
+      | some r => step_entry T₃ r rhs
 
 end CORALean
 

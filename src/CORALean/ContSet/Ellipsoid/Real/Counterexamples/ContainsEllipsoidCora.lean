@@ -7,6 +7,7 @@ public import Mathlib.LinearAlgebra.Matrix.Rank
 public import Mathlib.LinearAlgebra.Matrix.PosDef
 public import Mathlib.Algebra.Order.Star.Real
 public import Mathlib.LinearAlgebra.Matrix.Notation
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -81,10 +82,11 @@ open CORALean Matrix
 open scoped MatrixOrder
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `diag(a, b)` with `a, b ≥ 0` is positive semi-definite. -/
-theorem aux_psd_diag₂ {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) : (!![a, 0; 0, b]).PosSemidef := by
+@[step_of Ellipsoid.containsEllipsoidCora_counterexample]
+theorem step_psd_diag₂ {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) : (!![a, 0; 0, b]).PosSemidef := by
   have h := PosSemidef.diagonal (d := ![a, b]) (by intro i; fin_cases i <;> simp [ha, hb])
   convert h using 1
   ext i j; fin_cases i <;> fin_cases j <;> simp
@@ -93,8 +95,8 @@ theorem aux_psd_diag₂ {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) : (!![a, 0; 0,
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.containsEllipsoidCora_counterexample : -- --- CONCL ---
-    let E₁ : Ellipsoid 2 := ⟨!![1, 0; 0, 0], 0, aux_psd_diag₂ zero_le_one le_rfl⟩
-    let E₂ : Ellipsoid 2 := ⟨!![1 / 4, 0; 0, 0], ![0, 1], aux_psd_diag₂ (by norm_num) le_rfl⟩
+    let E₁ : Ellipsoid 2 := ⟨!![1, 0; 0, 0], 0, step_psd_diag₂ zero_le_one le_rfl⟩
+    let E₂ : Ellipsoid 2 := ⟨!![1 / 4, 0; 0, 0], ![0, 1], step_psd_diag₂ (by norm_num) le_rfl⟩
     let IsSdp := fun sdp : (A B C : Matrix (Fin 2 ⊕ Fin 1) (Fin 2 ⊕ Fin 1) ℝ) → ℝ =>
       ∀ A B C, (∃ L, ∀ ρ δ : ℝ, 0 ≤ δ → (δ • C - (A - ρ • B)).PosSemidef → L ≤ ρ) →
         ∀ ρ δ : ℝ, 0 ≤ δ → (δ • C - (A - ρ • B)).PosSemidef → sdp A B C ≤ ρ + 3 / 4
@@ -105,10 +107,10 @@ theorem Ellipsoid.containsEllipsoidCora_counterexample : -- --- CONCL ---
   intro E₁ E₂ IsSdp
   -- the square roots: `diag(1, 0)` and `diag(1/2, 0)`
   have hG₁ : E₁.G = !![1, 0; 0, 0] := CFC.sqrt_unique (by ext i j; fin_cases i <;> fin_cases j <;>
-    simp [E₁, Matrix.mul_apply, Fin.sum_univ_two]) (aux_psd_diag₂ zero_le_one le_rfl).nonneg
+    simp [E₁, Matrix.mul_apply, Fin.sum_univ_two]) (step_psd_diag₂ zero_le_one le_rfl).nonneg
   have hG₂ : E₂.G = !![1 / 2, 0; 0, 0] := CFC.sqrt_unique (by ext i j; fin_cases i <;>
     fin_cases j <;> norm_num [E₂, Matrix.mul_apply, Fin.sum_univ_two])
-    (aux_psd_diag₂ (by norm_num) le_rfl).nonneg
+    (step_psd_diag₂ (by norm_num) le_rfl).nonneg
   refine ⟨?_, ?_, ?_⟩
   · -- the center `(0, 1)` of `E₂` has second coordinate `1`, every point of `E₁` has `0`
     intro h

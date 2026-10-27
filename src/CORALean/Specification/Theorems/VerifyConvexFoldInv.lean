@@ -5,7 +5,7 @@ public import CORALean.Specification.Operations.VerifyConvex
 @[expose] public section
 
 /-!
-# `aux_verifyConvexStep`'s loop invariant
+# `step_verifyConvexStep`'s loop invariant
 
 `verifyConvexFold_inv`: the accumulated points stay inside `O - U`, a `violated` answer
 already carries the origin in their hull, and a `safe` one already carries a separating
@@ -67,14 +67,14 @@ theorem verifyConvexFold_inv (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     ∀ (todo : List ℕ) {A : VerifyAnswer} {V : Set α}, V ⊆ O - U →
       (A = .violated → (0 : α) ∈ convexHull ℝ V) →
       (A = .safe → ∃ c : α →ₗ[ℝ] ℝ, (bO c).val + (bU (-c)).val < 0) →
-      (todo.foldl (aux_verifyConvexStep bO bU wO wU ℓ) (A, V)).2 ⊆ O - U ∧
-        ((todo.foldl (aux_verifyConvexStep bO bU wO wU ℓ) (A, V)).1 = .violated →
-          (0 : α) ∈ convexHull ℝ (todo.foldl (aux_verifyConvexStep bO bU wO wU ℓ) (A, V)).2) ∧
-        ((todo.foldl (aux_verifyConvexStep bO bU wO wU ℓ) (A, V)).1 = .safe →
+      (todo.foldl (step_verifyConvexStep bO bU wO wU ℓ) (A, V)).2 ⊆ O - U ∧
+        ((todo.foldl (step_verifyConvexStep bO bU wO wU ℓ) (A, V)).1 = .violated →
+          (0 : α) ∈ convexHull ℝ (todo.foldl (step_verifyConvexStep bO bU wO wU ℓ) (A, V)).2) ∧
+        ((todo.foldl (step_verifyConvexStep bO bU wO wU ℓ) (A, V)).1 = .safe →
           ∃ c : α →ₗ[ℝ] ℝ, (bO c).val + (bU (-c)).val < 0)
   -- Base case: nothing left to fold, the hypotheses already are the conclusion.
   | [], _, _, hV, hunsafe, hsafe => ⟨hV, hunsafe, hsafe⟩
-  -- A conclusive answer is a fixed point of `aux_verifyConvexStep`, so it carries through.
+  -- A conclusive answer is a fixed point of `step_verifyConvexStep`, so it carries through.
   | i :: rest, .safe, V, hV, hunsafe, hsafe =>
       verifyConvexFold_inv bO bU wO wU ℓ rest hV hunsafe hsafe
   | i :: rest, .violated, V, hV, hunsafe, hsafe =>
@@ -82,7 +82,7 @@ theorem verifyConvexFold_inv (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
   -- Still undecided: unfold one step and case on the two tests it runs.
   | i :: rest, .undecided, V, hV, _, _ => by
       rw [List.foldl_cons]
-      simp only [aux_verifyConvexStep]
+      simp only [step_verifyConvexStep]
       by_cases hsep : (bO (ℓ i)).val + (bU (-(ℓ i))).val < 0
       · -- the bounds separate along `ℓ i`: `safe`, certified by `ℓ i` itself
         rw [if_pos hsep]

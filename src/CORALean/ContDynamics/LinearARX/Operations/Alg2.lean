@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearARX.Operations.Btilde
 public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -44,9 +45,10 @@ open Matrix Pointwise
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-def LinearARX.aux_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
+@[step_of LinearARX.alg2]
+def LinearARX.step_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (Uc : Set (Vec ℝ du)) (uv : ℕ → Vec ℝ du) (kinit : ℕ) :
     ℕ → ℕ × Set (Vec ℝ (p * dy)) × Set (Vec ℝ (p * dy)) × Set (Vec ℝ (p * dy))
       × Vec ℝ (p * dy) × (ℕ → Mat ℝ (p * dy) du)
@@ -62,7 +64,7 @@ def LinearARX.aux_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p *
     (k, Sc, Tc1, {0}, sv, Btilde)
   | m + 1 =>
     -- line 12, then lines 13–16
-    let prev := sys.aux_alg2State yinit Uc uv kinit m
+    let prev := sys.step_alg2State yinit Uc uv kinit m
     let k := prev.1 + p
     let kplus := k + p - 1
     let Btilde : ℕ → Mat ℝ (p * dy) du :=
@@ -83,7 +85,7 @@ def LinearARX.aux_alg2State (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p *
 
 def LinearARX.alg2 (sys : LinearARX 𝕋 dy du p) (yinit : Vec ℝ (p * dy))
     (Uc : Set (Vec ℝ du)) (uv : ℕ → Vec ℝ du) (kinit m : ℕ) : Set (Vec ℝ (p * dy)) :=
-  let state := sys.aux_alg2State yinit Uc uv kinit m
+  let state := sys.step_alg2State yinit Uc uv kinit m
   let k := state.1
   let kplus := k + p - 1
   let Sc := state.2.1

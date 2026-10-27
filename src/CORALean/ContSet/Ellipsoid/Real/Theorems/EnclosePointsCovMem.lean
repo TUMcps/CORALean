@@ -49,13 +49,13 @@ variable {n N : ℕ}
 
 theorem Ellipsoid.enclosePointsCov_mem [NeZero N] (pts : Fin N → Vec ℝ n) {T U : Mat ℝ n n}
     (hT : T * Tᵀ = 1) (hU : U * Uᵀ = 1)
-    (hnt : ∀ i, Ellipsoid.aux_enclosePointsNt (Ellipsoid.aux_enclosePointsOriented pts T U) i ≠ 0)
+    (hnt : ∀ i, Ellipsoid.step_enclosePointsNt (Ellipsoid.step_enclosePointsOriented pts T U) i ≠ 0)
     (j : Fin N) : -- --- CONCL ---
     pts j ∈ (Ellipsoid.enclosePointsCov pts T U).construct := by -- --- PROOF ---
   -- the oriented coordinates, the scalings `nt`, the radius `maxDist` and the center
-  set O := Ellipsoid.aux_enclosePointsOriented pts T U with hO
-  set nt := Ellipsoid.aux_enclosePointsNt O with hnt'
-  set md := Ellipsoid.aux_enclosePointsMaxDist O nt with hmd
+  set O := Ellipsoid.step_enclosePointsOriented pts T U with hO
+  set nt := Ellipsoid.step_enclosePointsNt O with hnt'
+  set md := Ellipsoid.step_enclosePointsMaxDist O nt with hmd
   set c : Vec ℝ n := (1 / (N : ℝ)) • ∑ j, pts j with hc
   -- the centered point is recovered from its oriented coordinates
   have hback : T *ᵥ (U *ᵥ O j) = pts j - c := by

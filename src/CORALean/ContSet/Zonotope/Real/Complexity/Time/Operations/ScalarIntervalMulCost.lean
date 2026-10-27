@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 public import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
 public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
 public import CORALean.Global.Cost
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -39,10 +40,11 @@ generators to the `h + 1` of the unit-interval product.
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- What `Zonotope.unitIntervalMul` costs at `Vec ℝ n` on `h` generators: `n * (h + 2)` writes. -/
-def Zonotope.aux_unitIntervalMulCost (n h : ℕ) : Cost := ⟨n * (h + 2)⟩
+@[step_of Zonotope.scalarIntervalMulCost]
+def Zonotope.step_unitIntervalMulCost (n h : ℕ) : Cost := ⟨n * (h + 2)⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -52,7 +54,7 @@ the `n * n` writes of each scaled identity, the two products, the sum and the un
 product. -/
 def Zonotope.scalarIntervalMulCost (n h : ℕ) : Cost :=
   ⟨4 + 2 * (n * n)⟩ + (2 : ℕ) • Zonotope.mtimesCost n n h + Zonotope.plusCost n h (h + 1) +
-    Zonotope.aux_unitIntervalMulCost n h
+    Zonotope.step_unitIntervalMulCost n h
 
 end CORALean.Real
 

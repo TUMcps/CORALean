@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
 public import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -54,11 +55,12 @@ open CORALean.Real Matrix ContSet
 variable {n p m q : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Alg. 1] lines 4-10 at line 3's `taylor`, from `Rd_tk = Rᵈ(t_k)` with step `r`: the error
 `L` of the first pass with `L ⊆ L̄`, `L̄` growing to `expFactor` times `L`; `none` after `fuel`. -/
-noncomputable def NonlinDASys.aux_errorLoopAdaptive (sys : NonlinDASys n p m)
+@[step_of NonlinDASys.linReachAdaptive]
+noncomputable def NonlinDASys.step_errorLoopAdaptive (sys : NonlinDASys n p m)
     (T : NonlinDASys.AdaptTuning n p m q) (taylor : NonlinDASys.LinPoint n p m)
     (Rd_tk : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (r : ℝ) (η : ℕ) :
     ℕ → Vec ℝ n → Vec ℝ p → Option (NonlinDASys.AbstractionError n p)
@@ -86,21 +88,22 @@ noncomputable def NonlinDASys.aux_errorLoopAdaptive (sys : NonlinDASys n p m)
       some L
     else
       -- 5. the next `L̄` from `L`
-      sys.aux_errorLoopAdaptive T taylor Rd_tk U r η fuel
+      sys.step_errorLoopAdaptive T taylor Rd_tk U r η fuel
         (T.expFactor • L.errorInt_x) (T.expFactor • L.errorInt_y)
 
 /-- One pass at the step `Δt`: the error loop, and the step halved (`options.Δt * 0.5`)
 where it did not converge. -/
-noncomputable def NonlinDASys.aux_passAdaptive (sys : NonlinDASys n p m)
+@[step_of NonlinDASys.linReachAdaptive]
+noncomputable def NonlinDASys.step_passAdaptive (sys : NonlinDASys n p m)
     (T : NonlinDASys.AdaptTuning n p m q) (L : NonlinDASys.LinPoint n p m)
     (Rstart : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (η fuelErr : ℕ)
     (adm_x : Vec ℝ n) (adm_y : Vec ℝ p) :
     ℕ → ℝ → Option (NonlinDASys.AdaptPass n p)
   | 0, _ => none
   | k + 1, Δt =>
-    match sys.aux_errorLoopAdaptive T L Rstart U Δt η fuelErr adm_x adm_y with
+    match sys.step_errorLoopAdaptive T L Rstart U Δt η fuelErr adm_x adm_y with
     | some err => some ⟨Δt, err⟩
-    | none => sys.aux_passAdaptive T L Rstart U η fuelErr adm_x adm_y k (Δt / 2)
+    | none => sys.step_passAdaptive T L Rstart U η fuelErr adm_x adm_y k (Δt / 2)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -114,12 +117,12 @@ noncomputable def NonlinDASys.linReachAdaptive (sys : NonlinDASys n p m)
     (h : ℝ) (lastStep : Bool) : Option (NonlinDASys.AdaptPass n p) :=
   let L := T.taylor Rstart                                                 -- priv_linearize
   if lastStep then
-    sys.aux_passAdaptive T L Rstart U η fuelErr adm_x adm_y fuelHalf h          -- last step
+    sys.step_passAdaptive T L Rstart U η fuelErr adm_x adm_y fuelHalf h          -- last step
   else
-    match sys.aux_passAdaptive T L Rstart U η fuelErr adm_x adm_y fuelHalf h with  -- run 1
+    match sys.step_passAdaptive T L Rstart U η fuelErr adm_x adm_y fuelHalf h with  -- run 1
     | none => none
     | some p₁ =>
-      sys.aux_passAdaptive T L Rstart U η fuelErr adm_x adm_y fuelHalf (T.tune h p₁)  -- run 2
+      sys.step_passAdaptive T L Rstart U η fuelErr adm_x adm_y fuelHalf (T.tune h p₁)  -- run 2
 
 end CORALean
 

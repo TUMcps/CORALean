@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.GirardSplit
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceBy
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -36,12 +37,13 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 -- file-local: only `reduceGirardDependent` below needs it
 /-- Nothing dropped: what a rule hands `reduceBy` for a block it leaves
 alone. -/
-def PolyZonotope.aux_keepAll (m : ℕ) : Split (Fin m) into (Fin m) ⊕ (Fin 0) :=
+@[step_of PolyZonotope.reduceGirardDependent]
+def PolyZonotope.step_keepAll (m : ℕ) : Split (Fin m) into (Fin m) ⊕ (Fin 0) :=
   (Partition.split m 0).reindex (finCongr (Nat.add_zero m).symm)
 
 
@@ -52,7 +54,7 @@ noncomputable def PolyZonotope.reduceGirardDependent (pZ : PolyZonotope (Vec ℝ
   if o * n < pZ.h then
     pZ.reduceBy
       (PolyZonotope.girardSplit (PolyZonotope.girardMetric pZ.G) ((o - 1) * n))
-      (PolyZonotope.aux_keepAll pZ.q)
+      (PolyZonotope.step_keepAll pZ.q)
   else pZ
 
 end CORALean.Real

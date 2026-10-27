@@ -85,7 +85,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 /-- A pooled window's gap is nonnegative. -/
 private theorem aux_maxPoolGapUp_nonneg (tap : Fin m → Fin (k + 1) → Fin n)
     (p : Fin m → Fin (k + 1))
-    (I : Interval (Vec 𝕋 n)) (j : Fin m) : 0 ≤ toReal (aux_maxPoolGapUp tap p I j) := by
+    (I : Interval (Vec 𝕋 n)) (j : Fin m) : 0 ≤ toReal (step_maxPoolGapUp tap p I j) := by
   have h := le_maximumOver
     (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) (p j)
   rw [if_pos rfl, toReal_zero] at h
@@ -102,7 +102,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 private theorem aux_le_maxPoolGapUp (tap : Fin m → Fin (k + 1) → Fin n) (p : Fin m → Fin (k + 1))
     (I : Interval (Vec 𝕋 n)) (j : Fin m) {l : Fin (k + 1)} (hl : l ≠ p j) :
     toReal (I.sup (tap j l)) - toReal (I.inf (tap j (p j)))
-      ≤ toReal (aux_maxPoolGapUp tap p I j) := by
+      ≤ toReal (step_maxPoolGapUp tap p I j) := by
   have h := le_maximumOver
     (fun l => if l = p j then zero else subUp (I.sup (tap j l)) (I.inf (tap j (p j)))) l
   rw [if_neg hl] at h
@@ -136,7 +136,7 @@ theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
     ring
   -- the window's bound, at the rounded-up gap it was stated for
   have hmem : d ∈ Interval.construct
-      (⟨fun _ => zero, aux_maxPoolGapUp tap p I⟩ : Interval (Vec 𝕋 m)) := by
+      (⟨fun _ => zero, step_maxPoolGapUp tap p I⟩ : Interval (Vec 𝕋 m)) := by
     intro j
     have h := Real.aux_maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
       (aux_maxPoolGapUp_nonneg tap p I j) fun l hl => aux_le_maxPoolGapUp tap p I j hl

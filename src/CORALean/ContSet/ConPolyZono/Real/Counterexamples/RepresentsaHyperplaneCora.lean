@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.Global.NotHyperplaneOneDim
 public import Mathlib.Tactic.Linarith
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -65,20 +66,24 @@ end CORALean.Real
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `c = 0`, `G = (1)`, `E = (1)`, no constraint: the interval `[-1, 1]`. -/
-def ConPolyZono.aux_unitSegment : ConPolyZono (Vec ℝ 1) :=
+@[step_of ConPolyZono.representsa_hyperplane_cora_counterexample]
+def ConPolyZono.step_unitSegment : ConPolyZono (Vec ℝ 1) :=
   ⟨1, 1, 0, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, ⟨0, 0, fun i => i.elim0,
       fun _ j => j.elim0, fun i => i.elim0, fun _ => .eq, Interval.unit 1⟩,
       fun _ => rfl, rfl⟩
 
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
 private theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
-    (fun _ => t) ∈ ConPolyZono.aux_unitSegment.construct := by
+    (fun _ => t) ∈ ConPolyZono.step_unitSegment.construct := by
   refine ⟨fun _ => t, Fin.elim0, fun j => j.elim0,
     ⟨(Interval.mem_unit_iff _).mpr fun _ => ht, fun i => i.elim0⟩, ?_⟩
   ext i
-  simp [ConPolyZono.aux_unitSegment, PolyZonotope.monomial]
+  simp [ConPolyZono.step_unitSegment, PolyZonotope.monomial]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -86,8 +91,8 @@ private theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
 theorem ConPolyZono.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        ConPolyZono.aux_unitSegment.construct = {x | f x = c}) ∧
-      ConPolyZono.aux_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
+        ConPolyZono.step_unitSegment.construct = {x | f x = c}) ∧
+      ConPolyZono.step_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
   refine ⟨CORALean.not_hyperplane_of_two_points_fin1 (ConPolyZono.aux_mem 0 (by norm_num))
     (ConPolyZono.aux_mem 1 (by norm_num)) ?_, by simp [ConPolyZono.representsaHyperplaneCora]⟩
   intro h

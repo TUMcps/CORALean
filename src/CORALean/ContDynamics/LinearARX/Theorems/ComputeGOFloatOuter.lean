@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 /-- The interval sum holds the real sum. -/
 private theorem LinearARX.aux_sumRangeFloat_mem (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
     (h : ∀ t, M t ∈ (f t).construct) (k : ℕ) : -- --- CONCL ---
-    ∑ t ∈ Finset.range k, M t ∈ (LinearARX.aux_sumRangeFloat f k).construct := by -- --- PROOF ---
+    ∑ t ∈ Finset.range k, M t ∈ (LinearARX.step_sumRangeFloat f k).construct := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the empty sum is the zero matrix, stored exactly

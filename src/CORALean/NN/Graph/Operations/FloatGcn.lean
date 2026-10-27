@@ -4,6 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Instances
 public import CORALean.NN.Graph.Operations.Flatten
 public import CORALean.Global.Float.FloatOps
 public import CORALean.NN.Graph.Operations.FloatRightMat
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -36,14 +37,15 @@ namespace CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] {N F₁ F₂ : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 section
 open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {N : ℕ}
 
 /-- The matrix of `H ↦ P H` on the stacked `N × F` node features. -/
-def GNN.aux_leftMat (P : Mat 𝕋 N N) (F : ℕ) : Mat 𝕋 (N * F) (N * F) :=
+@[step_of GNN.gcn]
+def GNN.step_leftMat (P : Mat 𝕋 N N) (F : ℕ) : Mat 𝕋 (N * F) (N * F) :=
   fun r c => if (finProdFinEquiv.symm r).2 = (finProdFinEquiv.symm c).2
     then P (finProdFinEquiv.symm r).1 (finProdFinEquiv.symm c).1 else zero
 
@@ -55,7 +57,7 @@ end
 /-- The layer on the stacked node features, an outer approximation of the exact one. -/
 def GNN.gcn (P : Mat 𝕋 N N) (W : Mat 𝕋 F₁ F₂) (pZ : PolyZonotope (Vec 𝕋 (N * F₁))) :
     PolyZonotope (Vec 𝕋 (N * F₂)) :=
-  PolyZonotope.mtimes (GNN.aux_leftMat P F₂) (PolyZonotope.mtimes (GNN.rightMat N W) pZ)
+  PolyZonotope.mtimes (GNN.step_leftMat P F₂) (PolyZonotope.mtimes (GNN.rightMat N W) pZ)
 
 end CORALean.Float
 

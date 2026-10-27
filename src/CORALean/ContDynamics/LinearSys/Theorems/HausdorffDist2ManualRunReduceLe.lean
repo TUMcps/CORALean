@@ -119,7 +119,7 @@ theorem LinearSys.hausdorffDist₂_manualRun_reduce_le (sys : LinearSys 𝕋 n)
     rw [Finset.sum_range_zero, Finset.sum_range_zero]
     have h0 : (sys.manualRun X₀ U Δt η ρ 0).PU.construct = {0} := by
       ext x
-      simp only [LinearSys.manualRun, LinearSys.aux_manualInit, Zonotope.mem_ofPoint_iff,
+      simp only [LinearSys.manualRun, LinearSys.step_manualInit, Zonotope.mem_ofPoint_iff,
         Set.mem_singleton_iff]
     rw [h0, ← Set.singleton_zero]
     refine hausdorffDist₂_le_of_mem_dist (le_refl 0) (fun x hx => ?_) (fun x hx => ?_) <;>

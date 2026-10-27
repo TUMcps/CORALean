@@ -54,12 +54,12 @@ theorem PolyZonotope.cubMapDepOn_point (π₁ π₂ π₃ : V →ₗ[ℝ] Vec �
   rw [PolyZonotope.bilin_point]
   funext i
   simp only [Fin.cast_eq_self, LinearMap.compl₁₂_apply, PolyZonotope.bilin_point]
-  show ∑ k, π₃ (P.point a) k * (PolyZonotope.quadBilin (PolyZonotope.aux_cubQuad T)
+  show ∑ k, π₃ (P.point a) k * (PolyZonotope.quadBilin (PolyZonotope.step_cubQuad T)
       (π₁ (P.point a)) (π₂ (P.point a))) (finProdFinEquiv (i, k)) = _
   refine Finset.sum_congr rfl fun k _ => ?_
   show π₃ (P.point a) k * (π₁ (P.point a) ⬝ᵥ
-      (PolyZonotope.aux_cubQuad T (finProdFinEquiv (i, k)) *ᵥ π₂ (P.point a))) = _
-  simp only [PolyZonotope.aux_cubQuad, Equiv.symm_apply_apply]
+      (PolyZonotope.step_cubQuad T (finProdFinEquiv (i, k)) *ᵥ π₂ (P.point a))) = _
+  simp only [PolyZonotope.step_cubQuad, Equiv.symm_apply_apply]
 
 end CORALean.Real
 

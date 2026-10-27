@@ -5,6 +5,7 @@ public import CORALean.Specification.Specification
 public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Analysis.Convex.Hull
 public import CORALean.Specification.Operations.DiffPoint
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -52,12 +53,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 open scoped Classical
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- [1, Alg. 3 (exits), l. 4-13] for one direction `ℓ i`: `safe` once the bounds
 separate, `violated` once the accumulated hull reaches the origin, else the
 new point is folded in. A reached answer is carried forward, extra fuel harmless. -/
-noncomputable def aux_verifyConvexStep (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
+@[step_of verifyConvex]
+noncomputable def step_verifyConvexStep (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
     (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) :
     VerifyAnswer × Set α → ℕ → VerifyAnswer × Set α
@@ -79,7 +81,7 @@ noncomputable def aux_verifyConvexStep (bO : ∀ d : α →ₗ[ℝ] ℝ, Support
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 3 (exits)]: fold `aux_verifyConvexStep` over `fuel` directions drawn from
+/-- [1, Alg. 3 (exits)]: fold `step_verifyConvexStep` over `fuel` directions drawn from
 `ℓ`, starting undecided with nothing accumulated. -/
 noncomputable def verifyConvex (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
@@ -88,7 +90,7 @@ noncomputable def verifyConvex (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O 
   -- 1. `P̌ ← ∅` (and no answer yet)
   let init : VerifyAnswer × Set α := (.undecided, ∅)
   -- 2. `repeat`: lines 4-13 once per direction `ℓᵢ`, `fuel` times at most
-  let final := (List.range fuel).foldl (aux_verifyConvexStep bO bU wO wU ℓ) init
+  let final := (List.range fuel).foldl (step_verifyConvexStep bO bU wO wU ℓ) init
   -- 5., 13. the answer a pass reached, `safe` or `unsafe`; `undecided` once `fuel` is spent
   final.1
 

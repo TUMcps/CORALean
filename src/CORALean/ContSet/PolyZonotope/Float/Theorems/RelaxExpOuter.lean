@@ -73,14 +73,14 @@ by at most its gap to the upward fold. -/
 private theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- CONCL ---
     |(pZ.relaxWidth part k₀ : ℝ) * toReal (pZ.G (part.right 0) i)
-      - toReal (pZ.aux_relaxGen part k₀ i)|
-      ≤ toReal (pZ.aux_relaxGap part k₀ i 1) := by -- --- PROOF ---
-  have hlo : toReal (pZ.aux_relaxGen part k₀ i)
+      - toReal (pZ.step_relaxGen part k₀ i)|
+      ≤ toReal (pZ.step_relaxGap part k₀ i 1) := by -- --- PROOF ---
+  have hlo : toReal (pZ.step_relaxGen part k₀ i)
       ≤ (pZ.relaxWidth part k₀ : ℝ) * toReal (pZ.G (part.right 0) i) := nsmulDown_le _ _
   have hhi : (pZ.relaxWidth part k₀ : ℝ) * toReal (pZ.G (part.right 0) i)
       ≤ toReal (nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i)) := le_nsmulUp _ _
   have hgap : toReal (nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i))
-      - toReal (pZ.aux_relaxGen part k₀ i) ≤ toReal (pZ.aux_relaxGap part k₀ i 1) :=
+      - toReal (pZ.step_relaxGen part k₀ i) ≤ toReal (pZ.step_relaxGap part k₀ i 1) :=
         sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
@@ -90,7 +90,7 @@ private theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExp part k₀)
-      + (PolyZonotope.generatorError (pZ.aux_relaxGap part k₀)).construct := by -- --- PROOF ---
+      + (PolyZonotope.generatorError (pZ.step_relaxGap part k₀)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   have habs : |Real.PolyZonotope.monomial pZ.E a (part.right 0)
@@ -120,13 +120,13 @@ private theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n
       + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
             * Real.PolyZonotope.monomial pZ.E a (part.left l)
           + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.aux_relaxGen part k₀ i) * t),
+      + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.step_relaxGen part k₀ i) * t),
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, Fin.append β fun _ => t, ha, ?_, ?_⟩,
-    _, PolyZonotope.mem_generatorError (G := pZ.aux_relaxGap part k₀)
+    _, PolyZonotope.mem_generatorError (G := pZ.step_relaxGap part k₀)
       (Δ := fun i => ![toReal (pZ.G (part.right 1) i) + toReal (pZ.G (part.right 0) i)
           - toReal (pZ.mergedGen part i),
         (pZ.relaxWidth part k₀ : ℝ) * toReal (pZ.G (part.right 0) i)
-          - toReal (pZ.aux_relaxGen part k₀ i)])
+          - toReal (pZ.step_relaxGen part k₀ i)])
       (t := ![Real.PolyZonotope.monomial pZ.E a (part.right 1), t]) ?_ ?_, ?_⟩
   -- the fresh independent coefficient is what the drift asks of the new column
   · refine Fin.addCases (fun j => ?_) fun _ => ?_
@@ -152,7 +152,7 @@ private theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n
           + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
               * Real.PolyZonotope.monomial pZ.E a (part.left l)
             + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
-          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.aux_relaxGen part k₀ i) * t)
+          + (∑ j, toReal (pZ.GI j i) * β j + toReal (pZ.step_relaxGen part k₀ i) * t)
         + ∑ l, _ * _ = x i
     rw [hxi i, Fin.sum_univ_two,
       part.sum_split₂ fun l => toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l,

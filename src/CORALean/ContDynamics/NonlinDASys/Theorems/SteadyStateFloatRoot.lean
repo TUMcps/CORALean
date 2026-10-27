@@ -14,8 +14,8 @@ public import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
 A returned `(x', y')` lies within `tol`, in the sup norm in each block, of exactly one steady state
 of the system at `u₀`: a point with `f = 0` and `g = 0`. The real `steadyState_spec` claims only
 CORA's stopping test, a last stacked Newton step below `tol`; here the test the float run adds
-(`newtonTestFloat_sound`, on the stacked state through `FloatModel.aux_stackRes` and `aux_stackJac`)
-makes the claim about the steady state itself.
+(`newtonTestFloat_sound`, on the stacked state through `FloatModel.step_stackRes` and
+`step_stackJac`) makes the claim about the steady state itself.
 
 ## Inputs
 * `fm` – float model
@@ -84,16 +84,16 @@ theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root {fm : NonlinDASys.
   have hRmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct,
       R w ∈ (⟨fun j => Z.inf (Fin.natAdd n j), fun j => Z.sup (Fin.natAdd n j)⟩ :
         Interval (Vec 𝕋 p)).construct := fun _ _ hw j => hw (Fin.natAdd n j)
-  -- `aux_stackRes` encloses `G`, and `aux_stackJac` its slopes
+  -- `step_stackRes` encloses `G`, and `step_stackJac` its slopes
   have hGmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct,
-      G w ∈ (fm.aux_stackRes (Interval.point u₀) Z).construct := by
+      G w ∈ (fm.step_stackRes (Interval.point u₀) Z).construct := by
     intro Z w hw
-    unfold NonlinDASys.FloatModel.aux_stackRes
+    unfold NonlinDASys.FloatModel.step_stackRes
     rw [Interval.append_construct]
     exact ⟨(_, _), ⟨hfm.f_mem _ _ _ _ (hLmem Z w hw) _ (hRmem Z w hw) _ hu,
       hfm.g_mem _ _ _ _ (hLmem Z w hw) _ (hRmem Z w hw) _ hu⟩, rfl⟩
   have hJmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct, ∀ w' ∈ Z.construct,
-      ∃ M ∈ (fm.aux_stackJac (Interval.point u₀) Z).construct, G w - G w' = M *ᵥ (w - w') := by
+      ∃ M ∈ (fm.step_stackJac (Interval.point u₀) Z).construct, G w - G w' = M *ᵥ (w - w') := by
     intro Z w hw w' hw'
     obtain ⟨A, hA, C, hC, hf⟩ := hfm.slope_f _ _ _ _ (hLmem Z w hw) _ (hLmem Z w' hw') _
       (hRmem Z w hw) _ (hRmem Z w' hw') _ hu
@@ -101,7 +101,7 @@ theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root {fm : NonlinDASys.
       (hRmem Z w hw) _ (hRmem Z w' hw') _ hu
     -- the block matrix of the four slopes
     refine ⟨Fin.append (fun i => Fin.append (A i) (C i)) (fun i => Fin.append (D i) (F i)), ?_, ?_⟩
-    · unfold NonlinDASys.FloatModel.aux_stackJac
+    · unfold NonlinDASys.FloatModel.step_stackJac
       rw [Interval.vertcat_exact]
       refine ⟨(_, _), ⟨?_, ?_⟩, rfl⟩
       · rw [Interval.horzcat_exact]; exact ⟨(_, _), ⟨hA, hC⟩, rfl⟩

@@ -2,8 +2,6 @@
 """Which `Theorems/` files are the satellites of an `Operations/` file (#227).
 
     python3 scripts/conventions/satellites.py of <operations-file>        its satellite theorem files
-    python3 scripts/conventions/satellites.py declares <theorem-file> <aux-name>
-                                  exit 0 when a satellite operation of the theorem file declares it
 
 A theorem file is a *satellite* of the operation `<D>/Operations/<X>.lean` when it is
 `<D>/Theorems/<S>.lean`, in the same directory `<D>`, and `X` occurs in `S` as a CamelCase word
@@ -12,8 +10,10 @@ run: `S` starts with `X` or has `X` at an uppercase letter, and `X` is followed 
 `GreedyMinimalExplanation`, `ExistsAutoStepAutoRun` of `AutoStep` and of `AutoRun`. Where several
 operations of the directory match, the longest stems win (one that is a substring of a longer
 matching stem is dropped), so `ExistsAutoStepFloat` is a satellite of `AutoStepFloat` and not of
-`AutoStep`. A `Basic.lean` has no satellites. An algorithm's satellites may read its `aux_`
-declarations; nothing else may.
+`AutoStep`. A `Basic.lean` has no satellites. An algorithm's satellites may read its `step_`
+declarations; nothing else may. Lean enforces that itself (`CORALean/Global/StepOf.lean`, #269),
+with this same rule written once more in Lean; the Python checks use it to group a file with its
+satellites.
 """
 import re
 import sys
@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent.parent
 
 
-# Source helpers shared with check-single-use.py and check-steps.py (and `outside_text`).
+# Source helpers shared with the `check-*.py` rules (and `outside_text`).
 _LETTER = r"A-Za-z_À-ɏͰ-Ͽ℀-⅏\U0001D400-\U0001D7FF"
 _SUB = r"₀-ₜᵢ-ᵪⱼ"
 IDENT = re.compile(rf"[{_LETTER}][{_LETTER}0-9'!?{_SUB}.]*")
@@ -159,13 +159,6 @@ def main():
     if len(a) == 2 and a[0] == "of":
         print("\n".join(satellites_of(a[1])))
         return 0
-    if len(a) == 3 and a[0] == "declares":
-        pat = re.compile(r"\b" + re.escape(a[2]) + r"\b")
-        for op in operations_of(a[1]):
-            p = ROOT / op
-            if p.exists() and pat.search(p.read_text(encoding="utf-8")):
-                return 0
-        return 1
     print(__doc__, file=sys.stderr)
     return 2
 

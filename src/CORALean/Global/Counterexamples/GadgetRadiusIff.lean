@@ -3,6 +3,7 @@ module
 public import CORALean.Global.CoeffNorm
 public import CORALean.Global.CoeffNormHalfGadgetH
 public import CORALean.Global.GadgetGA
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -47,19 +48,23 @@ open scoped ENNReal
 open Matrix
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- `A = e₁ ∈ ℝ^{2×1}`. -/
-def aux_A27 : Mat ℝ 2 1 := fun i _ => if i = 0 then 1 else 0
+@[step_of gadget_radius_iff_counterexample]
+def step_A27 : Mat ℝ 2 1 := fun i _ => if i = 0 then 1 else 0
 
-private theorem aux_mulVec (w : Fin 1 → ℝ) : aux_A27 *ᵥ w = ![w 0, 0] := by
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+private theorem aux_mulVec (w : Fin 1 → ℝ) : step_A27 *ᵥ w = ![w 0, 0] := by
   funext i
-  fin_cases i <;> simp [aux_A27, mulVec, dotProduct]
+  fin_cases i <;> simp [step_A27, mulVec, dotProduct]
 
 /-- Every point of the inbody is `H β` with `‖β‖ ≤ 3/4`. -/
 private theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ))
     (hα : ‖α‖ ≤ 1) : -- --- CONCL ---
-    coeffNorm (gadgetH 2) (gadgetGA ∞ aux_A27 1 α) ≤ 3 / 4 := by -- --- PROOF ---
+    coeffNorm (gadgetH 2) (gadgetGA ∞ step_A27 1 α) ≤ 3 / 4 := by -- --- PROOF ---
   rw [WithLp.prod_norm_eq_sup, max_le_iff, Real.norm_eq_abs] at hα
   set a := α.fst 0
   set s := α.snd
@@ -67,9 +72,9 @@ private theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) �
   have hs : |s| ≤ 1 := hα.2
   -- the preimage `β₁ = (a/2 - s/4, -s/4)`, `β₂ = (-a/2 - s/4, -s/4)`
   let β : Vec ℝ 2 × Vec ℝ 2 := (![a / 2 - s / 4, -s / 4], ![-a / 2 - s / 4, -s / 4])
-  have hβ : gadgetH 2 β = gadgetGA ∞ aux_A27 1 α := by
+  have hβ : gadgetH 2 β = gadgetGA ∞ step_A27 1 α := by
     refine Prod.ext ?_ ?_
-    · show β.1 - β.2 = aux_A27 *ᵥ WithLp.ofLp α.fst
+    · show β.1 - β.2 = step_A27 *ᵥ WithLp.ofLp α.fst
       rw [aux_mulVec]
       funext i
       fin_cases i
@@ -94,9 +99,9 @@ private theorem aux_value_le (α : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) �
 /-- At `A = e₁`, `p = ∞`, `L = 1`: `‖A‖_{∞↦1} = 1`, yet `r(E_∞(G_A), Z(H))` exists and is at
 most `3/4`, so not `1`. -/
 theorem gadget_radius_iff_counterexample : -- --- CONCL ---
-    IsGreatest ((fun v : PiLp ∞ (fun _ : Fin 1 => ℝ) => ∑ i, |(aux_A27 *ᵥ WithLp.ofLp v) i|) ''
+    IsGreatest ((fun v : PiLp ∞ (fun _ : Fin 1 => ℝ) => ∑ i, |(step_A27 *ᵥ WithLp.ofLp v) i|) ''
         Metric.closedBall 0 1) 1 ∧
-      ∃ r, IsGreatest ((fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ aux_A27 1 α)) ''
+      ∃ r, IsGreatest ((fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ step_A27 1 α)) ''
         Metric.closedBall 0 1) r ∧ r ≤ 3 / 4 := by -- --- PROOF ---
   refine ⟨⟨⟨WithLp.toLp ∞ (fun _ => 1), ?_, ?_⟩, ?_⟩, ?_⟩
   · rw [Metric.mem_closedBall, dist_zero_right, PiLp.norm_toLp]
@@ -112,7 +117,7 @@ theorem gadget_radius_iff_counterexample : -- --- CONCL ---
       obtain ⟨β, hβ⟩ := (coeffNorm_half_gadgetH (n := 2) (by norm_num)).1 x
       exact ⟨(1 / 2 : ℝ) • β, by rw [map_smul]; exact hβ⟩
     obtain ⟨K, hK⟩ := exists_lipschitzWith_coeffNorm (gadgetH 2) hsurj
-    have hcont : Continuous fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ aux_A27 1 α) :=
+    have hcont : Continuous fun α => coeffNorm (gadgetH 2) (gadgetGA ∞ step_A27 1 α) :=
       hK.continuous.comp (LinearMap.continuous_of_finiteDimensional _)
     obtain ⟨α₀, hα₀, hmax⟩ := (isCompact_closedBall
       (0 : WithLp ∞ (PiLp ∞ (fun _ : Fin 1 => ℝ) × ℝ)) 1).exists_isMaxOn

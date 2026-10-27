@@ -1,6 +1,7 @@
 module
 
 public import CORALean.DiscrDynamics.GridPartition.Operations.Basic
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -34,10 +35,11 @@ namespace CORALean
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The subscripts `k` of dimension `j` with `d(k) ≥ inf - tol` and `d(k - 1) ≤ sup + tol`. -/
-noncomputable def GridPartition.aux_meetingSubscripts (P : GridPartition n)
+@[step_of GridPartition.intersectingCells]
+noncomputable def GridPartition.step_meetingSubscripts (P : GridPartition n)
     (I : Real.Interval (Vec ℝ n)) (j : Fin n) : List ℕ :=
   (List.range' 1 (P.nrOfSegments j)).filter fun k =>
     I.inf j - GridPartition.tol ≤ P.dividers j k ∧
@@ -49,11 +51,11 @@ noncomputable def GridPartition.aux_meetingSubscripts (P : GridPartition n)
 /-- `intersectingCells(P, I)`: the cells meeting `I`, within `tol`, and `0` if `I` sticks out. -/
 noncomputable def GridPartition.intersectingCells (P : GridPartition n)
     (I : Real.Interval (Vec ℝ n)) : List ℕ :=
-  if n = 0 ∨ ∃ j, P.aux_meetingSubscripts I j = [] then [0]
+  if n = 0 ∨ ∃ j, P.step_meetingSubscripts I j = [] then [0]
   else
     -- the tensor product of the per-dimension subscripts, in cell order
     let MX := (List.range' 1 P.nrOfCells).filter fun c =>
-      ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.aux_meetingSubscripts I j
+      ∀ j, GridPartition.i2s P.nrOfSegments c j ∈ P.step_meetingSubscripts I j
     if ∃ j, I.inf j < P.dividers j 0 ∨ P.dividers j (P.nrOfSegments j) < I.sup j
     then MX ++ [0] else MX
 

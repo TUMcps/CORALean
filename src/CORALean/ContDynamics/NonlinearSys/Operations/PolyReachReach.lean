@@ -14,6 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -55,15 +56,17 @@ variable {n m o : ℕ}
 open Matrix ContSet Real.OfInterval
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Line 1, before the first iteration. -/
-def NonlinearSys.aux_polyReachInit (X₀ : PolyZonotope (Vec ℝ n)) : NonlinearSys.PolyReachState n :=
+@[step_of NonlinearSys.polyReachReach]
+def NonlinearSys.step_polyReachInit (X₀ : PolyZonotope (Vec ℝ n)) : NonlinearSys.PolyReachState n :=
   { t := 0, R := X₀, Rτ := X₀, Ω := PolyZonotope.ofPoint 0 }    -- 1. t₀,s ← 0; Ω(0) ← {0}
 
 /-- Lines 3-16: one iteration of [1, Alg. 1]'s main loop; `none` where fuel ran out before
 lines 4-10's loop found a fixed point. -/
-noncomputable def NonlinearSys.aux_polyReachStep (U UΔ : PolyZonotope (Vec ℝ m))
+@[step_of NonlinearSys.polyReachReach]
+noncomputable def NonlinearSys.step_polyReachStep (U UΔ : PolyZonotope (Vec ℝ m))
     (taylor : NonlinearSys.PolyTaylor n m o) (combine : PolyZonotope (Vec ℝ n) →
       PolyZonotope (Vec ℝ m) → PolyZonotope (Vec ℝ o)) (post : NonlinearSys.PolyPost n m o)
     (sub : PolyZonotope (Vec ℝ n) → PolyZonotope (Vec ℝ n) → Bool)
@@ -110,21 +113,22 @@ noncomputable def NonlinearSys.aux_polyReachStep (U UΔ : PolyZonotope (Vec ℝ 
     -- 15.-16. t, s advance
     some { t := s.t + r, R := Rts1, Rτ := Rτ, Ω := Ω }
 
-/-- Lines 2-17: iterate `aux_polyReachStep` while `t_s < t_f`; `none` past a step that ran out
+/-- Lines 2-17: iterate `step_polyReachStep` while `t_s < t_f`; `none` past a step that ran out
 of fuel. -/
-noncomputable def NonlinearSys.aux_polyReachRun (U UΔ : PolyZonotope (Vec ℝ m))
+@[step_of NonlinearSys.polyReachReach]
+noncomputable def NonlinearSys.step_polyReachRun (U UΔ : PolyZonotope (Vec ℝ m))
     (taylor : NonlinearSys.PolyTaylor n m o) (combine : PolyZonotope (Vec ℝ n) →
       PolyZonotope (Vec ℝ m) → PolyZonotope (Vec ℝ o)) (post : NonlinearSys.PolyPost n m o)
     (sub : PolyZonotope (Vec ℝ n) → PolyZonotope (Vec ℝ n) → Bool)
     (enlarge : PolyZonotope (Vec ℝ n) → PolyZonotope (Vec ℝ n)) (r tf : ℝ) (η fuel : ℕ)
     (X₀ : PolyZonotope (Vec ℝ n)) : ℕ → Option (NonlinearSys.PolyReachState n)
-  | 0 => some (NonlinearSys.aux_polyReachInit X₀)                          -- 1. initialize
+  | 0 => some (NonlinearSys.step_polyReachInit X₀)                          -- 1. initialize
   | k + 1 =>
-    match NonlinearSys.aux_polyReachRun U UΔ taylor combine post sub enlarge r tf η fuel X₀ k with
+    match NonlinearSys.step_polyReachRun U UΔ taylor combine post sub enlarge r tf η fuel X₀ k with
     | none => none
     | some s =>
       if s.t < tf                                                     -- 2. while t_s < t_f
-      then NonlinearSys.aux_polyReachStep U UΔ taylor combine post sub enlarge r η fuel s
+      then NonlinearSys.step_polyReachStep U UΔ taylor combine post sub enlarge r η fuel s
       else some s
 
 
@@ -140,7 +144,7 @@ noncomputable def NonlinearSys.polyReachReach
   -- 2. the horizon of the loop, whose clock starts at `0`
   let tf := params.tFinal - params.tStart
   -- 18. `R([0,t_f])`, the union of the time-interval sets of iterations 1 to `K`
-  ⋃ j < options.K, ⋃ s ∈ NonlinearSys.aux_polyReachRun U options.UΔ options.taylor options.combine
+  ⋃ j < options.K, ⋃ s ∈ NonlinearSys.step_polyReachRun U options.UΔ options.taylor options.combine
     options.post options.sub options.enlarge options.Δt tf options.η options.fuel
     X₀ (j + 1), construct s.Rτ
 

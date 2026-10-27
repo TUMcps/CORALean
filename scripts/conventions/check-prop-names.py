@@ -69,7 +69,7 @@ def prop_decls(path):
         if not m:
             continue
         kind, name = m.group(1), m.group(2)
-        if name.split(".")[-1].startswith("aux_") or re.match(r"^(?:@\[[^\]]*\]\s*)*private\s", raw):
+        if name.split(".")[-1].startswith(("aux_", "step_")) or re.match(r"^(?:@\[[^\]]*\]\s*)*private\s", raw):
             continue  # a helper of its own file, not part of the vocabulary
         head = []
         j = i

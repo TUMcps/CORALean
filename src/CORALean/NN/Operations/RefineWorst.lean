@@ -4,6 +4,7 @@ public import CORALean.NN.Operations.RefineLayer
 public import CORALean.NN.Operations.RefinementRank
 public import CORALean.NN.Operations.Sensitivity
 public import CORALean.NN.Operations.WorstIndex
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,10 +13,10 @@ public import CORALean.NN.Operations.WorstIndex
 
 The paper's layer-wise heuristic [1, Def. 4.6]: `aux_layerRank` is [1, Eq. 28]'s `‖σ_k‖₂`, the
 Euclidean norm of a layer's per-neuron `refinementRank`s, as CORA's `norm(...)` takes it;
-`NeuralNetwork.aux_layerRank` reads that at the network's actual sensitivity, `aux_worstLayer` names
-the largest of `k + 1` such ranks (`k̃ = argmax_k ‖σ_k‖₂`), and `refineWorst` spends a `refineLayer`
-step there. Nothing here is proved and nothing here can be wrong: `encloseAt_outer` holds at *every*
-schedule, so this file only decides where the next order is spent.
+`NeuralNetwork.aux_layerRank` reads that at the network's actual sensitivity, `step_worstLayer`
+names the largest of `k + 1` such ranks (`k̃ = argmax_k ‖σ_k‖₂`), and `refineWorst` spends a
+`refineLayer` step there. Nothing here is proved and nothing here can be wrong: `encloseAt_outer`
+holds at *every* schedule, so this file only decides where the next order is spent.
 
 ## Inputs
 * `sch` – schedule of order patterns
@@ -45,6 +46,14 @@ namespace CORALean
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+/-- The layer the layer-wise rule refines next [1, Def. 4.6]: the largest
+`aux_layerRank` of `k + 1` layers. -/
+@[step_of Schedule.refineWorst]
+noncomputable def step_worstLayer (r : Fin (k + 1) → ℝ) : Fin (k + 1) := worstIndex r
+
+
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A layer's own rank, `‖σ_k‖₂` of its neurons' ranks [1, Eq. 28]: what the
@@ -57,17 +66,13 @@ a point of the input set, weighing the errors the layer's relaxation leaves. -/
 private noncomputable def Chain.aux_layerRank (c : Chain n m) (x d : Vec ℝ n) : ℝ :=
   _root_.CORALean.aux_layerRank (c.sensitivity x) d
 
-/-- The layer the layer-wise rule refines next [1, Def. 4.6]: the largest
-`aux_layerRank` of `k + 1` layers. -/
-noncomputable def aux_worstLayer (r : Fin (k + 1) → ℝ) : Fin (k + 1) := worstIndex r
-
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The layer-wise rule [1, Def. 4.6]: every neuron of the worst-ranked of
 `k + 1` layers moves up an order. -/
 noncomputable def Schedule.refineWorst (sch : Schedule) (r : Fin (k + 1) → ℝ) : Schedule :=
-  Schedule.refineLayer sch (aux_worstLayer r)
+  Schedule.refineLayer sch (step_worstLayer r)
 
 end CORALean
 

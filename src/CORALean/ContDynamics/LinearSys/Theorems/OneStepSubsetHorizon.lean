@@ -40,7 +40,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Step `k` of a run of `K` steps lies inside the horizon. -/
-theorem step_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ Δt)
+theorem oneStep_subset_horizon {T : Set ℝ} {Δt : ℝ} {K k : ℕ} (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hk : k < K) :
     Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T := by
   refine fun s hs => hT ⟨le_trans (mul_nonneg (Nat.cast_nonneg k) hΔt) hs.1, ?_⟩

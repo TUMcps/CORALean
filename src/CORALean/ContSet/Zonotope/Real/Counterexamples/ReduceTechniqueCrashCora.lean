@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Data.List.Range
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -49,7 +50,7 @@ gives `nrOfGens = 4`, three remain, `setdiff(1:4, 1) = [2 3 4]` indexes a `2 x 3
 namespace CORALean.Real
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- The techniques of `getMembers('reductionTechnique')`. -/
 inductive Zonotope.ReductionTechnique
@@ -58,7 +59,8 @@ inductive Zonotope.ReductionTechnique
   deriving DecidableEq
 
 /-- `getMembers('reductionTechnique')`: every technique is accepted by `validateOptions`. -/
-def Zonotope.aux_accepted (_ : ReductionTechnique) : Bool := true
+@[step_of Zonotope.reduceCrashCora_crash]
+def Zonotope.step_accepted (_ : ReductionTechnique) : Bool := true
 
 
 -- The model: CORA's code as printed, kept only to be refuted.
@@ -85,7 +87,7 @@ def Zonotope.redistributeIndexCrashCora (nrOfGens nKept : Nat) (ind : List Nat) 
 /-- `validateOptions` accepts the five techniques and `reduce` stops on each. -/
 theorem Zonotope.reduceCrashCora_crash : -- --- CONCL ---
     (∀ t ∈ [ReductionTechnique.methB, .methD, .methE, .cluster, .redistribute],
-        aux_accepted t = true) ∧
+        step_accepted t = true) ∧
       reduceCrashCora .methB true false = true ∧ reduceCrashCora .cluster true false = true ∧
       reduceCrashCora .methD false false = true ∧ reduceCrashCora .methE false false = true ∧
       reduceCrashCora .redistribute true true = true := by -- --- PROOF ---

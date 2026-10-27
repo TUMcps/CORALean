@@ -61,21 +61,21 @@ private theorem aux_estimateGainSearch_bracket (le : ℝ → ℝ → Bool) (g : 
     (target : ℝ) : -- --- CONCL ---
     ∀ (fuel : ℕ) (lo hi : ℝ), lo ≤ hi → le (g lo) target = true → le (g hi) target = false →
       ∃ a b : ℝ, le (g a) target = true ∧ le (g b) target = false ∧
-        a ≤ aux_estimateGainSearch le g target lo hi fuel ∧
-        aux_estimateGainSearch le g target lo hi fuel ≤ b ∧
+        a ≤ step_estimateGainSearch le g target lo hi fuel ∧
+        step_estimateGainSearch le g target lo hi fuel ≤ b ∧
         b - a = (hi - lo) / 2 ^ fuel := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero =>
     intro lo hi hlehi hlo hhi
-    rw [show aux_estimateGainSearch le g target lo hi 0 = (lo + hi) / 2 from rfl]
+    rw [show step_estimateGainSearch le g target lo hi 0 = (lo + hi) / 2 from rfl]
     exact ⟨lo, hi, hlo, hhi, by linarith, by linarith, by norm_num⟩
   | succ k ih =>
     intro lo hi hlehi hlo hhi
-    rw [show aux_estimateGainSearch le g target lo hi (k + 1)
+    rw [show step_estimateGainSearch le g target lo hi (k + 1)
       = if le (g ((lo + hi) / 2)) target then
-          aux_estimateGainSearch le g target ((lo + hi) / 2) hi k
-        else aux_estimateGainSearch le g target lo ((lo + hi) / 2) k from rfl]
+          step_estimateGainSearch le g target ((lo + hi) / 2) hi k
+        else step_estimateGainSearch le g target lo ((lo + hi) / 2) k from rfl]
     split
     -- the midpoint still passes, so it becomes the new passing end
     · rename_i hc

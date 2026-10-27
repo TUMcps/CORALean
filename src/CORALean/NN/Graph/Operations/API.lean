@@ -65,15 +65,15 @@ outside a node set. `degree`/`messagePassing` build `P` at a known graph, `gcnLi
 itself, `sumPoolLin`/`sumPool` the pooling layer, `select` the subgraph projection.
 
 `edgeMat`/`adjAt`/`adjMax` are an uncertain graph's adjacency at one, every, and the heaviest
-admissible edge weighting; `uncertainAdj`/`aux_uncertainAdjPad` are its exact and self-looped matrix
-polynomial zonotopes. `matMulBilin`/`gcnShared`/`gcnUncertain`/`evalSteps`/`gcnSteps` are the
+admissible edge weighting; `uncertainAdj`/`step_uncertainAdjPad` are its exact and self-looped
+matrix polynomial zonotopes. `matMulBilin`/`gcnShared`/`gcnUncertain`/`evalSteps`/`gcnSteps` are the
 uncertain convolution and its chain over steps, [1, Prop. 5].
 
 `degreeAt`/`degreeSup`/`edgeDegree`/`degreeCoeff` bracket an uncertain degree;
-`sqrtSlope`/`sqrtOffset`/`aux_sqrtError`/`sqrtConst`/`sqrtEdgeCoeff` are the inverse-square-root
-relaxation read over that bracket, `aux_sqrtBroadcast`/`aux_sqrtRow`/`aux_sqrtCol` broadcasting it
-into the two normalising matrices `messagePassingEnclosure`, [1, Prop. 4], pairs entrywise with the
-padded adjacency.
+`sqrtSlope`/`sqrtOffset`/`step_sqrtError`/`sqrtConst`/`sqrtEdgeCoeff` are the inverse-square-root
+relaxation read over that bracket, `step_sqrtBroadcast`/`step_sqrtRow`/`step_sqrtCol` broadcasting
+it into the two normalising matrices `messagePassingEnclosure`, [1, Prop. 4], pairs entrywise with
+the padded adjacency.
 
 All ℝ-only, `noncomputable` where a search or an inverse square root has no computable form yet,
 and says so in its docstring.

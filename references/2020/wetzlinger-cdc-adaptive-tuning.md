@@ -246,4 +246,4 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`AdaptSetOrderLoop.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/AdaptSetOrderLoop.lean)
 * [`ReduceBoxAntitone.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceBoxAntitone.lean)
 * [`ReduceBoxEqOfPoint.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceBoxEqOfPoint.lean)
-* [`StepSubsetClosedBallOfReduceBoxOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/StepSubsetClosedBallOfReduceBoxOrder.lean)
+* [`OneStepSubsetClosedBallOfReduceBoxOrder.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/OneStepSubsetClosedBallOfReduceBoxOrder.lean)

@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 /-!
 # `Alg. 2` lines 8-11 in floats: one iteration of the main loop
 
-`aux_minBackReachStep` computed in `𝕋`: [1, Alg. 2] lines 8-11. The exact layer's `e^{-A t_k}` is
+`step_minBackReachStep` computed in `𝕋`: [1, Alg. 2] lines 8-11. The exact layer's `e^{-A t_k}` is
 the interval matrix `[e^{-A t_k}]` of `expSquaringFloat` (Taylor order `η`, then `ν` squarings), its
 correction matrix `F` is `intervalCorrectionMatrix`, and every product with either is a set times
 an interval matrix. The outer direction is the exact layer's: each set is enclosed, none is

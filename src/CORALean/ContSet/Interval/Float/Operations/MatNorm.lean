@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Float.Operations.CenterBoxMat
 public import CORALean.ContSet.Interval.Float.Operations.RadiusMat
 public import CORALean.ContSet.Interval.Real.Definitions.NormType
 public import CORALean.Global.Float.Sqrt
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -39,11 +40,12 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
 /-- Entry `(i, j)` of `abs(center) + rad`, rounded up: the larger end of the bracketed center in
 absolute value, plus the half-width. -/
-def Interval.aux_normEntry (I : Interval (Mat 𝕋 m n)) (i : Fin m) (j : Fin n) : 𝕋 :=
+@[step_of Interval.matNorm]
+def Interval.step_normEntry (I : Interval (Mat 𝕋 m n)) (i : Fin m) (j : Fin n) : 𝕋 :=
   addUp (maximum (absolute (I.centerBoxMat.inf i j)) (absolute (I.centerBoxMat.sup i j)))
     (I.radiusMat i j)
 
@@ -53,10 +55,10 @@ def Interval.aux_normEntry (I : Interval (Mat 𝕋 m n)) (i : Fin m) (j : Fin n)
 /-- The norm of `type` at the rounded-up `abs(center) + rad`. -/
 def Interval.matNorm (steps : ℕ) (p : Real.Interval.NormType) (I : Interval (Mat 𝕋 m n)) : 𝕋 :=
   match p with
-  | .one => maximumOver fun j => sumUp fun i => I.aux_normEntry i j
-  | .inf => maximumOver fun i => sumUp fun j => I.aux_normEntry i j
+  | .one => maximumOver fun j => sumUp fun i => I.step_normEntry i j
+  | .inf => maximumOver fun i => sumUp fun j => I.step_normEntry i j
   | .fro => sqrtUp steps (sumUp fun i => sumUp fun j =>
-      mulUp (I.aux_normEntry i j) (I.aux_normEntry i j))
+      mulUp (I.step_normEntry i j) (I.step_normEntry i j))
 
 end CORALean.Float
 

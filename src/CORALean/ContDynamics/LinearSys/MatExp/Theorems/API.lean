@@ -97,6 +97,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubOneLeExp
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularRemainderSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemIntervalMulVecSet
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularCoeffImage
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfMemParticularSolutionOuterCorrelated
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormMulNormExpIntegralSubLe

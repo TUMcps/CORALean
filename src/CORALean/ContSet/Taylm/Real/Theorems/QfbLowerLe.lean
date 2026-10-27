@@ -94,10 +94,10 @@ private theorem Taylm.aux_polyOf_quadTerms (H : Mat ℝ n n) (x0 t : Vec ℝ n) 
 theorem Taylm.qfbLower_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) {H : Mat ℝ n n}
     (hH : H.PosSemidef) (x0 : Vec ℝ n) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) : -- --- CONCL ---
     T.qfbLower H x0 ≤ f t := by -- --- PROOF ---
-  have hQ : (Taylm.aux_quadForm H x0 T.maxOrder).Encloses
+  have hQ : (Taylm.step_quadForm H x0 T.maxOrder).Encloses
       fun t => (t - x0) ⬝ᵥ (H *ᵥ (t - x0)) / 2 := by
     intro t _
-    simp [Taylm.aux_quadForm, Taylm.poly, Taylm.aux_polyOf_quadTerms]
+    simp [Taylm.step_quadForm, Taylm.poly, Taylm.aux_polyOf_quadTerms]
   have hb := Taylm.bounds_mem (Taylm.minus_outer h hQ) ht
   have hq : 0 ≤ (t - x0) ⬝ᵥ (H *ᵥ (t - x0)) / 2 := by
     have := Matrix.PosSemidef.dotProduct_mulVec_nonneg hH (t - x0)

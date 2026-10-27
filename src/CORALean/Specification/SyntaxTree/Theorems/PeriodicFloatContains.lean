@@ -54,9 +54,9 @@ omit [ToRat 𝕋] in
 /-- The rounded shift of `R` by `m` periods encloses the shift by the real period `P`. -/
 private theorem SyntaxTree.aux_shift_enclosesFloat {twoPi R : Float.SyntaxTree.Dom 𝕋} {P : ℝ}
     (hP : toReal (twoPi.inf 0) ≤ P ∧ P ≤ toReal (twoPi.sup 0)) (m : ℤ) : -- --- CONCL ---
-    toReal ((SyntaxTree.aux_periodicFloat_shift twoPi R m).inf 0) ≤ toReal (R.inf 0) + m * P ∧
+    toReal ((SyntaxTree.step_periodicFloat_shift twoPi R m).inf 0) ≤ toReal (R.inf 0) + m * P ∧
       toReal (R.sup 0) + m * P ≤ toReal
-      ((SyntaxTree.aux_periodicFloat_shift twoPi R m).sup 0) := by -- --- PROOF ---
+      ((SyntaxTree.step_periodicFloat_shift twoPi R m).sup 0) := by -- --- PROOF ---
   have hm := intDown_le_intUp (𝕋 := 𝕋) m
   have hb := Float.Interval.mul_between_corners (a := (intDown m : 𝕋)) (b := intUp m)
     (c := twoPi.inf 0) (d := twoPi.sup 0) hm.1 hm.2 hP.1 hP.2
@@ -75,8 +75,8 @@ private theorem SyntaxTree.aux_lower_coreFloat {twoPi R : Float.SyntaxTree.Dom �
     (hn : toReal (R.inf 0) + n * P ≤ s ∧ s ≤ toReal (R.sup 0) + n * P)
     (has : toReal a ≤ s) : -- --- CONCL ---
     toReal
-      (if ltStrict ((SyntaxTree.aux_periodicFloat_shift twoPi R ind).sup 0) a = true then
-      (SyntaxTree.aux_periodicFloat_shift twoPi R (ind + 1)).inf 0 else
+      (if ltStrict ((SyntaxTree.step_periodicFloat_shift twoPi R ind).sup 0) a = true then
+      (SyntaxTree.step_periodicFloat_shift twoPi R (ind + 1)).inf 0 else
       a) ≤ s := by -- --- PROOF ---
   split_ifs with hc
   · have h1 := toReal_lt_of_ltStrict hc
@@ -97,8 +97,8 @@ private theorem SyntaxTree.aux_upper_coreFloat {twoPi R : Float.SyntaxTree.Dom �
     (hn : toReal (R.inf 0) + n * P ≤ s ∧ s ≤ toReal (R.sup 0) + n * P)
     (hsb : s ≤ toReal b) : -- --- CONCL ---
     s ≤ toReal
-      (if ltStrict b ((SyntaxTree.aux_periodicFloat_shift twoPi R ind).inf 0) = true then
-      (SyntaxTree.aux_periodicFloat_shift twoPi R (ind - 1)).sup 0 else b) := by -- --- PROOF ---
+      (if ltStrict b ((SyntaxTree.step_periodicFloat_shift twoPi R ind).inf 0) = true then
+      (SyntaxTree.step_periodicFloat_shift twoPi R (ind - 1)).sup 0 else b) := by -- --- PROOF ---
   split_ifs with hc
   · have h1 := toReal_lt_of_ltStrict hc
     have hk : n ≤ ind - 1 := by

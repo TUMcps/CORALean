@@ -11,8 +11,8 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExactSquareOuter
 # `Interval.exactSquare` contains the squares of the members
 
 Every product of entries is bracketed by the corner hull of its factors' intervals, the sum `A i i
-+ A j j` by the directed sums of the ends, the square of a diagonal entry by `aux_squareLo` and
-`aux_squareHi`, and the sums over `k` by `sumDown` and `sumUp`; the sum over the indices other
++ A j j` by the directed sums of the ends, the square of a diagonal entry by `step_squareLo` and
+`step_squareHi`, and the sums over `k` by `sumDown` and `sumUp`; the sum over the indices other
 than `i` and `j` is the full sum less the two split-off terms, as in the exact layer.
 
 ## Inputs
@@ -46,10 +46,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Every square of a point of `[a, b]` lies between the two directed bounds. -/
 private theorem Interval.aux_square_between {a b : 𝕋} {x : ℝ} (h₁ : toReal a ≤ x)
     (h₂ : x ≤ toReal b) : -- --- CONCL ---
-    toReal (Interval.aux_squareLo a b) ≤ x ^ 2 ∧
-      x ^ 2 ≤ toReal (Interval.aux_squareHi a b) := by -- --- PROOF ---
+    toReal (Interval.step_squareLo a b) ≤ x ^ 2 ∧
+      x ^ 2 ≤ toReal (Interval.step_squareHi a b) := by -- --- PROOF ---
   constructor
-  · unfold Interval.aux_squareLo
+  · unfold Interval.step_squareLo
     split
     · rename_i h
       rcases Bool.or_eq_true_iff.mp h with h | h
@@ -64,7 +64,7 @@ private theorem Interval.aux_square_between {a b : 𝕋} {x : ℝ} (h₁ : toRea
         rw [toReal_minimum]
         exact le_trans (min_le_right _ _) (le_trans (mulDown_le_mul b b) (by nlinarith))
     · rw [toReal_zero]; exact sq_nonneg x
-  · unfold Interval.aux_squareHi
+  · unfold Interval.step_squareHi
     rw [toReal_maximum]
     have ha := mul_le_mulUp a a
     have hb := mul_le_mulUp b b

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.LevelSet.Real.Definitions.GradEnclosure
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -39,9 +40,10 @@ namespace CORALean.Real
 variable {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+-- ------------------------------------------  STEPS  ------------------------------------------- --
 
-noncomputable def LevelSet.aux_linearCoord (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
+@[step_of LevelSet.tightenDomainLinear]
+noncomputable def LevelSet.step_linearCoord (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
   (j : Fin n)
     (int : Interval (Vec ℝ n)) : Interval (Vec ℝ n) :=
   if 0 < k.inf j ∨ k.sup j < 0 then
@@ -58,13 +60,14 @@ noncomputable def LevelSet.aux_linearCoord (fm : ℝ) (m : Vec ℝ n) (k : Inter
       sup := Function.update int.sup j (min (int.sup j) hi) }
   else int
 
-noncomputable def LevelSet.aux_linearSweep (f : Vec ℝ n → ℝ)
+@[step_of LevelSet.tightenDomainLinear]
+noncomputable def LevelSet.step_linearSweep (f : Vec ℝ n → ℝ)
     (grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)) (int : Interval (Vec ℝ n)) :
     Interval (Vec ℝ n) :=
   let m := int.center             -- m = center(int)
   let k := grad int               -- k = obj.der.grad(int)
   let fm := f m                   -- f = obj.funHan(m)
-  (List.finRange n).foldl (fun X j => LevelSet.aux_linearCoord fm m k j X) int
+  (List.finRange n).foldl (fun X j => LevelSet.step_linearCoord fm m k j X) int
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -72,7 +75,7 @@ noncomputable def LevelSet.aux_linearSweep (f : Vec ℝ n → ℝ)
 noncomputable def LevelSet.tightenDomainLinear (f : Vec ℝ n → ℝ)
     (grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)) (maxIter : ℕ) (int : Interval (Vec ℝ n)) :
     Interval (Vec ℝ n) :=
-  (LevelSet.aux_linearSweep f grad)^[maxIter] int
+  (LevelSet.step_linearSweep f grad)^[maxIter] int
 
 end CORALean.Real
 

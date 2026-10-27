@@ -62,30 +62,30 @@ private theorem Zonotope.aux_point_between (Z : Zonotope (Vec 𝕋 n)) (β : Vec
   exact ⟨by simp only [Zonotope.pointLo]; linarith, by simp only [Zonotope.pointHi]; linarith⟩
 
 
-/-- `aux_mulResidual` bounds `|A - G Γ|`. -/
+/-- `step_mulResidual` bounds `|A - G Γ|`. -/
 private theorem Zonotope.aux_mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G : Mat 𝕋 n h)
     (Γ : Mat 𝕋 h m) (i : Fin n) (j : Fin m) : -- --- CONCL ---
     |(toRealMat A - toRealMat G * toRealMat Γ) i j|
-      ≤ toReal (Zonotope.aux_mulResidual A G Γ i j) := by -- --- PROOF ---
+      ≤ toReal (Zonotope.step_mulResidual A G Γ i j) := by -- --- PROOF ---
   have hd := dotDown_le (fun l => G i l) fun l => Γ l j
   have hu := le_dotUp (fun l => G i l) fun l => Γ l j
   have hprod : (toRealMat G * toRealMat Γ) i j = ∑ l, toReal (G i l) * toReal (Γ l j) := rfl
   have h1 := subDown_le_sub (A i j) (dotUp (fun l => G i l) fun l => Γ l j)
   have h2 := sub_le_subUp (A i j) (dotDown (fun l => G i l) fun l => Γ l j)
   rw [Matrix.sub_apply, hprod]
-  simp only [Zonotope.aux_mulResidual, toReal_maximum, toReal_absolute]
+  simp only [Zonotope.step_mulResidual, toReal_maximum, toReal_absolute]
   have hA : toRealMat A i j = toReal (A i j) := rfl
   rw [hA]
   exact abs_le_max_abs_abs (by linarith) (by linarith)
 
 
-/-- `aux_errBound` bounds every member of a float box. -/
+/-- `step_errBound` bounds every member of a float box. -/
 private theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n}
     (he : e ∈ E.construct) (i : Fin n) : -- --- CONCL ---
-    |e i| ≤ toReal (Zonotope.aux_errBound E i) := by -- --- PROOF ---
+    |e i| ≤ toReal (Zonotope.step_errBound E i) := by -- --- PROOF ---
   have h1 : toReal (E.inf i) ≤ e i := (he i).1
   have h2 : e i ≤ toReal (E.sup i) := (he i).2
-  simp only [Zonotope.aux_errBound, toReal_maximum, toReal_absolute]
+  simp only [Zonotope.step_errBound, toReal_maximum, toReal_absolute]
   have a1 := neg_abs_le (toReal (E.inf i))
   have a2 := le_abs_self (toReal (E.sup i))
   have m1 := le_max_left |toReal (E.inf i)| |toReal (E.sup i)|
@@ -93,16 +93,16 @@ private theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Ve
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
 
-/-- `aux_entryDeviation` bounds `|x - e - y|`. -/
+/-- `step_entryDeviation` bounds `|x - e - y|`. -/
 private theorem Zonotope.aux_entryDeviation_bound (x e lo hi : Vec 𝕋 n) {y : ℝ} (i : Fin n)
     (hlo : toReal (lo i) ≤ y) (hhi : y ≤ toReal (hi i)) : -- --- CONCL ---
     |toReal (x i) - toReal (e i) - y|
-      ≤ toReal (Zonotope.aux_entryDeviation x e lo hi i) := by -- --- PROOF ---
+      ≤ toReal (Zonotope.step_entryDeviation x e lo hi i) := by -- --- PROOF ---
   have a1 := sub_le_subUp (x i) (e i)
   have a2 := sub_le_subUp (subUp (x i) (e i)) (lo i)
   have b1 := subDown_le_sub (x i) (e i)
   have b2 := sub_le_subUp (hi i) (subDown (x i) (e i))
-  simp only [Zonotope.aux_entryDeviation, toReal_maximum]
+  simp only [Zonotope.step_entryDeviation, toReal_maximum]
   have m1 := le_max_left (toReal (subUp (subUp (x i) (e i)) (lo i)))
     (toReal (subUp (hi i) (subDown (x i) (e i))))
   have m2 := le_max_right (toReal (subUp (subUp (x i) (e i)) (lo i)))
@@ -139,7 +139,7 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
       (Zonotope.aux_point_between Z₂ (Z₂.stBeta Z₁ H) i).2
     -- the rounded residual of coordinate `i`
     set res : Fin n → 𝕋 := fun i => sumUp fun j =>
-      Zonotope.aux_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j
+      Zonotope.step_mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j
         with hresDef
     have a2 : ∑ j, |(toRealMat (fun i j => Z₁.G j i)
           - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
@@ -149,11 +149,11 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
     have a3 := Zonotope.aux_abs_le_errBound Z₁.I_error he₁ i
     -- the three terms, rounded up, add to at most `B`
     have a4 := toReal_le_of_le (hres i)
-    simp only [Zonotope.aux_stLeftover] at a4
-    have a5 := add_le_addUp (addUp (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf
+    simp only [Zonotope.step_stLeftover] at a4
+    have a5 := add_le_addUp (addUp (Zonotope.step_entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i) (res i))
-      (Zonotope.aux_errBound Z₁.I_error i)
-    have a6 := add_le_addUp (Zonotope.aux_entryDeviation Z₁.c Z₂.I_error.inf
+      (Zonotope.step_errBound Z₁.I_error i)
+    have a6 := add_le_addUp (Zonotope.step_entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i) (res i)
     have a7 : (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i
         = ∑ j, toReal (Z₂.G j i) * toReal (Z₂.stBeta Z₁ H j) := rfl

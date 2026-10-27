@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 /-!
 # `Zonotope.reduceCombastel` bounds the generator count
 
-`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split `aux_combastelSplit`
+`reduceBy`'s shape is the whole argument: `h := q + n`, and at the split `step_combastelSplit`
 builds, `q = (o-1)*n`, so the total is `o*n` outright — no clamping, since a `Zonotope` has one
 generator block, unlike `PolyZonotope`, where `PolyZonotope.reduceGirard_order_le` needs one to
 bound two blocks together. Girard's rule admits the identical bound by the identical argument,

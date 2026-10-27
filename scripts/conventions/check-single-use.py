@@ -5,8 +5,8 @@
 
 A `theorem` or `lemma` that no other file reads at all is a guarantee nobody builds on; one that
 exactly one other file reads, and that is not outward-facing, is an auxiliary lemma of that file
-and belongs there as an `aux_` one, under its `AUXILIARY` banner (#227). This reports the second
-kind.
+and belongs there as a `private` `aux_` one, under its `AUXILIARY` banner (#227). This reports
+the second kind.
 
 A declaration is counted as used by a file when the last component of its name occurs in the file
 as code (comments and docstrings stripped), whatever the namespace or the dot notation in front of
@@ -19,7 +19,7 @@ field of a value (`h.foo`). A theorem is *not* single-use, and is left alone, wh
 
 * its own file reads it too, which makes two users, or two declarations of the user's `Basic.lean`
   read it (a bundle holds one declaration per section, so no lemma);
-* it reads an `aux_` step of its operation (#227), which no other file may read, so it cannot
+* it reads a `step_` of its operation (#227), which no other file may read, so it cannot
   leave the operation's unit;
 * its file carries a review stamp (`-- Reviewed:` followed by a reviewer's name and date, not `---`):
   folding it into another file would drop the review, so a reviewed file keeps its own file;
@@ -29,7 +29,7 @@ field of a value (`h.foo`). A theorem is *not* single-use, and is left alone, wh
 * one of its users is an `Examples/` file or `Instances.lean`, where a theorem is the guarantee
   an instance or a demonstration shows;
 * it carries an attribute (`@[simp]`, `@[ext]`, ...), which reads it without naming it; or
-* it is `private` or `aux_`, or it is declared in `Counterexamples/`, `Examples/`,
+* it is `private`, `aux_` or `step_`, or it is declared in `Counterexamples/`, `Examples/`,
   `Instances.lean` or an `API.lean`.
 
 An operation and its satellite theorem files (`scripts/conventions/satellites.py`, #227) count as one unit: a
@@ -62,7 +62,7 @@ DECL = re.compile(
 NAME_AT_DECL = re.compile(
     r"^(\s*(?:@\[[^\]]*\]\s*)?(?:(?:private|protected|noncomputable|nonrec)\s+)*"
     r"(?:theorem|lemma|def|abbrev|instance|opaque)\s+)[^\s:({\[]+")
-AUX_TOKEN = re.compile(r"(?<![\w'!?])aux_[\w'!?]*")
+STEP_TOKEN = re.compile(r"(?<![\w'!?])step_[\w'!?]*")
 REVIEWED = re.compile(r"^-- Reviewed:\s+(?!---\s*$)\S")
 SECTION_BANNER = re.compile(r"^-- =+\s+`.*`\s+=+ --$")
 DECL_NAME = re.compile(
@@ -80,7 +80,7 @@ def main():
     rel = {p: p.relative_to(ROOT).as_posix() for p in paths}
     code_files, any_files, decls = {}, {}, []
     sections = {}
-    own_lasts, code_text, reads_aux, reviewed = {}, {}, {}, set()
+    own_lasts, code_text, reads_step, reviewed = {}, {}, {}, set()
     for p in paths:
         lines = p.read_text(encoding="utf-8").split("\n")
         code = split_code(lines)
@@ -93,7 +93,7 @@ def main():
         if any(REVIEWED.match(l) for l in lines):
             reviewed.add(rel[p])
         declared = {m.group(1).split(".")[-1] for c in code for m in [DECL_NAME.match(c)] if m}
-        reads_aux[rel[p]] = {t for t in AUX_TOKEN.findall("\n".join(code))} - declared
+        reads_step[rel[p]] = {t for t in STEP_TOKEN.findall("\n".join(code))} - declared
         for tok in components("\n".join(bare)):
             code_files.setdefault(tok, set()).add(rel[p])
         if p.name == "Basic.lean":
@@ -115,7 +115,7 @@ def main():
                 continue
             name = m.group("name")
             last = name.split(".")[-1]
-            if last.startswith("aux_"):
+            if last.startswith(("aux_", "step_")):
                 continue
             decls.append((rel[p], i + 1, name, last))
 
@@ -145,8 +145,8 @@ def main():
             continue  # its own file reads it too: two users, the file and one other
         if path in reviewed:
             continue  # a reviewed file keeps its own file
-        if reads_aux.get(path):
-            continue  # it reads the `aux_` step of its operation, which no other file may read
+        if reads_step.get(path):
+            continue  # it reads a `step_` of its operation, which no other file may read
         users = code_files.get(last, set()) - {path}
         users = {u for u in users if not u.endswith("/API.lean")}
         if "." in name:
