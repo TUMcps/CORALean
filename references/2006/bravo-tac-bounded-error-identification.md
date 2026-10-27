@@ -13,7 +13,7 @@
 **Inventory:** unconfirmed (the conference version prints Assumptions 1-2, Definitions 1-9, Property 1 and Theorem 1, each with its own counter, and the algorithm of Sec. 3.3 without a number; the seven-page note may add results and renumber)
 
 Set-membership identification of the parameters of a linear regression `y_k = r_kᵀθ_k + e_k`,
-`|e_k| ≤ σ`, that vary by at most `γ` per step: the exact feasible set is an intersection of strips
+`|e_k| ≤ σ`, that vary by at most `γ` per step. The exact feasible set is an intersection of strips
 swollen by the expansion, and its outer approximation is a zonotope that each measurement
 intersects with a strip (the bound of [Alamo et al. 2005](../2005/alamo-automatica-guaranteed-estimation.md)),
 whose gain is chosen to minimize the volume and which is then widened by the box of the expansion

@@ -9,11 +9,11 @@
 }
 ```
 
-**Source:** https://arxiv.org/pdf/1512.02794v3 (v3, 23 August 2022, the current version when this page was audited in September 2026; v1 is from 2015, v2 from 2016; read as the PDF; its numbering agrees
-exactly with the ar5iv rendering at https://ar5iv.labs.arxiv.org/html/1512.02794
-this page was first read from — all seventeen locators checked against the PDF
-text, Def. 1 through Prop. 6, and none differ)  
-**Inventory:** confirmed
+**Source:** https://arxiv.org/pdf/1512.02794v3 (v3, 23 August 2022, the current version when this
+page was audited in September 2026; v1 is from 2015, v2 from 2016). It was read as the PDF, and its
+numbering agrees exactly with the ar5iv rendering at https://ar5iv.labs.arxiv.org/html/1512.02794
+this page was first read from. All seventeen locators were checked against the PDF text, Def. 1
+through Prop. 6, and none differ. **Inventory:** confirmed
 
 The Minkowski difference of zonotopes: exact where the generators align, and
 approximated otherwise. `minkDiffAligned` is the exact case; CORA's default
@@ -24,7 +24,7 @@ generators span, in
 [`HRepEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepEq.lean),
 and `Lemma 2` reads off it. The exhaustion — that the 2·C(p,n−1) cross-product
 normals cover every facet — is a cone argument rather than a facet enumeration:
-a point outside the zonotope has a separating direction; the generators signed
+a point outside the zonotope has a separating direction. The generators signed
 by that direction make it a point of a pointed cone on which the separation is a
 positive linear form;
 [`ConeEdge.lean`](../../src/CORALean/Global/ConeEdge.lean) walks it to an edge
@@ -67,13 +67,13 @@ discharges it at `Thm. 2`'s own normals.
 | `Lemma 1` | (Minkowski Difference from Finitely Many Intersections) [cites [37, Thm 2.1]] For convex subtrahend Z_s, Z_m ⊖ Z_s = ⋂_{v^(i)∈V} (Z_m - v^(i)) over the vertices V of Z_s. | [`MinkowskiDiffEqIInter.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffEqIInter.lean) — at any `V` whose convex hull covers `Z_s`, the paper's vertex set being one such `V`, and nothing here needs `V` finite. Convexity is asked of the **minuend**, not, as printed, of the subtrahend: the hull argument runs on `{z \| x + z ∈ Z_m}`, and `Z_s` convex is neither used nor implied | `underspecified` — convexity is printed for the subtrahend; the argument needs it of the minuend |
 | `Thm. 1` | (Minkowski Difference from Generators) For zonotopes Z_m, Z_s, Z_m ⊖ Z_s can be computed by a recursive procedure using only the generators of Z_s: Z_int^(1) = Z_m - c^(s), Z_int^(i+1) = (Z_int^(i)+g^(s,i)) ∩ (Z_int^(i)-g^(s,i)), giving Z_m⊖Z_s = Z_int^(p_s+1). | [`MinkDiffGenRecExact.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffGenRecExact.lean) | `proof-gap` — eq. (8) is false for non-convex sets; the theorem holds since every set the recursion reaches is convex |
 | `Def. 2` | (n-dimensional cross product) [cites [47]] For n-1 vectors h^(i) stored in H, nX(H) = [det(H^[1]), -det(H^[2]), ..., (-1)^{n+1}det(H^[n])]^T, where H^[i] is H with row i removed. | [`CrossProduct.lean`](../../src/CORALean/Global/CrossProduct.lean) — at `Mat ℝ (n+1) n`, the printed `Mat ℝ n (n-1)` with the ambient dimension named as a successor so that dropping a row needs no truncated subtraction; the printed sign `(-1)^{i+1}` counts rows from one and is `(-1)^i` at a zero-based index. The same file proves what makes it a normal vector, `nX(H)` annihilating every column of `H` | `correct` |
-| `Thm. 2` | (H-Representation of Zonotopes) [cites [10, Thm. 7]] Gives the halfspace representation Cx≤d of a zonotope (c,G) with p independent generators, using the normalized cross products nX of combinations of generators for C, and Δd = Σ\|C+g^(υ)\| for the offset. | [`HRepEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepEq.lean), the rows themselves [`FacetNormal.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/FacetNormal.lean) — an equality, at every zonotope in ℝ^(n+1) whose generators span it, which is what "p independent generators" asks for. Three departures. The rows are indexed by *every* selection `Fin n → Fin p` rather than by the C(p,n−1) subsets: a repeated index makes nX zero and the row vacuous, and two orderings of one subset differ by a sign, so the family is the printed 2·C(p,n−1) rows and nothing else. The normalization is dropped — a halfspace is unchanged by scaling its normal and its offset together, and Δd scales with C. And the ± pair is written as one \|·\| row rather than two. **As printed:** each departure denotes the same halfspace set — the printed rows are among the selections and every other selection is vacuous or repeats one up to sign, a positive scaling of a normal and its offset leaves its halfspace unchanged, and `\|r\| ≤ Δd` is the pair `±r ≤ Δd` — so the equality proved is the printed `Z = {x \| Cx ≤ d}` | `correct` |
+| `Thm. 2` | (H-Representation of Zonotopes) [cites [10, Thm. 7]] Gives the halfspace representation Cx≤d of a zonotope (c,G) with p independent generators, using the normalized cross products nX of combinations of generators for C, and Δd = Σ\|C+g^(υ)\| for the offset. | [`HRepEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepEq.lean), the rows themselves [`FacetNormal.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/FacetNormal.lean) — an equality, at every zonotope in ℝ^(n+1) whose generators span it, which is what "p independent generators" asks for. See the Findings. | `correct` |
 | `Lemma 2` | (H-Representation of Intersection of Translated Zonotopes) For Z_o=(c-h,G) and Z_t=(c+h,G), the halfspace representation of Z_o∩Z_t has the same C matrix as Thm. 2 but a d vector adjusted by Δd_trans = \|C+h\|. | [`HRepInterEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepInterEq.lean) — an equality, under `Thm. 2`'s own spanning hypothesis and at its rows, `Z_o` and `Z_t` written with `Zonotope.shift`, whose sign convention makes them `Z.shift h` and `Z.shift (-h)` | `correct` |
 | `Thm. 3` | (H-Representation of the Minkowski Difference) For zonotopes Z_m=(c^(m),G^(m)) and Z_s=(c^(s),G^(s)), gives the halfspace representation Cx≤d of Z_m⊖Z_s, with the same C matrix as Thm. 2 and d adjusted by both Δd and Δd_trans. | [`MinkowskiDiffHRepEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffHRepEq.lean) — an equality, at `Thm. 2`'s own hypothesis on `Z_m` alone (its generators span) and none on `Z_s`, and at `Thm. 2`'s own `±`-as-one-`\|·\|`-row convention. The enclosing half reads `MinkowskiDiffApplyLe.lean` at a direction and its negation; the exhausting half reads `Z_m`'s own halfspace description, `HRepEq.lean`, at the point the subtrahend displaces. `minkDiff` is still not computed this way — CORA's `'approx'` scales the minuend's generators by a pseudoinverse solution nothing checks, so it is computed from a checked generator representation instead; see `Zonotope Minkowski difference` in [`zonotope` `minkDiff`](../coverage/contSet/zonotope.md). The identity is also proved at the `Bool × Finset (Fin Zm.h)` rows `Prop. 2` counts over, [`MinkowskiDiffRowsEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffRowsEq.lean), which is what discharges `gen_not_required_iff`'s `hrows`; see the findings below | `correct` |
 | `Prop. 1` | (Zonotopes are not closed under Minkowski difference) Gives an explicit 3D counterexample zonotope pair Z_m, Z_s for which Z_m⊖Z_s is not itself a zonotope. | [`MinkowskiDiffNotZonotope.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffNotZonotope.lean) — the paper's own pair, G⁽ᵐ⁾ = [[1,1,0,0],[1,0,1,0],[1,0,0,1]] and G⁽ˢ⁾ = G⁽ᵐ⁾/3 with the first column's first entry negated, both centered at the origin. One departure, in the proof and not in the statement: the printed proof is a plot ("as one can see in the plot of Z_m⊖Z_s in Fig. 6"), and a plot proves nothing here, so the face it points at is named instead. The difference lies under x₂ ≤ 4/3, x₂ − x₁ ≤ 2/3, x₁ − x₃ ≤ 2/3 and x₃ ≤ 4/3, and (2/3, 4/3, 0), (2/3, 4/3, 4/3) and (4/3, 4/3, 4/3) all sit on x₂ = 4/3; no center reflects all three back into it. That a zonotope has no such face is [`FaceCentrallySymmetric.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/FaceCentrallySymmetric.lean) | `correct` |
-| `Prop. 2` | (Generator removal) Gives a necessary-and-sufficient combinatorial condition (a sum of indicator terms equal to 2·C(p_m-1,n-2)) for the i-th generator of the minuend Z_m to be droppable without affecting Z_m⊖Z_s. | [`GenNotRequiredIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIff.lean), the counting identity underneath it [`GenRemovableIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenRemovableIff.lean) — the printed biconditional, with "no longer required for the difference" read as the printed proof reads it: the difference is still cut out by the rows of `C` that g⁽ᵐ˒ⁱ⁾ does not span. Two departures, and one hypothesis discharged. Which halfspaces are redundant stays a parameter, as `Sec. 4.1` leaves it — obtained by linear programming, and nothing here computes it. `Thm. 3`'s identity is a hypothesis of `gen_not_required_iff` itself, `hrows`, but a theorem at `Thm. 3`'s own rows: `gen_not_required_iff_of_span` ([`GenNotRequiredIffOfSpan.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfSpan.lean)) is the same biconditional with `hrows` discharged by `minkowskiDiff_rows_eq`, at `Thm. 2`'s hypothesis that the minuend's generators span — see the findings below. The **minimum** H-representation is a hypothesis, in the form that says exactly that: dropping every redundant row still describes the difference, and no row outside the redundant set is redundant. That is what carries the printed proof's one-sentence step — each row being redundant on its own would not. Both halves are theorems at `Thm. 3`'s rows when the difference has nonempty interior and no two rows cut the same proper halfspace: `gen_not_required_iff_of_fullDim` ([`GenNotRequiredIffOfFullDim.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfFullDim.lean)) takes the redundant set to be the rows the others imply, and `rows_eq_drop_redundant` ([`RowsEqDropRedundant.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/RowsEqDropRedundant.lean)) proves that dropping all of them at once leaves the difference; see the findings below. | `underspecified` — needs a full-dimensional difference and rows cutting distinct halfspaces, neither printed |
+| `Prop. 2` | (Generator removal) Gives a necessary-and-sufficient combinatorial condition (a sum of indicator terms equal to 2·C(p_m-1,n-2)) for the i-th generator of the minuend Z_m to be droppable without affecting Z_m⊖Z_s. | [`GenNotRequiredIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIff.lean), the counting identity underneath it [`GenRemovableIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenRemovableIff.lean), [`GenNotRequiredIffOfSpan.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfSpan.lean), [`GenNotRequiredIffOfFullDim.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfFullDim.lean), [`RowsEqDropRedundant.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/RowsEqDropRedundant.lean) — the printed biconditional, with "no longer required for the difference" read as the printed proof reads it: the difference is still cut out by the rows of `C` that g⁽ᵐ˒ⁱ⁾ does not span. See the Findings. | `underspecified` — needs a full-dimensional difference and rows cutting distinct halfspaces, neither printed |
 | `Prop. 2 (complexity)` | Checking the condition for all generators has computational complexity O(C(p_m,n-1)·p_m²) with respect to the dimension n. | n/a — a running time stated of the construction, which the tree can only assert (`Complexity/Time/`) and never prove; see CONTRIBUTING.md, "A size is proved; a running cost is asserted" | `not-a-claim` |
-| `Thm. 4` | (Under-Approximative G-Representation of the Minkowski Difference) Gives an under-approximating generator representation (ĉ,Ĝ) of Z_m⊖Z_s, with ĉ=c^(m)-c^(s) and Ĝ=Ĝ^(m)μ*, μ* the solution of an LP maximizing ζ^Tμ subject to Âμ≤b̂, μ≥0. | [`MinkDiffStretchInnerHRep.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchInnerHRep.lean) — the theorem at `Thm. 2`'s own directions, the cross products of a minuend whose generators span, both signs: the stretched minuend at any `µ ≥ 0` feasible for `Âµ ≤ b̂` lies in `Z_m ⊖ Z_s`, the linear program's optimum `µ*` among them; [`MinkDiffStretchInner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchInner.lean), the representation itself [`MinkDiffStretch.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffStretch.lean) — the same at any directions describing the minuend, inner, as `MinkDiff` obliges: `μ` is any point feasible for `Âμ ≤ b̂`, not (15)'s optimum: `ζ` is "a user-specified vector" and the objective picks among feasible `μ` without carrying the guarantee, so an optimum is a tightening and not a soundness condition, and that the directions `C` *describe* the minuend, which the printed proof reads off `Thm. 2`, is a hypothesis; [`HRepLinSubset.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepLinSubset.lean) discharges it at those rows, and `C` is indexed by a type, not a `Fin q`, so that their own index serves. `Ĝ^(m)` is `G^(m)` with no generator removal, which is what the paper's own HC-u runs | `correct` |
+| `Thm. 4` | (Under-Approximative G-Representation of the Minkowski Difference) Gives an under-approximating generator representation (ĉ,Ĝ) of Z_m⊖Z_s, with ĉ=c^(m)-c^(s) and Ĝ=Ĝ^(m)μ*, μ* the solution of an LP maximizing ζ^Tμ subject to Âμ≤b̂, μ≥0. | [`MinkDiffStretchInnerHRep.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchInnerHRep.lean), [`MinkDiffStretchInner.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchInner.lean), the representation itself [`MinkDiffStretch.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffStretch.lean), [`HRepLinSubset.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepLinSubset.lean) — the theorem at `Thm. 2`'s own directions, the cross products of a minuend whose generators span, both signs: the stretched minuend at any `µ ≥ 0` feasible for `Âµ ≤ b̂` lies in `Z_m ⊖ Z_s`, the linear program's optimum `µ*` among them. See the Findings. | `correct` |
 | `Thm. 5` | (Over-Approximative G-Representation of the Minkowski Difference) Gives an over-approximating generator representation (c̃,G̃) analogous to Thm. 4, with μ* solving a differently-signed LP (minimizing ζ^Tμ subject to -Âμ≤-b̃, μ≥0). | [`MinkDiffStretchOuter.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchOuter.lean) over the same [`MinkDiffStretch.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffStretch.lean) — outer, and recorded only here: `Thm. 4`'s row is the inner one and neither stands in for the other. `b̃` is a parameter with the one property (18) is wanted for, that it bounds the exact difference in each direction; [`MinkowskiDiffApplyLe.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffApplyLe.lean) proves `Δd - Δd_trans` is such a `b̃` — the most conservative admissible one, which is why (18) may lower it. Same `Thm. 2` premise as `Thm. 4`, read at the stretched minuend, and discharged the same way — `hRep_lin_subset` allows a positive rescaling of each normal, which is what stretching by `µ` does to them | `correct` |
 | `Prop. 3` | For C⊆A, {a+b \| a⊕C⊆A, b∈B} ⊆ {a+b \| a+b⊕C⊆A⊕B} — a general set-enclosure monotonicity lemma used in later proofs about combining Minkowski differences and sums. | [`MinkowskiDiffAddSubsetAdd.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffAddSubsetAdd.lean) — the inclusion with no hypothesis, since neither the paper's proof nor ours uses `C ⊆ A`; [`MinkowskiDiffAddSubsetAddOfSubset.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffAddSubsetAddOfSubset.lean) — the printed statement, hypothesis `C ⊆ A` included, read off it | `correct` |
 | `Prop. 4` | For Z_{m,encl}⊇Z_s, (Z_{m,encl}⊖Z_s)⊕Z_{m,rem} ⊆ (Z_{m,encl}⊕Z_{m,rem})⊖Z_s — a distributivity-type inclusion relating Minkowski difference/sum when the minuend is split into an enclosing part and a remainder. | [`MinkowskiDiffEnclSubsetAdd.lean`](../../src/CORALean/ContSet/ContSet/Theorems/MinkowskiDiffEnclSubsetAdd.lean) | `correct` |
@@ -120,84 +120,116 @@ harmless one: generators are ranked by `∑ₖ gₖ²` rather than `‖·‖₂`
 a square root.
 [`EnclGenSel.lean`](../../src/CORALean/ContSet/Zonotope/Real/Operations/EnclGenSel.lean)
 
-**`Prop. 6` — the closed form needs µ ≥ 0, and (23)'s normal has the wrong
-sign.** A zonotope generator may be negated without changing the set, so the
-reach of the stretched minuend in the direction Ĉ⁺ᵢ is Σⱼ \|Ĉ⁺ᵢĝ⁽ʲ⁾\|·\|µⱼ\|,
-not Σⱼ \|Ĉ⁺ᵢĝ⁽ʲ⁾\|µⱼ. Where the solution of (22) has a negative entry the two
-differ and the closed form is not the difference. One pair in ℝ² settles it:
-Z_m = (0, e₁, e₂), the square [−1,1]², and Z_s = (0, 2e₁, 2e₂), twice it. The
-difference is empty. `Def. 2`'s normals are (0,−1) and (1,0), so Â = [[0,1],
-[1,0]] and Δd̂ − Δd̂_trans = (1 − 2, 1 − 2); (22) has the unique solution
-µ = (−1, −1), and the closed form (0, −e₁, −e₂) is the minuend back again.
-So `minkDiffStretch_eq` carries µ ≥ 0, which the printed proposition does not.
-The second departure is a transcription slip in the source: (23) prints
-C⁺ᵢ = [g⁽ⁱ⁾₂ g⁽ⁱ⁾₁]/‖·‖₂, which is not orthogonal to g⁽ⁱ⁾; `Def. 2`'s own nX at
-n = 2 gives [g⁽ⁱ⁾₂, −g⁽ⁱ⁾₁], which is. Nothing downstream turns on it — the
-row's statement is at an abstract family of directions — but the printed matrix
-is not the normal it is called.
+**`Prop. 6` — the closed form needs µ ≥ 0, and (23)'s normal has the wrong sign.** A zonotope
+generator may be negated without changing the set, so the reach of the stretched minuend in the
+direction Ĉ⁺ᵢ is Σⱼ \|Ĉ⁺ᵢĝ⁽ʲ⁾\|·\|µⱼ\|, not Σⱼ \|Ĉ⁺ᵢĝ⁽ʲ⁾\|µⱼ. Where the solution of (22) has a
+negative entry the two differ and the closed form is not the difference. One pair in ℝ² settles it:
+Z_m = (0, e₁, e₂), the square [−1,1]², and Z_s = (0, 2e₁, 2e₂), twice it. The difference is empty.
+`Def. 2`'s normals are (0,−1) and (1,0), so Â = [[0,1], [1,0]] and Δd̂ − Δd̂_trans = (1 − 2, 1 − 2);
+(22) has the unique solution µ = (−1, −1), and the closed form (0, −e₁, −e₂) is the minuend back
+again. So `minkDiffStretch_eq` carries µ ≥ 0, which the printed proposition does not.
+
+**`Prop. 6` — the sign in (23)'s normal.** The second departure is a transcription slip in the
+source: (23) prints C⁺ᵢ = [g⁽ⁱ⁾₂ g⁽ⁱ⁾₁]/‖·‖₂, which is not orthogonal to g⁽ⁱ⁾; `Def. 2`'s own nX at
+n = 2 gives [g⁽ⁱ⁾₂, −g⁽ⁱ⁾₁], which is. Nothing downstream turns on it — the row's statement is at an
+abstract family of directions — but the printed matrix is not the normal it is called.
 [`MinkDiffStretchEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffStretchEq.lean)
 
-**`Thm. 3` — proved at both index families, so `gen_not_required_iff`'s `hrows` is
-a theorem.**
+**`Thm. 3` — proved at both index families, so `gen_not_required_iff`'s `hrows` is a theorem.**
 [`MinkowskiDiffHRepEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffHRepEq.lean),
-`Zonotope.minkowskiDiff_hRep_eq`, is the identity itself: `Z_m ⊖ Z_s = {x \| C(x −
-(c⁽ᵐ⁾ − c⁽ˢ⁾)) ≤ Δd − Δd_trans}`, `C` `Thm. 2`'s own cross-product normals at
-`Z_m` and Δd_trans the subtrahend's own reach in each direction. It needs only
-`Thm. 2`'s own hypothesis, that `Z_m`'s generators span — nothing about `Z_s` —
-and it reads `± → one \|·\| row` exactly as `HRepEq.lean`/`HRepInterEq.lean`
-already do: one row per selection `S : Fin (n+1) → Fin Z_m.h`, `Thm. 2`'s own
-indexing, not the printed `C(p,n−1)` subsets. `GenRemovableIff.lean` and
-`GenNotRequiredIff.lean` use the other encoding for the same family — `Bool ×
-Finset (Fin Zm.h)`, one row per signed generator subset.
-[`MinkowskiDiffRowsEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffRowsEq.lean),
-`Zonotope.minkowskiDiff_rows_eq`, bridges the two: the rows are
-`Zonotope.minkDiffRowNormal` (`±` the cross product of the subset's generators in
-increasing order) and `Zonotope.minkDiffRowOffset`. A selection with a repeated
-generator has normal `0` (`FacetNormalEqZeroOfNotInjective.lean`) and its row
-is `0 ≤ 0`; an injective one is a reordering of its image's increasing selection,
-which changes the normal by the permutation's sign
-(`FacetNormalCompPermAbs.lean`, through `Matrix.det_permute'`), so
-`\|·\|` is unchanged; and the `true`/`false` rows of a subset are the two sides
-of that `\|·\|`. `GenNotRequiredIffOfSpan.lean` is `gen_not_required_iff` at
-those rows with `hrows` discharged; the original, at free `C`/`d`, stays beside
-it. The minimum-H-representation hypotheses `hmin`/`hirr` are discharged in
-`GenNotRequiredIffOfFullDim.lean`, below.
+`Zonotope.minkowskiDiff_hRep_eq`, is the identity itself:
+`Z_m ⊖ Z_s = {x \| C(x − (c⁽ᵐ⁾ − c⁽ˢ⁾)) ≤ Δd − Δd_trans}`, `C` `Thm. 2`'s own cross-product normals
+at `Z_m` and Δd_trans the subtrahend's own reach in each direction. It needs only `Thm. 2`'s own
+hypothesis, that `Z_m`'s generators span — nothing about `Z_s` — and it reads `± → one \|·\| row`
+exactly as `HRepEq.lean`/`HRepInterEq.lean` already do: one row per selection
+`S : Fin (n+1) → Fin Z_m.h`, `Thm. 2`'s own indexing, not the printed `C(p,n−1)` subsets.
+`GenRemovableIff.lean` and `GenNotRequiredIff.lean` use the other encoding for the same family —
+`Bool × Finset (Fin Zm.h)`, one row per signed generator subset.
 
-**`Prop. 2` — the minimum H-representation needs two hypotheses the paper does
-not print.** The printed biconditional is "the i-th
-generator is no longer required for the difference ⟺ ∑ⱼ ind⁽ʲ⁾ᵢ = 2·C(p_m−1, n−2)",
-and its proof runs through a middle term: each generator spans exactly
-2·C(p_m−1, n−2) facets, so the sum over the redundant halfspaces hits that
-number exactly when all of them are redundant. That equivalence is
+**`Thm. 3` — the rows indexed by selections.**
+[`MinkowskiDiffRowsEq.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkowskiDiffRowsEq.lean),
+`Zonotope.minkowskiDiff_rows_eq`, bridges the two: the rows are `Zonotope.minkDiffRowNormal` (`±`
+the cross product of the subset's generators in increasing order) and `Zonotope.minkDiffRowOffset`.
+A selection with a repeated generator has normal `0` (`FacetNormalEqZeroOfNotInjective.lean`) and
+its row is `0 ≤ 0`; an injective one is a reordering of its image's increasing selection, which
+changes the normal by the permutation's sign (`FacetNormalCompPermAbs.lean`, through
+`Matrix.det_permute'`), so `\|·\|` is unchanged; and the `true`/`false` rows of a subset are the two
+sides of that `\|·\|`. `GenNotRequiredIffOfSpan.lean` is `gen_not_required_iff` at those rows with
+`hrows` discharged; the original, at free `C`/`d`, stays beside it. The minimum-H-representation
+hypotheses `hmin`/`hirr` are discharged in `GenNotRequiredIffOfFullDim.lean`, below.
+
+**`Prop. 2` — the minimum H-representation needs two hypotheses the paper does not print.** The
+printed biconditional is "the i-th generator is no longer required for the difference ⟺ ∑ⱼ ind⁽ʲ⁾ᵢ =
+2·C(p_m−1, n−2)", and its proof runs through a middle term: each generator spans exactly 2·C(p_m−1,
+n−2) facets, so the sum over the redundant halfspaces hits that number exactly when all of them are
+redundant. That equivalence is
 [`GenRemovableIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenRemovableIff.lean),
-and it is combinatorics with no linear program in it. The step from there to
-"the generator is no longer required" is
+and it is combinatorics with no linear program in it. The step from there to "the generator is no
+longer required" is
 [`GenNotRequiredIff.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIff.lean),
-which reads that phrase as the printed proof does — the halfspaces the generator
-does not span still describe the difference — and takes the minimum
-H-representation as a hypothesis, in the two-part form that pins it down: every
-row outside the redundant set is irredundant, and dropping the redundant ones
-all at once still describes the difference. The second part is what does the
-work, and it does not follow from the first: two rows cutting the same halfspace
-are each redundant on its own and jointly are not. What would discharge it is
-the classical fact that a full-dimensional polytope whose description has no two
-rows cutting the same halfspace is already described by its irredundant
-halfspaces. That fact is
+which reads that phrase as the printed proof does: the halfspaces the generator does not span still
+describe the difference. It takes the minimum H-representation as a hypothesis, in the two-part form
+that pins it down: every row outside the redundant set is irredundant, and dropping the redundant
+ones all at once still describes the difference.
+
+**`Prop. 2` — the classical fact that discharges the second hypothesis.** The second part is what
+does the work, and it does not follow from the first: two rows cutting the same halfspace are each
+redundant on its own and jointly are not. What would discharge it is the classical fact that a
+full-dimensional polytope whose description has no two rows cutting the same halfspace is already
+described by its irredundant halfspaces. That fact is
 [`RowsEqDropRedundant.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/RowsEqDropRedundant.lean),
-`rows_eq_drop_redundant`, proved without facets: two redundant rows `j ≠ k` and a
-point `y` breaking both and nothing else; from an interior point `z` the segment
-to `y` crosses row `i` at `pᵢ/(pᵢ + qᵢ)` (slack at `z`, excess at `y`), and the
-two crossings coincide only on the affine set `p_j q_k = p_k q_j` in `z`, which
-fills the open interior only if the rows are proportional. So some `z` crosses
-one first, and a point between the crossings breaks that row alone — it was not
+`rows_eq_drop_redundant`, proved without facets: two redundant rows `j ≠ k` and a point `y` breaking
+both and nothing else. From an interior point `z` the segment to `y` crosses row `i` at
+`pᵢ/(pᵢ + qᵢ)` (slack at `z`, excess at `y`), and the two crossings coincide only on the affine set
+`p_j q_k = p_k q_j` in `z`, which fills the open interior only if the rows are proportional. So some
+`z` crosses one first, and a point between the crossings breaks that row alone — it was not
 redundant. Dropping the rows one at a time is then an induction.
+
+**`Prop. 2` — the Lean statement and the printed count.**
 [`GenNotRequiredIffOfFullDim.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfFullDim.lean)
-is `Prop. 2` with the redundant set computed as the rows the others imply and
-both hypotheses discharged. Neither hypothesis of the fact is printed: `Prop. 2`
-says nothing about Z_m ⊖ Z_s being full-dimensional, and it need not be — the
-difference may be lower-dimensional or empty, and then the minimum
-H-representation is not unique and the criterion is not about anything — nor
-about the rows cutting distinct halfspaces, which for `Thm. 2`'s rows is the
-minuend's generators in general position; with one halfspace cut twice, both
-copies are redundant and the printed count can call a generator droppable that
-is not.
+is `Prop. 2` with the redundant set computed as the rows the others imply and both hypotheses
+discharged. Neither hypothesis of the fact is printed: `Prop. 2` says nothing about Z_m ⊖ Z_s being
+full-dimensional, and it need not be — the difference may be lower-dimensional or empty, and then
+the minimum H-representation is not unique and the criterion is not about anything — nor about the
+rows cutting distinct halfspaces, which for `Thm. 2`'s rows is the minuend's generators in general
+position. With one halfspace cut twice, both copies are redundant and the printed count can call a
+generator droppable that is not.
+
+**`Thm. 4` — the stretched representation.** It is the same at any directions describing the
+minuend, inner, as `MinkDiff` obliges. `μ` is any point feasible for `Âμ ≤ b̂`, not (15)'s optimum.
+`ζ` is "a user-specified vector" and the objective picks among feasible `μ` without carrying the
+guarantee, so an optimum is a tightening and not a soundness condition. That the directions `C`
+*describe* the minuend, which the printed proof reads off `Thm. 2`, is a hypothesis.
+[`HRepLinSubset.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/HRepLinSubset.lean)
+discharges it at those rows, and `C` is indexed by a type, not a `Fin q`, so that their own index
+serves. `Ĝ^(m)` is `G^(m)` with no generator removal, which is what the paper's own HC-u runs.
+
+**`Prop. 2` — the departures and the discharged hypothesis.** Two departures, and one hypothesis
+discharged. Which halfspaces are redundant stays a parameter, as `Sec. 4.1` leaves it — obtained by
+linear programming, and nothing here computes it. `Thm. 3`'s identity is a hypothesis of
+`gen_not_required_iff` itself, `hrows`, but a theorem at `Thm. 3`'s own rows:
+`gen_not_required_iff_of_span`
+([`GenNotRequiredIffOfSpan.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfSpan.lean))
+is the same biconditional with `hrows` discharged by `minkowskiDiff_rows_eq`, at `Thm. 2`'s
+hypothesis that the minuend's generators span — see the findings below. The **minimum**
+H-representation is a hypothesis, in the form that says exactly that: dropping every redundant row
+still describes the difference, and no row outside the redundant set is redundant. That is what
+carries the printed proof's one-sentence step — each row being redundant on its own would not.
+
+**`Prop. 2` — the full-dimensional case.** Both halves are theorems at `Thm. 3`'s rows when the
+difference has nonempty interior and no two rows cut the same proper halfspace:
+`gen_not_required_iff_of_fullDim`
+([`GenNotRequiredIffOfFullDim.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/GenNotRequiredIffOfFullDim.lean))
+takes the redundant set to be the rows the others imply, and `rows_eq_drop_redundant`
+([`RowsEqDropRedundant.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/RowsEqDropRedundant.lean))
+proves that dropping all of them at once leaves the difference. See the findings below.
+
+**`Thm. 2` — the three departures.** Three departures. The rows are indexed by *every* selection
+`Fin n → Fin p` rather than by the C(p,n−1) subsets: a repeated index makes nX zero and the row
+vacuous, and two orderings of one subset differ by a sign, so the family is the printed 2·C(p,n−1)
+rows and nothing else. The normalization is dropped — a halfspace is unchanged by scaling its normal
+and its offset together, and Δd scales with C. And the ± pair is written as one |·| row rather than
+two. **As printed:** each departure denotes the same halfspace set — the printed rows are among the
+selections and every other selection is vacuous or repeats one up to sign, a positive scaling of a
+normal and its offset leaves its halfspace unchanged, and `|r| ≤ Δd` is the pair `±r ≤ Δd` — so the
+equality proved is the printed `Z = {x | Cx ≤ d}`.

@@ -9,13 +9,12 @@
 }
 ```
 
-**Source:** https://opus4.kobv.de/opus4-haw/files/6120/3716863.3718030.pdf (the published ACM version, open access under CC-BY, doi:10.1145/3716863.3718030, as deposited in the OPUS repository; 11 pages, read in full; text extracted with `pypdf`; the ACM Digital Library refused automated download). CORA cites the paper in `hybridDynamics/@hybridAutomaton/identify.m` and its private `priv_identify_clustering.m` (Eq. (6) in `aux_dynamicModeDecomposition`), `priv_identify_decisionTreeLearning.m` and `priv_identify_decisionTree2automaton.m` (Eq. (17), Proposition 1).  
-**Inventory:** confirmed (Definitions 1-3, Algorithm 1, Proposition 1, Theorem 1, each with its own counter; equations (1)-(18); Sections 1-6; Tables 1-3)
+**Source:** https://opus4.kobv.de/opus4-haw/files/6120/3716863.3718030.pdf (the published ACM version, open access under CC-BY, doi:10.1145/3716863.3718030, as deposited in the OPUS repository, 11 pages, read in full, text extracted with `pypdf`, the ACM Digital Library refused automated download). CORA cites the paper in `hybridDynamics/@hybridAutomaton/identify.m` and its private `priv_identify_clustering.m` (Eq. (6) in `aux_dynamicModeDecomposition`), `priv_identify_decisionTreeLearning.m` and `priv_identify_decisionTree2automaton.m` (Eq. (17), Proposition 1).  
+**Inventory:** confirmed (Definitions 1-3, Algorithm 1, Proposition 1, Theorem 1, each with its own counter, equations (1)-(18), Sections 1-6, Tables 1-3)
 
-Hybrid automata identified from noisy trajectories in three steps: local dynamics `ẋ = Aφ(x, u)`
-fitted by least squares on a window of `2w + 1` points and clustered (Sec. 3.1), a decision
-tree of hyperplane splits learned from a library of switching, bouncing and jumping surfaces
-with a trajectory-aware Gini index (Sec. 3.2), and the tree turned into an automaton whose
+Hybrid automata identified from noisy trajectories in three steps. First, local dynamics `ẋ = Aφ(x, u)`
+fitted by least squares on a window of `2w + 1` points and clustered (Sec. 3.1). Second, a decision tree of hyperplane splits learned from a library of switching, bouncing and jumping surfaces
+with a trajectory-aware Gini index (Sec. 3.2). Third, the tree turned into an automaton whose
 guards keep resets inside the target invariants (`Prop. 1`), so that it is executable
 (`Thm. 1`). Formalized: the least-squares formulas (`Eq. 5` with its Gram matrix on the wrong
 side, `Eq. 6`), the window bound, `Prop. 1` and `Thm. 1` as its proof sketch argues it. The
@@ -68,7 +67,7 @@ invertible (`pinv_leastSquares`), and (6), which the paper and CORA use, is righ
 names cannot occur: a state outside the target's invariant after a transition, and leaving an
 invariant without hitting a guard. Its proof sketch argues three things, and these are what
 `SplitTree.executable` proves for any tree of hyperplane splits and any affine reset per
-surface: the leaves' polytopes cover `ℝⁿ`; a boundary point of a leaf's polytope lies on one of
+surface: the leaves' polytopes cover `ℝⁿ`. A boundary point of a leaf's polytope lies on one of
 its surfaces, and there in the `Prop. 1` guard towards whichever leaf contains its reset; and
 each such guard maps into its target. Sec. 3.3 does not say which transitions are created; the
 formalization creates one per surface of a leaf and target leaf. It also says nothing of the

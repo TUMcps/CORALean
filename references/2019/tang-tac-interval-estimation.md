@@ -14,13 +14,13 @@
 
 The interval estimator behind CORA's `Hinf-G` (`priv_observe_gain_HinfG`, `priv_observe_interval`):
 a Luenberger observer whose gain is designed by an `H∞` linear matrix inequality (Thm. 1), and
-the box of its reachable error added to the estimate (Thm. 2, Alg. 1), which encloses the
+the box of its reachable error added to the estimate (Thm. 2, Alg. 1). It encloses the
 state at every gain and, as Sec. VI shows, is never wider than the zonotope method or either
 interval observer at the same gain (Thms. 6-8), its box being the interval hull of the
 reachable error. All of it is formalized; the `H∞` bound is stated as a bound on the transfer
 matrix on the unit circle, without a transfer-function library. The boundedness bound of
 Thm. 3 is false as printed (strict) and proved with `≤`; Lemma 5's `A I = [A a, A b]` is false
-and its hull version true; Remark 2's reduction omits absolute values; Thms. 7 and 8 omit the
+and its hull version true. Remark 2's reduction omits absolute values; Thms. 7 and 8 omit the
 hypothesis that makes the compared observer one. Alg. 1 seeds the error set correctly with
 `⟨0, H₀⟩`, where CORA's `priv_observe_interval` seeds it with the initial set itself
 ([`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md)).

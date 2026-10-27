@@ -155,10 +155,10 @@ one: the scalar is a folder only where the data of a type differs by layer, whic
 exactly `ContSet/`'s representations — a float zonotope stores an error box a
 real one has no use for. Everywhere else an object is written once over the
 scalar `𝕋`, ℝ among its instances, and no `Real/` or `Float/` folder appears:
-`Operations/` holds the algorithms, generic over `𝕋`; `Definitions/` holds what
+`Operations/` holds the algorithms, generic over `𝕋`. `Definitions/` holds what
 an object means — its types, the propositions and sets its guarantees are
 stated in, and the exact objects only ℝ has, built from `Real.exp` or by choice,
-which are free to be `noncomputable`; `Theorems/` holds the statements that do
+which are free to be `noncomputable`. `Theorems/` holds the statements that do
 not fix the scalar, and `Theorems/Real/` those only ℝ can state — the
 per-statement version of a representation's whole `<Rep>/Real/Theorems/`.
 `Global/Float/` is the scalar interface itself, and the one other `Float/`.
@@ -218,7 +218,7 @@ namespace with it. Where one of its theorems is then about a particular
 representation — `LinearSysDT.reach_order_le` at a zonotope,
 `LinearSys.timeInterval` at the exact interval matrices — the representation
 is named with its layer, `Real.Zonotope`, rather than left to the enclosing
-namespace to supply; a file that needs the scoped family notation `𝒵` or `ℐ`
+namespace to supply. A file that needs the scoped family notation `𝒵` or `ℐ`
 says `open CORALean.Real` and that line is the record of which layer it works at.
 
 Systems are not split by layer the way sets are. In a system namespace the
@@ -244,32 +244,43 @@ window or locations and does not end in `Exact`.
 A representation that stores a set of another representation stores that set and reuses its
 operations (#174): `ConZonotope` stores an `HPolytope`, `ConPolyZono` a `PolyLevelSet`, `StarSet` a
 predicate (an `HPolytope` at CORA's form), `ZonoBundle` and `Zoo` their members, denoted through
-`SetIntersection`. Whatever an operation does to the component is one of the component's
-operations, with its theorem, and an operation the representation needs but the component lacks is
+`SetIntersection`.
+
+Whatever an operation does to the component is one of the component's
+operations, with its theorem. An operation the representation needs but the component lacks is
 added to the component, general and with its own exactness or membership theorem, rather than
-written row by row where it is used: the union's lower rows are `PolyLevelSet.cartProd`, `padVars`
-and `switch`, the convex hull's copies `copies` beside `linear`, `getSubset`'s substitution
-`PolyLevelSet.getSubset`, `reduceCon`'s elimination `eliminate`, and the float merge
-`PolyLevelSet.compact`; a constrained zonotope's `compact` is `HPolytope.dropTrivialEqs` and
-`comap` (float: `selectCols` and `dropZeros`), `keepRows` is `toIneqs`, `relax` and `comap`, the
-float `reduceLiftBy` is `keepCols`, `dropEqs`, `padLeft`, `stackRows` and `eqsWithin`, `rescale`
-is `rescaleCols`, and `zeroFeasible`, `interiorCert` and `interiorMargin` are `containsOrigin`,
-`ineqsContainBall` and `ineqMargin`; a ReLU step on a star set builds its predicate with
-`HPolytope.lift_` and `intersection` of `ineqs` (float: `stackRows`), and `absorbRounding` with
-`lift_`; the intersection's agreement rows and the union's selector rows of a constrained
-polynomial zonotope are `PolyLevelSet.andRows`.
-`check-conventions.sh` runs `scripts/conventions/check-component-reuse.py`, whose per-representation table
-says what counts as doing the component's work by hand: under `ContSet/ConPolyZono/`, a definition
-returning a matrix, an exponent matrix or a vector indexed by the constraint's rows or monomials,
-or named after a constraint field (`…A`, `…B`, `…R`); under `ContSet/ConZonotope/`, one that reads
-the polytope's rows (`P.A`, `P.b`, `P.Ae`, `P.be`, the slacks) or builds an `HPolytope` field by
-field; and under `ContSet/StarSet/` and the star-set files of `NN/Layers/`, one that reads the
-polytope predicate's rows (`pred.A`, `pred.b`, …) or builds an `HPolytope` field by field. `Counterexamples/` model
-CORA's code as written and are not read. What is not the
-component's work says so in its docstring, in one sentence `Not the constraint's work (<kind>):
-<reason>` (`polytope's` or `predicate's` for the others), with `<kind>` one of `generators` (the
-generator block), `data` (data of one construction), `conversion`, `certificate` or `proposal`
-(rows read as numbers for a solver); there is no list.
+written row by row where it is used. The cases so far:
+
+- The union's lower rows are `PolyLevelSet.cartProd`, `padVars` and `switch`, the convex hull's
+  copies `copies` beside `linear`, `getSubset`'s substitution `PolyLevelSet.getSubset`,
+  `reduceCon`'s elimination `eliminate`, and the float merge `PolyLevelSet.compact`.
+- A constrained zonotope's `compact` is `HPolytope.dropTrivialEqs` and `comap` (float:
+  `selectCols` and `dropZeros`), `keepRows` is `toIneqs`, `relax` and `comap`, the float
+  `reduceLiftBy` is `keepCols`, `dropEqs`, `padLeft`, `stackRows` and `eqsWithin`, `rescale` is
+  `rescaleCols`, and `zeroFeasible`, `interiorCert` and `interiorMargin` are `containsOrigin`,
+  `ineqsContainBall` and `ineqMargin`.
+- A ReLU step on a star set builds its predicate with `HPolytope.lift_` and `intersection` of
+  `ineqs` (float: `stackRows`), and `absorbRounding` with `lift_`.
+- The intersection's agreement rows and the union's selector rows of a constrained polynomial
+  zonotope are `PolyLevelSet.andRows`.
+
+`check-conventions.sh` runs `scripts/conventions/check-component-reuse.py`, whose
+per-representation table says what counts as doing the component's work by hand:
+
+- Under `ContSet/ConPolyZono/`, a definition returning a matrix, an exponent matrix or a vector
+  indexed by the constraint's rows or monomials, or named after a constraint field (`…A`, `…B`,
+  `…R`).
+- Under `ContSet/ConZonotope/`, one that reads the polytope's rows (`P.A`, `P.b`, `P.Ae`,
+  `P.be`, the slacks) or builds an `HPolytope` field by field.
+- Under `ContSet/StarSet/` and the star-set files of `NN/Layers/`, one that reads the polytope
+  predicate's rows (`pred.A`, `pred.b`, …) or builds an `HPolytope` field by field.
+
+`Counterexamples/` model CORA's code as written and are not read.
+
+What is not the component's work says so in its docstring, in one sentence
+`Not the constraint's work (<kind>): <reason>` (`polytope's` or `predicate's` for the others),
+with `<kind>` one of `generators` (the generator block), `data` (data of one construction),
+`conversion`, `certificate` or `proposal` (rows read as numbers for a solver). There is no list.
 
 ### The ambient type
 
@@ -317,7 +328,7 @@ overkill, such as the two halves of a split, it is read through `.fst` and `.snd
 
 ### Notation
 
-| | |
+|  |  |
 | --- | --- |
 | `x ∈ s` | membership in what a representation denotes |
 | `s₁ ⊞ s₂` | `plus`, and deliberately not `+`: it is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂` |
@@ -386,58 +397,71 @@ Build once before first use, since the server starts `lake serve` and otherwise
 builds from cold.
 
 `scripts/check-conventions.sh` checks the conventions on this page that the
-compiler cannot: that an `aux_` name is used only in the file that declares it (or in
-that algorithm's satellite theorem files, #227),
-that an `API.lean` holds nothing but imports, that it collects its whole
-directory unless its own docstring says which sibling it deliberately leaves
-out, that no file imports its own directory's collector, that no `Real` file of
-a representation reaches into `Float`, that a file under a representation's
-`Real/` or any `Float/` declares the namespace its directory claims, that a class
-root holds only its class file, `Interfaces.lean`, `Instances.lean` and `API.lean`, that a
-`class` is declared only in an `Interfaces.lean`, that a
-`Definitions/` file declares only meanings, that no `Real/` or `Float/` folder
-sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that a float
-type is named as its exact twin, the layer being the namespace — no `GZonotope`,
-no `StarSetFloat`, no abbreviation of a representation at `Vec` — that every
-file carries a module docstring and
-— unless it is a collector — a well-formed author block one line under it, that
-every file outside `Examples/` and the short list of exceptions is a `module`
-with its header at fixed lines (see "The module header"), that
-nothing is `sorry` or a search tactic, that nothing outside the three files
-named in the script is an `axiom` — the second holding `nearestUnsound` alone
-and imported from nowhere outside `Examples/Bench/`, the third holding
-`trustedFlint` alone — that every `maxHeartbeats` bump
-carries a reason, that a `def` under `Complexity/Time/` is named for the cost it asserts and is
-not `0`,
-that every `[N]` cited resolves, that the comment lengths and the comment
-density above are respected, that every module is reachable from one of the
-target roots, so a file written but never collected is caught rather than
-silently left out of the build, that a declaration of at most five code lines
-is a section of its directory's `Basic.lean` and every section is well formed
-(through `scripts/conventions/check-basic-bundles.py`; see "Small declarations"), that a theorem file
-defines nothing ("A theorem file defines nothing"), that a float definition is not the exact
-operation at `nominal` under a second name (`scripts/conventions/check-float-wrappers.py`; "Float
-definitions earn their name"), that a definition citing a paper's algorithm carries its steps
-(`scripts/conventions/check-algorithm-steps.py`; "Algorithms read like the paper"), that a long subterm
-is not spelled out three times in one declaration (`scripts/conventions/check-repeated-subterms.py`;
-"Name what repeats"), that a discrete-time class (`<X>DT`) has the fields of its continuous twin
-`<X>` (`scripts/conventions/check-dt-twins.py`; the sampling time `dt` is the one field a discrete-time class
-has and its twin has not), that a public theorem that exactly one other file reads is
-that file's `aux_` lemma unless something outward-facing names it
-(`scripts/conventions/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
-`noncomputable` stays where it is legitimate — see below.
+compiler cannot. Each item below is one rule.
+
+- An `aux_` name is used only in the file that declares it (or in that algorithm's
+  satellite theorem files, #227).
+- An `API.lean` holds nothing but imports, and it collects its whole directory unless
+  its own docstring says which sibling it deliberately leaves out. No file imports
+  its own directory's collector.
+- No `Real` file of a representation reaches into `Float`. A file under a
+  representation's `Real/` or any `Float/` declares the namespace its directory claims.
+- A class root holds only its class file, `Interfaces.lean`, `Instances.lean` and
+  `API.lean`. A `class` is declared only in an `Interfaces.lean`. A `Definitions/`
+  file declares only meanings.
+- No `Real/` or `Float/` folder sits outside `ContSet/` but a `Theorems/Real/` and
+  `Global/Float/`.
+- A float type is named as its exact twin, the layer being the namespace: no
+  `GZonotope`, no `StarSetFloat`, no abbreviation of a representation at `Vec`.
+- Every file carries a module docstring and, unless it is a collector, a well-formed
+  author block one line under it.
+- Every file outside `Examples/` and the short list of exceptions is a `module` with
+  its header at fixed lines (see "The module header").
+- Nothing is `sorry` or a search tactic.
+- Nothing outside the three files named in the script is an `axiom`. The second holds
+  `nearestUnsound` alone and is imported from nowhere outside `Examples/Bench/`. The
+  third holds `trustedFlint` alone.
+- Every `maxHeartbeats` bump carries a reason.
+- A `def` under `Complexity/Time/` is named for the cost it asserts and is not `0`.
+- Every `[N]` cited resolves.
+- The comment lengths and the comment density above are respected.
+- Every module is reachable from one of the target roots, so a file written but never
+  collected is caught rather than silently left out of the build.
+- A declaration of at most five code lines is a section of its directory's `Basic.lean`
+  and every section is well formed (through
+  `scripts/conventions/check-basic-bundles.py`; see "Small declarations").
+- A theorem file defines nothing ("A theorem file defines nothing").
+- A float definition is not the exact operation at `nominal` under a second name
+  (`scripts/conventions/check-float-wrappers.py`; "Float definitions earn their name").
+- A definition citing a paper's algorithm carries its steps
+  (`scripts/conventions/check-algorithm-steps.py`; "Algorithms read like the paper").
+- A long subterm is not spelled out three times in one declaration
+  (`scripts/conventions/check-repeated-subterms.py`; "Name what repeats").
+- A discrete-time class (`<X>DT`) has the fields of its continuous twin `<X>`
+  (`scripts/conventions/check-dt-twins.py`). The sampling time `dt` is the one field a
+  discrete-time class has and its twin has not.
+- A public theorem that exactly one other file reads is that file's `aux_` lemma unless
+  something outward-facing names it (`scripts/conventions/check-single-use.py`; "A
+  theorem used once is a lemma of its user").
+- `noncomputable` stays where it is legitimate, see below.
+- Every tracked `.md` file obeys the rules under "Writing" (`scripts/conventions/check-readability.py`).
 
 **Principle.** Keep `noncomputable` to a minimum: a definition should compute wherever it can;
 where the real version cannot, there should at least be a float variant that does.
 
-**Rule** (`scripts/conventions/check-noncomputable.py`, no list). A `noncomputable` declaration is allowed if it
-is in a real layer (a file under a `Real/` folder, or a declaration that works over ℝ rather than
-the float scalar `𝕋`: its text mentions ℝ, or the file's `variable` lines do, and `𝕋` is at most
-the index of a system, never the type of a value), or its type is a `Set`, a `Prop` or ℝ-valued,
-or its docstring says why it cannot compute (a choice, an integral, an infimum, a classical
-decision, `Noncomputable: …`). In the float layer, a `Float/` folder (its `Theorems/` files state
-things about floats and never run) or a declaration whose result is a value of `𝕋`, it is never
-allowed: the float layer exists to run. `noncomputable section` is refused outright.
+**Rule** (`scripts/conventions/check-noncomputable.py`, no list). A `noncomputable` declaration is
+allowed in any of these cases:
+
+- It is in a real layer: a file under a `Real/` folder, or a declaration that works over ℝ rather
+  than the float scalar `𝕋` (its text mentions ℝ, or the file's `variable` lines do, and `𝕋` is
+  at most the index of a system, never the type of a value).
+- Its type is a `Set`, a `Prop` or ℝ-valued.
+- Its docstring says why it cannot compute (a choice, an integral, an infimum, a classical
+  decision, `Noncomputable: …`).
+
+In the float layer it is never allowed. That layer is a `Float/` folder (its `Theorems/` files
+state things about floats and never run) or a declaration whose result is a value of `𝕋`. The
+float layer exists to run. `noncomputable section` is refused outright.
 
 Every limit it applies is a named variable at the top of the script, set from
 what the tree actually contains, so raising one is a decision rather than a
@@ -445,24 +469,28 @@ drift. Every message says what to do, not only what is wrong.
 
 It is text only: no Lean, no build, no network — which is why it runs on every
 commit rather than on request. Over the whole tree it takes about fifteen
-seconds on Linux (several times that in Git Bash on Windows); the hook does not
-pay that for a commit that only edits existing Lean files. `scripts/conventions/precommit-scope.py`
-compares the index with `HEAD`, and a commit that leaves every file's imports,
-namespaces, type declarations and `noncomputable` lines as they were runs the
-per-file rules on the changed files alone (`check-conventions.sh --staged`,
-well under a second). Anything that could change a rule reading several files
-(a file added, deleted or renamed, one of those lines, `scripts/`, `lakefile.toml`,
-the CI file) runs the whole tree, and `check-references.py` runs when a commit
-touches anything outside `src/` or what that check reads of a Lean file. The hook
-checks the index, not the working tree: when the two differ, the whole-tree runs
+seconds on Linux (several times that in Git Bash on Windows). The hook does not
+pay that for a commit that only edits existing Lean files.
+
+`scripts/conventions/precommit-scope.py` compares the index with `HEAD`. A commit that leaves
+every file's imports, namespaces, type declarations and `noncomputable` lines as they were runs the
+per-file rules on the changed files alone (`check-conventions.sh --staged`, well under a second).
+Anything that could change a rule reading several files (a file added, deleted or renamed, one of
+those lines, `scripts/`, `lakefile.toml`, the CI file) runs the whole tree. `check-references.py`
+runs when a commit touches anything outside `src/` or what that check reads of a Lean file. The readability of every staged `.md` file is checked on every commit, on the index versions.
+
+The hook checks the index, not the working tree: when the two differ, the whole-tree runs
 use a checkout of the index in a temporary directory. CI always runs the whole
 tree, so a commit that bypasses the hook, or that the scope wrongly called small,
-fails there. The Python scripts are started through `scripts/conventions/find-python.sh`, which
-takes the first of `python3`, `python`, `py -3` that really runs a program (on
-Windows `python3` is by default a Store stub that runs nothing) and stops with a
-message when none does, and sets `PYTHONUTF8=1` so that reading the sources and printing `ℝ`
-works under Windows' code page; a script in `scripts/` also passes `encoding="utf-8"` to every
-`read_text`, `write_text` and `open` (binary modes excepted), which `check-conventions.sh` checks.
+fails there.
+
+The Python scripts are started through `scripts/conventions/find-python.sh`. It takes the first of
+`python3`, `python`, `py -3` that really runs a program (on Windows `python3` is by default a Store
+stub that runs nothing), stops with a message when none does, and sets `PYTHONUTF8=1` so that
+reading the sources and printing `ℝ` works under Windows' code page. A script in `scripts/` also
+passes `encoding="utf-8"` to every `read_text`, `write_text` and `open` (binary modes excepted),
+which `check-conventions.sh` checks.
+
 Setting a clone up means
 
 ```
@@ -496,15 +524,32 @@ asserts that these and `trustedHardware` are the only three axioms CORALean
 declares. It needs a built tree too, and runs beside `check-demo.sh` in CI's
 build job.
 
-`scripts/check-references.py` checks `references/` against the tree: that every page has
-one well-formed BibTeX entry and every docstring entry equals its rendering (below), that every
-paper cited has a page, that every link on a page resolves and lands on a file
-that really cites that paper, that every result cited anywhere is a row, that a
-row deferring to an earlier paper names a row that is really on that paper's
-page and does not defer in a circle, that the README's counts are the counts,
-that a paper's findings are listed where the index says they are, that every row's `Class` cell is one of the allowed values and gives a reason when it is not `correct`, that a `correct` row's note does not say the Lean theorem is other than the printed one (unless an `**As printed:**` marker says why the printed statement follows; see [references/README.md](references/README.md#the-class-column)), that a `—` row's note reads `— partial: <declarations that exist, linked>; missing: <what is left>` and its links resolve, that a complexity statement sits in a row of its own (see [references/README.md](references/README.md#the-class-column)), and that `experiments/paper/formalization-stats.json` is what `scripts/formalization-stats.py` writes from the tables (rerun it after a row changes). A coverage table is a claim about where
-a theorem lives, which is the kind of prose that rots quietly; this is what
-stops it. It runs beside the conventions, on the same hook and the same CI job.
+`scripts/check-references.py` checks `references/` against the tree:
+
+- Every page has one well-formed BibTeX entry and every docstring entry equals its rendering
+  (below).
+- Every paper cited has a page.
+- Every link on a page resolves and lands on a file that really cites that paper.
+- Every result cited anywhere is a row.
+- A row deferring to an earlier paper names a row that is really on that paper's page and does
+  not defer in a circle.
+- The README's counts are the counts.
+- A paper's findings are listed where the index says they are.
+- Every row's `Class` cell is one of the allowed values and gives a reason when it is not
+  `correct`.
+- A `correct` row's note does not say the Lean theorem is other than the printed one (unless an
+  `**As printed:**` marker says why the printed statement follows; see
+  [references/README.md](references/README.md#the-class-column)).
+- A `—` row's note reads `— partial: <declarations that exist, linked>; missing: <what is left>`
+  and its links resolve.
+- A complexity statement sits in a row of its own (see
+  [references/README.md](references/README.md#the-class-column)).
+- `experiments/paper/formalization-stats.json` is what `scripts/formalization-stats.py` writes
+  from the tables (rerun it after a row changes).
+
+A coverage table is a claim about where a theorem lives, which is the kind of prose that rots
+quietly; this is what stops it. It runs beside the conventions, on the same hook and the same CI
+job.
 
 ### The BibTeX entry of a page, and the line every docstring writes
 
@@ -529,15 +574,18 @@ The fields are `author` (`Last, F. M.` joined by ` and `), `title`, `journal` or
 construction (the CORA manual, the OCP MX specification). The key is
 the one the paper cites. Non-ASCII letters are written as such (`Černý`); `scripts/paper/refentry.py`
 turns them into LaTeX commands for the `.bib`. Braces protect a capital (`{Minkowski}`) and are
-dropped wherever the entry is printed. The venue is the publication's own name for it: the
-journal, the proceedings title as the publisher's DOI record gives it, `arXiv preprint
-arXiv:<id>` for a preprint. What the publisher, DOI page, dblp or arXiv does not confirm is
-left blank (`journal = {}`), never filled from memory or a secondary source. The link to the
-exact version read (`arxiv.org/pdf/…v3`) stays in the page's `**Source:**` line, below the
-entry, and is not part of it. A key that is already an entry of the paper's own `references.bib`
-adds the line `**In the paper's bibliography.**` under the block; every other page with a
-`false` or `fixed` row is written to `experiments/paper/latex/appendix-errors.bib` by
-`scripts/formalization-stats.py`, which nobody edits.
+dropped wherever the entry is printed.
+
+The venue is the publication's own name for it: the journal, the proceedings title as the
+publisher's DOI record gives it, `arXiv preprint arXiv:<id>` for a preprint. What the publisher,
+DOI page, dblp or arXiv does not confirm is left blank (`journal = {}`), never filled from memory
+or a secondary source. The link to the exact version read (`arxiv.org/pdf/…v3`) stays in the
+page's `**Source:**` line, below the entry, and is not part of it.
+
+A key that is already an entry of the paper's own `references.bib` adds the line
+`**In the paper's bibliography.**` under the block. Every other page with a `false` or `fixed` row
+is written to `experiments/paper/latex/appendix-errors.bib` by `scripts/formalization-stats.py`,
+which nobody edits.
 
 The line every `## References` entry of a module docstring under that page writes is the
 rendering of the entry, in one format:
@@ -609,11 +657,11 @@ An **example** is proved and never runs. It holds `example`, `theorem` and `def`
 declarations, prints nothing, and its job is to fail the build when an instance
 stops resolving or an algorithm stops accepting a representation — something a
 library cannot notice from the inside, because only a use site asks. Every
-`def` in one is a plain `def`: a `noncomputable def` compiles the same way a
-`def` does, so it would pass unnoticed, and a structure *parameter* is erased
+`def` in one is a plain `def`. A `noncomputable def` compiles the same way a
+`def` does, so it would pass unnoticed. A structure *parameter* is erased
 by the code generator where an ordinary function argument is not, so a generic
 `def` can compile and only fail once instantiated at a concrete
-representation — which is what `Examples/RunnableFloat.lean` instantiates
+representation. That is what `Examples/RunnableFloat.lean` instantiates
 every runnable algorithm at, one small value per representation. It may carry
 a handful of `#eval`s, uncommitted and undiffed, to show a definition runs to
 a value and not only that it elaborates; that alone does not make it a demo.
@@ -668,21 +716,23 @@ has three, and `Dyadic`'s are one-line compositions.
 "One each" is meant literally, and `check-conventions.sh` enforces it: a file
 under `Operations/` or `Theorems/` declares exactly one public thing — or, if
 that thing is small, it is a section of the directory's `Basic.lean` (see
-"Small declarations" below). What it
-needs and nothing else uses is `aux_` (a step of one algorithm is `aux_` in that algorithm's
-file, see "`aux_`"); what the tree needs earns a file of its own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
+"Small declarations" below). What it needs and nothing else uses is `aux_` (a step of one
+algorithm is `aux_` in that algorithm's file, see "`aux_`"); what the tree needs earns a file of
+its own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
 declared with what it denotes, and instances have no names to collect.
-`Complexity/` follows the same layout as every other directory (issue #187): the
-exact count (`plusCost`) is a file of `Complexity/Time/Operations/`, its
-monotonicity and its `O` corollary (`..._mono`, `..._isBigO`) are files of
-`Complexity/Time/Theorems/`, and a size (`plus_h`) is a file of
-`Complexity/Space/Theorems/`, which has no `Operations/` because a size is a
-theorem about the result, not a definition. The small ones are sections of the
-`Basic.lean` of those directories, so most of a Complexity directory is its
-`Basic.lean`. Nothing sits directly in `Complexity/`, `Complexity/Time/` or
-`Complexity/Space/` but `API.lean`, and no `Cost/` directory exists;
-`check-conventions.sh` rejects all three. `Counterexamples/` is the one
-exception to "one each", and says why below.
+
+`Complexity/` follows the same layout as every other directory (issue #187):
+
+- The exact count (`plusCost`) is a file of `Complexity/Time/Operations/`.
+- Its monotonicity and its `O` corollary (`..._mono`, `..._isBigO`) are files of
+  `Complexity/Time/Theorems/`.
+- A size (`plus_h`) is a file of `Complexity/Space/Theorems/`, which has no `Operations/` because
+  a size is a theorem about the result, not a definition.
+
+The small ones are sections of the `Basic.lean` of those directories, so most of a Complexity
+directory is its `Basic.lean`. Nothing sits directly in `Complexity/`, `Complexity/Time/` or
+`Complexity/Space/` but `API.lean`, and no `Cost/` directory exists; `check-conventions.sh`
+rejects all three. `Counterexamples/` is the one exception to "one each", and says why below.
 
 The rule is what keeps the table above true, and it is checked because a
 convention nobody tests is one the tree drifts out of: a helper that quietly
@@ -734,39 +784,48 @@ the notes, the table and the entries.
 
 The file that holds a `MAIN TYPE` banner at `<Name>/<Name>.lean` or
 `<Name>/<Layer>/<Name>.lean` is where a reader meets the type first, so it holds the type and
-what it denotes and nothing said or done about it. Kept: the structure or class, its
-`nominal` view and `construct`, the `InflatedContSet` instance that gives the float sets their
-meaning, and the other definitions the type is stated with (`Taylm.polyOf`, `Specification.Holds`).
-Moved out: every `theorem` and `lemma` — the `nominal_h` fields that let a proof see through
-an instance, `materialise_eq`, `mem_construct` — to `Theorems/`, and the storage helper
-`materialise`, which rebuilds a float set's function-typed fields as vectors and is the
-identity, to `Operations/`. Each goes where its size puts it: a section of `Basic.lean` when it
-is at most five code lines ("Small declarations"), a file of its own otherwise.
+what it denotes and nothing said or done about it.
+
+- Kept: the structure or class, its `nominal` view and `construct`, the `InflatedContSet`
+  instance that gives the float sets their meaning, and the other definitions the type is stated
+  with (`Taylm.polyOf`, `Specification.Holds`).
+- Moved out: every `theorem` and `lemma` — the `nominal_h` fields that let a proof see through
+  an instance, `materialise_eq`, `mem_construct` — to `Theorems/`, and the storage helper
+  `materialise`, which rebuilds a float set's function-typed fields as vectors and is the
+  identity, to `Operations/`. Each goes where its size puts it: a section of `Basic.lean` when it
+  is at most five code lines ("Small declarations"), a file of its own otherwise.
+
 A validity predicate (`IsValid`, `IsWellFormed` and the like) is no part of the type: it is a
-definition in `Definitions/IsValid.lean` of the same class, like any other proposition about the type.
-`check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…` definition
-in a main-type file.
+definition in `Definitions/IsValid.lean` of the same class, like any other proposition about the
+type. `check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…`
+definition in a main-type file.
+
 The rule is not about the file's name: any file with a `MAIN TYPE` banner (`NN/NeuralNetwork.lean`,
 `NN/Layers/Layer.lean`) declares no `theorem` or `lemma` and no operation, a `def` returning data
 that nothing else in the file is stated with (#134); `NeuralNetwork.Encloses` is in
 `Definitions/Encloses.lean`, `Enclose.toLayer` and `Layer.comp` in `Layers/Operations/Basic.lean`.
 `Global/`, `Examples/` and `Interfaces.lean` (whose operation classes are #135's) are out of scope,
-and nothing else is exempt. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
+and nothing else is exempt.
+
+What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
-`check-conventions.sh` asks for it; `OutputEq`, which is no system, is the named exception
+`check-conventions.sh` asks for it. `OutputEq`, which is no system, is the named exception
 (`LinProbSys.IsTrajectory` gives a run by its law at each time, since the process itself is not
-defined). A continuous-time run, a hybrid
-automaton's flow among them, is a Carathéodory run (#105): the integral equation
-`x t = x 0 + ∫₀ᵗ f`, its integrand measurable and integrable (or, for a linear class, its input
-measurable), not a derivative at every point, which a zero-order-hold input does not have. A
-classical run reaches it through the class's `IsTrajectory.of_hasDerivWithinAt`, and back, at a
-continuous field, through `IsTrajectory.hasDerivWithinAt`. `check-conventions.sh` refuses a
-derivative in those definitions; `DiffInclAutomaton`, whose paper defines its flow by a
-derivative, is the named exception. A class with an output equation, as CORA gives one
-(`out_fun`, or `C`, `D`, `k` at a linear class), carries the output in its runs, the same way in
-every class (#179): the output signal is the run's last argument and `output` states
-`y t = g (x t) (u t)`, at a linear class `outputEq.eval (x t) (u t)` with the noise `F v t` beside
-it; a canonical form has none. `check-conventions.sh` asks for the field.
+defined).
+
+A continuous-time run, a hybrid automaton's flow among them, is a Carathéodory run (#105): the
+integral equation `x t = x 0 + ∫₀ᵗ f`, its integrand measurable and integrable (or, for a linear
+class, its input measurable), not a derivative at every point, which a zero-order-hold input does
+not have. A classical run reaches it through the class's `IsTrajectory.of_hasDerivWithinAt`, and
+back, at a continuous field, through `IsTrajectory.hasDerivWithinAt`. `check-conventions.sh`
+refuses a derivative in those definitions; `DiffInclAutomaton`, whose paper defines its flow by a
+derivative, is the named exception.
+
+A class with an output equation, as CORA gives one (`out_fun`, or `C`, `D`, `k` at a linear
+class), carries the output in its runs, the same way in every class (#179): the output signal is
+the run's last argument and `output` states `y t = g (x t) (u t)`, at a linear class
+`outputEq.eval (x t) (u t)` with the noise `F v t` beside it; a canonical form has none.
+`check-conventions.sh` asks for the field.
 
 A main-type file also cites the publication it formalizes: its module docstring has at least one
 numbered entry, `* [1] ...`, under `## References`, and says what it takes from it (`[1, Def. 5]`).
@@ -783,7 +842,7 @@ at, is an auxiliary lemma of that file: it goes there as an `aux_` one, under it
 banner (and an `rfl` lemma used once is inlined at its use, and deleted).
 `scripts/conventions/check-single-use.py` reports it. A file counts as a user when the last component of the
 theorem's name occurs in its code, whatever the namespace or the dot notation in front, so the
-count errs towards "more users"; a declaration's own name is no use of a twin of the same name,
+count errs towards "more users". A declaration's own name is no use of a twin of the same name,
 and a file that declares a name of its own with that last component reads the theorem only where
 it spells it qualified or as a field of a value (`h.foo`). The theorem stays public when
 
@@ -953,7 +1012,7 @@ end CORALean
 ```
 
 Lean puts a `variable` binder into a declaration only where the declaration uses it,
-and an instance argument only where it uses the type the instance is about, so a block's
+and an instance argument only where it uses the type the instance is about. So a block's
 `variable` lines are the union of what its sections each needed, in an order that keeps
 every section's own binders in their own order (the order of the arguments of a
 declaration is the order of the `variable` list). Two sections whose instance arguments
@@ -966,8 +1025,8 @@ hashed alike before and after.
 
 A section is its banner, 100 characters with the declaration's name in backticks
 (as written, or with its namespace below `CORALean` — `Float.MatExp.corrTerm` —
-where two layers' declarations of one name share a bundle), its own author block
-directly under it, one blank line, and then the declaration with its `/-- … -/`:
+where two layers' declarations of one name share a bundle). Under it come its own author block,
+one blank line, and then the declaration with its `/-- … -/`:
 nothing of `namespace`, `open` or `variable`, and no `section` … `end` of its own.
 One declaration per section, in `Complexity/` as everywhere else. There is
 no per-section module docstring: the declaration's own `/-- … -/` is its description, and
@@ -986,19 +1045,21 @@ the sections free to go next the alphabetically first does. The blocks themselve
 ordered the same way by the name of their first section, after the blocks whose sections
 they use. The check reads "uses"
 off the text in two strengths: a section that names another's declaration in full
-(`Interval.center`) *certainly* uses it, and must follow it; one whose identifiers
+(`Interval.center`) *certainly* uses it, and must follow it. One whose identifiers
 contain the last component (`I.center`, `center`) *possibly* does, which dot
 notation makes the most text can say — so a section may come before an
 alphabetically earlier one only if that one possibly uses a section in between.
 
-**What stays a file of its own**, whatever its size: a main-type file, `API.lean`,
-`Instances.lean`, anything in a `Counterexamples/` folder (a CORA model or a
-refutation), a CORA model the library imports (`COUNTEREXAMPLE_EXCEPTIONS` in
-`check-conventions.sh`), every file the CORA-bug appendix links, anything under `Examples/`, a file whose module docstring has a
-`## References` block — its citation is what `references/` links to, and a section
-has no docstring to keep it in — and a file whose name says `Float` where neither
-its directory nor its declaration does, since the file name is what marks it as
-float layer to `check-references.py` and the paper's statistics.
+**What stays a file of its own**, whatever its size:
+
+- A main-type file, `API.lean` and `Instances.lean`.
+- Anything in a `Counterexamples/` folder (a CORA model or a refutation).
+- A CORA model the library imports (`COUNTEREXAMPLE_EXCEPTIONS` in `check-conventions.sh`).
+- Every file the CORA-bug appendix links, and anything under `Examples/`.
+- A file whose module docstring has a `## References` block: its citation is what `references/`
+  links to, and a section has no docstring to keep it in.
+- A file whose name says `Float` where neither its directory nor its declaration does, since the
+  file name is what marks it as float layer to `check-references.py` and the paper's statistics.
 
 **Import cycles.** A bundle imports what its sections import. If one section's
 file imported a file outside the bundle that imports another section back, the
@@ -1093,7 +1154,7 @@ reader instead of for them. A file that declares anything carries four
 full-line, 100-character banners, CORA-styled, that say where things are
 regardless: `BEGIN CODE` after the author block and before `namespace`;
 `AUXILIARY` immediately before the first `aux_` declaration, omitted when
-there is none; a `MAIN ...` marker immediately above the main declaration and
+there is none. A `MAIN ...` marker immediately above the main declaration and
 above its docstring, so the docstring stays attached to what it documents; and
 `END OF CODE` as the file's last line. `API.lean` and any file that declares
 nothing carry none of this — there is nothing to find. A `Basic.lean` carries
@@ -1342,9 +1403,9 @@ which the `ContSet` instance and every `I.construct` in a statement resolve thro
 notation; there is no list. A name for the conversion (`rowLin` was one) is not kept: its uses spell it out.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
-layers wherever it can, and a contribution that lands only the `Real` half must
-say why in its module docstring — not as an apology, but because the reason is
-usually informative: the operation is a specification with nothing to round, or
+layers wherever it can. A contribution that lands only the `Real` half must
+say why in its module docstring. The reason is
+usually informative, not an apology: the operation is a specification with nothing to round, or
 it needs a decidable order the float scalar has and ℝ does not, or the rounding
 has a genuine design choice behind it. A real definition alone is a specification
 of something no machine runs, and it is far cheaper to refine an operation while
@@ -1364,33 +1425,45 @@ alone, with no list.
 Every float set records its rounding explicitly in an `I_error` box (`InflatedContSet`: the set
 denotes `nominal ⊕ I_error`); rounding is never folded silently into a parameter. Each float
 representation provides a sound `absorbRounding`, which moves `I_error` into the parameters where
-the representation can hold it (a zonotope into box generators, a polyhedron into the right-hand
-side `b`, together with the slack its rows record besides the box, a constrained polynomial
-zonotope into independent generators, the slack its constraint's equality rows record
-(`cons.b_error`) into a factor per row, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
-model into its remainder, an ellipsoid into its shape matrix by an outer ellipsoid of its sum with
-a ball holding the box), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
+the representation can hold it, with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
+The parameters it moves the box into:
+
+- A zonotope: box generators.
+- A polyhedron: the right-hand side `b`, together with the slack its rows record besides the box.
+- A constrained polynomial zonotope: independent generators, and the slack its constraint's
+  equality rows record (`cons.b_error`) into a factor per row.
+- A star set: factors with the box's own bounds.
+- A capsule: its radius.
+- A Taylor model: its remainder.
+- An ellipsoid: its shape matrix, by an outer ellipsoid of its sum with a ball holding the box.
+
 A row that is an equation has no interior to absorb its own rounding, so a float representation
 with equality rows records it per row in a field `<name>_error` beside the box, read through
-`|·|`, and its constructors set it to zero; a representation that holds its rows in a float
+`|·|`, and its constructors set it to zero. A representation that holds its rows in a float
 representation of their own (`ConZonotope.P`, `ConPolyZono.cons`) inherits that one's `_error`
-fields, and its `absorbRounding` names them too, moving them or saying where they stay. A float
-type none of whose operations moves a point, a constraint system such as the float `PolyLevelSet`
-whose rounding is all in its rows' coefficients, has no box to absorb: it records its rounding in its `_error` fields and says so on one line of its
-main docstring, `` There is no `I_error` and no `absorbRounding`: `` and the reason, which the check
-accepts in place of the box, and refuses on a type that has one.
+fields, and its `absorbRounding` names them too, moving them or saying where they stay.
+
+A float type none of whose operations moves a point has no box to absorb. An example is a
+constraint system such as the float `PolyLevelSet`, whose rounding is all in its rows'
+coefficients. It records its rounding in its `_error` fields and says so on one line of its
+main docstring, `` There is no `I_error` and no `absorbRounding`: `` and the reason. The check
+accepts that line in place of the box, and refuses it on a type that has one.
+
 `absorbRounding` may itself round, so it does **not** promise an empty `I_error` afterwards: the
 result's box holds only the rounding of the absorption step, often exactly zero, and a caller
-must not assume `I_error = 0` after absorbing; where it is cheap, a lemma bounds the residual
+must not assume `I_error = 0` after absorbing. Where it is cheap, a lemma bounds the residual
 (`Zonotope.absorbError` is the midpoint-centred variant that leaves one). A theorem about the nominal
 part alone is `absorbRounding_nominal : S.construct ⊆ nominalSet S.absorbRounding`, which
 `absorbRounding_outer` follows from when the box left is the origin
-(`InflatedContSet.nominalSet_subset_construct`). A representation that cannot hold the box, or has
-none of its own, says so in its main-type docstring in one line `There is no \`I_error\` and no
-\`absorbRounding\`: <reason>`, which the check accepts for a type with no box and no
-`absorbRounding` (`Interval`, `Polygon`, `ProbZonotope`, `ZonoBundle`, `Zoo`); a type with a box that
-cannot move it says `There is no \`absorbRounding\`: <reason>` (`VPolytope`);
-`scripts/conventions/check-absorb-rounding.py' (run by `check-conventions.sh`, #185)
+(`InflatedContSet.nominalSet_subset_construct`).
+
+A representation that cannot hold the box, or has none of its own, says so in its main-type
+docstring in one line `There is no \`I_error\` and no \`absorbRounding\`: <reason>`. The check
+accepts it for a type with no box and no `absorbRounding` (`Interval`, `Polygon`, `ProbZonotope`,
+`ZonoBundle`, `Zoo`). A type with a box that cannot move it says
+`There is no \`absorbRounding\`: <reason>` (`VPolytope`).
+
+`scripts/conventions/check-absorb-rounding.py` (run by `check-conventions.sh`, #185)
 requires the rest to have an `I_error` field, a `def X.absorbRounding` that names every other
 recorded rounding field `<name>_error` of the type, and a `theorem X.absorbRounding_outer` under
 `ContSet/X/Float/`, and rejects the former name `dependent_outer`.
@@ -1645,7 +1718,7 @@ form — a citing docstring, a body of three lines or more, no `-- <n>.` comment
 
 ### Lengths, which `check-conventions.sh` enforces
 
-| | |
+|  |  |
 | --- | --- |
 | module docstring, content file | 12 lines of prose — not `## Inputs`, `## Hypotheses`, `## Output`, `## Conclusion`, `## References` |
 | module docstring, collector | 25 lines — it is the directory's entry point |
@@ -1775,6 +1848,25 @@ a wrong citation is not. `check-conventions.sh` runs `scripts/conventions/check-
 a `## References` entry that says `thesis`, `dissertation`, `PhD` or `habilitation`, in every
 file and with no exception list.
 
+## Writing
+
+Every `.md` file is read by someone who did not write it, so each place holds one thing.
+`scripts/conventions/check-readability.py` checks it on every tracked `.md` file, through
+`check-conventions.sh` (so in CI, and in the pre-commit hook for staged `.md` files). It skips
+fenced code and has no list of exceptions.
+
+- **One thing per paragraph.** A prose paragraph is at most 15 lines and a list item at most 8.
+  New content gets its own paragraph. Existing text is restructured, never appended to.
+- **A reference page's Findings.** Each paragraph is one result and opens with a bold lead naming
+  it, for example **`Prop. 2` — the per-slice repair.** The rules for a page are in
+  [references/README.md](references/README.md#writing-a-page).
+- **Short table cells.** The prose of a table cell, with the link targets `](…)` removed, is at
+  most 900 characters, and link labels still count. A derivation goes to the Findings, not into
+  the cell.
+- **Plain sentences.** A sentence has at most 60 words (an inline code span counts as one word)
+  and at most 2 semicolons. Generated text (`check-references.py --fix`,
+  `formalization-stats.py`) satisfies the same rules.
+
 ## The module header
 
 Every file under `src/` is a Lean module, and its header sits at fixed lines:
@@ -1846,17 +1938,20 @@ conventions check does confirm that an `assert_not_imported` module has a file.
 
 `scripts/check-conventions.sh` enforces two things. `GUARDED_FILES` lists the guarded
 files with their guard counts, and a missing guard, a guard without its comment or a
-count that differs is reported. `LAYERS` lists, per top-level directory of
-`src/CORALean/`, the directories it may not import: `Global/` imports no other layer (but
-the five `Global/Float/` enclosure files that name their results `Float.Interval` import
-`ContSet/Interval/Float/Interval`, which needs nothing above `Global/Float/SoundFloatArithmetic`;
-an exception names a path prefix such as `ContSet/Interval` and then admits only imports under
-it),
-`ContSet/` no dynamics, network or specification code, and nothing but `Examples/`
-imports `HybridDynamics/`. `ContDynamics/`, `NN/` and `Specification/` import one
-another and stay unordered. The imports that break a row are `LAYER_EXCEPTIONS`, each
-with its reason; code is not moved to hide one, and an exception whose import is gone
-is reported.
+count that differs is reported.
+
+`LAYERS` lists, per top-level directory of `src/CORALean/`, the directories it may not import:
+
+- `Global/` imports no other layer. The exception: the five `Global/Float/` enclosure files that
+  name their results `Float.Interval` import `ContSet/Interval/Float/Interval`, which needs
+  nothing above `Global/Float/SoundFloatArithmetic`. An exception names a path prefix such as
+  `ContSet/Interval` and then admits only imports under it.
+- `ContSet/` imports no dynamics, network or specification code.
+- Nothing but `Examples/` imports `HybridDynamics/`.
+- `ContDynamics/`, `NN/` and `Specification/` import one another and stay unordered.
+
+The imports that break a row are `LAYER_EXCEPTIONS`, each with its reason; code is not moved to
+hide one, and an exception whose import is gone is reported.
 
 To change a guard on purpose, edit the file and the count in `GUARDED_FILES` in one
 commit, and say in the commit message why the closure may now contain that theory. To
@@ -1879,11 +1974,14 @@ code:
 <version>`: an agent writes its own model, and a model that substantially changes a
 file someone else wrote appends itself, comma-separated. `Reviewed:` records human
 reviews only, as lines `DD-Month-YYYY (Name)` oldest first, continuation lines
-aligned to the value column; `---` means not yet reviewed. A change keeps the stamp
+aligned to the value column; `---` means not yet reviewed.
+
+A change keeps the stamp
 unless it is meaningful, and most changes are not: only a statement or definition that now
 says something different, or a new proof idea, resets it to `---`. Moving declarations out,
 renaming, changed notation, reformatting and reworded comments all keep it. A kept stamp
 keeps its original date, so a later `Last update:` shows the file changed since its review.
+
 `Last update:` itself moves only for a meaningful change (a statement, a definition, a proof
 idea, real content); a rename, a `.1`/`.2` turned into a named field, a repointed import, a
 comment edit or a move leaves it alone.

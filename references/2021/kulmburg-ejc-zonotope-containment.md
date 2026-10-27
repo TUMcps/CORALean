@@ -101,5 +101,5 @@ hull), an upper one mirrors through c, and the lower vertices sit at height nα 
 [`ExistsCubeVertexMemFrontierLift.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ExistsCubeVertexMemFrontierLift.lean)
 
 **Minor.** `Eq. 20` prints the cube as [-1, -1]ⁿ; `Eq. 47` prints G₂ for G₁; `Lemma 3`
-needs b ≠ 0; `Lemma 5`'s proof divides by β; `Alg. 2` tests the sign vector in place of the
+needs b ≠ 0. `Lemma 5`'s proof divides by β; `Alg. 2` tests the sign vector in place of the
 vertex it selects. Each is read as the argument intends.

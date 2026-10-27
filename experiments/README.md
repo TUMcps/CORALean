@@ -120,18 +120,18 @@ Flags:
   `exp2-timepoint`, `nn-float32` (ignores `--type`/`--format`/`--prec`/
   `--config`), `nn-mnist` (ignores `--config`, takes its own `--net`/
   `--images`; see their own sections below).
-* `--type ieee|dyadic|hardware|nearest|fixed` -- `ieee` (default, with its default
-  format `binary64`) runs at `CORALean.Float.IEEE fmt`, rounding onto a
-  real format's grid, subnormals included, overflow detected: see "IEEE
-  formats" below; `dyadic` runs at `CORALean.Float.Dyadic
-  p`, exact integer arithmetic with the precision below, at an unbounded
-  exponent; `hardware` runs at
-  native binary64, `Float`, where the numbers depend on the machine's IEEE 754
-  unit and the ten `SoundFloatArithmetic` assumptions `Axioms.lean` states.
-  `fixed` runs at `CORALean.Float.FixedPoint f`, decimal fixed-point at
-  `--digits F` fractional digits: see "Decimal fixed-point" below.
-  `nearest` is the unsound round-to-nearest baseline, with NO guarantee: see
-  "Round-to-nearest baseline" below for how `--format`/`--prec` apply to it.
+* `--type ieee|dyadic|hardware|nearest|fixed`, the number type:
+  - `ieee` (default, with its default format `binary64`) runs at `CORALean.Float.IEEE fmt`,
+    rounding onto a real format's grid, subnormals included, overflow detected: see "IEEE
+    formats" below.
+  - `dyadic` runs at `CORALean.Float.Dyadic p`, exact integer arithmetic with the precision
+    below, at an unbounded exponent.
+  - `hardware` runs at native binary64, `Float`, where the numbers depend on the machine's IEEE
+    754 unit and the ten `SoundFloatArithmetic` assumptions `Axioms.lean` states.
+  - `fixed` runs at `CORALean.Float.FixedPoint f`, decimal fixed-point at `--digits F`
+    fractional digits: see "Decimal fixed-point" below.
+  - `nearest` is the unsound round-to-nearest baseline, with NO guarantee: see
+    "Round-to-nearest baseline" below for how `--format`/`--prec` apply to it.
 * `--format F` -- one of `binary64|binary32|binary16|binary8|binary4`. For
   `--type ieee` the format itself; for `--type dyadic` (and `nearest`) only a
   significand width (see the table below), so a Dyadic run is labelled
@@ -194,34 +194,34 @@ below) is `meta` beside two arrays, `sets_ti` (`t0 < t1`, the time-interval
 windows) and `sets_tp` (`t0 = t1`, the time-point sets), either `[]` where a
 scheme has none.
 
-* `meta`: `status` (`"ok"` or `"none"`, the latter with a `reason` and no
-  `sets*`), `experiment`, `scheme` (`"reach"` for `dtdemo`; `"wrapping-free"`/
-  `"standard"` -- CORA's own `options.linAlg` values -- for `headline-a`/`-b`,
-  `exp2-timepoint` and the CORA-side runs), `type`, `format` (`"binary64"`,
-  ..., `"binary4"`, or `"custom<p>"` for an ad hoc `--prec`),
-  `significand_bits`, `config` (the config file's JSON, echoed back verbatim),
-  `eta`/`rho`/`N`/`dt` *actually used* by the run (the split-schema writer
-  only -- `eta` may exceed the config's own value, raised until admissible),
-  the git commit, the Lean version, machine info, every timing sample in
-  nanoseconds beside their median (the whole algorithm call, forced -- see
-  `Timing.lean`'s module docstring for why), and (split-schema only)
-  `summary.ti`/`summary.tp`, one object per array:
-  - `finalEradius`/`maxEradius`: the error box's radius per dimension,
-    `(E.sup - E.inf) / 2`, at the last step and the worst over every step.
-  - `finalWidth`: the final nominal hull's width per dimension,
-    `2 * sum_j |G_ij|` (CORA's own interval-hull formula).
-  - `finalTotalWidth`: `finalWidth` plus the final error box's own width on
-    both sides, `finalWidth + 2 * finalEradius`.
-  - `firstErrorDominantStep`: the first step `k` at which the (max-over-dim)
-    error radius `e` or the (max-over-dim) nominal half-width `w` is
-    non-finite (`Inf`/`NaN`), or `e` genuinely exceeds `w`; `null` if no step
-    ever does (`Summary.lean`'s `aux_isDominant`). A plain `e > w` alone
-    would miss this once either side saturates to `Infinity` (IEEE `>` never
-    holds against `Infinity`/`NaN`, on either side, not only when both have
-    saturated) -- reported here, not silently `null` past a genuine blow-up.
-  - `firstBlowupStep`: the first step whose (max-over-dim) error radius is
-    non-finite or genuinely exceeds `1`, `null` if no step ever does
-    (`Summary.lean`'s `aux_isBlowup`, the same non-finite-first rule).
+* `meta`, the run's header:
+  - `status` (`"ok"` or `"none"`, the latter with a `reason` and no `sets*`) and `experiment`.
+  - `scheme` (`"reach"` for `dtdemo`; `"wrapping-free"`/`"standard"` -- CORA's own
+    `options.linAlg` values -- for `headline-a`/`-b`, `exp2-timepoint` and the CORA-side runs).
+  - `type`, `format` (`"binary64"`, ..., `"binary4"`, or `"custom<p>"` for an ad hoc `--prec`),
+    `significand_bits`, and `config` (the config file's JSON, echoed back verbatim).
+  - `eta`/`rho`/`N`/`dt` *actually used* by the run (the split-schema writer only -- `eta` may
+    exceed the config's own value, raised until admissible).
+  - The git commit, the Lean version, machine info, and every timing sample in nanoseconds beside
+    their median (the whole algorithm call, forced -- see `Timing.lean`'s module docstring for
+    why).
+  - (Split-schema only) `summary.ti`/`summary.tp`, one object per array:
+    - `finalEradius`/`maxEradius`: the error box's radius per dimension,
+      `(E.sup - E.inf) / 2`, at the last step and the worst over every step.
+    - `finalWidth`: the final nominal hull's width per dimension,
+      `2 * sum_j |G_ij|` (CORA's own interval-hull formula).
+    - `finalTotalWidth`: `finalWidth` plus the final error box's own width on
+      both sides, `finalWidth + 2 * finalEradius`.
+    - `firstErrorDominantStep`: the first step `k` at which the (max-over-dim)
+      error radius `e` or the (max-over-dim) nominal half-width `w` is
+      non-finite (`Inf`/`NaN`), or `e` genuinely exceeds `w`; `null` if no step
+      ever does (`Summary.lean`'s `aux_isDominant`). A plain `e > w` alone
+      would miss this once either side saturates to `Infinity` (IEEE `>` never
+      holds against `Infinity`/`NaN`, on either side, not only when both have
+      saturated) -- reported here, not silently `null` past a genuine blow-up.
+    - `firstBlowupStep`: the first step whose (max-over-dim) error radius is
+      non-finite or genuinely exceeds `1`, `null` if no step ever does
+      (`Summary.lean`'s `aux_isBlowup`, the same non-finite-first rule).
 * `sets`/`sets_ti`/`sets_tp`: one record per step, `{k, t0, t1, c, G, E: {inf,
   sup}}`. A scalar is its nearest double by default, printed so it
   round-trips (17 significant decimal digits, `FloatPrint.floatToJson`/
@@ -247,11 +247,10 @@ precision a run is asked for (`fitsPrecision`), so a value exact in binary but
 needing more bits than the run's significand width also fails, loudly, rather
 than being rounded without being told.
 
-Every config value is exact at **2 significand bits** (`binary4`/E2M1), the
-narrowest format the precision ablation runs: a normalised mantissa is then
+Every config value is exact at **2 significand bits** (`binary4`/E2M1), the narrowest format the precision ablation runs. A normalised mantissa is then
 odd and at most `3` (`1.0` or `1.1` in binary), so `x0` coordinates and
 generators are multiples of `1/8` restricted to `{1, 2, 3, 4, 5, 6, 7} * 2^k`
-with an *odd* numerator of `1` or `3` -- `1/8, 1/4, 3/8, 1/2, 3/4` are exact,
+with an *odd* numerator of `1` or `3`. `1/8, 1/4, 3/8, 1/2, 3/4` are exact,
 `5/8` (odd part `5`, needing 3 bits) is not.
 
 ```jsonc
@@ -377,10 +376,9 @@ Always writes `<out-prefix>[-ti|-tp]-hulls.dat` (every step's axis-aligned
 interval-hull bounding box, `k t xmin xmax ymin ymax`) and, once,
 `<out-prefix>-x0.dat` (`X0` itself, read off step `k = 0`).
 
-For a chosen subset of steps (`--every`/`--steps`, default spreading roughly
-20 over the run), a polygon per step: the zonotope's generators plus its
+For a chosen subset of steps (`--every`/`--steps`, default spreading roughly 20 over the run), a polygon per step. It has the zonotope's generators plus its
 error box `E` folded in as two more (an axis-aligned box *is* a zonotope, so
-the Minkowski sum needs no separate hull step), vertices computed exactly by
+the Minkowski sum needs no separate hull step). Its vertices are computed exactly by
 sorting the generators by angle and walking the boundary (`O(h log h)`, not
 the `O(2^h)` a brute-force convex hull over sign combinations would cost --
 `headline-b`'s own time-interval windows reach some 60+ generators, where
@@ -403,8 +401,7 @@ no soundness claim) from points of `X0` in the config: its center, every
 pseudo-random interior points (`random.Random(1234)`, reproducible run to
 run) -- about ten trajectories in all. Each is sampled only at the run's own
 sample times `t_k = k * dt`, `k = 0, ..., steps` -- not denser, so a
-trajectory point at `t_k` lines up exactly with a `sets_tp` polygon at step
-`k`, which is how this harness's own sanity check works: every point of
+trajectory point at `t_k` lines up exactly with a `sets_tp` polygon at step `k`. That is how this harness's own sanity check works: every point of
 every trajectory checked lies inside the matching time-point polygon, for
 `headline-a` (`--type hardware`) and `headline-b` (`--type dyadic --format
 binary64`) on `headline_default` alike (`12080 / 12080` (`point, k`) pairs
@@ -461,12 +458,10 @@ bash experiments/run_runtime.sh [--out DIR] [--config FILE] [--reps N] [--cold-b
 
 The number-type runtime ablation on `--config`'s config (default
 `headline_5turns`, the paper's own reported headline run; `headline_default`
-is a second table alongside it, both from an explicit `--config`):
-`headline-a` and `headline-b`, each at IEEE binary64 compiled and
+is a second table alongside it, both from an explicit `--config`). It runs `headline-a` and `headline-b`, each at IEEE binary64 compiled and
 interpreted, Dyadic binary64 compiled, native
 Float compiled, round-to-nearest `NearestFloat` compiled (`--type nearest`,
-the unsound baseline), Dyadic binary64 interpreted and native Float
-interpreted -- fourteen runs, one `<out>/<config>/runtime/runtime_<config>.csv`/
+the unsound baseline), Dyadic binary64 interpreted and native Float interpreted. That is fourteen runs, one `<out>/<config>/runtime/runtime_<config>.csv`/
 `.json` table (`scheme, backend, number_type, medianNs`), `medianNs` read
 back out of each run's own JSON. `--cold-build` additionally times a cold
 build of `bench`'s own modules
@@ -526,18 +521,16 @@ python3 experiments/nn/mnist/make_table.py DIR DIR/nn-mnist/mnist_table
 How much sound enclosure radius accumulates through a *real* classifier
 rather than `nn-float32`'s one-neuron example: the three VNN-COMP 2021
 `mnistfc` networks (`small`/`medium`/`large`, 2/4/6 hidden ReLU layers of
-256, 784 inputs, 10 outputs), converted once (`experiments/nn/mnist/`, see
+256, 784 inputs, 10 outputs). They are converted once (`experiments/nn/mnist/`, see
 `SOURCES.md` for the exact commands, URLs and checksums) into a flat
-hex-float32 text format `MnistParse.lean` decodes exactly, propagated by
+hex-float32 text format `MnistParse.lean` decodes exactly, and propagated by
 `NeuralNetwork.enclose` -- the same library call `nn-float32` uses -- over
 the first 100 MNIST test images.
 
 Propagated as a **box** (`Float.Interval (Vec 𝕋 n)`), not a zonotope. Every
 input here is a single point `x = k / 255`, so its zonotope would start with
-no generators at all; the only ones a run through this network would ever
-carry come from the interval-weight affine layers below (never from the
-input), and a plain box already encloses those exactly as tightly as a
-zero-generator zonotope would -- so propagating as a box loses nothing that
+no generators at all. The only ones a run through this network would ever
+carry come from the interval-weight affine layers below (never from the input), and a plain box already encloses those exactly as tightly as a zero-generator zonotope would. So propagating as a box loses nothing that
 matters here, at a fraction of the cost (`Mtimes`/`Relu` on a box cost
 `O(rows × cols)` per layer with no generator bookkeeping at all, where a
 zonotope pays a full layer-width of *new* generators at every `affineLayer`
@@ -712,11 +705,10 @@ carries `"type": "fixed"`, `"format": "decimal<F>"` and `"significand_bits": F`
 but `nearest`, `"sound": true`.
 
 A config value is read in exactly or not at all, the same rule `Dyadic`'s
-`fitsPrecision` applies at its bit count: `ExactDyadic.toFixedPoint` checks
+`fitsPrecision` applies at its bit count. `ExactDyadic.toFixedPoint` checks
 `digits + exponent ≥ 0` (a binary fraction `2 ^ exponent` terminates in decimal
 past that many places), and rejects a value that fails it with a message
-naming the field and how many digits it would need -- `1 / 64 = 2 ^ (-6)`
-needs `--digits 6`, so `headline_default.json`'s `dt` rejects `--digits 4`
+naming the field and how many digits it would need. `1 / 64 = 2 ^ (-6)` needs `--digits 6`, so `headline_default.json`'s `dt` rejects `--digits 4`
 outright rather than silently rounding it. A *computed* quantity (`dtdemo`'s
 discretized matrix) goes through `toFixedPointUnchecked` instead, which floors
 when the same condition fails, `Dyadic`'s unbounded exponent having no
@@ -744,28 +736,30 @@ experiments/paper/make_paper.sh [RESULTS_DIR] [--no-latex]  # default experiment
 ```
 
 From an existing results directory (`run_all.sh` and `run_runtime.sh`'s own
-output, plus CORA's, if that directory holds it), regenerates every figure
-`.dat` file this README's "Plotting" section describes -- for every config x
-{`headline-a`, `headline-b`} x {dyadic binary64, hardware, nearest, cora} it
-finds, a merged tube at `--every 1` and again at `--every 10` (thinned), plus
-`X0` and the per-step hull box, and one `simulate.dat` per config -- and every
-table body the paper `\input`s (`experiments/paper/gen_tables.py`, a
-standard-library Python helper beside it): the headline table, the precision
-ablation's table (`exp2-timepoint` on `headline_default`, one row per
-precision, plus a per-step error-radius `.dat` for a log-scale plot), the
-`nn-float32` table, the runtime table, and the round-to-nearest-vs-CORA
-validation. All of it under `<RESULTS_DIR>/paper/` -- see
+output, plus CORA's, if that directory holds it), the script regenerates:
+
+- Every figure `.dat` file this README's "Plotting" section describes. For every config x
+  {`headline-a`, `headline-b`} x {dyadic binary64, hardware, nearest, cora} it finds, that is a
+  merged tube at `--every 1` and again at `--every 10` (thinned), plus `X0` and the per-step hull
+  box, and one `simulate.dat` per config.
+- Every table body the paper `\input`s (`experiments/paper/gen_tables.py`, a standard-library
+  Python helper beside it): the headline table, the precision ablation's table (`exp2-timepoint`
+  on `headline_default`, one row per precision, plus a per-step error-radius `.dat` for a
+  log-scale plot), the `nn-float32` table, the runtime table, and the round-to-nearest-vs-CORA
+  validation.
+
+All of it goes under `<RESULTS_DIR>/paper/` -- see
 `experiments/results-paper/README.md` for the exact naming scheme and what
 each table's columns mean.
 
 The precision ablation also gets its own figure data, from
 `exp2-timepoint` on a config given as a parameter (default
 `headline_5turns`, the paper's own headline run --
-`gen_tables.py`'s `write_precision_figure`): one `eradius-p<P>.dat`
+`gen_tables.py`'s `write_precision_figure`). It writes one `eradius-p<P>.dat`
 (`k Eradius`) per precision `P` in {4, 8, 16, 32, 64} from that config's
-dyadic run, `Eradius` the max-over-dim time-point error radius, rows with
+dyadic run. `Eradius` is the max-over-dim time-point error radius, rows with
 `Eradius = 0` skipped and the file stopped (exclusive) at the first
-non-finite value or value past `1e30`; a shared `width.dat` (`k width`) with
+non-finite value or value past `1e30`. A shared `width.dat` (`k width`) with
 the dyadic p=64 run's max-over-dim nominal hull width at every step; and a
 `precision_<config>.csv` summary (`p, first_dominant_step,
 first_blowup_step, last_finite_step, final_E_radius, nearest_final_width`)
@@ -775,7 +769,7 @@ under `<RESULTS_DIR>/paper/precision_<config>/` and
 `experiments/paper/render_png.py` additionally renders a PNG preview of every
 reach-tube figure and the precision plot, only if `matplotlib` is importable
 (it is not part of this repository's own dependencies, so `make_paper.sh`
-skips it with a message rather than failing when it is missing) -- an
+skips it with a message rather than failing when it is missing). It is an
 OPTIONAL EXTRA, a quick look without a LaTeX toolchain, not part of the
 artifact's reproduction contract: `paper_floats.pdf` (below) is the actual
 reproduction of the paper's figures and tables.
@@ -939,17 +933,22 @@ same windows.
 
 Output: `DIR/randverify/<instance>.json` (`<instance>-flint.json` from `bench-flint`), `{meta,
 results}`; `meta.instance.meta` carries whatever else the file holds (CORA's verify result and
-time). One `results` record per (type, algorithm): `type`, `format`, `significand_bits`,
-`number_type`, `instance`, `algorithm`, `status` (`ok`; `none` with a `reason`; `overflow-NaN`,
-a bound, window or hull past the format's range, `verified: false`), `verified` (`true`, `false`,
-or `null` for `none`), `distances` (per unsafe box `{"sign", "value", "window"}`: the signed
-distance, its value in scientific notation, and the closest window; `null` if none),
-`distances_unrounded`, `unverifiable_from_rounding` (per unsafe box), `unsafe_rounded` (per box
-and dimension, whether outward rounding moved `lb`/`ub`), `verified_hull`, `distances_hull` and
-`distances_hull_unrounded` (the former interval-hull test, exact `{"num", "den"}` rationals),
-`windows` (the number `N`), `time_reach_ms` (wall clock of the reach and the exact output
-windows, shared by `reach_shared` instances), `time_check_ms` (this instance's tests), `time_ms`
-(their sum) and `params` (`dt`, `eta`, `order`, `tend`).
+time). One `results` record per (type, algorithm) holds:
+
+- `type`, `format`, `significand_bits`, `number_type`, `instance`, `algorithm`.
+- `status`: `ok`; `none` with a `reason`; `overflow-NaN`, a bound, window or hull past the
+  format's range, `verified: false`.
+- `verified`: `true`, `false`, or `null` for `none`.
+- `distances`: per unsafe box `{"sign", "value", "window"}`, the signed distance, its value in
+  scientific notation, and the closest window; `null` if none.
+- `distances_unrounded`, `unverifiable_from_rounding` (per unsafe box), and `unsafe_rounded` (per
+  box and dimension, whether outward rounding moved `lb`/`ub`).
+- `verified_hull`, `distances_hull` and `distances_hull_unrounded` (the former interval-hull
+  test, exact `{"num", "den"}` rationals).
+- `windows` (the number `N`).
+- `time_reach_ms` (wall clock of the reach and the exact output windows, shared by
+  `reach_shared` instances), `time_check_ms` (this instance's tests) and `time_ms` (their sum).
+- `params` (`dt`, `eta`, `order`, `tend`).
 
 Reading is tolerant: numbers are JSON numbers, `"m*2^e"`, `"m/d"` or decimal strings, all
 converted exactly; `X0`, `U` and each unsafe box are `{lb, ub}`, `{inf, sup}` or `{lowerbound,
@@ -964,17 +963,19 @@ also read as `tFinal`.
 * Each unsafe box is rounded OUTWARD (lower down, upper up), which only enlarges it, so a reach
   set disjoint from the enlarged box is disjoint from the original: sound.
 * Each window `R(tau_k)` is mapped to output space EXACTLY, `Y_k = C R(tau_k)` over the rationals
-  (center, generators and error box of `R`, the error box as five more generators), and tested
-  against each unsafe box `S` by the separating-axis theorem in the plane: `Y_k` and `S` are
-  disjoint iff `0` is outside the polygon `Y_k + (-S)`, iff some facet normal `n` of it -- the
-  perpendicular `(-g_2, g_1)` of a generator of `Y_k`, or `+-e_1`, `+-e_2` -- has
-  `max_{y in Y_k} n.y < min_{s in S} n.s`. Every such comparison is exact, in integers, so
-  `verified` (every box separated from every window) is an exact decision on the computed windows,
-  not a conservative one: a box diagonal to a slanted window is separated even where their
-  interval hulls overlap, which the former hull test (kept as `verified_hull`) cannot see. The
-  signed distance per window is the largest `(min_S n.s - max_Y n.s) / |n|_2` over the normals,
-  positive exactly when separated and then a lower bound on the Euclidean distance; per box, the
-  smallest over the windows. Its `value` is a `Float` approximation, its `sign` exact.
+  (center, generators and error box of `R`, the error box as five more generators). It is tested
+  against each unsafe box `S` by the separating-axis theorem in the plane:
+  - `Y_k` and `S` are disjoint iff `0` is outside the polygon `Y_k + (-S)`, iff some facet normal
+    `n` of it -- the perpendicular `(-g_2, g_1)` of a generator of `Y_k`, or `+-e_1`, `+-e_2` --
+    has `max_{y in Y_k} n.y < min_{s in S} n.s`.
+  - Every such comparison is exact, in integers, so `verified` (every box separated from every
+    window) is an exact decision on the computed windows, not a conservative one. A box diagonal
+    to a slanted window is separated even where their interval hulls overlap, which the former
+    hull test (kept as `verified_hull`) cannot see.
+  - The signed distance per window is the largest `(min_S n.s - max_Y n.s) / |n|_2` over the
+    normals, positive exactly when separated and then a lower bound on the Euclidean distance;
+    per box, the smallest over the windows. Its `value` is a `Float` approximation, its `sign`
+    exact.
 * `unverifiable_from_rounding[j]` (exercised by `experiments/randverify/tests/unverifiable-from-rounding-binary16.json`, a TEST instance, not a benchmark: binary16, `--algs wrappingfree --dt 1/16`) is true where box `j` is separated in its file's own bounds
   and not in the rounded ones: outward rounding alone cost the proof.
 * The reach itself sits behind one function, `randVerifyReach` in

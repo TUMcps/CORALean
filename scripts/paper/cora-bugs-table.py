@@ -24,8 +24,9 @@ class, then method. Four columns:
   links that is not a counterexample and does not transcribe CORA (`Cora` in its name); a row
   whose state is `—` has none.
 
-The files a row links are those of its third column and of its note (the note carries the full
-text of what CORA gets wrong and the Lean files that witness it). A `cex` or `fix` override is a file's name (or its path when two linked files share
+The files a row links are those of its third column, of its note and of the paragraphs of the
+page's `## Details` section led by its method (the note keeps the short statement of what CORA gets
+wrong; the account and the Lean files that witness it may stand in those paragraphs). A `cex` or `fix` override is a file's name (or its path when two linked files share
 the name) and must be one of them. A cell without a file is `---`. Links go to
 `\\coraleanrepo <path>`, a macro the table `\\providecommand`s as the repository's `main`.
 
@@ -57,19 +58,32 @@ def json_path(cr):
     return cr.ROOT / "experiments" / "paper" / "cora-bugs.json"
 
 
+def details_links(cr, text, method):
+    """The link targets of the paragraphs of a coverage page's `## Details` section that open with
+    the bold lead of `method` (`**`method` — what it says.**`), in the order they stand: what a
+    row's note moved out of its cell, so that the files it witnesses with stay the row's."""
+    out = []
+    for block in re.split(r"\n\s*\n", text):
+        if block.startswith(f"**`{method}` — "):
+            out.extend(cr.LINK.findall(block))
+    return out
+
+
 def coverage_rows(cr):
     """Every `cora-issue` row, in table order, as a dict."""
     out = []
     for group in cr.CORA_GROUPS:
         for path in sorted((cr.COVERAGE / group).glob("*.md")):
-            for cells in cr.rows_of(path.read_text(encoding="utf-8")):
+            text = path.read_text(encoding="utf-8")
+            for cells in cr.rows_of(text):
                 if len(cells) != 4 or cells[0] == "Method":
                     continue
                 method, state, where, note = cells
                 if not cr.CORA_ISSUE.search(note):
                     continue
                 links = []
-                for link in cr.LINK.findall(where) + cr.LINK.findall(note):
+                moved = details_links(cr, text, method.strip("`"))
+                for link in cr.LINK.findall(where) + cr.LINK.findall(note) + moved:
                     target = (path.parent / link).resolve()
                     if link.endswith(".lean") and target.exists() and target not in links:
                         links.append(target)

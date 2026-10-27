@@ -14,9 +14,9 @@
 
 The estimator behind CORA's `FRad-B` (`'wang-FRad'`), `PRad-C` and `Nom-G`, for the descriptor
 system `E x₊ = A x + B u + D ω + D_d d`, `y = C x + F υ` with an unknown input `d` decoupled by
-`TE + NC = I`, `TD_d = 0`: the intersection zonotope at a correction matrix `Λ` (Thm. 1), the
+`TE + NC = I`, `TD_d = 0`. It covers the intersection zonotope at a correction matrix `Λ` (Thm. 1), the
 Kalman gain that minimizes its F_W-radius (Thm. 2), the LMI that makes its W-radius contract
-(Thm. 3, Prop. 1), the online bound (Thm. 4), the prediction-type zonotopic Kalman observer
+(Thm. 3, Prop. 1) and the online bound (Thm. 4). It covers also the prediction-type zonotopic Kalman observer
 and its optimal gain (Thms. 5, 6), the stability of the nominal observer (Prop. 2) and the
 equivalence of the two approaches (Thm. 7). The gain optimality is proved by completing the
 square rather than by the paper's matrix derivatives. `Thm. 4`'s bound is false as printed and

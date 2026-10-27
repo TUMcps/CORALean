@@ -20,7 +20,7 @@ the variable at `t = 0` decides the formula. CORALean formalizes discrete-time S
 robustness, each constraint gadget (that it forces the Boolean or `min`/`max` value, and is
 satisfiable when `M` is large enough), and the encodings as the values the gadgets force: they
 decide the formula and compute its robustness, for a horizon covering the formula's bound and the
-until recursion corrected; as printed, the until encoding disagrees with the paper's own
+until recursion corrected. As printed, the until encoding disagrees with the paper's own
 semantics, with a counterexample in Lean, and so do two other claims at their edge cases.
 
 CORA's `robustnessEncodingMILP` encodes the until directly as the robust semantics, a maximum over
@@ -37,7 +37,7 @@ by (4).
 | `Sec. II-B (NNF)` | STL formulas are assumed in negation normal form; every STL formula can be rewritten into one of length linear in the original. | n/a — CORALean's discrete-time formulas are in negation normal form by construction, as the encodings require, and it has no discrete-time STL with negation to translate from; note that the grammar has no release operator, so the negation of an until has to be expanded with its operands repeated | `not-covered` |
 | `Sec. II-B (semantics)` | `φ ::= μ \| ¬μ \| φ ∧ ψ \| φ ∨ ψ \| □[a,b] ψ \| φ U[a,b] ψ`, `μ` holding where `μ(x(t)) > 0`, `□` on every step of `[t+a, t+b]`, `φ U[a,b] ψ` where `ψ` holds at some `t' ∈ [t+a, t+b]` and `φ` on all of `[t, t']`; `x ⊨ φ` at `t = 0`. | [`DiscreteFormula.lean`](../../src/CORALean/Specification/STL/Definitions/DiscreteFormula.lean) — `STL.DFormula` and `Satisfies`, with `◇` beside the printed operators, as the encodings treat it, and `a ≤ b` carried by every interval | `correct` |
 | `Sec. II-B (eventually)` | `◇[a,b] φ = ⊤ U[a,b] φ`, so that `x ⊨ ◇[a,b] φ` iff `φ` holds at some step between `a` and `b`. | [`EventuallySatIff.lean`](../../src/CORALean/Specification/STL/Theorems/EventuallySatIff.lean) | `correct` |
-| `Sec. II-B (bound)` | The bound of a bounded formula, the maximum over the sums of nested upper bounds, is a conservative trajectory length to decide satisfiability; `□[0,10] □[1,6] φ` needs `N ≥ 16`. | [`DFormulaBound.lean`](../../src/CORALean/Specification/STL/Operations/DFormulaBound.lean), [`SatCongr.lean`](../../src/CORALean/Specification/STL/Theorems/SatCongr.lean) — whether `φ` holds at `t` depends only on the run on `[t, t + bound(φ)]`, and the example's bound is `16`  | `correct` |
+| `Sec. II-B (bound)` | The bound of a bounded formula, the maximum over the sums of nested upper bounds, is a conservative trajectory length to decide satisfiability; `□[0,10] □[1,6] φ` needs `N ≥ 16`. | [`DFormulaBound.lean`](../../src/CORALean/Specification/STL/Operations/DFormulaBound.lean), [`SatCongr.lean`](../../src/CORALean/Specification/STL/Theorems/SatCongr.lean) — whether `φ` holds at `t` depends only on the run on `[t, t + bound(φ)]`, and the example's bound is `16` | `correct` |
 | `Sec. II-B (bound) (complexity)` | The bound of a bounded formula is computed in time linear in the formula. | n/a — a running time stated of the construction, which the tree can only assert (`Complexity/Time/`) and never prove; see CONTRIBUTING.md, "A size is proved; a running cost is asserted" | `not-a-claim` |
 | `Sec. II-C` | The robustness `ρ^φ(x, t)`, by `min` and `max` along the semantics, with `(x, t) ⊨ φ ≡ ρ^φ(x, t) > 0`; e.g. `ρ(□[0,2] μ₁)(x, t) = min_{t∈[0,2]} x(t) - 3`. | [`DFormulaRob.lean`](../../src/CORALean/Specification/STL/Operations/DFormulaRob.lean), [`RobSound.lean`](../../src/CORALean/Specification/STL/Theorems/RobSound.lean), [`Rob.lean`](../../src/CORALean/Specification/STL/Counterexamples/Rob.lean) — `ρ > 0` implies satisfaction and satisfaction `ρ ≥ 0`; the equivalence fails at `ρ = 0`, with a counterexample; the example is the definition at a predicate. The paper prints no `ρ` of `◇`, taken as the `max` dual to `□` **Counterexample:** `STL.DFormula.rob_counterexample` | `fixed` — `≡` fails at `ρ = 0`, see the findings |
 | `Sec. III (Problem 1)` | Optimal controller synthesis: minimize `J(x(x₀, u^N))` subject to `x(x₀, u^N) ⊨ φ`. | n/a — a problem statement | `not-a-claim` |
@@ -70,23 +70,23 @@ by (4).
 ## Findings
 
 **The until encoding contradicts the paper's own until semantics.** The semantics (Sec. II-B) asks
-`φ₁` on all of `[t, t']`, the step `t'` where `φ₂` holds included, and so does the robustness
-(Sec. II-C), `min_{t''∈[t,t']} ρ^{φ₁}`. The unbounded until of the encoding,
+`φ₁` on all of `[t, t']`, the step `t'` where `φ₂` holds included, and so does the robustness (Sec.
+II-C), `min_{t''∈[t,t']} ρ^{φ₁}`. The unbounded until of the encoding,
 `z_t = z^{φ₂}_t ∨ (z^{φ₁}_t ∧ z_{t+1})`, asks `φ₁` only before `t'`. On the run
 `(1, -1), (-1, 1), …` with `μ₁ = x⁽¹⁾`, `μ₂ = x⁽²⁾`, the formula `μ₁ U[0,1] μ₂` is false at `0`
 (`μ₂` fails at `0`, and at `1` `μ₁` does), while the encoding with `N = 1` — enough for the
 formula's bound — sets `z = 1`, and the robust encoding `r = 1` where `ρ = -1`
 ([`ZEnc.lean`](../../src/CORALean/Specification/STL/Counterexamples/ZEnc.lean),
 [`REnc.lean`](../../src/CORALean/Specification/STL/Counterexamples/REnc.lean)).
-The cause is the identity taken from [7], `φ₁ U[a,b] φ₂ = □[0,a] φ₁ ∧ ◇[a,b] φ₂ ∧ ◇[a,a](φ₁ U φ₂)`,
-combined with the strict recursion: it holds for the non-strict unbounded until,
-`z_t = (z^{φ₂}_t ∧ z^{φ₁}_t) ∨ (z^{φ₁}_t ∧ z_{t+1})` and `z_N = z^{φ₂}_N ∧ z^{φ₁}_N`, and with it
-both encodings are exact
+
+****The until encoding — the cause.**.** The cause is the identity taken from [7],
+`φ₁ U[a,b] φ₂ = □[0,a] φ₁ ∧ ◇[a,b] φ₂ ∧ ◇[a,a](φ₁ U φ₂)`, combined with the strict recursion: it
+holds for the non-strict unbounded until, `z_t = (z^{φ₂}_t ∧ z^{φ₁}_t) ∨ (z^{φ₁}_t ∧ z_{t+1})` and
+`z_N = z^{φ₂}_N ∧ z^{φ₁}_N`, and with it both encodings are exact
 ([`ZEncIffSat.lean`](../../src/CORALean/Specification/STL/Theorems/ZEncIffSat.lean),
-[`REncEqRob.lean`](../../src/CORALean/Specification/STL/Theorems/REncEqRob.lean)). The recursion
-is also printed for `t = 1, …, N-1`, leaving `t = 0`, which a formula at `0` with `a = 0` reads,
-undefined; it is read from `0`. CORA's encoding follows the semantics directly and is not
-affected.
+[`REncEqRob.lean`](../../src/CORALean/Specification/STL/Theorems/REncEqRob.lean)). The recursion is
+also printed for `t = 1, …, N-1`, leaving `t = 0`, which a formula at `0` with `a = 0` reads,
+undefined; it is read from `0`. CORA's encoding follows the semantics directly and is not affected.
 
 **The encodings need the horizon to cover the bound.** The windows `[min(t+a, N), min(t+b, N)]`
 are cut at the horizon, so for `t + bound(φ) > N` they read fewer steps than the formula: with

@@ -13,13 +13,12 @@
 **Inventory:** confirmed (against the manuscript: Assumptions 1-2, Definitions 1-6, Lemmas 1-2, Theorems 1-3, Corollaries 1-2, Remarks 1-6 and Algorithm 1, each with its own counter; Equations 1-36, of which the rows below are the displays outside a numbered result, the others being parts of the results they belong to; Sec. IV is the example)
 
 The estimator behind CORA's `PRad-D` (`priv_observe_gain_PRadD`, whose LMI is Eq. 19-20 at `T = I`,
-`N = 0`), for the descriptor LPV system `E x₊ = A(θ)x + B(θ)u + D(θ)d`, `y = Cx + Fd`: the
-intersection zonotope at a correction matrix (Thm. 1, the LTI result of Wang, Puig and Cembrano
+`N = 0`), for the descriptor LPV system `E x₊ = A(θ)x + B(θ)u + D(θ)d`, `y = Cx + Fd`. It covers the intersection zonotope at a correction matrix (Thm. 1, the LTI result of Wang, Puig and Cembrano
 2018 at the matrices of `θ`), its polytopic form (Cor. 1), the P-radius contraction (Thm. 2) with
 the vertex relaxation (Lemma 2, Cor. 2), the adaptive bound (Thm. 3) and the loop (Alg. 1). The
 estimator encloses the state at every gain. The conditions are another matter: Eq. 20 has no
 solution, so Thm. 2 is vacuous as printed, and with the condition its proof derives (Eq. 26)
-its Eq. 19 merges two generator blocks that do not share coefficients, which fails; Lemma 2 and
+its Eq. 19 merges two generator blocks that do not share coefficients, which fails. Lemma 2 and
 Cor. 2 quote the relaxation for `i < j` and with `≽`, which fails; Remark 1's `‖d‖_∞` is not the
 worst case it is used as. Each is proved in corrected form, with a counterexample. CORA's `PRad-D`
 imposes Eq. 20 as printed ([`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md)).

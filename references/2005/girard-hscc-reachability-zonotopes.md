@@ -37,31 +37,36 @@ convergence bounds are false as printed and hold with `r‖A‖` in place of `r`
 ## Findings
 
 **Lemma 2 and Theorem 1 — the convergence bounds.** Lemma 2 prints
-`d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup_{x∈Z} ‖x‖)`, with
-"αr = (e^{r‖A‖} − 1 − r‖A‖) sup_{x∈Z} ‖x‖" and "βr = (e^{r‖A‖} − 1)/‖A‖ µ" verbatim, `‖·‖`
-"the infinity norm on Rⁿ" for vectors, `‖u(t)‖ ≤ µ`, and `d_H` of Definition 2 in that norm.
-The proof bounds `2α_r + β_r` by `e^{r‖A‖}r² sup ‖x‖ + e^{r‖A‖}rµ`, but `α_r` is of order
-`(r‖A‖)²`, not `r²`: `2α_r ≤ e^{r‖A‖}r² sup ‖x‖` fails whenever `‖A‖ > 1` and `r` is small.
-The statement fails with it. Take `x' = 100x + u`, `µ = 0`, `Z = (1, ⟨1⟩) = [0, 2]`,
-`r = 1/100`. In one dimension every `p`-norm, and every induced matrix norm, is the absolute
-value, so the choice of norm does not enter: `‖A‖ = 100`, `r‖A‖ = 1`,
-`sup_{x∈Z} |x| = 2`, `α_r = 2(e - 2)`, `β_r = 0`, `P = [1 - e, 2e]`. The lemma's hypotheses
-are only the system, `µ ≥ 0`, `r > 0` and a zonotope `Z`, and nothing here strains them. The
-sets compared are the lemma's own: `R_[0,r](Z) = {e^{100t}z : t ∈ [0, r], z ∈ [0, 2]} ⊆ [0, ∞)`
-and `P + □(α_r) ∋ 5 - 3e`, so `d_H ≥ 3e - 5 ≈ 3.15 > 1.02e ≈ 2.77`, the printed bound
-(`exists_lt_hausdorffDist_iUnion_reachSetExact`, on `girardExample_spec`). `µ = 0` is not
-what breaks it: for `µ > 0` the lower end of `R_[0,r](Z)` drops by `β_r` exactly as the
-enclosure's does, the distance stays `3e - 5`, and the bound `e(µ/100 + 1.02)` stays
-below it for `µ < 14`; the Lean counterexample is at `µ = 0`. Theorem 1 at `N = 1`, `T = r`,
-is the same statement with `2µ` for `µ`, so it fails on the same system
-(`exists_lt_hausdorffDist_girardReach`). The proof goes through with the factor corrected:
+`d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup_{x∈Z} ‖x‖)`, with "αr =
+(e^{r‖A‖} − 1 − r‖A‖) sup_{x∈Z} ‖x‖" and "βr = (e^{r‖A‖} − 1)/‖A‖ µ" verbatim, `‖·‖` "the infinity
+norm on Rⁿ" for vectors, `‖u(t)‖ ≤ µ`, and `d_H` of Definition 2 in that norm. The proof bounds
+`2α_r + β_r` by `e^{r‖A‖}r² sup ‖x‖ + e^{r‖A‖}rµ`, but `α_r` is of order `(r‖A‖)²`, not `r²`:
+`2α_r ≤ e^{r‖A‖}r² sup ‖x‖` fails whenever `‖A‖ > 1` and `r` is small. The statement fails with it.
+
+****Lemma 2 — the witness.**.** Take `x' = 100x + u`, `µ = 0`, `Z = (1, ⟨1⟩) = [0, 2]`, `r = 1/100`.
+In one dimension every `p`-norm, and every induced matrix norm, is the absolute value, so the choice
+of norm does not enter: `‖A‖ = 100`, `r‖A‖ = 1`, `sup_{x∈Z} |x| = 2`, `α_r = 2(e - 2)`, `β_r = 0`,
+`P = [1 - e, 2e]`. The lemma's hypotheses are only the system, `µ ≥ 0`, `r > 0` and a zonotope `Z`,
+and nothing here strains them. The sets compared are the lemma's own:
+`R_[0,r](Z) = {e^{100t}z : t ∈ [0, r], z ∈ [0, 2]} ⊆ [0, ∞)` and `P + □(α_r) ∋ 5 - 3e`, so
+`d_H ≥ 3e - 5 ≈ 3.15 > 1.02e ≈ 2.77`, the printed bound
+(`exists_lt_hausdorffDist_iUnion_reachSetExact`, on `girardExample_spec`). `µ = 0` is not what
+breaks it: for `µ > 0` the lower end of `R_[0,r](Z)` drops by `β_r` exactly as the enclosure's does,
+the distance stays `3e - 5`, and the bound `e(µ/100 + 1.02)` stays below it for `µ < 14`; the Lean
+counterexample is at `µ = 0`. Theorem 1 at `N = 1`, `T = r`, is the same statement with `2µ` for
+`µ`, so it fails on the same system (`exists_lt_hausdorffDist_girardReach`).
+
+****Lemma 2 and Theorem 1 — the repair.**.** The proof goes through with the factor corrected:
 `2α_r ≤ (r‖A‖)²e^{r‖A‖} sup ‖x‖` (`exp_sub_one_sub_le_sq_mul_exp`) gives
 `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` for Lemma 2 and
-`r‖A‖e^{‖A‖T}(2µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` for Theorem 1, both proved. The correction is
-a constant, dimensionally the right one (`r‖A‖` is unitless, `r` a time), and leaves the
-conclusion intact: for fixed `A` and `T` the bound is still `O(r)`, so the algorithm still
-converges as the step shrinks. Theorem 1 also prints `sup_{x∈Z}` with `Z` undefined there;
-it is read as `I`. [`ExistsLtHausdorffDistIUnionReachSetExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsLtHausdorffDistIUnionReachSetExact.lean), [`ExistsLtHausdorffDistGirardReach.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsLtHausdorffDistGirardReach.lean), [`HausdorffDistIUnionReachSetExactLinCombPlusCubeLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDistIUnionReachSetExactLinCombPlusCubeLe.lean), [`HausdorffDistGirardReachLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDistGirardReachLe.lean)
+`r‖A‖e^{‖A‖T}(2µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` for Theorem 1, both proved. The correction is a
+constant, dimensionally the right one (`r‖A‖` is unitless, `r` a time), and leaves the conclusion
+intact: for fixed `A` and `T` the bound is still `O(r)`, so the algorithm still converges as the
+step shrinks. Theorem 1 also prints `sup_{x∈Z}` with `Z` undefined there; it is read as `I`.
+[`ExistsLtHausdorffDistIUnionReachSetExact.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsLtHausdorffDistIUnionReachSetExact.lean),
+[`ExistsLtHausdorffDistGirardReach.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsLtHausdorffDistGirardReach.lean),
+[`HausdorffDistIUnionReachSetExactLinCombPlusCubeLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDistIUnionReachSetExactLinCombPlusCubeLe.lean),
+[`HausdorffDistGirardReachLe.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/HausdorffDistGirardReachLe.lean)
 
 **Alg. 1 — the returned set.** The listing loops `i ← 1 to N − 1` and then returns `R_N`,
 which it never computes; Theorem 1 is about `R_{N-1}`, which `girardReach` returns. `N = T/r`

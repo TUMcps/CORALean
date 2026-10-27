@@ -54,20 +54,21 @@ The statement still holds: `∂ᵢf` keeps one sign along each coordinate line o
 
 **`Thm. 3` and `Remark 1` — the selection comes from `Thm. 2`'s hypotheses.** The printed proof
 takes, for each AE proposition (5), Goldsztejn's continuous selections `g_k(zᵢ, (xⱼ)_{j ∈ J_A})`
-("since `f` is elementary", [3]) and a fixed point of the map they form. (5) is built from
-`Thm. 2`, and then no general selection theorem is needed. Where `∇̲ⱼ > 0` for an input of
-`π⁻¹(i)`, `\|∂ⱼfᵢ\| ≥ ∇̲ⱼ` on the connected box and continuity of `∂ⱼfᵢ` give it one sign, so
-moving `xⱼ` from the center to the end its sign points to gains at least `∇̲ⱼ rⱼ` from wherever the
-others are (`exists_coord_ends_gain`), the end not depending on them. Put the inputs of `π⁻¹(i)` on
-the segment between the two opposite corners, parametrized by `τᵢ ∈ [0, 1]`: by `Thm. 2`'s own
-estimate `fᵢ` is at least the upper end of the interval at `τᵢ = 1` and at most its lower end at
-`τᵢ = 0`, for every `τ_{-i}` and every position of the inputs outside `π⁻¹(i)`, the disturbances
-included. Then `τ ↦ clamp₀¹(τ + z - f(x(τ)))` is a continuous self-map of `[0, 1]ⁿ`, and a fixed
-point cannot sit on a clamp (it would need `fᵢ < zᵢ` where `fᵢ ≥ zᵢ`, or the reverse), so
-`f(x(τ)) = z`. This is Brouwer once, on `n` parameters instead of `m` inputs. It uses `Thm. 2`'s
-data, not an arbitrary AE proposition, so it does not give Goldsztejn's selection theorem. A `π`
-that is not surjective needs no case of its own, and the inputs outside `π`'s domain stay at
-whatever `w` the robust range quantifies.
+("since `f` is elementary", [3]) and a fixed point of the map they form. (5) is built from `Thm. 2`,
+and then no general selection theorem is needed. Where `∇̲ⱼ > 0` for an input of `π⁻¹(i)`,
+`\|∂ⱼfᵢ\| ≥ ∇̲ⱼ` on the connected box and continuity of `∂ⱼfᵢ` give it one sign, so moving `xⱼ` from
+the center to the end its sign points to gains at least `∇̲ⱼ rⱼ` from wherever the others are
+(`exists_coord_ends_gain`), the end not depending on them. Put the inputs of `π⁻¹(i)` on the segment
+between the two opposite corners, parametrized by `τᵢ ∈ [0, 1]`: by `Thm. 2`'s own estimate `fᵢ` is
+at least the upper end of the interval at `τᵢ = 1` and at most its lower end at `τᵢ = 0`, for every
+`τ_{-i}` and every position of the inputs outside `π⁻¹(i)`, the disturbances included. Then
+`τ ↦ clamp₀¹(τ + z - f(x(τ)))` is a continuous self-map of `[0, 1]ⁿ`, and a fixed point cannot sit
+on a clamp (it would need `fᵢ < zᵢ` where `fᵢ ≥ zᵢ`, or the reverse), so `f(x(τ)) = z`.
+
+****`Thm. 3` — scope of the selection.**.** This is Brouwer once, on `n` parameters instead of `m`
+inputs. It uses `Thm. 2`'s data, not an arbitrary AE proposition, so it does not give Goldsztejn's
+selection theorem. A `π` that is not surjective needs no case of its own, and the inputs outside
+`π`'s domain stay at whatever `w` the robust range quantifies.
 
 **`Thm. 3` and `Remark 1` — what the printed statements leave open.** "Elementary" is not defined;
 the proof uses a `C¹` function whose partial derivatives are bounded as in `Thm. 2`. As in `Thm. 2`,

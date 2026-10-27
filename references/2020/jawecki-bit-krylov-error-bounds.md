@@ -19,10 +19,8 @@ A computable a-posteriori bound for the standard Krylov approximation `V_m e^{σ
 `priv_subspace_Krylov_jaweckiBound`, `priv_inputSolution_Krylov` and `priv_krylov_R_uTrans`)
 chooses its Krylov orders by Err_a. Formalized: the Hessenberg identities (2.3)-(2.5), the
 defect (2.9), the field-of-values inclusions (3.4), the accumulated error of restarted steps
-((7.2), `Sec. 7`) and mass conservation (8.3), over any commutative ring or over ℂ, and `Thm. 1`
-itself with the paper's hypotheses, through the error integral (2.8), its bound (3.1b) and
-`Prop. 2`'s estimate of `|δ_m|`, proved under `W(σT_m) ⊆ ℂ⁻` by induction on `m` rather than
-through divided differences, with the asymptotics (2.10)-(2.12) and (3.7) of `Prop. 1` and
+((7.2), `Sec. 7`) and mass conservation (8.3), over any commutative ring or over ℂ. Also formalized: `Thm. 1` itself with the paper's hypotheses, through the error integral (2.8), its bound (3.1b) and
+`Prop. 2`'s estimate of `|δ_m|`, proved under `W(σT_m) ⊆ ℂ⁻` by induction on `m` rather than through divided differences. Further: the asymptotics (2.10)-(2.12) and (3.7) of `Prop. 1` and
 `Prop. 3`, the explicit remainder of `Remark 2`, the leading terms of `Remark 4`, the φ-function
 representation (4.1), Err_a for φ-functions (`Thm. 2`) and for the corrected approximation
 (`Thm. 3`, through a Krylov identity of one dimension more rather than the restated `Prop. 5`),
@@ -88,25 +86,30 @@ and any approximations `S^{[j]}_m`.
 `Thm. 1` is formalized with `|δ_m(s)|`; the `Prop. 2` row stays `—` while its divided-difference
 identity and its spectral hypothesis are not.
 
-**CORA's use of `Thm. 1`, outside the nonexpansive case.** Err_a is a bound only when
-`W(σA) ⊆ ℂ⁻`; the proof needs `‖E(t - s)‖₂ ≤ 1` in (3.1b) and `spec(σT_m) ⊆ ℂ⁻` in `Prop. 2`.
-`priv_subspace_Krylov_individual_Jawecki` computes `errorBound = τ γ tFinal^m/m!` (with
-`tau = Hlast` and `gamma` the product of `H(i+1,i)`, as (2.5)) for whatever matrix it is
-handed and accepts the order once `‖v‖ · errorBound ≤ krylovError`; nothing in
-`linearSys/reach` with `linAlg = 'krylov'` checks `A`, and the error box CORA adds is
-`krylovError`. `priv_inputSolution_Krylov` and `priv_krylov_R_uTrans` hand it the integrator
-matrix `C̃ = [A u; 0 0]`, whose field of values is never in `ℂ⁻` for `u ≠ 0` (at `x = (εu, 1)`,
+**CORA's use of `Thm. 1`, outside the nonexpansive case.** Err_a is a bound only when `W(σA) ⊆ ℂ⁻`;
+the proof needs `‖E(t - s)‖₂ ≤ 1` in (3.1b) and `spec(σT_m) ⊆ ℂ⁻` in `Prop. 2`.
+
+**`Thm. 1` — where CORA computes the bound.** `priv_subspace_Krylov_individual_Jawecki` computes
+`errorBound = τ γ tFinal^m/m!` (with `tau = Hlast` and `gamma` the product of `H(i+1,i)`, as (2.5))
+for whatever matrix it is handed and accepts the order once `‖v‖ · errorBound ≤ krylovError`;
+nothing in `linearSys/reach` with `linAlg = 'krylov'` checks `A`, and the error box CORA adds is
+`krylovError`. `priv_inputSolution_Krylov` and `priv_krylov_R_uTrans` hand it the integrator matrix
+`C̃ = [A u; 0 0]`, whose field of values is never in `ℂ⁻` for `u ≠ 0` (at `x = (εu, 1)`,
 `x*C̃x = ε²u*Au + ε‖u‖²` is positive for small `ε > 0`), at the start vector `[0ₙ; 1]` and order
-`1 + krylovStep ≥ 2`. For `A = [0 0; 1 1]` (`e₂*Ae₂ = 1`), `u = e₁`, Arnoldi gives
-`V = [e₃ e₁]`, `τ₃,₂ = γ₂ = 1`, so Err_a at order `2` is `t²/2`, while the second coordinate of
-`e^{tC̃}e₃`, which `V` cannot reach, is `e^t - 1 - t > t²/2` for every `t > 0`: with
-`tFinal = timeStep = t` and `krylovError = t²/2` CORA accepts order `2`, and the box of radius
+`1 + krylovStep ≥ 2`.
+
+**`Thm. 1` — the counterexample and the nonexpansive case.** For `A = [0 0; 1 1]` (`e₂*Ae₂ = 1`),
+`u = e₁`, Arnoldi gives `V = [e₃ e₁]`, `τ₃,₂ = γ₂ = 1`, so Err_a at order `2` is `t²/2`, while the
+second coordinate of `e^{tC̃}e₃`, which `V` cannot reach, is `e^t - 1 - t > t²/2` for every `t > 0`.
+With `tFinal = timeStep = t` and `krylovError = t²/2` CORA accepts order `2`, and the box of radius
 `krylovError` that `priv_krylov_R_uTrans` puts around `V e^{tT}e₁` misses the solution for the
 constant input `u` (read from the source, not run). On the integrator matrix of a nonexpansive `A`
 the bound does hold — the error integrand there is `E(t - s)` at `[w; 0]`, on which `C̃` acts as
 `A`, and `T_m`'s first row vanishes, so its spectrum is `0` and that of a compression of `A` —
-argued, not formalized. Two further departures from the paper's setting are not witnessed: the
-Arnoldi vectors are computed in floating point, so (2.2) and `V_m*V_m = I` hold only to rounding
-(the paper's Table 8.1 shows the loss of orthogonality), and the happy breakdown test is
+argued, not formalized.
+
+**`Thm. 1` — the departures not witnessed.** Two further departures from the paper's setting are not
+witnessed: the Arnoldi vectors are computed in floating point, so (2.2) and `V_m*V_m = I` hold only
+to rounding (the paper's Table 8.1 shows the loss of orthogonality), and the happy breakdown test is
 `H(j+1,j) <= eps`, absolute rather than relative to `‖A‖`.
 [`JaweckiBoundCora.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Counterexamples/JaweckiBoundCora.lean)

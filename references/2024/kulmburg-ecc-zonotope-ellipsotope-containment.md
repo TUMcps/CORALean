@@ -42,7 +42,7 @@ miscomputes a support function for `p ≠ ∞`.
 | `Def. 4.1` | (ϑ-uniform) \|P(v ∈ S) - vol(S)/vol(K)\| ≤ ϑ for every measurable S ⊆ K. | [`ThetaUniform.lean`](../../src/CORALean/Global/ThetaUniform.lean) | `correct` |
 | `Thm. 4.2` | For compact K, a norm with ball B and N independent ϑ-uniform samples vᵢ ∈ B with zᵢ = argmax_{z ∈ B*} zᵀvᵢ: r_S = maxᵢ max_{x ∈ K} zᵢᵀx ≤ max_K ‖x‖ (Eq. 16), and (1 - ε) max_K ‖x‖ ≤ r_S with probability at least P_S(ε) = 1 - (1 - (ε/(2+ε))ⁿ + ϑ)^N (Eq. 17-18). | [`ShenmaierBound.lean`](../../src/CORALean/Global/ShenmaierBound.lean) — any norm function on a finite-dimensional space, continuous and above a multiple of the ambient norm, a Haar volume; zᵢ ∈ B* with zᵢvᵢ = ‖vᵢ‖, which the argmax gives; ϑ ≥ 0 | `correct` |
 | `Eq. 19` | (Support function) max_{x ∈ E_p(G, c)} zᵀx = ‖Gᵀz‖_{p*} + zᵀc. | [`EllipsotopeSupport.lean`](../../src/CORALean/Global/EllipsotopeSupport.lean) — ‖Gᵀz‖_{p*} as the operator norm of z ∘ G (Eq. 1) | `correct` |
-| `Thm. 4.3` | For Alg. 2 with non-degenerate E: Ê ⊄ E if r_Shs > 1, and P_Shs is a lower bound on the probability that Ê ⊆ E if r_Shs ≤ 1. | [`ShenmaierHalfspaceNotSubset.lean`](../../src/CORALean/Global/ShenmaierHalfspaceNotSubset.lean), [`ShenmaierHalfspaceProb.lean`](../../src/CORALean/Global/ShenmaierHalfspaceProb.lean), [`ShenmaierHalfspace.lean`](../../src/CORALean/Global/Counterexamples/ShenmaierHalfspace.lean) — the first half as printed; the second at a fixed ε, P((1 - ε) r(Ê, E) ≤ r_Shs) ≥ P_S(ε); the counterexample to the printed second half **Counterexample:** `shenmaierHalfspace_counterexample` **Counterexample:** `shenmaierHalfspace_counterexample` | `fixed` — Ê ⊆ E is not random: with Ê ⊄ E, one sample of [-1, 1]² returns P_Shs ≈ 0.086 > 0 = P(Ê ⊆ E); the proof picks ε = 1 - r_Shs after sampling; true at a fixed ε; see Findings |
+| `Thm. 4.3` | For Alg. 2 with non-degenerate E: Ê ⊄ E if r_Shs > 1, and P_Shs is a lower bound on the probability that Ê ⊆ E if r_Shs ≤ 1. | [`ShenmaierHalfspaceNotSubset.lean`](../../src/CORALean/Global/ShenmaierHalfspaceNotSubset.lean), [`ShenmaierHalfspaceProb.lean`](../../src/CORALean/Global/ShenmaierHalfspaceProb.lean), [`ShenmaierHalfspace.lean`](../../src/CORALean/Global/Counterexamples/ShenmaierHalfspace.lean) — the first half as printed; the second at a fixed ε, P((1 - ε) r(Ê, E) ≤ r_Shs) ≥ P_S(ε); the counterexample to the printed second half **Counterexample:** `shenmaierHalfspace_counterexample` **Counterexample:** `shenmaierHalfspace_counterexample` | `fixed` — Ê ⊆ E is not random: with Ê ⊄ E, one sample of [-1, 1]² returns P_Shs ≈ 0.086 > 0 = P(Ê ⊆ E). The proof picks ε = 1 - r_Shs after sampling; true at a fixed ε; see Findings |
 | `Remark 4.4` | Line 2 of Alg. 2 is a convex problem with a linear objective, solvable in polynomial time by interior-point methods. | n/a — a remark on solvers | `not-a-claim` |
 | `Remark 4.5` | Uniform samples of E_q(H) can be drawn by the ball walk of Lovász and Simonovits (preconditions in App. B). | n/a — a remark on the sampler | `not-a-claim` |
 | `Alg. 2` | (Shenmaier Halfspace Sampling) zᵢ = argmax_{‖Hᵀz‖* ≤ 1} zᵀvᵢ, r_{Shs,i} = ‖Gᵀzᵢ‖_{p*} + zᵢᵀ(c - d), r_Shs = maxᵢ; False if r_Shs > 1, else P_S(1 - r_Shs). | [`ShenmaierHalfspace.lean`](../../src/CORALean/Global/ShenmaierHalfspace.lean), [`ShenmaierHalfspaceNotSubset.lean`](../../src/CORALean/Global/ShenmaierHalfspaceNotSubset.lean) — samples and maximizers supplied (lines 1-2) | `correct` |
@@ -57,19 +57,20 @@ miscomputes a support function for `p ≠ ∞`.
 
 ## Findings
 
-**`Thm. 4.3`, and the probability halves of `Thm. 4.6`, `Cor. 4.7`, `Cor. 4.8`.** Each says
-that when the sampled value r ≤ 1, P_S(1 - r) "is a lower bound on the probability that
-Ê ⊆ E". Containment of two given sets is not random: its probability is 0 or 1. The proof
-takes `Thm. 4.2`'s bound, which holds for a fixed ε, at ε = 1 - r chosen after the samples
-are seen. Concretely, in ℝ² with the supremum norm, E = [-1, 1]² and
-Ê = (21/20, 0) + [-1/10, 1/10]² ⊄ E; the single sample v = (0, 1/2) with z = e₂ᵀ gives
-r_Shs ≤ 1/10 and, at ϑ = 1/100, P_Shs ≥ (9/29)² - 1/100 > 0, under any measure on the
-samples. What holds is the fixed-ε statement: P((1 - ε) r(Ê, E) ≤ r_Shs) ≥ P_S(ε), so if
-Ê ⊄ E the algorithm reports a value above 1 - ε with probability at least P_S(ε) —
-formalized for `Alg. 2`. For `Alg. 3` (and so `Cor. 4.7`) even the fixed-ε statement is not
-established by the printed argument when c ≠ d: `Thm. 4.2` is applied to K = Gᵀ(E_q(H))*,
-whose largest p*-norm is r(Ê, E) only through Eq. 7 at c = d; those rows stay open, with
-the certain half of `Thm. 4.6` formalized.
+**`Thm. 4.3`, and the probability halves of `Thm. 4.6`, `Cor. 4.7`, `Cor. 4.8`.** Each says that
+when the sampled value r ≤ 1, P_S(1 - r) "is a lower bound on the probability that Ê ⊆ E".
+Containment of two given sets is not random: its probability is 0 or 1. The proof takes `Thm. 4.2`'s
+bound, which holds for a fixed ε, at ε = 1 - r chosen after the samples are seen. Concretely, in ℝ²
+with the supremum norm, E = [-1, 1]² and Ê = (21/20, 0) + [-1/10, 1/10]² ⊄ E; the single sample v =
+(0, 1/2) with z = e₂ᵀ gives r_Shs ≤ 1/10 and, at ϑ = 1/100, P_Shs ≥ (9/29)² - 1/100 > 0, under any
+measure on the samples.
+
+****`Thm. 4.3`, `Alg. 3` — the fixed-ε statement.**.** What holds is the fixed-ε statement: P((1 -
+ε) r(Ê, E) ≤ r_Shs) ≥ P_S(ε), so if Ê ⊄ E the algorithm reports a value above 1 - ε with probability
+at least P_S(ε) — formalized for `Alg. 2`. For `Alg. 3` (and so `Cor. 4.7`) even the fixed-ε
+statement is not established by the printed argument when c ≠ d: `Thm. 4.2` is applied to K =
+Gᵀ(E_q(H))*, whose largest p*-norm is r(Ê, E) only through Eq. 7 at c = d; those rows stay open,
+with the certain half of `Thm. 4.6` formalized.
 [`ShenmaierHalfspace.lean`](../../src/CORALean/Global/Counterexamples/ShenmaierHalfspace.lean),
 [`ShenmaierHalfspaceProb.lean`](../../src/CORALean/Global/ShenmaierHalfspaceProb.lean),
 [`ShenmaierVertexNotSubset.lean`](../../src/CORALean/Global/ShenmaierVertexNotSubset.lean)
@@ -93,16 +94,19 @@ is sampled and `P_S(1 - r) > 0` is returned for sets that are not nested (for `A
 `Cor. 4.7` in `ℝ²` with the supremum norm and `Ê = (21/20, 0) + [-1/10, 1/10]²` against `[-1, 1]²`,
 one sample of norm `19/20`; for `Cor. 4.8` the facet `x₂ ≤ 1`). What holds is the fixed-`ε`
 statement. For naive vertex sampling it is `P((1 - ε) r ≤ r_vs) ≥ P_S(ε)` with `N` independent
-uniform sign vectors, because the maximum is attained at one of the `2ᵐ` corners, which a sample
-is with probability `2⁻ᵐ ≥ (ε/(2+ε))ᵐ`; with the ambient dimension `n` as the exponent of `P_S`
-it fails when the number of generators `m` is larger than `n`, so `P_S` is read at `m`, the
-dimension of the cube sampled. `Alg. 3` at `p = ∞` is that sampling for `ϑ`-uniform `v` on `B₁`:
-the maximizer of `zᵀv` is `sign(v)` off the coordinate hyperplanes, and the open orthant of the
-optimal corner carries `2⁻ᵐ` of the ball, so the same bound holds with `ϑ`. For other `p` the
-fixed-`ε` statement of `Alg. 3` is not established by the printed argument (see above) and stays
-open. For `Cor. 4.8` the printed `r_hs` under-estimates the radius (`Eq. 11`), so the fixed-`ε`
-statement fails as printed too: in `ℝ¹` with `p = 2`, `Ê = [0, 2]` and `Ẑ = [-1, 1]` the radius is
-`2` and every sample of the facets gives `r_hs ≤ √2 < (1 - 1/10) 2`, while `P_S(1/10) > 0`.
+uniform sign vectors, because the maximum is attained at one of the `2ᵐ` corners, which a sample is
+with probability `2⁻ᵐ ≥ (ε/(2+ε))ᵐ`. With the ambient dimension `n` as the exponent of `P_S` it
+fails when the number of generators `m` is larger than `n`, so `P_S` is read at `m`, the dimension
+of the cube sampled.
+
+****`Alg. 3`, `Cor. 4.8` — the witnesses.**.** `Alg. 3` at `p = ∞` is that sampling for `ϑ`-uniform
+`v` on `B₁`: the maximizer of `zᵀv` is `sign(v)` off the coordinate hyperplanes, and the open
+orthant of the optimal corner carries `2⁻ᵐ` of the ball, so the same bound holds with `ϑ`. For other
+`p` the fixed-`ε` statement of `Alg. 3` is not established by the printed argument (see above) and
+stays open. For `Cor. 4.8` the printed `r_hs` under-estimates the radius (`Eq. 11`), so the
+fixed-`ε` statement fails as printed too: in `ℝ¹` with `p = 2`, `Ê = [0, 2]` and `Ẑ = [-1, 1]` the
+radius is `2` and every sample of the facets gives `r_hs ≤ √2 < (1 - 1/10) 2`, while
+`P_S(1/10) > 0`.
 [`ShenmaierVertex.lean`](../../src/CORALean/Global/Counterexamples/ShenmaierVertex.lean),
 [`ShenmaierVertexProb.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/ShenmaierVertexProb.lean),
 [`NaiveVertexSampleProb.lean`](../../src/CORALean/ContSet/Zonotope/Real/Theorems/NaiveVertexSampleProb.lean),

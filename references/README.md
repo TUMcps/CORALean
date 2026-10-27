@@ -6,11 +6,13 @@ lookup rather than a search.
 
 A file's `## References` block says which papers it draws on and `[1, Prop. 3.3]`
 says which result; these pages are that relation read the other way. Keeping the
-two in step is `scripts/check-references.py`'s job, which CI runs: it fails if a
-cited paper has no page here, if a link points at a file that does not cite that
-paper, if a result cited in the tree is missing from a table, if a row deferring
-to an earlier paper names a row that is not on that paper's page, or if a count
-below disagrees with the table it summarizes.
+two in step is `scripts/check-references.py`'s job, which CI runs. It fails:
+
+- if a cited paper has no page here,
+- if a link points at a file that does not cite that paper,
+- if a result cited in the tree is missing from a table,
+- if a row deferring to an earlier paper names a row that is not on that paper's page,
+- or if a count below disagrees with the table it summarizes.
 
 One directory per year of publication, so a paper is where its year says.
 
@@ -189,14 +191,17 @@ down by CORA class, by the first Lean file a row links; the mapping is in
 [coverage/README.md](coverage/README.md#which-class-a-paper-result-lands-on).
 
 A result in scope and formalized says how the **paper's** statement fared:
-`correct` (as printed), `underspecified` (not false in the paper's setting, but a hypothesis, definition
-or index is missing or misprinted, or a degenerate input is not excluded, and the
-formalization supplies it),
-`proof-gap` (the statement holds as printed, the printed proof does not establish
-it), `fixed` (false on a non-degenerate input as printed, true after the correction the
-row names, with a Lean counterexample linked), `false` (false and not repairable). Anything but `correct` gives its
-reason in the cell after a dash, and the page's `## Findings` has the argument. A
-row takes the most severe class that applies, and when unsure takes the milder
+
+- `correct`: as printed.
+- `underspecified`: not false in the paper's setting, but a hypothesis, definition or index is
+  missing or misprinted, or a degenerate input is not excluded, and the formalization supplies it.
+- `proof-gap`: the statement holds as printed, the printed proof does not establish it.
+- `fixed`: false on a non-degenerate input as printed, true after the correction the row names,
+  with a Lean counterexample linked.
+- `false`: false and not repairable.
+
+Anything but `correct` gives its reason in the cell after a dash, and the page's `## Findings`
+has the argument. A row takes the most severe class that applies, and when unsure takes the milder
 one: a claim that a paper is false has to be one the page can back.
 
 **`fixed` and `underspecified` differ by the input the printed statement fails on.**
@@ -228,17 +233,17 @@ simplified pseudocode: a correction there counts as `underspecified`, never `fix
 **`correct` means as printed.** The Lean theorem a `correct` row links states the paper's
 result, not a neighbour of it. Where the formalization went another way, the row is settled
 one of three ways: the printed statement is proved as well and linked (a stronger theorem
-gets its one-line corollary in the printed form); or the row moves out of the count as
+gets its one-line corollary in the printed form). Or the row moves out of the count as
 `done-differently`, with its row in the [departures table](coverage/README.md#departures-from-cora-that-belong-to-no-single-method), when the printed statement
 cannot reasonably be proved or proving it adds nothing; or, when only part of the printed
 result is formalized, the row is `—` (or is split into its parts, each classed on its own)
 until the rest is done. `scripts/check-references.py` holds the note of every `correct` row
-to this through a textual proxy: it may not say *done differently*, *no counterpart*, *not
+to this through a textual proxy. The note may not say *done differently*, *no counterpart*, *not
 covered*, *stated at `point`*, *only the*, *rather than*, *not the printed*, *not modelled*
 or *not transcribed*, unless the note goes on to say, after an explicit `**As printed:**`
-marker, why the printed statement follows anyway — a representation that denotes the same
-sets, a hypothesis the printed statement has and the proof does not need, a departure in
-the proof and not in the statement.
+marker, why the printed statement follows anyway. The reasons that count: a representation that
+denotes the same sets, a hypothesis the printed statement has and the proof does not need, a
+departure in the proof and not in the statement.
 
 A result out of scope says which of the five reasons above it is:
 `restated`, `mathlib`, `not-a-claim`, `done-differently`, `not-covered`. A result
@@ -282,3 +287,21 @@ Cite as the papers are cited in the source — `[1]`, or `[1, Prop. 3.1]` — an
 [CONTRIBUTING.md](../CONTRIBUTING.md#references) for what belongs in a `##
 References` block. Where a source turned out to be wrong, the row for such a result
 says so and the page's `## Findings` argues it.
+
+## Writing a page
+
+A page is read by someone checking one result, so each place on it holds one thing. The rules are
+those of [CONTRIBUTING.md](../CONTRIBUTING.md#writing), and `scripts/conventions/check-readability.py`
+enforces them on every page and on the coverage tables, with no list of exceptions.
+
+- **Findings.** Each paragraph is one result and opens with a bold lead naming it, for example
+  **`Prop. 2` — the per-slice repair.** A paragraph is at most 15 lines. New content gets its own
+  paragraph, and existing text is restructured, never appended to.
+- **The ledger's third column.** It holds the links plus a sentence or two on what the Lean
+  states, keeping the `**Counterexample:**` marker and the theorem name. The derivation goes to
+  the Findings, where the row's note points with "See the Findings".
+- **The coverage tables' note column.** The `cora-issue` account may move to a Findings-style
+  section of the page, with a bold lead per method.
+- **Cells and sentences.** Cell prose with the link targets `](…)` removed is at most 900
+  characters, link labels included. A sentence has at most 60 words (an inline code span counts
+  as one word) and at most 2 semicolons. Wrap a formula that contains semicolons in a code span.

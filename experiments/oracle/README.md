@@ -52,16 +52,19 @@ operand it needs. A malformed line gets an error response, not a crash, and the
 process exits `0` at EOF.
 
 Every request names an `"op"` and, except `"ping"`, a `"dtype"`:
-`binary64` (alias for `ieee:binary64`, the axiom-free `IEEE` instance, never
-hardware `Float`), `ieee:binary64|binary32|binary16|binary8|binary4`,
-`dyadic:<p>` (`p`-bit significand, unbounded exponent), `fixedpoint:<k>` (`k`
-decimal fractional digits). `"ping"` answers with the valid `dtype` forms,
+
+- `binary64`: alias for `ieee:binary64`, the axiom-free `IEEE` instance, never hardware `Float`.
+- `ieee:binary64|binary32|binary16|binary8|binary4`.
+- `dyadic:<p>`: `p`-bit significand, unbounded exponent.
+- `fixedpoint:<k>`: `k` decimal fractional digits.
+
+`"ping"` answers with the valid `dtype` forms,
 every `op` name, and CORALean's own version: `"version"`, its short commit,
-and `"dirty"`, whether its working tree has uncommitted changes -- both
+and `"dirty"`, whether its working tree has uncommitted changes. Both are
 resolved from where the oracle itself was built or run from, never the
 caller's current directory, so a client that spawns the oracle from its own
 repository (`CORA.cpp`, for instance) still gets CORALean's revision rather
-than its own; `"unknown"`/`false` if no CORALean checkout can be found at all
+than its own. `"unknown"`/`false` if no CORALean checkout can be found at all
 (`src/CORALean/Examples/Oracle/GitInfo.lean`).
 
 Scalars are `"m*2^e"` (or a plain integer, or an integer-valued JSON number) on
@@ -71,11 +74,13 @@ whose values are decimal and generally not dyadic once rounded (`0.01 + 0.01 =
 `"0*10^0"` at zero), documented in `Oracle/Dtype.lean`. The client is
 stateless and sends values it received back, so every value the oracle
 outputs is also accepted as input: `"m*10^e"` at `e ≥ 0` is accepted
-everywhere, being an integer; at `e < 0` it is accepted only where the dtype
+everywhere, being an integer.
+
+At `e < 0` it is accepted only where the dtype
 is `fixedpoint:<k>` (decimal fractions with a genuine `5` in the denominator
-are generally not exact in binary, `1/50` again) -- `ieee`/`dyadic` refuse it
+are generally not exact in binary, `1/50` again). `ieee`/`dyadic` refuse it
 with a clear error, and so does `roundTo`, whose inputs are otherwise
-arbitrary exact scalars: the library's directed rounding takes a `Dyadic`
+arbitrary exact scalars. The library's directed rounding takes a `Dyadic`
 mantissa, not a general rational, so there is nothing sound to round it with
 outside `fixedpoint`. Matrices are `{"rows","cols","data"}` row-major; a
 vector is the `cols = 1` case. A zonotope is `{"c","G","E"}`, `E` the error

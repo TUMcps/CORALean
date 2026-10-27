@@ -15,7 +15,7 @@
 Reachset-conformant identification beyond linear state-space models with additive
 uncertainty: any model is linearized along a reference into a *general linear output*
 (GLO) approximation `τ̄`, whose reachable set `Ȳ` is exact and, with the linearization
-error `Ê`, encloses the model's (`Thm. 1`); for stretched zonotope templates `Ȳ` is a
+error `Ê`, encloses the model's (`Thm. 1`). For stretched zonotope templates `Ȳ` is a
 zonotope linear in the unknowns (`Lemma 1`), so that containment of the measurements is a
 set of linear constraints in two forms (`Lemma 3`, `Lemma 4`) and the white-box
 identification a linear program (`Alg. 1`, `Thm. 2`). The algebra of the GLO matrices for

@@ -12,28 +12,30 @@
 **Source:** https://arxiv.org/pdf/2404.11185v4 (arXiv v4, 30 Jul 2025, "accepted for publication in the IEEE Transactions on Automatic Control", 16 pages including the Appendix, read in full; text extracted with `pypdf`, the proof of Lemma 26 and the application equations (53)-(57) read from the page images). The typeset IEEE article was not reachable; volume and pages are not given. CORA cites it in `@ellipsoid/contains_.m` and `@ellipsoid/private/priv_containsEllipsoid.m` ("Approximability of the Containment Problem for Zonotopes and Ellipsotopes") and, as "Hardness and Approximability of the Containment Problem for Zonotopes and Ellipsotopes (to appear)", in `@zonotope/contains_.m`, without a result number. Numbering is v4's.  
 **Inventory:** confirmed (against v4: Definitions 1-3, 5, 8-9 and 23, Propositions 7 and 28, Theorems 12-13, 15-17, 19, 21 and 24, Lemmas 14, 25-27, Remarks 4, 6, 10-11, 20 and 22 and Example 18, each with its own counter, the claims in Secs. III-A, IV and V, and the equations below, which are the numbered displays that make a claim)
 
-The containment problem for ellipsotopes `E_p(G, c) = {c + Gα | ‖α‖_p ≤ 1}` read as a matrix-norm
-problem: `r(Ê, E)`, the smallest scaling of the circumbody that contains the inbody, is a
-generalized matrix norm (`Thm. 12`, dual form `Eq. 21`), and the linear relaxation of Sadraddini
-and Tedrake (`Eq. 28`) generalizes to ellipsotope circumbodies with an accuracy bound
-(`Thm. 15`), exact where the dual optimizer has columns equal up to sign (`Thm. 16`);
-semidefinite relaxations cover `p = q = 2` (`Thm. 13`) and `q ∈ (1, 2]` (`Thm. 17`, `Thm. 19`).
-Hardness: most `(p, q)` are inapproximable unless P = NP (`Sec. IV`), and the case the paper
-adds, an ellipsotope in a zonotope, is not in FPTAS (`Thm. 21`, `Thm. 24`), by reduction from
-the `p ↦ 1` matrix norm through a gadget of radii `L`, `ϱ` (`Lemma 25`-`Lemma 27`,
-`Prop. 28`). Section V uses the relaxation to compute safe sets of a linear system by one
-conic program. Formalized here: the ellipsotope norm (`Prop. 7`), the containment radius
-(`Thm. 12`), the ellipsoid-in-ellipsoid program of `Thm. 13` with the S-lemma behind it, the
-center shift of `Lemma 14`, the relaxation half of `Thm. 15` and its use in
-`Eq. 53`, `Thm. 16` and its parallelotope case, the row constraints `Eq. 55`-`Eq. 57`, and the
-gadget of the reduction (`Lemma 25`-`Lemma 27`), through the closed-form norm of its circumbody
-`Z(½H)`, and the accuracy half of `Thm. 15` and the semidefinite relaxations `Thm. 17` and
-`Thm. 19`, with the duality and the Gaussian rounding the paper takes from its reference 22.
-`Lemma 27` and `Prop. 28` print that circumbody as `Z(H)`, twice too large, and the
-slope bound of `Prop. 28` fails at either; `Thm. 16`'s parallelotope clause holds for one
-maximizer, not every one; `Thm. 17` and `Thm. 19` print the sizes of `v` and `w` swapped
-(see Findings). Open: the hardness results, which need complexity classes the tree does not
-have.
+The containment problem for ellipsotopes `E_p(G, c) = {c + Gα | ‖α‖_p ≤ 1}` is read as a matrix-norm
+problem. `r(Ê, E)`, the smallest scaling of the circumbody that contains the inbody, is a
+generalized matrix norm (`Thm. 12`, dual form `Eq. 21`). The linear relaxation of Sadraddini and
+Tedrake (`Eq. 28`) generalizes to ellipsotope circumbodies with an accuracy bound (`Thm. 15`), exact
+where the dual optimizer has columns equal up to sign (`Thm. 16`).
+
+Semidefinite relaxations cover `p = q = 2` (`Thm. 13`) and `q ∈ (1, 2]` (`Thm. 17`, `Thm. 19`).
+Hardness: most `(p, q)` are inapproximable unless P = NP (`Sec. IV`), and the case the paper adds,
+an ellipsotope in a zonotope, is not in FPTAS (`Thm. 21`, `Thm. 24`), by reduction from the `p ↦ 1`
+matrix norm through a gadget of radii `L`, `ϱ` (`Lemma 25`-`Lemma 27`, `Prop. 28`). Section V uses
+the relaxation to compute safe sets of a linear system by one conic program.
+
+Formalized here: the ellipsotope norm (`Prop. 7`), the containment radius (`Thm. 12`), the
+ellipsoid-in-ellipsoid program of `Thm. 13` with the S-lemma behind it, the center shift of
+`Lemma 14`, the relaxation half of `Thm. 15` and its use in `Eq. 53`, `Thm. 16` and its
+parallelotope case, the row constraints `Eq. 55`-`Eq. 57`. Also formalized: the gadget of the
+reduction (`Lemma 25`-`Lemma 27`), through the closed-form norm of its circumbody `Z(½H)`, the
+accuracy half of `Thm. 15` and the semidefinite relaxations `Thm. 17` and `Thm. 19`, with the
+duality and the Gaussian rounding the paper takes from its reference 22.
+
+`Lemma 27` and `Prop. 28` print that circumbody as `Z(H)`, twice too large, and the slope bound of
+`Prop. 28` fails at either; `Thm. 16`'s parallelotope clause holds for one maximizer, not every one;
+`Thm. 17` and `Thm. 19` print the sizes of `v` and `w` swapped (see Findings). Open: the hardness
+results, which need complexity classes the tree does not have.
 
 ## Results
 
@@ -57,7 +59,7 @@ have.
 | `Remark 11` | Inapproximability within a factor Ω(N²) generalizes to τ a function of the input size. | n/a — a remark extending a definition | `not-a-claim` |
 | `Thm. 12` | r(Ê, E) = max_{‖α‖_p ≤ 1} min_{Hβ = Gα + c - d} ‖β‖_q is the smallest scalar with Ê ⊆ r(E - d) + d, and r ≤ 1 iff Ê ⊆ E; for a degenerate E with rank [G, c - d, H] ≠ rank H, r = ∞ by convention (Eq. 15-16). | [`EllipsotopeContainmentRadius.lean`](../../src/CORALean/Global/EllipsotopeContainmentRadius.lean), [`EllipsotopeSubsetIff.lean`](../../src/CORALean/Global/EllipsotopeSubsetIff.lean) — any linear `G`, `H`, any norms on the coefficients: where `Im [G, c - d] ⊆ Im H` the maximum of Eq. 15 is attained, is the least scaling `ρ ≥ 0` with `Ê ⊆ ρ(E - d) + d`, and is at most `1` iff `Ê ⊆ E`, a degenerate `E` included without the projection of Eq. 19; where `Im [G, c - d] ⊄ Im H` (Eq. 16) no scaling works | `underspecified` — the scalings range over `ρ ≥ 0`, as the proof takes them; among all reals `E - d` is symmetric, the scalings that work are `(-∞, -r] ∪ [r, ∞)` and none is least; see Findings |
 | `Sec. III-A` | (Symmetric V-polytope in ellipsotope) The circumbody norm is convex in α, so by the Bauer maximum principle its maximum is attained at α = ±eᵢ: 2m convex problems, in FPTAS. | n/a — the Bauer maximum principle and a complexity class, argued in the paragraph; the zonotope case of the principle is `Sec. III` on [Kulmburg et al. 2024](../2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | `not-a-claim` |
-| `Thm. 13` | (Ellipsoid in ellipsoid) For non-degenerate E, r(Ê, E) = √(min_{ρ ∈ S} ρ), S the set of ρ with the linear matrix inequality (23) for some δ ≥ 0, Θ = H⁺G, θ = H⁺(c - d). | [`EllipsoidContainmentRadiusSDP.lean`](../../src/CORALean/Global/EllipsoidContainmentRadiusSDP.lean), [`EllipsoidContainmentRadiusSDPOfSurjective.lean`](../../src/CORALean/Global/EllipsoidContainmentRadiusSDPOfSurjective.lean), [`SLemmaPosSemidef.lean`](../../src/CORALean/Global/SLemmaPosSemidef.lean), [`SLemma.lean`](../../src/CORALean/Global/SLemma.lean), [`SLemmaHomogeneous.lean`](../../src/CORALean/Global/SLemmaHomogeneous.lean) — non-degenerate as H onto, H⁺ a matrix with the four Penrose conditions (`IsPinv`), which `Hᵀ(HHᵀ)⁻¹` is (`ellipsoid_containmentRadius_sdp_of_surjective` states the theorem there), r(Ê, E) as Eq. 15 at p = q = 2 with ‖β‖₂ = √(βᵀβ): S = [r², ∞), so its minimum is r²; the theorem of alternatives the proof cites is the S-lemma under Slater's condition (α = 0), proved by Dines' argument and a separating line in the plane, with Eq. 23 its matrix form | `correct` |
+| `Thm. 13` | (Ellipsoid in ellipsoid) For non-degenerate E, r(Ê, E) = √(min_{ρ ∈ S} ρ), S the set of ρ with the linear matrix inequality (23) for some δ ≥ 0, Θ = H⁺G, θ = H⁺(c - d). | [`EllipsoidContainmentRadiusSDP.lean`](../../src/CORALean/Global/EllipsoidContainmentRadiusSDP.lean), [`EllipsoidContainmentRadiusSDPOfSurjective.lean`](../../src/CORALean/Global/EllipsoidContainmentRadiusSDPOfSurjective.lean), [`SLemmaPosSemidef.lean`](../../src/CORALean/Global/SLemmaPosSemidef.lean), [`SLemma.lean`](../../src/CORALean/Global/SLemma.lean), [`SLemmaHomogeneous.lean`](../../src/CORALean/Global/SLemmaHomogeneous.lean) — non-degenerate as H onto, H⁺ a matrix with the four Penrose conditions (`IsPinv`), which `Hᵀ(HHᵀ)⁻¹` is (`ellipsoid_containmentRadius_sdp_of_surjective` states the theorem there), r(Ê, E) as Eq. 15 at p = q = 2 with ‖β‖₂ = √(βᵀβ): S = [r², ∞), so its minimum is r². The theorem of alternatives the proof cites is the S-lemma under Slater's condition (α = 0), proved by Dines' argument and a separating line in the plane, with Eq. 23 its matrix form | `correct` |
 | `Thm. 13 (complexity)` | The semidefinite program (22) takes O((m + 1)^4.5 ln(m + 1)) operations: the problem is in FPTAS. | n/a — a running time | `not-a-claim` |
 | `Lemma 14` | For Ẑ = Z(G, c) and Ê = E_q(H, d), r(Ẑ, Ê) = r(Z(G'), E_q(H)), G' = [G, c - d] (Eq. 25). | [`EllipsotopeCenterShift.lean`](../../src/CORALean/Global/EllipsotopeCenterShift.lean) — the maximum over the cube of G' and the one over the cube of G at the shifted center are the same numbers; circumbody norm any `coeffNorm` of a surjective map | `underspecified` — the proof takes r through the ellipsotope norm (`Prop. 7`), which needs the circumbody non-degenerate (H onto), as the formalization assumes; the degenerate case is `Thm. 12`'s convention |
 | `Eq. 21` | For non-degenerate Ê, r(Ê, E) = max_{‖Hᵀx‖_{q*} ≤ 1} ‖Gᵀx‖_{p*} + xᵀ(c - d). | n/a — restated from Kulmburg, "The Generalized Matrix Norm Problem", [22, Cor. 3.2]; tracked as `Eq. 7` on [Kulmburg et al. 2024](../2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | `restated` |
@@ -74,7 +76,7 @@ have.
 | `Thm. 19` | For Ê = E_p(G), E = E_q(H), 1 < q ≤ 2 ≤ p < ∞ and H surjective, SR_{p,q}(G, H) = ½ min_{(v,w) ∈ K} (‖v‖_{p/(p-2)} + ‖w‖_{q*/(q*-2)}) satisfies r(Ê, E) ≤ SR_{p,q} ≤ γ_{q*} γ_p r(Ê, E) (Eq. 41-43). | [`EllipsotopeSdpRelaxation.lean`](../../src/CORALean/Global/EllipsotopeSdpRelaxation.lean), [`DiagBlockSdpDual.lean`](../../src/CORALean/Global/DiagBlockSdpDual.lean), [`SdpRelaxationQuadLe.lean`](../../src/CORALean/Global/SdpRelaxationQuadLe.lean), [`SdpRelaxationMinAttained.lean`](../../src/CORALean/Global/SdpRelaxationMinAttained.lean), [`CoeffNormLeDual.lean`](../../src/CORALean/Global/CoeffNormLeDual.lean), [`DotProductLeCoeffNorm.lean`](../../src/CORALean/Global/DotProductLeCoeffNorm.lean), [`GaussianNormMomentLe.lean`](../../src/CORALean/Global/GaussianNormMomentLe.lean), [`PosSemidefGram.lean`](../../src/CORALean/Global/PosSemidefGram.lean) — `≼` read as: the difference is positive semidefinite, `v ∈ ℝ^m`, `w ∈ ℝ^l`, `x/(x-2)` in `(1, ∞]` (`∞` at `x = 2`): the minimum exists (`sdp_relaxation_exists_isLeast`), and for it and `r` the greatest ellipsotope norm over the `p`-ball, `r ≤ SR_{p,q} ≤ γ_{q*} γ_p r`, with both tests (`sr_radius_bounds`). [22, Thm. 5.4] is not formalized in its generality; its argument at this instance is: the dual certificate of `Thm. 17`, rounded linearly at a standard Gaussian vector (its covariance is the inner product), Hölder with exponents `p`, `p/(p-1) ≤ 2 ≤ q*`, and the moment bounds `gaussian_norm_moment_le` | `underspecified` — the tuples are printed in `ℝ^l × ℝ^m`, as in `Thm. 17`; see Findings |
 | `Thm. 19 (complexity)` | SR_{p,q} is computed in O(n^4.5 ln n) operations by a semidefinite solver. | n/a — a running time | `not-a-claim` |
 | `Eq. 44` | For s < t and x ∈ ℝⁿ, ‖x‖_t ≤ ‖x‖_s ≤ n^{1/s - 1/t} ‖x‖_t. | n/a — restated from [27, Prop. 37.6] | `restated` |
-| `Sec. IV` | The hardness read off the literature: (1) in FPTAS for p = 1 or p = q = 2; (2) τ-inapproximable unless P = NP for 1 ≤ q ≤ 2 ≤ p ≤ ∞, q ≠ p; (3) inapproximable unless P = NP for p = ∞ and 2 < q < ∞; (4) for 1 < p < 2 and q = 1; (5) for p = q ∈ (1, 2) or (2, ∞); (6) for 1 < p < 2 and q ≤ p, or q ≤ p and 2 < q < ∞; (7) inapproximable unless NP ⊆ BPP for q ≥ p and 1 < q < 2, or 2 < p < ∞ and q ≥ p; (8) for other cases with q < ∞ only the 2 ↦ 4 norm, inapproximable assuming the Exponential Time Hypothesis. | n/a — restated from the hardness of the p ↦ q matrix norm: [28, Thm. 1.1, 1.4, 6.4], [29, Thm. 6.2-6.4], [30, Thm. 2.5] | `restated` |
+| `Sec. IV` | The hardness read off the literature: (1) in FPTAS for p = 1 or p = q = 2. (2) τ-inapproximable unless P = NP for 1 ≤ q ≤ 2 ≤ p ≤ ∞, q ≠ p. (3) inapproximable unless P = NP for p = ∞ and 2 < q < ∞; (4) for 1 < p < 2 and q = 1; (5) for p = q ∈ (1, 2) or (2, ∞). (6) for 1 < p < 2 and q ≤ p, or q ≤ p and 2 < q < ∞; (7) inapproximable unless NP ⊆ BPP for q ≥ p and 1 < q < 2, or 2 < p < ∞ and q ≥ p; (8) for other cases with q < ∞ only the 2 ↦ 4 norm, inapproximable assuming the Exponential Time Hypothesis. | n/a — restated from the hardness of the p ↦ q matrix norm: [28, Thm. 1.1, 1.4, 6.4], [29, Thm. 6.2-6.4], [30, Thm. 2.5] | `restated` |
 | `Remark 20` | For some of these cases stronger statements hold, as Ω(2^{(log N)^{1-δ}})-inapproximability for p = q ∈ (1, 2) unless NP ⊆ DTIME(2^{polylog N}) [29, Thm. 6.2]. | n/a — a remark on the literature | `not-a-claim` |
 | `Thm. 21` | Unless P = NP, the ellipsotope-in-zonotope containment problem for p-ellipsotopes, p ∈ (1, ∞], is not in FPTAS, and the decision form is co-NP-hard, also with equal centers. | — | — |
 | `Remark 22` | The reduction of `Thm. 21` uses a circumbody zonotope of order below 2, so the problem is not in FPTAS even at order 2. | n/a — a remark on the proof | `not-a-claim` |
