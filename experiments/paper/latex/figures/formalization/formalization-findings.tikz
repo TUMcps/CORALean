@@ -45,9 +45,9 @@
 \begin{scope}\clip([yshift=-4pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:287,1) -- ([yshift=4pt]axis cs:287,1) [sharp corners] -- ([yshift=4pt]axis cs:0,1) -- cycle;
 \fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,1) rectangle ([yshift=4pt]axis cs:177,1);
 \fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:177,1) rectangle ([yshift=4pt]axis cs:191,1);
-\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:191,1) rectangle ([yshift=4pt]axis cs:253,1);
-\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:253,1) rectangle ([yshift=4pt]axis cs:282,1);
-\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:282,1) rectangle ([yshift=4pt]axis cs:287,1);
+\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:191,1) rectangle ([yshift=4pt]axis cs:254,1);
+\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:254,1) rectangle ([yshift=4pt]axis cs:283,1);
+\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:283,1) rectangle ([yshift=4pt]axis cs:287,1);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:287,1) -- ([yshift=4pt]axis cs:287,1) [sharp corners] -- ([yshift=4pt]axis cs:0,1) -- cycle;
 \begin{scope}\clip([yshift=-4pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:30.5246,2) -- ([yshift=4pt]axis cs:30.5246,2) [sharp corners] -- ([yshift=4pt]axis cs:0,2) -- cycle;
@@ -88,8 +88,8 @@
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:488.5,0) {125};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:576,0) {50};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:88.5,1) {177};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:222,1) {62};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:267.5,1) {29};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:222.5,1) {63};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:268.5,1) {29};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:35,3) {70};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:21,4) {42};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:44,5) {88};

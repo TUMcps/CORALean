@@ -426,9 +426,6 @@
     "Prop. 2": {
       "description": "hull over time holds unreachable points, also for convex $X_0$",
       "fix": "MinkowskiDiffConvexHullBallSubsetReachSetExact.lean"
-    },
-    "Alg. 1": {
-      "description": "time-interval output by Prop.~2 holds unreachable states"
     }
   },
   "2025/kochdumper-hscc-hybrid-automata-identification": {
