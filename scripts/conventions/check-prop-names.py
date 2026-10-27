@@ -13,7 +13,20 @@ Every `def`, `abbrev`, `structure`, `inductive` and `class` under `src/` whose t
   `references/coverage/cora-inventory.json`, the method's own spelling being the point
   (`eq`, `le`, `isequal`, `representsa_point`, `constrSat`).
 
-There is no list of exceptions. Prints findings and exits 1 on any.
+There is no list of exceptions to these three forms. Two further rules keep the enclosure
+predicates apart from the correctness bundles (#165):
+
+* a Prop-valued definition with `Sound` in its name is a correctness bundle of an algorithm or a
+  translation, and sits under `Specification/` or `LinearSys/Definitions/`;
+  that a stored or abstract object over-approximates an exact function or set is `Encloses`;
+* the first explicit argument of an `X.Encloses` is the enclosing object, of type `X` (so that
+  `x.Encloses f` reads "x encloses f"), then the exact function or set, then any domain. Only an
+  argument that the type of `x` depends on (`sys` in `OutputFloatModel … sys.q`) may come before
+  it. The rule
+  applies when `X` names a type (a `structure`, `inductive`, `class`, or a `def` or `abbrev` whose
+  value is a type); a namespace that is no type, such as `ReachSequence`, has no object to put first.
+
+Prints findings and exits 1 on any.
 
 `--root DIR` reads another tree (used to test the rule on a mutated copy); `--survey` prints
 every Prop-valued declaration as `path:line: name` and exits 0.
@@ -75,7 +88,50 @@ def prop_decls(path):
             j += 1
         text = " ".join(h.strip() for h in head).strip()
         if re.search(r"(?::|→)\s*Prop\s*$", text):
-            out.append((i + 1, name.split(".")[-1], kind))
+            out.append((i + 1, name.split(".")[-1], kind, name, text))
+    return out
+
+
+SOUND_HOMES = ("Specification/", "LinearSys/Definitions/")
+TYPE_DECL = re.compile(
+    r"^(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable)\s+)*"
+    r"(?:(structure|inductive|class)|(?:def|abbrev))\s+([^\s({\[:]+)([^\n]*)")
+
+
+def type_names():
+    """The last name components declared as types: structures, inductives, classes, `: Type` defs."""
+    names = set()
+    for p in (ROOT / "src").rglob("*.lean"):
+        for raw in p.read_text(encoding="utf-8").splitlines():
+            m = TYPE_DECL.match(raw)
+            if m and (m.group(1) or re.search(r":\s*Type\b[^→]*(:=|$)", m.group(3))):
+                names.add(m.group(2).split(".")[-1])
+    return names
+
+
+def explicit_binders(text, name):
+    """The explicit binders `(x y : T)` after the declaration name, as (names, type) pairs."""
+    rest = text.split(name, 1)[1]
+    out, depth, k = [], 0, 0
+    while k < len(rest):
+        c = rest[k]
+        if c in "{[⦃":
+            depth += 1
+        elif c in "}]⦄":
+            depth -= 1
+        elif c == "(" and depth == 0:
+            d, j = 0, k
+            while j < len(rest):
+                d += rest[j] == "("
+                d -= rest[j] == ")"
+                if d == 0:
+                    break
+                j += 1
+            m = re.match(r"\(\s*([^:()]+):\s*(.*)\)$", rest[k:j + 1])
+            if m:
+                out.append((m.group(1).split(), m.group(2)))
+            k = j
+        k += 1
     return out
 
 
@@ -117,13 +173,29 @@ def accepted(name, methods):
 
 def main():
     methods = cora_methods()
+    types = type_names()
     findings = []
     for p in sorted((ROOT / "src").rglob("*.lean")):
         rel = p.relative_to(ROOT)
-        for ln, name, kind in prop_decls(p):
+        for ln, name, kind, full, text in prop_decls(p):
             if survey:
                 print(f"{rel}:{ln}: {kind} {name}")
                 continue
+            if "Sound" in name and not any(h in str(rel) for h in SOUND_HOMES):
+                findings.append(
+                    f"{rel}:{ln}: `{name}` is a Prop-valued {kind} with `Sound` in its name — that"
+                    " an object over-approximates an exact function or set is `Encloses`; `Sound`"
+                    " is for the correctness bundle of an algorithm or a translation (#165)")
+            if name == "Encloses" and "." in full and full.split(".")[-2] in types:
+                ns = full.split(".")[-2]
+                bs = explicit_binders(text, full)
+                at = next((i for i, (_, t) in enumerate(bs) if re.search(rf"\b{ns}\b", t)), None)
+                if at is not None and not all(
+                        any(re.search(rf"\b{x}\b", bs[at][1]) for x in bs[i][0]) for i in range(at)):
+                    findings.append(
+                        f"{rel}:{ln}: `{full}` takes an argument before the enclosing object of type"
+                        f" `{ns}` that its type does not depend on — the object comes first, then"
+                        " the exact function or set, then the domain (#165)")
             if accepted(name, methods):
                 continue
             findings.append(

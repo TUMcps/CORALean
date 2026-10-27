@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `cosh` node encloses its function. -/
-theorem SyntaxTree.encloses_cosh (h : Encloses B t) : Encloses B t.cosh :=
+theorem SyntaxTree.encloses_cosh (h : t.Encloses B) : t.cosh.Encloses B :=
   fun x hx =>
   have hc := h x hx
   have hne : t.value.inf 0 ≤ t.value.sup 0 := hc.1.trans hc.2

@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `exp` node encloses its function. -/
-theorem SyntaxTree.encloses_exp (h : Encloses B t) : Encloses B t.exp :=
+theorem SyntaxTree.encloses_exp (h : t.Encloses B) : t.exp.Encloses B :=
   fun x hx =>
   have hc := h x hx
   contains_of_image (f := Real.exp)

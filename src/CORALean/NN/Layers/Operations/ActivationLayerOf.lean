@@ -39,7 +39,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 @[macro_inline]
-def ActivationLayer.of {R : Relaxation 𝕋} (hR : R.IsSound σ) : ActivationLayer 𝕋 n n :=
+def ActivationLayer.of {R : Relaxation 𝕋} (hR : R.Encloses σ) : ActivationLayer 𝕋 n n :=
   ⟨R, ⟨σ, hR⟩, rfl⟩
 
 end CORALean

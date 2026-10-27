@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Operations.Softplus
 public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
-public import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
+public import CORALean.NN.Layers.Theorems.SoftplusRelaxationEncloses
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -59,7 +59,7 @@ theorem Layer.softplus_outer (β : 𝕋) (k nl kl : ℕ) (s : S n) (x : Vec ℝ 
       ((Float.IntervalOuter.interval s).sup i)) :
     (fun i => Real.softplus (toReal β) (x i)) ∈
       construct ((Layer.softplus (S := S) (n := n) β k nl kl).enclose s) :=
-  Layer.activation_outer_where (softplusRelaxation_sound β k nl kl) s x hx hs
+  Layer.activation_outer_where (softplusRelaxation_enclosesWhere β k nl kl) s x hx hs
 
 end CORALean
 

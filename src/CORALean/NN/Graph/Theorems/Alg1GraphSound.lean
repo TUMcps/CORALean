@@ -69,11 +69,11 @@ variable {N m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: the exact graph-level output is in `Alg. 1`'s enclosure. -/
-theorem GNN.alg1Graph_isSound (R : Relaxation ℝ) (hR : R.IsSound invSqrt) (A : Mat ℝ N N)
+theorem GNN.alg1Graph_isSound (R : Relaxation ℝ) (hR : R.Encloses invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L T : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
-    (hσ : ∀ s, (acts s).IsSound (σ s))
+    (hσ : ∀ s, (acts s).Encloses (σ s))
     (g : ∀ t, Vec ℝ (c (L + t)) → Vec ℝ (c (L + (t + 1))))
     (f : ∀ t, PolyZonotope (Vec ℝ (c (L + t))) → PolyZonotope (Vec ℝ (c (L + (t + 1)))))
     (hf : ∀ t S x, x ∈ S.construct → g t x ∈ (f t S).construct)

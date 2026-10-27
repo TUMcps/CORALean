@@ -3,14 +3,14 @@ module
 public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.Relu
 public import CORALean.NN.Layers.Theorems.ActivationEncloses
-public import CORALean.NN.Layers.Theorems.ReluRelaxationSound
+public import CORALean.NN.Layers.Theorems.ReluRelaxationEncloses
 
 @[expose] public section
 
 /-!
 # What the ReLU layer encloses
 
-ReLU coordinatewise, at every slope: `reluRelaxation_isSound` read through the activation
+ReLU coordinatewise, at every slope: `reluRelaxation_encloses` read through the activation
 layer's own soundness.
 
 ## Inputs
@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 theorem Layer.relu_encloses (lam : 𝕋 → 𝕋 → 𝕋) :
     (Layer.relu (S := S) (n := n) lam).Encloses fun x i => Real.relu (x i) :=
-  Layer.activation_encloses (reluRelaxation_isSound lam)
+  Layer.activation_encloses (reluRelaxation_encloses lam)
 
 end CORALean
 

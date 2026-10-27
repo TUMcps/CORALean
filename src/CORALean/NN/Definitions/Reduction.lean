@@ -49,7 +49,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 `part.left` and boxing `part.right`'s contribution to `k+1` from `Y`. -/
 noncomputable def mergedSandwich {n n₁ n₂ d r : ℕ}
     (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} {R : Relaxation ℝ} (hR : R.IsSound σ)
+    (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} {R : Relaxation ℝ} (hR : R.Encloses σ)
     (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Float.Interval (Vec ℝ n₁)) :
     NeuralNetwork S n n₂ :=
   .layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
@@ -76,7 +76,7 @@ inductive NeuralNetwork.ReducesAt :
         ReducesAt s (.layer curr rest) (.layer curr rest') f
   -- reduces one sandwich: `part.left` survives, `part.right`'s contribution is boxed from `Y`
   | merge {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
-      (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.IsSound σ)
+      (W0 : Mat ℝ n₁ n) (b0 : Vec ℝ n₁) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.Encloses σ)
       (W1 : Mat ℝ n₂ n₁) (b1 : Vec ℝ n₂) (Y : Float.Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + b0) i)) ∈ construct Y)
       {rest rest' : NeuralNetwork S n₂ m} {h : Vec ℝ n₂ → Vec ℝ m}
@@ -103,7 +103,7 @@ inductive NeuralNetwork.ReducesAt :
   -- merges at `k`, then resumes at every value `w` the bucket's bounds admit
   | freeze {n n₁ n₂ m d r : ℕ} (s : S n) (part : Split (Fin n₁) into (Fin d) ⊕ (Fin r))
       (W0 : Mat ℝ n₁ n) (c0 b0 : Vec ℝ n₁) (E0 : Float.Interval (Vec ℝ n₁))
-      (hc0 : c0 - b0 ∈ construct E0) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.IsSound σ)
+      (hc0 : c0 - b0 ∈ construct E0) {σ : ℝ → ℝ} (R : Relaxation ℝ) (hR : R.Encloses σ)
       (W1 : Mat ℝ n₂ n₁) (c1 : Vec ℝ n₂) (Y : Float.Interval (Vec ℝ n₁))
       (hY : ∀ x ∈ construct s, (fun i => σ ((W0 *ᵥ x + c0) i)) ∈ construct Y)
       {rest : NeuralNetwork S n₂ m} {rest' : NeuralNetwork S d m}

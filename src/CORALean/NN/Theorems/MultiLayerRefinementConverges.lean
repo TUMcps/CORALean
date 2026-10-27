@@ -10,7 +10,7 @@ public import CORALean.NN.Layers.Operations.ActivationPolyRefinable
 public import CORALean.NN.Layers.Operations.Linear
 public import CORALean.NN.Layers.Theorems.LinearEncloses
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
-public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilyEncloses
 public import CORALean.NN.Theorems.ActivationLipschitz
 public import CORALean.NN.Theorems.EncloseAtInflate
 public import CORALean.NN.Theorems.EvalLipschitz
@@ -117,13 +117,13 @@ theorem sigmoidLinearSigmoidNetwork_isConvergent (W : Mat ℝ m n) (b : Vec ℝ 
   -- the last activation on its own, which is where the tail bound bottoms out
   have h₂ : (RefinableNetwork.cons (S := 𝒫𝒵)
       (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
-        Real.sigmoidPolyFamily_isSound) .nil).HasLipschitzLayers :=
+        Real.sigmoidPolyFamily_encloses) .nil).HasLipschitzLayers :=
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   -- and the matrix in front of it, whose constant is its largest row sum
   have h₁ : (RefinableNetwork.cons (S := 𝒫𝒵)
       ((Layer.linear W b).refinable (Layer.linear_encloses W b))
       (.cons (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
-        Real.sigmoidPolyFamily_isSound)
+        Real.sigmoidPolyFamily_encloses)
         .nil)).HasLipschitzLayers :=
     ⟨⟨_, Layer.aux_lipschitzWith_linear_eval W b⟩, h₂⟩
   exact ⟨Real.Layer.activationPolySigmoid_isConvergent n,

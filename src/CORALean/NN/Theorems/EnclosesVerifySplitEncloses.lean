@@ -9,7 +9,7 @@ public import CORALean.Specification.Theorems.CheckSound
 /-!
 # `verifySplit` is sound, at any function the network is sound at
 
-`IsSound.verifySplitWith_sound` at `spec.check`, whose `hcheck` is `check_sound`: the
+`Encloses.verifySplitWith_sound` at `spec.check`, whose `hcheck` is `check_sound`: the
 checker's proof comes with the representation pair, so only the splitter still owes one.
 
 ## Inputs

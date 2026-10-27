@@ -21,8 +21,8 @@ public import CORALean.NN.Graph.Theorems.GcnSharedPoint
 point of the feature set, is a point of `gcnActSteps`. The invariant carried through the steps is
 one factor vector `a` reaching `P` and `H` together, which is what keeps an edge identified across
 steps: a convolution is the product at `a` (`gcnShared_point`), an activation enclosure adds
-coefficients `β` for its new independent generators (`ActLayer.IsSound`), and `dependent` makes them
-the factors after the old ones (`aux_dependent_point`) while `P` is padded by as many, so it
+coefficients `β` for its new independent generators (`ActLayer.Encloses`), and `dependent` makes
+them the factors after the old ones (`aux_dependent_point`) while `P` is padded by as many, so it
 still reads `a`. Induction on the number of steps, the widths and weights generalized.
 
 ## Inputs
@@ -97,7 +97,7 @@ private theorem aux_append_cast {m m' n : ℕ} (e : m' = m) (a : Fin m → ℝ) 
 /-- [1, Thm. 1]: the exact layered iteration from a point is a point of `gcnActSteps`. -/
 theorem GNN.evalLayers_mem_gcnActSteps (L : ℕ) : -- --- CONCL ---
     ∀ (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ) (W : ∀ s, Mat ℝ (c s) (c (s + 1)))
-      (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (_ : ∀ s, (acts s).IsSound (σ s))
+      (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (_ : ∀ s, (acts s).Encloses (σ s))
       (P : PolyZonotope (Mat ℝ N N)) (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p)
       (Pstar : Mat ℝ N N) (state : Mat ℝ N (c 0)) (a : Fin P.p → ℝ), (∀ k, |a k| ≤ 1) →
       P.point a = Pstar → H.point (fun k => a (Fin.cast hp.symm k)) = state →

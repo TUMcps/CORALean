@@ -42,8 +42,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `asin` node encloses its function for an operand inside `[-1,1]`. -/
-theorem SyntaxTree.encloses_asin (h : Encloses B t) (hd₁ : -1 ≤ t.value.inf 0) (hd₂ : t.value.sup 0
-    ≤ 1) : Encloses B t.asin :=
+theorem SyntaxTree.encloses_asin (h : t.Encloses B) (hd₁ : -1 ≤ t.value.inf 0) (hd₂ : t.value.sup 0
+    ≤ 1) : t.asin.Encloses B :=
   fun x hx =>
   have hc := h x hx
   have hne : t.value.inf 0 ≤ t.value.sup 0 := hc.1.trans hc.2

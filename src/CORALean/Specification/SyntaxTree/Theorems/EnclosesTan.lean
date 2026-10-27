@@ -42,8 +42,8 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `tan` node encloses its function for an operand inside `(-pi/2, pi/2)`. -/
-theorem SyntaxTree.encloses_tan (h : Encloses B t) (hd₁ : -(Real.pi / 2) < t.value.inf 0)
-    (hd₂ : t.value.sup 0 < Real.pi / 2) : Encloses B t.tan :=
+theorem SyntaxTree.encloses_tan (h : t.Encloses B) (hd₁ : -(Real.pi / 2) < t.value.inf 0)
+    (hd₂ : t.value.sup 0 < Real.pi / 2) : t.tan.Encloses B :=
   fun x hx =>
   have hc := h x hx
   have hne : t.value.inf 0 ≤ t.value.sup 0 := hc.1.trans hc.2

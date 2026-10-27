@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A sound float tree encloses its function over the box. -/
 theorem SyntaxTree.encloses_of_soundFloat (h : SyntaxTree.IsSoundFloat B t) : -- --- CONCL ---
-    Float.SyntaxTree.Encloses B t := by -- --- PROOF ---
+    t.Encloses B := by -- --- PROOF ---
   cases t with
   | var i v => exact fun x hx => h x hx
   | unary op v f t => exact h.2.1

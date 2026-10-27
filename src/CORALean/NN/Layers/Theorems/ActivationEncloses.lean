@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- `σ` coordinatewise is what the layer encloses, which is where `σ` first appears:
 `Layer.activation` itself never sees it. -/
-theorem Layer.activation_encloses {R : Relaxation 𝕋} (hR : R.IsSound σ) :
+theorem Layer.activation_encloses {R : Relaxation 𝕋} (hR : R.Encloses σ) :
     (Layer.activation (S := S) (n := n) R).Encloses (fun x i => σ (x i)) :=
   ⟨fun s x hx => Layer.activation_outer_where ⟨fun _ hl hu => hR.sound hl hu⟩ s x hx
     (P := fun _ _ => True) fun _ => trivial⟩

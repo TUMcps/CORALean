@@ -11,7 +11,7 @@ public import CORALean.NN.Layers.Operations.ShiftConst
 
 `computeApproxError`'s last step [1]: a bracket for `σ - p` over the box, its two ends averaged
 into the constant coefficient, and what is left is a radius. The bracket is a hypothesis of
-`ofBracket_isSound` and not an argument here, which keeps `σ` out of the data.
+`ofBracket_encloses` and not an argument here, which keeps `σ` out of the data.
 
 ## Inputs
 * `c` – fit coefficients for each box

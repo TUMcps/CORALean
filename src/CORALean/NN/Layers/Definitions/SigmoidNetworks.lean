@@ -6,7 +6,7 @@ public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.Linear
 public import CORALean.NN.Layers.Theorems.LinearEncloses
-public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
+public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilyEncloses
 public import CORALean.NN.Operations.LayerRefinable
 
 @[expose] public section
@@ -53,20 +53,20 @@ variable {n m : ℕ}
 /-- The sigmoid layer as a network, named so the statements about it stay readable. Noncomputable
 because the sigmoid's polynomial relaxation family is built from the real sigmoid. -/
 noncomputable def sigmoidRefinableNetwork (n : ℕ) : RefinableNetwork 𝒫𝒵 n n :=
-  .cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_isSound) .nil
+  .cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_encloses) .nil
 
 /-- A linear layer, which takes every level as itself, and the refinable activation behind it. -/
 noncomputable def linearSigmoidNetwork (W : Mat ℝ m n) (b : Vec ℝ m) :
     RefinableNetwork 𝒫𝒵 n m :=
   .cons ((CORALean.Layer.linear W b).refinable (CORALean.Layer.linear_encloses W b))
-    (.cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_isSound) .nil)
+    (.cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_encloses) .nil)
 
 /-- Two refinable activations around a linear layer, which has nothing to spend. -/
 noncomputable def sigmoidLinearSigmoidNetwork (W : Mat ℝ m n) (b : Vec ℝ m) :
     RefinableNetwork 𝒫𝒵 n m :=
-  .cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_isSound)
+  .cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_encloses)
     (.cons ((CORALean.Layer.linear W b).refinable (CORALean.Layer.linear_encloses W b))
-      (.cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_isSound) .nil))
+      (.cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_encloses) .nil))
 
 end CORALean.Real
 

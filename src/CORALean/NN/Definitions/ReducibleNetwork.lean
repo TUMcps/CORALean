@@ -57,7 +57,7 @@ inductive ReducibleNetwork (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloat
     ℕ → ℕ → Type where
   | nil {n : ℕ} : ReducibleNetwork 𝕋 n n
   | cons {n n₁ m : ℕ} (L : ReducedLinear 𝕋 n n₁) (R : Relaxation 𝕋)
-      (hR : ∃ σ : ℝ → ℝ, R.IsSound σ) (B : MergeBuckets 𝕋) (rest : ReducibleNetwork 𝕋 n₁ m) :
+      (hR : ∃ σ : ℝ → ℝ, R.Encloses σ) (B : MergeBuckets 𝕋) (rest : ReducibleNetwork 𝕋 n₁ m) :
       ReducibleNetwork 𝕋 n m
 
 /-- `f` is what `Φ` computes with every error box at one of its values and every activation
@@ -66,9 +66,10 @@ inductive ReducibleNetwork.IsInstance :
     ∀ {n m : ℕ}, ReducibleNetwork 𝕋 n m → (Vec ℝ n → Vec ℝ m) → Prop where
   | nil {n : ℕ} {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) : IsInstance .nil f
   | cons {n n₁ m : ℕ} {L : ReducedLinear 𝕋 n n₁} {c : Vec ℝ n₁} {R : Relaxation 𝕋}
-      {hτ : ∃ σ : ℝ → ℝ, R.IsSound σ} {σ : ℝ → ℝ} {B : MergeBuckets 𝕋}
+      {hτ : ∃ σ : ℝ → ℝ, R.Encloses σ} {σ : ℝ → ℝ} {B : MergeBuckets 𝕋}
       {rest : ReducibleNetwork 𝕋 n₁ m} {h : Vec ℝ n₁ → Vec ℝ m} {f : Vec ℝ n → Vec ℝ m}
-      (hR : R.IsSound σ) (hc : c - Float.toRealVec L.b ∈ L.I'.construct) (hrest : IsInstance rest h)
+      (hR : R.Encloses σ) (hc : c - Float.toRealVec L.b ∈ L.I'.construct)
+      (hrest : IsInstance rest h)
       (hf : ∀ x, f x = h (fun i => σ ((Float.toRealMat L.W *ᵥ x + c) i))) :
       IsInstance (.cons L R hτ B rest) f
 
@@ -80,9 +81,9 @@ inductive ReducibleNetwork.IsInstanceNetwork {S : ℕ → Type} [∀ n, ContSet 
   | nil {n : ℕ} {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) :
       IsInstanceNetwork .nil .output f
   | cons {n n₁ m : ℕ} {L : ReducedLinear ℝ n n₁} {c : Vec ℝ n₁} {R : Relaxation ℝ}
-      {hτ : ∃ σ : ℝ → ℝ, R.IsSound σ} {σ : ℝ → ℝ} {B : MergeBuckets ℝ}
+      {hτ : ∃ σ : ℝ → ℝ, R.Encloses σ} {σ : ℝ → ℝ} {B : MergeBuckets ℝ}
       {rest : ReducibleNetwork ℝ n₁ m} {nn : NeuralNetwork S n₁ m} {h : Vec ℝ n₁ → Vec ℝ m}
-      {f : Vec ℝ n → Vec ℝ m} (hR : R.IsSound σ) (hc : c - L.b ∈ L.I'.construct)
+      {f : Vec ℝ n → Vec ℝ m} (hR : R.Encloses σ) (hc : c - L.b ∈ L.I'.construct)
       (hrest : IsInstanceNetwork rest nn h) (hf : ∀ x, f x = h (fun i => σ ((L.W *ᵥ x + c) i))) :
       IsInstanceNetwork (.cons L R hτ B rest)
         (.layer (LinearLayer.mk L.W c) (.layer (ActivationLayer.of (n := n₁) hR) nn)) f

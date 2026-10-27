@@ -81,7 +81,7 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n₀ n₁ nk n₂ n₃ d r : ℕ}
     (pre : NeuralNetwork S n₀ n₁) (post : NeuralNetwork S n₂ n₃)
     (part : Split (Fin nk) into (Fin d) ⊕ (Fin r))
-    (W0 : Mat 𝕋 nk n₁) (b0 : Vec 𝕋 nk) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.IsSound σ)
+    (W0 : Mat 𝕋 nk n₁) (b0 : Vec 𝕋 nk) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.Encloses σ)
     (W1 : Mat 𝕋 n₂ nk) (b1 : Vec 𝕋 n₂) (Y : Float.Interval (Vec 𝕋 nk))
     (x : Vec ℝ n₀) (ε : ℝ) (E : Finset (Fin n₀)) (l : Fin n₃)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Encloses fpre)

@@ -1,7 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
-public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
+public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotEncloses
 
 @[expose] public section
 
@@ -70,7 +70,7 @@ theorem NN.evaluateSinghCora_misses_counterexample : -- --- CONCL ---
       ∃ x : ℝ, -1 ≤ x ∧ x ≤ 2 ∧
         x ^ 3 + (3 - x) ^ 3 ∉ NN.evaluateSinghCora (fun x : ℝ => x ^ 3)
           (deriv fun x : ℝ => x ^ 3) 1 0 (-1) 3 (1 / 2) (3 / 2) := by -- --- PROOF ---
-  obtain ⟨hS, hM, -⟩ := deepZSShape_cube_not_isSound
+  obtain ⟨hS, hM, -⟩ := deepZSShape_cube_not_encloses
   have hd : deriv (fun x : ℝ => x ^ 3) = fun x => 3 * x ^ 2 :=
     funext fun x => by rw [(hasDerivAt_pow 3 x).deriv]; norm_num
   refine ⟨hS, hM, 3 / 2, by norm_num, by norm_num, ?_⟩

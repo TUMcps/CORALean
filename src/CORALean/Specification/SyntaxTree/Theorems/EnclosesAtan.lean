@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `atan` node encloses its function. -/
-theorem SyntaxTree.encloses_atan (h : Encloses B t) : Encloses B t.atan :=
+theorem SyntaxTree.encloses_atan (h : t.Encloses B) : t.atan.Encloses B :=
   fun x hx =>
   have hc := h x hx
   contains_of_image (f := Real.arctan)

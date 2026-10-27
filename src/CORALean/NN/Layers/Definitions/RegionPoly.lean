@@ -42,7 +42,7 @@ def RegionPoly.covers (r : RegionPoly 𝕋) (t : ℝ) : Prop :=
   (∀ a, r.lo = some a → toReal a ≤ t) ∧ (∀ b, r.hi = some b → t ≤ toReal b)
 
 /-- That the stored polynomial and error enclose `σ` at every point of the region. -/
-def RegionPoly.Encloses (σ : ℝ → ℝ) (r : RegionPoly 𝕋) : Prop :=
+def RegionPoly.Encloses (r : RegionPoly 𝕋) (σ : ℝ → ℝ) : Prop :=
   ∀ t, r.covers t → |σ t - Real.evalPoly (fun k => toReal (r.coeffs k)) t| ≤ toReal r.err
 
 /-- A region `[l, u]` that encloses `σ` with an error at most the tolerance `tol`. -/

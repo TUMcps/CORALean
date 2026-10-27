@@ -40,7 +40,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `cos` node encloses its function. -/
-theorem SyntaxTree.encloses_cos (h : Encloses B t) : Encloses B t.cos :=
+theorem SyntaxTree.encloses_cos (h : t.Encloses B) : t.cos.Encloses B :=
   fun x hx =>
   have hc := h x hx
   have hne : t.value.inf 0 ≤ t.value.sup 0 := hc.1.trans hc.2

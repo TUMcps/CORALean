@@ -60,7 +60,7 @@ public import CORALean.NN.Layers.Definitions.EncloseNonlinearPrinted
 # What the standard layers mean, collected
 
 **What a layer is handed.** `Relaxation`, `Enclosure`, `ScaleRounding` and `PolyRelaxation` are
-what an activation has to supply, each with the `IsSound` predicate that ties it to `σ`.
+what an activation has to supply, each with the `Encloses` predicate that ties it to `σ`.
 
 **The functions over ℝ.** `Relu`, `WindowMax`, `BatchNorm`, `Sigmoid`, `Softmax`, `InvSqrt` and
 `EvalPoly` are what the layers enclose, never what they run.

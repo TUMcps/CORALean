@@ -13,7 +13,7 @@ An enclosure of `log(1 + exp(β t)) / β` for a stored sharpness `β`. Below, `l
 `onePlusExpDown` at `β a` rounded down; above, `logUp` of `1 + expUp` at `β a` rounded up; both
 divided by `β`, rounded the same way. `k` is the exponential's reduction depth and `nl`, `kl` the
 logarithm's. Like `expUp` and `logDown`, the ends bracket the function only where their arguments
-are bounded, which `softplusRelaxation_sound` asks of the box.
+are bounded, which `softplusRelaxation_enclosesWhere` asks of the box.
 
 ## Inputs
 * `β` – sharpness

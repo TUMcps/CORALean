@@ -17,7 +17,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # The float FGSM attack encloses the real one
 
-For a float interval chain standing for a smooth real one (`IntervalChain.IsSound`) and a float
+For a float interval chain standing for a smooth real one (`IntervalChain.Encloses`) and a float
 loss derivative enclosing the real one, the real `Chain.fgsmAttack` of the chain of its layers at a
 point `x` of the box `X`, the real value of the float `t` and a step `ε` in its box lies in the box
 `IntervalChain.fgsmAttack` returns.
@@ -90,7 +90,7 @@ private theorem aux_fwd_degenerate : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem IntervalChain.fgsmAttack_outer {n m : ℕ} {c : IntervalChain 𝕋 n m}
-    {r : Real.IntervalChain n m} (hc : c.IsSound r) (hs : r.IsSmooth) (X : Interval (Vec 𝕋 n))
+    {r : Real.IntervalChain n m} (hc : c.Encloses r) (hs : r.IsSmooth) (X : Interval (Vec 𝕋 n))
     {x : Vec ℝ n} (hx : x ∈ X.construct) (t : Vec 𝕋 m) (E : Interval 𝕋) {ε : ℝ}
     (hε : toReal E.inf ≤ ε ∧ ε ≤ toReal E.sup)
     (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m))

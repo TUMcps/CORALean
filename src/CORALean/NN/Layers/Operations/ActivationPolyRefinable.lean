@@ -55,11 +55,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ} {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The activation layer of a family: one `σ`, one enclosure per pattern. -/
-def Layer.activationPolyRefinable {F : PolyRelaxationFamily 𝕋} (hF : F.IsSound σ) :
+def Layer.activationPolyRefinable {F : PolyRelaxationFamily 𝕋} (hF : F.Encloses σ) :
     RefinableLayer 𝒫𝒵[𝕋] n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose
-  enclose_outer t := (Layer.activationPoly_encloses (F.atPattern_isSound hF t)).enclose_outer
+  enclose_outer t := (Layer.activationPoly_encloses (F.atPattern_encloses hF t)).enclose_outer
 
 end CORALean
 

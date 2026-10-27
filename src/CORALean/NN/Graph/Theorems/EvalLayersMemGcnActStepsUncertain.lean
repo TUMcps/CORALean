@@ -67,11 +67,11 @@ variable {N m : ℕ}
 
 /-- [1, Thm. 1]: the graph's own layered iteration, at any admissible weighting and any point
 of the feature set, lies in `gcnActSteps`. -/
-theorem GNN.evalLayers_mem_gcnActSteps_uncertain (R : Relaxation ℝ) (hR : R.IsSound invSqrt)
+theorem GNN.evalLayers_mem_gcnActSteps_uncertain (R : Relaxation ℝ) (hR : R.Encloses invSqrt)
     (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
-    (hσ : ∀ s, (acts s).IsSound (σ s)) (H : PolyZonotope (Mat ℝ N (c 0))) (aH : Fin H.p → ℝ)
+    (hσ : ∀ s, (acts s).Encloses (σ s)) (H : PolyZonotope (Mat ℝ N (c 0))) (aH : Fin H.p → ℝ)
     (haH : ∀ k, |aH k| ≤ 1) : -- --- CONCL ---
     GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W (H.point aH)
       ∈ (GNN.gcnActSteps L c W acts ((GNN.messagePassingEnclosure R A U).padBack H.p)

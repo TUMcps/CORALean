@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n deg d : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationTaylm_encloses {P : LayerRelaxation 𝕋 n deg}
-    (hP : ∀ i, (P i).IsSound σ) : -- --- CONCL ---
+    (hP : ∀ i, (P i).Encloses σ) : -- --- CONCL ---
     (Layer.activationTaylm (d := d) P).Encloses (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   -- the point is a point of the box and the values of functions the input models enclose

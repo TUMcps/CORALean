@@ -11,7 +11,7 @@ public import CORALean.Global.Float.Instances.Real.Instances
 `FloatOps` evaluates no transcendental function, so a relaxation that needs `σ` at the ends
 of a box — the slope-zero one of a monotone `σ`, the curvature-based ones — needs it handed
 in: a lower and an upper value at every stored argument. `Global/Float/Exp` builds such a pair
-for the exponential. `IsSound` is that the two bracket `σ`, split off as for `Relaxation`. At
+for the exponential. `Encloses` is that the two bracket `σ`, split off as for `Relaxation`. At
 `𝕋 := ℝ` the exact enclosure is `σ` itself at both ends, which is how an exact relaxation is
 built from the same constructors a machine scalar runs.
 -/
@@ -38,7 +38,7 @@ structure Enclosure (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithme
   enclose : 𝕋 → Float.Interval 𝕋
 
 /-- That the two ends bracket `σ` at every stored value. -/
-structure Enclosure.IsSound (E : Enclosure 𝕋) (σ : ℝ → ℝ) : Prop where
+structure Enclosure.Encloses (E : Enclosure 𝕋) (σ : ℝ → ℝ) : Prop where
   lo_le (a : 𝕋) : toReal (E.enclose a).inf ≤ σ (toReal a)
   le_hi (a : 𝕋) : σ (toReal a) ≤ toReal (E.enclose a).sup
 

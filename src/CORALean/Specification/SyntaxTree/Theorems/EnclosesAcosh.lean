@@ -41,7 +41,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The interval of the `acosh` node encloses its function for an operand `≥ 1`. -/
-theorem SyntaxTree.encloses_acosh (h : Encloses B t) (hd : 1 ≤ t.value.inf 0) : Encloses B t.acosh
+theorem SyntaxTree.encloses_acosh (h : t.Encloses B) (hd : 1 ≤ t.value.inf 0) : t.acosh.Encloses B
     :=
   fun x hx =>
   have hc := h x hx
