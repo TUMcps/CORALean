@@ -618,6 +618,7 @@ into or out of a `Basic.lean`). Everything else it finds, it only reports.
 the command line, so that reading an issue or leaving a comment is not a
 hand-rolled `curl`. The token is never an argument and never in the tree. It is
 read from `$CORALEAN_GITLAB_TOKEN`, then `$GITLAB_TOKEN`, then
+`~/.ssh/coralean_gl.token` (where `~/.config` is read-only), then
 `~/.config/coralean/gl.token`, so every clone, worktree and agent on a machine
 reaches the API the same way with nothing to pass along. `git push` needs none
 of it — the credential helper answers for that.
