@@ -470,3 +470,43 @@ github-mirror:
     - git push git@github.com:TUMcps/CORALean.git "$CI_COMMIT_SHA:refs/heads/main"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $GITHUB_DEPLOY_KEY
+
+# Publishes `oracle` and `oracle-unsound` to the public GitHub repository as a tag
+# `oracle-<yyyymmdd>-<sha>` (steps: `scripts/build/github-oracle.sh`), where CORA.cpp's CI
+# downloads them. On main only, since `GITHUB_DEPLOY_KEY` is protected: by itself when the oracle's
+# requests change (every oracle batch touches `experiments/oracle/`), by hand otherwise. `needs`
+# waits for a green `build`, whose Lake cache it pulls, so the link costs minutes, not a rebuild.
+github-oracle:
+  extends: [.lean-setup, .lake-cache]
+  needs: [build, conventions]
+  interruptible: false
+  cache:
+    key:
+      files:
+        - lean-toolchain
+        - lake-manifest.json
+    paths:
+      - .lake-cache/
+    policy: pull
+  before_script:
+    - !reference [.lean-setup, before_script]
+    # `objdump` for the glibc minimum, `xz` for the archive, `ssh` for the push.
+    - apt-get install -y -qq --no-install-recommends binutils xz-utils openssh-client
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - printf '%s' "$GITHUB_DEPLOY_KEY" | base64 -d > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+    - echo "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl" > ~/.ssh/known_hosts
+  script:
+    - !reference [.lean-setup, script]
+    - sh scripts/build/github-oracle.sh
+  after_script: []
+  artifacts:
+    paths:
+      - release/oracle-linux-x86_64.tar.xz.sha256
+      - release/release-description.md
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $GITHUB_DEPLOY_KEY
+      changes:
+        - experiments/oracle/**/*
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $GITHUB_DEPLOY_KEY
+      when: manual
+      allow_failure: true

@@ -3,6 +3,7 @@
 
 The token is never an argument and never lives in the repository. It is read
 from `$CORALEAN_GITLAB_TOKEN`, then `$GITLAB_TOKEN`, then the file
+`~/.ssh/coralean_gl.token` (for machines whose `~/.config` is read-only), then
 `~/.config/coralean/gl.token` -- so any checkout, worktree or agent on this
 machine reaches the API the same way, with nothing to pass along.
 
@@ -36,18 +37,23 @@ if hasattr(sys.stdout, "reconfigure"):          # Lean identifiers are not cp125
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 API = "https://gitlab.lrz.de/api/v4/projects/cps%2Fcoralean"
-TOKEN_FILE = os.path.expanduser("~/.config/coralean/gl.token")
+TOKEN_FILES = [
+    os.path.expanduser("~/.ssh/coralean_gl.token"),
+    os.path.expanduser("~/.config/coralean/gl.token"),
+]
 
 
 def token():
     for var in ("CORALEAN_GITLAB_TOKEN", "GITLAB_TOKEN"):
         if os.environ.get(var):
             return os.environ[var].strip()
-    try:
-        with open(TOKEN_FILE, encoding="utf-8") as f:
-            return f.read().strip()
-    except OSError:
-        sys.exit("no token: set $CORALEAN_GITLAB_TOKEN or write %s" % TOKEN_FILE)
+    for path in TOKEN_FILES:
+        try:
+            with open(path, encoding="utf-8") as f:
+                return f.read().strip()
+        except OSError:
+            continue
+    sys.exit("no token: set $CORALEAN_GITLAB_TOKEN or write %s" % TOKEN_FILES[1])
 
 
 def call(method, path, payload=None):
