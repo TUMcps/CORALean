@@ -67,6 +67,10 @@ instance : SoundFloatArithmetic Float where
   toReal_maximum := Binary64.trustedHardware.toReal_max
   toReal_le_of_le h := Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)
   toReal_half := Binary64.trustedHardware.toReal_half
+  toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Binary64.toReal
+    Binary64.trustedHardware.toReal_one Binary64.trustedHardware.toReal_half
+    Binary64.trustedHardware.add_le_addUp
+    (fun h => Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)) h
 
 /-- The bits, decoded exactly: `toReal` is defined through the same `toDyadic`,
 so this is proved, not assumed — `trustedHardware` is not involved. -/

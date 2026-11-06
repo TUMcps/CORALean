@@ -125,6 +125,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationSmulOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.TensorMultiplicationZonoOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryRatioAtGe
+public import CORALean.ContSet.Zonotope.Float.Theorems.ZonotopeNormLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryRatioGe
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryPointOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MpowerOuter

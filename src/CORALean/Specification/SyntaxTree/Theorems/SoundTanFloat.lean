@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.TanOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TanPrincipalOuter
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.Theorems.Basic
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesOfSoundFloat
@@ -12,7 +12,8 @@ public import CORALean.Specification.SyntaxTree.Theorems.FunHanTanFloatSound
 # `tan` of a sound float tree is sound
 
 The node `tan` builds over a sound float tree is sound: its interval encloses the tangent:
-`Interval.tan` encloses the tangent of the operand and `funHanTanFloat_sound` gives the `funHan`.
+`Interval.tanPrincipal` encloses the tangent of the operand and `funHanTanFloat_sound` gives the
+`funHan`.
 
 ## Inputs
 * `p` – precision of `pi` and of the tangent
@@ -51,7 +52,7 @@ theorem SyntaxTree.isSound_tanFloat [Float.ToRat 𝕋] (p k : ℕ) (h : SyntaxTr
     (hc : 0 < toReal (cosDown p (t.value.inf 0)) ∧ 0 < toReal (cosDown p (t.value.sup 0))) :
     SyntaxTree.IsSoundFloat B (SyntaxTree.tanFloat p k t) :=
   ⟨h, fun x hx => SyntaxTree.contains_of_outerFloat
-    (Float.Interval.tan_outer p _ (Fin.forall_fin_one.2 hI) (Fin.forall_fin_one.2 hc))
+    (Float.Interval.tanPrincipal_outer p _ (Fin.forall_fin_one.2 hI) (Fin.forall_fin_one.2 hc))
     (SyntaxTree.encloses_of_soundFloat h x hx),
     SyntaxTree.funHanTanFloat_sound p k _ _ hI.1 hI.2⟩
 

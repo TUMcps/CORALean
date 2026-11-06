@@ -59,6 +59,7 @@ instance {f : ℕ} : FloatOps (FixedPoint f) where
 classes be *run* at `FixedPoint`: a `toReal` the compiler cannot erase would
 make every instance derived from this one noncomputable. -/
 instance {f : ℕ} : SoundFloatArithmetic (FixedPoint f) where
+  -- the reading, the rounding laws, then the order, halving and strictness ones
   toReal := FixedPoint.toReal
   toReal_neg := FixedPoint.toReal_neg
   toReal_zero := FixedPoint.toReal_mk_zero 0
@@ -76,6 +77,14 @@ instance {f : ℕ} : SoundFloatArithmetic (FixedPoint f) where
   toReal_maximum := FixedPoint.toReal_maximum
   toReal_le_of_le := FixedPoint.toReal_le_of_le
   toReal_half := FixedPoint.toReal_half
+  -- the default `ltStrict` is strict, by the fields above
+  toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict FixedPoint.toReal
+    (by
+      show FixedPoint.toReal (⟨1, 0⟩ : FixedPoint f) = 1
+      rw [FixedPoint.toReal_def]
+      norm_num)
+    FixedPoint.toReal_half (fun a b => FixedPoint.toReal_exactAdd a b ▸ FixedPoint.le_roundUp _)
+    FixedPoint.toReal_le_of_le h
 
 /-- `m / 10 ^ d`, the rational `toReal` already casts. -/
 instance {f : ℕ} : ToRat (FixedPoint f) where

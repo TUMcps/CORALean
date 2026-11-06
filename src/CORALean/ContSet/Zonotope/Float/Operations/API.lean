@@ -130,6 +130,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplicationZono
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryRatioAt
+public import CORALean.ContSet.Zonotope.Float.Operations.ZonotopeNorm
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryRatio
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryPoint
 public import CORALean.ContSet.Zonotope.Float.Operations.Materialise

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Log
 public import CORALean.ContSet.Interval.Float.Operations.Power
 public import CORALean.ContSet.Interval.Float.Operations.Sin
 public import CORALean.ContSet.Interval.Float.Operations.Sqrt
-public import CORALean.ContSet.Interval.Float.Operations.Tan
+public import CORALean.ContSet.Interval.Float.Operations.TanPrincipal
 public import CORALean.ContSet.Interval.Float.Operations.Times
 public import CORALean.ContSet.Interval.Real.Operations.Acosh
 public import CORALean.ContSet.Interval.Real.Operations.Asinh
@@ -627,7 +627,7 @@ noncomputable def SyntaxTree.tan (obj : SyntaxTree n) : SyntaxTree n :=
 /-- `tan(obj)` over floats: the node `'tan'` with `funHan = funHanTanFloat`. -/
 def SyntaxTree.tanFloat [Float.SoundFloatArithmetic 𝕋] [Float.ToRat 𝕋] (p k : ℕ)
     (obj : Float.SyntaxTree 𝕋 n) : Float.SyntaxTree 𝕋 n :=
-  .unary .tan (Float.Interval.tan p obj.value) (SyntaxTree.funHanTanFloat p k) obj
+  .unary .tan (Float.Interval.tanPrincipal p obj.value) (SyntaxTree.funHanTanFloat p k) obj
 
 
 -- ====================================  `SyntaxTree.tanh`  ===================================== --

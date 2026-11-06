@@ -105,6 +105,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.Sum1OuterImage
 public import CORALean.ContSet.Interval.Float.Theorems.Sum2Outer
 public import CORALean.ContSet.Interval.Float.Theorems.Sum2OuterImage
 public import CORALean.ContSet.Interval.Float.Theorems.TanOuter
+public import CORALean.ContSet.Interval.Float.Theorems.TanPrincipalOuter
 public import CORALean.ContSet.Interval.Float.Theorems.TanhOuter
 public import CORALean.ContSet.Interval.Float.Theorems.TransposeExact
 public import CORALean.ContSet.Interval.Float.Theorems.TrilExact

@@ -1,7 +1,10 @@
 import CORALean.Examples.Oracle.GitInfo
+import CORALean.Examples.Oracle.Ops.ClassOps
 import CORALean.Examples.Oracle.Ops.Enclosure
 import CORALean.Examples.Oracle.Ops.FromRound
+import CORALean.Examples.Oracle.Ops.IntervalOps
 import CORALean.Examples.Oracle.Ops.Reach
+import CORALean.Examples.Oracle.Ops.ZonotopeMethods
 import CORALean.Examples.Oracle.Ops.ZonotopeOps
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -39,31 +42,87 @@ open Lean (Json)
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every op name, for `ping` and for an unknown-op error. -/
-def opNames : List String :=
+/-- The ops that predate the class prefixes: served unprefixed as before. `mtimes`, `plus`,
+`reduce`, `interval` and `linComb` mean the zonotope's, `mtimesInterval`, `plusBox`, `plusInterval`
+and `enclosure` are zonotope-only. -/
+def legacyOpNames : List String :=
   [ "ping", "from", "roundTo", "mtimes", "mtimesInterval", "plus", "plusBox", "plusInterval",
     "linComb", "reduce", "interval", "enclosure", "linearSysReach" ]
 
-/-- `op`, run at the scalar `dops` names. -/
-def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (dops : DtypeOps 𝕋)
-    (op : String)
-    (req : Json) : Except String (List (String × Json)) :=
+/-- The legacy zonotope ops, also reachable as `zonotope.<name>` with the same request and
+response. -/
+def legacyZonotopeNames : List String :=
+  [ "mtimes", "mtimesInterval", "plus", "plusBox", "plusInterval", "linComb", "reduce", "interval",
+    "enclosure" ]
+
+/-- Every op name, for `ping` and for an unknown-op error: the legacy names and every
+`interval.<name>` and `zonotope.<name>`. A name only one class serves also works without its
+prefix, `sin` for `interval.sin`, and is not listed. -/
+@[noinline]
+def opNames : List String :=
+  legacyOpNames ++ intervalOpNames.map ("interval." ++ ·) ++
+    (zonotopeOpNames ++ legacyZonotopeNames).map ("zonotope." ++ ·) ++ classOpNames
+
+/-- The legacy zonotope op `op`, run; `none` for any other name. -/
+def handleLegacyZonotope {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
+    (dops : DtypeOps 𝕋) (op : String) (req : Json) :
+    Option (Except String (List (String × Json))) :=
   match op with
-  | "from" => handleFrom dops req
-  | "roundTo" => handleRoundTo dops req
-  | "mtimes" => handleMtimes dops req
-  | "mtimesInterval" => handleMtimesInterval dops req
-  | "plus" => handlePlus dops req
-  | "plusBox" | "plusInterval" => handlePlusBox dops req
-  | "linComb" => handleLinComb dops req
-  | "reduce" => handleReduce dops req
-  | "interval" => handleInterval dops req
-  | "enclosure" => handleEnclosure dops req
-  | "linearSysReach" => handleLinearSysReach dops req
-  | o => throw s!"unknown op `{o}` -- one of {String.intercalate ", " opNames}"
+  | "mtimes" =>
+    if (fieldOpt req "M" >>= (fieldOpt · "inf")).isSome then some (handleMtimesInterval dops req)
+    else some (handleMtimes dops req)
+  | "mtimesInterval" => some (handleMtimesInterval dops req)
+  | "plus" =>
+    if (fieldOpt req "I").isSome then some (handlePlusBox dops req) else some (handlePlus dops req)
+  | "plusBox" | "plusInterval" => some (handlePlusBox dops req)
+  | "linComb" => some (handleLinComb dops req)
+  | "reduce" => some (handleReduce dops req)
+  | "interval" => some (handleInterval dops req)
+  | "enclosure" => some (handleEnclosure dops req)
+  | _ => none
+
+/-- `op` at the scalar `dops` names: `interval.<name>` and `zonotope.<name>` go to that class, a
+bare name to its legacy handler, else to the one class serving it, and is refused if both do.
+A trailing `_` is dropped, `contains_` is `contains`. -/
+@[noinline, nospecialize]
+def handleOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (dops : DtypeOps 𝕋)
+    (opRaw : String)
+    (req : Json) : Except String (List (String × Json)) :=
+  let op := if opRaw.endsWith "_" then (opRaw.dropEnd 1).copy else opRaw
+  let unknown : Except String (List (String × Json)) :=
+    throw s!"unknown op `{opRaw}` -- one of {String.intercalate ", " opNames}"
+  -- the class prefixes, then the bare names
+  match op.splitOn "." with
+  | ["interval", name] =>
+    (handleIntervalOp dops name req).getD
+      ((handleConversionOp dops "interval" name req).getD unknown)
+  | ["zonotope", name] =>
+    (handleZonotopeOp dops name req).getD ((handleLegacyZonotope dops name req).getD
+      ((handleConversionOp dops "zonotope" name req).getD unknown))
+  | [cls, name] =>
+    match handleClassOp dops cls name req with
+    | some r => r
+    | none => unknown
+  -- a name without a class prefix
+  | _ =>
+    match op with
+    | "from" => handleFrom dops req
+    | "roundTo" => handleRoundTo dops req
+    | "linearSysReach" => handleLinearSysReach dops req
+    | _ =>
+      match handleLegacyZonotope dops op req with
+      | some r => r
+      | none =>
+        if intervalOpNames.contains op && zonotopeOpNames.contains op then
+          throw s!"op `{op}` exists for both classes -- use `interval.{op}` or `zonotope.{op}`"
+        else
+          match handleIntervalOp dops op req with
+          | some r => r
+          | none => (handleZonotopeOp dops op req).getD unknown
 
 /-- The response to `ping`: the version, whether the tree is dirty, the dtypes and the ops served.
 -/
+@[noinline]
 def pingFields (dtypes : DtypeSet) (version : CoraleanVersion) : List (String × Json) :=
   [ ("version", Json.str version.version),
     ("dirty", Json.bool version.dirty),

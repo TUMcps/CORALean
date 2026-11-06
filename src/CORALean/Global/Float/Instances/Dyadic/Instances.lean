@@ -58,6 +58,7 @@ instance {p : ℕ} : FloatOps (Dyadic p) where
 classes be *run* at `Dyadic`: a `toReal` the compiler cannot erase would make
 every instance derived from this one noncomputable. -/
 instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
+  -- the reading, the rounding laws, then the order, halving and strictness ones
   toReal := Dyadic.toReal
   toReal_neg := Dyadic.toReal_neg
   toReal_zero := Dyadic.toReal_mk_zero 0
@@ -75,6 +76,13 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   toReal_maximum := Dyadic.toReal_maximum
   toReal_le_of_le := Dyadic.toReal_le_of_le
   toReal_half := Dyadic.toReal_half
+  -- the default `ltStrict` is strict, by the fields above
+  toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Dyadic.toReal
+    (by
+      show Dyadic.toReal (⟨1, 0⟩ : Dyadic p) = 1
+      rw [Dyadic.toReal_def]
+      norm_num)
+    Dyadic.toReal_half Dyadic.add_le_addUp Dyadic.toReal_le_of_le h
 
 /-- `m · 2 ^ e` in ℚ, exact. -/
 instance {p : ℕ} : ToRat (Dyadic p) where

@@ -33,6 +33,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Atan
 public import CORALean.ContSet.Interval.Float.Operations.Asin
 public import CORALean.ContSet.Interval.Float.Operations.Acos
 public import CORALean.ContSet.Interval.Float.Operations.Tan
+public import CORALean.ContSet.Interval.Float.Operations.TanPrincipal
 public import CORALean.ContSet.Interval.Float.Operations.Cos
 public import CORALean.ContSet.Interval.Float.Operations.Sin
 public import CORALean.ContSet.Interval.Float.Operations.Acosh
