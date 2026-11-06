@@ -50,6 +50,7 @@ instance {p : ℕ} : FloatOps (Flint p) where
 
 /-- The rounded laws are projections of the one axiom, at this `p`. -/
 instance {p : ℕ} : SoundFloatArithmetic (Flint p) where
+  -- the reading, the rounding laws, then the order, halving and strictness ones
   toReal := Flint.toReal
   toReal_neg := Flint.toReal_neg
   toReal_zero := Dyadic.toReal_mk_zero 0
@@ -67,6 +68,13 @@ instance {p : ℕ} : SoundFloatArithmetic (Flint p) where
   toReal_maximum := Flint.toReal_maximum
   toReal_le_of_le := Flint.toReal_le_of_le
   toReal_half := Flint.toReal_half
+  -- the default `ltStrict` is strict, by the fields above
+  toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Flint.toReal
+    (by
+      show Dyadic.toReal (⟨1, 0⟩ : Dyadic p) = 1
+      rw [Dyadic.toReal_def]
+      norm_num)
+    Flint.toReal_half (Flint.trustedFlint.add_le_addUp p) Flint.toReal_le_of_le h
 
 /-- The mantissa and exponent read back from FLINT, decoded exactly: the same
 `toDyadic` `toReal` reads, so `trustedFlint` is not involved. -/

@@ -147,14 +147,15 @@ def absolute (a : 𝕋) : 𝕋 := maximum a (neg a)
 
 /-! ## Strict comparison
 
-`le` certifies `≤` only, which cannot keep two closed sets apart. `ltStrict` asks `le`
-of `a` raised by a positive margin, rounded up, so a `true` still certifies `<`. -/
+`le` certifies `≤` only, which cannot keep two closed sets apart. `ltStrict`, a field of
+`FloatOps`, certifies `<`: by default it asks `le` of `a` raised by the positive margin
+`strictMargin`, rounded up; a format that rounds to nearest supplies its own. -/
+
+export FloatOps (ltStrict)
 
 /-- `2⁻⁶⁴`, exactly: `one` halved, and `half` rounds nothing. -/
 def strictMargin : 𝕋 := half^[64] one
 
-/-- A strict comparison: `a` plus the strict margin, rounded up, is at most `b`. -/
-def ltStrict (a b : 𝕋) : Bool := le (addUp a strictMargin) b
 
 /-! ## Dot products
 

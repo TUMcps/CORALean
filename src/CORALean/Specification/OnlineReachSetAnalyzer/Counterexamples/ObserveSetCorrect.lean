@@ -595,6 +595,10 @@ private theorem aux_half_iter (n : ℕ) : -- --- CONCL ---
 /-- The strict margin of comparisons over `ℝ` is `2⁻⁶⁴`. -/
 private theorem aux_margin : (strictMargin : ℝ) = 1 / 2 ^ 64 := aux_half_iter 64
 
+/-- Over `ℝ` the strict comparison is `ltStrict`'s default: `a` plus the margin, at most `b`. -/
+private theorem aux_ltStrict (a b : ℝ) :
+    ltStrict a b = FloatOps.le (FloatOps.addUp a strictMargin) b := rfl
+
 /-- Rounding up is exact over `ℝ`. -/
 private theorem aux_mulUp (a b : ℝ) : FloatOps.mulUp a b = a * b := rfl
 
@@ -636,7 +640,7 @@ private theorem aux_h₁ : -- --- CONCL ---
     aux_atom, aux_s₁, ContSet.project, AtomicProposition.containsLoc, Mtimes.mtimes,
     Float.Interval.mtimes, aux_mulUp, aux_mulDown, Float.sumUp, Float.sumDown]
   erw [aux_isDisjoint, aux_contains]
-  simp [Float.ltStrict, aux_le, aux_margin, aux_finRange]
+  simp [aux_ltStrict, aux_le, aux_margin, aux_finRange]
   repeat erw [Matrix.of_apply]
   norm_num
 
@@ -649,7 +653,7 @@ private theorem aux_h₂ : -- --- CONCL ---
     aux_atom, aux_s₂, ContSet.project, AtomicProposition.containsLoc, Mtimes.mtimes,
     Float.Interval.mtimes, aux_mulUp, aux_mulDown, Float.sumUp, Float.sumDown]
   erw [aux_isDisjoint, aux_contains]
-  simp [Float.ltStrict, aux_le, aux_margin, aux_finRange]
+  simp [aux_ltStrict, aux_le, aux_margin, aux_finRange]
   repeat erw [Matrix.of_apply]
   norm_num
 

@@ -8,6 +8,8 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.ConZonotope.Float.Operations.FourierMotzkinBounds
+public import CORALean.ContSet.ConZonotope.Float.Operations.FourierMotzkinIter
 public import CORALean.ContSet.ConZonotope.Float.Operations.Split
 public import CORALean.ContSet.ConZonotope.Float.Operations.Project
 public import CORALean.ContSet.ConZonotope.Float.Operations.Basic

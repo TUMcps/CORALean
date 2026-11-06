@@ -75,8 +75,27 @@ class FloatOps (𝕋 : Type) where
   le : 𝕋 → 𝕋 → Bool
   /-- Exact in a binary format, where halving only moves the exponent. -/
   half : 𝕋 → 𝕋
+  /-- A strict comparison `a < b`: a `true` certifies it. By default `a` plus `2⁻⁶⁴`, rounded up, is
+  at most `b`; a format that rounds to nearest overrides it, there `a + 2⁻⁶⁴ = a` above `2⁻¹¹`. -/
+  ltStrict : 𝕋 → 𝕋 → Bool := fun a b => le (addUp a (half^[64] one)) b
 
 open FloatOps
+
+/-- `ltStrict`'s default is strict, from `SoundFloatArithmetic`'s own fields passed one by one: an
+instance that keeps the default proves its `toReal_lt_of_ltStrict` by this. -/
+theorem toReal_lt_of_default_ltStrict {𝕋 : Type} [FloatOps 𝕋] (toReal : 𝕋 → ℝ)
+    (toReal_one : toReal one = 1) (toReal_half : ∀ a : 𝕋, toReal (half a) = toReal a / 2)
+    (add_le_addUp : ∀ a b : 𝕋, toReal a + toReal b ≤ toReal (addUp a b))
+    (toReal_le_of_le : ∀ {a b : 𝕋}, le a b = true → toReal a ≤ toReal b) {a b : 𝕋}
+    (h : le (addUp a (Nat.iterate half 64 one)) b = true) : -- --- CONCL ---
+    toReal a < toReal b := by -- --- PROOF ---
+  have hm : ∀ k : ℕ, 0 < toReal (Nat.iterate half k (one : 𝕋)) := by
+    intro k
+    induction k with
+    | zero => rw [Function.iterate_zero_apply, toReal_one]; exact one_pos
+    | succ k ih => rw [Function.iterate_succ_apply', toReal_half]; exact half_pos ih
+  exact lt_of_lt_of_le (lt_add_of_pos_right _ (hm 64))
+    (le_trans (add_le_addUp a _) (toReal_le_of_le h))
 
 /-- That `FloatOps` rounds in the direction its name claims, read through `toReal`. -/
 class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
@@ -97,6 +116,9 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   /-- One direction only, see the module docstring for why. -/
   toReal_le_of_le {a b : 𝕋} (h : le a b = true) : toReal a ≤ toReal b
   toReal_half (a : 𝕋) : toReal (half a) = toReal a / 2
+  /-- A `true` strict comparison is strict. A format that keeps `ltStrict`'s default gets this
+  from `toReal_lt_of_default_ltStrict` and the fields above. -/
+  toReal_lt_of_ltStrict {a b : 𝕋} (h : ltStrict a b = true) : toReal a < toReal b
 
 /-- The real ambient type a stored one denotes, and the reading: a vector of `𝕋`
 reads as a vector of ℝ, a matrix as a matrix. -/

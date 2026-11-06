@@ -47,6 +47,7 @@ instance {fmt : IEEEFormat} : FloatOps (IEEE fmt) where
 
 /-- Computable, like `Dyadic`'s, so an algorithm runs at every format. -/
 instance {fmt : IEEEFormat} : SoundFloatArithmetic (IEEE fmt) where
+  -- the reading, the rounding laws, then the order, halving and strictness ones
   toReal := IEEE.toReal
   toReal_neg := IEEE.toReal_neg
   toReal_zero := Dyadic.toReal_mk_zero 0
@@ -64,6 +65,13 @@ instance {fmt : IEEEFormat} : SoundFloatArithmetic (IEEE fmt) where
   toReal_maximum := IEEE.toReal_maximum
   toReal_le_of_le h := (IEEE.le_iff _ _).mp h
   toReal_half := IEEE.toReal_half
+  -- the default `ltStrict` is strict, by the fields above
+  toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict IEEE.toReal
+    (by
+      show Dyadic.toReal (⟨1, 0⟩ : Dyadic fmt.p) = 1
+      rw [Dyadic.toReal_def]
+      norm_num)
+    IEEE.toReal_half IEEE.add_le_addUp (fun h => (IEEE.le_iff _ _).mp h) h
 
 /-- The stored dyadic, decoded exactly. -/
 instance {fmt : IEEEFormat} : ToRat (IEEE fmt) where

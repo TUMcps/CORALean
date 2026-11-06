@@ -1,3 +1,4 @@
+import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.Zonotope.Float.Zonotope
 import CORALean.Examples.Bench.Rational
 import CORALean.Examples.Oracle.ExactScalar
@@ -44,6 +45,17 @@ structure DynMat (𝕋 : Type) where
   r : Nat
   c : Nat
   M : Mat 𝕋 r c
+
+/-- A box whose dimension `n` is a runtime value -- `Σ n, Interval (Vec 𝕋 n)`, named. -/
+structure DynBox (𝕋 : Type) where
+  n : Nat
+  I : Interval (Vec 𝕋 n)
+
+/-- An interval matrix whose shape is a runtime value, named. -/
+structure DynBoxMat (𝕋 : Type) where
+  r : Nat
+  c : Nat
+  I : Interval (Mat 𝕋 r c)
 
 /-- A zonotope whose dimension `n` is a runtime value -- `Σ n, Zonotope (Vec 𝕋 n)`, named. -/
 structure DynZonotope (𝕋 : Type) where
@@ -116,6 +128,21 @@ private def aux_parseScalar : Json → Except String ExactScalar
   | .str s => aux_parseScalarStr s
   | .num n => aux_parseScalarNum n
   | j => throw s!"scalar must be a string `m*2^e`/`m*10^e` or an integer, not {kindOf j}"
+
+/-- The dimension of the empty box `j` stands for, `none` for a box of values. An empty box is
+`{"empty":true,"n":n}`, or CORA.cpp's `{"inf":..,"sup":..}` whose bounds have no columns: shape
+`(n, 0)`, `n` the dimension. -/
+private def aux_emptyBoxDim (j : Json) : Except String (Option Nat) := do
+  match fieldOpt j "empty" with
+  | some e =>
+    if e.getBool?.toOption = some true then pure (some (← natField j "n")) else pure none
+  | none =>
+    match fieldOpt j "inf" with
+    | some inf =>
+      if (fieldOpt inf "cols").bind (·.getNat?.toOption) = some 0 then
+        pure (some (← natField inf "rows"))
+      else pure none
+    | none => pure none
 
 variable {𝕋 : Type} [FloatOps 𝕋] (readD : String → ExactScalar → Except String 𝕋)
 
@@ -227,10 +254,16 @@ def parseMatColsFixed (c : Nat) (j : Json) : Except String (Σ r : Nat, Mat 𝕋
     throw s!"matrix `data` has {vals.size} entries, expected rows*cols = {r * c}"
   pure ⟨r, aux_mkMat r c vals⟩
 
-/-- `{"inf":Mat,"sup":Mat}` at the already-known length `n`. -/
+/-- `{"inf":Mat,"sup":Mat}` at the already-known length `n`; an empty box (`aux_emptyBoxDim`) of
+that dimension is `Interval.empty n`. -/
 def parseIntervalVecFixed (n : Nat) (j : Json) : Except String (Interval (Vec 𝕋 n)) := do
-  pure ⟨← aux_parseVecFixed readD n (← field j "inf"),
-    ← aux_parseVecFixed readD n (← field j "sup")⟩
+  match ← aux_emptyBoxDim j with
+  | some m =>
+    if m = n ∧ 0 < n then pure (Interval.empty n)
+    else throw s!"expected a box of dimension {n}, got an empty box of dimension {m}"
+  | none =>
+    pure ⟨← aux_parseVecFixed readD n (← field j "inf"),
+      ← aux_parseVecFixed readD n (← field j "sup")⟩
 
 /-- `{"inf":Mat,"sup":Mat}`, both `m × n`, `n` already known and `m` discovered --
 refused if `inf` and `sup` disagree on `m`. -/
@@ -240,6 +273,38 @@ def parseIntervalMatColsFixed (n : Nat) (j : Json) :
   let ⟨m₂, hi⟩ ← parseMatColsFixed readD n (← field j "sup")
   if h : m₁ = m₂ then pure ⟨m₁, ⟨lo, h ▸ hi⟩⟩
   else throw s!"interval `inf` has {m₁} rows but `sup` has {m₂}"
+
+/-- A matrix with the already-known row count `r`, `cols` read off the request. -/
+def parseMatRowsFixed (r : Nat) (j : Json) : Except String (Σ c : Nat, Mat 𝕋 r c) :=
+  aux_parseMatRowsFixed readD r j
+
+/-- A column vector, its length read off the request. -/
+def parseVecDyn (j : Json) : Except String (Σ n : Nat, Vec 𝕋 n) := aux_parseVec readD j
+
+/-- A column vector of the already-known length `n`. -/
+def parseVecFixed (n : Nat) (j : Json) : Except String (Vec 𝕋 n) := aux_parseVecFixed readD n j
+
+/-- `{"inf":Mat,"sup":Mat}`, both column vectors, `n` read off `inf`; an empty box
+(`aux_emptyBoxDim`) of dimension `n > 0` is `Interval.empty n`, the library's representation
+(`inf = 1 > 0 = sup`). Dimension 0 holds no empty box: `ℝ⁰` is a point. -/
+def parseBox (j : Json) : Except String (DynBox 𝕋) := do
+  match ← aux_emptyBoxDim j with
+  | some n =>
+    if 0 < n then pure ⟨n, Interval.empty n⟩
+    else throw "an empty box needs dimension at least 1: the float intervals of dimension 0 hold \
+      the one point of ℝ⁰, not the empty set"
+  | none =>
+    let ⟨n, lo⟩ ← aux_parseVec readD (← field j "inf")
+    let hi ← aux_parseVecFixed readD n (← field j "sup")
+    pure ⟨n, ⟨lo, hi⟩⟩
+
+/-- `{"inf":Mat,"sup":Mat}`, both `r × c`, the shape read off `inf`. -/
+def parseBoxMat (j : Json) : Except String (DynBoxMat 𝕋) := do
+  let lo ← parseMatDyn readD (← field j "inf")
+  let hi ← parseMatDyn readD (← field j "sup")
+  if h : hi.r = lo.r ∧ hi.c = lo.c then
+    pure ⟨lo.r, lo.c, ⟨lo.M, h.1 ▸ h.2 ▸ hi.M⟩⟩
+  else throw s!"interval `inf` is {lo.r}×{lo.c} but `sup` is {hi.r}×{hi.c}"
 
 /-- `{"c":Mat(n,1),"G":Mat(n,h),"E":Interval(n,1)}`, `n` read off `c`. -/
 def parseZonotope (j : Json) : Except String (DynZonotope 𝕋) := do
@@ -254,6 +319,9 @@ def parseZonotopeFixed (n : Nat) (j : Json) : Except String (Zonotope (Vec 𝕋 
   let ⟨h, gMat⟩ ← aux_parseMatRowsFixed readD n (← field j "G")
   let eBox ← parseIntervalVecFixed readD n (← field j "E")
   pure { h := h, c := cVec, G := fun j i => gMat i j, I_error := eBox }
+
+/-- `v` as the wire column vector. -/
+def printVec {n : Nat} (v : Vec 𝕋 n) : Json := aux_printVec showD v
 
 /-- `M` as the wire matrix, row-major, `showD` on every entry -- the reverse of `parseMatDyn`. -/
 def printMat {r c : Nat} (M : Mat 𝕋 r c) : Json :=

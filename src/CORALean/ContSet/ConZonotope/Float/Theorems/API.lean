@@ -14,6 +14,8 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.CubMapOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
+public import CORALean.ContSet.ConZonotope.Float.Theorems.FourierMotzkinBoundsOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.FourierMotzkinIterOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectStripOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter

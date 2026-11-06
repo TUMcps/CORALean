@@ -31,6 +31,17 @@ a separate executable under `Examples/Bench/` because `nearest` rests on the fal
 `NearestUnsound/Axioms.lean`, which the sound `oracle` must never reach. `roundTo` is not offered for
 it. Self-test: see the header of `selftest.sh` (`requests-unsound.jsonl`, `expected-unsound.jsonl`).
 
+Every strict test of a float operation is the dtype's own `ltStrict`, a field of `FloatOps`: for the
+sound dtypes `a` plus `2^-64`, rounded up, is at most `b`, a strict order wherever `addUp` rounds
+up. At `nearest` that sum rounds back to `a` for every `a` above about `2^-11`, so the default would
+read `a < a` as true; `nearest` therefore uses the machine's `<` (`NearestDyadic p`: `a <= b` and
+not `b <= a`). Every op that tests strictness (`interval.isFullDim`, `lt`, `dirac`, `atan2`,
+`mrdivide`, `boundaryPoint`, `isIntersecting`, `sqrt`, `representsa`, the zonotope, constrained
+zonotope, zonotope bundle, polytope, ellipsoid and capsule counterparts) answers a degenerate or
+tiny operand correctly at `nearest`: `isFullDim` of the point `[0.5, 0.5]` is `false` (it was
+`true`), `dirac` of `[2^-100, 1]` is exactly `0` (the box misses `0`). The sound dtypes answer as
+before.
+
 ## Release binaries
 
 A release, cut by pushing a tag `vX.Y.Z`, carries the linked Linux x86_64 executables as
@@ -105,6 +116,421 @@ The request's `X0` and `tFinal` reach `reachFloat` as CORA's `params` (`R0`,
 `options`, same names; `reachFloat` derives `N` itself and would refuse the same
 ratio, which the oracle refuses first, by name.
 
+## Ops
+
+Besides `ping`, `from`, `roundTo` and `linearSysReach` (above) the oracle serves the float operations
+of `Interval` and `Zonotope`, as `interval.<name>` and `zonotope.<name>` (`Ops/IntervalOps.lean`,
+`Ops/ZonotopeMethods.lean`), and of the further classes below as `<class>.<name>`
+(`Ops/<Class>Ops.lean`, wire shapes in `Ops/SetCodec.lean`). `ping` lists every name. Each op is a thin adapter: it parses the
+operands, calls the float definition named below and prints the result.
+
+The earlier zonotope ops `mtimes`, `mtimesInterval`, `plus`, `plusBox`/`plusInterval`, `linComb`,
+`reduce`, `interval` and `enclosure` keep their unprefixed names, request and response unchanged,
+and are also `zonotope.<name>`. A name only one class serves works without its prefix (`sin`).
+A trailing `_` is dropped (`contains_`). A name both classes serve is refused until prefixed.
+
+Conventions common to all of them:
+
+* An interval is `{"inf","sup"}` (two column vectors, or two matrices of one shape for an interval
+  matrix), a zonotope `{"c","G","E"}`. The first operand is `I` (`Z`), the second `I2` (`Z2`).
+  An empty box of dimension `n >= 1` is `{"empty":true,"n":n}` or bounds without columns,
+  `{"inf":{"rows":n,"cols":0,"data":[]},"sup":{"rows":n,"cols":0,"data":[]}}` (CORA.cpp's); it is read
+  as `Interval.empty n`, `inf = 1 > 0 = sup`. Dimension 0 holds no empty box and is refused.
+* A set result is `I` or `Z` (`I1`/`I2`, `Z1`/`Z2` for a split); a scalar, a vector or a Boolean is
+  `value`; a few named ones are `contains`, `disjoint`, `radiusSq`, `normSq`.
+* Indices (`dims`, `dim`, `gen`, `ind`, `i`, `j`) are 0-based. `dim` of `sum` and `cat` is CORA's 1 or 2.
+* A field the op does not list is refused with its name, so an unmodelled option (`method`, `cert`,
+  `scaling`, ...) is an error. `tol` is accepted at `0` only, where the definition has no tolerance.
+* `p` (and `k`) of the elementary functions are the tuning of the enclosure, `Global/Float`'s
+  halvings and series terms; CORA has no such argument, so they are required.
+* `contains = true` and `disjoint = true` are proofs (`Contains`, `IsDisjoint`); `false` says only
+  that none was found. An unbounded side of `lift`, `Inf` and `dirac` prints `"-inf"` / `"inf"`.
+
+Interval ops (fields besides `I`; result `I` unless said):
+
+| op | fields | float definition |
+|---|---|---|
+| `abs`, `uminus`, `uplus`, `sign`, `round` | | `Interval.abs`, `.uminus`, `.uplus`, `.sign`, `.round` |
+| `sqrt`, `exp`, `sin`, `cos`, `sinh`, `cosh`, `tanh` | `p` | `Interval.sqrt`, ... |
+| `tan` | `p` | `Interval.tan`; `I`, a coordinate whose range is not certified free of poles `k pi + pi/2` is `"-inf"` / `"inf"` (below) |
+| `log`, `asin`, `acos`, `atan`, `asinh`, `acosh`, `atanh` | `p`, `k` | `Interval.log`, ... |
+| `atan2` | `I2`, `p`, `k` | `Interval.atan2` |
+| `enlarge` | `factor` | `Interval.enlarge` |
+| `power` | `exponent` | `Interval.power` |
+| `rdivide` | `I2` | `Interval.rdivide` |
+| `mrdivide` | `d` | `Interval.mrdivide` |
+| `plus` | `I2` | `Interval.plus` (vectors), `Interval.matPlus` (matrices) |
+| `minus`, `times`, `or`, `convHull`, `minkDiff`, `min`, `max` | `I2` | `Interval.minus`, `.times`, `.or`, `.convHull`, `.minkDiff`, `.min`, `.max` |
+| `and` | `I2` | `Interval.intersection` |
+| `enclose` | `I2` | `Interval.linComb` |
+| `le`, `lt`, `isequal` | `I2`, `tol` | `Interval.le`, `.lt`, `.isequal`; `value` |
+| `isFullDim` | `tol` | `Interval.isFullDim`; `value` |
+| `isBounded` | `tol` | constant `true`, `Interval.isCompact_construct`; `value` |
+| `representsa` | `type` (`emptySet`, `point`, `origin`), `tol` | `Interval.representsa_emptySet`, `_point`, `_origin`; `value`. At `nearest` the emptiness test is the machine's `sup < inf` (see `ltStrict` below) |
+| `contains`, `isIntersecting` | `I2` or `Z`, `tol` | `Contains`, `IsDisjoint` (`containsBoxOuter`, `isDisjointBoxOuter`); `contains`, `disjoint` |
+| `center`, `rad`, `infimum`, `supremum` | | `Interval.center`, `.radius`, `.infimum`, `.supremum`; `value` (vector) |
+| `radius`, `norm` | `type` (2), `mode` (`ub`) | `Interval.radiusSq`, `.normSq`; `radiusSq`, `normSq` |
+| `volume` | | `Interval.volume`; `value` |
+| `supportFunc` | `dir`, `type` (`upper`) | `Interval.boundDot`; `value` |
+| `project` | `dims` | `Interval.project` |
+| `lift`, `projectHighDim` | `N`, `dims` | `Interval.lift_` (`-inf`/`inf` outside), `.projectHighDim_` |
+| `split` | `dim` | `Interval.splitAt`; `I1`, `I2` |
+| `partition` | `splits`, `ind` | `Interval.partition` |
+| `boundaryPoint` | `dir`, `start` | `Interval.boundaryPoint`; `I`, `null` if the ray stays inside |
+| `cartProd` | `I2` | `Interval.stackProd` |
+| `projectOnHyperplane` | `c` (unit normal column), `d` (scalar) | `ContSet.projectOnHyperplaneFloat` at `ℐ𝒱` |
+| `enclosePoints` | `points` (columns), no `I` | `Interval.enclosePoints` |
+| `quadMap` | `Q` (array of `n x n` matrices) | `Interval.quadMap` |
+| `mtimes` | `M` (matrix or interval matrix), `I` (box or interval matrix) | `Interval.mtimes`, `.mtimesIntervalMat`, `.matMul` |
+| `transpose`, `ctranspose`, `prod`, `diag`, `kron`, `horzcat`, `vertcat` | `I2` (`kron`, `horzcat`, `vertcat`) | `Interval.transpose`, `.ctranspose`, `.prod₁` (result a `1 x n` row, as CORA's), `.diag`/`.diagVec`, `.kron`, `.horzcat`, `.vertcat` |
+| `sum` | `dim` | `Interval.sum₁`, `.sum₂` |
+| `cat` | `I2`, `dim` | `Interval.vertcat`, `.horzcat` |
+| `mpower` | `exponent` | `Interval.matPow` |
+| `tril`, `triu` | `K` (default 0) | `Interval.tril`, `.triu` |
+| `empty`, `origin`, `Inf` | `n`, no `I` | `Interval.empty`, `.origin`, `.Inf` |
+| `dirac` | `n` | `Interval.dirac` |
+| `intervalMatrix` | `c`, `r`, no `I` | `Interval.ofCenterRadius` |
+| `zonotope` | | `Interval.zonotope`; `Z` |
+| `vertices` | | `Interval.vPolytope`; `V` (one column per corner), `E` |
+| `reduce` | `order`, `method` | `Reduce.reduce` (`Interval.materialise`) |
+
+Zonotope ops (fields besides `Z`; result `Z` unless said):
+
+| op | fields | float definition |
+|---|---|---|
+| `abs` | | `Zonotope.abs` |
+| `and` | `Z2` | `Zonotope.and_` |
+| `convHull`, `enclose`, `or` | `Z2` | `Zonotope.linComb` (for `or` CORA's `'linprog'` is another algorithm; the name needs the `zonotope.` prefix, `interval.or` exists) |
+| `minkDiff` | `Z2`, `method`, `rho`, `M`, `mu`, `certify`, `H` | `method` `rep`: `Zonotope.minkDiffRep` (`M`, a `Z.h x Z2.h` matrix writing `Z2`'s generators in `Z`'s, `rho` the margin shrink factor), `aligned`: `Zonotope.minkDiffAligned` (`rho`, equal generator counts), `stretch`: `Zonotope.minkDiffStretch` at `mu` (one factor per generator of `Z`), with `certify` true `Zonotope.minkDiffStretchInner`. `H` defaults to `Zonotope.rightInvCandidate`. `Z` is the difference, `null` where the inner check fails |
+| `reduceUnderApprox` | `Gr`, `H` | `Zonotope.reduceUnderApprox`, the solver's proposal `opt` being `Gr` (`n x h'` generators; absent: none). `Z` is the certified inner zonotope or the center point |
+| `enlarge` | `factor` (scalar or column) | `ContSet.enlargeScalar` |
+| `minus` | `v` (a point, column) | `ContSet.minusScalar` |
+| `boundaryPoint` | `dir`, `start` (default the center) | `Zonotope.boundaryPoint`; `I`, the box swept from `start` to an upper bound of the exit step, `null` if no facet row bounds it; CORA's single point lies in it |
+| `projectOnHyperplane` | `c` (unit normal column), `d` (scalar) | `ContSet.projectOnHyperplaneFloat` at `𝒵` |
+| `cartProd` | `Z2` | `Zonotope.cartProd` |
+| `box` | | `Zonotope.interval`; `I` |
+| `center` | | the stored center `Z.c`; `value` |
+| `compact` | `method` (`zeros`), `tol` | `Zonotope.compactZeros` |
+| `constrSat` | `C`, `d` | `Zonotope.constrSat`; `value` |
+| `contains` | `Z2`, `tol` | `Zonotope.containsZonotope` at `Zonotope.rightInvCandidate`; `contains` |
+| `isIntersecting` | `Z2`, `tol` | `IsDisjoint` (`isDisjointBoxBoxOuter`); `disjoint` |
+| `cubMap` | `T` (array of arrays of `n x n` matrices) | `Zonotope.cubMap` |
+| `quadMap` | `Q` | `Zonotope.quadMap` |
+| `dominantDirections` | `filterLength1`, `filterLength2` | `Zonotope.dominantDirections`; `value` (`n x n` matrix or `null`) |
+| `encloseMany` | `Zs`, `direction` (vector, no `Z`), `p` | `Zonotope.encloseMany`; `Z` or `null` |
+| `enclosePoints` | `points`, `U`, `method` (`stursberg`), no `Z` | `Zonotope.enclosePointsStursberg` |
+| `exactPlus` | `Z2`, `k` | `Zonotope.exactPlus` |
+| `filterOut` | `Zs`, no `Z` | `Zonotope.filterOut`; `value` (indices kept) |
+| `generatorLength` | `k` | `Zonotope.generatorLength`; `value` (vector) |
+| `intersectStrip` | `C`, `phi`, `y`, `Lambda` | `Zonotope.intersectStrip` |
+| `isBounded`, `isFullDim` | `tol` | constant `true`; `Zonotope.isFullDim`; `value` |
+| `isequal` | `Z2`, `tol` | `Zonotope.isequal`; `value` |
+| `lift` | `N`, `dims` (a permutation, `N` the dimension) | `Zonotope.reindex` |
+| `project` | `dims` | `Zonotope.project` |
+| `projectHighDim` | `N`, `dims` | `Zonotope.projectHighDim_` |
+| `minnorm` | `p` | `Zonotope.minnorm`; `value` or `null` |
+| `zonotopeNorm` | `p` (the point, a column; no tuning) | `Zonotope.zonotopeNorm`; `value`, a lower bound on `min {‖g‖∞ \| G g = p}` that is that value for a zonotope with `n` independent generators, or `"inf"` where `p` is certified outside the span of the generators (below) |
+| `tensorMultiplication` | `M`, `perm`, `map`, `C` | `Zonotope.tensorMultiplication`; `Z` |
+| `tensorMultiplication_zono` | `M` (`{"c": T, "G": [T, ...]}`), `perm`, `map`, `C` | `Zonotope.tensorMultiplication_zono`; `Z` |
+| `underapproximate` | `S` (array of columns) | `Zonotope.underapproximate` at `Zonotope.rightInvCandidate`; `V`, per direction `{"plus","minus"}`, a vector or `null` (below) |
+| `norm` | `type` (2), `mode` (`ub`) | `Zonotope.normSq`; `normSq` |
+| `origin` | `n`, no `Z` | `Zonotope.origin` |
+| `radius` | `k` | `Zonotope.radius`; `value` |
+| `representsa` | `type` (`point`, `origin`), `tol` | `Zonotope.representsa_point`, `_origin`; `value` |
+| `rotate` | `p`, `i`, `j`, `angle` | `Zonotope.rotate` |
+| `split` | `gen` | `Zonotope.split`; `Z1`, `Z2` |
+| `splitFirstGen`, `splitLongestGen` | | `Zonotope.splitFirstGen`, `.splitLongestGen`; `Z1`, `Z2` |
+| `supportFunc` | `dir`, `type` (`upper`) | `Zonotope.boundDot`; `value` |
+| `vertices` | | `Zonotope.polygon` (plane), `Zonotope.vPolytope` (up to `2^20` corners); `V`, `E` |
+
+### The further classes
+
+Wire shapes (every class carries its error box as `E`, `{"inf","sup"}`, absent means zero; `P`'s
+slacks `b_error`, `be_error` absent mean zero):
+
+| class | shape |
+|---|---|
+| halfspace polytope | `{"A","b","Ae","be","b_error","be_error","E"}`: `A x <= b`, `Ae x = be` |
+| vertex polytope | `{"V","E"}`: `V` has one column per vertex |
+| constrained zonotope | `{"c","G","P","E"}`, `P` a halfspace polytope on the coefficients; or CORA's `{"c","G","A","b","E"}`, `P` the rows `A xi = b` (the box `[-1,1]^h` is implicit) |
+| ellipsoid | `{"Q","q","E"}` |
+| capsule | `{"c","g","r","E"}` |
+| zonotope bundle | `{"Zs":[zonotope, ...]}` |
+| interval matrix | `{"inf","sup"}`, two matrices |
+| matrix zonotope | `{"c","G":[matrix, ...],"E"}`, `E` an interval matrix |
+| emptySet, fullspace | `{"n": n}` |
+| linear system | `{"A","B","c","C","D","k","E","F"}`, `A` square, the rest optional |
+
+Operands are `cZ`/`cZ2`, `zB`/`zB2`, `P`/`P2`, `E`/`E2`, `C`/`C2`, `IM`/`IM2`, `mZ`/`mZ2`, and `n` for
+the two scalar-free classes (`S` their other operand). A polytope is in either form, an op names
+the form it takes.
+
+A set result has the operand's key (`cZ1`, `cZ2` for a split). A box is `I`, a zonotope `Z`, a
+Boolean or a bound `value`; `contains` and `disjoint` are certified.
+Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, trigonometric steps),
+`steps`, `sigma`. Indices are 0-based, a field an op does not list is refused by name.
+
+`conZonotope.` (`Ops/ConZonotopeOps.lean`; result `cZ`):
+
+| op | fields | float definition |
+|---|---|---|
+| `and`, `convHull`, `plus` | `cZ2` | `ConZonotope.intersection`, `.linComb`, `.plus` |
+| `cartProd` | `cZ2` | `ConZonotope.cartProd` |
+| `compact` | `method` (`zeros`), `tol` | `ConZonotope.compact` |
+| `conIntersect` | `cZ2`, `R` | `ConZonotope.conIntersect` |
+| `contains` | `point` (a column), `tol`, `H`, `beta0` | `ConZonotope.containsPoint`; `contains`. The certificate: `H` a right inverse of `G` (`h x n`, default `Zonotope.rightInvCandidate`), `beta0` a coefficient point (`h` entries, default `0`). `true` proves the point inside; a set with an equality row `A xi = b` is always `false` (`ConZonotope.interiorCert` needs `P.me = 0`). A zonotope or box as second operand has no float definition |
+| `isFullDim` | `tol`, `H`, `beta0` | `ConZonotope.isFullDim` at the same certificate; `value`, `true` proves an interior point, `false` for an equality row |
+| `cubMap`, `quadMap` | `T`, `Q` | `ConZonotope.cubMap`, `.quadMap` |
+| `empty`, `origin` | `n` | `ConZonotope.empty`, `.origin` |
+| `enclose` | `M`, `cZ2` | `ContSet.enclose` |
+| `intersectStrip` | `C`, `phi`, `y`, `Lambda` | `ConZonotope.intersectStrip` |
+| `fourierMotzkinBounds` | `C` (`p x q`), `d`, and `B` (a box `{"inf","sup"}`, one pass) or `k` (passes from the unit box); no `cZ` | `ConZonotope.fourierMotzkinBounds`, `.fourierMotzkinIter` (new, Koller et al. ICLR 2026, Prop. 3); `I`, the bounds of `C x <= d` in `B`. The first step of `approximateBoundsWithGPU`; the box `c + G beta` of the factor bounds has no float definition |
+| `isBounded`, `isequal`, `representsa` (`emptySet`) | `cZ2`, `tol` | constant `true`; `ConZonotope.isequal`, `.representsa_emptySet`; `value` |
+| `isIntersecting` | `cZ2`, `tol` | `ConZonotope.isDisjointLP`; `disjoint` |
+| `lift`, `project` | `N`, `dims` | `ConZonotope.reindex`, `.project` |
+| `mtimes` | `M` | `ConZonotope.mtimes` |
+| `reduce` | `order`, `method` (`girard`) | `ConZonotope.reduce` |
+| `split` | `dim` | `ConZonotope.split`; `cZ1`, `cZ2` |
+| `supportFunc` | `dir`, `type` (`upper`) | `ConZonotope.boundDot`; `value` |
+| `vertices` | | `ConZonotope.vPolytopeBox`; `V`, `E` |
+| `zonotope`, `interval`, `zonoBundle` | | `ConZonotope.zonotope`, `.interval`, `.zonoBundle`; `Z`, `I`, `zB` |
+
+`zonoBundle.` (`Ops/ZonoBundleOps.lean`; result `zB`):
+
+| op | fields | float definition |
+|---|---|---|
+| `and`, `convHull`, `plus`, `cartProd` | `zB2` | `ZonoBundle.intersection`, `.linComb`, `.plus`, `.cartProd` |
+| `conZonotope` | | `ZonoBundle.conZonotopeAll`; `cZ` |
+| `empty`, `origin` | `n` (`empty`: `n > 0`) | `ZonoBundle.empty`, `.origin` |
+| `enclose` | `M`, `zB2` | `ContSet.enclose` |
+| `enlarge` | `factor` | `ZonoBundle.enlarge` |
+| `interval` | | `ZonoBundle.intervalAll`; `I` |
+| `isBounded`, `isequal`, `representsa` (`emptySet`) | `zB2`, `tol` | constant `true`; `ZonoBundle.isequal`, `.representsa_emptySet`; `value` |
+| `isIntersecting` | `zB2`, `tol` | `IsDisjoint` (`isDisjointZonoBundleZonoBundle`); `disjoint` |
+| `lift`, `project` | `N`, `dims` | `ZonoBundle.reindex`, `.project` |
+| `mtimes`, `quadMap` | `M`, `Q` | `ZonoBundle.mtimes`, `.quadMap` |
+| `polytope` | `p` | `ZonoBundle.hPolytopeAll`; `P` |
+| `reduce` | `order`, `method` (`girard`) | `ZonoBundle.reduce` |
+| `reduceCombined` | `method` (`methC`) | `ZonoBundle.reduceCombined`; `Z` |
+| `replace` | `index`, `Z` | `ZonoBundle.replace` |
+| `shrink` | | `ZonoBundle.shrink` |
+| `supportFunc` | `dir`, `type` (`upper`) | `ZonoBundle.boundDotLP`; `value` |
+| `zonotope` | | `ZonoBundle.zonotope` at `minVolIdx`; `Z` |
+
+`polytope.` (`Ops/PolytopeOps.lean`; halfspace form unless said):
+
+| op | fields | float definition |
+|---|---|---|
+| `Inf`, `empty`, `origin` | `n` | `HPolytope.fullspace`, `.emptySet`, `.origin` |
+| `and` | `P2` (both forms) | `HPolytope.intersection`, `VPolytope.intersection` |
+| `cartProd` | `P2` | `HPolytope.cartProd` |
+| `compact` | `method` (`zeros`, `aligned`, `AtoAe`), `dom` (a box the rounding of the rows is paid over), `p` (Newton steps), `tol` | `HPolytope.compactZeros`, `.compactAlignedIneq`, `.compactAtoAe`; `redundant` needs a linear program |
+| `contains`, `isIntersecting` | `I` or `Z`, `tol` | `Contains`, `IsDisjoint` (`containsPolytopeInterval`, `...Zonotope`); `contains`, `disjoint` |
+| `isequal` | `P2`, `tol` | `HPolytope.isequal` |
+| `lift`, `projectHighDim` | `N`, `dims` (`projectHighDim`: both forms) | `HPolytope.lift_`, `.projectHighDim`, `VPolytope.projectHighDim` |
+| `minus` | `v` | `HPolytope.minus` |
+| `representsa` | `type` (`fullspace`), `tol` | `HPolytope.representsaFullspace`; `value` |
+| `box`, `interval` (vertex form) | | `VPolytope.interval`; `I` |
+| `center` (vertex form) | | `VPolytope.centerBox`; `I` |
+| `convHull`, `or`, `plus` (vertex form) | `P2` | `VPolytope.convHull`, `.plus` |
+| `enclosePoints` | `points`, `method` (`outer`) | `VPolytope.enclosePoints` |
+| `isBounded`, `isFullDim` (vertex form) | `tol` | constant `true`; `VPolytope.isFullDim`; `value` |
+| `mtimes`, `project` (vertex form) | `M`, `dims` | `VPolytope.mtimes`, `.project` |
+| `supportFunc` (vertex form) | `dir`, `type` (`upper`) | `VPolytope.boundDot`; `value` |
+| `conZonotope`, `zonotope`, `zonoBundle`, `ellipsoid` (vertex form) | `sigma` for `ellipsoid` | `VPolytope.conZonotope`, `.zonotope`, `.zonoBundle`, `.ellipsoid`; `cZ`, `Z`, `zB`, `E` |
+
+`ellipsoid.` (`Ops/EllipsoidOps.lean`; result `E`):
+
+| op | fields | float definition |
+|---|---|---|
+| `cartProd` | `v` (a point), or `E2` with `s1`, `s2` (default `boxRadius k`), `k`, `sigma` (`n + m <= sigma^2`) | `Ellipsoid.cartProdVec`; `Ellipsoid.cartProd` (the ellipsoid of the product of the boxes) |
+| `and` | `point`, `w` (default `Zonotope.basisInverse Q (point - q)`), `a` (default `point - q`), `s` (default `sqrtUp k (a' Q a)`), `k` | `Ellipsoid.andPoint`; `empty` (true: certified outside), `E` (the point as an ellipsoid, else) |
+| `contains` | `point`, `w` (as in `and`), `tol` | `Ellipsoid.containsPoint`; `contains`, `true` proves the point inside |
+| `ellipsoidNorm` | `point`, `w` (default `Zonotope.basisInverse Q point`), `k` | `Ellipsoid.ellipsoidNormUb`; `value`, `null` if `Q w = point` fails exactly |
+| `enclosePoints` | `points` (one per column), `T`, `U` (the rotations CORA's `cov` computes, `n x n`), `k`, `method` (`cov`) | `Ellipsoid.enclosePointsCov` |
+| `interval` | `s` (default `Ellipsoid.boxRadius k`), `k` | `Ellipsoid.interval`; `I` |
+| `intersectStrip` | `method` (`Gollamudi`, `Liu2016`), `c` (a row as a column), `phi` (Gollamudi) or `V` (Liu2016), `y`, `lam`, `k` | `Ellipsoid.intersectStripGollamudi`, `.intersectStripLiu` |
+| `isBadDir` | `E2`, `dir`, `mu` (the bound on the generalised eigenvalue) | `Ellipsoid.isGoodDir`; `good`, `true` proves the direction is not bad, `false` says nothing |
+| `isBounded` | `tol` | constant `true`; `value` |
+| `construct` | | the ellipsoid read and printed back; `E` |
+| `center`, `isFullDim` | | `Ellipsoid.center`, `.isFullDim`; `value` |
+| `isBigger`, `isequal` | `E2`, `tol` | `Ellipsoid.isBigger`, `.isequal`; `value` |
+| `representsa` | `type` (`point`, `origin`), `tol` | `Ellipsoid.representsa_point`, `.representsa_origin`; `value` |
+| `lift`, `project` | `N`, `dims` | `Ellipsoid.reindex`, `.project` |
+| `mtimes` | `M` | `Ellipsoid.mtimes` |
+| `norm`, `radius` | `k` (`radius`: `p`), `type` (2) | `Ellipsoid.normUb`, `.radius`; `value` |
+| `origin` | `n` | `Ellipsoid.origin` |
+| `vertices` | `k`, one dimension | `Ellipsoid.vertices`; `V` |
+| `zonotope` | | `Ellipsoid.zonotope`; `Z` |
+
+`capsule.` (`Ops/CapsuleOps.lean`; result `C`):
+
+| op | fields | float definition |
+|---|---|---|
+| `center`, `isFullDim`, `isequal` | `C2`, `tol` | `Capsule.center`, `.isFullDim`, `.isequal`; `value` |
+| `contains` | `point`, `tol` | `Capsule.containsPoint`; `contains` |
+| `convHull`, `plus` | `C2`, `k` | `Capsule.convHull`, `.plus` |
+| `mtimes` | `M`, `k` | `Capsule.mtimes` |
+| `enclose` | `M`, `C2`, `k` | `Capsule.enclose` |
+| `enclosePoints` | `points`, `k` | `Capsule.enclosePoints` |
+| `empty`, `origin` | `n` | `Capsule.empty`, `.origin` |
+| `isBounded` | `tol` | constant `true`; `value` |
+| `isIntersecting` | `C2`, `k`, `tol` | `Capsule.isDisjoint`; `disjoint` |
+| `lift`, `project` | `N`, `dims` | `Capsule.reindex`, `.project` |
+| `radius` | `k` | `Capsule.radius`; `value` |
+| `reduce` | `order` | `Capsule.reduce` |
+| `representsa` | `type` (`point`, `origin`), `tol` | `Capsule.representsa_point`, `.representsa_origin`; `value` |
+| `supportFunc` | `dir`, `type` (`upper`), `p` | `Capsule.boundDotUp`; `value` |
+| `volume` | `p`, `k` | `Capsule.volume`; `value` |
+| `vertices` | `p`, `k`, planar | `Capsule.vertices`; `boxes`, slow (1001 sampled points) |
+| `interval`, `zonotope` | | `Capsule.interval`, `.zonotope`; `I`, `Z` |
+| `polytope`, `ellipsoid` | `p`, `sigma` | `Capsule.hPolytope`, `.ellipsoid`; `P`, `E` |
+
+`emptySet.` and `fullspace.` (`Ops/EmptySetOps.lean`, `Ops/FullspaceOps.lean`) hold no scalar, take
+the field `n` and call the exact-layer definitions. A set result is `E` or `F`, `{"n": n}`.
+
+| op | fields | definition |
+|---|---|---|
+| `and`, `convHull`, `plus`, `contains`, `isIntersecting`, `isequal` | `S` (the other operand), `tol` | `EmptySet.and_`, `Fullspace.and_`, `.convHull`, `Plus`, `Contains`, `IsDisjoint`, `.isequal` |
+| `center`, `isBounded`, `isFullDim`, `radius`, `volume` | | `EmptySet.center`, `.isBounded`, `.isFullDimTest`, `.radius`, `.volume`, and the `Fullspace` ones |
+| `lift`, `projectHighDim`, `project` | `N`, `dims` | `EmptySet.lift_`, `.projectHighDim_`, `.project`, and the `Fullspace` ones |
+| `mtimes` | `M` (`m x n`) | the `Mtimes (Mat 𝕋)` instances of `EmptySet`, `Fullspace`; `E` or `F`, `{"n": m}`: the whole space for `fullspace`, whatever the rank (CORA's answer is an interval for a matrix with a zero row) |
+| `supportFunc` | `dir`, `type` (`upper`) | `EmptySet.supportFunc` (`-inf`), `Fullspace.supportFunc` (`inf`, `0` at the zero direction); `value` |
+| `representsa` | `type` (`emptySet`, `point`, `origin`, `fullspace`), `tol` | the answers the exact layer proves: `emptySet.representsa` is `true` for `emptySet` and `false` for the others (`EmptySet.construct_ne_singleton`, `.construct_ne_univ`); `fullspace.representsa` is `true` for `fullspace` and `false` for the others (`Fullspace.construct_ne_empty`, `.construct_ne_singleton`, which needs `n > 0`, `n = 0` is refused); `value` |
+| `vertices` (`fullspace`) | `n` (1 to 20) | `Fullspace.vertices`: `V` has one column per corner of `[-inf, inf]^n`, column `l` has `inf` in row `j` where `signEquiv n l j`, else `-inf` |
+| `Inf`, `empty`, `not` | `n` | `Fullspace.Inf`, `EmptySet.empty`, `.not`, `Fullspace.not` |
+| `interval`, `polytope` | | `Interval.empty`, `Interval.Inf`, `HPolytope.emptySet`, `HPolytope.fullspace` |
+| `vertices` (`emptySet`) | | `EmptySet.vertices`; `V` |
+| `box`, `enclosePoints` (`fullspace`) | `points` | `Fullspace.box`, `.enclosePoints` |
+
+`intervalMatrix.` (`Ops/IntervalMatrixOps.lean`; operand `IM`, result `IM`):
+
+| op | fields | float definition |
+|---|---|---|
+| `abs`, `rad`, `infimum`, `supremum` | | `Interval.magnitudeMat`, `.radiusMat`, `.infimum`, `.supremum`; `value` |
+| `center` | | `Interval.centerBoxMat` |
+| `contains` | `M`, `tol` | `Interval.containsMat`; `contains` |
+| `dependentTerms` | `r` | `MatExp.dependentTerms`; `intSq`, `intH` |
+| `exactSquare` | | `Interval.exactSquare` |
+| `mpower` | `exponent` | `Interval.matPow` |
+| `plus`, `mtimes` | `IM2` | `Interval.matPlus`, `.matMul` |
+| `powers` | `IM2`, `k` | `Interval.powers` |
+| `infNorm`, `volume` | | `Interval.infNorm`, `.matVolume`; `value` |
+| `norm` | `type` (`1`, `inf`, `fro`), `steps` | `Interval.matNorm`; `value` |
+| `expmInd` | `maxOrder` (square `IM`) | `MatExp.expIntervalEnclosure`; `IM`. The norm-bound remainder `expRemainderBound`, coarser than CORA's `exponentialRemainder` |
+| `matZonotope` | | `Zonotope.ofIntervalMat`; `mZ` |
+| `representsa` | `type` (`emptySet`, `point`, `origin`), `tol` | `Interval.representsa_*` of the vectorisation; `value` |
+| `vertices` | | `Interval.matPolytope`, at most 2^20; `V` a list of matrices, `E` |
+
+`matZonotope.` (`Ops/MatZonotopeOps.lean`; operand `mZ`, result `mZ`):
+
+| op | fields | float definition |
+|---|---|---|
+| `center` | | the stored center; `value` |
+| `expm`, `expmInd` | `maxOrder` (square `mZ`) | `MatExp.expMatZonoEnclosure`; `mZ`. As `intervalMatrix.expmInd`: the remainder is the norm-bound box |
+| `intervalMatrix` | | `Zonotope.matInterval`; `IM` |
+| `mpower` | `exponent` | `Zonotope.mpower` |
+| `mtimes`, `plus` | `mZ2` | `Zonotope.matMul`, `.matPlus` |
+| `powers` | `mZ2`, `k` | `Zonotope.powers` |
+| `transpose` | | `Zonotope.transpose` |
+| `norm` | `type`, `steps` | `Zonotope.matNorm`; `value` |
+| `representsa` | `type` (`point`, `origin`), `tol` | `Zonotope.representsa_*` of the vectorisation; `value` |
+| `vertices` | | `Zonotope.matPolytope`, at most 2^20 generators; `V`, `E` |
+| `zonotope` | | `Zonotope.vec`; `Z` |
+
+`linearSys.` (`Ops/LinearSysOps.lean`; the system's fields `A`, `B`, `c`, `C`, `D`, `k`, `E`, `F`
+at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA's names):
+
+| op | fields besides the system | float definition |
+|---|---|---|
+| `reach` | `X0`, `U`, `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `linAlg` (`standard`, `wrapping-free`) | `LinearSys.reachFloat`, `.reachWrappingFreeFloat`, with `U` or `c != 0` `.reachFloatInput`, `.reachWrappingFreeFloatInput`; `timePoint` (not wrapping-free), `timeInterval`: arrays of zonotopes |
+| `canonicalForm` | `U`, `uVec`, `W`, `V`, `vVec` | `LinearSys.canonicalFormFloat`; `sys`, `U`, `u` (box), `V`, `v` (box) |
+| `isCanonicalForm` | | `LinearSys.isCanonicalFormFloat`; `value` |
+| `outputSet` | `R`, `U`, `V` (noise, optional) | `OutputEq.outputSet`, `.outputSetNoise` at `Zonotope`; `Z` |
+| `taylorMatrices` | `timeStep`, `taylorTerms` | `LinearSys.expIntervalFloat`, `MatExp.intervalCorrectionMatrix`; `eAdt`, `F` |
+| `oneStep` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepFloat`; `timePoint`, `timeInterval` |
+| `homogeneousSolution` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`; `Z` |
+| `post` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`, `.timeIntervalFloat`; `timePoint`, `timeInterval` |
+| `initReach` | `Rtau`, `timeStep`, `taylorTerms`, `step` | `LinearSys.reachStepkWrappingFreeFloat`; `Z` or `null` |
+| `affineSolution`, `particularSolution_constant`, `particularSolution_timeVarying` | `V`, `r`, `taylorTerms` | `LinearSys.inputSolutionFloat`; `Z` |
+| `errorSolution_adaptive` | `Vdyn`, `Vstat` (optional), `timeStep`, `taylorTerms` | `LinearSys.errorSolutionAdaptiveFloat`; `Z` |
+
+`specification.` (`Ops/SpecificationOps.lean`):
+
+| op | fields | float definition |
+|---|---|---|
+| `check` | `kind` (`safeSet`, `unsafeSet`, `invariant`), `set` (a box `{"inf","sup"}` or a halfspace polytope `{"A","b",...}`), `I` (box) or `Z` (zonotope) | `Specification.check` of `{set, kind}` against `I` or `Z`; `value`, `true` proves the set contained (`safeSet`, `invariant`) or disjoint from the specification's set (`unsafeSet`) |
+
+Conversions `interval.<class>` and `zonotope.<class>` (`Ops/ConversionOps.lean`):
+
+| op | fields | float definition |
+|---|---|---|
+| `polytope` | `p` (zonotope, at least one dimension) | `Interval.hPolytope`, `Zonotope.hPolytopeFacets`; `P` |
+| `conZonotope`, `zonoBundle` | | `Interval.conZonotope`, `.zonoBundle`, `Zonotope.conZonotope`, `.zonoBundle`; `cZ`, `zB` |
+| `capsule` | `k` | `Interval.capsule`, `Zonotope.capsule`; `C` |
+| `ellipsoid` | `sigma` | `Interval.ellipsoid`, `Zonotope.ellipsoid`; `E` |
+
+Float rows not served, by reason:
+
+* They build a CORA class that still has no wire format. `Interval`: `affine`, `conPolyZono`,
+  `polyZonotope`, `spectraShadow`, `stlInterval`, and the constructor `interval`. `Zonotope`:
+  `conPolyZono`, `polyZonotope`, `simplex`, `spectraShadow`, `taylm`, `empty`, `zonotope`, and
+  `matZonotope`, a reshape.
+* `Zonotope.volume` (`exact`, `alamo`), `Zonotope.rank` and `dH2box` have no float definition: the
+  real `Zonotope.volume` is `2^n sum_S |det G_S|` and `rank` is the rank of a real matrix; `dH2box`
+  has only the bound `hausdorffDist₂_interval_le`.
+* `intervalMatrix.expm`, `expmMixed`, `exponentialRemainder` and `matZonotope.dependentTerms`,
+  `expmMixed`, `expmOneParam`, `contains` have only real-layer definitions (`MatExp.expm`, ...,
+  `Zonotope.ContainsMat`).
+
+`interval.tan` prints `"-inf"` / `"inf"` on a coordinate whose range may hold a pole. A range `[l, u]`
+is bounded only if `cos` is certified of one strict sign at both ends and `u - l`, rounded up, is
+below `3.125 <= pi`: a cosine of one sign at both ends of a range shorter than `pi` has no zero
+between. The bound is then `tanDown` at `l` and `tanUp` at `u` (`tanDownNeg`, `tanUpNeg` where the
+cosine is negative). It was `tanDown(l), tanUp(u)` unconditionally, which gave `inf > sup` over a pole.
+
+`zonotope.zonotopeNorm` is CORA's `zonotopeNorm(Z, p)` (the center is ignored). Every direction `a`
+gives the bound `|a.p| / sum_j |a.g_j|` (`Zonotope.zonotopeNorm_le`), the axes and the cross
+products of every `n - 1` generators being tried; for `n` independent generators the facet normals
+are among them and the value is the norm up to the rounding of the quotients, otherwise it is a
+lower bound. `"inf"` is CORA's `Inf` (the minimum over the empty set) and is returned only when
+a direction `a` with `a.g_j = 0` for every `j` (certified by the two roundings of each product)
+and `a.p != 0` proves that no `g` reaches `p`; a `p` outside the span with no such exact direction
+gets a finite lower bound. `Zonotope.zonotopeNormE` is the `Inf`-valued definition of the real layer.
+
+`tensorMultiplication` reads CORA's `options.list`: `perm`, the rows `[i, j, k]` of generator
+indices (0-based, of the zonotope with its error box made generators, so `h + n` of them), `map`, the
+combination of each row (0-based) and `C`, the number of combinations. `M` is the third-order tensor
+`{M_1, ..., M_n}`: `n` blocks, each an array of `n` matrices `n x n`, `M{i}(j, k, l)` the entry `(k, l)`
+of the `j`-th matrix of block `i`; `Z` has the center `0` CORA requires.
+
+`underapproximate` gives, per direction `S_i`, the vertices `c +- sum_j sign(S_i . g_j) g_j`, `null`
+where `Zonotope.underapproximate` certifies none: the candidate is returned if
+`Zonotope.containsPoint` certifies it or its sums are exact (the rounded-down and rounded-up sums
+agree, `Zonotope.vertexExact`), so a vertex that rounds is `null`.
+
+Rows of the further classes not served, by reason:
+
+* A certificate or witness CORA has no argument for. `conZonotope`: `minkDiff`, `rescale`,
+  `polytope`; `contains` of a zonotope, a box or a constrained zonotope. `conZonotope`: `center`
+  (the real `ConZonotope.IsCenter` is a relation, not a computation) and the box step of
+  `approximateBoundsWithGPU` (`Zonotope.intervalOfFactorBounds` has only a real-layer definition). `zonoBundle`: `contains`, `isFullDim`, `encloseTight`, `split`, `vertices`.
+* A bound from a linear program, so no direct definition. `polytope`: `compact_` `redundant`, `constraints`
+  (`VPolytope.hPolytope` cuts at caller directions, it does not enumerate facets), `hausdorffDist`
+  (real only), a true vertex-form `and` (`VPolytope.intersection` is the box of the boxes),
+  `minkDiff`, `normalizeConstraints`, `reduceOverDomain`, `not`, and `box`, `interval`, `vertices`,
+  `convHull`, `mtimes`, `plus` of a halfspace polytope.
+* A scalar with a proof obligation, a witness or a direction list. `ellipsoid`:
+  `isIntersecting`, `supportFunc`, `volume`, `plus`, `minkDiff`, `polygon`.
+* `ellipsoid.enclose`: the outer hull of two ellipsoids is an SDP, an argument of `Ellipsoid.enclose`.
+  `ellipsoid.generators` has only the real eigendecomposition, and `empty` no float definition.
+* A class without a wire format: `conPolyZono`, `spectraShadow`, `levelSet`, `matPolytope`, and
+  every constructor, which CORALean states as a `Set`.
+* `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
+  function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError`,
+  `linearSysDT` and `nonlinearSys`. They take witnesses or tuning records, or return a real-valued
+  field (`LinParamSysDT.c`).
+
 ## Self-test
 
 ```sh
@@ -116,6 +542,9 @@ ORACLE="lake env lean --run src/CORALean/Examples/Oracle.lean" \
 Runs the oracle on `requests.jsonl` (every op, every dtype family, the error
 cases, and a `fixedpoint` value fed back as a later request's input, checking
 the round-trip the module docstring promises), diffs the output against the
-committed `expected.jsonl`, and runs `check_sound.py` -- an independent,
-exact-`Fraction` check, stdlib only, that a sample of the `ok` responses
-really enclose what they claim to.
+committed `expected.jsonl`, and runs `check_sound.py`.
+
+`check_sound.py` is an independent, exact-`Fraction` check, stdlib only. It checks that a sample of
+the `ok` responses really enclose what they claim to: the box and zonotope ops through exact rational
+arithmetic, the elementary functions through `decimal`. It also checks that every op `ping` lists is
+used by some request.

@@ -4,13 +4,13 @@ import CORALean.Examples.Bench.NearestUnsound.NearestFloat
 /-!
 # What "round-to-nearest is sound" would say — and it is FALSE
 
-One property with twelve conjuncts: the six rounding laws `SoundFloatArithmetic` asks of a scalar,
-stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`. Rounding to nearest
-lands on whichever side of the exact result is closer, so it satisfies none of them: every field is
-false, and at `NearestDyadic` refutable. `Axioms` assumes this anyway, once, so that the unchanged
-library runs on the arithmetic CORA uses, the paper's baseline and nothing else. Bundled for the
-reason `Binary64.IsTrustedHardware` is: one name in every `#print axioms` that reaches either
-scalar. Everything a round-to-nearest scalar gets right is proved in `Instances`, not assumed here.
+One property: twelve FALSE conjuncts, the six rounding laws `SoundFloatArithmetic` asks of a scalar,
+stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`, and `float_lt_of_lt`,
+the one true one (the machine's `<`, `NearestFloat`'s `ltStrict`). Rounding to nearest lands on the
+closer side of the exact result, so the twelve fail, at `NearestDyadic` refutably. `Axioms` assumes
+the property anyway, once, so that the unchanged library runs on the arithmetic CORA uses, the
+paper's baseline and nothing else. Bundled like `Binary64.IsTrustedHardware`: one name in every
+`#print axioms` that reaches either scalar. All else it gets right is proved in `Instances`.
 
 ## References
 
@@ -31,7 +31,7 @@ namespace CORALean.Bench
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- FALSE in every field. Assumed only by `Axioms`, only for the bench's
+/-- FALSE in every field but `float_lt_of_lt`. Assumed only by `Axioms`, only for the bench's
 round-to-nearest baseline; nothing outside `Examples/Bench/` may reach it. -/
 structure IsNearestUnsound : Prop where
   /-- FALSE: `1 + 2⁻⁶⁰` rounds to `1`, below the exact sum. -/
@@ -69,6 +69,10 @@ structure IsNearestUnsound : Prop where
   /-- FALSE, and refutable: at `p = 24`, `1 / 3` rounds up. -/
   dyadic_divDown_le_div : ∀ {p : ℕ} (a b : NearestDyadic p), 0 < b.toReal →
     (a.div b).toReal ≤ a.toReal / b.toReal
+  /-- The one conjunct that is TRUE of the machine, assumed because `Float` is opaque: the native
+  `a < b` of two doubles is a strict inequality of what they denote. It is here, not in
+  `trustedHardware`, so that the trusted base of the sound instances does not grow. -/
+  float_lt_of_lt : ∀ a b : NearestFloat, a.val < b.val → a.toReal < b.toReal
 
 end CORALean.Bench
 

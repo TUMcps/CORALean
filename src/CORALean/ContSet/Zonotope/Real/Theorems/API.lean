@@ -203,6 +203,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormIsNorm
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormTFAE
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormSphereSubsetImage
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormECoe
+public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormETop
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEqPolyNorm
 public import CORALean.ContSet.Zonotope.Real.Theorems.NotExistsPolyNormOfDegenerate
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEquivNorm

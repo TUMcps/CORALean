@@ -52,6 +52,8 @@ scoped instance : FloatOps NearestFloat where
   maximum a b := ⟨Binary64.maximum a.val b.val⟩
   le a b := decide (a.val ≤ b.val)
   half a := ⟨Binary64.half a.val⟩
+  -- the machine's `<`: at round-to-nearest `a + 2⁻⁶⁴` rounds back to `a`, no strict test
+  ltStrict a b := decide (a.val < b.val)
 
 /-- The six rounding laws from the false `nearestUnsound`; the rest are `Float`'s own. -/
 scoped instance : SoundFloatArithmetic NearestFloat where
@@ -69,6 +71,7 @@ scoped instance : SoundFloatArithmetic NearestFloat where
   toReal_maximum a b := Binary64.trustedHardware.toReal_max a.val b.val
   toReal_le_of_le h := Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)
   toReal_half a := Binary64.trustedHardware.toReal_half a.val
+  toReal_lt_of_ltStrict h := nearestUnsound.float_lt_of_lt _ _ (of_decide_eq_true h)
 
 /-- Round-to-nearest-even at `p` bits, one per pair of directions. -/
 scoped instance {p : ℕ} : FloatOps (NearestDyadic p) where
@@ -85,9 +88,12 @@ scoped instance {p : ℕ} : FloatOps (NearestDyadic p) where
   maximum a b := ⟨a.val.maximum b.val⟩
   le a b := a.val.le b.val
   half a := ⟨a.val.half⟩
+  -- `a ≤ b` and not `b ≤ a`: here too `a + 2⁻⁶⁴` rounds back to `a`
+  ltStrict a b := a.val.le b.val && !b.val.le a.val
 
 /-- The six rounding laws from the false `nearestUnsound`; the rest are `Dyadic`'s own. -/
 scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
+  -- the reading, then the sign and rounding laws, then the order and halving ones
   toReal := NearestDyadic.toReal
   toReal_neg a := Dyadic.toReal_neg a.val
   toReal_zero := Dyadic.toReal_mk_zero 0
@@ -105,6 +111,11 @@ scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
   toReal_maximum a b := Dyadic.toReal_maximum a.val b.val
   toReal_le_of_le h := Dyadic.toReal_le_of_le h
   toReal_half a := Dyadic.toReal_half a.val
+  -- strict: `a ≤ b` and not `b ≤ a`, read as reals
+  toReal_lt_of_ltStrict {a b} h := by
+    obtain ⟨h₁, h₂⟩ := Bool.and_eq_true_iff.mp h
+    exact lt_of_le_not_ge (Dyadic.toReal_le_of_le h₁)
+      fun h₃ => by simp [(Dyadic.le_iff b.val a.val).mpr h₃] at h₂
 
 /-- The bits, decoded exactly, as for `Float`: no `nearestUnsound` involved. -/
 scoped instance : ToRat NearestFloat where

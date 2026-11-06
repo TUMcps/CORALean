@@ -7134,12 +7134,12 @@
         "group": "contSet",
         "class": "zonotope",
         "methods": 80,
-        "proved": 4,
-        "float": 57,
+        "proved": 3,
+        "float": 58,
         "bound": 5,
         "not_yet": 0,
         "out_of_scope": 14,
-        "needs_float": 4,
+        "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
           "random/sampling": 3,
@@ -8700,12 +8700,12 @@
     "groups": {
       "contSet": {
         "methods": 908,
-        "proved": 32,
-        "float": 578,
+        "proved": 31,
+        "float": 579,
         "bound": 44,
         "not_yet": 8,
         "out_of_scope": 246,
-        "needs_float": 32,
+        "needs_float": 31,
         "cora_issues": 102,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
@@ -8851,12 +8851,12 @@
     },
     "totals": {
       "methods": 1696,
-      "proved": 76,
-      "float": 959,
+      "proved": 75,
+      "float": 960,
       "bound": 52,
       "not_yet": 82,
       "out_of_scope": 527,
-      "needs_float": 76,
+      "needs_float": 75,
       "cora_issues": 174,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
@@ -8899,10 +8899,10 @@
     },
     "theorems": {
       "paper": 1892,
-      "float": 2306,
-      "helper": 2247,
-      "lemma": 3355,
-      "total": 9800,
+      "float": 2321,
+      "helper": 2248,
+      "lemma": 3357,
+      "total": 9818,
       "examples": 133
     }
   }

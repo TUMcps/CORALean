@@ -104,11 +104,6 @@ theorem toReal_strictMargin_pos : -- --- CONCL ---
     | succ k ih => rw [Function.iterate_succ_apply', toReal_half]; exact half_pos ih
   exact h 64
 
-/-- The margin is positive, so `ltStrict`'s `true` is strict. -/
-theorem toReal_lt_of_ltStrict {a b : 𝕋} (h : ltStrict a b = true) : toReal a < toReal b :=
-  lt_of_lt_of_le (lt_add_of_pos_right _ toReal_strictMargin_pos)
-    (le_trans (add_le_addUp a strictMargin) (toReal_le_of_le h))
-
 /-- `absolute` reads as the absolute value. -/
 theorem toReal_absolute (a : 𝕋) : toReal (absolute a) = |toReal a| := by
   rw [absolute, toReal_maximum, toReal_neg]
