@@ -20,7 +20,7 @@ and MATLAB's `withinTol` of them, which every format with `ToRat` has and ℝ de
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       16-August-2026
--- Last update:   23-October-2026
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -78,6 +78,10 @@ class FloatOps (𝕋 : Type) where
   /-- A strict comparison `a < b`: a `true` certifies it. By default `a` plus `2⁻⁶⁴`, rounded up, is
   at most `b`; a format that rounds to nearest overrides it, there `a + 2⁻⁶⁴ = a` above `2⁻¹¹`. -/
   ltStrict : 𝕋 → 𝕋 → Bool := fun a b => le (addUp a (half^[64] one)) b
+  /-- A square root rounded up that the format computes itself, from `p` and the radicand. By
+  default there is none and `sqrtUp` is the Newton iteration of `Sqrt.lean`; the round-to-nearest
+  bench baseline supplies the machine's square root. `SoundFloatArithmetic` constrains it. -/
+  sqrtUpOverride : Option (ℕ → 𝕋 → 𝕋) := none
 
 open FloatOps
 
@@ -119,6 +123,11 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   /-- A `true` strict comparison is strict. A format that keeps `ltStrict`'s default gets this
   from `toReal_lt_of_default_ltStrict` and the fields above. -/
   toReal_lt_of_ltStrict {a b : 𝕋} (h : ltStrict a b = true) : toReal a < toReal b
+  /-- A square root the format supplies is above the real one: above every nonnegative `r` whose
+  square is at most the radicand, clamped at 0 as the Newton root is. Vacuous for the default,
+  which has none (`by cases hf`); `sqrtUp` is then the Newton iteration, sound by `le_sqrtUp`. -/
+  le_sqrtUpOverride {f : ℕ → 𝕋 → 𝕋} (hf : sqrtUpOverride = some f) (p : ℕ) (a : 𝕋) :
+      ∀ r : ℝ, 0 ≤ r → r * r ≤ max (toReal a) 0 → r ≤ toReal (f p a)
 
 /-- The real ambient type a stored one denotes, and the reading: a vector of `𝕋`
 reads as a vector of ℝ, a matrix as a matrix. -/

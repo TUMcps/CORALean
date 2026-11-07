@@ -1,5 +1,6 @@
 import CORALean.ContSet.Conversion.Float.Operations.Basic
 import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 import CORALean.ContSet.HPolytope.Float.Operations.Basic
 import CORALean.ContSet.HPolytope.Float.Operations.CartProd
 import CORALean.ContSet.HPolytope.Float.Operations.CompactAlignedIneq
@@ -10,9 +11,14 @@ import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 import CORALean.ContSet.HPolytope.Float.Operations.Isequal
 import CORALean.ContSet.HPolytope.Float.Operations.Lift
+import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
+import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
+import CORALean.ContSet.HPolytope.Float.Operations.Not
 import CORALean.ContSet.HPolytope.Float.Operations.Origin
 import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
+import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
 import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
+import CORALean.ContSet.Interval.Float.Operations.BoundDot
 import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
 import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
 import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
@@ -32,10 +38,11 @@ import CORALean.Specification.Instances
 Adapters over the float definitions `references/coverage/contSet/polytope.md` links. CORALean has
 two classes for the two forms, so an operand `P`, `P2` is read by its keys, `{"V","E"}` vertex
 form (`VPolytope`), `{"A","b",...}` halfspace form (`HPolytope`); an op names the form it takes.
-A result is `P`, a box `I`, a constrained zonotope `cZ`, a Boolean or a bound `value`. Not served:
-the ops whose Lean definition needs bounds or rows CORA has no argument for (`box`/`interval`,
-`compact_` `redundant`, `constraints`, `minkDiff`, `normalizeConstraints`, `reduceOverDomain`,
-`vertices`, `not`, the other-form `convHull`/`mtimes`/`plus`), the classes without a wire format.
+A result is `P`, a box `I`, a constrained zonotope `cZ`, a Boolean or a bound `value`. `minkDiff`
+takes the subtrahend as a box `I` or a zonotope `Z`, its support bounds the certificates
+`HPolytope.minkDiffOf` asks for. Not served: the ops whose Lean definition needs bounds or rows CORA
+has no argument for (`compact_` `redundant`, `constraints`, `vertices`, the other-form
+`convHull`/`mtimes`/`plus`), the classes without a wire format.
 
 ## Inputs
 * `dops` – dtype operations
@@ -47,7 +54,7 @@ the ops whose Lean definition needs bounds or rows CORA has no argument for (`bo
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   ---
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -193,12 +200,64 @@ def handlePolyCompact (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   | "AtoAe" => pure [aux_hSet dops (HPolytope.compactAtoAe p d.P dom)]
   | m => throw s!"compact: `method` must be zeros, aligned or AtoAe, not `{m}`"
 
+/-- A scalar field read exactly into the dtype. -/
+private def aux_scalar (dops : DtypeOps 𝕋) (req : Json) (name : String) : Except String 𝕋 := do
+  dops.readExact name (← scalarField req name)
+
+/-- `polytope.not`: `-a x <= -b - eps` for a polytope of the single inequality `a x <= b`,
+`HPolytope.not`; any other polytope is refused, as the Lean definition answers `none`. -/
+def handlePolyNot (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "not" req ["P", "eps"]
+  let d ← aux_h "not" dops req "P"
+  let ε ← aux_scalar dops req "eps"
+  match HPolytope.not d.P ε with
+  | some Q => pure [aux_hSet dops Q]
+  | none => throw "not: only a polytope of exactly one inequality and no equality is complemented"
+
+/-- `polytope.normalizeConstraints`: every row divided by its right-hand side's magnitude over the
+box `dom`, `HPolytope.normalizeConstraints`. -/
+def handlePolyNormalizeConstraints (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "normalizeConstraints" req ["P", "dom", "type"]
+  checkStrOption "normalizeConstraints" req "type" "b"
+  let d ← aux_h "normalizeConstraints" dops req "P"
+  let dom ← parseIntervalVecFixed dops.readExact d.n (← field req "dom")
+  pure [aux_hSet dops (HPolytope.normalizeConstraints d.P dom)]
+
+/-- `polytope.reduceOverDomain`: the single halfspace over the box `dom` (`p` Newton steps),
+`type` `outer` or `inner`, `HPolytope.reduceOverDomain`. -/
+def handlePolyReduceOverDomain (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "reduceOverDomain" req ["P", "dom", "p", "type"]
+  let d ← aux_h "reduceOverDomain" dops req "P"
+  let dom ← parseIntervalVecFixed dops.readExact d.n (← field req "dom")
+  let p ← natField req "p"
+  match fieldOpt req "type" with
+  | none => pure [aux_hSet dops (HPolytope.reduceOverDomain p d.P dom true)]
+  | some _ =>
+    match ← strField req "type" with
+    | "outer" => pure [aux_hSet dops (HPolytope.reduceOverDomain p d.P dom true)]
+    | "inner" => pure [aux_hSet dops (HPolytope.reduceOverDomain p d.P dom false)]
+    | t => throw s!"reduceOverDomain: `type` must be outer or inner, not `{t}`"
+
+/-- `polytope.minkDiff`: `P` minus a box `I` or a zonotope `Z`, each row lowered by the
+subtrahend's support bound in that row's direction, `HPolytope.minkDiffOf`. -/
+def handlePolyMinkDiff (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "minkDiff" req ["P", "I", "Z"]
+  let d ← aux_h "minkDiff" dops req "P"
+  match ← aux_probe "minkDiff" dops req d.n with
+  | .box I =>
+    pure [aux_hSet dops (d.P.minkDiffOf I.construct fun i =>
+      I.boundDot (c := Real.HPolytope.rowLin (toRealMat d.P.A) i) (d.P.A i) fun _ => rfl)]
+  | .zono Z =>
+    pure [aux_hSet dops (d.P.minkDiffOf Z.construct fun i =>
+      Z.boundDot (c := Real.HPolytope.rowLin (toRealMat d.P.A) i) (d.P.A i) fun _ => rfl)]
+
 /-- Every op of this file, without the `polytope.` prefix. -/
 def polytopeOpNames : List String :=
   [ "Inf", "and", "box", "cartProd", "center", "compact", "conZonotope", "contains", "convHull",
     "empty", "enclosePoints", "interval", "isBounded", "isFullDim", "isIntersecting", "isequal",
     "lift", "minus", "mtimes", "or", "origin", "plus", "project", "projectHighDim", "representsa",
-    "supportFunc", "zonotope", "ellipsoid", "zonoBundle" ]
+    "supportFunc", "zonotope", "ellipsoid", "zonoBundle", "not", "normalizeConstraints",
+    "reduceOverDomain", "minkDiff" ]
 
 /-- `op` of `polytope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -254,6 +313,10 @@ def handlePolytopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
       valueBool (VPolytope.isFullDim d.P))
   -- the arms from `isIntersecting` on
   | "isIntersecting" => some (handlePolyIsIntersecting dops req)
+  | "not" => some (handlePolyNot dops req)
+  | "normalizeConstraints" => some (handlePolyNormalizeConstraints dops req)
+  | "reduceOverDomain" => some (handlePolyReduceOverDomain dops req)
+  | "minkDiff" => some (handlePolyMinkDiff dops req)
   | "isequal" => some (do
       checkFields op req ["P", "P2", "tol"]
       checkTol op req

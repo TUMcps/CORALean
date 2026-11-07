@@ -15,7 +15,7 @@ false axiom in `Axioms` (see `scripts/check-axioms.sh`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +46,10 @@ def mul (a b : NearestFloat) : NearestFloat := ⟨a.val * b.val⟩
 
 /-- The machine's round-to-nearest quotient, used as `divUp` and `divDown` both. -/
 def div (a b : NearestFloat) : NearestFloat := ⟨a.val / b.val⟩
+
+/-- The machine's correctly rounded square root, used as `sqrtUp`; the number of Newton
+steps is ignored. -/
+def sqrt (_p : ℕ) (a : NearestFloat) : NearestFloat := ⟨Float.sqrt a.val⟩
 
 end NearestFloat
 

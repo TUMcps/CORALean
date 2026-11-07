@@ -20,7 +20,7 @@ file or publication.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -69,6 +69,10 @@ structure IsNearestUnsound : Prop where
   /-- FALSE, and refutable: at `p = 24`, `1 / 3` rounds up. -/
   dyadic_divDown_le_div : ∀ {p : ℕ} (a b : NearestDyadic p), 0 < b.toReal →
     (a.div b).toReal ≤ a.toReal / b.toReal
+  /-- FALSE: the correctly rounded `√a` for `a = 4.137127241726948` is `0x1.0459e15e9bec9p+1`,
+  below the exact root (`sqrtUp` here is the machine's `sqrt`, rounded to nearest). -/
+  float_le_sqrt : ∀ (p : ℕ) (a : NearestFloat) (r : ℝ), 0 ≤ r → r * r ≤ max a.toReal 0 →
+    r ≤ (NearestFloat.sqrt p a).toReal
   /-- The one conjunct that is TRUE of the machine, assumed because `Float` is opaque: the native
   `a < b` of two doubles is a strict inequality of what they denote. It is here, not in
   `trustedHardware`, so that the trusted base of the sound instances does not grow. -/

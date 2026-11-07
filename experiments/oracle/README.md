@@ -31,6 +31,12 @@ a separate executable under `Examples/Bench/` because `nearest` rests on the fal
 `NearestUnsound/Axioms.lean`, which the sound `oracle` must never reach. `roundTo` is not offered for
 it. Self-test: see the header of `selftest.sh` (`requests-unsound.jsonl`, `expected-unsound.jsonl`).
 
+The upward square root, `sqrtUp`, is a field of the float structure: Newton's iteration by default, and
+at `nearest` the machine's correctly rounded `Float.sqrt` (`FloatOps.sqrtUpOverride`), as CORA, CORA.cpp
+and numpy compute it. So `normUp`, `Ellipsoid.radius`, `interval.sqrt` and everything built on them agree
+with IEEE `sqrt` bit for bit at `nearest`; the number of Newton steps `p` is then ignored. The sound dtypes
+keep Newton.
+
 Every strict test of a float operation is the dtype's own `ltStrict`, a field of `FloatOps`: for the
 sound dtypes `a` plus `2^-64`, rounded up, is at most `b`, a strict order wherever `addUp` rounds
 up. At `nearest` that sum rounds back to `a` for every `a` above about `2^-11`, so the default would
@@ -313,6 +319,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `reduce` | `order`, `method` (`girard`) | `ZonoBundle.reduce` |
 | `reduceCombined` | `method` (`methC`) | `ZonoBundle.reduceCombined`; `Z` |
 | `replace` | `index`, `Z` | `ZonoBundle.replace` |
+| `split` | `Lambda` (`n x n`, the edge directions), `B` (a box in the transformed coordinates), `dim` | `ZonoBundle.split`; `zB1`, `zB2` (the float definition takes `Lambda` and `B` as arguments, it does not compute CORA's `box(Lambda^-1 Z)`) |
 | `shrink` | | `ZonoBundle.shrink` |
 | `supportFunc` | `dir`, `type` (`upper`) | `ZonoBundle.boundDotLP`; `value` |
 | `zonotope` | | `ZonoBundle.zonotope` at `minVolIdx`; `Z` |
@@ -326,7 +333,11 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `cartProd` | `P2` | `HPolytope.cartProd` |
 | `compact` | `method` (`zeros`, `aligned`, `AtoAe`), `dom` (a box the rounding of the rows is paid over), `p` (Newton steps), `tol` | `HPolytope.compactZeros`, `.compactAlignedIneq`, `.compactAtoAe`; `redundant` needs a linear program |
 | `contains`, `isIntersecting` | `I` or `Z`, `tol` | `Contains`, `IsDisjoint` (`containsPolytopeInterval`, `...Zonotope`); `contains`, `disjoint` |
-| `isequal` | `P2`, `tol` | `HPolytope.isequal` |
+| `isequal` | `P2`, `tol` | `HPolytope.isequal` (halfspace form only; `VPolytope` has no float `isequal`, a vertex operand is refused) |
+| `not` | `eps` | `HPolytope.not`; `P`, only for a polytope of one inequality and no equality (the other cases are an error) |
+| `normalizeConstraints` | `dom`, `type` (`b`) | `HPolytope.normalizeConstraints`; `P` |
+| `reduceOverDomain` | `dom`, `p` (Newton steps), `type` (`outer`, `inner`) | `HPolytope.reduceOverDomain`; `P` |
+| `minkDiff` | `I` (a box) or `Z` (a zonotope), the subtrahend | `HPolytope.minkDiffOf` with `Interval.boundDot`, `Zonotope.boundDot` as the row certificates; `P` |
 | `lift`, `projectHighDim` | `N`, `dims` (`projectHighDim`: both forms) | `HPolytope.lift_`, `.projectHighDim`, `VPolytope.projectHighDim` |
 | `minus` | `v` | `HPolytope.minus` |
 | `representsa` | `type` (`fullspace`), `tol` | `HPolytope.representsaFullspace`; `value` |
@@ -334,10 +345,10 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `center` (vertex form) | | `VPolytope.centerBox`; `I` |
 | `convHull`, `or`, `plus` (vertex form) | `P2` | `VPolytope.convHull`, `.plus` |
 | `enclosePoints` | `points`, `method` (`outer`) | `VPolytope.enclosePoints` |
-| `isBounded`, `isFullDim` (vertex form) | `tol` | constant `true`; `VPolytope.isFullDim`; `value` |
+| `isBounded`, `isFullDim` (vertex form) | `tol` | constant `true`; `VPolytope.isFullDim`; `value`. `isBounded` is `true` for every vertex polytope the oracle can read: the convex hull of finitely many vertices is bounded, the empty one included, and `inf`/`nan` coordinates are refused on input |
 | `mtimes`, `project` (vertex form) | `M`, `dims` | `VPolytope.mtimes`, `.project` |
 | `supportFunc` (vertex form) | `dir`, `type` (`upper`) | `VPolytope.boundDot`; `value` |
-| `conZonotope`, `zonotope`, `zonoBundle`, `ellipsoid` (vertex form) | `sigma` for `ellipsoid` | `VPolytope.conZonotope`, `.zonotope`, `.zonoBundle`, `.ellipsoid`; `cZ`, `Z`, `zB`, `E` |
+| `conZonotope`, `zonotope`, `zonoBundle`, `ellipsoid` (vertex form) | `sigma` for `ellipsoid` | `VPolytope.conZonotope`, `.zonotope`, `.zonoBundle`, `.ellipsoid`; `cZ`, `Z`, `zB`, `E`. `ellipsoid` is not CORA's covariance or minimum-volume method: it is the bounding box of the hull as a zonotope, enclosed by `Zonotope.ellipsoid` with the scaling `sigma` |
 
 `ellipsoid.` (`Ops/EllipsoidOps.lean`; result `E`):
 
@@ -358,7 +369,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `representsa` | `type` (`point`, `origin`), `tol` | `Ellipsoid.representsa_point`, `.representsa_origin`; `value` |
 | `lift`, `project` | `N`, `dims` | `Ellipsoid.reindex`, `.project` |
 | `mtimes` | `M` | `Ellipsoid.mtimes` |
-| `norm`, `radius` | `k` (`radius`: `p`), `type` (2) | `Ellipsoid.normUb`, `.radius`; `value` |
+| `norm`, `radius` | `k` (`radius`: `p`), `type` (2) | `Ellipsoid.normUb`, `.radius`; `value`. `p` of `radius` is the number of Newton steps of the square roots, not CORA's index of the semi-axis: the result is an upper bound of CORA's largest radius (`sqrt(max(eig(Q)))`), the Euclidean ball about the center that contains `E`. CORALean has no float definition of the `i`-th semi-axis (it needs an eigendecomposition), so CORA's `radius(E, i)` is not served |
 | `origin` | `n` | `Ellipsoid.origin` |
 | `vertices` | `k`, one dimension | `Ellipsoid.vertices`; `V` |
 | `zonotope` | | `Ellipsoid.zonotope`; `Z` |
@@ -469,6 +480,7 @@ Conversions `interval.<class>` and `zonotope.<class>` (`Ops/ConversionOps.lean`)
 | `conZonotope`, `zonoBundle` | | `Interval.conZonotope`, `.zonoBundle`, `Zonotope.conZonotope`, `.zonoBundle`; `cZ`, `zB` |
 | `capsule` | `k` | `Interval.capsule`, `Zonotope.capsule`; `C` |
 | `ellipsoid` | `sigma` | `Interval.ellipsoid`, `Zonotope.ellipsoid`; `E` |
+| `matZonotope` (zonotope) | | `Zonotope.matZonotope`, the zonotope as an `n x 1` matrix zonotope; `mZ` |
 
 Float rows not served, by reason:
 
@@ -514,12 +526,13 @@ Rows of the further classes not served, by reason:
 * A certificate or witness CORA has no argument for. `conZonotope`: `minkDiff`, `rescale`,
   `polytope`; `contains` of a zonotope, a box or a constrained zonotope. `conZonotope`: `center`
   (the real `ConZonotope.IsCenter` is a relation, not a computation) and the box step of
-  `approximateBoundsWithGPU` (`Zonotope.intervalOfFactorBounds` has only a real-layer definition). `zonoBundle`: `contains`, `isFullDim`, `encloseTight`, `split`, `vertices`.
+  `approximateBoundsWithGPU` (`Zonotope.intervalOfFactorBounds` has only a real-layer definition). `zonoBundle`: `contains`, `isFullDim`, `encloseTight`, `vertices`, `or`.
 * A bound from a linear program, so no direct definition. `polytope`: `compact_` `redundant`, `constraints`
   (`VPolytope.hPolytope` cuts at caller directions, it does not enumerate facets), `hausdorffDist`
   (real only), a true vertex-form `and` (`VPolytope.intersection` is the box of the boxes),
-  `minkDiff`, `normalizeConstraints`, `reduceOverDomain`, `not`, and `box`, `interval`, `vertices`,
-  `convHull`, `mtimes`, `plus` of a halfspace polytope.
+  `le` (no float containment of two polytopes), `volume_` (only `Polygon.volume`, the volume of a
+  planar polygon's box), `isequal` of vertex polytopes, and `box`, `interval`, `vertices`,
+  `convHull`, `mtimes`, `plus` of a halfspace polytope. `matZonotope.volume`, `zonotope.simplex`: no float definition.
 * A scalar with a proof obligation, a witness or a direction list. `ellipsoid`:
   `isIntersecting`, `supportFunc`, `volume`, `plus`, `minkDiff`, `polygon`.
 * `ellipsoid.enclose`: the outer hull of two ellipsoids is an SDP, an argument of `Ellipsoid.enclose`.
