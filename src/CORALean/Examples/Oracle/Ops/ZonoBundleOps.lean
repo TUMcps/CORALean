@@ -21,6 +21,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
 import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
 import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
 import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
+import CORALean.ContSet.ZonoBundle.Float.Operations.Split
 import CORALean.Examples.Oracle.Ops.SetCodec
 import CORALean.Specification.Instances
 
@@ -45,7 +46,7 @@ not take), `vertices` (CORALean's is one member's), the classes without a wire f
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   ---
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -115,12 +116,26 @@ def handleBundleReplace (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let Z ← parseZonotopeFixed dops.readExact d.n (← field req "Z")
   pure [aux_set dops "zB" (ZonoBundle.replace d.zB i Z)]
 
+/-- `zonoBundle.split`: the bundle cut along column `dim` of the edge directions `Lambda` over the
+box `B` in the transformed coordinates, `ZonoBundle.split`; both are arguments, the float
+definition does not compute CORA's `box(Lambda^-1 Z)`. -/
+def handleBundleSplit (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "split" req ["zB", "Lambda", "B", "dim"]
+  let d ← parseZonoBundle dops.readExact (← field req "zB")
+  let ⟨r, Λ⟩ ← parseMatColsFixed dops.readExact d.n (← field req "Lambda")
+  let B ← parseIntervalVecFixed dops.readExact d.n (← field req "B")
+  let j ← indexField req "dim" d.n
+  if h : r = d.n then
+    let (a, b) := ZonoBundle.split (h ▸ Λ) B j d.zB
+    pure [aux_set dops "zB1" a, aux_set dops "zB2" b]
+  else throw s!"split: `Lambda` has {r} rows, expected {d.n}"
+
 /-- Every op of this file, without the `zonoBundle.` prefix. -/
 def zonoBundleOpNames : List String :=
   [ "and", "cartProd", "conZonotope", "empty", "enclose", "enlarge", "interval", "isBounded",
     "isIntersecting", "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap",
     "reduce", "reduceCombined", "replace", "representsa", "shrink", "supportFunc", "zonotope",
-    "convHull", "polytope" ]
+    "convHull", "polytope", "split" ]
 
 /-- `op` of `zonoBundle.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -132,6 +147,7 @@ def handleZonoBundleOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Optio
       let a ← parseZonoBundle dops.readExact (← field req "zB")
       let b ← parseZonoBundle dops.readExact (← field req "zB2")
       pure [aux_set dops "zB" (ZonoBundle.cartProd a.zB b.zB)])
+  | "split" => some (handleBundleSplit dops req)
   | "convHull" => some (aux_binary op dops req fun a b => ZonoBundle.linComb a b)
   | "conZonotope" => some (do
       checkFields op req ["zB"]

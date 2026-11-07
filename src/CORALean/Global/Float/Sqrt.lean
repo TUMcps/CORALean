@@ -33,7 +33,7 @@ the sequence from growing. `sqrtDown a = a / sqrtUp a`, below `√a` because the
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   13-October-2026
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -61,11 +61,18 @@ end Sqrt
 
 open Sqrt
 
-/-- `√a` from above, at every `a`; `p` is the number of Newton steps. -/
-def sqrtUp (p : ℕ) (a : 𝕋) : 𝕋 :=
+/-- The Newton iteration alone: `√a` from above with `p` steps, from every `FloatOps`. -/
+def sqrtNewton (p : ℕ) (a : 𝕋) : 𝕋 :=
   let a₀ := maximum zero a
   let s₀ := half (addUp a₀ one)
   sqrtIter a₀ p s₀
+
+/-- `√a` from above, at every `a`: the format's own root if it supplies one, otherwise `p` Newton
+steps. -/
+def sqrtUp (p : ℕ) (a : 𝕋) : 𝕋 :=
+  match sqrtUpOverride (𝕋 := 𝕋) with
+  | some f => f p a
+  | none => sqrtNewton p a
 
 /-- `√a` from below, at every `a`. -/
 def sqrtDown (p : ℕ) (a : 𝕋) : 𝕋 :=
@@ -129,9 +136,9 @@ private theorem toReal_maximum_zero_nonneg (a : 𝕋) : 0 ≤ toReal (maximum ze
   rw [toReal_maximum, toReal_zero]
   exact le_max_left _ _
 
-/-- The computed root is above the real one, whatever the fuel. -/
-theorem le_sqrtUp (p : ℕ) (a : 𝕋) : -- --- CONCL ---
-    Real.sqrt (toReal a) ≤ toReal (sqrtUp p a) := by -- --- PROOF ---
+/-- The Newton root is above the real one, whatever the fuel. -/
+private theorem le_sqrtNewton (p : ℕ) (a : 𝕋) : -- --- CONCL ---
+    Real.sqrt (toReal a) ≤ toReal (sqrtNewton p a) := by -- --- PROOF ---
   have ha := toReal_maximum_zero_nonneg a
   have hsq : Real.sqrt (toReal (maximum zero a)) = Real.sqrt (toReal a) := by
     rw [toReal_maximum, toReal_zero, sqrt_max_zero]
@@ -142,6 +149,19 @@ theorem le_sqrtUp (p : ℕ) (a : 𝕋) : -- --- CONCL ---
   rw [toReal_one] at hadd
   rw [toReal_half]
   nlinarith [sq_nonneg (Real.sqrt (toReal (maximum zero a)) - 1)]
+
+/-- The computed root is above the real one, whatever the fuel. -/
+theorem le_sqrtUp (p : ℕ) (a : 𝕋) : -- --- CONCL ---
+    Real.sqrt (toReal a) ≤ toReal (sqrtUp p a) := by -- --- PROOF ---
+  unfold sqrtUp
+  split
+  · rename_i f hf
+    exact SoundFloatArithmetic.le_sqrtUpOverride hf p a _ (Real.sqrt_nonneg _)
+      (by
+        rcases le_total 0 (toReal a) with h | h
+        · rw [Real.mul_self_sqrt h]; exact le_max_left _ _
+        · rw [Real.sqrt_eq_zero_of_nonpos h]; simp)
+  · exact le_sqrtNewton p a
 
 /-- The computed root from below is under the real one, whatever the fuel. -/
 theorem sqrtDown_le (p : ℕ) (a : 𝕋) : -- --- CONCL ---

@@ -24,7 +24,7 @@ branch opens; a result obtained through them carries no guarantee whatsoever.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
--- Last update:   30-September-2026
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -54,6 +54,8 @@ scoped instance : FloatOps NearestFloat where
   half a := ⟨Binary64.half a.val⟩
   -- the machine's `<`: at round-to-nearest `a + 2⁻⁶⁴` rounds back to `a`, no strict test
   ltStrict a b := decide (a.val < b.val)
+  -- the machine's correctly rounded `sqrt`; the issue-274 witness is Newton stopping 1 ulp short
+  sqrtUpOverride := some NearestFloat.sqrt
 
 /-- The six rounding laws from the false `nearestUnsound`; the rest are `Float`'s own. -/
 scoped instance : SoundFloatArithmetic NearestFloat where
@@ -72,6 +74,9 @@ scoped instance : SoundFloatArithmetic NearestFloat where
   toReal_le_of_le h := Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)
   toReal_half a := Binary64.trustedHardware.toReal_half a.val
   toReal_lt_of_ltStrict h := nearestUnsound.float_lt_of_lt _ _ (of_decide_eq_true h)
+  le_sqrtUpOverride hf p a := by
+    cases hf
+    exact nearestUnsound.float_le_sqrt p a
 
 /-- Round-to-nearest-even at `p` bits, one per pair of directions. -/
 scoped instance {p : ℕ} : FloatOps (NearestDyadic p) where
@@ -116,6 +121,7 @@ scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
     obtain ⟨h₁, h₂⟩ := Bool.and_eq_true_iff.mp h
     exact lt_of_le_not_ge (Dyadic.toReal_le_of_le h₁)
       fun h₃ => by simp [(Dyadic.le_iff b.val a.val).mpr h₃] at h₂
+  le_sqrtUpOverride hf := by cases hf
 
 /-- The bits, decoded exactly, as for `Float`: no `nearestUnsound` involved. -/
 scoped instance : ToRat NearestFloat where

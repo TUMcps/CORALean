@@ -4,6 +4,7 @@ import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
+import CORALean.ContSet.Zonotope.Float.Operations.MatZonotope
 import CORALean.Examples.Oracle.Ops.SetCodec
 
 /-!
@@ -25,7 +26,7 @@ of the facet enumeration) for the zonotope `polytope`, which needs `n ≥ 1`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   ---
+-- Last update:   07-November-2026
 -- Reviewed:      ---
 
 
@@ -56,7 +57,7 @@ def intervalConversionNames : List String :=
 
 /-- The conversions of the zonotope, without the `zonotope.` prefix. -/
 def zonotopeConversionNames : List String :=
-  [ "polytope", "conZonotope", "zonoBundle", "capsule", "ellipsoid" ]
+  [ "polytope", "conZonotope", "zonoBundle", "capsule", "ellipsoid", "matZonotope" ]
 
 /-- `interval.<class>`: `I` converted. -/
 def handleIntervalConversion (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
@@ -88,6 +89,7 @@ def handleZonotopeConversion (dops : DtypeOps 𝕋) (op : String) (req : Json) :
   match op with
   | "conZonotope" => pure [("cZ", printConZonotope dops.showExact (Zonotope.conZonotope d.Z))]
   | "zonoBundle" => pure [("zB", printZonoBundle dops.showExact (Zonotope.zonoBundle d.Z))]
+  | "matZonotope" => pure [("mZ", printMatZonotope dops.showExact (Zonotope.matZonotope d.Z))]
   | "capsule" =>
     pure [("C", printCapsule dops.showExact (Zonotope.capsule (← natField req "k") d.Z))]
   | "ellipsoid" =>

@@ -77,6 +77,7 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   toReal_le_of_le := Dyadic.toReal_le_of_le
   toReal_half := Dyadic.toReal_half
   -- the default `ltStrict` is strict, by the fields above
+  le_sqrtUpOverride hf := by cases hf
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Dyadic.toReal
     (by
       show Dyadic.toReal (⟨1, 0⟩ : Dyadic p) = 1

@@ -58,6 +58,7 @@ noncomputable instance : SoundFloatArithmetic ℝ where
   toReal_maximum _ _ := rfl
   toReal_le_of_le h := of_decide_eq_true h
   toReal_half _ := rfl
+  le_sqrtUpOverride hf := by cases hf
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict (fun x : ℝ => x) rfl (fun _ => rfl)
     (fun _ _ => le_refl _) (fun h => of_decide_eq_true h) h
 
