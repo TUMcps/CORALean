@@ -467,6 +467,9 @@ github-mirror:
     - mkdir -p ~/.ssh && chmod 700 ~/.ssh
     - printf '%s' "$GITHUB_DEPLOY_KEY" | base64 -d > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
     - echo "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl" > ~/.ssh/known_hosts
+    # GitHub's main first: a clone without it cannot see that the push is a fast-forward ("fetch
+    # first"); a main that really diverged still refuses the push.
+    - git fetch -q git@github.com:TUMcps/CORALean.git main
     - git push git@github.com:TUMcps/CORALean.git "$CI_COMMIT_SHA:refs/heads/main"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $GITHUB_DEPLOY_KEY
