@@ -306,18 +306,25 @@ def parseBoxMat (j : Json) : Except String (DynBoxMat 𝕋) := do
     pure ⟨lo.r, lo.c, ⟨lo.M, h.1 ▸ h.2 ▸ hi.M⟩⟩
   else throw s!"interval `inf` is {lo.r}×{lo.c} but `sup` is {hi.r}×{hi.c}"
 
-/-- `{"c":Mat(n,1),"G":Mat(n,h),"E":Interval(n,1)}`, `n` read off `c`. -/
+/-- The error box `E` of a zonotope of dimension `n`: the zero box where the request has none, so
+`{"c","G"}` is a zonotope. -/
+private def aux_errorBox (n : Nat) (j : Json) : Except String (Interval (Vec 𝕋 n)) :=
+  match fieldOpt j "E" with
+  | none => pure ⟨fun _ => FloatOps.zero, fun _ => FloatOps.zero⟩
+  | some e => parseIntervalVecFixed readD n e
+
+/-- `{"c":Mat(n,1),"G":Mat(n,h),"E":Interval(n,1)}` (`E` optional, zero), `n` read off `c`. -/
 def parseZonotope (j : Json) : Except String (DynZonotope 𝕋) := do
   let ⟨n, cVec⟩ ← aux_parseVec readD (← field j "c")
   let ⟨h, gMat⟩ ← aux_parseMatRowsFixed readD n (← field j "G")
-  let eBox ← parseIntervalVecFixed readD n (← field j "E")
+  let eBox ← aux_errorBox readD n j
   pure ⟨n, { h := h, c := cVec, G := fun j i => gMat i j, I_error := eBox }⟩
 
 /-- The same, at an already-known `n` -- the second zonotope of a two-operand op. -/
 def parseZonotopeFixed (n : Nat) (j : Json) : Except String (Zonotope (Vec 𝕋 n)) := do
   let cVec ← aux_parseVecFixed readD n (← field j "c")
   let ⟨h, gMat⟩ ← aux_parseMatRowsFixed readD n (← field j "G")
-  let eBox ← parseIntervalVecFixed readD n (← field j "E")
+  let eBox ← aux_errorBox readD n j
   pure { h := h, c := cVec, G := fun j i => gMat i j, I_error := eBox }
 
 /-- `v` as the wire column vector. -/

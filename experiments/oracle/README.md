@@ -466,6 +466,47 @@ at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA
 | `affineSolution`, `particularSolution_constant`, `particularSolution_timeVarying` | `V`, `r`, `taylorTerms` | `LinearSys.inputSolutionFloat`; `Z` |
 | `errorSolution_adaptive` | `Vdyn`, `Vstat` (optional), `timeStep`, `taylorTerms` | `LinearSys.errorSolutionAdaptiveFloat`; `Z` |
 
+`location.` and `transition.` (`Ops/HybridOps.lean`; the hybrid-automaton steps of CORA.cpp's benchmarks).
+A location's flow is the system's fields `A`, `B`, `c`, `E` at the top level, with the input sets `U`,
+`W` (zonotopes of the input and disturbance spaces, the origin when absent); the invariant and the
+transitions are not needed by these steps. A polytope is `{"A","b","Ae","be"}`, a constrained
+zonotope `{"c","G","A","b"}`, a zonotope `{"c","G"}` (`E`, the error box, is zero when absent); `Bs`
+and `R` are lists:
+
+| op | fields besides the system | float definition |
+|---|---|---|
+| `location.potInt` | `guards` (polytopes), `targets` (target location of each guard), `finalLoc`, `R` (zonotopes) | `Location.potInt`; `hits`, `[transition, set]` pairs, 0-based |
+| `location.calcBasis` | `n`, `enclose` (`"box"`, or a list) | `Location.calcBasisBox`; `B`, one matrix per entry. `pca`, `flow`: error, no float definition |
+| `location.checkFlow` | `hyperplane` (`{"normal","d"}`), `R` | `Location.checkFlowFloat`; `keep`, the indices of the sets the flow may carry through |
+| `location.guardIntersect_zonoGirard` | `Bs`, `R0`, `R`, `normal`, `gamma` | `Location.guardIntersectZonoGirardFloat` (a dual bound, not Girard's dichotomic search); `zB` |
+| `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope) | `Location.guardIntersectNondetFloat`; `zB` |
+| `location.guardIntersect_conZonotope` | `Bs`, `R0`, `R`, `guard`, `guardOrder` | `Location.guardIntersectPolytopeFloat` on the sets reduced to `guardOrder` (`Reduce.reduce`); `zB` |
+| `location.reach` | `X0`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder` | `Location.reachFloat`: one stay, the windows of `reachFloatInput` over the whole horizon, no invariant exit; `timeInterval` |
+| `transition.jump` | `W`, `w`, `Rg` | `Transition.jumpFloat`, `W Rg + w`; `Z` |
+
+`linParamSys.` (`Ops/LinParamSysOps.lean`). `A` is an interval matrix `{"inf","sup"}`, a plain matrix is the point
+interval, and a matrix zonotope is not read. `B` is likewise optional, and so is `c`:
+
+| op | fields | float definition |
+|---|---|---|
+| `reach` | `A`, `B`, `c`, `X0`, `U`, `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder` | `LinParamSys.reachFloat`, with `B`, `c` or `U` `.reachFloatInput`: window `k` from the first by `[e^{[A] t_k}]` (not CORA's `post`), the Taylor order raised until admissible; `timeInterval` |
+
+`nonlinearSys.` (`Ops/NonlinearSysOps.lean`). The dynamics are a tree in the request, `f`, a list of `n`
+trees. A leaf is `{"x":i}`, `{"u":j}` or `{"const":scalar}`; an operation is `{"op":name,"args":[...]}` with
+`name` one of `add`, `sub`, `mul`, `div` (two arguments), `neg`, `sin`, `cos`, `exp`, `sqrt` (one) and `pow`
+(one argument, plus an integer `"exponent"`, negative allowed). `tan` is refused, its bound can be infinite.
+The tree is evaluated over boxes by the interval natural extension and differentiated symbolically, which
+gives the `FloatHessModel` (`f`, `jacX`, `jacU`, `hess`); that this model encloses the field is by
+construction and not proved in Lean. An operand outside a function's domain (a divisor box holding 0,
+`sqrt` of a negative box) is not refused but evaluated by CORALean's definition. The elementary functions are
+CORALean's interval definitions, tuned by `p`; their cost grows with `p` and the tree depth, and is high at the
+sound dtypes.
+
+| op | fields | float definition |
+|---|---|---|
+| `nonlinearSys.reach` | `n`, `m`, `f`, `p`, `X0`, `U` (zonotope of the inputs, optional), `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `alg` (`lin`, `poly`), `errorOrder` (`poly`) | `NonlinearSys.FloatHessModel.reachAlgFloat`; `timeInterval`, the windows `R(tau_k)` |
+| `nonlinearSys.linReach` | as `reach` with `R` in place of `X0`, `tStart`, `tFinal` | `FloatHessModel.linReachFloat`, one step: the region check, the linearization at the centre, the Hessian remainder over the region; `timeInterval`, `timePoint` |
+
 `specification.` (`Ops/SpecificationOps.lean`):
 
 | op | fields | float definition |
@@ -540,8 +581,10 @@ Rows of the further classes not served, by reason:
 * A class without a wire format: `conPolyZono`, `spectraShadow`, `levelSet`, `matPolytope`, and
   every constructor, which CORALean states as a `Set`.
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
-  function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError`,
-  `linearSysDT` and `nonlinearSys`. They take witnesses or tuning records, or return a real-valued
+  function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError` and
+  `linearSysDT`. `nonlinearSys`: the adaptive and inner algorithms, and tensor order 3.
+* Hybrid automata: `pca` and `flow` bases, `guardIntersect` (grouping the hits by guard), `hybridAutomaton.reach`.
+  `linParamSys`: `initReach` and `post` of CORA (mapping matrices), a matrix-zonotope `A` after the first window. They take witnesses or tuning records, or return a real-valued
   field (`LinParamSysDT.c`).
 
 ## Self-test
