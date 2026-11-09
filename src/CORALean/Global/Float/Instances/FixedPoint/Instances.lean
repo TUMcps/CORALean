@@ -79,6 +79,7 @@ instance {f : ℕ} : SoundFloatArithmetic (FixedPoint f) where
   toReal_half := FixedPoint.toReal_half
   -- the default `ltStrict` is strict, by the fields above
   le_sqrtUpOverride hf := by cases hf
+  elemOverride_exact he := by cases he
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict FixedPoint.toReal
     (by
       show FixedPoint.toReal (⟨1, 0⟩ : FixedPoint f) = 1

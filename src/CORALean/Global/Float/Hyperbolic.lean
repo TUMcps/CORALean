@@ -85,8 +85,14 @@ private theorem squareDownIter_nonneg (n : ℕ) {u : 𝕋} (hu : 0 ≤ toReal u)
 
 /-- What makes the reciprocals above it total: a lower bound on an exponential
 is never negative, so `1 + expDown a` is never below one. -/
-private theorem aux_expDown_nonneg (n : ℕ) (a : 𝕋) : 0 ≤ toReal (expDown n a) :=
-  squareDownIter_nonneg n (seedDown_nonneg _)
+private theorem aux_expDown_nonneg (n : ℕ) (a : 𝕋) : -- --- CONCL ---
+    0 ≤ toReal (expDown n a) := by -- --- PROOF ---
+  unfold expDown
+  split
+  · next e he =>
+    rw [(SoundFloatArithmetic.elemOverride_std e he).2.2.1 a]
+    exact (Real.exp_pos _).le
+  · exact squareDownIter_nonneg n (seedDown_nonneg _)
 
 end
 

@@ -37,6 +37,14 @@ and numpy compute it. So `normUp`, `Ellipsoid.radius`, `interval.sqrt` and every
 with IEEE `sqrt` bit for bit at `nearest`; the number of Newton steps `p` is then ignored. The sound dtypes
 keep Newton.
 
+The elementary functions are such a field too (`FloatOps.elemOverride`): at `nearest`, `sin`, `cos`, `exp`,
+`log`, `tan` and `atan` are the machine's (libm's) result at both interval endpoints, as in CORA, CORA.cpp
+and numpy, instead of CORALean's bracketing series; the tuning parameters `p`, `k` are then ignored. That is
+`interval.sin`, `.cos`, `.exp`, `.log`, `.tan`, `.atan` and `nonlinearSys.*` at `nearest`, and it costs a
+fraction of the series (the 2-state `sin` fixture 3008 of `nonlinearSys.reach` went from 3.3 s to the order
+of 0.4 s). The law for it is a field of the false axiom of `Axioms`; the sound dtypes keep the series.
+`pow` with a real exponent has no float definition (`Interval.power` is for integers) and is not served.
+
 Every strict test of a float operation is the dtype's own `ltStrict`, a field of `FloatOps`: for the
 sound dtypes `a` plus `2^-64`, rounded up, is at most `b`, a strict order wherever `addUp` rounds
 up. At `nearest` that sum rounds back to `a` for every `a` above about `2^-11`, so the default would
@@ -477,6 +485,7 @@ and `R` are lists:
 |---|---|---|
 | `location.potInt` | `guards` (polytopes), `targets` (target location of each guard), `finalLoc`, `R` (zonotopes) | `Location.potInt`; `hits`, `[transition, set]` pairs, 0-based |
 | `location.calcBasis` | `n`, `enclose` (`"box"`, or a list) | `Location.calcBasisBox`; `B`, one matrix per entry. `pca`, `flow`: error, no float definition |
+| `location.guardGroups` | `hits`, `[transition, set]` pairs as `location.potInt` returns them | `Location.guardGroups`: CORA's `aux_groupSets` and `aux_removeGaps`; `groups`, one `{"transition","sets","minInd","maxInd"}` per crossing, in CORA's order (split-off parts to the front, newest first) |
 | `location.checkFlow` | `hyperplane` (`{"normal","d"}`), `R` | `Location.checkFlowFloat`; `keep`, the indices of the sets the flow may carry through |
 | `location.guardIntersect_zonoGirard` | `Bs`, `R0`, `R`, `normal`, `gamma` | `Location.guardIntersectZonoGirardFloat` (a dual bound, not Girard's dichotomic search); `zB` |
 | `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope) | `Location.guardIntersectNondetFloat`; `zB` |
@@ -493,8 +502,10 @@ interval, and a matrix zonotope is not read. `B` is likewise optional, and so is
 
 `nonlinearSys.` (`Ops/NonlinearSysOps.lean`). The dynamics are a tree in the request, `f`, a list of `n`
 trees. A leaf is `{"x":i}`, `{"u":j}` or `{"const":scalar}`; an operation is `{"op":name,"args":[...]}` with
-`name` one of `add`, `sub`, `mul`, `div` (two arguments), `neg`, `sin`, `cos`, `exp`, `sqrt` (one) and `pow`
-(one argument, plus an integer `"exponent"`, negative allowed). `tan` is refused, its bound can be infinite.
+`name` one of `add`, `sub`, `mul`, `div` (two arguments), `neg`, `sin`, `cos`, `exp`, `sqrt`, `log`, `atan`,
+`tan` (one) and `pow` (one argument, plus an integer `"exponent"`, negative allowed). `tan` is bounded only
+where the range is certified free of poles; a box of the run where it is not poisons the result with a NaN,
+and the op answers with an error (a dtype without a NaN, `dyadic:p` or `fixedpoint:k`, refuses `tan` at once).
 The tree is evaluated over boxes by the interval natural extension and differentiated symbolically, which
 gives the `FloatHessModel` (`f`, `jacX`, `jacU`, `hess`); that this model encloses the field is by
 construction and not proved in Lean. An operand outside a function's domain (a divisor box holding 0,

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.Exp
 public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
@@ -74,10 +75,22 @@ open Log
 
 /-- `log a` from below, for `1 ≤ a`. `n` is `expUp`'s precision and `k` the
 number of bisection steps; the bracket `[0, a]` holds `log a`. -/
-def logDown (n k : ℕ) (a : 𝕋) : 𝕋 := logDownIter n a k zero a
+def logDownAlg (n k : ℕ) (a : 𝕋) : 𝕋 := logDownIter n a k zero a
+
+/-- `log a` from below, or the format's own `log` if it supplies one. -/
+def logDown (n k : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.log a
+  | none => logDownAlg n k a
 
 /-- `log a` from above, for `0 < a`, bisecting the same bracket. -/
-def logUp (n k : ℕ) (a : 𝕋) : 𝕋 := logUpIter n a k zero a
+def logUpAlg (n k : ℕ) (a : 𝕋) : 𝕋 := logUpIter n a k zero a
+
+/-- `log a` from above, or the format's own `log` if it supplies one. -/
+def logUp (n k : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.log a
+  | none => logUpAlg n k a
 
 open SoundFloatArithmetic
 
@@ -134,9 +147,9 @@ private theorem le_logUpIter (n : ℕ) (a : 𝕋) : -- --- CONCL ---
 
 /-- The lower enclosure. `1 ≤ a` is what certifies the left endpoint `zero`, and
 the range bound is `expUp`'s, which no candidate under `a` escapes. -/
-theorem logDown_le (n k : ℕ) (a : 𝕋) (h1 : 1 ≤ toReal a)
+theorem logDownAlg_le (n k : ℕ) (a : 𝕋) (h1 : 1 ≤ toReal a)
     (hn : toReal a ≤ 2 ^ n / 2) : -- --- CONCL ---
-    toReal (logDown n k a) ≤ Real.log (toReal a) := by -- --- PROOF ---
+    toReal (logDownAlg n k a) ≤ Real.log (toReal a) := by -- --- PROOF ---
   have hpos : (0:ℝ) < toReal a := lt_of_lt_of_le zero_lt_one h1
   have hz : Real.exp (toReal (zero : 𝕋)) ≤ toReal a := by
     rw [toReal_zero, Real.exp_zero]
@@ -144,17 +157,37 @@ theorem logDown_le (n k : ℕ) (a : 𝕋) (h1 : 1 ≤ toReal a)
   have hzb : toReal (zero : 𝕋) ≤ 2 ^ n / 2 := by
     rw [toReal_zero]
     positivity
-  rw [logDown, Real.le_log_iff_exp_le hpos]
+  rw [logDownAlg, Real.le_log_iff_exp_le hpos]
   exact logDownIter_le n a k zero a hz hzb hn
 
 /-- The upper enclosure, whose one hypothesis is what keeps `Real.log` off its
 junk value; `a ≤ exp a` is what certifies the right endpoint. -/
-theorem le_logUp (n k : ℕ) (a : 𝕋) (ha : 0 < toReal a) :
-    Real.log (toReal a) ≤ toReal (logUp n k a) := by
+theorem le_logUpAlg (n k : ℕ) (a : 𝕋) (ha : 0 < toReal a) :
+    Real.log (toReal a) ≤ toReal (logUpAlg n k a) := by
   have hz : toReal a ≤ Real.exp (toReal a) := by
     linarith [Real.add_one_le_exp (toReal a)]
-  rw [logUp, Real.log_le_iff_le_exp ha]
+  rw [logUpAlg, Real.log_le_iff_le_exp ha]
   exact le_logUpIter n a k zero a hz
+
+/-- The lower enclosure; the hypotheses are only the algorithm's, the format's own `log` being
+exact where positive. -/
+theorem logDown_le (n k : ℕ) (a : 𝕋) (h1 : 1 ≤ toReal a)
+    (hn : toReal a ≤ 2 ^ n / 2) : -- --- CONCL ---
+    toReal (logDown n k a) ≤ Real.log (toReal a) := by -- --- PROOF ---
+  unfold logDown
+  split
+  · next e he =>
+    have hpos : 0 < toReal a := lt_of_lt_of_le zero_lt_one h1
+    exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.1 a hpos).le
+  · exact logDownAlg_le n k a h1 hn
+
+/-- The upper enclosure. -/
+theorem le_logUp (n k : ℕ) (a : 𝕋) (ha : 0 < toReal a) :
+    Real.log (toReal a) ≤ toReal (logUp n k a) := by
+  unfold logUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.1 a ha).ge
+  · exact le_logUpAlg n k a ha
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

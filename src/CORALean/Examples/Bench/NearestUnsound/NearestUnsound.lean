@@ -4,12 +4,13 @@ import CORALean.Examples.Bench.NearestUnsound.NearestFloat
 /-!
 # What "round-to-nearest is sound" would say — and it is FALSE
 
-One property: twelve FALSE conjuncts, the six rounding laws `SoundFloatArithmetic` asks of a scalar,
-stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`, and `float_lt_of_lt`,
-the one true one (the machine's `<`, `NearestFloat`'s `ltStrict`). Rounding to nearest lands on the
-closer side of the exact result, so the twelve fail, at `NearestDyadic` refutably. `Axioms` assumes
-the property anyway, once, so that the unchanged library runs on the arithmetic CORA uses, the
-paper's baseline and nothing else. Bundled like `Binary64.IsTrustedHardware`: one name in every
+One property: FALSE conjuncts, the six rounding laws `SoundFloatArithmetic` asks of a scalar,
+stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`, the machine's square
+root and elementary functions (`float_le_sqrt`, `float_elem_exact`), and `float_lt_of_lt`,
+the one true one (the machine's `<`). Rounding to nearest lands on the closer side of the exact
+result, so the twelve rounding laws fail, at `NearestDyadic` refutably. `Axioms` assumes the
+property anyway, once, so that the unchanged library runs on the arithmetic CORA uses, the paper's
+baseline and nothing else. Bundled like `Binary64.IsTrustedHardware`: one name in every
 `#print axioms` that reaches either scalar. All else it gets right is proved in `Instances`.
 
 ## References
@@ -73,6 +74,11 @@ structure IsNearestUnsound : Prop where
   below the exact root (`sqrtUp` here is the machine's `sqrt`, rounded to nearest). -/
   float_le_sqrt : ∀ (p : ℕ) (a : NearestFloat) (r : ℝ), 0 ≤ r → r * r ≤ max a.toReal 0 →
     r ≤ (NearestFloat.sqrt p a).toReal
+  /-- FALSE: the machine's `sin` is correctly rounded, not exact (`sin 1` is no binary64 number),
+  and so its `cos`, `exp`, `log`, `tan` and `atan`; stated of every reference `R` only because
+  the interface layer cannot name `Real.sin`, the library spends it at Mathlib's. -/
+  float_elem_exact : ∀ R : CORALean.Float.RealElem,
+    CORALean.Float.ElemOverride.IsExact NearestFloat.toReal NearestFloat.elem R
   /-- The one conjunct that is TRUE of the machine, assumed because `Float` is opaque: the native
   `a < b` of two doubles is a strict inequality of what they denote. It is here, not in
   `trustedHardware`, so that the trusted base of the sound instances does not grow. -/

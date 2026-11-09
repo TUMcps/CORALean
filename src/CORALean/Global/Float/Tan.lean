@@ -42,14 +42,14 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 /-- `tan x` from below, where `cosDown n x` is positive. -/
-def tanDown (n : ℕ) (x : 𝕋) : 𝕋 :=
+def tanDownAlg (n : ℕ) (x : 𝕋) : 𝕋 :=
   let cl := cosDown n x
   let cu := cosUp n x
   let sl := sinDown n x
   minimum (divDown sl cl) (divDown sl cu)
 
 /-- `tan x` from above, where `cosDown n x` is positive. -/
-def tanUp (n : ℕ) (x : 𝕋) : 𝕋 :=
+def tanUpAlg (n : ℕ) (x : 𝕋) : 𝕋 :=
   let cl := cosDown n x
   let cu := cosUp n x
   let su := sinUp n x
@@ -57,18 +57,42 @@ def tanUp (n : ℕ) (x : 𝕋) : 𝕋 :=
 
 /-- `tan x` from below, where `cosUp n x` is negative: `tan x = (-sin x) / (-cos x)`, the quotient
 by the positive `-cos x`. -/
-def tanDownNeg (n : ℕ) (x : 𝕋) : 𝕋 :=
+def tanDownNegAlg (n : ℕ) (x : 𝕋) : 𝕋 :=
   let cl := cosDown n x
   let cu := cosUp n x
   let su := sinUp n x
   minimum (divDown (neg su) (neg cu)) (divDown (neg su) (neg cl))
 
 /-- `tan x` from above, where `cosUp n x` is negative. -/
-def tanUpNeg (n : ℕ) (x : 𝕋) : 𝕋 :=
+def tanUpNegAlg (n : ℕ) (x : 𝕋) : 𝕋 :=
   let cl := cosDown n x
   let cu := cosUp n x
   let sl := sinDown n x
   maximum (divUp (neg sl) (neg cu)) (divUp (neg sl) (neg cl))
+
+/-- `tanDown`, or the format's own `tan` if it supplies one. -/
+def tanDown (n : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.tan x
+  | none => tanDownAlg n x
+
+/-- `tanUp`, or the format's own `tan` if it supplies one. -/
+def tanUp (n : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.tan x
+  | none => tanUpAlg n x
+
+/-- `tanDownNeg`, or the format's own `tan` if it supplies one. -/
+def tanDownNeg (n : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.tan x
+  | none => tanDownNegAlg n x
+
+/-- `tanUpNeg`, or the format's own `tan` if it supplies one. -/
+def tanUpNeg (n : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.tan x
+  | none => tanUpNegAlg n x
 
 /-- A float below `π`: `3 + 1/8`, each sum rounded down. The widest range the pole test of
 `Interval.tan` accepts. -/
@@ -95,8 +119,8 @@ private theorem div_between (s : ℝ) {c cl cu : ℝ} (hl : 0 < cl) (h1 : cl ≤
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
-    toReal (tanDown n x) ≤ Real.tan (toReal x) := by -- --- PROOF ---
+theorem tanDownAlg_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
+    toReal (tanDownAlg n x) ≤ Real.tan (toReal x) := by -- --- PROOF ---
   have h1 := cosDown_le n x
   have h2 := le_cosUp n x
   have hcu : 0 < toReal (cosUp n x) := by linarith
@@ -104,12 +128,12 @@ theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- ---
   have hb := div_between (toReal (sinDown n x)) hc h1 h2
   rw [Real.tan_eq_sin_div_cos]
   refine le_trans ?_ (le_trans hb.1 (div_le_div_of_nonneg_right (sinDown_le n x) hcx.le))
-  simp only [tanDown, toReal_minimum]
+  simp only [tanDownAlg, toReal_minimum]
   exact min_le_min (divDown_le_div _ _ hc) (divDown_le_div _ _ hcu)
 
 /-- `tanUp` is an upper bound of `tan` where `cosDown` is positive. -/
-theorem le_tanUp (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
-    Real.tan (toReal x) ≤ toReal (tanUp n x) := by -- --- PROOF ---
+theorem le_tanUpAlg (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- CONCL ---
+    Real.tan (toReal x) ≤ toReal (tanUpAlg n x) := by -- --- PROOF ---
   have h1 := cosDown_le n x
   have h2 := le_cosUp n x
   have hcu : 0 < toReal (cosUp n x) := by linarith
@@ -117,12 +141,12 @@ theorem le_tanUp (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) : -- --- C
   have hb := div_between (toReal (sinUp n x)) hc h1 h2
   rw [Real.tan_eq_sin_div_cos]
   refine le_trans (le_trans (div_le_div_of_nonneg_right (le_sinUp n x) hcx.le) hb.2) ?_
-  simp only [tanUp, toReal_maximum]
+  simp only [tanUpAlg, toReal_maximum]
   exact max_le_max (div_le_divUp _ _ hc) (div_le_divUp _ _ hcu)
 
 /-- `tanDownNeg` is a lower bound of `tan` where `cosUp` is negative. -/
-theorem tanDownNeg_le (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) : -- --- CONCL ---
-    toReal (tanDownNeg n x) ≤ Real.tan (toReal x) := by -- --- PROOF ---
+theorem tanDownNegAlg_le (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) : -- --- CONCL ---
+    toReal (tanDownNegAlg n x) ≤ Real.tan (toReal x) := by -- --- PROOF ---
   have h1 := cosDown_le n x
   have h2 := le_cosUp n x
   have hcl : 0 < toReal (neg (cosUp n x)) := by rw [toReal_neg]; linarith
@@ -137,12 +161,12 @@ theorem tanDownNeg_le (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) : -- --
     rw [Real.tan_eq_sin_div_cos, neg_div_neg_eq]
   rw [e]
   refine le_trans ?_ (le_trans hb.1 (div_le_div_of_nonneg_right hs hcx.le))
-  simp only [tanDownNeg, toReal_minimum]
+  simp only [tanDownNegAlg, toReal_minimum]
   exact min_le_min (divDown_le_div _ _ hcl) (divDown_le_div _ _ hcu)
 
 /-- `tanUpNeg` is an upper bound of `tan` where `cosUp` is negative. -/
-theorem le_tanUpNeg (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) : -- --- CONCL ---
-    Real.tan (toReal x) ≤ toReal (tanUpNeg n x) := by -- --- PROOF ---
+theorem le_tanUpNegAlg (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) : -- --- CONCL ---
+    Real.tan (toReal x) ≤ toReal (tanUpNegAlg n x) := by -- --- PROOF ---
   have h1 := cosDown_le n x
   have h2 := le_cosUp n x
   have hcl : 0 < toReal (neg (cosUp n x)) := by rw [toReal_neg]; linarith
@@ -157,8 +181,41 @@ theorem le_tanUpNeg (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) : -- --- 
     rw [Real.tan_eq_sin_div_cos, neg_div_neg_eq]
   rw [e]
   refine le_trans (le_trans (div_le_div_of_nonneg_right hs hcx.le) hb.2) ?_
-  simp only [tanUpNeg, toReal_maximum]
+  simp only [tanUpNegAlg, toReal_maximum]
   exact max_le_max (div_le_divUp _ _ hcl) (div_le_divUp _ _ hcu)
+
+/-- `tanDown` is a lower bound of `tan` where `cosDown` is positive; the format's own `tan`
+is exact. -/
+theorem tanDown_le (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) :
+    toReal (tanDown n x) ≤ Real.tan (toReal x) := by
+  unfold tanDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.1 x).le
+  · exact tanDownAlg_le n x hc
+
+/-- `tanUp` is an upper bound of `tan` where `cosDown` is positive. -/
+theorem le_tanUp (n : ℕ) (x : 𝕋) (hc : 0 < toReal (cosDown n x)) :
+    Real.tan (toReal x) ≤ toReal (tanUp n x) := by
+  unfold tanUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.1 x).ge
+  · exact le_tanUpAlg n x hc
+
+/-- `tanDownNeg` is a lower bound of `tan` where `cosUp` is negative. -/
+theorem tanDownNeg_le (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) :
+    toReal (tanDownNeg n x) ≤ Real.tan (toReal x) := by
+  unfold tanDownNeg
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.1 x).le
+  · exact tanDownNegAlg_le n x hc
+
+/-- `tanUpNeg` is an upper bound of `tan` where `cosUp` is negative. -/
+theorem le_tanUpNeg (n : ℕ) (x : 𝕋) (hc : toReal (cosUp n x) < 0) :
+    Real.tan (toReal x) ≤ toReal (tanUpNeg n x) := by
+  unfold tanUpNeg
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.1 x).ge
+  · exact le_tanUpNegAlg n x hc
 
 /-- `piBelow` is below `π`. -/
 theorem piBelow_lt_pi : -- --- CONCL ---

@@ -7,6 +7,8 @@ public import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 public import CORALean.HybridDynamics.Theorems.FlowOuterFloat
 public import CORALean.HybridDynamics.Theorems.FlowOuterSplitFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
+public import CORALean.HybridDynamics.Theorems.GuardGroupsChain
+public import CORALean.HybridDynamics.Theorems.GuardIntersectGroupedOuter
 public import CORALean.HybridDynamics.Theorems.HitHessianNumMemHitHessianMatZono
 public import CORALean.HybridDynamics.Theorems.HitPointMemTaylor
 public import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant

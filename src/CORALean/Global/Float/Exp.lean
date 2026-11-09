@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import Mathlib.Analysis.Complex.Exponential
 public import Mathlib.Analysis.Normed.Field.Basic
@@ -75,11 +76,23 @@ open Exp
 
 /-- `exp a` from below, at every `a`. `n` is the reduction depth: the halvings are exact, but each
 of the `n` squarings rounds, so `n` should stay below the scalar's mantissa width (issue #131). -/
-def expDown (n : ℕ) (a : 𝕋) : 𝕋 := squareDownIter n (seedDown (halfIter n a))
+def expDownAlg (n : ℕ) (a : 𝕋) : 𝕋 := squareDownIter n (seedDown (halfIter n a))
+
+/-- `exp a` from below, or the format's own `exp` if it supplies one. -/
+def expDown (n : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.exp a
+  | none => expDownAlg n a
 
 /-- `exp a` from above, for `toReal a ≤ 2 ^ n / 2`; see the module docstring for why that stays.
 Sound but useless for `n` above the mantissa width, and can overflow the runtime (issue #131). -/
-def expUp (n : ℕ) (a : 𝕋) : 𝕋 := squareUpIter n (seedUp (halfIter n a))
+def expUpAlg (n : ℕ) (a : 𝕋) : 𝕋 := squareUpIter n (seedUp (halfIter n a))
+
+/-- `exp a` from above, or the format's own `exp` if it supplies one. -/
+def expUp (n : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.exp a
+  | none => expUpAlg n a
 
 open SoundFloatArithmetic
 
@@ -181,19 +194,19 @@ private theorem le_squareUpIter (n : ℕ) {u : 𝕋} {s : ℝ}
 
 
 /-- The lower enclosure: seed at `a / 2ⁿ`, then square back. -/
-theorem expDown_le (n : ℕ) (a : 𝕋) : -- --- CONCL ---
-    toReal (expDown n a) ≤ Real.exp (toReal a) := by -- --- PROOF ---
+theorem expDownAlg_le (n : ℕ) (a : 𝕋) : -- --- CONCL ---
+    toReal (expDownAlg n a) ≤ Real.exp (toReal a) := by -- --- PROOF ---
   have hpow : ((2:ℝ) ^ n) ≠ 0 := pow_ne_zero _ two_ne_zero
   have hle := seedDown_le (halfIter n a)
   rw [toReal_halfIter] at hle
   have hstep := squareDownIter_le n (seedDown_nonneg (halfIter n a)) hle
   rw [show (2:ℝ) ^ n * (toReal a / 2 ^ n) = toReal a by field_simp] at hstep
-  rw [expDown]
+  rw [expDownAlg]
   exact hstep
 
 /-- The upper enclosure, whose hypothesis is what puts `a / 2ⁿ` under `1/2`. -/
-theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) : -- --- CONCL ---
-    Real.exp (toReal a) ≤ toReal (expUp n a) := by -- --- PROOF ---
+theorem le_expUpAlg (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) : -- --- CONCL ---
+    Real.exp (toReal a) ≤ toReal (expUpAlg n a) := by -- --- PROOF ---
   have hpow : (0:ℝ) < 2 ^ n := by positivity
   have hy : toReal (halfIter n a) ≤ 1 / 2 := by
     rw [toReal_halfIter, div_le_iff₀ hpow]
@@ -202,8 +215,24 @@ theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) : -- --- CON
   rw [toReal_halfIter] at hle
   have hstep := le_squareUpIter n hle
   rw [show (2:ℝ) ^ n * (toReal a / 2 ^ n) = toReal a by field_simp] at hstep
-  rw [expUp]
+  rw [expUpAlg]
   exact hstep
+
+/-- The lower enclosure: the format's own `exp` is exact. -/
+theorem expDown_le (n : ℕ) (a : 𝕋) :
+    toReal (expDown n a) ≤ Real.exp (toReal a) := by
+  unfold expDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.1 a).le
+  · exact expDownAlg_le n a
+
+/-- The upper enclosure; the hypothesis is only the algorithm's. -/
+theorem le_expUp (n : ℕ) (a : 𝕋) (ha : toReal a ≤ 2 ^ n / 2) :
+    Real.exp (toReal a) ≤ toReal (expUp n a) := by
+  unfold expUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.1 a).ge
+  · exact le_expUpAlg n a ha
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

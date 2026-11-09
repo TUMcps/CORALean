@@ -7,6 +7,10 @@ import CORALean.ContSet.Interval.Float.Operations.Sin
 import CORALean.ContSet.Interval.Float.Operations.Sqrt
 import CORALean.ContSet.Interval.Float.Operations.Times
 import CORALean.Examples.Oracle.Ops.SetCodec
+import CORALean.ContSet.Interval.Float.Operations.Tan
+import CORALean.ContSet.Interval.Float.Operations.Atan
+import CORALean.ContSet.Interval.Float.Operations.Log
+import CORALean.Global.Float.NoNaN
 import CORALean.Specification.Instances
 
 /-!
@@ -17,7 +21,8 @@ extension and differentiated symbolically, which gives the `FloatHessModel` that
 takes. The model's enclosure property is by construction, not checked in Lean; an operand outside
 an elementary function's domain (a division by a box holding 0, `sqrt` of a negative box) is not
 refused but evaluated by CORALean's definition. The tree and the ops are in
-`experiments/oracle/README.md`. `tan` is not served, its bound can be infinite.
+`experiments/oracle/README.md`. `tan` is served where its enclosure is bounded on every box of the
+run, an error otherwise.
 
 ## Inputs
 * `dops` – dtype operations
@@ -56,6 +61,9 @@ inductive DynExpr (𝕋 : Type) where
   | cos (a : DynExpr 𝕋)
   | exp (a : DynExpr 𝕋)
   | sqrt (a : DynExpr 𝕋)
+  | log (a : DynExpr 𝕋)
+  | tan (a : DynExpr 𝕋)
+  | atan (a : DynExpr 𝕋)
   | pow (a : DynExpr 𝕋) (k : Int)
 
 section
@@ -99,6 +107,9 @@ private def aux_diff (n v : Nat) : DynExpr 𝕋 → DynExpr 𝕋
   | .cos a => .neg (aux_mul (.sin a) (aux_diff n v a))
   | .exp a => aux_mul (.exp a) (aux_diff n v a)
   | .sqrt a => .div (aux_diff n v a) (.mul (.const (nsmulUp 2 FloatOps.one)) (.sqrt a))
+  | .log a => .div (aux_diff n v a) a
+  | .tan a => aux_mul (.add .one (.pow (.tan a) 2)) (aux_diff n v a)
+  | .atan a => .div (aux_diff n v a) (.add .one (.pow a 2))
   | .pow a k =>
     -- `k a^(k-1) a'`, the coefficient the integer `k` as a float (exact for small `k`)
     let c : 𝕋 := if 0 ≤ k then nsmulUp k.toNat FloatOps.one
@@ -125,6 +136,13 @@ private def aux_eval {n m : Nat} (p : Nat) (X : Interval (Vec 𝕋 n)) (U : Inte
   | .cos a => Interval.cos p (aux_eval p X U a)
   | .exp a => Interval.exp p (aux_eval p X U a)
   | .sqrt a => Interval.sqrt p (aux_eval p X U a)
+  | .log a => Interval.log p p (aux_eval p X U a)
+  | .atan a => Interval.atan p p (aux_eval p X U a)
+  -- a `tan` not certified bounded poisons its box with a NaN, which no interval op absorbs
+  | .tan a =>
+    let E := Interval.tan p (aux_eval p X U a)
+    ⟨fun _ => (E.lo 0).getD (FloatOps.divUp FloatOps.zero FloatOps.zero),
+      fun _ => (E.hi 0).getD (FloatOps.divUp FloatOps.zero FloatOps.zero)⟩
   | .pow a k =>
     -- a negative exponent is the reciprocal of the positive power
     if 0 ≤ k then Interval.power (aux_eval p X U a) k.toNat
@@ -192,12 +210,21 @@ private partial def aux_parse (dops : DtypeOps 𝕋) (n m : Nat) (j : Json) :
     | "cos", [a] => pure (.cos a)
     | "exp", [a] => pure (.exp a)
     | "sqrt", [a] => pure (.sqrt a)
+    | "log", [a] => pure (.log a)
+    | "atan", [a] => pure (.atan a)
     | "pow", [a] =>
       match (← field j "exponent").getInt? with
       | .ok k => pure (.pow a k)
       | .error _ => throw "pow: `exponent` must be an integer"
-    | "tan", _ => throw "tan is not served: its bound can be infinite, write sin/cos"
+    | "tan", [a] => pure (.tan a)
     | _, _ => throw s!"unknown operation `{op}` or wrong number of arguments"
+
+/-- Whether the tree has a `tan` node. -/
+private def aux_hasTan : DynExpr 𝕋 → Bool
+  | .tan _ => true
+  | .add a b | .sub a b | .mul a b | .div a b => aux_hasTan a || aux_hasTan b
+  | .neg a | .sin a | .cos a | .exp a | .sqrt a | .log a | .atan a | .pow a _ => aux_hasTan a
+  | _ => false
 
 /-- `a` as an exact fraction. -/
 private def aux_ratOf : ExactScalar → ℚ
@@ -222,6 +249,9 @@ private def aux_setup (dops : DtypeOps 𝕋) (req : Json) :
   let fs ← (← arrField req "f").mapM (aux_parse dops n m)
   if h : fs.size = n then
     let f : Fin n → DynExpr 𝕋 := fun i => fs[i.val]'(h ▸ i.isLt)
+    -- an unbounded `tan` is a NaN in the result, so the dtype must have one
+    if fs.any aux_hasTan && !ToRat.isNaN (FloatOps.divUp (FloatOps.zero : 𝕋) FloatOps.zero) then
+      throw "tan: this dtype has no NaN to mark an unbounded enclosure; use a float dtype"
     let alg ← match fieldOpt req "alg" with
       | none => pure NonlinearSys.LinReachAlg.lin
       | some j => match j.getStr?.toOption with
@@ -232,6 +262,10 @@ private def aux_setup (dops : DtypeOps 𝕋) (req : Json) :
     pure ⟨n, m, aux_model (← natField req "p") n m f, alg,
       { Δt := Δt, η := ← natField req "taylorTerms", ρ := ← natField req "zonotopeOrder" }⟩
   else throw s!"`f` has {fs.size} components, expected n = {n}"
+
+/-- The error for a result holding a NaN: only `tan`'s poison can put one there. -/
+private def aux_tanMsg : String :=
+  "the enclosure of `tan` is unbounded on a box of the run (a pole may lie in it)"
 
 /-- The input set, the origin of the input space when absent. -/
 private def aux_input (dops : DtypeOps 𝕋) (req : Json) (m : Nat) :
@@ -248,7 +282,9 @@ def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let R ← parseZonotopeFixed dops.readExact n (← field req "R")
   match fm.linReachFloat alg (← aux_input dops req m) options R with
   | none => throw "linReach: the region check, the order search or the linear step failed"
-  | some (Rti, Rtp) => pure [("timeInterval", printZonotope dops.showExact Rti),
+  | some (Rti, Rtp) =>
+    if !noNaN (𝕋 := 𝕋) (Rti, Rtp) then throw aux_tanMsg
+    else pure [("timeInterval", printZonotope dops.showExact Rti),
       ("timePoint", printZonotope dops.showExact Rtp)]
 
 /-- `nonlinearSys.reach`: `FloatHessModel.reachAlgFloat`, the windows of every step. -/
@@ -268,7 +304,9 @@ def handleNonlinearReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
       tFinal := aux_ratOf (← scalarField req "tFinal") }
   match fm.reachAlgFloat alg params options with
   | none => throw "reach: a step failed, or (tFinal - tStart)/timeStep is not a natural number"
-  | some Rs => pure [("timeInterval", Json.arr (Rs.toArray.map (printZonotope dops.showExact)))]
+  | some Rs =>
+    if !noNaN (𝕋 := 𝕋) Rs then throw aux_tanMsg
+    else pure [("timeInterval", Json.arr (Rs.toArray.map (printZonotope dops.showExact)))]
 
 /-- Every op of this file, without the `nonlinearSys.` prefix. -/
 def nonlinearSysOpNames : List String := [ "linReach", "reach" ]

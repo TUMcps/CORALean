@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.SinCos
 public import CORALean.Global.Float.Sqrt
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
@@ -87,16 +88,28 @@ end InverseTrig
 open InverseTrig
 
 /-- `arctan y` from below, at every `y`. -/
-def atanDown (n k : ℕ) (y : 𝕋) : 𝕋 :=
+def atanDownAlg (n k : ℕ) (y : 𝕋) : 𝕋 :=
   let z := quotLo y (atanDenLo k y) (atanDenHi k y)
   let b := atanBracket n k z
   addDown b.inf b.inf
 
 /-- `arctan y` from above, at every `y`. -/
-def atanUp (n k : ℕ) (y : 𝕋) : 𝕋 :=
+def atanUpAlg (n k : ℕ) (y : 𝕋) : 𝕋 :=
   let z := quotHi y (atanDenLo k y) (atanDenHi k y)
   let b := atanBracket n k z
   addUp b.sup b.sup
+
+/-- `arctan y` from below, or the format's own `arctan` if it supplies one. -/
+def atanDown (n k : ℕ) (y : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.atan y
+  | none => atanDownAlg n k y
+
+/-- `arctan y` from above, or the format's own `arctan` if it supplies one. -/
+def atanUp (n k : ℕ) (y : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.atan y
+  | none => atanUpAlg n k y
 
 /-- `arcsin x` from below, at every `x` (`Real.arcsin` is constant outside `[-1, 1]`). -/
 def asinDown (n k : ℕ) (x : 𝕋) : 𝕋 :=
@@ -385,18 +398,34 @@ private theorem abs_le_one_add_sqrt_one_sub {x : ℝ} (h1 : -1 ≤ x) (h2 : x �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem atanDown_le (n k : ℕ) (y : 𝕋) : toReal (atanDown n k y) ≤ Real.arctan (toReal y) := by
+theorem atanDownAlg_le (n k : ℕ) (y : 𝕋) :
+    toReal (atanDownAlg n k y) ≤ Real.arctan (toReal y) := by
   have hd := atanDen_mem k y
   rw [arctan_eq_two_mul]
   exact twice_lower (quot_mem hd.1 hd.2.1 hd.2.2).1
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_add _) (Real.sqrt_nonneg _)) n k
 
-/-- `atanUp` is an upper bound of `arctan`. -/
-theorem le_atanUp (n k : ℕ) (y : 𝕋) : Real.arctan (toReal y) ≤ toReal (atanUp n k y) := by
+/-- `atanUpAlg` is an upper bound of `arctan`. -/
+theorem le_atanUpAlg (n k : ℕ) (y : 𝕋) :
+    Real.arctan (toReal y) ≤ toReal (atanUpAlg n k y) := by
   have hd := atanDen_mem k y
   rw [arctan_eq_two_mul]
   exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
     (abs_div_one_add_le (abs_le_one_add_sqrt_one_add _) (Real.sqrt_nonneg _)) n k
+
+/-- `atanDown` is a lower bound of `arctan`: the format's own value is exact. -/
+theorem atanDown_le (n k : ℕ) (y : 𝕋) : toReal (atanDown n k y) ≤ Real.arctan (toReal y) := by
+  unfold atanDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2 y).le
+  · exact atanDownAlg_le n k y
+
+/-- `atanUp` is an upper bound of `arctan`. -/
+theorem le_atanUp (n k : ℕ) (y : 𝕋) : Real.arctan (toReal y) ≤ toReal (atanUp n k y) := by
+  unfold atanUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2 y).ge
+  · exact le_atanUpAlg n k y
 
 /-- `asinDown` is a lower bound of `arcsin`. -/
 theorem asinDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
