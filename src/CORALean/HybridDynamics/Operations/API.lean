@@ -1,6 +1,9 @@
 module
 
 public import CORALean.HybridDynamics.Operations.CalcBasisBox
+public import CORALean.HybridDynamics.Operations.GapRuns
+public import CORALean.HybridDynamics.Operations.GuardGroups
+public import CORALean.HybridDynamics.Operations.GuardIntersectGrouped
 public import CORALean.HybridDynamics.Operations.HitHessianMatZono
 public import CORALean.HybridDynamics.Operations.Jump
 public import CORALean.HybridDynamics.Operations.JumpIntersection

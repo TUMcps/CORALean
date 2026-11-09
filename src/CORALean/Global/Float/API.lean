@@ -10,6 +10,7 @@ public import CORALean.Global.Float.TimeOrder
 public import CORALean.Global.Float.NoNaN
 public import CORALean.Global.Float.EuclideanNorm
 public import CORALean.Global.Float.Exp
+public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.Log
 public import CORALean.Global.Float.Sqrt
 public import CORALean.Global.Float.InverseHyperbolic

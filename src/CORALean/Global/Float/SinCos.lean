@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.Float.PowUp
 public import CORALean.Global.Float.DivFact
@@ -123,16 +124,40 @@ end SinCos
 open SinCos
 
 /-- `sin a` from below, at every `a`; `n` is the number of halvings. -/
-def sinDown (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).sl
+def sinDownAlg (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).sl
+
+/-- `sinDown`, or the format's own sin if it supplies one. -/
+def sinDown (n : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.sin a
+  | none => sinDownAlg n a
 
 /-- `sin a` from above, at every `a`. -/
-def sinUp (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).su
+def sinUpAlg (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).su
+
+/-- `sinUp`, or the format's own sin if it supplies one. -/
+def sinUp (n : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.sin a
+  | none => sinUpAlg n a
 
 /-- `cos a` from below, at every `a`. -/
-def cosDown (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).cl
+def cosDownAlg (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).cl
+
+/-- `cosDown`, or the format's own cos if it supplies one. -/
+def cosDown (n : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.cos a
+  | none => cosDownAlg n a
 
 /-- `cos a` from above, at every `a`. -/
-def cosUp (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).cu
+def cosUpAlg (n : ℕ) (a : 𝕋) : 𝕋 := clampUnit (sinCosBox n a).cu
+
+/-- `cosUp`, or the format's own cos if it supplies one. -/
+def cosUp (n : ℕ) (a : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.cos a
+  | none => cosUpAlg n a
 
 open SoundFloatArithmetic
 
@@ -378,20 +403,48 @@ private theorem sinCosBox_holds (n : ℕ) (a : 𝕋) : Holds (toReal a) (sinCosB
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem sinDown_le (n : ℕ) (a : 𝕋) : toReal (sinDown n a) ≤ Real.sin (toReal a) :=
+theorem sinDownAlg_le (n : ℕ) (a : 𝕋) : toReal (sinDownAlg n a) ≤ Real.sin (toReal a) :=
   clampUnit_le (sinCosBox_holds n a).1 (Real.neg_one_le_sin _) (Real.sin_le_one _)
 
-/-- `sinUp` is an upper bound of `sin`. -/
-theorem le_sinUp (n : ℕ) (a : 𝕋) : Real.sin (toReal a) ≤ toReal (sinUp n a) :=
+/-- `sinUpAlg` is an upper bound of `sin`. -/
+theorem le_sinUpAlg (n : ℕ) (a : 𝕋) : Real.sin (toReal a) ≤ toReal (sinUpAlg n a) :=
   le_clampUnit (sinCosBox_holds n a).2.1 (Real.neg_one_le_sin _) (Real.sin_le_one _)
 
-/-- `cosDown` is a lower bound of `cos`. -/
-theorem cosDown_le (n : ℕ) (a : 𝕋) : toReal (cosDown n a) ≤ Real.cos (toReal a) :=
+/-- `cosDownAlg` is a lower bound of `cos`. -/
+theorem cosDownAlg_le (n : ℕ) (a : 𝕋) : toReal (cosDownAlg n a) ≤ Real.cos (toReal a) :=
   clampUnit_le (sinCosBox_holds n a).2.2.1 (Real.neg_one_le_cos _) (Real.cos_le_one _)
 
-/-- `cosUp` is an upper bound of `cos`. -/
-theorem le_cosUp (n : ℕ) (a : 𝕋) : Real.cos (toReal a) ≤ toReal (cosUp n a) :=
+/-- `cosUpAlg` is an upper bound of `cos`. -/
+theorem le_cosUpAlg (n : ℕ) (a : 𝕋) : Real.cos (toReal a) ≤ toReal (cosUpAlg n a) :=
   le_clampUnit (sinCosBox_holds n a).2.2.2 (Real.neg_one_le_cos _) (Real.cos_le_one _)
+
+/-- `sinDown` is a lower bound of `sin`: the format's own value is exact. -/
+theorem sinDown_le (n : ℕ) (a : 𝕋) : toReal (sinDown n a) ≤ Real.sin (toReal a) := by
+  unfold sinDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).1 a).le
+  · exact sinDownAlg_le n a
+
+/-- `sinUp` is an upper bound of `sin`. -/
+theorem le_sinUp (n : ℕ) (a : 𝕋) : Real.sin (toReal a) ≤ toReal (sinUp n a) := by
+  unfold sinUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).1 a).ge
+  · exact le_sinUpAlg n a
+
+/-- `cosDown` is a lower bound of `cos`. -/
+theorem cosDown_le (n : ℕ) (a : 𝕋) : toReal (cosDown n a) ≤ Real.cos (toReal a) := by
+  unfold cosDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.1 a).le
+  · exact cosDownAlg_le n a
+
+/-- `cosUp` is an upper bound of `cos`. -/
+theorem le_cosUp (n : ℕ) (a : 𝕋) : Real.cos (toReal a) ≤ toReal (cosUp n a) := by
+  unfold cosUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.1 a).ge
+  · exact le_cosUpAlg n a
 
 end CORALean.Float
 

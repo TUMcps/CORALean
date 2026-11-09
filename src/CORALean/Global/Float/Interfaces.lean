@@ -50,6 +50,33 @@ namespace CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- The six elementary functions a format may compute itself: each one value, standing for the
+lower and the upper bound alike (so `sinDown n a = sinUp n a = sin a`, the machine's). -/
+structure ElemOverride (𝕋 : Type) where
+  sin : 𝕋 → 𝕋
+  cos : 𝕋 → 𝕋
+  exp : 𝕋 → 𝕋
+  log : 𝕋 → 𝕋
+  tan : 𝕋 → 𝕋
+  atan : 𝕋 → 𝕋
+
+/-- A reference for the six elementary functions, over the reals; the standard one is in
+`ElemOverride.lean`. Data only, so that the interface layer need not name `Real.sin`. -/
+structure RealElem where
+  sin : ℝ → ℝ
+  cos : ℝ → ℝ
+  exp : ℝ → ℝ
+  log : ℝ → ℝ
+  tan : ℝ → ℝ
+  atan : ℝ → ℝ
+
+/-- `e` computes `R`'s functions exactly, read through `toReal` (`log` where positive). -/
+def ElemOverride.IsExact {𝕋 : Type} (toReal : 𝕋 → ℝ) (e : ElemOverride 𝕋) (R : RealElem) : Prop :=
+  (∀ a, toReal (e.sin a) = R.sin (toReal a)) ∧ (∀ a, toReal (e.cos a) = R.cos (toReal a))
+  ∧ (∀ a, toReal (e.exp a) = R.exp (toReal a))
+  ∧ (∀ a, 0 < toReal a → toReal (e.log a) = R.log (toReal a))
+  ∧ (∀ a, toReal (e.tan a) = R.tan (toReal a)) ∧ (∀ a, toReal (e.atan a) = R.atan (toReal a))
+
 /-- The operations a machine float offers: each rounding direction, and the exact ones. -/
 class FloatOps (𝕋 : Type) where
   zero : 𝕋
@@ -82,6 +109,10 @@ class FloatOps (𝕋 : Type) where
   default there is none and `sqrtUp` is the Newton iteration of `Sqrt.lean`; the round-to-nearest
   bench baseline supplies the machine's square root. `SoundFloatArithmetic` constrains it. -/
   sqrtUpOverride : Option (ℕ → 𝕋 → 𝕋) := none
+  /-- The elementary functions the format computes itself, one value for both directions; none by
+  default, then the bracketing algorithms of `SinCos.lean` and its siblings. See the module
+  docstring. -/
+  elemOverride : Option (ElemOverride 𝕋) := none
 
 open FloatOps
 
@@ -128,6 +159,10 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   which has none (`by cases hf`); `sqrtUp` is then the Newton iteration, sound by `le_sqrtUp`. -/
   le_sqrtUpOverride {f : ℕ → 𝕋 → 𝕋} (hf : sqrtUpOverride = some f) (p : ℕ) (a : 𝕋) :
       ∀ r : ℝ, 0 ≤ r → r * r ≤ max (toReal a) 0 → r ≤ toReal (f p a)
+  /-- A format's own elementary functions are exact at every reference `R` (`ElemOverride.lean`
+  says why `R` is quantified); vacuous for the default, which has none. -/
+  elemOverride_exact {e : ElemOverride 𝕋} (he : elemOverride = some e) (R : RealElem) :
+      ElemOverride.IsExact toReal e R
 
 /-- The real ambient type a stored one denotes, and the reading: a vector of `𝕋`
 reads as a vector of ℝ, a matrix as a matrix. -/

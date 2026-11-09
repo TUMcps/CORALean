@@ -67,6 +67,7 @@ instance {fmt : IEEEFormat} : SoundFloatArithmetic (IEEE fmt) where
   toReal_half := IEEE.toReal_half
   -- the default `ltStrict` is strict, by the fields above
   le_sqrtUpOverride hf := by cases hf
+  elemOverride_exact he := by cases he
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict IEEE.toReal
     (by
       show Dyadic.toReal (⟨1, 0⟩ : Dyadic fmt.p) = 1

@@ -51,6 +51,17 @@ def div (a b : NearestFloat) : NearestFloat := ⟨a.val / b.val⟩
 steps is ignored. -/
 def sqrt (_p : ℕ) (a : NearestFloat) : NearestFloat := ⟨Float.sqrt a.val⟩
 
+/-- The machine's (libm's) elementary functions, used as the lower and the upper bound alike:
+`sinDown`, `sinUp`, `expUp`, `logDown`, `atanUp` and the others; the number of halvings, of
+bisection steps and of Newton steps is ignored. -/
+def elem : ElemOverride NearestFloat where
+  sin a := ⟨Float.sin a.val⟩
+  cos a := ⟨Float.cos a.val⟩
+  exp a := ⟨Float.exp a.val⟩
+  log a := ⟨Float.log a.val⟩
+  tan a := ⟨Float.tan a.val⟩
+  atan a := ⟨Float.atan a.val⟩
+
 end NearestFloat
 
 end CORALean.Bench

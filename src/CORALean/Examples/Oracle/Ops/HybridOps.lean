@@ -3,6 +3,7 @@ import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.Examples.Oracle.Ops.LinearSysOps
 import CORALean.Examples.Oracle.Ops.SetCodec
 import CORALean.HybridDynamics.Operations.CalcBasisBox
+import CORALean.HybridDynamics.Operations.GuardGroups
 import CORALean.HybridDynamics.Operations.CheckFlowFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
@@ -187,6 +188,22 @@ def handleGuardConZonotope (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectPolytopeFloat Bs
     (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
 
+/-- `location.guardGroups`: `Location.guardGroups`, the hits grouped by guard and split at gaps. -/
+def handleLocationGuardGroups (_dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "guardGroups" req ["hits"]
+  let hits ← (← arrField req "hits").mapM fun h => do
+    let a ← match h with
+      | .arr a => pure a
+      | _ => throw "guardGroups: every hit is `[transition, set]`"
+    if a.size ≠ 2 then throw "guardGroups: every hit is `[transition, set]`"
+    match a[0]!.getNat?, a[1]!.getNat? with
+    | .ok t, .ok i => pure (t, i)
+    | _, _ => throw "guardGroups: a hit holds natural numbers"
+  let groups := Location.guardGroups hits.toList
+  pure [("groups", Json.arr (groups.toArray.map fun (g, r) => Json.mkObj
+    [("transition", Lean.toJson g), ("sets", Json.arr (r.toArray.map Lean.toJson)),
+     ("minInd", Lean.toJson (r.headD 0)), ("maxInd", Lean.toJson (r.getLastD 0))]))]
+
 /-- `location.reach`: `Location.reachFloat`, one stay from `X0`, the horizon `tFinal` in steps of
 `timeStep`. -/
 def handleLocationReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
@@ -219,7 +236,7 @@ def handleTransitionJump (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 /-- Every op of this file, without the `location.` and `transition.` prefixes. -/
 def locationOpNames : List String :=
   [ "potInt", "calcBasis", "checkFlow", "guardIntersect_zonoGirard", "guardIntersect_nondetGuard",
-    "guardIntersect_conZonotope", "reach" ]
+    "guardIntersect_conZonotope", "guardGroups", "reach" ]
 
 /-- `op` of `location.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -231,6 +248,7 @@ def handleLocationOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "guardIntersect_zonoGirard" => some (handleGuardZonoGirard dops req)
   | "guardIntersect_nondetGuard" => some (handleGuardNondet dops req)
   | "guardIntersect_conZonotope" => some (handleGuardConZonotope dops req)
+  | "guardGroups" => some (handleLocationGuardGroups dops req)
   | "reach" => some (handleLocationReach dops req)
   | _ => none
 

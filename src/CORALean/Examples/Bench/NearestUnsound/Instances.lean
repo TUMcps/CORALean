@@ -56,6 +56,8 @@ scoped instance : FloatOps NearestFloat where
   ltStrict a b := decide (a.val < b.val)
   -- the machine's correctly rounded `sqrt`; the issue-274 witness is Newton stopping 1 ulp short
   sqrtUpOverride := some NearestFloat.sqrt
+  -- the machine's `sin`, `cos`, `exp`, `log`, `tan` and `atan`, the same value in both directions
+  elemOverride := some NearestFloat.elem
 
 /-- The six rounding laws from the false `nearestUnsound`; the rest are `Float`'s own. -/
 scoped instance : SoundFloatArithmetic NearestFloat where
@@ -77,6 +79,10 @@ scoped instance : SoundFloatArithmetic NearestFloat where
   le_sqrtUpOverride hf p a := by
     cases hf
     exact nearestUnsound.float_le_sqrt p a
+  -- the machine's elementary functions are exact, by the false axiom, at any reference
+  elemOverride_exact he R := by
+    cases he
+    exact nearestUnsound.float_elem_exact R
 
 /-- Round-to-nearest-even at `p` bits, one per pair of directions. -/
 scoped instance {p : ℕ} : FloatOps (NearestDyadic p) where
@@ -122,6 +128,7 @@ scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
     exact lt_of_le_not_ge (Dyadic.toReal_le_of_le h₁)
       fun h₃ => by simp [(Dyadic.le_iff b.val a.val).mpr h₃] at h₂
   le_sqrtUpOverride hf := by cases hf
+  elemOverride_exact he := by cases he
 
 /-- The bits, decoded exactly, as for `Float`: no `nearestUnsound` involved. -/
 scoped instance : ToRat NearestFloat where
