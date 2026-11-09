@@ -3,10 +3,13 @@ import CORALean.Examples.Oracle.Ops.ConZonotopeOps
 import CORALean.Examples.Oracle.Ops.EllipsoidOps
 import CORALean.Examples.Oracle.Ops.EmptySetOps
 import CORALean.Examples.Oracle.Ops.FullspaceOps
+import CORALean.Examples.Oracle.Ops.HybridOps
 import CORALean.Examples.Oracle.Ops.ConversionOps
 import CORALean.Examples.Oracle.Ops.IntervalMatrixOps
+import CORALean.Examples.Oracle.Ops.LinParamSysOps
 import CORALean.Examples.Oracle.Ops.LinearSysOps
 import CORALean.Examples.Oracle.Ops.MatZonotopeOps
+import CORALean.Examples.Oracle.Ops.NonlinearSysOps
 import CORALean.Examples.Oracle.Ops.PolytopeOps
 import CORALean.Examples.Oracle.Ops.SpecificationOps
 import CORALean.Examples.Oracle.Ops.ZonoBundleOps
@@ -49,7 +52,9 @@ def classOpNames : List String :=
   fullspaceOpNames.map ("fullspace." ++ ·) ++ intervalMatrixOpNames.map ("intervalMatrix." ++ ·) ++
   matZonotopeOpNames.map ("matZonotope." ++ ·) ++
   specificationOpNames.map ("specification." ++ ·) ++
-  linearSysOpNames.map ("linearSys." ++ ·) ++ intervalConversionNames.map ("interval." ++ ·) ++
+  linearSysOpNames.map ("linearSys." ++ ·) ++ locationOpNames.map ("location." ++ ·) ++
+  linParamSysOpNames.map ("linParamSys." ++ ·) ++ nonlinearSysOpNames.map ("nonlinearSys." ++ ·) ++
+  transitionOpNames.map ("transition." ++ ·) ++ intervalConversionNames.map ("interval." ++ ·) ++
   zonotopeConversionNames.map ("zonotope." ++ ·)
 
 /-- `"<cls>.<name>"` at the scalar `dops` names; `none` if the class does not serve it. -/
@@ -58,6 +63,7 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
     (dops : DtypeOps 𝕋) (cls name : String) (req : Json) :
     Option (Except String (List (String × Json))) :=
   match cls with
+  -- the sets
   | "conZonotope" => handleConZonotopeOp dops name req
   | "zonoBundle" => handleZonoBundleOp dops name req
   | "polytope" => handlePolytopeOp dops name req
@@ -65,9 +71,15 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   | "capsule" => handleCapsuleOp dops name req
   | "emptySet" => handleEmptySetOp dops name req
   | "fullspace" => handleFullspaceOp dops name req
+  -- the matrices
   | "intervalMatrix" => handleIntervalMatrixOp dops name req
   | "matZonotope" => handleMatZonotopeOp dops name req
+  -- the dynamics, flat and hybrid
   | "linearSys" => handleLinearSysOp dops name req
+  | "location" => handleLocationOp dops name req
+  | "linParamSys" => handleLinParamSysOp dops name req
+  | "nonlinearSys" => handleNonlinearSysOp dops name req
+  | "transition" => handleTransitionOp dops name req
   | "specification" => handleSpecificationOp dops name req
   | _ => none
 
