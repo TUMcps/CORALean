@@ -40,14 +40,14 @@ structure ActivationPolyLayer (n m : ℕ) where
 /-- The exact polynomial activation layer is an `Enclose` kind at polynomial zonotopes;
 noncomputable, as it propagates over ℝ. -/
 noncomputable instance : Enclose ActivationPolyLayer 𝒫𝒵 where
-  eval := fun {n m} l => match n, m, l with
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, _, hP, rfl⟩ => Erased.mk fun x i => hP.choose (x i)
-  enclose := fun {n m} l => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
     | _, _, ⟨_, P, _, rfl⟩ => (Layer.activationPoly P).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨_, _, hP, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.activationPoly_encloses hP.choose_spec).image_subset s
+      exact (Layer.activationPoly_encloses hP.choose_spec).image_subset S
 
 end CORALean.Real
 

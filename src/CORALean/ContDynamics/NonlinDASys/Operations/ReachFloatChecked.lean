@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def NonlinDASys.reachFloatChecked {sys : NonlinDASys n p m} (_red : sys.ReducedModel)
     (fm : NonlinearSys.FloatModel 𝕋 n m)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) :
+    (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (fm.reachFloat params options)
 

@@ -59,10 +59,10 @@ The covariance, not the law: the means `post` carries have no statement.
 
 namespace CORALean
 
-open CORALean.Real Matrix MeasureTheory ProbabilityTheory ContSet
+open CORALean.Real Matrix MeasureTheory ProbabilityTheory ContSet ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

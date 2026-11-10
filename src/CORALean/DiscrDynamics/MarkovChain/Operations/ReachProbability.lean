@@ -41,7 +41,7 @@ variable {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `tp = priv_transitionProbability_reach(R, tranFrac, field)`: volume shares, weighted. -/
-noncomputable def MarkovChain.reachProbability {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+noncomputable def MarkovChain.reachProbability {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
     [Real.IntervalOuter S] (field : GridPartition n) (R : List (MarkovChain.ReachEntry S n))
     (tranFrac : List ℝ) : MarkovChain.TransitionProbabilities field.nrOfCells where
   T := fun s => (List.zipWith (fun r f =>

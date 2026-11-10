@@ -14,7 +14,7 @@ generator `1` in `ℝ¹` is the interval `[-1, 1]`, which is full-dimensional th
 not positive. `Capsule.isFullDim_iff` gives the exact characterisation; this is the witness that
 CORA's formula differs from it.
 
-Not collected in `Theorems/API.lean`: it needs the `ContSet` instance, which that API feeds.
+Not collected in `Theorems/API.lean`: it needs the `ContSetLike` instance, which that API feeds.
 
 ## Inputs
 * none

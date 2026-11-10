@@ -56,13 +56,13 @@ part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recenter`'s.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
@@ -74,7 +74,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 /-- Every state a run on `[0, tFinal - tStart]` from `X₀ = params.X₀`, under inputs in
 `sys.U` wherever it sits, reaches is in one of `reach`'s windows. -/
 theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit 𝕋 S n)
-    (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
+    (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachOptions ℝ}
     (hΔt : 0 < options.Δt) : -- --- CONCL ---
     sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
       ⊆ toSet (sys.reach params options) := by -- --- PROOF ---

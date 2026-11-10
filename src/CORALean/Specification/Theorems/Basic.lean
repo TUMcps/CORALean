@@ -19,9 +19,9 @@ namespace CORALean
 
 section
 
-open ContSet
+open ContSetLike
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α]
+variable {ContSet α : Type} [ContSetLike ContSet α]
 
 
 -- =============================  `Specification.holds_invariant`  ============================== --
@@ -30,9 +30,9 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- An invariant specification holds on `X` when `X` lies in the set. -/
-@[simp] theorem Specification.holds_invariant {s : ContSet} {X : Set α} :
-    (Specification.invariant s).Holds X ↔ X ⊆ toSet s := Iff.rfl
+/-- An invariant specification holds on `𝒳` when `𝒳` lies in the set. -/
+@[simp] theorem Specification.holds_invariant {S : ContSet} {𝒳 : Set α} :
+    (Specification.invariant S).Holds 𝒳 ↔ 𝒳 ⊆ toSet S := Iff.rfl
 
 
 -- ==============================  `Specification.holds_safeSet`  =============================== --
@@ -41,9 +41,9 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- A safe-set specification holds on `X` when `X` lies in the set. -/
-@[simp] theorem Specification.holds_safeSet {s : ContSet} {X : Set α} :
-    (Specification.safeSet s).Holds X ↔ X ⊆ toSet s := Iff.rfl
+/-- A safe-set specification holds on `𝒳` when `𝒳` lies in the set. -/
+@[simp] theorem Specification.holds_safeSet {S : ContSet} {𝒳 : Set α} :
+    (Specification.safeSet S).Holds 𝒳 ↔ 𝒳 ⊆ toSet S := Iff.rfl
 
 
 -- =============================  `Specification.holds_unsafeSet`  ============================== --
@@ -52,16 +52,16 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- An unsafe-set specification holds on `X` when `X` avoids the set. -/
-@[simp] theorem Specification.holds_unsafeSet {s : ContSet} {X : Set α} :
-    (Specification.unsafeSet s).Holds X ↔ Disjoint X (toSet s) := Iff.rfl
+/-- An unsafe-set specification holds on `𝒳` when `𝒳` avoids the set. -/
+@[simp] theorem Specification.holds_unsafeSet {S : ContSet} {𝒳 : Set α} :
+    (Specification.unsafeSet S).Holds 𝒳 ↔ Disjoint 𝒳 (toSet S) := Iff.rfl
 
 end
 
 
 section
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
+variable {ContSet α : Type} [ContSetLike ContSet α] {𝒳 O : Set α}
 
 
 -- ============================  `Specification.holdsAll_of_outer`  ============================= --
@@ -72,8 +72,8 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
 
 /-- Split out of `HoldsOfOuter.lean` (issue #62): the same transfer, one
 specification at a time, for `Specification.HoldsAll`. -/
-theorem Specification.holdsAll_of_outer (specs : List (Specification ContSet)) (h : X ⊆ O)
-    (hO : Specification.HoldsAll specs O) : Specification.HoldsAll specs X :=
+theorem Specification.holdsAll_of_outer (specs : List (Specification ContSet)) (h : 𝒳 ⊆ O)
+    (hO : Specification.HoldsAll specs O) : Specification.HoldsAll specs 𝒳 :=
   fun spec hmem => (spec.holds_of_outer h) (hO spec hmem)
 
 end

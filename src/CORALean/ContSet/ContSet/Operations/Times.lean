@@ -30,10 +30,10 @@ is specific to a representation.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

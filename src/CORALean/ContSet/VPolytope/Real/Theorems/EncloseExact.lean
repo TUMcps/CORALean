@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.enclose_exact (P Q : VPolytope (Vec ℝ n)) (M : Mat ℝ n n) :
-    ContSet.toSet (ContSet.enclose (S := 𝒱𝒫) P M Q) =
+    ContSetLike.toSet (ContSet.enclose (S := 𝒱𝒫) P M Q) =
       convexHull ℝ (P.toSet ∪ ((fun x => M.mulVec x) '' P.toSet + Q.toSet)) := by
   show (VPolytope.convHull P (VPolytope.plus (VPolytope.mtimes M P) Q)).toSet = _
   rw [VPolytope.convHull_exact, ← VPolytope.plus_exact, ← VPolytope.mtimes_exact]

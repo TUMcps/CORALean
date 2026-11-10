@@ -59,7 +59,7 @@ in `NN`.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 /-- Width-two windows over six inputs, sliding by one: output `j` reads `j` and
 `j + 1`. -/

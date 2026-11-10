@@ -32,10 +32,10 @@ weight then `half` iterated from `one`, and every pooling window CORA builds is 
 
 namespace CORALean
 
-open ContSet Float Float.FloatOps
+open ContSet ContSetLike Float Float.FloatOps
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] {n m k : ℕ}
 
 

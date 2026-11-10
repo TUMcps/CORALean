@@ -27,14 +27,14 @@ forgets the budget, so every such run is one of `IsRunOn`'s and of `IsRun`'s.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- A run with exactly `k` jumps, from `x` at `ℓ` to `y` at `ℓ'`, lasting at most `T` in all. -/
-inductive HybridAutomaton.IsRunUntil {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+inductive HybridAutomaton.IsRunUntil {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     ℝ → ℕ → L → Vec ℝ n → L → Vec ℝ n → Prop where
   | flow {T : ℝ} {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)

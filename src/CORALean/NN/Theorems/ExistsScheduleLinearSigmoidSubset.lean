@@ -45,7 +45,7 @@ order pattern alone.
 
 namespace CORALean
 
-open Pointwise ContSet
+open Pointwise ContSet ContSetLike
 
 variable {n m : ℕ}
 

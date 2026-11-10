@@ -78,10 +78,10 @@ private theorem Polygon.aux_infDist_frontier {E : Type} [NormedAddCommGroup E] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Classical in
-theorem Polygon.hausdorffDist_le_iff (P : Polygon) (hne : (ContSet.toSet P).Nonempty)
+theorem Polygon.hausdorffDist_le_iff (P : Polygon) (hne : (ContSetLike.toSet P).Nonempty)
     (S : List (Vec ℝ 2)) {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
-    P.hausdorffDist S ≤ r ↔ ∀ s ∈ S, ∃ y ∈ ContSet.toSet P, ‖s - y‖₂ ≤ r := by -- --- PROOF ---
-  set R : Set (Vec ℝ 2) := ContSet.toSet P with hR
+    P.hausdorffDist S ≤ r ↔ ∀ s ∈ S, ∃ y ∈ ContSetLike.toSet P, ‖s - y‖₂ ≤ r := by -- --- PROOF ---
+  set R : Set (Vec ℝ 2) := ContSetLike.toSet P with hR
   have hcR : IsCompact (toEuclidean '' R) :=
     (Polygon.isCompact_toSet P).image toEuclidean.continuous
   have hneR : (toEuclidean '' R).Nonempty := hne.image _

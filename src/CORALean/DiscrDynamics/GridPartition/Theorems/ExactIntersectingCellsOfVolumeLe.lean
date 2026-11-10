@@ -31,9 +31,9 @@ all of it counted as outside the partition, whether or not it lies inside.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

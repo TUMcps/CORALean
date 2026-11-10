@@ -70,7 +70,7 @@ which `reachSetExact_confinement_of_subset` discharges from a check on the compu
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace Mtimes MatExp
+open Matrix ContSet ContSetLike Scalar NormedSpace Mtimes MatExp
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

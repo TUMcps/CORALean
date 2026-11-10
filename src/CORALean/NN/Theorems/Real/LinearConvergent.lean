@@ -45,7 +45,7 @@ where [1, Prop. 4.13]'s proof starts — "the linear layer is computed exactly".
 
 namespace CORALean.Real
 
-open Matrix Pointwise ContSet
+open Matrix Pointwise ContSet ContSetLike
 
 variable {n m : ℕ}
 

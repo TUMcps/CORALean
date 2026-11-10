@@ -2,7 +2,7 @@
 
 CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** `ContSet`, `SetIntersection`, `SetUnion`, `InflatedContSet`, `OptEmpty`, `CompactSet`, `ConvexSet`.
+**CORALean counterpart:** `ContSetLike`, `SetIntersection`, `SetUnion`, `InflatedContSet`, `OptEmpty`, `CompactSet`, `ConvexSet`.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
@@ -19,7 +19,7 @@ CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers th
 | `compact_` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `conPolyZono` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
 | `conZonotope` | out-of-scope | n/a — matlab-runtime | abstract dispatch stub; implemented per class |
-| `contSet` | float | [`ContSet`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
+| `contSet` | float | [`ContSetLike`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | route b — the operation class is generic over the representation, and the float representations instantiate it (`Float/Instances.lean`) |
 | `contains` | float | [`Contains`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | route b — the interface class is generic over the representation, and float representations instantiate it (`Specification/Instances.lean`) |
 | `contains_` | float | [`Contains`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | route b — the interface class is generic over the representation, and float representations instantiate it (`Specification/Instances.lean`) |
 | `convHull` | out-of-scope | n/a — matlab-runtime | validating wrapper of `convHull_` |

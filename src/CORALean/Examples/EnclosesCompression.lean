@@ -59,7 +59,7 @@ one instance of "dynamic merge buckets".
 
 namespace CORALean.Real
 
-open Matrix ContSet Plus Mtimes IntervalOuter OfInterval
+open Matrix ContSet ContSetLike Plus Mtimes IntervalOuter OfInterval
 
 /-- The single tap output `j` reads: itself. `K(k,l,1,1) = δ_{kl}` becomes this
 once `l = k` is chosen by the tap instead of summed over. -/

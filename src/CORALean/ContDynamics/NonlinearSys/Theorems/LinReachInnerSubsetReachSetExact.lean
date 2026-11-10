@@ -49,7 +49,7 @@ constant `u₀`, `U = {u₀}`, CORA's `params.u`.
 
 namespace CORALean
 
-open ContSet Matrix NormedSpace Set
+open ContSetLike Matrix NormedSpace Set
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

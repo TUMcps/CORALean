@@ -36,9 +36,9 @@ share `exactIntersectingCells` assigns a cell, the cell meets the hull of the se
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

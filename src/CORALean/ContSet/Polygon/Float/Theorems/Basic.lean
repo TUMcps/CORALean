@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- No point of the polygon reads more than the float value, an upper bound only. -/
 theorem Polygon.boundDot_le (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec 𝕋 2)
     (hc : ∀ x : Vec ℝ 2, c x = ∑ j, toReal (a j) * x j) :
-    ∀ x ∈ ContSet.toSet P, c x ≤ toReal (P.boundDot a hc).val :=
+    ∀ x ∈ ContSetLike.toSet P, c x ≤ toReal (P.boundDot a hc).val :=
   (P.boundDot a hc).le
 
 
@@ -45,7 +45,7 @@ theorem Polygon.boundDot_le (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (
 
 /-- By `SetUnion.plus_outer` at the float polytope's `plus`, whose rounding is in its error box. -/
 theorem Polygon.plus_outer (P Q : Polygon 𝕋) :
-    ContSet.toSet P + ContSet.toSet Q ⊆ ContSet.toSet (Polygon.plus P Q) :=
+    ContSetLike.toSet P + ContSetLike.toSet Q ⊆ ContSetLike.toSet (Polygon.plus P Q) :=
   SetUnion.plus_outer P Q
 
 
@@ -57,7 +57,7 @@ theorem Polygon.plus_outer (P Q : Polygon 𝕋) :
 
 /-- `Polygon.empty` is the empty set -/
 theorem Polygon.toSet_empty :
-    ContSet.toSet (Polygon.empty 𝕋) = (∅ : Set (Vec ℝ 2)) := by
+    ContSetLike.toSet (Polygon.empty 𝕋) = (∅ : Set (Vec ℝ 2)) := by
   ext x
   simp [SetUnion.mem_toSet, Polygon.empty]
 
@@ -70,7 +70,7 @@ theorem Polygon.toSet_empty :
 
 /-- `Polygon.ofPieces` denotes the union -/
 theorem Polygon.toSet_ofPieces (pieces : List (VPolytope (Vec 𝕋 2))) :
-    ContSet.toSet (Polygon.ofPieces pieces) = ⋃ p ∈ pieces, VPolytope.toSet p := rfl
+    ContSetLike.toSet (Polygon.ofPieces pieces) = ⋃ p ∈ pieces, VPolytope.toSet p := rfl
 
 end CORALean.Float
 

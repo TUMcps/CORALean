@@ -23,18 +23,18 @@ left. The classes these instantiate are in `Interfaces.lean`.
 
 namespace CORALean
 
-open Matrix Scalar ContSet
+open Matrix Scalar ContSetLike
 
 
 -- ======================================  MAIN INSTANCE  ======================================= --
 
 /-- A plain set denotes itself: what lets a specification or a guarantee stated at
 a representation take a set with no representation at all. -/
-instance {α : Type} : ContSet (Set α) α := ⟨id⟩
+instance {α : Type} : ContSetLike (Set α) α := ⟨id⟩
 
 /-- A matrix denotes itself, read into ℝ by the layer's scalar. What makes a
 statement about a set of matrices cover the plain one. -/
-instance {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} : ContSet (Mat 𝕋 m n) (Mat ℝ m n) where
+instance {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} : ContSetLike (Mat 𝕋 m n) (Mat ℝ m n) where
   toSet M := {toRealMat M}
 
 /-- Left multiplication by a matrix, on matrices. -/

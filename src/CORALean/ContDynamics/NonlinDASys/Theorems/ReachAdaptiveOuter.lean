@@ -61,7 +61,7 @@ run is in the union returned, up to the time reached.
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m q : ℕ}
 

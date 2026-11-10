@@ -50,10 +50,10 @@ field as its derivative at every point, within the interval: the converse of
 
 namespace CORALean
 
-open ContSet MeasureTheory intervalIntegral
+open ContSetLike MeasureTheory intervalIntegral
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

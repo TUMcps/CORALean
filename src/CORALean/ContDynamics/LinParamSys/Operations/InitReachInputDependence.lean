@@ -42,7 +42,7 @@ split as `B_c Uconst ⊕ c`, whose generators keep the parameters of `sys.A`, an
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n : ℕ}
 
@@ -63,7 +63,7 @@ noncomputable def LinParamSys.initReachInputDependence (sys : LinParamSys 𝕄�
   let Vdep : Zonotope (Vec ℝ n) := ⟨sys.A.h, Vc, VG⟩
   -- the deviation of `B` from its center, applied to `Uconst`: independent of those parameters
   let BΔ : Zonotope (Mat ℝ n sys.m) := ⟨sys.B.h, 0, sys.B.G⟩
-  let Vdev : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst
+  let Vdev : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst
   -- time interval error (`priv_tie`) and its input counterpart (`priv_inputTie`)
   let F := MatExp.intervalCorrectionMatrix sys.A.interval r η
   let inputF := MatExp.intervalConstCorrectionMatrix sys.A.interval r η
@@ -71,9 +71,9 @@ noncomputable def LinParamSys.initReachInputDependence (sys : LinParamSys 𝕄�
   let Rhom_tp := sys.dependentHomSol r η Rinit Vc VG ⊞ sys.inputSolutionZono (S := 𝒵) r η Vdev
   -- time interval solution
   let inputCorr : Zonotope (Vec ℝ n) :=                                     -- corrected
-    Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) inputF (Vdep ⊞ Vdev)
+    Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) inputF (Vdep ⊞ Vdev)
   let Rhom : Zonotope (Vec ℝ n) := LinComb.linComb Rinit Rhom_tp
-    ⊞ Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) F Rinit ⊞ inputCorr
+    ⊞ Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) F Rinit ⊞ inputCorr
   (Rhom_tp, Rhom)
 
 end CORALean

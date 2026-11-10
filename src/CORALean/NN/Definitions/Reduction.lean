@@ -40,9 +40,9 @@ does) and `widen` (the reduced layer carries the box of those biases, [1, Eq. 2]
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 /-- The reduced sandwich `neuronMerging_sandwich_outer` bounds `sandwich` by, trimmed to

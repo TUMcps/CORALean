@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `B U ⊕ c`, the input set the reach runs on, in the state space. -/
 def LinearSys.inputSetFloat (sys : LinearSys 𝕋 n) (U : Zonotope (Vec 𝕋 sys.m)) :
     Zonotope (Vec 𝕋 n) :=
-  Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.B U ⊞ Zonotope.point sys.c
+  Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) sys.B U ⊞ Zonotope.point sys.c
 
 end CORALean
 

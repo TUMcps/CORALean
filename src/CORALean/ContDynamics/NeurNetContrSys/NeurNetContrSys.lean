@@ -34,17 +34,17 @@ input `[π(x(i dt)); v]`. The discrete-time loop is `NeurNetContrSysDT`.
 
 namespace CORALean
 
-open ContSet ContDynamics
+open ContSetLike ContDynamics
 
 variable {n : ℕ} {P : Type} [ContDynamics P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- The plant and the network controlling its first `m` inputs, the rest external, and the control
 period `dt`: CORA's `neurNetContrSys(sys, nn, dt)`. -/
-structure NeurNetContrSys (P : Type) (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ)
+structure NeurNetContrSys (P : Type) (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] (n : ℕ)
     [ContDynamics P n] where
   plant : P
   m : ℕ

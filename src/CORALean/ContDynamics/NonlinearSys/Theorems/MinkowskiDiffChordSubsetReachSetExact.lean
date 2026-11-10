@@ -62,10 +62,10 @@ even for a convex `X₀` (`NonlinearSys.minkowskiDiff_iUnion_chord_convex_counte
 
 namespace CORALean
 
-open ContSet Matrix Pointwise
+open ContSetLike Matrix Pointwise
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

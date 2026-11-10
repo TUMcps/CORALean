@@ -62,7 +62,7 @@ namespace CORALean
 open CORALean.Real
 
 variable {n q : ℕ} {𝕋 : Type} [Scalar 𝕋]
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --

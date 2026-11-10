@@ -37,7 +37,7 @@ second to cancel `e^{ρA}` against `e^{-ρA}`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
+open Matrix ContSetLike Scalar NormedSpace MeasureTheory intervalIntegral
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

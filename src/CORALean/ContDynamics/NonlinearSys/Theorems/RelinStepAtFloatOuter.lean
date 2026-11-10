@@ -52,7 +52,7 @@ places `x`. No certificate and no confinement is asked of the caller.
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic ContSet Matrix
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet ContSetLike Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
@@ -92,7 +92,8 @@ private theorem aux_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec 𝕋
 `[0, Δt]` from `R` under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
     {sys : NonlinearSys n m} (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)}
-    {options : LinearSys.ReachOptions 𝕋} {R : Zonotope (Vec 𝕋 n)} {xs : Vec 𝕋 n} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} {R : Zonotope (Vec 𝕋 n)}
+    {xs : Vec 𝕋 n} : -- --- CONCL ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepAtFloat U options R xs →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))

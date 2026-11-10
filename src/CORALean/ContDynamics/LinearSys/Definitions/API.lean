@@ -32,8 +32,8 @@ public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySpecFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySoundFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExactAt
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInput
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
@@ -78,8 +78,8 @@ signal, [1, Thm. 1]'s intersection target.
 origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
 `IsOrderAdmissibleFloat` is the order the float steps ask for,
 `IsReachFloatInputInvariant` what `reachFloatInput`'s loop state owes, and
-`ReachOptions` CORA's `options` for a reach run, `Δt` and the orders,
-`ReachStepOptions` the two of them a scheme without order reduction reads.
+`ReachFloatOptions` CORA's `options` for a reach run, `Δt` and the orders,
+`ReachOptions` the two of them a scheme without order reduction reads.
 
 ## References
 

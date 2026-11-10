@@ -38,26 +38,26 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.subtract_outer (P₁ P₂ : Polygon)
-    (hreg : ContSet.toSet P₁ = closure (interior (ContSet.toSet P₁))) : -- --- CONCL ---
-    ContSet.toSet P₁ \ ContSet.toSet P₂ ⊆ Polygon.subtract P₁ P₂ ∧
-      Polygon.subtract P₁ P₂ ⊆ ContSet.toSet P₁ ∧
-      Polygon.subtract P₁ P₂ ∩ interior (ContSet.toSet P₂) = ∅ := by -- --- PROOF ---
-  have hcl₁ : IsClosed (ContSet.toSet P₁) := (Polygon.isCompact_toSet P₁).isClosed
-  have hcl₂ : IsClosed (ContSet.toSet P₂) := (Polygon.isCompact_toSet P₂).isClosed
+    (hreg : ContSetLike.toSet P₁ = closure (interior (ContSetLike.toSet P₁))) : -- --- CONCL ---
+    ContSetLike.toSet P₁ \ ContSetLike.toSet P₂ ⊆ Polygon.subtract P₁ P₂ ∧
+      Polygon.subtract P₁ P₂ ⊆ ContSetLike.toSet P₁ ∧
+      Polygon.subtract P₁ P₂ ∩ interior (ContSetLike.toSet P₂) = ∅ := by -- --- PROOF ---
+  have hcl₁ : IsClosed (ContSetLike.toSet P₁) := (Polygon.isCompact_toSet P₁).isClosed
+  have hcl₂ : IsClosed (ContSetLike.toSet P₂) := (Polygon.isCompact_toSet P₂).isClosed
   refine ⟨?_, ?_, ?_⟩
   · -- a point outside `P₂` has an open neighbourhood outside it, meeting `interior P₁`
     rintro x ⟨hx₁, hx₂⟩
     rw [Polygon.subtract, mem_closure_iff]
     intro U hU hxU
     have hx₁' := hreg ▸ hx₁
-    obtain ⟨y, hyU, hy⟩ := mem_closure_iff.mp hx₁' (U ∩ (ContSet.toSet P₂)ᶜ)
+    obtain ⟨y, hyU, hy⟩ := mem_closure_iff.mp hx₁' (U ∩ (ContSetLike.toSet P₂)ᶜ)
       (hU.inter hcl₂.isOpen_compl) ⟨hxU, hx₂⟩
     exact ⟨y, hyU.1, hy, hyU.2⟩
   · exact closure_minimal (fun y hy => interior_subset hy.1) hcl₁
   · -- the difference lies in the closure of the complement of `P₂`
     refine Set.eq_empty_of_forall_notMem ?_
     rintro x ⟨hx, hxi⟩
-    have hx' : x ∈ closure ((ContSet.toSet P₂)ᶜ) :=
+    have hx' : x ∈ closure ((ContSetLike.toSet P₂)ᶜ) :=
       closure_mono (fun y hy => hy.2) hx
     obtain ⟨y, hy, hy'⟩ := mem_closure_iff.mp hx' _ isOpen_interior hxi
     exact hy' (interior_subset hy)

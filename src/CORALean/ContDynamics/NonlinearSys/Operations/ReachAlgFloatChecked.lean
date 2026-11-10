@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def NonlinearSys.FloatHessModel.reachAlgFloatChecked (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) :
+    (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (fm.reachAlgFloat alg params options)
 

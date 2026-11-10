@@ -40,8 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.project_outer (P : Polygon 𝕋) (dims : Fin 2 → Fin 2) :
-    (fun x k => x (dims k)) '' ContSet.toSet P ⊆
-      ContSet.toSet (Polygon.project P dims) := by
+    (fun x k => x (dims k)) '' ContSetLike.toSet P ⊆
+      ContSetLike.toSet (Polygon.project P dims) := by
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨p, hp, hy⟩ := SetUnion.mem_toSet.mp hy
   exact SetUnion.mem_toSet.mpr ⟨_, List.mem_map.mpr ⟨p, hp, rfl⟩,

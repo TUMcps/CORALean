@@ -45,7 +45,7 @@ map of a zonotope bundle it is the enclosure `L Z_∩ ⊆ {L Z₁, …, L Z_s}_�
 
 namespace CORALean
 
-variable {S T α β : Type} [ContSet S α] [ContSet T β]
+variable {S T α β : Type} [ContSetLike S α] [ContSetLike T β]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -53,9 +53,9 @@ variable {S T α β : Type} [ContSet S α] [ContSet T β]
 /-- Each result member enclosing `Φ` of an operand member encloses `Φ` of the intersection. -/
 theorem SetIntersection.memberwise_outer {k l : ℕ} {f : Fin k → S} {g : Fin l → T}
     (Φ : Set α → Set β) (hΦ : Monotone Φ)
-    (h : ∀ j, ∃ i, Φ (ContSet.toSet (f i)) ⊆ ContSet.toSet (g j)) : -- --- CONCL ---
-    Φ (ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S))
-      ⊆ ContSet.toSet (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
+    (h : ∀ j, ∃ i, Φ (ContSetLike.toSet (f i)) ⊆ ContSetLike.toSet (g j)) : -- --- CONCL ---
+    Φ (ContSetLike.toSet (⟨List.ofFn f⟩ : SetIntersection S))
+      ⊆ ContSetLike.toSet (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
   rw [SetIntersection.toSet_ofFn, SetIntersection.toSet_ofFn]
   refine Set.subset_iInter fun j => ?_
   obtain ⟨i, hi⟩ := h j

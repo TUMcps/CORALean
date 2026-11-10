@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
 public import CORALean.ContDynamics.Reach.Definitions.Params
@@ -45,10 +45,10 @@ real, as in `LinearSys.reachWrappingFree`.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
@@ -59,7 +59,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least one),
 inputs in `sys.U` split at its center, at order `η` raised until admissible. -/
 noncomputable def LinearSys.WithInputSplit.reach (sys : LinearSys.WithInputSplit 𝕋 S n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : SetUnion (S n) :=
   let X₀ := params.X₀                                           -- the paper's symbols
   let Δt := options.Δt
   let η := options.η

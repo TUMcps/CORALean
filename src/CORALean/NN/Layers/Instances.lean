@@ -53,179 +53,181 @@ which is a cast the compiler erases.
 
 namespace CORALean
 
-open Matrix ContSet Float Float.SoundFloatArithmetic
+open Matrix ContSet ContSetLike Float Float.SoundFloatArithmetic
 open scoped CORALean.Float
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+  {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
 
 
 -- ========================================  INSTANCES  ========================================= --
 
 /-- `Layer.linear`, at the affine map the weights denote. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
-    Enclose (LinearLayer 𝕋) S where
-  eval l := Erased.mk fun x => toRealMat l.W *ᵥ x + toRealVec l.b
-  enclose l := (Layer.linear (S := S) l.W l.b).enclose
-  enclose_outer l s := by
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.OfInterval ContSet 𝕋] :
+    Enclose (LinearLayer 𝕋) ContSet where
+  eval L := Erased.mk fun x => toRealMat L.W *ᵥ x + toRealVec L.b
+  enclose L := (Layer.linear (S := ContSet) L.W L.b).enclose
+  enclose_outer L S := by
     rw [Erased.out_mk]
-    exact (Layer.linear_encloses l.W l.b).image_subset s
+    exact (Layer.linear_encloses L.W L.b).image_subset S
 
 /-- `Layer.linearWithError` at the box's nonempty hull, committing to its center. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
-    Enclose (LinearWithErrorLayer 𝕋) S where
-  eval l := Erased.mk fun x =>
-    toRealMat l.W *ᵥ x + toRealVec l.b + l.E.nonemptyHull.nominal.center
-  enclose l := (Layer.linearWithError (S := S) l.W l.b l.E.nonemptyHull).enclose
-  enclose_outer l s := by
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.OfInterval ContSet 𝕋] :
+    Enclose (LinearWithErrorLayer 𝕋) ContSet where
+  eval L := Erased.mk fun x =>
+    toRealMat L.W *ᵥ x + toRealVec L.b + L.E.nonemptyHull.nominal.center
+  enclose L := (Layer.linearWithError (S := ContSet) L.W L.b L.E.nonemptyHull).enclose
+  enclose_outer L S := by
     rw [Erased.out_mk]
-    exact (Layer.linearWithError_encloses l.W l.b _ l.E.nonemptyHull_isNonempty).image_subset s
+    exact (Layer.linearWithError_encloses L.W L.b _ L.E.nonemptyHull_isNonempty).image_subset S
 
 /-- `Layer.relu`, at `relu` coordinatewise. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
-    [Float.OfInterval S 𝕋] : Enclose (ReluLayer 𝕋) S where
-  eval := fun {n m} l => match n, m, l with
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.IntervalOuter ContSet 𝕋]
+    [Float.OfInterval ContSet 𝕋] : Enclose (ReluLayer 𝕋) ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, rfl⟩ => Erased.mk fun x i => Real.relu (x i)
-  enclose := fun {n m} l => match n, m, l with
-    | _, _, ⟨lam, rfl⟩ => (Layer.relu (S := S) lam).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | _, _, ⟨lam, rfl⟩ => (Layer.relu (S := ContSet) lam).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨lam, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.relu_encloses lam).image_subset s
+      exact (Layer.relu_encloses lam).image_subset S
 
 /-- `Layer.sigmoid`, at the sigmoid coordinatewise. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
-    [Float.OfInterval S 𝕋] : Enclose (SigmoidLayer 𝕋) S where
-  eval := fun {n m} l => match n, m, l with
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.IntervalOuter ContSet 𝕋]
+    [Float.OfInterval ContSet 𝕋] : Enclose (SigmoidLayer 𝕋) ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, rfl⟩ => Erased.mk fun x i => Real.sigmoid (x i)
-  enclose := fun {n m} l => match n, m, l with
-    | _, _, ⟨k, rfl⟩ => (Layer.sigmoid (𝕋 := 𝕋) (S := S) k).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | _, _, ⟨k, rfl⟩ => (Layer.sigmoid (𝕋 := 𝕋) (S := ContSet) k).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨k, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.sigmoid_encloses k).image_subset s
+      exact (Layer.sigmoid_encloses k).image_subset S
 
 /-- `Layer.tanh`, at `tanh` coordinatewise. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
-    [Float.OfInterval S 𝕋] : Enclose (TanhLayer 𝕋) S where
-  eval := fun {n m} l => match n, m, l with
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.IntervalOuter ContSet 𝕋]
+    [Float.OfInterval ContSet 𝕋] : Enclose (TanhLayer 𝕋) ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, rfl⟩ => Erased.mk fun x i => Real.tanh (x i)
-  enclose := fun {n m} l => match n, m, l with
-    | _, _, ⟨k, rfl⟩ => (Layer.tanh (𝕋 := 𝕋) (S := S) k).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | _, _, ⟨k, rfl⟩ => (Layer.tanh (𝕋 := 𝕋) (S := ContSet) k).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨k, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.tanh_encloses k).image_subset s
+      exact (Layer.tanh_encloses k).image_subset S
 
 /-- `Layer.softmax`, asking of the set only the two boxes. -/
-instance [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] : Enclose (SoftmaxLayer 𝕋) S where
-  eval := fun {n m} l => match n, m, l with
+instance [Float.IntervalOuter ContSet 𝕋] [Float.OfInterval ContSet 𝕋] :
+    Enclose (SoftmaxLayer 𝕋) ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, rfl⟩ => Erased.mk Real.softmax
-  enclose := fun {n m} l => match n, m, l with
-    | _, _, ⟨k, rfl⟩ => (Layer.softmax (𝕋 := 𝕋) (S := S) k).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | _, _, ⟨k, rfl⟩ => (Layer.softmax (𝕋 := 𝕋) (S := ContSet) k).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨k, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.softmax_encloses (𝕋 := 𝕋) k).image_subset s
+      exact (Layer.softmax_encloses (𝕋 := 𝕋) k).image_subset S
 
 /-- `Layer.activation`, at the `σ` the weights' proof names. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
-    [Float.OfInterval S 𝕋] : Enclose (ActivationLayer 𝕋) S where
-  eval := fun {n m} l => match n, m, l with
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.IntervalOuter ContSet 𝕋]
+    [Float.OfInterval ContSet 𝕋] : Enclose (ActivationLayer 𝕋) ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, hR, rfl⟩ => Erased.mk fun x i => hR.choose (x i)
-  enclose := fun {n m} l => match n, m, l with
-    | _, _, ⟨R, _, rfl⟩ => (Layer.activation (S := S) R).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | _, _, ⟨R, _, rfl⟩ => (Layer.activation (S := ContSet) R).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨_, hR, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.activation_encloses hR.choose_spec).image_subset s
+      exact (Layer.activation_encloses hR.choose_spec).image_subset S
 
 /-- `Layer.batchNorm`, each coordinate scaled and shifted by its channel. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
-    Enclose (BatchNormLayer 𝕋) S where
-  eval := fun {n m} l => match n, m, l with
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.OfInterval ContSet 𝕋] :
+    Enclose (BatchNormLayer 𝕋) ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, chan, scale, shift, rfl⟩ =>
       Erased.mk fun x i => toReal (scale (chan i)) * x i + toReal (shift (chan i))
-  enclose := fun {n m} l => match n, m, l with
-    | _, _, ⟨_, chan, scale, shift, rfl⟩ => (Layer.batchNorm (S := S) chan scale shift).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | _, _, ⟨_, chan, scale, shift, rfl⟩ =>
+      (Layer.batchNorm (S := ContSet) chan scale shift).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨_, chan, scale, shift, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.batchNorm_encloses chan scale shift).image_subset s
+      exact (Layer.batchNorm_encloses chan scale shift).image_subset S
 
 /-- `Layer.conv`, the stencil read as a sum. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
-    Enclose (ConvLayer 𝕋) S where
-  eval l := Erased.mk fun x j => (∑ i, toReal (l.K (l.chan j) i) * x (l.tap j i)) + toReal (l.b j)
-  enclose l := (Layer.conv (S := S) l.chan l.tap l.K l.b).enclose
-  enclose_outer l s := by
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.OfInterval ContSet 𝕋] :
+    Enclose (ConvLayer 𝕋) ContSet where
+  eval L := Erased.mk fun x j => (∑ i, toReal (L.K (L.chan j) i) * x (L.tap j i)) + toReal (L.b j)
+  enclose L := (Layer.conv (S := ContSet) L.chan L.tap L.K L.b).enclose
+  enclose_outer L S := by
     rw [Erased.out_mk]
-    exact (Layer.conv_encloses l.chan l.tap l.K l.b l.tap_injective).image_subset s
+    exact (Layer.conv_encloses L.chan L.tap L.K L.b L.tap_injective).image_subset S
 
 /-- `Layer.avgPool`, the window sum scaled by the stored reciprocal. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
-    Enclose (AvgPoolLayer 𝕋) S where
-  eval l := Erased.mk fun x j => toReal l.winv * ∑ i, x (l.tap j i)
-  enclose l := (Layer.avgPool (S := S) l.winv l.tap).enclose
-  enclose_outer l s := by
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.OfInterval ContSet 𝕋] :
+    Enclose (AvgPoolLayer 𝕋) ContSet where
+  eval L := Erased.mk fun x j => toReal L.winv * ∑ i, x (L.tap j i)
+  enclose L := (Layer.avgPool (S := ContSet) L.winv L.tap).enclose
+  enclose_outer L S := by
     rw [Erased.out_mk]
-    exact (Layer.avgPool_encloses l.winv l.tap l.tap_injective).image_subset s
+    exact (Layer.avgPool_encloses L.winv L.tap L.tap_injective).image_subset S
 
 /-- `Layer.maxPool`, at each window's maximum. -/
-instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
-    [Float.OfInterval S 𝕋] : Enclose (MaxPoolLayer 𝕋) S where
-  eval l := Erased.mk fun x j => Real.windowMax fun i => x (l.tap j i)
-  enclose l := (Layer.maxPool (S := S) l.tap l.pivot).enclose
-  enclose_outer l s := by
+instance [∀ n, Plus (ContSet n) (Vec ℝ n)] [Mtimes (Mat 𝕋) ContSet] [Float.IntervalOuter ContSet 𝕋]
+    [Float.OfInterval ContSet 𝕋] : Enclose (MaxPoolLayer 𝕋) ContSet where
+  eval L := Erased.mk fun x j => Real.windowMax fun i => x (L.tap j i)
+  enclose L := (Layer.maxPool (S := ContSet) L.tap L.pivot).enclose
+  enclose_outer L S := by
     rw [Erased.out_mk]
-    exact (Layer.maxPool_encloses l.tap l.pivot).image_subset s
+    exact (Layer.maxPool_encloses L.tap L.pivot).image_subset S
 
 /-- `Layer.reshape`, asking of the set only `Reindex`. -/
-instance [Reindex S] : Enclose ReshapeLayer S where
-  eval l := Erased.mk (reindexLin l.e)
-  enclose l := (Layer.reshape (S := S) l.e).enclose
-  enclose_outer l s := by
+instance [Reindex ContSet] : Enclose ReshapeLayer ContSet where
+  eval L := Erased.mk (reindexLin L.e)
+  enclose L := (Layer.reshape (S := ContSet) L.e).enclose
+  enclose_outer L S := by
     rw [Erased.out_mk]
-    exact (Layer.reshape_encloses l.e).image_subset s
+    exact (Layer.reshape_encloses L.e).image_subset S
 
 /-- `Layer.identity`, asking of the set nothing at all. -/
-instance : Enclose IdentityLayer S where
-  eval := fun {n m} l => match n, m, l with
+instance : Enclose IdentityLayer ContSet where
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨rfl⟩ => Erased.mk id
-  enclose := fun {n m} l => match n, m, l with
-    | k, _, ⟨rfl⟩ => (Layer.identity S k).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
+    | k, _, ⟨rfl⟩ => (Layer.identity ContSet k).enclose
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨rfl⟩ => by
       rw [Erased.out_mk]
-      exact Layer.identity_encloses.image_subset s
+      exact Layer.identity_encloses.image_subset S
 
 /-- `Layer.sigmoidPoly`, at a polynomial zonotope. -/
 instance : Enclose (SigmoidPolyLayer 𝕋) 𝒫𝒵[𝕋] where
-  eval := fun {n m} l => match n, m, l with
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, _, _, _, _, _, rfl⟩ => Erased.mk fun x i => Real.sigmoid (x i)
-  enclose := fun {n m} l => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
     | _, _, ⟨k, _, _, c, dx, p, rfl⟩ => (Layer.sigmoidPoly k c dx p).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨k, _, _, c, dx, p, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.sigmoidPoly_encloses k c dx p).image_subset s
+      exact (Layer.sigmoidPoly_encloses k c dx p).image_subset S
 
 /-- `Layer.activationPoly`, at a polynomial zonotope. -/
 instance : Enclose (ActivationPolyLayer 𝕋) 𝒫𝒵[𝕋] where
-  eval := fun {n m} l => match n, m, l with
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨_, _, hP, rfl⟩ => Erased.mk fun x i => hP.choose (x i)
-  enclose := fun {n m} l => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
     | _, _, ⟨_, P, _, rfl⟩ => (Layer.activationPoly P).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨_, _, hP, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.activationPoly_encloses hP.choose_spec).image_subset s
+      exact (Layer.activationPoly_encloses hP.choose_spec).image_subset S
 
 /-- A packed layer, its three fields read back. -/
-instance : Enclose (SoundLayer S) S where
-  eval l := l.eval
-  enclose l := l.enclose
-  enclose_outer l := l.enclose_outer
+instance : Enclose (SoundLayer ContSet) ContSet where
+  eval L := L.eval
+  enclose L := L.enclose
+  enclose_outer L := L.enclose_outer
 
 end CORALean
 

@@ -46,13 +46,13 @@ taken at `e^{tA}` for one member `A`, which is `'constParam'`: a time-varying re
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet NormedSpace
+open Matrix Pointwise ContSet ContSetLike NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes ℐ S]
 

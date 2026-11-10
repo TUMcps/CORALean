@@ -53,7 +53,7 @@ namespace CORALean
 open Matrix Scalar
 open scoped CORALean.Real
 
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- The model: CORA's code as printed, kept only to be refuted.
@@ -93,7 +93,7 @@ namespace CORALean
 open Matrix Scalar
 open scoped CORALean.Real
 
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -102,8 +102,8 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
 `t = 1/g`. -/
 private theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hc : ℓ.dynamics.c = ![0, -g])
-    (hU : 0 ∈ ContSet.toSet ℓ.U) (hW : 0 ∈ ContSet.toSet ℓ.W)
-    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.toSet ℓ.inv) : -- --- CONCL ---
+    (hU : 0 ∈ ContSetLike.toSet ℓ.U) (hW : 0 ∈ ContSetLike.toSet ℓ.W)
+    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSetLike.toSet ℓ.inv) : -- --- CONCL ---
     ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧
       (∀ t ∈ Set.Icc 0 τ, x t ∈ (⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩ :
         Real.Zonotope (Vec ℝ 2)).toSet) ∧ (![-1, 0] : Vec ℝ 2) ⬝ᵥ x τ = 0 := by -- --- PROOF ---
@@ -180,8 +180,8 @@ private theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} 
 theorem Location.checkFlowCora_drops_hit_counterexample
     (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hB : ℓ.dynamics.B = 0) (hc : ℓ.dynamics.c = ![0, -g])
-    (hU : 0 ∈ ContSet.toSet ℓ.U) (hW : 0 ∈ ContSet.toSet ℓ.W)
-    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.toSet ℓ.inv) : -- --- CONCL ---
+    (hU : 0 ∈ ContSetLike.toSet ℓ.U) (hW : 0 ∈ ContSetLike.toSet ℓ.W)
+    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSetLike.toSet ℓ.inv) : -- --- CONCL ---
     let R : Real.Zonotope (Vec ℝ 2) := ⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩
     let c : Vec ℝ 2 := ![-1, 0]
     R ∉ ℓ.checkFlowCora 0 0 c 0 [R] ∧

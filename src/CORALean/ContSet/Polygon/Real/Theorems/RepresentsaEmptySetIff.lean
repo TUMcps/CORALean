@@ -54,7 +54,7 @@ private theorem Polygon.aux_toSet_eq_empty_iff (p : VPolytope (Vec ℝ 2)) : -- 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.representsaEmptySet_iff (P : Polygon) : -- --- CONCL ---
-    Polygon.representsaEmptySet P = true ↔ ContSet.toSet P = ∅ := by -- --- PROOF ---
+    Polygon.representsaEmptySet P = true ↔ ContSetLike.toSet P = ∅ := by -- --- PROOF ---
   simp only [Polygon.representsaEmptySet, List.all_eq_true, beq_iff_eq,
     Set.eq_empty_iff_forall_notMem, SetUnion.mem_toSet, not_exists, not_and]
   constructor

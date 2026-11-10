@@ -40,7 +40,7 @@ The counterexample is not vacuous.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

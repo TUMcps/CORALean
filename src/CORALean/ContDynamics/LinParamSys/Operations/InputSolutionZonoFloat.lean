@@ -68,12 +68,12 @@ over `A_Z`'s interval matrix. -/
 def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys 𝕄𝒵[𝕋] n)
     (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let IA := sys.A.matInterval                                             -- A_Z's interval matrix
-  Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
+  Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (ContSet := 𝒵[𝕋])
     (sys.inputTermZonoFloat r 0) V ⊞
-    Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
+    Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (ContSet := 𝒵[𝕋])
       (sys.inputTermZonoFloat r 1) V ⊞
     (LinParamSys.canonical (𝕄 := ℐ[𝕋]) IA).inputTaylorSumTailFloat r V η ⊞
-    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       (MatExp.intervalInputRemainder IA r η) V
 
 end CORALean

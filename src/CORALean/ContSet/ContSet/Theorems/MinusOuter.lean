@@ -28,9 +28,9 @@ public import CORALean.ContSet.ContSet.Operations.Minus
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S α] [OfPoint S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Plus S α] [OfPoint S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

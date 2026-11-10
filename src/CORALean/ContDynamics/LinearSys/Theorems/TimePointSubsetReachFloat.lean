@@ -46,7 +46,7 @@ not compared here.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -61,13 +61,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `reachFloat`'s float one. -/
 theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n) {X₀ : Real.Zonotope (Vec ℝ n)}
     {X₀float : Zonotope (Vec 𝕋 n)} (hX₀ : toSet X₀ ⊆ X₀float.toSet) {tStart tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options →
       ∀ (k : ℕ) (hk : k < Rtp.length),
-        toSet (sys.timePoint (S := 𝒵) (toReal options.Δt)
+        toSet (sys.timePoint (ContSet := 𝒵) (toReal options.Δt)
           X₀ k) ⊆ Rtp[k].toSet := by -- --- PROOF ---
   intro Rti Rtp (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp))
-  obtain ⟨Δt, η, ρ⟩ := options
+  obtain ⟨⟨Δt, η⟩, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
@@ -81,10 +81,10 @@ theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n) {X₀ : R
   | succ k ih =>
     rw [Function.iterate_succ_apply']
     -- `timePoint`'s own step is exact, at a `Real.Zonotope`
-    have hstep : toSet (sys.timePoint (S := 𝒵)
+    have hstep : toSet (sys.timePoint (ContSet := 𝒵)
           (toReal Δt) X₀ (k + 1))
         = (exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ ·) ''
-          toSet (sys.timePoint (S := 𝒵) (toReal Δt) X₀ k) :=
+          toSet (sys.timePoint (ContSet := 𝒵) (toReal Δt) X₀ k) :=
       (Real.Zonotope.mtimes_exact _ _).symm
     rw [hstep]
     rintro _ ⟨x, hx, rfl⟩

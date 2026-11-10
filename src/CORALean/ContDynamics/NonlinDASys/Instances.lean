@@ -28,9 +28,9 @@ trajectories; `reach` is `reachUnion`, the reduced run; the guarantee is `reachU
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m p : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -41,7 +41,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 noncomputable instance NonlinDASys.reachInstance :
     Reach (NonlinDASys.WithSteps S Rg m p) (fun n _ => Reach.Params (S n) ℝ)
-      (LinearSys.ReachOptions ℝ) S where
+      (LinearSys.ReachFloatOptions ℝ) S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (toSet params.X₀)
   reach sys params options := sys.reachUnion params options

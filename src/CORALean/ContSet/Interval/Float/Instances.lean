@@ -62,7 +62,7 @@ scoped notation "ℐ𝒱[" t "]" => fun n => Interval (Vec t n)
 interval matrix is an instance too. The operation instances below are stated
 only at `Vec`, which is where an algorithm asks for them. -/
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
-    ContSet (Interval α) β := ⟨Interval.toSet⟩
+    ContSetLike (Interval α) β := ⟨Interval.toSet⟩
 
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
     ConvexSet (Interval α) β := ⟨fun I => I.nominal.convex_toSet⟩

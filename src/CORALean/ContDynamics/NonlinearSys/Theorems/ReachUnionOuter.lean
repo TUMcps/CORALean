@@ -47,12 +47,12 @@ boundedness are the representation's own, `ConvexSet` and `CompactSet`.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -62,7 +62,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S Rg m n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- CONCL ---
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachFloatOptions ℝ) : -- --- CONCL ---
     ∀ R ∈ sys.reachUnion params options,
       sys.reachUnionExact (params.tFinal - params.tStart) (toSet params.X₀)
         ⊆ toSet R := by -- --- PROOF ---

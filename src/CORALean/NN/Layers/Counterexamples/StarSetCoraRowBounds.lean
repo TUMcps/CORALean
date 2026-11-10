@@ -51,7 +51,7 @@ noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet ℋ𝒫 n) (j : F
   ⟨c_ - r, c_ + r⟩
 
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -54,13 +54,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 reaches from `R` under inputs in `U`, or `none` if the linear step fails. -/
 def NonlinearSys.FloatModel.adaptLinPassFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (fm : NonlinearSys.FloatModel 𝕋 n m) (U : Zonotope (Vec 𝕋 m))
-    (options : LinearSys.ReachOptions 𝕋)
+    (options : LinearSys.ReachFloatOptions 𝕋)
     (R : Zonotope (Vec 𝕋 n)) : Option (Mat 𝕋 n n × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
   let zs := fm.linPointFloat options.Δt R U                   -- 3. linPoint, eq. (6)
   let AB := fm.linearizeFloat zs.1 zs.2                             -- 4.-5. taylor, linSys
   let f₀ := fm.f (Interval.point zs.1) (Interval.point zs.2)        -- [f(z✱)]
   let Ulin := f₀.zonotope ⊞                                         -- 5. f(z✱) ⊕ B(U - u✱)
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) AB.2 (Recenter.recenter U)
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) AB.2 (Recenter.recenter U)
   let S ← NonlinearSys.oneStepFloat AB.1 zs.1 Ulin R options        -- 6. linReachAdaptive
   pure (AB.1, S.2, S.1)                                             -- eqs. (10), (12)
 

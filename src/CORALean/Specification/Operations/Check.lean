@@ -14,7 +14,7 @@ so `check` computes whenever they do; `Theorems.CheckSound` is what a `true` buy
 
 ## Inputs
 * `spec` – specification
-* `s` – computed set
+* `S` – computed set
 
 ## Output
 * whether the set provably satisfies the specification
@@ -30,18 +30,18 @@ so `check` computes whenever they do; `Theorems.CheckSound` is what a `true` buy
 
 namespace CORALean
 
-variable {ContSet S α : Type} [CORALean.ContSet ContSet α] [CORALean.ContSet S α]
+variable {ContSet₁ ContSet₂ α : Type} [ContSetLike ContSet₁ α] [ContSetLike ContSet₂ α]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `false` means only "not shown": both instances may be conservative. -/
-def Specification.check [Contains ContSet S] [IsDisjoint ContSet S]
-    (spec : Specification ContSet) (s : S) : Bool :=
+def Specification.check [Contains ContSet₁ ContSet₂] [IsDisjoint ContSet₁ ContSet₂]
+    (spec : Specification ContSet₁) (S : ContSet₂) : Bool :=
   match spec.kind with
-  | .safeSet => Contains.contains spec.set s
-  | .unsafeSet => IsDisjoint.isDisjoint spec.set s
-  | .invariant => Contains.contains spec.set s
+  | .safeSet => Contains.contains spec.set S
+  | .unsafeSet => IsDisjoint.isDisjoint spec.set S
+  | .invariant => Contains.contains spec.set S
 
 end CORALean
 

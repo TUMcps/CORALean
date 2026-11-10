@@ -45,11 +45,12 @@ namespace CORALean
 
 -- `Matrix` unscoped would make `FloatOps.zero` ambiguous; only `*ᵥ` is wanted
 open scoped Matrix
-open Pointwise ContSet Plus Mtimes Float Float.IntervalOuter Float.OfInterval Float.FloatOps
+open Pointwise ContSet ContSetLike Plus Mtimes Float Float.IntervalOuter Float.OfInterval
+open Float.FloatOps
   Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n m k : ℕ}
 
 
@@ -144,7 +145,7 @@ theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
       rw [toReal_zero]
       exact h.1
     exact ⟨hz, h.2⟩
-  have hA' : A ∈ ContSet.toSet (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) := by
+  have hA' : A ∈ ContSetLike.toSet (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) := by
     rw [ContSet.toSet_mat]
     exact hA
   rw [hsplit]

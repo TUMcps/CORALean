@@ -80,7 +80,7 @@ theorem I₁_ne_I₂ : -- --- CONCL ---
     ContSet.neBool I₁ I₂ = true := by -- --- PROOF ---
   -- the point `3/2` is in the second box and not in the first
   refine ContSet.neBool_of_toSet_ne (S := Interval (Vec D 1)) fun h => ?_
-  have h2 : (![3 / 2] : Vec ℝ 1) ∈ ContSet.toSet I₂ := by
+  have h2 : (![3 / 2] : Vec ℝ 1) ∈ ContSetLike.toSet I₂ := by
     intro i
     obtain rfl : i = 0 := Subsingleton.elim _ _
     show toReal (d 0 0) ≤ (3 / 2 : ℝ) ∧ (3 / 2 : ℝ) ≤ toReal (d 1 1)

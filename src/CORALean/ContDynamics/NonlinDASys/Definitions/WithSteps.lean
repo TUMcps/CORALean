@@ -27,9 +27,9 @@ dimension `p`.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 variable {m p n : ℕ}
 
@@ -38,8 +38,8 @@ variable {m p n : ℕ}
 
 /-- `sys` with a reduced model `red` and the data a `NonlinearSys.WithSteps` run of the
 reduced ordinary system spends. -/
-structure NonlinDASys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+structure NonlinDASys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
     [Real.OfInterval S] (m p n : ℕ) where
   sys : NonlinDASys n p m
   red : sys.ReducedModel

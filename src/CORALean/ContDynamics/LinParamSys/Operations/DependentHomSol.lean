@@ -45,7 +45,7 @@ what the parts assume.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet ContSetLike
 
 variable {n : ℕ}
 
@@ -75,13 +75,13 @@ noncomputable def LinParamSys.dependentHomSol (sys : LinParamSys 𝕄𝒵 n) (r 
     (MatExp.intervalInputRemainder sys.A.interval r η)
   -- remaining reachable set
   let R_rem_state : Zonotope (Vec ℝ n) :=
-    Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) eIhigh (Zonotope.ofPoint c)
-  let R_rem_input : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) eIhigh_input Uconst
+    Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) eIhigh (Zonotope.ofPoint c)
+  let R_rem_input : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) eIhigh_input Uconst
   let R_rem : Zonotope (Vec ℝ n) := R_rem_state ⊞ R_rem_input
   -- state solution without center
   let Rinit_noCenter : Zonotope (Vec ℝ n) := Rinit ⊞ Zonotope.ofPoint (-c)
   let R_hom_state : Zonotope (Vec ℝ n) :=
-    Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.expIntervalEnclosure Ar η) Rinit_noCenter
+    Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) (MatExp.expIntervalEnclosure Ar η) Rinit_noCenter
   -- final solution
   R_hom_state ⊞ R_lowOrder ⊞ R_rem
 

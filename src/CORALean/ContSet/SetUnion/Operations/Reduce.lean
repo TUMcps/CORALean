@@ -29,7 +29,7 @@ re-collecting keeps the shape a union already has.
 
 namespace CORALean
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Reduce S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Reduce S α]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

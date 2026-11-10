@@ -44,9 +44,9 @@ single entry with zeros instead, which puts the weight on the outside.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- The model: CORA's code as printed, kept only to be refuted.

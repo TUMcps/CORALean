@@ -29,7 +29,7 @@ universe u
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -56,13 +56,14 @@ class ContDynamicsDT (Sys : Type u) (n : outParam ℕ) where
 /-- `reachExact sys params` is the exact set the problem `params` asks for; `reach sys params
 options` is what an algorithm computes for it, `none` if it could not certify itself;
 `reach_outer` is the enclosure between them, at a set `reach` returned and at nothing else. -/
-class Reach (Sys : ℕ → Type u) (P : outParam ((n : ℕ) → Sys n → Type)) (O : outParam Type)
-    (S : ℕ → Type)
-    [∀ n, ContSet (S n) (Vec ℝ n)] where
-  reachExact {n : ℕ} : (sys : Sys n) → P n sys → Set (Vec ℝ n)
-  reach {n : ℕ} : (sys : Sys n) → P n sys → O → Option (SetUnion (S n))
-  reach_outer {n : ℕ} (sys : Sys n) (params : P n sys) (options : O) {R : SetUnion (S n)}
-    (h : reach sys params options = some R) : reachExact sys params ⊆ toSet R
+class Reach (Sys : ℕ → Type u) (Params : outParam ((n : ℕ) → Sys n → Type))
+    (Options : outParam Type) (ContSet : ℕ → Type)
+    [∀ n, ContSetLike (ContSet n) (Vec ℝ n)] where
+  reachExact {n : ℕ} : (sys : Sys n) → Params n sys → Set (Vec ℝ n)
+  reach {n : ℕ} : (sys : Sys n) → Params n sys → Options → Option (SetUnion (ContSet n))
+  reach_outer {n : ℕ} (sys : Sys n) (params : Params n sys) (options : Options)
+    {R : SetUnion (ContSet n)} (h : reach sys params options = some R) :
+    reachExact sys params ⊆ toSet R
 
 end CORALean
 

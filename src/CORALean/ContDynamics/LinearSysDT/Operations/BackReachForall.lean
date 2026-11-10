@@ -37,10 +37,10 @@ returns where it cannot certify a subset. No `reduce` in the loop, and so no `0 
 
 namespace CORALean
 
-open Matrix ContSet Scalar Mtimes
+open Matrix ContSetLike Scalar Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

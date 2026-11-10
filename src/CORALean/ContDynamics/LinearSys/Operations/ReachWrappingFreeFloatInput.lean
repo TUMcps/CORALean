@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
@@ -63,7 +63,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `U`, each from the first by `[e^{A t_k}]`, the accumulated input reduced to `ρ`. -/
 def LinearSys.reachWrappingFreeFloatInput (sys : LinearSys 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
+    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   let η := options.η

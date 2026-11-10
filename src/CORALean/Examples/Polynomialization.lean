@@ -32,7 +32,7 @@ system's derivatives and a start set.
 
 namespace CORALean.Real
 
-open Matrix ContSet Plus
+open Matrix ContSet ContSetLike Plus
 
 -- Anonymous, since their content is that they elaborate.
 

@@ -35,10 +35,10 @@ reachable set for Lipschitz-continuous inputs and time-varying `p(t) ∈ P`.
 
 namespace CORALean
 
-open ContSet MeasureTheory
+open ContSetLike MeasureTheory
 
 variable {n m q : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

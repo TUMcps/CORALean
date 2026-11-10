@@ -45,13 +45,13 @@ at one time: `Φ_{t+r}(R₀) = e^{rA}Φ_t(R₀) + inputReach U r`. Both sides in
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

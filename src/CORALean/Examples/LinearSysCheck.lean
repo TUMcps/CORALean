@@ -30,33 +30,33 @@ apply as stated, so a `true` from a float refinement would answer for every traj
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 -- Anonymous, since their content is that they elaborate.
 
 /-- The safe box on the windows answers for every state the flow reaches by `1`. -/
 example :
     (Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).check
-      ((LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2).reachWrappingFree (S := 𝒵)
+      ((LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2).reachWrappingFree (ContSet := 𝒵)
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
       ((LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2).reachExact (1 - 0)
         (toSet (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
-  LinearSys.holds_of_check_wrappingFree (S := 𝒵) _ _ (by norm_num) _
+  LinearSys.holds_of_check_wrappingFree (ContSet₂ := 𝒵) _ _ (by norm_num) _
 
 /-- The same through `Reach.check`, CORA's `reach(sys, params, options)` and then `check`. -/
 example :
-    Reach.check (S := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
+    Reach.check (ContSet₂ := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
       ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
-      (Reach.reachExact (S := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
+      (Reach.reachExact (ContSet := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
-  Reach.holds_of_check (S := 𝒵) _ _ _ _
+  Reach.holds_of_check (ContSet₂ := 𝒵) _ _ _ _
 
 /-- At `Δt = 0` no window can be taken, and `reach` says so: no set, nothing to enclose. -/
 example :
-    Reach.reach (S := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
+    Reach.reach (ContSet := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
       ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨0, 4⟩ = none :=
   if_neg fun h => lt_irrefl _ h.2
 

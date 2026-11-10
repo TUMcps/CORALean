@@ -35,14 +35,14 @@ violation on the computed set says nothing, possibly lying in the approximation 
 
 namespace CORALean
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
+variable {ContSet α : Type} [ContSetLike ContSet α] {𝒳 O : Set α}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.holds_of_outer (spec : Specification ContSet) (h : X ⊆ O)
+theorem Specification.holds_of_outer (spec : Specification ContSet) (h : 𝒳 ⊆ O)
     (hO : spec.Holds O) : -- --- CONCL ---
-    spec.Holds X := by -- --- PROOF ---
+    spec.Holds 𝒳 := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k
   · exact subset_trans h hO

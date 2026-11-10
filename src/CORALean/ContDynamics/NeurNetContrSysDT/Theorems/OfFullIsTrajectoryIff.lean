@@ -44,10 +44,10 @@ modelled.
 
 namespace CORALean
 
-open ContSet ContDynamicsDT
+open ContSetLike ContDynamicsDT
 
 variable {n : ℕ} {P : Type} [ContDynamicsDT P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

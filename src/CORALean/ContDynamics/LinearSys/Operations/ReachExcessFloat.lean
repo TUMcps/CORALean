@@ -64,7 +64,7 @@ def LinearSys.reachExcessFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η o : ℕ
     let Rj := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])   -- R_j
       ⟨R₀, P, 0, j⟩ ⟨o, ho⟩
     let W := sys.timePointStepInputFloat Δt η Rj U                  -- [e^{AΔt}] R_j ⊞ P
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAΔt
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) eAΔt
         (sys.reachExcessFloat Δt η o ho R₀ U j) ⊞                   -- carried excess
       sys.timePointStepExcessFloat Δt η Rj U) ⊞                     -- the step's own
       Zonotope.reduceGirardBox W o                                  -- the reduction's

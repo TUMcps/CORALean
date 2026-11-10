@@ -81,9 +81,9 @@ theorem MatExp.curvatureEnclosure_outer (A : Interval (Mat 𝕋 n n)) {H : Zonot
     Interval.zonotope_contains _ (Interval.mem_point ũ)
   exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
     (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ H
+      (ContSet := 𝒵[𝕋]) _ H
       (Set.mem_biUnion hF (Set.mem_image_of_mem _ hx)))
-    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) _
+    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) _
       (Interval.point ũ).zonotope
       (Set.mem_biUnion hG (Set.mem_image_of_mem _ hpt))))
 

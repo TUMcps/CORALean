@@ -40,11 +40,11 @@ structure SetIntersection (S : Type) where
   sets : List S
 
 /-- What a `SetIntersection` denotes: the intersection of what every member denotes. -/
-def SetIntersection.toSet [ContSet S α] (I : SetIntersection S) : Set α :=
-  ⋂ s ∈ I.sets, ContSet.toSet s
+def SetIntersection.toSet [ContSetLike S α] (I : SetIntersection S) : Set α :=
+  ⋂ s ∈ I.sets, ContSetLike.toSet s
 
 /-- A set intersection denotes `SetIntersection.toSet`, the points every member contains. -/
-instance [ContSet S α] : ContSet (SetIntersection S) α := ⟨SetIntersection.toSet⟩
+instance [ContSetLike S α] : ContSetLike (SetIntersection S) α := ⟨SetIntersection.toSet⟩
 
 end CORALean
 

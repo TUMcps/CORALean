@@ -41,7 +41,7 @@ that wants them supplies the box itself.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  INSTANCES  ========================================= --

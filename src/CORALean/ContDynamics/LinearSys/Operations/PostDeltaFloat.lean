@@ -66,9 +66,9 @@ def LinearSys.step_deltaReachFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : �
   let eAΔtI := Interval.matPlus eAΔt (Interval.point (negIdentityMat 𝕋 n))  -- [e^{AΔt}] - I
   let O := (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope           -- the origin
   LinComb.linComb O (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) eAΔtI R) ⊞
+    (ContSet := 𝒵[𝕋]) eAΔtI R) ⊞
     Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- enclose(0, ·) ⊕ F R
-      (S := 𝒵[𝕋]) F R
+      (ContSet := 𝒵[𝕋]) F R
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

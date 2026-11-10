@@ -104,7 +104,7 @@ theorem Location.guardIntersectPolytopeHFloat_outer (k : ℕ) (Bs : List (Mat �
   -- the box of the cut of `R'` with the guard, in the basis
   set cutOf : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R' =>
     ConZonotope.intervalTight k
-      (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
         ((Zonotope.conZonotope R').intersectHPolytope guard)) with hcutOf
   -- the state in its cut, boxed in the basis
   have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.toSet →
@@ -114,7 +114,7 @@ theorem Location.guardIntersectPolytopeHFloat_outer (k : ℕ) (Bs : List (Mat �
     have h5 := ConZonotope.intersectHPolytope_outer _ guard (Zonotope.conZonotope_contains _ hx') hg
     generalize (Zonotope.conZonotope R').intersectHPolytope guard = cZ at h5 ⊢
     exact ConZonotope.intervalTight_contains k _
-      (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ
+      (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h5)))
   -- the state is in the box of the union of the cuts
   have h2 := hfold (Rs.map cutOf) (cutOf R₀)
@@ -124,7 +124,7 @@ theorem Location.guardIntersectPolytopeHFloat_outer (k : ℕ) (Bs : List (Mat �
       · exact Or.inr ⟨_, List.mem_map.mpr ⟨R, hR', rfl⟩, hcut _ hx⟩)
   -- and back through the basis
   generalize List.foldl Interval.or (cutOf R₀) (Rs.map cutOf) = box at h2 ⊢
-  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope
+  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ h2)))
   rwa [hBB] at h3

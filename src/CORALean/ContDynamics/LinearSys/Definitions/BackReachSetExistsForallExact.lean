@@ -44,10 +44,10 @@ vacuously for a `w` no run witnesses, and would silently enlarge the set.
 
 namespace CORALean
 
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSetLike Scalar MeasureTheory
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

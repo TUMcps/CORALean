@@ -16,7 +16,7 @@ room for. `reach_outer` and `reachWrappingFree_outer` put it inside `reach` and
 ## Inputs
 * `sys` – linear system
 * `tFinal` – final time
-* `X₀` – initial set
+* `𝒳₀` – initial set
 
 ## Output
 * images of the initial set under the matrix exponential up to the final time
@@ -45,11 +45,11 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every image of a bare initial set `X₀` under `exp (t • sys.A)`, at every
+/-- Every image of a bare initial set `𝒳₀` under `exp (t • sys.A)`, at every
 `t ∈ [0, tFinal]`. -/
 noncomputable def LinearSys.reachExact (sys : LinearSys 𝕋 n) (tFinal : ℝ)
-    (X₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  ⋃ t ∈ Set.Icc 0 tFinal, sys.reachExactAt t X₀
+    (𝒳₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+  ⋃ t ∈ Set.Icc 0 tFinal, sys.reachExactAt t 𝒳₀
 
 end CORALean
 

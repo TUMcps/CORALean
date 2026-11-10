@@ -33,7 +33,7 @@ closed in the normed ambient type, so every member supplies both.
 
 namespace CORALean
 
-variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S α] [CompactSet S α]
+variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSetLike S α] [CompactSet S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -41,10 +41,10 @@ variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S �
 /-- An intersection of at least one compact member is compact. -/
 theorem SetIntersection.isCompact_toSet {I : SetIntersection S}
     (h : I.sets ≠ []) : -- --- CONCL ---
-    IsCompact (ContSet.toSet I) := by -- --- PROOF ---
+    IsCompact (ContSetLike.toSet I) := by -- --- PROOF ---
   obtain ⟨s, hs⟩ := List.exists_mem_of_ne_nil _ h
   -- the closed intersection sits inside the compact member `s`
-  have hclosed : IsClosed (ContSet.toSet I) :=
+  have hclosed : IsClosed (ContSetLike.toSet I) :=
     isClosed_biInter fun t _ => (CompactSet.isCompact_toSet t).isClosed
   exact (CompactSet.isCompact_toSet s).of_isClosed_subset hclosed
     (SetIntersection.toSet_subset hs)

@@ -33,7 +33,7 @@ window and the inputs, newest first. An outer statement.
 
 namespace CORALean
 
-open CORALean.Float ContSet SoundFloatArithmetic
+open CORALean.Float ContSet ContSetLike SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : ℕ}
 

@@ -81,7 +81,7 @@ theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat_static (sys : Linea
   have hintF := MatExp.adaptiveIntegral_outer_refines (Interval.point sys.A) hΔt.le η hη.2
     (Interval.mem_point sys.A) hint
   have hstat := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η) Vstat
     (Set.mem_biUnion hintF (Set.mem_image_of_mem _ hs))
   exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hdyn hstat)

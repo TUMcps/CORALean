@@ -49,7 +49,7 @@ counterpart prove it.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -70,7 +70,7 @@ noncomputable def LinearSys.timePointStepInner (sys : LinearSys 𝕋 n) (r : ℝ
 own error is bounded by. -/
 noncomputable def LinearSys.timeIntervalInner (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ : Zonotope (Vec ℝ n)) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀ (sys.timePoint (S := 𝒵) r X₀ 1)).toSet
+  minkowskiDiff (sys.timeInterval (ContSet := 𝒵) r η X₀ (sys.timePoint (ContSet := 𝒵) r X₀ 1)).toSet
     (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀))
 
 end CORALean

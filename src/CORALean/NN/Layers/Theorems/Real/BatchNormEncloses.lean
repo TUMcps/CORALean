@@ -40,9 +40,9 @@ layer encloses CORA's inference-time formula `γ (x - μ) / √(σ² + ε) + β`
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.OfInterval S] {n c : ℕ}
 
 

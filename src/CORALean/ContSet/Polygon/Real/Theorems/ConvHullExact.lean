@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 theorem Polygon.convHull_exact (P : Polygon) :
     VPolytope.toSet (Polygon.convHull P) =
-      convexHull ℝ (ContSet.toSet P) := by
+      convexHull ℝ (ContSetLike.toSet P) := by
   rw [VPolytope.toSet_eq_convexHull, ← Polygon.convexHull_vertices]
   congr 1
   ext v

@@ -45,7 +45,7 @@ theorem LinearSys.inputSetFloat_outer (sys : LinearSys 𝕋 n)
       (sys.inputSetFloat U).toSet := by -- --- PROOF ---
   rintro _ ⟨u, hu, rfl⟩
   exact Plus.plus_outer _ _ (Set.add_mem_add
-    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.B U
+    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) sys.B U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hu)))
     (show _ ∈ (Zonotope.point sys.c).toSet by rw [Zonotope.toSet_point]; rfl))
 

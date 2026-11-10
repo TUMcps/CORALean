@@ -30,9 +30,9 @@ to relate to `toSet`, or to prove complete.
 
 namespace CORALean
 
-open Pointwise ContSet
+open Pointwise ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

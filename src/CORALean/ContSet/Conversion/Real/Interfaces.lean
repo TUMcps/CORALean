@@ -30,19 +30,19 @@ conversions, the target having no name to be called after.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- Named for the target, as every conversion is: `interval` is CORA's
 `interval(S)`. -/
-class IntervalOuter (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
+class IntervalOuter (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] where
   interval {n : ℕ} : S n → Interval (Vec ℝ n)
   interval_outer {n : ℕ} (s : S n) : toSet s ⊆ toSet (interval s)
 
 /-- A representation family that can hold a box: `ofInterval` gives a set containing the box. -/
-class OfInterval (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
+class OfInterval (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] where
   ofInterval {n : ℕ} : Interval (Vec ℝ n) → S n
   ofInterval_outer {n : ℕ} (I : Interval (Vec ℝ n)) :
     toSet I ⊆ toSet (ofInterval I)

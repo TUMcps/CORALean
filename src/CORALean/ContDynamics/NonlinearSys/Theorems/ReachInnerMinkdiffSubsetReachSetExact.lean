@@ -55,7 +55,7 @@ the constant input `u₀` (CORA's `params.u`), so under any `U ∋ u₀`.
 
 namespace CORALean
 
-open ContSet Set MeasureTheory
+open ContSetLike Set MeasureTheory
 
 variable {n m : ℕ} {𝓛 : Type}
 

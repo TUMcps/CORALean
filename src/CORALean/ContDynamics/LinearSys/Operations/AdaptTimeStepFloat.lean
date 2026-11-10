@@ -74,16 +74,16 @@ def LinearSys.step_adaptTimeStepOrderFloat (sys : LinearSys 𝕋 n) (eAt : Inter
   | _, 0 => none
   | η, k + 1 =>
     let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{At_i}] ·
-      (S := 𝒵[𝕋]) eAt
+      (ContSet := 𝒵[𝕋]) eAt
     let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖
     let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η   -- F_x(Δt, η)
     let E := MatExp.intervalInputRemainder (Interval.point sys.A) Δt η     -- E(Δt, η) Δt
     let εH := ToRat.toRat                                                  -- 10. calc. HR⁺, ε_H
       (eA (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) F X₀)).errOp
+        (ContSet := 𝒵[𝕋]) F X₀)).errOp
     let εP := ToRat.toRat                                                  -- 11. calc. PR⁺, ε_P
       (eA (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) E U)).errOp
+        (ContSet := 𝒵[𝕋]) E U)).errOp
     if le nrm (half (nsmulDown (η + 2) one)) && decide (εH ≤ εHmax) && decide (εP ≤ εPi)
     then some (η, εH, εP)                                                  -- 12. both inside
     else sys.step_adaptTimeStepOrderFloat eAt X₀ U εHmax εPi Δt (η + 1) k

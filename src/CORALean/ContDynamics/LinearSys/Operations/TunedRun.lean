@@ -54,7 +54,7 @@ namespace CORALean
 open CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --
@@ -87,7 +87,7 @@ noncomputable def LinearSys.step_tunedStep (sys : LinearSys 𝕋 n) (le : ℝ �
   -- 5. Alg. 2
   | some (Δt, η, εP) =>
     -- 6. HR([0,Δt_i])
-    let HR₀ := sys.timeInterval (S := 𝒵) Δt η X₀ (sys.timePoint (S := 𝒵) Δt X₀ 1)
+    let HR₀ := sys.timeInterval (ContSet := 𝒵) Δt η X₀ (sys.timePoint (ContSet := 𝒵) Δt X₀ 1)
     -- 6. PR([0,Δt_i])
     let PR₀ := sys.inputSolution (S := 𝒵) Δt η U
     -- 7. eq. (2)'s e^{A t_i}

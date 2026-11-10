@@ -33,7 +33,7 @@ certificate's `A` being real, so, as in `NeurNetControl.lean`, every operation s
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 /-- The step `x ↦ x² + u`, the simplest map whose linearization error is exact
 rather than merely bounded. -/

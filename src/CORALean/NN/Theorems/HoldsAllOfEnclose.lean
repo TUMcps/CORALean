@@ -13,7 +13,7 @@ the enclosed set holds of the network's own image, with no hypothesis.
 
 ## Inputs
 * `nn` – network
-* `X` – input set
+* `S` – input set
 * `specs` – list of specifications
 
 ## Hypotheses
@@ -33,19 +33,19 @@ the enclosed set holds of the network's own image, with no hypothesis.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.holdsAll_of_enclose (nn : NeuralNetwork S n m) (X : S n)
-    (specs : List (Specification ContSet))
-    (h : Specification.HoldsAll specs (toSet (nn.enclose X))) :
-    Specification.HoldsAll specs (nn.eval.out '' toSet X) :=
-  (NeuralNetwork.encloses_eval nn).holdsAll_of_enclose X specs h
+theorem NeuralNetwork.holdsAll_of_enclose (nn : NeuralNetwork ContSet₂ n m) (S : ContSet₂ n)
+    (specs : List (Specification ContSet₁))
+    (h : Specification.HoldsAll specs (toSet (nn.enclose S))) :
+    Specification.HoldsAll specs (nn.eval.out '' toSet S) :=
+  (NeuralNetwork.encloses_eval nn).holdsAll_of_enclose S specs h
 
 end CORALean
 

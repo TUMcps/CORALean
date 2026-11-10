@@ -40,15 +40,15 @@ order is `reachWrappingFree`'s own, `reachOrder_admissible`'s.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet] [Mtimes ℐ ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -56,7 +56,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Every image of the initial set under the flow, at every `t ∈ [0, tFinal - tStart]`,
 is in one of `reachWrappingFree`'s windows. -/
 theorem LinearSys.reachWrappingFree_outer (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
+    (params : Reach.Params (ContSet n) ℝ) {options : LinearSys.ReachOptions ℝ}
     (hΔt : 0 < options.Δt) : -- --- CONCL ---
     sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
       ⊆ toSet (sys.reachWrappingFree params options) := by -- --- PROOF ---

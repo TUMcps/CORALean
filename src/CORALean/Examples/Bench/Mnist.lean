@@ -40,7 +40,7 @@ image any layer of which stores a value past it is `overflow` and not certified.
 
 namespace CORALean.Bench
 
-open CORALean CORALean.Float ContSet Float.FloatOps Float.SoundFloatArithmetic
+open CORALean CORALean.Float ContSet ContSetLike Float.FloatOps Float.SoundFloatArithmetic
 open Lean (Json)
 open CORALean.Bench.Mnist (MnistAffine MnistImage parseMnistNet parseMnistData finalDim
   inputBox runReport meanRadius)

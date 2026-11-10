@@ -14,7 +14,7 @@ every system's, takes both steps at once.
 
 ## Inputs
 * `spec` – specification
-* `s` – computed set
+* `S` – computed set
 
 ## Hypotheses
 * `h` – the check passes
@@ -33,21 +33,21 @@ every system's, takes both steps at once.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {ContSet S α : Type} [CORALean.ContSet ContSet α] [CORALean.ContSet S α]
+variable {ContSet₁ ContSet₂ α : Type} [ContSetLike ContSet₁ α] [ContSetLike ContSet₂ α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.check_sound [Contains ContSet S] [IsDisjoint ContSet S]
-    (spec : Specification ContSet) (s : S) (h : spec.check s) : -- --- CONCL ---
-    spec.Holds (toSet s) := by -- --- PROOF ---
-  obtain ⟨t, k⟩ := spec
+theorem Specification.check_sound [Contains ContSet₁ ContSet₂] [IsDisjoint ContSet₁ ContSet₂]
+    (spec : Specification ContSet₁) (S : ContSet₂) (h : spec.check S) : -- --- CONCL ---
+    spec.Holds (toSet S) := by -- --- PROOF ---
+  obtain ⟨T, k⟩ := spec
   cases k
-  · exact Contains.contains_sound t s h
-  · exact IsDisjoint.isDisjoint_sound t s h
-  · exact Contains.contains_sound t s h
+  · exact Contains.contains_sound T S h
+  · exact IsDisjoint.isDisjoint_sound T S h
+  · exact Contains.contains_sound T S h
 
 end CORALean
 

@@ -21,9 +21,9 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 namespace CORALean
 
 section
-open ContSet ContDynamicsDT
+open ContSetLike ContDynamicsDT
 variable {n : ℕ} {P : Type} [ContDynamicsDT P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ================================  `NeurNetContrSysDT.ofFull`  ================================ --

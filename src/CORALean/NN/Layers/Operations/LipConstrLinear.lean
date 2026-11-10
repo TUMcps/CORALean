@@ -33,9 +33,9 @@ round, and the weights it then runs are the computed `N W`.
 
 namespace CORALean
 
-open ContSet Plus Mtimes Float.OfInterval
+open ContSet ContSetLike Plus Mtimes Float.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Float.OfInterval S ℝ] {n m : ℕ}
 
 

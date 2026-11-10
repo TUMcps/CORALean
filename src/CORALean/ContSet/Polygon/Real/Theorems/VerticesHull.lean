@@ -40,12 +40,12 @@ private theorem Polygon.aux_mem_vertices_iff (P : Polygon) (v : Vec ℝ 2) :
   simp [Polygon.vertices, List.mem_flatMap, List.mem_ofFn]
 
 private theorem Polygon.aux_vertex_mem_toSet (P : Polygon) {v : Vec ℝ 2} (hv : v ∈ P.vertices) :
-    v ∈ ContSet.toSet P := by
+    v ∈ ContSetLike.toSet P := by
   obtain ⟨p, hp, j, rfl⟩ := (Polygon.aux_mem_vertices_iff P v).mp hv
   exact SetUnion.mem_toSet.mpr ⟨p, hp, VPolytope.vertex_mem p j⟩
 
 private theorem Polygon.aux_toSet_subset_convexHull_vertices (P : Polygon) : -- --- CONCL ---
-    ContSet.toSet P ⊆ convexHull ℝ {v | v ∈ P.vertices} := by -- --- PROOF ---
+    ContSetLike.toSet P ⊆ convexHull ℝ {v | v ∈ P.vertices} := by -- --- PROOF ---
   intro x hx
   obtain ⟨p, hp, hx⟩ := SetUnion.mem_toSet.mp hx
   have hx' : x ∈ convexHull ℝ (Set.range p.V) := by
@@ -58,7 +58,7 @@ private theorem Polygon.aux_toSet_subset_convexHull_vertices (P : Polygon) : -- 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.convexHull_vertices (P : Polygon) :
-    convexHull ℝ {v | v ∈ P.vertices} = convexHull ℝ (ContSet.toSet P) :=
+    convexHull ℝ {v | v ∈ P.vertices} = convexHull ℝ (ContSetLike.toSet P) :=
   Set.Subset.antisymm
     (convexHull_mono fun _ hv => Polygon.aux_vertex_mem_toSet P hv)
     (convexHull_min (Polygon.aux_toSet_subset_convexHull_vertices P) (convex_convexHull ℝ _))

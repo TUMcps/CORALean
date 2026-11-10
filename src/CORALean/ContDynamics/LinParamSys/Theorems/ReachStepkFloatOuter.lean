@@ -64,7 +64,7 @@ theorem LinParamSys.reachStepkFloat_outer (sys : LinParamSys ℐ[𝕋] n) {Δt :
   -- `t_k` lies in its bracket
   obtain ⟨hLo, hHi⟩ := LinearSys.sampleTimeFloat_mem Δt k
   exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) _ Rτ₀
+    (ContSet := 𝒵[𝕋]) _ Rτ₀
     (Set.mem_biUnion (sys.exp_mem_expSquaringFloat (LinParamSys.squaringsFloat_spec h2 _ hsk) hA
       hLo hHi) (Set.mem_image_of_mem _ hy))
 

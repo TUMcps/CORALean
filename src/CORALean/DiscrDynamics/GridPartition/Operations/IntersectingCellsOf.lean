@@ -29,7 +29,7 @@ public import CORALean.ContSet.Conversion.Real.Interfaces
 
 namespace CORALean
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

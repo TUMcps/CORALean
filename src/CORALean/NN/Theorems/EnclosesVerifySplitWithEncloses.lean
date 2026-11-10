@@ -45,16 +45,16 @@ induction hypothesis, through `hcov X` and the binary `Specification.aux_holds_u
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ m)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 section
-variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X Y : Set α}
+variable {ContSet α : Type} [ContSetLike ContSet α] {X Y : Set α}
 
 /-- A specification holds of a union when it holds of each part. -/
 private theorem Specification.aux_holds_union (spec : Specification ContSet) (hX : spec.Holds X)

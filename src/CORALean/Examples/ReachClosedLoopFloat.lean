@@ -48,7 +48,7 @@ as are `Sigmoid`, `Tanh`, `Softmax`, `maxPool` and `SigmoidPoly`: `Layer` stores
 
 namespace CORALean.Float
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ} {L : Type}
 

@@ -41,9 +41,9 @@ the others leave over.
 
 namespace CORALean.Real
 
-open ContSet IntervalOuter OfInterval
+open ContSet ContSetLike IntervalOuter OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S] [OfInterval S] {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [IntervalOuter S] [OfInterval S] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

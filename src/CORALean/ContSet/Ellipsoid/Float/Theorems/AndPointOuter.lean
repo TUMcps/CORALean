@@ -81,10 +81,10 @@ end
 
 theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p w : Vec 𝕋 n)
     (a : Vec 𝕋 n) (s : 𝕋) : -- --- CONCL ---
-    E.toSet ∩ {toRealVec p} ⊆ ContSet.toSet (E.andPoint p w a s) := by -- --- PROOF ---
+    E.toSet ∩ {toRealVec p} ⊆ ContSetLike.toSet (E.andPoint p w a s) := by -- --- PROOF ---
   -- the point ellipsoid holds every point of `E ∩ {p}`
   have hpt : E.toSet ∩ {toRealVec p}
-      ⊆ ContSet.toSet (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by
+      ⊆ ContSetLike.toSet (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by
     rw [OptEmpty.toSet_of]
     change _ ⊆ (Ellipsoid.ofPoint p).toSet
     rw [Ellipsoid.aux_ofPoint_exact]

@@ -39,7 +39,7 @@ interval arithmetic takes a power.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

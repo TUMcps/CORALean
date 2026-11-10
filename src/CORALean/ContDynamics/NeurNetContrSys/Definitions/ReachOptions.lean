@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 because `Δt` feeds `LinearSys.discretize` and no exact quotient exists
 there. `hZonotopeOrder` rules out `0`, as in `LinearSysDT.ReachOptions`. `τ` is
 the time type, `ℝ` for `reach` and the float scalar for `reachFloat`, as in
-`LinearSys.ReachOptions`.
+`LinearSys.ReachFloatOptions`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

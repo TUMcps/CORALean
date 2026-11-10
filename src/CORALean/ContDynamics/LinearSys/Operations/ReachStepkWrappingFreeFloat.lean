@@ -54,7 +54,7 @@ def LinearSys.reachStepkWrappingFreeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) 
   let sk ← sys.squaringsFloat Δt tk.inf tk.sup η                        -- t_k / 2^s within Δt
   let eAtk := sys.expSquaringFloat tk.inf tk.sup η sk                   -- [e^{A t_k}], squared
   pure (Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- R(τ_k)
-    (S := 𝒵[𝕋]) eAtk Rτ₀)
+    (ContSet := 𝒵[𝕋]) eAtk Rτ₀)
 
 end CORALean
 

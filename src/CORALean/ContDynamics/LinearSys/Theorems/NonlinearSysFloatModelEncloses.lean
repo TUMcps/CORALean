@@ -33,7 +33,7 @@ slope between two points is `A` and the identity, which the Jacobian boxes hold.
 
 namespace CORALean
 
-open Matrix CORALean.Float FloatOps ContSet SoundFloatArithmetic
+open Matrix CORALean.Float FloatOps ContSet ContSetLike SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

@@ -53,13 +53,13 @@ Grönwall's `eq_zero_of_abs_deriv_le_mul_abs_self_of_eq_zero_right` forces `d �
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral
+open Matrix ContSetLike Scalar NormedSpace MeasureTheory intervalIntegral
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

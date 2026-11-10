@@ -32,7 +32,7 @@ system is the decay `ẋ = -x`, so the state moves: the run checked against `rea
 
 namespace CORALean.Real
 
-open Matrix ContSet NormedSpace Scalar
+open Matrix ContSet ContSetLike NormedSpace Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

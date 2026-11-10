@@ -36,7 +36,7 @@ rounding. An outer statement.
 
 namespace CORALean
 
-open CORALean.Float FloatOps ContSet SoundFloatArithmetic
+open CORALean.Float FloatOps ContSet ContSetLike SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m k : ℕ}
 

@@ -61,7 +61,8 @@ convex with no hypothesis. The remainder is within the float `E(r)·r` applied t
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic NormedSpace Matrix ContSet MeasureTheory Pointwise
+open CORALean.Float FloatOps SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike
+open MeasureTheory Pointwise
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -82,10 +83,10 @@ private theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n
       {z | ∃ N ∈ (Real.Interval.matPow sys.A.nominal k).toSet, ∃ v ∈ toSet U,
         z = N *ᵥ v})) : -- --- CONCL ---
     y ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
       (MatExp.intervalInputTerm sys.A r k) U) := by -- --- PROOF ---
   set T := toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (MatExp.intervalInputTerm sys.A r k) U) with hTdef
   have hconv : Convex ℝ T := Zonotope.convex_toSet _
   have hclosed : IsClosed T := Zonotope.isClosed_toSet _
@@ -112,7 +113,7 @@ private theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n
         exact Interval.smul_outer hc.1 hc.2 _
           (Interval.matPow_subset hM₀ subset_rfl k hN)
       exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) _ U
+        (ContSet := 𝒵[𝕋]) _ U
         (Set.mem_biUnion hmem (Set.mem_image_of_mem _ hv))
     exact fun z hz => hpre hz
   -- scaling `ct` down from `cr` stays in the hull, which holds the origin
@@ -194,19 +195,19 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
   have hx₀ := traj.init
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · have hE : Φ *ᵥ x 0 ∈ toSet
-      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (sys.expIntervalFloat Δt Δt (m + 2)) R₀) := by
       refine Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) _ R₀
+        (ContSet := 𝒵[𝕋]) _ R₀
         (Set.mem_biUnion ?_ (Set.mem_image_of_mem _ hx₀))
       rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]
       exact hΦ
     -- and the correction term `F x₀` in `[F] R₀`
     have hFm : F *ᵥ x 0 ∈ toSet
-      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R₀) :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) _ R₀
+        (ContSet := 𝒵[𝕋]) _ R₀
         (Set.mem_biUnion hF (Set.mem_image_of_mem _ hx₀))
     refine Plus.plus_outer _ _ (Set.add_mem_add (LinComb.linComb_outer _ _ ?_) hFm)
     exact ⟨x 0, hx₀, _, hE, 1 - t / r,
@@ -216,7 +217,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · have hterm : ∀ k, Real.MatExp.peanoBakerInputTerm Â ũ k t
         ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-          (S := 𝒵[𝕋])
+          (ContSet := 𝒵[𝕋])
           (MatExp.intervalInputTerm sys.A Δt k) U) := fun k =>
       aux_hull_subset_intervalInputTerm sys (hÂB 0) h0 hΔt ht0 htr k
         (Real.MatExp.peanoBakerInputTerm_mem hÂi hÂB hũi ht0
@@ -262,7 +263,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
         exact h
     rw [← hEv]
     exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ U
+      (ContSet := 𝒵[𝕋]) _ U
       (Set.mem_biUnion hEm (Set.mem_image_of_mem _ hv₀))
 
 end CORALean

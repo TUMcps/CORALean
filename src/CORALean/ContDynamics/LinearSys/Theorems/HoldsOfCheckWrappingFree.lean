@@ -40,21 +40,22 @@ reaches from `X₀` by `tFinal`, at any `η`; `holds_of_check` is the same at th
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet₂ n) (Vec ℝ n)] [∀ n, LinComb (ContSet₂ n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet₂] [Mtimes ℐ ContSet₂]
+variable {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.holds_of_check_wrappingFree [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) (params : Reach.Params (S n) ℝ)
-    {options : LinearSys.ReachStepOptions ℝ} (hΔt : 0 < options.Δt)
-    (spec : Specification ContSet) :
+theorem LinearSys.holds_of_check_wrappingFree [Contains ContSet₁ (SetUnion (ContSet₂ n))]
+    [IsDisjoint ContSet₁ (SetUnion (ContSet₂ n))] (sys : LinearSys 𝕋 n)
+    (params : Reach.Params (ContSet₂ n) ℝ)
+    {options : LinearSys.ReachOptions ℝ} (hΔt : 0 < options.Δt)
+    (spec : Specification ContSet₁) :
     spec.check (sys.reachWrappingFree params options) →
     (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀))) :=
   fun h => spec.holds_of_outer (sys.reachWrappingFree_outer params hΔt) (spec.check_sound _ h)

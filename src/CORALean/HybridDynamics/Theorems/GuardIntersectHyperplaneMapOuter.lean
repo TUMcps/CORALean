@@ -70,12 +70,12 @@ is `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e` ([1, Eq. 15]); `y_h(x₀)` i
 
 namespace CORALean
 
-open CORALean.Real Matrix NormedSpace MeasureTheory ContSet
+open CORALean.Real Matrix NormedSpace MeasureTheory ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

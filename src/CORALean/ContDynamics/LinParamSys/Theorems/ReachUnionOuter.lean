@@ -63,13 +63,13 @@ With `u' = ũ + (u' - ũ)` and `t = t_k + τ`, both the free motion and the cons
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
@@ -80,7 +80,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 /-- Every state a constant-parameter run on `[0, tFinal - tStart]` from `X₀`, under inputs in
 `params.U` (input coordinates) wherever it sits, reaches is in one of `reachUnion`'s windows. -/
 theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
-    (params : Reach.InputParams (S n) (S sys.m) ℝ) {options : LinearSys.ReachStepOptions ℝ}
+    (params : Reach.InputParams (S n) (S sys.m) ℝ) {options : LinearSys.ReachOptions ℝ}
     (hΔt : 0 < options.Δt) : -- --- CONCL ---
     sys.reachUnionExact (params.tFinal - params.tStart) (toSet params.X₀)
       (toSet params.U) ⊆ toSet (sys.reachUnion params options) := by -- --- PROOF ---

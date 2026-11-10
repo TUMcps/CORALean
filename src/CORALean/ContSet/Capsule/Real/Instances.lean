@@ -17,8 +17,8 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # What `Capsule` instantiates
 
-`ContSet`, `ConvexSet`, `CompactSet`, `OfPoint` at `g = 0`, `r = 0`, `Reduce` as the identity, as
-CORA's empty `reduce` body is, `Reindex`, CORA's `lift_`, and the outer operations `Plus` and
+`ContSetLike`, `ConvexSet`, `CompactSet`, `OfPoint` at `g = 0`, `r = 0`, `Reduce` as the identity,
+as CORA's empty `reduce` body is, `Reindex`, CORA's `lift_`, and the outer operations `Plus` and
 `Mtimes`.
 
 A capsule is closed under almost nothing, so `Plus` and `Mtimes` are enclosures, not exact: a sum of
@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (Capsule n) (Vec ℝ n) := ⟨Capsule.toSet⟩
+instance : ContSetLike (Capsule n) (Vec ℝ n) := ⟨Capsule.toSet⟩
 
 instance : ConvexSet (Capsule n) (Vec ℝ n) := ⟨Capsule.convex_toSet⟩
 

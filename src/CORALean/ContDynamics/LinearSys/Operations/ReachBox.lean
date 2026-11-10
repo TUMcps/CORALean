@@ -67,7 +67,7 @@ noncomputable def LinearSys.reachBox (sys : LinearSys 𝕋 n) (X₀ U : Zonotope
     (η N : ℕ) : List (Zonotope (Vec ℝ n)) :=
   let eAr := exp (r • toRealMat sys.A)                             -- e^{Ar}
   -- 1. H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰
-  let H₀ := sys.timeInterval (S := 𝒵) r η X₀ (sys.timePoint (S := 𝒵) r X₀ 1)
+  let H₀ := sys.timeInterval (ContSet := 𝒵) r η X₀ (sys.timePoint (ContSet := 𝒵) r X₀ 1)
   -- 2. V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U
   let V₀ := sys.inputSolution (S := 𝒵) r η U
   -- 3. P^R_0 = box(V₀)

@@ -63,7 +63,7 @@ presumes. The pass for `k` covers `[kδ, (k + 1)δ]`: the homogeneous part from
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar NormedSpace Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

@@ -76,9 +76,9 @@ checks, and where they fail CORA throws `Pancake approach failed!` or misses the
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Set
+open Matrix ContSet ContSetLike Set
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -92,7 +92,7 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)]
 set. -/
 theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.WithSteps S Rg m n)
     (scaled : NonlinParamSys.WithSteps S Rg m 1 n) (nv : Vec ℝ n) (d : ℝ) (R₀ : S n) (tScaled δ : ℝ)
-    (optionsScaled optionsJump : LinearSys.ReachOptions ℝ)
+    (optionsScaled optionsJump : LinearSys.ReachFloatOptions ℝ)
     (hsc : scaled.sys = sys.sys.pancakeScaled nv d) (hU : toSet scaled.aug.U = toSet sys.U)
     {p : Vec ℝ 1} (hp : p ∈ toSet scaled.P) (hp0 : 0 < p 0) {T : ℝ} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.sys.q}

@@ -26,7 +26,7 @@ or not at all (`IsSyncRun`, `mergeTransitionSetsSync`).
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {G : ℕ → Type} {𝕋 : Type} {k : ℕ} {n : Fin k → ℕ} {L : Fin k → Type} {Λ : Type}
 

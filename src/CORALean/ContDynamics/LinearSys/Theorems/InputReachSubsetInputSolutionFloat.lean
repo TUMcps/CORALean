@@ -55,7 +55,7 @@ hull the remainder took stays inside it.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix ContSet Pointwise
+open CORALean.Float SoundFloatArithmetic Matrix ContSet ContSetLike Pointwise
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -94,14 +94,14 @@ private theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r 
   -- order `i`'s matrix is in its float box, so its image is in the float product
   have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' V.toSet
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) V) := by
     intro i
     have hM : sys.inputTerm (toReal r) i
         ∈ (MatExp.intervalInputTerm (Interval.point sys.A) r i).toSet :=
       MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i
     exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.toSet) hM).trans
-      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) V)
   intro i
   induction i with

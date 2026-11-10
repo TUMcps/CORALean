@@ -74,7 +74,7 @@ computed under the assumption it checks.
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 open scoped Pointwise
 
 variable {n p m : ℕ}

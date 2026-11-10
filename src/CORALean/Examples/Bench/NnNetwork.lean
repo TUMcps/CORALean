@@ -52,7 +52,7 @@ says what that enclosure is sound for, the exact map the stored weights denote;
 
 namespace CORALean.Bench.Nn
 
-open CORALean CORALean.Float ContSet
+open CORALean CORALean.Float ContSet ContSetLike
 open scoped Matrix
 
 
@@ -105,7 +105,7 @@ def spec (inst : ExactDyadic → 𝕋) : Specification (HPolytope 𝕋 (Vec 𝕋
   .safeSet ⟨1, fun _ _ => inst ExactDyadic.one, fun _ => inst threshold, 0, fun i => i.elim0,
     fun i => i.elim0, fun _ => FloatOps.zero, fun _ => FloatOps.zero, Interval.origin _⟩
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n h : ℕ}
 
 /-- Affine, ReLU, affine, over any set representation the layers accept. -/

@@ -35,10 +35,10 @@ asks for Lipschitz-continuous inputs, whose runs are classical as well
 
 namespace CORALean
 
-open ContSet MeasureTheory
+open ContSetLike MeasureTheory
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

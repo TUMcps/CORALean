@@ -58,7 +58,7 @@ box wide enough that the enclosed output ties, though the exact one never does.
 
 namespace CORALean
 
-open ContSet Real.OfInterval Matrix
+open ContSet ContSetLike Real.OfInterval Matrix
 open scoped CORALean.Real
 
 

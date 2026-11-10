@@ -45,7 +45,7 @@ the two error boxes.
 
 namespace CORALean
 
-open CORALean.Float ContSet Matrix
+open CORALean.Float ContSet ContSetLike Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {L : Type} {n : ℕ}
 
@@ -57,12 +57,12 @@ theorem Transition.jumpFloat_outer_conZonotope
     (e : Transition (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     {R : ConZonotope 𝕋 (Vec 𝕋 n)} {z : Vec ℝ n} (hz : z ∈ toSet R)
     (hguard : z ∈ toSet e.guard) : -- --- CONCL ---
-    e.reset z ∈ toSet (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) e.W
+    e.reset z ∈ toSet (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) e.W
     (R.intersection e.guard)
       ⊞ (Interval.point e.w).conZonotope) := by -- --- PROOF ---
   show Scalar.toRealMat e.W *ᵥ z + Scalar.toRealVec e.w ∈ _
   exact Plus.plus_outer _ _ (Set.add_mem_add
-    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) e.W
+    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) e.W
       (R.intersection e.guard)
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _
         (ConZonotope.intersection_outer R e.guard ⟨hz, hguard⟩))))

@@ -40,7 +40,7 @@ nothing. Convex only, which a constrained zonotope is; a non-convex guard is
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {L : Type} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞] {n : ℕ}
 

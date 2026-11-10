@@ -43,7 +43,7 @@ single-layer containments, so Alg. 2/Thm. 1 (#69) and Prop. 2 (#68) need their o
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 open scoped CORALean.Real
 
 

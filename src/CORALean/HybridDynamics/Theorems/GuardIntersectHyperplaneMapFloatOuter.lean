@@ -106,13 +106,13 @@ namespace CORALean
 
 open CORALean.Float CORALean.Float.FloatOps CORALean.Float.SoundFloatArithmetic
 open Matrix hiding zero one
-open NormedSpace MeasureTheory ContSet
+open NormedSpace MeasureTheory ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → Type}
-  [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+  [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -465,7 +465,7 @@ section
 open Float FloatOps SoundFloatArithmetic Pointwise
 open scoped CORALean.Float
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ[𝕋] S]
 variable [OfInterval S 𝕋]
 

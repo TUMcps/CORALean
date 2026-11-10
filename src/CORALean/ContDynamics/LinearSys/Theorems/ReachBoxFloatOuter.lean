@@ -104,11 +104,11 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
   set step : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)
       → Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
     fun s => (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eAr s.1,
+      (ContSet := 𝒵[𝕋]) eAr s.1,
       Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAr s.2.1,
+        (ContSet := 𝒵[𝕋]) eAr s.2.1,
       s.2.2 ⊞ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAr s.2.1).interval.zonotope)
+        (ContSet := 𝒵[𝕋]) eAr s.2.1).interval.zonotope)
   -- the loop's output and its closed form
   set out : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) → Zonotope (Vec 𝕋 n) :=
     fun s => s.1 ⊞ s.2.2
@@ -120,15 +120,15 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
       = (step^[N] s₀, (List.range (N + 1)).map fun j => out (step^[j] s₀)) :=
     foldl_range_step_out step out s₀ N
   -- what the listing needs of the sets: bounded, a step is enclosed, a box encloses
-  have hU : Bornology.IsBounded (ContSet.toSet U) := CompactSet.isBounded_toSet U
+  have hU : Bornology.IsBounded (ContSetLike.toSet U) := CompactSet.isBounded_toSet U
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * ρ := fun k => mul_nonneg (Nat.cast_nonneg k) hr.le
   -- `e^{Ar}` is in `[e^{Ar}]`, so one more step is enclosed
   have hE : E ∈ eAr.toSet := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
   have hstep : ∀ (Z : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ Z.toSet →
       E *ᵥ y ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAr Z).toSet :=
+        (ContSet := 𝒵[𝕋]) eAr Z).toSet :=
     fun Z y hy => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eAr Z
+      (ContSet := 𝒵[𝕋]) eAr Z
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hy))
   have hbox : ∀ Z : Zonotope (Vec 𝕋 n), Z.toSet ⊆ Z.interval.zonotope.toSet :=
     fun Z => (Zonotope.interval_contains Z).trans (Interval.zonotope_contains _)

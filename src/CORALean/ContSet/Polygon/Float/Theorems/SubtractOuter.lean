@@ -123,8 +123,8 @@ private theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.subtract_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.toSet P \ ContSet.toSet Q ⊆
-    ContSet.toSet (Polygon.subtract P Q) := by -- --- PROOF ---
+    ContSetLike.toSet P \ ContSetLike.toSet Q ⊆
+    ContSetLike.toSet (Polygon.subtract P Q) := by -- --- PROOF ---
   rintro x ⟨hP, hQ⟩
   obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hP
   obtain ⟨s, hs, hxs⟩ := aux_mem_foldl_subtractPiece Q.sets [p] ⟨p, by simp, hxp⟩

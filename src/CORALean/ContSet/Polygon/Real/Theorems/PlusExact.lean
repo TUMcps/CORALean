@@ -26,8 +26,8 @@ namespace CORALean.Real
 
 open Pointwise in
 theorem Polygon.plus_exact (P Q : Polygon) : -- --- CONCL ---
-    ContSet.toSet P + ContSet.toSet Q =
-      ContSet.toSet (Polygon.plus P Q) := by -- --- PROOF ---
+    ContSetLike.toSet P + ContSetLike.toSet Q =
+      ContSetLike.toSet (Polygon.plus P Q) := by -- --- PROOF ---
   refine Set.Subset.antisymm (SetUnion.plus_outer P Q) ?_
   intro x hx
   obtain ⟨t, ht, hx⟩ := SetUnion.mem_toSet.mp hx

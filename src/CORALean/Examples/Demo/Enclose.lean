@@ -66,7 +66,7 @@ def layerBoxes : {n m : ℕ} → NeuralNetwork 𝒵[D] n m →
     List String
   | _, _, .output, _, _ => []
   | _, _, .layer (inst := _) curr tail, Z, i =>
-    let Y := Enclose.enclose (S := 𝒵[D]) curr Z
+    let Y := Enclose.enclose (ContSet := 𝒵[D]) curr Z
     layerLine i Y :: layerBoxes tail Y (i + 1)
 
 

@@ -68,10 +68,10 @@ not: they share the linear layer between them.
 
 namespace CORALean
 
-open Matrix ContSet Float Float.SoundFloatArithmetic
+open Matrix ContSet ContSetLike Float Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 
@@ -91,7 +91,7 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
       (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.toSet) : -- --- CONCL ---
     (fun x => fpost (toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ fpre x + toRealVec b0) i))
         + toRealVec b1)) '' toSet X
-      ⊆ toSet ((NeuralNetwork.layer (Enclose.pack (S := S) pre)
+      ⊆ toSet ((NeuralNetwork.layer (Enclose.pack (ContSet := S) pre)
           (.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
             (.layer (ActivationLayer.of hR)
               (.layer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1

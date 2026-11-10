@@ -74,7 +74,7 @@ def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec �
   -- 4. R₀ = H^R_0 + P^R_0
   let R₀ := H₀ ⊞ P₀
   let ℰ := fun (Z : Zonotope (Vec 𝕋 n)) =>                               -- Z ↦ [e^{Ar}] Z
-    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAr Z
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) eAr Z
   -- 5. for k = 1 … (t_f/r - 1)
   pure ((List.range N).foldl
     (fun (s : (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List

@@ -68,7 +68,7 @@ real time `toReal Δt` the float step denotes.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -82,7 +82,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 open Scalar MeasureTheory
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 /-- Translating by `c` carries `Icc (a-c) (b-c)` onto `Icc a b` and preserves
 Lebesgue measure. -/
@@ -186,7 +186,7 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 
   -- the augmented input `B_aug v + c_aug` is in `B_aug U_ext ⊕ [c; 0]`
   have hin : ∀ t ∈ Set.Icc 0 sys.dt,
       Scalar.toRealMat sys.augmentFloat.B *ᵥ v' t + Scalar.toRealVec sys.augmentFloat.c ∈
-        toSet (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
+        toSet (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
           (Zonotope.point sys.augmentFloat.c) : Zonotope (Vec 𝕋 (n + sys.m))) := fun t ht => by
     refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
     · exact Mtimes.mtimes_outer _ _
@@ -197,7 +197,7 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 
   -- the period as a canonical run of the float system, its input read back through `hB`, `hc`
   have hcl : sys.augmentFloat.IsCanonicalTrajectory (S := 𝒵[𝕋])
       (Set.Icc 0 sys.dt) Z
-      (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
+      (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
         (Zonotope.point sys.augmentFloat.c))
       (fun t => Fin.append (z t) u)
       (fun t => Scalar.toRealMat sys.augmentFloat.B *ᵥ v' t +

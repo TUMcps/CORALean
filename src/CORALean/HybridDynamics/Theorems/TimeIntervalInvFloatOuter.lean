@@ -55,7 +55,7 @@ plus `Ud` by `timeIntervalFloat_outer`, so in its box, and in the invariant by
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

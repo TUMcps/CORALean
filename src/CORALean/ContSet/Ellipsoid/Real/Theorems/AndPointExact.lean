@@ -57,7 +57,7 @@ private theorem Ellipsoid.aux_toSet_ofPoint (p : Vec ℝ n) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.andPoint_exact (E : Ellipsoid n) (p : Vec ℝ n) : -- --- CONCL ---
-    ContSet.toSet (E.andPoint p) = E.toSet ∩ {p} := by -- --- PROOF ---
+    ContSetLike.toSet (E.andPoint p) = E.toSet ∩ {p} := by -- --- PROOF ---
   unfold Ellipsoid.andPoint
   split_ifs with h
   · rw [OptEmpty.toSet_of]

@@ -80,7 +80,7 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
   let sq ← sys.squaringsFloat s.Δt s.tEnc.inf s.tEnc.sup ηe        -- t_k / 2^sq within Δt_{k-1}
   let eAtk := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup ηe sq                   -- [e^{A t_k}]
   let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_k}] ·
-    (S := 𝒵[𝕋]) eAtk
+    (ContSet := 𝒵[𝕋]) eAtk
   -- 5.-15. Δt_k, η_k
   let (Δtk, ηk) ← sys.autoTuneDeltaTFloat eAtk s.H V.c s.t (ToRat.toRat tend) εmax ζ
     s.εa s.Δt ηmax fuel U₀
@@ -95,16 +95,16 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
     let tHi1 := addUp s.tEnc.sup Δtk
     let sq1 ← sys.squaringsFloat Δtk tLo1 tHi1 ηk                      -- t_{k+1} / 2^sq1 in Δt_k
     let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_{k+1}}] ·
-      (S := 𝒵[𝕋])
+      (ContSet := 𝒵[𝕋])
       (sys.expSquaringFloat tLo1 tHi1 ηk sq1)
     -- 16. bPU_0(Δt_k), eq. (27)
     let bPU0Δt := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋])
+      (ContSet := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) Δtk 0) U₀
     -- 16. bPU_∞(Δt_k), eq. (27), with ⊕_i ÃᵢU₀ ⊕ E Δt_k U₀
     let bPUinfΔt := sys.inputTaylorSumTailFloat Δtk U₀ ηk ⊞
       Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputRemainder (Interval.point sys.A) Δtk ηk) U₀
     -- 17. e^{At_k}bPU_∞(Δt_k)
     let PUinfProp := Φtk bPUinfΔt

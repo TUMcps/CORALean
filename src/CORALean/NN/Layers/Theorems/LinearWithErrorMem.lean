@@ -39,10 +39,10 @@ reduction algorithms freeze a bias at.
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes Float Float.OfInterval Float.SoundFloatArithmetic
+open Matrix ContSet ContSetLike Plus Mtimes Float Float.OfInterval Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] {n m : ℕ}
 
 

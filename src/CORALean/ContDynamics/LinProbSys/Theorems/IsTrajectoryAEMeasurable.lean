@@ -43,10 +43,10 @@ measurable is `0`.
 
 namespace CORALean
 
-open Matrix ContSet MeasureTheory ProbabilityTheory WithLp
+open Matrix ContSetLike MeasureTheory ProbabilityTheory WithLp
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -28,9 +28,9 @@ in its invariant, its disturbances in its `W`; the input set constrains only the
 
 namespace CORALean
 
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSetLike Scalar MeasureTheory
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 
@@ -73,8 +73,8 @@ def ParallelHybridAutomaton.boundInput (P : ParallelHybridAutomaton S G k L 𝕋
 /-- A stay of all components over one dwell time: the global inputs lie in the input sets, each
 component follows its location's linear dynamics inside its invariant, and its inputs are the bound
 ones. -/
-structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
+structure ParallelHybridAutomaton.IsStay [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (ℓ : ∀ i, L i) (τ : ℝ) (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
     (w : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).r) (g : ℝ → Vec ℝ m) : Prop where
   nonneg : 0 ≤ τ
@@ -99,8 +99,8 @@ structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The runs of a parallel automaton: a joint stay, or a stay after which one component takes a
 transition while the others stand still. -/
-inductive ParallelHybridAutomaton.IsRun [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m) :
+inductive ParallelHybridAutomaton.IsRun [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m) :
     (∀ i, L i) → (∀ i, Vec ℝ (n i)) → (∀ i, L i) → (∀ i, Vec ℝ (n i)) → Prop where
   | flow {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       (h : P.IsStay ℓ τ x u w g) : P.IsRun ℓ (fun i => x i 0) ℓ (fun i => x i τ)

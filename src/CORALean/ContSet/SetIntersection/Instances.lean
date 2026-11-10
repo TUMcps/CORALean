@@ -10,14 +10,14 @@ public import CORALean.ContSet.SetIntersection.Theorems.IntersectionExact
 /-!
 # What `SetIntersection` instantiates
 
-`ContSet` is already at `SetIntersection.lean`. `Mtimes`, `Plus`, `Reduce` and `ConvexSet` follow
-whenever the member type `S` has them, each the branch-wise operation from `Operations/` with the
-guarantee `Theorems/` proves; `Intersection` holds at every `S`, appending the lists.
+`ContSetLike` is already at `SetIntersection.lean`. `Mtimes`, `Plus`, `Reduce` and `ConvexSet`
+follow whenever the member type `S` has them, each the branch-wise operation from `Operations/` with
+the guarantee `Theorems/` proves; `Intersection` holds at every `S`, appending the lists.
 `Contains`/`IsDisjoint` lift both ways. As the *computed* set, `S := SetIntersection S'`:
-conservative both ways, one member answering being enough. As the *container*,
-`T := SetIntersection T'`: `contains` exact, `isDisjoint` conservative. Both instantiate
-`Contains (SetIntersection T') (SetIntersection S')` at once, so the container pair carries
-`(priority := low)`, as `SetUnion`'s do.
+conservative both ways, one member answering being enough. As the *container*, `T := SetIntersection
+T'`: `contains` exact, `isDisjoint` conservative. Both instantiate `Contains (SetIntersection T')
+(SetIntersection S')` at once, so the container pair carries `(priority := low)`, as `SetUnion`'s
+do.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -36,12 +36,12 @@ open Matrix
 -- ========================================  INSTANCES  ========================================= --
 
 instance {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
-    [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes 𝕄 S] :
+    [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes 𝕄 S] :
     Mtimes 𝕄 (fun n => SetIntersection (S n)) where
   mtimes := SetIntersection.mtimes
   mtimes_outer := SetIntersection.mtimes_outer
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α]
 
 instance [Plus S α] : Plus (SetIntersection S) α where
   plus := SetIntersection.plus
@@ -58,7 +58,7 @@ instance : Intersection (SetIntersection S) α where
   intersection := SetIntersection.intersection
   intersection_outer I J := (SetIntersection.intersection_exact I J).symm.subset
 
-variable {T α : Type} [ContSet T α] [ContSet S α]
+variable {T α : Type} [ContSetLike T α] [ContSetLike S α]
 
 /-- Conservative as a computed set: if `t` contains one member, it contains
 the (smaller) intersection too — `Set.iInter₂_subset` shrinks first. -/

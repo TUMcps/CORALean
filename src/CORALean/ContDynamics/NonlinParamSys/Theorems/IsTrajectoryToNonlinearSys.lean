@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Calculus.Deriv.Add
 # A parametric trajectory is its combined-input embedding's
 
 `Fin.append (u t) (p t)` is the combined input at `t`; `hW` is what makes it
-land in `toSet W`, there being no cartesian-product class on `ContSet` to
+land in `toSet W`, there being no cartesian-product class on `ContSetLike` to
 build `W` from `U` and `P` instead. `Fin.append_left`/`_right` read the two
 halves back out of it, which is what turns `sys.toNonlinearSys.f` at that input
 into `sys.f (x t) (u t) (p t)`.
@@ -44,10 +44,10 @@ into `sys.f (x t) (u t) (p t)`.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m q : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

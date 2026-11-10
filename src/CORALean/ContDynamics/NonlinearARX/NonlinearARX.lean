@@ -30,10 +30,10 @@ the window `(y(k), …, y(k+p-1))`, the state the conversion to `NonlinearSysDT`
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

@@ -34,15 +34,15 @@ statement the answer would be sound and complete for.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem EmptySet.contains_iff {S : Type} [ContSet S (Vec ℝ n)] (E : EmptySet n) (s : S) :
-    ContSet.toSet s ⊆ E.toSet ↔ ContSet.toSet s = ∅ :=
+theorem EmptySet.contains_iff {S : Type} [ContSetLike S (Vec ℝ n)] (E : EmptySet n) (s : S) :
+    ContSetLike.toSet s ⊆ E.toSet ↔ ContSetLike.toSet s = ∅ :=
   Set.subset_empty_iff
 
 end CORALean.Real

@@ -57,7 +57,7 @@ certificate (`IsInnerMinkDiffCorrectedCert`). Runs are under the constant input 
 
 namespace CORALean
 
-open ContSet Set MeasureTheory
+open ContSetLike Set MeasureTheory
 
 variable {n m : ℕ} {𝓛 : Type}
 

@@ -42,13 +42,13 @@ from takes no initial set: only here, to place `x 0` in `R₀`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory intervalIntegral Pointwise
+open Matrix ContSetLike Scalar NormedSpace MeasureTheory intervalIntegral Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -43,7 +43,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {
 
 /-- `B U ⊕ c ⊕ E W`, the input set of the canonical form, in the state space. -/
 def Location.inputSetFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n) : Zonotope (Vec 𝕋 n) :=
-  ℓ.dynamics.inputSetFloat ℓ.U ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.E ℓ.W
+  ℓ.dynamics.inputSetFloat ℓ.U ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) ℓ.dynamics.E ℓ.W
 
 end CORALean
 

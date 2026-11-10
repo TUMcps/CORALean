@@ -52,9 +52,9 @@ unavoidable: a later layer amplifies an earlier layer's residual.
 
 namespace CORALean
 
-open Pointwise ContSet
+open Pointwise ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

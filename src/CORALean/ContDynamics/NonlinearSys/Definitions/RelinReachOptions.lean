@@ -7,10 +7,11 @@ public import Mathlib.Data.Real.Basic
 /-!
 # CORA's `options` for the re-linearization loop
 
-`Δt` and `ρ` (CORA's `timeStep` and `zonotopeOrder`), as in `LinearSys.ReachOptions`. The loop
+`Δt` and `ρ` (CORA's `timeStep` and `zonotopeOrder`), as in `LinearSys.ReachFloatOptions`. The loop
 takes one step per linearization, so `Δt` is also the length of each linearization's horizon;
 the horizon in `params` counts those steps. `Δt` is an `ℝ` here, not the `ℚ` of
-`LinearSys.ReachOptions`: it feeds `LinearSys.discretize`, which holds `e^{AΔt}` exactly at `ℝ`.
+`LinearSys.ReachFloatOptions`: it feeds `LinearSys.discretize`, which holds `e^{AΔt}` exactly at
+`ℝ`.
 `hZonotopeOrder` rules out `0` and closes at any positive literal by default. CORA computes each
 step's certificate inside `reach`; here they are the caller's, following `options` as `steps`
 and `Ud`.

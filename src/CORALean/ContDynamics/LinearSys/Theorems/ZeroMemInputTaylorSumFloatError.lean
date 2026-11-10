@@ -56,7 +56,7 @@ theorem LinearSys.zero_mem_inputTaylorSumFloat_error (sys : LinearSys 𝕋 n) {r
     (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) : -- --- CONCL ---
     ∀ i, (0 : Vec ℝ n) ∈ (sys.inputTaylorSumFloat r U i).I_error.toSet := by -- --- PROOF ---
   have hterm : ∀ i, (0 : Vec ℝ n) ∈
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) r i) U).I_error.toSet := fun i => by
     show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ U).materialise).I_error.toSet
     rw [Zonotope.materialise_eq]

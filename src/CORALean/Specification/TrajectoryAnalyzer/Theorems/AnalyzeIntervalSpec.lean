@@ -40,7 +40,7 @@ succeeds and the signals then represent `M` plus the times that the time point `
 
 namespace CORALean
 
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSetLike (S k) (Vec ℝ k)]
   [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)]
 
 

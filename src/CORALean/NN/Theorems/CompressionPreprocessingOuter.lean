@@ -66,11 +66,12 @@ nonnegativity is [1, Cor. 1]'s `X ⊂ ℝ₊`, without which the ReLU is not the
 
 namespace CORALean
 
-open Matrix ContSet Float Float.IntervalOuter Float.OfInterval Float.SoundFloatArithmetic
+open Matrix ContSet ContSetLike Float Float.IntervalOuter Float.OfInterval
+open Float.SoundFloatArithmetic
 open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 

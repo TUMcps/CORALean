@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
 public import CORALean.ContDynamics.Reach.Definitions.Params
@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The time-point sets `R_0, …, R_N` from `X₀`, at Taylor order `η` raised
 until admissible, each window `[e^{A t_k}] X₀` computed directly from `X₀`. -/
 def LinearSys.reachTimePointWrappingFreeFloat (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋) :
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt

@@ -77,7 +77,7 @@ private theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec �
 
 theorem PolyZonotope.polygon_outer (pZ : PolyZonotope (Vec 𝕋 2)) (splits : ℕ)
     (pick : ℕ → PolyZonotope (Vec 𝕋 2) → Bool) : -- --- CONCL ---
-    pZ.toSet ⊆ ContSet.toSet (pZ.polygon splits pick) := by -- --- PROOF ---
+    pZ.toSet ⊆ ContSetLike.toSet (pZ.polygon splits pick) := by -- --- PROOF ---
   intro x hx
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_polygonPieces_cover pZ pick splits hx
   rw [PolyZonotope.polygon, Polygon.toSet_ofPieces]

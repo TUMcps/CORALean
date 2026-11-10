@@ -36,10 +36,10 @@ window is `y₀` read back through the same block indexing.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

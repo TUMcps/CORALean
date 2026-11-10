@@ -41,10 +41,10 @@ such an `Rg`.
 
 namespace CORALean
 
-open CORALean.Float ContSet Matrix
+open CORALean.Float ContSet ContSetLike Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -55,7 +55,7 @@ theorem Transition.jumpFloat_outer (e : Transition G L 𝕋 n) {R Rg : Zonotope 
     e.reset z ∈ toSet (e.jumpFloat Rg) := by -- --- PROOF ---
   show Scalar.toRealMat e.W *ᵥ z + Scalar.toRealVec e.w ∈ toSet (e.jumpFloat Rg)
   exact Plus.plus_outer _ _ (Set.add_mem_add
-    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) e.W Rg
+    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) e.W Rg
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hinter ⟨hz, hguard⟩))))
     (Interval.zonotope_contains _ (Interval.mem_point e.w)))
 

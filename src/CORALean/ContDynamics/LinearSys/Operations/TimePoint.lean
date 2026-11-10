@@ -41,20 +41,21 @@ the scheme's `timeInterval` recursion read `[1, Alg. 1]`'s own, rather than
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The time-point set at `k Δt`: `R(t_0) = X₀`, `R(t_{k+1}) = e^{AΔt} R(t_k)`. -/
-noncomputable def LinearSys.timePoint (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n) (k : ℕ) : S n :=
+noncomputable def LinearSys.timePoint (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : ContSet n)
+    (k : ℕ) : ContSet n :=
   match k with
   | 0 => X₀
   | k + 1 => Mtimes.mtimes (exp (Δt • toRealMat sys.A)) (sys.timePoint Δt X₀ k)

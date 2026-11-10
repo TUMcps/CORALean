@@ -37,10 +37,10 @@ bias: the linear layer's soundness at the stencil, which `tapMat_mulVec` reads r
 
 namespace CORALean
 
-open Matrix ContSet Float Float.SoundFloatArithmetic
+open Matrix ContSet ContSetLike Float Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] {n m k c : ℕ}
 
 

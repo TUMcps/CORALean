@@ -46,9 +46,9 @@ H_{k-1})` an over-approximative output set, for a chain of layers.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

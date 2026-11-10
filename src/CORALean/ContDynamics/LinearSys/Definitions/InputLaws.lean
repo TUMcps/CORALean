@@ -41,10 +41,10 @@ means are `LinearSys.inputReach`, the covariance `noiseCovariance`.
 
 namespace CORALean
 
-open ContSet Scalar MeasureTheory ProbabilityTheory WithLp
+open ContSetLike Scalar MeasureTheory ProbabilityTheory WithLp
 
 variable {n m : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

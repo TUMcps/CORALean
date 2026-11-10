@@ -25,17 +25,17 @@ then answers for every constant-parameter trajectory, no confinement assumed.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 open scoped CORALean.Float
 
 -- Anonymous, since its content is that it elaborates.
 
 /-- A parametric system, its augmented run's region tests and `Reach.check`. -/
 example (sys : NonlinParamSys.WithSteps 𝒵 ℐ𝒱[ℝ] 1 1 2)
-    (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachOptions ℝ)
+    (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachFloatOptions ℝ)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := 𝒵) sys params options spec →
-    (spec.Holds (Reach.reachExact (S := 𝒵) sys params)) :=
+    Reach.check (ContSet₂ := 𝒵) sys params options spec →
+    (spec.Holds (Reach.reachExact (ContSet := 𝒵) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 end CORALean.Real

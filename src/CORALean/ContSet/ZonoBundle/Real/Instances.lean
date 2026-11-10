@@ -51,7 +51,7 @@ scoped notation "𝒵ℬ" => fun n => ZonoBundle (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (ZonoBundle α) α := ⟨ZonoBundle.toSet⟩
+instance : ContSetLike (ZonoBundle α) α := ⟨ZonoBundle.toSet⟩
 
 instance : ConvexSet (ZonoBundle α) α :=
   ⟨fun zB => SetIntersection.convex_toSet zB.toSetIntersection⟩

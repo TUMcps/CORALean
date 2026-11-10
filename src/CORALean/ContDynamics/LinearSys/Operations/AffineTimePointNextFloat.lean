@@ -56,7 +56,7 @@ def LinearSys.affineTimePointNextFloat (sys : LinearSys 𝕋 n) (H : Zonotope (V
   let eAΔt := sys.expIntervalFloat Δt Δt η                          -- [e^{AΔt}]
   let PuΔt := sys.inputSolutionFloat Δt η (Interval.point ũ).zonotope  -- ∋ A^{-1}(e^{AΔt}-I)ũ
   Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- H(t_{k+1})
-    (S := 𝒵[𝕋]) eAΔt H ⊞ PuΔt
+    (ContSet := 𝒵[𝕋]) eAΔt H ⊞ PuΔt
 
 end CORALean
 

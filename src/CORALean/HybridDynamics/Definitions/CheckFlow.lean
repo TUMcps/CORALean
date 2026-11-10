@@ -42,7 +42,7 @@ namespace CORALean
 open Matrix Scalar
 open scoped CORALean.Real
 
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

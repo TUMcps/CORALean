@@ -65,7 +65,7 @@ private theorem Polygon.aux_convHullOfList_outer :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.convHull_outer (P : Polygon 𝕋) :
-    convexHull ℝ (ContSet.toSet P) ⊆ (Polygon.convHull P).toSet :=
+    convexHull ℝ (ContSetLike.toSet P) ⊆ (Polygon.convHull P).toSet :=
   Polygon.aux_convHullOfList_outer P.sets
 
 end CORALean.Float

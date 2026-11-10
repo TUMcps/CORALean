@@ -44,10 +44,10 @@ scalar it runs, the look-ahead boxes and [1, Prop. 4]'s error boxes rounding out
 
 namespace CORALean
 
-open Float ContSet IntervalOuter
+open Float ContSet ContSetLike IntervalOuter
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 

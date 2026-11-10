@@ -46,8 +46,8 @@ namespace CORALean.Real
 
 theorem Polygon.quadMap_outer (P : Polygon) (Q : Fin 2 → Mat ℝ 2 2) (splits : ℕ)
     (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- CONCL ---
-    PolyZonotope.quadEval Q '' ContSet.toSet P
-      ⊆ ContSet.toSet (P.quadMap Q splits pick) := by -- --- PROOF ---
+    PolyZonotope.quadEval Q '' ContSetLike.toSet P
+      ⊆ ContSetLike.toSet (P.quadMap Q splits pick) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   -- the point lies in a triangle of the cover
   rw [← (Polygon.triangulation_exact P).2] at hx

@@ -72,13 +72,13 @@ first two inputs.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet NormedSpace Pointwise
+open Matrix ContSet ContSetLike NormedSpace Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -104,25 +104,25 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   have hE : E ∈ EI.toSet := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
   have hmulZ : ∀ (Z : Zonotope (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ Z.toSet →
       E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) EI Z).toSet :=
+        (ContSet := 𝒵[𝕋]) EI Z).toSet :=
     fun Z v hv => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) EI Z
+      (ContSet := 𝒵[𝕋]) EI Z
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hv))
   have hmulB : ∀ (B : ZonoBundle (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ B.toSet →
       E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵ℬ[𝕋]) EI B).toSet :=
+        (ContSet := 𝒵ℬ[𝕋]) EI B).toSet :=
     fun B v hv => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵ℬ[𝕋]) EI B
+      (ContSet := 𝒵ℬ[𝕋]) EI B
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hv))
   -- the loop's state, its step and its output, and the closed form of the list it builds
   set step : ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)
       → ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
     fun s => (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵ℬ[𝕋]) EI s.1,
+      (ContSet := 𝒵ℬ[𝕋]) EI s.1,
       Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) EI s.2.1,
+        (ContSet := 𝒵[𝕋]) EI s.2.1,
       Plus.plus s.2.2
-        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) EI
+        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) EI
           s.2.1).interval.zonotope)
   set out : ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) → ZonoBundle (Vec 𝕋 n) :=
     fun s => Plus.plus s.1 s.2.2.zonoBundle
@@ -173,7 +173,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
         have hP := (ih r' hr'').2.2
         rw [show ((k : ℝ) * r' + r') = ((k + 1 : ℕ) : ℝ) * r' by push_cast; ring] at hP
         have hb : _ ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-          (S := 𝒵[𝕋]) EI
+          (ContSet := 𝒵[𝕋]) EI
             (step^[k] s₀).2.1).interval.zonotope.toSet :=
           (Zonotope.interval_contains _).trans (Interval.zonotope_contains _) (h2 hw)
         exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ ⟨v, hP hv, _, hb, add_comm _ _⟩

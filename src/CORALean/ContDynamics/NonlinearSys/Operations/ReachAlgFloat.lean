@@ -53,7 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 one of them fails. -/
 @[step_of NonlinearSys.FloatHessModel.reachAlgFloat]
 def NonlinearSys.FloatHessModel.step_linReachRunFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
-    (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
+    (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m))
+    (options : LinearSys.ReachFloatOptions 𝕋) :
     ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n)))
   | 0, _ => some []
   | k + 1, R => do
@@ -69,7 +70,7 @@ def NonlinearSys.FloatHessModel.step_linReachRunFloat (fm : NonlinearSys.FloatHe
 def NonlinearSys.FloatHessModel.reachAlgFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
+    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   -- 2. the loop runs while `t_k < t_end`: `N = (tFinal - tStart) / Δt` iterations

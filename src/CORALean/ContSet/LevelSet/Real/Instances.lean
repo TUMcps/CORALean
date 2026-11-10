@@ -8,7 +8,7 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 /-!
 # What `LevelSet` instantiates
 
-`ContSet`, and `Intersection` by stacking the constraints, exact even though the class asks only
+`ContSetLike`, and `Intersection` by stacking the constraints, exact even though the class asks only
 for an outer bound. Nothing else: a level set is not convex, compact or closed under a sum, and
 `Mtimes` is a statement about every matrix an operand denotes, which for a singular one is no
 preimage; the invertible case is `LevelSet.mtimes_exact`.
@@ -29,7 +29,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (LevelSet n) (Vec ℝ n) := ⟨LevelSet.toSet⟩
+instance : ContSetLike (LevelSet n) (Vec ℝ n) := ⟨LevelSet.toSet⟩
 
 instance : Intersection (LevelSet n) (Vec ℝ n) where
   intersection := LevelSet.and_

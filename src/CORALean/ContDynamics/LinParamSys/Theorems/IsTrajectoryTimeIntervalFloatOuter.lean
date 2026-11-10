@@ -56,7 +56,7 @@ interpolation plus the float correction. The condition is the float step's own,
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -107,18 +107,18 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer
   have hx₀ := traj.init
   -- the interpolation to the member `Φ` of `[e^{AΔt}]`, and the member `F` of `[F]`
   have hE : Φ *ᵥ x 0 ∈ toSet
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       (sys.expIntervalFloat Δt Δt (m + 2)) R₀) := by
     refine Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ R₀
+      (ContSet := 𝒵[𝕋]) _ R₀
       (Set.mem_biUnion ?_ (Set.mem_image_of_mem _ hx₀))
     rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]
     exact hΦ
   have hFm : F *ᵥ x 0 ∈ toSet
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R₀) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ R₀
+      (ContSet := 𝒵[𝕋]) _ R₀
       (Set.mem_biUnion hF (Set.mem_image_of_mem _ hx₀))
   rw [hxt]
   refine Plus.plus_outer _ _ (Set.add_mem_add (LinComb.linComb_outer _ _ ?_) hFm)

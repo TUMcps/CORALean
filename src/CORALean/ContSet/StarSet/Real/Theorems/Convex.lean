@@ -39,13 +39,13 @@ which a convex predicate holds of. A predicate that is not convex, a `LevelSet` 
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A star set over a convex predicate is convex, its box being convex. -/
-theorem StarSet.convex_toSet {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)]
+theorem StarSet.convex_toSet {P : ℕ → Type} [∀ m, ContSetLike (P m) (Vec ℝ m)]
     [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) : -- --- CONCL ---
     Convex ℝ s.toSet := by -- --- PROOF ---
   -- two points, with their coefficients; the convex combination of the coefficients is the witness

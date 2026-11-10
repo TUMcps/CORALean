@@ -52,7 +52,7 @@ def LinearSys.timePointStepExcessFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η :
     (X U : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let eAr := sys.expIntervalFloat r r η                                     -- [e^{Ar}]
   let M := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{Ar}] X
-    (S := 𝒵[𝕋]) eAr X
+    (ContSet := 𝒵[𝕋]) eAr X
   let P := sys.inputSolutionFloat r η U                                     -- P(r), in floats
   ((Zonotope.mtimesIntervalMatBox eAr X).zonotope ⊞                         -- M beyond e^{Ar} X
     (Zonotope.plusBox M P).zonotope) ⊞                                      -- M ⊞ P beyond M + P

@@ -43,10 +43,10 @@ The remainder factor is `MatExp.inputRemainder`, already `E` scaled by the step.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar Pointwise
+open Matrix ContSetLike Scalar Pointwise
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

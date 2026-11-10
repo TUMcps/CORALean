@@ -79,10 +79,10 @@ theorem PolyZonotope.isequal_sound {Z S : PolyZonotope (Vec 𝕋 n)}
           fun j i => toReal (GI₁ j i)⟩ : CORALean.Real.PolyZonotope (Vec ℝ n)) =
         ⟨p₁, h₁, q₁, toRealVec c₂, fun l i => toReal (G₂ l i), E₂, fun j i => toReal (GI₂ j i)⟩
       rw [hc, hG, hGI, hE']
-    change ContSet.toSet
+    change ContSetLike.toSet
       (nominal (⟨p₁, h₁, q₁, c₁, G₁, E₁, GI₁, r₁⟩ : PolyZonotope (Vec 𝕋 n))) +
         r₁.toSet =
-      ContSet.toSet (nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope (Vec 𝕋 n))) +
+      ContSetLike.toSet (nominal (⟨p₁, h₁, q₁, c₂, G₂, E₂, GI₂, r₂⟩ : PolyZonotope (Vec 𝕋 n))) +
         r₂.toSet
     rw [hN, hr]
   · simp at h

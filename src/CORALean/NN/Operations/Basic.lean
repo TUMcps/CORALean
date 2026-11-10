@@ -26,7 +26,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =======================================  `CatCond.ge`  ======================================= --
@@ -66,7 +66,7 @@ def CatCond.nonneg (i : Fin n) : CatCond n := ⟨1, fun x _ => -x i, fun _ => .l
 -- Reviewed:      ---
 
 /-- One layer, so that a single layer needs no special case anywhere. -/
-def NeuralNetwork.ofLayer {L : ℕ → ℕ → Type} [Enclose L S] (curr : L n m) :
+def NeuralNetwork.ofLayer {Layer : ℕ → ℕ → Type} [Enclose Layer S] (curr : Layer n m) :
     NeuralNetwork S n m :=
   .layer curr .output
 

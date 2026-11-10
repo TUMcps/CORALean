@@ -46,13 +46,13 @@ Admissible inputs stay in `U` and are measurable, the class `LinearSys.inputReac
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory CORALean.Real
+open Matrix ContSetLike Scalar NormedSpace MeasureTheory CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

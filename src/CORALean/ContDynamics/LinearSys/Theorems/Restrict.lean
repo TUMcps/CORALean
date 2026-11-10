@@ -34,10 +34,10 @@ applies to it without restating the hypotheses.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable {sys : LinearSys 𝕋 n} {T T' : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
 
 

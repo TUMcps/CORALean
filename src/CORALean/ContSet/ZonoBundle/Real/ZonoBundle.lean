@@ -50,7 +50,7 @@ def ZonoBundle.toSetIntersection (zB : ZonoBundle α) : SetIntersection (Zonotop
   ⟨List.ofFn zB.Z⟩
 
 /-- What a bundle denotes: the intersection `SetIntersection` denotes, of its members. -/
-def ZonoBundle.toSet (zB : ZonoBundle α) : Set α := ContSet.toSet zB.toSetIntersection
+def ZonoBundle.toSet (zB : ZonoBundle α) : Set α := ContSetLike.toSet zB.toSetIntersection
 
 end CORALean.Real
 

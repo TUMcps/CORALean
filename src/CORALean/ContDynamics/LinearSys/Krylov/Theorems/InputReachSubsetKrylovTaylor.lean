@@ -59,7 +59,7 @@ not add up to `ε̃δ`.
 
 namespace CORALean.Real
 
-open Matrix ContSet Pointwise
+open Matrix ContSet ContSetLike Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

@@ -63,7 +63,7 @@ not trivial.
 namespace CORALean
 
 open CORALean.Real
-open Pointwise ContSet
+open Pointwise ContSet ContSetLike
 
 variable {n m : ℕ}
 

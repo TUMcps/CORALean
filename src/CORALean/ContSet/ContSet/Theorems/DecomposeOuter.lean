@@ -35,10 +35,10 @@ each run, not the set (the product of the blocks is wider in general).
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n b : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n b : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

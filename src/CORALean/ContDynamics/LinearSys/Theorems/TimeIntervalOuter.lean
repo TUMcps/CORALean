@@ -25,25 +25,25 @@ hand wants, the same step `reach` takes between consecutive time points.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [∀ n, Reduce (ContSet n) (Vec ℝ n)] [Mtimes (Mat ℝ) ContSet]
+variable [Mtimes ℐ ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [∀ n, Reduce (S n) (Vec ℝ n)] in
+omit [∀ n, Reduce (ContSet n) (Vec ℝ n)] in
 /-- The exact reachable set of the step, `reachExact Δt`, is inside `timeInterval`'s, at the
 order `η` itself, where `Xₖ₁` is the time-point set `timePoint Δt Xₖ 1`. -/
 theorem LinearSys.timeInterval_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
-    (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (Xₖ Xₖ₁ : S n)
+    (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (Xₖ Xₖ₁ : ContSet n)
     (hX : Xₖ₁ = sys.timePoint Δt Xₖ 1) : -- --- CONCL ---
     sys.reachExact Δt (toSet Xₖ)
       ⊆ toSet (sys.timeInterval Δt η Xₖ Xₖ₁) := by -- --- PROOF ---

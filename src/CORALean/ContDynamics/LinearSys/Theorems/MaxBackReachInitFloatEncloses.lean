@@ -66,7 +66,7 @@ The lines are those of [1, Alg. 3].
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic ContSet Matrix
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet ContSetLike Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

@@ -47,7 +47,7 @@ express this: its `Recenter.recenter U` always holds the origin, which is the re
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSetLike Scalar NormedSpace
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

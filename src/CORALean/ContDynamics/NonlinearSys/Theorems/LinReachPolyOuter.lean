@@ -67,7 +67,7 @@ does not reproduce, and `confinement_of_subset` discharges it from the computed 
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m : ℕ}
 

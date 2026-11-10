@@ -76,7 +76,7 @@ part.
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic ContSet Matrix
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet ContSetLike Matrix
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -365,7 +365,7 @@ private theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r
         (toReal r) Wr i) ⊆ (sys.inputTaylorSumFloat r V i).toSet := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so the image of `Wr` is in the float product
   have hterm : ∀ i, toSet (CORALean.Real.Zonotope.mtimes (sys.inputTerm (toReal r) i) Wr)
-      ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) V).toSet := by
     intro i y hy
     have hy' : y ∈ CORALean.Real.Zonotope.toSet
@@ -373,7 +373,7 @@ private theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r
     rw [← CORALean.Real.Zonotope.mtimes_exact] at hy'
     obtain ⟨u, hu, rfl⟩ := hy'
     exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋])
+      (ContSet := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) r i) V
       (Set.mem_biUnion (MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i)
         (Set.mem_image_of_mem _ (hW hu)))
@@ -428,7 +428,7 @@ theorem LinearSys.inputSolution_subset_inputSolutionFloat (sys : LinearSys 𝕋 
   have hrem := Zonotope.aux_real_mtimesIntervalMat_subset (IMf := IMf)
     (hmem _ fun i j => ⟨le_rfl, hle i j⟩) (hmem _ fun i j => ⟨hle i j, le_rfl⟩) hle hE hW hb
   have hrem' : b ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) IMf V).toSet := by
+    (ContSet := 𝒵[𝕋]) IMf V).toSet := by
     show b ∈ ((Zonotope.mtimesIntervalMat IMf V).materialise).toSet
     rw [Zonotope.materialise_eq]
     exact hrem

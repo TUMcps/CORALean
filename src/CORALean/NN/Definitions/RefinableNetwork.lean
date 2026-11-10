@@ -23,15 +23,15 @@ its enclosure, `Specification` — knows a refinement loop exists.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- A chain of refinable layers, the dimensions chaining. -/
-inductive RefinableNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : ℕ → ℕ → Type where
+inductive RefinableNetwork (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] : ℕ → ℕ → Type where
   | nil {n : ℕ} : RefinableNetwork S n n
   | cons {n m k : ℕ} (L : RefinableLayer S n m) (rest : RefinableNetwork S m k) :
       RefinableNetwork S n k

@@ -43,7 +43,7 @@ is not formalized. CORA's tuning.
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSetLike
 
 variable {n p m q : ℕ}
 

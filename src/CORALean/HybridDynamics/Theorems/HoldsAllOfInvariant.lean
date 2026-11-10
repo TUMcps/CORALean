@@ -43,11 +43,11 @@ one list of requirements actually wants.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -31,8 +31,8 @@ matrix the set holds. Positional, as the mathematics: `Reach` reads `R₀`, `U` 
 
 namespace CORALean
 
-variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
+variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -39,10 +39,10 @@ checker's proof comes with the representation pair, so only the splitter still o
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

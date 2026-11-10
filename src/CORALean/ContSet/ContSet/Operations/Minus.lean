@@ -28,9 +28,9 @@ difference is `minkDiff`), so the set minus a set is not defined here either.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S α] [OfPoint S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Plus S α] [OfPoint S α]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

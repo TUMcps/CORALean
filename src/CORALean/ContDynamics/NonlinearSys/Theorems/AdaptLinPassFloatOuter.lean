@@ -46,7 +46,7 @@ top (`adaptStepFloat_outer`). See [1].
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic ContSet Matrix
+open CORALean.Float SoundFloatArithmetic ContSet ContSetLike Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 inputs in `U` whose `f(x, u) - A(x - x✱)` stays in `f(z✱) ⊕ B(U - u✱)` is in `R_lin(τ_k)` over
 the step and in `R_lin(t_{k+1})` at its end. -/
 theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
-    {sys : NonlinearSys n m} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
+    {sys : NonlinearSys n m} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachFloatOptions 𝕋}
     {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
     ∀ A Rt Rτ, (A, Rt, Rτ) ∈ fm.adaptLinPassFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
@@ -68,7 +68,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.Float
             (x t - toRealVec (fm.linPointFloat options.Δt R U).1) ∈
             ((fm.f (Interval.point (fm.linPointFloat options.Δt R U).1)
               (Interval.point (fm.linPointFloat options.Δt R U).2)).zonotope ⊞
-              Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
+              Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋])
                 (fm.linearizeFloat (fm.linPointFloat options.Δt R U).1
                   (fm.linPointFloat options.Δt R U).2).2
                 (Recenter.recenter U)).toSet) →

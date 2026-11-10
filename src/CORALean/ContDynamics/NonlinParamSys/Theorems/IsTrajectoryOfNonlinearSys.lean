@@ -42,10 +42,10 @@ serve as `u` and `p`. `sys.toNonlinearSys.f` unfolds to exactly that split, so
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m q : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

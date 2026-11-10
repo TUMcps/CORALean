@@ -55,10 +55,10 @@ the period boundary, since `reachFloat_outer` puts that state in the zonotope.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

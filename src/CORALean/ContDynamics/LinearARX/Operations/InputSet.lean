@@ -29,10 +29,10 @@ encloses every ARX input and is where the conversion is looser than the ARX form
 
 namespace CORALean
 
-open ContSet Scalar Plus Mtimes
+open ContSetLike Scalar Plus Mtimes
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 

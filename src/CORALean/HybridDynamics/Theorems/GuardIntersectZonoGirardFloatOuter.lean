@@ -132,7 +132,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     (Rs.map fun R' => (boxOf R')) = box
     at h2 ⊢
   -- and back through the basis
-  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope
+  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ h2)))
   rwa [hBB] at h3

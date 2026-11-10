@@ -41,7 +41,7 @@ conversion pays what its own centering costs.
 
 namespace CORALean.Float
 
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -79,7 +79,7 @@ instance : IntervalOuter 𝒱𝒫[𝕋] 𝕋 where
   interval_outer P := VPolytope.interval_contains P
 
 /-- An exact representation boxes itself at `𝕋 := ℝ`, the box its exact class returns. -/
-instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S] :
+instance {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S] :
     IntervalOuter S ℝ where
   interval s := ⟨(Real.IntervalOuter.interval s).inf, (Real.IntervalOuter.interval s).sup⟩
   interval_outer s := Real.IntervalOuter.interval_outer s
@@ -102,7 +102,7 @@ instance : OfInterval 𝒫𝒵[𝕋] 𝕋 where
 
 /-- An exact representation absorbs a box at `𝕋 := ℝ` through its exact class, the box's
 bounds being real already. -/
-instance {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] :
+instance {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.OfInterval S] :
     OfInterval S ℝ where
   ofInterval I := Real.OfInterval.ofInterval ⟨I.inf, I.sup⟩
   ofInterval_outer I := Real.OfInterval.ofInterval_outer ⟨I.inf, I.sup⟩

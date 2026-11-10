@@ -59,15 +59,15 @@ reachable set, `LinearSys.reachBox_outer` one way to meet its obligation at line
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-omit [∀ n, ContSet (G n) (Vec ℝ n)] in
+omit [∀ n, ContSetLike (G n) (Vec ℝ n)] in
 /-- The loop moves `k` forward, and stops before `N` only at a piece `isEmpty` rejects. -/
 private theorem aux_reachGuard_while (RH : ℕ → G n) (isEmpty : G n → Bool)
     (N : ℕ) : -- --- CONCL ---

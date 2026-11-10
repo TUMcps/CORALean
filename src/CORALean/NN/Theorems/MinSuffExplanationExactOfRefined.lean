@@ -50,9 +50,9 @@ different predicates with the implication between them pointing the wrong way.
 
 namespace CORALean
 
-open ContSet Real.OfInterval
+open ContSet ContSetLike Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

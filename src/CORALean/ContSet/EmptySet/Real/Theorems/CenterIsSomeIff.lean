@@ -26,7 +26,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-open ContSet in
+open ContSetLike in
 theorem EmptySet.center_isSome_iff (E : EmptySet n) :
     E.center.isSome ↔ (toSet E).Nonempty := by
   change (none : Option (Vec ℝ n)).isSome ↔ (∅ : Set (Vec ℝ n)).Nonempty

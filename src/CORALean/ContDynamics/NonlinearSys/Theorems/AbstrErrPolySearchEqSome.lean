@@ -50,7 +50,7 @@ only that the step is one of the candidates and that the certificate held there.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m : ℕ}
 

@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.mldivide_outer (P Sp : Polygon 𝕋) {S : Set (Vec ℝ 2)}
-    (hSp : ContSet.toSet Sp ⊆ S) :
-    ContSet.toSet P \ S ⊆ ContSet.toSet (Polygon.mldivide P Sp) :=
+    (hSp : ContSetLike.toSet Sp ⊆ S) :
+    ContSetLike.toSet P \ S ⊆ ContSetLike.toSet (Polygon.mldivide P Sp) :=
   fun _ hx => Polygon.subtract_outer P Sp ⟨hx.1, fun h => hx.2 (hSp h)⟩
 
 end CORALean.Float

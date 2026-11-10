@@ -51,7 +51,7 @@ confinement against a set it can compute, as `confinement_of_subset` asks.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m : ℕ}
 

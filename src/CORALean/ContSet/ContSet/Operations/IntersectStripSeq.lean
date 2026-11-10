@@ -44,7 +44,7 @@ namespace CORALean
 
 open IntersectStrip
 
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [IntersectStrip 𝕋 S] {n p : ℕ}
 
 

@@ -39,7 +39,7 @@ generator count, whatever the individual neurons' own fits.
 
 namespace CORALean.Real
 
-open Pointwise ContSet Plus
+open Pointwise ContSet ContSetLike Plus
 
 variable {σ : ℝ → ℝ} {m n : ℕ}
 

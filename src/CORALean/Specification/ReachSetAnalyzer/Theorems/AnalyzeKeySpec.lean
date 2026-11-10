@@ -51,7 +51,7 @@ namespace CORALean
 open FiniteKleeneSignalBuilder
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 
@@ -85,7 +85,7 @@ private theorem aux_stepFalse (b : FiniteKleeneSignalBuilder ℝ) (d : ℝ) (PT 
       (fun t => Iff.rfl) (fun t => ?_)⟩
     simp [hc]
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- Replacing the builder of key `k` changes what the analyzer says of `k` only. -/
 private theorem aux_represents_setBuilder (obj : ReachSetAnalyzer ℝ S n) (d : ℝ)

@@ -31,9 +31,9 @@ returns the single entry `1`, sums to `1`. The sum over cells being at most `1` 
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

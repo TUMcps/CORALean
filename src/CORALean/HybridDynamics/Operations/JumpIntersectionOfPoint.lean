@@ -36,9 +36,9 @@ guard is asked to be in the state's own family here and nowhere else (#39).
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes OfPoint
+open Matrix ContSet ContSetLike Scalar Plus Mtimes OfPoint
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable {L : Type} {n : ℕ}
 

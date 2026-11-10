@@ -46,21 +46,21 @@ each one.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every image of the initial set under the flow, at the sample time `k Δt`,
 is in `timePoint`'s set for it. -/
-theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n)
+theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : ContSet n)
     (k : ℕ) : -- --- CONCL ---
     sys.reachExactAt ((k : ℝ) * Δt) (toSet X₀)
       ⊆ toSet (sys.timePoint Δt X₀ k) := by -- --- PROOF ---

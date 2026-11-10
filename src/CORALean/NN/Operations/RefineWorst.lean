@@ -43,7 +43,7 @@ holds at *every* schedule, so this file only decides where the next order is spe
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --

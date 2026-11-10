@@ -31,7 +31,7 @@ build, so `run` is taken as a hypothesis, as `BouncingBall` does for `IsRun`.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 /-- Loops to the other location, guard and reset both trivial. -/
 def BHI.trans (b : Bool) : Transition ℐ𝒱 Bool ℝ 1 where

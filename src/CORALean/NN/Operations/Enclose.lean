@@ -10,9 +10,9 @@ public import CORALean.NN.NeuralNetwork
 The whole verification pipeline, one line per constructor: hand the input set to the first layer and
 the result to the rest. No layer sees anything but a set of the representation, so nothing here
 knows which representation that is or which layers these are. Precision is entirely the layers'
-business. [1, Def. 7]'s abstract network is this recursion: `H'_0` is `output`'s case, the input
-handed back untouched, and `H'_k := L'_k(H'_{k-1})` is `layer`'s. The paper's own `L'_k` is one
-instance among the layers `NN/Layers/` builds; [2, Alg. 1]'s own per-layer loop is another, at the
+business. [1, Def. 7]'S abstract network is this recursion: `H'_0` is `output`'S case, the input
+handed back untouched, and `H'_k := L'_k(H'_{k-1})` is `layer`'S. The paper'S own `L'_k` is one
+instance among the layers `NN/Layers/` builds; [2, Alg. 1]'S own per-layer loop is another, at the
 layer `ActivationPoly.lean` builds.
 
 ## Inputs
@@ -42,16 +42,16 @@ layer `ActivationPoly.lean` builds.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def NeuralNetwork.enclose : ∀ {n m : ℕ}, NeuralNetwork S n m → S n → S m
-  | _, _, .output, s => s
-  | _, _, .layer (inst := _) curr tail, s => tail.enclose (Enclose.enclose curr s)
+def NeuralNetwork.enclose : ∀ {n m : ℕ}, NeuralNetwork ContSet n m → ContSet n → ContSet m
+  | _, _, .output, S => S
+  | _, _, .layer (inst := _) curr tail, S => tail.enclose (Enclose.enclose curr S)
 
 end CORALean
 

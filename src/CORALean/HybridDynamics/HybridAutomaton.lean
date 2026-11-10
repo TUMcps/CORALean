@@ -38,9 +38,9 @@ chaining argument: `Theorems.IsRunOuter` is an `induction` with one case per con
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -53,8 +53,8 @@ structure HybridAutomaton (S G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ
 /-- The runs of an automaton from a location and state to a location and state: a flow within a
 location, or a flow followed by a transition whose guard holds at its end and a run from the reset
 state. -/
-inductive HybridAutomaton.IsRun {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+inductive HybridAutomaton.IsRun {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     L → Vec ℝ n → L → Vec ℝ n → Prop where
   | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w) :
@@ -67,8 +67,8 @@ inductive HybridAutomaton.IsRun {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec 
 
 -- `IsRun` with the jump count carried alongside, exact rather than a bound.
 /-- The runs of an automaton with their jump count: a flow takes none, a transition adds one. -/
-inductive HybridAutomaton.IsRunOn {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+inductive HybridAutomaton.IsRunOn {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     ℕ → L → Vec ℝ n → L → Vec ℝ n → Prop where
   | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w) :

@@ -53,7 +53,7 @@ storing no function.
 namespace CORALean.Float
 
 open scoped Matrix
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 

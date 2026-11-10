@@ -82,14 +82,14 @@ theorem VPolytope.projectHighDim_outer (P : VPolytope (Vec 𝕋 n)) {dims : Fin 
         refine (Finset.sum_eq_zero fun k _ => ?_).symm
         have : dims k ≠ j := fun hk => h ⟨k, hk⟩
         simp [this]
-    show _ '' ContSet.toSet (nominal P) ⊆ ContSet.toSet (nominal (P.projectHighDim dims))
+    show _ '' ContSetLike.toSet (nominal P) ⊆ ContSetLike.toSet (nominal (P.projectHighDim dims))
     rw [hnom]
     have hex := Real.VPolytope.projectHighDim_exact (nominal P) dims
     rintro _ ⟨x, hx, rfl⟩
     have hm : (Matrix.of fun (i : Fin N) (k : Fin n) => if dims k = i then (1 : ℝ) else 0) *ᵥ x ∈
         Real.VPolytope.toSet ((nominal P).projectHighDim dims) := by
       rw [hex]; exact ⟨x, hx, rfl⟩
-    show Function.extend dims x 0 ∈ ContSet.toSet _
+    show Function.extend dims x 0 ∈ ContSetLike.toSet _
     rw [hmat]
     exact hm
 

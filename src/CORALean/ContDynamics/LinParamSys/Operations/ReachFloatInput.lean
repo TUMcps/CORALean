@@ -77,14 +77,14 @@ inputs `params.U` in input coordinates wherever they sit, the first reduced to o
 Taylor order `η` raised until admissible; `c` is the offset `sys.c` in `𝕋`. -/
 def LinParamSys.reachFloatInput (sys : LinParamSys ℐ[𝕋] n) (c : Vec 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
+    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   let η := options.η
   let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let V := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B params.U    -- V = B U ⊕ c, in the
+  let V := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) sys.B params.U    -- V = B U ⊕ c, in the
     ⊞ Zonotope.point c                                              -- state space
   let uc := ScalarCenter.centerVec (S := 𝒵[𝕋]) V                    -- ũ, the constant
   let HRτ₀ := sys.timeIntervalFloat Δt η' X₀                    -- H^R(τ_0)

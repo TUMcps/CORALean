@@ -39,10 +39,10 @@ step, and every step lands in its own branch of the `SetUnion`.
 
 namespace CORALean
 
-open ContSet Plus Reduce Mtimes
+open ContSet ContSetLike Plus Reduce Mtimes
 
 variable {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [OfScalarPoint 𝕋 S]
 

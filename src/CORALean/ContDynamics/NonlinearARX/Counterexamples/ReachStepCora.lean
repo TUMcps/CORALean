@@ -64,7 +64,7 @@ end CORALean
 
 namespace CORALean
 
-variable {C α : Type} [CORALean.ContSet C α]
+variable {C α : Type} [ContSetLike C α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

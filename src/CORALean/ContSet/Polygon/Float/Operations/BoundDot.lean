@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 def Polygon.boundDot (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec 𝕋 2)
     (hc : ∀ x : Vec ℝ 2, c x = ∑ j, toReal (a j) * x j) :
-    FloatBound 𝕋 (ContSet.toSet P) c where
+    FloatBound 𝕋 (ContSetLike.toSet P) c where
   val := (P.sets.map fun p => (p.boundDot a hc).val).foldr maximum
     ((P.sets.map fun p => (p.boundDot a hc).val).headD zero)
   le x hx := by

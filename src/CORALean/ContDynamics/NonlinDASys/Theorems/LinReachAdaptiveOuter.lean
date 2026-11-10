@@ -59,7 +59,7 @@ certificate's remainder part, with the Hessian intervals holding over the region
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m q : ℕ}
 

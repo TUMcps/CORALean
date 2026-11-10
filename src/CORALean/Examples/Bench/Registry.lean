@@ -103,7 +103,8 @@ private def aux_params {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   { X₀ := X0, tFinal := cfg.steps * ToRat.toRat dt }
 
 /-- The config's `dt`, `eta` and `rho` as CORA's `options`, under CORA's own names. -/
-private def aux_options {𝕋 : Type} (dt : 𝕋) (cfg : HeadlineConfig) : LinearSys.ReachOptions 𝕋 :=
+private def aux_options {𝕋 : Type} (dt : 𝕋) (cfg : HeadlineConfig) :
+    LinearSys.ReachFloatOptions 𝕋 :=
   { Δt := dt, η := cfg.eta, ρ := cfg.rho }
 
 /-- Scheme (a), wrapping-free: `reachWrappingFreeFloat`'s time-interval windows beside

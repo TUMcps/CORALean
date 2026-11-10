@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 section
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 open scoped Classical
 
 variable {n m : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]

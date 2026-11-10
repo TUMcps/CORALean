@@ -40,7 +40,7 @@ namespace CORALean.Real
 theorem Polygon.hausdorffDist_counterexample : -- --- CONCL ---
     ∃ (P : Polygon) (S : List (Vec ℝ 2)),
       P.hausdorffDist S = 0 ∧
-        0 < hausdorffDist₂ (ContSet.toSet P) {s | s ∈ S} := by -- --- PROOF ---
+        0 < hausdorffDist₂ (ContSetLike.toSet P) {s | s ∈ S} := by -- --- PROOF ---
   -- the unit square and its center
   let sq : VPolytope (Vec ℝ 2) := ⟨4, ![![0, 0], ![1, 0], ![0, 1], ![1, 1]]⟩
   let c : Vec ℝ 2 := ![1 / 2, 1 / 2]
@@ -49,19 +49,19 @@ theorem Polygon.hausdorffDist_counterexample : -- --- CONCL ---
       by show ∑ _i : Fin 4, (1 / 4 : ℝ) = 1; rw [Fin.sum_univ_four]; norm_num, by
       funext i
       fin_cases i <;> simp [sq, c, Fin.sum_univ_four] <;> norm_num⟩
-  have hcP : c ∈ ContSet.toSet (⟨[sq]⟩ : Polygon) :=
+  have hcP : c ∈ ContSetLike.toSet (⟨[sq]⟩ : Polygon) :=
     SetUnion.mem_toSet.mpr ⟨sq, List.mem_singleton_self _, hc⟩
   refine ⟨⟨[sq]⟩, [c], ?_, ?_⟩
   · -- the center is in the region, so the value is `0`
     classical
     simp [Polygon.hausdorffDist, hcP]
   · -- a corner of the square is `√2 / 2` from the center, and has to be within the bound
-    have hcorner : (![0, 0] : Vec ℝ 2) ∈ ContSet.toSet (⟨[sq]⟩ : Polygon) :=
+    have hcorner : (![0, 0] : Vec ℝ 2) ∈ ContSetLike.toSet (⟨[sq]⟩ : Polygon) :=
       SetUnion.mem_toSet.mpr ⟨sq, List.mem_singleton_self _, sq.vertex_mem 0⟩
-    have hbdd : Bornology.IsBounded (ContSet.toSet (⟨[sq]⟩ : Polygon)) :=
+    have hbdd : Bornology.IsBounded (ContSetLike.toSet (⟨[sq]⟩ : Polygon)) :=
       (Polygon.isCompact_toSet _).isBounded
-    have hcomm : hausdorffDist₂ (ContSet.toSet (⟨[sq]⟩ : Polygon)) {s | s ∈ [c]}
-        = hausdorffDist₂ {s | s ∈ [c]} (ContSet.toSet (⟨[sq]⟩ : Polygon)) := by
+    have hcomm : hausdorffDist₂ (ContSetLike.toSet (⟨[sq]⟩ : Polygon)) {s | s ∈ [c]}
+        = hausdorffDist₂ {s | s ∈ [c]} (ContSetLike.toSet (⟨[sq]⟩ : Polygon)) := by
       unfold hausdorffDist₂
       exact Metric.hausdorffDist_comm
     rw [hcomm]

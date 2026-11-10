@@ -40,10 +40,10 @@ large and the theorems that consume it ask for the window they speak about.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

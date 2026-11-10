@@ -51,11 +51,12 @@ def NeurNetContrSysDT.simulateBox (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) 
     (U_ext : Interval (Vec 𝕋 sys.nExt)) (x₀ : Vec 𝕋 n) : ℕ → Interval (Vec 𝕋 n)
   | 0 => Interval.point x₀
   | k + 1 =>
-    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) sys.plant.A (sys.simulateBox U_ext x₀ k))
+    plus (S := Interval (Vec 𝕋 n))
+      (mtimes (ContSet := ℐ𝒱[𝕋]) sys.plant.A (sys.simulateBox U_ext x₀ k))
       (plus (S := Interval (Vec 𝕋 n))
-        (plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) (leftCols sys.hm sys.plant.B)
+        (plus (S := Interval (Vec 𝕋 n)) (mtimes (ContSet := ℐ𝒱[𝕋]) (leftCols sys.hm sys.plant.B)
           (sys.contr.enclose (sys.simulateBox U_ext x₀ k)))
-          (mtimes (S := ℐ𝒱[𝕋]) (rightCols sys.hm sys.plant.B) U_ext))
+          (mtimes (ContSet := ℐ𝒱[𝕋]) (rightCols sys.hm sys.plant.B) U_ext))
         (OfScalarPoint.ofVec (S := ℐ𝒱[𝕋]) sys.plant.c))
 
 end CORALean

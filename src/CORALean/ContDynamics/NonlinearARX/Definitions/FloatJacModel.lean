@@ -27,7 +27,7 @@ and in the stacked inputs, over a box of each, as computable functions at the sc
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : ℕ}
 

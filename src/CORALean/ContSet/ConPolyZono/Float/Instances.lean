@@ -12,8 +12,8 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ReindexExact
 /-!
 # What `ConPolyZono` instantiates
 
-`Plus`, `LinComb`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSet` is not among them:
-`InflatedContSet` supplies it, as for the exact layer.
+`Plus`, `LinComb`, `Mtimes`, `Reduce` and `Intersection`, as over ℝ. `ContSetLike` is not among
+them: `InflatedContSet` supplies it, as for the exact layer.
 
 `Reduce` is *computable* here: `Tuple.sort` needs a `LinearOrder`, which no float type has, while
 `sortPerm` asks its comparator for nothing. Soundness never depended on the ranking

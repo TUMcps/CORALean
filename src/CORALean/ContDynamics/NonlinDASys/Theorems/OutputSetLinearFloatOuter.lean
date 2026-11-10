@@ -55,7 +55,7 @@ the model's box, each shifted set holds its deviation, and the products and sums
 
 namespace CORALean
 
-open CORALean.Float ContSet Plus Matrix SoundFloatArithmetic
+open CORALean.Float ContSet ContSetLike Plus Matrix SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 
@@ -97,15 +97,15 @@ theorem NonlinDASys.OutputFloatModel.outputSetLinearFloat_outer (sys : NonlinDAS
     simpa [hh, add_assoc, add_comm, add_left_comm] using this
   -- the value at the centers, and the three blocks applied to their deviations
   have h0 := Interval.zonotope_contains _ (hom.h_mem _ _ _ _ hPx _ hPy _ hPu)
-  have hX := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+  have hX := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (om.jacX (Interval.point p_x) (Interval.point p_y) (Interval.point p_u))
     (R ⊞ Zonotope.point (-p_x)) (Set.mem_biUnion
       (hJx ▸ hom.jacX_mem _ _ _ _ hPx _ hPy _ hPu) (Set.mem_image_of_mem _ (hsh p_x hx)))
-  have hY := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+  have hY := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (om.jacY (Interval.point p_x) (Interval.point p_y) (Interval.point p_u))
     (R_y ⊞ Zonotope.point (-p_y)) (Set.mem_biUnion
       (hJy ▸ hom.jacY_mem _ _ _ _ hPx _ hPy _ hPu) (Set.mem_image_of_mem _ (hsh p_y hy)))
-  have hU := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+  have hU := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (om.jacU (Interval.point p_x) (Interval.point p_y) (Interval.point p_u))
     (U ⊞ Zonotope.point (-p_u)) (Set.mem_biUnion
       (hJu ▸ hom.jacU_mem _ _ _ _ hPx _ hPy _ hPu) (Set.mem_image_of_mem _ (hsh p_u hu)))

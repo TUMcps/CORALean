@@ -59,9 +59,9 @@ def MatExp.curvatureEnclosure (A : Interval (Mat 𝕋 n n)) (H : Zonotope (Vec �
   let F := MatExp.intervalCorrectionMatrix A Δt η                     -- [F(Δt,η)]
   let G := MatExp.intervalConstCorrectionMatrix A Δt η                -- [G(Δt,η)]
   Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [F] H(t_k) ⊕
-    (S := 𝒵[𝕋]) F H ⊞
+    (ContSet := 𝒵[𝕋]) F H ⊞
     Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [G] ũ
-      (S := 𝒵[𝕋]) G (Interval.point ũ).zonotope
+      (ContSet := 𝒵[𝕋]) G (Interval.point ũ).zonotope
 
 end CORALean.Float
 

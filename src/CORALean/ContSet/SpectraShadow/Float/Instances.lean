@@ -9,7 +9,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.MtimesOuter
 /-!
 # What `SpectraShadow` instantiates
 
-`ContSet` is supplied by `InflatedContSet`. Then `ConvexSet` and `Plus`, as over ℝ, and
+`ContSetLike` is supplied by `InflatedContSet`. Then `ConvexSet` and `Plus`, as over ℝ, and
 `Intersection`, which the float layer's tied form makes rounding-free. `Mtimes` too, by the same
 tie: `mtimes` never multiplies a stored generator, which would round a coefficient of a variable the
 inequality does not bound (`SpectraShadow.lean` says why), but ties the point to new free variables

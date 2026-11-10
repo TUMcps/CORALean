@@ -180,9 +180,9 @@ end CORALean.Float
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- ==============================  `NeuralNetwork.enclose_outer`  =============================== --
@@ -216,7 +216,7 @@ theorem NeuralNetwork.encloses_output : (NeuralNetwork.output : NeuralNetwork S 
 -- Reviewed:      ---
 
 /-- A single layer, sound at the function it is sound at. -/
-theorem NeuralNetwork.ofLayer_encloses {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
+theorem NeuralNetwork.ofLayer_encloses {Layer : ℕ → ℕ → Type} [Enclose Layer S] {curr : Layer n m}
     {f : Vec ℝ n → Vec ℝ m} (h : (Enclose.toLayer (S := S) curr).Encloses f) :
     (NeuralNetwork.ofLayer (S := S) curr).Encloses f :=
   .layer h (.output fun _ => rfl) fun _ => rfl

@@ -54,7 +54,7 @@ the float one, because the member's order-`i` matrix is in
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix ContSet Pointwise
+open CORALean.Float SoundFloatArithmetic Matrix ContSet ContSetLike Pointwise
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -96,14 +96,14 @@ private theorem LinParamSys.aux_inputTaylorSum_subset
   have hterm : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
       V.toSet
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm sys.A r i) V) := by
     intro i
     have hM : (LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i
         ∈ (MatExp.intervalInputTerm sys.A r i).toSet :=
       MatExp.smul_pow_mem_intervalInputTerm _ hr hA i
     exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.toSet) hM).trans
-      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm sys.A r i) V)
   intro i
   induction i with
@@ -118,19 +118,19 @@ private theorem LinParamSys.aux_inputRemainder_subset
     {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.toSet)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     toSet (Mtimes.mtimes (𝕄 := ℐ)
-      (S := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
+      (ContSet := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.toSet : Set (Vec ℝ n)))
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputRemainder sys.A r η) V) := by -- --- PROOF ---
-  set Z := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+  set Z := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (MatExp.intervalInputRemainder sys.A r η) V
   refine closure_minimal (convexHull_min ?_ (ConvexSet.convex_toSet Z))
     (CompactSet.isClosed_toSet Z)
   refine Set.iUnion₂_subset fun M hM => ?_
   exact (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.toSet)
     (MatExp.inputRemainder_subset_intervalInputRemainder _ hr η hη.2 hA hM)).trans
-    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       (MatExp.intervalInputRemainder sys.A r η) V)
 
 

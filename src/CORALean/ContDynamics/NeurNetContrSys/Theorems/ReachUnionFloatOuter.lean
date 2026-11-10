@@ -45,7 +45,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

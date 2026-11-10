@@ -60,7 +60,7 @@ does.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

@@ -49,10 +49,10 @@ measurable, by `IsCanonicalTrajectory.meas`, so nothing is asked of it here.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet MeasureTheory
+open Matrix ContSet ContSetLike MeasureTheory
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

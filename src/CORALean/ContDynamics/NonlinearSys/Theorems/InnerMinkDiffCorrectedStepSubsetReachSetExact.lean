@@ -53,7 +53,7 @@ The input is the constant `u₀`, the autonomous system (4) of [1].
 
 namespace CORALean
 
-open ContSet Matrix NormedSpace Pointwise Set
+open ContSetLike Matrix NormedSpace Pointwise Set
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

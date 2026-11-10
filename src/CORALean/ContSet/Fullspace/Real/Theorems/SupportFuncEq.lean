@@ -33,7 +33,7 @@ where it is nonzero reaches any bound.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSetLike
 
 variable {n : ℕ}
 

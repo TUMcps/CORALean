@@ -90,7 +90,7 @@ private def aux_result (cfg : HeadlineConfig) (inst : String → ExactDyadic →
   let sys : LinearSys 𝕋 2 := LinearSys.canonicalFloat A
   let dtJ := [("dt_represented", ratJson (ToRat.toRat dt))]
   let params : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ := { X₀ := X0, tFinal := ToRat.toRat dt }
-  let options : LinearSys.ReachOptions 𝕋 :=
+  let options : LinearSys.ReachFloatOptions 𝕋 :=
     { Δt := dt, η := cfg.eta, ρ := cfg.rho }
   -- the order check ahead of `reachFloat`, as `Registry.aux_runTiTp`, for a clear reason
   match sys.reachOrderFloat dt dt cfg.eta with

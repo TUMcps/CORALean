@@ -43,7 +43,7 @@ across every bounce, exactly when the damping is at most one.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

@@ -33,7 +33,7 @@ box holds no point to attain it.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 

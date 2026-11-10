@@ -31,7 +31,7 @@ into a run.
 
 namespace CORALean.Real
 
-open Matrix Pointwise ContSet Scalar Plus Mtimes
+open Matrix Pointwise ContSet ContSetLike Scalar Plus Mtimes
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

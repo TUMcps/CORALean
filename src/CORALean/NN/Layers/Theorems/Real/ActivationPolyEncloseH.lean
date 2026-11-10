@@ -56,7 +56,7 @@ reaching it, and `n` more from the residual box.
 
 namespace CORALean.Real
 
-open Pointwise ContSet Plus
+open Pointwise ContSet ContSetLike Plus
 
 variable {σ : ℝ → ℝ} {m n : ℕ}
 

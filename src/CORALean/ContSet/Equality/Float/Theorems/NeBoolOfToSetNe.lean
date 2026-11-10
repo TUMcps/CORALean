@@ -34,12 +34,12 @@ namespace CORALean.Float
 
 open CORALean
 
-variable {S α : Type} [ContSet S α] [Isequal S] [DecidableRel (Isequal.isequal (S := S))]
+variable {S α : Type} [ContSetLike S α] [Isequal S] [DecidableRel (Isequal.isequal (S := S))]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ContSet.neBool_of_toSet_ne {s t : S} (h : ContSet.toSet s ≠ ContSet.toSet t) :
+theorem ContSet.neBool_of_toSet_ne {s t : S} (h : ContSetLike.toSet s ≠ ContSetLike.toSet t) :
     ContSet.neBool s t = true := by
   unfold ContSet.neBool
   cases hb : ContSet.eqBool s t

@@ -47,7 +47,7 @@ enclosure of [1, Prop. 2], of which a bundle plus one zonotope is the one-member
 
 namespace CORALean
 
-variable {S S' T α α' β : Type} [ContSet S α] [ContSet S' α'] [ContSet T β]
+variable {S S' T α α' β : Type} [ContSetLike S α] [ContSetLike S' α'] [ContSetLike T β]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -57,11 +57,11 @@ intersections. -/
 theorem SetIntersection.pairwise_outer {k k' l : ℕ} {f : Fin k → S} {f' : Fin k' → S'}
     {g : Fin l → T} (Φ : Set α → Set α' → Set β)
     (hΦ : ∀ ⦃A B : Set α⦄ ⦃A' B' : Set α'⦄, A ⊆ B → A' ⊆ B' → Φ A A' ⊆ Φ B B')
-    (h : ∀ p, ∃ i i', Φ (ContSet.toSet (f i)) (ContSet.toSet (f' i'))
-      ⊆ ContSet.toSet (g p)) : -- --- CONCL ---
-    Φ (ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S))
-        (ContSet.toSet (⟨List.ofFn f'⟩ : SetIntersection S'))
-      ⊆ ContSet.toSet (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
+    (h : ∀ p, ∃ i i', Φ (ContSetLike.toSet (f i)) (ContSetLike.toSet (f' i'))
+      ⊆ ContSetLike.toSet (g p)) : -- --- CONCL ---
+    Φ (ContSetLike.toSet (⟨List.ofFn f⟩ : SetIntersection S))
+        (ContSetLike.toSet (⟨List.ofFn f'⟩ : SetIntersection S'))
+      ⊆ ContSetLike.toSet (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
   rw [SetIntersection.toSet_ofFn, SetIntersection.toSet_ofFn,
     SetIntersection.toSet_ofFn]
   refine Set.subset_iInter fun p => ?_

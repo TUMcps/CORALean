@@ -49,7 +49,7 @@ floats. -/
 def ParallelHybridAutomaton.reachFloatChecked
     (P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
     (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m)
-    (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : ∀ i, L i)
+    (tFinal : ℚ) (options : LinearSys.ReachFloatOptions 𝕋) (K : ℕ) (ℓ : ∀ i, L i)
     (X₀ : Zonotope (Vec 𝕋 (∑ i, n i))) : Option (List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))) :=
   checkNoNaN (𝕋 := 𝕋) (P.reachFloat lift tFinal options K ℓ X₀)
 

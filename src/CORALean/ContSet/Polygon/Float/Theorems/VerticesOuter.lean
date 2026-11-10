@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.vertices_outer (P : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.toSet P ⊆ ⋃ p ∈ P.sets,
+    ContSetLike.toSet P ⊆ ⋃ p ∈ P.sets,
       (convexHull ℝ {v | v ∈ P.vertices.map toRealVec} + p.I_error.toSet) := by -- --- PROOF ---
   intro x hx
   obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx

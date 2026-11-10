@@ -35,10 +35,10 @@ offset as a point. It is the `U'` the canonical form of a run is driven from
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
   [Mtimes 𝕄 S] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 
@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- `B U ⊕ c`, the matrix set times the input set, plus the offset. -/
 def LinParamSysDT.inputSet (sys : LinParamSysDT 𝕄 n) (U : S sys.m) : S n :=
-  Mtimes.mtimes (S := S) sys.B U ⊞ OfPoint.ofPoint sys.c
+  Mtimes.mtimes (ContSet := S) sys.B U ⊞ OfPoint.ofPoint sys.c
 
 end CORALean
 

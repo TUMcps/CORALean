@@ -45,13 +45,13 @@ set per step.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Reduce Mtimes
+open Matrix ContSetLike Scalar Plus Reduce Mtimes
 
 variable {n r : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
     [OfScalarPoint 𝕋 S]
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ r)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

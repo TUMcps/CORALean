@@ -72,13 +72,13 @@ Prop. 2], the image of a bundle by [1, Prop. 1]. Nothing is claimed of the tight
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

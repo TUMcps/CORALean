@@ -13,7 +13,7 @@ The zonotope is the translate by `c` of the image of the cube `[-1, 1]^h` under 
 is an open set around `c`. If they do not, the zonotope lies in a translate of a proper subspace,
 which has no interior (`Submodule.eq_top_of_nonempty_interior'`).
 
-Stated at `toSet`, which is what `ContSet.IsFullDim` unfolds to: the `ContSet` instance is
+Stated at `toSet`, which is what `ContSet.IsFullDim` unfolds to: the `ContSetLike` instance is
 declared after the theorems. Over any finite-dimensional real normed space, in particular `Vec ℝ n`.
 
 ## Inputs

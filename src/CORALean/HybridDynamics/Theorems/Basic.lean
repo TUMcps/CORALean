@@ -23,9 +23,9 @@ namespace CORALean
 
 section
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)] {L 𝕋 : Type}
   [Scalar 𝕋] {n : ℕ}
 
@@ -46,10 +46,10 @@ end
 
 section
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 open scoped CORALean.Float
 
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Float.FloatOps 𝕋]
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L 𝕋 : Type} [Float.FloatOps 𝕋]
   [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
 
 

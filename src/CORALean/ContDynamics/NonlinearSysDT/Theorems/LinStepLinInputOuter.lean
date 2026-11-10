@@ -38,10 +38,10 @@ three summands are the constant `c`, `B(u - u✱)` and the abstraction error; th
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes CORALean.Float OfInterval
+open Matrix ContSet ContSetLike Plus Mtimes CORALean.Float OfInterval
 
 variable {n m : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfInterval S 𝕋]
 
 

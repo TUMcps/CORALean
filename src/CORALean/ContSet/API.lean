@@ -32,7 +32,7 @@ public import CORALean.ContSet.ProbZonotope.API
 /-!
 # Set representations, collected
 
-`ContSet` is the interface every representation instantiates; `InflatedContSet`
+`ContSetLike` is the interface every representation instantiates; `InflatedContSet`
 is what a float representation adds on top of its exact counterpart, beside it.
 `EmptySet` and `Fullspace` are `∅` and the whole space as representations, as
 CORA has them; `OptEmpty` wraps one for a result that may be `∅`, and

@@ -331,9 +331,9 @@ section
 
 universe u
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
   {f : Vec ℝ n → Vec ℝ m} {g : Vec ℝ m → Vec ℝ k}
 
 
@@ -368,7 +368,7 @@ def Layer.comp (L₂ : Layer S m k) (L₁ : Layer S n m) : Layer S n k where
 /-- Carries a coordinate past a block untouched, which is how a skip connection
 is written: the skipped coordinates travel in the same set as the rest, so the
 dependency between them survives. -/
-def Layer.identity (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) : Layer S n n where
+def Layer.identity (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] (n : ℕ) : Layer S n n where
   enclose s := s
 
 end
@@ -376,10 +376,10 @@ end
 
 section
 
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
 
 

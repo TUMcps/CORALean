@@ -73,8 +73,8 @@ theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)}
         ⟨h₁, toRealVec c₂, fun j i => toReal (G₂ j i)⟩
       rw [hc, hG]
     -- so the two sums of nominal set and error box are the same
-    change ContSet.toSet (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) + E₁.toSet =
-      ContSet.toSet (nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n))) + E₂.toSet
+    change ContSetLike.toSet (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) + E₁.toSet =
+      ContSetLike.toSet (nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n))) + E₂.toSet
     rw [hN, hE]
   · simp at h
 

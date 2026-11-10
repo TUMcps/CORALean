@@ -43,7 +43,7 @@ Some schedule is inside any inflation of the exact image, which with
 
 namespace CORALean
 
-open Pointwise ContSet
+open Pointwise ContSet ContSetLike
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

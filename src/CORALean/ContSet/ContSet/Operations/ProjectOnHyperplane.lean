@@ -31,10 +31,10 @@ operation is at the real scalar, as it multiplies entries of the supplied normal
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 

@@ -34,10 +34,10 @@ it can read off, as a polytope reads it off its vertices, has its `isFullDim` fo
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimensional ℝ α]
-  [ContSet S α] [ConvexSet S α]
+  [ContSetLike S α] [ConvexSet S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -21,7 +21,7 @@ be written down without its proof, so a solver returning nonsense loses rows and
 
 namespace CORALean.Real
 
-open Pointwise ContSet
+open Pointwise ContSet ContSetLike
 
 
 /-- The Minkowski sum lands, on the two operands' own rows. -/

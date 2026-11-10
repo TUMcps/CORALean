@@ -53,9 +53,9 @@ def LinParamSys.timeIntervalZonoFloat
   let eAr := MatExp.expMatZonoEnclosure Ar η                             -- mappingMatrixSet
   let F := MatExp.matZonoCorrectionMatrix sys.A Δt η                     -- priv_tie's F
   LinComb.linComb R (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋])
-    (S := 𝒵[𝕋]) eAr R) ⊞
+    (ContSet := 𝒵[𝕋]) eAr R) ⊞
     Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- linComb(R, e R) ⊕ F R
-      (S := 𝒵[𝕋]) F R
+      (ContSet := 𝒵[𝕋]) F R
 
 end CORALean
 

@@ -41,11 +41,11 @@ structure SetUnion (S : Type) where
   sets : List S
 
 /-- What a `SetUnion` denotes: the union of what every member denotes. -/
-def SetUnion.toSet [ContSet S α] (u : SetUnion S) : Set α :=
-  ⋃ s ∈ u.sets, ContSet.toSet s
+def SetUnion.toSet [ContSetLike S α] (u : SetUnion S) : Set α :=
+  ⋃ s ∈ u.sets, ContSetLike.toSet s
 
 /-- A set union denotes `SetUnion.toSet`, the points some member contains. -/
-instance [ContSet S α] : ContSet (SetUnion S) α := ⟨SetUnion.toSet⟩
+instance [ContSetLike S α] : ContSetLike (SetUnion S) α := ⟨SetUnion.toSet⟩
 
 end CORALean
 

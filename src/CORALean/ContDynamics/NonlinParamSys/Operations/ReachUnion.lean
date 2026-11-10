@@ -37,9 +37,9 @@ dimension `n + q` — the parameter's coordinates tested with the state's.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m q n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -50,7 +50,7 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 /-- `aug.reachUnion` from `X₀ × P` over the same horizon and options, each member
 projected to the first `n` coordinates, or `none` where the augmented run fails. -/
 noncomputable def NonlinParamSys.WithSteps.reachUnion (sys : NonlinParamSys.WithSteps S Rg m q n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachFloatOptions ℝ) :
     Option (SetUnion (S n)) :=
   let X₀ := params.X₀                                                -- the paper's symbols
   let E := LinearMap.toMatrix' (blockPadLeft n q)                    -- x ↦ (x, 0)

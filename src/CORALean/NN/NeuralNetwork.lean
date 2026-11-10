@@ -27,17 +27,18 @@ coordinates along. What a network computes is its layers' `eval`s composed; `Enc
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- A neural network: the empty chain, or a layer of any `Enclose` kind in front of a network, the
 dimensions chaining. -/
-inductive NeuralNetwork (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] : (n m : ℕ) → Type 1 where
-  | output {n : ℕ} : NeuralNetwork S n n
-  | layer {n m k : ℕ} {L : ℕ → ℕ → Type} [inst : Enclose L S] (curr : L n m)
-      (tail : NeuralNetwork S m k) : NeuralNetwork S n k
+inductive NeuralNetwork (ContSet : ℕ → Type) [∀ n, ContSetLike (ContSet n) (Vec ℝ n)] :
+    (n m : ℕ) → Type 1 where
+  | output {n : ℕ} : NeuralNetwork ContSet n n
+  | layer {n m k : ℕ} {Layer : ℕ → ℕ → Type} [inst : Enclose Layer ContSet]
+      (curr : Layer n m) (tail : NeuralNetwork ContSet m k) : NeuralNetwork ContSet n k
 
 end CORALean
 

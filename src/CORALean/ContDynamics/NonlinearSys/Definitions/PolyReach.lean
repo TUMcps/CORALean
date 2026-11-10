@@ -35,7 +35,7 @@ past line 9.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m o : ℕ}
 

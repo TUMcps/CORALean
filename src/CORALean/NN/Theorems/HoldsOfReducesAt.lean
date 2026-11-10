@@ -46,9 +46,9 @@ reduced network's enclosure holds on the original network's exact image, by
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
@@ -58,7 +58,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 original network's exact image, at any set of layers reduced. -/
 theorem NeuralNetwork.holds_of_reducesAt {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (h : NeuralNetwork.ReducesAt s nn nn' f)
-    {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+    {ContSet : Type} [ContSetLike ContSet (Vec ℝ m)]
     (spec : Specification ContSet)
     (hspec : spec.Holds (toSet (nn'.enclose s))) :
     spec.Holds (f '' toSet s) :=

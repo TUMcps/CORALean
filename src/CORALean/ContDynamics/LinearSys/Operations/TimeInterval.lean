@@ -40,15 +40,15 @@ one, the `l∞` operator norm, or the terms will not match.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet] [Mtimes ℐ ContSet]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -56,7 +56,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- CORA's `CH(Xₖ, Xₖ₁) ⊕ F Xₖ`, over a whole step rather than at its ends, where `Xₖ₁` holds
 `e^{AΔt}Xₖ`. -/
 noncomputable def LinearSys.timeInterval
-    (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (Xₖ Xₖ₁ : S n) : S n :=
+    (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (Xₖ Xₖ₁ : ContSet n) : ContSet n :=
   let H := LinComb.linComb Xₖ Xₖ₁                                        -- hull of the two ends
   let C := Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) Δt η) Xₖ  -- F Xₖ
   H ⊞ C                                                                    -- H ⊕ C

@@ -35,10 +35,10 @@ representation whose `linComb` is coarser than the hull.
 
 namespace CORALean
 
-open ContSet Scalar Pointwise
+open ContSet ContSetLike Scalar Pointwise
 
 variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 

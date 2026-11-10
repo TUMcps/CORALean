@@ -34,7 +34,7 @@ and the initial set off `params`, the closed loop being time-invariant.
 namespace CORALean
 
 variable {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -43,10 +43,10 @@ are not defined.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
 variable {n p m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

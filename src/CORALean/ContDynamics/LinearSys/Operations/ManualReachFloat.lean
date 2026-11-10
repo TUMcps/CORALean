@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
@@ -93,14 +93,14 @@ def LinearSys.step_manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (
   let sq ← sys.squaringsFloat Δt s.tEnc.inf s.tEnc.sup η                    -- t_k / 2^sq within Δt
   -- 6. [e^{A t_k}] ·
   let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq)
   -- 6. P^u(t_{k+1}), a box
   let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval
   let sq1 ← sys.squaringsFloat Δt tLo1 tHi1 η                       -- t_{k+1} / 2^sq1 within Δt
   -- 7. [e^{A t_{k+1}}] ·
   let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (sys.expSquaringFloat tLo1 tHi1 η sq1)
   -- 7. H(t_{k+1})
   let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope
@@ -146,7 +146,7 @@ def LinearSys.step_manualInitFloat (X₀ : Zonotope (Vec 𝕋 n)) : LinearSys.Ma
 inputs in `U`, or `none`. -/
 def LinearSys.manualReachFloat (sys : LinearSys 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
+    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   let η := options.η

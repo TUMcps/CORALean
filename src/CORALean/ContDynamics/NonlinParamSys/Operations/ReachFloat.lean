@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def NonlinParamSys.reachFloat (_sys : NonlinParamSys n m q)
     (fm : NonlinearSys.FloatModel 𝕋 (n + q) m) (P : Zonotope (Vec 𝕋 q))
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) :=
+    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) :=
   let Z₀ := params.X₀.cartProd P                                    -- X₀ × P
   (fm.reachFloat ⟨Z₀, params.U, params.tStart, params.tFinal⟩ options).map fun Rs =>
     Rs.map fun R => R.project (Fin.castAdd q)                       -- back to the state

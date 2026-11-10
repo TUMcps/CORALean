@@ -45,7 +45,7 @@ interpolation error, which `[F]` at `sys.A` holds.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -73,18 +73,18 @@ theorem LinParamSys.timeIntervalFloat_outer
     abel
   -- `e^{AΔt} x` lies in `[e^{AΔt}] R`
   have hE : exp (r • A) *ᵥ x ∈ toSet
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       (sys.expIntervalFloat Δt Δt (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ R
+      (ContSet := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA le_rfl le_rfl)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `[F] R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ toSet
-      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ R
+      (ContSet := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2 hA hs0 hs)
         (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

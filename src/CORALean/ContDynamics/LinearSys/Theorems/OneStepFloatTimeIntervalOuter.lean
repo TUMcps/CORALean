@@ -68,7 +68,8 @@ hypotheses are gone, as in `oneStepFloat_timePoint_outer`; `0 ∈ U` stays.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix Pointwise ContSet NormedSpace MeasureTheory
+open CORALean.Float SoundFloatArithmetic Matrix Pointwise ContSet ContSetLike NormedSpace
+open MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -109,39 +110,39 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
     ⟨fun _ => uR, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A uR hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
+  have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋])
       (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt (m + 2)) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ X
+      (ContSet := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   -- the `linComb` of `X` and `Htp` holds the interpolated point
   have hHtp : exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ uR
       ∈ toSet (Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (sys.expIntervalFloat Δt Δt (m + 2)) X)
         (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u))) :=
     Plus.plus_outer _ _ (Set.add_mem_add hex hPu)
-  have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (S := 𝒵[𝕋])
+  have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (ContSet := 𝒵[𝕋])
     (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt (m + 2)) X)
     (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u)))
     ⟨x 0, traj.init, _, hHtp, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- the two interpolation errors
   have hF : (exp (t • A) - 1 - lam • (exp (r • A) - 1)) *ᵥ x 0
       ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt (m + 2)) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ X
+      (ContSet := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2
         (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ traj.init))
   have hG : (Real.MatExp.expIntegral A t - lam • Real.MatExp.expIntegral A r) *ᵥ uR
       ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalConstCorrectionMatrix (Interval.point sys.A) Δt (m + 2))
         (Zonotope.point u)) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ _
+      (ContSet := 𝒵[𝕋]) _ _
       (Set.mem_biUnion (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix _ hΔt (m + 2)
         hη.2 (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ hpt))
   -- the state is the interpolated point, the two errors, and the input's share

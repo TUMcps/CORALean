@@ -54,9 +54,9 @@ steps 1 and 3 of its Sec. 2.1.
 
 namespace CORALean
 
-open ContSet Plus Mtimes IntersectStrip
+open ContSet ContSetLike Plus Mtimes IntersectStrip
 
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint 𝕋 S]
 variable [IntersectStrip 𝕋 S] {n p : ℕ}
 

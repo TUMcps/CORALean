@@ -67,10 +67,10 @@ def Location.guardIntersectPolytopeHFloat (k : ℕ) (Bs : List (Mat 𝕋 n n))
     let B := Bs[i]
     let cut := fun R : Zonotope (Vec 𝕋 n) =>
       ConZonotope.intervalTight k
-        (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
+        (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
           ((Zonotope.conZonotope R).intersectHPolytope guard))
     let box := (Rs.map cut).foldl Interval.or (cut R₀)   -- boxes of the cuts R_j ∩ guard, joined
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
 
 end CORALean
 

@@ -51,7 +51,7 @@ in the time-interval set and with `(x, y)` in the joint set throughout (CORA's t
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m q : ℕ}
 

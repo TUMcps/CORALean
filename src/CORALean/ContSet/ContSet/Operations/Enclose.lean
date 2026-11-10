@@ -31,10 +31,10 @@ is a `linComb`, which is the hull only where both operands are convex.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 

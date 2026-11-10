@@ -33,7 +33,7 @@ degenerate interval; here `none`.
 namespace CORALean
 
 variable {T 𝕋 : Type} [TimeOrder T] [Zero T] [Scalar 𝕋] {S : ℕ → Type} {n : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)]
   [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)]
 
 

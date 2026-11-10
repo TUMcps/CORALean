@@ -54,7 +54,7 @@ hull, `Rinit ∪ Rtp`, lies in the time-interval reachable set `R([T, T + Δt]) 
 
 namespace CORALean
 
-open ContSet Set
+open ContSetLike Set
 
 variable {n m : ℕ} {𝓛 : Type}
 

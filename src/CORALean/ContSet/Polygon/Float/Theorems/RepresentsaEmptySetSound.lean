@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.representsaEmptySet_sound (P : Polygon 𝕋)
     (h : Polygon.representsaEmptySet P = true) : -- --- CONCL ---
-    ContSet.toSet P = ∅ := by -- --- PROOF ---
+    ContSetLike.toSet P = ∅ := by -- --- PROOF ---
   simp only [Polygon.representsaEmptySet, List.all_eq_true, beq_iff_eq] at h
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]

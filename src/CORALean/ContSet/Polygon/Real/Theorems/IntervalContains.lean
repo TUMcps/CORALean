@@ -64,7 +64,7 @@ private theorem Polygon.aux_intervalOfList_contains :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.interval_contains (P : Polygon) :
-    ContSet.toSet P ⊆ (Polygon.interval P).toSet :=
+    ContSetLike.toSet P ⊆ (Polygon.interval P).toSet :=
   Polygon.aux_intervalOfList_contains P.sets
 
 end CORALean.Real

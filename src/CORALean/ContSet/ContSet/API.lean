@@ -11,9 +11,9 @@ public import CORALean.ContSet.ContSet.Counterexamples.API
 /-!
 # The set interface, collected
 
-What every representation implements, in `Interfaces`: `ContSet` for what it denotes,
+What every representation implements, in `Interfaces`: `ContSetLike` for what it denotes,
 one class per operation — `Plus`, `LinComb`, `Reduce`, `Mtimes`, `OfPoint`,
-`Recenter` — each carrying its own guarantee. `ContSet` itself instantiates them at what
+`Recenter` — each carrying its own guarantee. `ContSetLike` itself instantiates them at what
 needs no representation of its own: a plain set and a matrix. `OfPoint` and `Recenter` are
 independent: a representation with a center has both, one with only a point
 operation just the first.

@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 open Matrix in
 theorem Polygon.mtimes_outer (M : Mat 𝕋 2 2) (P : Polygon 𝕋) : -- --- CONCL ---
-    (toRealMat M *ᵥ ·) '' ContSet.toSet P ⊆
-      ContSet.toSet (Polygon.mtimes M P) := by -- --- PROOF ---
+    (toRealMat M *ᵥ ·) '' ContSetLike.toSet P ⊆
+      ContSetLike.toSet (Polygon.mtimes M P) := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨p, hp, hy⟩ := SetUnion.mem_toSet.mp hy
   refine SetUnion.mem_toSet.mpr ⟨_, List.mem_map.mpr ⟨p, hp, rfl⟩, ?_⟩

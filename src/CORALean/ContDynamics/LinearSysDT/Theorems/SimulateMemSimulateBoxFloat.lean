@@ -37,7 +37,7 @@ every step, in the box `simulateBox` computed in float arithmetic: the float
 
 namespace CORALean
 
-open Matrix Scalar ContSet CORALean.Float
+open Matrix Scalar ContSet ContSetLike CORALean.Float
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 

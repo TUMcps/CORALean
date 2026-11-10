@@ -33,7 +33,7 @@ they lie in, and the velocity the first stay meets the floor with, about `-4.4`.
 
 namespace CORALean.BouncingBallFloat
 
-open CORALean CORALean.Float ContSet
+open CORALean CORALean.Float ContSet ContSetLike
 
 abbrev D := Dyadic 24
 
@@ -94,7 +94,7 @@ def R0 : Zonotope (Vec D 2) where
   I_error := ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩
 
 /-- Steps of `1/32`, four Taylor terms, zonotope order `10`. -/
-def options : LinearSys.ReachOptions D := ⟨d 1 (-5), 4, 10⟩
+def options : LinearSys.ReachFloatOptions D := ⟨⟨d 1 (-5), 4⟩, 10⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

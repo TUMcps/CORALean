@@ -62,13 +62,13 @@ boundaries only here; `relinTimeInterval_outer` covers the time between them.
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace Plus Mtimes Real.OfInterval
+open Matrix ContSet ContSetLike Scalar NormedSpace Plus Mtimes Real.OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 

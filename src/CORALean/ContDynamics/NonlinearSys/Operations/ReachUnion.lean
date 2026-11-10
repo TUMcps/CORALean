@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
@@ -45,9 +45,9 @@ does, and one failed test makes the answer `none`: the step's start, inflated by
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -59,7 +59,7 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 or `none` if `N` is no positive natural, the order is `0`, or a step's start, inflated
 by `2MΔt`, is not shown inside its region. -/
 noncomputable def NonlinearSys.WithSteps.reachUnion (sys : NonlinearSys.WithSteps S Rg m n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachFloatOptions ℝ) :
     Option (SetUnion (S n)) :=
   let X₀ := params.X₀                                             -- the paper's symbols
   let Δt := options.Δt

@@ -43,10 +43,10 @@ exact. `pivot` is precision and never soundness, as ReLU's slope is, so it may r
 namespace CORALean
 
 -- `Matrix` unscoped would make `FloatOps.zero` ambiguous
-open ContSet Plus Mtimes Float Float.IntervalOuter Float.OfInterval Float.FloatOps
+open ContSet ContSetLike Plus Mtimes Float Float.IntervalOuter Float.OfInterval Float.FloatOps
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n m k : ℕ}
 
 

@@ -95,7 +95,7 @@ private theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U
     set t := f^[k] (Ω₀, Zonotope.ofPoint 0, U)
     constructor
     · -- `ΦXᵢ ⊕ (Sᵢ ⊕ Vᵢ) = ΦXᵢ ⊕ ΦSᵢ ⊕ U = Φ(Xᵢ ⊕ Sᵢ) ⊕ U`
-      show _ = L '' sys.reachSetExact (S := 𝒵) Ω₀ U k + ContSet.toSet U
+      show _ = L '' sys.reachSetExact (S := 𝒵) Ω₀ U k + ContSetLike.toSet U
       rw [ih₂, ← ih₁, Set.image_add, add_assoc]
       rfl
     · -- `(Sᵢ ⊕ Vᵢ) ⊕ ΦVᵢ = ΦSᵢ ⊕ U ⊕ ΦVᵢ = Φ(Sᵢ ⊕ Vᵢ) ⊕ U`

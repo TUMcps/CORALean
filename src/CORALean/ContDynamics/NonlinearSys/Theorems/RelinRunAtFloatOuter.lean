@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `R` under inputs in `U` is, at every time of step `j`, in the `j`-th of them. -/
 theorem NonlinearSys.FloatModel.Encloses.relinRunAtFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
+    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachFloatOptions 𝕋}
     {pt : Zonotope (Vec 𝕋 n) → Vec 𝕋 n} : -- --- CONCL ---
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.relinRunAtFloat U options pt k R = some Rs → Rs.length = k ∧

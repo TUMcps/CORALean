@@ -68,7 +68,7 @@ theorem LinearSysDT.reachFloat_zero_mem_error (sys : LinearSysDT 𝕋 n) {o : �
     have hstep : sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
         = Zonotope.reduceGirard ((Zonotope.mtimes sys.A Rk).plus U) o := by
       show Reduce.reduce (Plus.plus
-        (Mtimes.mtimes (S := 𝒵[𝕋]) sys.A Rk) U) o = _
+        (Mtimes.mtimes (ContSet := 𝒵[𝕋]) sys.A Rk) U) o = _
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce]
     -- each operation keeps `0` in the error box

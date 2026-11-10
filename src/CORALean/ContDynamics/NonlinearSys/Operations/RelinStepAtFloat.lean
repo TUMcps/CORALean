@@ -60,7 +60,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 expansion point `xs` the caller names, or `none` if the region check or the linear step
 fails. -/
 def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n))
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachFloatOptions 𝕋) (R : Zonotope (Vec 𝕋 n))
     (xs : Vec 𝕋 n) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
   let Δt := options.Δt                                        -- the paper's symbols
   let Ub := U.interval                                              -- U's box

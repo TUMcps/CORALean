@@ -39,10 +39,10 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes ℐ S]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

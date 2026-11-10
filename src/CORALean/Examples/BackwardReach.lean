@@ -31,7 +31,7 @@ arbitrary input signal, and a state in `T` afterwards.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar Mtimes
+open Matrix ContSet ContSetLike Scalar Mtimes
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -41,7 +41,7 @@ noncomputable. `Float` is where the same network produces bounds. A call has to 
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

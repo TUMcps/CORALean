@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 # `Zonotope.minkDiffOrEmpty` is an inner approximation of the Minkowski difference
 
 Stated at the zonotope the wrapper returns rather than at the wrapper itself,
-which keeps this file clear of the `ContSet` instance: that lives in
+which keeps this file clear of the `ContSetLike` instance: that lives in
 `Instances.lean`, which imports this one. The empty case needs no statement —
 `∅` is inside every difference — so the hypothesis is what carries the content.
 

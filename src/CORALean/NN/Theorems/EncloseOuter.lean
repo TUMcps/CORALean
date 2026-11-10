@@ -8,11 +8,11 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # `NeuralNetwork.enclose` contains the image
 
-Induction on `Encloses`, applying each layer's own obligation in the order `enclose` applies the
+Induction on `Encloses`, applying each layer'S own obligation in the order `enclose` applies the
 layers. Nothing else is used, so a new layer buys into the whole pipeline by proving
 `Layer.Encloses` and nothing more. The enclosure degrades monotonically: each layer encloses the
 image of what it was handed, never of the exact set, so the error a layer introduces is carried by
-every layer after it. [1, Alg. 1]'s own postcondition, `PZ ⊇ Y`, proved once for any network rather
+every layer after it. [1, Alg. 1]'S own postcondition, `PZ ⊇ Y`, proved once for any network rather
 than only the quadratic-approximation layers the algorithm itself builds.
 
 ## Inputs
@@ -44,26 +44,26 @@ than only the quadratic-approximation layers the algorithm itself builds.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.Encloses.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
+theorem NeuralNetwork.Encloses.enclose_outer {n m : ℕ} {nn : NeuralNetwork ContSet n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) : -- --- CONCL ---
-    ∀ (s : S n) (x : Vec ℝ n), x ∈ toSet s →
-      f x ∈ toSet (nn.enclose s) := by -- --- PROOF ---
+    ∀ (S : ContSet n) (x : Vec ℝ n), x ∈ toSet S →
+      f x ∈ toSet (nn.enclose S) := by -- --- PROOF ---
   induction hf with
   | output h =>
       intro _ x hx
       rw [h x]
       exact hx
   | layer hL _ h ih =>
-      intro s x hx
+      intro S x hx
       rw [h x]
-      exact ih _ _ (hL.enclose_outer s x hx)
+      exact ih _ _ (hL.enclose_outer S x hx)
 
 end CORALean
 

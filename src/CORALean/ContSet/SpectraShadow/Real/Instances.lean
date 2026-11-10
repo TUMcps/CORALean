@@ -10,7 +10,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.MtimesExact
 /-!
 # What `SpectraShadow` instantiates
 
-`ContSet`, `ConvexSet` — a shadow of a convex cone's slice — `Plus` and `Mtimes`,
+`ContSetLike`, `ConvexSet` — a shadow of a convex cone's slice — `Plus` and `Mtimes`,
 both from the exactness theorems, which the classes' outer obligations only keep
 the first half of, and `LinComb` at the convex hull `convHull_`, whose set is exact.
 
@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (SpectraShadow α) α := ⟨SpectraShadow.toSet⟩
+instance : ContSetLike (SpectraShadow α) α := ⟨SpectraShadow.toSet⟩
 
 instance : ConvexSet (SpectraShadow α) α := ⟨SpectraShadow.convex_toSet⟩
 

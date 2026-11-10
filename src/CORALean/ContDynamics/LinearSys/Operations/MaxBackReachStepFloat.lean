@@ -107,7 +107,7 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
   let I := MatExp.adaptiveIntegral (Interval.point sys.A) Δt η'     -- [∫₀^Δt e^{As}ds]
   let M := Interval.matMul Φk I                                     -- [e^{A t_k} ∫₀^Δt e^{As}ds]
   let T := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) M U
+    (ContSet := 𝒵[𝕋]) M U
   -- 8. Z̲_U(t_{k+1})
   let ZU := s.ZU ⊞ T
   let UErr : Vec 𝕋 n := fun i =>                                    -- what ZU lies outside by
@@ -115,7 +115,7 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
       ((Zonotope.plusBox s.ZU T).magnitude i)
   -- 9. Ẑ_{W₀}(t_{k+1})
   let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) Φk
+    (ContSet := 𝒵[𝕋]) Φk
     (sys.inputSolutionFloat Δt η' W₀)
   -- 10. Ẑ_W(τ_k)
   let ZW := ZW₀ ⊞ Zw s.tEnc.inf s.tEnc.sup
@@ -142,7 +142,7 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
            -- 12. e^{-A t_{k+1}} CZ …
            RH := H.mtimesNominal Φn.inf
            RU := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- … Z̲_U
-             (S := 𝒵[𝕋]) Φn s.ZU }
+             (ContSet := 𝒵[𝕋]) Φn s.ZU }
   else none
 
 end CORALean

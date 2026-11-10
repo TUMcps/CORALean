@@ -48,7 +48,7 @@ scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.toSet⟩
+instance : ContSetLike (PolyZonotope α) α := ⟨PolyZonotope.toSet⟩
 
 /-- Compact, not convex: the set is the image of a cube under a polynomial. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (PolyZonotope α) α :=

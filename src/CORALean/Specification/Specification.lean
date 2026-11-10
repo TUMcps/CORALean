@@ -31,7 +31,7 @@ satisfying one is model checking.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -43,33 +43,33 @@ inductive Specification.Kind
   | invariant
 
 /-- `ContSet` is the representation the set is stored in, any type with
-`ContSet ContSet α`; at `Set α` it is a plain set. -/
+`ContSetLike ContSet α`; at `Set α` it is a plain set. -/
 structure Specification (ContSet : Type) where
   set : ContSet
   kind : Specification.Kind
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α]
+variable {ContSet α : Type} [ContSetLike ContSet α]
 
 /-- Membership required of every point, or of none. -/
-def Specification.Holds (spec : Specification ContSet) (X : Set α) : Prop :=
+def Specification.Holds (spec : Specification ContSet) (𝒳 : Set α) : Prop :=
   match spec.kind with
-  | .safeSet => X ⊆ toSet spec.set
-  | .unsafeSet => Disjoint X (toSet spec.set)
-  | .invariant => X ⊆ toSet spec.set
+  | .safeSet => 𝒳 ⊆ toSet spec.set
+  | .unsafeSet => Disjoint 𝒳 (toSet spec.set)
+  | .invariant => 𝒳 ⊆ toSet spec.set
 
-/-- The specification that every point lies in the set `s`. -/
-def Specification.safeSet (s : ContSet) : Specification ContSet := ⟨s, .safeSet⟩
+/-- The specification that every point lies in the set `S`. -/
+def Specification.safeSet (S : ContSet) : Specification ContSet := ⟨S, .safeSet⟩
 
-/-- The specification that no point lies in the set `s`. -/
-def Specification.unsafeSet (s : ContSet) : Specification ContSet := ⟨s, .unsafeSet⟩
+/-- The specification that no point lies in the set `S`. -/
+def Specification.unsafeSet (S : ContSet) : Specification ContSet := ⟨S, .unsafeSet⟩
 
 /-- CORA's `'invariant'` type: checked as `contains(set, S)`, the same test as
 `safeSet` — see `check.m`'s numeric branch and `robustness.m`. -/
-def Specification.invariant (s : ContSet) : Specification ContSet := ⟨s, .invariant⟩
+def Specification.invariant (S : ContSet) : Specification ContSet := ⟨S, .invariant⟩
 
 /-- A requirement is normally several of these at once, all stored alike. -/
-def Specification.HoldsAll (specs : List (Specification ContSet)) (X : Set α) : Prop :=
-  ∀ spec ∈ specs, spec.Holds X
+def Specification.HoldsAll (specs : List (Specification ContSet)) (𝒳 : Set α) : Prop :=
+  ∀ spec ∈ specs, spec.Holds 𝒳
 
 end CORALean
 

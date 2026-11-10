@@ -32,7 +32,7 @@ holds for three steps and the run leaves the safe set only at step `4`.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

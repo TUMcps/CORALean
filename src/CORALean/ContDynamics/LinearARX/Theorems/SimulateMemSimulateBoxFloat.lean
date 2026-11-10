@@ -40,7 +40,7 @@ An enclosure, so the box is outer.
 
 namespace CORALean
 
-open Matrix Scalar ContSet CORALean.Float
+open Matrix Scalar ContSet ContSetLike CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : ℕ}
 
@@ -53,8 +53,8 @@ open Plus Mtimes
 /-- A matrix times the real value of a point is in the `mtimes` of its point box. -/
 private theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du) :
     Scalar.toRealMat M *ᵥ Scalar.toRealVec v ∈
-      toSet (mtimes (S := ℐ𝒱[𝕋]) M (Interval.point v)) :=
-  mtimes_outer (S := ℐ𝒱[𝕋]) M _
+      toSet (mtimes (ContSet := ℐ𝒱[𝕋]) M (Interval.point v)) :=
+  mtimes_outer (ContSet := ℐ𝒱[𝕋]) M _
     (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (Interval.mem_point v)))
 
 
@@ -65,7 +65,7 @@ private theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * d
       a ∈ toSet acc →
       a + (l.map fun j => Scalar.toRealMat (M j.succ) *ᵥ Scalar.toRealVec (w j.succ)).sum ∈
         toSet (l.foldl (fun acc j => plus (S := Interval (Vec 𝕋 (p * dy))) acc
-          (mtimes (S := ℐ𝒱[𝕋]) (M j.succ) (Interval.point (w j.succ))))
+          (mtimes (ContSet := ℐ𝒱[𝕋]) (M j.succ) (Interval.point (w j.succ))))
           acc) := by -- --- PROOF ---
   intro l
   induction l with

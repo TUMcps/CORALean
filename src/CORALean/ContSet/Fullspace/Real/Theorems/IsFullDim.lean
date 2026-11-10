@@ -9,7 +9,7 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 # Full space is full-dimensional
 
 Its interior is itself, which is nonempty in every dimension. Stated at `toSet`, which is what
-`ContSet.IsFullDim` unfolds to: the `ContSet` instance is declared after the theorems.
+`ContSet.IsFullDim` unfolds to: the `ContSetLike` instance is declared after the theorems.
 
 ## Inputs
 * `F` – full space

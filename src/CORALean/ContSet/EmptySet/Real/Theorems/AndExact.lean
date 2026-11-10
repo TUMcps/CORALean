@@ -33,16 +33,16 @@ denotes the intersection of the two operands, exactly.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem EmptySet.and_exact {S : Type} [ContSet S (Vec ℝ n)] (E : EmptySet n) (s : S) :
-    ContSet.toSet (E.and_ s) = ContSet.toSet E ∩ ContSet.toSet s := by
-  change (∅ : Set (Vec ℝ n)) = ∅ ∩ ContSet.toSet s
+theorem EmptySet.and_exact {S : Type} [ContSetLike S (Vec ℝ n)] (E : EmptySet n) (s : S) :
+    ContSetLike.toSet (E.and_ s) = ContSetLike.toSet E ∩ ContSetLike.toSet s := by
+  change (∅ : Set (Vec ℝ n)) = ∅ ∩ ContSetLike.toSet s
   exact (Set.empty_inter _).symm
 
 end CORALean.Real

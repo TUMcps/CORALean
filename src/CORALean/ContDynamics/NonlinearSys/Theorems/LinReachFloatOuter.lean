@@ -64,7 +64,7 @@ the `'lin'` membership makes `x - x✱` a run of the linearized system with inpu
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic ContSet Matrix
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet ContSetLike Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m : ℕ}
 
@@ -108,15 +108,15 @@ private theorem aux_linReach_input {fm : NonlinearSys.FloatModel 𝕋 n m} {sys 
     : -- --- CONCL ---
     sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
       (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
-        Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
+        Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
           L).toSet := by -- --- PROOF ---
   set us := toRealVec U.c
   have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).toSet :=
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
   have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ toSet
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
       (Recenter.recenter U)) :=
-    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _
+    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B _
       (Set.mem_biUnion (Set.mem_singleton _)
       (Set.mem_image_of_mem _ (Zonotope.sub_center_mem_recenter hu)))
   have hsplit : sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)
@@ -134,7 +134,8 @@ private theorem aux_linReach_input {fm : NonlinearSys.FloatModel 𝕋 n m} {sys 
 under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
+    {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)}
+    {options : LinearSys.ReachFloatOptions 𝕋}
     {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
@@ -169,7 +170,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
   have hlin : ∀ {x : Vec ℝ n} {u : Vec ℝ m}, x ∈ X.toSet → u ∈ U.toSet →
       sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
-          Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
+          Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).toSet := fun {x u} hx hu =>
     aux_linReach_input h.toEncloses A B xs hu (Interval.zonotope_contains _
       ((h.hessRemainder_abstractionError A B hxsX husU').encloses x hx u (hUU' hu)))
@@ -196,7 +197,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory
         (S := 𝒮) (Set.Icc 0 (toReal Δt)) Rdelta.toSet
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
-          Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
+          Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).toSet
         (fun t => x t - toRealVec xs)
         (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) :=

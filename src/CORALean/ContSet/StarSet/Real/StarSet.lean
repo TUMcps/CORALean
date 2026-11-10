@@ -14,8 +14,8 @@ public import Mathlib.Data.Real.Basic
 The generalized star set of [1, Def. 1]: a center `c`, a basis `G` of `m` vectors and a predicate
 `P` on the coefficients, denoting `{c + G α | α ∈ P}`, with the coefficient box `[l, u]` of CORA's
 star sets beside it: `{c + G α | α ∈ dom, α ∈ pred}`, `dom` a library `Interval`, so a star set is
-bounded. The predicate is any family `P m` with a `ContSet` instance at `Vec ℝ m`: a `LevelSet`, a
-`PolyLevelSet` (`ConPolyZono.starSet`), a `SupportFunction`, an `HPolytope`; a parameter of the
+bounded. The predicate is any family `P m` with a `ContSetLike` instance at `Vec ℝ m`: a `LevelSet`,
+a `PolyLevelSet` (`ConPolyZono.starSet`), a `SupportFunction`, an `HPolytope`; a parameter of the
 type, as the figure's arrows (`Conversion/`) are about. CORA's star set is `StarSet ℋ𝒫`:
 `neuralNetwork` converts a `conZonotope` to `(c, G, C, d, l, u)` and propagates it. At that
 predicate the set is a bounded polytope, exactly a `ConZonotope` (`Conversion/`).
@@ -37,7 +37,7 @@ predicate the set is a bounded polytope, exactly a `ConZonotope` (`Conversion/`)
 
 namespace CORALean.Real
 
-open ContSet
+open ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -53,9 +53,9 @@ structure StarSet (P : ℕ → Type) (n : ℕ) where
   pred : P m
 
 /-- The points `c + G α` over the coefficients `α` of the box the predicate holds of. -/
-def StarSet.toSet {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) :
+def StarSet.toSet {P : ℕ → Type} [∀ m, ContSetLike (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) :
     Set (Vec ℝ n) :=
-  {x | ∃ α : Fin s.m → ℝ, (α ∈ s.dom.toSet ∧ α ∈ ContSet.toSet s.pred)
+  {x | ∃ α : Fin s.m → ℝ, (α ∈ s.dom.toSet ∧ α ∈ ContSetLike.toSet s.pred)
     ∧ ∀ i, x i = s.c i + ∑ k, s.G i k * α k}
 
 end CORALean.Real

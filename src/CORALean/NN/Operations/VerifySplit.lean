@@ -32,8 +32,8 @@ no soundness proof for the checker; `Theorems.VerifySplitSound` needs only the s
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ m)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -39,7 +39,7 @@ outward-rounded, the rounding kept in the error box.
 
 namespace CORALean
 
-open CORALean.Float ContSet Plus
+open CORALean.Float ContSet ContSetLike Plus
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m q : ℕ}
 
@@ -56,9 +56,9 @@ def NonlinDASys.OutputFloatModel.outputSetLinearFloat (om : NonlinDASys.OutputFl
   let J_x := om.jacX P_x P_y P_u                                    -- ∂h/∂x at p
   let J_y := om.jacY P_x P_y P_u                                    -- ∂h/∂y at p
   let J_u := om.jacU P_x P_y P_u                                    -- ∂h/∂u at p
-  ((zerothorder ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) J_x (R ⊞ Zonotope.point (-p_x))) ⊞
-    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) J_y (R_y ⊞ Zonotope.point (-p_y))) ⊞
-    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) J_u (U ⊞ Zonotope.point (-p_u))
+  ((zerothorder ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) J_x (R ⊞ Zonotope.point (-p_x))) ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) J_y (R_y ⊞ Zonotope.point (-p_y))) ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) J_u (U ⊞ Zonotope.point (-p_u))
 
 end CORALean
 

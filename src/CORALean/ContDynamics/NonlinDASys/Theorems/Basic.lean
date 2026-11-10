@@ -17,9 +17,9 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {n p m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {n p m : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =============================  `NonlinDASys.IsTrajectory.y_eq`  ============================== --

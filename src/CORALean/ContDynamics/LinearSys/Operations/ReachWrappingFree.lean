@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
 public import CORALean.ContDynamics.Reach.Definitions.Params
@@ -40,12 +40,12 @@ condition on `η` at all.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet] [Mtimes ℐ ContSet]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -53,7 +53,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least one),
 at order `η` raised until admissible. -/
 noncomputable def LinearSys.reachWrappingFree (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachStepOptions ℝ) : SetUnion (S n) :=
+    (params : Reach.Params (ContSet n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    SetUnion (ContSet n) :=
   let X₀ := params.X₀                                           -- the paper's symbols
   let Δt := options.Δt
   let η := options.η

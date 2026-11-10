@@ -24,7 +24,7 @@ is the float route, `w` being stored floats already; `BouncingBallFloat` runs it
 
 namespace CORALean.Float
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ} {L : Type}
 

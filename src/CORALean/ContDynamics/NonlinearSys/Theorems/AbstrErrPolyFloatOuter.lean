@@ -75,7 +75,7 @@ each of the other four is bounded by `abs_bilin_le_bilinUp`.
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic Matrix ContSet
+open CORALean.Float FloatOps SoundFloatArithmetic Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 

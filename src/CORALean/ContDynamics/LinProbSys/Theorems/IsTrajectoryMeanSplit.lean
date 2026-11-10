@@ -57,7 +57,7 @@ CORA's input set is `U + uTrans` [1]. For a `LinProbSys.IsTrajectory` with that 
 
 namespace CORALean
 
-open Matrix ContSet MeasureTheory NormedSpace CORALean.Real
+open Matrix ContSet ContSetLike MeasureTheory NormedSpace CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

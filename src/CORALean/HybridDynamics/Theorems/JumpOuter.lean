@@ -43,11 +43,11 @@ inclusion of sets, so `ContSet` is all this theorem asks of `G` (#39). Only soun
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes Real.OfInterval
+open Matrix ContSet ContSetLike Scalar Plus Mtimes Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [Real.OfInterval S]
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

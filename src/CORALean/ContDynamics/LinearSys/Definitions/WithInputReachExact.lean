@@ -18,7 +18,7 @@ horizon with are how it encloses this set, not part of it.
 ## Inputs
 * `sys` – linear system with input
 * `tFinal` – final time
-* `X` – initial set
+* `𝒳₀` – initial set
 
 ## Output
 * states a run is in at some time up to the final time
@@ -34,19 +34,19 @@ horizon with are how it encloses this set, not part of it.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every state a run on `[0, tFinal]` from a bare initial set `X`, under inputs
+/-- Every state a run on `[0, tFinal]` from a bare initial set `𝒳₀`, under inputs
 in `sys.U`, is at, at some time of that horizon. -/
 def LinearSys.WithInput.reachExact (sys : LinearSys.WithInput 𝕋 S n) (tFinal : ℝ)
-    (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  sys.sys.timeIntervalReachSetExact (S := 𝒮) (Set.Icc 0 tFinal) X
+    (𝒳₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+  sys.sys.timeIntervalReachSetExact (S := 𝒮) (Set.Icc 0 tFinal) 𝒳₀
     (toSet sys.U) tFinal
 
 end CORALean

@@ -14,7 +14,7 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 `x` does, its second half is the constant `p`, whose integral equation is that of
 the `0` the augmented field puts there. `hZ` is what makes the initial state land in
 `toSet Z₀`, as `hW` does in `TrajectoryToNonlinearSys.lean`, there being no
-cartesian-product class on `ContSet` to build `Z₀` from `R₀` and `P` instead.
+cartesian-product class on `ContSetLike` to build `Z₀` from `R₀` and `P` instead.
 The augmented field is the parameterized one under the linear map `v ↦ (v, 0)`,
 which moves through the integral.
 
@@ -48,10 +48,10 @@ which moves through the integral.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m q : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -39,7 +39,7 @@ fixed-step `NonlinDASys.linReach` at `L`'s Jacobians, point and errors (CORA's t
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m q : ℕ}
 

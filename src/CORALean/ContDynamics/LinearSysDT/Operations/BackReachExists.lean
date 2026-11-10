@@ -37,10 +37,10 @@ the result grows with `k`, left out to keep what this asks for down to two class
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes
+open Matrix ContSetLike Scalar Plus Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 

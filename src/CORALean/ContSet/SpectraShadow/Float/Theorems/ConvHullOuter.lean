@@ -119,7 +119,7 @@ private theorem SpectraShadow.aux_cone_outer (hN : 0 < N)
   -- the point is in the nominal part, by the exact layer's description of the cone
   intro z hz
   have hnom : z ∈ InflatedContSet.nominalSet T.cone := by
-    change z ∈ ContSet.toSet (InflatedContSet.nominal T.cone)
+    change z ∈ ContSetLike.toSet (InflatedContSet.nominal T.cone)
     rw [SpectraShadow.aux_nominal_cone]
     change z ∈ (Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding)).toSet
     rw [Real.SpectraShadow.cone_toSet hN]

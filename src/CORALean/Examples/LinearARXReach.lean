@@ -30,7 +30,7 @@ places its window in the reachable set of the conversion at every step.
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

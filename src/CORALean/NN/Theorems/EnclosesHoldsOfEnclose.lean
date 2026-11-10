@@ -17,7 +17,7 @@ enclosed set is not a counterexample, and finding out which it is means tighteni
 ## Inputs
 * `nn` – network
 * `f` – map the network encloses
-* `X` – input set
+* `S` – input set
 * `spec` – specification
 
 ## Hypotheses
@@ -38,19 +38,20 @@ enclosed set is not a counterexample, and finding out which it is means tighteni
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.Encloses.holds_of_enclose {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hf : nn.Encloses f) (X : S n)
-    (spec : Specification ContSet) (h : spec.Holds (toSet (nn.enclose X))) :
-    spec.Holds (f '' toSet X) :=
-  spec.holds_of_outer (hf.image_subset X) h
+theorem NeuralNetwork.Encloses.holds_of_enclose {nn : NeuralNetwork ContSet₂ n m}
+    {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Encloses f) (S : ContSet₂ n)
+    (spec : Specification ContSet₁) (h : spec.Holds (toSet (nn.enclose S))) :
+    spec.Holds (f '' toSet S) :=
+  spec.holds_of_outer (hf.image_subset S) h
 
 end CORALean
 

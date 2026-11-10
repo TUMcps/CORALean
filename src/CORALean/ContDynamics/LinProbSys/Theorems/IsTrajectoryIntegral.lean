@@ -49,13 +49,13 @@ Gaussian `law` gives `x t` (`integral_id_multivariateGaussian`), read back throu
 
 namespace CORALean
 
-open Matrix ContSet MeasureTheory ProbabilityTheory WithLp NormedSpace
+open Matrix ContSetLike MeasureTheory ProbabilityTheory WithLp NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

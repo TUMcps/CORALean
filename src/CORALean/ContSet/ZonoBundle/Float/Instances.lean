@@ -28,10 +28,10 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # What the float `ZonoBundle` instantiates
 
-`ContSet` directly, not through `InflatedContSet`: the members carry the boxes (`ZonoBundle.lean`
-says why no bundle-wide one stands in for them). Then, as over ℝ, each a general theorem of
-`SetIntersection` at the float members' own guarantees: `ConvexSet` (`convex_toSet`), `Plus` and
-`LinComb` (`pairwise_outer`), `Reduce` and `Mtimes` at a point and at an interval matrix
+`ContSetLike` directly, not through `InflatedContSet`: the members carry the boxes
+(`ZonoBundle.lean` says why no bundle-wide one stands in for them). Then, as over ℝ, each a general
+theorem of `SetIntersection` at the float members' own guarantees: `ConvexSet` (`convex_toSet`),
+`Plus` and `LinComb` (`pairwise_outer`), `Reduce` and `Mtimes` at a point and at an interval matrix
 (`memberwise_outer`), `Reindex` (`memberwise_image_exact`), and `Intersection`
 (`intersection_exact`). Not `OfPoint`: it asks for an arbitrary *real* point. Not `Mtimes` at a
 matrix zonotope, `Zonotope` having no float `mtimesMatZonotope`. No `MinkDiff`, for the exact
@@ -62,7 +62,7 @@ scoped notation "𝒵ℬ[" t "]" => fun n => ZonoBundle (Vec t n)
 
 /-- One instance at every ambient type, as `Zonotope`'s `InflatedContSet` is. -/
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
-    ContSet (ZonoBundle α) β := ⟨ZonoBundle.toSet⟩
+    ContSetLike (ZonoBundle α) β := ⟨ZonoBundle.toSet⟩
 
 /-- An intersection of convex sets, each member's error box included in what
 that member denotes. -/

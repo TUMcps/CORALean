@@ -46,7 +46,7 @@ scoped notation "𝒱𝒫" => fun n => VPolytope (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (VPolytope α) α :=
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSetLike (VPolytope α) α :=
   ⟨VPolytope.toSet⟩
 
 /-- A vertex polytope is its own vertices. -/

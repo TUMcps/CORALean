@@ -19,7 +19,7 @@ namespace CORALean.Float
 
 open CORALean
 
-variable {S α : Type} [ContSet S α] [Isequal S] [DecidableRel (Isequal.isequal (S := S))]
+variable {S α : Type} [ContSetLike S α] [Isequal S] [DecidableRel (Isequal.isequal (S := S))]
 
 
 -- =====================================  `ContSet.eqBool`  ===================================== --

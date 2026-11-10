@@ -50,9 +50,9 @@ jump's step `δ` and the scaled system's certificates are the caller's; `none` w
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -66,7 +66,7 @@ the scaled run over `[0, tScaled]` and the jump over `[0, δ]`. -/
 noncomputable def NonlinearSys.WithSteps.guardIntersectPancake
     (sys : NonlinearSys.WithSteps S Rg m n) (scaled : NonlinParamSys.WithSteps S Rg m 1 n)
     (nv : Vec ℝ n) (d : ℝ) (R₀ : S n) (tScaled δ : ℝ) (optionsScaled optionsJump :
-      LinearSys.ReachOptions ℝ) : Option (SetUnion (S n)) :=
+      LinearSys.ReachFloatOptions ℝ) : Option (SetUnion (S n)) :=
   let Rscaled := scaled.reachUnion ⟨R₀, 0, tScaled⟩ optionsScaled   -- aux_reachTimeScaled
   let jump := fun Ri => sys.reachUnion ⟨Ri, 0, δ⟩ optionsJump       -- aux_jump, from each member
   let nrm := Real.sqrt (nv ⬝ᵥ nv)                                    -- normalizeConstraints

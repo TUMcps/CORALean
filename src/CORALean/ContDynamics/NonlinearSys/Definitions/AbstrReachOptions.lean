@@ -26,7 +26,7 @@ loop's; `fuel` bounds its do-while; `K` is how many iterations `reach` unions.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --

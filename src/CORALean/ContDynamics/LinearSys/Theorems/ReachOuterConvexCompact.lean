@@ -14,10 +14,10 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 `reach_outer_inputSolution` with its six topological hypotheses read off the representation instead
 of supplied per use. `ConvexSet` and `CompactSet` are quantified over every element of the family,
 which is what covers the remainder product as well as `U`: `mtimes` at an interval matrix lands back
-in `S n`, so the same two instances answer for both. Six hypotheses from two fields: over a normed
-space compactness is closedness and boundedness together, and `CompactSet` proves both once. No
-representation is named here. `Zonotope` and `ConZonotope` get their own statement by instantiating
-this, and any later one does the same.
+in `ContSet n`, so the same two instances answer for both. Six hypotheses from two fields: over a
+normed space compactness is closedness and boundedness together, and `CompactSet` proves both once.
+No representation is named here. `Zonotope` and `ConZonotope` get their own statement by
+instantiating this, and any later one does the same.
 
 ## Inputs
 * `sys` – linear system
@@ -53,14 +53,15 @@ this, and any later one does the same.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, Reduce (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -68,9 +69,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 /-- Every trajectory of a linear system whose input set is convex and compact
 stays in `reach`, at every sample time — so over all of forward time, the
 bounded-horizon form being `reach_outer_horizon_inputSolution`. -/
-theorem LinearSys.IsCanonicalTrajectory.reach_outer_convexCompact [Mtimes ℐ S]
-    [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
-    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
+theorem LinearSys.IsCanonicalTrajectory.reach_outer_convexCompact [Mtimes ℐ ContSet]
+    [∀ n, ConvexSet (ContSet n) (Vec ℝ n)] [∀ n, CompactSet (ContSet n) (Vec ℝ n)]
+    {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : ContSet n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
     (k : ℕ) :

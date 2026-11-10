@@ -71,7 +71,7 @@ the exact `R(1)`. Line 15 holds `(3/8, 1)`, whose preimage under the flow is `(-
 
 namespace CORALean
 
-open ContSet Matrix NormedSpace Pointwise Set
+open ContSetLike Matrix NormedSpace Pointwise Set
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

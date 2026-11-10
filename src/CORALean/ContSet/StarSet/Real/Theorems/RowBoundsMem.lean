@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.rowBounds_mem {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ}
+theorem StarSet.rowBounds_mem {P : ℕ → Type} [∀ m, ContSetLike (P m) (Vec ℝ m)] {n : ℕ}
     (s : StarSet P n) (j : Fin n) {x : Vec ℝ n}
     (hx : x ∈ s.toSet) : -- --- CONCL ---
     (s.rowBounds j).inf ≤ x j ∧ x j ≤ (s.rowBounds j).sup := by -- --- PROOF ---

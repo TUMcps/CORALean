@@ -196,9 +196,9 @@ section
 
 universe u
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
   {f : Vec ℝ n → Vec ℝ m} {g : Vec ℝ m → Vec ℝ k}
 
 
@@ -210,7 +210,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 
 /-- What forgetting the kind keeps: the layer is sound at its kind's `eval`. -/
 theorem Enclose.toLayer_encloses {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) :
-    (Enclose.toLayer (S := S) l).Encloses (Enclose.eval (S := S) l).out :=
+    (Enclose.toLayer (S := S) l).Encloses (Enclose.eval (ContSet := S) l).out :=
   ⟨fun s _x hx => Enclose.enclose_outer l s (Set.mem_image_of_mem _ hx)⟩
 
 
@@ -266,9 +266,9 @@ end
 
 section
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ===========================  `Layer.generatorReduction_encloses`  ============================ --
@@ -288,10 +288,10 @@ end
 
 section
 
-open ContSet Float.SoundFloatArithmetic
+open ContSet ContSetLike Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
 
 

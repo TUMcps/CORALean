@@ -56,7 +56,7 @@ symmetric about line 14's `c`. Runs are under the constant input `u₀` of the a
 
 namespace CORALean
 
-open ContSet Set MeasureTheory
+open ContSetLike Set MeasureTheory
 
 variable {n m : ℕ} {𝓛 : Type}
 

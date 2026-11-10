@@ -44,10 +44,10 @@ only in `Layer.activation_encloses`: the layer itself never sees it.
 
 namespace CORALean
 
-open ContSet Plus Mtimes Float.IntervalOuter Float.OfInterval
+open ContSet ContSetLike Plus Mtimes Float.IntervalOuter Float.OfInterval
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
 open Float
 

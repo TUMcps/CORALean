@@ -51,7 +51,7 @@ beyond `reduce_subset_add_box`: that the operands' error boxes bracket `0`. At `
 namespace CORALean
 
 open CORALean.Float
-open Matrix Pointwise ContSet InflatedContSet FloatOps SoundFloatArithmetic
+open Matrix Pointwise ContSet ContSetLike InflatedContSet FloatOps SoundFloatArithmetic
 open scoped CORALean.Real
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
@@ -119,7 +119,7 @@ theorem LinearSysDT.reach_float_subset_reachSetExact_add_error (sys : LinearSysD
     have hstep : sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ =
       W.reduceGirard o := by
       show Reduce.reduce (Plus.plus
-        (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.A Rk) U) o = _
+        (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) sys.A Rk) U) o = _
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce, hMdef, hWdef]
     -- what `plus_subset_add_box` and `mtimes_subset_add_box` ask beyond `reduce_subset_add_box`

@@ -25,7 +25,7 @@ iterations `reach` unions.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --

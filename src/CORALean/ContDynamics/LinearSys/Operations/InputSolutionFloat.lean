@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def LinearSys.inputSolutionFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) :
     Zonotope (Vec 𝕋 n) :=
   sys.inputTaylorSumFloat r V η ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (MatExp.intervalInputRemainder (Interval.point sys.A) r η) V
 
 end CORALean

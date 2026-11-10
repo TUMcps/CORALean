@@ -41,7 +41,7 @@ layer yet; there the instance is shown lawful and `⊞` reads at a float ellipso
 
 namespace CORALean.Real
 
-open Matrix Pointwise ContSet
+open Matrix Pointwise ContSet ContSetLike
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -85,7 +85,7 @@ end CORALean.Real
 
 namespace CORALean.Float
 
-open Pointwise ContSet SoundFloatArithmetic
+open Pointwise ContSet ContSetLike SoundFloatArithmetic
 
 /-- The same at the float layer, where the parameter is the two scalings and the
 certificate they carry. Stated through `⊞`, so what is checked is that the

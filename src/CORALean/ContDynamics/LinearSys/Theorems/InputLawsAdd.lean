@@ -52,13 +52,13 @@ covariances. The input set is bounded, which makes every admissible input integr
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory ProbabilityTheory WithLp Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory ProbabilityTheory WithLp Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

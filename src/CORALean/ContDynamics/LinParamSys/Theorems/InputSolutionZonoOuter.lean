@@ -75,13 +75,13 @@ remainder in the interval-matrix pieces by the argument `InputSolutionOuter` mak
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet NormedSpace MeasureTheory Pointwise
+open Matrix ContSet ContSetLike NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes 𝕄𝒵 S] [Mtimes ℐ S]
 
 

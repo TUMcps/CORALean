@@ -37,10 +37,10 @@ With `y t := h (x t) (u t)`, which `sound` makes satisfy the constraint. Togethe
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n p m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

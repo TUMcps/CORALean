@@ -32,7 +32,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
-open ContSet
+open ContSetLike
 
 variable {n m : ℕ}
 
@@ -44,9 +44,9 @@ variable {n m : ℕ}
 -- Reviewed:      ---
 
 /-- Intersecting the full space with a set of any representation gives that set. -/
-theorem Fullspace.and_exact {S : Type} [ContSet S (Vec ℝ n)] (F : Fullspace n) (s : S) :
-    ContSet.toSet (F.and_ s) = F.toSet ∩ ContSet.toSet s := by
-  change ContSet.toSet s = Set.univ ∩ ContSet.toSet s
+theorem Fullspace.and_exact {S : Type} [ContSetLike S (Vec ℝ n)] (F : Fullspace n) (s : S) :
+    ContSetLike.toSet (F.and_ s) = F.toSet ∩ ContSetLike.toSet s := by
+  change ContSetLike.toSet s = Set.univ ∩ ContSetLike.toSet s
   exact (Set.univ_inter _).symm
 
 
@@ -78,8 +78,8 @@ theorem Fullspace.center_mem_toSet (F : Fullspace n) : F.center ∈ F.toSet :=
 -- Reviewed:      ---
 
 /-- Exact for any operand: the hull contains the whole space already. -/
-theorem Fullspace.convHull_exact {S : Type} [ContSet S (Vec ℝ n)] (F : Fullspace n) (s : S) :
-    convexHull ℝ (F.toSet ∪ ContSet.toSet s) = (F.convHull s).toSet :=
+theorem Fullspace.convHull_exact {S : Type} [ContSetLike S (Vec ℝ n)] (F : Fullspace n) (s : S) :
+    convexHull ℝ (F.toSet ∪ ContSetLike.toSet s) = (F.convHull s).toSet :=
   Set.eq_univ_of_univ_subset ((Set.subset_union_left).trans (subset_convexHull ℝ _))
 
 
@@ -127,8 +127,8 @@ theorem Fullspace.isequal_iff (E F : Fullspace n) :
 -- Reviewed:      ---
 
 /-- The full space meets a set iff it is nonempty -/
-theorem Fullspace.not_disjoint_iff {S : Type} [ContSet S (Vec ℝ n)] (F : Fullspace n) (s : S) :
-    ¬Disjoint (ContSet.toSet s) F.toSet ↔ (ContSet.toSet s).Nonempty := by
+theorem Fullspace.not_disjoint_iff {S : Type} [ContSetLike S (Vec ℝ n)] (F : Fullspace n) (s : S) :
+    ¬Disjoint (ContSetLike.toSet s) F.toSet ↔ (ContSetLike.toSet s).Nonempty := by
   rw [Fullspace.disjoint_iff, Set.nonempty_iff_ne_empty]
 
 

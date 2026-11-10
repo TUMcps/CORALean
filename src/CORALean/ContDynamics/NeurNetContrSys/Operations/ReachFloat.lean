@@ -73,7 +73,7 @@ def NeurNetContrSys.reachFloat (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[�
   let H := params.tFinal - params.tStart                           -- control periods
   let ext := sys.augmentFloat                                       -- [A B_nn; 0 0], [B_ext; 0]
   let U : Zonotope (Vec 𝕋 (n + sys.m)) :=                           -- B_aug U_ext ⊕ [c; 0]
-    Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ext.B U_ext) (Zonotope.point ext.c)
+    Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) ext.B U_ext) (Zonotope.point ext.c)
   let cp := fun (X : Zonotope (Vec 𝕋 n)) (Y : Zonotope (Vec 𝕋 sys.m)) =>
     X.cartProd Y                                                    -- R × Y
   let pr := fun (Z : Zonotope (Vec 𝕋 (n + sys.m))) =>

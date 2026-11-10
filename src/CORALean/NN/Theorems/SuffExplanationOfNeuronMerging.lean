@@ -68,11 +68,11 @@ assumed. The network's weights are in any scalar, the explanation's box real.
 
 namespace CORALean
 
-open Matrix ContSet Real.OfInterval
+open Matrix ContSet ContSetLike Real.OfInterval
 open Float (toRealMat toRealVec)
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -89,7 +89,7 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     (hY : ∀ z ∈ toSet (pre.enclose (ofInterval (explainBox x ε E))),
       (fun i => σ ((toRealMat W0 *ᵥ z + toRealVec b0) i)) ∈ Y.toSet)
     -- the reduced network: both linear layers trimmed to `part.left`, the bucket boxed into `k+1`
-    (hsuffAbs : (NeuralNetwork.layer (Enclose.pack (S := S) pre)
+    (hsuffAbs : (NeuralNetwork.layer (Enclose.pack (ContSet := S) pre)
         (.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
           (.layer (ActivationLayer.of hR)
             (.layer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1

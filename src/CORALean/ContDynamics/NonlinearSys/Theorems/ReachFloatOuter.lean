@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 re-linearization loop at its own `linPointFloat`. -/
 private theorem NonlinearSys.FloatModel.Encloses.aux_relinRunFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} :
+    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachFloatOptions 𝕋} :
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.step_relinRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
@@ -69,7 +69,7 @@ inputs in `U` is, at every time of window `k`, in the `k`-th set `reachFloat` re
 theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
     {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ fm.reachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},

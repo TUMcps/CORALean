@@ -44,8 +44,8 @@ namespace CORALean.Real
 theorem Polygon.quadMapMixed_outer (P₁ P₂ : Polygon) (Q : Fin 2 → Mat ℝ 2 2) (splits : ℕ)
     (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- CONCL ---
     (fun x : Vec ℝ 2 × Vec ℝ 2 => PolyZonotope.quadBilin Q x.1 x.2)
-        '' (ContSet.toSet P₁ ×ˢ ContSet.toSet P₂)
-      ⊆ ContSet.toSet (P₁.quadMapMixed P₂ Q splits pick) := by -- --- PROOF ---
+        '' (ContSetLike.toSet P₁ ×ˢ ContSetLike.toSet P₂)
+      ⊆ ContSetLike.toSet (P₁.quadMapMixed P₂ Q splits pick) := by -- --- PROOF ---
   rintro _ ⟨⟨x₁, x₂⟩, ⟨hx₁, hx₂⟩, rfl⟩
   rw [← (Polygon.triangulation_exact P₁).2] at hx₁
   rw [← (Polygon.triangulation_exact P₂).2] at hx₂

@@ -8,7 +8,7 @@ public import CORALean.Specification.Specification
 # A specification holds of an indexed union when it holds of each part
 
 The form `NeuralNetwork.holds_of_split` actually needs, `ι` arbitrary.
-No case needs finiteness, and none needs `ι` nonempty: `⋃ i, X i` over an
+No case needs finiteness, and none needs `ι` nonempty: `⋃ i, 𝒳 i` over an
 empty `ι` is `∅`, which sits inside every safe set (and every invariant, the
 same test) and misses every unsafe one, so `h`, vacuous, still closes the
 goal — no hypothesis on `ι` is dropped here for want of one, it is simply not
@@ -17,7 +17,7 @@ needed.
 ## Inputs
 * `ι` – index type of the parts
 * `spec` – specification
-* `X` – parts of the set
+* `𝒳` – parts of the set
 
 ## Hypotheses
 * `h` – the specification holds of each part
@@ -36,14 +36,14 @@ needed.
 
 namespace CORALean
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α]
+variable {ContSet α : Type} [ContSetLike ContSet α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.holds_iUnion {ι : Type} (spec : Specification ContSet) {X : ι → Set α}
-    (h : ∀ i, spec.Holds (X i)) : -- --- CONCL ---
-    spec.Holds (⋃ i, X i) := by -- --- PROOF ---
+theorem Specification.holds_iUnion {ι : Type} (spec : Specification ContSet) {𝒳 : ι → Set α}
+    (h : ∀ i, spec.Holds (𝒳 i)) : -- --- CONCL ---
+    spec.Holds (⋃ i, 𝒳 i) := by -- --- PROOF ---
   obtain ⟨s, k⟩ := spec
   cases k
   · exact Set.iUnion_subset h

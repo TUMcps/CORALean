@@ -43,9 +43,9 @@ conditions of `IsRun.ofProduct`. An *equality of reachable sets*; the outer theo
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 

@@ -31,7 +31,7 @@ exactly when every present guard holds at its block.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet ContSetLike
 
 variable {k m : ℕ} {n : Fin k → ℕ}
 

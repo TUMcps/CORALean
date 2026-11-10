@@ -54,7 +54,7 @@ nothing about the set this iteration computed.
 
 namespace CORALean.Real
 
-open Pointwise ContSet Plus
+open Pointwise ContSet ContSetLike Plus
 
 variable {σ : ℝ → ℝ} {m n : ℕ}
 

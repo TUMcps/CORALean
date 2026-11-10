@@ -11,8 +11,8 @@ A layer of any `Enclose` kind, of any universe, as a `SoundLayer`: the three fie
 the instance, so nothing is lost but the kind.
 
 ## Inputs
-* `L` – family of layer types
-* `l` – layer
+* `Layer` – family of layer types
+* `L` – layer
 
 ## Output
 * sound layer wrapping the layer
@@ -30,15 +30,16 @@ universe u
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Enclose.pack {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) : SoundLayer S n m where
-  eval := Enclose.eval (S := S) l
-  enclose := Enclose.enclose l
-  enclose_outer := Enclose.enclose_outer l
+def Enclose.pack {Layer : ℕ → ℕ → Type u} [Enclose Layer ContSet] (L : Layer n m) :
+    SoundLayer ContSet n m where
+  eval := Enclose.eval (ContSet := ContSet) L
+  enclose := Enclose.enclose L
+  enclose_outer := Enclose.enclose_outer L
 
 end CORALean
 

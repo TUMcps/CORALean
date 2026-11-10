@@ -44,7 +44,7 @@ corollary survives: an `H` valid for some `z✱` is valid at the center.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {d n : ℕ}
 

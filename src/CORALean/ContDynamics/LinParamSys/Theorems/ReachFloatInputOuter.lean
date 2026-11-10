@@ -52,7 +52,7 @@ of their values at `s` (`expIntegral_add_mulVec`). At `s ∈ [0, Δt]` those are
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet MeasureTheory
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -95,11 +95,11 @@ private theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
     rw [htk, hrec]
     -- the earlier part, carried across one window by `[e^{[A]Δt}]`
     have h1 : exp (toReal Δt • A) *ᵥ (Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt)
-        *ᵥ Scalar.toRealVec uc) ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
+        *ᵥ Scalar.toRealVec uc) ∈ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋])
           (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η)
           (sys.constPropagateFloat Δt η ρ uc k)) :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) _ _
+        (ContSet := 𝒵[𝕋]) _ _
         (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA (le_refl _) (le_refl _))
           (Set.mem_image_of_mem _ ih))
     -- the new window's part
@@ -116,7 +116,7 @@ every time of the window, under inputs in `params.U` (input coordinates) anywher
 theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : Vec 𝕋 n}
     (hc : Scalar.toRealVec c = sys.c)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachFloatInput c params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}
@@ -128,7 +128,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
             (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachFloatInput c params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
-  obtain ⟨Δt, η, ρ⟩ := options
+  obtain ⟨⟨Δt, η⟩, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinParamSys.reachFloatInput, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', hRs⟩ := h
@@ -142,7 +142,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
     Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq] at hwin
   obtain ⟨Hτk, hH, PRtk, hP, hRk⟩ := hwin
   -- the input set of the state space, `B U`
-  set V : Zonotope (Vec 𝕋 n) := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
+  set V : Zonotope (Vec 𝕋 n) := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) sys.B U
     ⊞ Zonotope.point c with hV
   set Δ := toReal Δt with hΔ
   -- the split's center `ũ`, the stored one
@@ -155,7 +155,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
     refine ⟨_, trajB.canonical fun s hs => ?_⟩
     have hBu : B *ᵥ uIn s ∈ (B *ᵥ ·) '' toSet U := ⟨uIn s, trajB.input s hs, rfl⟩
     exact Plus.plus_outer _ _ (Set.add_mem_add
-      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) sys.B U
         (Set.mem_iUnion₂.mpr ⟨B, trajB.paramB, hBu⟩))
       (show sys.c ∈ (Zonotope.point c).toSet by
         rw [Zonotope.toSet_point, Set.mem_singleton_iff]; exact hc.symm))

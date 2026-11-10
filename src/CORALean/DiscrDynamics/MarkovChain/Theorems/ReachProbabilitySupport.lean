@@ -38,9 +38,9 @@ only into cells the reachable sets meet.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

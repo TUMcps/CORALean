@@ -34,9 +34,9 @@ class has to carry a `segment` field of its own.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

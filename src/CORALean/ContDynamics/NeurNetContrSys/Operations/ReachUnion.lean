@@ -36,10 +36,10 @@ for `Δt` and the augmented matrix `[A B_nn; 0 0]` makes `reach_outer` hold.
 namespace CORALean
 
 open CORALean.Real
-open ContSet Plus Reduce Mtimes
+open ContSet ContSetLike Plus Reduce Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 

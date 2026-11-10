@@ -33,7 +33,7 @@ selected coordinates lie in the set. For `∅` that is `∅` again.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

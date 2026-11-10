@@ -23,19 +23,19 @@ flow on `[0, KΔt]` and nothing beyond. `discretize_horizon` handed to
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [∀ n, Reduce (ContSet n) (Vec ℝ n)] [Mtimes (Mat ℝ) ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [∀ n, LinComb (S n) (Vec ℝ n)] in
+omit [∀ n, LinComb (ContSet n) (Vec ℝ n)] in
 theorem LinearSys.IsCanonicalTrajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
+    {R₀ U Ud : ContSet n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (toSet U))
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ toSet Ud) {o : ℕ} (ho : 0 < o) :

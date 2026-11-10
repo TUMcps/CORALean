@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 /-- The regularized difference of the regions of `P₁` and `P₂`. -/
 def Polygon.subtract (P₁ P₂ : Polygon) : Set (Vec ℝ 2) :=
-  closure (interior (ContSet.toSet P₁) \ ContSet.toSet P₂)
+  closure (interior (ContSetLike.toSet P₁) \ ContSetLike.toSet P₂)
 
 end CORALean.Real
 

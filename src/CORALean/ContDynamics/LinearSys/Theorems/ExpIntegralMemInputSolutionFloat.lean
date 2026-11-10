@@ -41,7 +41,7 @@ float order's admissibility, as in that theorem.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix ContSet
+open CORALean.Float SoundFloatArithmetic Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

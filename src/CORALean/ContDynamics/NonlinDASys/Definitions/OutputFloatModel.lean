@@ -27,7 +27,7 @@ Jacobian at every point of the boxes. The Jacobians are asked for pointwise, as
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 

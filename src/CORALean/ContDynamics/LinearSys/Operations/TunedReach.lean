@@ -48,7 +48,7 @@ can step past `t_f`; the accompanying theorem asks that it does not.
 namespace CORALean
 
 open CORALean.Real
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 

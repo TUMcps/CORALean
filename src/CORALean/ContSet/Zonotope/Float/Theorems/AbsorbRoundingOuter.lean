@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingNominal
 /-!
 # `Zonotope.absorbRounding` loses no point
 
-Read back through `ContSet`, for a caller that only wants the inclusion:
+Read back through `ContSetLike`, for a caller that only wants the inclusion:
 `absorbRounding_nominal` places every point in the nominal set, and the result's box denotes the
 origin alone. The box of the result is exactly zero, so nothing of the absorption step's rounding
 is left outside the nominal set.

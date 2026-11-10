@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `reachFloat`, or `none` if a float of its result is a NaN. -/
 def LinearSys.reachFloatChecked (sys : LinearSys 𝕋 n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) :
+    (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n))) :=
   checkNoNaN (𝕋 := 𝕋) (sys.reachFloat params options)
 
