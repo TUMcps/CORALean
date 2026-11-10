@@ -1542,15 +1542,16 @@ in the logic, so the ten obligations are bundled into one property,
 `Global/Float/Instances/Binary64/Definitions/Axioms.lean` — one of the three files
 in the tree that may carry an `axiom` (see the end of this section), and one of
 those `check-conventions.sh` names. A result that
-reaches `Float` therefore reports exactly one name beyond Lean's own, and a
-verified model of binary64 would discharge it without another line changing.
+reaches `Float` therefore reports exactly one name beyond Lean's own.
 
-The assumptions are true of IEEE 754 binary64 on a run in which every value
-stays finite and nothing underflows into the subnormals. Neither restriction can
-be written into the class, whose obligations are unconditional; instead
-`Binary64/Operations/InRange.lean` checks them at runtime, and an operation that
-leaves the range returns NaN, which propagates. Prefer `Dyadic` where the cost is bearable, reach for
-`Float` where it is not, and say which a number came from.
+That name is a false axiom. Each obligation is true of IEEE 754 binary64 where
+its result is a number, and every rounded operation returns NaN outside the
+normal range (`stepUp`, `step_inRange`); but the class asks them unconditionally,
+and no format with finitely many values meets that:
+`Binary64/Theorems/NotIsTrustedHardware.lean` proves `trustedHardware` refutable.
+A theorem at `Float` is no guarantee on its own; README, "The trust base", says
+what a run rests on instead. Prefer `IEEE` or `Dyadic` where the cost is
+bearable, reach for `Float` where it is not, and say which a number came from.
 
 Directed rounding is achieved without a rounding mode and without C of its own:
 the machine's round-to-nearest result is stepped one unit in the last place
@@ -1561,8 +1562,8 @@ A third pair of scalars is not a model at all. `Examples/Bench/NearestUnsound`
 rounds to nearest in both directions, as CORA does, and instantiates the class
 by one axiom, `nearestUnsound`, that is FALSE by design — the paper's
 "round-to-nearest (as in CORA)" baseline, run by `bench --type nearest` on the
-unchanged library. Where `trustedHardware` states what the hardware really does,
-it states what it does not; it is tolerable only because nothing outside the
+unchanged library. Where `trustedHardware` is false at the edges of the range,
+it is false everywhere; it is tolerable only because nothing outside the
 bench can reach it, which `check-conventions.sh` and `check-axioms.sh` check
 between them.
 

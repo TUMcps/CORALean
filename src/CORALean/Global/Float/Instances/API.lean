@@ -17,9 +17,10 @@ than one instance is the point: an axiom that only a rounding arithmetic can
 violate is invisible against ℝ alone, and what the hardware costs is invisible
 against `Dyadic` alone.
 
-`Binary64` is the only one of the five that assumes anything. A result that
-reaches it is true of IEEE 754 binary64 on the assumptions its `Axioms` lists;
-the same result at `Dyadic p`, `FixedPoint f` or `IEEE fmt` rests on nothing
+`Binary64` is the only one of the five that assumes anything, and what it
+assumes is false (`not_isTrustedHardware`): a result that reaches it is read as
+README, "The trust base", says, and is no theorem about the hardware; the same
+result at `Dyadic p`, `FixedPoint f` or `IEEE fmt` rests on nothing
 beyond Lean's own axioms.
 
 `Flint/` is deliberately not collected here: its rounded operations call FLINT,

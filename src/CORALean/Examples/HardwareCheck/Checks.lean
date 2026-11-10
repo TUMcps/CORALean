@@ -12,13 +12,14 @@ one and answering with the failures it saw, tagged by kind: `unsound` (the resul
 side of the exact value, or a `≤` that holds natively while the decoded values disagree), `loose`
 (more than one step past the soft-float's directed result, or a `≤` that fails natively while the
 decoded values are ordered), `range` (NaN where the result is in the normal range, or a number
-where it is not) and `value` (a result that is not what the operation must return). A `Stat` counts
-them per operation and keeps the first failing input's report.
+where it is not), `value` (a result that is not what the operation must return) and `number` (the
+conjunct as stated is false of a result that is a number, which its docstring says never happens;
+`withField`). A `Stat` counts them per operation and keeps the first failing input's report.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   10-November-2026
 -- Reviewed:      ---
 
 
@@ -65,6 +66,7 @@ structure Stat where
   loose : Nat := 0
   range : Nat := 0
   value : Nat := 0
+  number : Nat := 0
   first : Option String := none
 
 /-- The result of one sample. -/
@@ -85,12 +87,13 @@ def Stat.add (s : Stat) (o : Outcome) : Stat :=
     loose := s.loose + count "loose"
     range := s.range + count "range"
     value := s.value + count "value"
+    number := s.number + count "number"
     first := match s.first, o.fails with
       | none, (k, msg) :: _ => some s!"[{k}] {msg}"
       | f, _ => f }
 
-/-- The number of failures in a tally: unsound, loose, range and value. -/
-def Stat.failures (s : Stat) : Nat := s.unsound + s.loose + s.range + s.value
+/-- The number of failures in a tally: unsound, loose, range, value and number. -/
+def Stat.failures (s : Stat) : Nat := s.unsound + s.loose + s.range + s.value + s.number
 
 /-- A directed operation at `a` `b` against the model: `lo`, `hi` are the soft-float's round-down
 and round-up of the exact `x`, and NaN is expected exactly where `stepBits` says. -/
@@ -103,10 +106,9 @@ def checkDirected (name : String) (up : Bool) (native : Float) (a b : Float) (x 
   let qn := qOf native
   match exp with
   | none =>
-    -- the model says NaN; the axiom as stated (up only) holds of a NaN's decoded value or not
-    let lit := up && !(x ≤ qn)
-    if aux_nan native then { out := true, literalFalse := lit }
-    else { out := true, literalFalse := lit, fails := [("range", "expected NaN: " ++ line)] }
+    -- the model says NaN; whether the conjunct holds of its decoded value is `withField`'s
+    if aux_nan native then { out := true }
+    else { out := true, fails := [("range", "expected NaN: " ++ line)] }
   | some _ =>
     if aux_nan native || !native.isFinite then
       { fails := [("range", "expected a number: " ++ line)] }
@@ -131,7 +133,7 @@ def checkHalf (a : Float) : Outcome :=
   let inR := a.isFinite && (qa == 0 || minNormal ≤ (if qa < 0 then -qa else qa) / 2)
   if inR then
     if aux_nan h || qOf h != qa / 2 then { fails := [("value", "not a / 2: " ++ line)] } else {}
-  else if aux_nan h then { out := true, literalFalse := a.isFinite && qOf h != qa / 2 }
+  else if aux_nan h then { out := true }
   else { out := true, fails := [("range", "expected NaN: " ++ line)] }
 
 /-- `neg`: the sign bit flipped and nothing else. A NaN is the exception: Lean's `toBits` reports
@@ -141,7 +143,7 @@ def checkNeg (a : Float) : Outcome :=
   let n := -a
   let line := s!"neg a={aux_hexF a} native={aux_hexF n}"
   if a.isNaN then
-    if aux_nan n then { out := true, literalFalse := qOf n != -qOf a }
+    if aux_nan n then { out := true }
     else { out := true, fails := [("value", "expected NaN: " ++ line)] }
   else if n.toBits != a.toBits ^^^ 0x8000000000000000 then
     { fails := [("value", "sign bit: " ++ line)] }
@@ -187,6 +189,34 @@ def checkNonFinite (name : String) (native : Float) (a b : Float) (zeroOk : Bool
     else { fails := [("range", "expected 0: " ++ line)] }
   else if aux_nan native then { out := true }
   else { out := true, fails := [("range", "expected NaN: " ++ line)] }
+
+/-- The conjunct of `IsTrustedHardware` behind `name`, as stated, on the decoded `a`, `b` and the
+result `r`; the downward ones are the theorems `Binary64.Theorems` derives, read the same way. -/
+def fieldHolds (name : String) (a b r : Float) : Bool :=
+  let qa := qOf a
+  let qb := qOf b
+  let qr := qOf r
+  match name with
+  | "addUp" => qa + qb ≤ qr
+  | "addDown" => qr ≤ qa + qb
+  | "mulUp" => qa * qb ≤ qr
+  | "mulDown" => qr ≤ qa * qb
+  | "divUp" => !(0 < qb) || qa / qb ≤ qr
+  | "divDown" => !(0 < qb) || qr ≤ qa / qb
+  | "half" => qr == qa / 2
+  | "neg" => qr == -qa
+  | "minimum" => qr == min qa qb
+  | "maximum" => qr == max qa qb
+  | _ => true
+
+/-- `o`, with the conjunct checked at the result `r`: `literalFalse` where it is false, and a
+`number` failure where it is false of a result that is not a NaN. -/
+def withField (name : String) (a b r : Float) (o : Outcome) : Outcome :=
+  let lit := !fieldHolds name a b r
+  let line := s!"{name} a={aux_hexF a} b={aux_hexF b} native={aux_hexF r}"
+  let bad : List Fail := if lit && !aux_nan r then [("number", "false of a number: " ++ line)]
+    else []
+  { o with literalFalse := lit, fails := o.fails ++ bad }
 
 end CORALean.HardwareCheck
 

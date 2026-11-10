@@ -43,7 +43,7 @@ open Lean (Json)
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
--- The range guard's fixed quiet-NaN bit pattern (`Binary64/Operations/InRange.lean`), hex.
+-- The range guard's fixed quiet-NaN bit pattern (`step_inRange`, `Binary64/.../Half.lean`), hex.
 private def aux_nanHex : String := "7ff8000000000000"
 
 /-- The five variants of a sum or dot product, each a thunk producing its hex string or the
