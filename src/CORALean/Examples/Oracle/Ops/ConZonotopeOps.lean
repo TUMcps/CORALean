@@ -23,6 +23,7 @@ import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
 import CORALean.ContSet.ConZonotope.Float.Operations.Split
 import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 import CORALean.ContSet.Conversion.Float.Operations.Basic
+import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_IntervalTight
 import CORALean.ContSet.ContSet.Operations.Enclose
 import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 import CORALean.Examples.Oracle.Ops.SetCodec
@@ -235,12 +236,22 @@ def handleConZonoFourierMotzkin (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     | _, _ => throw "fourierMotzkinBounds: give exactly one of `B` (one pass) and `k` (passes)"
   pure [("I", printIntervalVec dops.showExact I)]
 
+/-- `conZonotope.intervalTight`: `ConZonotope.intervalTight`, the box of `c + G beta + E` with the
+factors bounded by `k` Fourier-Motzkin passes on the constraint; `I`. CORA's `interval` bounds
+them by linear programs. -/
+def handleConZonoIntervalTight (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "intervalTight" req ["cZ", "k"]
+  let d ← parseConZonotope dops.readExact (← field req "cZ")
+  pure [("I", printIntervalVec dops.showExact
+    (ConZonotope.intervalTight (← natField req "k") d.cZ))]
+
 /-- Every op of this file, without the `conZonotope.` prefix. -/
 def conZonotopeOpNames : List String :=
   [ "and", "cartProd", "compact", "conIntersect", "contains", "convHull", "cubMap", "empty",
     "enclose", "fourierMotzkinBounds", "intersectStrip", "isBounded", "isFullDim", "isIntersecting",
     "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap", "reduce", "representsa",
-    "split", "supportFunc", "vertices", "zonotope", "interval", "zonoBundle" ]
+    "split", "supportFunc", "vertices", "zonotope", "interval", "intervalTight",
+    "zonoBundle" ]
 
 /-- `op` of `conZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -306,6 +317,7 @@ def handleConZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
       valueBool (ConZonotope.representsa_emptySet d.cZ))
   -- the arms from `split` on
   | "split" => some (handleConZonoSplit dops req)
+  | "intervalTight" => some (handleConZonoIntervalTight dops req)
   | "supportFunc" => some (handleConZonoSupportFunc dops req)
   | "vertices" => some (handleConZonoVertices dops req)
   -- the conversions: drop the constraints, the bounding box, a bundle of one

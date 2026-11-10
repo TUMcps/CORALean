@@ -298,7 +298,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `empty`, `origin` | `n` | `ConZonotope.empty`, `.origin` |
 | `enclose` | `M`, `cZ2` | `ContSet.enclose` |
 | `intersectStrip` | `C`, `phi`, `y`, `Lambda` | `ConZonotope.intersectStrip` |
-| `fourierMotzkinBounds` | `C` (`p x q`), `d`, and `B` (a box `{"inf","sup"}`, one pass) or `k` (passes from the unit box); no `cZ` | `ConZonotope.fourierMotzkinBounds`, `.fourierMotzkinIter` (new, Koller et al. ICLR 2026, Prop. 3); `I`, the bounds of `C x <= d` in `B`. The first step of `approximateBoundsWithGPU`; the box `c + G beta` of the factor bounds has no float definition |
+| `fourierMotzkinBounds` | `C` (`p x q`), `d`, and `B` (a box `{"inf","sup"}`, one pass) or `k` (passes from the unit box); no `cZ` | `ConZonotope.fourierMotzkinBounds`, `.fourierMotzkinIter` (new, Koller et al. ICLR 2026, Prop. 3); `I`, the bounds of `C x <= d` in `B`. The first step of `approximateBoundsWithGPU`; the box `c + G beta` of the factor bounds is `conZonotope.intervalTight` |
 | `isBounded`, `isequal`, `representsa` (`emptySet`) | `cZ2`, `tol` | constant `true`; `ConZonotope.isequal`, `.representsa_emptySet`; `value` |
 | `isIntersecting` | `cZ2`, `tol` | `ConZonotope.isDisjointLP`; `disjoint` |
 | `lift`, `project` | `N`, `dims` | `ConZonotope.reindex`, `.project` |
@@ -308,6 +308,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `supportFunc` | `dir`, `type` (`upper`) | `ConZonotope.boundDot`; `value` |
 | `vertices` | | `ConZonotope.vPolytopeBox`; `V`, `E` |
 | `zonotope`, `interval`, `zonoBundle` | | `ConZonotope.zonotope`, `.interval`, `.zonoBundle`; `Z`, `I`, `zB` |
+| `intervalTight` | `k` | `ConZonotope.intervalTight`: the box of `c + G beta + E` with the factors bounded by `k` Fourier-Motzkin passes on the constraint (`conZonotope.fourierMotzkinBounds` in one go, no linear program); `I`. Looser than CORA's `interval`, which solves two programs per coordinate, and tighter than `conZonotope.interval`, which drops the constraints. Pure float arithmetic, so another implementation can match it bit for bit |
 
 `zonoBundle.` (`Ops/ZonoBundleOps.lean`; result `zB`):
 
@@ -483,13 +484,13 @@ and `R` are lists:
 
 | op | fields besides the system | float definition |
 |---|---|---|
-| `location.potInt` | `guards` (polytopes), `targets` (target location of each guard), `finalLoc`, `R` (zonotopes) | `Location.potInt`; `hits`, `[transition, set]` pairs, 0-based |
+| `location.potInt` | `guards` (polytopes), `targets` (target location of each guard), `finalLoc`, `R` (zonotopes) | `Location.potInt`; `hits`, `[transition, set]` pairs, 0-based. A guard's equality rows `Ae x = be` separate a set from either side, as the inequality rows do (batch 11; before, only `A x <= b` were tested, so a hyperplane guard listed every set) |
 | `location.calcBasis` | `n`, `enclose` (`"box"`, or a list) | `Location.calcBasisBox`; `B`, one matrix per entry. `pca`, `flow`: error, no float definition |
 | `location.guardGroups` | `hits`, `[transition, set]` pairs as `location.potInt` returns them | `Location.guardGroups`: CORA's `aux_groupSets` and `aux_removeGaps`; `groups`, one `{"transition","sets","minInd","maxInd"}` per crossing, in CORA's order (split-off parts to the front, newest first) |
 | `location.checkFlow` | `hyperplane` (`{"normal","d"}`), `R` | `Location.checkFlowFloat`; `keep`, the indices of the sets the flow may carry through |
 | `location.guardIntersect_zonoGirard` | `Bs`, `R0`, `R`, `normal`, `gamma` | `Location.guardIntersectZonoGirardFloat` (a dual bound, not Girard's dichotomic search); `zB` |
-| `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope) | `Location.guardIntersectNondetFloat`; `zB` |
-| `location.guardIntersect_conZonotope` | `Bs`, `R0`, `R`, `guard`, `guardOrder` | `Location.guardIntersectPolytopeFloat` on the sets reduced to `guardOrder` (`Reduce.reduce`); `zB` |
+| `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope, or a polytope `{"A","b","Ae","be"}`), `fmPasses` (polytope guard only) | `Location.guardIntersectNondetFloat`; for a polytope guard `Location.guardIntersectNondetHFloat`: the parallelotope cut by `ConZonotope.intersectHPolytope`, the cut boxed by `ConZonotope.intervalTight` with `fmPasses` passes; `zB` |
+| `location.guardIntersect_conZonotope` | `Bs`, `R0`, `R`, `guard` (as above), `guardOrder`, `fmPasses` (polytope guard only) | `Location.guardIntersectPolytopeFloat` on the sets reduced to `guardOrder` (`Reduce.reduce`); for a polytope guard `Location.guardIntersectPolytopeHFloat`, the cuts boxed by `ConZonotope.intervalTight`; `zB` |
 | `location.reach` | `X0`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder` | `Location.reachFloat`: one stay, the windows of `reachFloatInput` over the whole horizon, no invariant exit; `timeInterval` |
 | `transition.jump` | `W`, `w`, `Rg` | `Transition.jumpFloat`, `W Rg + w`; `Z` |
 

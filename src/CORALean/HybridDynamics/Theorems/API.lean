@@ -70,7 +70,9 @@ public import CORALean.HybridDynamics.Theorems.HasDerivAtHitPoint
 public import CORALean.HybridDynamics.Theorems.LocationPotIntComplete
 public import CORALean.HybridDynamics.Theorems.LocationPotOutOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectNondetFloatOuter
+public import CORALean.HybridDynamics.Theorems.GuardIntersectNondetHFloatOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectPolytopeFloatOuter
+public import CORALean.HybridDynamics.Theorems.GuardIntersectPolytopeHFloatOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardFloatOuter
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe

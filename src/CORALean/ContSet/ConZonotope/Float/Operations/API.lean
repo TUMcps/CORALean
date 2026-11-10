@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectHPolytope
 public import CORALean.ContSet.ConZonotope.Float.Operations.Isequal
 public import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff

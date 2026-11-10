@@ -61,15 +61,15 @@ public import CORALean.Global.StepOf
 box against anything boxable (`IntervalOuter`), and a halfspace polytope against a box or a
 zonotope, both answering a direction with no solver. Box against box, `contains` is exact and
 `isDisjoint` exact up to one margin. A polytope `contains` by bounding the set along every row,
-exact up to rounding; `isDisjoint` looks for one row the set lies strictly beyond, so is exact only
-for a halfspace. Boxable sets and zonotope bundles are separated by their hulls (CORA's `'approx'`
-`isIntersecting_`). The box-against-`IntervalOuter` instance is generic over a family `S : ℕ → Type`
-that instance search cannot read off a lambda; fixing `S` to each real representation makes it fire.
+exact up to rounding; `isDisjoint` looks for one row the set lies strictly beyond, an equality row
+from either side, so is exact only for a halfspace or a hyperplane. Boxable sets and zonotope
+bundles are separated by their hulls (CORA's `'approx'` `isIntersecting_`). The box instance is
+generic over a family `S : ℕ → Type` that search cannot read off a lambda; fixing `S` makes it fire.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
--- Last update:   15-October-2026
+-- Last update:   10-November-2026
 -- Reviewed:      ---
 
 
@@ -190,23 +190,36 @@ theorem step_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec 
     rw [toReal_zero] at h₁ h₂
     exact ⟨h₁, h₂⟩
 
-/-- One row of `P` the whole set lies strictly beyond. -/
+/-- One row of `P` the whole set lies strictly beyond: an inequality row, or either half of an
+equality row (`Aeᵢ x ≤ beUᵢ` and `-Aeᵢ x ≤ beLNᵢ`). -/
 @[step_of isDisjointPolytopeInterval]
 def step_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
-  (List.finRange P.m).any fun i => ltStrict (P.bU i) (neg (bnd (-(P.A i))))
+  (List.finRange P.m).any (fun i => ltStrict (P.bU i) (neg (bnd (-(P.A i))))) ||
+    (List.finRange P.me).any fun i =>
+      ltStrict (P.beU i) (neg (bnd (-(P.Ae i)))) || ltStrict (bnd (P.Ae i)) (neg (P.beLN i))
 
 @[step_of isDisjointPolytopeInterval]
 theorem step_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
     (h : step_disjointRows P bnd = true) : -- --- CONCL ---
     Disjoint X P.toSet := by -- --- PROOF ---
-  simp only [step_disjointRows, List.any_eq_true, List.mem_finRange, true_and] at h
-  obtain ⟨i, hi⟩ := h
+  simp only [step_disjointRows, Bool.or_eq_true, List.any_eq_true, List.mem_finRange,
+    true_and] at h
   rw [Set.disjoint_left]
   intro x hX hP
-  have hrow : ∑ j, toReal (P.A i j) * x j ≤ toReal (P.bU i) :=
-    (HPolytope.rows_of_mem_toSet hP).1 i
-  linarith [step_neg_bound hb (P.A i) hX, toReal_lt_of_ltStrict hi]
+  obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_toSet hP
+  rcases h with ⟨i, hi⟩ | ⟨i, hi | hi⟩
+  · -- an inequality row
+    have hrow : ∑ j, toReal (P.A i j) * x j ≤ toReal (P.bU i) := hle i
+    linarith [step_neg_bound hb (P.A i) hX, toReal_lt_of_ltStrict hi]
+  · -- an equality row, its upper half
+    have hrow : ∑ j, toReal (P.Ae i j) * x j ≤ toReal (P.beU i) := (heq i).1
+    linarith [step_neg_bound hb (P.Ae i) hX, toReal_lt_of_ltStrict hi]
+  · -- an equality row, its lower half
+    have hrow : -∑ j, toReal (P.Ae i j) * x j ≤ toReal (P.beLN i) := (heq i).2
+    have hlt := toReal_lt_of_ltStrict hi
+    rw [toReal_neg] at hlt
+    linarith [hb (P.Ae i) x hX]
 
 /-- Some member's hull of `zB` strictly to one side of `B`. -/
 @[step_of isDisjointZonoBundleOuter]
